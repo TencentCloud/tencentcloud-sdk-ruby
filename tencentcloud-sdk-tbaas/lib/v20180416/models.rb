@@ -1,0 +1,1459 @@
+# frozen_string_literal: true
+
+# Copyright (c) 2017-2018 THL A29 Limited, a Tencent company. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+module TencentCloud
+  module Tbaas
+    module V20180416
+      # ApplyUserCert请求参数结构体
+      class ApplyUserCertRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：cert_mng
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：cert_apply_for_user
+        # @type Operation: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param GroupName: 申请证书的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+        # @param UserIdentity: 用户证书标识，用于标识用户证书，要求由纯小写字母组成，长度小于10
+        # @type UserIdentity: String
+        # @param Applicant: 证书申请实体，使用腾讯云账号实名认证的名称
+        # @type Applicant: String
+        # @param IdentityNum: 证件号码。如果腾讯云账号对应的实名认证类型为企业认证，填入“0”；如果腾讯云账号对应的实名认证类型为个人认证，填入个人身份证号码
+        # @type IdentityNum: String
+        # @param CsrData: csr p10证书文件。需要用户根据文档生成证书的CSR文件
+        # @type CsrData: String
+        # @param Notes: 证书备注信息
+        # @type Notes: String
+
+        attr_accessor :Module, :Operation, :ClusterId, :GroupName, :UserIdentity, :Applicant, :IdentityNum, :CsrData, :Notes
+        
+        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, useridentity=nil, applicant=nil, identitynum=nil, csrdata=nil, notes=nil)
+          @Module = module
+          @Operation = operation
+          @ClusterId = clusterid
+          @GroupName = groupname
+          @UserIdentity = useridentity
+          @Applicant = applicant
+          @IdentityNum = identitynum
+          @CsrData = csrdata
+          @Notes = notes
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @ClusterId = params['ClusterId']
+          @GroupName = params['GroupName']
+          @UserIdentity = params['UserIdentity']
+          @Applicant = params['Applicant']
+          @IdentityNum = params['IdentityNum']
+          @CsrData = params['CsrData']
+          @Notes = params['Notes']
+        end
+      end
+
+      # ApplyUserCert返回参数结构体
+      class ApplyUserCertResponse < TencentCloud::Common::AbstractModel
+        # @param CertId: 证书ID
+        # @type CertId: Integer
+        # @param CertDn: 证书DN
+        # @type CertDn: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertId, :CertDn, :RequestId
+        
+        def initialize(certid=nil, certdn=nil, requestid=nil)
+          @CertId = certid
+          @CertDn = certdn
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @CertDn = params['CertDn']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # Bcos区块对象
+      class BcosBlockObj < TencentCloud::Common::AbstractModel
+        # @param BlockHash: 区块哈希
+        # @type BlockHash: String
+        # @param BlockNumber: 区块高度
+        # @type BlockNumber: Integer
+        # @param BlockTimestamp: 区块时间戳
+        # @type BlockTimestamp: String
+        # @param Sealer: 打包节点ID
+        # @type Sealer: String
+        # @param SealerIndex: 打包节点索引
+        # @type SealerIndex: Integer
+        # @param CreateTime: 记录保存时间
+        # @type CreateTime: String
+        # @param TransCount: 交易数量
+        # @type TransCount: Integer
+        # @param ModifyTime: 记录修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :BlockHash, :BlockNumber, :BlockTimestamp, :Sealer, :SealerIndex, :CreateTime, :TransCount, :ModifyTime
+        
+        def initialize(blockhash=nil, blocknumber=nil, blocktimestamp=nil, sealer=nil, sealerindex=nil, createtime=nil, transcount=nil, modifytime=nil)
+          @BlockHash = blockhash
+          @BlockNumber = blocknumber
+          @BlockTimestamp = blocktimestamp
+          @Sealer = sealer
+          @SealerIndex = sealerindex
+          @CreateTime = createtime
+          @TransCount = transcount
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @BlockHash = params['BlockHash']
+          @BlockNumber = params['BlockNumber']
+          @BlockTimestamp = params['BlockTimestamp']
+          @Sealer = params['Sealer']
+          @SealerIndex = params['SealerIndex']
+          @CreateTime = params['CreateTime']
+          @TransCount = params['TransCount']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # Bcos交易信息对象
+      class BcosTransInfo < TencentCloud::Common::AbstractModel
+        # @param BlockNumber: 所属区块高度
+        # @type BlockNumber: Integer
+        # @param BlockTimestamp: 区块时间戳
+        # @type BlockTimestamp: String
+        # @param TransHash: 交易哈希
+        # @type TransHash: String
+        # @param TransFrom: 交易发起者
+        # @type TransFrom: String
+        # @param TransTo: 交易接收者
+        # @type TransTo: String
+        # @param CreateTime: 落库时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :BlockNumber, :BlockTimestamp, :TransHash, :TransFrom, :TransTo, :CreateTime, :ModifyTime
+        
+        def initialize(blocknumber=nil, blocktimestamp=nil, transhash=nil, transfrom=nil, transto=nil, createtime=nil, modifytime=nil)
+          @BlockNumber = blocknumber
+          @BlockTimestamp = blocktimestamp
+          @TransHash = transhash
+          @TransFrom = transfrom
+          @TransTo = transto
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @BlockNumber = params['BlockNumber']
+          @BlockTimestamp = params['BlockTimestamp']
+          @TransHash = params['TransHash']
+          @TransFrom = params['TransFrom']
+          @TransTo = params['TransTo']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # 区块对象
+      class Block < TencentCloud::Common::AbstractModel
+        # @param BlockNum: 区块编号
+        # @type BlockNum: Integer
+        # @param DataHash: 区块Hash数值
+        # @type DataHash: String
+        # @param BlockId: 区块ID，与区块编号一致
+        # @type BlockId: Integer
+        # @param PreHash: 前一个区块Hash（未使用）,与区块Hash数值一致
+        # @type PreHash: String
+        # @param TxCount: 区块内的交易数量
+        # @type TxCount: Integer
+
+        attr_accessor :BlockNum, :DataHash, :BlockId, :PreHash, :TxCount
+        
+        def initialize(blocknum=nil, datahash=nil, blockid=nil, prehash=nil, txcount=nil)
+          @BlockNum = blocknum
+          @DataHash = datahash
+          @BlockId = blockid
+          @PreHash = prehash
+          @TxCount = txcount
+        end
+
+        def deserialize(params)
+          @BlockNum = params['BlockNum']
+          @DataHash = params['DataHash']
+          @BlockId = params['BlockId']
+          @PreHash = params['PreHash']
+          @TxCount = params['TxCount']
+        end
+      end
+
+      # BlockByNumberHandler请求参数结构体
+      class BlockByNumberHandlerRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：block
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：block_by_number
+        # @type Operation: String
+        # @param GroupPk: 当前群组编号
+        # @type GroupPk: String
+        # @param BlockNumber: 区块高度
+        # @type BlockNumber: Integer
+
+        attr_accessor :Module, :Operation, :GroupPk, :BlockNumber
+        
+        def initialize(module=nil, operation=nil, grouppk=nil, blocknumber=nil)
+          @Module = module
+          @Operation = operation
+          @GroupPk = grouppk
+          @BlockNumber = blocknumber
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @GroupPk = params['GroupPk']
+          @BlockNumber = params['BlockNumber']
+        end
+      end
+
+      # BlockByNumberHandler返回参数结构体
+      class BlockByNumberHandlerResponse < TencentCloud::Common::AbstractModel
+        # @param BlockJson: 返回区块json字符串
+        # @type BlockJson: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BlockJson, :RequestId
+        
+        def initialize(blockjson=nil, requestid=nil)
+          @BlockJson = blockjson
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BlockJson = params['BlockJson']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeployDynamicContractHandler请求参数结构体
+      class DeployDynamicContractHandlerRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：contract
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：deploy_by_dynamic_contract
+        # @type Operation: String
+        # @param GroupPk: 群组编号
+        # @type GroupPk: String
+        # @param ContractName: 合约名称
+        # @type ContractName: String
+        # @param AbiInfo: 合约编译后的abi
+        # @type AbiInfo: String
+        # @param ByteCodeBin: 合约编译后的binary
+        # @type ByteCodeBin: String
+        # @param ConstructorParams: 构造函数入参
+        # @type ConstructorParams: Array
+
+        attr_accessor :Module, :Operation, :GroupPk, :ContractName, :AbiInfo, :ByteCodeBin, :ConstructorParams
+        
+        def initialize(module=nil, operation=nil, grouppk=nil, contractname=nil, abiinfo=nil, bytecodebin=nil, constructorparams=nil)
+          @Module = module
+          @Operation = operation
+          @GroupPk = grouppk
+          @ContractName = contractname
+          @AbiInfo = abiinfo
+          @ByteCodeBin = bytecodebin
+          @ConstructorParams = constructorparams
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @GroupPk = params['GroupPk']
+          @ContractName = params['ContractName']
+          @AbiInfo = params['AbiInfo']
+          @ByteCodeBin = params['ByteCodeBin']
+          @ConstructorParams = params['ConstructorParams']
+        end
+      end
+
+      # DeployDynamicContractHandler返回参数结构体
+      class DeployDynamicContractHandlerResponse < TencentCloud::Common::AbstractModel
+        # @param ContractAddress: 部署成功返回的合约地址
+        # @type ContractAddress: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContractAddress, :RequestId
+        
+        def initialize(contractaddress=nil, requestid=nil)
+          @ContractAddress = contractaddress
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ContractAddress = params['ContractAddress']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DownloadUserCert请求参数结构体
+      class DownloadUserCertRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：cert_mng
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：cert_download_for_user
+        # @type Operation: String
+        # @param CertId: 证书ID，可以在证书详情页面获取
+        # @type CertId: Integer
+        # @param CertDn: 证书DN，可以在证书详情页面获取
+        # @type CertDn: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param GroupName: 下载证书的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+
+        attr_accessor :Module, :Operation, :CertId, :CertDn, :ClusterId, :GroupName
+        
+        def initialize(module=nil, operation=nil, certid=nil, certdn=nil, clusterid=nil, groupname=nil)
+          @Module = module
+          @Operation = operation
+          @CertId = certid
+          @CertDn = certdn
+          @ClusterId = clusterid
+          @GroupName = groupname
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @CertId = params['CertId']
+          @CertDn = params['CertDn']
+          @ClusterId = params['ClusterId']
+          @GroupName = params['GroupName']
+        end
+      end
+
+      # DownloadUserCert返回参数结构体
+      class DownloadUserCertResponse < TencentCloud::Common::AbstractModel
+        # @param CertName: 证书名称
+        # @type CertName: String
+        # @param CertCtx: 证书内容
+        # @type CertCtx: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertName, :CertCtx, :RequestId
+        
+        def initialize(certname=nil, certctx=nil, requestid=nil)
+          @CertName = certname
+          @CertCtx = certctx
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertName = params['CertName']
+          @CertCtx = params['CertCtx']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 背书组织及其节点列表
+      class EndorserGroup < TencentCloud::Common::AbstractModel
+        # @param EndorserGroupName: 背书组织名称
+        # @type EndorserGroupName: String
+        # @param EndorserPeerList: 背书节点列表
+        # @type EndorserPeerList: Array
+
+        attr_accessor :EndorserGroupName, :EndorserPeerList
+        
+        def initialize(endorsergroupname=nil, endorserpeerlist=nil)
+          @EndorserGroupName = endorsergroupname
+          @EndorserPeerList = endorserpeerlist
+        end
+
+        def deserialize(params)
+          @EndorserGroupName = params['EndorserGroupName']
+          @EndorserPeerList = params['EndorserPeerList']
+        end
+      end
+
+      # GetBlockListHandler请求参数结构体
+      class GetBlockListHandlerRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：block
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：get_block_list
+        # @type Operation: String
+        # @param Offset: 记录偏移数
+        # @type Offset: Integer
+        # @param Limit: 每页记录数
+        # @type Limit: Integer
+        # @param GroupPk: 当前群组编号
+        # @type GroupPk: String
+        # @param BlockHash: 区块哈希
+        # @type BlockHash: String
+
+        attr_accessor :Module, :Operation, :Offset, :Limit, :GroupPk, :BlockHash
+        
+        def initialize(module=nil, operation=nil, offset=nil, limit=nil, grouppk=nil, blockhash=nil)
+          @Module = module
+          @Operation = operation
+          @Offset = offset
+          @Limit = limit
+          @GroupPk = grouppk
+          @BlockHash = blockhash
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @GroupPk = params['GroupPk']
+          @BlockHash = params['BlockHash']
+        end
+      end
+
+      # GetBlockListHandler返回参数结构体
+      class GetBlockListHandlerResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param GroupPk: 当前群组编号
+        # @type GroupPk: String
+        # @param List: 返回数据列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :GroupPk, :List, :RequestId
+        
+        def initialize(totalcount=nil, grouppk=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @GroupPk = grouppk
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @GroupPk = params['GroupPk']
+          @List = params['List']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetBlockList请求参数结构体
+      class GetBlockListRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名称，固定字段：block
+        # @type Module: String
+        # @param Operation: 操作名称，固定字段：block_list
+        # @type Operation: String
+        # @param ChannelId: 通道ID，固定字段：0
+        # @type ChannelId: Integer
+        # @param GroupId: 组织ID，固定字段：0
+        # @type GroupId: Integer
+        # @param ChannelName: 需要查询的通道名称，可在通道详情或列表中获取
+        # @type ChannelName: String
+        # @param GroupName: 调用接口的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param Offset: 需要获取的起始交易偏移
+        # @type Offset: Integer
+        # @param Limit: 需要获取的交易数量
+        # @type Limit: Integer
+
+        attr_accessor :Module, :Operation, :ChannelId, :GroupId, :ChannelName, :GroupName, :ClusterId, :Offset, :Limit
+        
+        def initialize(module=nil, operation=nil, channelid=nil, groupid=nil, channelname=nil, groupname=nil, clusterid=nil, offset=nil, limit=nil)
+          @Module = module
+          @Operation = operation
+          @ChannelId = channelid
+          @GroupId = groupid
+          @ChannelName = channelname
+          @GroupName = groupname
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @ChannelId = params['ChannelId']
+          @GroupId = params['GroupId']
+          @ChannelName = params['ChannelName']
+          @GroupName = params['GroupName']
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetBlockList返回参数结构体
+      class GetBlockListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 区块数量
+        # @type TotalCount: Integer
+        # @param BlockList: 区块列表
+        # @type BlockList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BlockList, :RequestId
+        
+        def initialize(totalcount=nil, blocklist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BlockList = blocklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @BlockList = params['BlockList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetBlockTransactionListForUser请求参数结构体
+      class GetBlockTransactionListForUserRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：block_transaction_list_for_user
+        # @type Operation: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param GroupName: 参与交易的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+        # @param ChannelName: 业务所属通道名称，可在通道详情或列表中获取
+        # @type ChannelName: String
+        # @param BlockId: 区块ID，通过GetInvokeTx接口可以获取交易所在的区块ID
+        # @type BlockId: Integer
+        # @param Offset: 查询的交易列表起始偏移地址
+        # @type Offset: Integer
+        # @param Limit: 查询的交易列表数量
+        # @type Limit: Integer
+
+        attr_accessor :Module, :Operation, :ClusterId, :GroupName, :ChannelName, :BlockId, :Offset, :Limit
+        
+        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, channelname=nil, blockid=nil, offset=nil, limit=nil)
+          @Module = module
+          @Operation = operation
+          @ClusterId = clusterid
+          @GroupName = groupname
+          @ChannelName = channelname
+          @BlockId = blockid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @ClusterId = params['ClusterId']
+          @GroupName = params['GroupName']
+          @ChannelName = params['ChannelName']
+          @BlockId = params['BlockId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetBlockTransactionListForUser返回参数结构体
+      class GetBlockTransactionListForUserResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 交易总数量
+        # @type TotalCount: Integer
+        # @param TransactionList: 交易列表
+        # @type TransactionList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TransactionList, :RequestId
+        
+        def initialize(totalcount=nil, transactionlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TransactionList = transactionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TransactionList = params['TransactionList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetClusterSummary请求参数结构体
+      class GetClusterSummaryRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名称，固定字段：cluster_mng
+        # @type Module: String
+        # @param Operation: 操作名称，固定字段：cluster_summary
+        # @type Operation: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param GroupId: 组织ID，固定字段：0
+        # @type GroupId: Integer
+        # @param GroupName: 调用接口的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+
+        attr_accessor :Module, :Operation, :ClusterId, :GroupId, :GroupName
+        
+        def initialize(module=nil, operation=nil, clusterid=nil, groupid=nil, groupname=nil)
+          @Module = module
+          @Operation = operation
+          @ClusterId = clusterid
+          @GroupId = groupid
+          @GroupName = groupname
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @ClusterId = params['ClusterId']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+        end
+      end
+
+      # GetClusterSummary返回参数结构体
+      class GetClusterSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param TotalChannelCount: 网络通道总数量
+        # @type TotalChannelCount: Integer
+        # @param MyChannelCount: 当前组织创建的通道数量
+        # @type MyChannelCount: Integer
+        # @param JoinChannelCount: 当前组织加入的通道数量
+        # @type JoinChannelCount: Integer
+        # @param TotalPeerCount: 网络节点总数量
+        # @type TotalPeerCount: Integer
+        # @param MyPeerCount: 当前组织创建的节点数量
+        # @type MyPeerCount: Integer
+        # @param OrderCount: 其他组织创建的节点数量
+        # @type OrderCount: Integer
+        # @param TotalGroupCount: 网络组织总数量
+        # @type TotalGroupCount: Integer
+        # @param MyGroupCount: 当前组织创建的组织数量
+        # @type MyGroupCount: Integer
+        # @param TotalChaincodeCount: 网络智能合约总数量
+        # @type TotalChaincodeCount: Integer
+        # @param RecentChaincodeCount: 最近7天发起的智能合约数量
+        # @type RecentChaincodeCount: Integer
+        # @param MyChaincodeCount: 当前组织发起的智能合约数量
+        # @type MyChaincodeCount: Integer
+        # @param TotalCertCount: 当前组织的证书总数量
+        # @type TotalCertCount: Integer
+        # @param TlsCertCount: 颁发给当前组织的证书数量
+        # @type TlsCertCount: Integer
+        # @param PeerCertCount: 网络背书节点证书数量
+        # @type PeerCertCount: Integer
+        # @param ClientCertCount: 当前组织业务证书数量
+        # @type ClientCertCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalChannelCount, :MyChannelCount, :JoinChannelCount, :TotalPeerCount, :MyPeerCount, :OrderCount, :TotalGroupCount, :MyGroupCount, :TotalChaincodeCount, :RecentChaincodeCount, :MyChaincodeCount, :TotalCertCount, :TlsCertCount, :PeerCertCount, :ClientCertCount, :RequestId
+        
+        def initialize(totalchannelcount=nil, mychannelcount=nil, joinchannelcount=nil, totalpeercount=nil, mypeercount=nil, ordercount=nil, totalgroupcount=nil, mygroupcount=nil, totalchaincodecount=nil, recentchaincodecount=nil, mychaincodecount=nil, totalcertcount=nil, tlscertcount=nil, peercertcount=nil, clientcertcount=nil, requestid=nil)
+          @TotalChannelCount = totalchannelcount
+          @MyChannelCount = mychannelcount
+          @JoinChannelCount = joinchannelcount
+          @TotalPeerCount = totalpeercount
+          @MyPeerCount = mypeercount
+          @OrderCount = ordercount
+          @TotalGroupCount = totalgroupcount
+          @MyGroupCount = mygroupcount
+          @TotalChaincodeCount = totalchaincodecount
+          @RecentChaincodeCount = recentchaincodecount
+          @MyChaincodeCount = mychaincodecount
+          @TotalCertCount = totalcertcount
+          @TlsCertCount = tlscertcount
+          @PeerCertCount = peercertcount
+          @ClientCertCount = clientcertcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalChannelCount = params['TotalChannelCount']
+          @MyChannelCount = params['MyChannelCount']
+          @JoinChannelCount = params['JoinChannelCount']
+          @TotalPeerCount = params['TotalPeerCount']
+          @MyPeerCount = params['MyPeerCount']
+          @OrderCount = params['OrderCount']
+          @TotalGroupCount = params['TotalGroupCount']
+          @MyGroupCount = params['MyGroupCount']
+          @TotalChaincodeCount = params['TotalChaincodeCount']
+          @RecentChaincodeCount = params['RecentChaincodeCount']
+          @MyChaincodeCount = params['MyChaincodeCount']
+          @TotalCertCount = params['TotalCertCount']
+          @TlsCertCount = params['TlsCertCount']
+          @PeerCertCount = params['PeerCertCount']
+          @ClientCertCount = params['ClientCertCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetInvokeTx请求参数结构体
+      class GetInvokeTxRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：query_txid
+        # @type Operation: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param ChannelName: 业务所属通道名称，可在通道详情或列表中获取
+        # @type ChannelName: String
+        # @param PeerName: 执行该查询交易的节点名称，可以在通道详情中获取该通道上的节点名称极其所属组织名称
+        # @type PeerName: String
+        # @param PeerGroup: 执行该查询交易的节点所属组织名称，可以在通道详情中获取该通道上的节点名称极其所属组织名称
+        # @type PeerGroup: String
+        # @param TxId: 交易ID
+        # @type TxId: String
+        # @param GroupName: 调用合约的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+
+        attr_accessor :Module, :Operation, :ClusterId, :ChannelName, :PeerName, :PeerGroup, :TxId, :GroupName
+        
+        def initialize(module=nil, operation=nil, clusterid=nil, channelname=nil, peername=nil, peergroup=nil, txid=nil, groupname=nil)
+          @Module = module
+          @Operation = operation
+          @ClusterId = clusterid
+          @ChannelName = channelname
+          @PeerName = peername
+          @PeerGroup = peergroup
+          @TxId = txid
+          @GroupName = groupname
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @ClusterId = params['ClusterId']
+          @ChannelName = params['ChannelName']
+          @PeerName = params['PeerName']
+          @PeerGroup = params['PeerGroup']
+          @TxId = params['TxId']
+          @GroupName = params['GroupName']
+        end
+      end
+
+      # GetInvokeTx返回参数结构体
+      class GetInvokeTxResponse < TencentCloud::Common::AbstractModel
+        # @param TxValidationCode: 交易执行状态码
+        # @type TxValidationCode: Integer
+        # @param TxValidationMsg: 交易执行消息
+        # @type TxValidationMsg: String
+        # @param BlockId: 交易所在区块ID
+        # @type BlockId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TxValidationCode, :TxValidationMsg, :BlockId, :RequestId
+        
+        def initialize(txvalidationcode=nil, txvalidationmsg=nil, blockid=nil, requestid=nil)
+          @TxValidationCode = txvalidationcode
+          @TxValidationMsg = txvalidationmsg
+          @BlockId = blockid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TxValidationCode = params['TxValidationCode']
+          @TxValidationMsg = params['TxValidationMsg']
+          @BlockId = params['BlockId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetLatesdTransactionList请求参数结构体
+      class GetLatesdTransactionListRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名称，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名称，固定字段：latest_transaction_list
+        # @type Operation: String
+        # @param GroupId: 组织ID，固定字段：0
+        # @type GroupId: Integer
+        # @param ChannelId: 通道ID，固定字段：0
+        # @type ChannelId: Integer
+        # @param LatestBlockNumber: 获取的最新交易的区块数量，取值范围1~5
+        # @type LatestBlockNumber: Integer
+        # @param GroupName: 调用接口的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+        # @param ChannelName: 需要查询的通道名称，可在通道详情或列表中获取
+        # @type ChannelName: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param Offset: 需要获取的起始交易偏移
+        # @type Offset: Integer
+        # @param Limit: 需要获取的交易数量
+        # @type Limit: Integer
+
+        attr_accessor :Module, :Operation, :GroupId, :ChannelId, :LatestBlockNumber, :GroupName, :ChannelName, :ClusterId, :Offset, :Limit
+        
+        def initialize(module=nil, operation=nil, groupid=nil, channelid=nil, latestblocknumber=nil, groupname=nil, channelname=nil, clusterid=nil, offset=nil, limit=nil)
+          @Module = module
+          @Operation = operation
+          @GroupId = groupid
+          @ChannelId = channelid
+          @LatestBlockNumber = latestblocknumber
+          @GroupName = groupname
+          @ChannelName = channelname
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @GroupId = params['GroupId']
+          @ChannelId = params['ChannelId']
+          @LatestBlockNumber = params['LatestBlockNumber']
+          @GroupName = params['GroupName']
+          @ChannelName = params['ChannelName']
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetLatesdTransactionList返回参数结构体
+      class GetLatesdTransactionListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 交易总数量
+        # @type TotalCount: Integer
+        # @param TransactionList: 交易列表
+        # @type TransactionList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TransactionList, :RequestId
+        
+        def initialize(totalcount=nil, transactionlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TransactionList = transactionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TransactionList = params['TransactionList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTransByHashHandler请求参数结构体
+      class GetTransByHashHandlerRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：get_trans_by_hash
+        # @type Operation: String
+        # @param GroupPk: 群组编号
+        # @type GroupPk: String
+        # @param TransHash: 交易哈希
+        # @type TransHash: String
+
+        attr_accessor :Module, :Operation, :GroupPk, :TransHash
+        
+        def initialize(module=nil, operation=nil, grouppk=nil, transhash=nil)
+          @Module = module
+          @Operation = operation
+          @GroupPk = grouppk
+          @TransHash = transhash
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @GroupPk = params['GroupPk']
+          @TransHash = params['TransHash']
+        end
+      end
+
+      # GetTransByHashHandler返回参数结构体
+      class GetTransByHashHandlerResponse < TencentCloud::Common::AbstractModel
+        # @param TransactionJson: 交易信息json字符串
+        # @type TransactionJson: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TransactionJson, :RequestId
+        
+        def initialize(transactionjson=nil, requestid=nil)
+          @TransactionJson = transactionjson
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TransactionJson = params['TransactionJson']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTransListHandler请求参数结构体
+      class GetTransListHandlerRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：get_trans_list
+        # @type Operation: String
+        # @param Offset: 记录偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页记录数
+        # @type Limit: Integer
+        # @param GroupPk: 群组编号
+        # @type GroupPk: String
+        # @param TransHash: 交易哈希
+        # @type TransHash: String
+
+        attr_accessor :Module, :Operation, :Offset, :Limit, :GroupPk, :TransHash
+        
+        def initialize(module=nil, operation=nil, offset=nil, limit=nil, grouppk=nil, transhash=nil)
+          @Module = module
+          @Operation = operation
+          @Offset = offset
+          @Limit = limit
+          @GroupPk = grouppk
+          @TransHash = transhash
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @GroupPk = params['GroupPk']
+          @TransHash = params['TransHash']
+        end
+      end
+
+      # GetTransListHandler返回参数结构体
+      class GetTransListHandlerResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param GroupPk: 当前群组编号
+        # @type GroupPk: String
+        # @param List: 返回数据列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :GroupPk, :List, :RequestId
+        
+        def initialize(totalcount=nil, grouppk=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @GroupPk = grouppk
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @GroupPk = params['GroupPk']
+          @List = params['List']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTransactionDetailForUser请求参数结构体
+      class GetTransactionDetailForUserRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：transaction_detail_for_user
+        # @type Operation: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param GroupName: 参与交易的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+        # @param ChannelName: 业务所属通道名称，可在通道详情或列表中获取
+        # @type ChannelName: String
+        # @param BlockId: 区块ID，通过GetInvokeTx接口可以获取交易所在的区块ID
+        # @type BlockId: Integer
+        # @param TransactionId: 交易ID，需要查询的详情的交易ID
+        # @type TransactionId: String
+
+        attr_accessor :Module, :Operation, :ClusterId, :GroupName, :ChannelName, :BlockId, :TransactionId
+        
+        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, channelname=nil, blockid=nil, transactionid=nil)
+          @Module = module
+          @Operation = operation
+          @ClusterId = clusterid
+          @GroupName = groupname
+          @ChannelName = channelname
+          @BlockId = blockid
+          @TransactionId = transactionid
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @ClusterId = params['ClusterId']
+          @GroupName = params['GroupName']
+          @ChannelName = params['ChannelName']
+          @BlockId = params['BlockId']
+          @TransactionId = params['TransactionId']
+        end
+      end
+
+      # GetTransactionDetailForUser返回参数结构体
+      class GetTransactionDetailForUserResponse < TencentCloud::Common::AbstractModel
+        # @param TransactionId: 交易ID
+        # @type TransactionId: String
+        # @param TransactionHash: 交易hash
+        # @type TransactionHash: String
+        # @param CreateOrgName: 创建交易的组织名
+        # @type CreateOrgName: String
+        # @param TransactionType: 交易类型（普通交易和配置交易）
+        # @type TransactionType: String
+        # @param TransactionStatus: 交易状态
+        # @type TransactionStatus: String
+        # @param CreateTime: 交易创建时间
+        # @type CreateTime: String
+        # @param TransactionData: 交易数据
+        # @type TransactionData: String
+        # @param BlockId: 交易所在区块号
+        # @type BlockId: Integer
+        # @param BlockHash: 交易所在区块哈希
+        # @type BlockHash: String
+        # @param BlockHeight: 交易所在区块高度
+        # @type BlockHeight: Integer
+        # @param ChannelName: 通道名称
+        # @type ChannelName: String
+        # @param ContractName: 交易所在合约名称
+        # @type ContractName: String
+        # @param EndorserOrgList: 背书组织列表
+        # @type EndorserOrgList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TransactionId, :TransactionHash, :CreateOrgName, :TransactionType, :TransactionStatus, :CreateTime, :TransactionData, :BlockId, :BlockHash, :BlockHeight, :ChannelName, :ContractName, :EndorserOrgList, :RequestId
+        
+        def initialize(transactionid=nil, transactionhash=nil, createorgname=nil, transactiontype=nil, transactionstatus=nil, createtime=nil, transactiondata=nil, blockid=nil, blockhash=nil, blockheight=nil, channelname=nil, contractname=nil, endorserorglist=nil, requestid=nil)
+          @TransactionId = transactionid
+          @TransactionHash = transactionhash
+          @CreateOrgName = createorgname
+          @TransactionType = transactiontype
+          @TransactionStatus = transactionstatus
+          @CreateTime = createtime
+          @TransactionData = transactiondata
+          @BlockId = blockid
+          @BlockHash = blockhash
+          @BlockHeight = blockheight
+          @ChannelName = channelname
+          @ContractName = contractname
+          @EndorserOrgList = endorserorglist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TransactionId = params['TransactionId']
+          @TransactionHash = params['TransactionHash']
+          @CreateOrgName = params['CreateOrgName']
+          @TransactionType = params['TransactionType']
+          @TransactionStatus = params['TransactionStatus']
+          @CreateTime = params['CreateTime']
+          @TransactionData = params['TransactionData']
+          @BlockId = params['BlockId']
+          @BlockHash = params['BlockHash']
+          @BlockHeight = params['BlockHeight']
+          @ChannelName = params['ChannelName']
+          @ContractName = params['ContractName']
+          @EndorserOrgList = params['EndorserOrgList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # Invoke请求参数结构体
+      class InvokeRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：invoke
+        # @type Operation: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param ChaincodeName: 业务所属智能合约名称，可在智能合约详情或列表中获取
+        # @type ChaincodeName: String
+        # @param ChannelName: 业务所属通道名称，可在通道详情或列表中获取
+        # @type ChannelName: String
+        # @param Peers: 对该笔交易进行背书的节点列表（包括节点名称和节点所属组织名称，详见数据结构一节），可以在通道详情中获取该通道上的节点名称极其所属组织名称
+        # @type Peers: Array
+        # @param FuncName: 该笔交易需要调用的智能合约中的函数名称
+        # @type FuncName: String
+        # @param GroupName: 调用合约的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+        # @param Args: 被调用的函数参数列表
+        # @type Args: Array
+        # @param AsyncFlag: 同步调用标识，可选参数，值为0或者不传表示使用同步方法调用，调用后会等待交易执行后再返回执行结果；值为1时表示使用异步方式调用Invoke，执行后会立即返回交易对应的Txid，后续需要通过GetInvokeTx这个API查询该交易的执行结果。（对于逻辑较为简单的交易，可以使用同步模式；对于逻辑较为复杂的交易，建议使用异步模式，否则容易导致API因等待时间过长，返回等待超时）
+        # @type AsyncFlag: Integer
+
+        attr_accessor :Module, :Operation, :ClusterId, :ChaincodeName, :ChannelName, :Peers, :FuncName, :GroupName, :Args, :AsyncFlag
+        
+        def initialize(module=nil, operation=nil, clusterid=nil, chaincodename=nil, channelname=nil, peers=nil, funcname=nil, groupname=nil, args=nil, asyncflag=nil)
+          @Module = module
+          @Operation = operation
+          @ClusterId = clusterid
+          @ChaincodeName = chaincodename
+          @ChannelName = channelname
+          @Peers = peers
+          @FuncName = funcname
+          @GroupName = groupname
+          @Args = args
+          @AsyncFlag = asyncflag
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @ClusterId = params['ClusterId']
+          @ChaincodeName = params['ChaincodeName']
+          @ChannelName = params['ChannelName']
+          @Peers = params['Peers']
+          @FuncName = params['FuncName']
+          @GroupName = params['GroupName']
+          @Args = params['Args']
+          @AsyncFlag = params['AsyncFlag']
+        end
+      end
+
+      # Invoke返回参数结构体
+      class InvokeResponse < TencentCloud::Common::AbstractModel
+        # @param Txid: 交易ID
+        # @type Txid: String
+        # @param Events: 交易执行结果
+        # @type Events: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Txid, :Events, :RequestId
+        
+        def initialize(txid=nil, events=nil, requestid=nil)
+          @Txid = txid
+          @Events = events
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Txid = params['Txid']
+          @Events = params['Events']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PeerSet
+      class PeerSet < TencentCloud::Common::AbstractModel
+        # @param PeerName: 节点名称
+        # @type PeerName: String
+        # @param OrgName: 组织名称
+        # @type OrgName: String
+
+        attr_accessor :PeerName, :OrgName
+        
+        def initialize(peername=nil, orgname=nil)
+          @PeerName = peername
+          @OrgName = orgname
+        end
+
+        def deserialize(params)
+          @PeerName = params['PeerName']
+          @OrgName = params['OrgName']
+        end
+      end
+
+      # Query请求参数结构体
+      class QueryRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：query
+        # @type Operation: String
+        # @param ClusterId: 区块链网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param ChaincodeName: 业务所属智能合约名称，可在智能合约详情或列表中获取
+        # @type ChaincodeName: String
+        # @param ChannelName: 业务所属通道名称，可在通道详情或列表中获取
+        # @type ChannelName: String
+        # @param Peers: 执行该查询交易的节点列表（包括节点名称和节点所属组织名称，详见数据结构一节），可以在通道详情中获取该通道上的节点名称极其所属组织名称
+        # @type Peers: Array
+        # @param FuncName: 该笔交易查询需要调用的智能合约中的函数名称
+        # @type FuncName: String
+        # @param GroupName: 调用合约的组织名称，可以在组织管理列表中获取当前组织的名称
+        # @type GroupName: String
+        # @param Args: 被调用的函数参数列表
+        # @type Args: Array
+
+        attr_accessor :Module, :Operation, :ClusterId, :ChaincodeName, :ChannelName, :Peers, :FuncName, :GroupName, :Args
+        
+        def initialize(module=nil, operation=nil, clusterid=nil, chaincodename=nil, channelname=nil, peers=nil, funcname=nil, groupname=nil, args=nil)
+          @Module = module
+          @Operation = operation
+          @ClusterId = clusterid
+          @ChaincodeName = chaincodename
+          @ChannelName = channelname
+          @Peers = peers
+          @FuncName = funcname
+          @GroupName = groupname
+          @Args = args
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @ClusterId = params['ClusterId']
+          @ChaincodeName = params['ChaincodeName']
+          @ChannelName = params['ChannelName']
+          @Peers = params['Peers']
+          @FuncName = params['FuncName']
+          @GroupName = params['GroupName']
+          @Args = params['Args']
+        end
+      end
+
+      # Query返回参数结构体
+      class QueryResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询结果数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SendTransactionHandler请求参数结构体
+      class SendTransactionHandlerRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：send_transaction
+        # @type Operation: String
+        # @param GroupPk: 群组编号
+        # @type GroupPk: String
+        # @param ContractId: 合约编号
+        # @type ContractId: Integer
+        # @param FuncName: 合约方法名
+        # @type FuncName: String
+        # @param FuncParam: 合约方法入参
+        # @type FuncParam: Array
+
+        attr_accessor :Module, :Operation, :GroupPk, :ContractId, :FuncName, :FuncParam
+        
+        def initialize(module=nil, operation=nil, grouppk=nil, contractid=nil, funcname=nil, funcparam=nil)
+          @Module = module
+          @Operation = operation
+          @GroupPk = grouppk
+          @ContractId = contractid
+          @FuncName = funcname
+          @FuncParam = funcparam
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @GroupPk = params['GroupPk']
+          @ContractId = params['ContractId']
+          @FuncName = params['FuncName']
+          @FuncParam = params['FuncParam']
+        end
+      end
+
+      # SendTransactionHandler返回参数结构体
+      class SendTransactionHandlerResponse < TencentCloud::Common::AbstractModel
+        # @param TransactionRsp: 交易结果json字符串
+        # @type TransactionRsp: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TransactionRsp, :RequestId
+        
+        def initialize(transactionrsp=nil, requestid=nil)
+          @TransactionRsp = transactionrsp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TransactionRsp = params['TransactionRsp']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SrvInvoke请求参数结构体
+      class SrvInvokeRequest < TencentCloud::Common::AbstractModel
+        # @param Service: 服务类型，iss或者dam
+        # @type Service: String
+        # @param Method: 服务接口，要调用的方法函数名
+        # @type Method: String
+        # @param Param: 用户自定义json字符串
+        # @type Param: String
+
+        attr_accessor :Service, :Method, :Param
+        
+        def initialize(service=nil, method=nil, param=nil)
+          @Service = service
+          @Method = method
+          @Param = param
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+          @Method = params['Method']
+          @Param = params['Param']
+        end
+      end
+
+      # SrvInvoke返回参数结构体
+      class SrvInvokeResponse < TencentCloud::Common::AbstractModel
+        # @param RetCode: 返回码
+        # @type RetCode: Integer
+        # @param RetMsg: 返回消息
+        # @type RetMsg: String
+        # @param Data: 返回数据
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RetCode, :RetMsg, :Data, :RequestId
+        
+        def initialize(retcode=nil, retmsg=nil, data=nil, requestid=nil)
+          @RetCode = retcode
+          @RetMsg = retmsg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RetCode = params['RetCode']
+          @RetMsg = params['RetMsg']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TransByDynamicContractHandler请求参数结构体
+      class TransByDynamicContractHandlerRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定字段：transaction
+        # @type Module: String
+        # @param Operation: 操作名，固定字段：trans_by_dynamic_contract
+        # @type Operation: String
+        # @param GroupPk: 群组编号
+        # @type GroupPk: String
+        # @param ContractAddress: 合约地址（合约部署成功，可得到合约地址）
+        # @type ContractAddress: String
+        # @param ContractName: 合约名
+        # @type ContractName: String
+        # @param AbiInfo: 合约编译后的abi
+        # @type AbiInfo: String
+        # @param FuncName: 合约被调用方法名
+        # @type FuncName: String
+        # @param FuncParam: 合约被调用方法的入参
+        # @type FuncParam: Array
+
+        attr_accessor :Module, :Operation, :GroupPk, :ContractAddress, :ContractName, :AbiInfo, :FuncName, :FuncParam
+        
+        def initialize(module=nil, operation=nil, grouppk=nil, contractaddress=nil, contractname=nil, abiinfo=nil, funcname=nil, funcparam=nil)
+          @Module = module
+          @Operation = operation
+          @GroupPk = grouppk
+          @ContractAddress = contractaddress
+          @ContractName = contractname
+          @AbiInfo = abiinfo
+          @FuncName = funcname
+          @FuncParam = funcparam
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @GroupPk = params['GroupPk']
+          @ContractAddress = params['ContractAddress']
+          @ContractName = params['ContractName']
+          @AbiInfo = params['AbiInfo']
+          @FuncName = params['FuncName']
+          @FuncParam = params['FuncParam']
+        end
+      end
+
+      # TransByDynamicContractHandler返回参数结构体
+      class TransByDynamicContractHandlerResponse < TencentCloud::Common::AbstractModel
+        # @param TransactionRsp: 交易结果json字符串
+        # @type TransactionRsp: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TransactionRsp, :RequestId
+        
+        def initialize(transactionrsp=nil, requestid=nil)
+          @TransactionRsp = transactionrsp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TransactionRsp = params['TransactionRsp']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 交易列表项信息
+      class TransactionItem < TencentCloud::Common::AbstractModel
+        # @param TransactionId: 交易ID
+        # @type TransactionId: String
+        # @param TransactionHash: 交易hash
+        # @type TransactionHash: String
+        # @param CreateOrgName: 创建交易的组织名
+        # @type CreateOrgName: String
+        # @param BlockId: 交易所在区块号
+        # @type BlockId: Integer
+        # @param TransactionType: 交易类型（普通交易和配置交易）
+        # @type TransactionType: String
+        # @param CreateTime: 交易创建时间
+        # @type CreateTime: String
+        # @param BlockHeight: 交易所在区块高度
+        # @type BlockHeight: Integer
+        # @param TransactionStatus: 交易状态
+        # @type TransactionStatus: String
+
+        attr_accessor :TransactionId, :TransactionHash, :CreateOrgName, :BlockId, :TransactionType, :CreateTime, :BlockHeight, :TransactionStatus
+        
+        def initialize(transactionid=nil, transactionhash=nil, createorgname=nil, blockid=nil, transactiontype=nil, createtime=nil, blockheight=nil, transactionstatus=nil)
+          @TransactionId = transactionid
+          @TransactionHash = transactionhash
+          @CreateOrgName = createorgname
+          @BlockId = blockid
+          @TransactionType = transactiontype
+          @CreateTime = createtime
+          @BlockHeight = blockheight
+          @TransactionStatus = transactionstatus
+        end
+
+        def deserialize(params)
+          @TransactionId = params['TransactionId']
+          @TransactionHash = params['TransactionHash']
+          @CreateOrgName = params['CreateOrgName']
+          @BlockId = params['BlockId']
+          @TransactionType = params['TransactionType']
+          @CreateTime = params['CreateTime']
+          @BlockHeight = params['BlockHeight']
+          @TransactionStatus = params['TransactionStatus']
+        end
+      end
+
+    end
+  end
+end
+

@@ -1,0 +1,200 @@
+# frozen_string_literal: true
+
+# Copyright (c) 2017-2018 THL A29 Limited, a Tencent company. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+require 'json'
+
+module TencentCloud
+  module Captcha
+    module V20190722
+      class Client < TencentCloud::Common::AbstractClient
+        @@api_version = '2019-07-22'
+        @@endpoint = 'captcha.tencentcloudapi.com'
+        @@sdk_version = 'CAPTCHA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+
+        # 查询安全验证码应用APPId信息
+
+        # @param request: Request instance for DescribeCaptchaAppIdInfo.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaAppIdInfoRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaAppIdInfoResponse`
+        def DescribeCaptchaAppIdInfo(request)
+          body = send_request('DescribeCaptchaAppIdInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCaptchaAppIdInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 安全验证码分类查询数据接口，请求量type=0、验证量type=1、通过量type=2、拦截量type=3  分钟级查询
+
+        # @param request: Request instance for DescribeCaptchaData.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaDataRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaDataResponse`
+        def DescribeCaptchaData(request)
+          body = send_request('DescribeCaptchaData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCaptchaDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 安全验证码查询请求数据概况，例如：按照时间段查询数据  昨日请求量、昨日恶意比例、昨日验证量、昨日通过量、昨日恶意拦截量……
+
+        # @param request: Request instance for DescribeCaptchaDataSum.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaDataSumRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaDataSumResponse`
+        def DescribeCaptchaDataSum(request)
+          body = send_request('DescribeCaptchaDataSum', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCaptchaDataSumResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 安全验证码用户操作数据查询，验证码加载耗时type = 1 、拦截情况type = 2、 一周通过平均尝试次数 type = 3、尝试次数分布 type = 4
+
+        # @param request: Request instance for DescribeCaptchaOperData.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaOperDataRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaOperDataResponse`
+        def DescribeCaptchaOperData(request)
+          body = send_request('DescribeCaptchaOperData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCaptchaOperDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 核查验证码票据结果
+
+        # @param request: Request instance for DescribeCaptchaResult.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaResultRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaResultResponse`
+        def DescribeCaptchaResult(request)
+          body = send_request('DescribeCaptchaResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCaptchaResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 安全验证码获取用户注册所有APPId和应用名称
+
+        # @param request: Request instance for DescribeCaptchaUserAllAppId.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaUserAllAppIdRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaUserAllAppIdResponse`
+        def DescribeCaptchaUserAllAppId(request)
+          body = send_request('DescribeCaptchaUserAllAppId', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCaptchaUserAllAppIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新验证码应用APPId信息
+
+        # @param request: Request instance for UpdateCaptchaAppIdInfo.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::UpdateCaptchaAppIdInfoRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::UpdateCaptchaAppIdInfoResponse`
+        def UpdateCaptchaAppIdInfo(request)
+          body = send_request('UpdateCaptchaAppIdInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCaptchaAppIdInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+
+      end
+    end
+  end
+end
