@@ -1878,10 +1878,16 @@ module TencentCloud
         # @param Cvm: 售卖类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cvm: Integer
+        # @param InstanceType: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param Features: 表示该实例支持的特性。FEATURE_SUBNET_ACL:表示acl策略支持设置子网。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Features: Array
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features
         
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -1908,6 +1914,8 @@ module TencentCloud
           @Version = version
           @MaxGroupNum = maxgroupnum
           @Cvm = cvm
+          @InstanceType = instancetype
+          @Features = features
         end
 
         def deserialize(params)
@@ -1939,6 +1947,8 @@ module TencentCloud
           @Version = params['Version']
           @MaxGroupNum = params['MaxGroupNum']
           @Cvm = params['Cvm']
+          @InstanceType = params['InstanceType']
+          @Features = params['Features']
         end
       end
 
@@ -2154,10 +2164,12 @@ module TencentCloud
         # @type ShiftTimestamp: Integer
         # @param Offset: 需要重新设置的offset位置。当strategy为2，必须包含该字段。
         # @type Offset: Integer
+        # @param Partitions: 需要重新设置的partition的列表，如果没有指定Topics参数。则重置全部topics的对应的Partition列表里的partition。指定Topics时则重置指定的topic列表的对应的Partitions列表的partition。
+        # @type Partitions: Array
 
-        attr_accessor :InstanceId, :Group, :Strategy, :Topics, :Shift, :ShiftTimestamp, :Offset
+        attr_accessor :InstanceId, :Group, :Strategy, :Topics, :Shift, :ShiftTimestamp, :Offset, :Partitions
         
-        def initialize(instanceid=nil, group=nil, strategy=nil, topics=nil, shift=nil, shifttimestamp=nil, offset=nil)
+        def initialize(instanceid=nil, group=nil, strategy=nil, topics=nil, shift=nil, shifttimestamp=nil, offset=nil, partitions=nil)
           @InstanceId = instanceid
           @Group = group
           @Strategy = strategy
@@ -2165,6 +2177,7 @@ module TencentCloud
           @Shift = shift
           @ShiftTimestamp = shifttimestamp
           @Offset = offset
+          @Partitions = partitions
         end
 
         def deserialize(params)
@@ -2175,6 +2188,7 @@ module TencentCloud
           @Shift = params['Shift']
           @ShiftTimestamp = params['ShiftTimestamp']
           @Offset = params['Offset']
+          @Partitions = params['Partitions']
         end
       end
 
@@ -2524,19 +2538,24 @@ module TencentCloud
         # @param PartitionOffset: 分区offset信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartitionOffset: Array
+        # @param TopicId: 订阅的主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
 
-        attr_accessor :TopicName, :Partition, :PartitionOffset
+        attr_accessor :TopicName, :Partition, :PartitionOffset, :TopicId
         
-        def initialize(topicname=nil, partition=nil, partitionoffset=nil)
+        def initialize(topicname=nil, partition=nil, partitionoffset=nil, topicid=nil)
           @TopicName = topicname
           @Partition = partition
           @PartitionOffset = partitionoffset
+          @TopicId = topicid
         end
 
         def deserialize(params)
           @TopicName = params['TopicName']
           @Partition = params['Partition']
           @PartitionOffset = params['PartitionOffset']
+          @TopicId = params['TopicId']
         end
       end
 

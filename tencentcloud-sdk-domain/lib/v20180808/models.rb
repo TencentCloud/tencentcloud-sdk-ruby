@@ -17,6 +17,158 @@
 module TencentCloud
   module Domain
     module V20180808
+      # BatchModifyDomainInfo请求参数结构体
+      class BatchModifyDomainInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 批量修改的域名。
+        # @type Domains: Array
+        # @param TemplateId: 模板ID。
+        # @type TemplateId: String
+
+        attr_accessor :Domains, :TemplateId
+        
+        def initialize(domains=nil, templateid=nil)
+          @Domains = domains
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # BatchModifyDomainInfo返回参数结构体
+      class BatchModifyDomainInfoResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 日志ID
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+        
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量任务状态
+      class BatchStatus < TencentCloud::Common::AbstractModel
+        # @param LogId: 批量任务id
+        # @type LogId: Integer
+        # @param Status: 批量任务状态  doing：进行中  success：成功  failed：失败  partial_success：部分成功
+        # @type Status: String
+        # @param BatchAction: 批量任务类型
+        # @type BatchAction: String
+
+        attr_accessor :LogId, :Status, :BatchAction
+        
+        def initialize(logid=nil, status=nil, batchaction=nil)
+          @LogId = logid
+          @Status = status
+          @BatchAction = batchaction
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @Status = params['Status']
+          @BatchAction = params['BatchAction']
+        end
+      end
+
+      # 认证资料信息
+      class CertificateInfo < TencentCloud::Common::AbstractModel
+        # @param CertificateCode: 证件号码。
+        # @type CertificateCode: String
+        # @param CertificateType: 证件类型。
+        # SFZ: 身份证。
+        # HZ: 护照。
+        # TXZ: 中国港澳居民来往内地通行证。
+        # TWSFZ: 中国台湾居民来往大陆通行证。
+        # GWSFZ: 外国人永久居留身份证。
+        # ORG: 组织机构代码证
+        # YYZZ: 工商营业执照。
+        # TYDMZ: 统一社会信用代码证书。
+        # BDDH: 部队代号
+        # JDXKZ: 军队单位对外有偿服务许可证。
+        # SYZS: 事业单位法定代表人证书。
+        # GWCZDJZ: 外国企业常驻代表机构登记证。
+        # STDJZ: 社会团体法定代表人登记证书。
+        # ZJDJZ: 宗教活动场所登记证。
+        # MBDJZ: 民办非企业单位登记证书。
+        # JJDJZ: 基金会法定代表人登记证书。
+        # LSXKZ: 律师事务所执业许可证。
+        # GWZHDJZ: 外国在华文化中心登记证。
+        # GWLYDJZ: 外国政府旅游部门常驻代表机构批准登记证。
+        # SFXKZ: 司法鉴定许可证
+        # GWJGZJ: 外国机构证件。
+        # SHFWJGZ: 社会服务机构登记证书。
+        # MBXXXKZ: 民办学校办学许可证。
+        # YLJGXKZ: 医疗机构执业许可证。
+        # GAJZZ: 中国港澳居住证。
+        # TWJZZ: 中国台湾居住证。
+        # QTTYDM: 其他-统一社会信用代码证书。
+        # GZJGZY: 公证机构执业证。
+        # @type CertificateType: String
+        # @param ImgUrl: 证件照片地址。
+        # @type ImgUrl: String
+
+        attr_accessor :CertificateCode, :CertificateType, :ImgUrl
+        
+        def initialize(certificatecode=nil, certificatetype=nil, imgurl=nil)
+          @CertificateCode = certificatecode
+          @CertificateType = certificatetype
+          @ImgUrl = imgurl
+        end
+
+        def deserialize(params)
+          @CertificateCode = params['CertificateCode']
+          @CertificateType = params['CertificateType']
+          @ImgUrl = params['ImgUrl']
+        end
+      end
+
+      # CheckBatchStatus请求参数结构体
+      class CheckBatchStatusRequest < TencentCloud::Common::AbstractModel
+        # @param LogIds: 操作日志 ID数组，最多 200 个
+        # @type LogIds: Array
+
+        attr_accessor :LogIds
+        
+        def initialize(logids=nil)
+          @LogIds = logids
+        end
+
+        def deserialize(params)
+          @LogIds = params['LogIds']
+        end
+      end
+
+      # CheckBatchStatus返回参数结构体
+      class CheckBatchStatusResponse < TencentCloud::Common::AbstractModel
+        # @param StatusSet: 批量任务状态集
+        # @type StatusSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StatusSet, :RequestId
+        
+        def initialize(statusset=nil, requestid=nil)
+          @StatusSet = statusset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StatusSet = params['StatusSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckDomain请求参数结构体
       class CheckDomainRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 所查询域名名称
@@ -109,6 +261,392 @@ module TencentCloud
         end
       end
 
+      # 域名联系人信息
+      class ContactInfo < TencentCloud::Common::AbstractModel
+        # @param OrganizationNameCN: 注册人（中文）
+        # @type OrganizationNameCN: String
+        # @param OrganizationName: 注册人（英文）
+        # @type OrganizationName: String
+        # @param RegistrantNameCN: 联系人（中文）
+        # @type RegistrantNameCN: String
+        # @param RegistrantName: 联系人（英文）
+        # @type RegistrantName: String
+        # @param ProvinceCN: 省份（中文）
+        # @type ProvinceCN: String
+        # @param CityCN: 城市（中文）
+        # @type CityCN: String
+        # @param StreetCN: 街道（中文）
+        # @type StreetCN: String
+        # @param Street: 街道（英文）
+        # @type Street: String
+        # @param CountryCN: 国家（中文）
+        # @type CountryCN: String
+        # @param Telephone: 联系人手机号
+        # @type Telephone: String
+        # @param Email: 联系人邮箱
+        # @type Email: String
+        # @param ZipCode: 邮编
+        # @type ZipCode: String
+        # @param RegistrantType: 用户类型 E:组织， I:个人
+        # @type RegistrantType: String
+        # @param Province: 省份（英文）。作为入参时可以不填
+        # @type Province: String
+        # @param City: 城市（英文）。作为入参时可以不填
+        # @type City: String
+        # @param Country: 国家（英文）。作为入参时可以不填
+        # @type Country: String
+
+        attr_accessor :OrganizationNameCN, :OrganizationName, :RegistrantNameCN, :RegistrantName, :ProvinceCN, :CityCN, :StreetCN, :Street, :CountryCN, :Telephone, :Email, :ZipCode, :RegistrantType, :Province, :City, :Country
+        
+        def initialize(organizationnamecn=nil, organizationname=nil, registrantnamecn=nil, registrantname=nil, provincecn=nil, citycn=nil, streetcn=nil, street=nil, countrycn=nil, telephone=nil, email=nil, zipcode=nil, registranttype=nil, province=nil, city=nil, country=nil)
+          @OrganizationNameCN = organizationnamecn
+          @OrganizationName = organizationname
+          @RegistrantNameCN = registrantnamecn
+          @RegistrantName = registrantname
+          @ProvinceCN = provincecn
+          @CityCN = citycn
+          @StreetCN = streetcn
+          @Street = street
+          @CountryCN = countrycn
+          @Telephone = telephone
+          @Email = email
+          @ZipCode = zipcode
+          @RegistrantType = registranttype
+          @Province = province
+          @City = city
+          @Country = country
+        end
+
+        def deserialize(params)
+          @OrganizationNameCN = params['OrganizationNameCN']
+          @OrganizationName = params['OrganizationName']
+          @RegistrantNameCN = params['RegistrantNameCN']
+          @RegistrantName = params['RegistrantName']
+          @ProvinceCN = params['ProvinceCN']
+          @CityCN = params['CityCN']
+          @StreetCN = params['StreetCN']
+          @Street = params['Street']
+          @CountryCN = params['CountryCN']
+          @Telephone = params['Telephone']
+          @Email = params['Email']
+          @ZipCode = params['ZipCode']
+          @RegistrantType = params['RegistrantType']
+          @Province = params['Province']
+          @City = params['City']
+          @Country = params['Country']
+        end
+      end
+
+      # CreateDomainBatch请求参数结构体
+      class CreateDomainBatchRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID。详情请查看：[获取模板列表](https://cloud.tencent.com/document/product/242/48940)
+        # @type TemplateId: String
+        # @param Period: 购买域名的年限，可选值：[1-10]
+        # @type Period: Integer
+        # @param Domains: 批量购买的域名,最多为4000个
+        # @type Domains: Array
+        # @param PayMode: 付费模式 0手动在线付费，1使用余额付费
+        # @type PayMode: Integer
+        # @param AutoRenewFlag: 自动续费开关。有两个可选值：
+        # 0 表示关闭，不自动续费（默认值）
+        # 1 表示开启，将自动续费
+        # @type AutoRenewFlag: Integer
+
+        attr_accessor :TemplateId, :Period, :Domains, :PayMode, :AutoRenewFlag
+        
+        def initialize(templateid=nil, period=nil, domains=nil, paymode=nil, autorenewflag=nil)
+          @TemplateId = templateid
+          @Period = period
+          @Domains = domains
+          @PayMode = paymode
+          @AutoRenewFlag = autorenewflag
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @Period = params['Period']
+          @Domains = params['Domains']
+          @PayMode = params['PayMode']
+          @AutoRenewFlag = params['AutoRenewFlag']
+        end
+      end
+
+      # CreateDomainBatch返回参数结构体
+      class CreateDomainBatchResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 批量日志ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+        
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTemplate请求参数结构体
+      class CreateTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param ContactInfo: 联系人信息
+        # @type ContactInfo: :class:`Tencentcloud::Domain.v20180808.models.ContactInfo`
+        # @param CertificateInfo: 证件信息
+        # @type CertificateInfo: :class:`Tencentcloud::Domain.v20180808.models.CertificateInfo`
+
+        attr_accessor :ContactInfo, :CertificateInfo
+        
+        def initialize(contactinfo=nil, certificateinfo=nil)
+          @ContactInfo = contactinfo
+          @CertificateInfo = certificateinfo
+        end
+
+        def deserialize(params)
+          unless params['ContactInfo'].nil?
+            @ContactInfo = ContactInfo.new.deserialize(params[ContactInfo])
+          end
+          unless params['CertificateInfo'].nil?
+            @CertificateInfo = CertificateInfo.new.deserialize(params[CertificateInfo])
+          end
+        end
+      end
+
+      # CreateTemplate返回参数结构体
+      class CreateTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Template: 模板信息
+        # @type Template: :class:`Tencentcloud::Domain.v20180808.models.TemplateInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Template, :RequestId
+        
+        def initialize(template=nil, requestid=nil)
+          @Template = template
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Template'].nil?
+            @Template = TemplateInfo.new.deserialize(params[Template])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTemplate请求参数结构体
+      class DeleteTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteTemplate返回参数结构体
+      class DeleteTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBatchOperationLogDetails请求参数结构体
+      class DescribeBatchOperationLogDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param LogId: 日志ID。
+        # @type LogId: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为200。
+        # @type Limit: Integer
+
+        attr_accessor :LogId, :Offset, :Limit
+        
+        def initialize(logid=nil, offset=nil, limit=nil)
+          @LogId = logid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeBatchOperationLogDetails返回参数结构体
+      class DescribeBatchOperationLogDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量。
+        # @type TotalCount: Integer
+        # @param DomainBatchDetailSet: 日志详情列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainBatchDetailSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DomainBatchDetailSet, :RequestId
+        
+        def initialize(totalcount=nil, domainbatchdetailset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DomainBatchDetailSet = domainbatchdetailset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @DomainBatchDetailSet = params['DomainBatchDetailSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBatchOperationLogs请求参数结构体
+      class DescribeBatchOperationLogsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为200。
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+        
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeBatchOperationLogs返回参数结构体
+      class DescribeBatchOperationLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param DomainBatchLogSet: 日志列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainBatchLogSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DomainBatchLogSet, :RequestId
+        
+        def initialize(totalcount=nil, domainbatchlogset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DomainBatchLogSet = domainbatchlogset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @DomainBatchLogSet = params['DomainBatchLogSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDomainBaseInfo请求参数结构体
+      class DescribeDomainBaseInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeDomainBaseInfo返回参数结构体
+      class DescribeDomainBaseInfoResponse < TencentCloud::Common::AbstractModel
+        # @param DomainInfo: 域名信息
+        # @type DomainInfo: :class:`Tencentcloud::Domain.v20180808.models.DomainBaseInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainInfo, :RequestId
+        
+        def initialize(domaininfo=nil, requestid=nil)
+          @DomainInfo = domaininfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DomainInfo'].nil?
+            @DomainInfo = DomainBaseInfo.new.deserialize(params[DomainInfo])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDomainNameList请求参数结构体
+      class DescribeDomainNameListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，取值范围[1,100]
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+        
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDomainNameList返回参数结构体
+      class DescribeDomainNameListResponse < TencentCloud::Common::AbstractModel
+        # @param DomainSet: 域名信息集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainSet: Array
+        # @param TotalCount: 域名总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainSet, :TotalCount, :RequestId
+        
+        def initialize(domainset=nil, totalcount=nil, requestid=nil)
+          @DomainSet = domainset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DomainSet = params['DomainSet']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainPriceList请求参数结构体
       class DescribeDomainPriceListRequest < TencentCloud::Common::AbstractModel
         # @param TldList: 查询价格的后缀列表。默认则为全部后缀
@@ -153,6 +691,410 @@ module TencentCloud
         end
       end
 
+      # DescribeTemplateList请求参数结构体
+      class DescribeTemplateListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Type: 用户注册类型，默认:all , 个人：I ,企业: E
+        # @type Type: String
+        # @param Status: 认证状态：未实名认证:NotUpload, 实名审核中:InAudit，已实名认证:Approved，实名审核失败:Reject
+        # @type Status: String
+
+        attr_accessor :Offset, :Limit, :Type, :Status
+        
+        def initialize(offset=nil, limit=nil, type=nil, status=nil)
+          @Offset = offset
+          @Limit = limit
+          @Type = type
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Type = params['Type']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeTemplateList返回参数结构体
+      class DescribeTemplateListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 模板数量。
+        # @type TotalCount: Integer
+        # @param TemplateSet: 模板详细信息列表。
+        # @type TemplateSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TemplateSet, :RequestId
+        
+        def initialize(totalcount=nil, templateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TemplateSet = templateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TemplateSet = params['TemplateSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTemplate请求参数结构体
+      class DescribeTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeTemplate返回参数结构体
+      class DescribeTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Template: 模板信息
+        # @type Template: :class:`Tencentcloud::Domain.v20180808.models.TemplateInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Template, :RequestId
+        
+        def initialize(template=nil, requestid=nil)
+          @Template = template
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Template'].nil?
+            @Template = TemplateInfo.new.deserialize(params[Template])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取域名基础信息
+      class DomainBaseInfo < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名资源ID。
+        # @type DomainId: String
+        # @param DomainName: 域名名称。
+        # @type DomainName: String
+        # @param RealNameAuditStatus: 域名实名认证状态。
+        # NotUpload：未实名认证
+        # InAudit：实名审核中
+        # Approved：实名审核通过
+        # Reject：实名审核失败
+        # @type RealNameAuditStatus: String
+        # @param RealNameAuditUnpassReason: 域名实名认证不通过原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealNameAuditUnpassReason: String
+        # @param DomainNameAuditStatus: 域名命名审核状态。
+        # NotAudit：命名审核未上传
+        # Pending：命名审核待上传
+        # Auditing：域名命名审核中
+        # Approved：域名命名审核通过
+        # Rejected：域名命名审核拒绝
+        # @type DomainNameAuditStatus: String
+        # @param DomainNameAuditUnpassReason: 域名命名审核不通过原因。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainNameAuditUnpassReason: String
+        # @param CreationDate: 注册时间。
+        # @type CreationDate: String
+        # @param ExpirationDate: 到期时间
+        # @type ExpirationDate: String
+        # @param DomainStatus: 域名状态。
+        # ok：正常
+        # serverHold：注册局暂停解析
+        # clientHold：注册商暂停解析
+        # pendingTransfer：转移中
+        # renewingPeriod：续费期
+        # redemptionPeriod：偿还期
+        # pendingDelete：删除期
+        # serverTransferProhibited：注册局禁止转移
+        # serverUpdateProhibited：注册局禁止更新
+        # serverDeleteProhibited：注册局禁止删除
+        # clientTransferProhibited：注册商禁止转移
+        # clientUpdateProhibited：注册商禁止更新
+        # clientDeleteProhibited：注册商禁止删除
+        # @type DomainStatus: Array
+        # @param BuyStatus: 域名购买状态。
+        # ok：正常
+        # RegisterPending：待注册
+        # RegisterDoing：注册中
+        # RegisterFailed：注册失败
+        # AboutToExpire: 即将过期
+        # RenewPending：已进入续费期，需要进行续费
+        # RenewDoing：续费中
+        # RedemptionPending：已进入赎回期，需要进行续费
+        # RedemptionDoing：赎回中
+        # TransferPending：待转入中
+        # TransferTransing：转入中
+        # TransferFailed：转入失败
+        # @type BuyStatus: String
+        # @param RegistrarType: 注册商类型
+        # epp: DNSPod, Inc.（烟台帝思普网络科技有限公司）
+        # qcloud: Tencent Cloud Computing (Beijing) Limited Liability Company（腾讯云计算（北京）有限责任公司）
+        # yunxun: Guangzhou Yunxun Information Technology Co., Ltd.（广州云讯信息科技有限公司）
+        # xinnet: Xin Net Technology Corporation（北京新网数码信息技术有限公司）
+        # @type RegistrarType: String
+        # @param NameServer: 域名绑定的ns
+        # @type NameServer: Array
+
+        attr_accessor :DomainId, :DomainName, :RealNameAuditStatus, :RealNameAuditUnpassReason, :DomainNameAuditStatus, :DomainNameAuditUnpassReason, :CreationDate, :ExpirationDate, :DomainStatus, :BuyStatus, :RegistrarType, :NameServer
+        
+        def initialize(domainid=nil, domainname=nil, realnameauditstatus=nil, realnameauditunpassreason=nil, domainnameauditstatus=nil, domainnameauditunpassreason=nil, creationdate=nil, expirationdate=nil, domainstatus=nil, buystatus=nil, registrartype=nil, nameserver=nil)
+          @DomainId = domainid
+          @DomainName = domainname
+          @RealNameAuditStatus = realnameauditstatus
+          @RealNameAuditUnpassReason = realnameauditunpassreason
+          @DomainNameAuditStatus = domainnameauditstatus
+          @DomainNameAuditUnpassReason = domainnameauditunpassreason
+          @CreationDate = creationdate
+          @ExpirationDate = expirationdate
+          @DomainStatus = domainstatus
+          @BuyStatus = buystatus
+          @RegistrarType = registrartype
+          @NameServer = nameserver
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @DomainName = params['DomainName']
+          @RealNameAuditStatus = params['RealNameAuditStatus']
+          @RealNameAuditUnpassReason = params['RealNameAuditUnpassReason']
+          @DomainNameAuditStatus = params['DomainNameAuditStatus']
+          @DomainNameAuditUnpassReason = params['DomainNameAuditUnpassReason']
+          @CreationDate = params['CreationDate']
+          @ExpirationDate = params['ExpirationDate']
+          @DomainStatus = params['DomainStatus']
+          @BuyStatus = params['BuyStatus']
+          @RegistrarType = params['RegistrarType']
+          @NameServer = params['NameServer']
+        end
+      end
+
+      # 批量操作日志详情
+      class DomainBatchDetailSet < TencentCloud::Common::AbstractModel
+        # @param Id: 详情ID
+        # @type Id: Integer
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Status: 执行状态：
+        # doing 执行中。
+        # failed 操作失败。
+        # success  操作成功。
+        # @type Status: String
+        # @param Reason: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param CreatedOn: 创建时间
+        # @type CreatedOn: String
+        # @param UpdatedOn: 更新时间
+        # @type UpdatedOn: String
+
+        attr_accessor :Id, :Domain, :Status, :Reason, :CreatedOn, :UpdatedOn
+        
+        def initialize(id=nil, domain=nil, status=nil, reason=nil, createdon=nil, updatedon=nil)
+          @Id = id
+          @Domain = domain
+          @Status = status
+          @Reason = reason
+          @CreatedOn = createdon
+          @UpdatedOn = updatedon
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @Reason = params['Reason']
+          @CreatedOn = params['CreatedOn']
+          @UpdatedOn = params['UpdatedOn']
+        end
+      end
+
+      # 批量操作记录
+      class DomainBatchLogSet < TencentCloud::Common::AbstractModel
+        # @param LogId: 日志ID
+        # @type LogId: Integer
+        # @param Number: 数量
+        # @type Number: Integer
+        # @param Status: 执行状态：
+        # doing 执行中。
+        # done 执行完成。
+        # @type Status: String
+        # @param CreatedOn: 提交时间
+        # @type CreatedOn: String
+
+        attr_accessor :LogId, :Number, :Status, :CreatedOn
+        
+        def initialize(logid=nil, number=nil, status=nil, createdon=nil)
+          @LogId = logid
+          @Number = number
+          @Status = status
+          @CreatedOn = createdon
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @Number = params['Number']
+          @Status = params['Status']
+          @CreatedOn = params['CreatedOn']
+        end
+      end
+
+      # 域名列表
+      class DomainList < TencentCloud::Common::AbstractModel
+        # @param IsPremium: 是否是溢价域名：
+        # ture 是
+        # false 不是
+        # @type IsPremium: Boolean
+        # @param DomainId: 域名资源ID。
+        # @type DomainId: String
+        # @param DomainName: 域名名称。
+        # @type DomainName: String
+        # @param AutoRenew: 是否已设置自动续费 。
+        # 0：未设置
+        # 1：已设置
+        # @type AutoRenew: Integer
+        # @param CreationDate: 注册时间。
+        # @type CreationDate: String
+        # @param ExpirationDate: 到期时间。
+        # @type ExpirationDate: String
+        # @param Tld: 域名后缀
+        # @type Tld: String
+        # @param CodeTld: 编码后的后缀（中文会进行编码）
+        # @type CodeTld: String
+        # @param BuyStatus: 域名购买状态。
+        # ok：正常
+        # AboutToExpire: 即将到期
+        # RegisterPending：注册中
+        # RegisterDoing：注册中
+        # RegisterFailed：注册失败
+        # RenewPending：续费期
+        # RenewDoing：续费中
+        # RedemptionPending：赎回期
+        # RedemptionDoing：赎回中
+        # TransferPending：转入中
+        # TransferTransing：转入中
+        # TransferFailed：转入失败
+        # @type BuyStatus: String
+
+        attr_accessor :IsPremium, :DomainId, :DomainName, :AutoRenew, :CreationDate, :ExpirationDate, :Tld, :CodeTld, :BuyStatus
+        
+        def initialize(ispremium=nil, domainid=nil, domainname=nil, autorenew=nil, creationdate=nil, expirationdate=nil, tld=nil, codetld=nil, buystatus=nil)
+          @IsPremium = ispremium
+          @DomainId = domainid
+          @DomainName = domainname
+          @AutoRenew = autorenew
+          @CreationDate = creationdate
+          @ExpirationDate = expirationdate
+          @Tld = tld
+          @CodeTld = codetld
+          @BuyStatus = buystatus
+        end
+
+        def deserialize(params)
+          @IsPremium = params['IsPremium']
+          @DomainId = params['DomainId']
+          @DomainName = params['DomainName']
+          @AutoRenew = params['AutoRenew']
+          @CreationDate = params['CreationDate']
+          @ExpirationDate = params['ExpirationDate']
+          @Tld = params['Tld']
+          @CodeTld = params['CodeTld']
+          @BuyStatus = params['BuyStatus']
+        end
+      end
+
+      # ModifyDomainDNSBatch请求参数结构体
+      class ModifyDomainDNSBatchRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 批量操作的域名。
+        # @type Domains: Array
+        # @param Dns: 域名DNS 数组。
+        # @type Dns: Array
+
+        attr_accessor :Domains, :Dns
+        
+        def initialize(domains=nil, dns=nil)
+          @Domains = domains
+          @Dns = dns
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @Dns = params['Dns']
+        end
+      end
+
+      # ModifyDomainDNSBatch返回参数结构体
+      class ModifyDomainDNSBatchResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 日志ID。
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+        
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDomainOwnerBatch请求参数结构体
+      class ModifyDomainOwnerBatchRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 要过户的域名。
+        # @type Domains: Array
+        # @param NewOwnerUin: 转入账户的uin。
+        # @type NewOwnerUin: String
+
+        attr_accessor :Domains, :NewOwnerUin
+        
+        def initialize(domains=nil, newowneruin=nil)
+          @Domains = domains
+          @NewOwnerUin = newowneruin
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @NewOwnerUin = params['NewOwnerUin']
+        end
+      end
+
+      # ModifyDomainOwnerBatch返回参数结构体
+      class ModifyDomainOwnerBatchResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 日志id
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+        
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 域名价格信息
       class PriceInfo < TencentCloud::Common::AbstractModel
         # @param Tld: 域名后缀，例如.com
@@ -182,6 +1124,330 @@ module TencentCloud
           @Price = params['Price']
           @RealPrice = params['RealPrice']
           @Operation = params['Operation']
+        end
+      end
+
+      # RenewDomainBatch请求参数结构体
+      class RenewDomainBatchRequest < TencentCloud::Common::AbstractModel
+        # @param Period: 域名续费的年限。
+        # @type Period: Integer
+        # @param Domains: 批量续费的域名。
+        # @type Domains: Array
+        # @param PayMode: 付费模式 0手动在线付费，1使用余额付费。
+        # @type PayMode: Integer
+        # @param AutoRenewFlag: 自动续费开关。有三个可选值：
+        # 0 表示关闭，不自动续费
+        # 1 表示开启，将自动续费
+        # 2 表示不处理，保留域名原有状态（默认值）
+        # @type AutoRenewFlag: Integer
+
+        attr_accessor :Period, :Domains, :PayMode, :AutoRenewFlag
+        
+        def initialize(period=nil, domains=nil, paymode=nil, autorenewflag=nil)
+          @Period = period
+          @Domains = domains
+          @PayMode = paymode
+          @AutoRenewFlag = autorenewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @Domains = params['Domains']
+          @PayMode = params['PayMode']
+          @AutoRenewFlag = params['AutoRenewFlag']
+        end
+      end
+
+      # RenewDomainBatch返回参数结构体
+      class RenewDomainBatchResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 操作日志ID。
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+        
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetDomainAutoRenew请求参数结构体
+      class SetDomainAutoRenewRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID。
+        # @type DomainId: String
+        # @param AutoRenew: AutoRenew 有三个可选值：
+        #  0：不设置自动续费
+        # 1：设置自动续费
+        # 2：设置到期后不续费
+        # @type AutoRenew: Integer
+
+        attr_accessor :DomainId, :AutoRenew
+        
+        def initialize(domainid=nil, autorenew=nil)
+          @DomainId = domainid
+          @AutoRenew = autorenew
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @AutoRenew = params['AutoRenew']
+        end
+      end
+
+      # SetDomainAutoRenew返回参数结构体
+      class SetDomainAutoRenewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # Template数据
+      class TemplateInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+        # @param AuditStatus: 认证状态：未实名认证:NotUpload, 实名审核中:InAudit，已实名认证:Approved，实名审核失败:Reject
+        # @type AuditStatus: String
+        # @param CreatedOn: 创建时间
+        # @type CreatedOn: String
+        # @param UpdatedOn: 更新时间
+        # @type UpdatedOn: String
+        # @param UserUin: 用户UIN
+        # @type UserUin: String
+        # @param IsDefault: 是否是默认模板: 是:yes，否:no
+        # @type IsDefault: String
+        # @param AuditReason: 认证失败原因
+        # @type AuditReason: String
+        # @param CertificateInfo: 认证信息
+        # @type CertificateInfo: :class:`Tencentcloud::Domain.v20180808.models.CertificateInfo`
+        # @param ContactInfo: 联系人信息
+        # @type ContactInfo: :class:`Tencentcloud::Domain.v20180808.models.ContactInfo`
+        # @param IsValidTemplate: 模板是否符合规范， 1是 0 否
+        # @type IsValidTemplate: Integer
+        # @param InvalidReason: 不符合规范原因
+        # @type InvalidReason: String
+
+        attr_accessor :TemplateId, :AuditStatus, :CreatedOn, :UpdatedOn, :UserUin, :IsDefault, :AuditReason, :CertificateInfo, :ContactInfo, :IsValidTemplate, :InvalidReason
+        
+        def initialize(templateid=nil, auditstatus=nil, createdon=nil, updatedon=nil, useruin=nil, isdefault=nil, auditreason=nil, certificateinfo=nil, contactinfo=nil, isvalidtemplate=nil, invalidreason=nil)
+          @TemplateId = templateid
+          @AuditStatus = auditstatus
+          @CreatedOn = createdon
+          @UpdatedOn = updatedon
+          @UserUin = useruin
+          @IsDefault = isdefault
+          @AuditReason = auditreason
+          @CertificateInfo = certificateinfo
+          @ContactInfo = contactinfo
+          @IsValidTemplate = isvalidtemplate
+          @InvalidReason = invalidreason
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @AuditStatus = params['AuditStatus']
+          @CreatedOn = params['CreatedOn']
+          @UpdatedOn = params['UpdatedOn']
+          @UserUin = params['UserUin']
+          @IsDefault = params['IsDefault']
+          @AuditReason = params['AuditReason']
+          unless params['CertificateInfo'].nil?
+            @CertificateInfo = CertificateInfo.new.deserialize(params[CertificateInfo])
+          end
+          unless params['ContactInfo'].nil?
+            @ContactInfo = ContactInfo.new.deserialize(params[ContactInfo])
+          end
+          @IsValidTemplate = params['IsValidTemplate']
+          @InvalidReason = params['InvalidReason']
+        end
+      end
+
+      # TransferInDomainBatch请求参数结构体
+      class TransferInDomainBatchRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 转入的域名名称数组。
+        # @type Domains: Array
+        # @param PassWords: 域名转移码数组。
+        # @type PassWords: Array
+        # @param TemplateId: 模板ID。
+        # @type TemplateId: String
+        # @param PayMode: 付费模式 0手动在线付费，1使用余额付费。
+        # @type PayMode: Integer
+        # @param AutoRenewFlag: 自动续费开关。有两个可选值：
+        # 0 表示关闭，不自动续费（默认值）
+        # 1 表示开启，将自动续费
+        # @type AutoRenewFlag: Integer
+
+        attr_accessor :Domains, :PassWords, :TemplateId, :PayMode, :AutoRenewFlag
+        
+        def initialize(domains=nil, passwords=nil, templateid=nil, paymode=nil, autorenewflag=nil)
+          @Domains = domains
+          @PassWords = passwords
+          @TemplateId = templateid
+          @PayMode = paymode
+          @AutoRenewFlag = autorenewflag
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @PassWords = params['PassWords']
+          @TemplateId = params['TemplateId']
+          @PayMode = params['PayMode']
+          @AutoRenewFlag = params['AutoRenewFlag']
+        end
+      end
+
+      # TransferInDomainBatch返回参数结构体
+      class TransferInDomainBatchResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 日志ID
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+        
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TransferProhibitionBatch请求参数结构体
+      class TransferProhibitionBatchRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 批量操作的域名。
+        # @type Domains: Array
+        # @param Status: 是否开启禁止域名转移。
+        # True: 开启禁止域名转移状态。
+        # False：关闭禁止域名转移状态。
+        # @type Status: Boolean
+
+        attr_accessor :Domains, :Status
+        
+        def initialize(domains=nil, status=nil)
+          @Domains = domains
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @Status = params['Status']
+        end
+      end
+
+      # TransferProhibitionBatch返回参数结构体
+      class TransferProhibitionBatchResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 日志ID
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+        
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateProhibitionBatch请求参数结构体
+      class UpdateProhibitionBatchRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 批量操作的域名。
+        # @type Domains: Array
+        # @param Status: 是否开启禁止域名更新。
+        # True:开启禁止域名更新状态。
+        # False：关闭禁止域名更新状态。
+        # @type Status: Boolean
+
+        attr_accessor :Domains, :Status
+        
+        def initialize(domains=nil, status=nil)
+          @Domains = domains
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @Status = params['Status']
+        end
+      end
+
+      # UpdateProhibitionBatch返回参数结构体
+      class UpdateProhibitionBatchResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 日志ID
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+        
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadImage请求参数结构体
+      class UploadImageRequest < TencentCloud::Common::AbstractModel
+        # @param ImageFile: 资质照片，照片的base64编码。
+        # @type ImageFile: String
+
+        attr_accessor :ImageFile
+        
+        def initialize(imagefile=nil)
+          @ImageFile = imagefile
+        end
+
+        def deserialize(params)
+          @ImageFile = params['ImageFile']
+        end
+      end
+
+      # UploadImage返回参数结构体
+      class UploadImageResponse < TencentCloud::Common::AbstractModel
+        # @param AccessUrl: 资质照片地址。
+        # @type AccessUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccessUrl, :RequestId
+        
+        def initialize(accessurl=nil, requestid=nil)
+          @AccessUrl = accessurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AccessUrl = params['AccessUrl']
+          @RequestId = params['RequestId']
         end
       end
 

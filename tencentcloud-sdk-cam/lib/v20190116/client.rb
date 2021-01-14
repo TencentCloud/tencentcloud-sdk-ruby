@@ -409,6 +409,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除角色权限边界
+
+        # @param request: Request instance for DeleteRolePermissionsBoundary.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DeleteRolePermissionsBoundaryRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DeleteRolePermissionsBoundaryResponse`
+        def DeleteRolePermissionsBoundary(request)
+          body = send_request('DeleteRolePermissionsBoundary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRolePermissionsBoundaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除SAML身份提供商
 
         # @param request: Request instance for DeleteSAMLProvider.
@@ -481,6 +505,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除用户权限边界
+
+        # @param request: Request instance for DeleteUserPermissionsBoundary.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DeleteUserPermissionsBoundaryRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DeleteUserPermissionsBoundaryResponse`
+        def DeleteUserPermissionsBoundary(request)
+          body = send_request('DeleteUserPermissionsBoundary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserPermissionsBoundaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeRoleList）用于获取账号下的角色列表。
 
         # @param request: Request instance for DescribeRoleList.
@@ -491,6 +539,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRoleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询安全设置
+
+        # @param request: Request instance for DescribeSafeAuthFlag.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DescribeSafeAuthFlagRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DescribeSafeAuthFlagResponse`
+        def DescribeSafeAuthFlag(request)
+          body = send_request('DescribeSafeAuthFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSafeAuthFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询安全设置
+
+        # @param request: Request instance for DescribeSafeAuthFlagColl.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DescribeSafeAuthFlagCollRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DescribeSafeAuthFlagCollResponse`
+        def DescribeSafeAuthFlagColl(request)
+          body = send_request('DescribeSafeAuthFlagColl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSafeAuthFlagCollResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1067,6 +1163,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListUsersForGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取企业微信子用户列表
+
+        # @param request: Request instance for ListWeChatWorkSubAccounts.
+        # @type request: :class:`Tencentcloud::cam::V20190116::ListWeChatWorkSubAccountsRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::ListWeChatWorkSubAccountsResponse`
+        def ListWeChatWorkSubAccounts(request)
+          body = send_request('ListWeChatWorkSubAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListWeChatWorkSubAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置角色权限边界
+
+        # @param request: Request instance for PutRolePermissionsBoundary.
+        # @type request: :class:`Tencentcloud::cam::V20190116::PutRolePermissionsBoundaryRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::PutRolePermissionsBoundaryResponse`
+        def PutRolePermissionsBoundary(request)
+          body = send_request('PutRolePermissionsBoundary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PutRolePermissionsBoundaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置用户权限边界
+
+        # @param request: Request instance for PutUserPermissionsBoundary.
+        # @type request: :class:`Tencentcloud::cam::V20190116::PutUserPermissionsBoundaryRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::PutUserPermissionsBoundaryResponse`
+        def PutUserPermissionsBoundary(request)
+          body = send_request('PutUserPermissionsBoundary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PutUserPermissionsBoundaryResponse.new
             model.deserialize(response['Response'])
             model
           else

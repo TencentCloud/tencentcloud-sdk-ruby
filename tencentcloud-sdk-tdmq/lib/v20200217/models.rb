@@ -493,6 +493,54 @@ module TencentCloud
         end
       end
 
+      # DescribeEnvironmentRoles请求参数结构体
+      class DescribeEnvironmentRolesRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）
+        # @type EnvironmentId: String
+        # @param Offset: 起始下标，不填默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，不填则默认为10，最大值为20。
+        # @type Limit: Integer
+
+        attr_accessor :EnvironmentId, :Offset, :Limit
+        
+        def initialize(environmentid=nil, offset=nil, limit=nil)
+          @EnvironmentId = environmentid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeEnvironmentRoles返回参数结构体
+      class DescribeEnvironmentRolesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录数。
+        # @type TotalCount: Integer
+        # @param EnvironmentRoleSets: 环境角色集合。
+        # @type EnvironmentRoleSets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :EnvironmentRoleSets, :RequestId
+        
+        def initialize(totalcount=nil, environmentrolesets=nil, requestid=nil)
+          @TotalCount = totalcount
+          @EnvironmentRoleSets = environmentrolesets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @EnvironmentRoleSets = params['EnvironmentRoleSets']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnvironments请求参数结构体
       class DescribeEnvironmentsRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称，模糊搜索。
@@ -751,9 +799,45 @@ module TencentCloud
         end
       end
 
+      # 环境角色集合
+      class EnvironmentRole < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）。
+        # @type EnvironmentId: String
+        # @param RoleName: 角色名称。
+        # @type RoleName: String
+        # @param Permissions: 授权项，最多只能包含produce、consume两项的非空字符串数组。
+        # @type Permissions: Array
+        # @param RoleDescribe: 角色描述。
+        # @type RoleDescribe: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+
+        attr_accessor :EnvironmentId, :RoleName, :Permissions, :RoleDescribe, :CreateTime, :UpdateTime
+        
+        def initialize(environmentid=nil, rolename=nil, permissions=nil, roledescribe=nil, createtime=nil, updatetime=nil)
+          @EnvironmentId = environmentid
+          @RoleName = rolename
+          @Permissions = permissions
+          @RoleDescribe = roledescribe
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @RoleName = params['RoleName']
+          @Permissions = params['Permissions']
+          @RoleDescribe = params['RoleDescribe']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 过滤订阅列表
       class FilterSubscription < TencentCloud::Common::AbstractModel
-        # @param ConsumerHasCount: 是否仅展示包含真实消费者的订。
+        # @param ConsumerHasCount: 是否仅展示包含真实消费者的订阅。
         # @type ConsumerHasCount: Boolean
         # @param ConsumerHasBacklog: 是否仅展示消息堆积的订阅。
         # @type ConsumerHasBacklog: Boolean
@@ -834,7 +918,7 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param TopicName: 主题名。
         # @type TopicName: String
-        # @param Partitions: 分区数，必须>=原分区数大，不填则不修改分区数，修改分区数仅对非全局顺序消息起效果，不允许超过128个分区。
+        # @param Partitions: 分区数，必须大于或者等于原分区数，若想维持原分区数请输入原数目，修改分区数仅对非全局顺序消息起效果，不允许超过128个分区。
         # @type Partitions: Integer
         # @param Remark: 备注，128字符以内。
         # @type Remark: String
@@ -858,7 +942,7 @@ module TencentCloud
 
       # ModifyTopic返回参数结构体
       class ModifyTopicResponse < TencentCloud::Common::AbstractModel
-        # @param Partitions: 分区数，必须比原分区数大，不填则不修复分区数，修改分区数仅对非全局顺序消息起效果。
+        # @param Partitions: 分区数
         # @type Partitions: Integer
         # @param Remark: 备注，128字符以内。
         # @type Remark: String

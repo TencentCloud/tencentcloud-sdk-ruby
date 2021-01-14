@@ -97,6 +97,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
+
+        # @param request: Request instance for CreateLifeCycleRules.
+        # @type request: :class:`Tencentcloud::chdfs::V20190718::CreateLifeCycleRulesRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20190718::CreateLifeCycleRulesResponse`
+        def CreateLifeCycleRules(request)
+          body = send_request('CreateLifeCycleRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLifeCycleRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建文件系统挂载点，仅限于创建成功的文件系统。
 
         # @param request: Request instance for CreateMountPoint.
@@ -107,6 +131,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateMountPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
+
+        # @param request: Request instance for CreateRestoreTasks.
+        # @type request: :class:`Tencentcloud::chdfs::V20190718::CreateRestoreTasksRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20190718::CreateRestoreTasksResponse`
+        def CreateRestoreTasks(request)
+          body = send_request('CreateRestoreTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRestoreTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -179,6 +227,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFileSystemResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除生命周期规则。
+
+        # @param request: Request instance for DeleteLifeCycleRules.
+        # @type request: :class:`Tencentcloud::chdfs::V20190718::DeleteLifeCycleRulesRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20190718::DeleteLifeCycleRulesResponse`
+        def DeleteLifeCycleRules(request)
+          body = send_request('DeleteLifeCycleRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLifeCycleRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -313,6 +385,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过文件系统ID查看生命周期规则列表。
+
+        # @param request: Request instance for DescribeLifeCycleRules.
+        # @type request: :class:`Tencentcloud::chdfs::V20190718::DescribeLifeCycleRulesRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20190718::DescribeLifeCycleRulesResponse`
+        def DescribeLifeCycleRules(request)
+          body = send_request('DescribeLifeCycleRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLifeCycleRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看挂载点详细信息。
 
         # @param request: Request instance for DescribeMountPoint.
@@ -361,6 +457,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过文件系统ID查看资源标签列表。
+
+        # @param request: Request instance for DescribeResourceTags.
+        # @type request: :class:`Tencentcloud::chdfs::V20190718::DescribeResourceTagsRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20190718::DescribeResourceTagsResponse`
+        def DescribeResourceTags(request)
+          body = send_request('DescribeResourceTags', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceTagsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过文件系统ID查看回热任务列表。
+
+        # @param request: Request instance for DescribeRestoreTasks.
+        # @type request: :class:`Tencentcloud::chdfs::V20190718::DescribeRestoreTasksRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20190718::DescribeRestoreTasksResponse`
+        def DescribeRestoreTasks(request)
+          body = send_request('DescribeRestoreTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRestoreTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改权限组属性。
 
         # @param request: Request instance for ModifyAccessGroup.
@@ -385,7 +529,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量修改权限规则属性，需要指定权限规则ID。
+        # 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
 
         # @param request: Request instance for ModifyAccessRules.
         # @type request: :class:`Tencentcloud::chdfs::V20190718::ModifyAccessRulesRequest`
@@ -433,6 +577,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
+
+        # @param request: Request instance for ModifyLifeCycleRules.
+        # @type request: :class:`Tencentcloud::chdfs::V20190718::ModifyLifeCycleRulesRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20190718::ModifyLifeCycleRulesResponse`
+        def ModifyLifeCycleRules(request)
+          body = send_request('ModifyLifeCycleRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLifeCycleRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改挂载点属性。
 
         # @param request: Request instance for ModifyMountPoint.
@@ -443,6 +611,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMountPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改资源标签列表，全量覆盖。
+
+        # @param request: Request instance for ModifyResourceTags.
+        # @type request: :class:`Tencentcloud::chdfs::V20190718::ModifyResourceTagsRequest`
+        # @rtype: :class:`Tencentcloud::chdfs::V20190718::ModifyResourceTagsResponse`
+        def ModifyResourceTags(request)
+          body = send_request('ModifyResourceTags', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyResourceTagsResponse.new
             model.deserialize(response['Response'])
             model
           else

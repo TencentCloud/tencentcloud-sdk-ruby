@@ -77,19 +77,19 @@ module TencentCloud
       class AddTimeWindowRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param Monday: 星期一的可维护时间段，其中每一个时间段的格式形如：10:00-12:00；起始时间按半个小时对齐；最短半个小时，最长三个小时；最多设置两个时间段；下同。
+        # @param Monday: 星期一的可维护时间段，其中每一个时间段的格式形如：10:00-12:00；起始时间按半个小时对齐；最短半个小时，最长三个小时；可设置多个时间段。 一周中应至少设置一天的时间窗。下同。
         # @type Monday: Array
-        # @param Tuesday: 星期二的可维护时间窗口。
+        # @param Tuesday: 星期二的可维护时间窗口。 一周中应至少设置一天的时间窗。
         # @type Tuesday: Array
-        # @param Wednesday: 星期三的可维护时间窗口。
+        # @param Wednesday: 星期三的可维护时间窗口。 一周中应至少设置一天的时间窗。
         # @type Wednesday: Array
-        # @param Thursday: 星期四的可维护时间窗口。
+        # @param Thursday: 星期四的可维护时间窗口。 一周中应至少设置一天的时间窗。
         # @type Thursday: Array
-        # @param Friday: 星期五的可维护时间窗口。
+        # @param Friday: 星期五的可维护时间窗口。 一周中应至少设置一天的时间窗。
         # @type Friday: Array
-        # @param Saturday: 星期六的可维护时间窗口。
+        # @param Saturday: 星期六的可维护时间窗口。 一周中应至少设置一天的时间窗。
         # @type Saturday: Array
-        # @param Sunday: 星期日的可维护时间窗口。
+        # @param Sunday: 星期日的可维护时间窗口。 一周中应至少设置一天的时间窗。
         # @type Sunday: Array
 
         attr_accessor :InstanceId, :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday
@@ -622,6 +622,50 @@ module TencentCloud
         end
       end
 
+      # 克隆任务记录。
+      class CloneItem < TencentCloud::Common::AbstractModel
+        # @param SrcInstanceId: 克隆任务的源实例Id。
+        # @type SrcInstanceId: String
+        # @param DstInstanceId: 克隆任务的新产生实例Id。
+        # @type DstInstanceId: String
+        # @param CloneJobId: 克隆任务对应的任务列表Id。
+        # @type CloneJobId: Integer
+        # @param RollbackStrategy: 克隆实例使用的策略， 包括以下类型：  timepoint:指定时间点回档，  backupset: 指定备份文件回档。
+        # @type RollbackStrategy: String
+        # @param RollbackTargetTime: 克隆实例回档的时间点。
+        # @type RollbackTargetTime: String
+        # @param StartTime: 任务开始时间。
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间。
+        # @type EndTime: String
+        # @param TaskStatus: 任务状态，包括以下状态：initial,running,wait_complete,success,failed
+        # @type TaskStatus: String
+
+        attr_accessor :SrcInstanceId, :DstInstanceId, :CloneJobId, :RollbackStrategy, :RollbackTargetTime, :StartTime, :EndTime, :TaskStatus
+        
+        def initialize(srcinstanceid=nil, dstinstanceid=nil, clonejobid=nil, rollbackstrategy=nil, rollbacktargettime=nil, starttime=nil, endtime=nil, taskstatus=nil)
+          @SrcInstanceId = srcinstanceid
+          @DstInstanceId = dstinstanceid
+          @CloneJobId = clonejobid
+          @RollbackStrategy = rollbackstrategy
+          @RollbackTargetTime = rollbacktargettime
+          @StartTime = starttime
+          @EndTime = endtime
+          @TaskStatus = taskstatus
+        end
+
+        def deserialize(params)
+          @SrcInstanceId = params['SrcInstanceId']
+          @DstInstanceId = params['DstInstanceId']
+          @CloneJobId = params['CloneJobId']
+          @RollbackStrategy = params['RollbackStrategy']
+          @RollbackTargetTime = params['RollbackTargetTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TaskStatus = params['TaskStatus']
+        end
+      end
+
       # CloseWanService请求参数结构体
       class CloseWanServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -982,6 +1026,102 @@ module TencentCloud
         end
       end
 
+      # CreateCloneInstance请求参数结构体
+      class CreateCloneInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 克隆源实例Id。
+        # @type InstanceId: String
+        # @param SpecifiedRollbackTime: 如果需要克隆实例回档到指定时间，则指定该值。时间格式为： yyyy-mm-dd hh:mm:ss 。
+        # @type SpecifiedRollbackTime: String
+        # @param SpecifiedBackupId: 如果需要克隆实例回档到指定备份的时间点，则指定该值为物理备份的Id。请使用 [查询数据备份文件列表](/document/api/236/15842) 。
+        # @type SpecifiedBackupId: Integer
+        # @param UniqVpcId: 私有网络 ID，如果不传则默认选择基础网络，请使用 [查询私有网络列表](/document/api/215/15778) 。
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 私有网络下的子网 ID，如果设置了 UniqVpcId，则 UniqSubnetId 必填，请使用 [查询子网列表](/document/api/215/15784)。
+        # @type UniqSubnetId: String
+        # @param Memory: 实例内存大小，单位：MB，需要不低于克隆源实例，默认和源实例相同。
+        # @type Memory: Integer
+        # @param Volume: 实例硬盘大小，单位：GB，需要不低于克隆源实例，默认和源实例相同。
+        # @type Volume: Integer
+        # @param InstanceName: 新产生的克隆实例名称。
+        # @type InstanceName: String
+        # @param SecurityGroup: 安全组参数，可使用 [查询项目安全组信息](https://cloud.tencent.com/document/api/236/15850) 接口查询某个项目的安全组详情。
+        # @type SecurityGroup: Array
+        # @param ResourceTags: 实例标签信息。
+        # @type ResourceTags: Array
+        # @param Cpu: 实例Cpu核数，需要不低于克隆源实例。
+        # @type Cpu: Integer
+        # @param ProtectMode: 数据复制方式，默认为 0，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
+        # @type ProtectMode: Integer
+        # @param DeployMode: 多可用区域，默认为 0，支持值包括：0 - 表示单可用区，1 - 表示多可用区。
+        # @type DeployMode: Integer
+        # @param SlaveZone: 新产生的克隆实例备库 1 的可用区信息，默认同源实例 Zone 的值。
+        # @type SlaveZone: String
+        # @param BackupZone: 备库 2 的可用区信息，默认为空，克隆强同步主实例时可指定该参数。
+        # @type BackupZone: String
+        # @param DeviceType: 克隆实例类型。支持值包括： "HA" - 高可用版实例， "EXCLUSIVE" - 独享型实例。 不指定则默认为高可用版。
+        # @type DeviceType: String
+
+        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType
+        
+        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil)
+          @InstanceId = instanceid
+          @SpecifiedRollbackTime = specifiedrollbacktime
+          @SpecifiedBackupId = specifiedbackupid
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @Memory = memory
+          @Volume = volume
+          @InstanceName = instancename
+          @SecurityGroup = securitygroup
+          @ResourceTags = resourcetags
+          @Cpu = cpu
+          @ProtectMode = protectmode
+          @DeployMode = deploymode
+          @SlaveZone = slavezone
+          @BackupZone = backupzone
+          @DeviceType = devicetype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SpecifiedRollbackTime = params['SpecifiedRollbackTime']
+          @SpecifiedBackupId = params['SpecifiedBackupId']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @Memory = params['Memory']
+          @Volume = params['Volume']
+          @InstanceName = params['InstanceName']
+          @SecurityGroup = params['SecurityGroup']
+          @ResourceTags = params['ResourceTags']
+          @Cpu = params['Cpu']
+          @ProtectMode = params['ProtectMode']
+          @DeployMode = params['DeployMode']
+          @SlaveZone = params['SlaveZone']
+          @BackupZone = params['BackupZone']
+          @DeviceType = params['DeviceType']
+        end
+      end
+
+      # CreateCloneInstance返回参数结构体
+      class CreateCloneInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务的请求ID，可使用此 ID 查询异步任务的执行结果。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDBImportJob请求参数结构体
       class CreateDBImportJobRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -1070,7 +1210,7 @@ module TencentCloud
         # @type DeployMode: Integer
         # @param SlaveZone: 备库 1 的可用区信息，默认为 Zone 的值，购买主实例时可指定该参数，购买只读实例或者灾备实例时指定该参数无意义。
         # @type SlaveZone: String
-        # @param BackupZone: 备库 2 的可用区信息，默认为空，购买强同步主实例时可指定该参数，购买其他类型实例时指定该参数无意义。
+        # @param BackupZone: 备库 2 的可用区信息，默认为空，购买三节点主实例时可指定该参数。
         # @type BackupZone: String
         # @param SecurityGroup: 安全组参数，可使用 [查询项目安全组信息](https://cloud.tencent.com/document/api/236/15850) 接口查询某个项目的安全组详情。
         # @type SecurityGroup: Array
@@ -1088,10 +1228,14 @@ module TencentCloud
         # @type ClientToken: String
         # @param DeviceType: 实例类型。支持值包括： "HA" - 高可用版实例， "BASIC" - 基础版实例。 不指定则默认为高可用版。
         # @type DeviceType: String
+        # @param ParamTemplateId: 参数模板id。
+        # @type ParamTemplateId: Integer
+        # @param AlarmPolicyList: 告警策略id数组。
+        # @type AlarmPolicyList: Array
 
-        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType
+        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList
         
-        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil)
+        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
@@ -1118,6 +1262,8 @@ module TencentCloud
           @DeployGroupId = deploygroupid
           @ClientToken = clienttoken
           @DeviceType = devicetype
+          @ParamTemplateId = paramtemplateid
+          @AlarmPolicyList = alarmpolicylist
         end
 
         def deserialize(params)
@@ -1149,6 +1295,8 @@ module TencentCloud
           @DeployGroupId = params['DeployGroupId']
           @ClientToken = params['ClientToken']
           @DeviceType = params['DeviceType']
+          @ParamTemplateId = params['ParamTemplateId']
+          @AlarmPolicyList = params['AlarmPolicyList']
         end
       end
 
@@ -1212,7 +1360,7 @@ module TencentCloud
         # @type SlaveZone: String
         # @param ParamList: 参数列表，参数格式如 ParamList.0.Name=auto_increment&ParamList.0.Value=1。可通过 [查询默认的可设置参数列表](https://cloud.tencent.com/document/api/236/32662) 查询支持设置的参数。
         # @type ParamList: Array
-        # @param BackupZone: 备库 2 的可用区信息，默认为空，购买强同步主实例时可指定该参数，购买其他类型实例时指定该参数无意义。
+        # @param BackupZone: 备库 2 的可用区信息，默认为空，购买三节点主实例时可指定该参数。
         # @type BackupZone: String
         # @param AutoRenewFlag: 自动续费标记，可选值为：0 - 不自动续费；1 - 自动续费。
         # @type AutoRenewFlag: Integer
@@ -1232,10 +1380,14 @@ module TencentCloud
         # @type ClientToken: String
         # @param DeviceType: 实例类型。支持值包括： "HA" - 高可用版实例， "BASIC" - 基础版实例。 不指定则默认为高可用版。
         # @type DeviceType: String
+        # @param ParamTemplateId: 参数模板id。
+        # @type ParamTemplateId: Integer
+        # @param AlarmPolicyList: 告警策略id数组。
+        # @type AlarmPolicyList: Array
 
-        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType
+        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList
         
-        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil)
+        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil)
           @Memory = memory
           @Volume = volume
           @Period = period
@@ -1263,6 +1415,8 @@ module TencentCloud
           @DeployGroupId = deploygroupid
           @ClientToken = clienttoken
           @DeviceType = devicetype
+          @ParamTemplateId = paramtemplateid
+          @AlarmPolicyList = alarmpolicylist
         end
 
         def deserialize(params)
@@ -1295,6 +1449,8 @@ module TencentCloud
           @DeployGroupId = params['DeployGroupId']
           @ClientToken = params['ClientToken']
           @DeviceType = params['DeviceType']
+          @ParamTemplateId = params['ParamTemplateId']
+          @AlarmPolicyList = params['AlarmPolicyList']
         end
       end
 
@@ -1422,6 +1578,62 @@ module TencentCloud
 
         def deserialize(params)
           @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRoInstanceIp请求参数结构体
+      class CreateRoInstanceIpRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 只读实例ID，格式如：cdbro-3i70uj0k，与云数据库控制台页面中显示的只读实例ID相同。
+        # @type InstanceId: String
+        # @param UniqSubnetId: 子网描述符，例如：subnet-1typ0s7d。
+        # @type UniqSubnetId: String
+        # @param UniqVpcId: vpc描述符，例如：vpc-xxx,如果传了该字段则UniqSubnetId必传
+        # @type UniqVpcId: String
+
+        attr_accessor :InstanceId, :UniqSubnetId, :UniqVpcId
+        
+        def initialize(instanceid=nil, uniqsubnetid=nil, uniqvpcid=nil)
+          @InstanceId = instanceid
+          @UniqSubnetId = uniqsubnetid
+          @UniqVpcId = uniqvpcid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UniqSubnetId = params['UniqSubnetId']
+          @UniqVpcId = params['UniqVpcId']
+        end
+      end
+
+      # CreateRoInstanceIp返回参数结构体
+      class CreateRoInstanceIpResponse < TencentCloud::Common::AbstractModel
+        # @param RoVpcId: 只读实例的私有网络的ID。
+        # @type RoVpcId: Integer
+        # @param RoSubnetId: 只读实例的子网ID。
+        # @type RoSubnetId: Integer
+        # @param RoVip: 只读实例的内网IP地址。
+        # @type RoVip: String
+        # @param RoVport: 只读实例的内网端口号。
+        # @type RoVport: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoVpcId, :RoSubnetId, :RoVip, :RoVport, :RequestId
+        
+        def initialize(rovpcid=nil, rosubnetid=nil, rovip=nil, rovport=nil, requestid=nil)
+          @RoVpcId = rovpcid
+          @RoSubnetId = rosubnetid
+          @RoVip = rovip
+          @RoVport = rovport
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoVpcId = params['RoVpcId']
+          @RoSubnetId = params['RoSubnetId']
+          @RoVip = params['RoVip']
+          @RoVport = params['RoVport']
           @RequestId = params['RequestId']
         end
       end
@@ -1562,15 +1774,19 @@ module TencentCloud
       class DeleteAuditPolicyRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 审计策略 ID。
         # @type PolicyId: String
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
 
-        attr_accessor :PolicyId
+        attr_accessor :PolicyId, :InstanceId
         
-        def initialize(policyid=nil)
+        def initialize(policyid=nil, instanceid=nil)
           @PolicyId = policyid
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @PolicyId = params['PolicyId']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -2573,6 +2789,54 @@ module TencentCloud
         end
       end
 
+      # DescribeCloneList请求参数结构体
+      class DescribeCloneListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 查询指定源实例的克隆任务列表。
+        # @type InstanceId: String
+        # @param Offset: 分页查询时的偏移量。
+        # @type Offset: Integer
+        # @param Limit: 分页查询时的每页条目数。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCloneList返回参数结构体
+      class DescribeCloneListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 满足条件的条目数。
+        # @type TotalCount: Integer
+        # @param Items: 克隆任务列表。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Items = params['Items']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBImportRecords请求参数结构体
       class DescribeDBImportRecordsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -2787,17 +3051,21 @@ module TencentCloud
         # @param KeyRegion: 密钥所在地域。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyRegion: String
+        # @param DefaultKmsRegion: 当前 CDB 后端服务使用的 KMS 服务的默认地域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultKmsRegion: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Encryption, :KeyId, :KeyRegion, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :Encryption, :KeyId, :KeyRegion, :DefaultKmsRegion, :RequestId
         
-        def initialize(instanceid=nil, instancename=nil, encryption=nil, keyid=nil, keyregion=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, encryption=nil, keyid=nil, keyregion=nil, defaultkmsregion=nil, requestid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Encryption = encryption
           @KeyId = keyid
           @KeyRegion = keyregion
+          @DefaultKmsRegion = defaultkmsregion
           @RequestId = requestid
         end
 
@@ -2807,6 +3075,7 @@ module TencentCloud
           @Encryption = params['Encryption']
           @KeyId = params['KeyId']
           @KeyRegion = params['KeyRegion']
+          @DefaultKmsRegion = params['DefaultKmsRegion']
           @RequestId = params['RequestId']
         end
       end
@@ -3009,10 +3278,12 @@ module TencentCloud
         # @type InstanceRole: String
         # @param ProtectMode: 数据复制方式，默认为 0，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
         # @type ProtectMode: Integer
+        # @param DeviceType: 部署策略，取值范围：HA-高可用版
+        # @type DeviceType: String
 
-        attr_accessor :Zone, :GoodsNum, :Memory, :Volume, :PayType, :Period, :InstanceRole, :ProtectMode
+        attr_accessor :Zone, :GoodsNum, :Memory, :Volume, :PayType, :Period, :InstanceRole, :ProtectMode, :DeviceType
         
-        def initialize(zone=nil, goodsnum=nil, memory=nil, volume=nil, paytype=nil, period=nil, instancerole=nil, protectmode=nil)
+        def initialize(zone=nil, goodsnum=nil, memory=nil, volume=nil, paytype=nil, period=nil, instancerole=nil, protectmode=nil, devicetype=nil)
           @Zone = zone
           @GoodsNum = goodsnum
           @Memory = memory
@@ -3021,6 +3292,7 @@ module TencentCloud
           @Period = period
           @InstanceRole = instancerole
           @ProtectMode = protectmode
+          @DeviceType = devicetype
         end
 
         def deserialize(params)
@@ -3032,6 +3304,7 @@ module TencentCloud
           @Period = params['Period']
           @InstanceRole = params['InstanceRole']
           @ProtectMode = params['ProtectMode']
+          @DeviceType = params['DeviceType']
         end
       end
 
@@ -3449,20 +3722,23 @@ module TencentCloud
         # @type EndTime: Integer
         # @param KeyWords: 要匹配的关键字列表，最多支持15个关键字。
         # @type KeyWords: Array
-        # @param Limit: 分页的返回数量，最大为400。
+        # @param Limit: 分页的返回数量，默认为100，最大为400。
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
+        # @param InstType: 仅在实例为主实例或者灾备实例时生效，可选值：slave，代表拉取从机的日志。
+        # @type InstType: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :KeyWords, :Limit, :Offset
+        attr_accessor :InstanceId, :StartTime, :EndTime, :KeyWords, :Limit, :Offset, :InstType
         
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, keywords=nil, limit=nil, offset=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, keywords=nil, limit=nil, offset=nil, insttype=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @KeyWords = keywords
           @Limit = limit
           @Offset = offset
+          @InstType = insttype
         end
 
         def deserialize(params)
@@ -3472,6 +3748,7 @@ module TencentCloud
           @KeyWords = params['KeyWords']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @InstType = params['InstType']
         end
       end
 
@@ -3904,12 +4181,14 @@ module TencentCloud
         # @type OrderBy: String
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 一次性返回的记录数量，最大为400。
+        # @param Limit: 一次性返回的记录数量，默认为100，最大为400。
         # @type Limit: Integer
+        # @param InstType: 仅在实例为主实例或者灾备实例时生效，可选值：slave，代表拉取从机的日志。
+        # @type InstType: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :UserHosts, :UserNames, :DataBases, :SortBy, :OrderBy, :Offset, :Limit
+        attr_accessor :InstanceId, :StartTime, :EndTime, :UserHosts, :UserNames, :DataBases, :SortBy, :OrderBy, :Offset, :Limit, :InstType
         
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, userhosts=nil, usernames=nil, databases=nil, sortby=nil, orderby=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, userhosts=nil, usernames=nil, databases=nil, sortby=nil, orderby=nil, offset=nil, limit=nil, insttype=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -3920,6 +4199,7 @@ module TencentCloud
           @OrderBy = orderby
           @Offset = offset
           @Limit = limit
+          @InstType = insttype
         end
 
         def deserialize(params)
@@ -3933,6 +4213,7 @@ module TencentCloud
           @OrderBy = params['OrderBy']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @InstType = params['InstType']
         end
       end
 
@@ -4411,14 +4692,17 @@ module TencentCloud
         # @type Read: Array
         # @param Write: 磁盘平均每秒完成的写操作次数总和*100。例如：该值为30001，表示磁盘平均每秒完成写操作为：30001/100=300.01次
         # @type Write: Array
+        # @param CapacityRatio: 磁盘空间容量，每两个一组，第一个为已使用容量，第二个为磁盘总容量
+        # @type CapacityRatio: Array
 
-        attr_accessor :IoRatioPerSec, :IoWaitTime, :Read, :Write
+        attr_accessor :IoRatioPerSec, :IoWaitTime, :Read, :Write, :CapacityRatio
         
-        def initialize(ioratiopersec=nil, iowaittime=nil, read=nil, write=nil)
+        def initialize(ioratiopersec=nil, iowaittime=nil, read=nil, write=nil, capacityratio=nil)
           @IoRatioPerSec = ioratiopersec
           @IoWaitTime = iowaittime
           @Read = read
           @Write = write
+          @CapacityRatio = capacityratio
         end
 
         def deserialize(params)
@@ -4426,6 +4710,7 @@ module TencentCloud
           @IoWaitTime = params['IoWaitTime']
           @Read = params['Read']
           @Write = params['Write']
+          @CapacityRatio = params['CapacityRatio']
         end
       end
 
@@ -4740,15 +5025,18 @@ module TencentCloud
         # @type Cpu: Integer
         # @param ProtectMode: 数据复制方式，支持值包括：0 - 异步复制，1 - 半同步复制，2 - 强同步复制，升级主实例时可指定该参数，升级只读实例或者灾备实例时指定该参数无意义。
         # @type ProtectMode: Integer
+        # @param DeviceType: 部署策略，取值范围：HA-高可用版
+        # @type DeviceType: String
 
-        attr_accessor :InstanceId, :Memory, :Volume, :Cpu, :ProtectMode
+        attr_accessor :InstanceId, :Memory, :Volume, :Cpu, :ProtectMode, :DeviceType
         
-        def initialize(instanceid=nil, memory=nil, volume=nil, cpu=nil, protectmode=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, cpu=nil, protectmode=nil, devicetype=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
           @Cpu = cpu
           @ProtectMode = protectmode
+          @DeviceType = devicetype
         end
 
         def deserialize(params)
@@ -4757,6 +5045,7 @@ module TencentCloud
           @Volume = params['Volume']
           @Cpu = params['Cpu']
           @ProtectMode = params['ProtectMode']
+          @DeviceType = params['DeviceType']
         end
       end
 
@@ -4832,7 +5121,7 @@ module TencentCloud
         # @param MasterInfo: 主实例详细信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterInfo: :class:`Tencentcloud::Cdb.v20170320.models.MasterInfo`
-        # @param DeviceType: 实例类型，可能的返回值：“HA”-高可用版；“FE”-金融版；“BASIC”-基础版
+        # @param DeviceType: 实例类型
         # @type DeviceType: String
         # @param EngineVersion: 内核版本
         # @type EngineVersion: String
@@ -5304,6 +5593,7 @@ module TencentCloud
         # @type LogExpireDay: Integer
         # @param CloseAudit: 是否关闭审计服务。可选值：true - 关闭审计服务；false - 不关闭审计服务。默认值为 false。
         # 当关闭审计服务时，会删除用户的审计日志和文件，并删除该实例的所有审计策略。
+        # CloseAudit、LogExpireDay必须至少提供一个，如果两个都提供则按照CloseAudit优先的逻辑处理。
         # @type CloseAudit: Boolean
 
         attr_accessor :InstanceId, :LogExpireDay, :CloseAudit
@@ -5844,6 +6134,86 @@ module TencentCloud
 
       # ModifyRoGroupInfo返回参数结构体
       class ModifyRoGroupInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRoReplicationDelay请求参数结构体
+      class ModifyRoReplicationDelayRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param ReplicationDelay: 延迟时间（s）。最小值1，最大值259200。
+        # @type ReplicationDelay: Integer
+
+        attr_accessor :InstanceId, :ReplicationDelay
+        
+        def initialize(instanceid=nil, replicationdelay=nil)
+          @InstanceId = instanceid
+          @ReplicationDelay = replicationdelay
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ReplicationDelay = params['ReplicationDelay']
+        end
+      end
+
+      # ModifyRoReplicationDelay返回参数结构体
+      class ModifyRoReplicationDelayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRoType请求参数结构体
+      class ModifyRoTypeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param SrcRoInstType: 只读实例源类型，取值 NORMAL（普通只读实例）、DELAY_REPLICATION（延迟只读实例）。
+        # @type SrcRoInstType: String
+        # @param DstRoInstType: 只读实例目标类型，取值 NORMAL（普通只读实例）、DELAY_REPLICATION（延迟只读实例）。
+        # @type DstRoInstType: String
+        # @param ReplicationDelay: 延迟时间（s），将实例修改为延迟只读实例时必传。最小值1，最大值259200。
+        # @type ReplicationDelay: Integer
+
+        attr_accessor :InstanceId, :SrcRoInstType, :DstRoInstType, :ReplicationDelay
+        
+        def initialize(instanceid=nil, srcroinsttype=nil, dstroinsttype=nil, replicationdelay=nil)
+          @InstanceId = instanceid
+          @SrcRoInstType = srcroinsttype
+          @DstRoInstType = dstroinsttype
+          @ReplicationDelay = replicationdelay
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SrcRoInstType = params['SrcRoInstType']
+          @DstRoInstType = params['DstRoInstType']
+          @ReplicationDelay = params['ReplicationDelay']
+        end
+      end
+
+      # ModifyRoType返回参数结构体
+      class ModifyRoTypeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7162,6 +7532,55 @@ module TencentCloud
         end
       end
 
+      # StartDelayReplication请求参数结构体
+      class StartDelayReplicationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param DelayReplicationType: 延迟复制类型。可选值 DEFAULT（按照延迟复制时间进行复制）、GTID（回放到指定GTID）、DUE_TIME（回放到指定时间点）。
+        # @type DelayReplicationType: String
+        # @param DueTime: 指定时间点，默认为0，最大值不能超过当前时间。
+        # @type DueTime: Integer
+        # @param Gtid: 指定GITD。回放到指定GTID时必传。
+        # @type Gtid: String
+
+        attr_accessor :InstanceId, :DelayReplicationType, :DueTime, :Gtid
+        
+        def initialize(instanceid=nil, delayreplicationtype=nil, duetime=nil, gtid=nil)
+          @InstanceId = instanceid
+          @DelayReplicationType = delayreplicationtype
+          @DueTime = duetime
+          @Gtid = gtid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DelayReplicationType = params['DelayReplicationType']
+          @DueTime = params['DueTime']
+          @Gtid = params['Gtid']
+        end
+      end
+
+      # StartDelayReplication返回参数结构体
+      class StartDelayReplicationResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 延迟复制任务 ID。DelayReplicationType不为DEFAULT时返回，可用来查询回放任务状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopDBImportJob请求参数结构体
       class StopDBImportJobRequest < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 异步任务的请求 ID。
@@ -7190,6 +7609,74 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopDelayReplication请求参数结构体
+      class StopDelayReplicationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # StopDelayReplication返回参数结构体
+      class StopDelayReplicationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopRollback请求参数结构体
+      class StopRollbackRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 撤销回档任务对应的实例Id。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # StopRollback返回参数结构体
+      class StopRollbackResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 执行请求的异步任务ID
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
         end
       end
@@ -7345,6 +7832,7 @@ module TencentCloud
         # "KILLED" - 已终止；
         # "REMOVED" - 已删除；
         # "PAUSED" - 已暂停。
+        # "WAITING" - 等待中（可撤销）
         # @type TaskStatus: String
         # @param TaskType: 实例任务类型，可能的值包括：
         # "ROLLBACK" - 数据库回档；

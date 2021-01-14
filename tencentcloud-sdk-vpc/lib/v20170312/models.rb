@@ -197,10 +197,18 @@ module TencentCloud
         # @type EipAlgType: :class:`Tencentcloud::Vpc.v20170312.models.AlgType`
         # @param InternetServiceProvider: 弹性公网IP的运营商信息，当前可能返回值包括"CMCC","CTCC","CUCC","BGP"
         # @type InternetServiceProvider: String
+        # @param LocalBgp: 是否本地带宽EIP
+        # @type LocalBgp: Boolean
+        # @param Bandwidth: 弹性公网IP的带宽值。注意，传统账户类型账户的弹性公网IP没有带宽属性，值为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bandwidth: Integer
+        # @param InternetChargeType: 弹性公网IP的网络计费模式。注意，传统账户类型账户的弹性公网IP没有网络计费模式属性，值为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetChargeType: String
 
-        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider
+        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType
         
-        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil)
+        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil)
           @AddressId = addressid
           @AddressName = addressname
           @AddressStatus = addressstatus
@@ -216,6 +224,9 @@ module TencentCloud
           @CascadeRelease = cascaderelease
           @EipAlgType = eipalgtype
           @InternetServiceProvider = internetserviceprovider
+          @LocalBgp = localbgp
+          @Bandwidth = bandwidth
+          @InternetChargeType = internetchargetype
         end
 
         def deserialize(params)
@@ -236,26 +247,29 @@ module TencentCloud
             @EipAlgType = AlgType.new.deserialize(params[EipAlgType])
           end
           @InternetServiceProvider = params['InternetServiceProvider']
+          @LocalBgp = params['LocalBgp']
+          @Bandwidth = params['Bandwidth']
+          @InternetChargeType = params['InternetChargeType']
         end
       end
 
       # 用于描述弹性公网IP的费用对象
       class AddressChargePrepaid < TencentCloud::Common::AbstractModel
-        # @param Period: 购买实例的时长
+        # @param Period: 购买实例的时长，单位是月。可支持时长：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36
         # @type Period: Integer
-        # @param RenewFlag: 自动续费标志
-        # @type RenewFlag: String
+        # @param AutoRenewFlag: 自动续费标志。0表示手动续费，1表示自动续费，2表示到期不续费。默认缺省为0即手动续费
+        # @type AutoRenewFlag: Integer
 
-        attr_accessor :Period, :RenewFlag
+        attr_accessor :Period, :AutoRenewFlag
         
-        def initialize(period=nil, renewflag=nil)
+        def initialize(period=nil, autorenewflag=nil)
           @Period = period
-          @RenewFlag = renewflag
+          @AutoRenewFlag = autorenewflag
         end
 
         def deserialize(params)
           @Period = params['Period']
-          @RenewFlag = params['RenewFlag']
+          @AutoRenewFlag = params['AutoRenewFlag']
         end
       end
 
@@ -389,17 +403,21 @@ module TencentCloud
         # <li>CUCC：中国联通</li></ul>注意：仅部分地域支持静态单线IP。</li></ul>
         # @type InternetServiceProvider: String
         # @param InternetChargeType: EIP计费方式。
-        # <ul style="margin:0"><li>已开通带宽上移白名单的用户，可选值：<ul><li>BANDWIDTH_PACKAGE：[共享带宽包](https://cloud.tencent.com/document/product/684/15255)付费（需额外开通共享带宽包白名单）</li>
+        # <ul style="margin:0"><li>已开通标准账户类型白名单的用户，可选值：<ul><li>BANDWIDTH_PACKAGE：[共享带宽包](https://cloud.tencent.com/document/product/684/15255)付费（需额外开通共享带宽包白名单）</li>
         # <li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费</li>
+        # <li>BANDWIDTH_PREPAID_BY_MONTH：包月按带宽预付费</li>
         # <li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费</li></ul>默认值：TRAFFIC_POSTPAID_BY_HOUR。</li>
-        # <li>未开通带宽上移白名单的用户，EIP计费方式与其绑定的实例的计费方式一致，无需传递此参数。</li></ul>
+        # <li>未开通标准账户类型白名单的用户，EIP计费方式与其绑定的实例的计费方式一致，无需传递此参数。</li></ul>
         # @type InternetChargeType: String
         # @param InternetMaxBandwidthOut: EIP出带宽上限，单位：Mbps。
-        # <ul style="margin:0"><li>已开通带宽上移白名单的用户，可选值范围取决于EIP计费方式：<ul><li>BANDWIDTH_PACKAGE：1 Mbps 至 1000 Mbps</li>
+        # <ul style="margin:0"><li>已开通标准账户类型白名单的用户，可选值范围取决于EIP计费方式：<ul><li>BANDWIDTH_PACKAGE：1 Mbps 至 1000 Mbps</li>
         # <li>BANDWIDTH_POSTPAID_BY_HOUR：1 Mbps 至 100 Mbps</li>
+        # <li>BANDWIDTH_PREPAID_BY_MONTH：1 Mbps 至 200 Mbps</li>
         # <li>TRAFFIC_POSTPAID_BY_HOUR：1 Mbps 至 100 Mbps</li></ul>默认值：1 Mbps。</li>
-        # <li>未开通带宽上移白名单的用户，EIP出带宽上限取决于与其绑定的实例的公网出带宽上限，无需传递此参数。</li></ul>
+        # <li>未开通标准账户类型白名单的用户，EIP出带宽上限取决于与其绑定的实例的公网出带宽上限，无需传递此参数。</li></ul>
         # @type InternetMaxBandwidthOut: Integer
+        # @param AddressChargePrepaid: 包月按带宽预付费EIP的计费参数。EIP为包月按带宽预付费时，该参数必传，其余场景不需传递
+        # @type AddressChargePrepaid: :class:`Tencentcloud::Vpc.v20170312.models.AddressChargePrepaid`
         # @param AddressType: EIP类型。默认值：EIP。
         # <ul style="margin:0"><li>已开通Anycast公网加速白名单的用户，可选值：<ul><li>AnycastEIP：加速IP，可参见 [Anycast 公网加速](https://cloud.tencent.com/document/product/644)</li></ul>注意：仅部分地域支持加速IP。</li></ul>
         # @type AddressType: String
@@ -416,13 +434,14 @@ module TencentCloud
         # @param BandwidthPackageId: BGP带宽包唯一ID参数。设定该参数且InternetChargeType为BANDWIDTH_PACKAGE，则表示创建的EIP加入该BGP带宽包并采用带宽包计费
         # @type BandwidthPackageId: String
 
-        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressType, :AnycastZone, :ApplicableForCLB, :Tags, :BandwidthPackageId
+        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :ApplicableForCLB, :Tags, :BandwidthPackageId
         
-        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresstype=nil, anycastzone=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil)
+        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil)
           @AddressCount = addresscount
           @InternetServiceProvider = internetserviceprovider
           @InternetChargeType = internetchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @AddressChargePrepaid = addresschargeprepaid
           @AddressType = addresstype
           @AnycastZone = anycastzone
           @ApplicableForCLB = applicableforclb
@@ -435,6 +454,9 @@ module TencentCloud
           @InternetServiceProvider = params['InternetServiceProvider']
           @InternetChargeType = params['InternetChargeType']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          unless params['AddressChargePrepaid'].nil?
+            @AddressChargePrepaid = AddressChargePrepaid.new.deserialize(params[AddressChargePrepaid])
+          end
           @AddressType = params['AddressType']
           @AnycastZone = params['AnycastZone']
           @ApplicableForCLB = params['ApplicableForCLB']
@@ -473,21 +495,25 @@ module TencentCloud
         # @type Ip6Addresses: Array
         # @param InternetMaxBandwidthOut: 带宽，单位Mbps。默认是1Mbps
         # @type InternetMaxBandwidthOut: Integer
-        # @param InternetChargeType: 网络计费模式。IPV6当前支持"TRAFFIC_POSTPAID_BY_HOUR"，默认是"TRAFFIC_POSTPAID_BY_HOUR"。
+        # @param InternetChargeType: 网络计费模式。IPV6当前对标准账户类型支持"TRAFFIC_POSTPAID_BY_HOUR"，对传统账户类型支持"BANDWIDTH_PACKAGE"。默认网络计费模式是"TRAFFIC_POSTPAID_BY_HOUR"。
         # @type InternetChargeType: String
+        # @param BandwidthPackageId: 带宽包id，上移账号，申请带宽包计费模式的ipv6地址需要传入.
+        # @type BandwidthPackageId: String
 
-        attr_accessor :Ip6Addresses, :InternetMaxBandwidthOut, :InternetChargeType
+        attr_accessor :Ip6Addresses, :InternetMaxBandwidthOut, :InternetChargeType, :BandwidthPackageId
         
-        def initialize(ip6addresses=nil, internetmaxbandwidthout=nil, internetchargetype=nil)
+        def initialize(ip6addresses=nil, internetmaxbandwidthout=nil, internetchargetype=nil, bandwidthpackageid=nil)
           @Ip6Addresses = ip6addresses
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @InternetChargeType = internetchargetype
+          @BandwidthPackageId = bandwidthpackageid
         end
 
         def deserialize(params)
           @Ip6Addresses = params['Ip6Addresses']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @InternetChargeType = params['InternetChargeType']
+          @BandwidthPackageId = params['BandwidthPackageId']
         end
       end
 
@@ -792,15 +818,55 @@ module TencentCloud
         end
       end
 
+      # AssociateDirectConnectGatewayNatGateway请求参数结构体
+      class AssociateDirectConnectGatewayNatGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: 专线网关ID。
+        # @type VpcId: String
+        # @param NatGatewayId: NAT网关ID。
+        # @type NatGatewayId: String
+        # @param DirectConnectGatewayId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @type DirectConnectGatewayId: String
+
+        attr_accessor :VpcId, :NatGatewayId, :DirectConnectGatewayId
+        
+        def initialize(vpcid=nil, natgatewayid=nil, directconnectgatewayid=nil)
+          @VpcId = vpcid
+          @NatGatewayId = natgatewayid
+          @DirectConnectGatewayId = directconnectgatewayid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @NatGatewayId = params['NatGatewayId']
+          @DirectConnectGatewayId = params['DirectConnectGatewayId']
+        end
+      end
+
+      # AssociateDirectConnectGatewayNatGateway返回参数结构体
+      class AssociateDirectConnectGatewayNatGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssociateNatGatewayAddress请求参数结构体
       class AssociateNatGatewayAddressRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID，形如：`nat-df45454`。
         # @type NatGatewayId: String
         # @param AddressCount: 需要申请的弹性IP个数，系统会按您的要求生产N个弹性IP, 其中AddressCount和PublicAddresses至少传递一个。
         # @type AddressCount: Integer
-        # @param PublicIpAddresses: 绑定NAT网关的弹性IP数组，其中AddressCount和PublicAddresses至少传递一个。。
+        # @param PublicIpAddresses: 绑定NAT网关的弹性IP数组，其中AddressCount和PublicAddresses至少传递一个。
         # @type PublicIpAddresses: Array
-        # @param Zone: 弹性IP可以区，自动分配弹性IP时传递。
+        # @param Zone: 弹性IP可用区，自动分配弹性IP时传递。
         # @type Zone: String
 
         attr_accessor :NatGatewayId, :AddressCount, :PublicIpAddresses, :Zone
@@ -1020,6 +1086,46 @@ module TencentCloud
         end
       end
 
+      # AuditCrossBorderCompliance请求参数结构体
+      class AuditCrossBorderComplianceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProvider: 服务商, 可选值：`UNICOM`。
+        # @type ServiceProvider: String
+        # @param ComplianceId: 表单唯一`ID`。
+        # @type ComplianceId: Integer
+        # @param AuditBehavior: 通过：`APPROVED `，拒绝：`DENY`。
+        # @type AuditBehavior: String
+
+        attr_accessor :ServiceProvider, :ComplianceId, :AuditBehavior
+        
+        def initialize(serviceprovider=nil, complianceid=nil, auditbehavior=nil)
+          @ServiceProvider = serviceprovider
+          @ComplianceId = complianceid
+          @AuditBehavior = auditbehavior
+        end
+
+        def deserialize(params)
+          @ServiceProvider = params['ServiceProvider']
+          @ComplianceId = params['ComplianceId']
+          @AuditBehavior = params['AuditBehavior']
+        end
+      end
+
+      # AuditCrossBorderCompliance返回参数结构体
+      class AuditCrossBorderComplianceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述带宽包信息的结构
       class BandwidthPackage < TencentCloud::Common::AbstractModel
         # @param BandwidthPackageId: 带宽包唯一标识Id
@@ -1064,6 +1170,22 @@ module TencentCloud
         end
       end
 
+      # 后付费共享带宽包的当前计费用量
+      class BandwidthPackageBillBandwidth < TencentCloud::Common::AbstractModel
+        # @param BandwidthUsage: 当前计费用量，单位为 Mbps
+        # @type BandwidthUsage: Integer
+
+        attr_accessor :BandwidthUsage
+        
+        def initialize(bandwidthusage=nil)
+          @BandwidthUsage = bandwidthusage
+        end
+
+        def deserialize(params)
+          @BandwidthUsage = params['BandwidthUsage']
+        end
+      end
+
       # 云联网（CCN）对象
       class CCN < TencentCloud::Common::AbstractModel
         # @param CcnId: 云联网唯一ID
@@ -1088,10 +1210,12 @@ module TencentCloud
         # @type BandwidthLimitType: String
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
+        # @param RoutePriorityFlag: 是否支持云联网路由优先级的功能。False：不支持，True：支持。
+        # @type RoutePriorityFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag
         
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -1102,6 +1226,7 @@ module TencentCloud
           @InstanceChargeType = instancechargetype
           @BandwidthLimitType = bandwidthlimittype
           @TagSet = tagset
+          @RoutePriorityFlag = routepriorityflag
         end
 
         def deserialize(params)
@@ -1115,6 +1240,7 @@ module TencentCloud
           @InstanceChargeType = params['InstanceChargeType']
           @BandwidthLimitType = params['BandwidthLimitType']
           @TagSet = params['TagSet']
+          @RoutePriorityFlag = params['RoutePriorityFlag']
         end
       end
 
@@ -1152,10 +1278,12 @@ module TencentCloud
         # @type AttachedTime: String
         # @param CcnUin: 云联网所属UIN（根账号）。
         # @type CcnUin: String
+        # @param InstanceArea: 关联实例所属的大地域，如: CHINA_MAINLAND
+        # @type InstanceArea: String
 
-        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :InstanceUin, :CidrBlock, :State, :AttachedTime, :CcnUin
+        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :InstanceUin, :CidrBlock, :State, :AttachedTime, :CcnUin, :InstanceArea
         
-        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, cidrblock=nil, state=nil, attachedtime=nil, ccnuin=nil)
+        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, cidrblock=nil, state=nil, attachedtime=nil, ccnuin=nil, instancearea=nil)
           @CcnId = ccnid
           @InstanceType = instancetype
           @InstanceId = instanceid
@@ -1166,6 +1294,7 @@ module TencentCloud
           @State = state
           @AttachedTime = attachedtime
           @CcnUin = ccnuin
+          @InstanceArea = instancearea
         end
 
         def deserialize(params)
@@ -1179,10 +1308,11 @@ module TencentCloud
           @State = params['State']
           @AttachedTime = params['AttachedTime']
           @CcnUin = params['CcnUin']
+          @InstanceArea = params['InstanceArea']
         end
       end
 
-      # 用于描述云联网地域间限速带宽实例的信息
+      # 用于描述云联网地域间限速带宽实例的信息。
       class CcnBandwidthInfo < TencentCloud::Common::AbstractModel
         # @param CcnId: 带宽所属的云联网ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1199,7 +1329,7 @@ module TencentCloud
         # @param RenewFlag: 带宽是否自动续费的标记。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: String
-        # @param CcnRegionBandwidthLimit: 描述带宽的地域和限速上限信息。
+        # @param CcnRegionBandwidthLimit: 描述带宽的地域和限速上限信息。在地域间限速的情况下才会返回参数，出口限速模式不返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CcnRegionBandwidthLimit: :class:`Tencentcloud::Vpc.v20170312.models.CcnRegionBandwidthLimit`
 
@@ -1307,10 +1437,18 @@ module TencentCloud
         # @type Enabled: Boolean
         # @param InstanceUin: 关联实例所属UIN（根账号）
         # @type InstanceUin: String
+        # @param ExtraState: 路由的扩展状态
+        # @type ExtraState: String
+        # @param IsBgp: 是否动态路由
+        # @type IsBgp: Boolean
+        # @param RoutePriority: 路由优先级
+        # @type RoutePriority: Integer
+        # @param InstanceExtraName: 下一跳扩展名称（关联实例的扩展名称）
+        # @type InstanceExtraName: String
 
-        attr_accessor :RouteId, :DestinationCidrBlock, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :UpdateTime, :Enabled, :InstanceUin
+        attr_accessor :RouteId, :DestinationCidrBlock, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :UpdateTime, :Enabled, :InstanceUin, :ExtraState, :IsBgp, :RoutePriority, :InstanceExtraName
         
-        def initialize(routeid=nil, destinationcidrblock=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, updatetime=nil, enabled=nil, instanceuin=nil)
+        def initialize(routeid=nil, destinationcidrblock=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, updatetime=nil, enabled=nil, instanceuin=nil, extrastate=nil, isbgp=nil, routepriority=nil, instanceextraname=nil)
           @RouteId = routeid
           @DestinationCidrBlock = destinationcidrblock
           @InstanceType = instancetype
@@ -1320,6 +1458,10 @@ module TencentCloud
           @UpdateTime = updatetime
           @Enabled = enabled
           @InstanceUin = instanceuin
+          @ExtraState = extrastate
+          @IsBgp = isbgp
+          @RoutePriority = routepriority
+          @InstanceExtraName = instanceextraname
         end
 
         def deserialize(params)
@@ -1332,6 +1474,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Enabled = params['Enabled']
           @InstanceUin = params['InstanceUin']
+          @ExtraState = params['ExtraState']
+          @IsBgp = params['IsBgp']
+          @RoutePriority = params['RoutePriority']
+          @InstanceExtraName = params['InstanceExtraName']
         end
       end
 
@@ -1505,6 +1651,61 @@ module TencentCloud
         end
       end
 
+      # CloneSecurityGroup请求参数结构体
+      class CloneSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupId: 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
+        # @type SecurityGroupId: String
+        # @param GroupName: 安全组名称，可任意命名，但不得超过60个字符。未提供参数时，克隆后的安全组名称和SecurityGroupId对应的安全组名称相同。
+        # @type GroupName: String
+        # @param GroupDescription: 安全组备注，最多100个字符。未提供参数时，克隆后的安全组备注和SecurityGroupId对应的安全组备注相同。
+        # @type GroupDescription: String
+        # @param ProjectId: 项目ID，默认0。可在qcloud控制台项目管理页面查询到。
+        # @type ProjectId: String
+        # @param RemoteRegion: 源Region,跨地域克隆安全组时，需要传入源安全组所属地域信息，例如：克隆广州的安全组到上海，则这里需要传入广州安全的地域信息：ap-guangzhou。
+        # @type RemoteRegion: String
+
+        attr_accessor :SecurityGroupId, :GroupName, :GroupDescription, :ProjectId, :RemoteRegion
+        
+        def initialize(securitygroupid=nil, groupname=nil, groupdescription=nil, projectid=nil, remoteregion=nil)
+          @SecurityGroupId = securitygroupid
+          @GroupName = groupname
+          @GroupDescription = groupdescription
+          @ProjectId = projectid
+          @RemoteRegion = remoteregion
+        end
+
+        def deserialize(params)
+          @SecurityGroupId = params['SecurityGroupId']
+          @GroupName = params['GroupName']
+          @GroupDescription = params['GroupDescription']
+          @ProjectId = params['ProjectId']
+          @RemoteRegion = params['RemoteRegion']
+        end
+      end
+
+      # CloneSecurityGroup返回参数结构体
+      class CloneSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param SecurityGroup: 安全组对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroup: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroup`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecurityGroup, :RequestId
+        
+        def initialize(securitygroup=nil, requestid=nil)
+          @SecurityGroup = securitygroup
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SecurityGroup'].nil?
+            @SecurityGroup = SecurityGroup.new.deserialize(params[SecurityGroup])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 冲突资源条目信息。
       class ConflictItem < TencentCloud::Common::AbstractModel
         # @param ConfilctId: 冲突资源的ID
@@ -1641,7 +1842,7 @@ module TencentCloud
         # @type NetworkInterfaceName: String
         # @param SubnetId: 弹性网卡所在的子网实例ID，例如：subnet-0ap8nwca。
         # @type SubnetId: String
-        # @param InstanceId: 云主机实例ID。
+        # @param InstanceId: 云服务器实例ID。
         # @type InstanceId: String
         # @param PrivateIpAddresses: 指定的内网IP信息，单次最多指定10个。
         # @type PrivateIpAddresses: Array
@@ -1752,7 +1953,7 @@ module TencentCloud
         # @type ChargeType: String
         # @param BandwidthPackageName: 带宽包名字
         # @type BandwidthPackageName: String
-        # @param BandwidthPackageCount: 带宽包数量(非上移账户只能填1)
+        # @param BandwidthPackageCount: 带宽包数量(传统账户类型只能填1)
         # @type BandwidthPackageCount: Integer
         # @param InternetMaxBandwidth: 带宽包限速大小。单位：Mbps，-1表示不限速。
         # @type InternetMaxBandwidth: Integer
@@ -1818,7 +2019,7 @@ module TencentCloud
         # @type QosLevel: String
         # @param InstanceChargeType: 计费模式，PREPAID：表示预付费，即包年包月，POSTPAID：表示后付费，即按量计费。默认：POSTPAID。
         # @type InstanceChargeType: String
-        # @param BandwidthLimitType: 限速类型，OUTER_REGION_LIMIT表示地域出口限速，INTER_REGION_LIMIT为地域间限速，默认为OUTER_REGION_LIMIT
+        # @param BandwidthLimitType: 限速类型，OUTER_REGION_LIMIT表示地域出口限速，INTER_REGION_LIMIT为地域间限速，默认为OUTER_REGION_LIMIT。预付费模式仅支持地域间限速，后付费模式支持地域间限速和地域出口限速。
         # @type BandwidthLimitType: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
@@ -1872,17 +2073,21 @@ module TencentCloud
         # @type CustomerGatewayName: String
         # @param IpAddress: 对端网关公网IP。
         # @type IpAddress: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @type Tags: Array
 
-        attr_accessor :CustomerGatewayName, :IpAddress
+        attr_accessor :CustomerGatewayName, :IpAddress, :Tags
         
-        def initialize(customergatewayname=nil, ipaddress=nil)
+        def initialize(customergatewayname=nil, ipaddress=nil, tags=nil)
           @CustomerGatewayName = customergatewayname
           @IpAddress = ipaddress
+          @Tags = tags
         end
 
         def deserialize(params)
           @CustomerGatewayName = params['CustomerGatewayName']
           @IpAddress = params['IpAddress']
+          @Tags = params['Tags']
         end
       end
 
@@ -1948,9 +2153,9 @@ module TencentCloud
 
       # CreateDefaultVpc请求参数结构体
       class CreateDefaultVpcRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 子网所在的可用区ID，不指定将随机选择可用区
+        # @param Zone: 子网所在的可用区，该参数可通过[DescribeZones](https://cloud.tencent.com/document/product/213/15707)接口获取，例如ap-guangzhou-1，不指定时将随机选择可用区。
         # @type Zone: String
-        # @param Force: 是否强制返回默认VPC
+        # @param Force: 是否强制返回默认VPC。
         # @type Force: Boolean
 
         attr_accessor :Zone, :Force
@@ -2087,14 +2292,17 @@ module TencentCloud
         # <li>NORMAL - （默认）标准型，注：云联网只支持标准型</li>
         # <li>NAT - NAT型</li>NAT类型支持网络地址转换配置，类型确定后不能修改；一个私有网络可以创建一个NAT类型的专线网关和一个非NAT类型的专线网关
         # @type GatewayType: String
+        # @param ModeType: 云联网路由发布模式，可选值：`standard`（标准模式）、`exquisite`（精细模式）。只有云联网类型专线网关才支持`ModeType`。
+        # @type ModeType: String
 
-        attr_accessor :DirectConnectGatewayName, :NetworkType, :NetworkInstanceId, :GatewayType
+        attr_accessor :DirectConnectGatewayName, :NetworkType, :NetworkInstanceId, :GatewayType, :ModeType
         
-        def initialize(directconnectgatewayname=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil)
+        def initialize(directconnectgatewayname=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, modetype=nil)
           @DirectConnectGatewayName = directconnectgatewayname
           @NetworkType = networktype
           @NetworkInstanceId = networkinstanceid
           @GatewayType = gatewaytype
+          @ModeType = modetype
         end
 
         def deserialize(params)
@@ -2102,6 +2310,7 @@ module TencentCloud
           @NetworkType = params['NetworkType']
           @NetworkInstanceId = params['NetworkInstanceId']
           @GatewayType = params['GatewayType']
+          @ModeType = params['ModeType']
         end
       end
 
@@ -2143,10 +2352,12 @@ module TencentCloud
         # @type CloudLogId: String
         # @param FlowLogDescription: 流日志实例描述
         # @type FlowLogDescription: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @type Tags: Array
 
-        attr_accessor :VpcId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :FlowLogDescription
+        attr_accessor :VpcId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :FlowLogDescription, :Tags
         
-        def initialize(vpcid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, flowlogdescription=nil)
+        def initialize(vpcid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, flowlogdescription=nil, tags=nil)
           @VpcId = vpcid
           @FlowLogName = flowlogname
           @ResourceType = resourcetype
@@ -2154,6 +2365,7 @@ module TencentCloud
           @TrafficType = traffictype
           @CloudLogId = cloudlogid
           @FlowLogDescription = flowlogdescription
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2164,6 +2376,7 @@ module TencentCloud
           @TrafficType = params['TrafficType']
           @CloudLogId = params['CloudLogId']
           @FlowLogDescription = params['FlowLogDescription']
+          @Tags = params['Tags']
         end
       end
 
@@ -2335,10 +2548,12 @@ module TencentCloud
         # @type Zone: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
+        # @param SubnetId: NAT网关所属子网
+        # @type SubnetId: String
 
-        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags
+        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId
         
-        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil)
+        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil)
           @NatGatewayName = natgatewayname
           @VpcId = vpcid
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -2347,6 +2562,7 @@ module TencentCloud
           @PublicIpAddresses = publicipaddresses
           @Zone = zone
           @Tags = tags
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -2358,6 +2574,7 @@ module TencentCloud
           @PublicIpAddresses = params['PublicIpAddresses']
           @Zone = params['Zone']
           @Tags = params['Tags']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -2981,15 +3198,15 @@ module TencentCloud
       class CreateVpcRequest < TencentCloud::Common::AbstractModel
         # @param VpcName: vpc名称，最大长度不能超过60个字节。
         # @type VpcName: String
-        # @param CidrBlock: vpc的cidr，只能为10.0.0.0/16，172.16.0.0/16，192.168.0.0/16这三个内网网段内。
+        # @param CidrBlock: vpc的cidr，仅能在10.0.0.0/16，172.16.0.0/16，192.168.0.0/16这三个内网网段内。
         # @type CidrBlock: String
         # @param EnableMulticast: 是否开启组播。true: 开启, false: 不开启。
         # @type EnableMulticast: String
-        # @param DnsServers: DNS地址，最多支持4个
+        # @param DnsServers: DNS地址，最多支持4个。
         # @type DnsServers: Array
-        # @param DomainName: 域名
+        # @param DomainName: DHCP使用的域名。
         # @type DomainName: String
-        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
 
         attr_accessor :VpcName, :CidrBlock, :EnableMulticast, :DnsServers, :DomainName, :Tags
@@ -3053,10 +3270,12 @@ module TencentCloud
         # @type IKEOptionsSpecification: :class:`Tencentcloud::Vpc.v20170312.models.IKEOptionsSpecification`
         # @param IPSECOptionsSpecification: IPSec配置，腾讯云提供IPSec安全会话设置
         # @type IPSECOptionsSpecification: :class:`Tencentcloud::Vpc.v20170312.models.IPSECOptionsSpecification`
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @type Tags: Array
 
-        attr_accessor :VpcId, :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification
+        attr_accessor :VpcId, :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags
         
-        def initialize(vpcid=nil, vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil)
+        def initialize(vpcid=nil, vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil)
           @VpcId = vpcid
           @VpnGatewayId = vpngatewayid
           @CustomerGatewayId = customergatewayid
@@ -3065,6 +3284,7 @@ module TencentCloud
           @SecurityPolicyDatabases = securitypolicydatabases
           @IKEOptionsSpecification = ikeoptionsspecification
           @IPSECOptionsSpecification = ipsecoptionsspecification
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3080,6 +3300,7 @@ module TencentCloud
           unless params['IPSECOptionsSpecification'].nil?
             @IPSECOptionsSpecification = IPSECOptionsSpecification.new.deserialize(params[IPSECOptionsSpecification])
           end
+          @Tags = params['Tags']
         end
       end
 
@@ -3107,7 +3328,7 @@ module TencentCloud
 
       # CreateVpnGateway请求参数结构体
       class CreateVpnGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口返回值中的VpcId获取。
         # @type VpcId: String
         # @param VpnGatewayName: VPN网关名称，最大长度不能超过60个字节。
         # @type VpnGatewayName: String
@@ -3121,10 +3342,12 @@ module TencentCloud
         # @type Zone: String
         # @param Type: VPN网关类型。值“CCN”云联网类型VPN网关
         # @type Type: String
+        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @type Tags: Array
 
-        attr_accessor :VpcId, :VpnGatewayName, :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :Zone, :Type
+        attr_accessor :VpcId, :VpnGatewayName, :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :Zone, :Type, :Tags
         
-        def initialize(vpcid=nil, vpngatewayname=nil, internetmaxbandwidthout=nil, instancechargetype=nil, instancechargeprepaid=nil, zone=nil, type=nil)
+        def initialize(vpcid=nil, vpngatewayname=nil, internetmaxbandwidthout=nil, instancechargetype=nil, instancechargeprepaid=nil, zone=nil, type=nil, tags=nil)
           @VpcId = vpcid
           @VpnGatewayName = vpngatewayname
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -3132,6 +3355,7 @@ module TencentCloud
           @InstanceChargePrepaid = instancechargeprepaid
           @Zone = zone
           @Type = type
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3144,6 +3368,7 @@ module TencentCloud
           end
           @Zone = params['Zone']
           @Type = params['Type']
+          @Tags = params['Tags']
         end
       end
 
@@ -3166,6 +3391,106 @@ module TencentCloud
             @VpnGateway = VpnGateway.new.deserialize(params[VpnGateway])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 合规化审批单
+      class CrossBorderCompliance < TencentCloud::Common::AbstractModel
+        # @param ServiceProvider: 服务商，可选值：`UNICOM`。
+        # @type ServiceProvider: String
+        # @param ComplianceId: 合规化审批单`ID`。
+        # @type ComplianceId: Integer
+        # @param Company: 公司全称。
+        # @type Company: String
+        # @param UniformSocialCreditCode: 统一社会信用代码。
+        # @type UniformSocialCreditCode: String
+        # @param LegalPerson: 法定代表人。
+        # @type LegalPerson: String
+        # @param IssuingAuthority: 发证机关。
+        # @type IssuingAuthority: String
+        # @param BusinessLicense: 营业执照。
+        # @type BusinessLicense: String
+        # @param BusinessAddress: 营业执照住所。
+        # @type BusinessAddress: String
+        # @param PostCode: 邮编。
+        # @type PostCode: Integer
+        # @param Manager: 经办人。
+        # @type Manager: String
+        # @param ManagerId: 经办人身份证号。
+        # @type ManagerId: String
+        # @param ManagerIdCard: 经办人身份证。
+        # @type ManagerIdCard: String
+        # @param ManagerAddress: 经办人身份证地址。
+        # @type ManagerAddress: String
+        # @param ManagerTelephone: 经办人联系电话。
+        # @type ManagerTelephone: String
+        # @param Email: 电子邮箱。
+        # @type Email: String
+        # @param ServiceHandlingForm: 服务受理单。
+        # @type ServiceHandlingForm: String
+        # @param AuthorizationLetter: 授权函。
+        # @type AuthorizationLetter: String
+        # @param SafetyCommitment: 信息安全承诺书。
+        # @type SafetyCommitment: String
+        # @param ServiceStartDate: 服务开始时间。
+        # @type ServiceStartDate: String
+        # @param ServiceEndDate: 服务截止时间。
+        # @type ServiceEndDate: String
+        # @param State: 状态。待审批：`PENDING`，已通过：`APPROVED`，已拒绝：`DENY`。
+        # @type State: String
+        # @param CreatedTime: 审批单创建时间。
+        # @type CreatedTime: String
+
+        attr_accessor :ServiceProvider, :ComplianceId, :Company, :UniformSocialCreditCode, :LegalPerson, :IssuingAuthority, :BusinessLicense, :BusinessAddress, :PostCode, :Manager, :ManagerId, :ManagerIdCard, :ManagerAddress, :ManagerTelephone, :Email, :ServiceHandlingForm, :AuthorizationLetter, :SafetyCommitment, :ServiceStartDate, :ServiceEndDate, :State, :CreatedTime
+        
+        def initialize(serviceprovider=nil, complianceid=nil, company=nil, uniformsocialcreditcode=nil, legalperson=nil, issuingauthority=nil, businesslicense=nil, businessaddress=nil, postcode=nil, manager=nil, managerid=nil, manageridcard=nil, manageraddress=nil, managertelephone=nil, email=nil, servicehandlingform=nil, authorizationletter=nil, safetycommitment=nil, servicestartdate=nil, serviceenddate=nil, state=nil, createdtime=nil)
+          @ServiceProvider = serviceprovider
+          @ComplianceId = complianceid
+          @Company = company
+          @UniformSocialCreditCode = uniformsocialcreditcode
+          @LegalPerson = legalperson
+          @IssuingAuthority = issuingauthority
+          @BusinessLicense = businesslicense
+          @BusinessAddress = businessaddress
+          @PostCode = postcode
+          @Manager = manager
+          @ManagerId = managerid
+          @ManagerIdCard = manageridcard
+          @ManagerAddress = manageraddress
+          @ManagerTelephone = managertelephone
+          @Email = email
+          @ServiceHandlingForm = servicehandlingform
+          @AuthorizationLetter = authorizationletter
+          @SafetyCommitment = safetycommitment
+          @ServiceStartDate = servicestartdate
+          @ServiceEndDate = serviceenddate
+          @State = state
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @ServiceProvider = params['ServiceProvider']
+          @ComplianceId = params['ComplianceId']
+          @Company = params['Company']
+          @UniformSocialCreditCode = params['UniformSocialCreditCode']
+          @LegalPerson = params['LegalPerson']
+          @IssuingAuthority = params['IssuingAuthority']
+          @BusinessLicense = params['BusinessLicense']
+          @BusinessAddress = params['BusinessAddress']
+          @PostCode = params['PostCode']
+          @Manager = params['Manager']
+          @ManagerId = params['ManagerId']
+          @ManagerIdCard = params['ManagerIdCard']
+          @ManagerAddress = params['ManagerAddress']
+          @ManagerTelephone = params['ManagerTelephone']
+          @Email = params['Email']
+          @ServiceHandlingForm = params['ServiceHandlingForm']
+          @AuthorizationLetter = params['AuthorizationLetter']
+          @SafetyCommitment = params['SafetyCommitment']
+          @ServiceStartDate = params['ServiceStartDate']
+          @ServiceEndDate = params['ServiceEndDate']
+          @State = params['State']
+          @CreatedTime = params['CreatedTime']
         end
       end
 
@@ -4471,6 +4796,42 @@ module TencentCloud
         end
       end
 
+      # DescribeBandwidthPackageBillUsage请求参数结构体
+      class DescribeBandwidthPackageBillUsageRequest < TencentCloud::Common::AbstractModel
+        # @param BandwidthPackageId: 后付费共享带宽包的唯一ID
+        # @type BandwidthPackageId: String
+
+        attr_accessor :BandwidthPackageId
+        
+        def initialize(bandwidthpackageid=nil)
+          @BandwidthPackageId = bandwidthpackageid
+        end
+
+        def deserialize(params)
+          @BandwidthPackageId = params['BandwidthPackageId']
+        end
+      end
+
+      # DescribeBandwidthPackageBillUsage返回参数结构体
+      class DescribeBandwidthPackageBillUsageResponse < TencentCloud::Common::AbstractModel
+        # @param BandwidthPackageBillBandwidthSet: 当前计费用量
+        # @type BandwidthPackageBillBandwidthSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BandwidthPackageBillBandwidthSet, :RequestId
+        
+        def initialize(bandwidthpackagebillbandwidthset=nil, requestid=nil)
+          @BandwidthPackageBillBandwidthSet = bandwidthpackagebillbandwidthset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BandwidthPackageBillBandwidthSet = params['BandwidthPackageBillBandwidthSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBandwidthPackageQuota请求参数结构体
       class DescribeBandwidthPackageQuotaRequest < TencentCloud::Common::AbstractModel
 
@@ -4498,6 +4859,60 @@ module TencentCloud
 
         def deserialize(params)
           @QuotaSet = params['QuotaSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBandwidthPackageResources请求参数结构体
+      class DescribeBandwidthPackageResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param BandwidthPackageId: 标识 共享带宽包 的唯一 ID 列表。共享带宽包 唯一 ID 形如：`bwp-11112222`。
+        # @type BandwidthPackageId: String
+        # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`AddressIds`和`Filters`。详细的过滤条件如下：
+        # <li> resource-id - String - 是否必填：否 - （过滤条件）按照 共享带宽包内资源 的唯一 ID 过滤。共享带宽包内资源 唯一 ID 形如：eip-11112222。</li>
+        # <li> resource-type - String - 是否必填：否 - （过滤条件）按照 共享带宽包内资源 类型过滤，目前仅支持 弹性IP 和 负载均衡 两种类型，可选值为 Address 和 LoadBalance。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :BandwidthPackageId, :Filters, :Offset, :Limit
+        
+        def initialize(bandwidthpackageid=nil, filters=nil, offset=nil, limit=nil)
+          @BandwidthPackageId = bandwidthpackageid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @BandwidthPackageId = params['BandwidthPackageId']
+          @Filters = params['Filters']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeBandwidthPackageResources返回参数结构体
+      class DescribeBandwidthPackageResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的 共享带宽包内资源 数量。
+        # @type TotalCount: Integer
+        # @param ResourceSet: 共享带宽包内资源 详细信息列表。
+        # @type ResourceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ResourceSet, :RequestId
+        
+        def initialize(totalcount=nil, resourceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ResourceSet = resourceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ResourceSet = params['ResourceSet']
           @RequestId = params['RequestId']
         end
       end
@@ -4834,6 +5249,106 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @ClassicLinkInstanceSet = params['ClassicLinkInstanceSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCrossBorderCompliance请求参数结构体
+      class DescribeCrossBorderComplianceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceProvider: （精确匹配）服务商，可选值：`UNICOM`。
+        # @type ServiceProvider: String
+        # @param ComplianceId: （精确匹配）合规化审批单`ID`。
+        # @type ComplianceId: Integer
+        # @param Company: （模糊查询）公司名称。
+        # @type Company: String
+        # @param UniformSocialCreditCode: （精确匹配）统一社会信用代码。
+        # @type UniformSocialCreditCode: String
+        # @param LegalPerson: （模糊查询）法定代表人。
+        # @type LegalPerson: String
+        # @param IssuingAuthority: （模糊查询）发证机关。
+        # @type IssuingAuthority: String
+        # @param BusinessAddress: （模糊查询）营业执照住所。
+        # @type BusinessAddress: String
+        # @param PostCode: （精确匹配）邮编。
+        # @type PostCode: Integer
+        # @param Manager: （模糊查询）经办人。
+        # @type Manager: String
+        # @param ManagerId: （精确查询）经办人身份证号。
+        # @type ManagerId: String
+        # @param ManagerAddress: （模糊查询）经办人身份证地址。
+        # @type ManagerAddress: String
+        # @param ManagerTelephone: （精确匹配）经办人联系电话。
+        # @type ManagerTelephone: String
+        # @param Email: （精确匹配）电子邮箱。
+        # @type Email: String
+        # @param ServiceStartDate: （精确匹配）服务开始日期，如：`2020-07-28`。
+        # @type ServiceStartDate: String
+        # @param ServiceEndDate: （精确匹配）服务结束日期，如：`2021-07-28`。
+        # @type ServiceEndDate: String
+        # @param State: （精确匹配）状态。待审批：`PENDING`，通过：`APPROVED `，拒绝：`DENY`。
+        # @type State: String
+
+        attr_accessor :ServiceProvider, :ComplianceId, :Company, :UniformSocialCreditCode, :LegalPerson, :IssuingAuthority, :BusinessAddress, :PostCode, :Manager, :ManagerId, :ManagerAddress, :ManagerTelephone, :Email, :ServiceStartDate, :ServiceEndDate, :State
+        
+        def initialize(serviceprovider=nil, complianceid=nil, company=nil, uniformsocialcreditcode=nil, legalperson=nil, issuingauthority=nil, businessaddress=nil, postcode=nil, manager=nil, managerid=nil, manageraddress=nil, managertelephone=nil, email=nil, servicestartdate=nil, serviceenddate=nil, state=nil)
+          @ServiceProvider = serviceprovider
+          @ComplianceId = complianceid
+          @Company = company
+          @UniformSocialCreditCode = uniformsocialcreditcode
+          @LegalPerson = legalperson
+          @IssuingAuthority = issuingauthority
+          @BusinessAddress = businessaddress
+          @PostCode = postcode
+          @Manager = manager
+          @ManagerId = managerid
+          @ManagerAddress = manageraddress
+          @ManagerTelephone = managertelephone
+          @Email = email
+          @ServiceStartDate = servicestartdate
+          @ServiceEndDate = serviceenddate
+          @State = state
+        end
+
+        def deserialize(params)
+          @ServiceProvider = params['ServiceProvider']
+          @ComplianceId = params['ComplianceId']
+          @Company = params['Company']
+          @UniformSocialCreditCode = params['UniformSocialCreditCode']
+          @LegalPerson = params['LegalPerson']
+          @IssuingAuthority = params['IssuingAuthority']
+          @BusinessAddress = params['BusinessAddress']
+          @PostCode = params['PostCode']
+          @Manager = params['Manager']
+          @ManagerId = params['ManagerId']
+          @ManagerAddress = params['ManagerAddress']
+          @ManagerTelephone = params['ManagerTelephone']
+          @Email = params['Email']
+          @ServiceStartDate = params['ServiceStartDate']
+          @ServiceEndDate = params['ServiceEndDate']
+          @State = params['State']
+        end
+      end
+
+      # DescribeCrossBorderCompliance返回参数结构体
+      class DescribeCrossBorderComplianceResponse < TencentCloud::Common::AbstractModel
+        # @param CrossBorderComplianceSet: 合规化审批单列表。
+        # @type CrossBorderComplianceSet: Array
+        # @param TotalCount: 合规化审批单总数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CrossBorderComplianceSet, :TotalCount, :RequestId
+        
+        def initialize(crossbordercomplianceset=nil, totalcount=nil, requestid=nil)
+          @CrossBorderComplianceSet = crossbordercomplianceset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CrossBorderComplianceSet = params['CrossBorderComplianceSet']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5558,6 +6073,92 @@ module TencentCloud
         end
       end
 
+      # DescribeIpGeolocationDatabaseUrl请求参数结构体
+      class DescribeIpGeolocationDatabaseUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Type: IP地理位置库协议类型，目前支持"ipv4"和"ipv6"。
+        # @type Type: String
+
+        attr_accessor :Type
+        
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeIpGeolocationDatabaseUrl返回参数结构体
+      class DescribeIpGeolocationDatabaseUrlResponse < TencentCloud::Common::AbstractModel
+        # @param DownLoadUrl: IP地理位置库下载链接地址。
+        # @type DownLoadUrl: String
+        # @param ExpiredAt: 链接到期时间。按照`ISO8601`标准表示，并且使用`UTC`时间。
+        # @type ExpiredAt: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownLoadUrl, :ExpiredAt, :RequestId
+        
+        def initialize(downloadurl=nil, expiredat=nil, requestid=nil)
+          @DownLoadUrl = downloadurl
+          @ExpiredAt = expiredat
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownLoadUrl = params['DownLoadUrl']
+          @ExpiredAt = params['ExpiredAt']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIpGeolocationInfos请求参数结构体
+      class DescribeIpGeolocationInfosRequest < TencentCloud::Common::AbstractModel
+        # @param AddressIps: 查询IP地址列表，支持IPv4和IPv6。
+        # @type AddressIps: Array
+        # @param Fields: 查询IP地址的字段信息，包括"Country","Province","City","Region","Isp","AsName","AsId"
+        # @type Fields: :class:`Tencentcloud::Vpc.v20170312.models.IpField`
+
+        attr_accessor :AddressIps, :Fields
+        
+        def initialize(addressips=nil, fields=nil)
+          @AddressIps = addressips
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          @AddressIps = params['AddressIps']
+          unless params['Fields'].nil?
+            @Fields = IpField.new.deserialize(params[Fields])
+          end
+        end
+      end
+
+      # DescribeIpGeolocationInfos返回参数结构体
+      class DescribeIpGeolocationInfosResponse < TencentCloud::Common::AbstractModel
+        # @param AddressInfo: IP地址信息列表
+        # @type AddressInfo: Array
+        # @param Total: IP地址信息个数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AddressInfo, :Total, :RequestId
+        
+        def initialize(addressinfo=nil, total=nil, requestid=nil)
+          @AddressInfo = addressinfo
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AddressInfo = params['AddressInfo']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNatGatewayDestinationIpPortTranslationNatRules请求参数结构体
       class DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayIds: NAT网关ID。
@@ -5626,6 +6227,7 @@ module TencentCloud
         # <li>nat-gateway-id - String - （过滤条件）协议端口模板实例ID，形如：`nat-123xx454`。</li>
         # <li>vpc-id - String - （过滤条件）私有网络 唯一ID，形如：`vpc-123xx454`。</li>
         # <li>nat-gateway-name - String - （过滤条件）协议端口模板实例ID，形如：`test_nat`。</li>
+        # <li>tag-key - String - （过滤条件）标签键，形如：`test-key`。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -5897,7 +6499,7 @@ module TencentCloud
         # <li>ip-exact-match - Boolean - （过滤条件）内网IPv4精确匹配查询，存在多值情况，只取第一个。</li>
         # <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。使用请参考示例2</li>
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例3。</li>
-        # <li>is-primary - Boolean - 是否必填：否 - （过滤条件）按照是否主网卡进行过滤。值为true时，仅过滤主网卡；值为false时，仅过滤辅助网卡；次过滤参数为提供时，同时过滤主网卡和辅助网卡。</li>
+        # <li>is-primary - Boolean - 是否必填：否 - （过滤条件）按照是否主网卡进行过滤。值为true时，仅过滤主网卡；值为false时，仅过滤辅助网卡；此过滤参数未提供时，同时过滤主网卡和辅助网卡。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -5940,6 +6542,46 @@ module TencentCloud
 
         def deserialize(params)
           @NetworkInterfaceSet = params['NetworkInterfaceSet']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProductQuota请求参数结构体
+      class DescribeProductQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 查询的网络产品名称，如vpc、ccn等
+        # @type Product: String
+
+        attr_accessor :Product
+        
+        def initialize(product=nil)
+          @Product = product
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeProductQuota返回参数结构体
+      class DescribeProductQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param ProductQuotaSet: ProductQuota对象数组
+        # @type ProductQuotaSet: Array
+        # @param TotalCount: 符合条件的产品类型个数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProductQuotaSet, :TotalCount, :RequestId
+        
+        def initialize(productquotaset=nil, totalcount=nil, requestid=nil)
+          @ProductQuotaSet = productquotaset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProductQuotaSet = params['ProductQuotaSet']
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -7151,10 +7793,19 @@ module TencentCloud
         # @type EnableBGP: Boolean
         # @param EnableBGPCommunity: 开启和关闭BGP的community属性。
         # @type EnableBGPCommunity: Boolean
+        # @param NatGatewayId: 绑定的NAT网关ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatGatewayId: String
+        # @param VXLANSupport: 专线网关是否支持VXLAN架构
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VXLANSupport: Array
+        # @param ModeType: 云联网路由发布模式：`standard`（标准模式）、`exquisite`（精细模式）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModeType: String
 
-        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :VpcId, :NetworkType, :NetworkInstanceId, :GatewayType, :CreateTime, :DirectConnectGatewayIp, :CcnId, :CcnRouteType, :EnableBGP, :EnableBGPCommunity
+        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :VpcId, :NetworkType, :NetworkInstanceId, :GatewayType, :CreateTime, :DirectConnectGatewayIp, :CcnId, :CcnRouteType, :EnableBGP, :EnableBGPCommunity, :NatGatewayId, :VXLANSupport, :ModeType
         
-        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, vpcid=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, createtime=nil, directconnectgatewayip=nil, ccnid=nil, ccnroutetype=nil, enablebgp=nil, enablebgpcommunity=nil)
+        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, vpcid=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, createtime=nil, directconnectgatewayip=nil, ccnid=nil, ccnroutetype=nil, enablebgp=nil, enablebgpcommunity=nil, natgatewayid=nil, vxlansupport=nil, modetype=nil)
           @DirectConnectGatewayId = directconnectgatewayid
           @DirectConnectGatewayName = directconnectgatewayname
           @VpcId = vpcid
@@ -7167,6 +7818,9 @@ module TencentCloud
           @CcnRouteType = ccnroutetype
           @EnableBGP = enablebgp
           @EnableBGPCommunity = enablebgpcommunity
+          @NatGatewayId = natgatewayid
+          @VXLANSupport = vxlansupport
+          @ModeType = modetype
         end
 
         def deserialize(params)
@@ -7182,6 +7836,9 @@ module TencentCloud
           @CcnRouteType = params['CcnRouteType']
           @EnableBGP = params['EnableBGP']
           @EnableBGPCommunity = params['EnableBGPCommunity']
+          @NatGatewayId = params['NatGatewayId']
+          @VXLANSupport = params['VXLANSupport']
+          @ModeType = params['ModeType']
         end
       end
 
@@ -7284,9 +7941,9 @@ module TencentCloud
       class DisableRoutesRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表唯一ID。
         # @type RouteTableId: String
-        # @param RouteIds: 路由策略ID。不能和RouteItemIds同时使用。
+        # @param RouteIds: 路由策略ID。不能和RouteItemIds同时使用，但至少输入一个。该参数取值可通过查询路由列表（[DescribeRouteTables](https://cloud.tencent.com/document/product/215/15763)）获取。
         # @type RouteIds: Array
-        # @param RouteItemIds: 路由策略唯一ID。不能和RouteIds同时使用。
+        # @param RouteItemIds: 路由策略唯一ID。不能和RouteIds同时使用，但至少输入一个。该参数取值可通过查询路由列表（[DescribeRouteTables](https://cloud.tencent.com/document/product/215/15763)）获取。
         # @type RouteItemIds: Array
 
         attr_accessor :RouteTableId, :RouteIds, :RouteItemIds
@@ -7392,11 +8049,51 @@ module TencentCloud
         end
       end
 
+      # DisassociateDirectConnectGatewayNatGateway请求参数结构体
+      class DisassociateDirectConnectGatewayNatGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: 专线网关ID。
+        # @type VpcId: String
+        # @param NatGatewayId: NAT网关ID。
+        # @type NatGatewayId: String
+        # @param DirectConnectGatewayId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @type DirectConnectGatewayId: String
+
+        attr_accessor :VpcId, :NatGatewayId, :DirectConnectGatewayId
+        
+        def initialize(vpcid=nil, natgatewayid=nil, directconnectgatewayid=nil)
+          @VpcId = vpcid
+          @NatGatewayId = natgatewayid
+          @DirectConnectGatewayId = directconnectgatewayid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @NatGatewayId = params['NatGatewayId']
+          @DirectConnectGatewayId = params['DirectConnectGatewayId']
+        end
+      end
+
+      # DisassociateDirectConnectGatewayNatGateway返回参数结构体
+      class DisassociateDirectConnectGatewayNatGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateNatGatewayAddress请求参数结构体
       class DisassociateNatGatewayAddressRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID，形如：`nat-df45454`。
         # @type NatGatewayId: String
-        # @param PublicIpAddresses: 绑定NAT网关的弹性IP数组。
+        # @param PublicIpAddresses: 待解绑NAT网关的弹性IP数组。
         # @type PublicIpAddresses: Array
 
         attr_accessor :NatGatewayId, :PublicIpAddresses
@@ -7625,9 +8322,9 @@ module TencentCloud
       class EnableRoutesRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表唯一ID。
         # @type RouteTableId: String
-        # @param RouteIds: 路由策略ID。不能和RouteItemIds同时使用。
+        # @param RouteIds: 路由策略ID。不能和RouteItemIds同时使用，但至少输入一个。该参数取值可通过查询路由列表（[DescribeRouteTables](https://cloud.tencent.com/document/product/215/15763)）获取。
         # @type RouteIds: Array
-        # @param RouteItemIds: 路由策略唯一ID。不能和RouteIds同时使用。
+        # @param RouteItemIds: 路由策略唯一ID。不能和RouteIds同时使用，但至少输入一个。该参数取值可通过查询路由列表（[DescribeRouteTables](https://cloud.tencent.com/document/product/215/15763)）获取。
         # @type RouteItemIds: Array
 
         attr_accessor :RouteTableId, :RouteIds, :RouteItemIds
@@ -7761,9 +8458,9 @@ module TencentCloud
         # @type InPkg: Integer
         # @param OutPkg: 出包量。
         # @type OutPkg: Integer
-        # @param InTraffic: 入带宽，单位：`Byte`。
+        # @param InTraffic: 入流量，单位：`Byte`。
         # @type InTraffic: Integer
-        # @param OutTraffic: 出带宽，单位：`Byte`。
+        # @param OutTraffic: 出流量，单位：`Byte`。
         # @type OutTraffic: Integer
 
         attr_accessor :PrivateIpAddress, :InPkg, :OutPkg, :InTraffic, :OutTraffic
@@ -8095,6 +8792,43 @@ module TencentCloud
         end
       end
 
+      # InquirePriceCreateDirectConnectGateway请求参数结构体
+      class InquirePriceCreateDirectConnectGatewayRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # InquirePriceCreateDirectConnectGateway返回参数结构体
+      class InquirePriceCreateDirectConnectGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCost: 专线网关标准接入费用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCost: Integer
+        # @param RealTotalCost: 专线网关真实接入费用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealTotalCost: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCost, :RealTotalCost, :RequestId
+        
+        def initialize(totalcost=nil, realtotalcost=nil, requestid=nil)
+          @TotalCost = totalcost
+          @RealTotalCost = realtotalcost
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCost = params['TotalCost']
+          @RealTotalCost = params['RealTotalCost']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InquiryPriceCreateVpnGateway请求参数结构体
       class InquiryPriceCreateVpnGatewayRequest < TencentCloud::Common::AbstractModel
         # @param InternetMaxBandwidthOut: 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100；单位：Mbps。
@@ -8386,6 +9120,107 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @Ip6RuleCount = params['Ip6RuleCount']
           @IP6RuleSet = params['IP6RuleSet']
+        end
+      end
+
+      # IP在线查询的字段信息
+      class IpField < TencentCloud::Common::AbstractModel
+        # @param Country: 国家字段信息
+        # @type Country: Boolean
+        # @param Province: 省、州、郡一级行政区域字段信息
+        # @type Province: Boolean
+        # @param City: 市一级行政区域字段信息
+        # @type City: Boolean
+        # @param Region: 市内区域字段信息
+        # @type Region: Boolean
+        # @param Isp: 接入运营商字段信息
+        # @type Isp: Boolean
+        # @param AsName: 骨干运营商字段信息
+        # @type AsName: Boolean
+        # @param AsId: 骨干As号
+        # @type AsId: Boolean
+        # @param Comment: 注释字段
+        # @type Comment: Boolean
+
+        attr_accessor :Country, :Province, :City, :Region, :Isp, :AsName, :AsId, :Comment
+        
+        def initialize(country=nil, province=nil, city=nil, region=nil, isp=nil, asname=nil, asid=nil, comment=nil)
+          @Country = country
+          @Province = province
+          @City = city
+          @Region = region
+          @Isp = isp
+          @AsName = asname
+          @AsId = asid
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @Country = params['Country']
+          @Province = params['Province']
+          @City = params['City']
+          @Region = params['Region']
+          @Isp = params['Isp']
+          @AsName = params['AsName']
+          @AsId = params['AsId']
+          @Comment = params['Comment']
+        end
+      end
+
+      # IP地理位置信息
+      class IpGeolocationInfo < TencentCloud::Common::AbstractModel
+        # @param Country: 国家信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param Province: 省、州、郡一级行政区域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param City: 市一级行政区域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param Region: 市内区域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Isp: 接入运营商信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Isp: String
+        # @param AsName: 骨干运营商名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsName: String
+        # @param AsId: 骨干运营商AS号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsId: String
+        # @param Comment: 注释信息。目前的填充值为移动接入用户的APN值，如无APN属性则为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param AddressIp: IP地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressIp: String
+
+        attr_accessor :Country, :Province, :City, :Region, :Isp, :AsName, :AsId, :Comment, :AddressIp
+        
+        def initialize(country=nil, province=nil, city=nil, region=nil, isp=nil, asname=nil, asid=nil, comment=nil, addressip=nil)
+          @Country = country
+          @Province = province
+          @City = city
+          @Region = region
+          @Isp = isp
+          @AsName = asname
+          @AsId = asid
+          @Comment = comment
+          @AddressIp = addressip
+        end
+
+        def deserialize(params)
+          @Country = params['Country']
+          @Province = params['Province']
+          @City = params['City']
+          @Region = params['Region']
+          @Isp = params['Isp']
+          @AsName = params['AsName']
+          @AsId = params['AsId']
+          @Comment = params['Comment']
+          @AddressIp = params['AddressIp']
         end
       end
 
@@ -8725,13 +9560,13 @@ module TencentCloud
 
       # ModifyAddressesBandwidth请求参数结构体
       class ModifyAddressesBandwidthRequest < TencentCloud::Common::AbstractModel
-        # @param AddressIds: EIP唯一标识ID，形如'eip-xxxx'
+        # @param AddressIds: EIP唯一标识ID列表，形如'eip-xxxx'
         # @type AddressIds: Array
         # @param InternetMaxBandwidthOut: 调整带宽目标值
         # @type InternetMaxBandwidthOut: Integer
-        # @param StartTime: 包月带宽起始时间
+        # @param StartTime: 包月带宽起始时间(已废弃，输入无效)
         # @type StartTime: String
-        # @param EndTime: 包月带宽结束时间
+        # @param EndTime: 包月带宽结束时间(已废弃，输入无效)
         # @type EndTime: String
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
@@ -8775,9 +9610,9 @@ module TencentCloud
       class ModifyAssistantCidrRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
         # @type VpcId: String
-        # @param NewCidrBlocks: 待添加的负载CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]
+        # @param NewCidrBlocks: 待添加的辅助CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]，入参NewCidrBlocks和OldCidrBlocks至少需要其一。
         # @type NewCidrBlocks: Array
-        # @param OldCidrBlocks: 待删除的负载CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]
+        # @param OldCidrBlocks: 待删除的辅助CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]，入参NewCidrBlocks和OldCidrBlocks至少需要其一。
         # @type OldCidrBlocks: Array
 
         attr_accessor :VpcId, :NewCidrBlocks, :OldCidrBlocks
@@ -9012,19 +9847,23 @@ module TencentCloud
         # @type DirectConnectGatewayName: String
         # @param CcnRouteType: 云联网路由学习类型，可选值：`BGP`（自动学习）、`STATIC`（静态，即用户配置）。只有云联网类型专线网关且开启了BGP功能才支持修改`CcnRouteType`。
         # @type CcnRouteType: String
+        # @param ModeType: 云联网路由发布模式，可选值：`standard`（标准模式）、`exquisite`（精细模式）。只有云联网类型专线网关才支持修改`ModeType`。
+        # @type ModeType: String
 
-        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :CcnRouteType
+        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :CcnRouteType, :ModeType
         
-        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, ccnroutetype=nil)
+        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, ccnroutetype=nil, modetype=nil)
           @DirectConnectGatewayId = directconnectgatewayid
           @DirectConnectGatewayName = directconnectgatewayname
           @CcnRouteType = ccnroutetype
+          @ModeType = modetype
         end
 
         def deserialize(params)
           @DirectConnectGatewayId = params['DirectConnectGatewayId']
           @DirectConnectGatewayName = params['DirectConnectGatewayName']
           @CcnRouteType = params['CcnRouteType']
+          @ModeType = params['ModeType']
         end
       end
 
@@ -9335,19 +10174,27 @@ module TencentCloud
         # @type NatGatewayName: String
         # @param InternetMaxBandwidthOut: NAT网关最大外网出带宽(单位:Mbps)。
         # @type InternetMaxBandwidthOut: Integer
+        # @param ModifySecurityGroup: 是否修改NAT网关绑定的安全组。
+        # @type ModifySecurityGroup: Boolean
+        # @param SecurityGroupIds: NAT网关绑定的安全组列表，最终状态，空列表表示删除所有安全组，形如: `['sg-1n232323', 'sg-o4242424']`
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :InternetMaxBandwidthOut
+        attr_accessor :NatGatewayId, :NatGatewayName, :InternetMaxBandwidthOut, :ModifySecurityGroup, :SecurityGroupIds
         
-        def initialize(natgatewayid=nil, natgatewayname=nil, internetmaxbandwidthout=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, internetmaxbandwidthout=nil, modifysecuritygroup=nil, securitygroupids=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @ModifySecurityGroup = modifysecuritygroup
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
           @NatGatewayId = params['NatGatewayId']
           @NatGatewayName = params['NatGatewayName']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @ModifySecurityGroup = params['ModifySecurityGroup']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -10071,10 +10918,21 @@ module TencentCloud
         # @type VpcId: String
         # @param Zone: NAT网关所在的可用区。
         # @type Zone: String
+        # @param DirectConnectGatewayIds: 绑定的专线网关ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DirectConnectGatewayIds: Array
+        # @param SubnetId: 所属子网ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param TagSet: 标签键值对。
+        # @type TagSet: Array
+        # @param SecurityGroupSet: NAT网关绑定的安全组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupSet: Array
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone
+        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet
         
-        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @CreatedTime = createdtime
@@ -10086,6 +10944,10 @@ module TencentCloud
           @DestinationIpPortTranslationNatRuleSet = destinationipporttranslationnatruleset
           @VpcId = vpcid
           @Zone = zone
+          @DirectConnectGatewayIds = directconnectgatewayids
+          @SubnetId = subnetid
+          @TagSet = tagset
+          @SecurityGroupSet = securitygroupset
         end
 
         def deserialize(params)
@@ -10100,6 +10962,10 @@ module TencentCloud
           @DestinationIpPortTranslationNatRuleSet = params['DestinationIpPortTranslationNatRuleSet']
           @VpcId = params['VpcId']
           @Zone = params['Zone']
+          @DirectConnectGatewayIds = params['DirectConnectGatewayIds']
+          @SubnetId = params['SubnetId']
+          @TagSet = params['TagSet']
+          @SecurityGroupSet = params['SecurityGroupSet']
         end
       end
 
@@ -10588,6 +11454,38 @@ module TencentCloud
         end
       end
 
+      # 描述网络中心每个产品的配额信息
+      class ProductQuota < TencentCloud::Common::AbstractModel
+        # @param QuotaId: 产品配额ID
+        # @type QuotaId: String
+        # @param QuotaName: 产品配额名称
+        # @type QuotaName: String
+        # @param QuotaCurrent: 产品当前配额
+        # @type QuotaCurrent: Integer
+        # @param QuotaLimit: 产品配额上限
+        # @type QuotaLimit: Integer
+        # @param QuotaRegion: 产品配额是否有地域属性
+        # @type QuotaRegion: Boolean
+
+        attr_accessor :QuotaId, :QuotaName, :QuotaCurrent, :QuotaLimit, :QuotaRegion
+        
+        def initialize(quotaid=nil, quotaname=nil, quotacurrent=nil, quotalimit=nil, quotaregion=nil)
+          @QuotaId = quotaid
+          @QuotaName = quotaname
+          @QuotaCurrent = quotacurrent
+          @QuotaLimit = quotalimit
+          @QuotaRegion = quotaregion
+        end
+
+        def deserialize(params)
+          @QuotaId = params['QuotaId']
+          @QuotaName = params['QuotaName']
+          @QuotaCurrent = params['QuotaCurrent']
+          @QuotaLimit = params['QuotaLimit']
+          @QuotaRegion = params['QuotaRegion']
+        end
+      end
+
       # 描述配额信息
       class Quota < TencentCloud::Common::AbstractModel
         # @param QuotaId: 配额名称，取值范围：<br><li>`TOTAL_EIP_QUOTA`：用户当前地域下EIP的配额数；<br><li>`DAILY_EIP_APPLY`：用户当前地域下今日申购次数；<br><li>`DAILY_PUBLIC_IP_ASSIGN`：用户当前地域下，重新分配公网 IP次数。
@@ -10820,6 +11718,44 @@ module TencentCloud
         end
       end
 
+      # RenewAddresses请求参数结构体
+      class RenewAddressesRequest < TencentCloud::Common::AbstractModel
+        # @param AddressIds: EIP唯一标识ID列表，形如'eip-xxxx'
+        # @type AddressIds: Array
+        # @param AddressChargePrepaid: 续费参数
+        # @type AddressChargePrepaid: :class:`Tencentcloud::Vpc.v20170312.models.AddressChargePrepaid`
+
+        attr_accessor :AddressIds, :AddressChargePrepaid
+        
+        def initialize(addressids=nil, addresschargeprepaid=nil)
+          @AddressIds = addressids
+          @AddressChargePrepaid = addresschargeprepaid
+        end
+
+        def deserialize(params)
+          @AddressIds = params['AddressIds']
+          unless params['AddressChargePrepaid'].nil?
+            @AddressChargePrepaid = AddressChargePrepaid.new.deserialize(params[AddressChargePrepaid])
+          end
+        end
+      end
+
+      # RenewAddresses返回参数结构体
+      class RenewAddressesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RenewVpnGateway请求参数结构体
       class RenewVpnGatewayRequest < TencentCloud::Common::AbstractModel
         # @param VpnGatewayId: VPN网关实例ID。
@@ -10972,18 +11908,24 @@ module TencentCloud
         # @type SecurityGroupId: String
         # @param SecurityGroupPolicySet: 安全组规则集合对象。
         # @type SecurityGroupPolicySet: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroupPolicySet`
+        # @param OriginalSecurityGroupPolicySet: 旧的安全组规则集合对象，可选，日志记录用。
+        # @type OriginalSecurityGroupPolicySet: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroupPolicySet`
 
-        attr_accessor :SecurityGroupId, :SecurityGroupPolicySet
+        attr_accessor :SecurityGroupId, :SecurityGroupPolicySet, :OriginalSecurityGroupPolicySet
         
-        def initialize(securitygroupid=nil, securitygrouppolicyset=nil)
+        def initialize(securitygroupid=nil, securitygrouppolicyset=nil, originalsecuritygrouppolicyset=nil)
           @SecurityGroupId = securitygroupid
           @SecurityGroupPolicySet = securitygrouppolicyset
+          @OriginalSecurityGroupPolicySet = originalsecuritygrouppolicyset
         end
 
         def deserialize(params)
           @SecurityGroupId = params['SecurityGroupId']
           unless params['SecurityGroupPolicySet'].nil?
             @SecurityGroupPolicySet = SecurityGroupPolicySet.new.deserialize(params[SecurityGroupPolicySet])
+          end
+          unless params['OriginalSecurityGroupPolicySet'].nil?
+            @OriginalSecurityGroupPolicySet = SecurityGroupPolicySet.new.deserialize(params[OriginalSecurityGroupPolicySet])
           end
         end
       end
@@ -11596,7 +12538,7 @@ module TencentCloud
         # @type SecurityGroupId: String
         # @param CVM: 云服务器实例数。
         # @type CVM: Integer
-        # @param CDB: 数据库实例数。
+        # @param CDB: MySQL数据库实例数。
         # @type CDB: Integer
         # @param ENI: 弹性网卡实例数。
         # @type ENI: Integer
@@ -11668,9 +12610,9 @@ module TencentCloud
 
       # 安全组规则对象
       class SecurityGroupPolicy < TencentCloud::Common::AbstractModel
-        # @param PolicyIndex: 安全组规则索引号。
+        # @param PolicyIndex: 安全组规则索引号，值会随着安全组规则的变更动态变化。使用PolicyIndex时，请先调用`DescribeSecurityGroupPolicies`获取到规则的PolicyIndex，并且结合返回值中的Version一起使用处理规则。
         # @type PolicyIndex: Integer
-        # @param Protocol: 协议, 取值: TCP,UDP, ICMP。
+        # @param Protocol: 协议, 取值: TCP,UDP,ICMP,ICMPv6,ALL。
         # @type Protocol: String
         # @param Port: 端口(all, 离散port,  range)。
         # @type Port: String

@@ -581,8 +581,12 @@ module TencentCloud
         # 2：白库
         # @type Label: Integer
         # @param Status: 任务状态
-        # 1：已完成
-        # 2：处理中
+        # 1：添加完成
+        # 2：添加处理中
+        # 3：下载中
+        # 4：下载完成
+        # 5：上传完成
+        # 6：步骤完成
         # @type Status: Integer
         # @param CompressFileUrl: 文件压缩后云url
         # @type CompressFileUrl: String
@@ -997,6 +1001,132 @@ module TencentCloud
         end
       end
 
+      # 人审审核数据相关信息
+      class ManualReviewContent < TencentCloud::Common::AbstractModel
+        # @param BatchId: 审核批次号
+        # @type BatchId: String
+        # @param Content: 审核内容
+        # @type Content: String
+        # @param ContentId: 消息Id
+        # @type ContentId: String
+        # @param ContentType: 审核内容类型 1 图片 2 视频 3 文本 4 音频
+        # @type ContentType: Integer
+        # @param UserInfo: 用户信息
+        # @type UserInfo: :class:`Tencentcloud::Cms.v20190321.models.User`
+        # @param AutoDetailCode: 机器审核类型，与腾讯机器审核定义一致
+        # 100 正常
+        # 20001 政治
+        # 20002 色情
+        # 20006 违法
+        # 20007 谩骂
+        # 24001 暴恐
+        # 20105 广告
+        # 20103 性感
+        # @type AutoDetailCode: Integer
+        # @param AutoResult: 机器审核结果 0 放过 1 拦截
+        # @type AutoResult: Integer
+        # @param CallBackInfo: 回调信息标识，回传数据时原样返回
+        # @type CallBackInfo: String
+        # @param CreateTime: 创建时间 格式“2020-01-01 00:00:12”
+        # @type CreateTime: String
+        # @param Priority: 审核优先级，可选值 [1,2,3,4]，其中 1 最高，4 最低
+        # @type Priority: Integer
+        # @param Title: 标题
+        # @type Title: String
+
+        attr_accessor :BatchId, :Content, :ContentId, :ContentType, :UserInfo, :AutoDetailCode, :AutoResult, :CallBackInfo, :CreateTime, :Priority, :Title
+        
+        def initialize(batchid=nil, content=nil, contentid=nil, contenttype=nil, userinfo=nil, autodetailcode=nil, autoresult=nil, callbackinfo=nil, createtime=nil, priority=nil, title=nil)
+          @BatchId = batchid
+          @Content = content
+          @ContentId = contentid
+          @ContentType = contenttype
+          @UserInfo = userinfo
+          @AutoDetailCode = autodetailcode
+          @AutoResult = autoresult
+          @CallBackInfo = callbackinfo
+          @CreateTime = createtime
+          @Priority = priority
+          @Title = title
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @Content = params['Content']
+          @ContentId = params['ContentId']
+          @ContentType = params['ContentType']
+          unless params['UserInfo'].nil?
+            @UserInfo = User.new.deserialize(params[UserInfo])
+          end
+          @AutoDetailCode = params['AutoDetailCode']
+          @AutoResult = params['AutoResult']
+          @CallBackInfo = params['CallBackInfo']
+          @CreateTime = params['CreateTime']
+          @Priority = params['Priority']
+          @Title = params['Title']
+        end
+      end
+
+      # 人工审核接口返回结果，由ContentId和BatchId组成
+      class ManualReviewData < TencentCloud::Common::AbstractModel
+        # @param BatchId: 人审内容批次号
+        # @type BatchId: String
+        # @param ContentId: 人审内容ID
+        # @type ContentId: String
+
+        attr_accessor :BatchId, :ContentId
+        
+        def initialize(batchid=nil, contentid=nil)
+          @BatchId = batchid
+          @ContentId = contentid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @ContentId = params['ContentId']
+        end
+      end
+
+      # ManualReview请求参数结构体
+      class ManualReviewRequest < TencentCloud::Common::AbstractModel
+        # @param ReviewContent: 人工审核信息
+        # @type ReviewContent: :class:`Tencentcloud::Cms.v20190321.models.ManualReviewContent`
+
+        attr_accessor :ReviewContent
+        
+        def initialize(reviewcontent=nil)
+          @ReviewContent = reviewcontent
+        end
+
+        def deserialize(params)
+          unless params['ReviewContent'].nil?
+            @ReviewContent = ManualReviewContent.new.deserialize(params[ReviewContent])
+          end
+        end
+      end
+
+      # ManualReview返回参数结构体
+      class ManualReviewResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 人审接口同步响应结果
+        # @type Data: :class:`Tencentcloud::Cms.v20190321.models.ManualReviewData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ManualReviewData.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # OCR识别结果详情
       class OCRDetect < TencentCloud::Common::AbstractModel
         # @param Item: 识别到的详细信息
@@ -1085,6 +1215,34 @@ module TencentCloud
         end
       end
 
+      # 账号风险检测结果
+      class RiskDetails < TencentCloud::Common::AbstractModel
+        # @param Keywords: 预留字段，暂时不使用
+        # @type Keywords: Array
+        # @param Label: 风险类别，RiskAccount，RiskIP, RiskIMEI
+        # @type Label: String
+        # @param Lable: 预留字段，暂时不用
+        # @type Lable: String
+        # @param Level: 风险等级，1:疑似，2：恶意
+        # @type Level: Integer
+
+        attr_accessor :Keywords, :Label, :Lable, :Level
+        
+        def initialize(keywords=nil, label=nil, lable=nil, level=nil)
+          @Keywords = keywords
+          @Label = label
+          @Lable = lable
+          @Level = level
+        end
+
+        def deserialize(params)
+          @Keywords = params['Keywords']
+          @Label = params['Label']
+          @Lable = params['Lable']
+          @Level = params['Level']
+        end
+      end
+
       # logo位置信息
       class RrectF < TencentCloud::Common::AbstractModel
         # @param Cx: logo横坐标
@@ -1170,10 +1328,16 @@ module TencentCloud
         # @type ID: :class:`Tencentcloud::Cms.v20190321.models.TextOutputID`
         # @param Res: 消息类输出结果
         # @type Res: :class:`Tencentcloud::Cms.v20190321.models.TextOutputRes`
+        # @param RiskDetails: 账号风险检测结果
+        # @type RiskDetails: Array
         # @param BizType: 最终使用的BizType
         # @type BizType: Integer
+        # @param DataId: 和请求中的DataId一致，原样返回
+        # @type DataId: String
         # @param EvilLabel: 恶意标签，Normal：正常，Polity：涉政，Porn：色情，Illegal：违法，Abuse：谩骂，Terror：暴恐，Ad：广告，Custom：自定义关键词
         # @type EvilLabel: String
+        # @param Extra: 输出的其他信息，不同客户内容不同
+        # @type Extra: String
         # @param Keywords: 命中的关键词
         # @type Keywords: Array
         # @param Score: 命中的模型分值
@@ -1181,9 +1345,9 @@ module TencentCloud
         # @param Suggestion: 建议值,Block：打击,Review：待复审,Normal：正常
         # @type Suggestion: String
 
-        attr_accessor :EvilFlag, :EvilType, :Common, :CustomResult, :DetailResult, :ID, :Res, :BizType, :EvilLabel, :Keywords, :Score, :Suggestion
+        attr_accessor :EvilFlag, :EvilType, :Common, :CustomResult, :DetailResult, :ID, :Res, :RiskDetails, :BizType, :DataId, :EvilLabel, :Extra, :Keywords, :Score, :Suggestion
         
-        def initialize(evilflag=nil, eviltype=nil, common=nil, customresult=nil, detailresult=nil, id=nil, res=nil, biztype=nil, evillabel=nil, keywords=nil, score=nil, suggestion=nil)
+        def initialize(evilflag=nil, eviltype=nil, common=nil, customresult=nil, detailresult=nil, id=nil, res=nil, riskdetails=nil, biztype=nil, dataid=nil, evillabel=nil, extra=nil, keywords=nil, score=nil, suggestion=nil)
           @EvilFlag = evilflag
           @EvilType = eviltype
           @Common = common
@@ -1191,8 +1355,11 @@ module TencentCloud
           @DetailResult = detailresult
           @ID = id
           @Res = res
+          @RiskDetails = riskdetails
           @BizType = biztype
+          @DataId = dataid
           @EvilLabel = evillabel
+          @Extra = extra
           @Keywords = keywords
           @Score = score
           @Suggestion = suggestion
@@ -1212,8 +1379,11 @@ module TencentCloud
           unless params['Res'].nil?
             @Res = TextOutputRes.new.deserialize(params[Res])
           end
+          @RiskDetails = params['RiskDetails']
           @BizType = params['BizType']
+          @DataId = params['DataId']
           @EvilLabel = params['EvilLabel']
+          @Extra = params['Extra']
           @Keywords = params['Keywords']
           @Score = params['Score']
           @Suggestion = params['Suggestion']

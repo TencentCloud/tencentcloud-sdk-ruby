@@ -265,6 +265,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 可以查询代理商下指定客户的自付订单
+
+        # @param request: Request instance for DescribeAgentSelfPayDeals.
+        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeAgentSelfPayDealsRequest`
+        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeAgentSelfPayDealsResponse`
+        def DescribeAgentSelfPayDeals(request)
+          body = send_request('DescribeAgentSelfPayDeals', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAgentSelfPayDealsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
 
         # @param request: Request instance for DescribeClientBalance.

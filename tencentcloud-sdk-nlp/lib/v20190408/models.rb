@@ -1369,24 +1369,24 @@ module TencentCloud
 
       # 词条信息。
       class WordItem < TencentCloud::Common::AbstractModel
-        # @param CreateTime: 词条创建时间。
-        # @type CreateTime: String
         # @param Text: 词条文本内容。
         # @type Text: String
+        # @param CreateTime: 词条创建时间。
+        # @type CreateTime: String
         # @param Pos: 词条的词性。
         # @type Pos: String
 
-        attr_accessor :CreateTime, :Text, :Pos
+        attr_accessor :Text, :CreateTime, :Pos
         
-        def initialize(createtime=nil, text=nil, pos=nil)
-          @CreateTime = createtime
+        def initialize(text=nil, createtime=nil, pos=nil)
           @Text = text
+          @CreateTime = createtime
           @Pos = pos
         end
 
         def deserialize(params)
-          @CreateTime = params['CreateTime']
           @Text = params['Text']
+          @CreateTime = params['CreateTime']
           @Pos = params['Pos']
         end
       end

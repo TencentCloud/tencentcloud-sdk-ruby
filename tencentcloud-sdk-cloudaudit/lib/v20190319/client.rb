@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据地域获取KMS密钥别名
+
+        # @param request: Request instance for ListKeyAliasByRegion.
+        # @type request: :class:`Tencentcloud::cloudaudit::V20190319::ListKeyAliasByRegionRequest`
+        # @rtype: :class:`Tencentcloud::cloudaudit::V20190319::ListKeyAliasByRegionResponse`
+        def ListKeyAliasByRegion(request)
+          body = send_request('ListKeyAliasByRegion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListKeyAliasByRegionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
 
         # @param request: Request instance for LookUpEvents.

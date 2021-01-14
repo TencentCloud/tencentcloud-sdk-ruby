@@ -86,6 +86,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口为离线人像分割处理接口组中的提交任务接口，可以对提交的资源进行处理视频流/图片流识别视频作品中的人像区域，进行一键抠像、背景替换、人像虚化等后期处理。
+
+        # @param request: Request instance for CreateSegmentationTask.
+        # @type request: :class:`Tencentcloud::bda::V20200324::CreateSegmentationTaskRequest`
+        # @rtype: :class:`Tencentcloud::bda::V20200324::CreateSegmentationTaskResponse`
+        def CreateSegmentationTask(request)
+          body = send_request('CreateSegmentationTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSegmentationTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 将一个人体轨迹添加到一个人员中。一个人员最多允许包含 5 个人体轨迹。同一人的人体轨迹越多，搜索识别效果越好。
 
         # >请注意：
@@ -151,6 +175,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePersonResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 可以查看单条任务的处理情况，包括处理状态，处理结果。
+
+        # @param request: Request instance for DescribeSegmentationTask.
+        # @type request: :class:`Tencentcloud::bda::V20200324::DescribeSegmentationTaskRequest`
+        # @rtype: :class:`Tencentcloud::bda::V20200324::DescribeSegmentationTaskResponse`
+        def DescribeSegmentationTask(request)
+          body = send_request('DescribeSegmentationTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSegmentationTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -340,7 +388,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 识别传入图片中人体的完整轮廓，进行抠像。
+        # 在前后景分割的基础上优化多分类分割，支持对头发、五官等的分割，既作为换发型、挂件等底层技术，也可用于抠人头、抠人脸等玩法
+
+        # @param request: Request instance for SegmentCustomizedPortraitPic.
+        # @type request: :class:`Tencentcloud::bda::V20200324::SegmentCustomizedPortraitPicRequest`
+        # @rtype: :class:`Tencentcloud::bda::V20200324::SegmentCustomizedPortraitPicResponse`
+        def SegmentCustomizedPortraitPic(request)
+          body = send_request('SegmentCustomizedPortraitPic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SegmentCustomizedPortraitPicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
 
         # @param request: Request instance for SegmentPortraitPic.
         # @type request: :class:`Tencentcloud::bda::V20200324::SegmentPortraitPicRequest`
@@ -350,6 +422,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SegmentPortraitPicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 终止指定视频人像分割处理任务
+
+        # @param request: Request instance for TerminateSegmentationTask.
+        # @type request: :class:`Tencentcloud::bda::V20200324::TerminateSegmentationTaskRequest`
+        # @rtype: :class:`Tencentcloud::bda::V20200324::TerminateSegmentationTaskResponse`
+        def TerminateSegmentationTask(request)
+          body = send_request('TerminateSegmentationTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateSegmentationTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

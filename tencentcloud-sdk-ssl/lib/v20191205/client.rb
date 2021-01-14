@@ -73,6 +73,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CheckCertificateChain）用于检查证书链是否完整。
+
+        # @param request: Request instance for CheckCertificateChain.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CheckCertificateChainRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CheckCertificateChainResponse`
+        def CheckCertificateChain(request)
+          body = send_request('CheckCertificateChain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckCertificateChainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提交证书订单。
 
         # @param request: Request instance for CommitCertificateInformation.
@@ -83,6 +107,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CommitCertificateInformationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CompleteCertificate）用于主动触发证书验证。仅非DNSPod和Wotrus品牌证书支持使用此接口。
+
+        # @param request: Request instance for CompleteCertificate.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CompleteCertificateRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CompleteCertificateResponse`
+        def CompleteCertificate(request)
+          body = send_request('CompleteCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CompleteCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateCertificate）用于创建付费证书。
+
+        # @param request: Request instance for CreateCertificate.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CreateCertificateRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CreateCertificateResponse`
+        def CreateCertificate(request)
+          body = send_request('CreateCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCertificateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -313,7 +385,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 提交证书资料。
+        # 本接口（RevokeCertificate）用于吊销证书。
+
+        # @param request: Request instance for RevokeCertificate.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::RevokeCertificateRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::RevokeCertificateResponse`
+        def RevokeCertificate(request)
+          body = send_request('RevokeCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RevokeCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交证书资料。输入参数信息可以分多次提交，但提交的证书资料应最低限度保持完整。
 
         # @param request: Request instance for SubmitCertificateInformation.
         # @type request: :class:`Tencentcloud::ssl::V20191205::SubmitCertificateInformationRequest`
@@ -347,6 +443,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UploadCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UploadConfirmLetter）用于上传证书确认函。
+
+        # @param request: Request instance for UploadConfirmLetter.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::UploadConfirmLetterRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::UploadConfirmLetterResponse`
+        def UploadConfirmLetter(request)
+          body = send_request('UploadConfirmLetter', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadConfirmLetterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
+
+        # @param request: Request instance for UploadRevokeLetter.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::UploadRevokeLetterRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::UploadRevokeLetterResponse`
+        def UploadRevokeLetter(request)
+          body = send_request('UploadRevokeLetter', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadRevokeLetterResponse.new
             model.deserialize(response['Response'])
             model
           else

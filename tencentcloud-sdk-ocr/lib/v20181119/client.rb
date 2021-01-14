@@ -25,6 +25,32 @@ module TencentCloud
         @@sdk_version = 'OCR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。
+
+        # 产品优势：针对广告商品图片普遍存在较多繁体字、艺术字的特点，进行了识别能力的增强。支持中英文、横排、竖排以及倾斜场景文字识别。文字识别的召回率和准确率能达到96%以上。
+
+        # @param request: Request instance for AdvertiseOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::AdvertiseOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::AdvertiseOCRResponse`
+        def AdvertiseOCR(request)
+          body = send_request('AdvertiseOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AdvertiseOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持作业算式题目的自动识别，目前覆盖 K12 学力范围内的 14 种题型，包括加减乘除四则运算、分数四则运算、竖式四则运算、脱式计算等。
 
         # @param request: Request instance for ArithmeticOCR.
@@ -49,7 +75,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口支持对中国大陆主流银行卡的卡号、银行信息、有效期等关键字段的检测与识别。
+        # 本接口支持对中国大陆主流银行卡正反面关键字段的检测与识别，包括卡号、卡类型、卡名字、银行信息、有效期。支持竖排异形卡识别、多角度旋转图片识别。支持对复印件、翻拍件、边框遮挡的银行卡进行告警，可应用于各种银行卡信息有效性校验场景，如金融行业身份认证、第三方支付绑卡等场景。
 
         # @param request: Request instance for BankCardOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::BankCardOCRRequest`
@@ -169,9 +195,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 支持身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照的智能分类。
+
+        # @param request: Request instance for ClassifyDetectOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::ClassifyDetectOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::ClassifyDetectOCRResponse`
+        def ClassifyDetectOCR(request)
+          body = send_request('ClassifyDetectOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ClassifyDetectOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持驾驶证主页和副页所有字段的自动定位与识别，重点字段的识别准确度达到99%以上。
 
-        # 驾驶证主页：包括证号、姓名、性别、国籍、住址、出生日期、初次领证日期、准驾车型、有效期限。
+        # 驾驶证主页：包括证号、姓名、性别、国籍、住址、出生日期、初次领证日期、准驾车型、有效期限、发证单位
 
         # 驾驶证副页：包括证号、姓名、档案编号、记录。
 
@@ -421,7 +471,7 @@ module TencentCloud
 
         # 适用于文字较多、版式复杂、对识别准召率要求较高的场景，如试卷试题、网络图片、街景店招牌、法律卷宗等场景。
 
-        # 产品优势：与通用印刷体识别的基础上，提供更高精度的文字识别服务，在文字较多、长串数字、小字、模糊字、倾斜文本等困难场景下，高精度版的准确率和召回率更高。
+        # 产品优势：与通用印刷体识别相比，提供更高精度的文字识别服务，在文字较多、长串数字、小字、模糊字、倾斜文本等困难场景下，高精度版的准确率和召回率更高。
 
         # 通用印刷体识别不同版本的差异如下：
         # <table style="width:715px">
@@ -501,7 +551,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口支持图像整体文字的检测和识别。可以识别中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语19种语言，且各种语言均支持与英文混合的文字识别。
+        # 本接口支持图像整体文字的检测和识别。可以识别中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语，阿拉伯语20种语言，且各种语言均支持与英文混合的文字识别。
 
         # 适用于印刷文档识别、网络图片识别、广告图文字识别、街景店招牌识别、菜单识别、视频标题识别、头像文字识别等场景。
 
@@ -731,6 +781,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
+        # 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
+
+        # @param request: Request instance for HKIDCardOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::HKIDCardOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::HKIDCardOCRResponse`
+        def HKIDCardOCR(request)
+          body = send_request('HKIDCardOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = HKIDCardOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 港澳台居住证OCR支持港澳台居住证正反面全字段内容检测识别功能，包括姓名、性别、出生日期、地址、身份证ID、签发机关、有效期限、签发次数、通行证号码关键字段识别。可以应用于港澳台居住证信息有效性校验场景，例如银行开户、用户注册等场景。
 
         # @param request: Request instance for HmtResidentPermitOCR.
@@ -797,7 +872,7 @@ module TencentCloud
         #           <td>身份证 PS 告警</td>
         #         </tr>
         #           <tr>
-        #           <td>图片模糊告警</td>
+        #           <td>图片模糊告警（可根据图片质量分数判断）</td>
         #         </tr>
         #       </tbody>
         #     </table>
@@ -945,8 +1020,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口支持中国港澳台地区以及其他国家、地区的护照。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍；具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
-        # 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
+        # 本接口支持中国港澳台地区以及其他国家、地区的护照识别。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍，具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
 
         # @param request: Request instance for MLIDPassportOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::MLIDPassportOCRRequest`
@@ -1166,8 +1240,6 @@ module TencentCloud
 
         # 产品优势：直联中国物品编码中心，查询结果更加准确、可靠。
 
-        # 本接口目前为内测阶段，如需使用服务，请<a href="https://cloud.tencent.com/act/event/connect-service" target="_blank">联系商务</a>开通。
-
         # @param request: Request instance for QueryBarCode.
         # @type request: :class:`Tencentcloud::ocr::V20181119::QueryBarCodeRequest`
         # @rtype: :class:`Tencentcloud::ocr::V20181119::QueryBarCodeResponse`
@@ -1214,6 +1286,55 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口支持图片/ PDF内常规表格、无线表格、多表格的检测和识别，返回每个单元格的文字内容，支持对0度至180度旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
+
+        # @param request: Request instance for RecognizeTableOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeTableOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeTableOCRResponse`
+        def RecognizeTableOCR(request)
+          body = send_request('RecognizeTableOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizeTableOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口支持泰国身份证识别，识别字段包括泰文姓名、英文姓名、地址、出生日期、身份证号码。
+        # 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
+
+        # @param request: Request instance for RecognizeThaiIDCardOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeThaiIDCardOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeThaiIDCardOCRResponse`
+        def RecognizeThaiIDCardOCR(request)
+          body = send_request('RecognizeThaiIDCardOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizeThaiIDCardOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
 
         # @param request: Request instance for ResidenceBookletOCR.
@@ -1224,6 +1345,55 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResidenceBookletOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
+
+        # @param request: Request instance for RideHailingDriverLicenseOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RideHailingDriverLicenseOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RideHailingDriverLicenseOCRResponse`
+        def RideHailingDriverLicenseOCR(request)
+          body = send_request('RideHailingDriverLicenseOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RideHailingDriverLicenseOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
+
+
+        # @param request: Request instance for RideHailingTransportLicenseOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RideHailingTransportLicenseOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RideHailingTransportLicenseOCRResponse`
+        def RideHailingTransportLicenseOCR(request)
+          body = send_request('RideHailingTransportLicenseOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RideHailingTransportLicenseOCRResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1262,7 +1432,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口支持识别轮船票的发票代码、发票号码、日期、姓名、票价等字段。
+        # 本接口支持识别轮船票的发票代码、发票号码、日期、姓名、票价、始发地、目的地、姓名、时间、发票消费类型、省、市、币种字段。
 
         # @param request: Request instance for ShipInvoiceOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::ShipInvoiceOCRRequest`
@@ -1286,7 +1456,10 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # <b>此接口为表格识别的旧版本服务，不再进行服务升级，建议您使用识别能力更强、服务性能更优的<a href="https://cloud.tencent.com/document/product/866/49525">新版表格识别</a>。</b>
+
         # 本接口支持图片内表格文档的检测和识别，返回每个单元格的文字内容，支持将识别结果保存为 Excel 格式。
+
 
         # @param request: Request instance for TableOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::TableOCRRequest`
@@ -1406,7 +1579,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口支持增值税专用发票、增值税普通发票、增值税电子发票全字段的内容检测和识别，包括发票代码、发票号码、开票日期、合计金额、校验码、税率、合计税额、价税合计、购买方识别号、复核、销售方识别号、开票人、密码区1、密码区2、密码区3、密码区4、发票名称、购买方名称、销售方名称、服务名称、备注、规格型号、数量、单价、金额、税额、收款人等字段。
+        # 本接口支持增值税专用发票、增值税普通发票、增值税电子发票全字段的内容检测和识别，包括发票代码、发票号码、打印发票代码、打印发票号码、开票日期、合计金额、校验码、税率、合计税额、价税合计、购买方识别号、复核、销售方识别号、开票人、密码区1、密码区2、密码区3、密码区4、发票名称、购买方名称、销售方名称、服务名称、备注、规格型号、数量、单价、金额、税额、收款人等字段。
 
         # @param request: Request instance for VatInvoiceOCR.
         # @type request: :class:`Tencentcloud::ocr::V20181119::VatInvoiceOCRRequest`
@@ -1416,6 +1589,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = VatInvoiceOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口支持增值税发票的准确性核验，您可以通过输入增值税发票的关键字段提供所需的验证信息，接口返回真实的票面相关信息，包括发票代码、发票号码、开票日期、金额、消费类型、购方名称、购方税号、销方名称、销方税号等多个常用字段。支持多种发票类型核验，包括增值税专用发票、增值税普通发票（含电子普通发票、卷式发票、通行费发票）、机动车销售统一发票、货物运输业增值税专用发票、二手车销售统一发票。
+
+        # @param request: Request instance for VatInvoiceVerify.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::VatInvoiceVerifyRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::VatInvoiceVerifyResponse`
+        def VatInvoiceVerify(request)
+          body = send_request('VatInvoiceVerify', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VatInvoiceVerifyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1494,6 +1691,60 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = VehicleRegCertOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口支持营业执照信息的识别与准确性核验。
+
+        # 您可以通过输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询）进行核验，接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。查询到工商信息包括：统一社会信用代码、经营期限、法人姓名、经营状态、经营业务范围、注册资本等。
+
+        # @param request: Request instance for VerifyBasicBizLicense.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::VerifyBasicBizLicenseRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::VerifyBasicBizLicenseResponse`
+        def VerifyBasicBizLicense(request)
+          body = send_request('VerifyBasicBizLicense', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyBasicBizLicenseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口支持营业执照信息的识别与准确性核验，返回的真实工商照面信息比营业执照识别及核验（基础版）接口更详细。
+
+        # 您可以输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询），接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。
+
+        # 查询到工商信息包括：统一社会信用代码、组织机构代码、经营期限、法人姓名、经营状态、经营业务范围及方式、注册资金、注册币种、登记机关、开业日期、企业（机构）类型、注销日期、吊销日期、许可经营项目、一般经营项目、核准时间、省、地级市、区/县、住所所在行政区划代码、行业门类代码、行业门类名称、国民经济行业代码、国民经济行业名称、经营（业务）范围等。
+
+        # @param request: Request instance for VerifyBizLicense.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::VerifyBizLicenseRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::VerifyBizLicenseResponse`
+        def VerifyBizLicense(request)
+          body = send_request('VerifyBizLicense', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyBizLicenseResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -77,6 +77,7 @@ module TencentCloud
         end
 
         # 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
+        # 水印数量上限 100，超过后需要先删除，再添加。
 
         # @param request: Request instance for AddLiveWatermark.
         # @type request: :class:`Tencentcloud::live::V20180801::AddLiveWatermarkRequest`
@@ -151,6 +152,7 @@ module TencentCloud
 
         # 该接口用来创建通用混流。用法与旧接口 mix_streamv2.start_mix_stream_advanced 基本一致。
         # 注意：当前最多支持16路混流。
+        # 最佳实践：https://cloud.tencent.com/document/product/267/45566
 
         # @param request: Request instance for CreateCommonMixStream.
         # @type request: :class:`Tencentcloud::live::V20180801::CreateCommonMixStreamRequest`
@@ -201,6 +203,7 @@ module TencentCloud
 
         # 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
         # <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
+        # 注意：至少填写一个回调 URL。
 
         # @param request: Request instance for CreateLiveCallbackTemplate.
         # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveCallbackTemplateRequest`
@@ -493,12 +496,13 @@ module TencentCloud
         # 创建一个在指定时间启动、结束的录制任务，并使用指定录制模板ID对应的配置进行录制。
         # - 使用前提
         # 1. 录制文件存放于点播平台，所以用户如需使用录制功能，需首先自行开通点播服务。
-        # 2. 录制文件存放后相关费用（含存储以及下行播放流量）按照点播平台计费方式收取，具体请参考 对应文档。
+        # 2. 录制文件存放后相关费用（含存储以及下行播放流量）按照点播平台计费方式收取，具体请参考 [对应文档](https://cloud.tencent.com/document/product/266/2837)。
         # - 注意事项
         # 1. 断流会结束当前录制并生成录制文件。在结束时间到达之前任务仍然有效，期间只要正常推流都会正常录制，与是否多次推、断流无关。
         # 2. 使用上避免创建时间段相互重叠的录制任务。若同一条流当前存在多个时段重叠的任务，为避免重复录制系统将启动最多3个录制任务。
         # 3. 创建的录制任务记录在平台侧只保留3个月。
         # 4. 当前录制任务管理API（CreateRecordTask/StopRecordTask/DeleteRecordTask）与旧API（CreateLiveRecord/StopLiveRecord/DeleteLiveRecord）不兼容，两套接口不能混用。
+        # 5. 避免 创建录制任务 与 推流 操作同时进行，可能导致因录制任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
 
         # @param request: Request instance for CreateRecordTask.
         # @type request: :class:`Tencentcloud::live::V20180801::CreateRecordTaskRequest`
@@ -907,6 +911,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 海外分区直播计费带宽和流量数据查询。
+
+        # @param request: Request instance for DescribeAreaBillBandwidthAndFluxList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAreaBillBandwidthAndFluxListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAreaBillBandwidthAndFluxListResponse`
+        def DescribeAreaBillBandwidthAndFluxList(request)
+          body = send_request('DescribeAreaBillBandwidthAndFluxList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAreaBillBandwidthAndFluxListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 直播计费带宽和流量数据查询。
 
         # @param request: Request instance for DescribeBillBandwidthAndFluxList.
@@ -931,6 +959,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 回调事件查询
+
+        # @param request: Request instance for DescribeCallbackRecordsList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCallbackRecordsListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCallbackRecordsListResponse`
+        def DescribeCallbackRecordsList(request)
+          body = send_request('DescribeCallbackRecordsList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCallbackRecordsListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询并发录制路数，对慢直播和普通直播适用。
 
         # @param request: Request instance for DescribeConcurrentRecordStreamNum.
@@ -941,6 +993,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeConcurrentRecordStreamNumResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
+
+        # @param request: Request instance for DescribeDeliverBandwidthList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeDeliverBandwidthListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeDeliverBandwidthListResponse`
+        def DescribeDeliverBandwidthList(request)
+          body = send_request('DescribeDeliverBandwidthList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeliverBandwidthListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1511,6 +1587,7 @@ module TencentCloud
         end
 
         # 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
+        # 注意：该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
 
         # @param request: Request instance for DescribeLiveStreamOnlineList.
         # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveStreamOnlineListRequest`
@@ -1969,7 +2046,7 @@ module TencentCloud
         end
 
         # 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
-        # 注意：按AppName查询，需要联系客服同学提单支持。
+        # 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
 
         # @param request: Request instance for DescribeStreamPlayInfoList.
         # @type request: :class:`Tencentcloud::live::V20180801::DescribeStreamPlayInfoListRequest`
@@ -2027,6 +2104,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTopClientIpSumInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 直播上行路数查询
+
+        # @param request: Request instance for DescribeUploadStreamNums.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeUploadStreamNumsRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeUploadStreamNumsResponse`
+        def DescribeUploadStreamNums(request)
+          body = send_request('DescribeUploadStreamNums', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUploadStreamNumsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2497,7 +2598,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 提前结束录制，并中止运行中的录制任务。任务被成功中止后将不再启动。
+        # 提前结束录制，并中止运行中的录制任务。任务被成功终止后，本次任务将不再启动。
 
         # @param request: Request instance for StopRecordTask.
         # @type request: :class:`Tencentcloud::live::V20180801::StopRecordTaskRequest`

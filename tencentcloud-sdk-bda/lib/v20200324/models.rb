@@ -411,6 +411,56 @@ module TencentCloud
         end
       end
 
+      # CreateSegmentationTask请求参数结构体
+      class CreateSegmentationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param VideoUrl: 需要分割的视频URL，可外网访问。
+        # @type VideoUrl: String
+        # @param BackgroundImageUrl: 背景图片URL。
+        # 可以将视频背景替换为输入的图片。
+        # 如果不输入背景图片，则输出人像区域mask。
+        # @type BackgroundImageUrl: String
+        # @param Config: 预留字段，后期用于展示更多识别信息。
+        # @type Config: String
+
+        attr_accessor :VideoUrl, :BackgroundImageUrl, :Config
+        
+        def initialize(videourl=nil, backgroundimageurl=nil, config=nil)
+          @VideoUrl = videourl
+          @BackgroundImageUrl = backgroundimageurl
+          @Config = config
+        end
+
+        def deserialize(params)
+          @VideoUrl = params['VideoUrl']
+          @BackgroundImageUrl = params['BackgroundImageUrl']
+          @Config = params['Config']
+        end
+      end
+
+      # CreateSegmentationTask返回参数结构体
+      class CreateSegmentationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskID: 任务标识ID,可以用与追溯任务状态，查看任务结果
+        # @type TaskID: String
+        # @param EstimatedProcessingTime: 预估处理时间，单位为秒
+        # @type EstimatedProcessingTime: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskID, :EstimatedProcessingTime, :RequestId
+        
+        def initialize(taskid=nil, estimatedprocessingtime=nil, requestid=nil)
+          @TaskID = taskid
+          @EstimatedProcessingTime = estimatedprocessingtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+          @EstimatedProcessingTime = params['EstimatedProcessingTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTrace请求参数结构体
       class CreateTraceRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 人员ID。
@@ -528,6 +578,67 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSegmentationTask请求参数结构体
+      class DescribeSegmentationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskID: 在提交分割任务成功时返回的任务标识ID。
+        # @type TaskID: String
+
+        attr_accessor :TaskID
+        
+        def initialize(taskid=nil)
+          @TaskID = taskid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+        end
+      end
+
+      # DescribeSegmentationTask返回参数结构体
+      class DescribeSegmentationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskStatus: 当前任务状态：
+        # QUEUING 排队中
+        # PROCESSING 处理中
+        # FINISHED 处理完成
+        # @type TaskStatus: String
+        # @param ResultVideoUrl: 分割后视频URL, 存储于腾讯云COS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultVideoUrl: String
+        # @param ResultVideoMD5: 分割后视频MD5，用于校验
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultVideoMD5: String
+        # @param VideoBasicInformation: 视频基本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoBasicInformation: :class:`Tencentcloud::Bda.v20200324.models.VideoBasicInformation`
+        # @param ErrorMsg: 分割任务错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskStatus, :ResultVideoUrl, :ResultVideoMD5, :VideoBasicInformation, :ErrorMsg, :RequestId
+        
+        def initialize(taskstatus=nil, resultvideourl=nil, resultvideomd5=nil, videobasicinformation=nil, errormsg=nil, requestid=nil)
+          @TaskStatus = taskstatus
+          @ResultVideoUrl = resultvideourl
+          @ResultVideoMD5 = resultvideomd5
+          @VideoBasicInformation = videobasicinformation
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskStatus = params['TaskStatus']
+          @ResultVideoUrl = params['ResultVideoUrl']
+          @ResultVideoMD5 = params['ResultVideoMD5']
+          unless params['VideoBasicInformation'].nil?
+            @VideoBasicInformation = VideoBasicInformation.new.deserialize(params[VideoBasicInformation])
+          end
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -1098,6 +1209,63 @@ module TencentCloud
         end
       end
 
+      # SegmentCustomizedPortraitPic请求参数结构体
+      class SegmentCustomizedPortraitPicRequest < TencentCloud::Common::AbstractModel
+        # @param SegmentationOptions: 此参数为分割选项，请根据需要选择自己所想从图片中分割的部分。注意所有选项均为非必选，如未选择则值默认为false, 但是必须要保证多于一个选项的描述为true。
+        # @type SegmentationOptions: :class:`Tencentcloud::Bda.v20200324.models.SegmentationOptions`
+        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
+        # 图片分辨率须小于2000*2000。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type Image: String
+        # @param Url: 图片的 Url 。
+        # Url、Image必须提供一个，如果都提供，只使用 Url。
+        # 图片分辨率须小于2000*2000 ，图片 base64 编码后大小不可超过5M。
+        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type Url: String
+
+        attr_accessor :SegmentationOptions, :Image, :Url
+        
+        def initialize(segmentationoptions=nil, image=nil, url=nil)
+          @SegmentationOptions = segmentationoptions
+          @Image = image
+          @Url = url
+        end
+
+        def deserialize(params)
+          unless params['SegmentationOptions'].nil?
+            @SegmentationOptions = SegmentationOptions.new.deserialize(params[SegmentationOptions])
+          end
+          @Image = params['Image']
+          @Url = params['Url']
+        end
+      end
+
+      # SegmentCustomizedPortraitPic返回参数结构体
+      class SegmentCustomizedPortraitPicResponse < TencentCloud::Common::AbstractModel
+        # @param PortraitImage: 根据指定标签分割输出的透明背景人像图片的 base64 数据。
+        # @type PortraitImage: String
+        # @param MaskImage: 指定标签处理后的Mask。一个通过 Base64 编码的文件，解码后文件由 Float 型浮点数组成。这些浮点数代表原图从左上角开始的每一行的每一个像素点，每一个浮点数的值是原图相应像素点位于人体轮廓内的置信度（0-1）转化的灰度值（0-255）
+        # @type MaskImage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PortraitImage, :MaskImage, :RequestId
+        
+        def initialize(portraitimage=nil, maskimage=nil, requestid=nil)
+          @PortraitImage = portraitimage
+          @MaskImage = maskimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PortraitImage = params['PortraitImage']
+          @MaskImage = params['MaskImage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SegmentPortraitPic请求参数结构体
       class SegmentPortraitPicRequest < TencentCloud::Common::AbstractModel
         # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
@@ -1145,6 +1313,134 @@ module TencentCloud
         def deserialize(params)
           @ResultImage = params['ResultImage']
           @ResultMask = params['ResultMask']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 此参数为分割选项，请根据需要选择自己所想从图片中分割的部分。注意所有选项均为非必选，如未选择则值默认为false, 但是必须要保证多于一个选项的描述为true。
+      class SegmentationOptions < TencentCloud::Common::AbstractModel
+        # @param Background: 分割选项-背景
+        # @type Background: Boolean
+        # @param Hair: 分割选项-头发
+        # @type Hair: Boolean
+        # @param LeftEyebrow: 分割选项-左眉
+        # @type LeftEyebrow: Boolean
+        # @param RightEyebrow: 分割选项-右眉
+        # @type RightEyebrow: Boolean
+        # @param LeftEye: 分割选项-左眼
+        # @type LeftEye: Boolean
+        # @param RightEye: 分割选项-右眼
+        # @type RightEye: Boolean
+        # @param Nose: 分割选项-鼻子
+        # @type Nose: Boolean
+        # @param UpperLip: 分割选项-上唇
+        # @type UpperLip: Boolean
+        # @param LowerLip: 分割选项-下唇
+        # @type LowerLip: Boolean
+        # @param Tooth: 分割选项-牙齿
+        # @type Tooth: Boolean
+        # @param Mouth: 分割选项-口腔（不包含牙齿）
+        # @type Mouth: Boolean
+        # @param LeftEar: 分割选项-左耳
+        # @type LeftEar: Boolean
+        # @param RightEar: 分割选项-右耳
+        # @type RightEar: Boolean
+        # @param Face: 分割选项-面部(不包含眼、耳、口、鼻等五官及头发。)
+        # @type Face: Boolean
+        # @param Head: 复合分割选项-头部(包含所有的头部元素，相关装饰除外)
+        # @type Head: Boolean
+        # @param Body: 分割选项-身体（包含脖子）
+        # @type Body: Boolean
+        # @param Hat: 分割选项-帽子
+        # @type Hat: Boolean
+        # @param Headdress: 分割选项-头饰
+        # @type Headdress: Boolean
+        # @param Earrings: 分割选项-耳环
+        # @type Earrings: Boolean
+        # @param Necklace: 分割选项-项链
+        # @type Necklace: Boolean
+        # @param Belongings: 分割选项-随身物品（ 例如伞、包、手机等。 ）
+        # @type Belongings: Boolean
+
+        attr_accessor :Background, :Hair, :LeftEyebrow, :RightEyebrow, :LeftEye, :RightEye, :Nose, :UpperLip, :LowerLip, :Tooth, :Mouth, :LeftEar, :RightEar, :Face, :Head, :Body, :Hat, :Headdress, :Earrings, :Necklace, :Belongings
+        
+        def initialize(background=nil, hair=nil, lefteyebrow=nil, righteyebrow=nil, lefteye=nil, righteye=nil, nose=nil, upperlip=nil, lowerlip=nil, tooth=nil, mouth=nil, leftear=nil, rightear=nil, face=nil, head=nil, body=nil, hat=nil, headdress=nil, earrings=nil, necklace=nil, belongings=nil)
+          @Background = background
+          @Hair = hair
+          @LeftEyebrow = lefteyebrow
+          @RightEyebrow = righteyebrow
+          @LeftEye = lefteye
+          @RightEye = righteye
+          @Nose = nose
+          @UpperLip = upperlip
+          @LowerLip = lowerlip
+          @Tooth = tooth
+          @Mouth = mouth
+          @LeftEar = leftear
+          @RightEar = rightear
+          @Face = face
+          @Head = head
+          @Body = body
+          @Hat = hat
+          @Headdress = headdress
+          @Earrings = earrings
+          @Necklace = necklace
+          @Belongings = belongings
+        end
+
+        def deserialize(params)
+          @Background = params['Background']
+          @Hair = params['Hair']
+          @LeftEyebrow = params['LeftEyebrow']
+          @RightEyebrow = params['RightEyebrow']
+          @LeftEye = params['LeftEye']
+          @RightEye = params['RightEye']
+          @Nose = params['Nose']
+          @UpperLip = params['UpperLip']
+          @LowerLip = params['LowerLip']
+          @Tooth = params['Tooth']
+          @Mouth = params['Mouth']
+          @LeftEar = params['LeftEar']
+          @RightEar = params['RightEar']
+          @Face = params['Face']
+          @Head = params['Head']
+          @Body = params['Body']
+          @Hat = params['Hat']
+          @Headdress = params['Headdress']
+          @Earrings = params['Earrings']
+          @Necklace = params['Necklace']
+          @Belongings = params['Belongings']
+        end
+      end
+
+      # TerminateSegmentationTask请求参数结构体
+      class TerminateSegmentationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskID: 在提交分割任务成功时返回的任务标识ID。
+        # @type TaskID: String
+
+        attr_accessor :TaskID
+        
+        def initialize(taskid=nil)
+          @TaskID = taskid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+        end
+      end
+
+      # TerminateSegmentationTask返回参数结构体
+      class TerminateSegmentationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1292,6 +1588,38 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           @Probability = params['Probability']
+        end
+      end
+
+      # 视频基础信息
+      class VideoBasicInformation < TencentCloud::Common::AbstractModel
+        # @param FrameWidth: 视频宽度
+        # @type FrameWidth: Integer
+        # @param FrameHeight: 视频高度
+        # @type FrameHeight: Integer
+        # @param FramesPerSecond: 视频帧速率(FPS)
+        # @type FramesPerSecond: Integer
+        # @param Duration: 视频时长
+        # @type Duration: Float
+        # @param TotalFrames: 视频帧数
+        # @type TotalFrames: Integer
+
+        attr_accessor :FrameWidth, :FrameHeight, :FramesPerSecond, :Duration, :TotalFrames
+        
+        def initialize(framewidth=nil, frameheight=nil, framespersecond=nil, duration=nil, totalframes=nil)
+          @FrameWidth = framewidth
+          @FrameHeight = frameheight
+          @FramesPerSecond = framespersecond
+          @Duration = duration
+          @TotalFrames = totalframes
+        end
+
+        def deserialize(params)
+          @FrameWidth = params['FrameWidth']
+          @FrameHeight = params['FrameHeight']
+          @FramesPerSecond = params['FramesPerSecond']
+          @Duration = params['Duration']
+          @TotalFrames = params['TotalFrames']
         end
       end
 

@@ -827,10 +827,10 @@ module TencentCloud
         # @param SubAppId: 聚鑫计费SubAppId，代表子商户
         # @type SubAppId: String
         # @param SettleAcctNo: 用于提现
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type SettleAcctNo: String
         # @param SettleAcctName: 结算账户户名
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type SettleAcctName: String
         # @param CurrencyType: 币种 RMB
         # @type CurrencyType: String
@@ -843,7 +843,7 @@ module TencentCloud
         # @param IdType: 会员证件类型
         # @type IdType: String
         # @param IdCode: 会员证件号码
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type IdCode: String
         # @param MidasSecretId: 聚鑫分配的安全ID
         # @type MidasSecretId: String
@@ -1000,10 +1000,10 @@ module TencentCloud
         # 每个结算账户每天只能使用一次小额转账验证
         # @type BindType: Integer
         # @param SettleAcctNo: 用于提现
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type SettleAcctNo: String
         # @param SettleAcctName: 结算账户户名
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type SettleAcctName: String
         # @param SettleAcctType: 1 – 本行账户
         # 2 – 他行账户
@@ -1011,7 +1011,7 @@ module TencentCloud
         # @param IdType: 证件类型，见《证件类型》表
         # @type IdType: String
         # @param IdCode: 证件号码
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type IdCode: String
         # @param AcctBranchName: 开户行名称
         # @type AcctBranchName: String
@@ -1021,7 +1021,7 @@ module TencentCloud
         # @type MidasSignature: String
         # @param Mobile: 用于短信验证
         # BindType==2时必填
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type Mobile: String
         # @param CnapsBranchId: 大小额行号，超级网银行号和大小额行号
         # 二选一
@@ -1377,7 +1377,7 @@ module TencentCloud
         # 每个结算账户每天只能使用一次小额转账验证
         # @type BindType: Integer
         # @param SettleAcctNo: 结算账户账号
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type SettleAcctNo: String
         # @param MidasSecretId: 聚鑫分配的安全ID
         # @type MidasSecretId: String
@@ -1655,13 +1655,13 @@ module TencentCloud
         # @param Address: 子商户地址
         # @type Address: String
         # @param Contact: 子商户联系人
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type Contact: String
         # @param Mobile: 联系人手机号
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type Mobile: String
         # @param Email: 邮箱
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type Email: String
         # @param MidasSecretId: 聚鑫分配的安全ID
         # @type MidasSecretId: String
@@ -1680,10 +1680,10 @@ module TencentCloud
         # 缺省: general
         # @type SubMerchantMemberType: String
         # @param SubMerchantKey: 子商户密钥
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type SubMerchantKey: String
         # @param SubMerchantPrivateKey: 子商户私钥
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type SubMerchantPrivateKey: String
         # @param EncryptType: 敏感信息加密类型:
         # RSA: rsa非对称加密，使用RSA-PKCS1-v1_5
@@ -1944,7 +1944,7 @@ module TencentCloud
         # @type Name: String
         # @param TaxCode: 税收商品编码
         # @type TaxCode: String
-        # @param TotalPrice: 不含税商品总价（商品含税价总额/（1+税率））。单位为分
+        # @param TotalPrice: 不含税商品总价（商品含税价总额/（1+税率））。InvoicePlatformId 为1时，该金额为含税总金额。单位为分。
         # @type TotalPrice: Integer
         # @param TaxRate: 商品税率
         # @type TaxRate: Integer
@@ -1958,7 +1958,7 @@ module TencentCloud
         # @type Unit: String
         # @param Total: 商品数量
         # @type Total: String
-        # @param Price: 不含税商品单价
+        # @param Price: 不含税商品单价。InvoicePlatformId 为1时，该金额为含税单价。
         # @type Price: String
         # @param Discount: 含税折扣总额。单位为分
         # @type Discount: Integer
@@ -2013,7 +2013,7 @@ module TencentCloud
 
       # CreateInvoice请求参数结构体
       class CreateInvoiceRequest < TencentCloud::Common::AbstractModel
-        # @param InvoicePlatformId: 开票平台ID。0：高灯
+        # @param InvoicePlatformId: 开票平台ID。0：高灯，1：票易通
         # @type InvoicePlatformId: Integer
         # @param TitleType: 抬头类型：1：个人/政府事业单位；2：企业
         # @type TitleType: Integer
@@ -2025,7 +2025,7 @@ module TencentCloud
         # @type AmountHasTax: Integer
         # @param TaxAmount: 总税额（单位为分）
         # @type TaxAmount: Integer
-        # @param AmountWithoutTax: 不含税总金额（单位为分）
+        # @param AmountWithoutTax: 不含税总金额（单位为分）。InvoicePlatformId 为1时，传默认值-1
         # @type AmountWithoutTax: Integer
         # @param SellerTaxpayerNum: 销方纳税人识别号
         # @type SellerTaxpayerNum: String
@@ -2551,6 +2551,256 @@ module TencentCloud
           @Message = params['Message']
           @InvoiceId = params['InvoiceId']
           @OrderSn = params['OrderSn']
+        end
+      end
+
+      # CreateSinglePay请求参数结构体
+      class CreateSinglePayRequest < TencentCloud::Common::AbstractModel
+        # @param SerialNumber: 业务流水号，历史唯一
+        # @type SerialNumber: String
+        # @param PayAccountNumber: 付方账户号
+        # @type PayAccountNumber: String
+        # @param PayAccountName: 付方账户名称
+        # @type PayAccountName: String
+        # @param Amount: 金额
+        # @type Amount: Integer
+        # @param RecvAccountNumber: 收方账户号
+        # @type RecvAccountNumber: String
+        # @param RecvAccountName: 收方账户名称
+        # @type RecvAccountName: String
+        # @param PayBankCnaps: 付方账户CNAPS号
+        # @type PayBankCnaps: String
+        # @param PayBankType: 付方账户银行大类，PayBankCnaps为空时必传（见常见问题-银企直连银行类型）
+        # @type PayBankType: String
+        # @param PayBankProvince: 付方账户银行所在省，PayBankCnaps为空时必传（见常见问题-银企直连省份枚举信息）
+        # @type PayBankProvince: String
+        # @param PayBankCity: 付方账户银行所在地区，PayBankCnaps为空时必传（见常见问题-银企直连城市枚举信息）
+        # @type PayBankCity: String
+        # @param RecvBankCnaps: 收方账户CNAPS号
+        # @type RecvBankCnaps: String
+        # @param RecvBankType: 收方账户银行大类，RecvBankCnaps为空时必传（见常见问题-银企直连银行类型）
+        # @type RecvBankType: String
+        # @param RecvBankProvince: 收方账户银行所在省，RecvBankCnaps为空时必传（见常见问题-银企直连省份枚举信息）
+        # @type RecvBankProvince: String
+        # @param RecvBankCity: 收方账户银行所在地区，RecvBankCnaps为空时必传（见常见问题-银企直连城市枚举信息）
+        # @type RecvBankCity: String
+        # @param RecvCertType: 收款方证件类型（见常见问题-银企直连证件类型枚举信息）
+        # @type RecvCertType: String
+        # @param RecvCertNo: 收款方证件号码
+        # @type RecvCertNo: String
+        # @param Summary: 摘要信息
+        # @type Summary: String
+        # @param Profile: 接入环境。沙箱环境填sandbox
+        # @type Profile: String
+
+        attr_accessor :SerialNumber, :PayAccountNumber, :PayAccountName, :Amount, :RecvAccountNumber, :RecvAccountName, :PayBankCnaps, :PayBankType, :PayBankProvince, :PayBankCity, :RecvBankCnaps, :RecvBankType, :RecvBankProvince, :RecvBankCity, :RecvCertType, :RecvCertNo, :Summary, :Profile
+        
+        def initialize(serialnumber=nil, payaccountnumber=nil, payaccountname=nil, amount=nil, recvaccountnumber=nil, recvaccountname=nil, paybankcnaps=nil, paybanktype=nil, paybankprovince=nil, paybankcity=nil, recvbankcnaps=nil, recvbanktype=nil, recvbankprovince=nil, recvbankcity=nil, recvcerttype=nil, recvcertno=nil, summary=nil, profile=nil)
+          @SerialNumber = serialnumber
+          @PayAccountNumber = payaccountnumber
+          @PayAccountName = payaccountname
+          @Amount = amount
+          @RecvAccountNumber = recvaccountnumber
+          @RecvAccountName = recvaccountname
+          @PayBankCnaps = paybankcnaps
+          @PayBankType = paybanktype
+          @PayBankProvince = paybankprovince
+          @PayBankCity = paybankcity
+          @RecvBankCnaps = recvbankcnaps
+          @RecvBankType = recvbanktype
+          @RecvBankProvince = recvbankprovince
+          @RecvBankCity = recvbankcity
+          @RecvCertType = recvcerttype
+          @RecvCertNo = recvcertno
+          @Summary = summary
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @SerialNumber = params['SerialNumber']
+          @PayAccountNumber = params['PayAccountNumber']
+          @PayAccountName = params['PayAccountName']
+          @Amount = params['Amount']
+          @RecvAccountNumber = params['RecvAccountNumber']
+          @RecvAccountName = params['RecvAccountName']
+          @PayBankCnaps = params['PayBankCnaps']
+          @PayBankType = params['PayBankType']
+          @PayBankProvince = params['PayBankProvince']
+          @PayBankCity = params['PayBankCity']
+          @RecvBankCnaps = params['RecvBankCnaps']
+          @RecvBankType = params['RecvBankType']
+          @RecvBankProvince = params['RecvBankProvince']
+          @RecvBankCity = params['RecvBankCity']
+          @RecvCertType = params['RecvCertType']
+          @RecvCertNo = params['RecvCertNo']
+          @Summary = params['Summary']
+          @Profile = params['Profile']
+        end
+      end
+
+      # CreateSinglePay返回参数结构体
+      class CreateSinglePayResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateSinglePayResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateSinglePayResult.new.deserialize(params[Result])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 银企直连-单笔支付响应结果
+      class CreateSinglePayResult < TencentCloud::Common::AbstractModel
+        # @param HandleStatus: 受理状态（S：处理成功；F：处理失败）
+        # @type HandleStatus: String
+        # @param HandleMsg: 受理状态描述
+        # @type HandleMsg: String
+        # @param SerialNo: 业务流水号，历史唯一
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialNo: String
+        # @param BankSerialNo: 银行指令流水
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankSerialNo: String
+        # @param PayStatus: 付款状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayStatus: String
+        # @param BankRetCode: 银行原始返回码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankRetCode: String
+        # @param BankRetMsg: 银行原始返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankRetMsg: String
+
+        attr_accessor :HandleStatus, :HandleMsg, :SerialNo, :BankSerialNo, :PayStatus, :BankRetCode, :BankRetMsg
+        
+        def initialize(handlestatus=nil, handlemsg=nil, serialno=nil, bankserialno=nil, paystatus=nil, bankretcode=nil, bankretmsg=nil)
+          @HandleStatus = handlestatus
+          @HandleMsg = handlemsg
+          @SerialNo = serialno
+          @BankSerialNo = bankserialno
+          @PayStatus = paystatus
+          @BankRetCode = bankretcode
+          @BankRetMsg = bankretmsg
+        end
+
+        def deserialize(params)
+          @HandleStatus = params['HandleStatus']
+          @HandleMsg = params['HandleMsg']
+          @SerialNo = params['SerialNo']
+          @BankSerialNo = params['BankSerialNo']
+          @PayStatus = params['PayStatus']
+          @BankRetCode = params['BankRetCode']
+          @BankRetMsg = params['BankRetMsg']
+        end
+      end
+
+      # CreateTransferBatch请求参数结构体
+      class CreateTransferBatchRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户号。
+        # 示例值：129284394
+        # @type MerchantId: String
+        # @param TransferDetails: 转账明细列表。
+        # 发起批量转账的明细列表，最多三千笔
+        # @type TransferDetails: Array
+        # @param MerchantAppId: 直连商户appId。
+        # 即商户号绑定的appid。
+        # 示例值：wxf636efh567hg4356
+        # @type MerchantAppId: String
+        # @param MerchantBatchNo: 商家批次单号。
+        # 商户系统内部的商家批次单号，此参数只能由数字、字母组成，商户系统内部唯一，UTF8编码，最多32个字符。
+        # 示例值：plfk2020042013
+        # @type MerchantBatchNo: String
+        # @param BatchName: 批次名称。
+        # 批量转账的名称。
+        # 示例值：2019年1月深圳分部报销单
+        # @type BatchName: String
+        # @param BatchRemark: 转账说明。
+        # UTF8编码，最多32个字符。
+        # 示例值：2019年深圳分部报销单
+        # @type BatchRemark: String
+        # @param TotalAmount: 转账总金额。
+        # 转账金额，单位为分。
+        # 示例值：4000000
+        # @type TotalAmount: Integer
+        # @param TotalNum: 转账总笔数。
+        # 一个转账批次最多允许发起三千笔转账。
+        # 示例值：200
+        # @type TotalNum: Integer
+        # @param Profile: 环境名。
+        # release: 现网环境
+        # sandbox: 沙箱环境
+        # development: 开发环境
+        # 缺省: release
+        # @type Profile: String
+
+        attr_accessor :MerchantId, :TransferDetails, :MerchantAppId, :MerchantBatchNo, :BatchName, :BatchRemark, :TotalAmount, :TotalNum, :Profile
+        
+        def initialize(merchantid=nil, transferdetails=nil, merchantappid=nil, merchantbatchno=nil, batchname=nil, batchremark=nil, totalamount=nil, totalnum=nil, profile=nil)
+          @MerchantId = merchantid
+          @TransferDetails = transferdetails
+          @MerchantAppId = merchantappid
+          @MerchantBatchNo = merchantbatchno
+          @BatchName = batchname
+          @BatchRemark = batchremark
+          @TotalAmount = totalamount
+          @TotalNum = totalnum
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @TransferDetails = params['TransferDetails']
+          @MerchantAppId = params['MerchantAppId']
+          @MerchantBatchNo = params['MerchantBatchNo']
+          @BatchName = params['BatchName']
+          @BatchRemark = params['BatchRemark']
+          @TotalAmount = params['TotalAmount']
+          @TotalNum = params['TotalNum']
+          @Profile = params['Profile']
+        end
+      end
+
+      # CreateTransferBatch返回参数结构体
+      class CreateTransferBatchResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantBatchNo: 商家批次单号。
+        # 商户系统内部的商家批次单号，此参数只能由数字、字母组成，商户系统内部唯一，UTF8编码，最多32个字符。
+        # 示例值：plfk2020042013
+        # @type MerchantBatchNo: String
+        # @param BatchId: 微信批次单号。
+        # 微信商家转账系统返回的唯一标识。
+        # 示例值：1030000071100999991182020050700019480001
+        # @type BatchId: String
+        # @param CreateTime: 批次受理成功时返回，遵循rfc3339标准格式。格式为YYYY-MM-DDTHH:mm:ss.sss+TIMEZONE，YYYY-MM-DD表示年月日，T出现在字符串中，表示time元素的开头，HH:mm:ss.sss表示时分秒毫秒，TIMEZONE表示时区（+08:00表示东八区时间，领先UTC 8小时，即北京时间）。例如：2015-05-20T13:29:35.120+08:00表示北京时间2015年05月20日13点29分35秒。
+        # 示例值：2015-05-20T13:29:35.120+08:00
+        # @type CreateTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantBatchNo, :BatchId, :CreateTime, :RequestId
+        
+        def initialize(merchantbatchno=nil, batchid=nil, createtime=nil, requestid=nil)
+          @MerchantBatchNo = merchantbatchno
+          @BatchId = batchid
+          @CreateTime = createtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantBatchNo = params['MerchantBatchNo']
+          @BatchId = params['BatchId']
+          @CreateTime = params['CreateTime']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3174,6 +3424,151 @@ module TencentCloud
         end
       end
 
+      # MigrateOrderRefundQuery请求参数结构体
+      class MigrateOrderRefundQueryRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户号
+        # @type MerchantId: String
+        # @param PayChannel: 支付渠道，ALIPAY对应支付宝渠道；UNIONPAY对应银联渠道
+        # @type PayChannel: String
+        # @param RefundOrderId: 退款订单号，最长64位，仅支持数字、 字母
+        # @type RefundOrderId: String
+        # @param TradeSerialNo: 退款流水号
+        # @type TradeSerialNo: String
+        # @param Profile: 接入环境。沙箱环境填 sandbox。
+        # @type Profile: String
+
+        attr_accessor :MerchantId, :PayChannel, :RefundOrderId, :TradeSerialNo, :Profile
+        
+        def initialize(merchantid=nil, paychannel=nil, refundorderid=nil, tradeserialno=nil, profile=nil)
+          @MerchantId = merchantid
+          @PayChannel = paychannel
+          @RefundOrderId = refundorderid
+          @TradeSerialNo = tradeserialno
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @PayChannel = params['PayChannel']
+          @RefundOrderId = params['RefundOrderId']
+          @TradeSerialNo = params['TradeSerialNo']
+          @Profile = params['Profile']
+        end
+      end
+
+      # MigrateOrderRefundQuery返回参数结构体
+      class MigrateOrderRefundQueryResponse < TencentCloud::Common::AbstractModel
+        # @param IsSuccess: 请求成功状态
+        # @type IsSuccess: Boolean
+        # @param TradeSerialNo: 交易流水号
+        # @type TradeSerialNo: String
+        # @param TradeMsg: 交易备注
+        # @type TradeMsg: String
+        # @param TradeStatus: 交易状态：0=交易待处理；1=交易处理中；2=交易处理成功；3=交易失败；4=状态未知
+        # @type TradeStatus: Integer
+        # @param ThirdChannelOrderId: 第三方支付机构支付交易号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThirdChannelOrderId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsSuccess, :TradeSerialNo, :TradeMsg, :TradeStatus, :ThirdChannelOrderId, :RequestId
+        
+        def initialize(issuccess=nil, tradeserialno=nil, trademsg=nil, tradestatus=nil, thirdchannelorderid=nil, requestid=nil)
+          @IsSuccess = issuccess
+          @TradeSerialNo = tradeserialno
+          @TradeMsg = trademsg
+          @TradeStatus = tradestatus
+          @ThirdChannelOrderId = thirdchannelorderid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsSuccess = params['IsSuccess']
+          @TradeSerialNo = params['TradeSerialNo']
+          @TradeMsg = params['TradeMsg']
+          @TradeStatus = params['TradeStatus']
+          @ThirdChannelOrderId = params['ThirdChannelOrderId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # MigrateOrderRefund请求参数结构体
+      class MigrateOrderRefundRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户代码
+        # @type MerchantId: String
+        # @param PayChannel: 支付渠道，ALIPAY对应支付宝渠道；UNIONPAY对应银联渠道
+        # @type PayChannel: String
+        # @param PayOrderId: 正向支付商户订单号
+        # @type PayOrderId: String
+        # @param RefundOrderId: 退款订单号，最长64位，仅支持数字、 字母
+        # @type RefundOrderId: String
+        # @param RefundAmt: 退款金额，单位：分。备注：改字段必须大于0 和小于10000000000的整数。
+        # @type RefundAmt: Integer
+        # @param ThirdChannelOrderId: 第三方支付机构支付交易号
+        # @type ThirdChannelOrderId: String
+        # @param PayAmt: 原始支付金额，单位：分。备注：当该字段为空或者为0 时，系统会默认使用订单当 实付金额作为退款金额
+        # @type PayAmt: Integer
+        # @param Profile: 接入环境。沙箱环境填 sandbox。
+        # @type Profile: String
+        # @param RefundReason: 退款原因
+        # @type RefundReason: String
+
+        attr_accessor :MerchantId, :PayChannel, :PayOrderId, :RefundOrderId, :RefundAmt, :ThirdChannelOrderId, :PayAmt, :Profile, :RefundReason
+        
+        def initialize(merchantid=nil, paychannel=nil, payorderid=nil, refundorderid=nil, refundamt=nil, thirdchannelorderid=nil, payamt=nil, profile=nil, refundreason=nil)
+          @MerchantId = merchantid
+          @PayChannel = paychannel
+          @PayOrderId = payorderid
+          @RefundOrderId = refundorderid
+          @RefundAmt = refundamt
+          @ThirdChannelOrderId = thirdchannelorderid
+          @PayAmt = payamt
+          @Profile = profile
+          @RefundReason = refundreason
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @PayChannel = params['PayChannel']
+          @PayOrderId = params['PayOrderId']
+          @RefundOrderId = params['RefundOrderId']
+          @RefundAmt = params['RefundAmt']
+          @ThirdChannelOrderId = params['ThirdChannelOrderId']
+          @PayAmt = params['PayAmt']
+          @Profile = params['Profile']
+          @RefundReason = params['RefundReason']
+        end
+      end
+
+      # MigrateOrderRefund返回参数结构体
+      class MigrateOrderRefundResponse < TencentCloud::Common::AbstractModel
+        # @param IsSuccess: 请求成功状态
+        # @type IsSuccess: Boolean
+        # @param TradeSerialNo: 退款流水号
+        # @type TradeSerialNo: String
+        # @param TradeMsg: 交易备注
+        # @type TradeMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsSuccess, :TradeSerialNo, :TradeMsg, :RequestId
+        
+        def initialize(issuccess=nil, tradeserialno=nil, trademsg=nil, requestid=nil)
+          @IsSuccess = issuccess
+          @TradeSerialNo = tradeserialno
+          @TradeMsg = trademsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsSuccess = params['IsSuccess']
+          @TradeSerialNo = params['TradeSerialNo']
+          @TradeMsg = params['TradeMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAgentTaxPaymentInfo请求参数结构体
       class ModifyAgentTaxPaymentInfoRequest < TencentCloud::Common::AbstractModel
         # @param BatchNum: 批次号
@@ -3298,6 +3693,125 @@ module TencentCloud
           @CnsmrSeqNo = params['CnsmrSeqNo']
           @ReservedMsg = params['ReservedMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 线下查票-订单信息
+      class Order < TencentCloud::Common::AbstractModel
+        # @param AmountHasTax: 含税金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AmountHasTax: Float
+        # @param Discount: 优惠金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Discount: Float
+        # @param SellerName: 销方名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SellerName: String
+        # @param InvoiceType: 发票类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvoiceType: Integer
+        # @param Name: 默认“”
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Amount: 支付金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: Float
+        # @param OrderDate: 下单日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderDate: String
+        # @param OrderId: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderId: String
+        # @param StoreNo: 门店号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoreNo: String
+        # @param Items: 明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :AmountHasTax, :Discount, :SellerName, :InvoiceType, :Name, :Amount, :OrderDate, :OrderId, :StoreNo, :Items
+        
+        def initialize(amounthastax=nil, discount=nil, sellername=nil, invoicetype=nil, name=nil, amount=nil, orderdate=nil, orderid=nil, storeno=nil, items=nil)
+          @AmountHasTax = amounthastax
+          @Discount = discount
+          @SellerName = sellername
+          @InvoiceType = invoicetype
+          @Name = name
+          @Amount = amount
+          @OrderDate = orderdate
+          @OrderId = orderid
+          @StoreNo = storeno
+          @Items = items
+        end
+
+        def deserialize(params)
+          @AmountHasTax = params['AmountHasTax']
+          @Discount = params['Discount']
+          @SellerName = params['SellerName']
+          @InvoiceType = params['InvoiceType']
+          @Name = params['Name']
+          @Amount = params['Amount']
+          @OrderDate = params['OrderDate']
+          @OrderId = params['OrderId']
+          @StoreNo = params['StoreNo']
+          @Items = params['Items']
+        end
+      end
+
+      # 线下查票-订单明细
+      class OrderItem < TencentCloud::Common::AbstractModel
+        # @param AmountHasTax: 明细金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AmountHasTax: Float
+        # @param Discount: 优惠金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Discount: Float
+        # @param Name: 商品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Models: 型号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Models: String
+        # @param Total: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Unit: 数量单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param Status: 默认“0”
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Price: 单价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: Float
+        # @param TaxCode: 商品编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxCode: String
+
+        attr_accessor :AmountHasTax, :Discount, :Name, :Models, :Total, :Unit, :Status, :Price, :TaxCode
+        
+        def initialize(amounthastax=nil, discount=nil, name=nil, models=nil, total=nil, unit=nil, status=nil, price=nil, taxcode=nil)
+          @AmountHasTax = amounthastax
+          @Discount = discount
+          @Name = name
+          @Models = models
+          @Total = total
+          @Unit = unit
+          @Status = status
+          @Price = price
+          @TaxCode = taxcode
+        end
+
+        def deserialize(params)
+          @AmountHasTax = params['AmountHasTax']
+          @Discount = params['Discount']
+          @Name = params['Name']
+          @Models = params['Models']
+          @Total = params['Total']
+          @Unit = params['Unit']
+          @Status = params['Status']
+          @Price = params['Price']
+          @TaxCode = params['TaxCode']
         end
       end
 
@@ -4183,6 +4697,86 @@ module TencentCloud
         end
       end
 
+      # 智能代发-单笔代发转账对账单返回数据
+      class QueryBillDownloadURLData < TencentCloud::Common::AbstractModel
+        # @param BillDownloadURL: 统一对账单下载链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillDownloadURL: String
+        # @param OriginalBillDownloadURL: 渠道原始对账单下载链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalBillDownloadURL: String
+
+        attr_accessor :BillDownloadURL, :OriginalBillDownloadURL
+        
+        def initialize(billdownloadurl=nil, originalbilldownloadurl=nil)
+          @BillDownloadURL = billdownloadurl
+          @OriginalBillDownloadURL = originalbilldownloadurl
+        end
+
+        def deserialize(params)
+          @BillDownloadURL = params['BillDownloadURL']
+          @OriginalBillDownloadURL = params['OriginalBillDownloadURL']
+        end
+      end
+
+      # QueryBillDownloadURL请求参数结构体
+      class QueryBillDownloadURLRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户号
+        # @type MerchantId: String
+        # @param TransferType: 代发类型：
+        # 1、 微信企业付款
+        # 2、 支付宝转账
+        # 3、 平安银企直联代发转账
+        # @type TransferType: Integer
+        # @param BillDate: 账单日期，格式yyyy-MM-dd
+        # @type BillDate: String
+
+        attr_accessor :MerchantId, :TransferType, :BillDate
+        
+        def initialize(merchantid=nil, transfertype=nil, billdate=nil)
+          @MerchantId = merchantid
+          @TransferType = transfertype
+          @BillDate = billdate
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @TransferType = params['TransferType']
+          @BillDate = params['BillDate']
+        end
+      end
+
+      # QueryBillDownloadURL返回参数结构体
+      class QueryBillDownloadURLResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryBillDownloadURLData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryBillDownloadURLData.new.deserialize(params[Result])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryCommonTransferRecharge请求参数结构体
       class QueryCommonTransferRechargeRequest < TencentCloud::Common::AbstractModel
         # @param MrchCode: String(22)，商户号（签约客户号）
@@ -4628,13 +5222,17 @@ module TencentCloud
         # @param Data: 查询发票数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Cpdp.v20190820.models.QueryInvoiceResultData`
+        # @param Order: 订单数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Order: :class:`Tencentcloud::Cpdp.v20190820.models.Order`
 
-        attr_accessor :Message, :Code, :Data
+        attr_accessor :Message, :Code, :Data, :Order
         
-        def initialize(message=nil, code=nil, data=nil)
+        def initialize(message=nil, code=nil, data=nil, order=nil)
           @Message = message
           @Code = code
           @Data = data
+          @Order = order
         end
 
         def deserialize(params)
@@ -4642,6 +5240,9 @@ module TencentCloud
           @Code = params['Code']
           unless params['Data'].nil?
             @Data = QueryInvoiceResultData.new.deserialize(params[Data])
+          end
+          unless params['Order'].nil?
+            @Order = Order.new.deserialize(params[Order])
           end
         end
       end
@@ -5761,6 +6362,110 @@ module TencentCloud
         end
       end
 
+      # 银企直连-查询单笔支付状态条目
+      class QuerySinglePayItem < TencentCloud::Common::AbstractModel
+        # @param PayStatus: 付款状态（S：支付成功；P：支付处理中；F：支付失败）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayStatus: String
+        # @param PlatformMsg: 平台信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlatformMsg: String
+        # @param BankRetCode: 银行原始返回码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankRetCode: String
+        # @param BankRetMsg: 银行原始返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BankRetMsg: String
+
+        attr_accessor :PayStatus, :PlatformMsg, :BankRetCode, :BankRetMsg
+        
+        def initialize(paystatus=nil, platformmsg=nil, bankretcode=nil, bankretmsg=nil)
+          @PayStatus = paystatus
+          @PlatformMsg = platformmsg
+          @BankRetCode = bankretcode
+          @BankRetMsg = bankretmsg
+        end
+
+        def deserialize(params)
+          @PayStatus = params['PayStatus']
+          @PlatformMsg = params['PlatformMsg']
+          @BankRetCode = params['BankRetCode']
+          @BankRetMsg = params['BankRetMsg']
+        end
+      end
+
+      # QuerySinglePay请求参数结构体
+      class QuerySinglePayRequest < TencentCloud::Common::AbstractModel
+        # @param SerialNumber: 业务流水号
+        # @type SerialNumber: String
+        # @param Profile: 接入环境。沙箱环境填sandbox
+        # @type Profile: String
+
+        attr_accessor :SerialNumber, :Profile
+        
+        def initialize(serialnumber=nil, profile=nil)
+          @SerialNumber = serialnumber
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @SerialNumber = params['SerialNumber']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QuerySinglePay返回参数结构体
+      class QuerySinglePayResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QuerySinglePayResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = QuerySinglePayResult.new.deserialize(params[Result])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 银企直连-查询单笔支付状态结果
+      class QuerySinglePayResult < TencentCloud::Common::AbstractModel
+        # @param HandleStatus: 受理状态（S：处理成功；F：处理失败）
+        # @type HandleStatus: String
+        # @param HandleMsg: 受理状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HandleMsg: String
+        # @param SerialNo: 业务流水号
+        # @type SerialNo: String
+        # @param Items: 支付明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :HandleStatus, :HandleMsg, :SerialNo, :Items
+        
+        def initialize(handlestatus=nil, handlemsg=nil, serialno=nil, items=nil)
+          @HandleStatus = handlestatus
+          @HandleMsg = handlemsg
+          @SerialNo = serialno
+          @Items = items
+        end
+
+        def deserialize(params)
+          @HandleStatus = params['HandleStatus']
+          @HandleMsg = params['HandleMsg']
+          @SerialNo = params['SerialNo']
+          @Items = params['Items']
+        end
+      end
+
       # QuerySingleTransactionStatus请求参数结构体
       class QuerySingleTransactionStatusRequest < TencentCloud::Common::AbstractModel
         # @param MrchCode: String(22)，商户号（签约客户号）
@@ -6094,6 +6799,471 @@ module TencentCloud
             @Data = QueryTradeData.new.deserialize(params[Data])
           end
           @Code = params['Code']
+        end
+      end
+
+      # QueryTransferBatch请求参数结构体
+      class QueryTransferBatchRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户号。
+        # 示例值：129284394
+        # @type MerchantId: String
+        # @param NeedQueryDetail: 微信明细单号。
+        # 微信区分明细单返回的唯一标识。
+        # 示例值：1030000071100999991182020050700019480101
+        # @type NeedQueryDetail: Boolean
+        # @param MerchantBatchNo: 商家批次单号。
+        # 商户系统内部的商家批次单号，此参数只能由数字、字母组成，商户系统内部唯一，UTF8编码，最多32个字符。
+        # 示例值：plfk2020042013
+        # @type MerchantBatchNo: String
+        # @param BatchId: 是否查询账单明细。
+        # true-是；
+        # false-否，默认否。
+        # 商户可选择是否查询指定状态的转账明细单，当转账批次单状态为“FINISHED”（已完成）时，才会返回满足条件的转账明细单。
+        # 示例值：true
+        # @type BatchId: String
+        # @param Profile: 环境名:
+        # release: 现网环境
+        # sandbox: 沙箱环境
+        # development: 开发环境
+        # 缺省: release
+        # @type Profile: String
+        # @param Offset: 请求资源起始位置。
+        # 从0开始，默认值为0。
+        # 示例值：20
+        # @type Offset: Integer
+        # @param Limit: 最大资源条数。
+        # 该次请求可返回的最大资源（转账明细单）条数，最小20条，最大100条，不传则默认20条。不足20条按实际条数返回
+        # 示例值：20
+        # @type Limit: Integer
+        # @param DetailStatus: 明细状态。
+        # ALL：全部，需要同时查询转账成功喝失败的明细单；
+        # SUCCESS：转账成功，只查询成功的明细单；
+        # FAIL：转账失败，只查询转账失败的明细单。
+        # 示例值：FAIL
+        # @type DetailStatus: String
+
+        attr_accessor :MerchantId, :NeedQueryDetail, :MerchantBatchNo, :BatchId, :Profile, :Offset, :Limit, :DetailStatus
+        
+        def initialize(merchantid=nil, needquerydetail=nil, merchantbatchno=nil, batchid=nil, profile=nil, offset=nil, limit=nil, detailstatus=nil)
+          @MerchantId = merchantid
+          @NeedQueryDetail = needquerydetail
+          @MerchantBatchNo = merchantbatchno
+          @BatchId = batchid
+          @Profile = profile
+          @Offset = offset
+          @Limit = limit
+          @DetailStatus = detailstatus
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @NeedQueryDetail = params['NeedQueryDetail']
+          @MerchantBatchNo = params['MerchantBatchNo']
+          @BatchId = params['BatchId']
+          @Profile = params['Profile']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @DetailStatus = params['DetailStatus']
+        end
+      end
+
+      # QueryTransferBatch返回参数结构体
+      class QueryTransferBatchResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户号。
+        # 示例值：19300009329
+        # @type MerchantId: String
+        # @param MerchantBatchNo: 商家批次单号。
+        # 商户系统内部的商家批次单号，此参数只能由数字、字母组成，商户系统内部唯一，UTF8编码，最多32个字符。
+        # 示例值：plfk2020042013
+        # @type MerchantBatchNo: String
+        # @param BatchId: 微信批次单号。
+        # 微信商家转账系统返回的唯一标识。
+        # 示例值：1030000071100999991182020050700019480001
+        # @type BatchId: String
+        # @param MerchantAppId: 直连商户appId。
+        # 商户号绑定的appid。
+        # 示例值：wxf636efh567hg4356
+        # @type MerchantAppId: String
+        # @param BatchStatus: 批次状态。
+        # ACCEPTED:已受理，批次已受理成功，若发起批量转账的30分钟后，转账批次单仍处于该状态，可能原因是商户账户余额不足等。商户可查询账户资金流水，若该笔转账批次单的扣款已经发生，则表示批次已经进入转账中，请再次查单确认；
+        # PROCESSING:转账中，已开始处理批次内的转账明细单；
+        # FINISHED:已完成，批次内的所有转账明细单都已处理完成；
+        # CLOSED:已关闭，可查询具体的批次关闭原因确认；
+        # 示例值：ACCEPTED
+        # @type BatchStatus: String
+        # @param CloseReason: 批次关闭原因。
+        # 如果批次单状态为“CLOSED”（已关闭），则有关闭原因；
+        # MERCHANT_REVOCATION：商户主动撤销；
+        # OVERDUE_CLOSE：系统超时关闭。
+        # 示例值：OVERDUE_CLOSE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloseReason: String
+        # @param TotalAmount: 转账总金额。
+        # 转账金额，单位为分。
+        # 示例值：4000000
+        # @type TotalAmount: Integer
+        # @param TotalNum: 转账总笔数。
+        # 一个转账批次最多允许发起三千笔转账。
+        # 示例值：200
+        # @type TotalNum: Integer
+        # @param CreateTime: 批次受理成功时返回，遵循rfc3339标准格式。格式为YYYY-MM-DDTHH:mm:ss.sss+TIMEZONE，YYYY-MM-DD表示年月日，T出现在字符串中，表示time元素的开头，HH:mm:ss.sss表示时分秒毫秒，TIMEZONE表示时区（+08:00表示东八区时间，领先UTC 8小时，即北京时间）。例如：2015-05-20T13:29:35.120+08:00表示北京时间2015年05月20日13点29分35秒。
+        # 示例值：2015-05-20T13:29:35.120+08:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 批次最近一次更新时间，遵循rfc3339标准格式。格式为YYYY-MM-DDTHH:mm:ss.sss+TIMEZONE，YYYY-MM-DD表示年月日，T出现在字符串中，表示time元素的开头，HH:mm:ss.sss表示时分秒毫秒，TIMEZONE表示时区（+08:00表示东八区时间，领先UTC 8小时，即北京时间）。例如：2015-05-20T13:29:35.120+08:00表示北京时间2015年05月20日13点29分35秒。
+        # 示例值：2015-05-20T13:29:35.120+08:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param SuccessAmount: 转账成功金额。
+        # 转账成功的金额，单位为分，可能随时变化。
+        # 示例值：4000000
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessAmount: Integer
+        # @param SuccessNum: 转账成功的笔数。
+        # 可能随时变化。
+        # 示例值：200
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessNum: Integer
+        # @param FailAmount: 转账失败金额。
+        # 转账失败的金额，单位为分，可能随时变化。
+        # 示例值：4000000
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailAmount: Integer
+        # @param FailNum: 转账失败笔数。
+        # 可能随时变化。
+        # 示例值：200
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailNum: Integer
+        # @param TransferDetails: 转账明细列表。
+        # 返回明细详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferDetails: Array
+        # @param BatchType: 批次类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchType: String
+        # @param BatchName: 批次名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchName: String
+        # @param BatchRemark: 批次标注。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchRemark: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantId, :MerchantBatchNo, :BatchId, :MerchantAppId, :BatchStatus, :CloseReason, :TotalAmount, :TotalNum, :CreateTime, :UpdateTime, :SuccessAmount, :SuccessNum, :FailAmount, :FailNum, :TransferDetails, :BatchType, :BatchName, :BatchRemark, :RequestId
+        
+        def initialize(merchantid=nil, merchantbatchno=nil, batchid=nil, merchantappid=nil, batchstatus=nil, closereason=nil, totalamount=nil, totalnum=nil, createtime=nil, updatetime=nil, successamount=nil, successnum=nil, failamount=nil, failnum=nil, transferdetails=nil, batchtype=nil, batchname=nil, batchremark=nil, requestid=nil)
+          @MerchantId = merchantid
+          @MerchantBatchNo = merchantbatchno
+          @BatchId = batchid
+          @MerchantAppId = merchantappid
+          @BatchStatus = batchstatus
+          @CloseReason = closereason
+          @TotalAmount = totalamount
+          @TotalNum = totalnum
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @SuccessAmount = successamount
+          @SuccessNum = successnum
+          @FailAmount = failamount
+          @FailNum = failnum
+          @TransferDetails = transferdetails
+          @BatchType = batchtype
+          @BatchName = batchname
+          @BatchRemark = batchremark
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @MerchantBatchNo = params['MerchantBatchNo']
+          @BatchId = params['BatchId']
+          @MerchantAppId = params['MerchantAppId']
+          @BatchStatus = params['BatchStatus']
+          @CloseReason = params['CloseReason']
+          @TotalAmount = params['TotalAmount']
+          @TotalNum = params['TotalNum']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @SuccessAmount = params['SuccessAmount']
+          @SuccessNum = params['SuccessNum']
+          @FailAmount = params['FailAmount']
+          @FailNum = params['FailNum']
+          @TransferDetails = params['TransferDetails']
+          @BatchType = params['BatchType']
+          @BatchName = params['BatchName']
+          @BatchRemark = params['BatchRemark']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryTransferDetail请求参数结构体
+      class QueryTransferDetailRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户号。
+        # 示例值：129284394
+        # @type MerchantId: String
+        # @param MerchantBatchNo: 商家批次单号。
+        # 商户系统内部的商家批次单号，此参数只能由数字、字母组成，商户系统内部唯一，UTF8编码，最多32个字符。
+        # 示例值：plfk2020042013
+        # @type MerchantBatchNo: String
+        # @param MerchantDetailNo: 商家明细单号。
+        # 商户系统内部的商家明细单号
+        # 示例值：plfk2020042013
+        # @type MerchantDetailNo: String
+        # @param BatchId: 微信批次单号。
+        # 微信商家转账系统返回的唯一标识。
+        # 商家单号（包含批次号和明细单号）和微信单号（包含批次号和明细单号）二者必填其一。
+        # 示例值：1030000071100999991182020050700019480001
+        # @type BatchId: String
+        # @param DetailId: 微信明细单号。
+        # 微信区分明细单返回的唯一标识。
+        # 示例值：1030000071100999991182020050700019480001
+        # @type DetailId: String
+        # @param Profile: 环境名:
+        # release: 现网环境
+        # sandbox: 沙箱环境
+        # development: 开发环境
+        # 缺省: release
+        # @type Profile: String
+
+        attr_accessor :MerchantId, :MerchantBatchNo, :MerchantDetailNo, :BatchId, :DetailId, :Profile
+        
+        def initialize(merchantid=nil, merchantbatchno=nil, merchantdetailno=nil, batchid=nil, detailid=nil, profile=nil)
+          @MerchantId = merchantid
+          @MerchantBatchNo = merchantbatchno
+          @MerchantDetailNo = merchantdetailno
+          @BatchId = batchid
+          @DetailId = detailid
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @MerchantBatchNo = params['MerchantBatchNo']
+          @MerchantDetailNo = params['MerchantDetailNo']
+          @BatchId = params['BatchId']
+          @DetailId = params['DetailId']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryTransferDetail返回参数结构体
+      class QueryTransferDetailResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户号。
+        # 示例值：19300009329
+        # @type MerchantId: String
+        # @param MerchantBatchNo: 商家批次单号。
+        # 商户系统内部的商家批次单号，此参数只能由数字、字母组成，商户系统内部唯一，UTF8编码，最多32个字符。
+        # 示例值：plfk2020042013
+        # @type MerchantBatchNo: String
+        # @param BatchId: 微信批次单号。
+        # 微信商家转账系统返回的唯一标识。
+        # 示例值：1030000071100999991182020050700019480001
+        # @type BatchId: String
+        # @param MerchantDetailNo: 商家明细单号。
+        # 商户系统内部的商家明细单号
+        # 示例值：plfk2020042013
+        # @type MerchantDetailNo: String
+        # @param DetailId: 微信明细单号。
+        # 微信区分明细单返回的唯一标识。
+        # 示例值：1030000071100999991182020050700019480001
+        # @type DetailId: String
+        # @param DetailStatus: 明细状态。
+        # PROCESSING：转账中，正在处理，结果未明；
+        # SUCCESS：转账成功；
+        # FAIL：转账失败，需要确认失败原因以后，再决定是否重新发起地该笔明细的转账。
+        # 示例值：SUCCESS
+        # @type DetailStatus: String
+        # @param TransferAmount: 转账金额。
+        # 单位为分。
+        # 示例值：200
+        # @type TransferAmount: Integer
+        # @param FailReason: 失败原因。
+        # 如果转账失败则有失败原因
+        # ACCOUNT_FROZEN：账户冻结
+        # REAL_NAME_CHECK_FAIL：用户未实名
+        # NAME_NOT_CORRECT：用户姓名校验失败
+        # OPENID_INVALID：Openid校验失败
+        # TRANSFER_QUOTA_EXCEED：超过用户单笔收款额度
+        # DAY_RECEIVED_QUOTA_EXCEED：超过用户单日收款额度
+        # MONTH_RECEIVED_QUOTA_EXCEED：超过用户单月收款额度
+        # DAY_RECEIVED_COUNT_EXCEED：超过用户单日收款次数
+        # PRODUCT_AUTH_CHECK_FAIL：产品权限校验失败
+        # OVERDUE_CLOSE：转账关闭
+        # ID_CARD_NOT_CORRECT：用户身份证校验失败
+        # ACCOUNT_NOT_EXIST：用户账户不存在
+        # TRANSFER_RISK：转账存在风险
+        # 示例值：ACCOUNT_FROZEN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param InitiateTime: 转账发起时间。
+        # 遵循rfc3339标准格式。格式为YYYY-MM-DDTHH:mm:ss.sss+TIMEZONE，YYYY-MM-DD表示年月日，T出现在字符串中，表示time元素的开头，HH:mm:ss.sss表示时分秒毫秒，TIMEZONE表示时区（+08:00表示东八区时间，领先UTC 8小时，即北京时间）。例如：2015-05-20T13:29:35.120+08:00表示北京时间2015年05月20日13点29分35秒。
+        # 示例值：2015-05-20T13:29:35.120+08:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InitiateTime: String
+        # @param UpdateTime: 转账更新时间。
+        # 遵循rfc3339标准格式。格式为YYYY-MM-DDTHH:mm:ss.sss+TIMEZONE，YYYY-MM-DD表示年月日，T出现在字符串中，表示time元素的开头，HH:mm:ss.sss表示时分秒毫秒，TIMEZONE表示时区（+08:00表示东八区时间，领先UTC 8小时，即北京时间）。例如：2015-05-20T13:29:35.120+08:00表示北京时间2015年05月20日13点29分35秒。
+        # 示例值：2015-05-20T13:29:35.120+08:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param UserName: 用户名。
+        # 示例值：张三
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param TransferRemark: 转账备注。
+        # 单条转账备注（微信用户会收到该备注）。UTF8编码，最多32字符。
+        # 示例值：2020年4月报销
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferRemark: String
+        # @param MerchantAppId: 商家绑定公众号APPID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantAppId: String
+        # @param OpenId: 用户openId。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantId, :MerchantBatchNo, :BatchId, :MerchantDetailNo, :DetailId, :DetailStatus, :TransferAmount, :FailReason, :InitiateTime, :UpdateTime, :UserName, :TransferRemark, :MerchantAppId, :OpenId, :RequestId
+        
+        def initialize(merchantid=nil, merchantbatchno=nil, batchid=nil, merchantdetailno=nil, detailid=nil, detailstatus=nil, transferamount=nil, failreason=nil, initiatetime=nil, updatetime=nil, username=nil, transferremark=nil, merchantappid=nil, openid=nil, requestid=nil)
+          @MerchantId = merchantid
+          @MerchantBatchNo = merchantbatchno
+          @BatchId = batchid
+          @MerchantDetailNo = merchantdetailno
+          @DetailId = detailid
+          @DetailStatus = detailstatus
+          @TransferAmount = transferamount
+          @FailReason = failreason
+          @InitiateTime = initiatetime
+          @UpdateTime = updatetime
+          @UserName = username
+          @TransferRemark = transferremark
+          @MerchantAppId = merchantappid
+          @OpenId = openid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @MerchantBatchNo = params['MerchantBatchNo']
+          @BatchId = params['BatchId']
+          @MerchantDetailNo = params['MerchantDetailNo']
+          @DetailId = params['DetailId']
+          @DetailStatus = params['DetailStatus']
+          @TransferAmount = params['TransferAmount']
+          @FailReason = params['FailReason']
+          @InitiateTime = params['InitiateTime']
+          @UpdateTime = params['UpdateTime']
+          @UserName = params['UserName']
+          @TransferRemark = params['TransferRemark']
+          @MerchantAppId = params['MerchantAppId']
+          @OpenId = params['OpenId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 智能代发-单笔代发转账查询接口返回内容
+      class QueryTransferResultData < TencentCloud::Common::AbstractModel
+        # @param TradeSerialNo: 平台交易流水号
+        # @type TradeSerialNo: String
+        # @param OrderId: 订单号
+        # @type OrderId: String
+        # @param TradeStatus: 交易状态。
+        # 0 处理中
+        # 1 提交成功
+        # 2 交易成功
+        # 3 交易失败
+        # 4 未知渠道异常
+        # 99 未知系统异常
+        # @type TradeStatus: Integer
+        # @param Remark: 业务备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :TradeSerialNo, :OrderId, :TradeStatus, :Remark
+        
+        def initialize(tradeserialno=nil, orderid=nil, tradestatus=nil, remark=nil)
+          @TradeSerialNo = tradeserialno
+          @OrderId = orderid
+          @TradeStatus = tradestatus
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @TradeSerialNo = params['TradeSerialNo']
+          @OrderId = params['OrderId']
+          @TradeStatus = params['TradeStatus']
+          @Remark = params['Remark']
+        end
+      end
+
+      # QueryTransferResult请求参数结构体
+      class QueryTransferResultRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户号
+        # @type MerchantId: String
+        # @param MerchantAppId: 申请商户号的appid或者商户号绑定的appid
+        # @type MerchantAppId: String
+        # @param TransferType: 1、 微信企业付款
+        # 2、 支付宝转账
+        # 3、 平安银企直联代发转账
+        # @type TransferType: Integer
+        # @param TradeSerialNo: 交易流水流水号（与 OrderId 不能同时为空）
+        # @type TradeSerialNo: String
+        # @param OrderId: 订单号（与 TradeSerialNo 不能同时为空）
+        # @type OrderId: String
+        # @param Profile: 接入环境。沙箱环境填sandbox。
+        # @type Profile: String
+
+        attr_accessor :MerchantId, :MerchantAppId, :TransferType, :TradeSerialNo, :OrderId, :Profile
+        
+        def initialize(merchantid=nil, merchantappid=nil, transfertype=nil, tradeserialno=nil, orderid=nil, profile=nil)
+          @MerchantId = merchantid
+          @MerchantAppId = merchantappid
+          @TransferType = transfertype
+          @TradeSerialNo = tradeserialno
+          @OrderId = orderid
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @MerchantAppId = params['MerchantAppId']
+          @TransferType = params['TransferType']
+          @TradeSerialNo = params['TradeSerialNo']
+          @OrderId = params['OrderId']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryTransferResult返回参数结构体
+      class QueryTransferResultResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryTransferResultData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryTransferResultData.new.deserialize(params[Result])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -7327,6 +8497,79 @@ module TencentCloud
         end
       end
 
+      # 批量转账明细实体
+      class TransferDetailRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantDetailNo: 商家明细单号。
+        # 商户系统内部区分转账批次单下不同转账明细单的唯一标识，要求此参数只能由数字、大小写字母组成。
+        # 示例值：x23zy545Bd5436
+        # @type MerchantDetailNo: String
+        # @param TransferAmount: 转账金额。
+        # 转账金额单位为分。
+        # 示例值：200000
+        # @type TransferAmount: Integer
+        # @param TransferRemark: 转账备注。
+        # 单条转账备注（微信用户会收到该备注）。UTF8编码，最多32字符。
+        # 示例值：2020年4月报销
+        # @type TransferRemark: String
+        # @param OpenId: 用户在直连商户下的唯一标识。
+        # 示例值：o-MYE42l80oelYMDE34nYD456Xoy
+        # @type OpenId: String
+        # @param UserName: 收款用户姓名。
+        # 收款方姓名。
+        # 示例值：张三
+        # @type UserName: String
+
+        attr_accessor :MerchantDetailNo, :TransferAmount, :TransferRemark, :OpenId, :UserName
+        
+        def initialize(merchantdetailno=nil, transferamount=nil, transferremark=nil, openid=nil, username=nil)
+          @MerchantDetailNo = merchantdetailno
+          @TransferAmount = transferamount
+          @TransferRemark = transferremark
+          @OpenId = openid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @MerchantDetailNo = params['MerchantDetailNo']
+          @TransferAmount = params['TransferAmount']
+          @TransferRemark = params['TransferRemark']
+          @OpenId = params['OpenId']
+          @UserName = params['UserName']
+        end
+      end
+
+      # 批量转账查询返回批次明细实体
+      class TransferDetailResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantDetailNo: 商家明细单号。
+        # 商户系统内部的商家明细单号
+        # 示例值：plfk2020042013
+        # @type MerchantDetailNo: String
+        # @param DetailId: 微信明细单号。
+        # 微信区分明细单返回的唯一标识。
+        # 示例值：1030000071100999991182020050700019480001
+        # @type DetailId: String
+        # @param DetailStatus: 明细状态。
+        # PROCESSING：转账中，正在处理，结果未明；
+        # SUCCESS：转账成功；
+        # FAIL：转账失败，需要确认失败原因以后，再决定是否重新发起地该笔明细的转账。
+        # 示例值：SUCCESS
+        # @type DetailStatus: String
+
+        attr_accessor :MerchantDetailNo, :DetailId, :DetailStatus
+        
+        def initialize(merchantdetailno=nil, detailid=nil, detailstatus=nil)
+          @MerchantDetailNo = merchantdetailno
+          @DetailId = detailid
+          @DetailStatus = detailstatus
+        end
+
+        def deserialize(params)
+          @MerchantDetailNo = params['MerchantDetailNo']
+          @DetailId = params['DetailId']
+          @DetailStatus = params['DetailStatus']
+        end
+      end
+
       # 转账充值明细信息
       class TransferItem < TencentCloud::Common::AbstractModel
         # @param InAcctType: STRING(10)，入账类型（02: 会员充值; 03: 资金挂账）
@@ -7394,6 +8637,122 @@ module TencentCloud
         end
       end
 
+      # 智能代发-单笔代发转账接口返回数据
+      class TransferSinglePayData < TencentCloud::Common::AbstractModel
+        # @param TradeSerialNo: 平台交易流水号，唯一
+        # @type TradeSerialNo: String
+
+        attr_accessor :TradeSerialNo
+        
+        def initialize(tradeserialno=nil)
+          @TradeSerialNo = tradeserialno
+        end
+
+        def deserialize(params)
+          @TradeSerialNo = params['TradeSerialNo']
+        end
+      end
+
+      # TransferSinglePay请求参数结构体
+      class TransferSinglePayRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户号
+        # @type MerchantId: String
+        # @param MerchantAppId: 微信申请商户号的appid或者商户号绑定的appid
+        # 支付宝、平安填入MerchantId
+        # @type MerchantAppId: String
+        # @param TransferType: 1、 微信企业付款
+        # 2、 支付宝转账
+        # 3、 平安银企直联代发转账
+        # @type TransferType: Integer
+        # @param OrderId: 订单流水号，唯一，不能包含特殊字符，长度最大限制64位，推荐使用字母，数字组合，"_","-"组合
+        # @type OrderId: String
+        # @param TransferAmount: 转账金额，单位分
+        # @type TransferAmount: Integer
+        # @param PayeeId: 收款方标识。
+        # 微信为open_id；
+        # 支付宝为会员alipay_user_id;
+        # 平安为收款方银行账号
+        # @type PayeeId: String
+        # @param PayeeName: 收款方姓名，微信，支付宝可选；平安模式下必传
+        # @type PayeeName: String
+        # @param PayeeExtends: 收款方附加信息，平安接入使用。需要以JSON格式提供以下字段：
+        # PayeeBankName：收款人开户行名称
+        #  CcyCode：货币类型（RMB-人民币）
+        #  UnionFlag：行内跨行标志（1：行内转账，0：跨行转账）。
+        # @type PayeeExtends: String
+        # @param ReqReserved: 请求预留字段，原样透传返回
+        # @type ReqReserved: String
+        # @param Remark: 业务备注
+        # @type Remark: String
+        # @param NotifyUrl: 转账结果回调通知URL。若不填，则不进行回调。
+        # @type NotifyUrl: String
+        # @param Profile: 接入环境。沙箱环境填sandbox。
+        # @type Profile: String
+
+        attr_accessor :MerchantId, :MerchantAppId, :TransferType, :OrderId, :TransferAmount, :PayeeId, :PayeeName, :PayeeExtends, :ReqReserved, :Remark, :NotifyUrl, :Profile
+        
+        def initialize(merchantid=nil, merchantappid=nil, transfertype=nil, orderid=nil, transferamount=nil, payeeid=nil, payeename=nil, payeeextends=nil, reqreserved=nil, remark=nil, notifyurl=nil, profile=nil)
+          @MerchantId = merchantid
+          @MerchantAppId = merchantappid
+          @TransferType = transfertype
+          @OrderId = orderid
+          @TransferAmount = transferamount
+          @PayeeId = payeeid
+          @PayeeName = payeename
+          @PayeeExtends = payeeextends
+          @ReqReserved = reqreserved
+          @Remark = remark
+          @NotifyUrl = notifyurl
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @MerchantAppId = params['MerchantAppId']
+          @TransferType = params['TransferType']
+          @OrderId = params['OrderId']
+          @TransferAmount = params['TransferAmount']
+          @PayeeId = params['PayeeId']
+          @PayeeName = params['PayeeName']
+          @PayeeExtends = params['PayeeExtends']
+          @ReqReserved = params['ReqReserved']
+          @Remark = params['Remark']
+          @NotifyUrl = params['NotifyUrl']
+          @Profile = params['Profile']
+        end
+      end
+
+      # TransferSinglePay返回参数结构体
+      class TransferSinglePayResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息
+        # @type ErrMessage: String
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.TransferSinglePayData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = TransferSinglePayData.new.deserialize(params[Result])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UnBindAcct请求参数结构体
       class UnBindAcctRequest < TencentCloud::Common::AbstractModel
         # @param MidasAppId: 聚鑫分配的支付主MidasAppId
@@ -7401,7 +8760,7 @@ module TencentCloud
         # @param SubAppId: 聚鑫计费SubAppId，代表子商户
         # @type SubAppId: String
         # @param SettleAcctNo: 用于提现
-        # <敏感信息>加密详见《商户端接口敏感信息加密说明》
+        # <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         # @type SettleAcctNo: String
         # @param MidasSecretId: 聚鑫分配的安全ID
         # @type MidasSecretId: String
@@ -7634,10 +8993,16 @@ module TencentCloud
         # development: 开发环境
         # 缺省: release
         # @type MidasEnvironment: String
+        # @param WxAppId: 微信商户应用ID
+        # @type WxAppId: String
+        # @param WxSubAppId: 微信商户子应用ID
+        # @type WxSubAppId: String
+        # @param PaymentNotifyUrl: 支付通知地址
+        # @type PaymentNotifyUrl: String
 
-        attr_accessor :CurrencyType, :MidasAppId, :OutTradeNo, :ProductDetail, :ProductId, :ProductName, :TotalAmt, :UserId, :RealChannel, :OriginalAmt, :MidasSecretId, :MidasSignature, :CallbackUrl, :Channel, :Metadata, :Quantity, :SubAppId, :SubOrderList, :TotalMchIncome, :TotalPlatformIncome, :WxOpenId, :WxSubOpenId, :MidasEnvironment
+        attr_accessor :CurrencyType, :MidasAppId, :OutTradeNo, :ProductDetail, :ProductId, :ProductName, :TotalAmt, :UserId, :RealChannel, :OriginalAmt, :MidasSecretId, :MidasSignature, :CallbackUrl, :Channel, :Metadata, :Quantity, :SubAppId, :SubOrderList, :TotalMchIncome, :TotalPlatformIncome, :WxOpenId, :WxSubOpenId, :MidasEnvironment, :WxAppId, :WxSubAppId, :PaymentNotifyUrl
         
-        def initialize(currencytype=nil, midasappid=nil, outtradeno=nil, productdetail=nil, productid=nil, productname=nil, totalamt=nil, userid=nil, realchannel=nil, originalamt=nil, midassecretid=nil, midassignature=nil, callbackurl=nil, channel=nil, metadata=nil, quantity=nil, subappid=nil, suborderlist=nil, totalmchincome=nil, totalplatformincome=nil, wxopenid=nil, wxsubopenid=nil, midasenvironment=nil)
+        def initialize(currencytype=nil, midasappid=nil, outtradeno=nil, productdetail=nil, productid=nil, productname=nil, totalamt=nil, userid=nil, realchannel=nil, originalamt=nil, midassecretid=nil, midassignature=nil, callbackurl=nil, channel=nil, metadata=nil, quantity=nil, subappid=nil, suborderlist=nil, totalmchincome=nil, totalplatformincome=nil, wxopenid=nil, wxsubopenid=nil, midasenvironment=nil, wxappid=nil, wxsubappid=nil, paymentnotifyurl=nil)
           @CurrencyType = currencytype
           @MidasAppId = midasappid
           @OutTradeNo = outtradeno
@@ -7661,6 +9026,9 @@ module TencentCloud
           @WxOpenId = wxopenid
           @WxSubOpenId = wxsubopenid
           @MidasEnvironment = midasenvironment
+          @WxAppId = wxappid
+          @WxSubAppId = wxsubappid
+          @PaymentNotifyUrl = paymentnotifyurl
         end
 
         def deserialize(params)
@@ -7687,6 +9055,9 @@ module TencentCloud
           @WxOpenId = params['WxOpenId']
           @WxSubOpenId = params['WxSubOpenId']
           @MidasEnvironment = params['MidasEnvironment']
+          @WxAppId = params['WxAppId']
+          @WxSubAppId = params['WxSubAppId']
+          @PaymentNotifyUrl = params['PaymentNotifyUrl']
         end
       end
 

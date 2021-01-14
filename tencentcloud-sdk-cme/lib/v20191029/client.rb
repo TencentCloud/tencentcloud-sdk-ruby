@@ -99,7 +99,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建云剪的编辑项目，支持创建视频剪辑及直播剪辑两大类项目。
+        # 创建云剪的编辑项目，支持创建视频剪辑、直播剪辑、导播台项目以及视频拆条项目。
 
         # @param request: Request instance for CreateProject.
         # @type request: :class:`Tencentcloud::cme::V20191029::CreateProjectRequest`
@@ -391,6 +391,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # <li>支持获取所创建的所有平台列表信息；</li>
+        # <li>支持获取指定的平台列表信息。</li>
+
+
+        # @param request: Request instance for DescribePlatforms.
+        # @type request: :class:`Tencentcloud::cme::V20191029::DescribePlatformsRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::DescribePlatformsResponse`
+        def DescribePlatforms(request)
+          body = send_request('DescribePlatforms', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlatformsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 支持根据多种条件过滤出项目列表。
 
         # @param request: Request instance for DescribeProjects.
@@ -537,7 +563,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取指定团队的信息。
+        # 获取指定团队的信息，拉取团队信息列表。
 
         # @param request: Request instance for DescribeTeams.
         # @type request: :class:`Tencentcloud::cme::V20191029::DescribeTeamsRequest`
@@ -571,6 +597,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExportVideoByEditorTrackDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频。
+
+        # @param request: Request instance for ExportVideoByVideoSegmentationData.
+        # @type request: :class:`Tencentcloud::cme::V20191029::ExportVideoByVideoSegmentationDataRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::ExportVideoByVideoSegmentationDataResponse`
+        def ExportVideoByVideoSegmentationData(request)
+          body = send_request('ExportVideoByVideoSegmentationData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportVideoByVideoSegmentationDataResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -633,6 +683,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。
+
+        # @param request: Request instance for GenerateVideoSegmentationSchemeByAi.
+        # @type request: :class:`Tencentcloud::cme::V20191029::GenerateVideoSegmentationSchemeByAiRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::GenerateVideoSegmentationSchemeByAiResponse`
+        def GenerateVideoSegmentationSchemeByAi(request)
+          body = send_request('GenerateVideoSegmentationSchemeByAi', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateVideoSegmentationSchemeByAiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 资源所属实体对目标实体授予目标资源的相应权限。
 
         # @param request: Request instance for GrantResourceAuthorization.
@@ -657,7 +731,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 将云点播媒资文件导入到云剪素材库。
+        # 将云点播媒资文件导入到云剪媒体资源库。
 
         # @param request: Request instance for ImportMaterial.
         # @type request: :class:`Tencentcloud::cme::V20191029::ImportMaterialRequest`
@@ -681,7 +755,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 将云点播中的媒资添加到素材库中，供后续视频编辑使用。
+        # 将云点播中的媒资或者用户自有媒资文件添加到媒体库中，供后续视频编辑使用。
 
         # @param request: Request instance for ImportMediaToProject.
         # @type request: :class:`Tencentcloud::cme::V20191029::ImportMediaToProjectRequest`

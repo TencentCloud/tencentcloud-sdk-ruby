@@ -217,6 +217,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
+
+        # @param request: Request instance for DescribeCfsFileSystemClients.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeCfsFileSystemClientsRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeCfsFileSystemClientsResponse`
+        def DescribeCfsFileSystemClients(request)
+          body = send_request('DescribeCfsFileSystemClients', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCfsFileSystemClientsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeCfsFileSystems）用于查询文件系统
 
         # @param request: Request instance for DescribeCfsFileSystems.

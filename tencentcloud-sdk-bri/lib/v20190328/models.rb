@@ -21,65 +21,66 @@ module TencentCloud
       class BRIRequest < TencentCloud::Common::AbstractModel
         # @param Service: 业务名, 必须是以下六个业务名之一(bri_num,bri_dev,bri_ip_bri_apk,bri_url,bri_social)
         # @type Service: String
-        # @param CertMd5: Apk证书Md5  (业务名为bri_apk时必填，除非已填FileMd5)
-        # @type CertMd5: String
-        # @param FileMd5: Apk文件Md5 (业务名为bri_apk时必填，除非已填PackageName,CertMd5,FileSize)
-        # @type FileMd5: String
-        # @param FileSize: Apk文件大小  (业务名为bri_apk时必填，除非已填FileMd5)
-        # @type FileSize: Integer
-        # @param Imei: 安卓设备的Imei (业务名为bri_dev时必填)
-        # @type Imei: String
-        # @param Ip: 点分格式的IP (业务名为bri_ip时必填)
-        # @type Ip: String
-        # @param PackageName: Apk安装包名 (业务名为bri_apk时必填，除非已填FileMd5)
-        # @type PackageName: String
-        # @param PhoneNumber: 电话号码 (业务名为bri_num时必填)
-        # @type PhoneNumber: String
         # @param QQ: QQ号 (业务名为bri_social时必填, 除非已填Wechat)
         # @type QQ: String
         # @param QQTag: QQ号的可疑标签
         # @type QQTag: String
-        # @param Scene: 业务场景 (1-注册, 2-登录, 3-发消息)
-        # @type Scene: String
         # @param Url: 网址 (业务名为bri_url时必填)
         # @type Url: String
+        # @param CertMd5: Apk证书Md5  (业务名为bri_apk时必填，除非已填FileMd5)
+        # @type CertMd5: String
+        # @param PackageName: Apk安装包名 (业务名为bri_apk时必填，除非已填FileMd5)
+        # @type PackageName: String
+        # @param FileMd5: Apk文件Md5 (业务名为bri_apk时必填，除非已填PackageName,CertMd5,FileSize)
+        # @type FileMd5: String
+        # @param Scene: 业务场景 (1-注册, 2-登录, 3-发消息)
+        # @type Scene: String
+        # @param PhoneNumber: 电话号码 (业务名为bri_num时必填)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneNumber: String
+        # @param FileSize: Apk文件大小  (业务名为bri_apk时必填，除非已填FileMd5)
+        # @type FileSize: Integer
+        # @param Ip: 点分格式的IP (业务名为bri_ip时必填)
+        # @type Ip: String
+        # @param Imei: 安卓设备的Imei (业务名为bri_dev时必填)
+        # @type Imei: String
         # @param Wechat: 微信号 (业务名为bri_social时必填, 除非已填QQ)
         # @type Wechat: String
         # @param WechatTag: 微信号的可疑标签
         # @type WechatTag: String
 
-        attr_accessor :Service, :CertMd5, :FileMd5, :FileSize, :Imei, :Ip, :PackageName, :PhoneNumber, :QQ, :QQTag, :Scene, :Url, :Wechat, :WechatTag
+        attr_accessor :Service, :QQ, :QQTag, :Url, :CertMd5, :PackageName, :FileMd5, :Scene, :PhoneNumber, :FileSize, :Ip, :Imei, :Wechat, :WechatTag
         
-        def initialize(service=nil, certmd5=nil, filemd5=nil, filesize=nil, imei=nil, ip=nil, packagename=nil, phonenumber=nil, qq=nil, qqtag=nil, scene=nil, url=nil, wechat=nil, wechattag=nil)
+        def initialize(service=nil, qq=nil, qqtag=nil, url=nil, certmd5=nil, packagename=nil, filemd5=nil, scene=nil, phonenumber=nil, filesize=nil, ip=nil, imei=nil, wechat=nil, wechattag=nil)
           @Service = service
-          @CertMd5 = certmd5
-          @FileMd5 = filemd5
-          @FileSize = filesize
-          @Imei = imei
-          @Ip = ip
-          @PackageName = packagename
-          @PhoneNumber = phonenumber
           @QQ = qq
           @QQTag = qqtag
-          @Scene = scene
           @Url = url
+          @CertMd5 = certmd5
+          @PackageName = packagename
+          @FileMd5 = filemd5
+          @Scene = scene
+          @PhoneNumber = phonenumber
+          @FileSize = filesize
+          @Ip = ip
+          @Imei = imei
           @Wechat = wechat
           @WechatTag = wechattag
         end
 
         def deserialize(params)
           @Service = params['Service']
-          @CertMd5 = params['CertMd5']
-          @FileMd5 = params['FileMd5']
-          @FileSize = params['FileSize']
-          @Imei = params['Imei']
-          @Ip = params['Ip']
-          @PackageName = params['PackageName']
-          @PhoneNumber = params['PhoneNumber']
           @QQ = params['QQ']
           @QQTag = params['QQTag']
-          @Scene = params['Scene']
           @Url = params['Url']
+          @CertMd5 = params['CertMd5']
+          @PackageName = params['PackageName']
+          @FileMd5 = params['FileMd5']
+          @Scene = params['Scene']
+          @PhoneNumber = params['PhoneNumber']
+          @FileSize = params['FileSize']
+          @Ip = params['Ip']
+          @Imei = params['Imei']
           @Wechat = params['Wechat']
           @WechatTag = params['WechatTag']
         end

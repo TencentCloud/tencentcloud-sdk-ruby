@@ -165,6 +165,30 @@ module TencentCloud
         end
       end
 
+      # DescribeCaptchaTicketData 接口 返回数据类型集合
+      class CaptchaTicketDataRes < TencentCloud::Common::AbstractModel
+        # @param TicketAmountArray: 票据验证总量返回
+        # @type TicketAmountArray: Array
+        # @param TicketThroughArray: 票据验证通过量返回
+        # @type TicketThroughArray: Array
+        # @param TicketInterceptArray: 票据验证拦截量返回
+        # @type TicketInterceptArray: Array
+
+        attr_accessor :TicketAmountArray, :TicketThroughArray, :TicketInterceptArray
+        
+        def initialize(ticketamountarray=nil, ticketthrougharray=nil, ticketinterceptarray=nil)
+          @TicketAmountArray = ticketamountarray
+          @TicketThroughArray = ticketthrougharray
+          @TicketInterceptArray = ticketinterceptarray
+        end
+
+        def deserialize(params)
+          @TicketAmountArray = params['TicketAmountArray']
+          @TicketThroughArray = params['TicketThroughArray']
+          @TicketInterceptArray = params['TicketInterceptArray']
+        end
+      end
+
       # 用户注册的APPID和应用名称对象
       class CaptchaUserAllAppId < TencentCloud::Common::AbstractModel
         # @param CaptchaAppId: 验证码应用ID
@@ -173,19 +197,23 @@ module TencentCloud
         # @type AppName: String
         # @param TcAppId: 腾讯云APPID
         # @type TcAppId: Integer
+        # @param ChannelInfo: 渠道信息
+        # @type ChannelInfo: String
 
-        attr_accessor :CaptchaAppId, :AppName, :TcAppId
+        attr_accessor :CaptchaAppId, :AppName, :TcAppId, :ChannelInfo
         
-        def initialize(captchaappid=nil, appname=nil, tcappid=nil)
+        def initialize(captchaappid=nil, appname=nil, tcappid=nil, channelinfo=nil)
           @CaptchaAppId = captchaappid
           @AppName = appname
           @TcAppId = tcappid
+          @ChannelInfo = channelinfo
         end
 
         def deserialize(params)
           @CaptchaAppId = params['CaptchaAppId']
           @AppName = params['AppName']
           @TcAppId = params['TcAppId']
+          @ChannelInfo = params['ChannelInfo']
         end
       end
 
@@ -410,6 +438,385 @@ module TencentCloud
         end
       end
 
+      # DescribeCaptchaMiniData请求参数结构体
+      class DescribeCaptchaMiniDataRequest < TencentCloud::Common::AbstractModel
+        # @param CaptchaAppId: 验证码应用ID
+        # @type CaptchaAppId: Integer
+        # @param Start: 查询开始时间
+        # @type Start: Integer
+        # @param End: 查询结束时间
+        # @type End: Integer
+        # @param Type: 查询类型
+        # @type Type: Integer
+
+        attr_accessor :CaptchaAppId, :Start, :End, :Type
+        
+        def initialize(captchaappid=nil, start=nil, end=nil, type=nil)
+          @CaptchaAppId = captchaappid
+          @Start = start
+          @End = end
+          @Type = type
+        end
+
+        def deserialize(params)
+          @CaptchaAppId = params['CaptchaAppId']
+          @Start = params['Start']
+          @End = params['End']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeCaptchaMiniData返回参数结构体
+      class DescribeCaptchaMiniDataResponse < TencentCloud::Common::AbstractModel
+        # @param CaptchaCode: 返回码 0 成功 其它失败
+        # @type CaptchaCode: Integer
+        # @param Data: 数据数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param CaptchaMsg: 返回信息描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaptchaMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CaptchaCode, :Data, :CaptchaMsg, :RequestId
+        
+        def initialize(captchacode=nil, data=nil, captchamsg=nil, requestid=nil)
+          @CaptchaCode = captchacode
+          @Data = data
+          @CaptchaMsg = captchamsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CaptchaCode = params['CaptchaCode']
+          @Data = params['Data']
+          @CaptchaMsg = params['CaptchaMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCaptchaMiniDataSum请求参数结构体
+      class DescribeCaptchaMiniDataSumRequest < TencentCloud::Common::AbstractModel
+        # @param CaptchaAppId: 验证码应用ID
+        # @type CaptchaAppId: Integer
+        # @param Start: 查询开始时间
+        # @type Start: Integer
+        # @param End: 查询结束时间
+        # @type End: Integer
+
+        attr_accessor :CaptchaAppId, :Start, :End
+        
+        def initialize(captchaappid=nil, start=nil, end=nil)
+          @CaptchaAppId = captchaappid
+          @Start = start
+          @End = end
+        end
+
+        def deserialize(params)
+          @CaptchaAppId = params['CaptchaAppId']
+          @Start = params['Start']
+          @End = params['End']
+        end
+      end
+
+      # DescribeCaptchaMiniDataSum返回参数结构体
+      class DescribeCaptchaMiniDataSumResponse < TencentCloud::Common::AbstractModel
+        # @param GetSum: 请求总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GetSum: Integer
+        # @param VfySuccSum: 请求验证成功量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VfySuccSum: Integer
+        # @param VfySum: 请求验证量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VfySum: Integer
+        # @param AttackSum: 拦截攻击量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackSum: Integer
+        # @param CaptchaMsg: 返回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaptchaMsg: String
+        # @param CaptchaCode: 成功返回0  其它失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaptchaCode: Integer
+        # @param CheckTicketSum: 票据校验总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckTicketSum: Integer
+        # @param TicketThroughputSum: 票据验证通过量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TicketThroughputSum: Integer
+        # @param TicketInterceptSum: 票据验证拦截量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TicketInterceptSum: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GetSum, :VfySuccSum, :VfySum, :AttackSum, :CaptchaMsg, :CaptchaCode, :CheckTicketSum, :TicketThroughputSum, :TicketInterceptSum, :RequestId
+        
+        def initialize(getsum=nil, vfysuccsum=nil, vfysum=nil, attacksum=nil, captchamsg=nil, captchacode=nil, checkticketsum=nil, ticketthroughputsum=nil, ticketinterceptsum=nil, requestid=nil)
+          @GetSum = getsum
+          @VfySuccSum = vfysuccsum
+          @VfySum = vfysum
+          @AttackSum = attacksum
+          @CaptchaMsg = captchamsg
+          @CaptchaCode = captchacode
+          @CheckTicketSum = checkticketsum
+          @TicketThroughputSum = ticketthroughputsum
+          @TicketInterceptSum = ticketinterceptsum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GetSum = params['GetSum']
+          @VfySuccSum = params['VfySuccSum']
+          @VfySum = params['VfySum']
+          @AttackSum = params['AttackSum']
+          @CaptchaMsg = params['CaptchaMsg']
+          @CaptchaCode = params['CaptchaCode']
+          @CheckTicketSum = params['CheckTicketSum']
+          @TicketThroughputSum = params['TicketThroughputSum']
+          @TicketInterceptSum = params['TicketInterceptSum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCaptchaMiniOperData请求参数结构体
+      class DescribeCaptchaMiniOperDataRequest < TencentCloud::Common::AbstractModel
+        # @param CaptchaAppId: 验证码应用ID
+        # @type CaptchaAppId: Integer
+        # @param Start: 查询开始时间
+        # @type Start: Integer
+        # @param Type: 查询类型
+        # @type Type: Integer
+
+        attr_accessor :CaptchaAppId, :Start, :Type
+        
+        def initialize(captchaappid=nil, start=nil, type=nil)
+          @CaptchaAppId = captchaappid
+          @Start = start
+          @Type = type
+        end
+
+        def deserialize(params)
+          @CaptchaAppId = params['CaptchaAppId']
+          @Start = params['Start']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeCaptchaMiniOperData返回参数结构体
+      class DescribeCaptchaMiniOperDataResponse < TencentCloud::Common::AbstractModel
+        # @param CaptchaCode: 成功返回 0 其它失败
+        # @type CaptchaCode: Integer
+        # @param CaptchaMsg: 返回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaptchaMsg: String
+        # @param Data: 用户操作数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaOperDataRes`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CaptchaCode, :CaptchaMsg, :Data, :RequestId
+        
+        def initialize(captchacode=nil, captchamsg=nil, data=nil, requestid=nil)
+          @CaptchaCode = captchacode
+          @CaptchaMsg = captchamsg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CaptchaCode = params['CaptchaCode']
+          @CaptchaMsg = params['CaptchaMsg']
+          unless params['Data'].nil?
+            @Data = CaptchaOperDataRes.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCaptchaMiniResult请求参数结构体
+      class DescribeCaptchaMiniResultRequest < TencentCloud::Common::AbstractModel
+        # @param CaptchaType: 固定填值：9（滑块验证码）
+        # @type CaptchaType: Integer
+        # @param Ticket: 验证码返回给用户的票据
+        # @type Ticket: String
+        # @param UserIp: 用户操作来源的外网 IP
+        # @type UserIp: String
+        # @param CaptchaAppId: 验证码应用APPID
+        # @type CaptchaAppId: Integer
+        # @param AppSecretKey: 用于服务器端校验验证码票据的验证密钥，请妥善保密，请勿泄露给第三方
+        # @type AppSecretKey: String
+        # @param BusinessId: 业务 ID，网站或应用在多个业务中使用此服务，通过此 ID 区分统计数据
+        # @type BusinessId: Integer
+        # @param SceneId: 场景 ID，网站或应用的业务下有多个场景使用此服务，通过此 ID 区分统计数据
+        # @type SceneId: Integer
+        # @param MacAddress: mac 地址或设备唯一标识
+        # @type MacAddress: String
+        # @param Imei: 手机设备号
+        # @type Imei: String
+
+        attr_accessor :CaptchaType, :Ticket, :UserIp, :CaptchaAppId, :AppSecretKey, :BusinessId, :SceneId, :MacAddress, :Imei
+        
+        def initialize(captchatype=nil, ticket=nil, userip=nil, captchaappid=nil, appsecretkey=nil, businessid=nil, sceneid=nil, macaddress=nil, imei=nil)
+          @CaptchaType = captchatype
+          @Ticket = ticket
+          @UserIp = userip
+          @CaptchaAppId = captchaappid
+          @AppSecretKey = appsecretkey
+          @BusinessId = businessid
+          @SceneId = sceneid
+          @MacAddress = macaddress
+          @Imei = imei
+        end
+
+        def deserialize(params)
+          @CaptchaType = params['CaptchaType']
+          @Ticket = params['Ticket']
+          @UserIp = params['UserIp']
+          @CaptchaAppId = params['CaptchaAppId']
+          @AppSecretKey = params['AppSecretKey']
+          @BusinessId = params['BusinessId']
+          @SceneId = params['SceneId']
+          @MacAddress = params['MacAddress']
+          @Imei = params['Imei']
+        end
+      end
+
+      # DescribeCaptchaMiniResult返回参数结构体
+      class DescribeCaptchaMiniResultResponse < TencentCloud::Common::AbstractModel
+        # @param CaptchaCode: 1       ticket verification succeeded     票据验证成功
+        # 7       CaptchaAppId does not match     票据与验证码应用APPID不匹配
+        # 8       ticket expired     票据超时
+        # 10     ticket format error     票据格式不正确
+        # 15     ticket decryption failed     票据解密失败
+        # 16     CaptchaAppId wrong format     检查验证码应用APPID错误
+        # 21     ticket error     票据验证错误
+        # 26     system internal error     系统内部错误
+        # 100   param err     参数校验错误
+        # @type CaptchaCode: Integer
+        # @param CaptchaMsg: 状态描述及验证错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaptchaMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CaptchaCode, :CaptchaMsg, :RequestId
+        
+        def initialize(captchacode=nil, captchamsg=nil, requestid=nil)
+          @CaptchaCode = captchacode
+          @CaptchaMsg = captchamsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CaptchaCode = params['CaptchaCode']
+          @CaptchaMsg = params['CaptchaMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCaptchaMiniRiskResult请求参数结构体
+      class DescribeCaptchaMiniRiskResultRequest < TencentCloud::Common::AbstractModel
+        # @param CaptchaType: 固定填值：9（滑块验证码）
+        # @type CaptchaType: Integer
+        # @param Ticket: 验证码返回给用户的票据
+        # @type Ticket: String
+        # @param UserIp: 用户操作来源的外网 IP
+        # @type UserIp: String
+        # @param CaptchaAppId: 验证码应用APPID
+        # @type CaptchaAppId: Integer
+        # @param AppSecretKey: 用于服务器端校验验证码票据的验证密钥，请妥善保密，请勿泄露给第三方
+        # @type AppSecretKey: String
+        # @param BusinessId: 业务 ID，网站或应用在多个业务中使用此服务，通过此 ID 区分统计数据
+        # @type BusinessId: Integer
+        # @param SceneId: 场景 ID，网站或应用的业务下有多个场景使用此服务，通过此 ID 区分统计数据
+        # @type SceneId: Integer
+        # @param MacAddress: mac 地址或设备唯一标识
+        # @type MacAddress: String
+        # @param Imei: 手机设备号
+        # @type Imei: String
+        # @param SceneCode: 验证场景：1 活动防刷场景，2 登录保护场景，3 注册保护场景。根据需求选择场景参数。
+        # @type SceneCode: Integer
+        # @param WeChatOpenId: 用户操作来源的微信开放账号
+        # @type WeChatOpenId: String
+
+        attr_accessor :CaptchaType, :Ticket, :UserIp, :CaptchaAppId, :AppSecretKey, :BusinessId, :SceneId, :MacAddress, :Imei, :SceneCode, :WeChatOpenId
+        
+        def initialize(captchatype=nil, ticket=nil, userip=nil, captchaappid=nil, appsecretkey=nil, businessid=nil, sceneid=nil, macaddress=nil, imei=nil, scenecode=nil, wechatopenid=nil)
+          @CaptchaType = captchatype
+          @Ticket = ticket
+          @UserIp = userip
+          @CaptchaAppId = captchaappid
+          @AppSecretKey = appsecretkey
+          @BusinessId = businessid
+          @SceneId = sceneid
+          @MacAddress = macaddress
+          @Imei = imei
+          @SceneCode = scenecode
+          @WeChatOpenId = wechatopenid
+        end
+
+        def deserialize(params)
+          @CaptchaType = params['CaptchaType']
+          @Ticket = params['Ticket']
+          @UserIp = params['UserIp']
+          @CaptchaAppId = params['CaptchaAppId']
+          @AppSecretKey = params['AppSecretKey']
+          @BusinessId = params['BusinessId']
+          @SceneId = params['SceneId']
+          @MacAddress = params['MacAddress']
+          @Imei = params['Imei']
+          @SceneCode = params['SceneCode']
+          @WeChatOpenId = params['WeChatOpenId']
+        end
+      end
+
+      # DescribeCaptchaMiniRiskResult返回参数结构体
+      class DescribeCaptchaMiniRiskResultResponse < TencentCloud::Common::AbstractModel
+        # @param CaptchaCode: 1 ticket verification succeeded 票据验证成功
+        # 7 CaptchaAppId does not match 票据与验证码应用APPID不匹配
+        # 8 ticket expired 票据超时
+        # 10 ticket format error 票据格式不正确
+        # 15 ticket decryption failed 票据解密失败
+        # 16 CaptchaAppId wrong format 检查验证码应用APPID错误
+        # 21 ticket error 票据验证错误
+        # 25 bad visitor 策略拦截
+        # 26 system internal error 系统内部错误
+        # 100 param err 参数校验错误
+        # @type CaptchaCode: Integer
+        # @param CaptchaMsg: 状态描述及验证错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaptchaMsg: String
+        # @param ManageMarketingRiskValue: 拦截策略返回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManageMarketingRiskValue: :class:`Tencentcloud::Captcha.v20190722.models.OutputManageMarketingRiskValue`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CaptchaCode, :CaptchaMsg, :ManageMarketingRiskValue, :RequestId
+        
+        def initialize(captchacode=nil, captchamsg=nil, managemarketingriskvalue=nil, requestid=nil)
+          @CaptchaCode = captchacode
+          @CaptchaMsg = captchamsg
+          @ManageMarketingRiskValue = managemarketingriskvalue
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CaptchaCode = params['CaptchaCode']
+          @CaptchaMsg = params['CaptchaMsg']
+          unless params['ManageMarketingRiskValue'].nil?
+            @ManageMarketingRiskValue = OutputManageMarketingRiskValue.new.deserialize(params[ManageMarketingRiskValue])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCaptchaOperData请求参数结构体
       class DescribeCaptchaOperDataRequest < TencentCloud::Common::AbstractModel
         # @param CaptchaAppId: 验证码应用ID
@@ -530,7 +937,7 @@ module TencentCloud
         # 8	verify timeout	验证码签名超时
         # 9	Sequnce repeat	验证码签名重放
         # 10	Sequnce invalid	验证码签名序列
-        # 11	Cookie invalid	验证码cooking信息不合法
+        # 11	Cookie invalid	验证码cookie信息不合法
         # 12	sig len error	签名长度错误
         # 13	verify ip no match	ip不匹配
         # 15	decrypt fail	验证码签名解密失败
@@ -578,6 +985,58 @@ module TencentCloud
         end
       end
 
+      # DescribeCaptchaTicketData请求参数结构体
+      class DescribeCaptchaTicketDataRequest < TencentCloud::Common::AbstractModel
+        # @param CaptchaAppId: 验证码应用ID
+        # @type CaptchaAppId: Integer
+        # @param Start: 查询开始时间
+        # @type Start: Integer
+
+        attr_accessor :CaptchaAppId, :Start
+        
+        def initialize(captchaappid=nil, start=nil)
+          @CaptchaAppId = captchaappid
+          @Start = start
+        end
+
+        def deserialize(params)
+          @CaptchaAppId = params['CaptchaAppId']
+          @Start = params['Start']
+        end
+      end
+
+      # DescribeCaptchaTicketData返回参数结构体
+      class DescribeCaptchaTicketDataResponse < TencentCloud::Common::AbstractModel
+        # @param CaptchaCode: 成功返回 0 其它失败
+        # @type CaptchaCode: Integer
+        # @param CaptchaMsg: 返回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaptchaMsg: String
+        # @param Data: 验证码票据信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaTicketDataRes`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CaptchaCode, :CaptchaMsg, :Data, :RequestId
+        
+        def initialize(captchacode=nil, captchamsg=nil, data=nil, requestid=nil)
+          @CaptchaCode = captchacode
+          @CaptchaMsg = captchamsg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CaptchaCode = params['CaptchaCode']
+          @CaptchaMsg = params['CaptchaMsg']
+          unless params['Data'].nil?
+            @Data = CaptchaTicketDataRes.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCaptchaUserAllAppId请求参数结构体
       class DescribeCaptchaUserAllAppIdRequest < TencentCloud::Common::AbstractModel
 
@@ -616,6 +1075,139 @@ module TencentCloud
           @CaptchaCode = params['CaptchaCode']
           @CaptchaMsg = params['CaptchaMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 拦截策略返回信息
+      class OutputManageMarketingRiskValue < TencentCloud::Common::AbstractModel
+        # @param UserId: 账号 ID。对应输入参数： AccountType 是 1 时，对应 QQ 的 OpenID。
+        # AccountType 是 2 时，对应微信的 OpenID/UnionID。
+        # AccountType 是 4 时，对应手机号。
+        # AccountType 是 8 时，对应 imei、idfa、imeiMD5 或者 idfaMD5。
+        # AccountType 是 0 时，对应账号信息。
+        # AccountType 是 10004 时，对应手机号的 MD5。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param PostTime: 操作时间戳，单位秒（对应输入参数）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostTime: Integer
+        # @param AssociateAccount: 对应输入参数，AccountType 是 QQ 或微信开放账号时，用于标识 QQ 或微信用户登录 后关联业务自身的账号 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociateAccount: String
+        # @param UserIp: 业务详情。 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIp: String
+        # @param RiskLevel: 风险值 pass : 无恶意
+        # review：需要人工审核
+        # reject：拒绝，高风险恶意
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: String
+        # @param RiskType: 风险类型，请查看下面详细说明 注意：此字段可能返回 null，表示取不到有效值。
+        # 账号风险
+        #         账号信用低	1	账号近期存在因恶意被处罚历史，网络低活跃，被举报等因素
+        # 	疑似 低活跃账号	11	账号活跃度与正常用户有差异
+        # 	垃圾账号	2	疑似批量注册小号，近期存在严重违规或大量举报
+        # 	疑似小号	21	账号有疑似线上养号，小号等行为
+        # 	疑似 违规账号	22	账号曾有违规行为、曾被举报过、曾因违规被处罚过等
+        # 	无效账号	3	送检账号参数无法成功解析，请检查微信 openid 是否有
+        # 	黑名单	4	该账号在业务侧有过拉黑记录
+        # 	白名单 	5	业务自行有添加过白名单记录
+        # 行为风险
+        #         批量操作	101	存在 ip/设备/环境等因素的聚集性异常
+        # 	疑似 IP 属性聚集 	1011	出现 IP 聚集
+        # 	疑似 设备属性聚集 	1012	出现设备聚集
+        # 	自动机 	103	疑似自动机批量请求
+        # 	微信登录态无效 	104	检查 wxtoken 参数，是否已经失效
+        # 环境风险
+        #         环境异常 	201	操作 ip/设备/环境存在异常。当前 ip 为非常用 ip 或恶意 ip 段
+        # 	疑似 非常用IP请求 	2011	当前请求 IP 非该账号常用 IP
+        # 	疑似 IP 异常 	2012	使用 idc 机房 ip 或 使用代理 ip 或 使用恶意 ip
+        # 	非公网有效 ip 	205	传进来的 IP 地址为内网 ip 地址或者 ip 保留地
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskType: Array
+
+        attr_accessor :UserId, :PostTime, :AssociateAccount, :UserIp, :RiskLevel, :RiskType
+        
+        def initialize(userid=nil, posttime=nil, associateaccount=nil, userip=nil, risklevel=nil, risktype=nil)
+          @UserId = userid
+          @PostTime = posttime
+          @AssociateAccount = associateaccount
+          @UserIp = userip
+          @RiskLevel = risklevel
+          @RiskType = risktype
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @PostTime = params['PostTime']
+          @AssociateAccount = params['AssociateAccount']
+          @UserIp = params['UserIp']
+          @RiskLevel = params['RiskLevel']
+          @RiskType = params['RiskType']
+        end
+      end
+
+      # DescribeCaptchaTicketData 返回的数据结构
+      class TicketAmountUnit < TencentCloud::Common::AbstractModel
+        # @param DateKey: 时间
+        # @type DateKey: String
+        # @param Amount: 票据验证总量
+        # @type Amount: Integer
+
+        attr_accessor :DateKey, :Amount
+        
+        def initialize(datekey=nil, amount=nil)
+          @DateKey = datekey
+          @Amount = amount
+        end
+
+        def deserialize(params)
+          @DateKey = params['DateKey']
+          @Amount = params['Amount']
+        end
+      end
+
+      # DescribeCaptchaTicketData 返回的数据结构
+      class TicketInterceptUnit < TencentCloud::Common::AbstractModel
+        # @param DateKey: 时间
+        # @type DateKey: String
+        # @param Intercept: 票据验证拦截量
+        # @type Intercept: Integer
+
+        attr_accessor :DateKey, :Intercept
+        
+        def initialize(datekey=nil, intercept=nil)
+          @DateKey = datekey
+          @Intercept = intercept
+        end
+
+        def deserialize(params)
+          @DateKey = params['DateKey']
+          @Intercept = params['Intercept']
+        end
+      end
+
+      # DescribeCaptchaTicketData 返回的数据结构
+      class TicketThroughUnit < TencentCloud::Common::AbstractModel
+        # @param DateKey: 时间
+        # @type DateKey: String
+        # @param Through: 票据验证的通过量
+        # @type Through: Integer
+
+        attr_accessor :DateKey, :Through
+        
+        def initialize(datekey=nil, through=nil)
+          @DateKey = datekey
+          @Through = through
+        end
+
+        def deserialize(params)
+          @DateKey = params['DateKey']
+          @Through = params['Through']
         end
       end
 

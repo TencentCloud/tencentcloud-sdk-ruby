@@ -25,6 +25,78 @@ module TencentCloud
         @@sdk_version = 'AME_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 获取授权项目信息列表
+
+        # @param request: Request instance for DescribeAuthInfo.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeAuthInfoRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeAuthInfoResponse`
+        def DescribeAuthInfo(request)
+          body = send_request('DescribeAuthInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuthInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取云音乐播放信息接口
+
+        # @param request: Request instance for DescribeCloudMusic.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeCloudMusicRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeCloudMusicResponse`
+        def DescribeCloudMusic(request)
+          body = send_request('DescribeCloudMusic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudMusicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取授权项目下已购云音乐列表
+
+        # @param request: Request instance for DescribeCloudMusicPurchased.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeCloudMusicPurchasedRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeCloudMusicPurchasedResponse`
+        def DescribeCloudMusicPurchased(request)
+          body = send_request('DescribeCloudMusicPurchased', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudMusicPurchasedResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据歌曲ID查询歌曲信息
 
         # @param request: Request instance for DescribeItemById.
@@ -49,7 +121,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 分类内容下歌曲列表获取，根据CategoryID或CategoryCode
+        # 该服务后续会停用，不再建议使用
 
         # @param request: Request instance for DescribeItems.
         # @type request: :class:`Tencentcloud::ame::V20190916::DescribeItemsRequest`
@@ -97,7 +169,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 根据接口的模式及歌曲ID来取得对应权限的歌曲播放地址等信息。
+        # 获取曲库包歌曲播放信息接口
 
         # @param request: Request instance for DescribeMusic.
         # @type request: :class:`Tencentcloud::ame::V20190916::DescribeMusicRequest`
@@ -121,7 +193,55 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取素材库列表时使用
+        # 获取曲库包下已核销歌曲列表接口
+
+        # @param request: Request instance for DescribePackageItems.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribePackageItemsRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribePackageItemsResponse`
+        def DescribePackageItems(request)
+          body = send_request('DescribePackageItems', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePackageItemsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取已购曲库包列表接口
+
+        # @param request: Request instance for DescribePackages.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribePackagesRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribePackagesResponse`
+        def DescribePackages(request)
+          body = send_request('DescribePackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePackagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该服务后续会停用，不再建议使用
 
         # @param request: Request instance for DescribeStations.
         # @type request: :class:`Tencentcloud::ame::V20190916::DescribeStationsRequest`
@@ -145,7 +265,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 客户上报用户数据功能，为了更好的为用户提供优质服务
+        # 客户上报用户数据功能，为了更好地为用户提供优质服务
 
         # @param request: Request instance for ReportData.
         # @type request: :class:`Tencentcloud::ame::V20190916::ReportDataRequest`

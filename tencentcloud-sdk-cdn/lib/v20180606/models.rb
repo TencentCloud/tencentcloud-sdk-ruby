@@ -147,10 +147,16 @@ module TencentCloud
         # @type Area: String
         # @param OriginPullTimeout: 回源超时配置
         # @type OriginPullTimeout: :class:`Tencentcloud::Cdn.v20180606.models.OriginPullTimeout`
+        # @param Tag: 标签配置
+        # @type Tag: Array
+        # @param Ipv6Access: Ipv6 访问配置
+        # @type Ipv6Access: :class:`Tencentcloud::Cdn.v20180606.models.Ipv6Access`
+        # @param OfflineCache: 离线缓存
+        # @type OfflineCache: :class:`Tencentcloud::Cdn.v20180606.models.OfflineCache`
 
-        attr_accessor :Domain, :ServiceType, :Origin, :ProjectId, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :SpecificConfig, :Area, :OriginPullTimeout
+        attr_accessor :Domain, :ServiceType, :Origin, :ProjectId, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :SpecificConfig, :Area, :OriginPullTimeout, :Tag, :Ipv6Access, :OfflineCache
         
-        def initialize(domain=nil, servicetype=nil, origin=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, specificconfig=nil, area=nil, originpulltimeout=nil)
+        def initialize(domain=nil, servicetype=nil, origin=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, specificconfig=nil, area=nil, originpulltimeout=nil, tag=nil, ipv6access=nil, offlinecache=nil)
           @Domain = domain
           @ServiceType = servicetype
           @Origin = origin
@@ -181,6 +187,9 @@ module TencentCloud
           @SpecificConfig = specificconfig
           @Area = area
           @OriginPullTimeout = originpulltimeout
+          @Tag = tag
+          @Ipv6Access = ipv6access
+          @OfflineCache = offlinecache
         end
 
         def deserialize(params)
@@ -266,6 +275,13 @@ module TencentCloud
           unless params['OriginPullTimeout'].nil?
             @OriginPullTimeout = OriginPullTimeout.new.deserialize(params[OriginPullTimeout])
           end
+          @Tag = params['Tag']
+          unless params['Ipv6Access'].nil?
+            @Ipv6Access = Ipv6Access.new.deserialize(params[Ipv6Access])
+          end
+          unless params['OfflineCache'].nil?
+            @OfflineCache = OfflineCache.new.deserialize(params[OfflineCache])
+          end
         end
       end
 
@@ -320,6 +336,331 @@ module TencentCloud
           @CacheType = params['CacheType']
           @CacheContents = params['CacheContents']
           @CacheTime = params['CacheTime']
+        end
+      end
+
+      # 高级配置集合
+      class AdvanceConfig < TencentCloud::Common::AbstractModel
+        # @param Name: 高级配置名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 是否支持高级配置，
+        # on：支持
+        # off：不支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # 时间戳防盗链高级版配置，白名单功能
+      class AdvancedAuthentication < TencentCloud::Common::AbstractModel
+        # @param Switch: 防盗链配置开关，on或off，开启时必须且只能配置一种模式，其余模式为null。
+        # @type Switch: String
+        # @param TypeA: 时间戳防盗链高级版模式A配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeA: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedAuthenticationTypeA`
+        # @param TypeB: 时间戳防盗链高级版模式B配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeB: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedAuthenticationTypeB`
+        # @param TypeC: 时间戳防盗链高级版模式C配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeC: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedAuthenticationTypeC`
+        # @param TypeD: 时间戳防盗链高级版模式D配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeD: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedAuthenticationTypeD`
+        # @param TypeE: 时间戳防盗链高级版模式E配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeE: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedAuthenticationTypeE`
+        # @param TypeF: 时间戳防盗链高级版模式F配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeF: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedAuthenticationTypeF`
+
+        attr_accessor :Switch, :TypeA, :TypeB, :TypeC, :TypeD, :TypeE, :TypeF
+        
+        def initialize(switch=nil, typea=nil, typeb=nil, typec=nil, typed=nil, typee=nil, typef=nil)
+          @Switch = switch
+          @TypeA = typea
+          @TypeB = typeb
+          @TypeC = typec
+          @TypeD = typed
+          @TypeE = typee
+          @TypeF = typef
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['TypeA'].nil?
+            @TypeA = AdvancedAuthenticationTypeA.new.deserialize(params[TypeA])
+          end
+          unless params['TypeB'].nil?
+            @TypeB = AdvancedAuthenticationTypeB.new.deserialize(params[TypeB])
+          end
+          unless params['TypeC'].nil?
+            @TypeC = AdvancedAuthenticationTypeC.new.deserialize(params[TypeC])
+          end
+          unless params['TypeD'].nil?
+            @TypeD = AdvancedAuthenticationTypeD.new.deserialize(params[TypeD])
+          end
+          unless params['TypeE'].nil?
+            @TypeE = AdvancedAuthenticationTypeE.new.deserialize(params[TypeE])
+          end
+          unless params['TypeF'].nil?
+            @TypeF = AdvancedAuthenticationTypeF.new.deserialize(params[TypeF])
+          end
+        end
+      end
+
+      # 时间戳防盗链高级版模式A配置。
+      class AdvancedAuthenticationTypeA < TencentCloud::Common::AbstractModel
+        # @param SecretKey: 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
+        # @type SecretKey: String
+        # @param SignParam: uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # @type SignParam: String
+        # @param TimeParam: uri串中时间的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # @type TimeParam: String
+        # @param ExpireTime: 过期时间，单位秒。
+        # @type ExpireTime: Integer
+        # @param ExpireTimeRequired: 是否必须提供过期时间参数。
+        # @type ExpireTimeRequired: Boolean
+        # @param Format: Url组成格式，如：${private_key}${schema}${host}${full_uri。
+        # @type Format: String
+        # @param TimeFormat: 时间格式，dec，hex分别表示十进制，十六进制。
+        # @type TimeFormat: String
+        # @param FailCode: 鉴权失败时返回的状态码。
+        # @type FailCode: Integer
+        # @param ExpireCode: 链接过期时返回的状态码。
+        # @type ExpireCode: Integer
+        # @param RulePaths: 需要鉴权的url路径列表。
+        # @type RulePaths: Array
+        # @param Transformation: 保留字段。
+        # @type Transformation: Integer
+
+        attr_accessor :SecretKey, :SignParam, :TimeParam, :ExpireTime, :ExpireTimeRequired, :Format, :TimeFormat, :FailCode, :ExpireCode, :RulePaths, :Transformation
+        
+        def initialize(secretkey=nil, signparam=nil, timeparam=nil, expiretime=nil, expiretimerequired=nil, format=nil, timeformat=nil, failcode=nil, expirecode=nil, rulepaths=nil, transformation=nil)
+          @SecretKey = secretkey
+          @SignParam = signparam
+          @TimeParam = timeparam
+          @ExpireTime = expiretime
+          @ExpireTimeRequired = expiretimerequired
+          @Format = format
+          @TimeFormat = timeformat
+          @FailCode = failcode
+          @ExpireCode = expirecode
+          @RulePaths = rulepaths
+          @Transformation = transformation
+        end
+
+        def deserialize(params)
+          @SecretKey = params['SecretKey']
+          @SignParam = params['SignParam']
+          @TimeParam = params['TimeParam']
+          @ExpireTime = params['ExpireTime']
+          @ExpireTimeRequired = params['ExpireTimeRequired']
+          @Format = params['Format']
+          @TimeFormat = params['TimeFormat']
+          @FailCode = params['FailCode']
+          @ExpireCode = params['ExpireCode']
+          @RulePaths = params['RulePaths']
+          @Transformation = params['Transformation']
+        end
+      end
+
+      # 时间戳防盗链高级版模式B配置。
+      class AdvancedAuthenticationTypeB < TencentCloud::Common::AbstractModel
+        # @param KeyAlpha: alpha键名。
+        # @type KeyAlpha: String
+        # @param KeyBeta: beta键名。
+        # @type KeyBeta: String
+        # @param KeyGamma: gamma键名。
+        # @type KeyGamma: String
+        # @param SignParam: uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # @type SignParam: String
+        # @param TimeParam: uri串中时间的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # @type TimeParam: String
+        # @param ExpireTime: 过期时间，单位秒。
+        # @type ExpireTime: Integer
+        # @param TimeFormat: 时间格式，dec，hex分别表示十进制，十六进制。
+        # @type TimeFormat: String
+        # @param FailCode: 鉴权失败时返回的状态码。
+        # @type FailCode: Integer
+        # @param ExpireCode: 链接过期时返回的状态码。
+        # @type ExpireCode: Integer
+        # @param RulePaths: 需要鉴权的url路径列表。
+        # @type RulePaths: Array
+
+        attr_accessor :KeyAlpha, :KeyBeta, :KeyGamma, :SignParam, :TimeParam, :ExpireTime, :TimeFormat, :FailCode, :ExpireCode, :RulePaths
+        
+        def initialize(keyalpha=nil, keybeta=nil, keygamma=nil, signparam=nil, timeparam=nil, expiretime=nil, timeformat=nil, failcode=nil, expirecode=nil, rulepaths=nil)
+          @KeyAlpha = keyalpha
+          @KeyBeta = keybeta
+          @KeyGamma = keygamma
+          @SignParam = signparam
+          @TimeParam = timeparam
+          @ExpireTime = expiretime
+          @TimeFormat = timeformat
+          @FailCode = failcode
+          @ExpireCode = expirecode
+          @RulePaths = rulepaths
+        end
+
+        def deserialize(params)
+          @KeyAlpha = params['KeyAlpha']
+          @KeyBeta = params['KeyBeta']
+          @KeyGamma = params['KeyGamma']
+          @SignParam = params['SignParam']
+          @TimeParam = params['TimeParam']
+          @ExpireTime = params['ExpireTime']
+          @TimeFormat = params['TimeFormat']
+          @FailCode = params['FailCode']
+          @ExpireCode = params['ExpireCode']
+          @RulePaths = params['RulePaths']
+        end
+      end
+
+      # 时间戳防盗链高级版模式C配置。
+      class AdvancedAuthenticationTypeC < TencentCloud::Common::AbstractModel
+        # @param AccessKey: 访问密钥。
+        # @type AccessKey: String
+        # @param SecretKey: 鉴权密钥。
+        # @type SecretKey: String
+
+        attr_accessor :AccessKey, :SecretKey
+        
+        def initialize(accesskey=nil, secretkey=nil)
+          @AccessKey = accesskey
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
+        end
+      end
+
+      # 时间戳防盗链高级版模式D配置。
+      class AdvancedAuthenticationTypeD < TencentCloud::Common::AbstractModel
+        # @param SecretKey: 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
+        # @type SecretKey: String
+        # @param BackupSecretKey: 备份密钥，当使用SecretKey鉴权失败时会使用该密钥重新鉴权。
+        # @type BackupSecretKey: String
+        # @param SignParam: uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # @type SignParam: String
+        # @param TimeParam: uri串中时间的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # @type TimeParam: String
+        # @param ExpireTime: 过期时间，单位秒。
+        # @type ExpireTime: Integer
+        # @param TimeFormat: 时间格式，dec，hex分别表示十进制，十六进制。
+        # @type TimeFormat: String
+
+        attr_accessor :SecretKey, :BackupSecretKey, :SignParam, :TimeParam, :ExpireTime, :TimeFormat
+        
+        def initialize(secretkey=nil, backupsecretkey=nil, signparam=nil, timeparam=nil, expiretime=nil, timeformat=nil)
+          @SecretKey = secretkey
+          @BackupSecretKey = backupsecretkey
+          @SignParam = signparam
+          @TimeParam = timeparam
+          @ExpireTime = expiretime
+          @TimeFormat = timeformat
+        end
+
+        def deserialize(params)
+          @SecretKey = params['SecretKey']
+          @BackupSecretKey = params['BackupSecretKey']
+          @SignParam = params['SignParam']
+          @TimeParam = params['TimeParam']
+          @ExpireTime = params['ExpireTime']
+          @TimeFormat = params['TimeFormat']
+        end
+      end
+
+      # 时间戳防盗链高级版模式E配置。
+      class AdvancedAuthenticationTypeE < TencentCloud::Common::AbstractModel
+        # @param SecretKey: 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param SignParam: uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignParam: String
+        # @param AclSignParam: uri串中Acl签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclSignParam: String
+        # @param StartTimeParam: uri串中开始时间字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTimeParam: String
+        # @param ExpireTimeParam: uri串中过期时间字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTimeParam: String
+        # @param TimeFormat: 时间格式，dec
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeFormat: String
+
+        attr_accessor :SecretKey, :SignParam, :AclSignParam, :StartTimeParam, :ExpireTimeParam, :TimeFormat
+        
+        def initialize(secretkey=nil, signparam=nil, aclsignparam=nil, starttimeparam=nil, expiretimeparam=nil, timeformat=nil)
+          @SecretKey = secretkey
+          @SignParam = signparam
+          @AclSignParam = aclsignparam
+          @StartTimeParam = starttimeparam
+          @ExpireTimeParam = expiretimeparam
+          @TimeFormat = timeformat
+        end
+
+        def deserialize(params)
+          @SecretKey = params['SecretKey']
+          @SignParam = params['SignParam']
+          @AclSignParam = params['AclSignParam']
+          @StartTimeParam = params['StartTimeParam']
+          @ExpireTimeParam = params['ExpireTimeParam']
+          @TimeFormat = params['TimeFormat']
+        end
+      end
+
+      # 时间戳防盗链高级鉴权模式TypeF配置
+      class AdvancedAuthenticationTypeF < TencentCloud::Common::AbstractModel
+        # @param SignParam: uri串中签名的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignParam: String
+        # @param TimeParam: uri串中时间的字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeParam: String
+        # @param TransactionParam: uri串中Transaction字段名，字母，数字或下划线构成，同时必须以字母开头。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransactionParam: String
+        # @param SecretKey: 用于计算签名的主密钥，只允许字母和数字，长度6-32字节。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param BackupSecretKey: 用于计算签名的备选密钥，主密钥校验失败后再次尝试备选密钥，只允许字母和数字，长度6-32字节。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSecretKey: String
+
+        attr_accessor :SignParam, :TimeParam, :TransactionParam, :SecretKey, :BackupSecretKey
+        
+        def initialize(signparam=nil, timeparam=nil, transactionparam=nil, secretkey=nil, backupsecretkey=nil)
+          @SignParam = signparam
+          @TimeParam = timeparam
+          @TransactionParam = transactionparam
+          @SecretKey = secretkey
+          @BackupSecretKey = backupsecretkey
+        end
+
+        def deserialize(params)
+          @SignParam = params['SignParam']
+          @TimeParam = params['TimeParam']
+          @TransactionParam = params['TransactionParam']
+          @SecretKey = params['SecretKey']
+          @BackupSecretKey = params['BackupSecretKey']
         end
       end
 
@@ -499,14 +840,20 @@ module TencentCloud
         # @param FilterType: whitelist：白名单，表示对除了 FileExtensions 列表之外的所有类型进行鉴权
         # blacklist：黑名单，表示仅对 FileExtensions 中的类型进行鉴权
         # @type FilterType: String
+        # @param TimeFormat: 时间戳进制设置
+        # dec：十进制
+        # hex：十六进制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeFormat: String
 
-        attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType
+        attr_accessor :SecretKey, :ExpireTime, :FileExtensions, :FilterType, :TimeFormat
         
-        def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil)
+        def initialize(secretkey=nil, expiretime=nil, fileextensions=nil, filtertype=nil, timeformat=nil)
           @SecretKey = secretkey
           @ExpireTime = expiretime
           @FileExtensions = fileextensions
           @FilterType = filtertype
+          @TimeFormat = timeformat
         end
 
         def deserialize(params)
@@ -514,6 +861,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @FileExtensions = params['FileExtensions']
           @FilterType = params['FilterType']
+          @TimeFormat = params['TimeFormat']
         end
       end
 
@@ -630,6 +978,82 @@ module TencentCloud
         end
       end
 
+      # Bot cookie策略
+      class BotCookie < TencentCloud::Common::AbstractModel
+        # @param Switch: on|off
+        # @type Switch: String
+        # @param RuleType: 规则类型，当前只有all
+        # @type RuleType: String
+        # @param RuleValue: 规则值，['*']
+        # @type RuleValue: Array
+        # @param Action: 执行动作，monitor|intercept|redirect|captcha
+        # @type Action: String
+        # @param RedirectUrl: 重定向时设置的重定向页面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectUrl: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Switch, :RuleType, :RuleValue, :Action, :RedirectUrl, :UpdateTime
+        
+        def initialize(switch=nil, ruletype=nil, rulevalue=nil, action=nil, redirecturl=nil, updatetime=nil)
+          @Switch = switch
+          @RuleType = ruletype
+          @RuleValue = rulevalue
+          @Action = action
+          @RedirectUrl = redirecturl
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @RuleType = params['RuleType']
+          @RuleValue = params['RuleValue']
+          @Action = params['Action']
+          @RedirectUrl = params['RedirectUrl']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # Bot js策略
+      class BotJavaScript < TencentCloud::Common::AbstractModel
+        # @param Switch: on|off
+        # @type Switch: String
+        # @param RuleType: 规则类型，当前只有file
+        # @type RuleType: String
+        # @param RuleValue: 规则值，['html', 'htm']
+        # @type RuleValue: Array
+        # @param Action: 执行动作，monitor|intercept|redirect|captcha
+        # @type Action: String
+        # @param RedirectUrl: 重定向时设置的重定向页面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectUrl: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Switch, :RuleType, :RuleValue, :Action, :RedirectUrl, :UpdateTime
+        
+        def initialize(switch=nil, ruletype=nil, rulevalue=nil, action=nil, redirecturl=nil, updatetime=nil)
+          @Switch = switch
+          @RuleType = ruletype
+          @RuleValue = rulevalue
+          @Action = action
+          @RedirectUrl = redirecturl
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @RuleType = params['RuleType']
+          @RuleValue = params['RuleValue']
+          @Action = params['Action']
+          @RedirectUrl = params['RedirectUrl']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 域名基础配置信息，含 CNAME、状态、业务类型、加速区域、创建时间、更新时间、源站配置等。
       class BriefDomain < TencentCloud::Common::AbstractModel
         # @param ResourceId: 域名 ID
@@ -728,12 +1152,16 @@ module TencentCloud
         # @param AdvancedCache: 高级缓存过期时间配置（功能灰度中，尚未全量）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedCache: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedCache`
+        # @param RuleCache: 高级路径缓存配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleCache: Array
 
-        attr_accessor :SimpleCache, :AdvancedCache
+        attr_accessor :SimpleCache, :AdvancedCache, :RuleCache
         
-        def initialize(simplecache=nil, advancedcache=nil)
+        def initialize(simplecache=nil, advancedcache=nil, rulecache=nil)
           @SimpleCache = simplecache
           @AdvancedCache = advancedcache
+          @RuleCache = rulecache
         end
 
         def deserialize(params)
@@ -743,6 +1171,101 @@ module TencentCloud
           unless params['AdvancedCache'].nil?
             @AdvancedCache = AdvancedCache.new.deserialize(params[AdvancedCache])
           end
+          @RuleCache = params['RuleCache']
+        end
+      end
+
+      # 路径缓存缓存配置
+      class CacheConfigCache < TencentCloud::Common::AbstractModel
+        # @param Switch: 缓存配置开关
+        # on：开启
+        # off：关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param CacheTime: 缓存过期时间设置
+        # 单位为秒，最大可设置为 365 天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheTime: Integer
+        # @param CompareMaxAge: 高级缓存过期配置，开启时会对比源站返回的 max-age 值与 CacheRules 中设置的缓存过期时间，取最小值在节点进行缓存
+        # on：开启
+        # off：关闭
+        # 默认为关闭状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompareMaxAge: String
+        # @param IgnoreCacheControl: 强制缓存
+        # on：开启
+        # off：关闭
+        # 默认为关闭状态，开启后，源站返回的 no-store、no-cache 资源，也将按照 CacheRules 规则进行缓存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoreCacheControl: String
+        # @param IgnoreSetCookie: 忽略源站的 Set-Cookie 头部
+        # on：开启
+        # off：关闭
+        # 默认为关闭状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoreSetCookie: String
+
+        attr_accessor :Switch, :CacheTime, :CompareMaxAge, :IgnoreCacheControl, :IgnoreSetCookie
+        
+        def initialize(switch=nil, cachetime=nil, comparemaxage=nil, ignorecachecontrol=nil, ignoresetcookie=nil)
+          @Switch = switch
+          @CacheTime = cachetime
+          @CompareMaxAge = comparemaxage
+          @IgnoreCacheControl = ignorecachecontrol
+          @IgnoreSetCookie = ignoresetcookie
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @CacheTime = params['CacheTime']
+          @CompareMaxAge = params['CompareMaxAge']
+          @IgnoreCacheControl = params['IgnoreCacheControl']
+          @IgnoreSetCookie = params['IgnoreSetCookie']
+        end
+      end
+
+      # 路径缓存遵循源站配置
+      class CacheConfigFollowOrigin < TencentCloud::Common::AbstractModel
+        # @param Switch: 遵循源站配置开关
+        # on：开启
+        # off：关闭
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # 路径缓存不缓存配置
+      class CacheConfigNoCache < TencentCloud::Common::AbstractModel
+        # @param Switch: 不缓存配置开关
+        # on：开启
+        # off：关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param Revalidate: 总是回源站校验
+        # on：开启
+        # off：关闭
+        # 默认为关闭状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revalidate: String
+
+        attr_accessor :Switch, :Revalidate
+        
+        def initialize(switch=nil, revalidate=nil)
+          @Switch = switch
+          @Revalidate = revalidate
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Revalidate = params['Revalidate']
         end
       end
 
@@ -770,10 +1293,13 @@ module TencentCloud
         # @param Scheme: CacheKey中包含请求协议
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scheme: :class:`Tencentcloud::Cdn.v20180606.models.SchemeKey`
+        # @param KeyRules: 分路径缓存键配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyRules: Array
 
-        attr_accessor :FullUrlCache, :IgnoreCase, :QueryString, :Cookie, :Header, :CacheTag, :Scheme
+        attr_accessor :FullUrlCache, :IgnoreCase, :QueryString, :Cookie, :Header, :CacheTag, :Scheme, :KeyRules
         
-        def initialize(fullurlcache=nil, ignorecase=nil, querystring=nil, cookie=nil, header=nil, cachetag=nil, scheme=nil)
+        def initialize(fullurlcache=nil, ignorecase=nil, querystring=nil, cookie=nil, header=nil, cachetag=nil, scheme=nil, keyrules=nil)
           @FullUrlCache = fullurlcache
           @IgnoreCase = ignorecase
           @QueryString = querystring
@@ -781,6 +1307,7 @@ module TencentCloud
           @Header = header
           @CacheTag = cachetag
           @Scheme = scheme
+          @KeyRules = keyrules
         end
 
         def deserialize(params)
@@ -801,6 +1328,7 @@ module TencentCloud
           unless params['Scheme'].nil?
             @Scheme = SchemeKey.new.deserialize(params[Scheme])
           end
+          @KeyRules = params['KeyRules']
         end
       end
 
@@ -934,15 +1462,19 @@ module TencentCloud
         # overseas：中国境外加速节点
         # unknown：服务地域无法获取
         # @type Area: String
+        # @param City: 节点的所在城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
 
-        attr_accessor :Ip, :Platform, :Location, :History, :Area
+        attr_accessor :Ip, :Platform, :Location, :History, :Area, :City
         
-        def initialize(ip=nil, platform=nil, location=nil, history=nil, area=nil)
+        def initialize(ip=nil, platform=nil, location=nil, history=nil, area=nil, city=nil)
           @Ip = ip
           @Platform = platform
           @Location = location
           @History = history
           @Area = area
+          @City = city
         end
 
         def deserialize(params)
@@ -951,6 +1483,7 @@ module TencentCloud
           @Location = params['Location']
           @History = params['History']
           @Area = params['Area']
+          @City = params['City']
         end
       end
 
@@ -1010,6 +1543,38 @@ module TencentCloud
           @CertName = params['CertName']
           @ExpireTime = params['ExpireTime']
           @DeployTime = params['DeployTime']
+        end
+      end
+
+      # 客户端信息
+      class ClientInfo < TencentCloud::Common::AbstractModel
+        # @param ProvName: 省份。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProvName: String
+        # @param Country: 国家。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param IspName: 运营商。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IspName: String
+        # @param Ip: 客户端IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+
+        attr_accessor :ProvName, :Country, :IspName, :Ip
+        
+        def initialize(provname=nil, country=nil, ispname=nil, ip=nil)
+          @ProvName = provname
+          @Country = country
+          @IspName = ispname
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @ProvName = params['ProvName']
+          @Country = params['Country']
+          @IspName = params['IspName']
+          @Ip = params['Ip']
         end
       end
 
@@ -1131,7 +1696,7 @@ module TencentCloud
         # @type MaxLength: Integer
         # @param Algorithms: 文件压缩算法
         # gzip：指定 GZIP 压缩
-        # brotli：需要同时指定 GZIP 压缩才可启用
+        # brotli：指定Brotli压缩
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Algorithms: Array
 
@@ -1225,6 +1790,230 @@ module TencentCloud
         end
       end
 
+      # CreateDiagnoseUrl请求参数结构体
+      class CreateDiagnoseUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Url: 需诊断的url，形如：http://www.test.com/test.txt。
+        # @type Url: String
+
+        attr_accessor :Url
+        
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
+      # CreateDiagnoseUrl返回参数结构体
+      class CreateDiagnoseUrlResponse < TencentCloud::Common::AbstractModel
+        # @param DiagnoseLink: 系统生成的诊断链接，一个诊断链接最多可访问10次，有效期为24h。
+        # @type DiagnoseLink: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiagnoseLink, :RequestId
+        
+        def initialize(diagnoselink=nil, requestid=nil)
+          @DiagnoseLink = diagnoselink
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DiagnoseLink = params['DiagnoseLink']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateEdgePackTask请求参数结构体
+      class CreateEdgePackTaskRequest < TencentCloud::Common::AbstractModel
+        # @param CosBucket: apk 所在的 cos 存储桶, 如 edgepack-xxxxxxxx
+        # @type CosBucket: String
+        # @param CosUriFrom: apk 源文件的存储路径, 如 /apk/xxxx.apk
+        # @type CosUriFrom: String
+        # @param CosUriTo: 拓展之后的 apk 目标存储路径,如 /out/xxxx.apk
+        # @type CosUriTo: String
+        # @param BlockID: BlockID 的值, WALLE为1903654775(0x71777777)，VasDolly为2282837503(0x881155ff),传0或不传时默认为 WALLE 方案
+        # @type BlockID: Integer
+
+        attr_accessor :CosBucket, :CosUriFrom, :CosUriTo, :BlockID
+        
+        def initialize(cosbucket=nil, cosurifrom=nil, cosurito=nil, blockid=nil)
+          @CosBucket = cosbucket
+          @CosUriFrom = cosurifrom
+          @CosUriTo = cosurito
+          @BlockID = blockid
+        end
+
+        def deserialize(params)
+          @CosBucket = params['CosBucket']
+          @CosUriFrom = params['CosUriFrom']
+          @CosUriTo = params['CosUriTo']
+          @BlockID = params['BlockID']
+        end
+      end
+
+      # CreateEdgePackTask返回参数结构体
+      class CreateEdgePackTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateScdnLogTask请求参数结构体
+      class CreateScdnLogTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 防护类型
+        # Mode 映射如下：
+        #   waf = "Web攻击"
+        #   cc = "CC攻击"
+        #   bot = "Bot攻击"
+        # @type Mode: String
+        # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
+        # @type EndTime: String
+        # @param Domain: 指定域名查询, 不填默认查询全部域名
+        # @type Domain: String
+        # @param AttackType: 指定攻击类型, 不填默认查询全部攻击类型
+        # AttackType 映射如下:
+        #   other = '未知类型'
+        #   malicious_scan = "恶意扫描"
+        #   sql_inject = "SQL注入攻击"
+        #   xss = "XSS攻击"
+        #   cmd_inject = "命令注入攻击"
+        #   ldap_inject = "LDAP注入攻击"
+        #   ssi_inject = "SSI注入攻击"
+        #   xml_inject = "XML注入攻击"
+        #   web_service = "WEB服务漏洞攻击"
+        #   web_app = "WEB应用漏洞攻击"
+        #   path_traversal = "路径跨越攻击"
+        #   illegal_access_core_file = "核心文件非法访问"
+        #   trojan_horse = "木马后门攻击"
+        #   csrf = "CSRF攻击"
+        #   malicious_file_upload= '恶意文件上传'
+        #   js = "JS主动探测"
+        #   cookie = "Cookie指纹"
+        # @type AttackType: String
+        # @param DefenceMode: 指定执行动作, 不填默认查询全部执行动作
+        # DefenceMode 映射如下：
+        #   observe = '观察模式'
+        #   intercept = '拦截模式'
+        #   captcha = "验证码"
+        #   redirect = "重定向"
+        # @type DefenceMode: String
+        # @param Ip: 不填为全部ip
+        # @type Ip: String
+        # @param Domains: 指定域名查询, 与 Domain 参数同时有值时使用 Domains 参数，不填默认查询全部域名，指定域名查询时最多支持同时选择 5 个域名查询
+        # @type Domains: Array
+        # @param AttackTypes: 指定攻击类型查询, 与 AttackType 参数同时有值时使用 AttackTypes 参数，不填默认查询全部攻击类型
+        # @type AttackTypes: Array
+        # @param Conditions: 查询条件
+        # @type Conditions: Array
+
+        attr_accessor :Mode, :StartTime, :EndTime, :Domain, :AttackType, :DefenceMode, :Ip, :Domains, :AttackTypes, :Conditions
+        
+        def initialize(mode=nil, starttime=nil, endtime=nil, domain=nil, attacktype=nil, defencemode=nil, ip=nil, domains=nil, attacktypes=nil, conditions=nil)
+          @Mode = mode
+          @StartTime = starttime
+          @EndTime = endtime
+          @Domain = domain
+          @AttackType = attacktype
+          @DefenceMode = defencemode
+          @Ip = ip
+          @Domains = domains
+          @AttackTypes = attacktypes
+          @Conditions = conditions
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Domain = params['Domain']
+          @AttackType = params['AttackType']
+          @DefenceMode = params['DefenceMode']
+          @Ip = params['Ip']
+          @Domains = params['Domains']
+          @AttackTypes = params['AttackTypes']
+          @Conditions = params['Conditions']
+        end
+      end
+
+      # CreateScdnLogTask返回参数结构体
+      class CreateScdnLogTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建结果,
+        # "0" -> 创建成功
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVerifyRecord请求参数结构体
+      class CreateVerifyRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要取回的域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # CreateVerifyRecord返回参数结构体
+      class CreateVerifyRecordResponse < TencentCloud::Common::AbstractModel
+        # @param SubDomain: 子解析
+        # @type SubDomain: String
+        # @param Record: 解析值
+        # @type Record: String
+        # @param RecordType: 解析类型
+        # @type RecordType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubDomain, :Record, :RecordType, :RequestId
+        
+        def initialize(subdomain=nil, record=nil, recordtype=nil, requestid=nil)
+          @SubDomain = subdomain
+          @Record = record
+          @RecordType = recordtype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SubDomain = params['SubDomain']
+          @Record = params['Record']
+          @RecordType = params['RecordType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCdnDomain请求参数结构体
       class DeleteCdnDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -1294,6 +2083,42 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteScdnDomain请求参数结构体
+      class DeleteScdnDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DeleteScdnDomain返回参数结构体
+      class DeleteScdnDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建结果，Success表示成功
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -1628,6 +2453,41 @@ module TencentCloud
         end
       end
 
+      # DescribeCdnOriginIp请求参数结构体
+      class DescribeCdnOriginIpRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCdnOriginIp返回参数结构体
+      class DescribeCdnOriginIpResponse < TencentCloud::Common::AbstractModel
+        # @param Ips: 回源节点IP详情。
+        # @type Ips: Array
+        # @param TotalCount: 回源节点IP总个数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ips, :TotalCount, :RequestId
+        
+        def initialize(ips=nil, totalcount=nil, requestid=nil)
+          @Ips = ips
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ips = params['Ips']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCertDomains请求参数结构体
       class DescribeCertDomainsRequest < TencentCloud::Common::AbstractModel
         # @param Cert: PEM格式证书Base64编码后的字符串
@@ -1670,9 +2530,167 @@ module TencentCloud
         end
       end
 
+      # DescribeDiagnoseReport请求参数结构体
+      class DescribeDiagnoseReportRequest < TencentCloud::Common::AbstractModel
+        # @param ReportId: 报告ID
+        # @type ReportId: String
+
+        attr_accessor :ReportId
+        
+        def initialize(reportid=nil)
+          @ReportId = reportid
+        end
+
+        def deserialize(params)
+          @ReportId = params['ReportId']
+        end
+      end
+
+      # DescribeDiagnoseReport返回参数结构体
+      class DescribeDiagnoseReportResponse < TencentCloud::Common::AbstractModel
+        # @param BaskInfo: 诊断报告基础信息
+        # @type BaskInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
+        # @param CnameInfo: CNAME检测信息
+        # @type CnameInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
+        # @param ClientInfo: 客户端检测信息
+        # @type ClientInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
+        # @param DnsInfo: DNS检测信息
+        # @type DnsInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
+        # @param NetworkInfo: 网络检测信息
+        # @type NetworkInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
+        # @param OcNodeInfo: 边缘节点检测信息
+        # @type OcNodeInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
+        # @param MidNodeInfo: 中间源节点检测信息
+        # @type MidNodeInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
+        # @param OriginInfo: 源站检测信息
+        # @type OriginInfo: :class:`Tencentcloud::Cdn.v20180606.models.DiagnoseData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BaskInfo, :CnameInfo, :ClientInfo, :DnsInfo, :NetworkInfo, :OcNodeInfo, :MidNodeInfo, :OriginInfo, :RequestId
+        
+        def initialize(baskinfo=nil, cnameinfo=nil, clientinfo=nil, dnsinfo=nil, networkinfo=nil, ocnodeinfo=nil, midnodeinfo=nil, origininfo=nil, requestid=nil)
+          @BaskInfo = baskinfo
+          @CnameInfo = cnameinfo
+          @ClientInfo = clientinfo
+          @DnsInfo = dnsinfo
+          @NetworkInfo = networkinfo
+          @OcNodeInfo = ocnodeinfo
+          @MidNodeInfo = midnodeinfo
+          @OriginInfo = origininfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BaskInfo'].nil?
+            @BaskInfo = DiagnoseData.new.deserialize(params[BaskInfo])
+          end
+          unless params['CnameInfo'].nil?
+            @CnameInfo = DiagnoseData.new.deserialize(params[CnameInfo])
+          end
+          unless params['ClientInfo'].nil?
+            @ClientInfo = DiagnoseData.new.deserialize(params[ClientInfo])
+          end
+          unless params['DnsInfo'].nil?
+            @DnsInfo = DiagnoseData.new.deserialize(params[DnsInfo])
+          end
+          unless params['NetworkInfo'].nil?
+            @NetworkInfo = DiagnoseData.new.deserialize(params[NetworkInfo])
+          end
+          unless params['OcNodeInfo'].nil?
+            @OcNodeInfo = DiagnoseData.new.deserialize(params[OcNodeInfo])
+          end
+          unless params['MidNodeInfo'].nil?
+            @MidNodeInfo = DiagnoseData.new.deserialize(params[MidNodeInfo])
+          end
+          unless params['OriginInfo'].nil?
+            @OriginInfo = DiagnoseData.new.deserialize(params[OriginInfo])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDistrictIspData请求参数结构体
+      class DescribeDistrictIspDataRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 域名列表，最多支持20个域名
+        # @type Domains: Array
+        # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
+        # 支持近 60 天内的数据查询，每次查询时间区间为 3 小时
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
+        # 结束时间与起始时间区间最大为 3 小时
+        # @type EndTime: String
+        # @param Metric: 指定查询指标，支持:
+        # bandwidth：带宽，单位为 bps
+        # request：请求数，单位为 次
+        # @type Metric: String
+        # @param Districts: 指定省份查询，不填充表示查询所有省份
+        # 省份、国家/地区编码可以查看 [省份编码映射](https://cloud.tencent.com/document/product/228/6316#.E5.8C.BA.E5.9F.9F-.2F-.E8.BF.90.E8.90.A5.E5.95.86.E6.98.A0.E5.B0.84.E8.A1.A8)
+        # @type Districts: Array
+        # @param Isps: 指定运营商查询，不填充表示查询所有运营商
+        # 运营商编码可以查看 [运营商编码映射](https://cloud.tencent.com/document/product/228/6316#.E5.8C.BA.E5.9F.9F-.2F-.E8.BF.90.E8.90.A5.E5.95.86.E6.98.A0.E5.B0.84.E8.A1.A8)
+        # @type Isps: Array
+        # @param Protocol: 指定协议查询，不填充表示查询所有协议
+        # all：所有协议
+        # http：指定查询 HTTP 对应指标
+        # https：指定查询 HTTPS 对应指标
+        # @type Protocol: String
+        # @param IpProtocol: 指定IP协议查询，不填充表示查询所有协议
+        # all：所有协议
+        # ipv4：指定查询 ipv4 对应指标
+        # ipv6：指定查询 ipv6 对应指标
+        # 指定IP协议查询时，不可同时指定省份、运营商查询
+        # @type IpProtocol: String
+
+        attr_accessor :Domains, :StartTime, :EndTime, :Metric, :Districts, :Isps, :Protocol, :IpProtocol
+        
+        def initialize(domains=nil, starttime=nil, endtime=nil, metric=nil, districts=nil, isps=nil, protocol=nil, ipprotocol=nil)
+          @Domains = domains
+          @StartTime = starttime
+          @EndTime = endtime
+          @Metric = metric
+          @Districts = districts
+          @Isps = isps
+          @Protocol = protocol
+          @IpProtocol = ipprotocol
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Metric = params['Metric']
+          @Districts = params['Districts']
+          @Isps = params['Isps']
+          @Protocol = params['Protocol']
+          @IpProtocol = params['IpProtocol']
+        end
+      end
+
+      # DescribeDistrictIspData返回参数结构体
+      class DescribeDistrictIspDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 地区运营商数据明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainsConfig请求参数结构体
       class DescribeDomainsConfigRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页查询偏移量，默认为 0 （第一页）
+        # @param Offset: 分页查询偏移量，默认为 0
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目，默认为 100，最大可设置为 1000
         # @type Limit: Integer
@@ -1836,17 +2854,24 @@ module TencentCloud
         # last：表示回源层节点
         # 不填充情况下，默认返回边缘节点信息
         # @type Layer: String
+        # @param Area: 查询区域：
+        # mainland: 国内节点
+        # overseas: 海外节点
+        # global: 全球节点
+        # @type Area: String
 
-        attr_accessor :Domain, :Layer
+        attr_accessor :Domain, :Layer, :Area
         
-        def initialize(domain=nil, layer=nil)
+        def initialize(domain=nil, layer=nil, area=nil)
           @Domain = domain
           @Layer = layer
+          @Area = area
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @Layer = params['Layer']
+          @Area = params['Area']
         end
       end
 
@@ -2439,6 +3464,178 @@ module TencentCloud
         end
       end
 
+      # DescribeScdnConfig请求参数结构体
+      class DescribeScdnConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeScdnConfig返回参数结构体
+      class DescribeScdnConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Acl: 自定义防护策略配置
+        # @type Acl: :class:`Tencentcloud::Cdn.v20180606.models.ScdnAclConfig`
+        # @param Waf: Web 攻击防护（WAF）配置
+        # @type Waf: :class:`Tencentcloud::Cdn.v20180606.models.ScdnWafConfig`
+        # @param CC: CC 防护配置
+        # @type CC: :class:`Tencentcloud::Cdn.v20180606.models.ScdnConfig`
+        # @param Ddos: DDOS 防护配置
+        # @type Ddos: :class:`Tencentcloud::Cdn.v20180606.models.ScdnDdosConfig`
+        # @param Bot: BOT 防护配置
+        # @type Bot: :class:`Tencentcloud::Cdn.v20180606.models.ScdnBotConfig`
+        # @param Status: 当前状态，取值online | offline
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Acl, :Waf, :CC, :Ddos, :Bot, :Status, :RequestId
+        
+        def initialize(acl=nil, waf=nil, cc=nil, ddos=nil, bot=nil, status=nil, requestid=nil)
+          @Acl = acl
+          @Waf = waf
+          @CC = cc
+          @Ddos = ddos
+          @Bot = bot
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Acl'].nil?
+            @Acl = ScdnAclConfig.new.deserialize(params[Acl])
+          end
+          unless params['Waf'].nil?
+            @Waf = ScdnWafConfig.new.deserialize(params[Waf])
+          end
+          unless params['CC'].nil?
+            @CC = ScdnConfig.new.deserialize(params[CC])
+          end
+          unless params['Ddos'].nil?
+            @Ddos = ScdnDdosConfig.new.deserialize(params[Ddos])
+          end
+          unless params['Bot'].nil?
+            @Bot = ScdnBotConfig.new.deserialize(params[Bot])
+          end
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScdnTopData请求参数结构体
+      class DescribeScdnTopDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
+        # @type EndTime: String
+        # @param Mode: 查询的SCDN TOP攻击数据类型：
+        # waf：Web 攻击防护TOP数据
+        # @type Mode: String
+        # @param Metric: 排序对象，支持以下几种形式：
+        # url：攻击目标 url 排序
+        # ip：攻击源 IP 排序
+        # attackType：攻击类型排序
+        # @type Metric: String
+        # @param Filter: 排序使用的指标名称：
+        # request：请求次数
+        # @type Filter: String
+        # @param Domain: 指定域名查询
+        # @type Domain: String
+        # @param AttackType: 指定攻击类型, 仅 Mode=waf 时有效
+        # 不填则查询所有攻击类型的数据总和
+        # AttackType 映射如下:
+        #   other = '未知类型'
+        #   malicious_scan = "恶意扫描"
+        #   sql_inject = "SQL注入攻击"
+        #   xss = "XSS攻击"
+        #   cmd_inject = "命令注入攻击"
+        #   ldap_inject = "LDAP注入攻击"
+        #   ssi_inject = "SSI注入攻击"
+        #   xml_inject = "XML注入攻击"
+        #   web_service = "WEB服务漏洞攻击"
+        #   web_app = "WEB应用漏洞攻击"
+        #   path_traversal = "路径跨越攻击"
+        #   illegal_access_core_file = "核心文件非法访问"
+        #   trojan_horse = "木马后门攻击"
+        #   csrf = "CSRF攻击"
+        #   malicious_file_upload= '恶意文件上传'
+        # @type AttackType: String
+        # @param DefenceMode: 指定防御模式,仅 Mode=waf 时有效
+        # 不填则查询所有防御模式的数据总和
+        # DefenceMode 映射如下：
+        #   observe = '观察模式'
+        #   intercept = '拦截模式'
+        # @type DefenceMode: String
+
+        attr_accessor :StartTime, :EndTime, :Mode, :Metric, :Filter, :Domain, :AttackType, :DefenceMode
+        
+        def initialize(starttime=nil, endtime=nil, mode=nil, metric=nil, filter=nil, domain=nil, attacktype=nil, defencemode=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Mode = mode
+          @Metric = metric
+          @Filter = filter
+          @Domain = domain
+          @AttackType = attacktype
+          @DefenceMode = defencemode
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Mode = params['Mode']
+          @Metric = params['Metric']
+          @Filter = params['Filter']
+          @Domain = params['Domain']
+          @AttackType = params['AttackType']
+          @DefenceMode = params['DefenceMode']
+        end
+      end
+
+      # DescribeScdnTopData返回参数结构体
+      class DescribeScdnTopDataResponse < TencentCloud::Common::AbstractModel
+        # @param TopTypeData: WAF 攻击类型统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopTypeData: Array
+        # @param TopIpData: TOP 攻击源 IP 统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopIpData: Array
+        # @param Mode: 查询的SCDN类型，当前仅支持 waf
+        # @type Mode: String
+        # @param TopUrlData: TOP URL 统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopUrlData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopTypeData, :TopIpData, :Mode, :TopUrlData, :RequestId
+        
+        def initialize(toptypedata=nil, topipdata=nil, mode=nil, topurldata=nil, requestid=nil)
+          @TopTypeData = toptypedata
+          @TopIpData = topipdata
+          @Mode = mode
+          @TopUrlData = topurldata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TopTypeData = params['TopTypeData']
+          @TopIpData = params['TopIpData']
+          @Mode = params['Mode']
+          @TopUrlData = params['TopUrlData']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTrafficPackages请求参数结构体
       class DescribeTrafficPackagesRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页查询起始地址，默认 0
@@ -2647,7 +3844,7 @@ module TencentCloud
         # @param MaxAge: 浏览器缓存过期规则配置（功能灰度中，敬请期待）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxAge: :class:`Tencentcloud::Cdn.v20180606.models.MaxAge`
-        # @param Ipv6: Ipv6 配置（功能灰度中，敬请期待）
+        # @param Ipv6: Ipv6 回源配置（功能灰度中，敬请期待）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6: :class:`Tencentcloud::Cdn.v20180606.models.Ipv6`
         # @param Compatibility: 是否兼容旧版本配置（内部兼容性字段）
@@ -2687,10 +3884,42 @@ module TencentCloud
         # @param AccessControl: 访问控制
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessControl: :class:`Tencentcloud::Cdn.v20180606.models.AccessControl`
+        # @param Advance: 是否支持高级配置项
+        # on：支持
+        # off：不支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Advance: String
+        # @param UrlRedirect: URL重定向配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UrlRedirect: :class:`Tencentcloud::Cdn.v20180606.models.UrlRedirect`
+        # @param AccessPort: 访问端口配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessPort: Array
+        # @param Tag: 标签配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param AdvancedAuthentication: 时间戳防盗链高级配置，白名单功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancedAuthentication: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedAuthentication`
+        # @param OriginAuthentication: 回源鉴权高级配置，白名单功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginAuthentication: :class:`Tencentcloud::Cdn.v20180606.models.OriginAuthentication`
+        # @param Ipv6Access: Ipv6访问配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6Access: :class:`Tencentcloud::Cdn.v20180606.models.Ipv6Access`
+        # @param AdvanceSet: 高级配置集合。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvanceSet: Array
+        # @param OfflineCache: 离线缓存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineCache: :class:`Tencentcloud::Cdn.v20180606.models.OfflineCache`
+        # @param OriginCombine: 合并回源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginCombine: :class:`Tencentcloud::Cdn.v20180606.models.OriginCombine`
 
-        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl
+        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine
         
-        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil)
+        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil)
           @ResourceId = resourceid
           @AppId = appid
           @Domain = domain
@@ -2735,6 +3964,16 @@ module TencentCloud
           @ImageOptimization = imageoptimization
           @UserAgentFilter = useragentfilter
           @AccessControl = accesscontrol
+          @Advance = advance
+          @UrlRedirect = urlredirect
+          @AccessPort = accessport
+          @Tag = tag
+          @AdvancedAuthentication = advancedauthentication
+          @OriginAuthentication = originauthentication
+          @Ipv6Access = ipv6access
+          @AdvanceSet = advanceset
+          @OfflineCache = offlinecache
+          @OriginCombine = origincombine
         end
 
         def deserialize(params)
@@ -2846,6 +4085,174 @@ module TencentCloud
           unless params['AccessControl'].nil?
             @AccessControl = AccessControl.new.deserialize(params[AccessControl])
           end
+          @Advance = params['Advance']
+          unless params['UrlRedirect'].nil?
+            @UrlRedirect = UrlRedirect.new.deserialize(params[UrlRedirect])
+          end
+          @AccessPort = params['AccessPort']
+          @Tag = params['Tag']
+          unless params['AdvancedAuthentication'].nil?
+            @AdvancedAuthentication = AdvancedAuthentication.new.deserialize(params[AdvancedAuthentication])
+          end
+          unless params['OriginAuthentication'].nil?
+            @OriginAuthentication = OriginAuthentication.new.deserialize(params[OriginAuthentication])
+          end
+          unless params['Ipv6Access'].nil?
+            @Ipv6Access = Ipv6Access.new.deserialize(params[Ipv6Access])
+          end
+          @AdvanceSet = params['AdvanceSet']
+          unless params['OfflineCache'].nil?
+            @OfflineCache = OfflineCache.new.deserialize(params[OfflineCache])
+          end
+          unless params['OriginCombine'].nil?
+            @OriginCombine = OriginCombine.new.deserialize(params[OriginCombine])
+          end
+        end
+      end
+
+      # 诊断报告内容数据
+      class DiagnoseData < TencentCloud::Common::AbstractModel
+        # @param Data: 诊断报告内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Status: 当前诊断项是否正常。
+        # "ok"：正常
+        # "error"：异常
+        # "warning"："警告"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Data, :Status
+        
+        def initialize(data=nil, status=nil)
+          @Data = data
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Status = params['Status']
+        end
+      end
+
+      # 诊断信息
+      class DiagnoseInfo < TencentCloud::Common::AbstractModel
+        # @param DiagnoseUrl: 待诊断的URL。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnoseUrl: String
+        # @param DiagnoseLink: 由系统生成的诊断链接。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnoseLink: String
+        # @param CreateTime: 诊断创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ExpireDate: 诊断链接过期时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireDate: String
+        # @param VisitCount: 诊断链接当前访问次数，一个诊断链接最多可访问10次。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VisitCount: Integer
+        # @param ClientList: 访问诊断链接的客户端简易信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientList: Array
+        # @param Area: 域名加速区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Area: String
+
+        attr_accessor :DiagnoseUrl, :DiagnoseLink, :CreateTime, :ExpireDate, :VisitCount, :ClientList, :Area
+        
+        def initialize(diagnoseurl=nil, diagnoselink=nil, createtime=nil, expiredate=nil, visitcount=nil, clientlist=nil, area=nil)
+          @DiagnoseUrl = diagnoseurl
+          @DiagnoseLink = diagnoselink
+          @CreateTime = createtime
+          @ExpireDate = expiredate
+          @VisitCount = visitcount
+          @ClientList = clientlist
+          @Area = area
+        end
+
+        def deserialize(params)
+          @DiagnoseUrl = params['DiagnoseUrl']
+          @DiagnoseLink = params['DiagnoseLink']
+          @CreateTime = params['CreateTime']
+          @ExpireDate = params['ExpireDate']
+          @VisitCount = params['VisitCount']
+          @ClientList = params['ClientList']
+          @Area = params['Area']
+        end
+      end
+
+      # 客户端访问诊断URL信息列表
+      class DiagnoseList < TencentCloud::Common::AbstractModel
+        # @param DiagnoseTag: 诊断任务标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnoseTag: String
+        # @param ReportId: 报告ID，用于获取详细诊断报告。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportId: String
+        # @param ClientInfo: 客户端信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientInfo: Array
+        # @param FinalDiagnose: 最终诊断结果。
+        # -1：已提交
+        # 0  ：检测中
+        # 1  ：检测正常
+        # 2  ： 检测异常
+        # 3  ： 诊断页面异常关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalDiagnose: Integer
+        # @param CreateTime: 诊断任务创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :DiagnoseTag, :ReportId, :ClientInfo, :FinalDiagnose, :CreateTime
+        
+        def initialize(diagnosetag=nil, reportid=nil, clientinfo=nil, finaldiagnose=nil, createtime=nil)
+          @DiagnoseTag = diagnosetag
+          @ReportId = reportid
+          @ClientInfo = clientinfo
+          @FinalDiagnose = finaldiagnose
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @DiagnoseTag = params['DiagnoseTag']
+          @ReportId = params['ReportId']
+          @ClientInfo = params['ClientInfo']
+          @FinalDiagnose = params['FinalDiagnose']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 诊断报告单元信息
+      class DiagnoseUnit < TencentCloud::Common::AbstractModel
+        # @param Key: 内容单元英文名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param KeyText: 内容单元中文名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyText: String
+        # @param Value: 报告内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param ValueText: 报告内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueText: String
+
+        attr_accessor :Key, :KeyText, :Value, :ValueText
+        
+        def initialize(key=nil, keytext=nil, value=nil, valuetext=nil)
+          @Key = key
+          @KeyText = keytext
+          @Value = value
+          @ValueText = valuetext
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @KeyText = params['KeyText']
+          @Value = params['Value']
+          @ValueText = params['ValueText']
         end
       end
 
@@ -2926,6 +4333,66 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 地区运营商明细数据
+      class DistrictIspInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Protocol: 协议类型
+        # @type Protocol: String
+        # @param IpProtocol: IP协议类型
+        # @type IpProtocol: String
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Interval: 时间间隔，单位为分钟
+        # @type Interval: Integer
+        # @param Metric: 指标名称
+        # @type Metric: String
+        # @param District: 地区ID
+        # @type District: Integer
+        # @param Isp: 运营商ID
+        # @type Isp: Integer
+        # @param DataPoints: 指标数据点
+        # @type DataPoints: Array
+        # @param DistrictName: 地区名称
+        # @type DistrictName: String
+        # @param IspName: 运营商名称
+        # @type IspName: String
+
+        attr_accessor :Domain, :Protocol, :IpProtocol, :StartTime, :EndTime, :Interval, :Metric, :District, :Isp, :DataPoints, :DistrictName, :IspName
+        
+        def initialize(domain=nil, protocol=nil, ipprotocol=nil, starttime=nil, endtime=nil, interval=nil, metric=nil, district=nil, isp=nil, datapoints=nil, districtname=nil, ispname=nil)
+          @Domain = domain
+          @Protocol = protocol
+          @IpProtocol = ipprotocol
+          @StartTime = starttime
+          @EndTime = endtime
+          @Interval = interval
+          @Metric = metric
+          @District = district
+          @Isp = isp
+          @DataPoints = datapoints
+          @DistrictName = districtname
+          @IspName = ispname
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          @IpProtocol = params['IpProtocol']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Interval = params['Interval']
+          @Metric = params['Metric']
+          @District = params['District']
+          @Isp = params['Isp']
+          @DataPoints = params['DataPoints']
+          @DistrictName = params['DistrictName']
+          @IspName = params['IspName']
         end
       end
 
@@ -3039,6 +4506,42 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @CappingRules = params['CappingRules']
+        end
+      end
+
+      # DuplicateDomainConfig请求参数结构体
+      class DuplicateDomainConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 新增域名
+        # @type Domain: String
+        # @param ReferenceDomain: 被拷贝配置的域名
+        # @type ReferenceDomain: String
+
+        attr_accessor :Domain, :ReferenceDomain
+        
+        def initialize(domain=nil, referencedomain=nil)
+          @Domain = domain
+          @ReferenceDomain = referencedomain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @ReferenceDomain = params['ReferenceDomain']
+        end
+      end
+
+      # DuplicateDomainConfig返回参数结构体
+      class DuplicateDomainConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3206,19 +4709,24 @@ module TencentCloud
         # 支持 301、302
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RedirectStatusCode: Integer
+        # @param CarryHeaders: 强制跳转时是否返回增加的头部。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CarryHeaders: String
 
-        attr_accessor :Switch, :RedirectType, :RedirectStatusCode
+        attr_accessor :Switch, :RedirectType, :RedirectStatusCode, :CarryHeaders
         
-        def initialize(switch=nil, redirecttype=nil, redirectstatuscode=nil)
+        def initialize(switch=nil, redirecttype=nil, redirectstatuscode=nil, carryheaders=nil)
           @Switch = switch
           @RedirectType = redirecttype
           @RedirectStatusCode = redirectstatuscode
+          @CarryHeaders = carryheaders
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @RedirectType = params['RedirectType']
           @RedirectStatusCode = params['RedirectStatusCode']
+          @CarryHeaders = params['CarryHeaders']
         end
       end
 
@@ -3355,7 +4863,6 @@ module TencentCloud
       class HttpHeaderPathRule < TencentCloud::Common::AbstractModel
         # @param HeaderMode: http 头部设置方式
         # add：添加头部，若已存在头部，则会存在重复头部
-        # set：仅回源头部配置支持，若头部已存在则会覆盖原有头部值，若不存在，则会增加该头部及值
         # del：删除头部
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeaderMode: String
@@ -3398,6 +4905,30 @@ module TencentCloud
           @HeaderValue = params['HeaderValue']
           @RuleType = params['RuleType']
           @RulePaths = params['RulePaths']
+        end
+      end
+
+      # http头部设置规则。
+      class HttpHeaderRule < TencentCloud::Common::AbstractModel
+        # @param HeaderMode: http头部设置方式，支持add，set或del，分别表示新增，设置或删除头部。
+        # @type HeaderMode: String
+        # @param HeaderName: http头部名称。
+        # @type HeaderName: String
+        # @param HeaderValue: http头部值。
+        # @type HeaderValue: String
+
+        attr_accessor :HeaderMode, :HeaderName, :HeaderValue
+        
+        def initialize(headermode=nil, headername=nil, headervalue=nil)
+          @HeaderMode = headermode
+          @HeaderName = headername
+          @HeaderValue = headervalue
+        end
+
+        def deserialize(params)
+          @HeaderMode = params['HeaderMode']
+          @HeaderName = params['HeaderName']
+          @HeaderValue = params['HeaderValue']
         end
       end
 
@@ -3448,10 +4979,13 @@ module TencentCloud
         # @param Hsts: Hsts配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hsts: :class:`Tencentcloud::Cdn.v20180606.models.Hsts`
+        # @param TlsVersion: Tls版本设置，仅支持部分Advance域名，支持设置 TLSv1, TLSV1.1, TLSV1.2, TLSv1.3，修改时必须开启连续的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TlsVersion: Array
 
-        attr_accessor :Switch, :Http2, :OcspStapling, :VerifyClient, :CertInfo, :ClientCertInfo, :Spdy, :SslStatus, :Hsts
+        attr_accessor :Switch, :Http2, :OcspStapling, :VerifyClient, :CertInfo, :ClientCertInfo, :Spdy, :SslStatus, :Hsts, :TlsVersion
         
-        def initialize(switch=nil, http2=nil, ocspstapling=nil, verifyclient=nil, certinfo=nil, clientcertinfo=nil, spdy=nil, sslstatus=nil, hsts=nil)
+        def initialize(switch=nil, http2=nil, ocspstapling=nil, verifyclient=nil, certinfo=nil, clientcertinfo=nil, spdy=nil, sslstatus=nil, hsts=nil, tlsversion=nil)
           @Switch = switch
           @Http2 = http2
           @OcspStapling = ocspstapling
@@ -3461,6 +4995,7 @@ module TencentCloud
           @Spdy = spdy
           @SslStatus = sslstatus
           @Hsts = hsts
+          @TlsVersion = tlsversion
         end
 
         def deserialize(params)
@@ -3479,6 +5014,7 @@ module TencentCloud
           unless params['Hsts'].nil?
             @Hsts = Hsts.new.deserialize(params[Hsts])
           end
+          @TlsVersion = params['TlsVersion']
         end
       end
 
@@ -3531,19 +5067,68 @@ module TencentCloud
         # 最多可填充 50 个白名单或 50 个黑名单
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filters: Array
+        # @param FilterRules: IP 黑白名单分路径配置，白名单功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterRules: Array
 
-        attr_accessor :Switch, :FilterType, :Filters
+        attr_accessor :Switch, :FilterType, :Filters, :FilterRules
         
-        def initialize(switch=nil, filtertype=nil, filters=nil)
+        def initialize(switch=nil, filtertype=nil, filters=nil, filterrules=nil)
           @Switch = switch
           @FilterType = filtertype
           @Filters = filters
+          @FilterRules = filterrules
         end
 
         def deserialize(params)
           @Switch = params['Switch']
           @FilterType = params['FilterType']
           @Filters = params['Filters']
+          @FilterRules = params['FilterRules']
+        end
+      end
+
+      # IP黑白名单分路径配置
+      class IpFilterPathRule < TencentCloud::Common::AbstractModel
+        # @param FilterType: IP 黑白名单类型
+        # whitelist：白名单
+        # blacklist：黑名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterType: String
+        # @param Filters: IP 黑白名单列表
+        # 支持 X.X.X.X 形式 IP，或 /8、 /16、/24 形式网段
+        # 最多可填充 50 个白名单或 50 个黑名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Filters: Array
+        # @param RuleType: 规则类型：
+        # all：所有文件生效
+        # file：指定文件后缀生效
+        # directory：指定路径生效
+        # path：指定绝对路径生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param RulePaths: RuleType 对应类型下的匹配内容：
+        # all 时填充 *
+        # file 时填充后缀名，如 jpg、txt
+        # directory 时填充路径，如 /xxx/test/
+        # path 时填充绝对路径，如 /xxx/test.html
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulePaths: Array
+
+        attr_accessor :FilterType, :Filters, :RuleType, :RulePaths
+        
+        def initialize(filtertype=nil, filters=nil, ruletype=nil, rulepaths=nil)
+          @FilterType = filtertype
+          @Filters = filters
+          @RuleType = ruletype
+          @RulePaths = rulepaths
+        end
+
+        def deserialize(params)
+          @FilterType = params['FilterType']
+          @Filters = params['Filters']
+          @RuleType = params['RuleType']
+          @RulePaths = params['RulePaths']
         end
       end
 
@@ -3619,6 +5204,77 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # Ipv6访问配置
+      class Ipv6Access < TencentCloud::Common::AbstractModel
+        # @param Switch: 域名是否开启ipv6访问功能，on或off。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # 缓存键分路径配置
+      class KeyRule < TencentCloud::Common::AbstractModel
+        # @param RulePaths: CacheType 对应类型下的匹配内容：
+        # file 时填充后缀名，如 jpg、txt
+        # directory 时填充路径，如 /xxx/test
+        # path 时填充绝对路径，如 /xxx/test.html
+        # index 时填充 /
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulePaths: Array
+        # @param RuleType: 规则类型：
+        # file：指定文件后缀生效
+        # directory：指定路径生效
+        # path：指定绝对路径生效
+        # index：首页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param FullUrlCache: 是否开启全路径缓存
+        # on：开启全路径缓存（即关闭参数过滤）
+        # off：关闭全路径缓存（即开启参数过滤）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullUrlCache: String
+        # @param IgnoreCase: 是否忽略大小写缓存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoreCase: String
+        # @param QueryString: CacheKey中包含请求参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryString: :class:`Tencentcloud::Cdn.v20180606.models.RuleQueryString`
+        # @param RuleTag: 路径缓存键标签，传 user
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTag: String
+
+        attr_accessor :RulePaths, :RuleType, :FullUrlCache, :IgnoreCase, :QueryString, :RuleTag
+        
+        def initialize(rulepaths=nil, ruletype=nil, fullurlcache=nil, ignorecase=nil, querystring=nil, ruletag=nil)
+          @RulePaths = rulepaths
+          @RuleType = ruletype
+          @FullUrlCache = fullurlcache
+          @IgnoreCase = ignorecase
+          @QueryString = querystring
+          @RuleTag = ruletag
+        end
+
+        def deserialize(params)
+          @RulePaths = params['RulePaths']
+          @RuleType = params['RuleType']
+          @FullUrlCache = params['FullUrlCache']
+          @IgnoreCase = params['IgnoreCase']
+          unless params['QueryString'].nil?
+            @QueryString = RuleQueryString.new.deserialize(params[QueryString])
+          end
+          @RuleTag = params['RuleTag']
         end
       end
 
@@ -3730,6 +5386,131 @@ module TencentCloud
           @DomainAreaConfigs = params['DomainAreaConfigs']
           @TopicName = params['TopicName']
           @UpdateTime = params['UpdateTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListDiagnoseReport请求参数结构体
+      class ListDiagnoseReportRequest < TencentCloud::Common::AbstractModel
+        # @param KeyWords: 用于搜索诊断URL的关键字，不填时返回用户所有的诊断任务。
+        # @type KeyWords: String
+        # @param DiagnoseLink: 用于搜索诊断系统返回的诊断链接，形如：http://cdn.cloud.tencent.com/self_diagnose/xxxxx
+        # @type DiagnoseLink: String
+
+        attr_accessor :KeyWords, :DiagnoseLink
+        
+        def initialize(keywords=nil, diagnoselink=nil)
+          @KeyWords = keywords
+          @DiagnoseLink = diagnoselink
+        end
+
+        def deserialize(params)
+          @KeyWords = params['KeyWords']
+          @DiagnoseLink = params['DiagnoseLink']
+        end
+      end
+
+      # ListDiagnoseReport返回参数结构体
+      class ListDiagnoseReportResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 诊断信息。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListScdnDomains请求参数结构体
+      class ListScdnDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页起始地址
+        # @type Offset: Integer
+        # @param Limit: 列表分页记录条数，最大1000
+        # @type Limit: Integer
+        # @param Domain: 域名信息
+        # @type Domain: String
+
+        attr_accessor :Offset, :Limit, :Domain
+        
+        def initialize(offset=nil, limit=nil, domain=nil)
+          @Offset = offset
+          @Limit = limit
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Domain = params['Domain']
+        end
+      end
+
+      # ListScdnDomains返回参数结构体
+      class ListScdnDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param DomainList: 域名列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainList: Array
+        # @param TotalCount: 域名的总条数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainList, :TotalCount, :RequestId
+        
+        def initialize(domainlist=nil, totalcount=nil, requestid=nil)
+          @DomainList = domainlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DomainList = params['DomainList']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListScdnLogTasks请求参数结构体
+      class ListScdnLogTasksRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ListScdnLogTasks返回参数结构体
+      class ListScdnLogTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TaskList: 日志下载任务详情
+        # @type TaskList: Array
+        # @param TotalCount: 查询到的下载任务的总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskList, :TotalCount, :RequestId
+        
+        def initialize(tasklist=nil, totalcount=nil, requestid=nil)
+          @TaskList = tasklist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskList = params['TaskList']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4162,28 +5943,53 @@ module TencentCloud
         # file：指定文件后缀生效
         # directory：指定路径生效
         # path：指定绝对路径生效
+        # index: 指定主页生效
         # @type MaxAgeType: String
         # @param MaxAgeContents: MaxAgeType 对应类型下的匹配内容：
         # all 时填充 *
         # file 时填充后缀名，如 jpg、txt
         # directory 时填充路径，如 /xxx/test/
         # path 时填充绝对路径，如 /xxx/test.html
+        # index 时填充 /
+        # 注意：all规则不可删除，默认遵循源站，可修改。
         # @type MaxAgeContents: Array
         # @param MaxAgeTime: MaxAge 时间设置，单位秒
+        # 注意：时间为0，即不缓存。
         # @type MaxAgeTime: Integer
+        # @param FollowOrigin: 是否遵循源站，on或off，开启时忽略时间设置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowOrigin: String
 
-        attr_accessor :MaxAgeType, :MaxAgeContents, :MaxAgeTime
+        attr_accessor :MaxAgeType, :MaxAgeContents, :MaxAgeTime, :FollowOrigin
         
-        def initialize(maxagetype=nil, maxagecontents=nil, maxagetime=nil)
+        def initialize(maxagetype=nil, maxagecontents=nil, maxagetime=nil, followorigin=nil)
           @MaxAgeType = maxagetype
           @MaxAgeContents = maxagecontents
           @MaxAgeTime = maxagetime
+          @FollowOrigin = followorigin
         end
 
         def deserialize(params)
           @MaxAgeType = params['MaxAgeType']
           @MaxAgeContents = params['MaxAgeContents']
           @MaxAgeTime = params['MaxAgeTime']
+          @FollowOrigin = params['FollowOrigin']
+        end
+      end
+
+      # 离线缓存是否开启
+      class OfflineCache < TencentCloud::Common::AbstractModel
+        # @param Switch: on | off, 离线缓存是否开启
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 
@@ -4244,10 +6050,16 @@ module TencentCloud
         # @param BasePath: 回源路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasePath: String
+        # @param PathRules: 回源路径重写规则配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathRules: Array
+        # @param PathBasedOrigin: 分路径回源配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathBasedOrigin: Array
 
-        attr_accessor :Origins, :OriginType, :ServerName, :CosPrivateAccess, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :BackupServerName, :BasePath
+        attr_accessor :Origins, :OriginType, :ServerName, :CosPrivateAccess, :OriginPullProtocol, :BackupOrigins, :BackupOriginType, :BackupServerName, :BasePath, :PathRules, :PathBasedOrigin
         
-        def initialize(origins=nil, origintype=nil, servername=nil, cosprivateaccess=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, backupservername=nil, basepath=nil)
+        def initialize(origins=nil, origintype=nil, servername=nil, cosprivateaccess=nil, originpullprotocol=nil, backuporigins=nil, backuporigintype=nil, backupservername=nil, basepath=nil, pathrules=nil, pathbasedorigin=nil)
           @Origins = origins
           @OriginType = origintype
           @ServerName = servername
@@ -4257,6 +6069,8 @@ module TencentCloud
           @BackupOriginType = backuporigintype
           @BackupServerName = backupservername
           @BasePath = basepath
+          @PathRules = pathrules
+          @PathBasedOrigin = pathbasedorigin
         end
 
         def deserialize(params)
@@ -4269,6 +6083,81 @@ module TencentCloud
           @BackupOriginType = params['BackupOriginType']
           @BackupServerName = params['BackupServerName']
           @BasePath = params['BasePath']
+          @PathRules = params['PathRules']
+          @PathBasedOrigin = params['PathBasedOrigin']
+        end
+      end
+
+      # 回源鉴权高级配置
+      class OriginAuthentication < TencentCloud::Common::AbstractModel
+        # @param Switch: 鉴权开关，on或off
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param TypeA: 鉴权类型A配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TypeA: :class:`Tencentcloud::Cdn.v20180606.models.OriginAuthenticationTypeA`
+
+        attr_accessor :Switch, :TypeA
+        
+        def initialize(switch=nil, typea=nil)
+          @Switch = switch
+          @TypeA = typea
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['TypeA'].nil?
+            @TypeA = OriginAuthenticationTypeA.new.deserialize(params[TypeA])
+          end
+        end
+      end
+
+      # 回源鉴权高级配置TypeA
+      class OriginAuthenticationTypeA < TencentCloud::Common::AbstractModel
+        # @param SecretKey: 用于计算签名的密钥，只允许字母和数字，长度6-32字节。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+
+        attr_accessor :SecretKey
+        
+        def initialize(secretkey=nil)
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @SecretKey = params['SecretKey']
+        end
+      end
+
+      # 合并回源配置项
+      class OriginCombine < TencentCloud::Common::AbstractModel
+        # @param Switch: on|off 是否开启合并回源
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # CDN回源节点IP信息
+      class OriginIp < TencentCloud::Common::AbstractModel
+        # @param Ip: 回源IP段/回源IP，默认返回IP段信息。
+        # @type Ip: String
+
+        attr_accessor :Ip
+        
+        def initialize(ip=nil)
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
         end
       end
 
@@ -4503,6 +6392,90 @@ module TencentCloud
         end
       end
 
+      # 分路径回源规则
+      class PathBasedOriginRule < TencentCloud::Common::AbstractModel
+        # @param RuleType: 规则类型：
+        # file：指定文件后缀生效
+        # directory：指定路径生效
+        # path：指定绝对路径生效
+        # index: 指定主页生效
+        # @type RuleType: String
+        # @param RulePaths: RuleType 对应类型下的匹配内容：
+        # file 时填充后缀名，如 jpg、txt
+        # directory 时填充路径，如 /xxx/test/
+        # path 时填充绝对路径，如 /xxx/test.html
+        # index 时填充 /
+        # @type RulePaths: Array
+        # @param Origin: 源站列表，支持域名或ipv4地址
+        # @type Origin: Array
+
+        attr_accessor :RuleType, :RulePaths, :Origin
+        
+        def initialize(ruletype=nil, rulepaths=nil, origin=nil)
+          @RuleType = ruletype
+          @RulePaths = rulepaths
+          @Origin = origin
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          @RulePaths = params['RulePaths']
+          @Origin = params['Origin']
+        end
+      end
+
+      # 分路径回源配置规则。
+      class PathRule < TencentCloud::Common::AbstractModel
+        # @param Regex: 是否开启通配符“*”匹配：
+        # false：关闭
+        # true：开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Regex: Boolean
+        # @param Path: 匹配的URL路径，仅支持Url路径，不支持参数。默认完全匹配，开启通配符“*”匹配后，最多支持5个通配符，最大长度为1024个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Origin: 路径匹配时的回源源站。暂不支持开了私有读写的COS源。不填写时沿用默认源站。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Origin: String
+        # @param ServerName: 路径匹配时回源的Host头部。不填写时沿用默认ServerName。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerName: String
+        # @param OriginArea: 源站所属区域，支持CN，OV：
+        # CN：中国境内
+        # OV：中国境外
+        # 默认为CN。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginArea: String
+        # @param ForwardUri: 路径匹配时回源的URI路径，必须以“/”开头，不包含参数部分。最大长度为1024个字符。可使用$1, $2, $3, $4, $5分别捕获匹配路径中的通配符号“*”，最多支持10个捕获值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardUri: String
+        # @param RequestHeaders: 路径匹配时回源的头部设置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestHeaders: Array
+
+        attr_accessor :Regex, :Path, :Origin, :ServerName, :OriginArea, :ForwardUri, :RequestHeaders
+        
+        def initialize(regex=nil, path=nil, origin=nil, servername=nil, originarea=nil, forwarduri=nil, requestheaders=nil)
+          @Regex = regex
+          @Path = path
+          @Origin = origin
+          @ServerName = servername
+          @OriginArea = originarea
+          @ForwardUri = forwarduri
+          @RequestHeaders = requestheaders
+        end
+
+        def deserialize(params)
+          @Regex = params['Regex']
+          @Path = params['Path']
+          @Origin = params['Origin']
+          @ServerName = params['ServerName']
+          @OriginArea = params['OriginArea']
+          @ForwardUri = params['ForwardUri']
+          @RequestHeaders = params['RequestHeaders']
+        end
+      end
+
       # PurgePathCache请求参数结构体
       class PurgePathCacheRequest < TencentCloud::Common::AbstractModel
         # @param Paths: 目录列表，需要包含协议头部 http:// 或 https://
@@ -4511,17 +6484,21 @@ module TencentCloud
         # flush：刷新产生更新的资源
         # delete：刷新全部资源
         # @type FlushType: String
+        # @param UrlEncode: 是否对中文字符进行编码后刷新
+        # @type UrlEncode: Boolean
 
-        attr_accessor :Paths, :FlushType
+        attr_accessor :Paths, :FlushType, :UrlEncode
         
-        def initialize(paths=nil, flushtype=nil)
+        def initialize(paths=nil, flushtype=nil, urlencode=nil)
           @Paths = paths
           @FlushType = flushtype
+          @UrlEncode = urlencode
         end
 
         def deserialize(params)
           @Paths = params['Paths']
           @FlushType = params['FlushType']
+          @UrlEncode = params['UrlEncode']
         end
       end
 
@@ -4592,15 +6569,27 @@ module TencentCloud
       class PurgeUrlsCacheRequest < TencentCloud::Common::AbstractModel
         # @param Urls: URL 列表，需要包含协议头部 http:// 或 https://
         # @type Urls: Array
+        # @param Area: 刷新区域
+        # 无此参数时，默认刷新加速域名所在加速区域
+        # 填充 mainland 时，仅刷新中国境内加速节点上缓存内容
+        # 填充 overseas 时，仅刷新中国境外加速节点上缓存内容
+        # 指定刷新区域时，需要与域名加速区域匹配
+        # @type Area: String
+        # @param UrlEncode: 是否对中文字符进行编码后刷新
+        # @type UrlEncode: Boolean
 
-        attr_accessor :Urls
+        attr_accessor :Urls, :Area, :UrlEncode
         
-        def initialize(urls=nil)
+        def initialize(urls=nil, area=nil, urlencode=nil)
           @Urls = urls
+          @Area = area
+          @UrlEncode = urlencode
         end
 
         def deserialize(params)
           @Urls = params['Urls']
+          @Area = params['Area']
+          @UrlEncode = params['UrlEncode']
         end
       end
 
@@ -4684,19 +6673,31 @@ module TencentCloud
         # global：预热全球节点
         # 不填充情况下，默认为 mainland， URL 中域名必须在对应区域启用了加速服务才能提交对应区域的预热任务
         # @type Area: String
+        # @param Layer: 填写"middle"或不填充时预热至中间层节点
+        # @type Layer: String
+        # @param ParseM3U8: 是否递归解析m3u8文件中的ts分片预热
+        # 注意事项：
+        # 1. 该功能要求m3u8索引文件能直接请求获取
+        # 2. 当前只支持递归解析一级索引和子索引中的ts分片，递归深度不超过3层
+        # 3. 解析获取的ts分片会正常累加每日预热用量，当用量超出配额时，会静默处理，不再执行预热
+        # @type ParseM3U8: Boolean
 
-        attr_accessor :Urls, :UserAgent, :Area
+        attr_accessor :Urls, :UserAgent, :Area, :Layer, :ParseM3U8
         
-        def initialize(urls=nil, useragent=nil, area=nil)
+        def initialize(urls=nil, useragent=nil, area=nil, layer=nil, parsem3u8=nil)
           @Urls = urls
           @UserAgent = useragent
           @Area = area
+          @Layer = layer
+          @ParseM3U8 = parsem3u8
         end
 
         def deserialize(params)
           @Urls = params['Urls']
           @UserAgent = params['UserAgent']
           @Area = params['Area']
+          @Layer = params['Layer']
+          @ParseM3U8 = params['ParseM3U8']
         end
       end
 
@@ -5079,6 +7080,628 @@ module TencentCloud
         end
       end
 
+      # 缓存配置分路径版本。
+      # 默认情况下所有文件缓存过期时间为 30 天
+      # 默认情况下静态加速类型的域名 .php;.jsp;.asp;.aspx 不缓存
+      class RuleCache < TencentCloud::Common::AbstractModel
+        # @param RulePaths: CacheType 对应类型下的匹配内容：
+        # all 时填充 *
+        # file 时填充后缀名，如 jpg、txt
+        # directory 时填充路径，如 /xxx/test
+        # path 时填充绝对路径，如 /xxx/test.html
+        # index 时填充 /
+        # default 时填充 "no max-age"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulePaths: Array
+        # @param RuleType: 规则类型：
+        # all：所有文件生效
+        # file：指定文件后缀生效
+        # directory：指定路径生效
+        # path：指定绝对路径生效
+        # index：首页
+        # default: 源站无max-age时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param CacheConfig: 缓存配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheConfig: :class:`Tencentcloud::Cdn.v20180606.models.RuleCacheConfig`
+
+        attr_accessor :RulePaths, :RuleType, :CacheConfig
+        
+        def initialize(rulepaths=nil, ruletype=nil, cacheconfig=nil)
+          @RulePaths = rulepaths
+          @RuleType = ruletype
+          @CacheConfig = cacheconfig
+        end
+
+        def deserialize(params)
+          @RulePaths = params['RulePaths']
+          @RuleType = params['RuleType']
+          unless params['CacheConfig'].nil?
+            @CacheConfig = RuleCacheConfig.new.deserialize(params[CacheConfig])
+          end
+        end
+      end
+
+      # 路径缓存缓存配置（三种缓存模式中选取一种）
+      class RuleCacheConfig < TencentCloud::Common::AbstractModel
+        # @param Cache: 缓存配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cache: :class:`Tencentcloud::Cdn.v20180606.models.CacheConfigCache`
+        # @param NoCache: 不缓存配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoCache: :class:`Tencentcloud::Cdn.v20180606.models.CacheConfigNoCache`
+        # @param FollowOrigin: 遵循源站配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowOrigin: :class:`Tencentcloud::Cdn.v20180606.models.CacheConfigFollowOrigin`
+
+        attr_accessor :Cache, :NoCache, :FollowOrigin
+        
+        def initialize(cache=nil, nocache=nil, followorigin=nil)
+          @Cache = cache
+          @NoCache = nocache
+          @FollowOrigin = followorigin
+        end
+
+        def deserialize(params)
+          unless params['Cache'].nil?
+            @Cache = CacheConfigCache.new.deserialize(params[Cache])
+          end
+          unless params['NoCache'].nil?
+            @NoCache = CacheConfigNoCache.new.deserialize(params[NoCache])
+          end
+          unless params['FollowOrigin'].nil?
+            @FollowOrigin = CacheConfigFollowOrigin.new.deserialize(params[FollowOrigin])
+          end
+        end
+      end
+
+      # 路径保留参数配置
+      class RuleQueryString < TencentCloud::Common::AbstractModel
+        # @param Switch: on | off CacheKey是否由QueryString组成
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param Action: includeCustom 包含部分url参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param Value: 使用/排除的url参数数组，';' 分割
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Switch, :Action, :Value
+        
+        def initialize(switch=nil, action=nil, value=nil)
+          @Switch = switch
+          @Action = action
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Action = params['Action']
+          @Value = params['Value']
+        end
+      end
+
+      # SCDN访问控制
+      class ScdnAclConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 是否开启，on | off
+        # @type Switch: String
+        # @param ScriptData: Acl规则组，switch为on时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScriptData: Array
+        # @param ErrorPage: 错误页面配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorPage: :class:`Tencentcloud::Cdn.v20180606.models.ScdnErrorPage`
+
+        attr_accessor :Switch, :ScriptData, :ErrorPage
+        
+        def initialize(switch=nil, scriptdata=nil, errorpage=nil)
+          @Switch = switch
+          @ScriptData = scriptdata
+          @ErrorPage = errorpage
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @ScriptData = params['ScriptData']
+          unless params['ErrorPage'].nil?
+            @ErrorPage = ScdnErrorPage.new.deserialize(params[ErrorPage])
+          end
+        end
+      end
+
+      # SCDN精准访问控制配置
+      class ScdnAclGroup < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Configure: 具体配置
+        # @type Configure: Array
+        # @param Result: 规则行为，一般为refuse
+        # @type Result: String
+        # @param Status: 规则是否生效中active|inactive
+        # @type Status: String
+
+        attr_accessor :RuleName, :Configure, :Result, :Status
+        
+        def initialize(rulename=nil, configure=nil, result=nil, status=nil)
+          @RuleName = rulename
+          @Configure = configure
+          @Result = result
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Configure = params['Configure']
+          @Result = params['Result']
+          @Status = params['Status']
+        end
+      end
+
+      # 精准访问控制匹配规则
+      class ScdnAclRule < TencentCloud::Common::AbstractModel
+        # @param MatchKey: 匹配关键字, params | url | ip | referer | user-agent
+        # @type MatchKey: String
+        # @param LogiOperator: 逻辑操作符，取值 exclude, include, notequal, equal, len-less, len-equal, len-more
+        # @type LogiOperator: String
+        # @param MatchValue: 匹配值
+        # @type MatchValue: String
+
+        attr_accessor :MatchKey, :LogiOperator, :MatchValue
+        
+        def initialize(matchkey=nil, logioperator=nil, matchvalue=nil)
+          @MatchKey = matchkey
+          @LogiOperator = logioperator
+          @MatchValue = matchvalue
+        end
+
+        def deserialize(params)
+          @MatchKey = params['MatchKey']
+          @LogiOperator = params['LogiOperator']
+          @MatchValue = params['MatchValue']
+        end
+      end
+
+      # bot配置类型
+      class ScdnBotConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: on|off
+        # @type Switch: String
+        # @param BotCookie: Bot cookie策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotCookie: Array
+        # @param BotJavaScript: Bot Js策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotJavaScript: Array
+
+        attr_accessor :Switch, :BotCookie, :BotJavaScript
+        
+        def initialize(switch=nil, botcookie=nil, botjavascript=nil)
+          @Switch = switch
+          @BotCookie = botcookie
+          @BotJavaScript = botjavascript
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @BotCookie = params['BotCookie']
+          @BotJavaScript = params['BotJavaScript']
+        end
+      end
+
+      # scdn 的自定义 cc 规则
+      class ScdnCCRules < TencentCloud::Common::AbstractModel
+        # @param RuleType: 规则类型：
+        # all：所有文件生效
+        # file：指定文件后缀生效
+        # directory：指定路径生效
+        # path：指定绝对路径生效
+        # index：首页
+        # @type RuleType: String
+        # @param RuleValue: 规则值
+        # @type RuleValue: Array
+        # @param Qps: 规则限频
+        # @type Qps: Integer
+        # @param DetectionTime: 探测时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectionTime: Integer
+        # @param FrequencyLimit: 限频阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrequencyLimit: Integer
+        # @param PunishmentSwitch: IP 惩罚开关，可选on|off
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PunishmentSwitch: String
+        # @param PunishmentTime: IP 惩罚时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PunishmentTime: Integer
+        # @param Action: 执行动作，intercept|redirect
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param RedirectUrl: 动作为 redirect 时，重定向的url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectUrl: String
+
+        attr_accessor :RuleType, :RuleValue, :Qps, :DetectionTime, :FrequencyLimit, :PunishmentSwitch, :PunishmentTime, :Action, :RedirectUrl
+        
+        def initialize(ruletype=nil, rulevalue=nil, qps=nil, detectiontime=nil, frequencylimit=nil, punishmentswitch=nil, punishmenttime=nil, action=nil, redirecturl=nil)
+          @RuleType = ruletype
+          @RuleValue = rulevalue
+          @Qps = qps
+          @DetectionTime = detectiontime
+          @FrequencyLimit = frequencylimit
+          @PunishmentSwitch = punishmentswitch
+          @PunishmentTime = punishmenttime
+          @Action = action
+          @RedirectUrl = redirecturl
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          @RuleValue = params['RuleValue']
+          @Qps = params['Qps']
+          @DetectionTime = params['DetectionTime']
+          @FrequencyLimit = params['FrequencyLimit']
+          @PunishmentSwitch = params['PunishmentSwitch']
+          @PunishmentTime = params['PunishmentTime']
+          @Action = params['Action']
+          @RedirectUrl = params['RedirectUrl']
+        end
+      end
+
+      # cc的配置类型
+      class ScdnConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: on | off
+        # @type Switch: String
+        # @param Rules: 自定义 cc 防护规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+
+        attr_accessor :Switch, :Rules
+        
+        def initialize(switch=nil, rules=nil)
+          @Switch = switch
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Rules = params['Rules']
+        end
+      end
+
+      # ddos配置类型
+      class ScdnDdosConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: on|off
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # 聚合了SCDN域名的基本信息
+      class ScdnDomain < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Status: 当前状态，取值online | offline | process
+        # @type Status: String
+        # @param Waf: Waf 状态默认为‘/’，取值 close | intercept | observe
+        # @type Waf: String
+        # @param Acl: Acl 状态默认为‘/’，取值 close | open
+        # @type Acl: String
+        # @param CC: CC 状态默认为‘/’，取值 close | open
+        # @type CC: String
+        # @param Ddos: Ddos 状态默认为‘/’，取值 close | open
+        # @type Ddos: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param AclRuleNumbers: Acl 规则数
+        # @type AclRuleNumbers: Integer
+        # @param Bot: Bot 状态默认为‘/’，取值 close | open
+        # @type Bot: String
+
+        attr_accessor :Domain, :Status, :Waf, :Acl, :CC, :Ddos, :ProjectId, :AclRuleNumbers, :Bot
+        
+        def initialize(domain=nil, status=nil, waf=nil, acl=nil, cc=nil, ddos=nil, projectid=nil, aclrulenumbers=nil, bot=nil)
+          @Domain = domain
+          @Status = status
+          @Waf = waf
+          @Acl = acl
+          @CC = cc
+          @Ddos = ddos
+          @ProjectId = projectid
+          @AclRuleNumbers = aclrulenumbers
+          @Bot = bot
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @Waf = params['Waf']
+          @Acl = params['Acl']
+          @CC = params['CC']
+          @Ddos = params['Ddos']
+          @ProjectId = params['ProjectId']
+          @AclRuleNumbers = params['AclRuleNumbers']
+          @Bot = params['Bot']
+        end
+      end
+
+      # acl的错误页面
+      class ScdnErrorPage < TencentCloud::Common::AbstractModel
+        # @param RedirectCode: 状态码
+        # @type RedirectCode: Integer
+        # @param RedirectUrl: 重定向url
+        # @type RedirectUrl: String
+
+        attr_accessor :RedirectCode, :RedirectUrl
+        
+        def initialize(redirectcode=nil, redirecturl=nil)
+          @RedirectCode = redirectcode
+          @RedirectUrl = redirecturl
+        end
+
+        def deserialize(params)
+          @RedirectCode = params['RedirectCode']
+          @RedirectUrl = params['RedirectUrl']
+        end
+      end
+
+      # SCDN 事件日志查询条件
+      class ScdnEventLogConditions < TencentCloud::Common::AbstractModel
+        # @param Key: 匹配关键字，ip, attack_location
+        # @type Key: String
+        # @param Operator: 逻辑操作符，取值 exclude, include
+        # @type Operator: String
+        # @param Value: 匹配值，允许使用通配符(*)查询，匹配零个、单个、多个字符，例如 1.2.*
+        # @type Value: String
+
+        attr_accessor :Key, :Operator, :Value
+        
+        def initialize(key=nil, operator=nil, value=nil)
+          @Key = key
+          @Operator = operator
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Value = params['Value']
+        end
+      end
+
+      # SCDN日志事件详细信息
+      class ScdnLogTaskDetail < TencentCloud::Common::AbstractModel
+        # @param Domain: scdn域名
+        # @type Domain: String
+        # @param Mode: 防护类型
+        # @type Mode: String
+        # @param StartTime: 查询任务开始时间
+        # @type StartTime: String
+        # @param EndTime: 查询任务结束时间
+        # @type EndTime: String
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param DownloadUrl: 日志包下载链接
+        # 成功返回下载链接，其他情况返回'-'
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadUrl: String
+        # @param Status: 任务状态
+        # created->任务已经创建
+        # processing->任务正在执行
+        # done->任务执行成功
+        # failed->任务执行失败
+        # no-log->没有日志产生
+        # @type Status: String
+        # @param TaskID: 日志任务唯一id
+        # @type TaskID: String
+        # @param AttackType: 攻击类型, 可以为"all"
+        # AttackType映射如下:
+        #   other = '未知类型'
+        #   malicious_scan = "恶意扫描"
+        #   sql_inject = "SQL注入攻击"
+        #   xss = "XSS攻击"
+        #   cmd_inject = "命令注入攻击"
+        #   ldap_inject = "LDAP注入攻击"
+        #   ssi_inject = "SSI注入攻击"
+        #   xml_inject = "XML注入攻击"
+        #   web_service = "WEB服务漏洞攻击"
+        #   web_app = "WEB应用漏洞攻击"
+        #   path_traversal = "路径跨越攻击"
+        #   illegal_access_core_file = "核心文件非法访问"
+        #   file_upload = "文件上传攻击"
+        #   trojan_horse = "木马后门攻击"
+        #   csrf = "CSRF攻击"
+        #   custom_policy = "自定义策略"
+        #   ai_engine= 'AI引擎检出'
+        #   malicious_file_upload= '恶意文件上传'
+        # @type AttackType: String
+        # @param DefenceMode: 防御模式,可以为"all"
+        # DefenceMode映射如下：
+        #   observe = '观察模式'
+        #   intercept = '防御模式'
+        # @type DefenceMode: String
+        # @param Conditions: 查询条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Conditions: Array
+
+        attr_accessor :Domain, :Mode, :StartTime, :EndTime, :CreateTime, :DownloadUrl, :Status, :TaskID, :AttackType, :DefenceMode, :Conditions
+        
+        def initialize(domain=nil, mode=nil, starttime=nil, endtime=nil, createtime=nil, downloadurl=nil, status=nil, taskid=nil, attacktype=nil, defencemode=nil, conditions=nil)
+          @Domain = domain
+          @Mode = mode
+          @StartTime = starttime
+          @EndTime = endtime
+          @CreateTime = createtime
+          @DownloadUrl = downloadurl
+          @Status = status
+          @TaskID = taskid
+          @AttackType = attacktype
+          @DefenceMode = defencemode
+          @Conditions = conditions
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Mode = params['Mode']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CreateTime = params['CreateTime']
+          @DownloadUrl = params['DownloadUrl']
+          @Status = params['Status']
+          @TaskID = params['TaskID']
+          @AttackType = params['AttackType']
+          @DefenceMode = params['DefenceMode']
+          @Conditions = params['Conditions']
+        end
+      end
+
+      # SCDN攻击数据Top展示
+      class ScdnTopData < TencentCloud::Common::AbstractModel
+        # @param Time: 时间
+        # @type Time: String
+        # @param Value: 数值
+        # @type Value: Integer
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param District: 区域
+        # @type District: String
+
+        attr_accessor :Time, :Value, :Isp, :Ip, :District
+        
+        def initialize(time=nil, value=nil, isp=nil, ip=nil, district=nil)
+          @Time = time
+          @Value = value
+          @Isp = isp
+          @Ip = ip
+          @District = district
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Value = params['Value']
+          @Isp = params['Isp']
+          @Ip = params['Ip']
+          @District = params['District']
+        end
+      end
+
+      # SCDN攻击数据Top URL展示
+      class ScdnTopUrlData < TencentCloud::Common::AbstractModel
+        # @param Url: Top数据的URL
+        # @type Url: String
+        # @param Value: 数值
+        # @type Value: Integer
+        # @param Time: 时间
+        # @type Time: String
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+
+        attr_accessor :Url, :Value, :Time, :Domain
+        
+        def initialize(url=nil, value=nil, time=nil, domain=nil)
+          @Url = url
+          @Value = value
+          @Time = time
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Value = params['Value']
+          @Time = params['Time']
+          @Domain = params['Domain']
+        end
+      end
+
+      # Scdn饼图数据，waf仅有
+      class ScdnTypeData < TencentCloud::Common::AbstractModel
+        # @param AttackType: 攻击类型
+        # @type AttackType: String
+        # @param Value: 攻击值
+        # @type Value: Integer
+
+        attr_accessor :AttackType, :Value
+        
+        def initialize(attacktype=nil, value=nil)
+          @AttackType = attacktype
+          @Value = value
+        end
+
+        def deserialize(params)
+          @AttackType = params['AttackType']
+          @Value = params['Value']
+        end
+      end
+
+      # waf配置类型
+      class ScdnWafConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: on|off
+        # @type Switch: String
+        # @param Mode: intercept|observe，默认intercept
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param ErrorPage: 重定向的错误页面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorPage: :class:`Tencentcloud::Cdn.v20180606.models.ScdnErrorPage`
+        # @param WebShellSwitch: webshell拦截开关，on|off，默认off
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebShellSwitch: String
+        # @param Rules: 类型拦截规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+
+        attr_accessor :Switch, :Mode, :ErrorPage, :WebShellSwitch, :Rules
+        
+        def initialize(switch=nil, mode=nil, errorpage=nil, webshellswitch=nil, rules=nil)
+          @Switch = switch
+          @Mode = mode
+          @ErrorPage = errorpage
+          @WebShellSwitch = webshellswitch
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Mode = params['Mode']
+          unless params['ErrorPage'].nil?
+            @ErrorPage = ScdnErrorPage.new.deserialize(params[ErrorPage])
+          end
+          @WebShellSwitch = params['WebShellSwitch']
+          @Rules = params['Rules']
+        end
+      end
+
+      # Waf 规则信息
+      class ScdnWafRule < TencentCloud::Common::AbstractModel
+        # @param AttackType: 攻击类型
+        # @type AttackType: String
+        # @param Operate: 防护措施，observe
+        # @type Operate: String
+
+        attr_accessor :AttackType, :Operate
+        
+        def initialize(attacktype=nil, operate=nil)
+          @AttackType = attacktype
+          @Operate = operate
+        end
+
+        def deserialize(params)
+          @AttackType = params['AttackType']
+          @Operate = params['Operate']
+        end
+      end
+
       # 作为CacheKey的一部分
       class SchemeKey < TencentCloud::Common::AbstractModel
         # @param Switch: on | off 是否使用scheme作为cache key的一部分
@@ -5434,6 +8057,42 @@ module TencentCloud
         end
       end
 
+      # StartScdnDomain请求参数结构体
+      class StartScdnDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # StartScdnDomain返回参数结构体
+      class StartScdnDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 开启结果，Success表示成功
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 状态码缓存过期配置，默认情况下会对 404 状态码缓存 10 秒
       class StatusCodeCache < TencentCloud::Common::AbstractModel
         # @param Switch: 状态码缓存过期配置开关
@@ -5512,6 +8171,42 @@ module TencentCloud
         end
       end
 
+      # StopScdnDomain请求参数结构体
+      class StopScdnDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # StopScdnDomain返回参数结构体
+      class StopScdnDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 关闭结果，Success表示成功
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 明细数据的汇总值，各指标根据其特性不同拥有不同汇总方式
       class SummarizedData < TencentCloud::Common::AbstractModel
         # @param Name: 汇总方式，存在以下几种：
@@ -5532,6 +8227,28 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 域名标签配置
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -5673,10 +8390,18 @@ module TencentCloud
         # @type AutoExtension: Boolean
         # @param Channel: 流量包来源
         # @type Channel: String
+        # @param Area: 流量包生效区域，目前仅支持mainland
+        # @type Area: String
+        # @param LifeTimeMonth: 流量包生命周期月数
+        # @type LifeTimeMonth: Integer
+        # @param ExtensionAvailable: 流量包是否支持续订
+        # @type ExtensionAvailable: Boolean
+        # @param RefundAvailable: 流量包是否支持退费
+        # @type RefundAvailable: Boolean
 
-        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel
+        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable
         
-        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil)
+        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil)
           @Id = id
           @Type = type
           @Bytes = bytes
@@ -5688,6 +8413,10 @@ module TencentCloud
           @ContractExtension = contractextension
           @AutoExtension = autoextension
           @Channel = channel
+          @Area = area
+          @LifeTimeMonth = lifetimemonth
+          @ExtensionAvailable = extensionavailable
+          @RefundAvailable = refundavailable
         end
 
         def deserialize(params)
@@ -5702,6 +8431,10 @@ module TencentCloud
           @ContractExtension = params['ContractExtension']
           @AutoExtension = params['AutoExtension']
           @Channel = params['Channel']
+          @Area = params['Area']
+          @LifeTimeMonth = params['LifeTimeMonth']
+          @ExtensionAvailable = params['ExtensionAvailable']
+          @RefundAvailable = params['RefundAvailable']
         end
       end
 
@@ -5776,10 +8509,26 @@ module TencentCloud
         # @type AwsPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.AwsPrivateAccess`
         # @param UserAgentFilter: UA黑白名单配置
         # @type UserAgentFilter: :class:`Tencentcloud::Cdn.v20180606.models.UserAgentFilter`
+        # @param AccessControl: 访问控制
+        # @type AccessControl: :class:`Tencentcloud::Cdn.v20180606.models.AccessControl`
+        # @param UrlRedirect: URL重定向配置
+        # @type UrlRedirect: :class:`Tencentcloud::Cdn.v20180606.models.UrlRedirect`
+        # @param AccessPort: 访问端口配置
+        # @type AccessPort: Array
+        # @param AdvancedAuthentication: 时间戳防盗链高级版配置，白名单功能
+        # @type AdvancedAuthentication: :class:`Tencentcloud::Cdn.v20180606.models.AdvancedAuthentication`
+        # @param OriginAuthentication: 回源鉴权高级版配置，白名单功能
+        # @type OriginAuthentication: :class:`Tencentcloud::Cdn.v20180606.models.OriginAuthentication`
+        # @param Ipv6Access: Ipv6 访问配置
+        # @type Ipv6Access: :class:`Tencentcloud::Cdn.v20180606.models.Ipv6Access`
+        # @param OfflineCache: 离线缓存
+        # @type OfflineCache: :class:`Tencentcloud::Cdn.v20180606.models.OfflineCache`
+        # @param OriginCombine: 合并回源
+        # @type OriginCombine: :class:`Tencentcloud::Cdn.v20180606.models.OriginCombine`
 
-        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :ServiceType, :SpecificConfig, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter
+        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :ServiceType, :SpecificConfig, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine
         
-        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, servicetype=nil, specificconfig=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil)
+        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, servicetype=nil, specificconfig=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil)
           @Domain = domain
           @ProjectId = projectid
           @Origin = origin
@@ -5811,6 +8560,14 @@ module TencentCloud
           @OriginPullTimeout = originpulltimeout
           @AwsPrivateAccess = awsprivateaccess
           @UserAgentFilter = useragentfilter
+          @AccessControl = accesscontrol
+          @UrlRedirect = urlredirect
+          @AccessPort = accessport
+          @AdvancedAuthentication = advancedauthentication
+          @OriginAuthentication = originauthentication
+          @Ipv6Access = ipv6access
+          @OfflineCache = offlinecache
+          @OriginCombine = origincombine
         end
 
         def deserialize(params)
@@ -5898,6 +8655,28 @@ module TencentCloud
           end
           unless params['UserAgentFilter'].nil?
             @UserAgentFilter = UserAgentFilter.new.deserialize(params[UserAgentFilter])
+          end
+          unless params['AccessControl'].nil?
+            @AccessControl = AccessControl.new.deserialize(params[AccessControl])
+          end
+          unless params['UrlRedirect'].nil?
+            @UrlRedirect = UrlRedirect.new.deserialize(params[UrlRedirect])
+          end
+          @AccessPort = params['AccessPort']
+          unless params['AdvancedAuthentication'].nil?
+            @AdvancedAuthentication = AdvancedAuthentication.new.deserialize(params[AdvancedAuthentication])
+          end
+          unless params['OriginAuthentication'].nil?
+            @OriginAuthentication = OriginAuthentication.new.deserialize(params[OriginAuthentication])
+          end
+          unless params['Ipv6Access'].nil?
+            @Ipv6Access = Ipv6Access.new.deserialize(params[Ipv6Access])
+          end
+          unless params['OfflineCache'].nil?
+            @OfflineCache = OfflineCache.new.deserialize(params[OfflineCache])
+          end
+          unless params['OriginCombine'].nil?
+            @OriginCombine = OriginCombine.new.deserialize(params[OriginCombine])
           end
         end
       end
@@ -6004,6 +8783,72 @@ module TencentCloud
         end
       end
 
+      # UpdateScdnDomain请求参数结构体
+      class UpdateScdnDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Waf: Web 攻击防护（WAF）配置
+        # @type Waf: :class:`Tencentcloud::Cdn.v20180606.models.ScdnWafConfig`
+        # @param Acl: 自定义防护策略配置
+        # @type Acl: :class:`Tencentcloud::Cdn.v20180606.models.ScdnAclConfig`
+        # @param CC: CC 防护配置，目前 CC 防护默认开启
+        # @type CC: :class:`Tencentcloud::Cdn.v20180606.models.ScdnConfig`
+        # @param Ddos: DDOS 防护配置，目前 DDoS 防护默认开启
+        # @type Ddos: :class:`Tencentcloud::Cdn.v20180606.models.ScdnDdosConfig`
+        # @param Bot: BOT 防护配置
+        # @type Bot: :class:`Tencentcloud::Cdn.v20180606.models.ScdnBotConfig`
+
+        attr_accessor :Domain, :Waf, :Acl, :CC, :Ddos, :Bot
+        
+        def initialize(domain=nil, waf=nil, acl=nil, cc=nil, ddos=nil, bot=nil)
+          @Domain = domain
+          @Waf = waf
+          @Acl = acl
+          @CC = cc
+          @Ddos = ddos
+          @Bot = bot
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['Waf'].nil?
+            @Waf = ScdnWafConfig.new.deserialize(params[Waf])
+          end
+          unless params['Acl'].nil?
+            @Acl = ScdnAclConfig.new.deserialize(params[Acl])
+          end
+          unless params['CC'].nil?
+            @CC = ScdnConfig.new.deserialize(params[CC])
+          end
+          unless params['Ddos'].nil?
+            @Ddos = ScdnDdosConfig.new.deserialize(params[Ddos])
+          end
+          unless params['Bot'].nil?
+            @Bot = ScdnBotConfig.new.deserialize(params[Bot])
+          end
+        end
+      end
+
+      # UpdateScdnDomain返回参数结构体
+      class UpdateScdnDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 提交结果，Success表示成功
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 封禁url的详细信息
       class UrlRecord < TencentCloud::Common::AbstractModel
         # @param Status: 状态(disable表示封禁，enable表示解封)
@@ -6033,6 +8878,58 @@ module TencentCloud
           @RealUrl = params['RealUrl']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # URL重定向配置
+      class UrlRedirect < TencentCloud::Common::AbstractModel
+        # @param Switch: URL重定向配置开关
+        # on：开启
+        # off：关闭
+        # @type Switch: String
+        # @param PathRules: URL重定向规则，当Switch为on时必填，规则数量最大为10个。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathRules: Array
+
+        attr_accessor :Switch, :PathRules
+        
+        def initialize(switch=nil, pathrules=nil)
+          @Switch = switch
+          @PathRules = pathrules
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @PathRules = params['PathRules']
+        end
+      end
+
+      # Url重定向规则配置
+      class UrlRedirectRule < TencentCloud::Common::AbstractModel
+        # @param RedirectStatusCode: 重定向状态码，301 | 302
+        # @type RedirectStatusCode: Integer
+        # @param Pattern: 待匹配的Url，仅支持Url路径，不支持参数。默认完全匹配，支持通配符 *，最多支持5个通配符，最大长度1024字符。
+        # @type Pattern: String
+        # @param RedirectUrl: 目标URL，必须以“/”开头，不包含参数部分。最大长度1024字符。可使用$1, $2, $3, $4, $5分别捕获匹配路径中的通配符号，最多支持10个捕获值。
+        # @type RedirectUrl: String
+        # @param RedirectHost: 目标host，必须以http://或https://开头，并填写标准格式域名，如果不填写，默认为http:// + 当前域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectHost: String
+
+        attr_accessor :RedirectStatusCode, :Pattern, :RedirectUrl, :RedirectHost
+        
+        def initialize(redirectstatuscode=nil, pattern=nil, redirecturl=nil, redirecthost=nil)
+          @RedirectStatusCode = redirectstatuscode
+          @Pattern = pattern
+          @RedirectUrl = redirecturl
+          @RedirectHost = redirecthost
+        end
+
+        def deserialize(params)
+          @RedirectStatusCode = params['RedirectStatusCode']
+          @Pattern = params['Pattern']
+          @RedirectUrl = params['RedirectUrl']
+          @RedirectHost = params['RedirectHost']
         end
       end
 
@@ -6091,6 +8988,42 @@ module TencentCloud
           @RulePaths = params['RulePaths']
           @UserAgents = params['UserAgents']
           @FilterType = params['FilterType']
+        end
+      end
+
+      # VerifyDomainRecord请求参数结构体
+      class VerifyDomainRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # VerifyDomainRecord返回参数结构体
+      class VerifyDomainRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否验证成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

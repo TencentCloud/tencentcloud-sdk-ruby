@@ -257,15 +257,18 @@ module TencentCloud
         # @type Count: Integer
         # @param AutoRenew: 是否自动续费，默认为0，1表示自动续费。小时计费实例设置该标识无效。
         # @type AutoRenew: Integer
+        # @param Tags: 实例资源标签
+        # @type Tags: Array
 
-        attr_accessor :Product, :PayType, :Duration, :Count, :AutoRenew
+        attr_accessor :Product, :PayType, :Duration, :Count, :AutoRenew, :Tags
         
-        def initialize(product=nil, paytype=nil, duration=nil, count=nil, autorenew=nil)
+        def initialize(product=nil, paytype=nil, duration=nil, count=nil, autorenew=nil, tags=nil)
           @Product = product
           @PayType = paytype
           @Duration = duration
           @Count = count
           @AutoRenew = autorenew
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -274,6 +277,7 @@ module TencentCloud
           @Duration = params['Duration']
           @Count = params['Count']
           @AutoRenew = params['AutoRenew']
+          @Tags = params['Tags']
         end
       end
 
@@ -723,12 +727,18 @@ module TencentCloud
         # @type ModifyTime: String
         # @param Region: 地域
         # @type Region: String
+        # @param Tags: 订阅实例的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param AutoRenewFlag: 自动续费标识,0-不自动续费，1-自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :Status, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :SdkConsumedTime, :SdkHost, :SubscribeObjectType, :SubscribeObjects, :ModifyTime, :Region, :RequestId
+        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :Status, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :SdkConsumedTime, :SdkHost, :SubscribeObjectType, :SubscribeObjects, :ModifyTime, :Region, :Tags, :AutoRenewFlag, :RequestId
         
-        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, status=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, sdkconsumedtime=nil, sdkhost=nil, subscribeobjecttype=nil, subscribeobjects=nil, modifytime=nil, region=nil, requestid=nil)
+        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, status=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, sdkconsumedtime=nil, sdkhost=nil, subscribeobjecttype=nil, subscribeobjects=nil, modifytime=nil, region=nil, tags=nil, autorenewflag=nil, requestid=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @ChannelId = channelid
@@ -753,6 +763,8 @@ module TencentCloud
           @SubscribeObjects = subscribeobjects
           @ModifyTime = modifytime
           @Region = region
+          @Tags = tags
+          @AutoRenewFlag = autorenewflag
           @RequestId = requestid
         end
 
@@ -781,6 +793,8 @@ module TencentCloud
           @SubscribeObjects = params['SubscribeObjects']
           @ModifyTime = params['ModifyTime']
           @Region = params['Region']
+          @Tags = params['Tags']
+          @AutoRenewFlag = params['AutoRenewFlag']
           @RequestId = params['RequestId']
         end
       end
@@ -809,10 +823,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param OrderDirection: 排序方向，可选的值为"DESC"和"ASC"，默认为"DESC"，按创建时间逆序排序
         # @type OrderDirection: String
+        # @param TagFilters: 标签过滤条件
+        # @type TagFilters: Array
 
-        attr_accessor :SubscribeId, :SubscribeName, :InstanceId, :ChannelId, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection
+        attr_accessor :SubscribeId, :SubscribeName, :InstanceId, :ChannelId, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters
         
-        def initialize(subscribeid=nil, subscribename=nil, instanceid=nil, channelid=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil)
+        def initialize(subscribeid=nil, subscribename=nil, instanceid=nil, channelid=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil, tagfilters=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @InstanceId = instanceid
@@ -824,6 +840,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @OrderDirection = orderdirection
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -838,6 +855,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @OrderDirection = params['OrderDirection']
+          @TagFilters = params['TagFilters']
         end
       end
 
@@ -1360,6 +1378,42 @@ module TencentCloud
         end
       end
 
+      # ModifySubscribeAutoRenewFlag请求参数结构体
+      class ModifySubscribeAutoRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 订阅实例ID，例如：subs-8uey736k
+        # @type SubscribeId: String
+        # @param AutoRenewFlag: 自动续费标识。1-自动续费，0-不自动续费
+        # @type AutoRenewFlag: Integer
+
+        attr_accessor :SubscribeId, :AutoRenewFlag
+        
+        def initialize(subscribeid=nil, autorenewflag=nil)
+          @SubscribeId = subscribeid
+          @AutoRenewFlag = autorenewflag
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @AutoRenewFlag = params['AutoRenewFlag']
+        end
+      end
+
+      # ModifySubscribeAutoRenewFlag返回参数结构体
+      class ModifySubscribeAutoRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySubscribeConsumeTime请求参数结构体
       class ModifySubscribeConsumeTimeRequest < TencentCloud::Common::AbstractModel
         # @param SubscribeId: 数据订阅实例的ID
@@ -1849,10 +1903,16 @@ module TencentCloud
         # @type Status: String
         # @param SdkConsumedTime: SDK最后一条确认消息的时间戳，如果SDK一直消费，也可以作为SDK当前消费时间点
         # @type SdkConsumedTime: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param AutoRenewFlag: 自动续费标识。0-不自动续费，1-自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
 
-        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :Region, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :Status, :SdkConsumedTime
+        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :Region, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :Status, :SdkConsumedTime, :Tags, :AutoRenewFlag
         
-        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, region=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, status=nil, sdkconsumedtime=nil)
+        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, region=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, status=nil, sdkconsumedtime=nil, tags=nil, autorenewflag=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @ChannelId = channelid
@@ -1874,6 +1934,8 @@ module TencentCloud
           @UniqSubnetId = uniqsubnetid
           @Status = status
           @SdkConsumedTime = sdkconsumedtime
+          @Tags = tags
+          @AutoRenewFlag = autorenewflag
         end
 
         def deserialize(params)
@@ -1898,6 +1960,8 @@ module TencentCloud
           @UniqSubnetId = params['UniqSubnetId']
           @Status = params['Status']
           @SdkConsumedTime = params['SdkConsumedTime']
+          @Tags = params['Tags']
+          @AutoRenewFlag = params['AutoRenewFlag']
         end
       end
 
@@ -2228,6 +2292,47 @@ module TencentCloud
           @StepName = params['StepName']
           @CanStop = params['CanStop']
           @StepId = params['StepId']
+        end
+      end
+
+      # 标签过滤
+      class TagFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键值
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签
+      class TagItem < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键值
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

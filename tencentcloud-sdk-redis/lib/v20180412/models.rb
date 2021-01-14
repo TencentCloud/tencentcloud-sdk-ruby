@@ -313,46 +313,53 @@ module TencentCloud
 
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 实例所属的可用区ID
+        # @param ZoneId: 实例所属的可用区ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
         # @type ZoneId: Integer
-        # @param TypeId: 实例类型：2 – Redis2.8内存版（标准架构），3 – Redis3.2内存版（标准架构），4 – CKV 3.2内存版(标准架构)，6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构），
+        # @param TypeId: 实例类型：2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)。
         # @type TypeId: Integer
-        # @param MemSize: 实例容量，单位MB， 取值大小以 查询售卖规格接口返回的规格为准
+        # @param MemSize: 内存容量，单位为MB， 数值需为1024的整数倍，具体规格以 [查询产品售卖规格](https://cloud.tencent.com/document/api/239/30600) 返回的规格为准。
+        # TypeId为标准架构时，MemSize是实例总内存容量；TypeId为集群架构时，MemSize是单分片内存容量。
         # @type MemSize: Integer
-        # @param GoodsNum: 实例数量，单次购买实例数量以 查询售卖规格接口返回的规格为准
+        # @param GoodsNum: 实例数量，单次购买实例数量以 [查询产品售卖规格](https://cloud.tencent.com/document/api/239/30600) 返回的规格为准。
         # @type GoodsNum: Integer
-        # @param Period: 购买时长，在创建包年包月实例的时候需要填写，按量计费实例填1即可，单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]
+        # @param Period: 购买时长，在创建包年包月实例的时候需要填写，按量计费实例填1即可，单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。
         # @type Period: Integer
         # @param BillingMode: 付费方式:0-按量计费，1-包年包月。
         # @type BillingMode: Integer
-        # @param Password: 实例密码，8-30个字符，至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头。
+        # @param Password: 实例密码，当输入参数NoAuth为true且使用私有网络VPC时，Password为非必填，否则Password为必填参数。
+        # 当实例类型TypeId为Redis2.8、4.0和5.0时，其密码格式为：8-30个字符，至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头；
+        # 当实例类型TypeId为CKV 3.2时，其密码格式为：8-30个字符，必须包含字母和数字 且 不包含其他字符。
         # @type Password: String
-        # @param VpcId: 私有网络ID，如果不传则默认选择基础网络，请使用私有网络列表查询，如：vpc-sad23jfdfk
+        # @param VpcId: 私有网络ID，如果不传则默认选择基础网络，请使用私有网络列表查询，如：vpc-sad23jfdfk。
         # @type VpcId: String
-        # @param SubnetId: 基础网络下， subnetId无效； vpc子网下，取值以查询子网列表，如：subnet-fdj24n34j2
+        # @param SubnetId: 基础网络下， subnetId无效； vpc子网下，取值以查询子网列表，如：subnet-fdj24n34j2。
         # @type SubnetId: String
-        # @param ProjectId: 项目id，取值以用户账户>用户账户相关接口查询>项目列表返回的projectId为准
+        # @param ProjectId: 项目id，取值以用户账户>用户账户相关接口查询>项目列表返回的projectId为准。
         # @type ProjectId: Integer
-        # @param AutoRenew: 自动续费标识。0 - 默认状态（手动续费）；1 - 自动续费；2 - 明确不自动续费
+        # @param AutoRenew: 自动续费标识。0 - 默认状态（手动续费）；1 - 自动续费；2 - 明确不自动续费。
         # @type AutoRenew: Integer
-        # @param SecurityGroupIdList: 安全组id数组
+        # @param SecurityGroupIdList: 安全组id数组。
         # @type SecurityGroupIdList: Array
-        # @param VPort: 用户自定义的端口 不填则默认为6379，范围[1024,65535]
+        # @param VPort: 用户自定义的端口 不填则默认为6379，范围[1024,65535]。
         # @type VPort: Integer
-        # @param RedisShardNum: 实例分片数量，购买标准版实例不需要填写，集群版分片数量范围[3,5,8,12,16,24,32,64,96,128]
+        # @param RedisShardNum: 实例分片数量，购买标准版实例不需要填写，集群版分片数量范围[3,5,8,12,16,24,32,64,96,128]。
         # @type RedisShardNum: Integer
         # @param RedisReplicasNum: 实例副本数量，Redis 2.8标准版、CKV标准版只支持1副本，4.0、5.0标准版和集群版支持1-5个副本。
         # @type RedisReplicasNum: Integer
-        # @param ReplicasReadonly: 是否支持副本只读，Redis 2.8标准版、CKV标准版不支持副本只读，开启副本只读，实例将自动读写分离，写请求路由到主节点，读请求路由到副本节点，如需开启副本只读建议副本数>=2.
+        # @param ReplicasReadonly: 是否支持副本只读，Redis 2.8标准版、CKV标准版不支持副本只读，开启副本只读，实例将自动读写分离，写请求路由到主节点，读请求路由到副本节点，如需开启副本只读建议副本数>=2。
         # @type ReplicasReadonly: Boolean
-        # @param InstanceName: 实例名称，长度小于60的中文/英文/数字/"-"/"_"
+        # @param InstanceName: 实例名称，长度小于60的中文/英文/数字/"-"/"_"。
         # @type InstanceName: String
         # @param NoAuth: 是否支持免密，true-免密实例，false-非免密实例，默认为非免密实例，仅VPC网络的实例支持免密码访问。
         # @type NoAuth: Boolean
+        # @param NodeSet: 实例的节点信息，目前支持传入节点的类型（主节点或者副本节点），节点的可用区。单可用区部署不需要传递此参数。
+        # @type NodeSet: Array
+        # @param ResourceTags: 购买实例绑定标签
+        # @type ResourceTags: Array
 
-        attr_accessor :ZoneId, :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth
+        attr_accessor :ZoneId, :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth, :NodeSet, :ResourceTags
         
-        def initialize(zoneid=nil, typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, password=nil, vpcid=nil, subnetid=nil, projectid=nil, autorenew=nil, securitygroupidlist=nil, vport=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, instancename=nil, noauth=nil)
+        def initialize(zoneid=nil, typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, password=nil, vpcid=nil, subnetid=nil, projectid=nil, autorenew=nil, securitygroupidlist=nil, vport=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, instancename=nil, noauth=nil, nodeset=nil, resourcetags=nil)
           @ZoneId = zoneid
           @TypeId = typeid
           @MemSize = memsize
@@ -371,6 +378,8 @@ module TencentCloud
           @ReplicasReadonly = replicasreadonly
           @InstanceName = instancename
           @NoAuth = noauth
+          @NodeSet = nodeset
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -392,6 +401,8 @@ module TencentCloud
           @ReplicasReadonly = params['ReplicasReadonly']
           @InstanceName = params['InstanceName']
           @NoAuth = params['NoAuth']
+          @NodeSet = params['NodeSet']
+          @ResourceTags = params['ResourceTags']
         end
       end
 
@@ -399,7 +410,7 @@ module TencentCloud
       class CreateInstancesResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 交易的ID
         # @type DealId: String
-        # @param InstanceIds: 实例ID(该字段灰度中，部分地域不可见)
+        # @param InstanceIds: 实例ID
         # @type InstanceIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -421,11 +432,17 @@ module TencentCloud
 
       # 延时分布详情
       class DelayDistribution < TencentCloud::Common::AbstractModel
-        # @param Ladder: 分布阶梯
+        # @param Ladder: 分布阶梯，延时和Ladder值的对应关系：
+        # [0ms,1ms]: 1；
+        # [1ms,5ms]: 5；
+        # [5ms,10ms]: 10；
+        # [10ms,50ms]: 50；
+        # [50ms,200ms]: 200；
+        # [200ms,∞]: -1。
         # @type Ladder: Integer
-        # @param Size: 大小
+        # @param Size: 延时处于当前分布阶梯的命令数量，个。
         # @type Size: Integer
-        # @param Updatetime: 修改时间
+        # @param Updatetime: 修改时间。
         # @type Updatetime: Integer
 
         attr_accessor :Ladder, :Size, :Updatetime
@@ -571,9 +588,97 @@ module TencentCloud
         end
       end
 
+      # DescribeCommonDBInstances请求参数结构体
+      class DescribeCommonDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param VpcIds: 实例Vip信息列表
+        # @type VpcIds: Array
+        # @param SubnetIds: 子网id信息列表
+        # @type SubnetIds: Array
+        # @param PayMode: 计费类型过滤列表；0表示包年包月，1表示按量计费
+        # @type PayMode: Integer
+        # @param InstanceIds: 实例id过滤信息列表
+        # @type InstanceIds: Array
+        # @param InstanceNames: 实例名称过滤信息列表
+        # @type InstanceNames: Array
+        # @param Status: 实例状态信息过滤列表
+        # @type Status: Array
+        # @param OrderBy: 排序字段
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式
+        # @type OrderByType: String
+        # @param Vips: 实例vip信息列表
+        # @type Vips: Array
+        # @param UniqVpcIds: vpc网络统一Id列表
+        # @type UniqVpcIds: Array
+        # @param UniqSubnetIds: 子网统一id列表
+        # @type UniqSubnetIds: Array
+        # @param Limit: 数量限制，默认推荐100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+
+        attr_accessor :VpcIds, :SubnetIds, :PayMode, :InstanceIds, :InstanceNames, :Status, :OrderBy, :OrderByType, :Vips, :UniqVpcIds, :UniqSubnetIds, :Limit, :Offset
+        
+        def initialize(vpcids=nil, subnetids=nil, paymode=nil, instanceids=nil, instancenames=nil, status=nil, orderby=nil, orderbytype=nil, vips=nil, uniqvpcids=nil, uniqsubnetids=nil, limit=nil, offset=nil)
+          @VpcIds = vpcids
+          @SubnetIds = subnetids
+          @PayMode = paymode
+          @InstanceIds = instanceids
+          @InstanceNames = instancenames
+          @Status = status
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Vips = vips
+          @UniqVpcIds = uniqvpcids
+          @UniqSubnetIds = uniqsubnetids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @VpcIds = params['VpcIds']
+          @SubnetIds = params['SubnetIds']
+          @PayMode = params['PayMode']
+          @InstanceIds = params['InstanceIds']
+          @InstanceNames = params['InstanceNames']
+          @Status = params['Status']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @Vips = params['Vips']
+          @UniqVpcIds = params['UniqVpcIds']
+          @UniqSubnetIds = params['UniqSubnetIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCommonDBInstances返回参数结构体
+      class DescribeCommonDBInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例数
+        # @type TotalCount: Integer
+        # @param InstanceDetails: 实例信息
+        # @type InstanceDetails: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceDetails, :RequestId
+        
+        def initialize(totalcount=nil, instancedetails=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceDetails = instancedetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @InstanceDetails = params['InstanceDetails']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBSecurityGroups请求参数结构体
       class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 数据库引擎名称：mariadb,cdb,cynosdb,dcdb,redis,mongodb 等。
+        # @param Product: 数据库引擎名称，本接口取值：redis。
         # @type Product: String
         # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv或者cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
         # @type InstanceId: String
@@ -851,7 +956,7 @@ module TencentCloud
 
       # DescribeInstanceDealDetail请求参数结构体
       class DescribeInstanceDealDetailRequest < TencentCloud::Common::AbstractModel
-        # @param DealIds: 订单ID数组
+        # @param DealIds: 订单交易ID数组，即 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的输出参数DealId。
         # @type DealIds: Array
 
         attr_accessor :DealIds
@@ -1209,6 +1314,73 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceNodeInfo请求参数结构体
+      class DescribeInstanceNodeInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Limit: 列表大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Limit, :Offset
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeInstanceNodeInfo返回参数结构体
+      class DescribeInstanceNodeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ProxyCount: proxy节点数量
+        # @type ProxyCount: Integer
+        # @param Proxy: proxy节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Proxy: Array
+        # @param RedisCount: redis节点数量
+        # @type RedisCount: Integer
+        # @param Redis: redis节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Redis: Array
+        # @param TendisCount: tendis节点数量
+        # @type TendisCount: Integer
+        # @param Tendis: tendis节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tendis: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProxyCount, :Proxy, :RedisCount, :Redis, :TendisCount, :Tendis, :RequestId
+        
+        def initialize(proxycount=nil, proxy=nil, rediscount=nil, redis=nil, tendiscount=nil, tendis=nil, requestid=nil)
+          @ProxyCount = proxycount
+          @Proxy = proxy
+          @RedisCount = rediscount
+          @Redis = redis
+          @TendisCount = tendiscount
+          @Tendis = tendis
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProxyCount = params['ProxyCount']
+          @Proxy = params['Proxy']
+          @RedisCount = params['RedisCount']
+          @Redis = params['Redis']
+          @TendisCount = params['TendisCount']
+          @Tendis = params['Tendis']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceParamRecords请求参数结构体
       class DescribeInstanceParamRecordsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -1389,6 +1561,46 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceZoneInfo请求参数结构体
+      class DescribeInstanceZoneInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id，如：crs-6ubhgouj
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceZoneInfo返回参数结构体
+      class DescribeInstanceZoneInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例节点组的个数
+        # @type TotalCount: Integer
+        # @param ReplicaGroups: 实例节点组列表
+        # @type ReplicaGroups: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ReplicaGroups, :RequestId
+        
+        def initialize(totalcount=nil, replicagroups=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ReplicaGroups = replicagroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ReplicaGroups = params['ReplicaGroups']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 实例列表的大小，参数默认值20
@@ -1433,10 +1645,12 @@ module TencentCloud
         # @type SearchKeys: Array
         # @param TypeList: 内部参数，用户可忽略
         # @type TypeList: Array
+        # @param MonitorVersion: 内部参数，用户可忽略
+        # @type MonitorVersion: String
 
-        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :RegionIds, :Status, :TypeVersion, :EngineName, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList
+        attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :RegionIds, :Status, :TypeVersion, :EngineName, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion
         
-        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, regionids=nil, status=nil, typeversion=nil, enginename=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil)
+        def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, regionids=nil, status=nil, typeversion=nil, enginename=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil)
           @Limit = limit
           @Offset = offset
           @InstanceId = instanceid
@@ -1458,6 +1672,7 @@ module TencentCloud
           @Type = type
           @SearchKeys = searchkeys
           @TypeList = typelist
+          @MonitorVersion = monitorversion
         end
 
         def deserialize(params)
@@ -1482,6 +1697,7 @@ module TencentCloud
           @Type = params['Type']
           @SearchKeys = params['SearchKeys']
           @TypeList = params['TypeList']
+          @MonitorVersion = params['MonitorVersion']
         end
       end
 
@@ -1676,6 +1892,66 @@ module TencentCloud
         end
       end
 
+      # DescribeProxySlowLog请求参数结构体
+      class DescribeProxySlowLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param BeginTime: 开始时间
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param MinQueryTime: 慢查询阈值（单位：毫秒）
+        # @type MinQueryTime: Integer
+        # @param Limit: 页面大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量，取Limit整数倍
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :BeginTime, :EndTime, :MinQueryTime, :Limit, :Offset
+        
+        def initialize(instanceid=nil, begintime=nil, endtime=nil, minquerytime=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @BeginTime = begintime
+          @EndTime = endtime
+          @MinQueryTime = minquerytime
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @MinQueryTime = params['MinQueryTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeProxySlowLog返回参数结构体
+      class DescribeProxySlowLogResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 慢查询总数
+        # @type TotalCount: Integer
+        # @param InstanceProxySlowLogDetail: 慢查询详情
+        # @type InstanceProxySlowLogDetail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceProxySlowLogDetail, :RequestId
+        
+        def initialize(totalcount=nil, instanceproxyslowlogdetail=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceProxySlowLogDetail = instanceproxyslowlogdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @InstanceProxySlowLogDetail = params['InstanceProxySlowLogDetail']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSlowLog请求参数结构体
       class DescribeSlowLogRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -1856,6 +2132,66 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @Tasks = params['Tasks']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTendisSlowLog请求参数结构体
+      class DescribeTendisSlowLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id：crs-ngvou0i1
+        # @type InstanceId: String
+        # @param BeginTime: 开始时间：2019-09-08 12:12:41
+        # @type BeginTime: String
+        # @param EndTime: 结束时间：2019-09-09 12:12:41
+        # @type EndTime: String
+        # @param MinQueryTime: 慢查询阈值（毫秒）
+        # @type MinQueryTime: Integer
+        # @param Limit: 页面大小：20
+        # @type Limit: Integer
+        # @param Offset: 偏移量，取Limit整数倍
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :BeginTime, :EndTime, :MinQueryTime, :Limit, :Offset
+        
+        def initialize(instanceid=nil, begintime=nil, endtime=nil, minquerytime=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @BeginTime = begintime
+          @EndTime = endtime
+          @MinQueryTime = minquerytime
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @MinQueryTime = params['MinQueryTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeTendisSlowLog返回参数结构体
+      class DescribeTendisSlowLogResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 慢查询总数
+        # @type TotalCount: Integer
+        # @param TendisSlowLogDetail: 慢查询详情
+        # @type TendisSlowLogDetail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TendisSlowLogDetail, :RequestId
+        
+        def initialize(totalcount=nil, tendisslowlogdetail=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TendisSlowLogDetail = tendisslowlogdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TendisSlowLogDetail = params['TendisSlowLogDetail']
           @RequestId = params['RequestId']
         end
       end
@@ -2118,23 +2454,24 @@ module TencentCloud
 
       # InquiryPriceCreateInstance请求参数结构体
       class InquiryPriceCreateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 实例所属的可用区id
+        # @param ZoneId: 实例所属的可用区ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
         # @type ZoneId: Integer
-        # @param TypeId: 实例类型：2 – Redis2.8主从版，3 – Redis3.2主从版(CKV主从版)，4 – Redis3.2集群版(CKV集群版)，5-Redis2.8单机版，6 – Redis4.0主从版，7 – Redis4.0集群版，
+        # @param TypeId: 实例类型：2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)。
         # @type TypeId: Integer
-        # @param MemSize: 实例容量，单位MB， 取值大小以 查询售卖规格接口返回的规格为准
+        # @param MemSize: 内存容量，单位为MB， 数值需为1024的整数倍，具体规格以 [查询产品售卖规格](https://cloud.tencent.com/document/api/239/30600) 返回的规格为准。
+        # TypeId为标准架构时，MemSize是实例总内存容量；TypeId为集群架构时，MemSize是单分片内存容量。
         # @type MemSize: Integer
-        # @param GoodsNum: 实例数量，单次购买实例数量以 查询售卖规格接口返回的规格为准
+        # @param GoodsNum: 实例数量，单次购买实例数量以 [查询产品售卖规格](https://cloud.tencent.com/document/api/239/30600) 返回的规格为准。
         # @type GoodsNum: Integer
-        # @param Period: 购买时长，在创建包年包月实例的时候需要填写，按量计费实例填1即可，单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]
+        # @param Period: 购买时长，在创建包年包月实例的时候需要填写，按量计费实例填1即可，单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。
         # @type Period: Integer
         # @param BillingMode: 付费方式:0-按量计费，1-包年包月。
         # @type BillingMode: Integer
-        # @param RedisShardNum: 实例分片数量，Redis2.8主从版、CKV主从版和Redis2.8单机版、Redis4.0主从版不需要填写
+        # @param RedisShardNum: 实例分片数量，Redis2.8主从版、CKV主从版和Redis2.8单机版、Redis4.0主从版不需要填写。
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 实例副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写
+        # @param RedisReplicasNum: 实例副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
         # @type RedisReplicasNum: Integer
-        # @param ReplicasReadonly: 是否支持副本只读，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写
+        # @param ReplicasReadonly: 是否支持副本只读，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
         # @type ReplicasReadonly: Boolean
 
         attr_accessor :ZoneId, :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly
@@ -2595,6 +2932,38 @@ module TencentCloud
         end
       end
 
+      # 代理慢查询详情
+      class InstanceProxySlowlogDetail < TencentCloud::Common::AbstractModel
+        # @param Duration: 慢查询耗时
+        # @type Duration: Integer
+        # @param Client: 客户端地址
+        # @type Client: String
+        # @param Command: 命令
+        # @type Command: String
+        # @param CommandLine: 详细命令行信息
+        # @type CommandLine: String
+        # @param ExecuteTime: 执行时间
+        # @type ExecuteTime: String
+
+        attr_accessor :Duration, :Client, :Command, :CommandLine, :ExecuteTime
+        
+        def initialize(duration=nil, client=nil, command=nil, commandline=nil, executetime=nil)
+          @Duration = duration
+          @Client = client
+          @Command = command
+          @CommandLine = commandline
+          @ExecuteTime = executetime
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+          @Client = params['Client']
+          @Command = params['Command']
+          @CommandLine = params['CommandLine']
+          @ExecuteTime = params['ExecuteTime']
+        end
+      end
+
       # 实例安全组信息
       class InstanceSecurityGroupDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -2645,7 +3014,7 @@ module TencentCloud
         # @type Size: Float
         # @param SizeUsed: 该字段已废弃
         # @type SizeUsed: Float
-        # @param Type: 实例类型，1：Redis2.8集群版；2：Redis2.8主从版；3：CKV主从版（Redis3.2）；4：CKV集群版（Redis3.2）；5：Redis2.8单机版；6：Redis4.0主从版；7：Redis4.0集群版；
+        # @param Type: 实例类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
         # @type Type: Integer
         # @param AutoRenewFlag: 实例是否设置自动续费标识，1：设置自动续费；0：未设置自动续费
         # @type AutoRenewFlag: Integer
@@ -2653,7 +3022,7 @@ module TencentCloud
         # @type DeadlineTime: String
         # @param Engine: 引擎：社区版Redis、腾讯云CKV
         # @type Engine: String
-        # @param ProductType: 产品类型：Redis2.8集群版、Redis2.8主从版、Redis3.2主从版（CKV主从版）、Redis3.2集群版（CKV集群版）、Redis2.8单机版、Redis4.0集群版
+        # @param ProductType: 产品类型：standalone – 标准版，cluster – 集群版
         # @type ProductType: String
         # @param UniqVpcId: vpc网络id 如：vpc-fk33jsf43kgv
         # @type UniqVpcId: String
@@ -2713,10 +3082,16 @@ module TencentCloud
         # @param RemainBandwidthDuration: 内部参数，用户可忽略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemainBandwidthDuration: String
+        # @param DiskSize: Tendis实例的磁盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+        # @param MonitorVersion: 监控版本: 1m-分钟粒度监控，5s-5秒粒度监控
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorVersion: String
 
-        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :ReadOnly, :Vip6, :RemainBandwidthDuration
+        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :ReadOnly, :Vip6, :RemainBandwidthDuration, :DiskSize, :MonitorVersion
         
-        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, readonly=nil, vip6=nil, remainbandwidthduration=nil)
+        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, readonly=nil, vip6=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil)
           @InstanceName = instancename
           @InstanceId = instanceid
           @Appid = appid
@@ -2760,6 +3135,8 @@ module TencentCloud
           @ReadOnly = readonly
           @Vip6 = vip6
           @RemainBandwidthDuration = remainbandwidthduration
+          @DiskSize = disksize
+          @MonitorVersion = monitorversion
         end
 
         def deserialize(params)
@@ -2806,6 +3183,8 @@ module TencentCloud
           @ReadOnly = params['ReadOnly']
           @Vip6 = params['Vip6']
           @RemainBandwidthDuration = params['RemainBandwidthDuration']
+          @DiskSize = params['DiskSize']
+          @MonitorVersion = params['MonitorVersion']
         end
       end
 
@@ -3041,6 +3420,52 @@ module TencentCloud
           @AutoBackupType = params['AutoBackupType']
           @WeekDays = params['WeekDays']
           @TimePeriod = params['TimePeriod']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyConnectionConfig请求参数结构体
+      class ModifyConnectionConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例的ID，长度在12-36之间。
+        # @type InstanceId: String
+        # @param Bandwidth: 附加带宽，大于0，单位MB。
+        # @type Bandwidth: Integer
+        # @param ClientLimit: 单分片的总连接数。
+        # 未开启副本只读时，下限为10000，上限为40000；
+        # 开启副本只读时，下限为10000，上限为10000×(只读副本数+3)。
+        # @type ClientLimit: Integer
+
+        attr_accessor :InstanceId, :Bandwidth, :ClientLimit
+        
+        def initialize(instanceid=nil, bandwidth=nil, clientlimit=nil)
+          @InstanceId = instanceid
+          @Bandwidth = bandwidth
+          @ClientLimit = clientlimit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Bandwidth = params['Bandwidth']
+          @ClientLimit = params['ClientLimit']
+        end
+      end
+
+      # ModifyConnectionConfig返回参数结构体
+      class ModifyConnectionConfigResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -3403,9 +3828,9 @@ module TencentCloud
 
       # 产品信息
       class ProductConf < TencentCloud::Common::AbstractModel
-        # @param Type: 产品类型，2-Redis主从版，3-CKV主从版，4-CKV集群版，5-Redis单机版，7-Redis集群版
+        # @param Type: 产品类型，2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版(单机版)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)，10 – Redis4.0混合存储版Tendis
         # @type Type: Integer
-        # @param TypeName: 产品名称，Redis主从版，CKV主从版，CKV集群版，Redis单机版，Redis集群版
+        # @param TypeName: 产品名称，Redis主从版，CKV主从版，CKV集群版，Redis单机版，Redis集群版，混合存储版Tendis
         # @type TypeName: String
         # @param MinBuyNum: 购买时的最小数量
         # @type MinBuyNum: Integer
@@ -3465,6 +3890,23 @@ module TencentCloud
         end
       end
 
+      # Proxy节点信息
+      class ProxyNodes < TencentCloud::Common::AbstractModel
+        # @param NodeId: 节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeId: String
+
+        attr_accessor :NodeId
+        
+        def initialize(nodeid=nil)
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+        end
+      end
+
       # 实例的备份数组
       class RedisBackupSet < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始备份的时间
@@ -3498,6 +3940,150 @@ module TencentCloud
           @Status = params['Status']
           @Remark = params['Remark']
           @Locked = params['Locked']
+        end
+      end
+
+      # 单个实例信息
+      class RedisCommonInstanceList < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param AppId: 用户id
+        # @type AppId: Integer
+        # @param ProjectId: 实例所属项目id
+        # @type ProjectId: Integer
+        # @param Region: 实例接入区域
+        # @type Region: String
+        # @param Zone: 实例接入zone
+        # @type Zone: String
+        # @param VpcId: 实例网络id
+        # @type VpcId: String
+        # @param SubnetId: 子网id
+        # @type SubnetId: String
+        # @param Status: 实例状态信息，0-创建中，1-运行中
+        # @type Status: String
+        # @param Vips: 实例网络ip
+        # @type Vips: Array
+        # @param Vport: 实例网络端口
+        # @type Vport: Integer
+        # @param Createtime: 实例创建时间
+        # @type Createtime: String
+        # @param PayMode: 计费类型，0-按量计费，1-包年包月
+        # @type PayMode: Integer
+        # @param NetType: 网络类型，0-基础网络，1-VPC网络
+        # @type NetType: Integer
+
+        attr_accessor :InstanceName, :InstanceId, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :Status, :Vips, :Vport, :Createtime, :PayMode, :NetType
+        
+        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, status=nil, vips=nil, vport=nil, createtime=nil, paymode=nil, nettype=nil)
+          @InstanceName = instancename
+          @InstanceId = instanceid
+          @AppId = appid
+          @ProjectId = projectid
+          @Region = region
+          @Zone = zone
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Status = status
+          @Vips = vips
+          @Vport = vport
+          @Createtime = createtime
+          @PayMode = paymode
+          @NetType = nettype
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @InstanceId = params['InstanceId']
+          @AppId = params['AppId']
+          @ProjectId = params['ProjectId']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Status = params['Status']
+          @Vips = params['Vips']
+          @Vport = params['Vport']
+          @Createtime = params['Createtime']
+          @PayMode = params['PayMode']
+          @NetType = params['NetType']
+        end
+      end
+
+      # Redis节点的运行信息
+      class RedisNode < TencentCloud::Common::AbstractModel
+        # @param Keys: 节点key的个数
+        # @type Keys: Integer
+        # @param Slot: 节点slot分布
+        # @type Slot: String
+        # @param NodeId: 节点的序列ID
+        # @type NodeId: String
+        # @param Status: 节点的状态
+        # @type Status: String
+
+        attr_accessor :Keys, :Slot, :NodeId, :Status
+        
+        def initialize(keys=nil, slot=nil, nodeid=nil, status=nil)
+          @Keys = keys
+          @Slot = slot
+          @NodeId = nodeid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Keys = params['Keys']
+          @Slot = params['Slot']
+          @NodeId = params['NodeId']
+          @Status = params['Status']
+        end
+      end
+
+      # 描述Redis实例的主节点或者副本节点信息
+      class RedisNodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型，0 为主节点，1 为副本节点
+        # @type NodeType: Integer
+        # @param ZoneId: 主节点或者副本节点的可用区ID
+        # @type ZoneId: Integer
+        # @param NodeId: 主节点或者副本节点的ID，创建时不需要传递此参数。
+        # @type NodeId: Integer
+
+        attr_accessor :NodeType, :ZoneId, :NodeId
+        
+        def initialize(nodetype=nil, zoneid=nil, nodeid=nil)
+          @NodeType = nodetype
+          @ZoneId = zoneid
+          @NodeId = nodeid
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @ZoneId = params['ZoneId']
+          @NodeId = params['NodeId']
+        end
+      end
+
+      # Redis节点信息
+      class RedisNodes < TencentCloud::Common::AbstractModel
+        # @param NodeId: 节点ID
+        # @type NodeId: String
+        # @param NodeRole: 节点角色
+        # @type NodeRole: String
+        # @param ClusterId: 分片ID
+        # @type ClusterId: Integer
+
+        attr_accessor :NodeId, :NodeRole, :ClusterId
+        
+        def initialize(nodeid=nil, noderole=nil, clusterid=nil)
+          @NodeId = nodeid
+          @NodeRole = noderole
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @NodeRole = params['NodeRole']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -3573,6 +4159,38 @@ module TencentCloud
         end
       end
 
+      # 实例节点信息
+      class ReplicaGroup < TencentCloud::Common::AbstractModel
+        # @param GroupId: 节点组ID
+        # @type GroupId: Integer
+        # @param GroupName: 节点组的名称，主节点为空
+        # @type GroupName: String
+        # @param ZoneId: 节点的可用区ID，比如ap-guangzhou-1
+        # @type ZoneId: String
+        # @param Role: 节点组类型，master为主节点，replica为副本节点
+        # @type Role: String
+        # @param RedisNodes: 节点组节点列表
+        # @type RedisNodes: Array
+
+        attr_accessor :GroupId, :GroupName, :ZoneId, :Role, :RedisNodes
+        
+        def initialize(groupid=nil, groupname=nil, zoneid=nil, role=nil, redisnodes=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @ZoneId = zoneid
+          @Role = role
+          @RedisNodes = redisnodes
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @ZoneId = params['ZoneId']
+          @Role = params['Role']
+          @RedisNodes = params['RedisNodes']
+        end
+      end
+
       # ResetPassword请求参数结构体
       class ResetPasswordRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Redis实例ID
@@ -3614,6 +4232,26 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # API购买实例绑定标签
+      class ResourceTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签key
+        # @type TagKey: String
+        # @param TagValue: 标签value
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -3958,6 +4596,58 @@ module TencentCloud
         end
       end
 
+      # tendis节点信息
+      class TendisNodes < TencentCloud::Common::AbstractModel
+        # @param NodeId: 节点ID
+        # @type NodeId: String
+        # @param NodeRole: 节点角色
+        # @type NodeRole: String
+
+        attr_accessor :NodeId, :NodeRole
+        
+        def initialize(nodeid=nil, noderole=nil)
+          @NodeId = nodeid
+          @NodeRole = noderole
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @NodeRole = params['NodeRole']
+        end
+      end
+
+      # Tendis慢查询详情
+      class TendisSlowLogDetail < TencentCloud::Common::AbstractModel
+        # @param ExecuteTime: 执行时间
+        # @type ExecuteTime: String
+        # @param Duration: 慢查询耗时（毫秒）
+        # @type Duration: Integer
+        # @param Command: 命令
+        # @type Command: String
+        # @param CommandLine: 详细命令行信息
+        # @type CommandLine: String
+        # @param Node: 节点ID
+        # @type Node: String
+
+        attr_accessor :ExecuteTime, :Duration, :Command, :CommandLine, :Node
+        
+        def initialize(executetime=nil, duration=nil, command=nil, commandline=nil, node=nil)
+          @ExecuteTime = executetime
+          @Duration = duration
+          @Command = command
+          @CommandLine = commandline
+          @Node = node
+        end
+
+        def deserialize(params)
+          @ExecuteTime = params['ExecuteTime']
+          @Duration = params['Duration']
+          @Command = params['Command']
+          @CommandLine = params['CommandLine']
+          @Node = params['Node']
+        end
+      end
+
       # 订单交易信息
       class TradeDealDetail < TencentCloud::Common::AbstractModel
         # @param DealId: 订单号ID，调用云API时使用此ID
@@ -4028,14 +4718,17 @@ module TencentCloud
         # @type RedisShardNum: Integer
         # @param RedisReplicasNum: 副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写
         # @type RedisReplicasNum: Integer
+        # @param NodeSet: 多AZ实例增加副本时的附带信息，非多AZ实例不需要传此参数。多AZ增加副本时此参数为必传参数，传入要增加的副本的信息，包括副本的可用区和副本的类型（NodeType为1）
+        # @type NodeSet: Array
 
-        attr_accessor :InstanceId, :MemSize, :RedisShardNum, :RedisReplicasNum
+        attr_accessor :InstanceId, :MemSize, :RedisShardNum, :RedisReplicasNum, :NodeSet
         
-        def initialize(instanceid=nil, memsize=nil, redisshardnum=nil, redisreplicasnum=nil)
+        def initialize(instanceid=nil, memsize=nil, redisshardnum=nil, redisreplicasnum=nil, nodeset=nil)
           @InstanceId = instanceid
           @MemSize = memsize
           @RedisShardNum = redisshardnum
           @RedisReplicasNum = redisreplicasnum
+          @NodeSet = nodeset
         end
 
         def deserialize(params)
@@ -4043,6 +4736,7 @@ module TencentCloud
           @MemSize = params['MemSize']
           @RedisShardNum = params['RedisShardNum']
           @RedisReplicasNum = params['RedisReplicasNum']
+          @NodeSet = params['NodeSet']
         end
       end
 
@@ -4068,7 +4762,7 @@ module TencentCloud
 
       # UpgradeInstanceVersion请求参数结构体
       class UpgradeInstanceVersionRequest < TencentCloud::Common::AbstractModel
-        # @param TargetInstanceType: 目标实例类型，同CreateInstances接口的Type，即实例要变更的目标类型
+        # @param TargetInstanceType: 目标实例类型，同 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的Type，即实例要变更的目标类型
         # @type TargetInstanceType: String
         # @param SwitchOption: 切换模式：1-维护时间窗切换，2-立即切换
         # @type SwitchOption: Integer

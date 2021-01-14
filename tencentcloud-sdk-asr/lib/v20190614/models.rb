@@ -66,31 +66,86 @@ module TencentCloud
         end
       end
 
+      # CreateCustomization请求参数结构体
+      class CreateCustomizationRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: 自学习模型名称，需在1-20字符之间
+        # @type ModelName: String
+        # @param TextUrl: 文本文件的下载地址，服务会从该地址下载文件， 以训练模型，目前仅支持腾讯云cos
+        # @type TextUrl: String
+        # @param ModelType: 自学习模型类型，填写8k或者16k
+        # @type ModelType: String
+        # @param TagInfos: 标签信息
+        # @type TagInfos: Array
+
+        attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
+        
+        def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
+          @ModelName = modelname
+          @TextUrl = texturl
+          @ModelType = modeltype
+          @TagInfos = taginfos
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @TextUrl = params['TextUrl']
+          @ModelType = params['ModelType']
+          @TagInfos = params['TagInfos']
+        end
+      end
+
+      # CreateCustomization返回参数结构体
+      class CreateCustomizationResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelId, :RequestId
+        
+        def initialize(modelid=nil, requestid=nil)
+          @ModelId = modelid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRecTask请求参数结构体
       class CreateRecTaskRequest < TencentCloud::Common::AbstractModel
         # @param EngineModelType: 引擎模型类型。
         # 电话场景：
-        # • 8k_zh：电话 8k 中文普通话通用（可用于双声道音频）；
-        # • 8k_zh_s：电话 8k 中文普通话话者分离（仅适用于单声道音频）；
+        # • 8k_en：电话 8k 英语；
+        # • 8k_zh：电话 8k 中文普通话通用；
         # 非电话场景：
         # • 16k_zh：16k 中文普通话通用；
         # • 16k_zh_video：16k 音视频领域；
         # • 16k_en：16k 英语；
         # • 16k_ca：16k 粤语；
+        # • 16k_ja：16k 日语；
+        # • 16k_wuu-SH：16k 上海话方言；
         # @type EngineModelType: String
         # @param ChannelNum: 语音声道数。1：单声道；2：双声道（仅支持 8k_zh 引擎模型）。
         # @type ChannelNum: Integer
-        # @param ResTextFormat: 识别结果返回形式。0： 识别结果文本(含分段时间戳)； 1：仅支持16k中文引擎，含识别结果详情(词时间戳列表，一般用于生成字幕场景)。
+        # @param ResTextFormat: 识别结果返回形式。0： 识别结果文本(含分段时间戳)； 1：词级别粒度的[详细识别结果](https://cloud.tencent.com/document/api/1093/37824#SentenceDetail)(不含标点，含语速值)；2：词级别粒度的详细识别结果（包含标点、语速值）
         # @type ResTextFormat: Integer
         # @param SourceType: 语音数据来源。0：语音 URL；1：语音数据（post body）。
         # @type SourceType: Integer
+        # @param SpeakerDiarization: 是否开启说话人分离，0：不开启，1：开启(仅支持8k_zh，16k_zh，16k_zh_video引擎模型，单声道音频)
+        # @type SpeakerDiarization: Integer
+        # @param SpeakerNumber: 说话人分离人数（需配合开启说话人分离使用），取值范围：0-10，0代表自动分离（目前仅支持≤6个人），1-10代表指定说话人数分离。
+        # 注：话者分离目前是beta版本，请根据您的需要谨慎使用
+        # @type SpeakerNumber: Integer
         # @param CallbackUrl: 回调 URL，用户自行搭建的用于接收识别结果的服务器地址， 长度小于2048字节。如果用户使用回调方式获取识别结果，需提交该参数；如果用户使用轮询方式获取识别结果，则无需提交该参数。
         # @type CallbackUrl: String
-        # @param Url: 语音的URL地址，需要公网可下载。长度小于2048字节，当 SourceType 值为 0 时须填写该字段，为 1 时不需要填写。注意：请确保录音文件时长在一个小时之内，否则可能识别失败。请保证文件的下载速度，否则可能下载失败。
+        # @param Url: 语音的URL地址，需要公网可下载。长度小于2048字节，当 SourceType 值为 0 时须填写该字段，为 1 时不需要填写。注意：请确保录音文件时长在5个小时之内，否则可能识别失败。请保证文件的下载速度，否则可能下载失败。
         # @type Url: String
         # @param Data: 语音数据，当SourceType 值为1时必须填写，为0可不写。要base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。编码后的数据不可带有回车换行符)。音频数据要小于5MB。
         # @type Data: String
-        # @param DataLen: 数据长度，当 SourceType 值为1时必须填写，为0可不写（此数据长度为数据未进行base64编码时的数据长度）。
+        # @param DataLen: 数据长度，非必填（此数据长度为数据未进行base64编码时的数据长度）。
         # @type DataLen: Integer
         # @param HotwordId: 热词id。用于调用对应的热词表，如果在调用语音识别服务时，不进行单独的热词id设置，自动生效默认热词；如果进行了单独的热词id设置，那么将生效单独设置的热词id。
         # @type HotwordId: String
@@ -100,14 +155,20 @@ module TencentCloud
         # @type FilterModal: Integer
         # @param ConvertNumMode: 是否进行阿拉伯数字智能转换（目前支持中文普通话引擎）。0：不转换，直接输出中文数字，1：根据场景智能转换为阿拉伯数字。默认值为 1。
         # @type ConvertNumMode: Integer
+        # @param Extra: 附加参数
+        # @type Extra: String
+        # @param FilterPunc: 是否过滤标点符号（目前支持中文普通话引擎）。 0：不过滤，1：过滤句末标点，2：过滤所有标点。默认为0。
+        # @type FilterPunc: Integer
 
-        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :CallbackUrl, :Url, :Data, :DataLen, :HotwordId, :FilterDirty, :FilterModal, :ConvertNumMode
+        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :SpeakerDiarization, :SpeakerNumber, :CallbackUrl, :Url, :Data, :DataLen, :HotwordId, :FilterDirty, :FilterModal, :ConvertNumMode, :Extra, :FilterPunc
         
-        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, callbackurl=nil, url=nil, data=nil, datalen=nil, hotwordid=nil, filterdirty=nil, filtermodal=nil, convertnummode=nil)
+        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, speakerdiarization=nil, speakernumber=nil, callbackurl=nil, url=nil, data=nil, datalen=nil, hotwordid=nil, filterdirty=nil, filtermodal=nil, convertnummode=nil, extra=nil, filterpunc=nil)
           @EngineModelType = enginemodeltype
           @ChannelNum = channelnum
           @ResTextFormat = restextformat
           @SourceType = sourcetype
+          @SpeakerDiarization = speakerdiarization
+          @SpeakerNumber = speakernumber
           @CallbackUrl = callbackurl
           @Url = url
           @Data = data
@@ -116,6 +177,8 @@ module TencentCloud
           @FilterDirty = filterdirty
           @FilterModal = filtermodal
           @ConvertNumMode = convertnummode
+          @Extra = extra
+          @FilterPunc = filterpunc
         end
 
         def deserialize(params)
@@ -123,6 +186,8 @@ module TencentCloud
           @ChannelNum = params['ChannelNum']
           @ResTextFormat = params['ResTextFormat']
           @SourceType = params['SourceType']
+          @SpeakerDiarization = params['SpeakerDiarization']
+          @SpeakerNumber = params['SpeakerNumber']
           @CallbackUrl = params['CallbackUrl']
           @Url = params['Url']
           @Data = params['Data']
@@ -131,6 +196,8 @@ module TencentCloud
           @FilterDirty = params['FilterDirty']
           @FilterModal = params['FilterModal']
           @ConvertNumMode = params['ConvertNumMode']
+          @Extra = params['Extra']
+          @FilterPunc = params['FilterPunc']
         end
       end
 
@@ -174,6 +241,38 @@ module TencentCloud
 
       # DeleteAsrVocab返回参数结构体
       class DeleteAsrVocabResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCustomization请求参数结构体
+      class DeleteCustomizationRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 要删除的模型ID
+        # @type ModelId: String
+
+        attr_accessor :ModelId
+        
+        def initialize(modelid=nil)
+          @ModelId = modelid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+        end
+      end
+
+      # DeleteCustomization返回参数结构体
+      class DeleteCustomizationResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -266,14 +365,63 @@ module TencentCloud
         end
       end
 
-      # GetAsrVocabList请求参数结构体
-      class GetAsrVocabListRequest < TencentCloud::Common::AbstractModel
+      # DownloadCustomization请求参数结构体
+      class DownloadCustomizationRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 自学习模型ID
+        # @type ModelId: String
 
+        attr_accessor :ModelId
         
-        def initialize()
+        def initialize(modelid=nil)
+          @ModelId = modelid
         end
 
         def deserialize(params)
+          @ModelId = params['ModelId']
+        end
+      end
+
+      # DownloadCustomization返回参数结构体
+      class DownloadCustomizationResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadUrl: 下载地址
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadUrl, :RequestId
+        
+        def initialize(downloadurl=nil, requestid=nil)
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetAsrVocabList请求参数结构体
+      class GetAsrVocabListRequest < TencentCloud::Common::AbstractModel
+        # @param TagInfos: 标签信息，格式为“$TagKey : $TagValue ”，中间分隔符为“空格”+“:”+“空格”
+        # @type TagInfos: Array
+        # @param Offset: 分页Offset
+        # @type Offset: Integer
+        # @param Limit: 分页Limit
+        # @type Limit: Integer
+
+        attr_accessor :TagInfos, :Offset, :Limit
+        
+        def initialize(taginfos=nil, offset=nil, limit=nil)
+          @TagInfos = taginfos
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TagInfos = params['TagInfos']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -281,18 +429,22 @@ module TencentCloud
       class GetAsrVocabListResponse < TencentCloud::Common::AbstractModel
         # @param VocabList: 热词表列表
         # @type VocabList: Array
+        # @param TotalCount: 热词列表总数
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VocabList, :RequestId
+        attr_accessor :VocabList, :TotalCount, :RequestId
         
-        def initialize(vocablist=nil, requestid=nil)
+        def initialize(vocablist=nil, totalcount=nil, requestid=nil)
           @VocabList = vocablist
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
           @VocabList = params['VocabList']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -357,6 +509,56 @@ module TencentCloud
         end
       end
 
+      # GetCustomizationList请求参数结构体
+      class GetCustomizationListRequest < TencentCloud::Common::AbstractModel
+        # @param TagInfos: 标签信息，格式为“$TagKey : $TagValue ”，中间分隔符为“空格”+“:”+“空格”
+        # @type TagInfos: Array
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页offset
+        # @type Offset: Integer
+
+        attr_accessor :TagInfos, :Limit, :Offset
+        
+        def initialize(taginfos=nil, limit=nil, offset=nil)
+          @TagInfos = taginfos
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @TagInfos = params['TagInfos']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # GetCustomizationList返回参数结构体
+      class GetCustomizationListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 自学习模型数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param TotalCount: 自学习模型总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+        
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 热词的词和权重
       class HotWord < TencentCloud::Common::AbstractModel
         # @param Word: 热词
@@ -374,6 +576,135 @@ module TencentCloud
         def deserialize(params)
           @Word = params['Word']
           @Weight = params['Weight']
+        end
+      end
+
+      # 自学习模型信息
+      class Model < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型名称
+        # @type ModelName: String
+        # @param DictName: 模型文件名称
+        # @type DictName: String
+        # @param ModelId: 模型Id
+        # @type ModelId: String
+        # @param ModelType: 模型类型，“8k”或者”16k“
+        # @type ModelType: String
+        # @param ServiceType: 服务类型
+        # @type ServiceType: String
+        # @param ModelState: 模型状态，-1下线状态，1上线状态, 0训练中, -2 训练失败
+        # @type ModelState: Integer
+        # @param AtUpdated: 最后更新时间
+        # @type AtUpdated: String
+        # @param TagInfos: 标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagInfos: Array
+
+        attr_accessor :ModelName, :DictName, :ModelId, :ModelType, :ServiceType, :ModelState, :AtUpdated, :TagInfos
+        
+        def initialize(modelname=nil, dictname=nil, modelid=nil, modeltype=nil, servicetype=nil, modelstate=nil, atupdated=nil, taginfos=nil)
+          @ModelName = modelname
+          @DictName = dictname
+          @ModelId = modelid
+          @ModelType = modeltype
+          @ServiceType = servicetype
+          @ModelState = modelstate
+          @AtUpdated = atupdated
+          @TagInfos = taginfos
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @DictName = params['DictName']
+          @ModelId = params['ModelId']
+          @ModelType = params['ModelType']
+          @ServiceType = params['ServiceType']
+          @ModelState = params['ModelState']
+          @AtUpdated = params['AtUpdated']
+          @TagInfos = params['TagInfos']
+        end
+      end
+
+      # ModifyCustomization请求参数结构体
+      class ModifyCustomizationRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 要修改的模型ID
+        # @type ModelId: String
+        # @param ModelName: 要修改的模型名称，长度需在1-20个字符之间
+        # @type ModelName: String
+        # @param ModelType: 要修改的模型类型，为8k或者16k
+        # @type ModelType: String
+        # @param TextUrl: 要修改的模型语料的下载地址，目前仅支持腾讯云cos
+        # @type TextUrl: String
+
+        attr_accessor :ModelId, :ModelName, :ModelType, :TextUrl
+        
+        def initialize(modelid=nil, modelname=nil, modeltype=nil, texturl=nil)
+          @ModelId = modelid
+          @ModelName = modelname
+          @ModelType = modeltype
+          @TextUrl = texturl
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelName = params['ModelName']
+          @ModelType = params['ModelType']
+          @TextUrl = params['TextUrl']
+        end
+      end
+
+      # ModifyCustomization返回参数结构体
+      class ModifyCustomizationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCustomizationState请求参数结构体
+      class ModifyCustomizationStateRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 自学习模型ID
+        # @type ModelId: String
+        # @param ToState: 想要变换的模型状态，-1代表下线，1代表上线
+        # @type ToState: Integer
+
+        attr_accessor :ModelId, :ToState
+        
+        def initialize(modelid=nil, tostate=nil)
+          @ModelId = modelid
+          @ToState = tostate
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ToState = params['ToState']
+        end
+      end
+
+      # ModifyCustomizationState返回参数结构体
+      class ModifyCustomizationStateResponse < TencentCloud::Common::AbstractModel
+        # @param ModelId: 自学习模型ID
+        # @type ModelId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelId, :RequestId
+        
+        def initialize(modelid=nil, requestid=nil)
+          @ModelId = modelid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -397,16 +728,20 @@ module TencentCloud
         # @param Words: 单句中词详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Words: Array
+        # @param SpeechSpeed: 单句语速，单位：字数/秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpeechSpeed: Float
 
-        attr_accessor :FinalSentence, :SliceSentence, :StartMs, :EndMs, :WordsNum, :Words
+        attr_accessor :FinalSentence, :SliceSentence, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed
         
-        def initialize(finalsentence=nil, slicesentence=nil, startms=nil, endms=nil, wordsnum=nil, words=nil)
+        def initialize(finalsentence=nil, slicesentence=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil)
           @FinalSentence = finalsentence
           @SliceSentence = slicesentence
           @StartMs = startms
           @EndMs = endms
           @WordsNum = wordsnum
           @Words = words
+          @SpeechSpeed = speechspeed
         end
 
         def deserialize(params)
@@ -416,6 +751,7 @@ module TencentCloud
           @EndMs = params['EndMs']
           @WordsNum = params['WordsNum']
           @Words = params['Words']
+          @SpeechSpeed = params['SpeechSpeed']
         end
       end
 
@@ -426,10 +762,15 @@ module TencentCloud
         # @param SubServiceType: 子服务类型。2： 一句话识别。
         # @type SubServiceType: Integer
         # @param EngSerViceType: 引擎模型类型。
-        # 8k_zh：电话 8k 中文普通话通用；
-        # 16k_zh：16k 中文普通话通用；
-        # 16k_en：16k 英语；
-        # 16k_ca：16k 粤语。
+        # 电话场景：
+        # • 8k_en：电话 8k 英语；
+        # • 8k_zh：电话 8k 中文普通话通用；
+        # 非电话场景：
+        # • 16k_zh：16k 中文普通话通用；
+        # • 16k_en：16k 英语；
+        # • 16k_ca：16k 粤语；
+        # • 16k_ja：16k 日语；
+        # •16k_wuu-SH：16k 上海话方言。
         # @type EngSerViceType: String
         # @param SourceType: 语音数据来源。0：语音 URL；1：语音数据（post body）。
         # @type SourceType: Integer
@@ -439,7 +780,7 @@ module TencentCloud
         # @type UsrAudioKey: String
         # @param Url: 语音 URL，公网可下载。当 SourceType 值为 0（语音 URL上传） 时须填写该字段，为 1 时不填；URL 的长度大于 0，小于 2048，需进行urlencode编码。音频时间长度要小于60s。
         # @type Url: String
-        # @param Data: 语音数据，当SourceType 值为1（本地语音数据上传）时必须填写，当SourceType 值为0（语音 URL上传）可不写。要使用base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。编码后的数据不可带有回车换行符)。音频数据要小于600KB。
+        # @param Data: 语音数据，当SourceType 值为1（本地语音数据上传）时必须填写，当SourceType 值为0（语音 URL上传）可不写。要使用base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。编码后的数据不可带有回车换行符)。数据长度要小于3MB（Base64后）。
         # @type Data: String
         # @param DataLen: 数据长度，单位为字节。当 SourceType 值为1（本地语音数据上传）时必须填写，当 SourceType 值为0（语音 URL上传）可不写（此数据长度为数据未进行base64编码时的数据长度）。
         # @type DataLen: Integer
@@ -449,14 +790,16 @@ module TencentCloud
         # @type FilterDirty: Integer
         # @param FilterModal: 是否过语气词（目前支持中文普通话引擎）。0：不过滤语气词；1：部分过滤；2：严格过滤 。
         # @type FilterModal: Integer
-        # @param FilterPunc: 是否过滤句末的句号（目前支持中文普通话引擎）。0：不过滤句末的句号；1：过滤句末的句号。
+        # @param FilterPunc: 是否过滤标点符号（目前支持中文普通话引擎）。 0：不过滤，1：过滤句末标点，2：过滤所有标点。默认为0。
         # @type FilterPunc: Integer
         # @param ConvertNumMode: 是否进行阿拉伯数字智能转换。0：不转换，直接输出中文数字，1：根据场景智能转换为阿拉伯数字。默认值为1
         # @type ConvertNumMode: Integer
+        # @param WordInfo: 是否显示词级别时间戳。0：不显示；1：显示，不包含标点时间戳，2：显示，包含标点时间戳。支持引擎8k_zh，16k_zh，16k_en，16k_ca，16k_ja，16k_wuu-SH
+        # @type WordInfo: Integer
 
-        attr_accessor :ProjectId, :SubServiceType, :EngSerViceType, :SourceType, :VoiceFormat, :UsrAudioKey, :Url, :Data, :DataLen, :HotwordId, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode
+        attr_accessor :ProjectId, :SubServiceType, :EngSerViceType, :SourceType, :VoiceFormat, :UsrAudioKey, :Url, :Data, :DataLen, :HotwordId, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :WordInfo
         
-        def initialize(projectid=nil, subservicetype=nil, engservicetype=nil, sourcetype=nil, voiceformat=nil, usraudiokey=nil, url=nil, data=nil, datalen=nil, hotwordid=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil)
+        def initialize(projectid=nil, subservicetype=nil, engservicetype=nil, sourcetype=nil, voiceformat=nil, usraudiokey=nil, url=nil, data=nil, datalen=nil, hotwordid=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, wordinfo=nil)
           @ProjectId = projectid
           @SubServiceType = subservicetype
           @EngSerViceType = engservicetype
@@ -471,6 +814,7 @@ module TencentCloud
           @FilterModal = filtermodal
           @FilterPunc = filterpunc
           @ConvertNumMode = convertnummode
+          @WordInfo = wordinfo
         end
 
         def deserialize(params)
@@ -488,6 +832,7 @@ module TencentCloud
           @FilterModal = params['FilterModal']
           @FilterPunc = params['FilterPunc']
           @ConvertNumMode = params['ConvertNumMode']
+          @WordInfo = params['WordInfo']
         end
       end
 
@@ -495,19 +840,57 @@ module TencentCloud
       class SentenceRecognitionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 识别结果。
         # @type Result: String
+        # @param AudioDuration: 请求的音频时长，单位为ms
+        # @type AudioDuration: Integer
+        # @param WordSize: 词时间戳列表的长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordSize: Integer
+        # @param WordList: 词时间戳列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :RequestId
+        attr_accessor :Result, :AudioDuration, :WordSize, :WordList, :RequestId
         
-        def initialize(result=nil, requestid=nil)
+        def initialize(result=nil, audioduration=nil, wordsize=nil, wordlist=nil, requestid=nil)
           @Result = result
+          @AudioDuration = audioduration
+          @WordSize = wordsize
+          @WordList = wordlist
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Result = params['Result']
+          @AudioDuration = params['AudioDuration']
+          @WordSize = params['WordSize']
+          @WordList = params['WordList']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 一句话识别返回的词时间戳
+      class SentenceWord < TencentCloud::Common::AbstractModel
+        # @param Word: 词结果
+        # @type Word: String
+        # @param StartTime: 词在音频中的开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 词在音频中的结束时间
+        # @type EndTime: Integer
+
+        attr_accessor :Word, :StartTime, :EndTime
+        
+        def initialize(word=nil, starttime=nil, endtime=nil)
+          @Word = word
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Word = params['Word']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -578,7 +961,7 @@ module TencentCloud
         end
       end
 
-      # 录音文件识别请求的返回数据
+      # 录音文件识别、实时语音异步识别请求的返回数据
       class Task < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID，可通过此ID在轮询接口获取识别状态与结果
         # @type TaskId: Integer
@@ -700,10 +1083,13 @@ module TencentCloud
         # @type UpdateTime: String
         # @param State: 热词表状态，1为默认状态即在识别时默认加载该热词表进行识别，0为初始状态
         # @type State: Integer
+        # @param TagInfos: 标签数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagInfos: Array
 
-        attr_accessor :Name, :Description, :VocabId, :WordWeights, :CreateTime, :UpdateTime, :State
+        attr_accessor :Name, :Description, :VocabId, :WordWeights, :CreateTime, :UpdateTime, :State, :TagInfos
         
-        def initialize(name=nil, description=nil, vocabid=nil, wordweights=nil, createtime=nil, updatetime=nil, state=nil)
+        def initialize(name=nil, description=nil, vocabid=nil, wordweights=nil, createtime=nil, updatetime=nil, state=nil, taginfos=nil)
           @Name = name
           @Description = description
           @VocabId = vocabid
@@ -711,6 +1097,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @State = state
+          @TagInfos = taginfos
         end
 
         def deserialize(params)
@@ -721,6 +1108,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @State = params['State']
+          @TagInfos = params['TagInfos']
         end
       end
 

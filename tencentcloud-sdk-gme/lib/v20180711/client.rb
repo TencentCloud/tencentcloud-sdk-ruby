@@ -146,6 +146,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 拉取用户在房间得进出时间
+
+        # @param request: Request instance for DescribeUserInAndOutTime.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeUserInAndOutTimeRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeUserInAndOutTimeResponse`
+        def DescribeUserInAndOutTime(request)
+          body = send_request('DescribeUserInAndOutTime', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserInAndOutTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyAppStatus)用于修改应用总开关状态。
 
         # @param request: Request instance for ModifyAppStatus.

@@ -121,7 +121,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建用户自定义内容审核模板，数量上限：50。
+        # 创建用户自定义内容智能识别模板，数量上限：50。
 
         # @param request: Request instance for CreateContentReviewTemplate.
         # @type request: :class:`Tencentcloud::mps::V20190612::CreateContentReviewTemplateRequest`
@@ -169,7 +169,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于创建人物样本，用于通过人脸识别等技术，进行内容识别、内容审核等视频处理。
+        # 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
 
         # @param request: Request instance for CreatePersonSample.
         # @type request: :class:`Tencentcloud::mps::V20190612::CreatePersonSampleRequest`
@@ -289,7 +289,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行内容审核、内容识别等视频处理。
+        # 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
 
         # @param request: Request instance for CreateWordSamples.
         # @type request: :class:`Tencentcloud::mps::V20190612::CreateWordSamplesRequest`
@@ -446,7 +446,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除用户自定义内容审核模板。
+        # 删除用户自定义内容智能识别模板。
 
         # @param request: Request instance for DeleteContentReviewTemplate.
         # @type request: :class:`Tencentcloud::mps::V20190612::DeleteContentReviewTemplateRequest`
@@ -494,7 +494,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于根据人物 ID，删除人物样本。
+        # 该接口用于根据素材 ID，删除素材样本。
 
         # @param request: Request instance for DeletePersonSample.
         # @type request: :class:`Tencentcloud::mps::V20190612::DeletePersonSampleRequest`
@@ -758,7 +758,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 根据内容审核模板唯一标识，获取内容审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置内容审核模板。
+        # 根据内容智能识别模板唯一标识，获取内容智能识别模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置内容智能识别模板。
 
         # @param request: Request instance for DescribeContentReviewTemplates.
         # @type request: :class:`Tencentcloud::mps::V20190612::DescribeContentReviewTemplatesRequest`
@@ -830,7 +830,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于查询人物样本信息，支持根据人物 ID、名称、标签，分页查询。
+        # 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
 
         # @param request: Request instance for DescribePersonSamples.
         # @type request: :class:`Tencentcloud::mps::V20190612::DescribePersonSamplesRequest`
@@ -1124,8 +1124,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口仅用于定制开发的特殊场景，除非云视频处理客服人员主动告知您需要使用本接口，其它情况请勿调用。
+
+        # @param request: Request instance for ExecuteFunction.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ExecuteFunctionRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ExecuteFunctionResponse`
+        def ExecuteFunction(request)
+          body = send_request('ExecuteFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExecuteFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对已发起的任务进行管理。
-        # > 注意：目前仅支持终止执行中的直播流处理任务。
 
         # @param request: Request instance for ManageTask.
         # @type request: :class:`Tencentcloud::mps::V20190612::ManageTaskRequest`
@@ -1247,7 +1270,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改用户自定义内容审核模板。
+        # 修改用户自定义内容智能识别模板。
 
         # @param request: Request instance for ModifyContentReviewTemplate.
         # @type request: :class:`Tencentcloud::mps::V20190612::ModifyContentReviewTemplateRequest`
@@ -1295,7 +1318,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于根据人物 ID，修改人物样本信息，包括名称、描述的修改，以及人脸、标签的添加、删除、重置操作。人脸删除操作需保证至少剩余 1 张图片，否则，请使用重置操作。
+        # 该接口用于根据素材 ID，修改素材样本信息，包括名称、描述的修改，以及五官、标签的添加、删除、重置操作。五官删除操作需保证至少剩余 1 张图片，否则，请使用重置操作。
 
         # @param request: Request instance for ModifyPersonSample.
         # @type request: :class:`Tencentcloud::mps::V20190612::ModifyPersonSampleRequest`
@@ -1491,7 +1514,8 @@ module TencentCloud
 
         # 对直播流媒体发起处理任务，功能包括：
 
-        # * 智能内容审核（画面鉴黄、鉴政、鉴暴、声音鉴黄）。
+        # * 智能内容审核（画面鉴黄、鉴政、鉴暴、声音鉴黄）；
+        # * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
 
         # 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
 

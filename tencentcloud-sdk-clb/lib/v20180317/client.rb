@@ -148,6 +148,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建clb专有日志集，此日志集用于存储clb的日志。
+
+        # @param request: Request instance for CreateClsLogSet.
+        # @type request: :class:`Tencentcloud::clb::V20180317::CreateClsLogSetRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::CreateClsLogSetResponse`
+        def CreateClsLogSet(request)
+          body = send_request('CreateClsLogSet', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateClsLogSetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在一个负载均衡实例下创建监听器。
         # 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
 
@@ -258,6 +282,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTargetGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建主题，默认开启全文索引和键值索引。如果不存在clb专有日志集，则创建失败。
+
+        # @param request: Request instance for CreateTopic.
+        # @type request: :class:`Tencentcloud::clb::V20180317::CreateTopicRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::CreateTopicResponse`
+        def CreateTopic(request)
+          body = send_request('CreateTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTopicResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -664,6 +712,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取用户的clb专有日志集
+
+        # @param request: Request instance for DescribeClsLogSet.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeClsLogSetRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeClsLogSetResponse`
+        def DescribeClsLogSet(request)
+          body = send_request('DescribeClsLogSet', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClsLogSetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询独占集群中资源列表，支持按集群ID、vip、负载均衡ID、是否闲置为过滤条件检索
+
+        # @param request: Request instance for DescribeClusterResources.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeClusterResourcesRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeClusterResourcesResponse`
+        def DescribeClusterResources(request)
+          body = send_request('DescribeClusterResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
+
+        # @param request: Request instance for DescribeExclusiveClusters.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeExclusiveClustersRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeExclusiveClustersResponse`
+        def DescribeExclusiveClusters(request)
+          body = send_request('DescribeExclusiveClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExclusiveClustersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeListeners 接口可根据负载均衡器 ID，监听器的协议或端口作为过滤条件获取监听器列表。如果不指定任何过滤条件，则返回该负载均衡实例下的所有监听器。
 
         # @param request: Request instance for DescribeListeners.
@@ -712,6 +832,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询账号下高流量负载均衡，返回前10个负载均衡。如果是子账号登录，只返回子账号有权限的负载均衡。
+
+        # @param request: Request instance for DescribeLoadBalancerTraffic.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeLoadBalancerTrafficRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeLoadBalancerTrafficResponse`
+        def DescribeLoadBalancerTraffic(request)
+          body = send_request('DescribeLoadBalancerTraffic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLoadBalancerTrafficResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询一个地域的负载均衡实例列表
 
         # @param request: Request instance for DescribeLoadBalancers.
@@ -722,6 +866,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLoadBalancersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询负载均衡的详细信息，包括监听器，规则及后端目标。
+
+        # @param request: Request instance for DescribeLoadBalancersDetail.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeLoadBalancersDetailRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeLoadBalancersDetailResponse`
+        def DescribeLoadBalancersDetail(request)
+          body = send_request('DescribeLoadBalancersDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLoadBalancersDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户当前地域下的各项配额
+
+        # @param request: Request instance for DescribeQuota.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeQuotaRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeQuotaResponse`
+        def DescribeQuota(request)
+          body = send_request('DescribeQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else

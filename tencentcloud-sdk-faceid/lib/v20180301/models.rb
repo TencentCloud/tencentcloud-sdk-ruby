@@ -91,7 +91,7 @@ module TencentCloud
         # @param IdCard: 开户证件号，与CertType参数的证件类型一致，如：身份证，则传入身份证号。
         # @type IdCard: String
         # @param CertType: 证件类型，请确认该证件为开户时使用的证件类型，未用于开户的证件信息不支持验证。
-        # 目前默认：0 身份证，其他证件类型需求可以联系小助手faceid001确认。
+        # 目前默认为0：身份证，其他证件类型暂不支持。
         # @type CertType: Integer
 
         attr_accessor :Name, :BankCard, :Phone, :IdCard, :CertType
@@ -231,6 +231,227 @@ module TencentCloud
         end
       end
 
+      # CheckBankCardInformation请求参数结构体
+      class CheckBankCardInformationRequest < TencentCloud::Common::AbstractModel
+        # @param BankCard: 银行卡号。
+        # @type BankCard: String
+
+        attr_accessor :BankCard
+        
+        def initialize(bankcard=nil)
+          @BankCard = bankcard
+        end
+
+        def deserialize(params)
+          @BankCard = params['BankCard']
+        end
+      end
+
+      # CheckBankCardInformation返回参数结构体
+      class CheckBankCardInformationResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 认证结果码，收费情况如下。
+        # 收费结果码：
+        # 0: 查询成功
+        # -1: 未查到信息
+        # 不收费结果码
+        # -2：验证中心服务繁忙
+        # -3：银行卡不存在
+        # @type Result: String
+        # @param Description: 业务结果描述
+        # @type Description: String
+        # @param AccountBank: 开户行
+        # @type AccountBank: String
+        # @param AccountType: 卡性质：1. 借记卡；2. 贷记卡
+        # @type AccountType: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Description, :AccountBank, :AccountType, :RequestId
+        
+        def initialize(result=nil, description=nil, accountbank=nil, accounttype=nil, requestid=nil)
+          @Result = result
+          @Description = description
+          @AccountBank = accountbank
+          @AccountType = accounttype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Description = params['Description']
+          @AccountBank = params['AccountBank']
+          @AccountType = params['AccountType']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckIdCardInformation请求参数结构体
+      class CheckIdCardInformationRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 身份证人像面的 Base64 值
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。
+        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
+        # ImageBase64、ImageUrl二者必须提供其中之一。若都提供了，则按照ImageUrl>ImageBase64的优先级使用参数。
+        # @type ImageBase64: String
+        # @param ImageUrl: 身份证人像面的 Url 地址
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param Config: 以下可选字段均为bool 类型，默认false：
+        # CopyWarn，复印件告警
+        # BorderCheckWarn，边框和框内遮挡告警
+        # ReshootWarn，翻拍告警
+        # DetectPsWarn，PS检测告警
+        # TempIdWarn，临时身份证告警
+        # Quality，图片质量告警（评价图片模糊程度）
+
+        # SDK 设置方式参考：
+        # Config = Json.stringify({"CopyWarn":true,"ReshootWarn":true})
+        # API 3.0 Explorer 设置方式参考：
+        # Config = {"CopyWarn":true,"ReshootWarn":true}
+        # @type Config: String
+
+        attr_accessor :ImageBase64, :ImageUrl, :Config
+        
+        def initialize(imagebase64=nil, imageurl=nil, config=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @Config = config
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @Config = params['Config']
+        end
+      end
+
+      # CheckIdCardInformation返回参数结构体
+      class CheckIdCardInformationResponse < TencentCloud::Common::AbstractModel
+        # @param Sim: 相似度，取值范围 [0.00, 100.00]。推荐相似度大于等于70时可判断为同一人，可根据具体场景自行调整阈值（阈值70的误通过率为千分之一，阈值80的误通过率是万分之一）
+        # @type Sim: Float
+        # @param Result: 业务错误码，成功情况返回Success, 错误情况请参考下方错误码 列表中FailedOperation部分
+        # @type Result: String
+        # @param Description: 业务结果描述。
+        # @type Description: String
+        # @param Name: 姓名
+        # @type Name: String
+        # @param Sex: 性别
+        # @type Sex: String
+        # @param Nation: 民族
+        # @type Nation: String
+        # @param Birth: 出生日期
+        # @type Birth: String
+        # @param Address: 地址
+        # @type Address: String
+        # @param IdNum: 身份证号
+        # @type IdNum: String
+        # @param Portrait: 身份证头像照片的base64编码，如果抠图失败会拿整张身份证做比对并返回空。
+        # @type Portrait: String
+        # @param Warnings: 告警信息，当在Config中配置了告警信息会停止人像比对，Result返回错误（FailedOperation.OcrWarningOccurred）并有此告警信息，Code 告警码列表和释义：
+
+        # -9101 身份证边框不完整告警，
+        # -9102 身份证复印件告警，
+        # -9103 身份证翻拍告警，
+        # -9105 身份证框内遮挡告警，
+        # -9104 临时身份证告警，
+        # -9106 身份证 PS 告警。
+        # -8001 图片模糊告警
+        # 多个会 |  隔开如 "-9101|-9106|-9104"
+        # @type Warnings: String
+        # @param Quality: 图片质量分数，当请求Config中配置图片模糊告警该参数才有意义，取值范围（0～100），目前默认阈值是50分，低于50分会触发模糊告警。
+        # @type Quality: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Sim, :Result, :Description, :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Portrait, :Warnings, :Quality, :RequestId
+        
+        def initialize(sim=nil, result=nil, description=nil, name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, portrait=nil, warnings=nil, quality=nil, requestid=nil)
+          @Sim = sim
+          @Result = result
+          @Description = description
+          @Name = name
+          @Sex = sex
+          @Nation = nation
+          @Birth = birth
+          @Address = address
+          @IdNum = idnum
+          @Portrait = portrait
+          @Warnings = warnings
+          @Quality = quality
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Sim = params['Sim']
+          @Result = params['Result']
+          @Description = params['Description']
+          @Name = params['Name']
+          @Sex = params['Sex']
+          @Nation = params['Nation']
+          @Birth = params['Birth']
+          @Address = params['Address']
+          @IdNum = params['IdNum']
+          @Portrait = params['Portrait']
+          @Warnings = params['Warnings']
+          @Quality = params['Quality']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckPhoneAndName请求参数结构体
+      class CheckPhoneAndNameRequest < TencentCloud::Common::AbstractModel
+        # @param Mobile: ⼿机号
+        # @type Mobile: String
+        # @param Name: 姓名
+        # @type Name: String
+
+        attr_accessor :Mobile, :Name
+        
+        def initialize(mobile=nil, name=nil)
+          @Mobile = mobile
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Mobile = params['Mobile']
+          @Name = params['Name']
+        end
+      end
+
+      # CheckPhoneAndName返回参数结构体
+      class CheckPhoneAndNameResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 认证结果码，收费情况如下。
+        # 收费结果码：
+        # 0: 验证结果一致
+        # 1: 验证结果不一致
+        # 不收费结果码：
+        # -1:查无记录
+        # -2:引擎未知错误
+        # -3:引擎服务异常
+        # @type Result: String
+        # @param Description: 业务结果描述
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Description, :RequestId
+        
+        def initialize(result=nil, description=nil, requestid=nil)
+          @Result = result
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetectAuth请求参数结构体
       class DetectAuthRequest < TencentCloud::Common::AbstractModel
         # @param RuleId: 用于细分客户使用场景，申请开通服务后，可以在腾讯云慧眼人脸核身控制台（https://console.cloud.tencent.com/faceid） 自助接入里面创建，审核通过后即可调用。如有疑问，请加慧眼小助手微信（faceid001）进行咨询。
@@ -246,8 +467,8 @@ module TencentCloud
         # @type RedirectUrl: String
         # @param Extra: 透传字段，在获取验证结果时返回。
         # @type Extra: String
-        # @param ImageBase64: 用于人脸比对的照片，图片的BASE64值；
-        # BASE64编码后的图片数据大小不超过3M，仅支持jpg、png格式。
+        # @param ImageBase64: 用于人脸比对的照片，图片的Base64值；
+        # Base64编码后的图片数据大小不超过3M，仅支持jpg、png格式。请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
         # @type ImageBase64: String
 
         attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64
@@ -336,10 +557,17 @@ module TencentCloud
         # @param Comparemsg: 本次一比一结果描述。（仅描述用，文案更新时不会通知。）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comparemsg: String
+        # @param CompareLibType: 比对库源类型。包括：
+        # 公安商业库；
+        # 业务方自有库（用户上传照片、客户的混合库、混合部署库）；
+        # 二次验证库；
+        # 人工审核库；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompareLibType: String
 
-        attr_accessor :ReqTime, :Seq, :Idcard, :Name, :Sim, :IsNeedCharge, :Errcode, :Errmsg, :Livestatus, :Livemsg, :Comparestatus, :Comparemsg
+        attr_accessor :ReqTime, :Seq, :Idcard, :Name, :Sim, :IsNeedCharge, :Errcode, :Errmsg, :Livestatus, :Livemsg, :Comparestatus, :Comparemsg, :CompareLibType
         
-        def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, errcode=nil, errmsg=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil)
+        def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, errcode=nil, errmsg=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, comparelibtype=nil)
           @ReqTime = reqtime
           @Seq = seq
           @Idcard = idcard
@@ -352,6 +580,7 @@ module TencentCloud
           @Livemsg = livemsg
           @Comparestatus = comparestatus
           @Comparemsg = comparemsg
+          @CompareLibType = comparelibtype
         end
 
         def deserialize(params)
@@ -367,6 +596,7 @@ module TencentCloud
           @Livemsg = params['Livemsg']
           @Comparestatus = params['Comparestatus']
           @Comparemsg = params['Comparemsg']
+          @CompareLibType = params['CompareLibType']
         end
       end
 
@@ -494,10 +724,17 @@ module TencentCloud
         # @param Mobile: 手机号码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mobile: String
+        # @param CompareLibType: 本次流程最终比对库源类型。包括：
+        # 公安商业库；
+        # 业务方自有库（用户上传照片、客户的混合库、混合部署库）；
+        # 二次验证库；
+        # 人工审核库；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompareLibType: String
 
-        attr_accessor :ErrCode, :ErrMsg, :IdCard, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile
+        attr_accessor :ErrCode, :ErrMsg, :IdCard, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :Mobile, :CompareLibType
         
-        def initialize(errcode=nil, errmsg=nil, idcard=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil)
+        def initialize(errcode=nil, errmsg=nil, idcard=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, mobile=nil, comparelibtype=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
           @IdCard = idcard
@@ -519,6 +756,7 @@ module TencentCloud
           @Extra = extra
           @LivenessDetail = livenessdetail
           @Mobile = mobile
+          @CompareLibType = comparelibtype
         end
 
         def deserialize(params)
@@ -543,6 +781,7 @@ module TencentCloud
           @Extra = params['Extra']
           @LivenessDetail = params['LivenessDetail']
           @Mobile = params['Mobile']
+          @CompareLibType = params['CompareLibType']
         end
       end
 
@@ -605,11 +844,11 @@ module TencentCloud
         # @type BizToken: String
         # @param RuleId: 用于细分客户使用场景，由腾讯侧在线下对接时分配。
         # @type RuleId: String
-        # @param InfoType: 指定拉取的结果信息，取值（0：全部；1：文本类；2：身份证信息；3：视频最佳截图信息；4：视频信息）。
-        # 如 134表示拉取文本类、视频最佳截图信息、视频信息。
+        # @param InfoType: 指定拉取的结果信息，取值（0：全部；1：文本类；2：身份证信息；3：视频最佳截图信息）。
+        # 如 13表示拉取文本类、视频最佳截图信息。
         # 默认值：0
         # @type InfoType: String
-        # @param BestFramesCount: 从活体视频中截取一定张数的最佳帧。默认为0，最大为10，超出10的最多只给10张。（InfoType需要包含3）
+        # @param BestFramesCount: 从活体视频中截取一定张数的最佳帧（仅部分服务支持，若需使用请与慧眼小助手沟通）。默认为0，最大为10，超出10的最多只给10张。（InfoType需要包含3）
         # @type BestFramesCount: Integer
         # @param IsCutIdCardImage: 是否对身份证照片进行裁边。默认为false。（InfoType需要包含2）
         # @type IsCutIdCardImage: Boolean
@@ -729,6 +968,7 @@ module TencentCloud
         #     "LiveMsg": null,      // 活体检测阶段的错误信息
         #     "Comparestatus": null,// 一比一阶段的错误码。0为成功
         #     "Comparemsg": null,   // 一比一阶段的错误信息
+        #     "Sim": null, // 比对相似度
         #     "Location": null, // 地理位置信息
         #     "Extra": "",          // DetectAuth结果传进来的Extra信息
         #     "Detail": {           // 活体一比一信息详情
@@ -774,6 +1014,138 @@ module TencentCloud
         end
       end
 
+      # GetFaceIdResult请求参数结构体
+      class GetFaceIdResultRequest < TencentCloud::Common::AbstractModel
+        # @param FaceIdToken: SDK人脸核身流程的标识，调用GetFaceIdToken接口时生成。
+        # @type FaceIdToken: String
+        # @param IsNeedVideo: 是否需要拉取视频，默认false不需要
+        # @type IsNeedVideo: Boolean
+        # @param IsNeedBestFrame: 是否需要拉取截帧，默认false不需要
+        # @type IsNeedBestFrame: Boolean
+
+        attr_accessor :FaceIdToken, :IsNeedVideo, :IsNeedBestFrame
+        
+        def initialize(faceidtoken=nil, isneedvideo=nil, isneedbestframe=nil)
+          @FaceIdToken = faceidtoken
+          @IsNeedVideo = isneedvideo
+          @IsNeedBestFrame = isneedbestframe
+        end
+
+        def deserialize(params)
+          @FaceIdToken = params['FaceIdToken']
+          @IsNeedVideo = params['IsNeedVideo']
+          @IsNeedBestFrame = params['IsNeedBestFrame']
+        end
+      end
+
+      # GetFaceIdResult返回参数结构体
+      class GetFaceIdResultResponse < TencentCloud::Common::AbstractModel
+        # @param IdCard: 身份证
+        # @type IdCard: String
+        # @param Name: 姓名
+        # @type Name: String
+        # @param Result: 业务核验结果，参考https://cloud.tencent.com/document/product/1007/47912
+        # @type Result: String
+        # @param Description: 业务核验描述
+        # @type Description: String
+        # @param Similarity: 相似度，0-100，数值越大相似度越高
+        # @type Similarity: Float
+        # @param VideoBase64: 用户核验的视频
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoBase64: String
+        # @param BestFrameBase64: 用户核验视频的截帧
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BestFrameBase64: String
+        # @param Extra: 获取token时透传的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IdCard, :Name, :Result, :Description, :Similarity, :VideoBase64, :BestFrameBase64, :Extra, :RequestId
+        
+        def initialize(idcard=nil, name=nil, result=nil, description=nil, similarity=nil, videobase64=nil, bestframebase64=nil, extra=nil, requestid=nil)
+          @IdCard = idcard
+          @Name = name
+          @Result = result
+          @Description = description
+          @Similarity = similarity
+          @VideoBase64 = videobase64
+          @BestFrameBase64 = bestframebase64
+          @Extra = extra
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IdCard = params['IdCard']
+          @Name = params['Name']
+          @Result = params['Result']
+          @Description = params['Description']
+          @Similarity = params['Similarity']
+          @VideoBase64 = params['VideoBase64']
+          @BestFrameBase64 = params['BestFrameBase64']
+          @Extra = params['Extra']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetFaceIdToken请求参数结构体
+      class GetFaceIdTokenRequest < TencentCloud::Common::AbstractModel
+        # @param CompareLib: 本地上传照片(LOCAL)、商业库(BUSINESS)
+        # @type CompareLib: String
+        # @param IdCard: CompareLib为商业库时必传。
+        # @type IdCard: String
+        # @param Name: CompareLib为商业库库时必传。
+        # @type Name: String
+        # @param ImageBase64: CompareLib为上传照片比对时必传，Base64后图片最大8MB。
+        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
+        # @type ImageBase64: String
+        # @param Meta: SDK中生成的Meta字符串
+        # @type Meta: String
+        # @param Extra: 透传参数 1000长度字符串
+        # @type Extra: String
+
+        attr_accessor :CompareLib, :IdCard, :Name, :ImageBase64, :Meta, :Extra
+        
+        def initialize(comparelib=nil, idcard=nil, name=nil, imagebase64=nil, meta=nil, extra=nil)
+          @CompareLib = comparelib
+          @IdCard = idcard
+          @Name = name
+          @ImageBase64 = imagebase64
+          @Meta = meta
+          @Extra = extra
+        end
+
+        def deserialize(params)
+          @CompareLib = params['CompareLib']
+          @IdCard = params['IdCard']
+          @Name = params['Name']
+          @ImageBase64 = params['ImageBase64']
+          @Meta = params['Meta']
+          @Extra = params['Extra']
+        end
+      end
+
+      # GetFaceIdToken返回参数结构体
+      class GetFaceIdTokenResponse < TencentCloud::Common::AbstractModel
+        # @param FaceIdToken: 有效期 10分钟。只能完成1次核身。
+        # @type FaceIdToken: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FaceIdToken, :RequestId
+        
+        def initialize(faceidtoken=nil, requestid=nil)
+          @FaceIdToken = faceidtoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FaceIdToken = params['FaceIdToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetLiveCode请求参数结构体
       class GetLiveCodeRequest < TencentCloud::Common::AbstractModel
 
@@ -805,6 +1177,98 @@ module TencentCloud
         end
       end
 
+      # GetRealNameAuthResult请求参数结构体
+      class GetRealNameAuthResultRequest < TencentCloud::Common::AbstractModel
+        # @param AuthToken: 实名认证凭证
+        # @type AuthToken: String
+
+        attr_accessor :AuthToken
+        
+        def initialize(authtoken=nil)
+          @AuthToken = authtoken
+        end
+
+        def deserialize(params)
+          @AuthToken = params['AuthToken']
+        end
+      end
+
+      # GetRealNameAuthResult返回参数结构体
+      class GetRealNameAuthResultResponse < TencentCloud::Common::AbstractModel
+        # @param ResultType: 认证结果码，收费情况如下：
+
+        # 收费码：
+        # 0:  姓名和身份证号一致
+        # -1: 姓名和身份证号不一致
+        # -2: 姓名和微信实名姓名不一致
+
+        # 不收费码：
+        # -3: 微信号未实名
+        # @type ResultType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultType, :RequestId
+        
+        def initialize(resulttype=nil, requestid=nil)
+          @ResultType = resulttype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultType = params['ResultType']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetRealNameAuthToken请求参数结构体
+      class GetRealNameAuthTokenRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名
+        # @type Name: String
+        # @param IDCard: 身份证号
+        # @type IDCard: String
+        # @param CallbackURL: 回调地址。实名认证完成后，将会重定向到这个地址通知认证发起方。仅支持http或https协议。
+        # @type CallbackURL: String
+
+        attr_accessor :Name, :IDCard, :CallbackURL
+        
+        def initialize(name=nil, idcard=nil, callbackurl=nil)
+          @Name = name
+          @IDCard = idcard
+          @CallbackURL = callbackurl
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @IDCard = params['IDCard']
+          @CallbackURL = params['CallbackURL']
+        end
+      end
+
+      # GetRealNameAuthToken返回参数结构体
+      class GetRealNameAuthTokenResponse < TencentCloud::Common::AbstractModel
+        # @param AuthToken: 查询实名认证结果的唯一凭证
+        # @type AuthToken: String
+        # @param RedirectURL: 实名认证授权地址，认证发起方需要重定向到这个地址获取认证用户的授权，仅能在微信环境下打开。
+        # @type RedirectURL: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthToken, :RedirectURL, :RequestId
+        
+        def initialize(authtoken=nil, redirecturl=nil, requestid=nil)
+          @AuthToken = authtoken
+          @RedirectURL = redirecturl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AuthToken = params['AuthToken']
+          @RedirectURL = params['RedirectURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # IdCardOCRVerification请求参数结构体
       class IdCardOCRVerificationRequest < TencentCloud::Common::AbstractModel
         # @param IdCard: 身份证号
@@ -814,7 +1278,7 @@ module TencentCloud
         # @type Name: String
         # @param ImageBase64: 身份证人像面的 Base64 值
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
         # @type ImageBase64: String
         # @param ImageUrl: 身份证人像面的 Url 地址
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
@@ -958,8 +1422,9 @@ module TencentCloud
         # @type IdCard: String
         # @param Name: 姓名。中文请使用UTF-8编码。
         # @type Name: String
-        # @param ImageBase64: 用于人脸比对的照片，图片的BASE64值；
-        # BASE64编码后的图片数据大小不超过3M，仅支持jpg、png格式。
+        # @param ImageBase64: 用于人脸比对的照片，图片的Base64值；
+        # Base64编码后的图片数据大小不超过3M，仅支持jpg、png格式。
+        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
         # @type ImageBase64: String
         # @param Optional: 本接口不需要传递此参数。
         # @type Optional: String
@@ -1011,11 +1476,13 @@ module TencentCloud
 
       # LivenessCompare请求参数结构体
       class LivenessCompareRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 用于人脸比对的照片，图片的BASE64值；
-        # BASE64编码后的图片数据大小不超过3M，仅支持jpg、png格式。
+        # @param ImageBase64: 用于人脸比对的照片，图片的Base64值；
+        # Base64编码后的图片数据大小不超过3M，仅支持jpg、png格式。
+        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
         # @type ImageBase64: String
-        # @param VideoBase64: 用于活体检测的视频，视频的BASE64值；
-        # BASE64编码后的大小不超过8M，支持mp4、avi、flv格式。
+        # @param VideoBase64: 用于活体检测的视频，视频的Base64值；
+        # Base64编码后的大小不超过8M，支持mp4、avi、flv格式。
+        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
         # @type VideoBase64: String
         # @param LivenessType: 活体检测类型，取值：LIP/ACTION/SILENT。
         # LIP为数字模式，ACTION为动作模式，SILENT为静默模式，三种模式选择一种传入。
@@ -1275,10 +1742,10 @@ module TencentCloud
         # 收费结果码：
         # 0: 成年
         # -1: 未成年
-        # -2: 未查询到手机号信息
         # -3: 姓名和身份证号不一致
 
         # 不收费结果码：
+        # -2: 未查询到手机号信息
         # -4: 非法身份证号（长度、校验位等不正确）
         # -5: 非法姓名（长度、格式等不正确）
         # -6: 权威数据源服务异常
@@ -1287,8 +1754,11 @@ module TencentCloud
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String
-        # @param AgeRange: 当结果码为0或者-1时，该字段的值为年龄区间。
-        # 格式为[a,b)，表示年龄在a岁以上（包括a岁），b岁以下（不包括b岁）。若b为+时表示没有上限。
+        # @param AgeRange: 该字段的值为年龄区间。格式为[a,b)，
+        # [0,8)表示年龄小于8周岁区间，不包括8岁；
+        # [8,16)表示年龄8-16周岁区间，不包括16岁；
+        # [16,18)表示年龄16-18周岁区间，不包括18岁；
+        # [18,+)表示年龄大于18周岁。
         # @type AgeRange: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1312,7 +1782,7 @@ module TencentCloud
 
       # MobileNetworkTimeVerification请求参数结构体
       class MobileNetworkTimeVerificationRequest < TencentCloud::Common::AbstractModel
-        # @param Mobile: 手机号码。不支持电信手机号。
+        # @param Mobile: 手机号码
         # @type Mobile: String
 
         attr_accessor :Mobile
@@ -1426,31 +1896,42 @@ module TencentCloud
         # @type Name: String
         # @param Phone: 手机号
         # @type Phone: String
+        # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅 <a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
+        # @type CiphertextBlob: String
+        # @param EncryptList: 在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的IdCard，Name，Phone中的一个或多个
+        # @type EncryptList: Array
+        # @param Iv: 有加密需求的用户，传入CBC加密的初试向量
+        # @type Iv: String
 
-        attr_accessor :IdCard, :Name, :Phone
+        attr_accessor :IdCard, :Name, :Phone, :CiphertextBlob, :EncryptList, :Iv
         
-        def initialize(idcard=nil, name=nil, phone=nil)
+        def initialize(idcard=nil, name=nil, phone=nil, ciphertextblob=nil, encryptlist=nil, iv=nil)
           @IdCard = idcard
           @Name = name
           @Phone = phone
+          @CiphertextBlob = ciphertextblob
+          @EncryptList = encryptlist
+          @Iv = iv
         end
 
         def deserialize(params)
           @IdCard = params['IdCard']
           @Name = params['Name']
           @Phone = params['Phone']
+          @CiphertextBlob = params['CiphertextBlob']
+          @EncryptList = params['EncryptList']
+          @Iv = params['Iv']
         end
       end
 
       # PhoneVerification返回参数结构体
       class PhoneVerificationResponse < TencentCloud::Common::AbstractModel
         # @param Result: 认证结果码:
+        # 收费结果码
         # 0: 认证通过
-        # -1: 手机号已实名，但是身份证和姓名均与实名信息不一致
-        # -2: 手机号已实名，手机号和证件号一致，姓名不一致
-        # -3: 手机号已实名，手机号和姓名一致，身份证不一致
-        # -4: 信息不一致
+        # -4: 信息不一致（手机号已实名，但姓名和身份证号与实名信息不一致）
         # -5: 手机号未实名
+        # 不收费结果码
         # -6: 手机号码不合法
         # -7: 身份证号码有误
         # -8: 姓名校验不通过

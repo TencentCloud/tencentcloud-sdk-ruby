@@ -173,14 +173,18 @@ module TencentCloud
         # @type Uin: Integer
         # @param RelatedType: 关联类型。1 用户关联 ； 2 用户组关联
         # @type RelatedType: Integer
+        # @param AttachmentTime: 策略关联时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachmentTime: String
 
-        attr_accessor :Id, :Name, :Uin, :RelatedType
+        attr_accessor :Id, :Name, :Uin, :RelatedType, :AttachmentTime
         
-        def initialize(id=nil, name=nil, uin=nil, relatedtype=nil)
+        def initialize(id=nil, name=nil, uin=nil, relatedtype=nil, attachmenttime=nil)
           @Id = id
           @Name = name
           @Uin = uin
           @RelatedType = relatedtype
+          @AttachmentTime = attachmenttime
         end
 
         def deserialize(params)
@@ -188,6 +192,7 @@ module TencentCloud
           @Name = params['Name']
           @Uin = params['Uin']
           @RelatedType = params['RelatedType']
+          @AttachmentTime = params['AttachmentTime']
         end
       end
 
@@ -823,6 +828,42 @@ module TencentCloud
         end
       end
 
+      # DeleteRolePermissionsBoundary请求参数结构体
+      class DeleteRolePermissionsBoundaryRequest < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色ID（与角色名至少填一个）
+        # @type RoleId: String
+        # @param RoleName: 角色名（与角色ID至少填一个）
+        # @type RoleName: String
+
+        attr_accessor :RoleId, :RoleName
+        
+        def initialize(roleid=nil, rolename=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+        end
+      end
+
+      # DeleteRolePermissionsBoundary返回参数结构体
+      class DeleteRolePermissionsBoundaryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRole请求参数结构体
       class DeleteRoleRequest < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色ID，用于指定角色，入参 RoleId 与 RoleName 二选一
@@ -927,6 +968,38 @@ module TencentCloud
         end
       end
 
+      # DeleteUserPermissionsBoundary请求参数结构体
+      class DeleteUserPermissionsBoundaryRequest < TencentCloud::Common::AbstractModel
+        # @param TargetUin: 子账号Uin
+        # @type TargetUin: Integer
+
+        attr_accessor :TargetUin
+        
+        def initialize(targetuin=nil)
+          @TargetUin = targetuin
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+        end
+      end
+
+      # DeleteUserPermissionsBoundary返回参数结构体
+      class DeleteUserPermissionsBoundaryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteUser请求参数结构体
       class DeleteUserRequest < TencentCloud::Common::AbstractModel
         # @param Name: 子用户用户名
@@ -1004,6 +1077,101 @@ module TencentCloud
         def deserialize(params)
           @List = params['List']
           @TotalNum = params['TotalNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSafeAuthFlagColl请求参数结构体
+      class DescribeSafeAuthFlagCollRequest < TencentCloud::Common::AbstractModel
+        # @param SubUin: 子账号
+        # @type SubUin: Integer
+
+        attr_accessor :SubUin
+        
+        def initialize(subuin=nil)
+          @SubUin = subuin
+        end
+
+        def deserialize(params)
+          @SubUin = params['SubUin']
+        end
+      end
+
+      # DescribeSafeAuthFlagColl返回参数结构体
+      class DescribeSafeAuthFlagCollResponse < TencentCloud::Common::AbstractModel
+        # @param LoginFlag: 登录保护设置
+        # @type LoginFlag: :class:`Tencentcloud::Cam.v20190116.models.LoginActionFlag`
+        # @param ActionFlag: 敏感操作保护设置
+        # @type ActionFlag: :class:`Tencentcloud::Cam.v20190116.models.LoginActionFlag`
+        # @param OffsiteFlag: 异地登录保护设置
+        # @type OffsiteFlag: :class:`Tencentcloud::Cam.v20190116.models.OffsiteFlag`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoginFlag, :ActionFlag, :OffsiteFlag, :RequestId
+        
+        def initialize(loginflag=nil, actionflag=nil, offsiteflag=nil, requestid=nil)
+          @LoginFlag = loginflag
+          @ActionFlag = actionflag
+          @OffsiteFlag = offsiteflag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LoginFlag'].nil?
+            @LoginFlag = LoginActionFlag.new.deserialize(params[LoginFlag])
+          end
+          unless params['ActionFlag'].nil?
+            @ActionFlag = LoginActionFlag.new.deserialize(params[ActionFlag])
+          end
+          unless params['OffsiteFlag'].nil?
+            @OffsiteFlag = OffsiteFlag.new.deserialize(params[OffsiteFlag])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSafeAuthFlag请求参数结构体
+      class DescribeSafeAuthFlagRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSafeAuthFlag返回参数结构体
+      class DescribeSafeAuthFlagResponse < TencentCloud::Common::AbstractModel
+        # @param LoginFlag: 登录保护设置
+        # @type LoginFlag: :class:`Tencentcloud::Cam.v20190116.models.LoginActionFlag`
+        # @param ActionFlag: 敏感操作保护设置
+        # @type ActionFlag: :class:`Tencentcloud::Cam.v20190116.models.LoginActionFlag`
+        # @param OffsiteFlag: 异地登录保护设置
+        # @type OffsiteFlag: :class:`Tencentcloud::Cam.v20190116.models.OffsiteFlag`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoginFlag, :ActionFlag, :OffsiteFlag, :RequestId
+        
+        def initialize(loginflag=nil, actionflag=nil, offsiteflag=nil, requestid=nil)
+          @LoginFlag = loginflag
+          @ActionFlag = actionflag
+          @OffsiteFlag = offsiteflag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LoginFlag'].nil?
+            @LoginFlag = LoginActionFlag.new.deserialize(params[LoginFlag])
+          end
+          unless params['ActionFlag'].nil?
+            @ActionFlag = LoginActionFlag.new.deserialize(params[ActionFlag])
+          end
+          unless params['OffsiteFlag'].nil?
+            @OffsiteFlag = OffsiteFlag.new.deserialize(params[OffsiteFlag])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2247,6 +2415,82 @@ module TencentCloud
         end
       end
 
+      # ListWeChatWorkSubAccounts请求参数结构体
+      class ListWeChatWorkSubAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+        
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # ListWeChatWorkSubAccounts返回参数结构体
+      class ListWeChatWorkSubAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 企业微信子用户列表。
+        # @type Data: Array
+        # @param TotalCount: 总数目。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+        
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 登录和敏感操作flag
+      class LoginActionFlag < TencentCloud::Common::AbstractModel
+        # @param Phone: 手机
+        # @type Phone: Integer
+        # @param Token: 硬token
+        # @type Token: Integer
+        # @param Stoken: 软token
+        # @type Stoken: Integer
+        # @param Wechat: 微信
+        # @type Wechat: Integer
+        # @param Custom: 自定义
+        # @type Custom: Integer
+
+        attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom
+        
+        def initialize(phone=nil, token=nil, stoken=nil, wechat=nil, custom=nil)
+          @Phone = phone
+          @Token = token
+          @Stoken = stoken
+          @Wechat = wechat
+          @Custom = custom
+        end
+
+        def deserialize(params)
+          @Phone = params['Phone']
+          @Token = params['Token']
+          @Stoken = params['Stoken']
+          @Wechat = params['Wechat']
+          @Custom = params['Custom']
+        end
+      end
+
       # 登录和敏感操作flag
       class LoginActionMfaFlag < TencentCloud::Common::AbstractModel
         # @param Phone: 手机
@@ -2268,6 +2512,38 @@ module TencentCloud
           @Phone = params['Phone']
           @Stoken = params['Stoken']
           @Wechat = params['Wechat']
+        end
+      end
+
+      # 异地登录设置
+      class OffsiteFlag < TencentCloud::Common::AbstractModel
+        # @param VerifyFlag: 验证标识
+        # @type VerifyFlag: Integer
+        # @param NotifyPhone: 手机通知
+        # @type NotifyPhone: Integer
+        # @param NotifyEmail: 邮箱通知
+        # @type NotifyEmail: Integer
+        # @param NotifyWechat: 微信通知
+        # @type NotifyWechat: Integer
+        # @param Tips: 提示
+        # @type Tips: Integer
+
+        attr_accessor :VerifyFlag, :NotifyPhone, :NotifyEmail, :NotifyWechat, :Tips
+        
+        def initialize(verifyflag=nil, notifyphone=nil, notifyemail=nil, notifywechat=nil, tips=nil)
+          @VerifyFlag = verifyflag
+          @NotifyPhone = notifyphone
+          @NotifyEmail = notifyemail
+          @NotifyWechat = notifywechat
+          @Tips = tips
+        end
+
+        def deserialize(params)
+          @VerifyFlag = params['VerifyFlag']
+          @NotifyPhone = params['NotifyPhone']
+          @NotifyEmail = params['NotifyEmail']
+          @NotifyWechat = params['NotifyWechat']
+          @Tips = params['Tips']
         end
       end
 
@@ -2327,6 +2603,82 @@ module TencentCloud
           @VersionId = params['VersionId']
           @CreateDate = params['CreateDate']
           @IsDefaultVersion = params['IsDefaultVersion']
+        end
+      end
+
+      # PutRolePermissionsBoundary请求参数结构体
+      class PutRolePermissionsBoundaryRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID
+        # @type PolicyId: Integer
+        # @param RoleId: 角色ID（与角色名至少填一个）
+        # @type RoleId: String
+        # @param RoleName: 角色名（与角色ID至少填一个）
+        # @type RoleName: String
+
+        attr_accessor :PolicyId, :RoleId, :RoleName
+        
+        def initialize(policyid=nil, roleid=nil, rolename=nil)
+          @PolicyId = policyid
+          @RoleId = roleid
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+        end
+      end
+
+      # PutRolePermissionsBoundary返回参数结构体
+      class PutRolePermissionsBoundaryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PutUserPermissionsBoundary请求参数结构体
+      class PutUserPermissionsBoundaryRequest < TencentCloud::Common::AbstractModel
+        # @param TargetUin: 子账号Uin
+        # @type TargetUin: Integer
+        # @param PolicyId: 策略ID
+        # @type PolicyId: Integer
+
+        attr_accessor :TargetUin, :PolicyId
+        
+        def initialize(targetuin=nil, policyid=nil)
+          @TargetUin = targetuin
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # PutUserPermissionsBoundary返回参数结构体
+      class PutUserPermissionsBoundaryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2610,10 +2962,13 @@ module TencentCloud
         # @type CountryCode: String
         # @param Email: 邮箱
         # @type Email: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
 
-        attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email
+        attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email, :CreateTime
         
-        def initialize(uin=nil, name=nil, uid=nil, remark=nil, consolelogin=nil, phonenum=nil, countrycode=nil, email=nil)
+        def initialize(uin=nil, name=nil, uid=nil, remark=nil, consolelogin=nil, phonenum=nil, countrycode=nil, email=nil, createtime=nil)
           @Uin = uin
           @Name = name
           @Uid = uid
@@ -2622,6 +2977,7 @@ module TencentCloud
           @PhoneNum = phonenum
           @CountryCode = countrycode
           @Email = email
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -2633,6 +2989,7 @@ module TencentCloud
           @PhoneNum = params['PhoneNum']
           @CountryCode = params['CountryCode']
           @Email = params['Email']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -2946,6 +3303,60 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 企业微信子用户
+      class WeChatWorkSubAccount < TencentCloud::Common::AbstractModel
+        # @param Uin: 子用户用户 ID
+        # @type Uin: Integer
+        # @param Name: 子用户用户名
+        # @type Name: String
+        # @param Uid: 子用户 UID
+        # @type Uid: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param ConsoleLogin: 子用户能否登录控制台
+        # @type ConsoleLogin: Integer
+        # @param PhoneNum: 手机号
+        # @type PhoneNum: String
+        # @param CountryCode: 区号
+        # @type CountryCode: String
+        # @param Email: 邮箱
+        # @type Email: String
+        # @param WeChatWorkUserId: 企业微信UserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeChatWorkUserId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :Uin, :Name, :Uid, :Remark, :ConsoleLogin, :PhoneNum, :CountryCode, :Email, :WeChatWorkUserId, :CreateTime
+        
+        def initialize(uin=nil, name=nil, uid=nil, remark=nil, consolelogin=nil, phonenum=nil, countrycode=nil, email=nil, wechatworkuserid=nil, createtime=nil)
+          @Uin = uin
+          @Name = name
+          @Uid = uid
+          @Remark = remark
+          @ConsoleLogin = consolelogin
+          @PhoneNum = phonenum
+          @CountryCode = countrycode
+          @Email = email
+          @WeChatWorkUserId = wechatworkuserid
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @Name = params['Name']
+          @Uid = params['Uid']
+          @Remark = params['Remark']
+          @ConsoleLogin = params['ConsoleLogin']
+          @PhoneNum = params['PhoneNum']
+          @CountryCode = params['CountryCode']
+          @Email = params['Email']
+          @WeChatWorkUserId = params['WeChatWorkUserId']
+          @CreateTime = params['CreateTime']
         end
       end
 

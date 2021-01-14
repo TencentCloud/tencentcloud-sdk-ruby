@@ -101,10 +101,12 @@ module TencentCloud
         # @type TagList: Array
         # @param BasicSecurityType: 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li>
         # @type BasicSecurityType: Integer
+        # @param SceneType: 场景化模板类型 0：不启用 1：通用 2：日志 3：搜索
+        # @type SceneType: Integer
 
-        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType
+        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType
         
-        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil)
+        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil)
           @Zone = zone
           @EsVersion = esversion
           @VpcId = vpcid
@@ -132,6 +134,7 @@ module TencentCloud
           @NodeInfoList = nodeinfolist
           @TagList = taglist
           @BasicSecurityType = basicsecuritytype
+          @SceneType = scenetype
         end
 
         def deserialize(params)
@@ -162,6 +165,7 @@ module TencentCloud
           @NodeInfoList = params['NodeInfoList']
           @TagList = params['TagList']
           @BasicSecurityType = params['BasicSecurityType']
+          @SceneType = params['SceneType']
         end
       end
 
@@ -515,6 +519,42 @@ module TencentCloud
         end
       end
 
+      # GetRequestTargetNodeTypes请求参数结构体
+      class GetRequestTargetNodeTypesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # GetRequestTargetNodeTypes返回参数结构体
+      class GetRequestTargetNodeTypesResponse < TencentCloud::Common::AbstractModel
+        # @param TargetNodeTypes: 接收请求的目标节点类型列表
+        # @type TargetNodeTypes: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TargetNodeTypes, :RequestId
+        
+        def initialize(targetnodetypes=nil, requestid=nil)
+          @TargetNodeTypes = targetnodetypes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TargetNodeTypes = params['TargetNodeTypes']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -637,10 +677,16 @@ module TencentCloud
         # @param SecurityType: 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityType: Integer
+        # @param SceneType: 场景化模板类型：0、不开启；1、通用场景；2、日志场景；3、搜索场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneType: Integer
+        # @param KibanaConfig: Kibana配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaConfig: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -693,6 +739,8 @@ module TencentCloud
           @KibanaPublicAccess = kibanapublicaccess
           @KibanaPrivateAccess = kibanaprivateaccess
           @SecurityType = securitytype
+          @SceneType = scenetype
+          @KibanaConfig = kibanaconfig
         end
 
         def deserialize(params)
@@ -758,6 +806,8 @@ module TencentCloud
           @KibanaPublicAccess = params['KibanaPublicAccess']
           @KibanaPrivateAccess = params['KibanaPrivateAccess']
           @SecurityType = params['SecurityType']
+          @SceneType = params['SceneType']
+          @KibanaConfig = params['KibanaConfig']
         end
       end
 
@@ -1021,6 +1071,78 @@ module TencentCloud
         end
       end
 
+      # RestartKibana请求参数结构体
+      class RestartKibanaRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # RestartKibana返回参数结构体
+      class RestartKibanaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RestartNodes请求参数结构体
+      class RestartNodesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+        # @param NodeNames: 节点名称列表
+        # @type NodeNames: Array
+        # @param ForceRestart: 是否强制重启
+        # @type ForceRestart: Boolean
+
+        attr_accessor :InstanceId, :NodeNames, :ForceRestart
+        
+        def initialize(instanceid=nil, nodenames=nil, forcerestart=nil)
+          @InstanceId = instanceid
+          @NodeNames = nodenames
+          @ForceRestart = forcerestart
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NodeNames = params['NodeNames']
+          @ForceRestart = params['ForceRestart']
+        end
+      end
+
+      # RestartNodes返回参数结构体
+      class RestartNodesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例操作记录流程任务中的子任务信息（如升级检查任务中的各个检查项）
       class SubTaskDetail < TencentCloud::Common::AbstractModel
         # @param Name: 子任务名
@@ -1122,7 +1244,7 @@ module TencentCloud
         # @param NodeNum: 已废弃请使用NodeInfoList
         # 节点个数（2-50个）
         # @type NodeNum: Integer
-        # @param EsConfig: 配置项（JSON格式字符串）。当前仅支持以下配置项：<li>action.destructive_requires_name</li><li>indices.fielddata.cache.size</li><li>indices.query.bool.max_clause_count</li>
+        # @param EsConfig: ES配置项（JSON格式字符串）
         # @type EsConfig: String
         # @param Password: 默认用户elastic的密码（8到16位，至少包括两项（[a-z,A-Z],[0-9]和[-!@#$%&^*+=_:;,.?]的特殊符号）
         # @type Password: String
@@ -1163,10 +1285,16 @@ module TencentCloud
         # @type KibanaPrivatePort: Integer
         # @param ScaleType: 0: 蓝绿变更方式扩容，集群不重启 （默认） 1: 磁盘解挂载扩容，集群滚动重启
         # @type ScaleType: Integer
+        # @param MultiZoneInfo: 多可用区部署
+        # @type MultiZoneInfo: Array
+        # @param SceneType: 场景化模板类型 -1：不启用 1：通用 2：日志 3：搜索
+        # @type SceneType: Integer
+        # @param KibanaConfig: Kibana配置项（JSON格式字符串）
+        # @type KibanaConfig: String
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig
         
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -1188,6 +1316,9 @@ module TencentCloud
           @BasicSecurityType = basicsecuritytype
           @KibanaPrivatePort = kibanaprivateport
           @ScaleType = scaletype
+          @MultiZoneInfo = multizoneinfo
+          @SceneType = scenetype
+          @KibanaConfig = kibanaconfig
         end
 
         def deserialize(params)
@@ -1218,6 +1349,9 @@ module TencentCloud
           @BasicSecurityType = params['BasicSecurityType']
           @KibanaPrivatePort = params['KibanaPrivatePort']
           @ScaleType = params['ScaleType']
+          @MultiZoneInfo = params['MultiZoneInfo']
+          @SceneType = params['SceneType']
+          @KibanaConfig = params['KibanaConfig']
         end
       end
 
@@ -1281,6 +1415,42 @@ module TencentCloud
         end
       end
 
+      # UpdateRequestTargetNodeTypes请求参数结构体
+      class UpdateRequestTargetNodeTypesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param TargetNodeTypes: 接收请求的目标节点类型列表
+        # @type TargetNodeTypes: Array
+
+        attr_accessor :InstanceId, :TargetNodeTypes
+        
+        def initialize(instanceid=nil, targetnodetypes=nil)
+          @InstanceId = instanceid
+          @TargetNodeTypes = targetnodetypes
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TargetNodeTypes = params['TargetNodeTypes']
+        end
+      end
+
+      # UpdateRequestTargetNodeTypes返回参数结构体
+      class UpdateRequestTargetNodeTypesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpgradeInstance请求参数结构体
       class UpgradeInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1293,15 +1463,18 @@ module TencentCloud
         # @type LicenseType: String
         # @param BasicSecurityType: 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li>
         # @type BasicSecurityType: Integer
+        # @param UpgradeMode: 升级方式：<li>scale 蓝绿变更</li><li>restart 滚动重启</li>默认值为scale
+        # @type UpgradeMode: String
 
-        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType
+        attr_accessor :InstanceId, :EsVersion, :CheckOnly, :LicenseType, :BasicSecurityType, :UpgradeMode
         
-        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil)
+        def initialize(instanceid=nil, esversion=nil, checkonly=nil, licensetype=nil, basicsecuritytype=nil, upgrademode=nil)
           @InstanceId = instanceid
           @EsVersion = esversion
           @CheckOnly = checkonly
           @LicenseType = licensetype
           @BasicSecurityType = basicsecuritytype
+          @UpgradeMode = upgrademode
         end
 
         def deserialize(params)
@@ -1310,6 +1483,7 @@ module TencentCloud
           @CheckOnly = params['CheckOnly']
           @LicenseType = params['LicenseType']
           @BasicSecurityType = params['BasicSecurityType']
+          @UpgradeMode = params['UpgradeMode']
         end
       end
 

@@ -409,6 +409,74 @@ module TencentCloud
         end
       end
 
+      # DescribeUserInAndOutTime请求参数结构体
+      class DescribeUserInAndOutTimeRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID
+        # @type BizId: Integer
+        # @param RoomId: 房间ID
+        # @type RoomId: Integer
+        # @param UserId: 用户ID
+        # @type UserId: Integer
+
+        attr_accessor :BizId, :RoomId, :UserId
+        
+        def initialize(bizid=nil, roomid=nil, userid=nil)
+          @BizId = bizid
+          @RoomId = roomid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DescribeUserInAndOutTime返回参数结构体
+      class DescribeUserInAndOutTimeResponse < TencentCloud::Common::AbstractModel
+        # @param InOutList: 用户在房间得进出时间列表
+        # @type InOutList: Array
+        # @param Duration: 用户在房间中总时长
+        # @type Duration: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InOutList, :Duration, :RequestId
+        
+        def initialize(inoutlist=nil, duration=nil, requestid=nil)
+          @InOutList = inoutlist
+          @Duration = duration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InOutList = params['InOutList']
+          @Duration = params['Duration']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户进出房间信息
+      class InOutTimeInfo < TencentCloud::Common::AbstractModel
+        # @param StartTime: 进入房间时间
+        # @type StartTime: Integer
+        # @param EndTime: 退出房间时间
+        # @type EndTime: Integer
+
+        attr_accessor :StartTime, :EndTime
+        
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # ModifyAppStatus请求参数结构体
       class ModifyAppStatusRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID，创建应用后由后台生成并返回。

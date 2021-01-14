@@ -25,6 +25,56 @@ module TencentCloud
         @@sdk_version = 'DOMAIN_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 本接口 ( BatchModifyDomainInfo ) 用于批量域名信息修改 。
+
+        # @param request: Request instance for BatchModifyDomainInfo.
+        # @type request: :class:`Tencentcloud::domain::V20180808::BatchModifyDomainInfoRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::BatchModifyDomainInfoResponse`
+        def BatchModifyDomainInfo(request)
+          body = send_request('BatchModifyDomainInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchModifyDomainInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
+
+        # 默认接口请求频率限制：20次/秒。
+
+        # @param request: Request instance for CheckBatchStatus.
+        # @type request: :class:`Tencentcloud::domain::V20180808::CheckBatchStatusRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::CheckBatchStatusResponse`
+        def CheckBatchStatus(request)
+          body = send_request('CheckBatchStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckBatchStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 检查域名是否可以注册。
 
         # @param request: Request instance for CheckDomain.
@@ -49,6 +99,178 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 ( CreateDomainBatch ) 用于批量注册域名 。
+
+        # 默认接口请求频率限制：20次/秒。
+
+        # @param request: Request instance for CreateDomainBatch.
+        # @type request: :class:`Tencentcloud::domain::V20180808::CreateDomainBatchRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::CreateDomainBatchResponse`
+        def CreateDomainBatch(request)
+          body = send_request('CreateDomainBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDomainBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
+
+        # @param request: Request instance for CreateTemplate.
+        # @type request: :class:`Tencentcloud::domain::V20180808::CreateTemplateRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::CreateTemplateResponse`
+        def CreateTemplate(request)
+          body = send_request('CreateTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( DeleteTemplate ) 用于删除域名信息模板。
+
+        # @param request: Request instance for DeleteTemplate.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DeleteTemplateRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DeleteTemplateResponse`
+        def DeleteTemplate(request)
+          body = send_request('DeleteTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( DescribeBatchOperationLogDetails ) 用于获取批量操作日志详情。
+
+        # @param request: Request instance for DescribeBatchOperationLogDetails.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeBatchOperationLogDetailsRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeBatchOperationLogDetailsResponse`
+        def DescribeBatchOperationLogDetails(request)
+          body = send_request('DescribeBatchOperationLogDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchOperationLogDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
+
+        # @param request: Request instance for DescribeBatchOperationLogs.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeBatchOperationLogsRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeBatchOperationLogsResponse`
+        def DescribeBatchOperationLogs(request)
+          body = send_request('DescribeBatchOperationLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchOperationLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (  DescribeDomainBaseInfo) 获取域名基础信息。
+
+        # 默认接口请求频率限制：20次/秒。
+
+        # @param request: Request instance for DescribeDomainBaseInfo.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeDomainBaseInfoRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeDomainBaseInfoResponse`
+        def DescribeDomainBaseInfo(request)
+          body = send_request('DescribeDomainBaseInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainBaseInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (  DescribeDomainNameList ) 获取域名列表。
+
+        # @param request: Request instance for DescribeDomainNameList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeDomainNameListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeDomainNameListResponse`
+        def DescribeDomainNameList(request)
+          body = send_request('DescribeDomainNameList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainNameListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 按照域名后缀获取对应的价格列表
 
         # @param request: Request instance for DescribeDomainPriceList.
@@ -59,6 +281,256 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDomainPriceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeTemplate) 用于获取模板信息。
+
+        # @param request: Request instance for DescribeTemplate.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeTemplateRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeTemplateResponse`
+        def DescribeTemplate(request)
+          body = send_request('DescribeTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeTemplateList) 用于获取模板列表。
+
+        # @param request: Request instance for DescribeTemplateList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeTemplateListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeTemplateListResponse`
+        def DescribeTemplateList(request)
+          body = send_request('DescribeTemplateList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTemplateListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( ModifyDomainDNSBatch) 用于批量修改域名DNS信息 。
+
+        # 默认接口请求频率限制：20次/秒。
+
+        # @param request: Request instance for ModifyDomainDNSBatch.
+        # @type request: :class:`Tencentcloud::domain::V20180808::ModifyDomainDNSBatchRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::ModifyDomainDNSBatchResponse`
+        def ModifyDomainDNSBatch(request)
+          body = send_request('ModifyDomainDNSBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDomainDNSBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
+
+        # @param request: Request instance for ModifyDomainOwnerBatch.
+        # @type request: :class:`Tencentcloud::domain::V20180808::ModifyDomainOwnerBatchRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::ModifyDomainOwnerBatchResponse`
+        def ModifyDomainOwnerBatch(request)
+          body = send_request('ModifyDomainOwnerBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDomainOwnerBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( RenewDomainBatch ) 用于批量续费域名 。
+
+        # 默认接口请求频率限制：20次/秒。
+
+        # @param request: Request instance for RenewDomainBatch.
+        # @type request: :class:`Tencentcloud::domain::V20180808::RenewDomainBatchRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::RenewDomainBatchResponse`
+        def RenewDomainBatch(request)
+          body = send_request('RenewDomainBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewDomainBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
+
+        # 默认接口请求频率限制：20次/秒。
+
+        # @param request: Request instance for SetDomainAutoRenew.
+        # @type request: :class:`Tencentcloud::domain::V20180808::SetDomainAutoRenewRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::SetDomainAutoRenewResponse`
+        def SetDomainAutoRenew(request)
+          body = send_request('SetDomainAutoRenew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetDomainAutoRenewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
+
+        # 默认接口请求频率限制：20次/秒。
+
+        # @param request: Request instance for TransferInDomainBatch.
+        # @type request: :class:`Tencentcloud::domain::V20180808::TransferInDomainBatchRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::TransferInDomainBatchResponse`
+        def TransferInDomainBatch(request)
+          body = send_request('TransferInDomainBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferInDomainBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( TransferInDomainBatch ) 用于批量禁止域名转移 。
+
+        # 默认接口请求频率限制：20次/秒。
+
+        # @param request: Request instance for TransferProhibitionBatch.
+        # @type request: :class:`Tencentcloud::domain::V20180808::TransferProhibitionBatchRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::TransferProhibitionBatchResponse`
+        def TransferProhibitionBatch(request)
+          body = send_request('TransferProhibitionBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferProhibitionBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( UpdateProhibitionBatch ) 用于批量设置禁止域名更新 。
+
+        # @param request: Request instance for UpdateProhibitionBatch.
+        # @type request: :class:`Tencentcloud::domain::V20180808::UpdateProhibitionBatchRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::UpdateProhibitionBatchResponse`
+        def UpdateProhibitionBatch(request)
+          body = send_request('UpdateProhibitionBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateProhibitionBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 ( UploadImage ) 用于上传资质照片 。
+
+        # @param request: Request instance for UploadImage.
+        # @type request: :class:`Tencentcloud::domain::V20180808::UploadImageRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::UploadImageResponse`
+        def UploadImage(request)
+          body = send_request('UploadImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadImageResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -23,17 +23,23 @@ module TencentCloud
         # @type MemberId: String
         # @param Remark: 团队成员备注。
         # @type Remark: String
+        # @param Role: 团队成员角色，不填则默认添加普通成员。可选值：
+        # <li>Admin：团队管理员；</li>
+        # <li>Member：普通成员。</li>
+        # @type Role: String
 
-        attr_accessor :MemberId, :Remark
+        attr_accessor :MemberId, :Remark, :Role
         
-        def initialize(memberid=nil, remark=nil)
+        def initialize(memberid=nil, remark=nil, role=nil)
           @MemberId = memberid
           @Remark = remark
+          @Role = role
         end
 
         def deserialize(params)
           @MemberId = params['MemberId']
           @Remark = params['Remark']
+          @Role = params['Role']
         end
       end
 
@@ -146,6 +152,44 @@ module TencentCloud
         end
       end
 
+      # 音频轨道上的音频片段信息。
+      class AudioTrackItem < TencentCloud::Common::AbstractModel
+        # @param SourceType: 音频素材来源类型，取值有：
+        # <ul>
+        # <li>VOD ：素材来源于云点播文件 ；</li>
+        # <li>CME ：视频来源于制作云媒体文件 ；</li>
+        # <li>EXTERNAL ：视频来源于媒资绑定。</li>
+        # </ul>
+        # @type SourceType: String
+        # @param SourceMedia: 音频片段的媒体素材来源，可以是：
+        # <ul>
+        # <li>当 SourceType 为 VOD 时，为云点播的媒体文件 ID ；</li>
+        # <li>当 SourceType 为 CME 时，为制作云的媒体 ID；</li>
+        # <li>当 SourceType 为 EXTERNAL 时，为媒资绑定的 Definition 与 MediaKey 中间用冒号分隔合并后的字符串，格式为 Definition:MediaKey 。</li>
+        # </ul>
+        # @type SourceMedia: String
+        # @param SourceMediaStartTime: 音频片段取自素材文件的起始时间，单位为秒。0 表示从素材开始位置截取。默认为0。
+        # @type SourceMediaStartTime: Float
+        # @param Duration: 音频片段的时长，单位为秒。默认和素材本身长度一致，表示截取全部素材。
+        # @type Duration: Float
+
+        attr_accessor :SourceType, :SourceMedia, :SourceMediaStartTime, :Duration
+        
+        def initialize(sourcetype=nil, sourcemedia=nil, sourcemediastarttime=nil, duration=nil)
+          @SourceType = sourcetype
+          @SourceMedia = sourcemedia
+          @SourceMediaStartTime = sourcemediastarttime
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @SourceType = params['SourceType']
+          @SourceMedia = params['SourceMedia']
+          @SourceMediaStartTime = params['SourceMediaStartTime']
+          @Duration = params['Duration']
+        end
+      end
+
       # 资源权限信息
       class AuthorizationInfo < TencentCloud::Common::AbstractModel
         # @param Authorizee: 被授权者实体。
@@ -206,15 +250,18 @@ module TencentCloud
         # @type ClassPath: String
         # @param TagSet: 导出的素材标签，单个标签不得超过10个字符。
         # @type TagSet: Array
+        # @param ThirdPartyPublishInfos: 第三方平台发布信息列表。
+        # @type ThirdPartyPublishInfos: Array
 
-        attr_accessor :Owner, :Name, :Description, :ClassPath, :TagSet
+        attr_accessor :Owner, :Name, :Description, :ClassPath, :TagSet, :ThirdPartyPublishInfos
         
-        def initialize(owner=nil, name=nil, description=nil, classpath=nil, tagset=nil)
+        def initialize(owner=nil, name=nil, description=nil, classpath=nil, tagset=nil, thirdpartypublishinfos=nil)
           @Owner = owner
           @Name = name
           @Description = description
           @ClassPath = classpath
           @TagSet = tagset
+          @ThirdPartyPublishInfos = thirdpartypublishinfos
         end
 
         def deserialize(params)
@@ -225,6 +272,7 @@ module TencentCloud
           @Description = params['Description']
           @ClassPath = params['ClassPath']
           @TagSet = params['TagSet']
+          @ThirdPartyPublishInfos = params['ThirdPartyPublishInfos']
         end
       end
 
@@ -374,6 +422,8 @@ module TencentCloud
         # @type Platform: String
         # @param Category: 项目类别，取值有：
         # <li>VIDEO_EDIT：视频编辑。</li>
+        # <li>SWITCHER：导播台。</li>
+        # <li>VIDEO_SEGMENTATION：视频拆条。</li>
         # @type Category: String
         # @param Name: 项目名称，不可超过30个字符。
         # @type Name: String
@@ -383,15 +433,30 @@ module TencentCloud
         # @type AspectRatio: String
         # @param Owner: 归属者。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param Description: 项目描述信息。
+        # @type Description: String
+        # @param SwitcherProjectInput: 导播台信息，仅当项目类型为 SWITCHER 时必填。
+        # @type SwitcherProjectInput: :class:`Tencentcloud::Cme.v20191029.models.SwitcherProjectInput`
+        # @param LiveStreamClipProjectInput: 直播剪辑信息，暂未开放，请勿使用。
+        # @type LiveStreamClipProjectInput: :class:`Tencentcloud::Cme.v20191029.models.LiveStreamClipProjectInput`
+        # @param VideoEditProjectInput: 视频编辑信息，仅当项目类型为 VIDEO_EDIT 时必填。
+        # @type VideoEditProjectInput: :class:`Tencentcloud::Cme.v20191029.models.VideoEditProjectInput`
+        # @param VideoSegmentationProjectInput: 视频拆条信息，仅当项目类型为 VIDEO_SEGMENTATION  时必填。
+        # @type VideoSegmentationProjectInput: :class:`Tencentcloud::Cme.v20191029.models.VideoSegmentationProjectInput`
 
-        attr_accessor :Platform, :Category, :Name, :AspectRatio, :Owner
+        attr_accessor :Platform, :Category, :Name, :AspectRatio, :Owner, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput
         
-        def initialize(platform=nil, category=nil, name=nil, aspectratio=nil, owner=nil)
+        def initialize(platform=nil, category=nil, name=nil, aspectratio=nil, owner=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil)
           @Platform = platform
           @Category = category
           @Name = name
           @AspectRatio = aspectratio
           @Owner = owner
+          @Description = description
+          @SwitcherProjectInput = switcherprojectinput
+          @LiveStreamClipProjectInput = livestreamclipprojectinput
+          @VideoEditProjectInput = videoeditprojectinput
+          @VideoSegmentationProjectInput = videosegmentationprojectinput
         end
 
         def deserialize(params)
@@ -401,6 +466,19 @@ module TencentCloud
           @AspectRatio = params['AspectRatio']
           unless params['Owner'].nil?
             @Owner = Entity.new.deserialize(params[Owner])
+          end
+          @Description = params['Description']
+          unless params['SwitcherProjectInput'].nil?
+            @SwitcherProjectInput = SwitcherProjectInput.new.deserialize(params[SwitcherProjectInput])
+          end
+          unless params['LiveStreamClipProjectInput'].nil?
+            @LiveStreamClipProjectInput = LiveStreamClipProjectInput.new.deserialize(params[LiveStreamClipProjectInput])
+          end
+          unless params['VideoEditProjectInput'].nil?
+            @VideoEditProjectInput = VideoEditProjectInput.new.deserialize(params[VideoEditProjectInput])
+          end
+          unless params['VideoSegmentationProjectInput'].nil?
+            @VideoSegmentationProjectInput = VideoSegmentationProjectInput.new.deserialize(params[VideoSegmentationProjectInput])
           end
         end
       end
@@ -909,6 +987,58 @@ module TencentCloud
         end
       end
 
+      # DescribePlatforms请求参数结构体
+      class DescribePlatformsRequest < TencentCloud::Common::AbstractModel
+        # @param Platforms: 平台集合。
+        # @type Platforms: Array
+        # @param LicenseIds: 平台绑定的 license Id 集合。
+        # @type LicenseIds: Array
+        # @param Offset: 分页返回的起始偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页返回的记录条数，默认值：10。
+        # @type Limit: Integer
+
+        attr_accessor :Platforms, :LicenseIds, :Offset, :Limit
+        
+        def initialize(platforms=nil, licenseids=nil, offset=nil, limit=nil)
+          @Platforms = platforms
+          @LicenseIds = licenseids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Platforms = params['Platforms']
+          @LicenseIds = params['LicenseIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePlatforms返回参数结构体
+      class DescribePlatformsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合搜索条件的记录总数。
+        # @type TotalCount: Integer
+        # @param PlatformInfoSet: 平台信息列表。
+        # @type PlatformInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PlatformInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, platforminfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PlatformInfoSet = platforminfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @PlatformInfoSet = params['PlatformInfoSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProjects请求参数结构体
       class DescribeProjectsRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
@@ -1294,37 +1424,65 @@ module TencentCloud
         # @type Platform: String
         # @param TeamIds: 团队 ID 列表，限30个。
         # @type TeamIds: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：20，最大值：30。
+        # @type Limit: Integer
 
-        attr_accessor :Platform, :TeamIds
+        attr_accessor :Platform, :TeamIds, :Offset, :Limit
         
-        def initialize(platform=nil, teamids=nil)
+        def initialize(platform=nil, teamids=nil, offset=nil, limit=nil)
           @Platform = platform
           @TeamIds = teamids
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @Platform = params['Platform']
           @TeamIds = params['TeamIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeTeams返回参数结构体
       class DescribeTeamsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的记录总数。
+        # @type TotalCount: Integer
         # @param TeamSet: 团队列表。
         # @type TeamSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TeamSet, :RequestId
+        attr_accessor :TotalCount, :TeamSet, :RequestId
         
-        def initialize(teamset=nil, requestid=nil)
+        def initialize(totalcount=nil, teamset=nil, requestid=nil)
+          @TotalCount = totalcount
           @TeamSet = teamset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           @TeamSet = params['TeamSet']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 空的轨道片段，用来进行时间轴的占位。如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。
+      class EmptyTrackItem < TencentCloud::Common::AbstractModel
+        # @param Duration: 持续时间，单位为秒。
+        # @type Duration: Float
+
+        attr_accessor :Duration
+        
+        def initialize(duration=nil)
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
         end
       end
 
@@ -1419,6 +1577,83 @@ module TencentCloud
         end
       end
 
+      # ExportVideoByVideoSegmentationData请求参数结构体
+      class ExportVideoByVideoSegmentationDataRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param ProjectId: 视频拆条项目 Id 。
+        # @type ProjectId: String
+        # @param SegmentGroupId: 指定需要导出的智能拆条片段的组 Id 。
+        # @type SegmentGroupId: String
+        # @param SegmentIds: 指定需要导出的智能拆条片段 Id  集合。
+        # @type SegmentIds: Array
+        # @param Definition: 导出模板 Id，目前不支持自定义创建，只支持下面的预置模板 Id。
+        # <li>10：分辨率为 480P，输出视频格式为 MP4；</li>
+        # <li>11：分辨率为 720P，输出视频格式为 MP4；</li>
+        # <li>12：分辨率为 1080P，输出视频格式为 MP4。</li>
+        # @type Definition: Integer
+        # @param ExportDestination: 导出目标。
+        # <li>CME：云剪，即导出为云剪素材；</li>
+        # <li>VOD：云点播，即导出为云点播媒资。</li>
+        # @type ExportDestination: String
+        # @param CMEExportInfo: 导出的云剪素材信息。指定 ExportDestination = CME 时有效。
+        # @type CMEExportInfo: :class:`Tencentcloud::Cme.v20191029.models.CMEExportInfo`
+        # @param VODExportInfo: 导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
+        # @type VODExportInfo: :class:`Tencentcloud::Cme.v20191029.models.VODExportInfo`
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+        # @type Operator: String
+
+        attr_accessor :Platform, :ProjectId, :SegmentGroupId, :SegmentIds, :Definition, :ExportDestination, :CMEExportInfo, :VODExportInfo, :Operator
+        
+        def initialize(platform=nil, projectid=nil, segmentgroupid=nil, segmentids=nil, definition=nil, exportdestination=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
+          @Platform = platform
+          @ProjectId = projectid
+          @SegmentGroupId = segmentgroupid
+          @SegmentIds = segmentids
+          @Definition = definition
+          @ExportDestination = exportdestination
+          @CMEExportInfo = cmeexportinfo
+          @VODExportInfo = vodexportinfo
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @ProjectId = params['ProjectId']
+          @SegmentGroupId = params['SegmentGroupId']
+          @SegmentIds = params['SegmentIds']
+          @Definition = params['Definition']
+          @ExportDestination = params['ExportDestination']
+          unless params['CMEExportInfo'].nil?
+            @CMEExportInfo = CMEExportInfo.new.deserialize(params[CMEExportInfo])
+          end
+          unless params['VODExportInfo'].nil?
+            @VODExportInfo = VODExportInfo.new.deserialize(params[VODExportInfo])
+          end
+          @Operator = params['Operator']
+        end
+      end
+
+      # ExportVideoByVideoSegmentationData返回参数结构体
+      class ExportVideoByVideoSegmentationDataResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 Id。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ExportVideoEditProject请求参数结构体
       class ExportVideoEditProjectRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
@@ -1484,6 +1719,26 @@ module TencentCloud
         end
       end
 
+      # 媒资绑定资源信息，包含媒资绑定模板 ID 和文件信息。
+      class ExternalMediaInfo < TencentCloud::Common::AbstractModel
+        # @param Definition: 媒资绑定模板 ID。
+        # @type Definition: Integer
+        # @param MediaKey: 媒资绑定媒体路径或文件 ID。
+        # @type MediaKey: String
+
+        attr_accessor :Definition, :MediaKey
+        
+        def initialize(definition=nil, mediakey=nil)
+          @Definition = definition
+          @MediaKey = mediakey
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @MediaKey = params['MediaKey']
+        end
+      end
+
       # FlattenListMedia请求参数结构体
       class FlattenListMediaRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
@@ -1542,6 +1797,50 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @MaterialInfoSet = params['MaterialInfoSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GenerateVideoSegmentationSchemeByAi请求参数结构体
+      class GenerateVideoSegmentationSchemeByAiRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param ProjectId: 视频拆条项目 Id 。
+        # @type ProjectId: String
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+        # @type Operator: String
+
+        attr_accessor :Platform, :ProjectId, :Operator
+        
+        def initialize(platform=nil, projectid=nil, operator=nil)
+          @Platform = platform
+          @ProjectId = projectid
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @ProjectId = params['ProjectId']
+          @Operator = params['Operator']
+        end
+      end
+
+      # GenerateVideoSegmentationSchemeByAi返回参数结构体
+      class GenerateVideoSegmentationSchemeByAiResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 视频智能拆条任务 Id 。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -1644,27 +1943,36 @@ module TencentCloud
       class ImportMaterialRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param VodFileId: 云点播媒资 FileId。
-        # @type VodFileId: String
-        # @param Owner: 素材归属者。
+        # @param Owner: 媒体归属者，团队或个人。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
-        # @param Name: 素材名称，不能超过30个字符。
+        # @param Name: 媒体名称，不能超过30个字符。
         # @type Name: String
-        # @param ClassPath: 素材分类路径，形如："/a/b"，层级数不能超过10，每个层级长度不能超过15字符。若不填则默认为根路径。
+        # @param SourceType: 导入媒资类型，取值：
+        # <li>VOD：云点播文件；</li>
+        # <li>EXTERNAL：媒资绑定。</li>
+        # 注意：如果不填默认为云点播文件。
+        # @type SourceType: String
+        # @param VodFileId: 云点播媒资 FileId，仅当 SourceType 为 VOD 时有效。
+        # @type VodFileId: String
+        # @param ExternalMediaInfo: 原始媒资文件信息，当 SourceType 取值 EXTERNAL 的时候必填。
+        # @type ExternalMediaInfo: :class:`Tencentcloud::Cme.v20191029.models.ExternalMediaInfo`
+        # @param ClassPath: 媒体分类路径，形如："/a/b"，层级数不能超过10，每个层级长度不能超过15字符。若不填则默认为根路径。
         # @type ClassPath: String
-        # @param PreProcessDefinition: 素材预处理任务模板 ID。取值：
+        # @param PreProcessDefinition: 媒体预处理任务模板 ID。取值：
         # <li>10：进行编辑预处理。</li>
         # @type PreProcessDefinition: Integer
         # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
         # @type Operator: String
 
-        attr_accessor :Platform, :VodFileId, :Owner, :Name, :ClassPath, :PreProcessDefinition, :Operator
+        attr_accessor :Platform, :Owner, :Name, :SourceType, :VodFileId, :ExternalMediaInfo, :ClassPath, :PreProcessDefinition, :Operator
         
-        def initialize(platform=nil, vodfileid=nil, owner=nil, name=nil, classpath=nil, preprocessdefinition=nil, operator=nil)
+        def initialize(platform=nil, owner=nil, name=nil, sourcetype=nil, vodfileid=nil, externalmediainfo=nil, classpath=nil, preprocessdefinition=nil, operator=nil)
           @Platform = platform
-          @VodFileId = vodfileid
           @Owner = owner
           @Name = name
+          @SourceType = sourcetype
+          @VodFileId = vodfileid
+          @ExternalMediaInfo = externalmediainfo
           @ClassPath = classpath
           @PreProcessDefinition = preprocessdefinition
           @Operator = operator
@@ -1672,11 +1980,15 @@ module TencentCloud
 
         def deserialize(params)
           @Platform = params['Platform']
-          @VodFileId = params['VodFileId']
           unless params['Owner'].nil?
             @Owner = Entity.new.deserialize(params[Owner])
           end
           @Name = params['Name']
+          @SourceType = params['SourceType']
+          @VodFileId = params['VodFileId']
+          unless params['ExternalMediaInfo'].nil?
+            @ExternalMediaInfo = ExternalMediaInfo.new.deserialize(params[ExternalMediaInfo])
+          end
           @ClassPath = params['ClassPath']
           @PreProcessDefinition = params['PreProcessDefinition']
           @Operator = params['Operator']
@@ -1713,21 +2025,30 @@ module TencentCloud
         # @type Platform: String
         # @param ProjectId: 项目 Id。
         # @type ProjectId: String
-        # @param VodFileId: 云点播媒资 FileId。
+        # @param SourceType: 导入媒资类型，取值：
+        # <li>VOD：云点播文件；</li>
+        # <li>EXTERNAL：媒资绑定。</li>
+        # 注意：如果不填默认为云点播文件。
+        # @type SourceType: String
+        # @param VodFileId: 云点播媒资文件Id，当 SourceType 取值 VOD 或者缺省的时候必填。
         # @type VodFileId: String
-        # @param Name: 素材名称，不能超过30个字符。
+        # @param ExternalMediaInfo: 原始媒资文件信息，当 SourceType 取值 EXTERNAL 的时候必填。
+        # @type ExternalMediaInfo: :class:`Tencentcloud::Cme.v20191029.models.ExternalMediaInfo`
+        # @param Name: 媒体名称，不能超过30个字符。
         # @type Name: String
-        # @param PreProcessDefinition: 素材预处理任务模板 ID，取值：
+        # @param PreProcessDefinition: 媒体预处理任务模板 ID，取值：
         # <li>10：进行编辑预处理。</li>
         # 注意：如果填0则不进行处理。
         # @type PreProcessDefinition: Integer
 
-        attr_accessor :Platform, :ProjectId, :VodFileId, :Name, :PreProcessDefinition
+        attr_accessor :Platform, :ProjectId, :SourceType, :VodFileId, :ExternalMediaInfo, :Name, :PreProcessDefinition
         
-        def initialize(platform=nil, projectid=nil, vodfileid=nil, name=nil, preprocessdefinition=nil)
+        def initialize(platform=nil, projectid=nil, sourcetype=nil, vodfileid=nil, externalmediainfo=nil, name=nil, preprocessdefinition=nil)
           @Platform = platform
           @ProjectId = projectid
+          @SourceType = sourcetype
           @VodFileId = vodfileid
+          @ExternalMediaInfo = externalmediainfo
           @Name = name
           @PreProcessDefinition = preprocessdefinition
         end
@@ -1735,7 +2056,11 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           @ProjectId = params['ProjectId']
+          @SourceType = params['SourceType']
           @VodFileId = params['VodFileId']
+          unless params['ExternalMediaInfo'].nil?
+            @ExternalMediaInfo = ExternalMediaInfo.new.deserialize(params[ExternalMediaInfo])
+          end
           @Name = params['Name']
           @PreProcessDefinition = params['PreProcessDefinition']
         end
@@ -1813,6 +2138,22 @@ module TencentCloud
           @Name = params['Name']
           @MemberCount = params['MemberCount']
           @Role = params['Role']
+        end
+      end
+
+      # 快手视频发布信息。
+      class KuaishouPublishInfo < TencentCloud::Common::AbstractModel
+        # @param Title: 视频发布标题，限30个字符。
+        # @type Title: String
+
+        attr_accessor :Title
+        
+        def initialize(title=nil)
+          @Title = title
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
         end
       end
 
@@ -1956,6 +2297,26 @@ module TencentCloud
           @MaterialInfoSet = params['MaterialInfoSet']
           @ClassInfoSet = params['ClassInfoSet']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 直播剪辑项目输入参数。
+      class LiveStreamClipProjectInput < TencentCloud::Common::AbstractModel
+        # @param Url: 直播流播放地址，目前仅支持 HLS 和 FLV 格式。
+        # @type Url: String
+        # @param StreamRecordDuration: 直播流录制时长，单位为秒，最大值为 7200。
+        # @type StreamRecordDuration: Integer
+
+        attr_accessor :Url, :StreamRecordDuration
+        
+        def initialize(url=nil, streamrecordduration=nil)
+          @Url = url
+          @StreamRecordDuration = streamrecordduration
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @StreamRecordDuration = params['StreamRecordDuration']
         end
       end
 
@@ -2199,6 +2560,68 @@ module TencentCloud
           @Rotate = params['Rotate']
           @VideoStreamInfoSet = params['VideoStreamInfoSet']
           @AudioStreamInfoSet = params['AudioStreamInfoSet']
+        end
+      end
+
+      # 轨道信息
+      class MediaTrack < TencentCloud::Common::AbstractModel
+        # @param Type: 轨道类型，取值有：
+        # <ul>
+        # <li>Video ：视频轨道。视频轨道由以下 Item 组成：<ul><li>VideoTrackItem</li><li>EmptyTrackItem</li></ul> </li>
+        # <li>Audio ：音频轨道。音频轨道由以下 Item 组成：<ul><li>AudioTrackItem</li><li>EmptyTrackItem</li></ul> </li>
+        # </ul>
+        # @type Type: String
+        # @param TrackItems: 轨道上的媒体片段列表。
+        # @type TrackItems: Array
+
+        attr_accessor :Type, :TrackItems
+        
+        def initialize(type=nil, trackitems=nil)
+          @Type = type
+          @TrackItems = trackitems
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TrackItems = params['TrackItems']
+        end
+      end
+
+      # 媒体轨道的片段信息
+      class MediaTrackItem < TencentCloud::Common::AbstractModel
+        # @param Type: 片段类型。取值有：
+        # <li>Video：视频片段。</li>
+        # <li>Audio：音频片段。</li>
+        # <li>Empty：空白片段。</li>
+        # @type Type: String
+        # @param VideoItem: 视频片段，当 Type = Video 时有效。
+        # @type VideoItem: :class:`Tencentcloud::Cme.v20191029.models.VideoTrackItem`
+        # @param AudioItem: 音频片段，当 Type = Audio 时有效。
+        # @type AudioItem: :class:`Tencentcloud::Cme.v20191029.models.AudioTrackItem`
+        # @param EmptyItem: 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。<li>如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。</li>
+        # <li>使用 EmptyTrackItem 进行占位，来定位某个Item。</li>
+        # @type EmptyItem: :class:`Tencentcloud::Cme.v20191029.models.EmptyTrackItem`
+
+        attr_accessor :Type, :VideoItem, :AudioItem, :EmptyItem
+        
+        def initialize(type=nil, videoitem=nil, audioitem=nil, emptyitem=nil)
+          @Type = type
+          @VideoItem = videoitem
+          @AudioItem = audioitem
+          @EmptyItem = emptyitem
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['VideoItem'].nil?
+            @VideoItem = VideoTrackItem.new.deserialize(params[VideoItem])
+          end
+          unless params['AudioItem'].nil?
+            @AudioItem = AudioTrackItem.new.deserialize(params[AudioItem])
+          end
+          unless params['EmptyItem'].nil?
+            @EmptyItem = EmptyTrackItem.new.deserialize(params[EmptyItem])
+          end
         end
       end
 
@@ -2453,6 +2876,70 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 企鹅号发布信息。
+      class PenguinMediaPlatformPublishInfo < TencentCloud::Common::AbstractModel
+        # @param Title: 视频发布标题。
+        # @type Title: String
+        # @param Description: 视频发布描述信息。
+        # @type Description: String
+        # @param Tags: 视频标签。
+        # @type Tags: Array
+        # @param Category: 视频分类，详见企鹅号官网视频分类。
+        # @type Category: Integer
+
+        attr_accessor :Title, :Description, :Tags, :Category
+        
+        def initialize(title=nil, description=nil, tags=nil, category=nil)
+          @Title = title
+          @Description = description
+          @Tags = tags
+          @Category = category
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Description = params['Description']
+          @Tags = params['Tags']
+          @Category = params['Category']
+        end
+      end
+
+      # 平台信息。
+      class PlatformInfo < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称。
+        # @type Platform: String
+        # @param Description: 平台描述。
+        # @type Description: String
+        # @param VodSubAppId: 云点播子应用 Id。
+        # @type VodSubAppId: Integer
+        # @param LicenseId: 平台绑定的 license Id。
+        # @type LicenseId: String
+        # @param CreateTime: 创建时间，格式按照 ISO 8601 标准表示。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间，格式按照 ISO 8601 标准表示。
+        # @type UpdateTime: String
+
+        attr_accessor :Platform, :Description, :VodSubAppId, :LicenseId, :CreateTime, :UpdateTime
+        
+        def initialize(platform=nil, description=nil, vodsubappid=nil, licenseid=nil, createtime=nil, updatetime=nil)
+          @Platform = platform
+          @Description = description
+          @VodSubAppId = vodsubappid
+          @LicenseId = licenseid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @Description = params['Description']
+          @VodSubAppId = params['VodSubAppId']
+          @LicenseId = params['LicenseId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -2717,6 +3204,63 @@ module TencentCloud
         end
       end
 
+      # 导播台主监输出配置信息
+      class SwitcherPgmOutputConfig < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 导播台输出模板 ID，可取值：
+        # <li>10001：分辨率为1080 P；</li>
+        # <li>10002：分辨率为720 P；</li>
+        # <li>10003：分辨率为480 P。</li>
+        # @type TemplateId: Integer
+        # @param Width: 导播台输出宽。
+        # @type Width: Integer
+        # @param Height: 导播台输出高。
+        # @type Height: Integer
+        # @param Fps: 导播台输出帧率。
+        # @type Fps: Integer
+        # @param BitRate: 导播台输出码率。
+        # @type BitRate: Integer
+
+        attr_accessor :TemplateId, :Width, :Height, :Fps, :BitRate
+        
+        def initialize(templateid=nil, width=nil, height=nil, fps=nil, bitrate=nil)
+          @TemplateId = templateid
+          @Width = width
+          @Height = height
+          @Fps = fps
+          @BitRate = bitrate
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @Width = params['Width']
+          @Height = params['Height']
+          @Fps = params['Fps']
+          @BitRate = params['BitRate']
+        end
+      end
+
+      # 导播台项目输入信息
+      class SwitcherProjectInput < TencentCloud::Common::AbstractModel
+        # @param StopTime: 导播台停止时间。
+        # @type StopTime: String
+        # @param PgmOutputConfig: 导播台主监输出配置信息。
+        # @type PgmOutputConfig: :class:`Tencentcloud::Cme.v20191029.models.SwitcherPgmOutputConfig`
+
+        attr_accessor :StopTime, :PgmOutputConfig
+        
+        def initialize(stoptime=nil, pgmoutputconfig=nil)
+          @StopTime = stoptime
+          @PgmOutputConfig = pgmoutputconfig
+        end
+
+        def deserialize(params)
+          @StopTime = params['StopTime']
+          unless params['PgmOutputConfig'].nil?
+            @PgmOutputConfig = SwitcherPgmOutputConfig.new.deserialize(params[PgmOutputConfig])
+          end
+        end
+      end
+
       # 任务基础信息。
       class TaskBaseInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 Id。
@@ -2822,6 +3366,40 @@ module TencentCloud
         end
       end
 
+      # 第三方平台视频发布信息。
+      class ThirdPartyPublishInfo < TencentCloud::Common::AbstractModel
+        # @param ChannelMaterialId: 发布通道  ID。
+        # @type ChannelMaterialId: String
+        # @param PenguinMediaPlatformPublishInfo: 企鹅号发布信息，如果使用的发布通道为企鹅号时必填。
+        # @type PenguinMediaPlatformPublishInfo: :class:`Tencentcloud::Cme.v20191029.models.PenguinMediaPlatformPublishInfo`
+        # @param WeiboPublishInfo: 新浪微博发布信息，如果使用的发布通道为新浪微博时必填。
+        # @type WeiboPublishInfo: :class:`Tencentcloud::Cme.v20191029.models.WeiboPublishInfo`
+        # @param KuaishouPublishInfo: 快手发布信息，如果使用的发布通道为快手时必填。
+        # @type KuaishouPublishInfo: :class:`Tencentcloud::Cme.v20191029.models.KuaishouPublishInfo`
+
+        attr_accessor :ChannelMaterialId, :PenguinMediaPlatformPublishInfo, :WeiboPublishInfo, :KuaishouPublishInfo
+        
+        def initialize(channelmaterialid=nil, penguinmediaplatformpublishinfo=nil, weibopublishinfo=nil, kuaishoupublishinfo=nil)
+          @ChannelMaterialId = channelmaterialid
+          @PenguinMediaPlatformPublishInfo = penguinmediaplatformpublishinfo
+          @WeiboPublishInfo = weibopublishinfo
+          @KuaishouPublishInfo = kuaishoupublishinfo
+        end
+
+        def deserialize(params)
+          @ChannelMaterialId = params['ChannelMaterialId']
+          unless params['PenguinMediaPlatformPublishInfo'].nil?
+            @PenguinMediaPlatformPublishInfo = PenguinMediaPlatformPublishInfo.new.deserialize(params[PenguinMediaPlatformPublishInfo])
+          end
+          unless params['WeiboPublishInfo'].nil?
+            @WeiboPublishInfo = WeiboPublishInfo.new.deserialize(params[WeiboPublishInfo])
+          end
+          unless params['KuaishouPublishInfo'].nil?
+            @KuaishouPublishInfo = KuaishouPublishInfo.new.deserialize(params[KuaishouPublishInfo])
+          end
+        end
+      end
+
       # 时间范围
       class TimeRange < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间，使用 ISO 日期格式。
@@ -2848,22 +3426,49 @@ module TencentCloud
         # @type Name: String
         # @param ClassId: 导出的媒资分类 Id。
         # @type ClassId: Integer
+        # @param ThirdPartyPublishInfos: 第三方平台发布信息列表。
+        # @type ThirdPartyPublishInfos: Array
 
-        attr_accessor :Name, :ClassId
+        attr_accessor :Name, :ClassId, :ThirdPartyPublishInfos
         
-        def initialize(name=nil, classid=nil)
+        def initialize(name=nil, classid=nil, thirdpartypublishinfos=nil)
           @Name = name
           @ClassId = classid
+          @ThirdPartyPublishInfos = thirdpartypublishinfos
         end
 
         def deserialize(params)
           @Name = params['Name']
           @ClassId = params['ClassId']
+          @ThirdPartyPublishInfos = params['ThirdPartyPublishInfos']
+        end
+      end
+
+      # 视频编辑项目输入参数
+      class VideoEditProjectInput < TencentCloud::Common::AbstractModel
+        # @param VideoEditTemplateId: 视频编辑模板 ID ，通过模板导入项目时填写。
+        # @type VideoEditTemplateId: String
+        # @param InitTracks: 输入的媒体轨道列表，包括视频、音频，等素材组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
+        # 注：当从模板导入项目时（即 VideoEditTemplateId 不为空时），该参数无效。
+        # @type InitTracks: Array
+
+        attr_accessor :VideoEditTemplateId, :InitTracks
+        
+        def initialize(videoedittemplateid=nil, inittracks=nil)
+          @VideoEditTemplateId = videoedittemplateid
+          @InitTracks = inittracks
+        end
+
+        def deserialize(params)
+          @VideoEditTemplateId = params['VideoEditTemplateId']
+          @InitTracks = params['InitTracks']
         end
       end
 
       # 项目导出信息。
       class VideoEditProjectOutput < TencentCloud::Common::AbstractModel
+        # @param MaterialId: 导出的云剪素材 MaterialId，仅当导出为云剪素材时有效。
+        # @type MaterialId: String
         # @param VodFileId: 云点播媒资 FileId。
         # @type VodFileId: String
         # @param URL: 导出的媒资 URL。
@@ -2872,15 +3477,17 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaData: :class:`Tencentcloud::Cme.v20191029.models.MediaMetaData`
 
-        attr_accessor :VodFileId, :URL, :MetaData
+        attr_accessor :MaterialId, :VodFileId, :URL, :MetaData
         
-        def initialize(vodfileid=nil, url=nil, metadata=nil)
+        def initialize(materialid=nil, vodfileid=nil, url=nil, metadata=nil)
+          @MaterialId = materialid
           @VodFileId = vodfileid
           @URL = url
           @MetaData = metadata
         end
 
         def deserialize(params)
+          @MaterialId = params['MaterialId']
           @VodFileId = params['VodFileId']
           @URL = params['URL']
           unless params['MetaData'].nil?
@@ -2940,6 +3547,28 @@ module TencentCloud
         end
       end
 
+      # 视频拆条项目的输入信息。
+      class VideoSegmentationProjectInput < TencentCloud::Common::AbstractModel
+        # @param ProcessModel: 视频拆条处理模型，不填则默认为手工分割视频。取值 ：
+        # <li>AI.GameHighlights.PUBG：和平精英集锦 ;</li>
+        # <li>AI.GameHighlights.Honor OfKings：王者荣耀集锦 ;</li>
+        # <li>AI.SportHighlights.Football：足球集锦 </li>
+        # <li>AI.SportHighlights.Basketball：篮球集锦 ；</li>
+        # <li>AI.PersonSegmentation：人物集锦  ;</li>
+        # <li>AI.NewsSegmentation：新闻拆条。</li>
+        # @type ProcessModel: String
+
+        attr_accessor :ProcessModel
+        
+        def initialize(processmodel=nil)
+          @ProcessModel = processmodel
+        end
+
+        def deserialize(params)
+          @ProcessModel = params['ProcessModel']
+        end
+      end
+
       # 视频流信息。
       class VideoStreamInfo < TencentCloud::Common::AbstractModel
         # @param Bitrate: 码率，单位：bps。
@@ -2969,6 +3598,110 @@ module TencentCloud
           @Width = params['Width']
           @Codec = params['Codec']
           @Fps = params['Fps']
+        end
+      end
+
+      # 视频轨的视频片段信息。
+      class VideoTrackItem < TencentCloud::Common::AbstractModel
+        # @param SourceType: 视频素材来源类型，取值有：
+        # <ul>
+        # <li>VOD ：素材来源于云点播文件 。</li>
+        # <li>CME ：视频来源制作云媒体文件。</li>
+        # <li>EXTERNAL ：视频来源于媒资绑定。</li>
+        # </ul>
+        # @type SourceType: String
+        # @param SourceMedia: 视频片段的媒体素材来源，取值为：
+        # <ul>
+        # <li>当 SourceType 为 VOD 时，为云点播的媒体文件 ID；</li>
+        # <li>当 SourceType 为 CME 时，为制作云的媒体 ID；</li>
+        # <li>当 SourceType 为 EXTERNAL 时，为媒资绑定的 Definition 与 MediaKey 中间用冒号分隔合并后的字符串，格式为 Definition:MediaKey 。</li>
+        # </ul>
+        # @type SourceMedia: String
+        # @param SourceMediaStartTime: 视频片段取自素材文件的起始时间，单位为秒。默认为0。
+        # @type SourceMediaStartTime: Float
+        # @param Duration: 视频片段时长，单位为秒。默认取视频素材本身长度，表示截取全部素材。如果源文件是图片，Duration需要大于0。
+        # @type Duration: Float
+        # @param XPos: 视频片段原点距离画布原点的水平位置。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示视频片段 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布口宽度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示视频片段 XPos 单位为像素，如 100px 表示 XPos 为100像素。</li>
+        # 默认值：0px。
+        # @type XPos: String
+        # @param YPos: 视频片段原点距离画布原点的垂直位置。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示视频片段 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示视频片段 YPos 单位为像素，如 100px 表示 YPos 为100像素。</li>
+        # 默认值：0px。
+        # @type YPos: String
+        # @param CoordinateOrigin: 视频原点位置，取值有：
+        # <li>Center：坐标原点为中心位置，如画布中心。</li>
+        # 默认值 ：Center。
+        # @type CoordinateOrigin: String
+        # @param Height: 视频片段的高度。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示视频片段 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%；</li>
+        # <li>当字符串以 px 结尾，表示视频片段 Height 单位为像素，如 100px 表示 Height 为100像素；</li>
+        # <li>当 Width、Height 均为空，则 Width 和 Height 取视频素材本身的 Width、Height；</li>
+        # <li>当 Width 为空，Height 非空，则 Width 按比例缩放；</li>
+        # <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
+        # @type Height: String
+        # @param Width: 视频片段的宽度。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示视频片段 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%；</li>
+        # <li>当字符串以 px 结尾，表示视频片段 Width 单位为像素，如 100px 表示 Width 为100像素；</li>
+        # <li>当 Width、Height 均为空，则 Width 和 Height 取视频素材本身的 Width、Height；</li>
+        # <li>当 Width 为空，Height 非空，则 Width 按比例缩放；</li>
+        # <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
+        # @type Width: String
+
+        attr_accessor :SourceType, :SourceMedia, :SourceMediaStartTime, :Duration, :XPos, :YPos, :CoordinateOrigin, :Height, :Width
+        
+        def initialize(sourcetype=nil, sourcemedia=nil, sourcemediastarttime=nil, duration=nil, xpos=nil, ypos=nil, coordinateorigin=nil, height=nil, width=nil)
+          @SourceType = sourcetype
+          @SourceMedia = sourcemedia
+          @SourceMediaStartTime = sourcemediastarttime
+          @Duration = duration
+          @XPos = xpos
+          @YPos = ypos
+          @CoordinateOrigin = coordinateorigin
+          @Height = height
+          @Width = width
+        end
+
+        def deserialize(params)
+          @SourceType = params['SourceType']
+          @SourceMedia = params['SourceMedia']
+          @SourceMediaStartTime = params['SourceMediaStartTime']
+          @Duration = params['Duration']
+          @XPos = params['XPos']
+          @YPos = params['YPos']
+          @CoordinateOrigin = params['CoordinateOrigin']
+          @Height = params['Height']
+          @Width = params['Width']
+        end
+      end
+
+      # 微博发布信息。
+      class WeiboPublishInfo < TencentCloud::Common::AbstractModel
+        # @param Title: 视频发布标题。
+        # @type Title: String
+        # @param Description: 视频发布描述信息。
+        # @type Description: String
+        # @param Visible: 微博可见性，可取值为：
+        # <li>Public：公开，所有人可见；</li>
+        # <li>Private：私有，仅自己可见。</li>
+
+        # 默认为 Public，所有人可见。
+        # @type Visible: String
+
+        attr_accessor :Title, :Description, :Visible
+        
+        def initialize(title=nil, description=nil, visible=nil)
+          @Title = title
+          @Description = description
+          @Visible = visible
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Description = params['Description']
+          @Visible = params['Visible']
         end
       end
 

@@ -266,10 +266,12 @@ module TencentCloud
         # @type PositionDetails: String
         # @param IsPublic: 是否公开
         # @type IsPublic: Boolean
+        # @param FrequencyId: 频点ID
+        # @type FrequencyId: String
 
-        attr_accessor :GatewayId, :Name, :Description, :Location, :Position, :PositionDetails, :IsPublic
+        attr_accessor :GatewayId, :Name, :Description, :Location, :Position, :PositionDetails, :IsPublic, :FrequencyId
         
-        def initialize(gatewayid=nil, name=nil, description=nil, location=nil, position=nil, positiondetails=nil, ispublic=nil)
+        def initialize(gatewayid=nil, name=nil, description=nil, location=nil, position=nil, positiondetails=nil, ispublic=nil, frequencyid=nil)
           @GatewayId = gatewayid
           @Name = name
           @Description = description
@@ -277,6 +279,7 @@ module TencentCloud
           @Position = position
           @PositionDetails = positiondetails
           @IsPublic = ispublic
+          @FrequencyId = frequencyid
         end
 
         def deserialize(params)
@@ -289,6 +292,7 @@ module TencentCloud
           @Position = params['Position']
           @PositionDetails = params['PositionDetails']
           @IsPublic = params['IsPublic']
+          @FrequencyId = params['FrequencyId']
         end
       end
 
@@ -320,17 +324,21 @@ module TencentCloud
         # @type ProjectName: String
         # @param ProjectDesc: 项目描述
         # @type ProjectDesc: String
+        # @param InstanceId: 实例ID，不带实例ID，默认为公共实例
+        # @type InstanceId: String
 
-        attr_accessor :ProjectName, :ProjectDesc
+        attr_accessor :ProjectName, :ProjectDesc, :InstanceId
         
-        def initialize(projectname=nil, projectdesc=nil)
+        def initialize(projectname=nil, projectdesc=nil, instanceid=nil)
           @ProjectName = projectname
           @ProjectDesc = projectdesc
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @ProjectName = params['ProjectName']
           @ProjectDesc = params['ProjectDesc']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -422,6 +430,44 @@ module TencentCloud
         end
       end
 
+      # CreateTopicRule请求参数结构体
+      class CreateTopicRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param TopicRulePayload: 规则内容
+        # @type TopicRulePayload: :class:`Tencentcloud::Iotexplorer.v20190423.models.TopicRulePayload`
+
+        attr_accessor :RuleName, :TopicRulePayload
+        
+        def initialize(rulename=nil, topicrulepayload=nil)
+          @RuleName = rulename
+          @TopicRulePayload = topicrulepayload
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          unless params['TopicRulePayload'].nil?
+            @TopicRulePayload = TopicRulePayload.new.deserialize(params[TopicRulePayload])
+          end
+        end
+      end
+
+      # CreateTopicRule返回参数结构体
+      class CreateTopicRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDevice请求参数结构体
       class DeleteDeviceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID。
@@ -444,16 +490,26 @@ module TencentCloud
 
       # DeleteDevice返回参数结构体
       class DeleteDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param ResultCode: 删除的结果代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultCode: String
+        # @param ResultMessage: 删除的结果信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultMessage: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ResultCode, :ResultMessage, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(resultcode=nil, resultmessage=nil, requestid=nil)
+          @ResultCode = resultcode
+          @ResultMessage = resultmessage
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ResultCode = params['ResultCode']
+          @ResultMessage = params['ResultMessage']
           @RequestId = params['RequestId']
         end
       end
@@ -540,6 +596,38 @@ module TencentCloud
 
       # DeleteStudioProduct返回参数结构体
       class DeleteStudioProductResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTopicRule请求参数结构体
+      class DeleteTopicRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名
+        # @type RuleName: String
+
+        attr_accessor :RuleName
+        
+        def initialize(rulename=nil)
+          @RuleName = rulename
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+        end
+      end
+
+      # DeleteTopicRule返回参数结构体
+      class DeleteTopicRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -834,6 +922,45 @@ module TencentCloud
         end
       end
 
+      # DescribeTopicRule请求参数结构体
+      class DescribeTopicRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称。
+        # @type RuleName: String
+
+        attr_accessor :RuleName
+        
+        def initialize(rulename=nil)
+          @RuleName = rulename
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+        end
+      end
+
+      # DescribeTopicRule返回参数结构体
+      class DescribeTopicRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Rule: 规则描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rule: :class:`Tencentcloud::Iotexplorer.v20190423.models.TopicRule`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rule, :RequestId
+        
+        def initialize(rule=nil, requestid=nil)
+          @Rule = rule
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rule'].nil?
+            @Rule = TopicRule.new.deserialize(params[Rule])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeviceData
       class DeviceData < TencentCloud::Common::AbstractModel
         # @param DeviceCert: 设备证书，用于 TLS 建立链接时校验客户端身份。采用非对称加密时返回该参数。
@@ -966,6 +1093,70 @@ module TencentCloud
         end
       end
 
+      # DisableTopicRule请求参数结构体
+      class DisableTopicRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+
+        attr_accessor :RuleName
+        
+        def initialize(rulename=nil)
+          @RuleName = rulename
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+        end
+      end
+
+      # DisableTopicRule返回参数结构体
+      class DisableTopicRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableTopicRule请求参数结构体
+      class EnableTopicRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+
+        attr_accessor :RuleName
+        
+        def initialize(rulename=nil)
+          @RuleName = rulename
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+        end
+      end
+
+      # EnableTopicRule返回参数结构体
+      class EnableTopicRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 设备事件的搜索结果项
       class EventHistoryItem < TencentCloud::Common::AbstractModel
         # @param TimeStamp: 事件的时间戳
@@ -1016,19 +1207,27 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页的大小，数值范围 10-100
         # @type Limit: Integer
+        # @param FirmwareVersion: 设备固件版本号，若不带此参数会返回所有固件版本的设备。传"None-FirmwareVersion"查询无版本号的设备
+        # @type FirmwareVersion: String
+        # @param DeviceName: 需要过滤的设备名称
+        # @type DeviceName: String
 
-        attr_accessor :ProductId, :Offset, :Limit
+        attr_accessor :ProductId, :Offset, :Limit, :FirmwareVersion, :DeviceName
         
-        def initialize(productid=nil, offset=nil, limit=nil)
+        def initialize(productid=nil, offset=nil, limit=nil, firmwareversion=nil, devicename=nil)
           @ProductId = productid
           @Offset = offset
           @Limit = limit
+          @FirmwareVersion = firmwareversion
+          @DeviceName = devicename
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @FirmwareVersion = params['FirmwareVersion']
+          @DeviceName = params['DeviceName']
         end
       end
 
@@ -1113,17 +1312,21 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 个数限制
         # @type Limit: Integer
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
 
-        attr_accessor :Offset, :Limit
+        attr_accessor :Offset, :Limit, :InstanceId
         
-        def initialize(offset=nil, limit=nil)
+        def initialize(offset=nil, limit=nil, instanceid=nil)
           @Offset = offset
           @Limit = limit
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -1205,6 +1408,50 @@ module TencentCloud
         end
       end
 
+      # GetTopicRuleList请求参数结构体
+      class GetTopicRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 请求的页数
+        # @type PageNum: Integer
+        # @param PageSize: 分页的大小
+        # @type PageSize: Integer
+
+        attr_accessor :PageNum, :PageSize
+        
+        def initialize(pagenum=nil, pagesize=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # GetTopicRuleList返回参数结构体
+      class GetTopicRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 规则总数量
+        # @type TotalCnt: Integer
+        # @param Rules: 规则列表
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCnt, :Rules, :RequestId
+        
+        def initialize(totalcnt=nil, rules=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          @Rules = params['Rules']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListEventHistory请求参数结构体
       class ListEventHistoryRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -1219,12 +1466,14 @@ module TencentCloud
         # @type EndTime: Integer
         # @param Context: 搜索上下文, 用作查询游标
         # @type Context: String
-        # @param Size: 单次获取的历史数据项目的最大数量
+        # @param Size: 单次获取的历史数据项目的最大数量, 缺省10
         # @type Size: Integer
+        # @param EventId: 事件标识符，可以用来指定查询特定的事件，如果不指定，则查询所有事件。
+        # @type EventId: String
 
-        attr_accessor :ProductId, :DeviceName, :Type, :StartTime, :EndTime, :Context, :Size
+        attr_accessor :ProductId, :DeviceName, :Type, :StartTime, :EndTime, :Context, :Size, :EventId
         
-        def initialize(productid=nil, devicename=nil, type=nil, starttime=nil, endtime=nil, context=nil, size=nil)
+        def initialize(productid=nil, devicename=nil, type=nil, starttime=nil, endtime=nil, context=nil, size=nil, eventid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Type = type
@@ -1232,6 +1481,7 @@ module TencentCloud
           @EndTime = endtime
           @Context = context
           @Size = size
+          @EventId = eventid
         end
 
         def deserialize(params)
@@ -1242,6 +1492,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Context = params['Context']
           @Size = params['Size']
+          @EventId = params['EventId']
         end
       end
 
@@ -1303,10 +1554,12 @@ module TencentCloud
         # @type CreatedAt: String
         # @param LastSeenAt: 最后上报时间
         # @type LastSeenAt: String
+        # @param FrequencyId: 频点ID
+        # @type FrequencyId: String
 
-        attr_accessor :GatewayId, :IsPublic, :Description, :Name, :Position, :PositionDetails, :Location, :UpdatedAt, :CreatedAt, :LastSeenAt
+        attr_accessor :GatewayId, :IsPublic, :Description, :Name, :Position, :PositionDetails, :Location, :UpdatedAt, :CreatedAt, :LastSeenAt, :FrequencyId
         
-        def initialize(gatewayid=nil, ispublic=nil, description=nil, name=nil, position=nil, positiondetails=nil, location=nil, updatedat=nil, createdat=nil, lastseenat=nil)
+        def initialize(gatewayid=nil, ispublic=nil, description=nil, name=nil, position=nil, positiondetails=nil, location=nil, updatedat=nil, createdat=nil, lastseenat=nil, frequencyid=nil)
           @GatewayId = gatewayid
           @IsPublic = ispublic
           @Description = description
@@ -1317,6 +1570,7 @@ module TencentCloud
           @UpdatedAt = updatedat
           @CreatedAt = createdat
           @LastSeenAt = lastseenat
+          @FrequencyId = frequencyid
         end
 
         def deserialize(params)
@@ -1332,6 +1586,7 @@ module TencentCloud
           @UpdatedAt = params['UpdatedAt']
           @CreatedAt = params['CreatedAt']
           @LastSeenAt = params['LastSeenAt']
+          @FrequencyId = params['FrequencyId']
         end
       end
 
@@ -1379,10 +1634,12 @@ module TencentCloud
         # @type Position: String
         # @param PositionDetails: 位置详情
         # @type PositionDetails: String
+        # @param FrequencyId: 频点ID
+        # @type FrequencyId: String
 
-        attr_accessor :Description, :GatewayId, :Location, :Name, :IsPublic, :Position, :PositionDetails
+        attr_accessor :Description, :GatewayId, :Location, :Name, :IsPublic, :Position, :PositionDetails, :FrequencyId
         
-        def initialize(description=nil, gatewayid=nil, location=nil, name=nil, ispublic=nil, position=nil, positiondetails=nil)
+        def initialize(description=nil, gatewayid=nil, location=nil, name=nil, ispublic=nil, position=nil, positiondetails=nil, frequencyid=nil)
           @Description = description
           @GatewayId = gatewayid
           @Location = location
@@ -1390,6 +1647,7 @@ module TencentCloud
           @IsPublic = ispublic
           @Position = position
           @PositionDetails = positiondetails
+          @FrequencyId = frequencyid
         end
 
         def deserialize(params)
@@ -1402,6 +1660,7 @@ module TencentCloud
           @IsPublic = params['IsPublic']
           @Position = params['Position']
           @PositionDetails = params['PositionDetails']
+          @FrequencyId = params['FrequencyId']
         end
       end
 
@@ -1559,6 +1818,44 @@ module TencentCloud
           unless params['Product'].nil?
             @Product = ProductEntry.new.deserialize(params[Product])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTopicRule请求参数结构体
+      class ModifyTopicRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param TopicRulePayload: 替换的规则包体
+        # @type TopicRulePayload: :class:`Tencentcloud::Iotexplorer.v20190423.models.TopicRulePayload`
+
+        attr_accessor :RuleName, :TopicRulePayload
+        
+        def initialize(rulename=nil, topicrulepayload=nil)
+          @RuleName = rulename
+          @TopicRulePayload = topicrulepayload
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          unless params['TopicRulePayload'].nil?
+            @TopicRulePayload = TopicRulePayload.new.deserialize(params[TopicRulePayload])
+          end
+        end
+      end
+
+      # ModifyTopicRule返回参数结构体
+      class ModifyTopicRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1745,6 +2042,58 @@ module TencentCloud
         end
       end
 
+      # PublishMessage请求参数结构体
+      class PublishMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Topic: 消息发往的主题
+        # @type Topic: String
+        # @param Payload: 云端下发到设备的控制报文
+        # @type Payload: String
+        # @param Qos: 消息服务质量等级，取值为0或1
+        # @type Qos: Integer
+        # @param PayloadEncoding: Payload的内容编码格式，取值为base64或空。base64表示云端将接收到的base64编码后的报文再转换成二进制报文下发至设备，为空表示不作转换，透传下发至设备
+        # @type PayloadEncoding: String
+
+        attr_accessor :ProductId, :DeviceName, :Topic, :Payload, :Qos, :PayloadEncoding
+        
+        def initialize(productid=nil, devicename=nil, topic=nil, payload=nil, qos=nil, payloadencoding=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Topic = topic
+          @Payload = payload
+          @Qos = qos
+          @PayloadEncoding = payloadencoding
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Topic = params['Topic']
+          @Payload = params['Payload']
+          @Qos = params['Qos']
+          @PayloadEncoding = params['PayloadEncoding']
+        end
+      end
+
+      # PublishMessage返回参数结构体
+      class PublishMessageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReleaseStudioProduct请求参数结构体
       class ReleaseStudioProductRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -1834,6 +2183,185 @@ module TencentCloud
           @Products = params['Products']
           @Total = params['Total']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # SearchTopicRule请求参数结构体
+      class SearchTopicRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名
+        # @type RuleName: String
+
+        attr_accessor :RuleName
+        
+        def initialize(rulename=nil)
+          @RuleName = rulename
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+        end
+      end
+
+      # SearchTopicRule返回参数结构体
+      class SearchTopicRuleResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 搜索到的规则总数
+        # @type TotalCnt: Integer
+        # @param Rules: 规则信息列表
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCnt, :Rules, :RequestId
+        
+        def initialize(totalcnt=nil, rules=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          @Rules = params['Rules']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TopicRule结构
+      class TopicRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称。
+        # @type RuleName: String
+        # @param Sql: 规则的SQL语句，如： SELECT * FROM 'pid/dname/event'，然后对其进行base64编码，得：U0VMRUNUICogRlJPTSAncGlkL2RuYW1lL2V2ZW50Jw==
+        # @type Sql: String
+        # @param Description: 规则描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Actions: 行为的JSON字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Actions: String
+        # @param RuleDisabled: 是否禁用规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleDisabled: Boolean
+
+        attr_accessor :RuleName, :Sql, :Description, :Actions, :RuleDisabled
+        
+        def initialize(rulename=nil, sql=nil, description=nil, actions=nil, ruledisabled=nil)
+          @RuleName = rulename
+          @Sql = sql
+          @Description = description
+          @Actions = actions
+          @RuleDisabled = ruledisabled
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Sql = params['Sql']
+          @Description = params['Description']
+          @Actions = params['Actions']
+          @RuleDisabled = params['RuleDisabled']
+        end
+      end
+
+      # 规则信息
+      class TopicRuleInfo < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: Integer
+        # @param RuleDisabled: 规则是否禁用
+        # @type RuleDisabled: Boolean
+
+        attr_accessor :RuleName, :Description, :CreatedAt, :RuleDisabled
+        
+        def initialize(rulename=nil, description=nil, createdat=nil, ruledisabled=nil)
+          @RuleName = rulename
+          @Description = description
+          @CreatedAt = createdat
+          @RuleDisabled = ruledisabled
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Description = params['Description']
+          @CreatedAt = params['CreatedAt']
+          @RuleDisabled = params['RuleDisabled']
+        end
+      end
+
+      # TopicRulePayload结构
+      class TopicRulePayload < TencentCloud::Common::AbstractModel
+        # @param Sql: 规则的SQL语句，如： SELECT * FROM 'pid/dname/event'，然后对其进行base64编码，得：U0VMRUNUICogRlJPTSAncGlkL2RuYW1lL2V2ZW50Jw==
+        # @type Sql: String
+        # @param Actions: 行为的JSON字符串，大部分种类举例如下：
+        # [
+        # {
+        # "republish": {
+        # "topic": "TEST/test"
+        # }
+        # },
+        # {
+        # "forward": {
+        # "api": "http://test.com:8080"
+        # }
+        # },
+        # {
+        # "ckafka": {
+        # "instance": {
+        # "id": "ckafka-test",
+        # "name": ""
+        # },
+        # "topic": {
+        # "id": "topic-test",
+        # "name": "test"
+        # },
+        # "region": "gz"
+        # }
+        # },
+        # {
+        # "cmqqueue": {
+        # "queuename": "queue-test-TEST",
+        # "region": "gz"
+        # }
+        # },
+        # {
+        # "mysql": {
+        # "instanceid": "cdb-test",
+        # "region": "gz",
+        # "username": "test",
+        # "userpwd": "*****",
+        # "dbname": "d_mqtt",
+        # "tablename": "t_test",
+        # "fieldpairs": [
+        # {
+        # "field": "test",
+        # "value": "test"
+        # }
+        # ],
+        # "devicetype": "CUSTOM"
+        # }
+        # }
+        # ]
+        # @type Actions: String
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param RuleDisabled: 是否禁用规则
+        # @type RuleDisabled: Boolean
+
+        attr_accessor :Sql, :Actions, :Description, :RuleDisabled
+        
+        def initialize(sql=nil, actions=nil, description=nil, ruledisabled=nil)
+          @Sql = sql
+          @Actions = actions
+          @Description = description
+          @RuleDisabled = ruledisabled
+        end
+
+        def deserialize(params)
+          @Sql = params['Sql']
+          @Actions = params['Actions']
+          @Description = params['Description']
+          @RuleDisabled = params['RuleDisabled']
         end
       end
 

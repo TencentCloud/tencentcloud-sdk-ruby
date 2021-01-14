@@ -25,7 +25,7 @@ module TencentCloud
         # 4：手机号（暂仅支持国内手机号）。
         # 8：设备号（imei/imeiMD5/idfa/idfaMd5）。
         # 0：其他。
-        # 10004：手机号MD5。
+        # 10004：手机号MD5（标准中国大陆手机号11位，MD5后取32位小写值）
         # @type AccountType: Integer
         # @param QQAccount: QQ账号信息，AccountType是1时，该字段必填。
         # @type QQAccount: :class:`Tencentcloud::Aa.v20200224.models.QQAccountInfo`
@@ -169,20 +169,40 @@ module TencentCloud
         end
       end
 
+      # 入参的详细参数信息
+      class InputDetails < TencentCloud::Common::AbstractModel
+        # @param FieldName: 字段名称
+        # @type FieldName: String
+        # @param FieldValue: 字段值
+        # @type FieldValue: String
+
+        attr_accessor :FieldName, :FieldValue
+        
+        def initialize(fieldname=nil, fieldvalue=nil)
+          @FieldName = fieldname
+          @FieldValue = fieldvalue
+        end
+
+        def deserialize(params)
+          @FieldName = params['FieldName']
+          @FieldValue = params['FieldValue']
+        end
+      end
+
       # 营销风控入参
       class InputManageMarketingRisk < TencentCloud::Common::AbstractModel
         # @param Account: 账号信息。
         # @type Account: :class:`Tencentcloud::Aa.v20200224.models.AccountInfo`
-        # @param SceneType: 场景类型。
+        # @param UserIp: 登录来源的外网IP
+        # @type UserIp: String
+        # @param PostTime: 用户操作时间戳，单位秒（格林威治时间精确到秒，如1501590972）。
+        # @type PostTime: Integer
+        # @param SceneType: 场景类型。(后续不再支持，请使用SceneCode字段)
         # 1：活动防刷
         # 2：登录保护
         # 3：注册保护
         # 4：活动防刷高级版（网赚）
         # @type SceneType: Integer
-        # @param UserIp: 登录来源的外网IP
-        # @type UserIp: String
-        # @param PostTime: 用户操作时间戳，单位秒（格林威治时间精确到秒，如1501590972）。
-        # @type PostTime: Integer
         # @param UserId: 用户唯一标识。
         # @type UserId: String
         # @param DeviceToken: 设备指纹token。
@@ -209,18 +229,24 @@ module TencentCloud
         # @type XForwardedFor: String
         # @param MacAddress: MAC地址或设备唯一标识。
         # @type MacAddress: String
-        # @param VendorId: 手机制造商ID，如果手机注册，请带上此信息。
-        # @type VendorId: String
         # @param CrowdAntiRush: 网赚防刷相关信息。SceneType为4时填写。
         # @type CrowdAntiRush: :class:`Tencentcloud::Aa.v20200224.models.CrowdAntiRushInfo`
+        # @param SceneCode: 场景Code，控制台上获取
+        # @type SceneCode: String
+        # @param Details: 详细信息
+        # @type Details: Array
+        # @param DeviceType: 设备类型：
+        # 1：Android
+        # 2：IOS
+        # @type DeviceType: Integer
 
-        attr_accessor :Account, :SceneType, :UserIp, :PostTime, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :VendorId, :CrowdAntiRush
+        attr_accessor :Account, :UserIp, :PostTime, :SceneType, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :CrowdAntiRush, :SceneCode, :Details, :DeviceType
         
-        def initialize(account=nil, scenetype=nil, userip=nil, posttime=nil, userid=nil, devicetoken=nil, devicebusinessid=nil, businessid=nil, nickname=nil, emailaddress=nil, checkdevice=nil, cookiehash=nil, referer=nil, useragent=nil, xforwardedfor=nil, macaddress=nil, vendorid=nil, crowdantirush=nil)
+        def initialize(account=nil, userip=nil, posttime=nil, scenetype=nil, userid=nil, devicetoken=nil, devicebusinessid=nil, businessid=nil, nickname=nil, emailaddress=nil, checkdevice=nil, cookiehash=nil, referer=nil, useragent=nil, xforwardedfor=nil, macaddress=nil, crowdantirush=nil, scenecode=nil, details=nil, devicetype=nil)
           @Account = account
-          @SceneType = scenetype
           @UserIp = userip
           @PostTime = posttime
+          @SceneType = scenetype
           @UserId = userid
           @DeviceToken = devicetoken
           @DeviceBusinessId = devicebusinessid
@@ -233,17 +259,19 @@ module TencentCloud
           @UserAgent = useragent
           @XForwardedFor = xforwardedfor
           @MacAddress = macaddress
-          @VendorId = vendorid
           @CrowdAntiRush = crowdantirush
+          @SceneCode = scenecode
+          @Details = details
+          @DeviceType = devicetype
         end
 
         def deserialize(params)
           unless params['Account'].nil?
             @Account = AccountInfo.new.deserialize(params[Account])
           end
-          @SceneType = params['SceneType']
           @UserIp = params['UserIp']
           @PostTime = params['PostTime']
+          @SceneType = params['SceneType']
           @UserId = params['UserId']
           @DeviceToken = params['DeviceToken']
           @DeviceBusinessId = params['DeviceBusinessId']
@@ -256,10 +284,12 @@ module TencentCloud
           @UserAgent = params['UserAgent']
           @XForwardedFor = params['XForwardedFor']
           @MacAddress = params['MacAddress']
-          @VendorId = params['VendorId']
           unless params['CrowdAntiRush'].nil?
             @CrowdAntiRush = CrowdAntiRushInfo.new.deserialize(params[CrowdAntiRush])
           end
+          @SceneCode = params['SceneCode']
+          @Details = params['Details']
+          @DeviceType = params['DeviceType']
         end
       end
 
@@ -534,7 +564,7 @@ module TencentCloud
         # @param MobilePhone: 账号绑定的手机号。
         # @type MobilePhone: String
         # @param DeviceId: 用户设备号。
-        # @type DeviceId: Boolean
+        # @type DeviceId: String
 
         attr_accessor :QQOpenId, :AppIdUser, :AssociateAccount, :MobilePhone, :DeviceId
         

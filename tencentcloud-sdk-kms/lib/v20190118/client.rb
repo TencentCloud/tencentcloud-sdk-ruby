@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'KMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 对密钥进行归档，被归档的密钥只能用于解密，不能加密
+
+        # @param request: Request instance for ArchiveKey.
+        # @type request: :class:`Tencentcloud::kms::V20190118::ArchiveKeyRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::ArchiveKeyResponse`
+        def ArchiveKey(request)
+          body = send_request('ArchiveKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ArchiveKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 使用指定的RSA非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。
 
         # @param request: Request instance for AsymmetricRsaDecrypt.
@@ -59,6 +83,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = AsymmetricSm2DecryptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 记录当前key被哪个云产品的那个资源所使用。如果当前key设置了自动过期，则取消该设置，确保当前key不会自动失效。如果当前关联关系已经创建，也返回成功。
+
+        # @param request: Request instance for BindCloudResource.
+        # @type request: :class:`Tencentcloud::kms::V20190118::BindCloudResourceRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::BindCloudResourceResponse`
+        def BindCloudResource(request)
+          body = send_request('BindCloudResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindCloudResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 取消密钥归档，取消后密钥的状态变为Enabled。
+
+        # @param request: Request instance for CancelKeyArchive.
+        # @type request: :class:`Tencentcloud::kms::V20190118::CancelKeyArchiveRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::CancelKeyArchiveResponse`
+        def CancelKeyArchive(request)
+          body = send_request('CancelKeyArchive', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelKeyArchiveResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -793,6 +865,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取支持的地域列表
+
+        # @param request: Request instance for GetRegions.
+        # @type request: :class:`Tencentcloud::kms::V20190118::GetRegionsRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::GetRegionsResponse`
+        def GetRegions(request)
+          body = send_request('GetRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询该用户是否已开通KMS服务
 
         # @param request: Request instance for GetServiceStatus.
@@ -972,6 +1068,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ScheduleKeyDeletionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除指定（key, 资源，云产品）的记录，以表明：指定的云产品的资源已不再使用当前的key。
+
+        # @param request: Request instance for UnbindCloudResource.
+        # @type request: :class:`Tencentcloud::kms::V20190118::UnbindCloudResourceRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::UnbindCloudResourceResponse`
+        def UnbindCloudResource(request)
+          body = send_request('UnbindCloudResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindCloudResourceResponse.new
             model.deserialize(response['Response'])
             model
           else

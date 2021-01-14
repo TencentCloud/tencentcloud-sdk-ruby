@@ -74,8 +74,6 @@ module TencentCloud
         # 注意分辨率宽高中间为英文字母"xyz"的"x"
         # @type MinResolution: String
         # @param ThumbnailResolution: 动态PPT转码可以为文件生成该分辨率的缩略图，不传、传空字符串或分辨率格式错误则不生成缩略图，分辨率格式同MinResolution
-
-        # 静态转码这个参数不起作用
         # @type ThumbnailResolution: String
         # @param CompressFileType: 转码文件压缩格式，不传、传空字符串或不是指定的格式则不生成压缩文件，目前支持如下压缩格式：
 
@@ -107,6 +105,78 @@ module TencentCloud
       # CreateTranscode返回参数结构体
       class CreateTranscodeResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 文档转码任务的唯一标识Id，用于查询该任务的进度以及转码结果
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVideoGenerationTask请求参数结构体
+      class CreateVideoGenerationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param OnlineRecordTaskId: 录制任务的TaskId
+        # @type OnlineRecordTaskId: String
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Whiteboard: 视频生成的白板参数，例如白板宽高等。
+
+        # 此参数与开始录制接口提供的Whiteboard参数互斥，在本接口与开始录制接口都提供了Whiteboard参数时，优先使用本接口指定的Whiteboard参数进行视频生成，否则使用开始录制接口提供的Whiteboard参数进行视频生成。
+        # @type Whiteboard: :class:`Tencentcloud::Tiw.v20190919.models.Whiteboard`
+        # @param Concat: 视频拼接参数
+
+        # 此参数与开始录制接口提供的Concat参数互斥，在本接口与开始录制接口都提供了Concat参数时，优先使用本接口指定的Concat参数进行视频拼接，否则使用开始录制接口提供的Concat参数进行视频拼接。
+        # @type Concat: :class:`Tencentcloud::Tiw.v20190919.models.Concat`
+        # @param MixStream: 视频生成混流参数
+
+        # 此参数与开始录制接口提供的MixStream参数互斥，在本接口与开始录制接口都提供了MixStream参数时，优先使用本接口指定的MixStream参数进行视频混流，否则使用开始录制接口提供的MixStream参数进行视频拼混流。
+        # @type MixStream: :class:`Tencentcloud::Tiw.v20190919.models.MixStream`
+        # @param RecordControl: 视频生成控制参数，用于更精细地指定需要生成哪些流，某一路流是否禁用音频，是否只录制小画面等
+
+        # 此参数与开始录制接口提供的RecordControl参数互斥，在本接口与开始录制接口都提供了RecordControl参数时，优先使用本接口指定的RecordControl参数进行视频生成控制，否则使用开始录制接口提供的RecordControl参数进行视频拼生成控制。
+        # @type RecordControl: :class:`Tencentcloud::Tiw.v20190919.models.RecordControl`
+
+        attr_accessor :OnlineRecordTaskId, :SdkAppId, :Whiteboard, :Concat, :MixStream, :RecordControl
+        
+        def initialize(onlinerecordtaskid=nil, sdkappid=nil, whiteboard=nil, concat=nil, mixstream=nil, recordcontrol=nil)
+          @OnlineRecordTaskId = onlinerecordtaskid
+          @SdkAppId = sdkappid
+          @Whiteboard = whiteboard
+          @Concat = concat
+          @MixStream = mixstream
+          @RecordControl = recordcontrol
+        end
+
+        def deserialize(params)
+          @OnlineRecordTaskId = params['OnlineRecordTaskId']
+          @SdkAppId = params['SdkAppId']
+          unless params['Whiteboard'].nil?
+            @Whiteboard = Whiteboard.new.deserialize(params[Whiteboard])
+          end
+          unless params['Concat'].nil?
+            @Concat = Concat.new.deserialize(params[Concat])
+          end
+          unless params['MixStream'].nil?
+            @MixStream = MixStream.new.deserialize(params[MixStream])
+          end
+          unless params['RecordControl'].nil?
+            @RecordControl = RecordControl.new.deserialize(params[RecordControl])
+          end
+        end
+      end
+
+      # CreateVideoGenerationTask返回参数结构体
+      class CreateVideoGenerationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 视频生成的任务Id
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -240,12 +310,15 @@ module TencentCloud
         # @type OmittedDurations: Array
         # @param VideoInfos: 录制视频列表
         # @type VideoInfos: Array
+        # @param ReplayUrl: 回放URL，需配合信令播放器使用。此字段仅适用于`视频生成模式`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplayUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FinishReason, :TaskId, :Status, :RoomId, :GroupId, :RecordUserId, :RecordStartTime, :RecordStopTime, :TotalTime, :ExceptionCnt, :OmittedDurations, :VideoInfos, :RequestId
+        attr_accessor :FinishReason, :TaskId, :Status, :RoomId, :GroupId, :RecordUserId, :RecordStartTime, :RecordStopTime, :TotalTime, :ExceptionCnt, :OmittedDurations, :VideoInfos, :ReplayUrl, :RequestId
         
-        def initialize(finishreason=nil, taskid=nil, status=nil, roomid=nil, groupid=nil, recorduserid=nil, recordstarttime=nil, recordstoptime=nil, totaltime=nil, exceptioncnt=nil, omitteddurations=nil, videoinfos=nil, requestid=nil)
+        def initialize(finishreason=nil, taskid=nil, status=nil, roomid=nil, groupid=nil, recorduserid=nil, recordstarttime=nil, recordstoptime=nil, totaltime=nil, exceptioncnt=nil, omitteddurations=nil, videoinfos=nil, replayurl=nil, requestid=nil)
           @FinishReason = finishreason
           @TaskId = taskid
           @Status = status
@@ -258,6 +331,7 @@ module TencentCloud
           @ExceptionCnt = exceptioncnt
           @OmittedDurations = omitteddurations
           @VideoInfos = videoinfos
+          @ReplayUrl = replayurl
           @RequestId = requestid
         end
 
@@ -274,6 +348,7 @@ module TencentCloud
           @ExceptionCnt = params['ExceptionCnt']
           @OmittedDurations = params['OmittedDurations']
           @VideoInfos = params['VideoInfos']
+          @ReplayUrl = params['ReplayUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -399,6 +474,119 @@ module TencentCloud
           @ThumbnailUrl = params['ThumbnailUrl']
           @ThumbnailResolution = params['ThumbnailResolution']
           @CompressFileUrl = params['CompressFileUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVideoGenerationTaskCallback请求参数结构体
+      class DescribeVideoGenerationTaskCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用的SdkAppId
+        # @type SdkAppId: Integer
+
+        attr_accessor :SdkAppId
+        
+        def initialize(sdkappid=nil)
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeVideoGenerationTaskCallback返回参数结构体
+      class DescribeVideoGenerationTaskCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param Callback: 录制视频生成回调地址
+        # @type Callback: String
+        # @param CallbackKey: 录制视频生成回调鉴权密钥
+        # @type CallbackKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Callback, :CallbackKey, :RequestId
+        
+        def initialize(callback=nil, callbackkey=nil, requestid=nil)
+          @Callback = callback
+          @CallbackKey = callbackkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Callback = params['Callback']
+          @CallbackKey = params['CallbackKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVideoGenerationTask请求参数结构体
+      class DescribeVideoGenerationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param TaskId: 录制视频生成的任务Id
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+        
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeVideoGenerationTask返回参数结构体
+      class DescribeVideoGenerationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 任务对应的群组Id
+        # @type GroupId: String
+        # @param RoomId: 任务对应的房间号
+        # @type RoomId: Integer
+        # @param TaskId: 任务的Id
+        # @type TaskId: String
+        # @param Progress: 已废弃
+        # @type Progress: Integer
+        # @param Status: 录制视频生成任务状态
+        # - QUEUED: 正在排队
+        # - PROCESSING: 正在生成视频
+        # - FINISHED: 生成视频结束（成功完成或失败结束，可以通过错误码和错误信息进一步判断）
+        # @type Status: String
+        # @param TotalTime: 回放视频总时长,单位：毫秒
+        # @type TotalTime: Integer
+        # @param VideoInfos: 已废弃，请使用`VideoInfoList`参数
+        # @type VideoInfos: :class:`Tencentcloud::Tiw.v20190919.models.VideoInfo`
+        # @param VideoInfoList: 录制视频生成视频列表
+        # @type VideoInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RoomId, :TaskId, :Progress, :Status, :TotalTime, :VideoInfos, :VideoInfoList, :RequestId
+        
+        def initialize(groupid=nil, roomid=nil, taskid=nil, progress=nil, status=nil, totaltime=nil, videoinfos=nil, videoinfolist=nil, requestid=nil)
+          @GroupId = groupid
+          @RoomId = roomid
+          @TaskId = taskid
+          @Progress = progress
+          @Status = status
+          @TotalTime = totaltime
+          @VideoInfos = videoinfos
+          @VideoInfoList = videoinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @RoomId = params['RoomId']
+          @TaskId = params['TaskId']
+          @Progress = params['Progress']
+          @Status = params['Status']
+          @TotalTime = params['TotalTime']
+          unless params['VideoInfos'].nil?
+            @VideoInfos = VideoInfo.new.deserialize(params[VideoInfos])
+          end
+          @VideoInfoList = params['VideoInfoList']
           @RequestId = params['RequestId']
         end
       end
@@ -531,6 +719,53 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 录制控制参数， 用于指定全局录制控制及具体流录制控制参数，比如设置需要对哪些流进行录制，是否只录制小画面等
+      class RecordControl < TencentCloud::Common::AbstractModel
+        # @param Enabled: 设置是否开启录制控制参数，只有设置为true的时候，录制控制参数才生效。
+        # @type Enabled: Boolean
+        # @param DisableRecord: 设置是否禁用录制的全局控制参数。一般与`StreamControls`参数配合使用。
+
+        # true - 所有流都不录制。
+        # false - 所有流都录制。默认为false。
+
+        # 这里的设置对所有流都生效，如果同时在 `StreamControls` 列表中针对指定流设置了控制参数，则优先采用`StreamControls`中设置的控制参数。
+        # @type DisableRecord: Boolean
+        # @param DisableAudio: 设置是否禁用所有流的音频录制的全局控制参数。一般与`StreamControls`参数配合使用。
+
+        # true - 所有流的录制都不对音频进行录制。
+        # false - 所有流的录制都需要对音频进行录制。默认为false。
+
+        # 这里的设置对所有流都生效，如果同时在 `StreamControls` 列表中针对指定流设置了控制参数，则优先采用`StreamControls`中设置的控制参数。
+        # @type DisableAudio: Boolean
+        # @param PullSmallVideo: 设置是否所有流都只录制小画面的全局控制参数。一般与`StreamControls`参数配合使用。
+
+        # true - 所有流都只录制小画面。设置为true时，请确保上行端在推流的时候同时上行了小画面，否则录制视频可能是黑屏。
+        # false - 所有流都录制大画面，默认为false。
+
+        # 这里的设置对所有流都生效，如果同时在 `StreamControls` 列表中针对指定流设置了控制参数，则优先采用`StreamControls`中设置的控制参数。
+        # @type PullSmallVideo: Boolean
+        # @param StreamControls: 针对具体流指定控制参数，如果列表为空，则所有流采用全局配置的控制参数进行录制。列表不为空，则列表中指定的流将优先按此列表指定的控制参数进行录制。
+        # @type StreamControls: Array
+
+        attr_accessor :Enabled, :DisableRecord, :DisableAudio, :PullSmallVideo, :StreamControls
+        
+        def initialize(enabled=nil, disablerecord=nil, disableaudio=nil, pullsmallvideo=nil, streamcontrols=nil)
+          @Enabled = enabled
+          @DisableRecord = disablerecord
+          @DisableAudio = disableaudio
+          @PullSmallVideo = pullsmallvideo
+          @StreamControls = streamcontrols
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @DisableRecord = params['DisableRecord']
+          @DisableAudio = params['DisableAudio']
+          @PullSmallVideo = params['PullSmallVideo']
+          @StreamControls = params['StreamControls']
         end
       end
 
@@ -715,24 +950,96 @@ module TencentCloud
         end
       end
 
+      # SetVideoGenerationTaskCallbackKey请求参数结构体
+      class SetVideoGenerationTaskCallbackKeyRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用的SdkAppId
+        # @type SdkAppId: Integer
+        # @param CallbackKey: 设置视频生成回调鉴权密钥，最长64字符，如果传入空字符串，那么删除现有的鉴权回调密钥
+        # @type CallbackKey: String
+
+        attr_accessor :SdkAppId, :CallbackKey
+        
+        def initialize(sdkappid=nil, callbackkey=nil)
+          @SdkAppId = sdkappid
+          @CallbackKey = callbackkey
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CallbackKey = params['CallbackKey']
+        end
+      end
+
+      # SetVideoGenerationTaskCallbackKey返回参数结构体
+      class SetVideoGenerationTaskCallbackKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetVideoGenerationTaskCallback请求参数结构体
+      class SetVideoGenerationTaskCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Callback: 课后录制任务结果回调地址，如果传空字符串会删除原来的回调地址配置，回调地址仅支持 http或https协议，即回调地址以http://或https://开头
+        # @type Callback: String
+
+        attr_accessor :SdkAppId, :Callback
+        
+        def initialize(sdkappid=nil, callback=nil)
+          @SdkAppId = sdkappid
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Callback = params['Callback']
+        end
+      end
+
+      # SetVideoGenerationTaskCallback返回参数结构体
+      class SetVideoGenerationTaskCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartOnlineRecord请求参数结构体
       class StartOnlineRecordRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
         # @type SdkAppId: Integer
         # @param RoomId: 需要录制的房间号，取值范围: (1, 4294967295)
         # @type RoomId: Integer
-        # @param RecordUserId: 用于实时录制服务进房的用户ID，格式为`tic_record_user_${RoomId}_${Random}`，其中 `${RoomId} `与录制房间号对应，`${Random}`为一个随机字符串。
-        # 该ID必须是一个单独的未在SDK中使用的ID，实时录制服务使用这个用户ID进入房间进行音视频与白板录制，若该ID和SDK中使用的ID重复，会导致SDK和录制服务互踢，影响正常录制。
+        # @param RecordUserId: 用于录制服务进房的用户ID，格式为`tic_record_user_${RoomId}_${Random}`，其中 `${RoomId} `与录制房间号对应，`${Random}`为一个随机字符串。
+        # 该ID必须是一个单独的未在SDK中使用的ID，录制服务使用这个用户ID进入房间进行音视频与白板录制，若该ID和SDK中使用的ID重复，会导致SDK和录制服务互踢，影响正常录制。
         # @type RecordUserId: String
         # @param RecordUserSig: 与RecordUserId对应的签名
         # @type RecordUserSig: String
-        # @param GroupId: 白板的 IM 群组 Id，默认同房间号
+        # @param GroupId: （已废弃，设置无效）白板的 IM 群组 Id，默认同房间号
         # @type GroupId: String
-        # @param Concat: 实时录制视频拼接参数
+        # @param Concat: 录制视频拼接参数
         # @type Concat: :class:`Tencentcloud::Tiw.v20190919.models.Concat`
-        # @param Whiteboard: 实时录制白板参数，例如白板宽高等
+        # @param Whiteboard: 录制白板参数，例如白板宽高等
         # @type Whiteboard: :class:`Tencentcloud::Tiw.v20190919.models.Whiteboard`
-        # @param MixStream: 实时录制混流参数
+        # @param MixStream: 录制混流参数
         # 特别说明：
         # 1. 混流功能需要根据额外开通， 请联系腾讯云互动白板客服人员
         # 2. 使用混流功能，必须提供 Extras 参数，且 Extras 参数中必须包含 "MIX_STREAM"
@@ -743,10 +1050,21 @@ module TencentCloud
         # @type Extras: Array
         # @param AudioFileNeeded: 是否需要在结果回调中返回各路流的纯音频录制文件，文件格式为mp3
         # @type AudioFileNeeded: Boolean
+        # @param RecordControl: 录制控制参数，用于更精细地指定需要录制哪些流，某一路流是否禁用音频，是否只录制小画面等
+        # @type RecordControl: :class:`Tencentcloud::Tiw.v20190919.models.RecordControl`
+        # @param RecordMode: 录制模式
 
-        attr_accessor :SdkAppId, :RoomId, :RecordUserId, :RecordUserSig, :GroupId, :Concat, :Whiteboard, :MixStream, :Extras, :AudioFileNeeded
+        # REALTIME_MODE - 实时录制模式（默认）
+        # VIDEO_GENERATION_MODE - 视频生成模式（内测中，需邮件申请开通）
+        # @type RecordMode: String
+        # @param ChatGroupId: 聊天群组ID，此字段仅适用于`视频生成模式`
+
+        # 在`视频生成模式`下，默认会记录白板群组内的非白板信令消息，如果指定了`ChatGroupId`，则会记录指定群ID的聊天消息。
+        # @type ChatGroupId: String
+
+        attr_accessor :SdkAppId, :RoomId, :RecordUserId, :RecordUserSig, :GroupId, :Concat, :Whiteboard, :MixStream, :Extras, :AudioFileNeeded, :RecordControl, :RecordMode, :ChatGroupId
         
-        def initialize(sdkappid=nil, roomid=nil, recorduserid=nil, recordusersig=nil, groupid=nil, concat=nil, whiteboard=nil, mixstream=nil, extras=nil, audiofileneeded=nil)
+        def initialize(sdkappid=nil, roomid=nil, recorduserid=nil, recordusersig=nil, groupid=nil, concat=nil, whiteboard=nil, mixstream=nil, extras=nil, audiofileneeded=nil, recordcontrol=nil, recordmode=nil, chatgroupid=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @RecordUserId = recorduserid
@@ -757,6 +1075,9 @@ module TencentCloud
           @MixStream = mixstream
           @Extras = extras
           @AudioFileNeeded = audiofileneeded
+          @RecordControl = recordcontrol
+          @RecordMode = recordmode
+          @ChatGroupId = chatgroupid
         end
 
         def deserialize(params)
@@ -776,12 +1097,17 @@ module TencentCloud
           end
           @Extras = params['Extras']
           @AudioFileNeeded = params['AudioFileNeeded']
+          unless params['RecordControl'].nil?
+            @RecordControl = RecordControl.new.deserialize(params[RecordControl])
+          end
+          @RecordMode = params['RecordMode']
+          @ChatGroupId = params['ChatGroupId']
         end
       end
 
       # StartOnlineRecord返回参数结构体
       class StartOnlineRecordResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 实时录制的任务Id
+        # @param TaskId: 录制任务Id
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -835,6 +1161,55 @@ module TencentCloud
         end
       end
 
+      # 指定流录制的控制参数，比如是否禁用音频、视频是录制大画面还是录制小画面等
+      class StreamControl < TencentCloud::Common::AbstractModel
+        # @param StreamId: 视频流ID
+        # 视频流ID的取值含义如下：
+        # 1. tic_record_user - 表示白板视频流
+        # 2. tic_substream - 表示辅路视频流
+        # 3. 特定用户ID - 表示指定用户的视频流
+
+        # 在实际录制过程中，视频流ID的匹配规则为前缀匹配，只要真实流ID的前缀与指定的流ID一致就认为匹配成功。
+        # @type StreamId: String
+        # @param DisableRecord: 设置是否对此路流开启录制。
+
+        # true - 表示不对这路流进行录制，录制结果将不包含这路流的视频。
+        # false - 表示需要对这路流进行录制，录制结果会包含这路流的视频。
+
+        # 默认为 false。
+        # @type DisableRecord: Boolean
+        # @param DisableAudio: 设置是否禁用这路流的音频录制。
+
+        # true - 表示不对这路流的音频进行录制，录制结果里这路流的视频将会没有声音。
+        # false - 录制视频会保留音频，如果设置为true，则录制视频会丢弃这路流的音频。
+
+        # 默认为 false。
+        # @type DisableAudio: Boolean
+        # @param PullSmallVideo: 设置当前流录制视频是否只录制小画面。
+
+        # true - 录制小画面。设置为true时，请确保上行端同时上行了小画面，否则录制视频可能是黑屏。
+        # false - 录制大画面。
+
+        # 默认为 false。
+        # @type PullSmallVideo: Boolean
+
+        attr_accessor :StreamId, :DisableRecord, :DisableAudio, :PullSmallVideo
+        
+        def initialize(streamid=nil, disablerecord=nil, disableaudio=nil, pullsmallvideo=nil)
+          @StreamId = streamid
+          @DisableRecord = disablerecord
+          @DisableAudio = disableaudio
+          @PullSmallVideo = pullsmallvideo
+        end
+
+        def deserialize(params)
+          @StreamId = params['StreamId']
+          @DisableRecord = params['DisableRecord']
+          @DisableAudio = params['DisableAudio']
+          @PullSmallVideo = params['PullSmallVideo']
+        end
+      end
+
       # 流布局参数
       class StreamLayout < TencentCloud::Common::AbstractModel
         # @param LayoutParams: 流布局配置参数
@@ -848,13 +1223,19 @@ module TencentCloud
         # @type InputStreamId: String
         # @param BackgroundColor: 背景颜色，默认为黑色，格式为RGB格式，如红色为"#FF0000"
         # @type BackgroundColor: String
+        # @param FillMode: 视频画面填充模式。
 
-        attr_accessor :LayoutParams, :InputStreamId, :BackgroundColor
+        # 0 - 自适应模式，对视频画面进行等比例缩放，在指定区域内显示完整的画面。此模式可能存在黑边。
+        # 1 - 全屏模式，对视频画面进行等比例缩放，让画面填充满整个指定区域。此模式不会存在黑边，但会将超出区域的那一部分画面裁剪掉。
+        # @type FillMode: Integer
+
+        attr_accessor :LayoutParams, :InputStreamId, :BackgroundColor, :FillMode
         
-        def initialize(layoutparams=nil, inputstreamid=nil, backgroundcolor=nil)
+        def initialize(layoutparams=nil, inputstreamid=nil, backgroundcolor=nil, fillmode=nil)
           @LayoutParams = layoutparams
           @InputStreamId = inputstreamid
           @BackgroundColor = backgroundcolor
+          @FillMode = fillmode
         end
 
         def deserialize(params)
@@ -863,6 +1244,7 @@ module TencentCloud
           end
           @InputStreamId = params['InputStreamId']
           @BackgroundColor = params['BackgroundColor']
+          @FillMode = params['FillMode']
         end
       end
 
@@ -889,10 +1271,14 @@ module TencentCloud
         # @type VideoType: Integer
         # @param UserId: 摄像头/屏幕分享视频所属用户的 Id（白板视频为空、混流视频tic_mixstream_房间号_混流布局类型、辅路视频tic_substream_用户Id）
         # @type UserId: String
+        # @param Width: 视频分辨率的宽
+        # @type Width: Integer
+        # @param Height: 视频分辨率的高
+        # @type Height: Integer
 
-        attr_accessor :VideoPlayTime, :VideoSize, :VideoFormat, :VideoDuration, :VideoUrl, :VideoId, :VideoType, :UserId
+        attr_accessor :VideoPlayTime, :VideoSize, :VideoFormat, :VideoDuration, :VideoUrl, :VideoId, :VideoType, :UserId, :Width, :Height
         
-        def initialize(videoplaytime=nil, videosize=nil, videoformat=nil, videoduration=nil, videourl=nil, videoid=nil, videotype=nil, userid=nil)
+        def initialize(videoplaytime=nil, videosize=nil, videoformat=nil, videoduration=nil, videourl=nil, videoid=nil, videotype=nil, userid=nil, width=nil, height=nil)
           @VideoPlayTime = videoplaytime
           @VideoSize = videosize
           @VideoFormat = videoformat
@@ -901,6 +1287,8 @@ module TencentCloud
           @VideoId = videoid
           @VideoType = videotype
           @UserId = userid
+          @Width = width
+          @Height = height
         end
 
         def deserialize(params)
@@ -912,6 +1300,8 @@ module TencentCloud
           @VideoId = params['VideoId']
           @VideoType = params['VideoType']
           @UserId = params['UserId']
+          @Width = params['Width']
+          @Height = params['Height']
         end
       end
 

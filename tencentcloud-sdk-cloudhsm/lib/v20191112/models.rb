@@ -357,12 +357,18 @@ module TencentCloud
         # @param SubnetCidrBlock: 子网的CIDR
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetCidrBlock: String
+        # @param Tags: 资源所关联的Tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param RenewFlag: 资源续费标识，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :RequestId
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :RequestId
         
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, requestid=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, requestid=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -383,6 +389,8 @@ module TencentCloud
           @VpcName = vpcname
           @VpcCidrBlock = vpccidrblock
           @SubnetCidrBlock = subnetcidrblock
+          @Tags = tags
+          @RenewFlag = renewflag
           @RequestId = requestid
         end
 
@@ -407,6 +415,8 @@ module TencentCloud
           @VpcName = params['VpcName']
           @VpcCidrBlock = params['VpcCidrBlock']
           @SubnetCidrBlock = params['SubnetCidrBlock']
+          @Tags = params['Tags']
+          @RenewFlag = params['RenewFlag']
           @RequestId = params['RequestId']
         end
       end
@@ -419,19 +429,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param SearchWord: 查询关键字
         # @type SearchWord: String
+        # @param TagFilters: 标签过滤条件
+        # @type TagFilters: Array
 
-        attr_accessor :Offset, :Limit, :SearchWord
+        attr_accessor :Offset, :Limit, :SearchWord, :TagFilters
         
-        def initialize(offset=nil, limit=nil, searchword=nil)
+        def initialize(offset=nil, limit=nil, searchword=nil, tagfilters=nil)
           @Offset = offset
           @Limit = limit
           @SearchWord = searchword
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SearchWord = params['SearchWord']
+          @TagFilters = params['TagFilters']
         end
       end
 
@@ -550,7 +564,7 @@ module TencentCloud
         # @type ResourceName: String
         # @param SgIds: 安全组Id
         # @type SgIds: Array
-        # @param VpcId: VpcId
+        # @param VpcId: 虚拟专网Id
         # @type VpcId: String
         # @param SubnetId: 子网Id
         # @type SubnetId: String
@@ -648,10 +662,19 @@ module TencentCloud
         # @param VpcName: Vpc名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcName: String
+        # @param CreateUin: 创建者Uin账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUin: String
+        # @param RenewFlag: 自动续费状态标识， 0-手动续费，1-自动续费，2-到期不续
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
+        # @param Tags: 标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags
         
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -670,6 +693,9 @@ module TencentCloud
           @Expired = expired
           @RemainSeconds = remainseconds
           @VpcName = vpcname
+          @CreateUin = createuin
+          @RenewFlag = renewflag
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -691,6 +717,9 @@ module TencentCloud
           @Expired = params['Expired']
           @RemainSeconds = params['RemainSeconds']
           @VpcName = params['VpcName']
+          @CreateUin = params['CreateUin']
+          @RenewFlag = params['RenewFlag']
+          @Tags = params['Tags']
         end
       end
 
@@ -780,6 +809,46 @@ module TencentCloud
           @Ipv6CidrBlock = params['Ipv6CidrBlock']
           @TotalIpAddressCount = params['TotalIpAddressCount']
           @IsDefault = params['IsDefault']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签过滤参数
+      class TagFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

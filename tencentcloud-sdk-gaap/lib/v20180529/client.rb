@@ -1227,7 +1227,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持最近1，3，6，12，24小时内1分钟细粒度的源站状态统计数据展示。
+        # 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持1分钟细粒度的源站状态统计数据展示。
 
         # @param request: Request instance for DescribeRealServerStatistics.
         # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeRealServerStatisticsRequest`
@@ -1251,7 +1251,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeRealServers）用于查询源站信息，可以根据项目名查询所有的源站信息，此外支持指定IP机或者域名的源站模糊查询。
+        # 本接口（DescribeRealServers）用于查询源站信息，可以根据项目名查询所有的源站信息，此外支持指定IP或者域名的源站模糊查询。
 
         # @param request: Request instance for DescribeRealServers.
         # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeRealServersRequest`
@@ -1587,7 +1587,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyCertificateAttributes）用于修改证书，包括证明名字以及证书内容。
+        # 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
 
         # @param request: Request instance for ModifyCertificateAttributes.
         # @type request: :class:`Tencentcloud::gaap::V20180529::ModifyCertificateAttributesRequest`

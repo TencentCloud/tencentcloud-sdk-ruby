@@ -287,10 +287,16 @@ module TencentCloud
         # @param ActivityId: 活动ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityId: String
+        # @param OverdueTime: 订单过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OverdueTime: String
+        # @param ProductInfo: 产品详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductInfo: Array
 
-        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId
+        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo
         
-        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil)
+        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil)
           @DealId = dealid
           @DealName = dealname
           @GoodsCategoryId = goodscategoryid
@@ -315,6 +321,8 @@ module TencentCloud
           @SalesUin = salesuin
           @PayerMode = payermode
           @ActivityId = activityid
+          @OverdueTime = overduetime
+          @ProductInfo = productinfo
         end
 
         def deserialize(params)
@@ -344,6 +352,8 @@ module TencentCloud
           @SalesUin = params['SalesUin']
           @PayerMode = params['PayerMode']
           @ActivityId = params['ActivityId']
+          @OverdueTime = params['OverdueTime']
+          @ProductInfo = params['ProductInfo']
         end
       end
 
@@ -963,6 +973,74 @@ module TencentCloud
         end
       end
 
+      # DescribeAgentSelfPayDeals请求参数结构体
+      class DescribeAgentSelfPayDealsRequest < TencentCloud::Common::AbstractModel
+        # @param OwnerUin: 下单人账号ID
+        # @type OwnerUin: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param CreatTimeRangeStart: 下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
+        # @type CreatTimeRangeStart: String
+        # @param CreatTimeRangeEnd: 下单时间范围终止点
+        # @type CreatTimeRangeEnd: String
+        # @param Order: 0:下单时间降序；其他：下单时间升序
+        # @type Order: Integer
+        # @param Status: 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
+        # @type Status: Integer
+        # @param DealNames: 订单号列表
+        # @type DealNames: Array
+
+        attr_accessor :OwnerUin, :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :DealNames
+        
+        def initialize(owneruin=nil, offset=nil, limit=nil, creattimerangestart=nil, creattimerangeend=nil, order=nil, status=nil, dealnames=nil)
+          @OwnerUin = owneruin
+          @Offset = offset
+          @Limit = limit
+          @CreatTimeRangeStart = creattimerangestart
+          @CreatTimeRangeEnd = creattimerangeend
+          @Order = order
+          @Status = status
+          @DealNames = dealnames
+        end
+
+        def deserialize(params)
+          @OwnerUin = params['OwnerUin']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @CreatTimeRangeStart = params['CreatTimeRangeStart']
+          @CreatTimeRangeEnd = params['CreatTimeRangeEnd']
+          @Order = params['Order']
+          @Status = params['Status']
+          @DealNames = params['DealNames']
+        end
+      end
+
+      # DescribeAgentSelfPayDeals返回参数结构体
+      class DescribeAgentSelfPayDealsResponse < TencentCloud::Common::AbstractModel
+        # @param AgentPayDealSet: 订单数组
+        # @type AgentPayDealSet: Array
+        # @param TotalCount: 符合条件的订单总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AgentPayDealSet, :TotalCount, :RequestId
+        
+        def initialize(agentpaydealset=nil, totalcount=nil, requestid=nil)
+          @AgentPayDealSet = agentpaydealset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AgentPayDealSet = params['AgentPayDealSet']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClientBalance请求参数结构体
       class DescribeClientBalanceRequest < TencentCloud::Common::AbstractModel
         # @param ClientUin: 客户(代客)账号ID
@@ -1136,6 +1214,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 产品详情
+      class ProductInfoElem < TencentCloud::Common::AbstractModel
+        # @param Name: 产品属性
+        # @type Name: String
+        # @param Value: 产品属性值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 

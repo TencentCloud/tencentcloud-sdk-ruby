@@ -131,9 +131,9 @@ module TencentCloud
         # @type AllowArrears: Integer
         # @param NeedSms: 是否开通短信0:未开短信 1:开通短信
         # @type NeedSms: Integer
-        # @param Provider: 服务
+        # @param Provider: 供应商
         # @type Provider: Integer
-        # @param CertificationState: 实名验证(浙江联通)
+        # @param CertificationState: 实名认证 0:无 1:未实名 2:已实名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificationState: Integer
 
@@ -355,7 +355,7 @@ module TencentCloud
         # @type Sdkappid: Integer
         # @param Iccids: 续费的iccid
         # @type Iccids: Array
-        # @param RenewNum: 续费的周期
+        # @param RenewNum: 续费的周期（单位：月）
         # @type RenewNum: Integer
 
         attr_accessor :Sdkappid, :Iccids, :RenewNum

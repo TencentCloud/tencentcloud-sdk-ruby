@@ -97,6 +97,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询流程任务
+
+        # @param request: Request instance for DescribeJobFlow.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeJobFlowRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeJobFlowResponse`
+        def DescribeJobFlow(request)
+          body = send_request('DescribeJobFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJobFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建实例询价
 
         # @param request: Request instance for InquiryPriceCreateInstance.
@@ -179,6 +203,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquiryPriceUpdateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建流程作业
+
+        # @param request: Request instance for RunJobFlow.
+        # @type request: :class:`Tencentcloud::emr::V20190103::RunJobFlowRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::RunJobFlowResponse`
+        def RunJobFlow(request)
+          body = send_request('RunJobFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunJobFlowResponse.new
             model.deserialize(response['Response'])
             model
           else

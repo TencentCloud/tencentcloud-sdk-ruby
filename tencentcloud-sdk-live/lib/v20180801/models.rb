@@ -131,6 +131,8 @@ module TencentCloud
       # AddLiveWatermark请求参数结构体
       class AddLiveWatermarkRequest < TencentCloud::Common::AbstractModel
         # @param PictureUrl: 水印图片 URL。
+        # URL中禁止包含的字符：
+        #  ;(){}$>`#"\'|
         # @type PictureUrl: String
         # @param WatermarkName: 水印名称。
         # 最长16字节。
@@ -141,7 +143,7 @@ module TencentCloud
         # @type YPosition: Integer
         # @param Width: 水印宽度，占直播原始画面宽度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始宽度。
         # @type Width: Integer
-        # @param Height: 水印高度，占直播原始画面宽度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。
+        # @param Height: 水印高度，占直播原始画面高度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。
         # @type Height: Integer
 
         attr_accessor :PictureUrl, :WatermarkName, :XPosition, :YPosition, :Width, :Height
@@ -182,6 +184,68 @@ module TencentCloud
         def deserialize(params)
           @WatermarkId = params['WatermarkId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 带宽信息
+      class BandwidthInfo < TencentCloud::Common::AbstractModel
+        # @param Time: 返回格式：
+        # yyyy-mm-dd HH:MM:SS
+        # 根据粒度会有不同程度的缩减。
+        # @type Time: String
+        # @param Bandwidth: 带宽。
+        # @type Bandwidth: Float
+
+        attr_accessor :Time, :Bandwidth
+        
+        def initialize(time=nil, bandwidth=nil)
+          @Time = time
+          @Bandwidth = bandwidth
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Bandwidth = params['Bandwidth']
+        end
+      end
+
+      # 海外分区直播带宽出参，分区信息
+      class BillAreaInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 大区名称
+        # @type Name: String
+        # @param Countrys: 国家明细数据
+        # @type Countrys: Array
+
+        attr_accessor :Name, :Countrys
+        
+        def initialize(name=nil, countrys=nil)
+          @Name = name
+          @Countrys = countrys
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Countrys = params['Countrys']
+        end
+      end
+
+      # 海外分区直播带宽出参国家带宽信息
+      class BillCountryInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 国家名称
+        # @type Name: String
+        # @param BandInfoList: 带宽明细数据信息。
+        # @type BandInfoList: Array
+
+        attr_accessor :Name, :BandInfoList
+        
+        def initialize(name=nil, bandinfolist=nil)
+          @Name = name
+          @BandInfoList = bandinfolist
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @BandInfoList = params['BandInfoList']
         end
       end
 
@@ -337,6 +401,46 @@ module TencentCloud
         end
       end
 
+      # 回调事件信息
+      class CallbackEventInfo < TencentCloud::Common::AbstractModel
+        # @param EventTime: 事件时间
+        # @type EventTime: String
+        # @param EventType: 事件类型
+        # @type EventType: Integer
+        # @param Request: 回调请求
+        # @type Request: String
+        # @param Response: 回调响应
+        # @type Response: String
+        # @param ResponseTime: 客户接口响应时间
+        # @type ResponseTime: String
+        # @param ResultCode: 回调结果
+        # @type ResultCode: Integer
+        # @param StreamId: 流名称
+        # @type StreamId: String
+
+        attr_accessor :EventTime, :EventType, :Request, :Response, :ResponseTime, :ResultCode, :StreamId
+        
+        def initialize(eventtime=nil, eventtype=nil, request=nil, response=nil, responsetime=nil, resultcode=nil, streamid=nil)
+          @EventTime = eventtime
+          @EventType = eventtype
+          @Request = request
+          @Response = response
+          @ResponseTime = responsetime
+          @ResultCode = resultcode
+          @StreamId = streamid
+        end
+
+        def deserialize(params)
+          @EventTime = params['EventTime']
+          @EventType = params['EventType']
+          @Request = params['Request']
+          @Response = params['Response']
+          @ResponseTime = params['ResponseTime']
+          @ResultCode = params['ResultCode']
+          @StreamId = params['StreamId']
+        end
+      end
+
       # CancelCommonMixStream请求参数结构体
       class CancelCommonMixStreamRequest < TencentCloud::Common::AbstractModel
         # @param MixStreamSessionId: 混流会话（申请混流开始到取消混流结束）标识 ID。
@@ -414,9 +518,9 @@ module TencentCloud
         # @type CreateTime: String
         # @param HttpsCrt: 证书内容。
         # @type HttpsCrt: String
-        # @param CertType: 证书类型:
-        # 0：腾讯云托管证书。
-        # 1：用户添加证书。
+        # @param CertType: 证书类型。
+        # 0：用户添加证书，
+        # 1：腾讯云托管证书。
         # @type CertType: Integer
         # @param CertExpireTime: 证书过期时间，UTC 格式。
         # @type CertExpireTime: String
@@ -489,15 +593,20 @@ module TencentCloud
         # @param UseMixCropCenter: 取值范围[0,1]。
         # 填1时，当参数中图层分辨率参数与视频实际分辨率不一致时，自动从视频中按图层设置的分辨率比例进行裁剪。
         # @type UseMixCropCenter: Integer
+        # @param AllowCopy: 取值范围[0,1]
+        # 填1时，当InputStreamList中个数为1时，且OutputParams.OutputStreamType为1时，不执行取消操作，执行拷贝流操作
+        # @type AllowCopy: Integer
 
-        attr_accessor :UseMixCropCenter
+        attr_accessor :UseMixCropCenter, :AllowCopy
         
-        def initialize(usemixcropcenter=nil)
+        def initialize(usemixcropcenter=nil, allowcopy=nil)
           @UseMixCropCenter = usemixcropcenter
+          @AllowCopy = allowcopy
         end
 
         def deserialize(params)
           @UseMixCropCenter = params['UseMixCropCenter']
+          @AllowCopy = params['AllowCopy']
         end
       end
 
@@ -839,10 +948,13 @@ module TencentCloud
         # @param CallbackKey: 回调 Key，回调 URL 公用，回调签名详见事件消息通知文档。
         # [事件消息通知](/document/product/267/32744)。
         # @type CallbackKey: String
+        # @param StreamMixNotifyUrl: 混流回调 URL，
+        # 相关协议文档：[事件消息通知](/document/product/267/32744)。
+        # @type StreamMixNotifyUrl: String
 
-        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey
+        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :StreamMixNotifyUrl
         
-        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil)
+        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, streammixnotifyurl=nil)
           @TemplateName = templatename
           @Description = description
           @StreamBeginNotifyUrl = streambeginnotifyurl
@@ -851,6 +963,7 @@ module TencentCloud
           @SnapshotNotifyUrl = snapshotnotifyurl
           @PornCensorshipNotifyUrl = porncensorshipnotifyurl
           @CallbackKey = callbackkey
+          @StreamMixNotifyUrl = streammixnotifyurl
         end
 
         def deserialize(params)
@@ -862,6 +975,7 @@ module TencentCloud
           @SnapshotNotifyUrl = params['SnapshotNotifyUrl']
           @PornCensorshipNotifyUrl = params['PornCensorshipNotifyUrl']
           @CallbackKey = params['CallbackKey']
+          @StreamMixNotifyUrl = params['StreamMixNotifyUrl']
         end
       end
 
@@ -1213,6 +1327,7 @@ module TencentCloud
         # @param CosAppId: Cos 应用 ID。
         # @type CosAppId: Integer
         # @param CosBucket: Cos Bucket名称。
+        # 注：CosBucket参数值不能包含-[appid] 部分。
         # @type CosBucket: String
         # @param CosRegion: Cos地区。
         # @type CosRegion: String
@@ -1221,7 +1336,7 @@ module TencentCloud
         # 仅支持中文、英文、数字、_、-。
         # @type Description: String
         # @param SnapshotInterval: 截图间隔，单位s，默认10s。
-        # 范围： 5s ~ 600s。
+        # 范围： 5s ~ 300s。
         # @type SnapshotInterval: Integer
         # @param Width: 截图宽度。默认：0（原始宽）。
         # @type Width: Integer
@@ -1230,8 +1345,14 @@ module TencentCloud
         # @param PornFlag: 是否开启鉴黄，0：不开启，1：开启。默认：0。
         # @type PornFlag: Integer
         # @param CosPrefix: Cos Bucket文件夹前缀。
+        # 如不传，实际按默认值
+        # /{Year}-{Month}-{Day}
+        # 生效
         # @type CosPrefix: String
         # @param CosFileName: Cos 文件名称。
+        # 如不传，实际按默认值
+        # {StreamID}-screenshot-{Hour}-{Minute}-{Second}-{Width}x{Height}{Ext}
+        # 生效
         # @type CosFileName: String
 
         attr_accessor :TemplateName, :CosAppId, :CosBucket, :CosRegion, :Description, :SnapshotInterval, :Width, :Height, :PornFlag, :CosPrefix, :CosFileName
@@ -1331,56 +1452,82 @@ module TencentCloud
 
       # CreateLiveTranscodeTemplate请求参数结构体
       class CreateLiveTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模板名称，例：900 900p 仅支持字母和数字的组合。
+        # @param TemplateName: 模板名称，例： 900p 仅支持字母和数字的组合。
+        # 长度限制：
+        #   标准转码：1-10个字符
+        #   极速高清转码：3-10个字符
         # @type TemplateName: String
-        # @param VideoBitrate: 视频码率。范围：100-8000。
-        # 注意：码率必须是100的倍数。
+        # @param VideoBitrate: 视频码率。范围：0kbps - 8000kbps。
+        # 0为保持原始码率。
+        # 注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。
         # @type VideoBitrate: Integer
-        # @param Vcodec: 视频编码：h264/h265，默认h264。
-        # @type Vcodec: String
-        # @param Acodec: 音频编码：aac，默认原始音频格式。
+        # @param Acodec: 音频编码：aac，默认aac。
         # 注意：当前该参数未生效，待后续支持！
         # @type Acodec: String
-        # @param AudioBitrate: 音频码率：默认0。0-500。
+        # @param AudioBitrate: 音频码率，默认0。
+        # 范围：0-500。
         # @type AudioBitrate: Integer
+        # @param Vcodec: 视频编码：h264/h265/origin，默认origin。
+
+        # origin: 保持原始编码格式
+        # @type Vcodec: String
         # @param Description: 模板描述。
         # @type Description: String
         # @param Width: 宽，默认0。
+        # 范围[0-3000]
+        # 数值必须是2的倍数，0是原始宽度
         # @type Width: Integer
         # @param NeedVideo: 是否保留视频，0：否，1：是。默认1。
         # @type NeedVideo: Integer
         # @param NeedAudio: 是否保留音频，0：否，1：是。默认1。
         # @type NeedAudio: Integer
         # @param Height: 高，默认0。
+        # 范围[0-3000]
+        # 数值必须是2的倍数，0是原始宽度
         # @type Height: Integer
         # @param Fps: 帧率，默认0。
+        # 范围0-60fps
         # @type Fps: Integer
-        # @param Gop: 关键帧间隔，单位：秒。默认原始的间隔
+        # @param Gop: 关键帧间隔，单位：秒。
+        # 默认原始的间隔
+        # 范围2-6
         # @type Gop: Integer
-        # @param Rotate: 是否旋转，0：否，1：是。默认0。
+        # @param Rotate: 旋转角度，默认0。
+        # 可取值：0，90，180，270
         # @type Rotate: Integer
         # @param Profile: 编码质量：
         # baseline/main/high。默认baseline
         # @type Profile: String
-        # @param BitrateToOrig: 是否不超过原始码率，0：否，1：是。默认0。
+        # @param BitrateToOrig: 当设置的码率>原始码率时，是否以原始码率为准。
+        # 0：否， 1：是
+        # 默认 0。
         # @type BitrateToOrig: Integer
-        # @param HeightToOrig: 是否不超过原始高，0：否，1：是。默认0。
+        # @param HeightToOrig: 当设置的高度>原始高度时，是否以原始高度为准。
+        # 0：否， 1：是
+        # 默认 0。
         # @type HeightToOrig: Integer
-        # @param FpsToOrig: 是否不超过原始帧率，0：否，1：是。默认0。
+        # @param FpsToOrig: 当设置的帧率>原始帧率时，是否以原始帧率为准。
+        # 0：否， 1：是
+        # 默认 0。
         # @type FpsToOrig: Integer
         # @param AiTransCode: 是否是极速高清模板，0：否，1：是。默认0。
         # @type AiTransCode: Integer
-        # @param AdaptBitratePercent: 极速高清相比VideoBitrate少多少码率，0.1到0.5
-        # @type AdaptBitratePercent: Float
+        # @param AdaptBitratePercent: 极速高清视频码率压缩比。
+        # 极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)
 
-        attr_accessor :TemplateName, :VideoBitrate, :Vcodec, :Acodec, :AudioBitrate, :Description, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AiTransCode, :AdaptBitratePercent
+        # 取值范围：0.0到0.5
+        # @type AdaptBitratePercent: Float
+        # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
+        # @type ShortEdgeAsHeight: Integer
+
+        attr_accessor :TemplateName, :VideoBitrate, :Acodec, :AudioBitrate, :Vcodec, :Description, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight
         
-        def initialize(templatename=nil, videobitrate=nil, vcodec=nil, acodec=nil, audiobitrate=nil, description=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, aitranscode=nil, adaptbitratepercent=nil)
+        def initialize(templatename=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, vcodec=nil, description=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil)
           @TemplateName = templatename
           @VideoBitrate = videobitrate
-          @Vcodec = vcodec
           @Acodec = acodec
           @AudioBitrate = audiobitrate
+          @Vcodec = vcodec
           @Description = description
           @Width = width
           @NeedVideo = needvideo
@@ -1395,14 +1542,15 @@ module TencentCloud
           @FpsToOrig = fpstoorig
           @AiTransCode = aitranscode
           @AdaptBitratePercent = adaptbitratepercent
+          @ShortEdgeAsHeight = shortedgeasheight
         end
 
         def deserialize(params)
           @TemplateName = params['TemplateName']
           @VideoBitrate = params['VideoBitrate']
-          @Vcodec = params['Vcodec']
           @Acodec = params['Acodec']
           @AudioBitrate = params['AudioBitrate']
+          @Vcodec = params['Vcodec']
           @Description = params['Description']
           @Width = params['Width']
           @NeedVideo = params['NeedVideo']
@@ -1417,6 +1565,7 @@ module TencentCloud
           @FpsToOrig = params['FpsToOrig']
           @AiTransCode = params['AiTransCode']
           @AdaptBitratePercent = params['AdaptBitratePercent']
+          @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
         end
       end
 
@@ -1571,9 +1720,9 @@ module TencentCloud
         # @type DomainName: String
         # @param AppName: 推流路径。
         # @type AppName: String
-        # @param EndTime: 录制任务结束时间，Unix时间戳。设置时间必须大于StartTime，且不能超过从当前时刻开始24小时之内的时间。
+        # @param EndTime: 录制任务结束时间，Unix时间戳。设置时间必须大于StartTime，且EndTime - StartTime不能超过24小时。
         # @type EndTime: Integer
-        # @param StartTime: 录制任务开始时间，Unix时间戳。如果不填表示立即启动录制。不超过从当前时间开始24小时之内的时间。
+        # @param StartTime: 录制任务开始时间，Unix时间戳。如果不填表示立即启动录制。不超过从当前时间开始6天之内的时间。
         # @type StartTime: Integer
         # @param StreamType: 推流类型，默认0。取值：
         # 0-直播推流。
@@ -1581,7 +1730,7 @@ module TencentCloud
         # @type StreamType: Integer
         # @param TemplateId: 录制模板ID，CreateLiveRecordTemplate 返回值。如果不填或者传入错误ID，则默认录制HLS格式、永久存储。
         # @type TemplateId: Integer
-        # @param Extension: 扩展字段，默认空。
+        # @param Extension: 扩展字段，暂无定义。默认为空。
         # @type Extension: String
 
         attr_accessor :StreamName, :DomainName, :AppName, :EndTime, :StartTime, :StreamType, :TemplateId, :Extension
@@ -1611,7 +1760,7 @@ module TencentCloud
 
       # CreateRecordTask返回参数结构体
       class CreateRecordTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID，全局唯一标识录制任务。
+        # @param TaskId: 任务ID，全局唯一标识录制任务。返回TaskId字段说明录制任务创建成功。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2251,7 +2400,7 @@ module TencentCloud
 
       # DescribeAllStreamPlayInfoList请求参数结构体
       class DescribeAllStreamPlayInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param QueryTime: 查询时间点，精确到分钟粒度，支持最近1个月的数据查询，数据延迟为5分钟左右，如果要查询实时的数据，建议传递5分钟前的时间点，格式为yyyy-mm-dd HH:MM:SS。
+        # @param QueryTime: 查询时间点，精确到分钟粒度，支持最近1个月的数据查询，数据延迟为5分钟左右，如果要查询实时的数据，建议传递5分钟前的时间点，格式为yyyy-mm-dd HH:MM:00。（只精确至分钟，秒数填00）。
         # @type QueryTime: String
 
         attr_accessor :QueryTime
@@ -2289,11 +2438,55 @@ module TencentCloud
         end
       end
 
+      # DescribeAreaBillBandwidthAndFluxList请求参数结构体
+      class DescribeAreaBillBandwidthAndFluxListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过1天。
+        # @type EndTime: String
+        # @param PlayDomains: 直播播放域名，若不填，表示总体数据。
+        # @type PlayDomains: Array
+
+        attr_accessor :StartTime, :EndTime, :PlayDomains
+        
+        def initialize(starttime=nil, endtime=nil, playdomains=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @PlayDomains = playdomains
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PlayDomains = params['PlayDomains']
+        end
+      end
+
+      # DescribeAreaBillBandwidthAndFluxList返回参数结构体
+      class DescribeAreaBillBandwidthAndFluxListResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 明细数据信息。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+        
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataInfoList = params['DataInfoList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBillBandwidthAndFluxList请求参数结构体
       class DescribeBillBandwidthAndFluxListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
         # @type StartTime: String
-        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过31天。
+        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过31天。支持最近3年的数据查询
         # @type EndTime: String
         # @param PlayDomains: 直播播放域名，若不填，表示总体数据。
         # @type PlayDomains: Array
@@ -2309,7 +2502,7 @@ module TencentCloud
         # 1440：天粒度（跨度不支持超过一个月）。
         # 默认值：5。
         # @type Granularity: Integer
-        # @param ServiceName: 服务名称，可选值包括LVB(标准直播)，LEB(快直播)，默认值是LVB。
+        # @param ServiceName: 服务名称，可选值包括LVB(标准直播)，LEB(快直播)，不填则查LVB+LEB总值。
         # @type ServiceName: String
 
         attr_accessor :StartTime, :EndTime, :PlayDomains, :MainlandOrOversea, :Granularity, :ServiceName
@@ -2373,6 +2566,85 @@ module TencentCloud
         end
       end
 
+      # DescribeCallbackRecordsList请求参数结构体
+      class DescribeCallbackRecordsListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过1天。
+        # @type EndTime: String
+        # @param StreamName: 流名称，精确匹配。
+        # @type StreamName: String
+        # @param PageNum: 页码
+        # @type PageNum: Integer
+        # @param PageSize: 每页条数
+        # @type PageSize: Integer
+        # @param EventType: 事件类型。
+        # 0: "断流",
+        # 1: "推流",
+        # 100: "录制"
+        # @type EventType: Integer
+        # @param ResultCode: 回调结果。0为成功，其他为失败
+        # @type ResultCode: Integer
+
+        attr_accessor :StartTime, :EndTime, :StreamName, :PageNum, :PageSize, :EventType, :ResultCode
+        
+        def initialize(starttime=nil, endtime=nil, streamname=nil, pagenum=nil, pagesize=nil, eventtype=nil, resultcode=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @StreamName = streamname
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @EventType = eventtype
+          @ResultCode = resultcode
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @StreamName = params['StreamName']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @EventType = params['EventType']
+          @ResultCode = params['ResultCode']
+        end
+      end
+
+      # DescribeCallbackRecordsList返回参数结构体
+      class DescribeCallbackRecordsListResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 回调事件列表
+        # @type DataInfoList: Array
+        # @param PageNum: 页码
+        # @type PageNum: Integer
+        # @param PageSize: 每页条数
+        # @type PageSize: Integer
+        # @param TotalNum: 总条数
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :PageNum, :PageSize, :TotalNum, :TotalPage, :RequestId
+        
+        def initialize(datainfolist=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataInfoList = params['DataInfoList']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeConcurrentRecordStreamNum请求参数结构体
       class DescribeConcurrentRecordStreamNumRequest < TencentCloud::Common::AbstractModel
         # @param LiveType: 直播类型，SlowLive：慢直播。
@@ -2411,6 +2683,46 @@ module TencentCloud
       # DescribeConcurrentRecordStreamNum返回参数结构体
       class DescribeConcurrentRecordStreamNumResponse < TencentCloud::Common::AbstractModel
         # @param DataInfoList: 统计信息列表。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+        
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataInfoList = params['DataInfoList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeliverBandwidthList请求参数结构体
+      class DescribeDeliverBandwidthListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间，格式为%Y-%m-%d %H:%M:%S。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，格式为%Y-%m-%d %H:%M:%S，支持最近三个月的数据查询，时间跨度最大是1个月。
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+        
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeDeliverBandwidthList返回参数结构体
+      class DescribeDeliverBandwidthListResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 转推计费带宽数据
         # @type DataInfoList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2489,11 +2801,10 @@ module TencentCloud
       class DescribeHttpStatusInfoListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间，北京时间，
         # 格式：yyyy-mm-dd HH:MM:SS。
-        # StartTime不能为3个月前。
         # @type StartTime: String
         # @param EndTime: 结束时间，北京时间，
         # 格式：yyyy-mm-dd HH:MM:SS。
-        # 注：EndTime 和 StartTime 只支持最近1天的数据查询。
+        # 注：最大时间跨度支持1天，支持最近3个月的数据查询。
         # @type EndTime: String
         # @param PlayDomains: 播放域名列表。
         # @type PlayDomains: Array
@@ -2848,6 +3159,7 @@ module TencentCloud
       # DescribeLiveDomain返回参数结构体
       class DescribeLiveDomainResponse < TencentCloud::Common::AbstractModel
         # @param DomainInfo: 域名信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainInfo: :class:`Tencentcloud::Live.v20180801.models.DomainInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2990,6 +3302,7 @@ module TencentCloud
         # @param PackageType: 包类型，可选值：
         # 0：流量包；
         # 1：转码包。
+        # 2: 连麦包。
         # @type PackageType: Integer
 
         attr_accessor :PackageType
@@ -3008,18 +3321,32 @@ module TencentCloud
         # @param LivePackageInfoList: 套餐包信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LivePackageInfoList: Array
+        # @param PackageBillMode: 套餐包当前计费方式:
+        # -1: 无计费方式或获取失败
+        # 0: 无计费方式
+        # 201: 月结带宽
+        # 202: 月结流量
+        # 203: 日结带宽
+        # 204: 日结流量
+        # 205: 日结时长
+        # 206: 月结时长
+        # 304: 日结流量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageBillMode: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LivePackageInfoList, :RequestId
+        attr_accessor :LivePackageInfoList, :PackageBillMode, :RequestId
         
-        def initialize(livepackageinfolist=nil, requestid=nil)
+        def initialize(livepackageinfolist=nil, packagebillmode=nil, requestid=nil)
           @LivePackageInfoList = livepackageinfolist
+          @PackageBillMode = packagebillmode
           @RequestId = requestid
         end
 
         def deserialize(params)
           @LivePackageInfoList = params['LivePackageInfoList']
+          @PackageBillMode = params['PackageBillMode']
           @RequestId = params['RequestId']
         end
       end
@@ -3133,7 +3460,7 @@ module TencentCloud
 
       # DescribeLiveRecordTemplate请求参数结构体
       class DescribeLiveRecordTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: DescribeRecordTemplates接口获取到的模板 ID。
+        # @param TemplateId: [DescribeLiveRecordTemplates](/document/product/267/32609)接口获取到的模板 ID。
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
@@ -3504,7 +3831,7 @@ module TencentCloud
         # @type PageNum: Integer
         # @param PageSize: 分页大小。
         # 最大值：100。
-        # 取值范围：1~100 之前的任意整数。
+        # 取值范围：10~100 之前的任意整数。
         # 默认值：10。
         # @type PageSize: Integer
         # @param StreamName: 流名称，支持模糊匹配。
@@ -3770,12 +4097,21 @@ module TencentCloud
 
       # DescribeLiveTranscodeRules请求参数结构体
       class DescribeLiveTranscodeRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateIds: 要筛选的模板ID数组。
+        # @type TemplateIds: Array
+        # @param DomainNames: 要筛选的域名数组。
+        # @type DomainNames: Array
 
+        attr_accessor :TemplateIds, :DomainNames
         
-        def initialize()
+        def initialize(templateids=nil, domainnames=nil)
+          @TemplateIds = templateids
+          @DomainNames = domainnames
         end
 
         def deserialize(params)
+          @TemplateIds = params['TemplateIds']
+          @DomainNames = params['DomainNames']
         end
       end
 
@@ -4137,7 +4473,7 @@ module TencentCloud
 
       # DescribePlayErrorCodeSumInfoList返回参数结构体
       class DescribePlayErrorCodeSumInfoListResponse < TencentCloud::Common::AbstractModel
-        # @param ProIspInfoList: 分省份分运营商错误码为4或5开头的状态码数据信息。
+        # @param ProIspInfoList: 分省份分运营商错误码为2或3或4或5开头的状态码数据信息。
         # @type ProIspInfoList: Array
         # @param TotalCodeAll: 所有状态码的加和的次数。
         # @type TotalCodeAll: Integer
@@ -4204,9 +4540,9 @@ module TencentCloud
         # 格式：yyyy-mm-dd HH:MM:SS。
         # 注：EndTime 和 StartTime 只支持最近1天的数据查询。
         # @type EndTime: String
-        # @param StatType: 统计的类型，可选值：”Province”，”Isp”，“CountryOrArea”。
+        # @param StatType: 统计的类型，可选值：”Province”(省份)，”Isp”(运营商)，“CountryOrArea”(国家或地区)。
         # @type StatType: String
-        # @param PlayDomains: 不填则为总体数据。
+        # @param PlayDomains: 播放域名列表，不填则为全部。
         # @type PlayDomains: Array
         # @param PageNum: 页号，范围是[1,1000]，默认值是1。
         # @type PageNum: Integer
@@ -4321,10 +4657,14 @@ module TencentCloud
         # @type IspNames: Array
         # @param MainlandOrOversea: 地域，可选值：Mainland，Oversea，China，Foreign，Global（默认值）；如果为空，查询总的数据；如果为“Mainland”，查询中国大陆的数据；如果为“Oversea”，则查询中国大陆以外的数据；如果为China，查询中国的数据（包括港澳台）；如果为Foreign，查询国外的数据（不包括港澳台）。
         # @type MainlandOrOversea: String
+        # @param IpType: ip类型：
+        # “Ipv6”：Ipv6数据
+        # 如果为空，查询总的数据；
+        # @type IpType: String
 
-        attr_accessor :StartTime, :EndTime, :Granularity, :StatType, :PlayDomains, :ProvinceNames, :IspNames, :MainlandOrOversea
+        attr_accessor :StartTime, :EndTime, :Granularity, :StatType, :PlayDomains, :ProvinceNames, :IspNames, :MainlandOrOversea, :IpType
         
-        def initialize(starttime=nil, endtime=nil, granularity=nil, stattype=nil, playdomains=nil, provincenames=nil, ispnames=nil, mainlandoroversea=nil)
+        def initialize(starttime=nil, endtime=nil, granularity=nil, stattype=nil, playdomains=nil, provincenames=nil, ispnames=nil, mainlandoroversea=nil, iptype=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Granularity = granularity
@@ -4333,6 +4673,7 @@ module TencentCloud
           @ProvinceNames = provincenames
           @IspNames = ispnames
           @MainlandOrOversea = mainlandoroversea
+          @IpType = iptype
         end
 
         def deserialize(params)
@@ -4344,6 +4685,7 @@ module TencentCloud
           @ProvinceNames = params['ProvinceNames']
           @IspNames = params['IspNames']
           @MainlandOrOversea = params['MainlandOrOversea']
+          @IpType = params['IpType']
         end
       end
 
@@ -4374,6 +4716,7 @@ module TencentCloud
       # DescribePullStreamConfigs请求参数结构体
       class DescribePullStreamConfigsRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 配置 ID。
+        # 获取途径：从 CreatePullStreamConfig 接口返回值获取。
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -4462,7 +4805,7 @@ module TencentCloud
       # DescribeStreamDayPlayInfoList请求参数结构体
       class DescribeStreamDayPlayInfoListRequest < TencentCloud::Common::AbstractModel
         # @param DayTime: 日期，格式：YYYY-mm-dd。
-        # 第二天凌晨3点出昨天的数据，建议在这个时间点之后查询最新数据。
+        # 第二天凌晨3点出昨天的数据，建议在这个时间点之后查询最新数据。支持最近3个月的数据查询。
         # @type DayTime: String
         # @param PlayDomain: 播放域名。
         # @type PlayDomain: String
@@ -4526,11 +4869,10 @@ module TencentCloud
 
       # DescribeStreamPlayInfoList请求参数结构体
       class DescribeStreamPlayInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间，北京时间，格式为yyyy-mm-dd HH:MM:SS，
-        # 当前时间 和 开始时间 间隔不超过30天。
+        # @param StartTime: 开始时间，北京时间，格式为yyyy-mm-dd HH:MM:SS
         # @type StartTime: String
         # @param EndTime: 结束时间，北京时间，格式为yyyy-mm-dd HH:MM:SS，
-        # 结束时间 和 开始时间  必须在同一天内。
+        # 结束时间 和 开始时间跨度不支持超过24小时，支持距当前时间30天内的数据查询。
         # @type EndTime: String
         # @param PlayDomain: 播放域名，
         # 若不填，则为查询所有播放域名的在线流数据。
@@ -4540,7 +4882,7 @@ module TencentCloud
         # @type StreamName: String
         # @param AppName: 推流路径，与播放地址中的AppName保持一致，会精确匹配，在同时传递了StreamName时生效。
         # 若不填，则为查询总体播放数据。
-        # 注意：按AppName查询，需要联系客服同学提单支持。
+        # 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
         # @type AppName: String
 
         attr_accessor :StartTime, :EndTime, :PlayDomain, :StreamName, :AppName
@@ -4719,6 +5061,57 @@ module TencentCloud
         end
       end
 
+      # DescribeUploadStreamNums请求参数结构体
+      class DescribeUploadStreamNumsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过31天。支持最近31天的数据查询
+        # @type EndTime: String
+        # @param Domains: 直播域名，若不填，表示总体数据。
+        # @type Domains: Array
+        # @param Granularity: 数据粒度，支持如下粒度：
+        # 5：5分钟粒度，（跨度不支持超过1天），
+        # 1440：天粒度（跨度不支持超过一个月）。
+        # 默认值：5。
+        # @type Granularity: Integer
+
+        attr_accessor :StartTime, :EndTime, :Domains, :Granularity
+        
+        def initialize(starttime=nil, endtime=nil, domains=nil, granularity=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Domains = domains
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Domains = params['Domains']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeUploadStreamNums返回参数结构体
+      class DescribeUploadStreamNumsResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 明细数据信息
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+        
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataInfoList = params['DataInfoList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVisitTopSumInfoList请求参数结构体
       class DescribeVisitTopSumInfoListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
@@ -4774,7 +5167,7 @@ module TencentCloud
         # @type PageSize: Integer
         # @param TopIndex: 峰值指标，可选值包括”Domain”，”StreamId”。
         # @type TopIndex: String
-        # @param OrderParam: 排序指标，可选值包括” AvgFluxPerSecond”，”TotalRequest”（默认）,“TotalFlux”。
+        # @param OrderParam: 排序指标，可选值包括” AvgFluxPerSecond”(按每秒平均流量排序)，”TotalRequest”（默认，按总请求数排序）,“TotalFlux”（按总流量排序）。
         # @type OrderParam: String
         # @param TotalNum: 记录总数。
         # @type TotalNum: Integer
@@ -4832,10 +5225,17 @@ module TencentCloud
         # @type DomainName: String
         # @param Status: 证书状态。
         # @type Status: Integer
+        # @param CertDomains: 证书本身标识的域名列表。
+        # 比如: ["*.x.com"]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertDomains: Array
+        # @param CloudCertId: 腾讯云ssl的证书Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudCertId: String
 
-        attr_accessor :CertId, :CertName, :Description, :CreateTime, :HttpsCrt, :CertType, :CertExpireTime, :DomainName, :Status
+        attr_accessor :CertId, :CertName, :Description, :CreateTime, :HttpsCrt, :CertType, :CertExpireTime, :DomainName, :Status, :CertDomains, :CloudCertId
         
-        def initialize(certid=nil, certname=nil, description=nil, createtime=nil, httpscrt=nil, certtype=nil, certexpiretime=nil, domainname=nil, status=nil)
+        def initialize(certid=nil, certname=nil, description=nil, createtime=nil, httpscrt=nil, certtype=nil, certexpiretime=nil, domainname=nil, status=nil, certdomains=nil, cloudcertid=nil)
           @CertId = certid
           @CertName = certname
           @Description = description
@@ -4845,6 +5245,8 @@ module TencentCloud
           @CertExpireTime = certexpiretime
           @DomainName = domainname
           @Status = status
+          @CertDomains = certdomains
+          @CloudCertId = cloudcertid
         end
 
         def deserialize(params)
@@ -4857,6 +5259,8 @@ module TencentCloud
           @CertExpireTime = params['CertExpireTime']
           @DomainName = params['DomainName']
           @Status = params['Status']
+          @CertDomains = params['CertDomains']
+          @CloudCertId = params['CloudCertId']
         end
       end
 
@@ -5195,6 +5599,7 @@ module TencentCloud
       # HLS专属录制参数
       class HlsSpecialParam < TencentCloud::Common::AbstractModel
         # @param FlowContinueDuration: HLS续流超时时间。
+        # 取值范围[0，1800]。
         # @type FlowContinueDuration: Integer
 
         attr_accessor :FlowContinueDuration
@@ -5305,10 +5710,12 @@ module TencentCloud
         # @param Used: 使用量。
         # 注意：当为流量包时单位为字节。
         # 当为转码包时单位为分钟。
+        # 当为连麦包时单位为小时。
         # @type Used: Integer
         # @param Left: 剩余量。
         # 注意：当为流量包时单位为字节。
         # 当为转码包时单位为分钟。
+        # 当为连麦包时单位为小时。
         # @type Left: Integer
         # @param BuyTime: 购买时间。
         # @type BuyTime: String
@@ -5318,11 +5725,15 @@ module TencentCloud
         # 0: 流量包。
         # 1: 普通转码包。
         # 2: 极速高清包。
+        # 3: 连麦包。
         # @type Type: Integer
         # @param Status: 包状态，可选值:
         # 0: 未使用。
         # 1: 使用中。
         # 2: 已过期。
+        # 3: 已冻结。
+        # 4: 已耗尽。
+        # 5: 已退款
         # @type Status: Integer
 
         attr_accessor :Id, :Total, :Used, :Left, :BuyTime, :ExpireTime, :Type, :Status
@@ -5380,7 +5791,7 @@ module TencentCloud
 
       # ModifyLiveCallbackTemplate请求参数结构体
       class ModifyLiveCallbackTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板 ID。
+        # @param TemplateId: DescribeLiveCallbackTemplates接口返回的模板 ID。
         # @type TemplateId: Integer
         # @param TemplateName: 模板名称。
         # @type TemplateName: String
@@ -5761,7 +6172,7 @@ module TencentCloud
         # 长度上限：1024字节。
         # @type Description: String
         # @param SnapshotInterval: 截图间隔，单位s，默认10s。
-        # 范围： 5s ~ 600s。
+        # 范围： 5s ~ 300s。
         # @type SnapshotInterval: Integer
         # @param Width: 截图宽度。默认：0（原始宽）。
         # @type Width: Integer
@@ -5774,6 +6185,7 @@ module TencentCloud
         # @param CosAppId: Cos 应用 ID。
         # @type CosAppId: Integer
         # @param CosBucket: Cos Bucket名称。
+        # 注：CosBucket参数值不能包含-[appid] 部分。
         # @type CosBucket: String
         # @param CosRegion: Cos 地域。
         # @type CosRegion: String
@@ -5835,50 +6247,67 @@ module TencentCloud
       class ModifyLiveTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板 Id。
         # @type TemplateId: Integer
-        # @param Vcodec: 视频编码：
-        # h264/h265。
+        # @param Vcodec: 视频编码：h264/h265/origin，默认origin。
+
+        # origin: 保持原始编码格式
         # @type Vcodec: String
-        # @param Acodec: 音频编码：
-        # aac/mp3。
+        # @param Acodec: 音频编码：aac，默认aac。
+        # 注意：当前该参数未生效，待后续支持！
         # @type Acodec: String
         # @param AudioBitrate: 音频码率，默认0。
         # 范围：0-500。
         # @type AudioBitrate: Integer
         # @param Description: 模板描述。
         # @type Description: String
-        # @param VideoBitrate: 视频码率。范围：100kbps - 8000kbps。
-        # 注意：码率必须是100的倍数。
+        # @param VideoBitrate: 视频码率。范围：0kbps - 8000kbps。
+        # 0为保持原始码率。
+        # 注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。
         # @type VideoBitrate: Integer
         # @param Width: 宽。0-3000。
+        # 数值必须是2的倍数，0是原始宽度
         # @type Width: Integer
         # @param NeedVideo: 是否保留视频，0：否，1：是。默认1。
         # @type NeedVideo: Integer
         # @param NeedAudio: 是否保留音频，0：否，1：是。默认1。
         # @type NeedAudio: Integer
         # @param Height: 高。0-3000。
+        # 数值必须是2的倍数，0是原始宽度
         # @type Height: Integer
-        # @param Fps: 帧率。0-200。
+        # @param Fps: 帧率，默认0。
+        # 范围0-60
         # @type Fps: Integer
-        # @param Gop: 关键帧间隔，单位：秒。0-50。
+        # @param Gop: 关键帧间隔，单位：秒。
+        # 范围2-6
         # @type Gop: Integer
-        # @param Rotate: 旋转角度。
-        # 0 90 180 270。
+        # @param Rotate: 旋转角度，默认0。
+        # 可取值：0，90，180，270
         # @type Rotate: Integer
         # @param Profile: 编码质量：
         # baseline/main/high。
         # @type Profile: String
-        # @param BitrateToOrig: 是否不超过原始码率。0：否，1：是。默认0。
+        # @param BitrateToOrig: 当设置的码率>原始码率时，是否以原始码率为准。
+        # 0：否， 1：是
+        # 默认 0。
         # @type BitrateToOrig: Integer
-        # @param HeightToOrig: 是否不超过原始高。0：否，1：是。默认0。
+        # @param HeightToOrig: 当设置的高度>原始高度时，是否以原始高度为准。
+        # 0：否， 1：是
+        # 默认 0。
         # @type HeightToOrig: Integer
-        # @param FpsToOrig: 是否不超过原始帧率。0：否，1：是。默认0。
+        # @param FpsToOrig: 当设置的帧率>原始帧率时，是否以原始帧率为准。
+        # 0：否， 1：是
+        # 默认 0。
         # @type FpsToOrig: Integer
-        # @param AdaptBitratePercent: 极速高清相比 VideoBitrate 少多少码率，0.1到0.5。
-        # @type AdaptBitratePercent: Float
+        # @param AdaptBitratePercent: 极速高清视频码率压缩比。
+        # 极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)
 
-        attr_accessor :TemplateId, :Vcodec, :Acodec, :AudioBitrate, :Description, :VideoBitrate, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AdaptBitratePercent
+        # 取值范围：0.0到0.5
+        # @type AdaptBitratePercent: Float
+        # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
+        # @type ShortEdgeAsHeight: Integer
+
+        attr_accessor :TemplateId, :Vcodec, :Acodec, :AudioBitrate, :Description, :VideoBitrate, :Width, :NeedVideo, :NeedAudio, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :AdaptBitratePercent, :ShortEdgeAsHeight
         
-        def initialize(templateid=nil, vcodec=nil, acodec=nil, audiobitrate=nil, description=nil, videobitrate=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, adaptbitratepercent=nil)
+        def initialize(templateid=nil, vcodec=nil, acodec=nil, audiobitrate=nil, description=nil, videobitrate=nil, width=nil, needvideo=nil, needaudio=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, adaptbitratepercent=nil, shortedgeasheight=nil)
           @TemplateId = templateid
           @Vcodec = vcodec
           @Acodec = acodec
@@ -5897,6 +6326,7 @@ module TencentCloud
           @HeightToOrig = heighttoorig
           @FpsToOrig = fpstoorig
           @AdaptBitratePercent = adaptbitratepercent
+          @ShortEdgeAsHeight = shortedgeasheight
         end
 
         def deserialize(params)
@@ -5918,6 +6348,7 @@ module TencentCloud
           @HeightToOrig = params['HeightToOrig']
           @FpsToOrig = params['FpsToOrig']
           @AdaptBitratePercent = params['AdaptBitratePercent']
+          @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
         end
       end
 
@@ -5939,20 +6370,35 @@ module TencentCloud
 
       # ModifyPullStreamConfig请求参数结构体
       class ModifyPullStreamConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置id。
+        # @param ConfigId: 配置 ID。
+        # 获取来源：
+        # 1. 创建拉流配置接口CreatePullStreamConfig返回的配置 ID。
+        # 2. 通过查询接口DescribePullStreamConfigs获取配置 ID。
         # @type ConfigId: String
-        # @param FromUrl: 源Url。
+        # @param FromUrl: 源 URL，用于拉流的地址。目前可支持直播流及点播文件。
+        # 注意：
+        # 1. 多个点播 URL 之间使用空格拼接。
+        # 2. 目前上限支持10个 URL。
+        # 3. 支持拉流文件格式：FLV，RTMP，HLS，MP4。
+        # 4. 使用标准三层样式，如：http://test.com/live/stream.flv。
         # @type FromUrl: String
-        # @param ToUrl: 目的Url。
+        # @param ToUrl: 目的 URL，用于推流的地址，目前限制该目标地址为腾讯域名。
+        # 1. 仅支持 RTMP 协议。
+        # 2. 使用标准三层样式，如：http://test.com/live/stream.flv。
         # @type ToUrl: String
-        # @param AreaId: 区域id：
-        # 1-深圳，
-        # 2-上海，
-        # 3-天津，
+        # @param AreaId: 区域 ID：
+        # 1-深圳。
+        # 2-上海。
+        # 3-天津。
         # 4-中国香港。
         # 如有改动，需同时传入IspId。
         # @type AreaId: Integer
-        # @param IspId: 运营商id,1-电信,2-移动,3-联通,4-其他,AreaId为4的时候,IspId只能为其他。如有改动，需同时传入AreaId。
+        # @param IspId: 运营商 ID，
+        # 1：电信。
+        # 2：移动。
+        # 3：联通。
+        # 4：其他。
+        # AreaId为4的时候，IspId只能为其他。如有改动，需同时传入AreaId。
         # @type IspId: Integer
         # @param StartTime: 开始时间。
         # 使用UTC格式时间，
@@ -7049,33 +7495,52 @@ module TencentCloud
 
       # 转码模板信息。
       class TemplateInfo < TencentCloud::Common::AbstractModel
-        # @param Vcodec: 视频编码：
-        # h264/h265。
+        # @param Vcodec: 视频编码：h264/h265/origin，默认h264。
+
+        # origin: 保持原始编码格式
         # @type Vcodec: String
-        # @param VideoBitrate: 视频码率，取值范围：100kbps - 8000kbps。
+        # @param VideoBitrate: 视频码率。范围：0kbps - 8000kbps。
+        # 0为保持原始码率。
+        # 注: 转码模板有码率唯一要求，最终保存的码率可能与输入码率有所差别。
         # @type VideoBitrate: Integer
-        # @param Acodec: 音频编码，可选 aac 或 mp3。
+        # @param Acodec: 音频编码：aac，默认aac。
+        # 注意：当前该参数未生效，待后续支持！
         # @type Acodec: String
         # @param AudioBitrate: 音频码率。取值范围：0kbps - 500kbps。
+        # 默认0。
         # @type AudioBitrate: Integer
-        # @param Width: 宽，取值范围：0-3000。
+        # @param Width: 宽，默认0。
+        # 范围[0-3000]
+        # 数值必须是2的倍数，0是原始宽度
         # @type Width: Integer
-        # @param Height: 高，取值范围：0-3000。
+        # @param Height: 高，默认0。
+        # 范围[0-3000]
+        # 数值必须是2的倍数，0是原始宽度
         # @type Height: Integer
-        # @param Fps: 帧率。取值范围：0fps - 200fps。
+        # @param Fps: 帧率，默认0。
+        # 范围0-60fps
         # @type Fps: Integer
-        # @param Gop: 关键帧间隔，取值范围：1秒 - 50秒。
+        # @param Gop: 关键帧间隔，单位：秒。
+        # 默认原始的间隔
+        # 范围2-6
         # @type Gop: Integer
-        # @param Rotate: 旋转角度。可选择：0 90 180 270。
+        # @param Rotate: 旋转角度，默认0。
+        # 可取值：0，90，180，270
         # @type Rotate: Integer
-        # @param Profile: 编码质量，可选择：
-        # baseline，main，high。
+        # @param Profile: 编码质量：
+        # baseline/main/high。默认baseline
         # @type Profile: String
-        # @param BitrateToOrig: 是否不超过原始码率。0：否，1：是。
+        # @param BitrateToOrig: 当设置的码率>原始码率时，是否以原始码率为准。
+        # 0：否， 1：是
+        # 默认 0。
         # @type BitrateToOrig: Integer
-        # @param HeightToOrig: 是否不超过原始高度。0：否，1：是。
+        # @param HeightToOrig: 当设置的高度>原始高度时，是否以原始高度为准。
+        # 0：否， 1：是
+        # 默认 0。
         # @type HeightToOrig: Integer
-        # @param FpsToOrig: 是否不超过原始帧率。0：否，1：是。
+        # @param FpsToOrig: 当设置的帧率>原始帧率时，是否以原始帧率为准。
+        # 0：否， 1：是
+        # 默认 0。
         # @type FpsToOrig: Integer
         # @param NeedVideo: 是否保留视频。0：否，1：是。
         # @type NeedVideo: Integer
@@ -7089,12 +7554,18 @@ module TencentCloud
         # @type Description: String
         # @param AiTransCode: 是否是极速高清模板，0：否，1：是。默认0。
         # @type AiTransCode: Integer
-        # @param AdaptBitratePercent: 极速高清相比 VideoBitrate 少多少码率，0.1到0.5。
-        # @type AdaptBitratePercent: Float
+        # @param AdaptBitratePercent: 极速高清视频码率压缩比。
+        # 极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)
 
-        attr_accessor :Vcodec, :VideoBitrate, :Acodec, :AudioBitrate, :Width, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :NeedVideo, :NeedAudio, :TemplateId, :TemplateName, :Description, :AiTransCode, :AdaptBitratePercent
+        # 取值范围：0.0到0.5
+        # @type AdaptBitratePercent: Float
+        # @param ShortEdgeAsHeight: 是否以短边作为高度，0：否，1：是。默认0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShortEdgeAsHeight: Integer
+
+        attr_accessor :Vcodec, :VideoBitrate, :Acodec, :AudioBitrate, :Width, :Height, :Fps, :Gop, :Rotate, :Profile, :BitrateToOrig, :HeightToOrig, :FpsToOrig, :NeedVideo, :NeedAudio, :TemplateId, :TemplateName, :Description, :AiTransCode, :AdaptBitratePercent, :ShortEdgeAsHeight
         
-        def initialize(vcodec=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, width=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, needvideo=nil, needaudio=nil, templateid=nil, templatename=nil, description=nil, aitranscode=nil, adaptbitratepercent=nil)
+        def initialize(vcodec=nil, videobitrate=nil, acodec=nil, audiobitrate=nil, width=nil, height=nil, fps=nil, gop=nil, rotate=nil, profile=nil, bitratetoorig=nil, heighttoorig=nil, fpstoorig=nil, needvideo=nil, needaudio=nil, templateid=nil, templatename=nil, description=nil, aitranscode=nil, adaptbitratepercent=nil, shortedgeasheight=nil)
           @Vcodec = vcodec
           @VideoBitrate = videobitrate
           @Acodec = acodec
@@ -7115,6 +7586,7 @@ module TencentCloud
           @Description = description
           @AiTransCode = aitranscode
           @AdaptBitratePercent = adaptbitratepercent
+          @ShortEdgeAsHeight = shortedgeasheight
         end
 
         def deserialize(params)
@@ -7138,6 +7610,7 @@ module TencentCloud
           @Description = params['Description']
           @AiTransCode = params['AiTransCode']
           @AdaptBitratePercent = params['AdaptBitratePercent']
+          @ShortEdgeAsHeight = params['ShortEdgeAsHeight']
         end
       end
 
@@ -7253,6 +7726,8 @@ module TencentCloud
         # 在添加水印接口 [AddLiveWatermark](/document/product/267/30154) 调用返回值中获取水印 ID。
         # @type WatermarkId: Integer
         # @param PictureUrl: 水印图片 URL。
+        # URL中禁止包含的字符：
+        #  ;(){}$>`#"\'|
         # @type PictureUrl: String
         # @param XPosition: 显示位置，X轴偏移，单位是百分比，默认 0。
         # @type XPosition: Integer

@@ -149,6 +149,50 @@ module TencentCloud
         end
       end
 
+      # CreateBackupDBInstance请求参数结构体
+      class CreateBackupDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param BackupMethod: 0-逻辑备份，1-物理备份
+        # @type BackupMethod: Integer
+        # @param BackupRemark: 备份备注
+        # @type BackupRemark: String
+
+        attr_accessor :InstanceId, :BackupMethod, :BackupRemark
+        
+        def initialize(instanceid=nil, backupmethod=nil, backupremark=nil)
+          @InstanceId = instanceid
+          @BackupMethod = backupmethod
+          @BackupRemark = backupremark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMethod = params['BackupMethod']
+          @BackupRemark = params['BackupRemark']
+        end
+      end
+
+      # CreateBackupDBInstance返回参数结构体
+      class CreateBackupDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 查询备份流程的状态
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDBInstanceHour请求参数结构体
       class CreateDBInstanceHourRequest < TencentCloud::Common::AbstractModel
         # @param Memory: 实例内存大小，单位：GB
@@ -179,10 +223,16 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param Tags: 实例标签信息
         # @type Tags: Array
+        # @param Clone: 1:正式实例,2:临时实例,3:只读实例，4：灾备实例
+        # @type Clone: Integer
+        # @param Father: 父实例Id，当Clone为3或者4时，这个必须填
+        # @type Father: String
+        # @param SecurityGroup: 安全组
+        # @type SecurityGroup: Array
 
-        attr_accessor :Memory, :Volume, :ReplicateSetNum, :NodeNum, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :ClusterType, :VpcId, :SubnetId, :Password, :ProjectId, :Tags
+        attr_accessor :Memory, :Volume, :ReplicateSetNum, :NodeNum, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :ClusterType, :VpcId, :SubnetId, :Password, :ProjectId, :Tags, :Clone, :Father, :SecurityGroup
         
-        def initialize(memory=nil, volume=nil, replicatesetnum=nil, nodenum=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, zone=nil, clustertype=nil, vpcid=nil, subnetid=nil, password=nil, projectid=nil, tags=nil)
+        def initialize(memory=nil, volume=nil, replicatesetnum=nil, nodenum=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, zone=nil, clustertype=nil, vpcid=nil, subnetid=nil, password=nil, projectid=nil, tags=nil, clone=nil, father=nil, securitygroup=nil)
           @Memory = memory
           @Volume = volume
           @ReplicateSetNum = replicatesetnum
@@ -197,6 +247,9 @@ module TencentCloud
           @Password = password
           @ProjectId = projectid
           @Tags = tags
+          @Clone = clone
+          @Father = father
+          @SecurityGroup = securitygroup
         end
 
         def deserialize(params)
@@ -214,6 +267,9 @@ module TencentCloud
           @Password = params['Password']
           @ProjectId = params['ProjectId']
           @Tags = params['Tags']
+          @Clone = params['Clone']
+          @Father = params['Father']
+          @SecurityGroup = params['SecurityGroup']
         end
       end
 
@@ -249,7 +305,7 @@ module TencentCloud
         # @type Memory: Integer
         # @param Volume: 实例硬盘大小，单位：GB
         # @type Volume: Integer
-        # @param MongoVersion: 版本号，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本，MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本，MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本
+        # @param MongoVersion: 版本号，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本，MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本，MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本
         # @type MongoVersion: String
         # @param GoodsNum: 实例数量, 最小值1，最大值为10
         # @type GoodsNum: Integer
@@ -257,11 +313,11 @@ module TencentCloud
         # @type Zone: String
         # @param Period: 实例时长，单位：月，可选值包括 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]
         # @type Period: Integer
-        # @param MachineCode: 机器类型，HIO：高IO型；HIO10G：高IO万兆型
+        # @param MachineCode: 机器类型，HIO：高IO型；HIO10G：高IO万兆型；STDS5：标准型
         # @type MachineCode: String
-        # @param ClusterType: 实例类型，REPLSET-副本集，SHARD-分片集群
+        # @param ClusterType: 实例类型，REPLSET-副本集，SHARD-分片集群，STANDALONE-单节点
         # @type ClusterType: String
-        # @param ReplicateSetNum: 副本集个数，创建副本集实例时，该参数必须设置为1；创建分片实例时，具体参照查询云数据库的售卖规格返回参数
+        # @param ReplicateSetNum: 副本集个数，创建副本集实例时，该参数必须设置为1；创建分片实例时，具体参照查询云数据库的售卖规格返回参数；若为单节点实例，该参数设置为0
         # @type ReplicateSetNum: Integer
         # @param ProjectId: 项目ID，不设置为默认项目
         # @type ProjectId: Integer
@@ -275,10 +331,18 @@ module TencentCloud
         # @type Tags: Array
         # @param AutoRenewFlag: 自动续费标记，可选值为：0 - 不自动续费；1 - 自动续费。默认为不自动续费
         # @type AutoRenewFlag: Integer
+        # @param AutoVoucher: 是否自动选择代金券，可选值为：1 - 是；0 - 否； 默认为0
+        # @type AutoVoucher: Integer
+        # @param Clone: 1:正式实例,2:临时实例,3:只读实例，4：灾备实例
+        # @type Clone: Integer
+        # @param Father: 若是只读，灾备实例，Father必须填写，即主实例ID
+        # @type Father: String
+        # @param SecurityGroup: 安全组
+        # @type SecurityGroup: Array
 
-        attr_accessor :NodeNum, :Memory, :Volume, :MongoVersion, :GoodsNum, :Zone, :Period, :MachineCode, :ClusterType, :ReplicateSetNum, :ProjectId, :VpcId, :SubnetId, :Password, :Tags, :AutoRenewFlag
+        attr_accessor :NodeNum, :Memory, :Volume, :MongoVersion, :GoodsNum, :Zone, :Period, :MachineCode, :ClusterType, :ReplicateSetNum, :ProjectId, :VpcId, :SubnetId, :Password, :Tags, :AutoRenewFlag, :AutoVoucher, :Clone, :Father, :SecurityGroup
         
-        def initialize(nodenum=nil, memory=nil, volume=nil, mongoversion=nil, goodsnum=nil, zone=nil, period=nil, machinecode=nil, clustertype=nil, replicatesetnum=nil, projectid=nil, vpcid=nil, subnetid=nil, password=nil, tags=nil, autorenewflag=nil)
+        def initialize(nodenum=nil, memory=nil, volume=nil, mongoversion=nil, goodsnum=nil, zone=nil, period=nil, machinecode=nil, clustertype=nil, replicatesetnum=nil, projectid=nil, vpcid=nil, subnetid=nil, password=nil, tags=nil, autorenewflag=nil, autovoucher=nil, clone=nil, father=nil, securitygroup=nil)
           @NodeNum = nodenum
           @Memory = memory
           @Volume = volume
@@ -295,6 +359,10 @@ module TencentCloud
           @Password = password
           @Tags = tags
           @AutoRenewFlag = autorenewflag
+          @AutoVoucher = autovoucher
+          @Clone = clone
+          @Father = father
+          @SecurityGroup = securitygroup
         end
 
         def deserialize(params)
@@ -314,6 +382,10 @@ module TencentCloud
           @Password = params['Password']
           @Tags = params['Tags']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @AutoVoucher = params['AutoVoucher']
+          @Clone = params['Clone']
+          @Father = params['Father']
+          @SecurityGroup = params['SecurityGroup']
         end
       end
 
@@ -338,6 +410,61 @@ module TencentCloud
           @DealId = params['DealId']
           @InstanceIds = params['InstanceIds']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 云数据库实例当前操作
+      class CurrentOp < TencentCloud::Common::AbstractModel
+        # @param OpId: 操作序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpId: Integer
+        # @param Ns: 操作所在的命名空间，形式如db.collection
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ns: String
+        # @param Query: 操作执行语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Query: String
+        # @param Op: 操作类型，可能的取值：aggregate、count、delete、distinct、find、findAndModify、getMore、insert、mapReduce、update和command
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Op: String
+        # @param ReplicaSetName: 操作所在的分片名称
+        # @type ReplicaSetName: String
+        # @param State: 筛选条件，节点状态，可能的取值为：Primary、Secondary
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param Operation: 操作详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operation: String
+        # @param NodeName: 操作所在的节点名称
+        # @type NodeName: String
+        # @param MicrosecsRunning: 操作已执行时间（ms）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MicrosecsRunning: Integer
+
+        attr_accessor :OpId, :Ns, :Query, :Op, :ReplicaSetName, :State, :Operation, :NodeName, :MicrosecsRunning
+        
+        def initialize(opid=nil, ns=nil, query=nil, op=nil, replicasetname=nil, state=nil, operation=nil, nodename=nil, microsecsrunning=nil)
+          @OpId = opid
+          @Ns = ns
+          @Query = query
+          @Op = op
+          @ReplicaSetName = replicasetname
+          @State = state
+          @Operation = operation
+          @NodeName = nodename
+          @MicrosecsRunning = microsecsrunning
+        end
+
+        def deserialize(params)
+          @OpId = params['OpId']
+          @Ns = params['Ns']
+          @Query = params['Query']
+          @Op = params['Op']
+          @ReplicaSetName = params['ReplicaSetName']
+          @State = params['State']
+          @Operation = params['Operation']
+          @NodeName = params['NodeName']
+          @MicrosecsRunning = params['MicrosecsRunning']
         end
       end
 
@@ -383,6 +510,42 @@ module TencentCloud
           @UnitPrice = params['UnitPrice']
           @OriginalPrice = params['OriginalPrice']
           @DiscountPrice = params['DiscountPrice']
+        end
+      end
+
+      # DescribeAsyncRequestInfo请求参数结构体
+      class DescribeAsyncRequestInfoRequest < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步请求Id，涉及到异步流程的接口返回，如CreateBackupDBInstance
+        # @type AsyncRequestId: String
+
+        attr_accessor :AsyncRequestId
+        
+        def initialize(asyncrequestid=nil)
+          @AsyncRequestId = asyncrequestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+        end
+      end
+
+      # DescribeAsyncRequestInfo返回参数结构体
+      class DescribeAsyncRequestInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -482,19 +645,108 @@ module TencentCloud
         end
       end
 
-      # DescribeDBBackups请求参数结构体
-      class DescribeDBBackupsRequest < TencentCloud::Common::AbstractModel
+      # DescribeCurrentOp请求参数结构体
+      class DescribeCurrentOpRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceId: String
+        # @param Ns: 筛选条件，操作所属的命名空间namespace，格式为db.collection
+        # @type Ns: String
+        # @param MillisecondRunning: 筛选条件，操作已经执行的时间（单位：毫秒），结果将返回超过设置时间的操作，默认值为0，取值范围为[0, 3600000]
+        # @type MillisecondRunning: Integer
+        # @param Op: 筛选条件，操作类型，可能的取值：none，update，insert，query，command，getmore，remove和killcursors
+        # @type Op: String
+        # @param ReplicaSetName: 筛选条件，分片名称
+        # @type ReplicaSetName: String
+        # @param State: 筛选条件，节点状态，可能的取值为：primary
+        # secondary
+        # @type State: String
+        # @param Limit: 单次请求返回的数量，默认值为100，取值范围为[0,100]
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认值为0，取值范围为[0,10000]
+        # @type Offset: Integer
+        # @param OrderBy: 返回结果集排序的字段，目前支持："MicrosecsRunning"/"microsecsrunning"，默认为升序排序
+        # @type OrderBy: String
+        # @param OrderByType: 返回结果集排序方式，可能的取值："ASC"/"asc"或"DESC"/"desc"
+        # @type OrderByType: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :Ns, :MillisecondRunning, :Op, :ReplicaSetName, :State, :Limit, :Offset, :OrderBy, :OrderByType
         
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, ns=nil, millisecondrunning=nil, op=nil, replicasetname=nil, state=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
           @InstanceId = instanceid
+          @Ns = ns
+          @MillisecondRunning = millisecondrunning
+          @Op = op
+          @ReplicaSetName = replicasetname
+          @State = state
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @Ns = params['Ns']
+          @MillisecondRunning = params['MillisecondRunning']
+          @Op = params['Op']
+          @ReplicaSetName = params['ReplicaSetName']
+          @State = params['State']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeCurrentOp返回参数结构体
+      class DescribeCurrentOpResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合查询条件的操作总数
+        # @type TotalCount: Integer
+        # @param CurrentOps: 当前操作列表
+        # @type CurrentOps: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :CurrentOps, :RequestId
+        
+        def initialize(totalcount=nil, currentops=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CurrentOps = currentops
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @CurrentOps = params['CurrentOps']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBBackups请求参数结构体
+      class DescribeDBBackupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @type InstanceId: String
+        # @param BackupMethod: 备份方式，当前支持：0-逻辑备份，1-物理备份，2-所有备份。默认为逻辑备份。
+        # @type BackupMethod: Integer
+        # @param Limit: 分页大小，最大值为100，不设置默认查询所有。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量，最小值为0，默认值为0。
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :BackupMethod, :Limit, :Offset
+        
+        def initialize(instanceid=nil, backupmethod=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @BackupMethod = backupmethod
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMethod = params['BackupMethod']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -578,7 +830,7 @@ module TencentCloud
         # @type InstanceType: Integer
         # @param ClusterType: 集群类型，取值范围：0-副本集实例，1-分片实例，-1-所有实例
         # @type ClusterType: Integer
-        # @param Status: 实例状态，取值范围：0-待初始化，1-流程执行中，2-实例有效，-2-实例已过期
+        # @param Status: 实例状态，取值范围：0-待初始化，1-流程执行中，2-实例有效，-2-已隔离（包年包月实例），-3-已隔离（按量计费实例）
         # @type Status: Array
         # @param VpcId: 私有网络的ID，基础网络则不传该参数
         # @type VpcId: String
@@ -596,12 +848,14 @@ module TencentCloud
         # @type OrderByType: String
         # @param ProjectIds: 项目 ID
         # @type ProjectIds: Array
-        # @param SearchKey: 搜索关键词，支持实例Id、实例名称、完整IP
+        # @param SearchKey: 搜索关键词，支持实例ID、实例名称、完整IP
         # @type SearchKey: String
+        # @param Tags: Tag信息
+        # @type Tags: :class:`Tencentcloud::Mongodb.v20190725.models.TagInfo`
 
-        attr_accessor :InstanceIds, :InstanceType, :ClusterType, :Status, :VpcId, :SubnetId, :PayMode, :Limit, :Offset, :OrderBy, :OrderByType, :ProjectIds, :SearchKey
+        attr_accessor :InstanceIds, :InstanceType, :ClusterType, :Status, :VpcId, :SubnetId, :PayMode, :Limit, :Offset, :OrderBy, :OrderByType, :ProjectIds, :SearchKey, :Tags
         
-        def initialize(instanceids=nil, instancetype=nil, clustertype=nil, status=nil, vpcid=nil, subnetid=nil, paymode=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil, projectids=nil, searchkey=nil)
+        def initialize(instanceids=nil, instancetype=nil, clustertype=nil, status=nil, vpcid=nil, subnetid=nil, paymode=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil, projectids=nil, searchkey=nil, tags=nil)
           @InstanceIds = instanceids
           @InstanceType = instancetype
           @ClusterType = clustertype
@@ -615,6 +869,7 @@ module TencentCloud
           @OrderByType = orderbytype
           @ProjectIds = projectids
           @SearchKey = searchkey
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -631,6 +886,9 @@ module TencentCloud
           @OrderByType = params['OrderByType']
           @ProjectIds = params['ProjectIds']
           @SearchKey = params['SearchKey']
+          unless params['Tags'].nil?
+            @Tags = TagInfo.new.deserialize(params[Tags])
+          end
         end
       end
 
@@ -1014,6 +1272,7 @@ module TencentCloud
       # 描述了实例的计费模式
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。默认为1。
+        # （InquirePriceRenewDBInstances，RenewDBInstances调用时必填）
         # @type Period: Integer
         # @param RenewFlag: 自动续费标识。取值范围：
         # NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
@@ -1021,6 +1280,7 @@ module TencentCloud
         # DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
 
         # 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # （InquirePriceRenewDBInstances，RenewDBInstances调用时必填）
         # @type RenewFlag: String
 
         attr_accessor :Period, :RenewFlag
@@ -1238,6 +1498,42 @@ module TencentCloud
         end
       end
 
+      # KillOps请求参数结构体
+      class KillOpsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @type InstanceId: String
+        # @param Operations: 待终止的操作
+        # @type Operations: Array
+
+        attr_accessor :InstanceId, :Operations
+        
+        def initialize(instanceid=nil, operations=nil)
+          @InstanceId = instanceid
+          @Operations = operations
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Operations = params['Operations']
+        end
+      end
+
+      # KillOps返回参数结构体
+      class KillOpsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSpec请求参数结构体
       class ModifyDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -1322,6 +1618,30 @@ module TencentCloud
         end
       end
 
+      # 需要终止的操作
+      class Operation < TencentCloud::Common::AbstractModel
+        # @param ReplicaSetName: 操作所在的分片名
+        # @type ReplicaSetName: String
+        # @param NodeName: 操作所在的节点名
+        # @type NodeName: String
+        # @param OpId: 操作序号
+        # @type OpId: Integer
+
+        attr_accessor :ReplicaSetName, :NodeName, :OpId
+        
+        def initialize(replicasetname=nil, nodename=nil, opid=nil)
+          @ReplicaSetName = replicasetname
+          @NodeName = nodename
+          @OpId = opid
+        end
+
+        def deserialize(params)
+          @ReplicaSetName = params['ReplicaSetName']
+          @NodeName = params['NodeName']
+          @OpId = params['OpId']
+        end
+      end
+
       # RenameInstance请求参数结构体
       class RenameInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -1392,6 +1712,50 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetDBInstancePassword请求参数结构体
+      class ResetDBInstancePasswordRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param UserName: 实例账号名
+        # @type UserName: String
+        # @param Password: 新密码
+        # @type Password: String
+
+        attr_accessor :InstanceId, :UserName, :Password
+        
+        def initialize(instanceid=nil, username=nil, password=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+        end
+      end
+
+      # ResetDBInstancePassword返回参数结构体
+      class ResetDBInstancePasswordResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步请求Id，用户查询该流程的运行状态
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
         end
       end

@@ -17,6 +17,79 @@
 module TencentCloud
   module Ocr
     module V20181119
+      # AdvertiseOCR请求参数结构体
+      class AdvertiseOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。
+        # 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。
+        # 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+
+        attr_accessor :ImageBase64, :ImageUrl
+        
+        def initialize(imagebase64=nil, imageurl=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # AdvertiseOCR返回参数结构体
+      class AdvertiseOCRResponse < TencentCloud::Common::AbstractModel
+        # @param TextDetections: 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
+        # @type TextDetections: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TextDetections, :RequestId
+        
+        def initialize(textdetections=nil, requestid=nil)
+          @TextDetections = textdetections
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TextDetections = params['TextDetections']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 广告文字识别结果
+      class AdvertiseTextDetection < TencentCloud::Common::AbstractModel
+        # @param DetectedText: 识别出的文本行内容
+        # @type DetectedText: String
+        # @param Confidence: 置信度 0 ~100
+        # @type Confidence: Integer
+        # @param Polygon: 文本行坐标，以四个顶点坐标表示
+        # @type Polygon: Array
+        # @param AdvancedInfo: 此字段为扩展字段。
+        # GeneralBasicOcr接口返回段落信息Parag，包含ParagNo。
+        # @type AdvancedInfo: String
+
+        attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo
+        
+        def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil)
+          @DetectedText = detectedtext
+          @Confidence = confidence
+          @Polygon = polygon
+          @AdvancedInfo = advancedinfo
+        end
+
+        def deserialize(params)
+          @DetectedText = params['DetectedText']
+          @Confidence = params['Confidence']
+          @Polygon = params['Polygon']
+          @AdvancedInfo = params['AdvancedInfo']
+        end
+      end
+
       # ArithmeticOCR请求参数结构体
       class ArithmeticOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -66,28 +139,43 @@ module TencentCloud
 
       # BankCardOCR请求参数结构体
       class BankCardOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         # @type ImageUrl: String
+        # @param RetBorderCutImage: 是否返回预处理（精确剪裁对齐）后的银行卡图片数据，默认false。
+        # @type RetBorderCutImage: Boolean
+        # @param RetCardNoImage: 是否返回卡号的切图图片数据，默认false。
+        # @type RetCardNoImage: Boolean
+        # @param EnableCopyCheck: 复印件检测开关，如果输入的图片是银行卡复印件图片则返回告警，默认false。
+        # @type EnableCopyCheck: Boolean
+        # @param EnableReshootCheck: 翻拍检测开关，如果输入的图片是银行卡翻拍图片则返回告警，默认false。
+        # @type EnableReshootCheck: Boolean
+        # @param EnableBorderCheck: 边框遮挡检测开关，如果输入的图片是银行卡边框被遮挡则返回告警，默认false。
+        # @type EnableBorderCheck: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :RetBorderCutImage, :RetCardNoImage, :EnableCopyCheck, :EnableReshootCheck, :EnableBorderCheck
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, retbordercutimage=nil, retcardnoimage=nil, enablecopycheck=nil, enablereshootcheck=nil, enablebordercheck=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @RetBorderCutImage = retbordercutimage
+          @RetCardNoImage = retcardnoimage
+          @EnableCopyCheck = enablecopycheck
+          @EnableReshootCheck = enablereshootcheck
+          @EnableBorderCheck = enablebordercheck
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @RetBorderCutImage = params['RetBorderCutImage']
+          @RetCardNoImage = params['RetCardNoImage']
+          @EnableCopyCheck = params['EnableCopyCheck']
+          @EnableReshootCheck = params['EnableReshootCheck']
+          @EnableBorderCheck = params['EnableBorderCheck']
         end
       end
 
@@ -97,17 +185,41 @@ module TencentCloud
         # @type CardNo: String
         # @param BankInfo: 银行信息
         # @type BankInfo: String
-        # @param ValidDate: 有效期
+        # @param ValidDate: 有效期，格式如：07/2023
         # @type ValidDate: String
+        # @param CardType: 卡类型
+        # @type CardType: String
+        # @param CardName: 卡名字
+        # @type CardName: String
+        # @param BorderCutImage: 切片图片数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BorderCutImage: String
+        # @param CardNoImage: 卡号图片数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CardNoImage: String
+        # @param WarningCode: WarningCode 告警码列表和释义：
+        # -9110:银行卡日期无效;
+        # -9111:银行卡边框不完整;
+        # -9112:银行卡图片反光;
+        # -9113:银行卡复印件;
+        # -9114:银行卡翻拍件
+        # （告警码可以同时存在多个）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarningCode: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CardNo, :BankInfo, :ValidDate, :RequestId
+        attr_accessor :CardNo, :BankInfo, :ValidDate, :CardType, :CardName, :BorderCutImage, :CardNoImage, :WarningCode, :RequestId
         
-        def initialize(cardno=nil, bankinfo=nil, validdate=nil, requestid=nil)
+        def initialize(cardno=nil, bankinfo=nil, validdate=nil, cardtype=nil, cardname=nil, bordercutimage=nil, cardnoimage=nil, warningcode=nil, requestid=nil)
           @CardNo = cardno
           @BankInfo = bankinfo
           @ValidDate = validdate
+          @CardType = cardtype
+          @CardName = cardname
+          @BorderCutImage = bordercutimage
+          @CardNoImage = cardnoimage
+          @WarningCode = warningcode
           @RequestId = requestid
         end
 
@@ -115,6 +227,11 @@ module TencentCloud
           @CardNo = params['CardNo']
           @BankInfo = params['BankInfo']
           @ValidDate = params['ValidDate']
+          @CardType = params['CardType']
+          @CardName = params['CardName']
+          @BorderCutImage = params['BorderCutImage']
+          @CardNoImage = params['CardNoImage']
+          @WarningCode = params['WarningCode']
           @RequestId = params['RequestId']
         end
       end
@@ -168,12 +285,20 @@ module TencentCloud
         # @type ComposingForm: String
         # @param SetDate: 成立日期
         # @type SetDate: String
+        # @param RecognizeWarnCode: Code 告警码列表和释义：
+        # -20001 非营业执照
+        # 注：告警码可以同时存在多个
+        # @type RecognizeWarnCode: Array
+        # @param RecognizeWarnMsg: 告警码说明：
+        # OCR_WARNING_TPYE_NOT_MATCH 非营业执照
+        # 注：告警信息可以同时存在多个
+        # @type RecognizeWarnMsg: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RequestId
+        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :RequestId
         
-        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, requestid=nil)
+        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, requestid=nil)
           @RegNum = regnum
           @Name = name
           @Capital = capital
@@ -184,6 +309,8 @@ module TencentCloud
           @Period = period
           @ComposingForm = composingform
           @SetDate = setdate
+          @RecognizeWarnCode = recognizewarncode
+          @RecognizeWarnMsg = recognizewarnmsg
           @RequestId = requestid
         end
 
@@ -198,13 +325,45 @@ module TencentCloud
           @Period = params['Period']
           @ComposingForm = params['ComposingForm']
           @SetDate = params['SetDate']
+          @RecognizeWarnCode = params['RecognizeWarnCode']
+          @RecognizeWarnMsg = params['RecognizeWarnMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 验真接口
+      class BizLicenseVerifyResult < TencentCloud::Common::AbstractModel
+        # @param RegNum: “0“：一致
+        # “-1”：此号未查询到结果
+        # @type RegNum: String
+        # @param Name: “0“：一致
+        # “-1”：不一致
+        # “”：不验真
+        # @type Name: String
+        # @param Address: “0“：一致
+        # “-1”：不一致
+        # “”：不验真
+        # @type Address: String
+
+        attr_accessor :RegNum, :Name, :Address
+        
+        def initialize(regnum=nil, name=nil, address=nil)
+          @RegNum = regnum
+          @Name = name
+          @Address = address
+        end
+
+        def deserialize(params)
+          @RegNum = params['RegNum']
+          @Name = params['Name']
+          @Address = params['Address']
         end
       end
 
       # 汽车票字段信息
       class BusInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 发票代码、发票号码、日期、票价、始发地、目的地、姓名、时间、发票消费类型、身份证号、省、市。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -286,17 +445,23 @@ module TencentCloud
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段name对应的字符串结果。
         # @type Value: String
+        # @param ItemCoord: 文本行在旋转纠正之后的图像中的像素坐标，表示为（左上角x, 左上角y，宽width，高height）
+        # @type ItemCoord: :class:`Tencentcloud::Ocr.v20181119.models.ItemCoord`
 
-        attr_accessor :Name, :Value
+        attr_accessor :Name, :Value, :ItemCoord
         
-        def initialize(name=nil, value=nil)
+        def initialize(name=nil, value=nil, itemcoord=nil)
           @Name = name
           @Value = value
+          @ItemCoord = itemcoord
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+          unless params['ItemCoord'].nil?
+            @ItemCoord = ItemCoord.new.deserialize(params[ItemCoord])
+          end
         end
       end
 
@@ -345,20 +510,24 @@ module TencentCloud
         # @type BusinessCardInfos: Array
         # @param RetImageBase64: 返回图像预处理后的图片，图像预处理未开启时返回内容为空。
         # @type RetImageBase64: String
+        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        # @type Angle: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BusinessCardInfos, :RetImageBase64, :RequestId
+        attr_accessor :BusinessCardInfos, :RetImageBase64, :Angle, :RequestId
         
-        def initialize(businesscardinfos=nil, retimagebase64=nil, requestid=nil)
+        def initialize(businesscardinfos=nil, retimagebase64=nil, angle=nil, requestid=nil)
           @BusinessCardInfos = businesscardinfos
           @RetImageBase64 = retimagebase64
+          @Angle = angle
           @RequestId = requestid
         end
 
         def deserialize(params)
           @BusinessCardInfos = params['BusinessCardInfos']
           @RetImageBase64 = params['RetImageBase64']
+          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end
@@ -381,21 +550,36 @@ module TencentCloud
 
       # 购车发票识别结果
       class CarInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 发票代码、 机打代码、 发票号码、 发动机号码、 合格证号、 机打号码、 价税合计(小写)、 销货单位名称、 身份证号码/组织机构代码、 购买方名称、 销售方纳税人识别号、 购买方纳税人识别号、主管税务机关、 主管税务机关代码、 开票日期、 不含税价(小写)、 吨位、增值税税率或征收率、 车辆识别代号/车架号码、 增值税税额、 厂牌型号、 省、 市、 发票消费类型、 销售方电话、 销售方账号、 产地、 进口证明书号、 车辆类型、 机器编号、备注、开票人、限乘人数、商检单号、销售方地址、销售方开户银行、价税合计。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段name对应的字符串结果。
         # @type Value: String
+        # @param Rect: 字段在旋转纠正之后的图像中的像素坐标。
+        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
+        # @param Polygon: 字段在原图中的中的四点坐标。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
 
-        attr_accessor :Name, :Value
+        attr_accessor :Name, :Value, :Rect, :Polygon
         
-        def initialize(name=nil, value=nil)
+        def initialize(name=nil, value=nil, rect=nil, polygon=nil)
           @Name = name
           @Value = value
+          @Rect = rect
+          @Polygon = polygon
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+          unless params['Rect'].nil?
+            @Rect = Rect.new.deserialize(params[Rect])
+          end
+          unless params['Polygon'].nil?
+            @Polygon = Polygon.new.deserialize(params[Polygon])
+          end
         end
       end
 
@@ -446,6 +630,124 @@ module TencentCloud
         end
       end
 
+      # 单元格识别结果
+      class CellContent < TencentCloud::Common::AbstractModel
+        # @param ParagNo: 段落编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParagNo: Integer
+        # @param WordSize: 字体大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordSize: Integer
+
+        attr_accessor :ParagNo, :WordSize
+        
+        def initialize(paragno=nil, wordsize=nil)
+          @ParagNo = paragno
+          @WordSize = wordsize
+        end
+
+        def deserialize(params)
+          @ParagNo = params['ParagNo']
+          @WordSize = params['WordSize']
+        end
+      end
+
+      # 卡证智能分类结果
+      class ClassifyDetectInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 分类名称，包括：身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照
+        # @type Name: String
+        # @param Type: 分类类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Rect: 位置坐标
+        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
+
+        attr_accessor :Name, :Type, :Rect
+        
+        def initialize(name=nil, type=nil, rect=nil)
+          @Name = name
+          @Type = type
+          @Rect = rect
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['Rect'].nil?
+            @Rect = Rect.new.deserialize(params[Rect])
+          end
+        end
+      end
+
+      # ClassifyDetectOCR请求参数结构体
+      class ClassifyDetectOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param DiscernType: 可以指定要识别的票证类型,指定后不出现在此列表的票证将不返回类型。不指定时默认返回所有支持类别票证的识别信息。
+
+        # 以下是当前支持的类型：
+        # IDCardFront: 身份证正面识别
+        # IDCardBack: 身份证背面识别
+        # Passport: 护照
+        # BusinessCard: 名片识别
+        # BankCard: 银行卡识别
+        # VehicleLicenseFront: 行驶证主页识别
+        # VehicleLicenseBack: 行驶证副页识别
+        # DriverLicenseFront: 驾驶证主页识别
+        # DriverLicenseBack: 驾驶证副页识别
+        # PermitFront: 港澳台通行证正面
+        # ResidenceBooklet: 户口本资料页
+        # MainlandPermitFront: 港澳台来往内地通行证正面
+        # HmtResidentPermitFront: 港澳台居住证正面
+        # HmtResidentPermitBack: 港澳台居住证背面
+        # EstateCert: 不动产证
+        # BizLicense: 营业执照
+        # @type DiscernType: Array
+
+        attr_accessor :ImageBase64, :ImageUrl, :DiscernType
+        
+        def initialize(imagebase64=nil, imageurl=nil, discerntype=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @DiscernType = discerntype
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @DiscernType = params['DiscernType']
+        end
+      end
+
+      # ClassifyDetectOCR返回参数结构体
+      class ClassifyDetectOCRResponse < TencentCloud::Common::AbstractModel
+        # @param ClassifyDetectInfos: 智能卡证分类结果。当图片类型不支持分类识别或者识别出的类型不在请求参数DiscernType指定的范围内时，返回结果中的Type字段将为空字符串，Name字段将返回"其它"
+        # @type ClassifyDetectInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClassifyDetectInfos, :RequestId
+        
+        def initialize(classifydetectinfos=nil, requestid=nil)
+          @ClassifyDetectInfos = classifydetectinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClassifyDetectInfos = params['ClassifyDetectInfos']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 坐标
       class Coord < TencentCloud::Common::AbstractModel
         # @param X: 横坐标
@@ -476,6 +778,7 @@ module TencentCloud
         # @type ImageUrl: String
         # @param CardSide: FRONT 为驾驶证主页正面（有红色印章的一面），
         # BACK 为驾驶证副页正面（有档案编号的一面）。
+        # 默认值为：FRONT。
         # @type CardSide: String
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide
@@ -503,15 +806,15 @@ module TencentCloud
         # @type Nationality: String
         # @param Address: 住址
         # @type Address: String
-        # @param DateOfBirth: 出生日期
+        # @param DateOfBirth: 出生日期（YYYY-MM-DD）
         # @type DateOfBirth: String
-        # @param DateOfFirstIssue: 初次领证日期
+        # @param DateOfFirstIssue: 初次领证日期（YYYY-MM-DD）
         # @type DateOfFirstIssue: String
         # @param Class: 准驾车型
         # @type Class: String
-        # @param StartDate: 有效期开始时间
+        # @param StartDate: 有效期开始时间（YYYY-MM-DD）
         # @type StartDate: String
-        # @param EndDate: 有效期截止时间
+        # @param EndDate: 有效期截止时间（YYYY-MM-DD）
         # @type EndDate: String
         # @param CardCode: 证号
         # @type CardCode: String
@@ -531,12 +834,14 @@ module TencentCloud
         # WARN_DRIVER_LICENSE_PS_CARD ps告警
         # 注：告警信息可以同时存在多个
         # @type RecognizeWarnMsg: Array
+        # @param IssuingAuthority: 发证单位
+        # @type IssuingAuthority: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :RequestId
+        attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :RequestId
         
-        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, requestid=nil)
+        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, requestid=nil)
           @Name = name
           @Sex = sex
           @Nationality = nationality
@@ -551,6 +856,7 @@ module TencentCloud
           @Record = record
           @RecognizeWarnCode = recognizewarncode
           @RecognizeWarnMsg = recognizewarnmsg
+          @IssuingAuthority = issuingauthority
           @RequestId = requestid
         end
 
@@ -569,13 +875,15 @@ module TencentCloud
           @Record = params['Record']
           @RecognizeWarnCode = params['RecognizeWarnCode']
           @RecognizeWarnMsg = params['RecognizeWarnMsg']
+          @IssuingAuthority = params['IssuingAuthority']
           @RequestId = params['RequestId']
         end
       end
 
       # 识别出的字段
       class DutyPaidProofInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 税号 、纳税人识别号 、纳税人名称 、金额合计大写 、金额合计小写 、填发日期 、税务机关 、填票人。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -776,7 +1084,8 @@ module TencentCloud
 
       # 企业证照单个字段的内容
       class EnterpriseLicenseInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称。
+        # @param Name: 识别出的字段名称（关键字），不同证件类型可能不同，证件类型包含企业登记证书、许可证书、企业执照、三证合一类证书；
+        # 支持以下字段：统一社会信用代码、法定代表人、公司名称、公司地址、注册资金、企业关型、经营范围、成立日期、有效期、开办资金、经费来源、举办单位等；
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -938,7 +1247,13 @@ module TencentCloud
 
       # 金融票据整单识别单个字段的内容
       class FinanBillInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 【进账单】
+        # 日期、出票全称、出票账号、出票开户行、收款人全称、收款人账号、收款开户行、大写金额、小写金额、票据种类、票据张数、票据号码；
+        # 【支票】
+        # 开户银行、支票种类、凭证号码2、日期、大写金额、小写金额、付款行编号、密码、凭证号码1；
+        # 【银行承兑汇票】或【商业承兑汇票】
+        # 出票日期、行号1、行号2、出票人全称、出票人账号、付款行全称、收款人全称、收款人账号、收款人开户行、出票金额大写、出票金额小写、汇票到期日、付款行行号、付款行地址。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -1005,7 +1320,8 @@ module TencentCloud
 
       # 金融票据切片识别单个字段的内容
       class FinanBillSliceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 大写金额、小写金额、账号、票号1、票号2、收款人、大写日期、同城交换号、地址-省份、地址-城市、付款行全称、支票密码、支票用途。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -1072,7 +1388,8 @@ module TencentCloud
 
       # 机票行程单识别结果
       class FlightInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 票价、合计金额、填开日期、有效身份证件号码、电子客票号码、验证码、旅客姓名、填开单位、其他税费、燃油附加费、民航发展基金、保险费、销售单位代号、始发地、目的地、航班号、时间、日期、座位等级、承运人、发票消费类型、国内国际标签、印刷序号。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段 Name 对应的字符串结果。
         # @type Value: String
@@ -1238,12 +1555,12 @@ module TencentCloud
 
       # GeneralBasicOCR请求参数结构体
       class GeneralBasicOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。
-        # 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
+        # @param ImageBase64: 图片/PDF的 Base64 值。
+        # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。
-        # 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
+        # @param ImageUrl: 图片/PDF的 Url 地址。
+        # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
         # @param Scene: 保留字段。
@@ -1255,22 +1572,29 @@ module TencentCloud
         # spa\fre\ger\por\
         # vie\may\rus\ita\
         # hol\swe\fin\dan\
-        # nor\hun\tha\lat
+        # nor\hun\tha\lat\ara
         # 可选值分别表示：
         # 中英文混合、自动识别、日语、韩语、
         # 西班牙语、法语、德语、葡萄牙语、
         # 越南语、马来语、俄语、意大利语、
         # 荷兰语、瑞典语、芬兰语、丹麦语、
-        # 挪威语、匈牙利语、泰语、拉丁语系。
+        # 挪威语、匈牙利语、泰语、拉丁语系、
+        # 阿拉伯语。
         # @type LanguageType: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl, :Scene, :LanguageType
+        attr_accessor :ImageBase64, :ImageUrl, :Scene, :LanguageType, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil, scene=nil, languagetype=nil)
+        def initialize(imagebase64=nil, imageurl=nil, scene=nil, languagetype=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Scene = scene
           @LanguageType = languagetype
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
@@ -1278,6 +1602,8 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @Scene = params['Scene']
           @LanguageType = params['LanguageType']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -1289,15 +1615,18 @@ module TencentCloud
         # @type Language: String
         # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angel: Float
+        # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
+        # @type PdfPageSize: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TextDetections, :Language, :Angel, :RequestId
+        attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :RequestId
         
-        def initialize(textdetections=nil, language=nil, angel=nil, requestid=nil)
+        def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, requestid=nil)
           @TextDetections = textdetections
           @Language = language
           @Angel = angel
+          @PdfPageSize = pdfpagesize
           @RequestId = requestid
         end
 
@@ -1305,6 +1634,7 @@ module TencentCloud
           @TextDetections = params['TextDetections']
           @Language = params['Language']
           @Angel = params['Angel']
+          @PdfPageSize = params['PdfPageSize']
           @RequestId = params['RequestId']
         end
       end
@@ -1429,19 +1759,23 @@ module TencentCloud
         # @param Scene: 场景字段，默认不用填写。
         # 可选值:only_hw  表示只输出手写体识别结果，过滤印刷体。
         # @type Scene: String
+        # @param EnableWordPolygon: 是否开启单字的四点定位坐标输出，默认值为false。
+        # @type EnableWordPolygon: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :Scene
+        attr_accessor :ImageBase64, :ImageUrl, :Scene, :EnableWordPolygon
         
-        def initialize(imagebase64=nil, imageurl=nil, scene=nil)
+        def initialize(imagebase64=nil, imageurl=nil, scene=nil, enablewordpolygon=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Scene = scene
+          @EnableWordPolygon = enablewordpolygon
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @Scene = params['Scene']
+          @EnableWordPolygon = params['EnableWordPolygon']
         end
       end
 
@@ -1461,6 +1795,120 @@ module TencentCloud
 
         def deserialize(params)
           @TextDetections = params['TextDetections']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # HKIDCardOCR请求参数结构体
+      class HKIDCardOCRRequest < TencentCloud::Common::AbstractModel
+        # @param DetectFake: 是否鉴伪。
+        # @type DetectFake: Boolean
+        # @param ReturnHeadImage: 是否返回人像照片。
+        # @type ReturnHeadImage: Boolean
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+
+        attr_accessor :DetectFake, :ReturnHeadImage, :ImageBase64, :ImageUrl
+        
+        def initialize(detectfake=nil, returnheadimage=nil, imagebase64=nil, imageurl=nil)
+          @DetectFake = detectfake
+          @ReturnHeadImage = returnheadimage
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @DetectFake = params['DetectFake']
+          @ReturnHeadImage = params['ReturnHeadImage']
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # HKIDCardOCR返回参数结构体
+      class HKIDCardOCRResponse < TencentCloud::Common::AbstractModel
+        # @param CnName: 中文姓名
+        # @type CnName: String
+        # @param EnName: 英文姓名
+        # @type EnName: String
+        # @param TelexCode: 中文姓名对应电码
+        # @type TelexCode: String
+        # @param Sex: 性别 ：“男M”或“女F”
+        # @type Sex: String
+        # @param Birthday: 出生日期
+        # @type Birthday: String
+        # @param Permanent: 永久性居民身份证。
+        # 0：非永久；
+        # 1：永久；
+        # -1：未知。
+        # @type Permanent: Integer
+        # @param IdNum: 身份证号码
+        # @type IdNum: String
+        # @param Symbol: 证件符号，出生日期下的符号，例如"***AZ"
+        # @type Symbol: String
+        # @param FirstIssueDate: 首次签发日期
+        # @type FirstIssueDate: String
+        # @param CurrentIssueDate: 最近领用日期
+        # @type CurrentIssueDate: String
+        # @param FakeDetectResult: 真假判断。
+        # 0：无法判断（图像模糊、不完整、反光、过暗等导致无法判断）；
+        # 1：假；
+        # 2：真。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FakeDetectResult: Integer
+        # @param HeadImage: 人像照片Base64后的结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadImage: String
+        # @param WarningCode: 多重告警码，当身份证是翻拍、复印、PS件时返回对应告警码。
+        # -9102：证照复印件告警
+        # -9103：证照翻拍告警
+        # -9104：证照PS告警
+        # -9105：证照防伪告警
+        # @type WarningCode: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :RequestId
+        
+        def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, warningcode=nil, requestid=nil)
+          @CnName = cnname
+          @EnName = enname
+          @TelexCode = telexcode
+          @Sex = sex
+          @Birthday = birthday
+          @Permanent = permanent
+          @IdNum = idnum
+          @Symbol = symbol
+          @FirstIssueDate = firstissuedate
+          @CurrentIssueDate = currentissuedate
+          @FakeDetectResult = fakedetectresult
+          @HeadImage = headimage
+          @WarningCode = warningcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CnName = params['CnName']
+          @EnName = params['EnName']
+          @TelexCode = params['TelexCode']
+          @Sex = params['Sex']
+          @Birthday = params['Birthday']
+          @Permanent = params['Permanent']
+          @IdNum = params['IdNum']
+          @Symbol = params['Symbol']
+          @FirstIssueDate = params['FirstIssueDate']
+          @CurrentIssueDate = params['CurrentIssueDate']
+          @FakeDetectResult = params['FakeDetectResult']
+          @HeadImage = params['HeadImage']
+          @WarningCode = params['WarningCode']
           @RequestId = params['RequestId']
         end
       end
@@ -1570,6 +2018,7 @@ module TencentCloud
         # InvalidDateWarn，身份证有效日期不合法告警
         # Quality，图片质量分数（评价图片的模糊程度）
         # MultiCardDetect，是否开启多卡证检测
+        # ReflectWarn，是否开启反光检测
 
         # SDK 设置方式参考：
         # Config = Json.stringify({"CropIdCard":true,"CropPortrait":true})
@@ -1626,7 +2075,8 @@ module TencentCloud
         # -9103	身份证翻拍告警，
         # -9105	身份证框内遮挡告警，
         # -9104	临时身份证告警，
-        # -9106	身份证 PS 告警。
+        # -9106	身份证 PS 告警，
+        # -9107       身份证反光告警。
         # @type AdvancedInfo: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1725,7 +2175,15 @@ module TencentCloud
 
       # 保险单据信息
       class InsuranceBillInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 【病案首页】
+        # 姓名、性别、出生日期、出院诊断、疾病编码、入院病情等。
+        # 【费用清单】
+        # 医疗参保人员类别、身份证号、入院方式、结账日期、项目、金额等。
+        # 【结算单】
+        # 名称、单价、数量、金额、医保内、医保外等。
+        # 【医疗发票】
+        # 姓名、性别、住院时间、收费项目、金额、合计等。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -1812,7 +2270,7 @@ module TencentCloud
         # 13：过路过桥费发票
         # 14：购物小票
         # @type Type: Integer
-        # @param Rect: 识别出的图片在混贴票据图片中的位置信息。与Angel结合可以得出原图位置，组成RotatedRect((X,Y), (Width, Height), Angle)，详情可参考OpenCV文档。
+        # @param Rect: 识别出的图片在混贴票据图片中的位置信息。与Angel结合可以得出原图位置，组成RotatedRect((X+0.5\*Width,Y+0.5\*Height), (Width, Height), Angle)，详情可参考OpenCV文档。
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
         # @param Image: 入参 ReturnImage 为 True 时返回 Base64 编码后的图片。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1839,7 +2297,8 @@ module TencentCloud
 
       # 通用机打发票信息
       class InvoiceGeneralInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 发票代码、发票号码、日期、合计金额(小写)、合计金额(大写)、购买方识别号、销售方识别号、校验码、购买方名称、销售方名称、时间、种类、发票消费类型、省、市、是否有公司印章。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -1975,20 +2434,26 @@ module TencentCloud
         # @type Number: String
         # @param Confidence: 置信度，0 - 100 之间。
         # @type Confidence: Integer
+        # @param Rect: 文本行在原图片中的像素坐标框。
+        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Number, :Confidence, :RequestId
+        attr_accessor :Number, :Confidence, :Rect, :RequestId
         
-        def initialize(number=nil, confidence=nil, requestid=nil)
+        def initialize(number=nil, confidence=nil, rect=nil, requestid=nil)
           @Number = number
           @Confidence = confidence
+          @Rect = rect
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Number = params['Number']
           @Confidence = params['Confidence']
+          unless params['Rect'].nil?
+            @Rect = Rect.new.deserialize(params[Rect])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2040,7 +2505,7 @@ module TencentCloud
         # @type Warn: Array
         # @param Image: 证件图片
         # @type Image: String
-        # @param AdvancedInfo: 扩展字段:
+        # @param AdvancedInfo: 扩展字段：
         # {
         #     ID:{
         #         Confidence:0.9999
@@ -2058,12 +2523,14 @@ module TencentCloud
         # POLIS  警察
         # IKAD   劳工证
         # @type Type: String
+        # @param Birthday: 出生日期（目前该字段仅支持IKAD劳工证）
+        # @type Birthday: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :RequestId
+        attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :RequestId
         
-        def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, requestid=nil)
+        def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, requestid=nil)
           @ID = id
           @Name = name
           @Address = address
@@ -2072,6 +2539,7 @@ module TencentCloud
           @Image = image
           @AdvancedInfo = advancedinfo
           @Type = type
+          @Birthday = birthday
           @RequestId = requestid
         end
 
@@ -2084,6 +2552,7 @@ module TencentCloud
           @Image = params['Image']
           @AdvancedInfo = params['AdvancedInfo']
           @Type = params['Type']
+          @Birthday = params['Birthday']
           @RequestId = params['RequestId']
         end
       end
@@ -2091,9 +2560,8 @@ module TencentCloud
       # MLIDPassportOCR请求参数结构体
       class MLIDPassportOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
-        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param RetImage: 是否返回图片
+        # @param RetImage: 是否返回图片，默认false
         # @type RetImage: Boolean
 
         attr_accessor :ImageBase64, :RetImage
@@ -2339,7 +2807,7 @@ module TencentCloud
         # 12：购车发票
         # 13：过路过桥费发票
         # @type Type: Integer
-        # @param Rect: 识别出的图片在混贴票据图片中的位置信息。与Angel结合可以得出原图位置，组成RotatedRect((X,Y), (Width, Height), Angle)，详情可参考OpenCV文档。
+        # @param Rect: 识别出的图片在混贴票据图片中的位置信息。与Angel结合可以得出原图位置，组成RotatedRect((X+0.5\*Width,Y+0.5\*Height), (Width, Height), Angle)，详情可参考OpenCV文档。
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
         # @param Angle: 识别出的图片在混贴票据图片中的旋转角度。
         # @type Angle: Float
@@ -2371,12 +2839,12 @@ module TencentCloud
       class MixedInvoiceOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
@@ -2663,6 +3131,43 @@ module TencentCloud
           @IssueAddress = params['IssueAddress']
           @Birthday = params['Birthday']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 文本的坐标，以四个顶点坐标表示
+      # 注意：此字段可能返回 null，表示取不到有效值
+      class Polygon < TencentCloud::Common::AbstractModel
+        # @param LeftTop: 左上顶点坐标
+        # @type LeftTop: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
+        # @param RightTop: 右上顶点坐标
+        # @type RightTop: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
+        # @param RightBottom: 右下顶点坐标
+        # @type RightBottom: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
+        # @param LeftBottom: 左下顶点坐标
+        # @type LeftBottom: :class:`Tencentcloud::Ocr.v20181119.models.Coord`
+
+        attr_accessor :LeftTop, :RightTop, :RightBottom, :LeftBottom
+        
+        def initialize(lefttop=nil, righttop=nil, rightbottom=nil, leftbottom=nil)
+          @LeftTop = lefttop
+          @RightTop = righttop
+          @RightBottom = rightbottom
+          @LeftBottom = leftbottom
+        end
+
+        def deserialize(params)
+          unless params['LeftTop'].nil?
+            @LeftTop = Coord.new.deserialize(params[LeftTop])
+          end
+          unless params['RightTop'].nil?
+            @RightTop = Coord.new.deserialize(params[RightTop])
+          end
+          unless params['RightBottom'].nil?
+            @RightBottom = Coord.new.deserialize(params[RightBottom])
+          end
+          unless params['LeftBottom'].nil?
+            @LeftBottom = Coord.new.deserialize(params[LeftBottom])
+          end
         end
       end
 
@@ -3123,6 +3628,136 @@ module TencentCloud
         end
       end
 
+      # RecognizeTableOCR请求参数结构体
+      class RecognizeTableOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片/PDF的 Base64 值。
+        # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片/PDF的 Url 地址。
+        # 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
+        
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
+        end
+      end
+
+      # RecognizeTableOCR返回参数结构体
+      class RecognizeTableOCRResponse < TencentCloud::Common::AbstractModel
+        # @param TableDetections: 检测到的文本信息，具体内容请点击左侧链接。
+        # @type TableDetections: Array
+        # @param Data: Base64 编码后的 Excel 数据。
+        # @type Data: String
+        # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
+        # @type PdfPageSize: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableDetections, :Data, :PdfPageSize, :RequestId
+        
+        def initialize(tabledetections=nil, data=nil, pdfpagesize=nil, requestid=nil)
+          @TableDetections = tabledetections
+          @Data = data
+          @PdfPageSize = pdfpagesize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TableDetections = params['TableDetections']
+          @Data = params['Data']
+          @PdfPageSize = params['PdfPageSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecognizeThaiIDCardOCR请求参数结构体
+      class RecognizeThaiIDCardOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @type ImageUrl: String
+
+        attr_accessor :ImageBase64, :ImageUrl
+        
+        def initialize(imagebase64=nil, imageurl=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # RecognizeThaiIDCardOCR返回参数结构体
+      class RecognizeThaiIDCardOCRResponse < TencentCloud::Common::AbstractModel
+        # @param ID: 身份证号码
+        # @type ID: String
+        # @param ThaiName: 泰文姓名
+        # @type ThaiName: String
+        # @param EnFirstName: 英文姓名
+        # @type EnFirstName: String
+        # @param Address: 地址
+        # @type Address: String
+        # @param Birthday: 出生日期
+        # @type Birthday: String
+        # @param IssueDate: 首次领用日期
+        # @type IssueDate: String
+        # @param ExpirationDate: 签发日期
+        # @type ExpirationDate: String
+        # @param EnLastName: 英文姓名
+        # @type EnLastName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ID, :ThaiName, :EnFirstName, :Address, :Birthday, :IssueDate, :ExpirationDate, :EnLastName, :RequestId
+        
+        def initialize(id=nil, thainame=nil, enfirstname=nil, address=nil, birthday=nil, issuedate=nil, expirationdate=nil, enlastname=nil, requestid=nil)
+          @ID = id
+          @ThaiName = thainame
+          @EnFirstName = enfirstname
+          @Address = address
+          @Birthday = birthday
+          @IssueDate = issuedate
+          @ExpirationDate = expirationdate
+          @EnLastName = enlastname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @ThaiName = params['ThaiName']
+          @EnFirstName = params['EnFirstName']
+          @Address = params['Address']
+          @Birthday = params['Birthday']
+          @IssueDate = params['IssueDate']
+          @ExpirationDate = params['ExpirationDate']
+          @EnLastName = params['EnLastName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 矩形坐标
       class Rect < TencentCloud::Common::AbstractModel
         # @param X: 左上角x
@@ -3242,6 +3877,126 @@ module TencentCloud
         end
       end
 
+      # RideHailingDriverLicenseOCR请求参数结构体
+      class RideHailingDriverLicenseOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。
+        # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @type ImageUrl: String
+
+        attr_accessor :ImageBase64, :ImageUrl
+        
+        def initialize(imagebase64=nil, imageurl=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # RideHailingDriverLicenseOCR返回参数结构体
+      class RideHailingDriverLicenseOCRResponse < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名
+        # @type Name: String
+        # @param LicenseNumber: 证号，对应网约车驾驶证字段：证号/从业资格证号/驾驶员证号/身份证号
+        # @type LicenseNumber: String
+        # @param StartDate: 有效起始日期
+        # @type StartDate: String
+        # @param EndDate: 有效期截止时间，对应网约车驾驶证字段：有效期至/营运期限止
+        # @type EndDate: String
+        # @param ReleaseDate: 初始发证日期，对应网约车驾驶证字段：初始领证日期/发证日期
+        # @type ReleaseDate: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Name, :LicenseNumber, :StartDate, :EndDate, :ReleaseDate, :RequestId
+        
+        def initialize(name=nil, licensenumber=nil, startdate=nil, enddate=nil, releasedate=nil, requestid=nil)
+          @Name = name
+          @LicenseNumber = licensenumber
+          @StartDate = startdate
+          @EndDate = enddate
+          @ReleaseDate = releasedate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @LicenseNumber = params['LicenseNumber']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @ReleaseDate = params['ReleaseDate']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RideHailingTransportLicenseOCR请求参数结构体
+      class RideHailingTransportLicenseOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。
+        # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @type ImageUrl: String
+
+        attr_accessor :ImageBase64, :ImageUrl
+        
+        def initialize(imagebase64=nil, imageurl=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # RideHailingTransportLicenseOCR返回参数结构体
+      class RideHailingTransportLicenseOCRResponse < TencentCloud::Common::AbstractModel
+        # @param OperationLicenseNumber: 交运管许可字号。
+        # @type OperationLicenseNumber: String
+        # @param VehicleOwner: 车辆所有人，对应网约车运输证字段：车辆所有人/车主名称/业户名称。
+        # @type VehicleOwner: String
+        # @param VehicleNumber: 车牌号码，对应网约车运输证字段：车牌号码/车辆号牌。
+        # @type VehicleNumber: String
+        # @param StartDate: 有效起始日期。
+        # @type StartDate: String
+        # @param EndDate: 有效期截止时间，对应网约车运输证字段：有效期至/营运期限止。
+        # @type EndDate: String
+        # @param ReleaseDate: 初始发证日期，对应网约车运输证字段：初始领证日期/发证日期。
+        # @type ReleaseDate: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OperationLicenseNumber, :VehicleOwner, :VehicleNumber, :StartDate, :EndDate, :ReleaseDate, :RequestId
+        
+        def initialize(operationlicensenumber=nil, vehicleowner=nil, vehiclenumber=nil, startdate=nil, enddate=nil, releasedate=nil, requestid=nil)
+          @OperationLicenseNumber = operationlicensenumber
+          @VehicleOwner = vehicleowner
+          @VehicleNumber = vehiclenumber
+          @StartDate = startdate
+          @EndDate = enddate
+          @ReleaseDate = releasedate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OperationLicenseNumber = params['OperationLicenseNumber']
+          @VehicleOwner = params['VehicleOwner']
+          @VehicleNumber = params['VehicleNumber']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @ReleaseDate = params['ReleaseDate']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SealOCR请求参数结构体
       class SealOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -3296,7 +4051,8 @@ module TencentCloud
 
       # 轮船票字段信息
       class ShipInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 发票代码、发票号码、日期、票价、始发地、目的地、姓名、时间、发票消费类型、省、市、币种。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -3391,6 +4147,81 @@ module TencentCloud
         end
       end
 
+      # 单元格数据
+      class TableCell < TencentCloud::Common::AbstractModel
+        # @param ColTl: 单元格左上角的列索引
+        # @type ColTl: Integer
+        # @param RowTl: 单元格左上角的行索引
+        # @type RowTl: Integer
+        # @param ColBr: 单元格右下角的列索引
+        # @type ColBr: Integer
+        # @param RowBr: 单元格右下角的行索引
+        # @type RowBr: Integer
+        # @param Text: 单元格内识别出的字符串文本，若文本存在多行，以换行符"\n"隔开
+        # @type Text: String
+        # @param Type: 单元格类型
+        # @type Type: String
+        # @param Confidence: 单元格置信度
+        # @type Confidence: Float
+        # @param Polygon: 单元格在图像中的四点坐标
+        # @type Polygon: Array
+        # @param AdvancedInfo: 此字段为扩展字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancedInfo: String
+        # @param Contents: 单元格文本属性
+        # @type Contents: Array
+
+        attr_accessor :ColTl, :RowTl, :ColBr, :RowBr, :Text, :Type, :Confidence, :Polygon, :AdvancedInfo, :Contents
+        
+        def initialize(coltl=nil, rowtl=nil, colbr=nil, rowbr=nil, text=nil, type=nil, confidence=nil, polygon=nil, advancedinfo=nil, contents=nil)
+          @ColTl = coltl
+          @RowTl = rowtl
+          @ColBr = colbr
+          @RowBr = rowbr
+          @Text = text
+          @Type = type
+          @Confidence = confidence
+          @Polygon = polygon
+          @AdvancedInfo = advancedinfo
+          @Contents = contents
+        end
+
+        def deserialize(params)
+          @ColTl = params['ColTl']
+          @RowTl = params['RowTl']
+          @ColBr = params['ColBr']
+          @RowBr = params['RowBr']
+          @Text = params['Text']
+          @Type = params['Type']
+          @Confidence = params['Confidence']
+          @Polygon = params['Polygon']
+          @AdvancedInfo = params['AdvancedInfo']
+          @Contents = params['Contents']
+        end
+      end
+
+      # 表格内容检测
+      class TableDetectInfo < TencentCloud::Common::AbstractModel
+        # @param Cells: 单元格内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cells: Array
+        # @param Titles: 表格标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Titles: Array
+
+        attr_accessor :Cells, :Titles
+        
+        def initialize(cells=nil, titles=nil)
+          @Cells = cells
+          @Titles = titles
+        end
+
+        def deserialize(params)
+          @Cells = params['Cells']
+          @Titles = params['Titles']
+        end
+      end
+
       # TableOCR请求参数结构体
       class TableOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -3420,7 +4251,7 @@ module TencentCloud
 
       # TableOCR返回参数结构体
       class TableOCRResponse < TencentCloud::Common::AbstractModel
-        # @param TextDetections: 检测到的文本信息，具体内容请点击左侧链接。
+        # @param TextDetections: 检测到的文本信息，具体内容请点击左侧链接
         # @type TextDetections: Array
         # @param Data: Base64 编码后的 Excel 数据。
         # @type Data: String
@@ -3439,6 +4270,23 @@ module TencentCloud
           @TextDetections = params['TextDetections']
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 表格标题
+      class TableTitle < TencentCloud::Common::AbstractModel
+        # @param Text: 表格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+
+        attr_accessor :Text
+        
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
         end
       end
 
@@ -3678,12 +4526,12 @@ module TencentCloud
         # @type DetectedText: String
         # @param Confidence: 置信度 0 ~100。
         # @type Confidence: Integer
-        # @param Polygon: 文本行坐标，以四个顶点坐标表示。
+        # @param Polygon: 文本行在原图中的四点坐标。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Polygon: Array
         # @param AdvancedInfo: 此字段为扩展字段。目前EnglishOCR接口返回内容为空。
         # @type AdvancedInfo: String
-        # @param WordCoordPoint: 单词在原图中的四点坐标。
+        # @param WordCoordPoint: 英文单词在原图中的四点坐标。
         # @type WordCoordPoint: Array
         # @param CandWord: 候选字符集(包含候选字Character以及置信度Confidence)。
         # @type CandWord: Array
@@ -3767,14 +4615,18 @@ module TencentCloud
         # 能返回文本行的段落信息，例如：{\"Parag\":{\"ParagNo\":2}}，
         # 其中ParagNo为段落行，从1开始。
         # @type AdvancedInfo: String
+        # @param WordPolygon: 字的坐标数组，以四个顶点坐标表示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordPolygon: Array
 
-        attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo
+        attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo, :WordPolygon
         
-        def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil)
+        def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil, wordpolygon=nil)
           @DetectedText = detectedtext
           @Confidence = confidence
           @Polygon = polygon
           @AdvancedInfo = advancedinfo
+          @WordPolygon = wordpolygon
         end
 
         def deserialize(params)
@@ -3782,6 +4634,7 @@ module TencentCloud
           @Confidence = params['Confidence']
           @Polygon = params['Polygon']
           @AdvancedInfo = params['AdvancedInfo']
+          @WordPolygon = params['WordPolygon']
         end
       end
 
@@ -3835,21 +4688,30 @@ module TencentCloud
 
       # 增值税发票识别结果
       class TextVatInvoice < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称（关键字）。支持以下字段的识别：
+        # 发票代码、 发票号码、 打印发票代码、 打印发票号码、 开票日期、 购买方识别号、 小写金额、 价税合计(大写)、 销售方识别号、 校验码、 购买方名称、 销售方名称、 税额、 复核、 联次名称、 备注、 联次、 密码区、 开票人、 收款人、 （货物或应税劳务、服务名称）、省、 市、 服务类型、 通行费标志、 是否代开、 是否收购、 合计金额、 是否有公司印章、 发票消费类型、 车船税、 机器编号、 成品油标志、 税率、 合计税额、 （购买方地址、电话）、 （销售方地址、电话）、 单价、 金额、 销售方开户行及账号、 购买方开户行及账号、 规格型号、 发票名称、 单位、 数量、 校验码备选、 校验码后六位备选、发票号码备选。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
+        # @param Polygon: 字段在原图中的中的四点坐标。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
 
-        attr_accessor :Name, :Value
+        attr_accessor :Name, :Value, :Polygon
         
-        def initialize(name=nil, value=nil)
+        def initialize(name=nil, value=nil, polygon=nil)
           @Name = name
           @Value = value
+          @Polygon = polygon
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+          unless params['Polygon'].nil?
+            @Polygon = Polygon.new.deserialize(params[Polygon])
+          end
         end
       end
 
@@ -4038,7 +4900,8 @@ module TencentCloud
 
       # 过路过桥费字段信息
       class TollInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称（关键字）。支持以下字段的识别：
+        # 发票代码、发票号码、日期、金额、入口、出口、时间、发票消费类型、高速标志。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -4204,6 +5067,121 @@ module TencentCloud
         end
       end
 
+      # 增值税发票信息
+      class VatInvoice < TencentCloud::Common::AbstractModel
+        # @param Code: 发票代码
+        # @type Code: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param BuyerName: 购方抬头
+        # @type BuyerName: String
+        # @param BuyerTaxCode: 购方税号
+        # @type BuyerTaxCode: String
+        # @param BuyerAddressPhone: 购方地址电话
+        # @type BuyerAddressPhone: String
+        # @param BuyerBankAccount: 购方银行账号
+        # @type BuyerBankAccount: String
+        # @param SellerName: 销方名称
+        # @type SellerName: String
+        # @param SellerTaxCode: 销方税号
+        # @type SellerTaxCode: String
+        # @param SellerAddressPhone: 销方地址电话
+        # @type SellerAddressPhone: String
+        # @param SellerBankAccount: 销方银行账号
+        # @type SellerBankAccount: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param MachineNo: 机器编码
+        # @type MachineNo: String
+        # @param Type: 发票类型
+        # 01：专用发票
+        # 02：货运发票
+        # 03：机动车发票
+        # 04：普通发票
+        # 10：电子发票
+        # 11：卷式发票
+        # 14：通行费发票
+        # 15：二手车发票
+        # @type Type: String
+        # @param CheckCode: 检验码
+        # @type CheckCode: String
+        # @param IsAbandoned: 是否作废（红冲）是否作废（红冲）
+        # Y: 已作废 N：未作废 H：红冲
+        # @type IsAbandoned: String
+        # @param HasSellerList: 是否有销货清单
+        # Y: 有清单 N：无清单
+        # 卷票无
+        # @type HasSellerList: String
+        # @param SellerListTitle: 销货清单标题
+        # @type SellerListTitle: String
+        # @param SellerListTax: 销货清单税额
+        # @type SellerListTax: String
+        # @param AmountWithoutTax: 不含税金额
+        # @type AmountWithoutTax: String
+        # @param TaxAmount: 税额
+        # @type TaxAmount: String
+        # @param AmountWithTax: 含税金额
+        # @type AmountWithTax: String
+        # @param Items: 项目明细
+        # @type Items: Array
+
+        attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items
+        
+        def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil)
+          @Code = code
+          @Number = number
+          @Date = date
+          @BuyerName = buyername
+          @BuyerTaxCode = buyertaxcode
+          @BuyerAddressPhone = buyeraddressphone
+          @BuyerBankAccount = buyerbankaccount
+          @SellerName = sellername
+          @SellerTaxCode = sellertaxcode
+          @SellerAddressPhone = selleraddressphone
+          @SellerBankAccount = sellerbankaccount
+          @Remark = remark
+          @MachineNo = machineno
+          @Type = type
+          @CheckCode = checkcode
+          @IsAbandoned = isabandoned
+          @HasSellerList = hassellerlist
+          @SellerListTitle = sellerlisttitle
+          @SellerListTax = sellerlisttax
+          @AmountWithoutTax = amountwithouttax
+          @TaxAmount = taxamount
+          @AmountWithTax = amountwithtax
+          @Items = items
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Number = params['Number']
+          @Date = params['Date']
+          @BuyerName = params['BuyerName']
+          @BuyerTaxCode = params['BuyerTaxCode']
+          @BuyerAddressPhone = params['BuyerAddressPhone']
+          @BuyerBankAccount = params['BuyerBankAccount']
+          @SellerName = params['SellerName']
+          @SellerTaxCode = params['SellerTaxCode']
+          @SellerAddressPhone = params['SellerAddressPhone']
+          @SellerBankAccount = params['SellerBankAccount']
+          @Remark = params['Remark']
+          @MachineNo = params['MachineNo']
+          @Type = params['Type']
+          @CheckCode = params['CheckCode']
+          @IsAbandoned = params['IsAbandoned']
+          @HasSellerList = params['HasSellerList']
+          @SellerListTitle = params['SellerListTitle']
+          @SellerListTax = params['SellerListTax']
+          @AmountWithoutTax = params['AmountWithoutTax']
+          @TaxAmount = params['TaxAmount']
+          @AmountWithTax = params['AmountWithTax']
+          @Items = params['Items']
+        end
+      end
+
       # 增值税发票项目明细
       class VatInvoiceItem < TencentCloud::Common::AbstractModel
         # @param LineNo: 行号
@@ -4254,28 +5232,36 @@ module TencentCloud
 
       # VatInvoiceOCR请求参数结构体
       class VatInvoiceOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
-        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: 图片/PDF的 Base64 值。
+        # 支持的文件格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
+        # 支持的图片/PDF大小：所下载文件经Base64编码后不超过 3M。文件下载时间不超过 3 秒。
+        # 输入参数 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # @param ImageUrl: 图片/PDF的 Url 地址。
+        # 支持的文件格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
+        # 支持的图片/PDF大小：所下载文件经 Base64 编码后不超过 3M。文件下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -4285,27 +5271,87 @@ module TencentCloud
         # @type VatInvoiceInfos: Array
         # @param Items: 明细条目。VatInvoiceInfos中关于明细项的具体条目。
         # @type Items: Array
+        # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
+        # @type PdfPageSize: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VatInvoiceInfos, :Items, :RequestId
+        attr_accessor :VatInvoiceInfos, :Items, :PdfPageSize, :RequestId
         
-        def initialize(vatinvoiceinfos=nil, items=nil, requestid=nil)
+        def initialize(vatinvoiceinfos=nil, items=nil, pdfpagesize=nil, requestid=nil)
           @VatInvoiceInfos = vatinvoiceinfos
           @Items = items
+          @PdfPageSize = pdfpagesize
           @RequestId = requestid
         end
 
         def deserialize(params)
           @VatInvoiceInfos = params['VatInvoiceInfos']
           @Items = params['Items']
+          @PdfPageSize = params['PdfPageSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VatInvoiceVerify请求参数结构体
+      class VatInvoiceVerifyRequest < TencentCloud::Common::AbstractModel
+        # @param InvoiceCode: 发票代码， 一张发票一天只能查询5次。
+        # @type InvoiceCode: String
+        # @param InvoiceNo: 发票号码（8位）。
+        # @type InvoiceNo: String
+        # @param InvoiceDate: 开票日期（不支持当天发票查询，只支持一年以内），如：2019-12-20。
+        # @type InvoiceDate: String
+        # @param Additional: 金额/发票校验码后6位（根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值）
+        # 增值税专用发票：开具金额（不含税）
+        # 增值税普通发票、增值税电子普通发票（含通行费发票）、增值税普通发票（卷票）：校验码后6位
+        # 机动车销售统一发票：不含税价
+        # 货物运输业增值税专用发票：合计金额
+        # 二手车销售统一发票：车价合计
+        # @type Additional: String
+
+        attr_accessor :InvoiceCode, :InvoiceNo, :InvoiceDate, :Additional
+        
+        def initialize(invoicecode=nil, invoiceno=nil, invoicedate=nil, additional=nil)
+          @InvoiceCode = invoicecode
+          @InvoiceNo = invoiceno
+          @InvoiceDate = invoicedate
+          @Additional = additional
+        end
+
+        def deserialize(params)
+          @InvoiceCode = params['InvoiceCode']
+          @InvoiceNo = params['InvoiceNo']
+          @InvoiceDate = params['InvoiceDate']
+          @Additional = params['Additional']
+        end
+      end
+
+      # VatInvoiceVerify返回参数结构体
+      class VatInvoiceVerifyResponse < TencentCloud::Common::AbstractModel
+        # @param Invoice: 增值税发票信息，详情请点击左侧链接。
+        # @type Invoice: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoice`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Invoice, :RequestId
+        
+        def initialize(invoice=nil, requestid=nil)
+          @Invoice = invoice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Invoice'].nil?
+            @Invoice = VatInvoice.new.deserialize(params[Invoice])
+          end
           @RequestId = params['RequestId']
         end
       end
 
       # 增值税发票卷票信息
       class VatRollInvoiceInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称（关键字）。
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 发票代码、合计金额(小写)、合计金额(大写)、开票日期、发票号码、购买方识别号、销售方识别号、校验码、销售方名称、购买方名称、发票消费类型、省、市、是否有公司印章、服务类型、品名、种类。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
         # @type Value: String
@@ -4390,6 +5436,7 @@ module TencentCloud
         # @type ImageUrl: String
         # @param CardSide: FRONT 为行驶证主页正面（有红色印章的一面），
         # BACK 为行驶证副页正面（有号码号牌的一面）。
+        # 默认值为：FRONT。
         # @type CardSide: String
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide
@@ -4455,7 +5502,18 @@ module TencentCloud
 
       # 机动车登记证书识别结果
       class VehicleRegCertInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 识别出的字段名称
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 【注册登记页】
+        # 车辆型号、车辆识别代号/车架号、发动机号、制造厂名称、轴距、轮胎数、总质量、外廓尺寸、轴数、车辆出厂日期、发证日期、使用性质、车辆获得方式、车辆类型、国产/进口、燃料种类、车身颜色、发动机型号、车辆品牌、编号、转向形式、
+        # 机动车所有人1、身份证明名称1、号码1、登记机关1、登记日期1
+        # 机动车所有人2、身份证明名称2、号码2、登记机关2、登记日期2
+        # 机动车所有人3、身份证明名称3、号码3、登记机关3、登记日期3
+        # 机动车所有人4、身份证明名称4、号码4、登记机关4、登记日期4
+        # 机动车所有人5、身份证明名称5、号码5、登记机关5、登记日期5
+        # 机动车所有人6、身份证明名称6、号码6、登记机关6、登记日期6
+        # 机动车所有人7、身份证明名称7、号码7、登记机关7、登记日期7
+        # 【抵押登记页】
+        # 机动车登记证书编号、身份证明名称/号码、抵押权人姓名/名称、抵押登记日期。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段name对应的字符串结果。
         # @type Value: String
@@ -4520,6 +5578,342 @@ module TencentCloud
         end
       end
 
+      # VerifyBasicBizLicense请求参数结构体
+      class VerifyBasicBizLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 用于入参是营业执照图片的场景，ImageBase64和ImageUrl必须提供一个，如果都提供，只使用 ImageUrl。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # @type ImageBase64: String
+        # @param ImageUrl: 用于入参是营业执照图片的场景，ImageBase64和ImageUrl必须提供一个，如果都提供，只使用 ImageUrl。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # @type ImageUrl: String
+        # @param ImageConfig: 用于入参是营业执照图片的场景，表示需要校验的参数：RegNum（注册号或者统一社会信用代码），Name（企业名称），Address（经营地址）。选择后会返回相关参数校验结果。RegNum为必选，Name和Address可选。
+        # 格式为{RegNum: true, Name:true/false, Address:true/false}
+
+        # 设置方式参考：
+        # Config = Json.stringify({"Name":true,"Address":true})
+        # API 3.0 Explorer 设置方式参考：
+        # Config = {"Name":true,"Address":true}
+        # @type ImageConfig: String
+        # @param RegNum: 用于入参是文本的场景，RegNum表示注册号或者统一社会信用代码。若没有传入营业执照图片，则RegNum为必选项，若图片和RegNum都传入，则只使用RegNum。
+        # @type RegNum: String
+        # @param Name: 用于入参是文本的场景，Name表示企业名称。Name为可选项，填写后会返回Name的校验结果。
+        # @type Name: String
+        # @param Address: 用于入参是文本的场景，Address表示经营地址。Address为可选项，填写后会返回Address的校验结果。
+        # @type Address: String
+        # @param RegCapital: 1表示输出注册资本字段（单位：万元），其他值表示不输出。默认不输出。
+        # @type RegCapital: Integer
+
+        attr_accessor :ImageBase64, :ImageUrl, :ImageConfig, :RegNum, :Name, :Address, :RegCapital
+        
+        def initialize(imagebase64=nil, imageurl=nil, imageconfig=nil, regnum=nil, name=nil, address=nil, regcapital=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @ImageConfig = imageconfig
+          @RegNum = regnum
+          @Name = name
+          @Address = address
+          @RegCapital = regcapital
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @ImageConfig = params['ImageConfig']
+          @RegNum = params['RegNum']
+          @Name = params['Name']
+          @Address = params['Address']
+          @RegCapital = params['RegCapital']
+        end
+      end
+
+      # VerifyBasicBizLicense返回参数结构体
+      class VerifyBasicBizLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 状态码，成功时返回0
+        # @type ErrorCode: Integer
+        # @param CreditCode: 统一社会信用代码
+        # @type CreditCode: String
+        # @param Opfrom: 经营期限自（YYYY-MM-DD）
+        # @type Opfrom: String
+        # @param Opto: 经营期限至（YYYY-MM-DD）
+        # @type Opto: String
+        # @param Frname: 法人姓名
+        # @type Frname: String
+        # @param Entstatus: 经营状态（在营、注销、吊销、其他）
+        # @type Entstatus: String
+        # @param Zsopscope: 经营业务范围
+        # @type Zsopscope: String
+        # @param Reason: 查询的状态信息
+        # @type Reason: String
+        # @param Oriregno: 原注册号
+        # @type Oriregno: String
+        # @param VerifyRegno: 要核验的工商注册号
+        # @type VerifyRegno: String
+        # @param Regno: 工商注册号
+        # @type Regno: String
+        # @param VerifyEntname: 要核验的企业名称
+        # @type VerifyEntname: String
+        # @param Entname: 企业名称
+        # @type Entname: String
+        # @param VerifyDom: 要核验的住址
+        # @type VerifyDom: String
+        # @param Dom: 住址
+        # @type Dom: String
+        # @param RegNumResult: 验证结果
+        # @type RegNumResult: :class:`Tencentcloud::Ocr.v20181119.models.BizLicenseVerifyResult`
+        # @param RegCapital: 注册资本（单位：万元）,只有输入参数regCapital为1的时候才输出
+        # @type RegCapital: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :CreditCode, :Opfrom, :Opto, :Frname, :Entstatus, :Zsopscope, :Reason, :Oriregno, :VerifyRegno, :Regno, :VerifyEntname, :Entname, :VerifyDom, :Dom, :RegNumResult, :RegCapital, :RequestId
+        
+        def initialize(errorcode=nil, creditcode=nil, opfrom=nil, opto=nil, frname=nil, entstatus=nil, zsopscope=nil, reason=nil, oriregno=nil, verifyregno=nil, regno=nil, verifyentname=nil, entname=nil, verifydom=nil, dom=nil, regnumresult=nil, regcapital=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @CreditCode = creditcode
+          @Opfrom = opfrom
+          @Opto = opto
+          @Frname = frname
+          @Entstatus = entstatus
+          @Zsopscope = zsopscope
+          @Reason = reason
+          @Oriregno = oriregno
+          @VerifyRegno = verifyregno
+          @Regno = regno
+          @VerifyEntname = verifyentname
+          @Entname = entname
+          @VerifyDom = verifydom
+          @Dom = dom
+          @RegNumResult = regnumresult
+          @RegCapital = regcapital
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @CreditCode = params['CreditCode']
+          @Opfrom = params['Opfrom']
+          @Opto = params['Opto']
+          @Frname = params['Frname']
+          @Entstatus = params['Entstatus']
+          @Zsopscope = params['Zsopscope']
+          @Reason = params['Reason']
+          @Oriregno = params['Oriregno']
+          @VerifyRegno = params['VerifyRegno']
+          @Regno = params['Regno']
+          @VerifyEntname = params['VerifyEntname']
+          @Entname = params['Entname']
+          @VerifyDom = params['VerifyDom']
+          @Dom = params['Dom']
+          unless params['RegNumResult'].nil?
+            @RegNumResult = BizLicenseVerifyResult.new.deserialize(params[RegNumResult])
+          end
+          @RegCapital = params['RegCapital']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyBizLicense请求参数结构体
+      class VerifyBizLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 用于入参是营业执照图片的场景，ImageBase64和ImageUrl必须提供一个，如果都提供，只使用 ImageUrl。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # @type ImageBase64: String
+        # @param ImageUrl: 用于入参是营业执照图片的场景，ImageBase64和ImageUrl必须提供一个，如果都提供，只使用 ImageUrl。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # @type ImageUrl: String
+        # @param ImageConfig: 用于入参是营业执照图片的场景，表示需要校验的参数：RegNum（注册号或者统一社会信用代码），Name（企业名称），Address（经营地址）。选择后会返回相关参数校验结果。RegNum为必选，Name和Address可选。
+        # 格式为{RegNum: true, Name:true/false, Address:true/false}
+
+        # 设置方式参考：
+        # Config = Json.stringify({"Name":true,"Address":true})
+        # API 3.0 Explorer 设置方式参考：
+        # Config = {"Name":true,"Address":true}
+        # @type ImageConfig: String
+        # @param RegNum: 用于入参是文本的场景，RegNum表示注册号或者统一社会信用代码。若没有传入营业执照图片，则RegNum为必选项，若图片和RegNum都传入，则只使用RegNum。
+        # @type RegNum: String
+        # @param Name: 用于入参是文本的场景，Name表示企业名称。Name为可选项，填写后会返回Name的校验结果。
+        # @type Name: String
+        # @param Address: 用于入参是文本的场景，Address表示经营地址，填写后会返回Address的校验结果。
+        # @type Address: String
+
+        attr_accessor :ImageBase64, :ImageUrl, :ImageConfig, :RegNum, :Name, :Address
+        
+        def initialize(imagebase64=nil, imageurl=nil, imageconfig=nil, regnum=nil, name=nil, address=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @ImageConfig = imageconfig
+          @RegNum = regnum
+          @Name = name
+          @Address = address
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @ImageConfig = params['ImageConfig']
+          @RegNum = params['RegNum']
+          @Name = params['Name']
+          @Address = params['Address']
+        end
+      end
+
+      # VerifyBizLicense返回参数结构体
+      class VerifyBizLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 状态码
+        # @type ErrorCode: Integer
+        # @param CreditCode: 统一社会信用代码
+        # @type CreditCode: String
+        # @param OrgCode: 组织机构代码
+        # @type OrgCode: String
+        # @param OpenFrom: 经营期限自（YYYY-MM-DD）
+        # @type OpenFrom: String
+        # @param OpenTo: 经营期限至（YYYY-MM-DD）
+        # @type OpenTo: String
+        # @param FrName: 法人姓名
+        # @type FrName: String
+        # @param EnterpriseStatus: 经营状态（在营、注销、吊销、其他）
+        # @type EnterpriseStatus: String
+        # @param OperateScopeAndForm: 经营（业务）范围及方式
+        # @type OperateScopeAndForm: String
+        # @param RegCap: 注册资金（单位:万元）
+        # @type RegCap: String
+        # @param RegCapCur: 注册币种
+        # @type RegCapCur: String
+        # @param RegOrg: 登记机关
+        # @type RegOrg: String
+        # @param EsDate: 开业日期（YYYY-MM-DD）
+        # @type EsDate: String
+        # @param EnterpriseType: 企业（机构）类型
+        # @type EnterpriseType: String
+        # @param CancelDate: 注销日期
+        # @type CancelDate: String
+        # @param RevokeDate: 吊销日期
+        # @type RevokeDate: String
+        # @param AbuItem: 许可经营项目
+        # @type AbuItem: String
+        # @param CbuItem: 一般经营项目
+        # @type CbuItem: String
+        # @param ApprDate: 核准时间
+        # @type ApprDate: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 地级市
+        # @type City: String
+        # @param County: 区\县
+        # @type County: String
+        # @param AreaCode: 住所所在行政区划代码
+        # @type AreaCode: String
+        # @param IndustryPhyCode: 行业门类代码
+        # @type IndustryPhyCode: String
+        # @param IndustryPhyName: 行业门类名称
+        # @type IndustryPhyName: String
+        # @param IndustryCode: 国民经济行业代码
+        # @type IndustryCode: String
+        # @param IndustryName: 国民经济行业名称
+        # @type IndustryName: String
+        # @param OperateScope: 经营（业务）范围
+        # @type OperateScope: String
+        # @param VerifyRegNo: 要核验的工商注册号
+        # @type VerifyRegNo: String
+        # @param RegNo: 工商注册号
+        # @type RegNo: String
+        # @param VerifyEnterpriseName: 要核验的企业名称
+        # @type VerifyEnterpriseName: String
+        # @param EnterpriseName: 企业名称
+        # @type EnterpriseName: String
+        # @param VerifyAddress: 要核验的注册地址
+        # @type VerifyAddress: String
+        # @param Address: 注册地址
+        # @type Address: String
+        # @param RegNumResult: 验证结果
+        # @type RegNumResult: :class:`Tencentcloud::Ocr.v20181119.models.BizLicenseVerifyResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :CreditCode, :OrgCode, :OpenFrom, :OpenTo, :FrName, :EnterpriseStatus, :OperateScopeAndForm, :RegCap, :RegCapCur, :RegOrg, :EsDate, :EnterpriseType, :CancelDate, :RevokeDate, :AbuItem, :CbuItem, :ApprDate, :Province, :City, :County, :AreaCode, :IndustryPhyCode, :IndustryPhyName, :IndustryCode, :IndustryName, :OperateScope, :VerifyRegNo, :RegNo, :VerifyEnterpriseName, :EnterpriseName, :VerifyAddress, :Address, :RegNumResult, :RequestId
+        
+        def initialize(errorcode=nil, creditcode=nil, orgcode=nil, openfrom=nil, opento=nil, frname=nil, enterprisestatus=nil, operatescopeandform=nil, regcap=nil, regcapcur=nil, regorg=nil, esdate=nil, enterprisetype=nil, canceldate=nil, revokedate=nil, abuitem=nil, cbuitem=nil, apprdate=nil, province=nil, city=nil, county=nil, areacode=nil, industryphycode=nil, industryphyname=nil, industrycode=nil, industryname=nil, operatescope=nil, verifyregno=nil, regno=nil, verifyenterprisename=nil, enterprisename=nil, verifyaddress=nil, address=nil, regnumresult=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @CreditCode = creditcode
+          @OrgCode = orgcode
+          @OpenFrom = openfrom
+          @OpenTo = opento
+          @FrName = frname
+          @EnterpriseStatus = enterprisestatus
+          @OperateScopeAndForm = operatescopeandform
+          @RegCap = regcap
+          @RegCapCur = regcapcur
+          @RegOrg = regorg
+          @EsDate = esdate
+          @EnterpriseType = enterprisetype
+          @CancelDate = canceldate
+          @RevokeDate = revokedate
+          @AbuItem = abuitem
+          @CbuItem = cbuitem
+          @ApprDate = apprdate
+          @Province = province
+          @City = city
+          @County = county
+          @AreaCode = areacode
+          @IndustryPhyCode = industryphycode
+          @IndustryPhyName = industryphyname
+          @IndustryCode = industrycode
+          @IndustryName = industryname
+          @OperateScope = operatescope
+          @VerifyRegNo = verifyregno
+          @RegNo = regno
+          @VerifyEnterpriseName = verifyenterprisename
+          @EnterpriseName = enterprisename
+          @VerifyAddress = verifyaddress
+          @Address = address
+          @RegNumResult = regnumresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @CreditCode = params['CreditCode']
+          @OrgCode = params['OrgCode']
+          @OpenFrom = params['OpenFrom']
+          @OpenTo = params['OpenTo']
+          @FrName = params['FrName']
+          @EnterpriseStatus = params['EnterpriseStatus']
+          @OperateScopeAndForm = params['OperateScopeAndForm']
+          @RegCap = params['RegCap']
+          @RegCapCur = params['RegCapCur']
+          @RegOrg = params['RegOrg']
+          @EsDate = params['EsDate']
+          @EnterpriseType = params['EnterpriseType']
+          @CancelDate = params['CancelDate']
+          @RevokeDate = params['RevokeDate']
+          @AbuItem = params['AbuItem']
+          @CbuItem = params['CbuItem']
+          @ApprDate = params['ApprDate']
+          @Province = params['Province']
+          @City = params['City']
+          @County = params['County']
+          @AreaCode = params['AreaCode']
+          @IndustryPhyCode = params['IndustryPhyCode']
+          @IndustryPhyName = params['IndustryPhyName']
+          @IndustryCode = params['IndustryCode']
+          @IndustryName = params['IndustryName']
+          @OperateScope = params['OperateScope']
+          @VerifyRegNo = params['VerifyRegNo']
+          @RegNo = params['RegNo']
+          @VerifyEnterpriseName = params['VerifyEnterpriseName']
+          @EnterpriseName = params['EnterpriseName']
+          @VerifyAddress = params['VerifyAddress']
+          @Address = params['Address']
+          unless params['RegNumResult'].nil?
+            @RegNumResult = BizLicenseVerifyResult.new.deserialize(params[RegNumResult])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # VinOCR请求参数结构体
       class VinOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -4580,17 +5974,21 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param EnablePreDetect: 预检测开关，当待识别运单占整个输入图像的比例较小时，建议打开预检测开关。默认值为false。
+        # @type EnablePreDetect: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :EnablePreDetect
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, enablepredetect=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @EnablePreDetect = enablepredetect
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @EnablePreDetect = params['EnablePreDetect']
         end
       end
 

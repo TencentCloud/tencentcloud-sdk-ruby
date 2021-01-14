@@ -372,9 +372,9 @@ module TencentCloud
         # @type AutoScalingGroupName: String
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param MinSize: 最大实例数，取值范围为0-2000。
+        # @param MinSize: 最小实例数，取值范围为0-2000。
         # @type MinSize: Integer
-        # @param MaxSize: 最小实例数，取值范围为0-2000。
+        # @param MaxSize: 最大实例数，取值范围为0-2000。
         # @type MaxSize: Integer
         # @param DesiredCapacity: 期望实例数，大小介于最小实例数和最大实例数之间。
         # @type DesiredCapacity: Integer
@@ -579,6 +579,7 @@ module TencentCloud
         # @param InstanceChargeType: 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
         # <br><li>POSTPAID_BY_HOUR：按小时后付费
         # <br><li>SPOTPAID：竞价付费
+        # <br><li>PREPAID：预付费，即包年包月
         # @type InstanceChargeType: String
         # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
@@ -700,7 +701,7 @@ module TencentCloud
         # @type DefaultResult: String
         # @param HeartbeatTimeout: 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从30到3600秒，默认值为300秒
         # @type HeartbeatTimeout: Integer
-        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，默认值为空字符串“”。最大长度不能超过1024个字节。
+        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，默认值为空字符串""。最大长度不能超过1024个字节。
         # @type NotificationMetadata: String
         # @param NotificationTarget: 通知目标
         # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`
@@ -2746,7 +2747,7 @@ module TencentCloud
         # @type LaunchConfigurationId: String
         # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-8toqc6s3`。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
         # @type ImageId: String
-        # @param InstanceTypes: 实例类型列表，不同实例机型指定了不同的资源规格，最多支持5种实例机型。
+        # @param InstanceTypes: 实例类型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。
         # 启动配置，通过 InstanceType 表示单一实例类型，通过 InstanceTypes 表示多实例类型。指定 InstanceTypes 成功启动配置后，原有的 InstanceType 自动失效。
         # @type InstanceTypes: Array
         # @param InstanceTypesCheckPolicy: 实例类型校验策略，在实际修改 InstanceTypes 时发挥作用，取值包括 ALL 和 ANY，默认取值为ANY。
@@ -2760,16 +2761,37 @@ module TencentCloud
         # @type LaunchConfigurationName: String
         # @param UserData: 经过 Base64 编码后的自定义数据，最大长度不超过16KB。如果要清空UserData，则指定其为空字符串
         # @type UserData: String
+        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的`SecurityGroupId`字段来获取。
+        # 若指定该参数，请至少提供一个安全组，列表顺序有先后。
+        # @type SecurityGroupIds: Array
+        # @param InternetAccessible: 公网带宽相关信息设置。
+        # @type InternetAccessible: :class:`Tencentcloud::As.v20180419.models.InternetAccessible`
+        # @param InstanceChargeType: 实例计费类型。具体取值范围如下：
+        # <br><li>POSTPAID_BY_HOUR：按小时后付费
+        # <br><li>SPOTPAID：竞价付费
+        # <br><li>PREPAID：预付费，即包年包月
+        # @type InstanceChargeType: String
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
+        # 若修改实例的付费模式为预付费，则该参数必传；从预付费修改为其他付费模式时，本字段原信息会自动丢弃。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
+        # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数。
+        # 若修改实例的付费模式为竞价付费，则该参数必传；从竞价付费修改为其他付费模式时，本字段原信息会自动丢弃。
+        # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
           @InstanceTypesCheckPolicy = instancetypescheckpolicy
           @LaunchConfigurationName = launchconfigurationname
           @UserData = userdata
+          @SecurityGroupIds = securitygroupids
+          @InternetAccessible = internetaccessible
+          @InstanceChargeType = instancechargetype
+          @InstanceChargePrepaid = instancechargeprepaid
+          @InstanceMarketOptions = instancemarketoptions
         end
 
         def deserialize(params)
@@ -2779,6 +2801,17 @@ module TencentCloud
           @InstanceTypesCheckPolicy = params['InstanceTypesCheckPolicy']
           @LaunchConfigurationName = params['LaunchConfigurationName']
           @UserData = params['UserData']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = InternetAccessible.new.deserialize(params[InternetAccessible])
+          end
+          @InstanceChargeType = params['InstanceChargeType']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new.deserialize(params[InstanceChargePrepaid])
+          end
+          unless params['InstanceMarketOptions'].nil?
+            @InstanceMarketOptions = InstanceMarketOptionsRequest.new.deserialize(params[InstanceMarketOptions])
+          end
         end
       end
 
@@ -3526,6 +3559,7 @@ module TencentCloud
         # @param InstanceChargeType: 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
         # <br><li>POSTPAID_BY_HOUR：按小时后付费
         # <br><li>SPOTPAID：竞价付费
+        # <br><li>PREPAID：预付费，即包年包月
         # @type InstanceChargeType: String
         # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
@@ -3652,7 +3686,7 @@ module TencentCloud
         # @type DefaultResult: String
         # @param HeartbeatTimeout: 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从30到3600秒，默认值为300秒
         # @type HeartbeatTimeout: Integer
-        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，默认值为''
+        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，默认值为空字符串""
         # @type NotificationMetadata: String
         # @param NotificationTarget: 通知目标
         # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`

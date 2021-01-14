@@ -1,0 +1,2279 @@
+# frozen_string_literal: true
+
+# Copyright (c) 2017-2018 THL A29 Limited, a Tencent company. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+module TencentCloud
+  module Ssa
+    module V20180608
+      # 聚合类型
+      class AggregationObj < TencentCloud::Common::AbstractModel
+        # @param Type: 类型
+        # @type Type: String
+        # @param Bucket: 数组
+        # @type Bucket: Array
+
+        attr_accessor :Type, :Bucket
+        
+        def initialize(type=nil, bucket=nil)
+          @Type = type
+          @Bucket = bucket
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Bucket = params['Bucket']
+        end
+      end
+
+      # 资产类型
+      class Asset < TencentCloud::Common::AbstractModel
+        # @param AssetType: 资产类型
+        # @type AssetType: String
+        # @param Name: 名字
+        # @type Name: String
+        # @param AssetRegionName: 区域
+        # @type AssetRegionName: String
+        # @param AssetVpcid: 所属网络
+        # @type AssetVpcid: String
+        # @param InstanceType: 主机类型
+        # @type InstanceType: String
+        # @param InstanceState: 主机状态
+        # @type InstanceState: String
+        # @param EngineVersion: 引擎版本
+        # @type EngineVersion: String
+        # @param Id: 数据库标识
+        # @type Id: String
+        # @param Tag: 标签
+        # @type Tag: Array
+        # @param AssetCspmRiskNum: 配置风险统计数
+        # @type AssetCspmRiskNum: Integer
+        # @param PublicIpAddresses: 主机IP
+        # @type PublicIpAddresses: Array
+        # @param AssetUniqid: 资产唯一标识
+        # @type AssetUniqid: String
+        # @param ChargeType: 付费类型
+        # @type ChargeType: String
+        # @param AssetEventNum: 安全事件统计数
+        # @type AssetEventNum: Integer
+        # @param AssetVulNum: 漏洞统计数
+        # @type AssetVulNum: Integer
+        # @param PrivateIpAddresses: 主机IP内网
+        # @type PrivateIpAddresses: Array
+        # @param GroupName: 所属分组
+        # @type GroupName: String
+        # @param SsaAssetDiscoverTime: 发现时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaAssetDiscoverTime: String
+        # @param SsaAssetDeleteTime: 下线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaAssetDeleteTime: String
+        # @param IsNew: 是否是新增资产
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNew: Boolean
+        # @param AssetSubnetId: 所属子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetSubnetId: String
+        # @param AssetSubnetName: 子网名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetSubnetName: String
+        # @param AssetVpcName: vpc名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetVpcName: String
+        # @param ClusterType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: Integer
+        # @param NameSpace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameSpace: String
+        # @param LoadBalancerType: 负载均衡实例的网络类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerType: String
+        # @param LoadBalancerVips: 负载均衡实例的vip列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerVips: Array
+        # @param AssetIpv6: ipv6信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetIpv6: Array
+        # @param SSHRisk: ssh端口暴露风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSHRisk: String
+        # @param RDPRisk: rdp端口暴露风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RDPRisk: String
+        # @param EventRisk: 资产失陷事件风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventRisk: String
+
+        attr_accessor :AssetType, :Name, :AssetRegionName, :AssetVpcid, :InstanceType, :InstanceState, :EngineVersion, :Id, :Tag, :AssetCspmRiskNum, :PublicIpAddresses, :AssetUniqid, :ChargeType, :AssetEventNum, :AssetVulNum, :PrivateIpAddresses, :GroupName, :SsaAssetDiscoverTime, :SsaAssetDeleteTime, :IsNew, :AssetSubnetId, :AssetSubnetName, :AssetVpcName, :ClusterType, :NameSpace, :LoadBalancerType, :LoadBalancerVips, :AssetIpv6, :SSHRisk, :RDPRisk, :EventRisk
+        
+        def initialize(assettype=nil, name=nil, assetregionname=nil, assetvpcid=nil, instancetype=nil, instancestate=nil, engineversion=nil, id=nil, tag=nil, assetcspmrisknum=nil, publicipaddresses=nil, assetuniqid=nil, chargetype=nil, asseteventnum=nil, assetvulnum=nil, privateipaddresses=nil, groupname=nil, ssaassetdiscovertime=nil, ssaassetdeletetime=nil, isnew=nil, assetsubnetid=nil, assetsubnetname=nil, assetvpcname=nil, clustertype=nil, namespace=nil, loadbalancertype=nil, loadbalancervips=nil, assetipv6=nil, sshrisk=nil, rdprisk=nil, eventrisk=nil)
+          @AssetType = assettype
+          @Name = name
+          @AssetRegionName = assetregionname
+          @AssetVpcid = assetvpcid
+          @InstanceType = instancetype
+          @InstanceState = instancestate
+          @EngineVersion = engineversion
+          @Id = id
+          @Tag = tag
+          @AssetCspmRiskNum = assetcspmrisknum
+          @PublicIpAddresses = publicipaddresses
+          @AssetUniqid = assetuniqid
+          @ChargeType = chargetype
+          @AssetEventNum = asseteventnum
+          @AssetVulNum = assetvulnum
+          @PrivateIpAddresses = privateipaddresses
+          @GroupName = groupname
+          @SsaAssetDiscoverTime = ssaassetdiscovertime
+          @SsaAssetDeleteTime = ssaassetdeletetime
+          @IsNew = isnew
+          @AssetSubnetId = assetsubnetid
+          @AssetSubnetName = assetsubnetname
+          @AssetVpcName = assetvpcname
+          @ClusterType = clustertype
+          @NameSpace = namespace
+          @LoadBalancerType = loadbalancertype
+          @LoadBalancerVips = loadbalancervips
+          @AssetIpv6 = assetipv6
+          @SSHRisk = sshrisk
+          @RDPRisk = rdprisk
+          @EventRisk = eventrisk
+        end
+
+        def deserialize(params)
+          @AssetType = params['AssetType']
+          @Name = params['Name']
+          @AssetRegionName = params['AssetRegionName']
+          @AssetVpcid = params['AssetVpcid']
+          @InstanceType = params['InstanceType']
+          @InstanceState = params['InstanceState']
+          @EngineVersion = params['EngineVersion']
+          @Id = params['Id']
+          @Tag = params['Tag']
+          @AssetCspmRiskNum = params['AssetCspmRiskNum']
+          @PublicIpAddresses = params['PublicIpAddresses']
+          @AssetUniqid = params['AssetUniqid']
+          @ChargeType = params['ChargeType']
+          @AssetEventNum = params['AssetEventNum']
+          @AssetVulNum = params['AssetVulNum']
+          @PrivateIpAddresses = params['PrivateIpAddresses']
+          @GroupName = params['GroupName']
+          @SsaAssetDiscoverTime = params['SsaAssetDiscoverTime']
+          @SsaAssetDeleteTime = params['SsaAssetDeleteTime']
+          @IsNew = params['IsNew']
+          @AssetSubnetId = params['AssetSubnetId']
+          @AssetSubnetName = params['AssetSubnetName']
+          @AssetVpcName = params['AssetVpcName']
+          @ClusterType = params['ClusterType']
+          @NameSpace = params['NameSpace']
+          @LoadBalancerType = params['LoadBalancerType']
+          @LoadBalancerVips = params['LoadBalancerVips']
+          @AssetIpv6 = params['AssetIpv6']
+          @SSHRisk = params['SSHRisk']
+          @RDPRisk = params['RDPRisk']
+          @EventRisk = params['EventRisk']
+        end
+      end
+
+      # 资产详情信息
+      class AssetDetail < TencentCloud::Common::AbstractModel
+        # @param AssetType: 资产类型
+        # @type AssetType: String
+        # @param Name: 名字
+        # @type Name: String
+        # @param Region: 区域
+        # @type Region: String
+        # @param VpcId: 所属网络
+        # @type VpcId: String
+        # @param InstanceType: 主机类型
+        # @type InstanceType: String
+        # @param InstanceState: 主机状态
+        # @type InstanceState: String
+        # @param PublicIpAddresses: 主机IP-公网
+        # @type PublicIpAddresses: Array
+        # @param EngineVersion: 引擎版本
+        # @type EngineVersion: String
+        # @param Id: 标识
+        # @type Id: String
+        # @param Tag: 标签
+        # @type Tag: Array
+        # @param Vip: 内网IP地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param LoadBalancerVips: 负载均衡示例的vip列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerVips: Array
+        # @param Uin: 账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: Integer
+        # @param CreationDate: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationDate: String
+        # @param Domain: 访问域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param AssetUniqid: 资产唯一id
+        # @type AssetUniqid: String
+        # @param InstanceId: 关联实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param DiskType: 配置硬盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param DiskSize: 配置硬盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+        # @param AssetStatus: 云硬盘/证书状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetStatus: String
+        # @param CertType: 证书类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertType: String
+        # @param ProjectName: 所属项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param CertEndTime: 到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertEndTime: String
+        # @param ProductType: nosql引擎/版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductType: Integer
+        # @param PrivateIpAddresses: 主机IP-内网
+        # @type PrivateIpAddresses: Array
+        # @param ValidityPeriod: 证书有效期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidityPeriod: String
+        # @param GroupName: 分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Port: 端口服务数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Array
+        # @param RiskConfig: 配置风险数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskConfig: Array
+        # @param Event: 相关待处理事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Event: String
+        # @param Vul: 相关待处理漏洞
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vul: String
+        # @param SsaAssetDiscoverTime: 资产发现时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaAssetDiscoverTime: String
+        # @param AssetSubnetId: 所属子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetSubnetId: String
+        # @param AssetSubnetName: 子网名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetSubnetName: String
+        # @param AssetVpcName: vpc名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetVpcName: String
+        # @param ClusterType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: Integer
+        # @param NameSpace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameSpace: String
+        # @param AssetCreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetCreateTime: String
+        # @param LoadBalancerType: 负载均衡网络类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerType: String
+        # @param AssetIpv6: ipv6信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetIpv6: Array
+        # @param SSHRisk: ssh风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSHRisk: String
+        # @param RDPRisk: rdp风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RDPRisk: String
+        # @param EventRisk: 安全事件风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventRisk: String
+        # @param AssetVulNum: 漏洞数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetVulNum: Integer
+
+        attr_accessor :AssetType, :Name, :Region, :VpcId, :InstanceType, :InstanceState, :PublicIpAddresses, :EngineVersion, :Id, :Tag, :Vip, :Status, :LoadBalancerVips, :Uin, :CreationDate, :Domain, :AssetUniqid, :InstanceId, :DiskType, :DiskSize, :AssetStatus, :CertType, :ProjectName, :CertEndTime, :ProductType, :PrivateIpAddresses, :ValidityPeriod, :GroupName, :Port, :RiskConfig, :Event, :Vul, :SsaAssetDiscoverTime, :AssetSubnetId, :AssetSubnetName, :AssetVpcName, :ClusterType, :NameSpace, :AssetCreateTime, :LoadBalancerType, :AssetIpv6, :SSHRisk, :RDPRisk, :EventRisk, :AssetVulNum
+        
+        def initialize(assettype=nil, name=nil, region=nil, vpcid=nil, instancetype=nil, instancestate=nil, publicipaddresses=nil, engineversion=nil, id=nil, tag=nil, vip=nil, status=nil, loadbalancervips=nil, uin=nil, creationdate=nil, domain=nil, assetuniqid=nil, instanceid=nil, disktype=nil, disksize=nil, assetstatus=nil, certtype=nil, projectname=nil, certendtime=nil, producttype=nil, privateipaddresses=nil, validityperiod=nil, groupname=nil, port=nil, riskconfig=nil, event=nil, vul=nil, ssaassetdiscovertime=nil, assetsubnetid=nil, assetsubnetname=nil, assetvpcname=nil, clustertype=nil, namespace=nil, assetcreatetime=nil, loadbalancertype=nil, assetipv6=nil, sshrisk=nil, rdprisk=nil, eventrisk=nil, assetvulnum=nil)
+          @AssetType = assettype
+          @Name = name
+          @Region = region
+          @VpcId = vpcid
+          @InstanceType = instancetype
+          @InstanceState = instancestate
+          @PublicIpAddresses = publicipaddresses
+          @EngineVersion = engineversion
+          @Id = id
+          @Tag = tag
+          @Vip = vip
+          @Status = status
+          @LoadBalancerVips = loadbalancervips
+          @Uin = uin
+          @CreationDate = creationdate
+          @Domain = domain
+          @AssetUniqid = assetuniqid
+          @InstanceId = instanceid
+          @DiskType = disktype
+          @DiskSize = disksize
+          @AssetStatus = assetstatus
+          @CertType = certtype
+          @ProjectName = projectname
+          @CertEndTime = certendtime
+          @ProductType = producttype
+          @PrivateIpAddresses = privateipaddresses
+          @ValidityPeriod = validityperiod
+          @GroupName = groupname
+          @Port = port
+          @RiskConfig = riskconfig
+          @Event = event
+          @Vul = vul
+          @SsaAssetDiscoverTime = ssaassetdiscovertime
+          @AssetSubnetId = assetsubnetid
+          @AssetSubnetName = assetsubnetname
+          @AssetVpcName = assetvpcname
+          @ClusterType = clustertype
+          @NameSpace = namespace
+          @AssetCreateTime = assetcreatetime
+          @LoadBalancerType = loadbalancertype
+          @AssetIpv6 = assetipv6
+          @SSHRisk = sshrisk
+          @RDPRisk = rdprisk
+          @EventRisk = eventrisk
+          @AssetVulNum = assetvulnum
+        end
+
+        def deserialize(params)
+          @AssetType = params['AssetType']
+          @Name = params['Name']
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @InstanceType = params['InstanceType']
+          @InstanceState = params['InstanceState']
+          @PublicIpAddresses = params['PublicIpAddresses']
+          @EngineVersion = params['EngineVersion']
+          @Id = params['Id']
+          @Tag = params['Tag']
+          @Vip = params['Vip']
+          @Status = params['Status']
+          @LoadBalancerVips = params['LoadBalancerVips']
+          @Uin = params['Uin']
+          @CreationDate = params['CreationDate']
+          @Domain = params['Domain']
+          @AssetUniqid = params['AssetUniqid']
+          @InstanceId = params['InstanceId']
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @AssetStatus = params['AssetStatus']
+          @CertType = params['CertType']
+          @ProjectName = params['ProjectName']
+          @CertEndTime = params['CertEndTime']
+          @ProductType = params['ProductType']
+          @PrivateIpAddresses = params['PrivateIpAddresses']
+          @ValidityPeriod = params['ValidityPeriod']
+          @GroupName = params['GroupName']
+          @Port = params['Port']
+          @RiskConfig = params['RiskConfig']
+          @Event = params['Event']
+          @Vul = params['Vul']
+          @SsaAssetDiscoverTime = params['SsaAssetDiscoverTime']
+          @AssetSubnetId = params['AssetSubnetId']
+          @AssetSubnetName = params['AssetSubnetName']
+          @AssetVpcName = params['AssetVpcName']
+          @ClusterType = params['ClusterType']
+          @NameSpace = params['NameSpace']
+          @AssetCreateTime = params['AssetCreateTime']
+          @LoadBalancerType = params['LoadBalancerType']
+          @AssetIpv6 = params['AssetIpv6']
+          @SSHRisk = params['SSHRisk']
+          @RDPRisk = params['RDPRisk']
+          @EventRisk = params['EventRisk']
+          @AssetVulNum = params['AssetVulNum']
+        end
+      end
+
+      # 资产列表
+      class AssetList < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: 资产数组
+        # @type List: Array
+
+        attr_accessor :Total, :List
+        
+        def initialize(total=nil, list=nil)
+          @Total = total
+          @List = list
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @List = params['List']
+        end
+      end
+
+      # es聚合数据类型
+      class Bucket < TencentCloud::Common::AbstractModel
+        # @param Key: key
+        # @type Key: String
+        # @param Count: 数量
+        # @type Count: Integer
+
+        attr_accessor :Key, :Count
+        
+        def initialize(key=nil, count=nil)
+          @Key = key
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Count = params['Count']
+        end
+      end
+
+      # 检查项资产组每一项
+      class CheckAssetItem < TencentCloud::Common::AbstractModel
+        # @param Id: 检查项下资产组ID
+        # @type Id: Integer
+        # @param Instid: 资产组实例id
+        # @type Instid: String
+        # @param Url: 处置跳转URL
+        # @type Url: String
+        # @param Taskid: 检查任务id
+        # @type Taskid: String
+        # @param Result: 检查结果
+        # @type Result: Integer
+        # @param Updatetime: 更新时间
+        # @type Updatetime: String
+        # @param Tag: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
+        # @param IsIgnore: 是否忽略
+        # @type IsIgnore: Integer
+        # @param IsChecked: 检查状态
+        # @type IsChecked: Integer
+        # @param AssetInfo: 资产组信息
+        # @type AssetInfo: String
+        # @param AssetId: 资产组ES的_id
+        # @type AssetId: String
+        # @param Detail: 详情
+        # @type Detail: String
+        # @param Remarks: 备注内容
+        # @type Remarks: String
+
+        attr_accessor :Id, :Instid, :Url, :Taskid, :Result, :Updatetime, :Tag, :IsIgnore, :IsChecked, :AssetInfo, :AssetId, :Detail, :Remarks
+        
+        def initialize(id=nil, instid=nil, url=nil, taskid=nil, result=nil, updatetime=nil, tag=nil, isignore=nil, ischecked=nil, assetinfo=nil, assetid=nil, detail=nil, remarks=nil)
+          @Id = id
+          @Instid = instid
+          @Url = url
+          @Taskid = taskid
+          @Result = result
+          @Updatetime = updatetime
+          @Tag = tag
+          @IsIgnore = isignore
+          @IsChecked = ischecked
+          @AssetInfo = assetinfo
+          @AssetId = assetid
+          @Detail = detail
+          @Remarks = remarks
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Instid = params['Instid']
+          @Url = params['Url']
+          @Taskid = params['Taskid']
+          @Result = params['Result']
+          @Updatetime = params['Updatetime']
+          @Tag = params['Tag']
+          @IsIgnore = params['IsIgnore']
+          @IsChecked = params['IsChecked']
+          @AssetInfo = params['AssetInfo']
+          @AssetId = params['AssetId']
+          @Detail = params['Detail']
+          @Remarks = params['Remarks']
+        end
+      end
+
+      # 云安全配置检查项详情
+      class CheckConfigDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 检查项Id
+        # @type Id: String
+        # @param CheckName: 检查项名称
+        # @type CheckName: String
+        # @param Content: 检查项内容
+        # @type Content: String
+        # @param Method: 检查项处置方案
+        # @type Method: String
+        # @param Doc: 检查项帮助文档
+        # @type Doc: String
+        # @param ErrorCount: 未通过总数
+        # @type ErrorCount: Integer
+        # @param IsPass: 是否通过检查
+        # @type IsPass: Integer
+        # @param SafeCount: 通过检查项
+        # @type SafeCount: Integer
+        # @param IgnoreCount: 忽略检查项
+        # @type IgnoreCount: Integer
+        # @param RiskCount: 风险检查项
+        # @type RiskCount: Integer
+        # @param NameEn: 检查项英文
+        # @type NameEn: String
+        # @param AssetType: 检查项类型
+        # @type AssetType: String
+        # @param ResCount: res_count
+        # @type ResCount: Integer
+        # @param IsIgnore: 是否忽略
+        # @type IsIgnore: Integer
+
+        attr_accessor :Id, :CheckName, :Content, :Method, :Doc, :ErrorCount, :IsPass, :SafeCount, :IgnoreCount, :RiskCount, :NameEn, :AssetType, :ResCount, :IsIgnore
+        
+        def initialize(id=nil, checkname=nil, content=nil, method=nil, doc=nil, errorcount=nil, ispass=nil, safecount=nil, ignorecount=nil, riskcount=nil, nameen=nil, assettype=nil, rescount=nil, isignore=nil)
+          @Id = id
+          @CheckName = checkname
+          @Content = content
+          @Method = method
+          @Doc = doc
+          @ErrorCount = errorcount
+          @IsPass = ispass
+          @SafeCount = safecount
+          @IgnoreCount = ignorecount
+          @RiskCount = riskcount
+          @NameEn = nameen
+          @AssetType = assettype
+          @ResCount = rescount
+          @IsIgnore = isignore
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CheckName = params['CheckName']
+          @Content = params['Content']
+          @Method = params['Method']
+          @Doc = params['Doc']
+          @ErrorCount = params['ErrorCount']
+          @IsPass = params['IsPass']
+          @SafeCount = params['SafeCount']
+          @IgnoreCount = params['IgnoreCount']
+          @RiskCount = params['RiskCount']
+          @NameEn = params['NameEn']
+          @AssetType = params['AssetType']
+          @ResCount = params['ResCount']
+          @IsIgnore = params['IsIgnore']
+        end
+      end
+
+      # 等保资产组记录
+      class ComplianceCheckDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 检查项ID
+        # @type Id: String
+        # @param Category: 检查项类别
+        # @type Category: String
+        # @param Type: 检查项类型
+        # @type Type: String
+        # @param ErrorCount: 不通过总数
+        # @type ErrorCount: Integer
+        # @param NameEn: 检查项英文名
+        # @type NameEn: String
+        # @param CheckName: 检查项名称
+        # @type CheckName: String
+        # @param Method: 检查项处置方式
+        # @type Method: String
+        # @param Doc: 帮助文档
+        # @type Doc: String
+        # @param SafeCount: 通过总数
+        # @type SafeCount: Integer
+        # @param Content: 检查项检查内容
+        # @type Content: String
+        # @param IsPass: 是否通过检测
+        # @type IsPass: Integer
+        # @param IgnoreCount: 忽略总数
+        # @type IgnoreCount: Integer
+        # @param RiskCount: 风险总数
+        # @type RiskCount: Integer
+        # @param LastCheckTime: 最近一次检测时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastCheckTime: String
+        # @param AssetType: 资产组类型
+        # @type AssetType: String
+        # @param ResCount: res_count
+        # @type ResCount: Integer
+        # @param UUID: 检查项UUID
+        # @type UUID: String
+        # @param StandardItem: 标准项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardItem: String
+        # @param Chapter: 章节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Chapter: String
+        # @param AssetTypeDesc: 资产类型描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetTypeDesc: String
+        # @param IsIgnore: 是否忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsIgnore: Integer
+        # @param RiskItem: 风险项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskItem: String
+        # @param Title: 合规检查项完整名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+
+        attr_accessor :Id, :Category, :Type, :ErrorCount, :NameEn, :CheckName, :Method, :Doc, :SafeCount, :Content, :IsPass, :IgnoreCount, :RiskCount, :LastCheckTime, :AssetType, :ResCount, :UUID, :StandardItem, :Chapter, :AssetTypeDesc, :IsIgnore, :RiskItem, :Title
+        
+        def initialize(id=nil, category=nil, type=nil, errorcount=nil, nameen=nil, checkname=nil, method=nil, doc=nil, safecount=nil, content=nil, ispass=nil, ignorecount=nil, riskcount=nil, lastchecktime=nil, assettype=nil, rescount=nil, uuid=nil, standarditem=nil, chapter=nil, assettypedesc=nil, isignore=nil, riskitem=nil, title=nil)
+          @Id = id
+          @Category = category
+          @Type = type
+          @ErrorCount = errorcount
+          @NameEn = nameen
+          @CheckName = checkname
+          @Method = method
+          @Doc = doc
+          @SafeCount = safecount
+          @Content = content
+          @IsPass = ispass
+          @IgnoreCount = ignorecount
+          @RiskCount = riskcount
+          @LastCheckTime = lastchecktime
+          @AssetType = assettype
+          @ResCount = rescount
+          @UUID = uuid
+          @StandardItem = standarditem
+          @Chapter = chapter
+          @AssetTypeDesc = assettypedesc
+          @IsIgnore = isignore
+          @RiskItem = riskitem
+          @Title = title
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Category = params['Category']
+          @Type = params['Type']
+          @ErrorCount = params['ErrorCount']
+          @NameEn = params['NameEn']
+          @CheckName = params['CheckName']
+          @Method = params['Method']
+          @Doc = params['Doc']
+          @SafeCount = params['SafeCount']
+          @Content = params['Content']
+          @IsPass = params['IsPass']
+          @IgnoreCount = params['IgnoreCount']
+          @RiskCount = params['RiskCount']
+          @LastCheckTime = params['LastCheckTime']
+          @AssetType = params['AssetType']
+          @ResCount = params['ResCount']
+          @UUID = params['UUID']
+          @StandardItem = params['StandardItem']
+          @Chapter = params['Chapter']
+          @AssetTypeDesc = params['AssetTypeDesc']
+          @IsIgnore = params['IsIgnore']
+          @RiskItem = params['RiskItem']
+          @Title = params['Title']
+        end
+      end
+
+      # 资产测绘对象
+      class DataAssetMapping < TencentCloud::Common::AbstractModel
+        # @param AssetIp: 资产主IP地址(公网IP)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetIp: String
+        # @param AssetName: 资产名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetName: String
+        # @param Instid: 资产ID(各模块间通用)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instid: String
+        # @param AssetType: 资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetType: String
+        # @param AssetRegionEn: 资产可用区(英文)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetRegionEn: String
+        # @param AssetRegionCn: 资产可用区(中文)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetRegionCn: String
+        # @param AssetNetwork: 资产所属网络
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetNetwork: String
+        # @param AssetStatusEn: 资产运行状态(英文)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetStatusEn: String
+        # @param AssetStatusCn: 资产运行状态(中文)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetStatusCn: String
+        # @param IsWhite: 是否白名单：“True”为白名单不测绘，默认“False”正常测绘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsWhite: String
+        # @param Status: 资产测绘状态(“unstart”未开始/“running”测绘中/“finish”已完成/“abandoned”任务中止)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Time: 最近更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+        # @param Tag: 资产标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param Group: 资产组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Group: Array
+        # @param Port: 端口和服务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+        # @param Component: 组件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Component: String
+        # @param AssetInstanceType: 资产实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetInstanceType: String
+        # @param IsIntranet: 资产是否是内网类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsIntranet: Integer
+
+        attr_accessor :AssetIp, :AssetName, :Instid, :AssetType, :AssetRegionEn, :AssetRegionCn, :AssetNetwork, :AssetStatusEn, :AssetStatusCn, :IsWhite, :Status, :Time, :Tag, :Group, :Port, :Component, :AssetInstanceType, :IsIntranet
+        
+        def initialize(assetip=nil, assetname=nil, instid=nil, assettype=nil, assetregionen=nil, assetregioncn=nil, assetnetwork=nil, assetstatusen=nil, assetstatuscn=nil, iswhite=nil, status=nil, time=nil, tag=nil, group=nil, port=nil, component=nil, assetinstancetype=nil, isintranet=nil)
+          @AssetIp = assetip
+          @AssetName = assetname
+          @Instid = instid
+          @AssetType = assettype
+          @AssetRegionEn = assetregionen
+          @AssetRegionCn = assetregioncn
+          @AssetNetwork = assetnetwork
+          @AssetStatusEn = assetstatusen
+          @AssetStatusCn = assetstatuscn
+          @IsWhite = iswhite
+          @Status = status
+          @Time = time
+          @Tag = tag
+          @Group = group
+          @Port = port
+          @Component = component
+          @AssetInstanceType = assetinstancetype
+          @IsIntranet = isintranet
+        end
+
+        def deserialize(params)
+          @AssetIp = params['AssetIp']
+          @AssetName = params['AssetName']
+          @Instid = params['Instid']
+          @AssetType = params['AssetType']
+          @AssetRegionEn = params['AssetRegionEn']
+          @AssetRegionCn = params['AssetRegionCn']
+          @AssetNetwork = params['AssetNetwork']
+          @AssetStatusEn = params['AssetStatusEn']
+          @AssetStatusCn = params['AssetStatusCn']
+          @IsWhite = params['IsWhite']
+          @Status = params['Status']
+          @Time = params['Time']
+          @Tag = params['Tag']
+          @Group = params['Group']
+          @Port = params['Port']
+          @Component = params['Component']
+          @AssetInstanceType = params['AssetInstanceType']
+          @IsIntranet = params['IsIntranet']
+        end
+      end
+
+      # 检查项详情对象
+      class DataCheck < TencentCloud::Common::AbstractModel
+        # @param Id: 检查项唯一标识符uuid
+        # @type Id: String
+        # @param Name: 检查项名称
+        # @type Name: String
+        # @param Type: 检查项类型
+        # @type Type: String
+        # @param LastCheckTime: 最近一次检查时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastCheckTime: String
+        # @param Status: 初始未检测状态0, 已通过为1，未通过为2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param IsIgnored: 0-未忽略,1-已忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsIgnored: Integer
+        # @param RiskCount: 有风险的资源总数，未通过数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskCount: Integer
+        # @param IsChecked: 0-检测中,1-结束检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsChecked: Integer
+        # @param AssetTotal: 总资产数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetTotal: Integer
+        # @param Remarks: 备注内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remarks: String
+
+        attr_accessor :Id, :Name, :Type, :LastCheckTime, :Status, :IsIgnored, :RiskCount, :IsChecked, :AssetTotal, :Remarks
+        
+        def initialize(id=nil, name=nil, type=nil, lastchecktime=nil, status=nil, isignored=nil, riskcount=nil, ischecked=nil, assettotal=nil, remarks=nil)
+          @Id = id
+          @Name = name
+          @Type = type
+          @LastCheckTime = lastchecktime
+          @Status = status
+          @IsIgnored = isignored
+          @RiskCount = riskcount
+          @IsChecked = ischecked
+          @AssetTotal = assettotal
+          @Remarks = remarks
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Type = params['Type']
+          @LastCheckTime = params['LastCheckTime']
+          @Status = params['Status']
+          @IsIgnored = params['IsIgnored']
+          @RiskCount = params['RiskCount']
+          @IsChecked = params['IsChecked']
+          @AssetTotal = params['AssetTotal']
+          @Remarks = params['Remarks']
+        end
+      end
+
+      # 合规检查项详情对象
+      class DataCompliance < TencentCloud::Common::AbstractModel
+        # @param Id: 等保唯一标识符
+        # @type Id: String
+        # @param CheckItemId: 检查项唯一标识符
+        # @type CheckItemId: String
+        # @param Name: 检查项名称
+        # @type Name: String
+        # @param AssetType: 检查项资产类型
+        # @type AssetType: String
+        # @param Type: 检查项类型
+        # @type Type: String
+        # @param Category: 检查项类别
+        # @type Category: String
+        # @param StandardItem: 检查项标准项
+        # @type StandardItem: String
+        # @param Chapter: 检查项章节号
+        # @type Chapter: String
+        # @param LastCheckTime: 最近一次检查时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastCheckTime: String
+        # @param Status: 初始未检测状态0, 已通过为1，未通过为2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param RiskCount: 有风险的资源总数，未通过数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskCount: Integer
+        # @param IsChecked: 0-检测中,1-结束检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsChecked: Integer
+        # @param RiskItem: 检查项风险项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskItem: String
+        # @param IsIgnored: 0-未忽略,1-已忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsIgnored: Integer
+        # @param Title: 等保检查项完整名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param AssetTotal: 资产总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetTotal: Integer
+        # @param Remarks: 忽略内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remarks: String
+
+        attr_accessor :Id, :CheckItemId, :Name, :AssetType, :Type, :Category, :StandardItem, :Chapter, :LastCheckTime, :Status, :RiskCount, :IsChecked, :RiskItem, :IsIgnored, :Title, :AssetTotal, :Remarks
+        
+        def initialize(id=nil, checkitemid=nil, name=nil, assettype=nil, type=nil, category=nil, standarditem=nil, chapter=nil, lastchecktime=nil, status=nil, riskcount=nil, ischecked=nil, riskitem=nil, isignored=nil, title=nil, assettotal=nil, remarks=nil)
+          @Id = id
+          @CheckItemId = checkitemid
+          @Name = name
+          @AssetType = assettype
+          @Type = type
+          @Category = category
+          @StandardItem = standarditem
+          @Chapter = chapter
+          @LastCheckTime = lastchecktime
+          @Status = status
+          @RiskCount = riskcount
+          @IsChecked = ischecked
+          @RiskItem = riskitem
+          @IsIgnored = isignored
+          @Title = title
+          @AssetTotal = assettotal
+          @Remarks = remarks
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CheckItemId = params['CheckItemId']
+          @Name = params['Name']
+          @AssetType = params['AssetType']
+          @Type = params['Type']
+          @Category = params['Category']
+          @StandardItem = params['StandardItem']
+          @Chapter = params['Chapter']
+          @LastCheckTime = params['LastCheckTime']
+          @Status = params['Status']
+          @RiskCount = params['RiskCount']
+          @IsChecked = params['IsChecked']
+          @RiskItem = params['RiskItem']
+          @IsIgnored = params['IsIgnored']
+          @Title = params['Title']
+          @AssetTotal = params['AssetTotal']
+          @Remarks = params['Remarks']
+        end
+      end
+
+      # 事件列表对象
+      class DataEvent < TencentCloud::Common::AbstractModel
+        # @param OldIdMd5: Md5值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldIdMd5: String
+        # @param EventName: 事件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventName: String
+        # @param EventType1: 事件类型一级分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventType1: Integer
+        # @param EventType2: 事件类型二级分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventType2: Integer
+        # @param Level: 事件等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param Status: 处理状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param SrcIp: 源ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcIp: String
+        # @param DstIp: 目的ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstIp: String
+        # @param Time: 事件发生时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+        # @param Dstport: 目的端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dstport: Integer
+        # @param AssetIp: 资产ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetIp: String
+        # @param AssetName: 资产名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetName: String
+        # @param SsaEventUniqid: 安全事件唯一标识符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaEventUniqid: String
+        # @param AssetId: 资产id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetId: String
+        # @param Source: 事件来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param Index: 索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: String
+        # @param Id: 索引中的唯一标识符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param IsAssetDeleted: 受影响资产是否已下线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAssetDeleted: String
+        # @param SsaSrcCountry: 源ip所属地
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaSrcCountry: String
+        # @param SsaDstCountry: 目的ip所属地
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaDstCountry: String
+        # @param SsaDescription: 木马类型的描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaDescription: String
+        # @param SsaAttackChain: 供给链类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaAttackChain: String
+        # @param RuleComponents: 受影响组件
+        # @type RuleComponents: String
+        # @param AssetIpAll: 资产ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetIpAll: Array
+        # @param AssetType: 资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetType: String
+        # @param PublicIpAddresses: cvm类型资产的公网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIpAddresses: Array
+        # @param PrivateIpAddresses: cvm类型资产的内网ip
+        # @type PrivateIpAddresses: Array
+        # @param SoarResponseStatus: 事件响应状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoarResponseStatus: Integer
+        # @param SoarResponseTime: 事件最近响应时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoarResponseTime: Integer
+        # @param SoarSuggestStatus: 事件建议处理状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoarSuggestStatus: Integer
+        # @param SoarPlaybookType: 事件剧本类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoarPlaybookType: String
+        # @param SoarRunId: 剧本任务Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoarRunId: String
+        # @param SsaEventId: 事件Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaEventId: String
+
+        attr_accessor :OldIdMd5, :EventName, :EventType1, :EventType2, :Level, :Status, :SrcIp, :DstIp, :Time, :Dstport, :AssetIp, :AssetName, :SsaEventUniqid, :AssetId, :Source, :Index, :Id, :IsAssetDeleted, :SsaSrcCountry, :SsaDstCountry, :SsaDescription, :SsaAttackChain, :RuleComponents, :AssetIpAll, :AssetType, :PublicIpAddresses, :PrivateIpAddresses, :SoarResponseStatus, :SoarResponseTime, :SoarSuggestStatus, :SoarPlaybookType, :SoarRunId, :SsaEventId
+        
+        def initialize(oldidmd5=nil, eventname=nil, eventtype1=nil, eventtype2=nil, level=nil, status=nil, srcip=nil, dstip=nil, time=nil, dstport=nil, assetip=nil, assetname=nil, ssaeventuniqid=nil, assetid=nil, source=nil, index=nil, id=nil, isassetdeleted=nil, ssasrccountry=nil, ssadstcountry=nil, ssadescription=nil, ssaattackchain=nil, rulecomponents=nil, assetipall=nil, assettype=nil, publicipaddresses=nil, privateipaddresses=nil, soarresponsestatus=nil, soarresponsetime=nil, soarsuggeststatus=nil, soarplaybooktype=nil, soarrunid=nil, ssaeventid=nil)
+          @OldIdMd5 = oldidmd5
+          @EventName = eventname
+          @EventType1 = eventtype1
+          @EventType2 = eventtype2
+          @Level = level
+          @Status = status
+          @SrcIp = srcip
+          @DstIp = dstip
+          @Time = time
+          @Dstport = dstport
+          @AssetIp = assetip
+          @AssetName = assetname
+          @SsaEventUniqid = ssaeventuniqid
+          @AssetId = assetid
+          @Source = source
+          @Index = index
+          @Id = id
+          @IsAssetDeleted = isassetdeleted
+          @SsaSrcCountry = ssasrccountry
+          @SsaDstCountry = ssadstcountry
+          @SsaDescription = ssadescription
+          @SsaAttackChain = ssaattackchain
+          @RuleComponents = rulecomponents
+          @AssetIpAll = assetipall
+          @AssetType = assettype
+          @PublicIpAddresses = publicipaddresses
+          @PrivateIpAddresses = privateipaddresses
+          @SoarResponseStatus = soarresponsestatus
+          @SoarResponseTime = soarresponsetime
+          @SoarSuggestStatus = soarsuggeststatus
+          @SoarPlaybookType = soarplaybooktype
+          @SoarRunId = soarrunid
+          @SsaEventId = ssaeventid
+        end
+
+        def deserialize(params)
+          @OldIdMd5 = params['OldIdMd5']
+          @EventName = params['EventName']
+          @EventType1 = params['EventType1']
+          @EventType2 = params['EventType2']
+          @Level = params['Level']
+          @Status = params['Status']
+          @SrcIp = params['SrcIp']
+          @DstIp = params['DstIp']
+          @Time = params['Time']
+          @Dstport = params['Dstport']
+          @AssetIp = params['AssetIp']
+          @AssetName = params['AssetName']
+          @SsaEventUniqid = params['SsaEventUniqid']
+          @AssetId = params['AssetId']
+          @Source = params['Source']
+          @Index = params['Index']
+          @Id = params['Id']
+          @IsAssetDeleted = params['IsAssetDeleted']
+          @SsaSrcCountry = params['SsaSrcCountry']
+          @SsaDstCountry = params['SsaDstCountry']
+          @SsaDescription = params['SsaDescription']
+          @SsaAttackChain = params['SsaAttackChain']
+          @RuleComponents = params['RuleComponents']
+          @AssetIpAll = params['AssetIpAll']
+          @AssetType = params['AssetType']
+          @PublicIpAddresses = params['PublicIpAddresses']
+          @PrivateIpAddresses = params['PrivateIpAddresses']
+          @SoarResponseStatus = params['SoarResponseStatus']
+          @SoarResponseTime = params['SoarResponseTime']
+          @SoarSuggestStatus = params['SoarSuggestStatus']
+          @SoarPlaybookType = params['SoarPlaybookType']
+          @SoarRunId = params['SoarRunId']
+          @SsaEventId = params['SsaEventId']
+        end
+      end
+
+      # DescribeAssetDetail请求参数结构体
+      class DescribeAssetDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Params: 查询过滤参数
+        # @type Params: String
+
+        attr_accessor :Params
+        
+        def initialize(params=nil)
+          @Params = params
+        end
+
+        def deserialize(params)
+          @Params = params['Params']
+        end
+      end
+
+      # DescribeAssetDetail返回参数结构体
+      class DescribeAssetDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 资产详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.AssetDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AssetDetail.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetList请求参数结构体
+      class DescribeAssetListRequest < TencentCloud::Common::AbstractModel
+        # @param Params: 查询过滤参数
+        # @type Params: String
+
+        attr_accessor :Params
+        
+        def initialize(params=nil)
+          @Params = params
+        end
+
+        def deserialize(params)
+          @Params = params['Params']
+        end
+      end
+
+      # DescribeAssetList返回参数结构体
+      class DescribeAssetListResponse < TencentCloud::Common::AbstractModel
+        # @param AssetList: 资产列表
+        # @type AssetList: :class:`Tencentcloud::Ssa.v20180608.models.AssetList`
+        # @param AggregationData: 聚合数据
+        # @type AggregationData: Array
+        # @param NamespaceData: 命名空间数据
+        # @type NamespaceData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AssetList, :AggregationData, :NamespaceData, :RequestId
+        
+        def initialize(assetlist=nil, aggregationdata=nil, namespacedata=nil, requestid=nil)
+          @AssetList = assetlist
+          @AggregationData = aggregationdata
+          @NamespaceData = namespacedata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AssetList'].nil?
+            @AssetList = AssetList.new.deserialize(params[AssetList])
+          end
+          @AggregationData = params['AggregationData']
+          @NamespaceData = params['NamespaceData']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetsMappingList请求参数结构体
+      class DescribeAssetsMappingListRequest < TencentCloud::Common::AbstractModel
+        # @param Params: 请求参数
+        # @type Params: String
+
+        attr_accessor :Params
+        
+        def initialize(params=nil)
+          @Params = params
+        end
+
+        def deserialize(params)
+          @Params = params['Params']
+        end
+      end
+
+      # DescribeAssetsMappingList返回参数结构体
+      class DescribeAssetsMappingListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 资产测绘列表
+        # @type Data: Array
+        # @param TotalCount: 资产测绘总数
+        # @type TotalCount: Integer
+        # @param CountByType: 类型分类统计数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CountByType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :CountByType, :RequestId
+        
+        def initialize(data=nil, totalcount=nil, countbytype=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @CountByType = countbytype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @TotalCount = params['TotalCount']
+          @CountByType = params['CountByType']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCheckConfigAssetList请求参数结构体
+      class DescribeCheckConfigAssetListRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 检查项UUID
+        # @type Id: String
+        # @param Offset: 页码
+        # @type Offset: Integer
+        # @param Limit: 每页列表数
+        # @type Limit: Integer
+        # @param Search: db搜索条件
+        # @type Search: Array
+        # @param Filter: ES过滤条件
+        # @type Filter: Array
+
+        attr_accessor :Id, :Offset, :Limit, :Search, :Filter
+        
+        def initialize(id=nil, offset=nil, limit=nil, search=nil, filter=nil)
+          @Id = id
+          @Offset = offset
+          @Limit = limit
+          @Search = search
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Search = params['Search']
+          @Filter = params['Filter']
+        end
+      end
+
+      # DescribeCheckConfigAssetList返回参数结构体
+      class DescribeCheckConfigAssetListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 资产列表总数
+        # @type Total: Integer
+        # @param CheckAssetsList: 资产列表项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckAssetsList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :CheckAssetsList, :RequestId
+        
+        def initialize(total=nil, checkassetslist=nil, requestid=nil)
+          @Total = total
+          @CheckAssetsList = checkassetslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @CheckAssetsList = params['CheckAssetsList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCheckConfigDetail请求参数结构体
+      class DescribeCheckConfigDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 检查项ID
+        # @type Id: String
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeCheckConfigDetail返回参数结构体
+      class DescribeCheckConfigDetailResponse < TencentCloud::Common::AbstractModel
+        # @param CheckConfigDetail: 检查项详情
+        # @type CheckConfigDetail: :class:`Tencentcloud::Ssa.v20180608.models.CheckConfigDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckConfigDetail, :RequestId
+        
+        def initialize(checkconfigdetail=nil, requestid=nil)
+          @CheckConfigDetail = checkconfigdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CheckConfigDetail'].nil?
+            @CheckConfigDetail = CheckConfigDetail.new.deserialize(params[CheckConfigDetail])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeComplianceAssetList请求参数结构体
+      class DescribeComplianceAssetListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 页码
+        # @type Offset: Integer
+        # @param Limit: 每页数量
+        # @type Limit: Integer
+        # @param Id: 检查项uuid
+        # @type Id: String
+        # @param Filter: 过滤条件
+        # @type Filter: Array
+        # @param Search: 查询条件
+        # @type Search: Array
+
+        attr_accessor :Offset, :Limit, :Id, :Filter, :Search
+        
+        def initialize(offset=nil, limit=nil, id=nil, filter=nil, search=nil)
+          @Offset = offset
+          @Limit = limit
+          @Id = id
+          @Filter = filter
+          @Search = search
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Id = params['Id']
+          @Filter = params['Filter']
+          @Search = params['Search']
+        end
+      end
+
+      # DescribeComplianceAssetList返回参数结构体
+      class DescribeComplianceAssetListResponse < TencentCloud::Common::AbstractModel
+        # @param CheckAssetsList: 资产组列表
+        # @type CheckAssetsList: Array
+        # @param Total: 资产组列表总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckAssetsList, :Total, :RequestId
+        
+        def initialize(checkassetslist=nil, total=nil, requestid=nil)
+          @CheckAssetsList = checkassetslist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CheckAssetsList = params['CheckAssetsList']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeComplianceDetail请求参数结构体
+      class DescribeComplianceDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 检查项uuid
+        # @type Id: String
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeComplianceDetail返回参数结构体
+      class DescribeComplianceDetailResponse < TencentCloud::Common::AbstractModel
+        # @param CheckConfigDetail: 合规管理检查项详情
+        # @type CheckConfigDetail: :class:`Tencentcloud::Ssa.v20180608.models.ComplianceCheckDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckConfigDetail, :RequestId
+        
+        def initialize(checkconfigdetail=nil, requestid=nil)
+          @CheckConfigDetail = checkconfigdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CheckConfigDetail'].nil?
+            @CheckConfigDetail = ComplianceCheckDetail.new.deserialize(params[CheckConfigDetail])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeComplianceList请求参数结构体
+      class DescribeComplianceListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 搜索过滤条件
+        # @type Filter: String
+
+        attr_accessor :Filter
+        
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @Filter = params['Filter']
+        end
+      end
+
+      # DescribeComplianceList返回参数结构体
+      class DescribeComplianceListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 检查项列表
+        # @type Data: Array
+        # @param AssetTotalNum: 总检查资产数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetTotalNum: Integer
+        # @param ConfigTotalNum: 总检查项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigTotalNum: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :AssetTotalNum, :ConfigTotalNum, :RequestId
+        
+        def initialize(data=nil, assettotalnum=nil, configtotalnum=nil, requestid=nil)
+          @Data = data
+          @AssetTotalNum = assettotalnum
+          @ConfigTotalNum = configtotalnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @AssetTotalNum = params['AssetTotalNum']
+          @ConfigTotalNum = params['ConfigTotalNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigList请求参数结构体
+      class DescribeConfigListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 搜索过滤条件
+        # @type Filter: String
+
+        attr_accessor :Filter
+        
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @Filter = params['Filter']
+        end
+      end
+
+      # DescribeConfigList返回参数结构体
+      class DescribeConfigListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 检查项列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEventDetail请求参数结构体
+      class DescribeEventDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Index: 事件索引名
+        # @type Index: String
+        # @param Id: 事件id
+        # @type Id: String
+        # @param Source: 事件来源
+        # @type Source: String
+        # @param SubEventType: 事件子类型
+        # @type SubEventType: Integer
+        # @param Name: 事件名称
+        # @type Name: String
+
+        attr_accessor :Index, :Id, :Source, :SubEventType, :Name
+        
+        def initialize(index=nil, id=nil, source=nil, subeventtype=nil, name=nil)
+          @Index = index
+          @Id = id
+          @Source = source
+          @SubEventType = subeventtype
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Id = params['Id']
+          @Source = params['Source']
+          @SubEventType = params['SubEventType']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeEventDetail返回参数结构体
+      class DescribeEventDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 事件详情
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLeakDetectionList请求参数结构体
+      class DescribeLeakDetectionListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 筛选条件
+        # @type Filters: Array
+        # @param Limit: 每页数量
+        # @type Limit: Integer
+        # @param Page: 页码
+        # @type Page: Integer
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :Filters, :Limit, :Page, :StartTime, :EndTime
+        
+        def initialize(filters=nil, limit=nil, page=nil, starttime=nil, endtime=nil)
+          @Filters = filters
+          @Limit = limit
+          @Page = page
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Filters = params['Filters']
+          @Limit = params['Limit']
+          @Page = params['Page']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeLeakDetectionList返回参数结构体
+      class DescribeLeakDetectionListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param List: 数据列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @List = params['List']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSafetyEventList请求参数结构体
+      class DescribeSafetyEventListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 搜索过滤查询参数
+        # @type Filter: String
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param Offset: 页偏移
+        # @type Offset: Integer
+        # @param Order: 排序列名
+        # @type Order: String
+        # @param By: 排序升降：desc-降序 asc-升序
+        # @type By: String
+        # @param StartTime: 开始查询时间
+        # @type StartTime: String
+        # @param EndTime: 结束查询时间
+        # @type EndTime: String
+        # @param IsFilterResponseTime: 是否过滤响应时间
+        # @type IsFilterResponseTime: Boolean
+
+        attr_accessor :Filter, :Limit, :Offset, :Order, :By, :StartTime, :EndTime, :IsFilterResponseTime
+        
+        def initialize(filter=nil, limit=nil, offset=nil, order=nil, by=nil, starttime=nil, endtime=nil, isfilterresponsetime=nil)
+          @Filter = filter
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+          @StartTime = starttime
+          @EndTime = endtime
+          @IsFilterResponseTime = isfilterresponsetime
+        end
+
+        def deserialize(params)
+          @Filter = params['Filter']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @IsFilterResponseTime = params['IsFilterResponseTime']
+        end
+      end
+
+      # DescribeSafetyEventList返回参数结构体
+      class DescribeSafetyEventListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 事件列表
+        # @type List: Array
+        # @param Total: 事件总条数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+        
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @List = params['List']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulDetail请求参数结构体
+      class DescribeVulDetailRequest < TencentCloud::Common::AbstractModel
+        # @param UniqId: 漏洞唯一标识符
+        # @type UniqId: String
+        # @param Source: 查看详情来源
+        # @type Source: String
+
+        attr_accessor :UniqId, :Source
+        
+        def initialize(uniqid=nil, source=nil)
+          @UniqId = uniqid
+          @Source = source
+        end
+
+        def deserialize(params)
+          @UniqId = params['UniqId']
+          @Source = params['Source']
+        end
+      end
+
+      # DescribeVulDetail返回参数结构体
+      class DescribeVulDetailResponse < TencentCloud::Common::AbstractModel
+        # @param VulType: 漏洞类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulType: Integer
+        # @param SubVulType: 漏洞子类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubVulType: String
+        # @param CvssScore: cvss分数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvssScore: String
+        # @param Cvss: cvss值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cvss: String
+        # @param Cve: cve编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cve: String
+        # @param Cnvd: cnvd编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cnvd: String
+        # @param Cnnvd: cnnvd编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cnnvd: String
+        # @param Desc: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param Reference: 参考
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reference: String
+        # @param Repair: 修复意见
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Repair: String
+        # @param ReleaseTime: 披露时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Name: 漏洞名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Level: 等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param ImpactAsset: 受影响资产唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImpactAsset: String
+        # @param ImpactAssetName: 受影响资产名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImpactAssetName: String
+        # @param IsAssetDeleted: 受影响资产是否已删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAssetDeleted: Boolean
+        # @param Source: 漏洞来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param VulUrl: 漏洞URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulUrl: String
+        # @param SsaAssetCategory: 资产归属
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaAssetCategory: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VulType, :SubVulType, :CvssScore, :Cvss, :Cve, :Cnvd, :Cnnvd, :Desc, :Reference, :Repair, :ReleaseTime, :UpdateTime, :Name, :Level, :Status, :ImpactAsset, :ImpactAssetName, :IsAssetDeleted, :Source, :VulUrl, :SsaAssetCategory, :RequestId
+        
+        def initialize(vultype=nil, subvultype=nil, cvssscore=nil, cvss=nil, cve=nil, cnvd=nil, cnnvd=nil, desc=nil, reference=nil, repair=nil, releasetime=nil, updatetime=nil, name=nil, level=nil, status=nil, impactasset=nil, impactassetname=nil, isassetdeleted=nil, source=nil, vulurl=nil, ssaassetcategory=nil, requestid=nil)
+          @VulType = vultype
+          @SubVulType = subvultype
+          @CvssScore = cvssscore
+          @Cvss = cvss
+          @Cve = cve
+          @Cnvd = cnvd
+          @Cnnvd = cnnvd
+          @Desc = desc
+          @Reference = reference
+          @Repair = repair
+          @ReleaseTime = releasetime
+          @UpdateTime = updatetime
+          @Name = name
+          @Level = level
+          @Status = status
+          @ImpactAsset = impactasset
+          @ImpactAssetName = impactassetname
+          @IsAssetDeleted = isassetdeleted
+          @Source = source
+          @VulUrl = vulurl
+          @SsaAssetCategory = ssaassetcategory
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VulType = params['VulType']
+          @SubVulType = params['SubVulType']
+          @CvssScore = params['CvssScore']
+          @Cvss = params['Cvss']
+          @Cve = params['Cve']
+          @Cnvd = params['Cnvd']
+          @Cnnvd = params['Cnnvd']
+          @Desc = params['Desc']
+          @Reference = params['Reference']
+          @Repair = params['Repair']
+          @ReleaseTime = params['ReleaseTime']
+          @UpdateTime = params['UpdateTime']
+          @Name = params['Name']
+          @Level = params['Level']
+          @Status = params['Status']
+          @ImpactAsset = params['ImpactAsset']
+          @ImpactAssetName = params['ImpactAssetName']
+          @IsAssetDeleted = params['IsAssetDeleted']
+          @Source = params['Source']
+          @VulUrl = params['VulUrl']
+          @SsaAssetCategory = params['SsaAssetCategory']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulList请求参数结构体
+      class DescribeVulListRequest < TencentCloud::Common::AbstractModel
+        # @param Params: 查询过滤参数
+        # @type Params: String
+
+        attr_accessor :Params
+        
+        def initialize(params=nil)
+          @Params = params
+        end
+
+        def deserialize(params)
+          @Params = params['Params']
+        end
+      end
+
+      # DescribeVulList返回参数结构体
+      class DescribeVulListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 漏洞列表
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.VulList`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VulList.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+
+      # 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+      # 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤键的名称。
+        # @type Name: String
+        # @param Values: 一个或者多个过滤值。
+        # @type Values: Array
+        # @param ExactMatch: 是否需要精确匹配
+        # @type ExactMatch: Boolean
+
+        attr_accessor :Name, :Values, :ExactMatch
+        
+        def initialize(name=nil, values=nil, exactmatch=nil)
+          @Name = name
+          @Values = values
+          @ExactMatch = exactmatch
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+          @ExactMatch = params['ExactMatch']
+        end
+      end
+
+      # 查询_通用字段
+      class SaDivulgeDataQueryPub < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: String
+        # @param Uin: Uin
+        # @type Uin: String
+        # @param AppId: AppId
+        # @type AppId: String
+        # @param EventName: EventName
+        # @type EventName: String
+        # @param DivulgeSoure: DivulgeSoure
+        # @type DivulgeSoure: String
+        # @param Asset: Asset
+        # @type Asset: String
+        # @param RuleName: RuleName
+        # @type RuleName: String
+        # @param RuleId: RuleId
+        # @type RuleId: String
+        # @param RuleWord: RuleWord
+        # @type RuleWord: String
+        # @param ScanUrl: ScanUrl
+        # @type ScanUrl: String
+        # @param ScanCount: ScanCount
+        # @type ScanCount: String
+        # @param Level: Level
+        # @type Level: String
+        # @param Status: Status
+        # @type Status: String
+        # @param EventTime: EventTime
+        # @type EventTime: String
+        # @param InsertTime: InsertTime
+        # @type InsertTime: String
+        # @param UpdateTime: UpdateTime
+        # @type UpdateTime: String
+
+        attr_accessor :Id, :Uin, :AppId, :EventName, :DivulgeSoure, :Asset, :RuleName, :RuleId, :RuleWord, :ScanUrl, :ScanCount, :Level, :Status, :EventTime, :InsertTime, :UpdateTime
+        
+        def initialize(id=nil, uin=nil, appid=nil, eventname=nil, divulgesoure=nil, asset=nil, rulename=nil, ruleid=nil, ruleword=nil, scanurl=nil, scancount=nil, level=nil, status=nil, eventtime=nil, inserttime=nil, updatetime=nil)
+          @Id = id
+          @Uin = uin
+          @AppId = appid
+          @EventName = eventname
+          @DivulgeSoure = divulgesoure
+          @Asset = asset
+          @RuleName = rulename
+          @RuleId = ruleid
+          @RuleWord = ruleword
+          @ScanUrl = scanurl
+          @ScanCount = scancount
+          @Level = level
+          @Status = status
+          @EventTime = eventtime
+          @InsertTime = inserttime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uin = params['Uin']
+          @AppId = params['AppId']
+          @EventName = params['EventName']
+          @DivulgeSoure = params['DivulgeSoure']
+          @Asset = params['Asset']
+          @RuleName = params['RuleName']
+          @RuleId = params['RuleId']
+          @RuleWord = params['RuleWord']
+          @ScanUrl = params['ScanUrl']
+          @ScanCount = params['ScanCount']
+          @Level = params['Level']
+          @Status = params['Status']
+          @EventTime = params['EventTime']
+          @InsertTime = params['InsertTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 查询_通用字段
+      class SaDivulgeDataQueryPubList < TencentCloud::Common::AbstractModel
+        # @param Count: Count
+        # @type Count: Integer
+        # @param List: List
+        # @type List: Array
+
+        attr_accessor :Count, :List
+        
+        def initialize(count=nil, list=nil)
+          @Count = count
+          @List = list
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @List = params['List']
+        end
+      end
+
+      # SaDivulgeDataQueryPub请求参数结构体
+      class SaDivulgeDataQueryPubRequest < TencentCloud::Common::AbstractModel
+        # @param QueryKey: 模糊查询字段
+        # @type QueryKey: String
+        # @param EventName: 安全事件名称
+        # @type EventName: String
+        # @param DivulgeSoure: 监控源
+        # @type DivulgeSoure: String
+        # @param Asset: 受影响资产
+        # @type Asset: String
+        # @param RuleName: 命中主题集下的规则topic名称
+        # @type RuleName: String
+        # @param RuleId: 命中主题集下的规则topic唯一id
+        # @type RuleId: String
+        # @param Level: 风险等级
+        # @type Level: String
+        # @param Status: 安全事件状态
+        # @type Status: String
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 查询起始地址
+        # @type Offset: String
+        # @param Limit: 查询个数
+        # @type Limit: String
+
+        attr_accessor :QueryKey, :EventName, :DivulgeSoure, :Asset, :RuleName, :RuleId, :Level, :Status, :StartTime, :EndTime, :Offset, :Limit
+        
+        def initialize(querykey=nil, eventname=nil, divulgesoure=nil, asset=nil, rulename=nil, ruleid=nil, level=nil, status=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @QueryKey = querykey
+          @EventName = eventname
+          @DivulgeSoure = divulgesoure
+          @Asset = asset
+          @RuleName = rulename
+          @RuleId = ruleid
+          @Level = level
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @QueryKey = params['QueryKey']
+          @EventName = params['EventName']
+          @DivulgeSoure = params['DivulgeSoure']
+          @Asset = params['Asset']
+          @RuleName = params['RuleName']
+          @RuleId = params['RuleId']
+          @Level = params['Level']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # SaDivulgeDataQueryPub返回参数结构体
+      class SaDivulgeDataQueryPubResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 结果
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.SaDivulgeDataQueryPubList`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = SaDivulgeDataQueryPubList.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Fid: 数据库标识
+        # @type Fid: Integer
+        # @param Fname: 标签名称
+        # @type Fname: String
+
+        attr_accessor :Fid, :Fname
+        
+        def initialize(fid=nil, fname=nil)
+          @Fid = fid
+          @Fname = fname
+        end
+
+        def deserialize(params)
+          @Fid = params['Fid']
+          @Fname = params['Fname']
+        end
+      end
+
+      # 漏洞管理漏洞数据
+      class VulItem < TencentCloud::Common::AbstractModel
+        # @param Id: 标识
+        # @type Id: String
+        # @param VulName: 漏洞名称
+        # @type VulName: String
+        # @param Type: 漏洞类型
+        # @type Type: Integer
+        # @param Level: 风险等级
+        # @type Level: Integer
+        # @param Status: 处理状态
+        # @type Status: Integer
+        # @param Time: 发现时间
+        # @type Time: String
+        # @param ImpactAssetNum: 影响资产数
+        # @type ImpactAssetNum: Integer
+        # @param ImpactAsset: 影响资产id
+        # @type ImpactAsset: String
+        # @param ImpactAssetName: 影响资产名称
+        # @type ImpactAssetName: String
+        # @param VulDetail: 漏洞描述
+        # @type VulDetail: String
+        # @param VulRefLink: 参考链接
+        # @type VulRefLink: String
+        # @param OldIdMd5: Md5值
+        # @type OldIdMd5: String
+        # @param UniqId: 漏洞唯一标识
+        # @type UniqId: String
+        # @param OperateTime: 忽略时间
+        # @type OperateTime: String
+        # @param IsAssetDeleted: 受影响资产是否下线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAssetDeleted: String
+        # @param DiscoverTime: 漏洞首次发现时间
+        # @type DiscoverTime: String
+        # @param OriginId: 主机源信息标识符
+        # @type OriginId: Integer
+        # @param Region: 资产区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Vpcid: 资产所属网络
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vpcid: String
+        # @param AssetType: 资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetType: String
+        # @param AssetSubType: 资产子类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetSubType: String
+        # @param AssetIpAll: 资产IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetIpAll: Array
+        # @param PublicIpAddresses: cvm类型的公网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIpAddresses: Array
+        # @param PrivateIpAddresses: cvm类型的内网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateIpAddresses: Array
+        # @param VulSource: 漏洞来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulSource: String
+        # @param AffectedUrl: 影响URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectedUrl: String
+        # @param SsaAssetCategory: 资产归属
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaAssetCategory: Integer
+        # @param VulUrl: 影响url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulUrl: String
+        # @param IsOpen: 是否扫描
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOpen: Boolean
+        # @param YzHostId: 御知主机id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YzHostId: Integer
+        # @param VulRepairPlan: 漏洞描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulRepairPlan: String
+
+        attr_accessor :Id, :VulName, :Type, :Level, :Status, :Time, :ImpactAssetNum, :ImpactAsset, :ImpactAssetName, :VulDetail, :VulRefLink, :OldIdMd5, :UniqId, :OperateTime, :IsAssetDeleted, :DiscoverTime, :OriginId, :Region, :Vpcid, :AssetType, :AssetSubType, :AssetIpAll, :PublicIpAddresses, :PrivateIpAddresses, :VulSource, :AffectedUrl, :SsaAssetCategory, :VulUrl, :IsOpen, :YzHostId, :VulRepairPlan
+        
+        def initialize(id=nil, vulname=nil, type=nil, level=nil, status=nil, time=nil, impactassetnum=nil, impactasset=nil, impactassetname=nil, vuldetail=nil, vulreflink=nil, oldidmd5=nil, uniqid=nil, operatetime=nil, isassetdeleted=nil, discovertime=nil, originid=nil, region=nil, vpcid=nil, assettype=nil, assetsubtype=nil, assetipall=nil, publicipaddresses=nil, privateipaddresses=nil, vulsource=nil, affectedurl=nil, ssaassetcategory=nil, vulurl=nil, isopen=nil, yzhostid=nil, vulrepairplan=nil)
+          @Id = id
+          @VulName = vulname
+          @Type = type
+          @Level = level
+          @Status = status
+          @Time = time
+          @ImpactAssetNum = impactassetnum
+          @ImpactAsset = impactasset
+          @ImpactAssetName = impactassetname
+          @VulDetail = vuldetail
+          @VulRefLink = vulreflink
+          @OldIdMd5 = oldidmd5
+          @UniqId = uniqid
+          @OperateTime = operatetime
+          @IsAssetDeleted = isassetdeleted
+          @DiscoverTime = discovertime
+          @OriginId = originid
+          @Region = region
+          @Vpcid = vpcid
+          @AssetType = assettype
+          @AssetSubType = assetsubtype
+          @AssetIpAll = assetipall
+          @PublicIpAddresses = publicipaddresses
+          @PrivateIpAddresses = privateipaddresses
+          @VulSource = vulsource
+          @AffectedUrl = affectedurl
+          @SsaAssetCategory = ssaassetcategory
+          @VulUrl = vulurl
+          @IsOpen = isopen
+          @YzHostId = yzhostid
+          @VulRepairPlan = vulrepairplan
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @VulName = params['VulName']
+          @Type = params['Type']
+          @Level = params['Level']
+          @Status = params['Status']
+          @Time = params['Time']
+          @ImpactAssetNum = params['ImpactAssetNum']
+          @ImpactAsset = params['ImpactAsset']
+          @ImpactAssetName = params['ImpactAssetName']
+          @VulDetail = params['VulDetail']
+          @VulRefLink = params['VulRefLink']
+          @OldIdMd5 = params['OldIdMd5']
+          @UniqId = params['UniqId']
+          @OperateTime = params['OperateTime']
+          @IsAssetDeleted = params['IsAssetDeleted']
+          @DiscoverTime = params['DiscoverTime']
+          @OriginId = params['OriginId']
+          @Region = params['Region']
+          @Vpcid = params['Vpcid']
+          @AssetType = params['AssetType']
+          @AssetSubType = params['AssetSubType']
+          @AssetIpAll = params['AssetIpAll']
+          @PublicIpAddresses = params['PublicIpAddresses']
+          @PrivateIpAddresses = params['PrivateIpAddresses']
+          @VulSource = params['VulSource']
+          @AffectedUrl = params['AffectedUrl']
+          @SsaAssetCategory = params['SsaAssetCategory']
+          @VulUrl = params['VulUrl']
+          @IsOpen = params['IsOpen']
+          @YzHostId = params['YzHostId']
+          @VulRepairPlan = params['VulRepairPlan']
+        end
+      end
+
+      # 漏洞管理漏洞列表
+      class VulList < TencentCloud::Common::AbstractModel
+        # @param List: 列表
+        # @type List: Array
+        # @param Total: 总数
+        # @type Total: Integer
+
+        attr_accessor :List, :Total
+        
+        def initialize(list=nil, total=nil)
+          @List = list
+          @Total = total
+        end
+
+        def deserialize(params)
+          @List = params['List']
+          @Total = params['Total']
+        end
+      end
+
+    end
+  end
+end
+

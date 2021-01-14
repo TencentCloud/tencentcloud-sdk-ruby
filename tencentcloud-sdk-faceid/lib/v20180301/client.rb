@@ -97,6 +97,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 银行卡基础信息查询
+
+        # @param request: Request instance for CheckBankCardInformation.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::CheckBankCardInformationRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::CheckBankCardInformationResponse`
+        def CheckBankCardInformation(request)
+          body = send_request('CheckBankCardInformation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckBankCardInformationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与公安权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
+
+        # @param request: Request instance for CheckIdCardInformation.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::CheckIdCardInformationRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::CheckIdCardInformationResponse`
+        def CheckIdCardInformation(request)
+          body = send_request('CheckIdCardInformation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckIdCardInformationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于校验手机号和姓名的真实性和一致性。
+
+        # @param request: Request instance for CheckPhoneAndName.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::CheckPhoneAndNameRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::CheckPhoneAndNameResponse`
+        def CheckPhoneAndName(request)
+          body = send_request('CheckPhoneAndName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckPhoneAndNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
 
         # @param request: Request instance for DetectAuth.
@@ -193,6 +265,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+
+        # @param request: Request instance for GetFaceIdResult.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetFaceIdResultRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetFaceIdResultResponse`
+        def GetFaceIdResult(request)
+          body = send_request('GetFaceIdResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFaceIdResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
+
+        # @param request: Request instance for GetFaceIdToken.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetFaceIdTokenRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetFaceIdTokenResponse`
+        def GetFaceIdToken(request)
+          body = send_request('GetFaceIdToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFaceIdTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 使用数字活体检测模式前，需调用本接口获取数字验证码。
 
         # @param request: Request instance for GetLiveCode.
@@ -203,6 +323,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetLiveCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取微信实名认证结果
+
+        # @param request: Request instance for GetRealNameAuthResult.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetRealNameAuthResultRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetRealNameAuthResultResponse`
+        def GetRealNameAuthResult(request)
+          body = send_request('GetRealNameAuthResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRealNameAuthResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
+
+        # @param request: Request instance for GetRealNameAuthToken.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::GetRealNameAuthTokenRequest`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::GetRealNameAuthTokenResponse`
+        def GetRealNameAuthToken(request)
+          body = send_request('GetRealNameAuthToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRealNameAuthTokenResponse.new
             model.deserialize(response['Response'])
             model
           else

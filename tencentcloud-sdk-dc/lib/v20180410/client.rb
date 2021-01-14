@@ -49,6 +49,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 申请互联网CIDR地址
+
+        # @param request: Request instance for ApplyInternetAddress.
+        # @type request: :class:`Tencentcloud::dc::V20180410::ApplyInternetAddressRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::ApplyInternetAddressResponse`
+        def ApplyInternetAddress(request)
+          body = send_request('ApplyInternetAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyInternetAddressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 申请物理专线接入。
         # 调用该接口时，请注意：
         # 账号要进行实名认证，否则不允许申请物理专线；
@@ -173,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
+
+        # @param request: Request instance for DescribeDirectConnectTunnelExtra.
+        # @type request: :class:`Tencentcloud::dc::V20180410::DescribeDirectConnectTunnelExtraRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::DescribeDirectConnectTunnelExtraResponse`
+        def DescribeDirectConnectTunnelExtra(request)
+          body = send_request('DescribeDirectConnectTunnelExtra', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDirectConnectTunnelExtraResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询专用通道列表。
 
         # @param request: Request instance for DescribeDirectConnectTunnels.
@@ -207,6 +255,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDirectConnectsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户互联网公网地址信息
+
+        # @param request: Request instance for DescribeInternetAddress.
+        # @type request: :class:`Tencentcloud::dc::V20180410::DescribeInternetAddressRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::DescribeInternetAddressResponse`
+        def DescribeInternetAddress(request)
+          body = send_request('DescribeInternetAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInternetAddressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户互联网公网地址配额
+
+        # @param request: Request instance for DescribeInternetAddressQuota.
+        # @type request: :class:`Tencentcloud::dc::V20180410::DescribeInternetAddressQuotaRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::DescribeInternetAddressQuotaResponse`
+        def DescribeInternetAddressQuota(request)
+          body = send_request('DescribeInternetAddressQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInternetAddressQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户互联网公网地址分配统计信息
+
+        # @param request: Request instance for DescribeInternetAddressStatistics.
+        # @type request: :class:`Tencentcloud::dc::V20180410::DescribeInternetAddressStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::DescribeInternetAddressStatisticsResponse`
+        def DescribeInternetAddressStatistics(request)
+          body = send_request('DescribeInternetAddressStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInternetAddressStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
+
+        # @param request: Request instance for DescribePublicDirectConnectTunnelRoutes.
+        # @type request: :class:`Tencentcloud::dc::V20180410::DescribePublicDirectConnectTunnelRoutesRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::DescribePublicDirectConnectTunnelRoutesResponse`
+        def DescribePublicDirectConnectTunnelRoutes(request)
+          body = send_request('DescribePublicDirectConnectTunnelRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePublicDirectConnectTunnelRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停用用户申请的公网互联网地址
+
+        # @param request: Request instance for DisableInternetAddress.
+        # @type request: :class:`Tencentcloud::dc::V20180410::DisableInternetAddressRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::DisableInternetAddressResponse`
+        def DisableInternetAddress(request)
+          body = send_request('DisableInternetAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableInternetAddressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用已停用的互联网公网地址
+
+        # @param request: Request instance for EnableInternetAddress.
+        # @type request: :class:`Tencentcloud::dc::V20180410::EnableInternetAddressRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::EnableInternetAddressResponse`
+        def EnableInternetAddress(request)
+          body = send_request('EnableInternetAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableInternetAddressResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -269,6 +461,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
+
+        # @param request: Request instance for ModifyDirectConnectTunnelExtra.
+        # @type request: :class:`Tencentcloud::dc::V20180410::ModifyDirectConnectTunnelExtraRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::ModifyDirectConnectTunnelExtraResponse`
+        def ModifyDirectConnectTunnelExtra(request)
+          body = send_request('ModifyDirectConnectTunnelExtra', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDirectConnectTunnelExtraResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 拒绝专用通道申请
 
         # @param request: Request instance for RejectDirectConnectTunnel.
@@ -279,6 +495,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RejectDirectConnectTunnelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 释放已申请的互联网地址
+
+        # @param request: Request instance for ReleaseInternetAddress.
+        # @type request: :class:`Tencentcloud::dc::V20180410::ReleaseInternetAddressRequest`
+        # @rtype: :class:`Tencentcloud::dc::V20180410::ReleaseInternetAddressResponse`
+        def ReleaseInternetAddress(request)
+          body = send_request('ReleaseInternetAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReleaseInternetAddressResponse.new
             model.deserialize(response['Response'])
             model
           else

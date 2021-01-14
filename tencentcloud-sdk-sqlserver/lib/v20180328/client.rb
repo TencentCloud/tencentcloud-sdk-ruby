@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'SQLSERVER_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
+
+        # @param request: Request instance for AssociateSecurityGroups.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::AssociateSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::AssociateSecurityGroupsResponse`
+        def AssociateSecurityGroups(request)
+          body = send_request('AssociateSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssociateSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CompleteExpansion）在实例发起扩容后，实例状态处于“升级待切换”时，可立即完成实例升级切换操作，无需等待可维护时间窗。本接口需要在实例低峰时调用，在完全切换成功前，存在部分库不可访问的风险。
 
         # @param request: Request instance for CompleteExpansion.
@@ -35,6 +59,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CompleteExpansionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CompleteMigration）作用是完成一个迁移任务
+
+        # @param request: Request instance for CompleteMigration.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CompleteMigrationRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CompleteMigrationResponse`
+        def CompleteMigration(request)
+          body = send_request('CompleteMigration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CompleteMigrationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -83,6 +131,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
+
+        # @param request: Request instance for CreateBasicDBInstances.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateBasicDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CreateBasicDBInstancesResponse`
+        def CreateBasicDBInstances(request)
+          body = send_request('CreateBasicDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBasicDBInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -193,6 +265,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
+
+        # @param request: Request instance for CreateReadOnlyDBInstances.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateReadOnlyDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::CreateReadOnlyDBInstancesResponse`
+        def CreateReadOnlyDBInstances(request)
+          body = send_request('CreateReadOnlyDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReadOnlyDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteAccount）用于删除实例账号。
 
         # @param request: Request instance for DeleteAccount.
@@ -227,6 +323,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDBResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
+
+        # @param request: Request instance for DeleteDBInstance.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DeleteDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DeleteDBInstanceResponse`
+        def DeleteDBInstance(request)
+          body = send_request('DeleteDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDBInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -313,6 +433,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
+
+        # @param request: Request instance for DescribeBackupByFlowId.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeBackupByFlowIdRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeBackupByFlowIdResponse`
+        def DescribeBackupByFlowId(request)
+          body = send_request('DescribeBackupByFlowId', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupByFlowIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeBackups)用于查询备份列表。
 
         # @param request: Request instance for DescribeBackups.
@@ -337,6 +481,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeCrossRegionZone)根据主实例查询备机的容灾地域和可用区。
+
+        # @param request: Request instance for DescribeCrossRegionZone.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeCrossRegionZoneRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeCrossRegionZoneResponse`
+        def DescribeCrossRegionZone(request)
+          body = send_request('DescribeCrossRegionZone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCrossRegionZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBInstances)用于查询实例列表。
 
         # @param request: Request instance for DescribeDBInstances.
@@ -347,6 +515,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
+
+        # @param request: Request instance for DescribeDBSecurityGroups.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBSecurityGroupsResponse`
+        def DescribeDBSecurityGroups(request)
+          body = send_request('DescribeDBSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBSecurityGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -419,6 +611,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMaintenanceSpanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeMigrationDatabases）的作用是查询待迁移数据库列表
+
+        # @param request: Request instance for DescribeMigrationDatabases.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeMigrationDatabasesRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeMigrationDatabasesResponse`
+        def DescribeMigrationDatabases(request)
+          body = send_request('DescribeMigrationDatabases', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMigrationDatabasesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -529,6 +745,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
+
+        # @param request: Request instance for DescribeProjectSecurityGroups.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeProjectSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeProjectSecurityGroupsResponse`
+        def DescribeProjectSecurityGroups(request)
+          body = send_request('DescribeProjectSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProjectSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
 
         # @param request: Request instance for DescribePublishSubscribe.
@@ -539,6 +779,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePublishSubscribeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
+
+        # @param request: Request instance for DescribeReadOnlyGroupByReadOnlyInstance.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeReadOnlyGroupByReadOnlyInstanceRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeReadOnlyGroupByReadOnlyInstanceResponse`
+        def DescribeReadOnlyGroupByReadOnlyInstance(request)
+          body = send_request('DescribeReadOnlyGroupByReadOnlyInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReadOnlyGroupByReadOnlyInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeReadOnlyGroupDetails）用于查询只读组详情。
+
+        # @param request: Request instance for DescribeReadOnlyGroupDetails.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeReadOnlyGroupDetailsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeReadOnlyGroupDetailsResponse`
+        def DescribeReadOnlyGroupDetails(request)
+          body = send_request('DescribeReadOnlyGroupDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReadOnlyGroupDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeReadOnlyGroupList）用于查询只读组列表。
+
+        # @param request: Request instance for DescribeReadOnlyGroupList.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeReadOnlyGroupListRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeReadOnlyGroupListResponse`
+        def DescribeReadOnlyGroupList(request)
+          body = send_request('DescribeReadOnlyGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReadOnlyGroupListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -635,6 +947,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeZonesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
+
+        # @param request: Request instance for DisassociateSecurityGroups.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DisassociateSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DisassociateSecurityGroupsResponse`
+        def DisassociateSecurityGroups(request)
+          body = send_request('DisassociateSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisassociateSecurityGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -769,6 +1105,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(ModifyBackupName)用于修改备份名称。
+
+        # @param request: Request instance for ModifyBackupName.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyBackupNameRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyBackupNameResponse`
+        def ModifyBackupName(request)
+          body = send_request('ModifyBackupName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBackupNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyBackupStrategy）用于修改备份策略
 
         # @param request: Request instance for ModifyBackupStrategy.
@@ -851,6 +1211,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDBInstanceRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
+
+        # @param request: Request instance for ModifyDBInstanceSecurityGroups.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDBInstanceSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyDBInstanceSecurityGroupsResponse`
+        def ModifyDBInstanceSecurityGroups(request)
+          body = send_request('ModifyDBInstanceSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceSecurityGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -985,6 +1369,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyReadOnlyGroupDetails）用于修改只读组详情。
+
+        # @param request: Request instance for ModifyReadOnlyGroupDetails.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyReadOnlyGroupDetailsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyReadOnlyGroupDetailsResponse`
+        def ModifyReadOnlyGroupDetails(request)
+          body = send_request('ModifyReadOnlyGroupDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReadOnlyGroupDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
+
+        # @param request: Request instance for QueryMigrationCheckProcess.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::QueryMigrationCheckProcessRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::QueryMigrationCheckProcessResponse`
+        def QueryMigrationCheckProcess(request)
+          body = send_request('QueryMigrationCheckProcess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryMigrationCheckProcessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
+
+        # @param request: Request instance for RecycleDBInstance.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::RecycleDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::RecycleDBInstanceResponse`
+        def RecycleDBInstance(request)
+          body = send_request('RecycleDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecycleDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（RecycleReadOnlyGroup）立即回收只读组的资源，只读组占用的vip等资源将立即释放且不可找回。
+
+        # @param request: Request instance for RecycleReadOnlyGroup.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::RecycleReadOnlyGroupRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::RecycleReadOnlyGroupResponse`
+        def RecycleReadOnlyGroup(request)
+          body = send_request('RecycleReadOnlyGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecycleReadOnlyGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（RemoveBackups）可以删除用户手动创建的备份文件。待删除的备份策略可以是实例备份，也可以是多库备份。
 
         # @param request: Request instance for RemoveBackups.
@@ -1019,6 +1499,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RenewDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
+
+        # @param request: Request instance for RenewPostpaidDBInstance.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::RenewPostpaidDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::RenewPostpaidDBInstanceResponse`
+        def RenewPostpaidDBInstance(request)
+          body = send_request('RenewPostpaidDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewPostpaidDBInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1153,7 +1657,55 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(TerminateDBInstance)用于主动销毁按量计费实例。
+        # 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
+
+        # @param request: Request instance for StartMigrationCheck.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::StartMigrationCheckRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::StartMigrationCheckResponse`
+        def StartMigrationCheck(request)
+          body = send_request('StartMigrationCheck', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartMigrationCheckResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（StopMigration）作用是中止一个迁移任务
+
+        # @param request: Request instance for StopMigration.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::StopMigrationRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::StopMigrationResponse`
+        def StopMigration(request)
+          body = send_request('StopMigration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopMigrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
 
         # @param request: Request instance for TerminateDBInstance.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::TerminateDBInstanceRequest`

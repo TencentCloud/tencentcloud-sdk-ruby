@@ -170,7 +170,7 @@ module TencentCloud
 
       # 扩展字段，对风险类型的说明
       class RiskDetail < TencentCloud::Common::AbstractModel
-        # @param RiskCode: 风险码
+        # @param RiskCode: 风险码 参数详细定义请加微信：TYXGJ-01
         # @type RiskCode: Integer
 
         attr_accessor :RiskCode

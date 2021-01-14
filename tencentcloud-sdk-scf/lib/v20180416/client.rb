@@ -248,6 +248,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除函数版本的预置并发配置。
+
+        # @param request: Request instance for DeleteProvisionedConcurrencyConfig.
+        # @type request: :class:`Tencentcloud::scf::V20180416::DeleteProvisionedConcurrencyConfigRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::DeleteProvisionedConcurrencyConfigResponse`
+        def DeleteProvisionedConcurrencyConfig(request)
+          body = send_request('DeleteProvisionedConcurrencyConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteProvisionedConcurrencyConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除函数的保留并发配置。
+
+        # @param request: Request instance for DeleteReservedConcurrencyConfig.
+        # @type request: :class:`Tencentcloud::scf::V20180416::DeleteReservedConcurrencyConfigRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::DeleteReservedConcurrencyConfigResponse`
+        def DeleteReservedConcurrencyConfig(request)
+          body = send_request('DeleteReservedConcurrencyConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReservedConcurrencyConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口根据参数传入删除已有的触发方式。
 
         # @param request: Request instance for DeleteTrigger.
@@ -378,6 +426,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetLayerVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取函数或函数某一版本的预置并发详情。
+
+        # @param request: Request instance for GetProvisionedConcurrencyConfig.
+        # @type request: :class:`Tencentcloud::scf::V20180416::GetProvisionedConcurrencyConfigRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::GetProvisionedConcurrencyConfigResponse`
+        def GetProvisionedConcurrencyConfig(request)
+          body = send_request('GetProvisionedConcurrencyConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetProvisionedConcurrencyConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取函数的保留并发详情。
+
+        # @param request: Request instance for GetReservedConcurrencyConfig.
+        # @type request: :class:`Tencentcloud::scf::V20180416::GetReservedConcurrencyConfigRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::GetReservedConcurrencyConfigResponse`
+        def GetReservedConcurrencyConfig(request)
+          body = send_request('GetReservedConcurrencyConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetReservedConcurrencyConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -618,6 +714,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PublishVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置函数某一非$LATEST版本的预置并发。
+
+        # @param request: Request instance for PutProvisionedConcurrencyConfig.
+        # @type request: :class:`Tencentcloud::scf::V20180416::PutProvisionedConcurrencyConfigRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::PutProvisionedConcurrencyConfigResponse`
+        def PutProvisionedConcurrencyConfig(request)
+          body = send_request('PutProvisionedConcurrencyConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PutProvisionedConcurrencyConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置函数保留并发
+
+        # @param request: Request instance for PutReservedConcurrencyConfig.
+        # @type request: :class:`Tencentcloud::scf::V20180416::PutReservedConcurrencyConfigRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::PutReservedConcurrencyConfigResponse`
+        def PutReservedConcurrencyConfig(request)
+          body = send_request('PutReservedConcurrencyConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PutReservedConcurrencyConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改账号并发限制配额
+
+        # @param request: Request instance for PutTotalConcurrencyConfig.
+        # @type request: :class:`Tencentcloud::scf::V20180416::PutTotalConcurrencyConfigRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::PutTotalConcurrencyConfigResponse`
+        def PutTotalConcurrencyConfig(request)
+          body = send_request('PutTotalConcurrencyConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PutTotalConcurrencyConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

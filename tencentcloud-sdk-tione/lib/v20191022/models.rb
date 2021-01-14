@@ -72,6 +72,30 @@ module TencentCloud
         end
       end
 
+      # 接入CLS服务的配置
+      class ClsConfig < TencentCloud::Common::AbstractModel
+        # @param Type: 接入类型，可选项为free、customer
+        # @type Type: String
+        # @param LogSetId: 自定义CLS的日志集ID，只有当Type为customer时生效
+        # @type LogSetId: String
+        # @param TopicId: 自定义CLS的日志主题ID，只有当Type为customer时生效
+        # @type TopicId: String
+
+        attr_accessor :Type, :LogSetId, :TopicId
+        
+        def initialize(type=nil, logsetid=nil, topicid=nil)
+          @Type = type
+          @LogSetId = logsetid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @LogSetId = params['LogSetId']
+          @TopicId = params['TopicId']
+        end
+      end
+
       # 存储库列表
       class CodeRepoSummary < TencentCloud::Common::AbstractModel
         # @param CreationTime: 创建时间
@@ -217,7 +241,8 @@ module TencentCloud
         # 每个元素可以是已创建的存储库名称或者已https://开头的公共git库
         # 参考https://cloud.tencent.com/document/product/851/43139
         # @type AdditionalCodeRepositories: Array
-        # @param ClsAccess: 是否开启CLS日志服务，可取值Enabled/Disabled，默认为Disabled
+        # @param ClsAccess: 已弃用，请使用ClsConfig配置。
+        # 是否开启CLS日志服务，可取值Enabled/Disabled，默认为Disabled
         # 开启后，Notebook运行的日志会收集到CLS中，CLS会产生费用，请根据需要选择
         # @type ClsAccess: String
         # @param StoppingCondition: 自动停止配置
@@ -227,10 +252,12 @@ module TencentCloud
         # 取值为Disabled的时候StoppingCondition将被忽略
         # 取值为Enabled的时候读取StoppingCondition作为自动停止的配置
         # @type AutoStopping: String
+        # @param ClsConfig: 接入日志的配置，默认接入免费日志
+        # @type ClsConfig: :class:`Tencentcloud::Tione.v20191022.models.ClsConfig`
 
-        attr_accessor :NotebookInstanceName, :InstanceType, :VolumeSizeInGB, :DirectInternetAccess, :RootAccess, :SubnetId, :LifecycleScriptsName, :DefaultCodeRepository, :AdditionalCodeRepositories, :ClsAccess, :StoppingCondition, :AutoStopping
+        attr_accessor :NotebookInstanceName, :InstanceType, :VolumeSizeInGB, :DirectInternetAccess, :RootAccess, :SubnetId, :LifecycleScriptsName, :DefaultCodeRepository, :AdditionalCodeRepositories, :ClsAccess, :StoppingCondition, :AutoStopping, :ClsConfig
         
-        def initialize(notebookinstancename=nil, instancetype=nil, volumesizeingb=nil, directinternetaccess=nil, rootaccess=nil, subnetid=nil, lifecyclescriptsname=nil, defaultcoderepository=nil, additionalcoderepositories=nil, clsaccess=nil, stoppingcondition=nil, autostopping=nil)
+        def initialize(notebookinstancename=nil, instancetype=nil, volumesizeingb=nil, directinternetaccess=nil, rootaccess=nil, subnetid=nil, lifecyclescriptsname=nil, defaultcoderepository=nil, additionalcoderepositories=nil, clsaccess=nil, stoppingcondition=nil, autostopping=nil, clsconfig=nil)
           @NotebookInstanceName = notebookinstancename
           @InstanceType = instancetype
           @VolumeSizeInGB = volumesizeingb
@@ -243,6 +270,7 @@ module TencentCloud
           @ClsAccess = clsaccess
           @StoppingCondition = stoppingcondition
           @AutoStopping = autostopping
+          @ClsConfig = clsconfig
         end
 
         def deserialize(params)
@@ -260,6 +288,9 @@ module TencentCloud
             @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
           end
           @AutoStopping = params['AutoStopping']
+          unless params['ClsConfig'].nil?
+            @ClsConfig = ClsConfig.new.deserialize(params[ClsConfig])
+          end
         end
       end
 
@@ -374,14 +405,14 @@ module TencentCloud
       class CreateTrainingJobRequest < TencentCloud::Common::AbstractModel
         # @param AlgorithmSpecification: 算法镜像配置
         # @type AlgorithmSpecification: :class:`Tencentcloud::Tione.v20191022.models.AlgorithmSpecification`
-        # @param InputDataConfig: 输入数据配置
-        # @type InputDataConfig: Array
         # @param OutputDataConfig: 输出数据配置
         # @type OutputDataConfig: :class:`Tencentcloud::Tione.v20191022.models.OutputDataConfig`
         # @param ResourceConfig: 资源实例配置
         # @type ResourceConfig: :class:`Tencentcloud::Tione.v20191022.models.ResourceConfig`
         # @param TrainingJobName: 训练任务名称
         # @type TrainingJobName: String
+        # @param InputDataConfig: 输入数据配置
+        # @type InputDataConfig: Array
         # @param StoppingCondition: 中止条件
         # @type StoppingCondition: :class:`Tencentcloud::Tione.v20191022.models.StoppingCondition`
         # @param VpcConfig: 私有网络配置
@@ -392,27 +423,30 @@ module TencentCloud
         # @type EnvConfig: Array
         # @param RoleName: 角色名称
         # @type RoleName: String
+        # @param RetryWhenResourceInsufficient: 在资源不足（ResourceInsufficient）时后台不定时尝试重新创建训练任务。可取值Enabled/Disabled
+        # 默认值为Disabled即不重新尝试。设为Enabled时重新尝试有一定的时间期限，定义在 StoppingCondition 中 MaxWaitTimeInSecond中 ，默认值为1天，超过该期限创建失败。
+        # @type RetryWhenResourceInsufficient: String
 
-        attr_accessor :AlgorithmSpecification, :InputDataConfig, :OutputDataConfig, :ResourceConfig, :TrainingJobName, :StoppingCondition, :VpcConfig, :HyperParameters, :EnvConfig, :RoleName
+        attr_accessor :AlgorithmSpecification, :OutputDataConfig, :ResourceConfig, :TrainingJobName, :InputDataConfig, :StoppingCondition, :VpcConfig, :HyperParameters, :EnvConfig, :RoleName, :RetryWhenResourceInsufficient
         
-        def initialize(algorithmspecification=nil, inputdataconfig=nil, outputdataconfig=nil, resourceconfig=nil, trainingjobname=nil, stoppingcondition=nil, vpcconfig=nil, hyperparameters=nil, envconfig=nil, rolename=nil)
+        def initialize(algorithmspecification=nil, outputdataconfig=nil, resourceconfig=nil, trainingjobname=nil, inputdataconfig=nil, stoppingcondition=nil, vpcconfig=nil, hyperparameters=nil, envconfig=nil, rolename=nil, retrywhenresourceinsufficient=nil)
           @AlgorithmSpecification = algorithmspecification
-          @InputDataConfig = inputdataconfig
           @OutputDataConfig = outputdataconfig
           @ResourceConfig = resourceconfig
           @TrainingJobName = trainingjobname
+          @InputDataConfig = inputdataconfig
           @StoppingCondition = stoppingcondition
           @VpcConfig = vpcconfig
           @HyperParameters = hyperparameters
           @EnvConfig = envconfig
           @RoleName = rolename
+          @RetryWhenResourceInsufficient = retrywhenresourceinsufficient
         end
 
         def deserialize(params)
           unless params['AlgorithmSpecification'].nil?
             @AlgorithmSpecification = AlgorithmSpecification.new.deserialize(params[AlgorithmSpecification])
           end
-          @InputDataConfig = params['InputDataConfig']
           unless params['OutputDataConfig'].nil?
             @OutputDataConfig = OutputDataConfig.new.deserialize(params[OutputDataConfig])
           end
@@ -420,6 +454,7 @@ module TencentCloud
             @ResourceConfig = ResourceConfig.new.deserialize(params[ResourceConfig])
           end
           @TrainingJobName = params['TrainingJobName']
+          @InputDataConfig = params['InputDataConfig']
           unless params['StoppingCondition'].nil?
             @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
           end
@@ -429,6 +464,7 @@ module TencentCloud
           @HyperParameters = params['HyperParameters']
           @EnvConfig = params['EnvConfig']
           @RoleName = params['RoleName']
+          @RetryWhenResourceInsufficient = params['RetryWhenResourceInsufficient']
         end
       end
 
@@ -779,12 +815,15 @@ module TencentCloud
         # @param StoppingCondition: 自动停止配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StoppingCondition: :class:`Tencentcloud::Tione.v20191022.models.StoppingCondition`
+        # @param ClsConfig: Cls配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClsConfig: :class:`Tencentcloud::Tione.v20191022.models.ClsConfig`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NotebookInstanceName, :InstanceType, :RoleArn, :DirectInternetAccess, :RootAccess, :SubnetId, :VolumeSizeInGB, :FailureReason, :CreationTime, :LastModifiedTime, :LogUrl, :NotebookInstanceStatus, :InstanceId, :LifecycleScriptsName, :DefaultCodeRepository, :AdditionalCodeRepositories, :ClsAccess, :Prepay, :Deadline, :StoppingCondition, :RequestId
+        attr_accessor :NotebookInstanceName, :InstanceType, :RoleArn, :DirectInternetAccess, :RootAccess, :SubnetId, :VolumeSizeInGB, :FailureReason, :CreationTime, :LastModifiedTime, :LogUrl, :NotebookInstanceStatus, :InstanceId, :LifecycleScriptsName, :DefaultCodeRepository, :AdditionalCodeRepositories, :ClsAccess, :Prepay, :Deadline, :StoppingCondition, :ClsConfig, :RequestId
         
-        def initialize(notebookinstancename=nil, instancetype=nil, rolearn=nil, directinternetaccess=nil, rootaccess=nil, subnetid=nil, volumesizeingb=nil, failurereason=nil, creationtime=nil, lastmodifiedtime=nil, logurl=nil, notebookinstancestatus=nil, instanceid=nil, lifecyclescriptsname=nil, defaultcoderepository=nil, additionalcoderepositories=nil, clsaccess=nil, prepay=nil, deadline=nil, stoppingcondition=nil, requestid=nil)
+        def initialize(notebookinstancename=nil, instancetype=nil, rolearn=nil, directinternetaccess=nil, rootaccess=nil, subnetid=nil, volumesizeingb=nil, failurereason=nil, creationtime=nil, lastmodifiedtime=nil, logurl=nil, notebookinstancestatus=nil, instanceid=nil, lifecyclescriptsname=nil, defaultcoderepository=nil, additionalcoderepositories=nil, clsaccess=nil, prepay=nil, deadline=nil, stoppingcondition=nil, clsconfig=nil, requestid=nil)
           @NotebookInstanceName = notebookinstancename
           @InstanceType = instancetype
           @RoleArn = rolearn
@@ -805,6 +844,7 @@ module TencentCloud
           @Prepay = prepay
           @Deadline = deadline
           @StoppingCondition = stoppingcondition
+          @ClsConfig = clsconfig
           @RequestId = requestid
         end
 
@@ -830,6 +870,9 @@ module TencentCloud
           @Deadline = params['Deadline']
           unless params['StoppingCondition'].nil?
             @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
+          end
+          unless params['ClsConfig'].nil?
+            @ClsConfig = ClsConfig.new.deserialize(params[ClsConfig])
           end
           @RequestId = params['RequestId']
         end
@@ -1741,15 +1784,20 @@ module TencentCloud
         # @param MaxRuntimeInSeconds: 最长运行运行时间（秒）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRuntimeInSeconds: Integer
+        # @param MaxWaitTimeInSeconds: 最长等待运行时间（秒）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxWaitTimeInSeconds: Integer
 
-        attr_accessor :MaxRuntimeInSeconds
+        attr_accessor :MaxRuntimeInSeconds, :MaxWaitTimeInSeconds
         
-        def initialize(maxruntimeinseconds=nil)
+        def initialize(maxruntimeinseconds=nil, maxwaittimeinseconds=nil)
           @MaxRuntimeInSeconds = maxruntimeinseconds
+          @MaxWaitTimeInSeconds = maxwaittimeinseconds
         end
 
         def deserialize(params)
           @MaxRuntimeInSeconds = params['MaxRuntimeInSeconds']
+          @MaxWaitTimeInSeconds = params['MaxWaitTimeInSeconds']
         end
       end
 
@@ -1879,7 +1927,7 @@ module TencentCloud
         # @param DisassociateAdditionalCodeRepositories: 是否取消关联其他存储库，默认false
         # 该值为true时，AdditionalCodeRepositories将被忽略
         # @type DisassociateAdditionalCodeRepositories: Boolean
-        # @param ClsAccess: 是否开启CLS日志服务，可取值Enabled/Disabled
+        # @param ClsAccess: 已弃用，请使用ClsConfig配置。是否开启CLS日志服务，可取值Enabled/Disabled
         # @type ClsAccess: String
         # @param AutoStopping: 自动停止，可取值Enabled/Disabled
         # 取值为Disabled的时候StoppingCondition将被忽略
@@ -1887,10 +1935,12 @@ module TencentCloud
         # @type AutoStopping: String
         # @param StoppingCondition: 自动停止配置，只在AutoStopping为Enabled的时候生效
         # @type StoppingCondition: :class:`Tencentcloud::Tione.v20191022.models.StoppingCondition`
+        # @param ClsConfig: 接入日志的配置，默认使用免费日志服务。
+        # @type ClsConfig: :class:`Tencentcloud::Tione.v20191022.models.ClsConfig`
 
-        attr_accessor :NotebookInstanceName, :RoleArn, :RootAccess, :VolumeSizeInGB, :InstanceType, :LifecycleScriptsName, :DisassociateLifecycleScript, :DefaultCodeRepository, :AdditionalCodeRepositories, :DisassociateDefaultCodeRepository, :DisassociateAdditionalCodeRepositories, :ClsAccess, :AutoStopping, :StoppingCondition
+        attr_accessor :NotebookInstanceName, :RoleArn, :RootAccess, :VolumeSizeInGB, :InstanceType, :LifecycleScriptsName, :DisassociateLifecycleScript, :DefaultCodeRepository, :AdditionalCodeRepositories, :DisassociateDefaultCodeRepository, :DisassociateAdditionalCodeRepositories, :ClsAccess, :AutoStopping, :StoppingCondition, :ClsConfig
         
-        def initialize(notebookinstancename=nil, rolearn=nil, rootaccess=nil, volumesizeingb=nil, instancetype=nil, lifecyclescriptsname=nil, disassociatelifecyclescript=nil, defaultcoderepository=nil, additionalcoderepositories=nil, disassociatedefaultcoderepository=nil, disassociateadditionalcoderepositories=nil, clsaccess=nil, autostopping=nil, stoppingcondition=nil)
+        def initialize(notebookinstancename=nil, rolearn=nil, rootaccess=nil, volumesizeingb=nil, instancetype=nil, lifecyclescriptsname=nil, disassociatelifecyclescript=nil, defaultcoderepository=nil, additionalcoderepositories=nil, disassociatedefaultcoderepository=nil, disassociateadditionalcoderepositories=nil, clsaccess=nil, autostopping=nil, stoppingcondition=nil, clsconfig=nil)
           @NotebookInstanceName = notebookinstancename
           @RoleArn = rolearn
           @RootAccess = rootaccess
@@ -1905,6 +1955,7 @@ module TencentCloud
           @ClsAccess = clsaccess
           @AutoStopping = autostopping
           @StoppingCondition = stoppingcondition
+          @ClsConfig = clsconfig
         end
 
         def deserialize(params)
@@ -1923,6 +1974,9 @@ module TencentCloud
           @AutoStopping = params['AutoStopping']
           unless params['StoppingCondition'].nil?
             @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
+          end
+          unless params['ClsConfig'].nil?
+            @ClsConfig = ClsConfig.new.deserialize(params[ClsConfig])
           end
         end
       end

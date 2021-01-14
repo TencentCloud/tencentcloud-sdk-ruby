@@ -49,6 +49,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 备份实例接口
+
+        # @param request: Request instance for CreateBackupDBInstance.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateBackupDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::CreateBackupDBInstanceResponse`
+        def CreateBackupDBInstance(request)
+          body = send_request('CreateBackupDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBackupDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
 
         # @param request: Request instance for CreateDBInstance.
@@ -83,6 +107,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateDBInstanceHourResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询异步任务状态接口
+
+        # @param request: Request instance for DescribeAsyncRequestInfo.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeAsyncRequestInfoRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeAsyncRequestInfoResponse`
+        def DescribeAsyncRequestInfo(request)
+          body = send_request('DescribeAsyncRequestInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAsyncRequestInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -145,7 +193,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持7天内的备份查询。
+        # 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
+
+        # @param request: Request instance for DescribeCurrentOp.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeCurrentOpRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeCurrentOpResponse`
+        def DescribeCurrentOp(request)
+          body = send_request('DescribeCurrentOp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCurrentOpResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
 
         # @param request: Request instance for DescribeDBBackups.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeDBBackupsRequest`
@@ -409,6 +481,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
+
+        # @param request: Request instance for KillOps.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::KillOpsRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::KillOpsResponse`
+        def KillOps(request)
+          body = send_request('KillOps', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = KillOpsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
 
         # @param request: Request instance for ModifyDBInstanceSpec.
@@ -491,6 +587,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RenewDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改实例用户的密码
+
+        # @param request: Request instance for ResetDBInstancePassword.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::ResetDBInstancePasswordRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::ResetDBInstancePasswordResponse`
+        def ResetDBInstancePassword(request)
+          body = send_request('ResetDBInstancePassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetDBInstancePasswordResponse.new
             model.deserialize(response['Response'])
             model
           else

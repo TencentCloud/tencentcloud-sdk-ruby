@@ -17,6 +17,522 @@
 module TencentCloud
   module Monitor
     module V20180724
+      # 告警事件
+      class AlarmEvent < TencentCloud::Common::AbstractModel
+        # @param EventName: 事件名
+        # @type EventName: String
+        # @param Description: 展示的事件名
+        # @type Description: String
+        # @param Namespace: 告警策略类型
+        # @type Namespace: String
+
+        attr_accessor :EventName, :Description, :Namespace
+        
+        def initialize(eventname=nil, description=nil, namespace=nil)
+          @EventName = eventname
+          @Description = description
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @Description = params['Description']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # 告警历史数据
+      class AlarmHistory < TencentCloud::Common::AbstractModel
+        # @param AlarmId: 告警历史Id
+        # @type AlarmId: String
+        # @param MonitorType: 监控类型
+        # @type MonitorType: String
+        # @param Namespace: 策略类型
+        # @type Namespace: String
+        # @param AlarmObject: 告警对象
+        # @type AlarmObject: String
+        # @param Content: 告警内容
+        # @type Content: String
+        # @param FirstOccurTime: 时间戳，首次出现时间
+        # @type FirstOccurTime: Integer
+        # @param LastOccurTime: 时间戳，最后出现时间
+        # @type LastOccurTime: Integer
+        # @param AlarmStatus: 告警状态，ALARM=未恢复 OK=已恢复 NO_CONF=已失效 NO_DATA=数据不足
+        # @type AlarmStatus: String
+        # @param PolicyId: 告警策略 Id
+        # @type PolicyId: String
+        # @param PolicyName: 策略名称
+        # @type PolicyName: String
+        # @param VPC: 基础产品告警的告警对象所属网络
+        # @type VPC: String
+        # @param ProjectId: 项目 Id
+        # @type ProjectId: Integer
+        # @param ProjectName: 项目名字
+        # @type ProjectName: String
+        # @param InstanceGroup: 告警对象所属实例组
+        # @type InstanceGroup: Array
+        # @param ReceiverUids: 接收人列表
+        # @type ReceiverUids: Array
+        # @param ReceiverGroups: 接收组列表
+        # @type ReceiverGroups: Array
+        # @param NoticeWays: 告警渠道列表 SMS=短信 EMAIL=邮件 CALL=电话 WECHAT=微信
+        # @type NoticeWays: Array
+        # @param OriginId: 兼容告警1.0策略组 Id
+        # @type OriginId: String
+        # @param AlarmType: 告警类型
+        # @type AlarmType: String
+        # @param EventId: 事件Id
+        # @type EventId: Integer
+        # @param Region: 地域
+        # @type Region: String
+        # @param PolicyExists: 策略是否存在 0=不存在 1=存在
+        # @type PolicyExists: Integer
+
+        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists
+        
+        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil)
+          @AlarmId = alarmid
+          @MonitorType = monitortype
+          @Namespace = namespace
+          @AlarmObject = alarmobject
+          @Content = content
+          @FirstOccurTime = firstoccurtime
+          @LastOccurTime = lastoccurtime
+          @AlarmStatus = alarmstatus
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @VPC = vpc
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @InstanceGroup = instancegroup
+          @ReceiverUids = receiveruids
+          @ReceiverGroups = receivergroups
+          @NoticeWays = noticeways
+          @OriginId = originid
+          @AlarmType = alarmtype
+          @EventId = eventid
+          @Region = region
+          @PolicyExists = policyexists
+        end
+
+        def deserialize(params)
+          @AlarmId = params['AlarmId']
+          @MonitorType = params['MonitorType']
+          @Namespace = params['Namespace']
+          @AlarmObject = params['AlarmObject']
+          @Content = params['Content']
+          @FirstOccurTime = params['FirstOccurTime']
+          @LastOccurTime = params['LastOccurTime']
+          @AlarmStatus = params['AlarmStatus']
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @VPC = params['VPC']
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @InstanceGroup = params['InstanceGroup']
+          @ReceiverUids = params['ReceiverUids']
+          @ReceiverGroups = params['ReceiverGroups']
+          @NoticeWays = params['NoticeWays']
+          @OriginId = params['OriginId']
+          @AlarmType = params['AlarmType']
+          @EventId = params['EventId']
+          @Region = params['Region']
+          @PolicyExists = params['PolicyExists']
+        end
+      end
+
+      # 告警通知模板详情
+      class AlarmNotice < TencentCloud::Common::AbstractModel
+        # @param Id: 告警通知模板 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 告警通知模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param UpdatedAt: 上次修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+        # @param UpdatedBy: 上次修改人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedBy: String
+        # @param NoticeType: 告警通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=全部通知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeType: String
+        # @param UserNotices: 用户通知列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserNotices: Array
+        # @param URLNotices: 回调通知列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type URLNotices: Array
+        # @param IsPreset: 是否是系统预设通知模板 0=否 1=是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPreset: Integer
+        # @param NoticeLanguage: 通知语言 zh-CN=中文 en-US=英文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeLanguage: String
+        # @param PolicyIds: 告警通知模板绑定的告警策略ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyIds: Array
+
+        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds
+        
+        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil)
+          @Id = id
+          @Name = name
+          @UpdatedAt = updatedat
+          @UpdatedBy = updatedby
+          @NoticeType = noticetype
+          @UserNotices = usernotices
+          @URLNotices = urlnotices
+          @IsPreset = ispreset
+          @NoticeLanguage = noticelanguage
+          @PolicyIds = policyids
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @UpdatedAt = params['UpdatedAt']
+          @UpdatedBy = params['UpdatedBy']
+          @NoticeType = params['NoticeType']
+          @UserNotices = params['UserNotices']
+          @URLNotices = params['URLNotices']
+          @IsPreset = params['IsPreset']
+          @NoticeLanguage = params['NoticeLanguage']
+          @PolicyIds = params['PolicyIds']
+        end
+      end
+
+      # 告警策略详情
+      class AlarmPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 告警策略 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: String
+        # @param PolicyName: 告警策略名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyName: String
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param MonitorType: 监控类型 MT_QCE=云产品监控
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorType: String
+        # @param Enable: 启停状态 0=停用 1=启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Integer
+        # @param UseSum: 策略组绑定的实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseSum: Integer
+        # @param ProjectId: 项目 Id -1=无项目 0=默认项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param ProjectName: 项目名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param Namespace: 告警策略类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param ConditionTemplateId: 触发条件模板 Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConditionTemplateId: String
+        # @param Condition: 指标触发条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
+        # @param EventCondition: 事件触发条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
+        # @param NoticeIds: 通知规则 id 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeIds: Array
+        # @param Notices: 通知规则 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Notices: Array
+        # @param TriggerTasks: 触发任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerTasks: Array
+        # @param ConditionsTemp: 模板策略组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConditionsTemp: :class:`Tencentcloud::Monitor.v20180724.models.ConditionsTemp`
+        # @param LastEditUin: 最后编辑的用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastEditUin: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param InsertTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsertTime: Integer
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: Array
+        # @param NamespaceShowName: namespace显示名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceShowName: String
+        # @param IsDefault: 是否默认策略，1是，0否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: Integer
+        # @param CanSetDefault: 能否设置默认策略，1是，0否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanSetDefault: Integer
+        # @param InstanceGroupId: 实例分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceGroupId: Integer
+        # @param InstanceSum: 实例分组总实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceSum: Integer
+        # @param InstanceGroupName: 实例分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceGroupName: String
+        # @param RuleType: 触发条件类型 STATIC=静态阈值 DYNAMIC=动态类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param OriginId: 用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginId: String
+
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId
+        
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil)
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @Remark = remark
+          @MonitorType = monitortype
+          @Enable = enable
+          @UseSum = usesum
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @Namespace = namespace
+          @ConditionTemplateId = conditiontemplateid
+          @Condition = condition
+          @EventCondition = eventcondition
+          @NoticeIds = noticeids
+          @Notices = notices
+          @TriggerTasks = triggertasks
+          @ConditionsTemp = conditionstemp
+          @LastEditUin = lastedituin
+          @UpdateTime = updatetime
+          @InsertTime = inserttime
+          @Region = region
+          @NamespaceShowName = namespaceshowname
+          @IsDefault = isdefault
+          @CanSetDefault = cansetdefault
+          @InstanceGroupId = instancegroupid
+          @InstanceSum = instancesum
+          @InstanceGroupName = instancegroupname
+          @RuleType = ruletype
+          @OriginId = originid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @Remark = params['Remark']
+          @MonitorType = params['MonitorType']
+          @Enable = params['Enable']
+          @UseSum = params['UseSum']
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @Namespace = params['Namespace']
+          @ConditionTemplateId = params['ConditionTemplateId']
+          unless params['Condition'].nil?
+            @Condition = AlarmPolicyCondition.new.deserialize(params[Condition])
+          end
+          unless params['EventCondition'].nil?
+            @EventCondition = AlarmPolicyEventCondition.new.deserialize(params[EventCondition])
+          end
+          @NoticeIds = params['NoticeIds']
+          @Notices = params['Notices']
+          @TriggerTasks = params['TriggerTasks']
+          unless params['ConditionsTemp'].nil?
+            @ConditionsTemp = ConditionsTemp.new.deserialize(params[ConditionsTemp])
+          end
+          @LastEditUin = params['LastEditUin']
+          @UpdateTime = params['UpdateTime']
+          @InsertTime = params['InsertTime']
+          @Region = params['Region']
+          @NamespaceShowName = params['NamespaceShowName']
+          @IsDefault = params['IsDefault']
+          @CanSetDefault = params['CanSetDefault']
+          @InstanceGroupId = params['InstanceGroupId']
+          @InstanceSum = params['InstanceSum']
+          @InstanceGroupName = params['InstanceGroupName']
+          @RuleType = params['RuleType']
+          @OriginId = params['OriginId']
+        end
+      end
+
+      # 告警策略指标触发条件
+      class AlarmPolicyCondition < TencentCloud::Common::AbstractModel
+        # @param IsUnionRule: 指标触发与或条件，0=或，1=与
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUnionRule: Integer
+        # @param Rules: 告警触发条件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+
+        attr_accessor :IsUnionRule, :Rules
+        
+        def initialize(isunionrule=nil, rules=nil)
+          @IsUnionRule = isunionrule
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @IsUnionRule = params['IsUnionRule']
+          @Rules = params['Rules']
+        end
+      end
+
+      # 告警策略事件触发条件
+      class AlarmPolicyEventCondition < TencentCloud::Common::AbstractModel
+        # @param Rules: 告警触发条件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+
+        attr_accessor :Rules
+        
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Rules = params['Rules']
+        end
+      end
+
+      # 告警策略过滤条件
+      class AlarmPolicyFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 过滤条件类型 DIMENSION=使用 Dimensions 做过滤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Dimensions: AlarmPolicyDimension 二维数组序列化后的json字符串，一维数组之间互为或关系，一维数组内的元素互为与关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dimensions: String
+
+        attr_accessor :Type, :Dimensions
+        
+        def initialize(type=nil, dimensions=nil)
+          @Type = type
+          @Dimensions = dimensions
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Dimensions = params['Dimensions']
+        end
+      end
+
+      # 告警策略触发条件
+      class AlarmPolicyRule < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param Period: 秒数 统计周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
+        # @param Operator: 英文运算符
+        # intelligent=无阈值智能检测
+        # eq=等于
+        # ge=大于等于
+        # gt=大于
+        # le=小于等于
+        # lt=小于
+        # ne=不等于
+        # day_increase=天同比增长
+        # day_decrease=天同比下降
+        # day_wave=天同比波动
+        # week_increase=周同比增长
+        # week_decrease=周同比下降
+        # week_wave=周同比波动
+        # cycle_increase=环比增长
+        # cycle_decrease=环比下降
+        # cycle_wave=环比波动
+        # re=正则匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param Value: 阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param ContinuePeriod: 周期数 持续通知周期 1=持续1个周期 2=持续2个周期...
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContinuePeriod: Integer
+        # @param NoticeFrequency: 秒数 告警间隔  0=不重复 300=每5分钟告警一次 600=每10分钟告警一次 900=每15分钟告警一次 1800=每30分钟告警一次 3600=每1小时告警一次 7200=每2小时告警一次 10800=每3小时告警一次 21600=每6小时告警一次 43200=每12小时告警一次 86400=每1天告警一次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeFrequency: Integer
+        # @param IsPowerNotice: 告警频率是否指数增长 0=否 1=是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPowerNotice: Integer
+        # @param Filter: 对于单个触发规则的过滤条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyFilter`
+        # @param Description: 指标展示名，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Unit: 单位，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param RuleType: 触发条件类型 STATIC=静态阈值 DYNAMIC=动态阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+
+        attr_accessor :MetricName, :Period, :Operator, :Value, :ContinuePeriod, :NoticeFrequency, :IsPowerNotice, :Filter, :Description, :Unit, :RuleType
+        
+        def initialize(metricname=nil, period=nil, operator=nil, value=nil, continueperiod=nil, noticefrequency=nil, ispowernotice=nil, filter=nil, description=nil, unit=nil, ruletype=nil)
+          @MetricName = metricname
+          @Period = period
+          @Operator = operator
+          @Value = value
+          @ContinuePeriod = continueperiod
+          @NoticeFrequency = noticefrequency
+          @IsPowerNotice = ispowernotice
+          @Filter = filter
+          @Description = description
+          @Unit = unit
+          @RuleType = ruletype
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @Period = params['Period']
+          @Operator = params['Operator']
+          @Value = params['Value']
+          @ContinuePeriod = params['ContinuePeriod']
+          @NoticeFrequency = params['NoticeFrequency']
+          @IsPowerNotice = params['IsPowerNotice']
+          unless params['Filter'].nil?
+            @Filter = AlarmPolicyFilter.new.deserialize(params[Filter])
+          end
+          @Description = params['Description']
+          @Unit = params['Unit']
+          @RuleType = params['RuleType']
+        end
+      end
+
+      # 告警策略触发任务
+      class AlarmPolicyTriggerTask < TencentCloud::Common::AbstractModel
+        # @param Type: 触发任务类型 AS=弹性伸缩
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param TaskConfig: 用 json 表示配置信息 {"Key1":"Value1","Key2":"Value2"}
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskConfig: String
+
+        attr_accessor :Type, :TaskConfig
+        
+        def initialize(type=nil, taskconfig=nil)
+          @Type = type
+          @TaskConfig = taskconfig
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TaskConfig = params['TaskConfig']
+        end
+      end
+
       # 策略绑定实例维度信息
       class BindingPolicyObjectDimension < TencentCloud::Common::AbstractModel
         # @param Region: 地域名
@@ -85,6 +601,221 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 统一的命名空间信息
+      class CommonNamespace < TencentCloud::Common::AbstractModel
+        # @param Id: 命名空间标示
+        # @type Id: String
+        # @param Name: 命名空间名称
+        # @type Name: String
+        # @param Value: 命名空间值
+        # @type Value: String
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param Config: 配置信息
+        # @type Config: String
+        # @param AvailableRegions: 支持地域列表
+        # @type AvailableRegions: Array
+        # @param SortId: 排序Id
+        # @type SortId: Integer
+        # @param DashboardId: Dashboard中的唯一表示
+        # @type DashboardId: String
+
+        attr_accessor :Id, :Name, :Value, :ProductName, :Config, :AvailableRegions, :SortId, :DashboardId
+        
+        def initialize(id=nil, name=nil, value=nil, productname=nil, config=nil, availableregions=nil, sortid=nil, dashboardid=nil)
+          @Id = id
+          @Name = name
+          @Value = value
+          @ProductName = productname
+          @Config = config
+          @AvailableRegions = availableregions
+          @SortId = sortid
+          @DashboardId = dashboardid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Value = params['Value']
+          @ProductName = params['ProductName']
+          @Config = params['Config']
+          @AvailableRegions = params['AvailableRegions']
+          @SortId = params['SortId']
+          @DashboardId = params['DashboardId']
+        end
+      end
+
+      # 告警条件模版
+      class ConditionsTemp < TencentCloud::Common::AbstractModel
+        # @param TemplateName: 模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateName: String
+        # @param Condition: 指标触发条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
+        # @param EventCondition: 事件触发条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
+
+        attr_accessor :TemplateName, :Condition, :EventCondition
+        
+        def initialize(templatename=nil, condition=nil, eventcondition=nil)
+          @TemplateName = templatename
+          @Condition = condition
+          @EventCondition = eventcondition
+        end
+
+        def deserialize(params)
+          @TemplateName = params['TemplateName']
+          unless params['Condition'].nil?
+            @Condition = AlarmPolicyCondition.new.deserialize(params[Condition])
+          end
+          unless params['EventCondition'].nil?
+            @EventCondition = AlarmPolicyEventCondition.new.deserialize(params[EventCondition])
+          end
+        end
+      end
+
+      # CreateAlarmNotice请求参数结构体
+      class CreateAlarmNoticeRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+        # @param Name: 通知模板名称 60字符以内
+        # @type Name: String
+        # @param NoticeType: 通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=都通知
+        # @type NoticeType: String
+        # @param NoticeLanguage: 通知语言 zh-CN=中文 en-US=英文
+        # @type NoticeLanguage: String
+        # @param UserNotices: 用户通知 最多5个
+        # @type UserNotices: Array
+        # @param URLNotices: 回调通知 最多3个
+        # @type URLNotices: Array
+
+        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices
+        
+        def initialize(module=nil, name=nil, noticetype=nil, noticelanguage=nil, usernotices=nil, urlnotices=nil)
+          @Module = module
+          @Name = name
+          @NoticeType = noticetype
+          @NoticeLanguage = noticelanguage
+          @UserNotices = usernotices
+          @URLNotices = urlnotices
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Name = params['Name']
+          @NoticeType = params['NoticeType']
+          @NoticeLanguage = params['NoticeLanguage']
+          @UserNotices = params['UserNotices']
+          @URLNotices = params['URLNotices']
+        end
+      end
+
+      # CreateAlarmNotice返回参数结构体
+      class CreateAlarmNoticeResponse < TencentCloud::Common::AbstractModel
+        # @param NoticeId: 告警通知模板ID
+        # @type NoticeId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NoticeId, :RequestId
+        
+        def initialize(noticeid=nil, requestid=nil)
+          @NoticeId = noticeid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NoticeId = params['NoticeId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAlarmPolicy请求参数结构体
+      class CreateAlarmPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param PolicyName: 策略名称，不超过20字符
+        # @type PolicyName: String
+        # @param MonitorType: 监控类型 MT_QCE=云产品监控
+        # @type MonitorType: String
+        # @param Namespace: 告警策略类型，由 DescribeAllNamespaces 获得，例如 cvm_device
+        # @type Namespace: String
+        # @param Remark: 备注，不超过100字符，仅支持中英文、数字、下划线、-
+        # @type Remark: String
+        # @param Enable: 是否启用 0=停用 1=启用，可不传 默认为1
+        # @type Enable: Integer
+        # @param ProjectId: 项目 Id -1=无项目 0=默认项目，可不传 默认为-1
+        # @type ProjectId: Integer
+        # @param Condition: 指标触发条件
+        # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
+        # @param EventCondition: 事件触发条件
+        # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
+        # @param NoticeIds: 通知规则 Id 列表，由 DescribeAlarmNotices 获得
+        # @type NoticeIds: Array
+        # @param TriggerTasks: 触发任务列表
+        # @type TriggerTasks: Array
+
+        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks
+        
+        def initialize(module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil)
+          @Module = module
+          @PolicyName = policyname
+          @MonitorType = monitortype
+          @Namespace = namespace
+          @Remark = remark
+          @Enable = enable
+          @ProjectId = projectid
+          @Condition = condition
+          @EventCondition = eventcondition
+          @NoticeIds = noticeids
+          @TriggerTasks = triggertasks
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyName = params['PolicyName']
+          @MonitorType = params['MonitorType']
+          @Namespace = params['Namespace']
+          @Remark = params['Remark']
+          @Enable = params['Enable']
+          @ProjectId = params['ProjectId']
+          unless params['Condition'].nil?
+            @Condition = AlarmPolicyCondition.new.deserialize(params[Condition])
+          end
+          unless params['EventCondition'].nil?
+            @EventCondition = AlarmPolicyEventCondition.new.deserialize(params[EventCondition])
+          end
+          @NoticeIds = params['NoticeIds']
+          @TriggerTasks = params['TriggerTasks']
+        end
+      end
+
+      # CreateAlarmPolicy返回参数结构体
+      class CreateAlarmPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 告警策略 ID
+        # @type PolicyId: String
+        # @param OriginId: 用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID
+        # @type OriginId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :OriginId, :RequestId
+        
+        def initialize(policyid=nil, originid=nil, requestid=nil)
+          @PolicyId = policyid
+          @OriginId = originid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @OriginId = params['OriginId']
           @RequestId = params['RequestId']
         end
       end
@@ -241,6 +972,63 @@ module TencentCloud
         end
       end
 
+      # CreateServiceDiscovery请求参数结构体
+      class CreateServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param KubeClusterId: <li>类型为TKE：对应集成的腾讯云容器服务集群 ID</li>
+        # @type KubeClusterId: String
+        # @param KubeType: 用户 Kubernetes 集群类型：
+        # <li> 1 = 容器服务集群(TKE) </li>
+        # @type KubeType: Integer
+        # @param Type: 服务发现类型，取值如下：
+        # <li> 1 = ServiceMonitor</li>
+        # <li> 2 = PodMonitor</li>
+        # @type Type: Integer
+        # @param Yaml: 服务发现配置信息
+        # @type Yaml: String
+
+        attr_accessor :InstanceId, :KubeClusterId, :KubeType, :Type, :Yaml
+        
+        def initialize(instanceid=nil, kubeclusterid=nil, kubetype=nil, type=nil, yaml=nil)
+          @InstanceId = instanceid
+          @KubeClusterId = kubeclusterid
+          @KubeType = kubetype
+          @Type = type
+          @Yaml = yaml
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @KubeClusterId = params['KubeClusterId']
+          @KubeType = params['KubeType']
+          @Type = params['Type']
+          @Yaml = params['Yaml']
+        end
+      end
+
+      # CreateServiceDiscovery返回参数结构体
+      class CreateServiceDiscoveryResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceDiscovery: 创建成功之后，返回对应服务发现信息
+        # @type ServiceDiscovery: :class:`Tencentcloud::Monitor.v20180724.models.ServiceDiscoveryItem`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceDiscovery, :RequestId
+        
+        def initialize(servicediscovery=nil, requestid=nil)
+          @ServiceDiscovery = servicediscovery
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServiceDiscovery'].nil?
+            @ServiceDiscovery = ServiceDiscoveryItem.new.deserialize(params[ServiceDiscovery])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 监控数据点
       class DataPoint < TencentCloud::Common::AbstractModel
         # @param Dimensions: 实例对象维度组合
@@ -262,6 +1050,78 @@ module TencentCloud
           @Dimensions = params['Dimensions']
           @Timestamps = params['Timestamps']
           @Values = params['Values']
+        end
+      end
+
+      # DeleteAlarmNotices请求参数结构体
+      class DeleteAlarmNoticesRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+        # @param NoticeIds: 告警通知模板id列表
+        # @type NoticeIds: Array
+
+        attr_accessor :Module, :NoticeIds
+        
+        def initialize(module=nil, noticeids=nil)
+          @Module = module
+          @NoticeIds = noticeids
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @NoticeIds = params['NoticeIds']
+        end
+      end
+
+      # DeleteAlarmNotices返回参数结构体
+      class DeleteAlarmNoticesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAlarmPolicy请求参数结构体
+      class DeleteAlarmPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定值 monitor
+        # @type Module: String
+        # @param PolicyIds: 告警策略 ID 列表
+        # @type PolicyIds: Array
+
+        attr_accessor :Module, :PolicyIds
+        
+        def initialize(module=nil, policyids=nil)
+          @Module = module
+          @PolicyIds = policyids
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyIds = params['PolicyIds']
+        end
+      end
+
+      # DeleteAlarmPolicy返回参数结构体
+      class DeleteAlarmPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -287,6 +1147,57 @@ module TencentCloud
 
       # DeletePolicyGroup返回参数结构体
       class DeletePolicyGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteServiceDiscovery请求参数结构体
+      class DeleteServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param KubeClusterId: <li>类型是 TKE，为对应的腾讯云容器服务集群 ID</li>
+        # @type KubeClusterId: String
+        # @param KubeType: 用户 Kubernetes 集群类型：
+        # <li> 1 = 容器服务集群(TKE) </li>
+        # @type KubeType: Integer
+        # @param Type: 服务发现类型，取值如下：
+        # <li> 1 = ServiceMonitor</li>
+        # <li> 2 = PodMonitor</li>
+        # @type Type: Integer
+        # @param Yaml: 服务发现配置信息
+        # @type Yaml: String
+
+        attr_accessor :InstanceId, :KubeClusterId, :KubeType, :Type, :Yaml
+        
+        def initialize(instanceid=nil, kubeclusterid=nil, kubetype=nil, type=nil, yaml=nil)
+          @InstanceId = instanceid
+          @KubeClusterId = kubeclusterid
+          @KubeType = kubetype
+          @Type = type
+          @Yaml = yaml
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @KubeClusterId = params['KubeClusterId']
+          @KubeType = params['KubeType']
+          @Type = params['Type']
+          @Yaml = params['Yaml']
+        end
+      end
+
+      # DeleteServiceDiscovery返回参数结构体
+      class DeleteServiceDiscoveryResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -439,6 +1350,555 @@ module TencentCloud
         end
       end
 
+      # DescribeAlarmEvents请求参数结构体
+      class DescribeAlarmEventsRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定值 monitor
+        # @type Module: String
+        # @param Namespace: 告警策略类型，由 DescribeAllNamespaces 获得，例如 cvm_device
+        # @type Namespace: String
+
+        attr_accessor :Module, :Namespace
+        
+        def initialize(module=nil, namespace=nil)
+          @Module = module
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # DescribeAlarmEvents返回参数结构体
+      class DescribeAlarmEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Events: 告警事件列表
+        # @type Events: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :RequestId
+        
+        def initialize(events=nil, requestid=nil)
+          @Events = events
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Events = params['Events']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmHistories请求参数结构体
+      class DescribeAlarmHistoriesRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param PageNumber: 页数，从 1 开始计数，默认 1
+        # @type PageNumber: Integer
+        # @param PageSize: 每页的数量，取值1~100，默认20
+        # @type PageSize: Integer
+        # @param Order: 默认按首次出现时间倒序排列 "ASC"=正序 "DESC"=逆序
+        # @type Order: String
+        # @param StartTime: 起始时间，默认一天前的时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间，默认当前时间戳
+        # @type EndTime: Integer
+        # @param MonitorTypes: 根据监控类型过滤 不选默认查所有类型 "MT_QCE"=云产品监控 "
+        # @type MonitorTypes: Array
+        # @param AlarmObject: 根据告警对象过滤 字符串模糊搜索
+        # @type AlarmObject: String
+        # @param AlarmStatus: 根据告警状态过滤 ALARM=未恢复 OK=已恢复 NO_CONF=已失效 NO_DATA=数据不足，不选默认查所有
+        # @type AlarmStatus: Array
+        # @param ProjectIds: 根据项目ID过滤，-1=无项目 0=默认项目
+        # @type ProjectIds: Array
+        # @param InstanceGroupIds: 根据实例组ID过滤
+        # @type InstanceGroupIds: Array
+        # @param Namespaces: 根据策略类型过滤
+        # @type Namespaces: Array
+        # @param MetricNames: 根据指标名过滤
+        # @type MetricNames: Array
+        # @param PolicyName: 根据策略名称模糊搜索
+        # @type PolicyName: String
+        # @param Content: 根据告警内容模糊搜索
+        # @type Content: String
+        # @param ReceiverUids: 根据接收人搜索
+        # @type ReceiverUids: Array
+        # @param ReceiverGroups: 根据接收组搜索
+        # @type ReceiverGroups: Array
+        # @param PolicyIds: 根据告警策略 Id 列表搜索
+        # @type PolicyIds: Array
+
+        attr_accessor :Module, :PageNumber, :PageSize, :Order, :StartTime, :EndTime, :MonitorTypes, :AlarmObject, :AlarmStatus, :ProjectIds, :InstanceGroupIds, :Namespaces, :MetricNames, :PolicyName, :Content, :ReceiverUids, :ReceiverGroups, :PolicyIds
+        
+        def initialize(module=nil, pagenumber=nil, pagesize=nil, order=nil, starttime=nil, endtime=nil, monitortypes=nil, alarmobject=nil, alarmstatus=nil, projectids=nil, instancegroupids=nil, namespaces=nil, metricnames=nil, policyname=nil, content=nil, receiveruids=nil, receivergroups=nil, policyids=nil)
+          @Module = module
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Order = order
+          @StartTime = starttime
+          @EndTime = endtime
+          @MonitorTypes = monitortypes
+          @AlarmObject = alarmobject
+          @AlarmStatus = alarmstatus
+          @ProjectIds = projectids
+          @InstanceGroupIds = instancegroupids
+          @Namespaces = namespaces
+          @MetricNames = metricnames
+          @PolicyName = policyname
+          @Content = content
+          @ReceiverUids = receiveruids
+          @ReceiverGroups = receivergroups
+          @PolicyIds = policyids
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Order = params['Order']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MonitorTypes = params['MonitorTypes']
+          @AlarmObject = params['AlarmObject']
+          @AlarmStatus = params['AlarmStatus']
+          @ProjectIds = params['ProjectIds']
+          @InstanceGroupIds = params['InstanceGroupIds']
+          @Namespaces = params['Namespaces']
+          @MetricNames = params['MetricNames']
+          @PolicyName = params['PolicyName']
+          @Content = params['Content']
+          @ReceiverUids = params['ReceiverUids']
+          @ReceiverGroups = params['ReceiverGroups']
+          @PolicyIds = params['PolicyIds']
+        end
+      end
+
+      # DescribeAlarmHistories返回参数结构体
+      class DescribeAlarmHistoriesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Histories: 告警历史列表
+        # @type Histories: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Histories, :RequestId
+        
+        def initialize(totalcount=nil, histories=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Histories = histories
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Histories = params['Histories']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmMetrics请求参数结构体
+      class DescribeAlarmMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param MonitorType: 监控类型过滤 "MT_QCE"=云产品监控
+        # @type MonitorType: String
+        # @param Namespace: 告警策略类型，由 DescribeAllNamespaces 获得，例如 cvm_device
+        # @type Namespace: String
+
+        attr_accessor :Module, :MonitorType, :Namespace
+        
+        def initialize(module=nil, monitortype=nil, namespace=nil)
+          @Module = module
+          @MonitorType = monitortype
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @MonitorType = params['MonitorType']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # DescribeAlarmMetrics返回参数结构体
+      class DescribeAlarmMetricsResponse < TencentCloud::Common::AbstractModel
+        # @param Metrics: 告警指标列表
+        # @type Metrics: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Metrics, :RequestId
+        
+        def initialize(metrics=nil, requestid=nil)
+          @Metrics = metrics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Metrics = params['Metrics']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmNoticeCallbacks请求参数结构体
+      class DescribeAlarmNoticeCallbacksRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+
+        attr_accessor :Module
+        
+        def initialize(module=nil)
+          @Module = module
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+        end
+      end
+
+      # DescribeAlarmNoticeCallbacks返回参数结构体
+      class DescribeAlarmNoticeCallbacksResponse < TencentCloud::Common::AbstractModel
+        # @param URLNotices: 告警回调通知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type URLNotices: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :URLNotices, :RequestId
+        
+        def initialize(urlnotices=nil, requestid=nil)
+          @URLNotices = urlnotices
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @URLNotices = params['URLNotices']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmNotice请求参数结构体
+      class DescribeAlarmNoticeRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+        # @param NoticeId: 告警通知模板 id
+        # @type NoticeId: String
+
+        attr_accessor :Module, :NoticeId
+        
+        def initialize(module=nil, noticeid=nil)
+          @Module = module
+          @NoticeId = noticeid
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @NoticeId = params['NoticeId']
+        end
+      end
+
+      # DescribeAlarmNotice返回参数结构体
+      class DescribeAlarmNoticeResponse < TencentCloud::Common::AbstractModel
+        # @param Notice: 告警通知模板详细信息
+        # @type Notice: :class:`Tencentcloud::Monitor.v20180724.models.AlarmNotice`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Notice, :RequestId
+        
+        def initialize(notice=nil, requestid=nil)
+          @Notice = notice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Notice'].nil?
+            @Notice = AlarmNotice.new.deserialize(params[Notice])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmNotices请求参数结构体
+      class DescribeAlarmNoticesRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+        # @param PageNumber: 页码 最小为1
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小 1～200
+        # @type PageSize: Integer
+        # @param Order: 按更新时间排序方式 ASC=正序 DESC=倒序
+        # @type Order: String
+        # @param OwnerUid: 主账号 uid 用于创建预设通知
+        # @type OwnerUid: Integer
+        # @param Name: 告警通知模板名称 用来模糊搜索
+        # @type Name: String
+        # @param ReceiverType: 根据接收人过滤告警通知模板需要选定通知用户类型 USER=用户 GROUP=用户组 传空=不按接收人过滤
+        # @type ReceiverType: String
+        # @param UserIds: 接收对象列表
+        # @type UserIds: Array
+        # @param GroupIds: 接收组列表
+        # @type GroupIds: Array
+
+        attr_accessor :Module, :PageNumber, :PageSize, :Order, :OwnerUid, :Name, :ReceiverType, :UserIds, :GroupIds
+        
+        def initialize(module=nil, pagenumber=nil, pagesize=nil, order=nil, owneruid=nil, name=nil, receivertype=nil, userids=nil, groupids=nil)
+          @Module = module
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Order = order
+          @OwnerUid = owneruid
+          @Name = name
+          @ReceiverType = receivertype
+          @UserIds = userids
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Order = params['Order']
+          @OwnerUid = params['OwnerUid']
+          @Name = params['Name']
+          @ReceiverType = params['ReceiverType']
+          @UserIds = params['UserIds']
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # DescribeAlarmNotices返回参数结构体
+      class DescribeAlarmNoticesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 告警通知模板总数
+        # @type TotalCount: Integer
+        # @param Notices: 告警通知模板列表
+        # @type Notices: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Notices, :RequestId
+        
+        def initialize(totalcount=nil, notices=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Notices = notices
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Notices = params['Notices']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmPolicies请求参数结构体
+      class DescribeAlarmPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param PageNumber: 页数，从 1 开始计数，默认 1
+        # @type PageNumber: Integer
+        # @param PageSize: 每页的数量，取值1~100，默认20
+        # @type PageSize: Integer
+        # @param PolicyName: 按策略名称模糊搜索
+        # @type PolicyName: String
+        # @param MonitorTypes: 根据监控类型过滤 不选默认查所有类型 "MT_QCE"=云产品监控
+        # @type MonitorTypes: Array
+        # @param Namespaces: 根据命名空间过滤
+        # @type Namespaces: Array
+        # @param Dimensions: 告警对象列表
+        # @type Dimensions: String
+        # @param ReceiverUids: 根据接收人搜索
+        # @type ReceiverUids: Array
+        # @param ReceiverGroups: 根据接收组搜索
+        # @type ReceiverGroups: Array
+        # @param PolicyType: 根据默认策略筛选 不传展示全部策略 DEFAULT=展示默认策略 NOT_DEFAULT=展示非默认策略
+        # @type PolicyType: Array
+        # @param Field: 排序字段
+        # @type Field: String
+        # @param Order: 排序顺序：升序：ASC  降序：DESC
+        # @type Order: String
+        # @param ProjectIds: 项目id数组
+        # @type ProjectIds: Array
+        # @param NoticeIds: 告警通知id列表
+        # @type NoticeIds: Array
+        # @param RuleTypes: 根据触发条件筛选 不传展示全部策略 STATIC=展示静态阈值策略 DYNAMIC=展示动态阈值策略
+        # @type RuleTypes: Array
+        # @param Enable: 启停，1：启用   0：停止
+        # @type Enable: Array
+
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable
+        
+        def initialize(module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil)
+          @Module = module
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @PolicyName = policyname
+          @MonitorTypes = monitortypes
+          @Namespaces = namespaces
+          @Dimensions = dimensions
+          @ReceiverUids = receiveruids
+          @ReceiverGroups = receivergroups
+          @PolicyType = policytype
+          @Field = field
+          @Order = order
+          @ProjectIds = projectids
+          @NoticeIds = noticeids
+          @RuleTypes = ruletypes
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @PolicyName = params['PolicyName']
+          @MonitorTypes = params['MonitorTypes']
+          @Namespaces = params['Namespaces']
+          @Dimensions = params['Dimensions']
+          @ReceiverUids = params['ReceiverUids']
+          @ReceiverGroups = params['ReceiverGroups']
+          @PolicyType = params['PolicyType']
+          @Field = params['Field']
+          @Order = params['Order']
+          @ProjectIds = params['ProjectIds']
+          @NoticeIds = params['NoticeIds']
+          @RuleTypes = params['RuleTypes']
+          @Enable = params['Enable']
+        end
+      end
+
+      # DescribeAlarmPolicies返回参数结构体
+      class DescribeAlarmPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 策略总数
+        # @type TotalCount: Integer
+        # @param Policies: 策略数组
+        # @type Policies: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Policies, :RequestId
+        
+        def initialize(totalcount=nil, policies=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Policies = policies
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Policies = params['Policies']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmPolicy请求参数结构体
+      class DescribeAlarmPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param PolicyId: 告警策略ID
+        # @type PolicyId: String
+
+        attr_accessor :Module, :PolicyId
+        
+        def initialize(module=nil, policyid=nil)
+          @Module = module
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DescribeAlarmPolicy返回参数结构体
+      class DescribeAlarmPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Policy: 策略详情
+        # @type Policy: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicy`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Policy, :RequestId
+        
+        def initialize(policy=nil, requestid=nil)
+          @Policy = policy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Policy'].nil?
+            @Policy = AlarmPolicy.new.deserialize(params[Policy])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAllNamespaces请求参数结构体
+      class DescribeAllNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param SceneType: 根据使用场景过滤 "ST_DASHBOARD"=Dashboard类型 或 "ST_ALARM"=告警类型
+        # @type SceneType: String
+        # @param Module: 固定值，为"monitor"
+        # @type Module: String
+        # @param MonitorTypes: 根据监控类型过滤 不填默认查所有类型 "MT_QCE"=云产品监控
+        # @type MonitorTypes: Array
+        # @param Ids: 根据namespace的Id过滤 不填默认查询所有
+        # @type Ids: Array
+
+        attr_accessor :SceneType, :Module, :MonitorTypes, :Ids
+        
+        def initialize(scenetype=nil, module=nil, monitortypes=nil, ids=nil)
+          @SceneType = scenetype
+          @Module = module
+          @MonitorTypes = monitortypes
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @SceneType = params['SceneType']
+          @Module = params['Module']
+          @MonitorTypes = params['MonitorTypes']
+          @Ids = params['Ids']
+        end
+      end
+
+      # DescribeAllNamespaces返回参数结构体
+      class DescribeAllNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param QceNamespaces: 云产品的告警策略类型，已废弃
+        # @type QceNamespaces: :class:`Tencentcloud::Monitor.v20180724.models.CommonNamespace`
+        # @param CustomNamespaces: 其他告警策略类型，已废弃
+        # @type CustomNamespaces: :class:`Tencentcloud::Monitor.v20180724.models.CommonNamespace`
+        # @param QceNamespacesNew: 云产品的告警策略类型
+        # @type QceNamespacesNew: Array
+        # @param CustomNamespacesNew: 其他告警策略类型，暂不支持
+        # @type CustomNamespacesNew: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QceNamespaces, :CustomNamespaces, :QceNamespacesNew, :CustomNamespacesNew, :RequestId
+        
+        def initialize(qcenamespaces=nil, customnamespaces=nil, qcenamespacesnew=nil, customnamespacesnew=nil, requestid=nil)
+          @QceNamespaces = qcenamespaces
+          @CustomNamespaces = customnamespaces
+          @QceNamespacesNew = qcenamespacesnew
+          @CustomNamespacesNew = customnamespacesnew
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QceNamespaces'].nil?
+            @QceNamespaces = CommonNamespace.new.deserialize(params[QceNamespaces])
+          end
+          unless params['CustomNamespaces'].nil?
+            @CustomNamespaces = CommonNamespace.new.deserialize(params[CustomNamespaces])
+          end
+          @QceNamespacesNew = params['QceNamespacesNew']
+          @CustomNamespacesNew = params['CustomNamespacesNew']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBaseMetrics请求参数结构体
       class DescribeBaseMetricsRequest < TencentCloud::Common::AbstractModel
         # @param Namespace: 业务命名空间，各个云产品的业务命名空间不同。如需获取业务命名空间，请前往各产品监控指标文档，例如云服务器的命名空间，可参见 [云服务器监控指标](https://cloud.tencent.com/document/product/248/6843)
@@ -489,10 +1949,10 @@ module TencentCloud
         # @param ProjectName: 项目名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectName: String
-        # @param Status: 告警状态ID
+        # @param Status: 告警状态ID，0表示未恢复；1表示已恢复；2,3,5表示数据不足；4表示已失效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param AlarmStatus: 告警状态
+        # @param AlarmStatus: 告警状态，ALARM表示未恢复；OK表示已恢复；NO_DATA表示数据不足；NO_CONF表示已失效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmStatus: String
         # @param GroupId: 策略组ID
@@ -851,6 +2311,42 @@ module TencentCloud
           unless params['InstanceGroup'].nil?
             @InstanceGroup = DescribeBindingPolicyObjectListInstanceGroup.new.deserialize(params[InstanceGroup])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMonitorTypes请求参数结构体
+      class DescribeMonitorTypesRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定值 monitor
+        # @type Module: String
+
+        attr_accessor :Module
+        
+        def initialize(module=nil)
+          @Module = module
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+        end
+      end
+
+      # DescribeMonitorTypes返回参数结构体
+      class DescribeMonitorTypesResponse < TencentCloud::Common::AbstractModel
+        # @param MonitorTypes: 监控类型，云产品监控为 MT_QCE
+        # @type MonitorTypes: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MonitorTypes, :RequestId
+        
+        def initialize(monitortypes=nil, requestid=nil)
+          @MonitorTypes = monitortypes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MonitorTypes = params['MonitorTypes']
           @RequestId = params['RequestId']
         end
       end
@@ -1757,10 +3253,12 @@ module TencentCloud
         # @type ConditionTempGroupId: String
         # @param ReceiverType: 过滤条件, 接收人或者接收组, user表示接收人, group表示接收组
         # @type ReceiverType: String
+        # @param IsOpen: 过滤条件，告警策略是否已启动或停止
+        # @type IsOpen: Boolean
 
-        attr_accessor :Module, :Limit, :Offset, :Like, :InstanceGroupId, :UpdateTimeOrder, :ProjectIds, :ViewNames, :FilterUnuseReceiver, :Receivers, :ReceiverUserList, :Dimensions, :ConditionTempGroupId, :ReceiverType
+        attr_accessor :Module, :Limit, :Offset, :Like, :InstanceGroupId, :UpdateTimeOrder, :ProjectIds, :ViewNames, :FilterUnuseReceiver, :Receivers, :ReceiverUserList, :Dimensions, :ConditionTempGroupId, :ReceiverType, :IsOpen
         
-        def initialize(module=nil, limit=nil, offset=nil, like=nil, instancegroupid=nil, updatetimeorder=nil, projectids=nil, viewnames=nil, filterunusereceiver=nil, receivers=nil, receiveruserlist=nil, dimensions=nil, conditiontempgroupid=nil, receivertype=nil)
+        def initialize(module=nil, limit=nil, offset=nil, like=nil, instancegroupid=nil, updatetimeorder=nil, projectids=nil, viewnames=nil, filterunusereceiver=nil, receivers=nil, receiveruserlist=nil, dimensions=nil, conditiontempgroupid=nil, receivertype=nil, isopen=nil)
           @Module = module
           @Limit = limit
           @Offset = offset
@@ -1775,6 +3273,7 @@ module TencentCloud
           @Dimensions = dimensions
           @ConditionTempGroupId = conditiontempgroupid
           @ReceiverType = receivertype
+          @IsOpen = isopen
         end
 
         def deserialize(params)
@@ -1792,6 +3291,7 @@ module TencentCloud
           @Dimensions = params['Dimensions']
           @ConditionTempGroupId = params['ConditionTempGroupId']
           @ReceiverType = params['ReceiverType']
+          @IsOpen = params['IsOpen']
         end
       end
 
@@ -2191,6 +3691,128 @@ module TencentCloud
         end
       end
 
+      # DescribeServiceDiscovery请求参数结构体
+      class DescribeServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param KubeClusterId: <li>类型是 TKE，为对应的腾讯云容器服务集群 ID</li>
+        # @type KubeClusterId: String
+        # @param KubeType: 用户 Kubernetes 集群类型：
+        # <li> 1 = 容器服务集群(TKE) </li>
+        # @type KubeType: Integer
+
+        attr_accessor :InstanceId, :KubeClusterId, :KubeType
+        
+        def initialize(instanceid=nil, kubeclusterid=nil, kubetype=nil)
+          @InstanceId = instanceid
+          @KubeClusterId = kubeclusterid
+          @KubeType = kubetype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @KubeClusterId = params['KubeClusterId']
+          @KubeType = params['KubeType']
+        end
+      end
+
+      # DescribeServiceDiscovery返回参数结构体
+      class DescribeServiceDiscoveryResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceDiscoverySet: 返回服务发现列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceDiscoverySet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceDiscoverySet, :RequestId
+        
+        def initialize(servicediscoveryset=nil, requestid=nil)
+          @ServiceDiscoverySet = servicediscoveryset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceDiscoverySet = params['ServiceDiscoverySet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStatisticData请求参数结构体
+      class DescribeStatisticDataRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 所属模块，固定值，为monitor
+        # @type Module: String
+        # @param Namespace: 命名空间，目前只支持QCE/TKE
+        # @type Namespace: String
+        # @param MetricNames: 指标名列表
+        # @type MetricNames: Array
+        # @param Conditions: 维度条件，操作符支持=、in
+        # @type Conditions: Array
+        # @param Period: 统计粒度。默认取值为300，单位为s
+        # @type Period: Integer
+        # @param StartTime: 起始时间，默认为当前时间，如2020-12-08T19:51:23+08:00
+        # @type StartTime: String
+        # @param EndTime: 结束时间，默认为当前时间，如2020-12-08T19:51:23+08:00
+        # @type EndTime: String
+        # @param GroupBys: 按指定维度groupBy
+        # @type GroupBys: Array
+
+        attr_accessor :Module, :Namespace, :MetricNames, :Conditions, :Period, :StartTime, :EndTime, :GroupBys
+        
+        def initialize(module=nil, namespace=nil, metricnames=nil, conditions=nil, period=nil, starttime=nil, endtime=nil, groupbys=nil)
+          @Module = module
+          @Namespace = namespace
+          @MetricNames = metricnames
+          @Conditions = conditions
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @GroupBys = groupbys
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Namespace = params['Namespace']
+          @MetricNames = params['MetricNames']
+          @Conditions = params['Conditions']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @GroupBys = params['GroupBys']
+        end
+      end
+
+      # DescribeStatisticData返回参数结构体
+      class DescribeStatisticDataResponse < TencentCloud::Common::AbstractModel
+        # @param Period: 统计周期
+        # @type Period: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Data: 监控数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Period, :StartTime, :EndTime, :Data, :RequestId
+        
+        def initialize(period=nil, starttime=nil, endtime=nil, data=nil, requestid=nil)
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例对象的维度组合
       class Dimension < TencentCloud::Common::AbstractModel
         # @param Name: 实例维度名称
@@ -2229,17 +3851,17 @@ module TencentCloud
 
       # GetMonitorData请求参数结构体
       class GetMonitorDataRequest < TencentCloud::Common::AbstractModel
-        # @param Namespace: 命名空间，各个云产品的详细命名空间说明请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档
+        # @param Namespace: 命名空间，如QCE/CVM。各个云产品的详细命名空间说明请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档
         # @type Namespace: String
-        # @param MetricName: 指标名称，各个云产品的详细指标说明请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档
+        # @param MetricName: 指标名称，如CPUUsage。各个云产品的详细指标说明请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档，对应的指标英文名即为MetricName
         # @type MetricName: String
-        # @param Instances: 实例对象的维度组合
+        # @param Instances: 实例对象的维度组合，格式为key-value键值对形式的集合。如[{"Name":"InstanceId","Value":"ins-j0hk02zo"}]。各个云产品的维度请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档，对应的维度列即为维度组合的key,value为key对应的值
         # @type Instances: Array
-        # @param Period: 监控统计周期。默认为取值为300，单位为s
+        # @param Period: 监控统计周期，如60。默认为取值为300，单位为s。每个指标支持的统计周期不一定相同，各个云产品支持的统计周期请参阅各个产品[监控指标](https://cloud.tencent.com/document/product/248/6140)文档，对应的统计周期列即为支持的统计周期
         # @type Period: Integer
         # @param StartTime: 起始时间，如2018-09-22T19:51:23+08:00
         # @type StartTime: String
-        # @param EndTime: 结束时间，默认为当前时间。 EndTime不能小于StartTime
+        # @param EndTime: 结束时间，如2018-09-22T20:51:23+08:00，默认为当前时间。 EndTime不能小于StartTime
         # @type EndTime: String
 
         attr_accessor :Namespace, :MetricName, :Instances, :Period, :StartTime, :EndTime
@@ -2337,6 +3959,137 @@ module TencentCloud
         end
       end
 
+      # 告警对象所属实例组
+      class InstanceGroups < TencentCloud::Common::AbstractModel
+        # @param Id: 实例组 Id
+        # @type Id: Integer
+        # @param Name: 实例组名称
+        # @type Name: String
+
+        attr_accessor :Id, :Name
+        
+        def initialize(id=nil, name=nil)
+          @Id = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+        end
+      end
+
+      # 指标，可用于设置告警、查询数据
+      class Metric < TencentCloud::Common::AbstractModel
+        # @param Namespace: 告警策略类型
+        # @type Namespace: String
+        # @param MetricName: 指标名
+        # @type MetricName: String
+        # @param Description: 指标展示名
+        # @type Description: String
+        # @param Min: 最小值
+        # @type Min: Float
+        # @param Max: 最大值
+        # @type Max: Float
+        # @param Dimensions: 维度列表
+        # @type Dimensions: Array
+        # @param Unit: 单位
+        # @type Unit: String
+        # @param MetricConfig: 指标配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricConfig: :class:`Tencentcloud::Monitor.v20180724.models.MetricConfig`
+
+        attr_accessor :Namespace, :MetricName, :Description, :Min, :Max, :Dimensions, :Unit, :MetricConfig
+        
+        def initialize(namespace=nil, metricname=nil, description=nil, min=nil, max=nil, dimensions=nil, unit=nil, metricconfig=nil)
+          @Namespace = namespace
+          @MetricName = metricname
+          @Description = description
+          @Min = min
+          @Max = max
+          @Dimensions = dimensions
+          @Unit = unit
+          @MetricConfig = metricconfig
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @MetricName = params['MetricName']
+          @Description = params['Description']
+          @Min = params['Min']
+          @Max = params['Max']
+          @Dimensions = params['Dimensions']
+          @Unit = params['Unit']
+          unless params['MetricConfig'].nil?
+            @MetricConfig = MetricConfig.new.deserialize(params[MetricConfig])
+          end
+        end
+      end
+
+      # 指标配置
+      class MetricConfig < TencentCloud::Common::AbstractModel
+        # @param Operator: 允许使用的运算符
+        # @type Operator: Array
+        # @param Period: 允许配置的数据周期，以秒为单位
+        # @type Period: Array
+        # @param ContinuePeriod: 允许配置的持续周期个数
+        # @type ContinuePeriod: Array
+
+        attr_accessor :Operator, :Period, :ContinuePeriod
+        
+        def initialize(operator=nil, period=nil, continueperiod=nil)
+          @Operator = operator
+          @Period = period
+          @ContinuePeriod = continueperiod
+        end
+
+        def deserialize(params)
+          @Operator = params['Operator']
+          @Period = params['Period']
+          @ContinuePeriod = params['ContinuePeriod']
+        end
+      end
+
+      # DescribeMetricData接口出参
+      class MetricData < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名
+        # @type MetricName: String
+        # @param Points: 监控数据点
+        # @type Points: Array
+
+        attr_accessor :MetricName, :Points
+        
+        def initialize(metricname=nil, points=nil)
+          @MetricName = metricname
+          @Points = points
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @Points = params['Points']
+        end
+      end
+
+      # DescribeMetricData出参
+      class MetricDataPoint < TencentCloud::Common::AbstractModel
+        # @param Dimensions: 实例对象维度组合
+        # @type Dimensions: Array
+        # @param Values: 数据点列表
+        # @type Values: Array
+
+        attr_accessor :Dimensions, :Values
+        
+        def initialize(dimensions=nil, values=nil)
+          @Dimensions = dimensions
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Dimensions = params['Dimensions']
+          @Values = params['Values']
+        end
+      end
+
       # 指标名称和值的封装
       class MetricDatum < TencentCloud::Common::AbstractModel
         # @param MetricName: 指标名称
@@ -2420,6 +4173,298 @@ module TencentCloud
             @Meaning = MetricObjectMeaning.new.deserialize(params[Meaning])
           end
           @Dimensions = params['Dimensions']
+        end
+      end
+
+      # DescribeMidDimensionValueList的查询条件
+      class MidQueryCondition < TencentCloud::Common::AbstractModel
+        # @param Key: 维度
+        # @type Key: String
+        # @param Operator: 操作符，支持等于(eq)、不等于(ne)，以及in
+        # @type Operator: String
+        # @param Value: 维度值，当Op是eq、ne时，只使用第一个元素
+        # @type Value: Array
+
+        attr_accessor :Key, :Operator, :Value
+        
+        def initialize(key=nil, operator=nil, value=nil)
+          @Key = key
+          @Operator = operator
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Value = params['Value']
+        end
+      end
+
+      # ModifyAlarmNotice请求参数结构体
+      class ModifyAlarmNoticeRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+        # @param Name: 告警通知规则名称 60字符以内
+        # @type Name: String
+        # @param NoticeType: 通知类型 ALARM=未恢复通知 OK=已恢复通知 ALL=都通知
+        # @type NoticeType: String
+        # @param NoticeLanguage: 通知语言 zh-CN=中文 en-US=英文
+        # @type NoticeLanguage: String
+        # @param NoticeId: 告警通知模板 ID
+        # @type NoticeId: String
+        # @param UserNotices: 用户通知 最多5个
+        # @type UserNotices: Array
+        # @param URLNotices: 回调通知 最多3个
+        # @type URLNotices: Array
+
+        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :NoticeId, :UserNotices, :URLNotices
+        
+        def initialize(module=nil, name=nil, noticetype=nil, noticelanguage=nil, noticeid=nil, usernotices=nil, urlnotices=nil)
+          @Module = module
+          @Name = name
+          @NoticeType = noticetype
+          @NoticeLanguage = noticelanguage
+          @NoticeId = noticeid
+          @UserNotices = usernotices
+          @URLNotices = urlnotices
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Name = params['Name']
+          @NoticeType = params['NoticeType']
+          @NoticeLanguage = params['NoticeLanguage']
+          @NoticeId = params['NoticeId']
+          @UserNotices = params['UserNotices']
+          @URLNotices = params['URLNotices']
+        end
+      end
+
+      # ModifyAlarmNotice返回参数结构体
+      class ModifyAlarmNoticeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAlarmPolicyCondition请求参数结构体
+      class ModifyAlarmPolicyConditionRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定值 monitor
+        # @type Module: String
+        # @param PolicyId: 告警策略 ID
+        # @type PolicyId: String
+        # @param Condition: 指标触发条件
+        # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
+        # @param EventCondition: 事件触发条件
+        # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
+
+        attr_accessor :Module, :PolicyId, :Condition, :EventCondition
+        
+        def initialize(module=nil, policyid=nil, condition=nil, eventcondition=nil)
+          @Module = module
+          @PolicyId = policyid
+          @Condition = condition
+          @EventCondition = eventcondition
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyId = params['PolicyId']
+          unless params['Condition'].nil?
+            @Condition = AlarmPolicyCondition.new.deserialize(params[Condition])
+          end
+          unless params['EventCondition'].nil?
+            @EventCondition = AlarmPolicyEventCondition.new.deserialize(params[EventCondition])
+          end
+        end
+      end
+
+      # ModifyAlarmPolicyCondition返回参数结构体
+      class ModifyAlarmPolicyConditionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAlarmPolicyInfo请求参数结构体
+      class ModifyAlarmPolicyInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+        # @param PolicyId: 告警策略 ID
+        # @type PolicyId: String
+        # @param Key: 要修改的字段 NAME=策略名称 REMARK=策略备注
+        # @type Key: String
+        # @param Value: 修改后的值
+        # @type Value: String
+
+        attr_accessor :Module, :PolicyId, :Key, :Value
+        
+        def initialize(module=nil, policyid=nil, key=nil, value=nil)
+          @Module = module
+          @PolicyId = policyid
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyId = params['PolicyId']
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # ModifyAlarmPolicyInfo返回参数结构体
+      class ModifyAlarmPolicyInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAlarmPolicyNotice请求参数结构体
+      class ModifyAlarmPolicyNoticeRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+        # @param PolicyId: 告警策略 ID
+        # @type PolicyId: String
+        # @param NoticeIds: 告警通知模板 ID 列表
+        # @type NoticeIds: Array
+
+        attr_accessor :Module, :PolicyId, :NoticeIds
+        
+        def initialize(module=nil, policyid=nil, noticeids=nil)
+          @Module = module
+          @PolicyId = policyid
+          @NoticeIds = noticeids
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyId = params['PolicyId']
+          @NoticeIds = params['NoticeIds']
+        end
+      end
+
+      # ModifyAlarmPolicyNotice返回参数结构体
+      class ModifyAlarmPolicyNoticeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAlarmPolicyStatus请求参数结构体
+      class ModifyAlarmPolicyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定值 monitor
+        # @type Module: String
+        # @param PolicyId: 告警策略 ID
+        # @type PolicyId: String
+        # @param Enable: 启停状态 0=停用 1=启用
+        # @type Enable: Integer
+
+        attr_accessor :Module, :PolicyId, :Enable
+        
+        def initialize(module=nil, policyid=nil, enable=nil)
+          @Module = module
+          @PolicyId = policyid
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyId = params['PolicyId']
+          @Enable = params['Enable']
+        end
+      end
+
+      # ModifyAlarmPolicyStatus返回参数结构体
+      class ModifyAlarmPolicyStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAlarmPolicyTasks请求参数结构体
+      class ModifyAlarmPolicyTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，这里填“monitor”
+        # @type Module: String
+        # @param PolicyId: 告警策略 ID
+        # @type PolicyId: String
+        # @param TriggerTasks: 告警策略触发任务列表，空数据代表解绑
+        # @type TriggerTasks: Array
+
+        attr_accessor :Module, :PolicyId, :TriggerTasks
+        
+        def initialize(module=nil, policyid=nil, triggertasks=nil)
+          @Module = module
+          @PolicyId = policyid
+          @TriggerTasks = triggertasks
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyId = params['PolicyId']
+          @TriggerTasks = params['TriggerTasks']
+        end
+      end
+
+      # ModifyAlarmPolicyTasks返回参数结构体
+      class ModifyAlarmPolicyTasksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2599,6 +4644,26 @@ module TencentCloud
         end
       end
 
+      # 策略类型
+      class MonitorTypeNamespace < TencentCloud::Common::AbstractModel
+        # @param MonitorType: 监控类型
+        # @type MonitorType: String
+        # @param Namespace: 策略类型值
+        # @type Namespace: String
+
+        attr_accessor :MonitorType, :Namespace
+        
+        def initialize(monitortype=nil, namespace=nil)
+          @MonitorType = monitortype
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @MonitorType = params['MonitorType']
+          @Namespace = params['Namespace']
+        end
+      end
+
       # 周期内的统计方式
       class PeriodsSt < TencentCloud::Common::AbstractModel
         # @param Period: 周期
@@ -2616,6 +4681,27 @@ module TencentCloud
         def deserialize(params)
           @Period = params['Period']
           @StatType = params['StatType']
+        end
+      end
+
+      # 监控数据点
+      class Point < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 该监控数据点生成的时间点
+        # @type Timestamp: Integer
+        # @param Value: 监控数据点的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Float
+
+        attr_accessor :Timestamp, :Value
+        
+        def initialize(timestamp=nil, value=nil)
+          @Timestamp = timestamp
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Value = params['Value']
         end
       end
 
@@ -2800,6 +4886,112 @@ module TencentCloud
         end
       end
 
+      # Prometheus 服务发现信息
+      class ServiceDiscoveryItem < TencentCloud::Common::AbstractModel
+        # @param Name: 服务发现名称
+        # @type Name: String
+        # @param Namespace: 服务发现属于的 Namespace
+        # @type Namespace: String
+        # @param Kind: 服务发现类型: ServiceMonitor/PodMonitor
+        # @type Kind: String
+        # @param NamespaceSelector: Namespace 选取方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceSelector: String
+        # @param Selector: Label 选取方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Selector: String
+        # @param Endpoints: Endpoints 信息（PodMonitor 不含该参数）
+        # @type Endpoints: String
+        # @param Yaml: 服务发现对应的配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Yaml: String
+
+        attr_accessor :Name, :Namespace, :Kind, :NamespaceSelector, :Selector, :Endpoints, :Yaml
+        
+        def initialize(name=nil, namespace=nil, kind=nil, namespaceselector=nil, selector=nil, endpoints=nil, yaml=nil)
+          @Name = name
+          @Namespace = namespace
+          @Kind = kind
+          @NamespaceSelector = namespaceselector
+          @Selector = selector
+          @Endpoints = endpoints
+          @Yaml = yaml
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Kind = params['Kind']
+          @NamespaceSelector = params['NamespaceSelector']
+          @Selector = params['Selector']
+          @Endpoints = params['Endpoints']
+          @Yaml = params['Yaml']
+        end
+      end
+
+      # SetDefaultAlarmPolicy请求参数结构体
+      class SetDefaultAlarmPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名，固定值 monitor
+        # @type Module: String
+        # @param PolicyId: 告警策略 ID
+        # @type PolicyId: String
+
+        attr_accessor :Module, :PolicyId
+        
+        def initialize(module=nil, policyid=nil)
+          @Module = module
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # SetDefaultAlarmPolicy返回参数结构体
+      class SetDefaultAlarmPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 云监控告警通知模板 - 回调通知详情
+      class URLNotice < TencentCloud::Common::AbstractModel
+        # @param URL: 回调 url（限长256字符）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type URL: String
+        # @param IsValid: 是否通过验证 0=否 1=是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsValid: Integer
+        # @param ValidationCode: 验证码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidationCode: String
+
+        attr_accessor :URL, :IsValid, :ValidationCode
+        
+        def initialize(url=nil, isvalid=nil, validationcode=nil)
+          @URL = url
+          @IsValid = isvalid
+          @ValidationCode = validationcode
+        end
+
+        def deserialize(params)
+          @URL = params['URL']
+          @IsValid = params['IsValid']
+          @ValidationCode = params['ValidationCode']
+        end
+      end
+
       # UnBindingAllPolicyObject请求参数结构体
       class UnBindingAllPolicyObjectRequest < TencentCloud::Common::AbstractModel
         # @param Module: 固定值，为"monitor"
@@ -2842,7 +5034,7 @@ module TencentCloud
         # @type Module: String
         # @param GroupId: 策略组id
         # @type GroupId: Integer
-        # @param UniqueId: 待删除对象实例的唯一id列表
+        # @param UniqueId: 待删除对象实例的唯一id列表，UniqueId从调用[获取已绑定对象列表接口](https://cloud.tencent.com/document/api/248/40570)的出参的List中得到
         # @type UniqueId: Array
         # @param InstanceGroupId: 实例分组id, 如果按实例分组删除的话UniqueId参数是无效的
         # @type InstanceGroupId: Integer
@@ -2877,6 +5069,130 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateServiceDiscovery请求参数结构体
+      class UpdateServiceDiscoveryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param KubeClusterId: <li>类型是 TKE，为对应的腾讯云容器服务集群 ID</li>
+        # @type KubeClusterId: String
+        # @param KubeType: 用户 Kubernetes 集群类型：
+        # <li> 1 = 容器服务集群(TKE) </li>
+        # @type KubeType: Integer
+        # @param Type: 服务发现类型，取值如下：
+        # <li> 1 = ServiceMonitor</li>
+        # <li> 2 = PodMonitor</li>
+        # @type Type: Integer
+        # @param Yaml: 服务发现配置信息
+        # @type Yaml: String
+
+        attr_accessor :InstanceId, :KubeClusterId, :KubeType, :Type, :Yaml
+        
+        def initialize(instanceid=nil, kubeclusterid=nil, kubetype=nil, type=nil, yaml=nil)
+          @InstanceId = instanceid
+          @KubeClusterId = kubeclusterid
+          @KubeType = kubetype
+          @Type = type
+          @Yaml = yaml
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @KubeClusterId = params['KubeClusterId']
+          @KubeType = params['KubeType']
+          @Type = params['Type']
+          @Yaml = params['Yaml']
+        end
+      end
+
+      # UpdateServiceDiscovery返回参数结构体
+      class UpdateServiceDiscoveryResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceDiscovery: 更新成功之后，返回对应服务发现的信息
+        # @type ServiceDiscovery: :class:`Tencentcloud::Monitor.v20180724.models.ServiceDiscoveryItem`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceDiscovery, :RequestId
+        
+        def initialize(servicediscovery=nil, requestid=nil)
+          @ServiceDiscovery = servicediscovery
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServiceDiscovery'].nil?
+            @ServiceDiscovery = ServiceDiscoveryItem.new.deserialize(params[ServiceDiscovery])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 云监控告警通知模板 - 用户通知详情
+      class UserNotice < TencentCloud::Common::AbstractModel
+        # @param ReceiverType: 接收者类型 USER=用户 GROUP=用户组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverType: String
+        # @param StartTime: 通知开始时间 00:00:00 开始的秒数（取值范围0-86399）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param EndTime: 通知结束时间 00:00:00 开始的秒数（取值范围0-86399）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+        # @param NoticeWay: 通知渠道列表 EMAIL=邮件 SMS=短信 CALL=电话 WECHAT=微信
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeWay: Array
+        # @param UserIds: 用户 uid 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIds: Array
+        # @param GroupIds: 用户组 group id 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupIds: Array
+        # @param PhoneOrder: 电话轮询列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneOrder: Array
+        # @param PhoneCircleTimes: 电话轮询次数 （取值范围1-5）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneCircleTimes: Integer
+        # @param PhoneInnerInterval: 单次轮询内拨打间隔 秒数 （取值范围60-900）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneInnerInterval: Integer
+        # @param PhoneCircleInterval: 两次轮询间隔 秒数（取值范围60-900）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneCircleInterval: Integer
+        # @param NeedPhoneArriveNotice: 是否需要触达通知 0=否 1=是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedPhoneArriveNotice: Integer
+
+        attr_accessor :ReceiverType, :StartTime, :EndTime, :NoticeWay, :UserIds, :GroupIds, :PhoneOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :NeedPhoneArriveNotice
+        
+        def initialize(receivertype=nil, starttime=nil, endtime=nil, noticeway=nil, userids=nil, groupids=nil, phoneorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, needphonearrivenotice=nil)
+          @ReceiverType = receivertype
+          @StartTime = starttime
+          @EndTime = endtime
+          @NoticeWay = noticeway
+          @UserIds = userids
+          @GroupIds = groupids
+          @PhoneOrder = phoneorder
+          @PhoneCircleTimes = phonecircletimes
+          @PhoneInnerInterval = phoneinnerinterval
+          @PhoneCircleInterval = phonecircleinterval
+          @NeedPhoneArriveNotice = needphonearrivenotice
+        end
+
+        def deserialize(params)
+          @ReceiverType = params['ReceiverType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @NoticeWay = params['NoticeWay']
+          @UserIds = params['UserIds']
+          @GroupIds = params['GroupIds']
+          @PhoneOrder = params['PhoneOrder']
+          @PhoneCircleTimes = params['PhoneCircleTimes']
+          @PhoneInnerInterval = params['PhoneInnerInterval']
+          @PhoneCircleInterval = params['PhoneCircleInterval']
+          @NeedPhoneArriveNotice = params['NeedPhoneArriveNotice']
         end
       end
 

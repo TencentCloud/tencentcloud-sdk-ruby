@@ -1055,7 +1055,7 @@ module TencentCloud
         # @param PhoneNumberSet: 下发手机号码，采用 e.164 标准，格式为+[国家或地区码][手机号]，单次请求最多支持200个手机号且要求全为境内手机号或全为境外手机号。
         # 例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
         # @type PhoneNumberSet: Array
-        # @param TemplateID: 模板 ID，必须填写已审核通过的模板 ID。模板ID可登录 [短信控制台](https://console.cloud.tencent.com/smsv2) 查看。
+        # @param TemplateID: 模板 ID，必须填写已审核通过的模板 ID。模板ID可登录 [短信控制台](https://console.cloud.tencent.com/smsv2) 查看，若向境外手机号发送短信，仅支持使用国际/港澳台短信模板。
         # @type TemplateID: String
         # @param SmsSdkAppid: 短信SdkAppid在 [短信控制台](https://console.cloud.tencent.com/smsv2)  添加应用后生成的实际SdkAppid，示例如1400006666。
         # @type SmsSdkAppid: String
@@ -1067,7 +1067,7 @@ module TencentCloud
         # @type ExtendCode: String
         # @param SessionContext: 用户的 session 内容，可以携带用户侧 ID 等上下文信息，server 会原样返回。
         # @type SessionContext: String
-        # @param SenderId: 国际/港澳台短信 senderid，国内短信填空，默认未开通，如需开通请联系 [sms helper](https://cloud.tencent.com/document/product/382/3773)。
+        # @param SenderId: 国内短信无senderid，无需填写该项；若需开通国际/港澳台短信senderid，请联系smshelper。
         # @type SenderId: String
 
         attr_accessor :PhoneNumberSet, :TemplateID, :SmsSdkAppid, :Sign, :TemplateParamSet, :ExtendCode, :SessionContext, :SenderId

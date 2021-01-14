@@ -262,7 +262,7 @@ module TencentCloud
         # * 将 EIP 绑定到实例（CVM）上，其本质是将 EIP 绑定到实例上主网卡的主内网 IP 上。
         # * 将 EIP 绑定到主网卡的主内网IP上，绑定过程会把其上绑定的普通公网 IP 自动解绑并释放。
         # * 将 EIP 绑定到指定网卡的内网 IP上（非主网卡的主内网IP），则必须先解绑该 EIP，才能再绑定新的。
-        # * 将 EIP 绑定到NAT网关，请使用接口[EipBindNatGateway](https://cloud.tencent.com/document/product/215/4093)
+        # * 将 EIP 绑定到NAT网关，请使用接口[AssociateNatGatewayAddress](https://cloud.tencent.com/document/product/215/36722)
         # * EIP 如果欠费或被封堵，则不能被绑定。
         # * 只有状态为 UNBIND 的 EIP 才能够被绑定。
 
@@ -298,6 +298,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = AssociateDhcpIpWithAddressIpResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
+
+        # @param request: Request instance for AssociateDirectConnectGatewayNatGateway.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::AssociateDirectConnectGatewayNatGatewayRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::AssociateDirectConnectGatewayNatGatewayResponse`
+        def AssociateDirectConnectGatewayNatGateway(request)
+          body = send_request('AssociateDirectConnectGatewayNatGateway', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssociateDirectConnectGatewayNatGatewayResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -435,11 +459,11 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（AttachNetworkInterface）用于弹性网卡绑定云主机。
-        # * 一个云主机可以绑定多个弹性网卡，但只能绑定一个主网卡。更多限制信息详见<a href="https://cloud.tencent.com/document/product/576/18527">弹性网卡使用限制</a>。
-        # * 一个弹性网卡只能同时绑定一个云主机。
-        # * 只有运行中或者已关机状态的云主机才能绑定弹性网卡，查看云主机状态详见<a href="https://cloud.tencent.com/document/api/213/9452#InstanceStatus">腾讯云主机信息</a>。
-        # * 弹性网卡绑定的云主机必须是私有网络的，而且云主机所在可用区必须和弹性网卡子网的可用区相同。
+        # 本接口（AttachNetworkInterface）用于弹性网卡绑定云服务器。
+        # * 一个云服务器可以绑定多个弹性网卡，但只能绑定一个主网卡。更多限制信息详见<a href="https://cloud.tencent.com/document/product/576/18527">弹性网卡使用限制</a>。
+        # * 一个弹性网卡只能同时绑定一个云服务器。
+        # * 只有运行中或者已关机状态的云服务器才能绑定弹性网卡，查看云服务器状态详见<a href="https://cloud.tencent.com/document/api/213/9452#InstanceStatus">腾讯云服务器信息</a>。
+        # * 弹性网卡绑定的云服务器必须是私有网络的，而且云服务器所在可用区必须和弹性网卡子网的可用区相同。
 
         # @param request: Request instance for AttachNetworkInterface.
         # @type request: :class:`Tencentcloud::vpc::V20170312::AttachNetworkInterfaceRequest`
@@ -449,6 +473,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = AttachNetworkInterfaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（AuditCrossBorderCompliance）用于服务商操作合规化资质审批。
+        # * 服务商只能操作提交到本服务商的审批单，后台会校验身份。即只授权给服务商的`APPID` 调用本接口。
+        # * `APPROVED` 状态的审批单，可以再次操作为 `DENY`；`DENY` 状态的审批单，也可以再次操作为 `APPROVED`。
+
+        # @param request: Request instance for AuditCrossBorderCompliance.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::AuditCrossBorderComplianceRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::AuditCrossBorderComplianceResponse`
+        def AuditCrossBorderCompliance(request)
+          body = send_request('AuditCrossBorderCompliance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AuditCrossBorderComplianceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -538,6 +588,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CloneSecurityGroup）用于根据存量的安全组，克隆创建出同样规则配置的安全组。仅克隆安全组及其规则信息，不会克隆安全组标签信息。
+
+        # @param request: Request instance for CloneSecurityGroup.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CloneSecurityGroupRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CloneSecurityGroupResponse`
+        def CloneSecurityGroup(request)
+          body = send_request('CloneSecurityGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloneSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateAddressTemplate）用于创建IP地址模版
 
         # @param request: Request instance for CreateAddressTemplate.
@@ -586,7 +660,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateAndAttachNetworkInterface）用于创建弹性网卡并绑定云主机。
+        # 本接口（CreateAndAttachNetworkInterface）用于创建弹性网卡并绑定云服务器。
         # * 创建弹性网卡时可以指定内网IP，并且可以指定一个主IP，指定的内网IP必须在弹性网卡所在子网内，而且不能被占用。
         # * 创建弹性网卡时可以指定需要申请的内网IP数量，系统会随机生成内网IP地址。
         # * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
@@ -715,7 +789,7 @@ module TencentCloud
 
         # 本接口（CreateDefaultSecurityGroup）用于创建（如果项目下未存在默认安全组，则创建；已存在则获取。）默认安全组（SecurityGroup）。
         # * 每个账户下每个地域的每个项目的<a href="https://cloud.tencent.com/document/product/213/12453">安全组数量限制</a>。
-        # * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
+        # * 默认安全组会放通所有IPv4规则，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
         # * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
 
         # @param request: Request instance for CreateDefaultSecurityGroup.
@@ -1305,8 +1379,8 @@ module TencentCloud
         end
 
         # 本接口(CreateVpc)用于创建私有网络(VPC)。
-        # * 用户可以创建的最小网段子网掩码为28（有16个IP地址），最大网段子网掩码为16（65,536个IP地址）,如果规划VPC网段请参见VPC网段规划说明。
-        # * 同一个地域能创建的VPC资源个数也是有限制的，详见 <a href="https://cloud.tencent.com/doc/product/215/537" title="VPC使用限制">VPC使用限制</a>,如果需要扩充请联系在线客服。
+        # * 用户可以创建的最小网段子网掩码为28（有16个IP地址），最大网段子网掩码为16（65,536个IP地址），如果需要规划VPC网段请参见[网络规划](https://cloud.tencent.com/document/product/215/30313)。
+        # * 同一个地域能创建的VPC资源个数也是有限制的，详见 <a href="https://cloud.tencent.com/doc/product/215/537" title="VPC使用限制">VPC使用限制</a>，如果需要申请更多资源，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
         # * 创建VPC同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
 
         # @param request: Request instance for CreateVpc.
@@ -2189,6 +2263,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeBandwidthPackageBillUsage) 用于查询后付费共享带宽包当前的计费用量.
+
+        # @param request: Request instance for DescribeBandwidthPackageBillUsage.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeBandwidthPackageBillUsageRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeBandwidthPackageBillUsageResponse`
+        def DescribeBandwidthPackageBillUsage(request)
+          body = send_request('DescribeBandwidthPackageBillUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBandwidthPackageBillUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口用于查询账户在当前地域的带宽包上限数量以及使用数量
 
         # @param request: Request instance for DescribeBandwidthPackageQuota.
@@ -2199,6 +2297,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBandwidthPackageQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
+
+        # @param request: Request instance for DescribeBandwidthPackageResources.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeBandwidthPackageResourcesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeBandwidthPackageResourcesResponse`
+        def DescribeBandwidthPackageResources(request)
+          body = send_request('DescribeBandwidthPackageResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBandwidthPackageResourcesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2343,6 +2465,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClassicLinkInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeCrossBorderCompliance）用于查询用户创建的合规化资质审批单。
+        # 服务商可以查询服务名下的任意 `APPID` 创建的审批单；非服务商，只能查询自己审批单。
+
+        # @param request: Request instance for DescribeCrossBorderCompliance.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeCrossBorderComplianceRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeCrossBorderComplianceResponse`
+        def DescribeCrossBorderCompliance(request)
+          body = send_request('DescribeCrossBorderCompliance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCrossBorderComplianceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2526,7 +2673,7 @@ module TencentCloud
         end
 
         # 本接口（DescribeGatewayFlowMonitorDetail）用于查询网关流量监控明细。
-        # * 只支持单个网关实例查询。即入参 `VpnId` `DirectConnectGatewayId` `PeeringConnectionId` `NatId` 最多只支持传一个，且必须传一个。
+        # * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
         # * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
 
         # @param request: Request instance for DescribeGatewayFlowMonitorDetail.
@@ -2658,6 +2805,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIp6TranslatorsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
+
+        # @param request: Request instance for DescribeIpGeolocationDatabaseUrl.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeIpGeolocationDatabaseUrlRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeIpGeolocationDatabaseUrlResponse`
+        def DescribeIpGeolocationDatabaseUrl(request)
+          body = send_request('DescribeIpGeolocationDatabaseUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIpGeolocationDatabaseUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于查询IP地址信息，包括地理位置信息和网络信息。
+
+        # @param request: Request instance for DescribeIpGeolocationInfos.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeIpGeolocationInfosRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeIpGeolocationInfosResponse`
+        def DescribeIpGeolocationInfos(request)
+          body = send_request('DescribeIpGeolocationInfos', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIpGeolocationInfosResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2826,6 +3021,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNetworkInterfacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于查询网络产品的配额信息
+
+        # @param request: Request instance for DescribeProductQuota.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeProductQuotaRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeProductQuotaResponse`
+        def DescribeProductQuota(request)
+          body = send_request('DescribeProductQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProductQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3424,7 +3643,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DetachNetworkInterface）用于弹性网卡解绑云主机。
+        # 本接口（DetachNetworkInterface）用于弹性网卡解绑云服务器。
 
         # @param request: Request instance for DetachNetworkInterface.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DetachNetworkInterfaceRequest`
@@ -3522,7 +3741,7 @@ module TencentCloud
 
         # 本接口 (DisassociateAddress) 用于解绑[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
         # * 支持CVM实例，弹性网卡上的EIP解绑
-        # * 不支持NAT上的EIP解绑。NAT上的EIP解绑请参考[EipUnBindNatGateway](https://cloud.tencent.com/document/product/215/4092)
+        # * 不支持NAT上的EIP解绑。NAT上的EIP解绑请参考[DisassociateNatGatewayAddress](https://cloud.tencent.com/document/api/215/36716)
         # * 只有状态为 BIND 和 BIND_ENI 的 EIP 才能进行解绑定操作。
         # * EIP 如果被封堵，则不能进行解绑定操作。
 
@@ -3558,6 +3777,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisassociateDhcpIpWithAddressIpResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 将专线网关与NAT网关解绑，解绑之后，专线网关将不能通过NAT网关访问公网
+
+        # @param request: Request instance for DisassociateDirectConnectGatewayNatGateway.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DisassociateDirectConnectGatewayNatGatewayRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DisassociateDirectConnectGatewayNatGatewayResponse`
+        def DisassociateDirectConnectGatewayNatGateway(request)
+          body = send_request('DisassociateDirectConnectGatewayNatGateway', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisassociateDirectConnectGatewayNatGatewayResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3816,6 +4059,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
+
+        # @param request: Request instance for InquirePriceCreateDirectConnectGateway.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::InquirePriceCreateDirectConnectGatewayRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::InquirePriceCreateDirectConnectGatewayResponse`
+        def InquirePriceCreateDirectConnectGateway(request)
+          body = send_request('InquirePriceCreateDirectConnectGateway', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceCreateDirectConnectGatewayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（InquiryPriceCreateVpnGateway）用于创建VPN网关询价。
 
         # @param request: Request instance for InquiryPriceCreateVpnGateway.
@@ -4037,7 +4304,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，包括后付费EIP, 预付费EIP和带宽包EIP
+        # 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，支持后付费EIP, 预付费EIP和带宽包EIP
 
         # @param request: Request instance for ModifyAddressesBandwidth.
         # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyAddressesBandwidthRequest`
@@ -4931,6 +5198,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RemoveIp6RulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于续费包月带宽计费模式的弹性公网IP
+
+        # @param request: Request instance for RenewAddresses.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::RenewAddressesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::RenewAddressesResponse`
+        def RenewAddresses(request)
+          body = send_request('RenewAddresses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewAddressesResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -95,10 +95,31 @@ module TencentCloud
         # @param ApiAccessIpv6: TcaplusDB SDK连接参数，接入ipv6地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiAccessIpv6: String
+        # @param ClusterType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: Integer
+        # @param ClusterStatus: 集群状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStatus: Integer
+        # @param ReadCapacityUnit: 读CU
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadCapacityUnit: Integer
+        # @param WriteCapacityUnit: 写CU
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WriteCapacityUnit: Integer
+        # @param DiskVolume: 磁盘容量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskVolume: Integer
+        # @param ServerList: 独占server机器信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerList: Array
+        # @param ProxyList: 独占proxy机器信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyList: Array
 
-        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6
+        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList
         
-        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil)
+        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil)
           @ClusterName = clustername
           @ClusterId = clusterid
           @Region = region
@@ -114,6 +135,13 @@ module TencentCloud
           @ApiAccessPort = apiaccessport
           @OldPasswordExpireTime = oldpasswordexpiretime
           @ApiAccessIpv6 = apiaccessipv6
+          @ClusterType = clustertype
+          @ClusterStatus = clusterstatus
+          @ReadCapacityUnit = readcapacityunit
+          @WriteCapacityUnit = writecapacityunit
+          @DiskVolume = diskvolume
+          @ServerList = serverlist
+          @ProxyList = proxylist
         end
 
         def deserialize(params)
@@ -132,6 +160,13 @@ module TencentCloud
           @ApiAccessPort = params['ApiAccessPort']
           @OldPasswordExpireTime = params['OldPasswordExpireTime']
           @ApiAccessIpv6 = params['ApiAccessIpv6']
+          @ClusterType = params['ClusterType']
+          @ClusterStatus = params['ClusterStatus']
+          @ReadCapacityUnit = params['ReadCapacityUnit']
+          @WriteCapacityUnit = params['WriteCapacityUnit']
+          @DiskVolume = params['DiskVolume']
+          @ServerList = params['ServerList']
+          @ProxyList = params['ProxyList']
         end
       end
 
@@ -251,10 +286,16 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param Ipv6Enable: 集群是否开启IPv6功能
         # @type Ipv6Enable: Integer
+        # @param ServerList: 独占集群占用的svr机器
+        # @type ServerList: Array
+        # @param ProxyList: 独占集群占用的proxy机器
+        # @type ProxyList: Array
+        # @param ClusterType: 集群类型1共享2独占
+        # @type ClusterType: Integer
 
-        attr_accessor :IdlType, :ClusterName, :VpcId, :SubnetId, :Password, :ResourceTags, :Ipv6Enable
+        attr_accessor :IdlType, :ClusterName, :VpcId, :SubnetId, :Password, :ResourceTags, :Ipv6Enable, :ServerList, :ProxyList, :ClusterType
         
-        def initialize(idltype=nil, clustername=nil, vpcid=nil, subnetid=nil, password=nil, resourcetags=nil, ipv6enable=nil)
+        def initialize(idltype=nil, clustername=nil, vpcid=nil, subnetid=nil, password=nil, resourcetags=nil, ipv6enable=nil, serverlist=nil, proxylist=nil, clustertype=nil)
           @IdlType = idltype
           @ClusterName = clustername
           @VpcId = vpcid
@@ -262,6 +303,9 @@ module TencentCloud
           @Password = password
           @ResourceTags = resourcetags
           @Ipv6Enable = ipv6enable
+          @ServerList = serverlist
+          @ProxyList = proxylist
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -272,6 +316,9 @@ module TencentCloud
           @Password = params['Password']
           @ResourceTags = params['ResourceTags']
           @Ipv6Enable = params['Ipv6Enable']
+          @ServerList = params['ServerList']
+          @ProxyList = params['ProxyList']
+          @ClusterType = params['ClusterType']
         end
       end
 
@@ -753,6 +800,42 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @IdlFileInfos = params['IdlFileInfos']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMachine请求参数结构体
+      class DescribeMachineRequest < TencentCloud::Common::AbstractModel
+        # @param Ipv6Enable: 是否按ipv6过滤
+        # @type Ipv6Enable: Integer
+
+        attr_accessor :Ipv6Enable
+        
+        def initialize(ipv6enable=nil)
+          @Ipv6Enable = ipv6enable
+        end
+
+        def deserialize(params)
+          @Ipv6Enable = params['Ipv6Enable']
+        end
+      end
+
+      # DescribeMachine返回参数结构体
+      class DescribeMachineResponse < TencentCloud::Common::AbstractModel
+        # @param PoolList: 独占机器资源列表
+        # @type PoolList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PoolList, :RequestId
+        
+        def initialize(poollist=nil, requestid=nil)
+          @PoolList = poollist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PoolList = params['PoolList']
           @RequestId = params['RequestId']
         end
       end
@@ -1291,6 +1374,74 @@ module TencentCloud
         end
       end
 
+      # 机器类型和数量
+      class MachineInfo < TencentCloud::Common::AbstractModel
+        # @param MachineType: 机器类型
+        # @type MachineType: String
+        # @param MachineNum: 机器数量
+        # @type MachineNum: Integer
+
+        attr_accessor :MachineType, :MachineNum
+        
+        def initialize(machinetype=nil, machinenum=nil)
+          @MachineType = machinetype
+          @MachineNum = machinenum
+        end
+
+        def deserialize(params)
+          @MachineType = params['MachineType']
+          @MachineNum = params['MachineNum']
+        end
+      end
+
+      # ModifyClusterMachine请求参数结构体
+      class ModifyClusterMachineRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ServerList: svr占用的机器
+        # @type ServerList: Array
+        # @param ProxyList: proxy占用的机器
+        # @type ProxyList: Array
+        # @param ClusterType: 集群类型1共享集群2独占集群
+        # @type ClusterType: Integer
+
+        attr_accessor :ClusterId, :ServerList, :ProxyList, :ClusterType
+        
+        def initialize(clusterid=nil, serverlist=nil, proxylist=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @ServerList = serverlist
+          @ProxyList = proxylist
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ServerList = params['ServerList']
+          @ProxyList = params['ProxyList']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # ModifyClusterMachine返回参数结构体
+      class ModifyClusterMachineResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+        
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterName请求参数结构体
       class ModifyClusterNameRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 需要修改名称的集群ID
@@ -1801,6 +1952,90 @@ module TencentCloud
         end
       end
 
+      # center资源池中的机器信息
+      class PoolInfo < TencentCloud::Common::AbstractModel
+        # @param PoolUid: 唯一id
+        # @type PoolUid: Integer
+        # @param Ipv6Enable: 是否支持ipv6
+        # @type Ipv6Enable: Integer
+        # @param AvailableAppCount: 剩余可用app
+        # @type AvailableAppCount: Integer
+        # @param ServerList: svr机器列表
+        # @type ServerList: Array
+        # @param ProxyList: proxy机器列表
+        # @type ProxyList: Array
+
+        attr_accessor :PoolUid, :Ipv6Enable, :AvailableAppCount, :ServerList, :ProxyList
+        
+        def initialize(pooluid=nil, ipv6enable=nil, availableappcount=nil, serverlist=nil, proxylist=nil)
+          @PoolUid = pooluid
+          @Ipv6Enable = ipv6enable
+          @AvailableAppCount = availableappcount
+          @ServerList = serverlist
+          @ProxyList = proxylist
+        end
+
+        def deserialize(params)
+          @PoolUid = params['PoolUid']
+          @Ipv6Enable = params['Ipv6Enable']
+          @AvailableAppCount = params['AvailableAppCount']
+          @ServerList = params['ServerList']
+          @ProxyList = params['ProxyList']
+        end
+      end
+
+      # 独占的proxy详细信息
+      class ProxyDetailInfo < TencentCloud::Common::AbstractModel
+        # @param ProxyUid: proxy的唯一id
+        # @type ProxyUid: String
+        # @param MachineType: 机器类型
+        # @type MachineType: String
+        # @param ProcessSpeed: 请求包速度
+        # @type ProcessSpeed: Integer
+        # @param AverageProcessDelay: 请求包时延
+        # @type AverageProcessDelay: Integer
+        # @param SlowProcessSpeed: 慢处理包速度
+        # @type SlowProcessSpeed: Integer
+
+        attr_accessor :ProxyUid, :MachineType, :ProcessSpeed, :AverageProcessDelay, :SlowProcessSpeed
+        
+        def initialize(proxyuid=nil, machinetype=nil, processspeed=nil, averageprocessdelay=nil, slowprocessspeed=nil)
+          @ProxyUid = proxyuid
+          @MachineType = machinetype
+          @ProcessSpeed = processspeed
+          @AverageProcessDelay = averageprocessdelay
+          @SlowProcessSpeed = slowprocessspeed
+        end
+
+        def deserialize(params)
+          @ProxyUid = params['ProxyUid']
+          @MachineType = params['MachineType']
+          @ProcessSpeed = params['ProcessSpeed']
+          @AverageProcessDelay = params['AverageProcessDelay']
+          @SlowProcessSpeed = params['SlowProcessSpeed']
+        end
+      end
+
+      # proxy机器信息
+      class ProxyMachineInfo < TencentCloud::Common::AbstractModel
+        # @param ProxyUid: 唯一id
+        # @type ProxyUid: String
+        # @param MachineType: 机器类型
+        # @type MachineType: String
+
+        attr_accessor :ProxyUid, :MachineType
+        
+        def initialize(proxyuid=nil, machinetype=nil)
+          @ProxyUid = proxyuid
+          @MachineType = machinetype
+        end
+
+        def deserialize(params)
+          @ProxyUid = params['ProxyUid']
+          @MachineType = params['MachineType']
+        end
+      end
+
       # RecoverRecycleTables请求参数结构体
       class RecoverRecycleTablesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 表所在集群ID
@@ -2030,6 +2265,62 @@ module TencentCloud
           @TableType = params['TableType']
           @SelectedFields = params['SelectedFields']
           @ShardNum = params['ShardNum']
+        end
+      end
+
+      # server独占机器的详细信息
+      class ServerDetailInfo < TencentCloud::Common::AbstractModel
+        # @param ServerUid: svr唯一id
+        # @type ServerUid: String
+        # @param MachineType: 机器类型
+        # @type MachineType: String
+        # @param MemoryRate: 内存占用量
+        # @type MemoryRate: Integer
+        # @param DiskRate: 磁盘占用量
+        # @type DiskRate: Integer
+        # @param ReadNum: 读次数
+        # @type ReadNum: Integer
+        # @param WriteNum: 写次数
+        # @type WriteNum: Integer
+
+        attr_accessor :ServerUid, :MachineType, :MemoryRate, :DiskRate, :ReadNum, :WriteNum
+        
+        def initialize(serveruid=nil, machinetype=nil, memoryrate=nil, diskrate=nil, readnum=nil, writenum=nil)
+          @ServerUid = serveruid
+          @MachineType = machinetype
+          @MemoryRate = memoryrate
+          @DiskRate = diskrate
+          @ReadNum = readnum
+          @WriteNum = writenum
+        end
+
+        def deserialize(params)
+          @ServerUid = params['ServerUid']
+          @MachineType = params['MachineType']
+          @MemoryRate = params['MemoryRate']
+          @DiskRate = params['DiskRate']
+          @ReadNum = params['ReadNum']
+          @WriteNum = params['WriteNum']
+        end
+      end
+
+      # svr的机器列表ServerList
+      class ServerMachineInfo < TencentCloud::Common::AbstractModel
+        # @param ServerUid: 机器唯一id
+        # @type ServerUid: String
+        # @param MachineType: 机器类型
+        # @type MachineType: String
+
+        attr_accessor :ServerUid, :MachineType
+        
+        def initialize(serveruid=nil, machinetype=nil)
+          @ServerUid = serveruid
+          @MachineType = machinetype
+        end
+
+        def deserialize(params)
+          @ServerUid = params['ServerUid']
+          @MachineType = params['MachineType']
         end
       end
 

@@ -49,6 +49,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 保存游戏存档
+
+        # @param request: Request instance for SaveGameArchive.
+        # @type request: :class:`Tencentcloud::gs::V20191118::SaveGameArchiveRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::SaveGameArchiveResponse`
+        def SaveGameArchive(request)
+          body = send_request('SaveGameArchive', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SaveGameArchiveResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 强制退出游戏
 
         # @param request: Request instance for StopGame.
@@ -59,6 +83,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopGameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 切换游戏存档
+
+        # @param request: Request instance for SwitchGameArchive.
+        # @type request: :class:`Tencentcloud::gs::V20191118::SwitchGameArchiveRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::SwitchGameArchiveResponse`
+        def SwitchGameArchive(request)
+          body = send_request('SwitchGameArchive', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchGameArchiveResponse.new
             model.deserialize(response['Response'])
             model
           else

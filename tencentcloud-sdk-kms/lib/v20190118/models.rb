@@ -37,6 +37,38 @@ module TencentCloud
         end
       end
 
+      # ArchiveKey请求参数结构体
+      class ArchiveKeyRequest < TencentCloud::Common::AbstractModel
+        # @param KeyId: CMK唯一标识符
+        # @type KeyId: String
+
+        attr_accessor :KeyId
+        
+        def initialize(keyid=nil)
+          @KeyId = keyid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+        end
+      end
+
+      # ArchiveKey返回参数结构体
+      class ArchiveKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AsymmetricRsaDecrypt请求参数结构体
       class AsymmetricRsaDecryptRequest < TencentCloud::Common::AbstractModel
         # @param KeyId: CMK的唯一标识
@@ -125,6 +157,78 @@ module TencentCloud
         def deserialize(params)
           @KeyId = params['KeyId']
           @Plaintext = params['Plaintext']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BindCloudResource请求参数结构体
+      class BindCloudResourceRequest < TencentCloud::Common::AbstractModel
+        # @param KeyId: cmk的ID
+        # @type KeyId: String
+        # @param ProductId: 云产品的唯一性标识符
+        # @type ProductId: String
+        # @param ResourceId: 资源/实例ID，由调用方根据自己的云产品特征来定义，以字符串形式做存储。
+        # @type ResourceId: String
+
+        attr_accessor :KeyId, :ProductId, :ResourceId
+        
+        def initialize(keyid=nil, productid=nil, resourceid=nil)
+          @KeyId = keyid
+          @ProductId = productid
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @ProductId = params['ProductId']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # BindCloudResource返回参数结构体
+      class BindCloudResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CancelKeyArchive请求参数结构体
+      class CancelKeyArchiveRequest < TencentCloud::Common::AbstractModel
+        # @param KeyId: CMK唯一标识符
+        # @type KeyId: String
+
+        attr_accessor :KeyId
+        
+        def initialize(keyid=nil)
+          @KeyId = keyid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+        end
+      end
+
+      # CancelKeyArchive返回参数结构体
+      class CancelKeyArchiveResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -574,15 +678,27 @@ module TencentCloud
       class DescribeWhiteBoxKeyDetailsRequest < TencentCloud::Common::AbstractModel
         # @param KeyStatus: 过滤条件：密钥的状态，0：disabled，1：enabled
         # @type KeyStatus: Integer
+        # @param Offset: 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
+        # @type Offset: Integer
+        # @param Limit: 含义跟 SQL 查询的 Limit 一致，表示本次最多获取 Limit 个元素。缺省值为0, 表示不分页
+        # @type Limit: Integer
+        # @param TagFilters: 标签过滤条件
+        # @type TagFilters: Array
 
-        attr_accessor :KeyStatus
+        attr_accessor :KeyStatus, :Offset, :Limit, :TagFilters
         
-        def initialize(keystatus=nil)
+        def initialize(keystatus=nil, offset=nil, limit=nil, tagfilters=nil)
           @KeyStatus = keystatus
+          @Offset = offset
+          @Limit = limit
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
           @KeyStatus = params['KeyStatus']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TagFilters = params['TagFilters']
         end
       end
 
@@ -590,18 +706,23 @@ module TencentCloud
       class DescribeWhiteBoxKeyDetailsResponse < TencentCloud::Common::AbstractModel
         # @param KeyInfos: 白盒密钥信息列表
         # @type KeyInfos: Array
+        # @param TotalCount: key总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KeyInfos, :RequestId
+        attr_accessor :KeyInfos, :TotalCount, :RequestId
         
-        def initialize(keyinfos=nil, requestid=nil)
+        def initialize(keyinfos=nil, totalcount=nil, requestid=nil)
           @KeyInfos = keyinfos
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
           @KeyInfos = params['KeyInfos']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1340,6 +1461,38 @@ module TencentCloud
         end
       end
 
+      # GetRegions请求参数结构体
+      class GetRegionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetRegions返回参数结构体
+      class GetRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param Regions: 可用region列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Regions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Regions, :RequestId
+        
+        def initialize(regions=nil, requestid=nil)
+          @Regions = regions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Regions = params['Regions']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetServiceStatus请求参数结构体
       class GetServiceStatusRequest < TencentCloud::Common::AbstractModel
 
@@ -1358,20 +1511,39 @@ module TencentCloud
         # @param InvalidType: 服务不可用类型： 0-未购买，1-正常， 2-欠费停服， 3-资源释放
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvalidType: Integer
+        # @param UserLevel: 0-普通版，1-旗舰版
+        # @type UserLevel: Integer
+        # @param ProExpireTime: 旗舰版到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProExpireTime: Integer
+        # @param ProRenewFlag: 旗舰版是否自动续费：0-不自动续费，1-自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProRenewFlag: Integer
+        # @param ProResourceId: 旗舰版购买记录的唯一性标识。如果为开通旗舰版，则返回值为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProResourceId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :RequestId
         
-        def initialize(serviceenabled=nil, invalidtype=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
+          @UserLevel = userlevel
+          @ProExpireTime = proexpiretime
+          @ProRenewFlag = prorenewflag
+          @ProResourceId = proresourceid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ServiceEnabled = params['ServiceEnabled']
           @InvalidType = params['InvalidType']
+          @UserLevel = params['UserLevel']
+          @ProExpireTime = params['ProExpireTime']
+          @ProRenewFlag = params['ProRenewFlag']
+          @ProResourceId = params['ProResourceId']
           @RequestId = params['RequestId']
         end
       end
@@ -1446,7 +1618,7 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param Description: CMK的描述
         # @type Description: String
-        # @param KeyState: CMK的状态， 取值为：Enabled | Disabled | PendingDelete | PendingImport
+        # @param KeyState: CMK的状态， 取值为：Enabled | Disabled | PendingDelete | PendingImport | Archived
         # @type KeyState: String
         # @param KeyUsage: CMK用途，取值为: ENCRYPT_DECRYPT | ASYMMETRIC_DECRYPT_RSA_2048 | ASYMMETRIC_DECRYPT_SM2
         # @type KeyUsage: String
@@ -1556,7 +1728,7 @@ module TencentCloud
         # @type Role: Integer
         # @param OrderType: 根据CMK创建时间排序， 0 表示按照降序排序，1表示按照升序排序
         # @type OrderType: Integer
-        # @param KeyState: 根据CMK状态筛选， 0表示全部CMK， 1 表示仅查询Enabled CMK， 2 表示仅查询Disabled CMK，3 表示查询PendingDelete 状态的CMK(处于计划删除状态的Key)，4 表示查询 PendingImport 状态的CMK
+        # @param KeyState: 根据CMK状态筛选， 0表示全部CMK， 1 表示仅查询Enabled CMK， 2 表示仅查询Disabled CMK，3 表示查询PendingDelete 状态的CMK(处于计划删除状态的Key)，4 表示查询 PendingImport 状态的CMK，5 表示查询 Archived 状态的 CMK
         # @type KeyState: Integer
         # @param SearchKeyAlias: 根据KeyId或者Alias进行模糊匹配查询
         # @type SearchKeyAlias: String
@@ -1564,10 +1736,12 @@ module TencentCloud
         # @type Origin: String
         # @param KeyUsage: 根据CMK的KeyUsage筛选，ALL表示筛选全部，可使用的参数为：ALL 或 ENCRYPT_DECRYPT 或 ASYMMETRIC_DECRYPT_RSA_2048 或 ASYMMETRIC_DECRYPT_SM2，为空则默认筛选ENCRYPT_DECRYPT类型
         # @type KeyUsage: String
+        # @param TagFilters: 标签过滤条件
+        # @type TagFilters: Array
 
-        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :KeyUsage
+        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :KeyUsage, :TagFilters
         
-        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, keyusage=nil)
+        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, keyusage=nil, tagfilters=nil)
           @Offset = offset
           @Limit = limit
           @Role = role
@@ -1576,6 +1750,7 @@ module TencentCloud
           @SearchKeyAlias = searchkeyalias
           @Origin = origin
           @KeyUsage = keyusage
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -1587,6 +1762,7 @@ module TencentCloud
           @SearchKeyAlias = params['SearchKeyAlias']
           @Origin = params['Origin']
           @KeyUsage = params['KeyUsage']
+          @TagFilters = params['TagFilters']
         end
       end
 
@@ -1824,6 +2000,66 @@ module TencentCloud
         end
       end
 
+      # 标签过滤器
+      class TagFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # UnbindCloudResource请求参数结构体
+      class UnbindCloudResourceRequest < TencentCloud::Common::AbstractModel
+        # @param KeyId: cmk的ID
+        # @type KeyId: String
+        # @param ProductId: 云产品的唯一性标识符
+        # @type ProductId: String
+        # @param ResourceId: 资源/实例ID，由调用方根据自己的云产品特征来定义，以字符串形式做存储。
+        # @type ResourceId: String
+
+        attr_accessor :KeyId, :ProductId, :ResourceId
+        
+        def initialize(keyid=nil, productid=nil, resourceid=nil)
+          @KeyId = keyid
+          @ProductId = productid
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @ProductId = params['ProductId']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # UnbindCloudResource返回参数结构体
+      class UnbindCloudResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateAlias请求参数结构体
       class UpdateAliasRequest < TencentCloud::Common::AbstractModel
         # @param Alias: 新的别名，1-60个字符或数字的组合
@@ -1920,10 +2156,13 @@ module TencentCloud
         # @type DecryptKey: String
         # @param ResourceId: 资源ID，格式：creatorUin/$creatorUin/$keyId
         # @type ResourceId: String
+        # @param DeviceFingerprintBind: 是否有设备指纹与当前密钥绑定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceFingerprintBind: Boolean
 
-        attr_accessor :KeyId, :Alias, :CreatorUin, :Description, :CreateTime, :Status, :OwnerUin, :Algorithm, :EncryptKey, :DecryptKey, :ResourceId
+        attr_accessor :KeyId, :Alias, :CreatorUin, :Description, :CreateTime, :Status, :OwnerUin, :Algorithm, :EncryptKey, :DecryptKey, :ResourceId, :DeviceFingerprintBind
         
-        def initialize(keyid=nil, alias=nil, creatoruin=nil, description=nil, createtime=nil, status=nil, owneruin=nil, algorithm=nil, encryptkey=nil, decryptkey=nil, resourceid=nil)
+        def initialize(keyid=nil, alias=nil, creatoruin=nil, description=nil, createtime=nil, status=nil, owneruin=nil, algorithm=nil, encryptkey=nil, decryptkey=nil, resourceid=nil, devicefingerprintbind=nil)
           @KeyId = keyid
           @Alias = alias
           @CreatorUin = creatoruin
@@ -1935,6 +2174,7 @@ module TencentCloud
           @EncryptKey = encryptkey
           @DecryptKey = decryptkey
           @ResourceId = resourceid
+          @DeviceFingerprintBind = devicefingerprintbind
         end
 
         def deserialize(params)
@@ -1949,6 +2189,7 @@ module TencentCloud
           @EncryptKey = params['EncryptKey']
           @DecryptKey = params['DecryptKey']
           @ResourceId = params['ResourceId']
+          @DeviceFingerprintBind = params['DeviceFingerprintBind']
         end
       end
 

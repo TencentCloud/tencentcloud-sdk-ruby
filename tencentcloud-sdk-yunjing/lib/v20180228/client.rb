@@ -97,6 +97,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据策略信息创建基线策略
+
+        # @param request: Request instance for CreateBaselineStrategy.
+        # @type request: :class:`Tencentcloud::yunjing::V20180228::CreateBaselineStrategyRequest`
+        # @rtype: :class:`Tencentcloud::yunjing::V20180228::CreateBaselineStrategyResponse`
+        def CreateBaselineStrategy(request)
+          body = send_request('CreateBaselineStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBaselineStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
 
         # @param request: Request instance for CreateOpenPortTask.

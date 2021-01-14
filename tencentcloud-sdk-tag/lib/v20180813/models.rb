@@ -23,7 +23,7 @@ module TencentCloud
         # @type TagKey: String
         # @param TagValue: 标签值
         # @type TagValue: String
-        # @param Resource: 资源六段式描述
+        # @param Resource: [ 资源六段式描述 ](https://cloud.tencent.com/document/product/598/10606)
         # @type Resource: String
 
         attr_accessor :TagKey, :TagValue, :Resource
@@ -59,7 +59,7 @@ module TencentCloud
 
       # AttachResourcesTag请求参数结构体
       class AttachResourcesTagRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 资源所属业务名称
+        # @param ServiceType: 资源所属业务名称（资源六段式中的第三段）
         # @type ServiceType: String
         # @param ResourceIds: 资源ID数组，资源个数最多为50
         # @type ResourceIds: Array
@@ -67,9 +67,9 @@ module TencentCloud
         # @type TagKey: String
         # @param TagValue: 标签值
         # @type TagValue: String
-        # @param ResourceRegion: 资源所在地域，不区分地域的资源不需要传入该字段
+        # @param ResourceRegion: 资源所在地域，不区分地域的资源不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
-        # @param ResourcePrefix: 资源前缀，cos存储桶不需要传入该字段
+        # @param ResourcePrefix: 资源前缀（资源六段式中最后一段"/"前面的部分），cos存储桶不需要传入该字段，其他云资源必填
         # @type ResourcePrefix: String
 
         attr_accessor :ServiceType, :ResourceIds, :TagKey, :TagValue, :ResourceRegion, :ResourcePrefix
@@ -149,7 +149,7 @@ module TencentCloud
       class DeleteResourceTagRequest < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
         # @type TagKey: String
-        # @param Resource: 资源六段式描述
+        # @param Resource: [ 资源六段式描述 ](https://cloud.tencent.com/document/product/598/10606)
         # @type Resource: String
 
         attr_accessor :TagKey, :Resource
@@ -223,7 +223,7 @@ module TencentCloud
         # @type ServiceType: String
         # @param ResourcePrefix: 资源前缀
         # @type ResourcePrefix: String
-        # @param ResourceIds: 资源唯一标记
+        # @param ResourceIds: 资源ID数组，大小不超过50
         # @type ResourceIds: Array
         # @param ResourceRegion: 资源所在地域
         # @type ResourceRegion: String
@@ -441,7 +441,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页大小，默认为 15
         # @type Limit: Integer
-        # @param CosResourceId: 是否是Cos的资源id
+        # @param CosResourceId: 是否是cos的资源（0或者1），输入的ResourceId为cos资源时必填
         # @type CosResourceId: Integer
 
         attr_accessor :CreateUin, :ResourceRegion, :ServiceType, :ResourcePrefix, :ResourceId, :Offset, :Limit, :CosResourceId
@@ -554,6 +554,82 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页大小
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limit: Integer
+        # @param Rows: 资源标签
+        # @type Rows: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Offset, :Limit, :Rows, :RequestId
+        
+        def initialize(totalcount=nil, offset=nil, limit=nil, rows=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Offset = offset
+          @Limit = limit
+          @Rows = rows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Rows = params['Rows']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourcesByTagsUnion请求参数结构体
+      class DescribeResourcesByTagsUnionRequest < TencentCloud::Common::AbstractModel
+        # @param TagFilters: 标签过滤数组
+        # @type TagFilters: Array
+        # @param CreateUin: 创建标签者uin
+        # @type CreateUin: Integer
+        # @param Offset: 数据偏移量，默认为 0, 必须为Limit参数的整数倍
+        # @type Offset: Integer
+        # @param Limit: 每页大小，默认为 15
+        # @type Limit: Integer
+        # @param ResourcePrefix: 资源前缀
+        # @type ResourcePrefix: String
+        # @param ResourceId: 资源唯一标记
+        # @type ResourceId: String
+        # @param ResourceRegion: 资源所在地域
+        # @type ResourceRegion: String
+        # @param ServiceType: 业务类型
+        # @type ServiceType: String
+
+        attr_accessor :TagFilters, :CreateUin, :Offset, :Limit, :ResourcePrefix, :ResourceId, :ResourceRegion, :ServiceType
+        
+        def initialize(tagfilters=nil, createuin=nil, offset=nil, limit=nil, resourceprefix=nil, resourceid=nil, resourceregion=nil, servicetype=nil)
+          @TagFilters = tagfilters
+          @CreateUin = createuin
+          @Offset = offset
+          @Limit = limit
+          @ResourcePrefix = resourceprefix
+          @ResourceId = resourceid
+          @ResourceRegion = resourceregion
+          @ServiceType = servicetype
+        end
+
+        def deserialize(params)
+          @TagFilters = params['TagFilters']
+          @CreateUin = params['CreateUin']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ResourcePrefix = params['ResourcePrefix']
+          @ResourceId = params['ResourceId']
+          @ResourceRegion = params['ResourceRegion']
+          @ServiceType = params['ServiceType']
+        end
+      end
+
+      # DescribeResourcesByTagsUnion返回参数结构体
+      class DescribeResourcesByTagsUnionResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 结果总数
+        # @type TotalCount: Integer
+        # @param Offset: 数据位移偏量
+        # @type Offset: Integer
+        # @param Limit: 每页大小
         # @type Limit: Integer
         # @param Rows: 资源标签
         # @type Rows: Array
@@ -771,7 +847,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param CreateUin: 创建者用户 Uin，不传或为空只将 Uin 作为条件查询
         # @type CreateUin: Integer
-        # @param TagKeys: 标签键数组,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签,当与TagKey同时传递时只会本值
+        # @param TagKeys: 标签键数组,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签,当与TagKey同时传递时只取本值
         # @type TagKeys: Array
         # @param ShowProject: 是否展现项目标签
         # @type ShowProject: Integer
@@ -843,7 +919,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param CreateUin: 创建者用户 Uin，不传或为空只将 Uin 作为条件查询
         # @type CreateUin: Integer
-        # @param TagKeys: 标签键数组,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签,当与TagKey同时传递时只会本值
+        # @param TagKeys: 标签键数组,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签,当与TagKey同时传递时只取本值
         # @type TagKeys: Array
         # @param ShowProject: 是否展现项目标签
         # @type ShowProject: Integer
@@ -905,15 +981,15 @@ module TencentCloud
 
       # DetachResourcesTag请求参数结构体
       class DetachResourcesTagRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 资源所属业务名称
+        # @param ServiceType: 资源所属业务名称（资源六段式中的第三段）
         # @type ServiceType: String
         # @param ResourceIds: 资源ID数组，资源个数最多为50
         # @type ResourceIds: Array
         # @param TagKey: 需要解绑的标签键
         # @type TagKey: String
-        # @param ResourceRegion: 资源所在地域不区分地域的资源不需要传入该字段
+        # @param ResourceRegion: 资源所在地域，不区分地域的资源不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
-        # @param ResourcePrefix: 资源前缀，cos存储桶不需要传入该字段
+        # @param ResourcePrefix: 资源前缀（资源六段式中最后一段"/"前面的部分），cos存储桶不需要传入该字段，其他云资源必填
         # @type ResourcePrefix: String
 
         attr_accessor :ServiceType, :ResourceIds, :TagKey, :ResourceRegion, :ResourcePrefix
@@ -953,11 +1029,11 @@ module TencentCloud
 
       # ModifyResourceTags请求参数结构体
       class ModifyResourceTagsRequest < TencentCloud::Common::AbstractModel
-        # @param Resource: 资源的六段式描述
+        # @param Resource: [ 资源六段式描述 ](https://cloud.tencent.com/document/product/598/10606)
         # @type Resource: String
-        # @param ReplaceTags: 需要增加或修改的标签集合。如果Resource描述的资源未关联输入的标签键，则增加关联；若已关联，则将该资源关联的键对应的标签值修改为输入值。本接口中ReplaceTags和DeleteTags二者必须存在其一，且二者不能包含相同的标签键
+        # @param ReplaceTags: 需要增加或修改的标签集合。如果Resource描述的资源未关联输入的标签键，则增加关联；若已关联，则将该资源关联的键对应的标签值修改为输入值。本接口中ReplaceTags和DeleteTags二者必须存在其一，且二者不能包含相同的标签键。可以不传该参数，但不能是空数组。
         # @type ReplaceTags: Array
-        # @param DeleteTags: 需要解关联的标签集合。本接口中ReplaceTags和DeleteTags二者必须存在其一，且二者不能包含相同的标签键
+        # @param DeleteTags: 需要解关联的标签集合。本接口中ReplaceTags和DeleteTags二者必须存在其一，且二者不能包含相同的标签键。可以不传该参数，但不能是空数组。
         # @type DeleteTags: Array
 
         attr_accessor :Resource, :ReplaceTags, :DeleteTags
@@ -993,7 +1069,7 @@ module TencentCloud
 
       # ModifyResourcesTagValue请求参数结构体
       class ModifyResourcesTagValueRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 资源所属业务名称
+        # @param ServiceType: 资源所属业务名称（资源六段式中的第三段）
         # @type ServiceType: String
         # @param ResourceIds: 资源ID数组，资源个数最多为50
         # @type ResourceIds: Array
@@ -1001,9 +1077,9 @@ module TencentCloud
         # @type TagKey: String
         # @param TagValue: 标签值
         # @type TagValue: String
-        # @param ResourceRegion: 资源所在地域，不区分地域的资源不需要传入该字段
+        # @param ResourceRegion: 资源所在地域，不区分地域的资源不需要传入该字段，区分地域的资源必填
         # @type ResourceRegion: String
-        # @param ResourcePrefix: 资源前缀，cos存储桶不需要传入该字段
+        # @param ResourcePrefix: 资源前缀（资源六段式中最后一段"/"前面的部分），cos存储桶不需要传入该字段，其他云资源必填
         # @type ResourcePrefix: String
 
         attr_accessor :ServiceType, :ResourceIds, :TagKey, :TagValue, :ResourceRegion, :ResourcePrefix
@@ -1225,7 +1301,7 @@ module TencentCloud
         # @type TagKey: String
         # @param TagValue: 修改后的标签值
         # @type TagValue: String
-        # @param Resource: 资源的六段式描述
+        # @param Resource: [ 资源六段式描述 ](https://cloud.tencent.com/document/product/598/10606)
         # @type Resource: String
 
         attr_accessor :TagKey, :TagValue, :Resource

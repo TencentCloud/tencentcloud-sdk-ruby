@@ -177,11 +177,11 @@ module TencentCloud
       class Block < TencentCloud::Common::AbstractModel
         # @param BlockNum: 区块编号
         # @type BlockNum: Integer
-        # @param DataHash: 区块Hash数值
+        # @param DataHash: 区块数据Hash数值
         # @type DataHash: String
         # @param BlockId: 区块ID，与区块编号一致
         # @type BlockId: Integer
-        # @param PreHash: 前一个区块Hash（未使用）,与区块Hash数值一致
+        # @param PreHash: 前一个区块Hash
         # @type PreHash: String
         # @param TxCount: 区块内的交易数量
         # @type TxCount: Integer
@@ -257,7 +257,7 @@ module TencentCloud
       class DeployDynamicContractHandlerRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，固定字段：contract
         # @type Module: String
-        # @param Operation: 操作名，固定字段：deploy_by_dynamic_contract
+        # @param Operation: 操作名，固定字段：deploy_dynamic_contract
         # @type Operation: String
         # @param GroupPk: 群组编号
         # @type GroupPk: String
@@ -1091,7 +1091,7 @@ module TencentCloud
         # @type FuncName: String
         # @param GroupName: 调用合约的组织名称，可以在组织管理列表中获取当前组织的名称
         # @type GroupName: String
-        # @param Args: 被调用的函数参数列表
+        # @param Args: 被调用的函数参数列表，参数列表大小总和要求小于2M
         # @type Args: Array
         # @param AsyncFlag: 同步调用标识，可选参数，值为0或者不传表示使用同步方法调用，调用后会等待交易执行后再返回执行结果；值为1时表示使用异步方式调用Invoke，执行后会立即返回交易对应的Txid，后续需要通过GetInvokeTx这个API查询该交易的执行结果。（对于逻辑较为简单的交易，可以使用同步模式；对于逻辑较为复杂的交易，建议使用异步模式，否则容易导致API因等待时间过长，返回等待超时）
         # @type AsyncFlag: Integer

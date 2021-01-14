@@ -73,19 +73,23 @@ module TencentCloud
       class AvailableType < TencentCloud::Common::AbstractModel
         # @param Protocols: 协议与售卖详情
         # @type Protocols: Array
-        # @param Type: 存储类型。可选值有 SD 标准型存储、HP性能型存储
+        # @param Type: 存储类型。返回值中 SD 为标准型存储、HP 为性能型存储
         # @type Type: String
+        # @param Prepayment: 是否支持预付费。返回值中 true 为支持、false 为不支持
+        # @type Prepayment: Boolean
 
-        attr_accessor :Protocols, :Type
+        attr_accessor :Protocols, :Type, :Prepayment
         
-        def initialize(protocols=nil, type=nil)
+        def initialize(protocols=nil, type=nil, prepayment=nil)
           @Protocols = protocols
           @Type = type
+          @Prepayment = prepayment
         end
 
         def deserialize(params)
           @Protocols = params['Protocols']
           @Type = params['Type']
+          @Prepayment = params['Prepayment']
         end
       end
 
@@ -143,10 +147,12 @@ module TencentCloud
         # @type FsName: String
         # @param ResourceTags: 文件系统标签
         # @type ResourceTags: Array
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。用于保证请求幂等性的字符串失效时间为2小时。
+        # @type ClientToken: String
 
-        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :ResourceTags
+        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :ResourceTags, :ClientToken
         
-        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, resourcetags=nil)
+        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, resourcetags=nil, clienttoken=nil)
           @Zone = zone
           @NetInterface = netinterface
           @PGroupId = pgroupid
@@ -157,6 +163,7 @@ module TencentCloud
           @MountIP = mountip
           @FsName = fsname
           @ResourceTags = resourcetags
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
@@ -170,6 +177,7 @@ module TencentCloud
           @MountIP = params['MountIP']
           @FsName = params['FsName']
           @ResourceTags = params['ResourceTags']
+          @ClientToken = params['ClientToken']
         end
       end
 
@@ -532,6 +540,42 @@ module TencentCloud
         end
       end
 
+      # DescribeCfsFileSystemClients请求参数结构体
+      class DescribeCfsFileSystemClientsRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统 ID。
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+        
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DescribeCfsFileSystemClients返回参数结构体
+      class DescribeCfsFileSystemClientsResponse < TencentCloud::Common::AbstractModel
+        # @param ClientList: 客户端列表
+        # @type ClientList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClientList, :RequestId
+        
+        def initialize(clientlist=nil, requestid=nil)
+          @ClientList = clientlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClientList = params['ClientList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCfsFileSystems请求参数结构体
       class DescribeCfsFileSystemsRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID
@@ -718,6 +762,42 @@ module TencentCloud
         end
       end
 
+      # 文件系统客户端信息
+      class FileSystemClient < TencentCloud::Common::AbstractModel
+        # @param CfsVip: 文件系统IP地址
+        # @type CfsVip: String
+        # @param ClientIp: 客户端IP地址
+        # @type ClientIp: String
+        # @param VpcId: 文件系统所属VPCID
+        # @type VpcId: String
+        # @param Zone: 可用区名称，例如ap-beijing-1，请参考 概览文档中的地域与可用区列表
+        # @type Zone: String
+        # @param ZoneName: 可用区中文名称
+        # @type ZoneName: String
+        # @param MountDirectory: 该文件系统被挂载到客户端上的路径信息
+        # @type MountDirectory: String
+
+        attr_accessor :CfsVip, :ClientIp, :VpcId, :Zone, :ZoneName, :MountDirectory
+        
+        def initialize(cfsvip=nil, clientip=nil, vpcid=nil, zone=nil, zonename=nil, mountdirectory=nil)
+          @CfsVip = cfsvip
+          @ClientIp = clientip
+          @VpcId = vpcid
+          @Zone = zone
+          @ZoneName = zonename
+          @MountDirectory = mountdirectory
+        end
+
+        def deserialize(params)
+          @CfsVip = params['CfsVip']
+          @ClientIp = params['ClientIp']
+          @VpcId = params['VpcId']
+          @Zone = params['Zone']
+          @ZoneName = params['ZoneName']
+          @MountDirectory = params['MountDirectory']
+        end
+      end
+
       # 文件系统基本信息
       class FileSystemInfo < TencentCloud::Common::AbstractModel
         # @param CreationTime: 创建时间
@@ -740,7 +820,7 @@ module TencentCloud
         # @type Protocol: String
         # @param StorageType: 文件系统存储类型
         # @type StorageType: String
-        # @param StorageResourcePkg: 文件系统绑定的预付费存储包（暂未支持）
+        # @param StorageResourcePkg: 文件系统绑定的预付费存储包
         # @type StorageResourcePkg: String
         # @param BandwidthResourcePkg: 文件系统绑定的预付费带宽包（暂未支持）
         # @type BandwidthResourcePkg: String
@@ -754,10 +834,12 @@ module TencentCloud
         # @type KmsKeyId: String
         # @param AppId: 应用ID
         # @type AppId: Integer
+        # @param BandwidthLimit: 文件系统吞吐上限，吞吐上限是根据文件系统当前已使用存储量、绑定的存储资源包以及吞吐资源包一同确定
+        # @type BandwidthLimit: Float
 
-        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId
+        attr_accessor :CreationTime, :CreationToken, :FileSystemId, :LifeCycleState, :SizeByte, :SizeLimit, :ZoneId, :Zone, :Protocol, :StorageType, :StorageResourcePkg, :BandwidthResourcePkg, :PGroup, :FsName, :Encrypted, :KmsKeyId, :AppId, :BandwidthLimit
         
-        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil)
+        def initialize(creationtime=nil, creationtoken=nil, filesystemid=nil, lifecyclestate=nil, sizebyte=nil, sizelimit=nil, zoneid=nil, zone=nil, protocol=nil, storagetype=nil, storageresourcepkg=nil, bandwidthresourcepkg=nil, pgroup=nil, fsname=nil, encrypted=nil, kmskeyid=nil, appid=nil, bandwidthlimit=nil)
           @CreationTime = creationtime
           @CreationToken = creationtoken
           @FileSystemId = filesystemid
@@ -775,6 +857,7 @@ module TencentCloud
           @Encrypted = encrypted
           @KmsKeyId = kmskeyid
           @AppId = appid
+          @BandwidthLimit = bandwidthlimit
         end
 
         def deserialize(params)
@@ -797,6 +880,7 @@ module TencentCloud
           @Encrypted = params['Encrypted']
           @KmsKeyId = params['KmsKeyId']
           @AppId = params['AppId']
+          @BandwidthLimit = params['BandwidthLimit']
         end
       end
 

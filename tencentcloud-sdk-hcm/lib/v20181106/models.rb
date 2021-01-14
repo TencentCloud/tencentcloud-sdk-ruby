@@ -41,10 +41,12 @@ module TencentCloud
         # @type EnablePdfRecognize: Boolean
         # @param PdfPageIndex: pdf页码，从0开始，默认为0
         # @type PdfPageIndex: Integer
+        # @param LaTex: 是否返回LaTex，默认为0返回普通格式，设置成1返回LaTex格式
+        # @type LaTex: Integer
 
-        attr_accessor :SessionId, :Image, :HcmAppid, :Url, :SupportHorizontalImage, :RejectNonArithmeticImage, :IsAsync, :EnableDispRelatedVertical, :EnableDispMidresult, :EnablePdfRecognize, :PdfPageIndex
+        attr_accessor :SessionId, :Image, :HcmAppid, :Url, :SupportHorizontalImage, :RejectNonArithmeticImage, :IsAsync, :EnableDispRelatedVertical, :EnableDispMidresult, :EnablePdfRecognize, :PdfPageIndex, :LaTex
         
-        def initialize(sessionid=nil, image=nil, hcmappid=nil, url=nil, supporthorizontalimage=nil, rejectnonarithmeticimage=nil, isasync=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil)
+        def initialize(sessionid=nil, image=nil, hcmappid=nil, url=nil, supporthorizontalimage=nil, rejectnonarithmeticimage=nil, isasync=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil, latex=nil)
           @SessionId = sessionid
           @Image = image
           @HcmAppid = hcmappid
@@ -56,6 +58,7 @@ module TencentCloud
           @EnableDispMidresult = enabledispmidresult
           @EnablePdfRecognize = enablepdfrecognize
           @PdfPageIndex = pdfpageindex
+          @LaTex = latex
         end
 
         def deserialize(params)
@@ -70,6 +73,7 @@ module TencentCloud
           @EnableDispMidresult = params['EnableDispMidresult']
           @EnablePdfRecognize = params['EnablePdfRecognize']
           @PdfPageIndex = params['PdfPageIndex']
+          @LaTex = params['LaTex']
         end
       end
 
@@ -115,15 +119,19 @@ module TencentCloud
         # @param ExpressionType: 算式题型编号，如加减乘除四则题型，具体题型及编号如下：1 加减乘除四则 2 加减乘除已知结果求运算因子3 判断大小 4 约等于估算 5 带余数除法 6 分数四则运算 7 单位换算 8 竖式加减法 9 竖式乘除法 10 脱式计算 11 解方程
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpressionType: String
+        # @param ItemConf: 文本行置信度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ItemConf: Float
 
-        attr_accessor :Item, :ItemString, :ItemCoord, :Answer, :ExpressionType
+        attr_accessor :Item, :ItemString, :ItemCoord, :Answer, :ExpressionType, :ItemConf
         
-        def initialize(item=nil, itemstring=nil, itemcoord=nil, answer=nil, expressiontype=nil)
+        def initialize(item=nil, itemstring=nil, itemcoord=nil, answer=nil, expressiontype=nil, itemconf=nil)
           @Item = item
           @ItemString = itemstring
           @ItemCoord = itemcoord
           @Answer = answer
           @ExpressionType = expressiontype
+          @ItemConf = itemconf
         end
 
         def deserialize(params)
@@ -134,6 +142,7 @@ module TencentCloud
           end
           @Answer = params['Answer']
           @ExpressionType = params['ExpressionType']
+          @ItemConf = params['ItemConf']
         end
       end
 

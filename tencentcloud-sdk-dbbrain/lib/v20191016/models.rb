@@ -17,23 +17,256 @@
 module TencentCloud
   module Dbbrain
     module V20191016
+      # 联系人contact描述。
+      class ContactItem < TencentCloud::Common::AbstractModel
+        # @param Id: 联系人id。
+        # @type Id: Integer
+        # @param Name: 联系人姓名。
+        # @type Name: String
+        # @param Mail: 联系人绑定的邮箱。
+        # @type Mail: String
+
+        attr_accessor :Id, :Name, :Mail
+        
+        def initialize(id=nil, name=nil, mail=nil)
+          @Id = id
+          @Name = name
+          @Mail = mail
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Mail = params['Mail']
+        end
+      end
+
+      # CreateDBDiagReportTask请求参数结构体
+      class CreateDBDiagReportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间，如“2020-11-08T14:00:00+08:00”。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如“2020-11-09T14:00:00+08:00”。
+        # @type EndTime: String
+        # @param SendMailFlag: 是否发送邮件: 0 - 否，1 - 是。
+        # @type SendMailFlag: Integer
+        # @param ContactPerson: 接收邮件的联系人ID数组。
+        # @type ContactPerson: Array
+        # @param ContactGroup: 接收邮件的联系组ID数组。
+        # @type ContactGroup: Array
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认值为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :SendMailFlag, :ContactPerson, :ContactGroup, :Product
+        
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, sendmailflag=nil, contactperson=nil, contactgroup=nil, product=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @SendMailFlag = sendmailflag
+          @ContactPerson = contactperson
+          @ContactGroup = contactgroup
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SendMailFlag = params['SendMailFlag']
+          @ContactPerson = params['ContactPerson']
+          @ContactGroup = params['ContactGroup']
+          @Product = params['Product']
+        end
+      end
+
+      # CreateDBDiagReportTask返回参数结构体
+      class CreateDBDiagReportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMailProfile请求参数结构体
+      class CreateMailProfileRequest < TencentCloud::Common::AbstractModel
+        # @param ProfileInfo: 邮件配置内容。
+        # @type ProfileInfo: :class:`Tencentcloud::Dbbrain.v20191016.models.ProfileInfo`
+        # @param ProfileLevel: 配置级别，支持值包括："User" - 用户级别，"Instance" - 实例级别，其中数据库巡检邮件配置为用户级别，定期生成邮件配置为实例级别。
+        # @type ProfileLevel: String
+        # @param ProfileName: 配置名称，需要保持唯一性，数据库巡检邮件配置名称自拟；定期生成邮件配置命名格式："scheduler_" + {instanceId}，如"schduler_cdb-test"。
+        # @type ProfileName: String
+        # @param ProfileType: 配置类型，支持值包括："dbScan_mail_configuration" - 数据库巡检邮件配置，"scheduler_mail_configuration" - 定期生成邮件配置。
+        # @type ProfileType: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL。
+        # @type Product: String
+        # @param BindInstanceIds: 配置绑定的实例ID，当配置级别为"Instance"时需要传入。
+        # @type BindInstanceIds: Array
+
+        attr_accessor :ProfileInfo, :ProfileLevel, :ProfileName, :ProfileType, :Product, :BindInstanceIds
+        
+        def initialize(profileinfo=nil, profilelevel=nil, profilename=nil, profiletype=nil, product=nil, bindinstanceids=nil)
+          @ProfileInfo = profileinfo
+          @ProfileLevel = profilelevel
+          @ProfileName = profilename
+          @ProfileType = profiletype
+          @Product = product
+          @BindInstanceIds = bindinstanceids
+        end
+
+        def deserialize(params)
+          unless params['ProfileInfo'].nil?
+            @ProfileInfo = ProfileInfo.new.deserialize(params[ProfileInfo])
+          end
+          @ProfileLevel = params['ProfileLevel']
+          @ProfileName = params['ProfileName']
+          @ProfileType = params['ProfileType']
+          @Product = params['Product']
+          @BindInstanceIds = params['BindInstanceIds']
+        end
+      end
+
+      # CreateMailProfile返回参数结构体
+      class CreateMailProfileResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAllUserContact请求参数结构体
+      class DescribeAllUserContactRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL。
+        # @type Product: String
+        # @param Names: 联系人名数组，支持模糊搜索。
+        # @type Names: Array
+
+        attr_accessor :Product, :Names
+        
+        def initialize(product=nil, names=nil)
+          @Product = product
+          @Names = names
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @Names = params['Names']
+        end
+      end
+
+      # DescribeAllUserContact返回参数结构体
+      class DescribeAllUserContactResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 联系人的总数量。
+        # @type TotalCount: Integer
+        # @param Contacts: 联系人的信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Contacts: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Contacts, :RequestId
+        
+        def initialize(totalcount=nil, contacts=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Contacts = contacts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Contacts = params['Contacts']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAllUserGroup请求参数结构体
+      class DescribeAllUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL。
+        # @type Product: String
+        # @param Names: 联系组名称数组，支持模糊搜索。
+        # @type Names: Array
+
+        attr_accessor :Product, :Names
+        
+        def initialize(product=nil, names=nil)
+          @Product = product
+          @Names = names
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @Names = params['Names']
+        end
+      end
+
+      # DescribeAllUserGroup返回参数结构体
+      class DescribeAllUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 组总数。
+        # @type TotalCount: Integer
+        # @param Groups: 组信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Groups, :RequestId
+        
+        def initialize(totalcount=nil, groups=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Groups = params['Groups']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBDiagEvent请求参数结构体
       class DescribeDBDiagEventRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String
         # @param EventId: 事件 ID 。通过“获取实例诊断历史DescribeDBDiagHistory”获取。
         # @type EventId: Integer
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :EventId
+        attr_accessor :InstanceId, :EventId, :Product
         
-        def initialize(instanceid=nil, eventid=nil)
+        def initialize(instanceid=nil, eventid=nil, product=nil)
           @InstanceId = instanceid
           @EventId = eventid
+          @Product = product
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @EventId = params['EventId']
+          @Product = params['Product']
         end
       end
 
@@ -102,23 +335,27 @@ module TencentCloud
       class DescribeDBDiagHistoryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String
-        # @param StartTime: 开始时间。如“2019-09-10 12:13:14”。
+        # @param StartTime: 开始时间，如“2019-09-10 12:13:14”。
         # @type StartTime: String
-        # @param EndTime: 结束时间。如“2019-09-11 12:13:14”。
+        # @param EndTime: 结束时间，如“2019-09-11 12:13:14”，结束时间与开始时间的间隔最大可为2天。
         # @type EndTime: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product
         
-        def initialize(instanceid=nil, starttime=nil, endtime=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
+          @Product = product
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @Product = params['Product']
         end
       end
 
@@ -148,17 +385,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param RangeDays: 时间段天数，截止日期为当日，默认为7天。
         # @type RangeDays: Integer
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :RangeDays
+        attr_accessor :InstanceId, :RangeDays, :Product
         
-        def initialize(instanceid=nil, rangedays=nil)
+        def initialize(instanceid=nil, rangedays=nil, product=nil)
           @InstanceId = instanceid
           @RangeDays = rangedays
+          @Product = product
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @RangeDays = params['RangeDays']
+          @Product = params['Product']
         end
       end
 
@@ -198,23 +439,27 @@ module TencentCloud
       class DescribeSlowLogTimeSeriesStatsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String
-        # @param StartTime: 开始时间。
+        # @param StartTime: 开始时间，如“2019-09-10 12:13:14”。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间，如“2019-09-10 12:13:14”，结束时间与开始时间的间隔最大可为7天。
         # @type EndTime: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product
         
-        def initialize(instanceid=nil, starttime=nil, endtime=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
+          @Product = product
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @Product = params['Product']
         end
       end
 
@@ -252,9 +497,9 @@ module TencentCloud
       class DescribeSlowLogTopSqlsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String
-        # @param StartTime: 开始时间。
+        # @param StartTime: 开始时间，如“2019-09-10 12:13:14”。
         # @type StartTime: String
-        # @param EndTime: 截止时间。
+        # @param EndTime: 截止时间，如“2019-09-10 12:13:14”，截止时间与开始时间的间隔最大可为7天。
         # @type EndTime: String
         # @param SortBy: 排序键，目前支持 QueryTime,ExecTimes,RowsSent,LockTime以及RowsExamined 等排序键。
         # @type SortBy: String
@@ -264,10 +509,14 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
+        # @param SchemaList: 数据库名称数组。
+        # @type SchemaList: Array
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :SortBy, :OrderBy, :Limit, :Offset
+        attr_accessor :InstanceId, :StartTime, :EndTime, :SortBy, :OrderBy, :Limit, :Offset, :SchemaList, :Product
         
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, sortby=nil, orderby=nil, limit=nil, offset=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, sortby=nil, orderby=nil, limit=nil, offset=nil, schemalist=nil, product=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -275,6 +524,8 @@ module TencentCloud
           @OrderBy = orderby
           @Limit = limit
           @Offset = offset
+          @SchemaList = schemalist
+          @Product = product
         end
 
         def deserialize(params)
@@ -285,6 +536,8 @@ module TencentCloud
           @OrderBy = params['OrderBy']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @SchemaList = params['SchemaList']
+          @Product = params['Product']
         end
       end
 
@@ -320,19 +573,22 @@ module TencentCloud
         # @type Limit: Integer
         # @param SortBy: 筛选Top表所用的排序字段，可选字段包含DataLength、IndexLength、TotalLength、DataFree、FragRatio、TableRows、PhysicalFileSize，默认为 PhysicalFileSize。
         # @type SortBy: String
-        # @param StartDate: 开始日期，最早为当日的前第6天，默认为截止日期的前第6天。
+        # @param StartDate: 开始日期，最早为当日的前第29天，默认为截止日期的前第6天。
         # @type StartDate: String
-        # @param EndDate: 截止日期，最早为当日的前第6天，默认为当日。
+        # @param EndDate: 截止日期，最早为当日的前第29天，默认为当日。
         # @type EndDate: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :Limit, :SortBy, :StartDate, :EndDate
+        attr_accessor :InstanceId, :Limit, :SortBy, :StartDate, :EndDate, :Product
         
-        def initialize(instanceid=nil, limit=nil, sortby=nil, startdate=nil, enddate=nil)
+        def initialize(instanceid=nil, limit=nil, sortby=nil, startdate=nil, enddate=nil, product=nil)
           @InstanceId = instanceid
           @Limit = limit
           @SortBy = sortby
           @StartDate = startdate
           @EndDate = enddate
+          @Product = product
         end
 
         def deserialize(params)
@@ -341,6 +597,7 @@ module TencentCloud
           @SortBy = params['SortBy']
           @StartDate = params['StartDate']
           @EndDate = params['EndDate']
+          @Product = params['Product']
         end
       end
 
@@ -372,19 +629,23 @@ module TencentCloud
         # @type Limit: Integer
         # @param SortBy: 筛选Top表所用的排序字段，可选字段包含DataLength、IndexLength、TotalLength、DataFree、FragRatio、TableRows、PhysicalFileSize，默认为 PhysicalFileSize。
         # @type SortBy: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
 
-        attr_accessor :InstanceId, :Limit, :SortBy
+        attr_accessor :InstanceId, :Limit, :SortBy, :Product
         
-        def initialize(instanceid=nil, limit=nil, sortby=nil)
+        def initialize(instanceid=nil, limit=nil, sortby=nil, product=nil)
           @InstanceId = instanceid
           @Limit = limit
           @SortBy = sortby
+          @Product = product
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @Limit = params['Limit']
           @SortBy = params['SortBy']
+          @Product = params['Product']
         end
       end
 
@@ -392,18 +653,22 @@ module TencentCloud
       class DescribeTopSpaceTablesResponse < TencentCloud::Common::AbstractModel
         # @param TopSpaceTables: 返回的Top表空间统计信息列表。
         # @type TopSpaceTables: Array
+        # @param Timestamp: 采集表空间数据的时间戳（秒）。
+        # @type Timestamp: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TopSpaceTables, :RequestId
+        attr_accessor :TopSpaceTables, :Timestamp, :RequestId
         
-        def initialize(topspacetables=nil, requestid=nil)
+        def initialize(topspacetables=nil, timestamp=nil, requestid=nil)
           @TopSpaceTables = topspacetables
+          @Timestamp = timestamp
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TopSpaceTables = params['TopSpaceTables']
+          @Timestamp = params['Timestamp']
           @RequestId = params['RequestId']
         end
       end
@@ -460,6 +725,124 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Metric = params['Metric']
           @Region = params['Region']
+        end
+      end
+
+      # 描述组信息。
+      class GroupItem < TencentCloud::Common::AbstractModel
+        # @param Id: 组id。
+        # @type Id: Integer
+        # @param Name: 组名称。
+        # @type Name: String
+        # @param MemberCount: 组成员数量。
+        # @type MemberCount: Integer
+
+        attr_accessor :Id, :Name, :MemberCount
+        
+        def initialize(id=nil, name=nil, membercount=nil)
+          @Id = id
+          @Name = name
+          @MemberCount = membercount
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @MemberCount = params['MemberCount']
+        end
+      end
+
+      # 实例配置。
+      class InstanceConfs < TencentCloud::Common::AbstractModel
+        # @param DailyInspection: 数据库巡检开关, Yes/No。
+        # @type DailyInspection: String
+
+        attr_accessor :DailyInspection
+        
+        def initialize(dailyinspection=nil)
+          @DailyInspection = dailyinspection
+        end
+
+        def deserialize(params)
+          @DailyInspection = params['DailyInspection']
+        end
+      end
+
+      # 邮件发送配置
+      class MailConfiguration < TencentCloud::Common::AbstractModel
+        # @param SendMail: 是否开启邮件发送: 0, 否; 1, 是。
+        # @type SendMail: Integer
+        # @param Region: 地域配置, 如["ap-guangzhou", "ap-shanghai"]。
+        # @type Region: Array
+        # @param HealthStatus: 发送指定的健康等级的报告, 如["HEALTH", "SUB_HEALTH", "RISK", "HIGH_RISK"]。
+        # @type HealthStatus: Array
+        # @param ContactPerson: 联系人id, 联系人/联系组不能都为空。
+        # @type ContactPerson: Array
+        # @param ContactGroup: 联系组id, 联系人/联系组不能都为空。
+        # @type ContactGroup: Array
+
+        attr_accessor :SendMail, :Region, :HealthStatus, :ContactPerson, :ContactGroup
+        
+        def initialize(sendmail=nil, region=nil, healthstatus=nil, contactperson=nil, contactgroup=nil)
+          @SendMail = sendmail
+          @Region = region
+          @HealthStatus = healthstatus
+          @ContactPerson = contactperson
+          @ContactGroup = contactgroup
+        end
+
+        def deserialize(params)
+          @SendMail = params['SendMail']
+          @Region = params['Region']
+          @HealthStatus = params['HealthStatus']
+          @ContactPerson = params['ContactPerson']
+          @ContactGroup = params['ContactGroup']
+        end
+      end
+
+      # ModifyDiagDBInstanceConf请求参数结构体
+      class ModifyDiagDBInstanceConfRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceConfs: 巡检开关。
+        # @type InstanceConfs: :class:`Tencentcloud::Dbbrain.v20191016.models.InstanceConfs`
+        # @param Regions: 生效实例地域，取值为"All"，代表全地域。
+        # @type Regions: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL。
+        # @type Product: String
+        # @param InstanceIds: 指定更改巡检状态的实例ID。
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceConfs, :Regions, :Product, :InstanceIds
+        
+        def initialize(instanceconfs=nil, regions=nil, product=nil, instanceids=nil)
+          @InstanceConfs = instanceconfs
+          @Regions = regions
+          @Product = product
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          unless params['InstanceConfs'].nil?
+            @InstanceConfs = InstanceConfs.new.deserialize(params[InstanceConfs])
+          end
+          @Regions = params['Regions']
+          @Product = params['Product']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # ModifyDiagDBInstanceConf返回参数结构体
+      class ModifyDiagDBInstanceConfResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -553,6 +936,44 @@ module TencentCloud
         end
       end
 
+      # 用户配置的信息
+      class ProfileInfo < TencentCloud::Common::AbstractModel
+        # @param Language: 语言, 如"zh"。
+        # @type Language: String
+        # @param MailConfiguration: 邮件模板的内容。
+        # @type MailConfiguration: :class:`Tencentcloud::Dbbrain.v20191016.models.MailConfiguration`
+
+        attr_accessor :Language, :MailConfiguration
+        
+        def initialize(language=nil, mailconfiguration=nil)
+          @Language = language
+          @MailConfiguration = mailconfiguration
+        end
+
+        def deserialize(params)
+          @Language = params['Language']
+          unless params['MailConfiguration'].nil?
+            @MailConfiguration = MailConfiguration.new.deserialize(params[MailConfiguration])
+          end
+        end
+      end
+
+      # SchemaItem数组
+      class SchemaItem < TencentCloud::Common::AbstractModel
+        # @param Schema: 数据库名称
+        # @type Schema: String
+
+        attr_accessor :Schema
+        
+        def initialize(schema=nil)
+          @Schema = schema
+        end
+
+        def deserialize(params)
+          @Schema = params['Schema']
+        end
+      end
+
       # 慢日志TopSql
       class SlowLogTopSqlItem < TencentCloud::Common::AbstractModel
         # @param LockTime: sql总锁等待时间
@@ -585,7 +1006,7 @@ module TencentCloud
         # @type SqlTemplate: String
         # @param SqlText: 带参数SQL（随机）
         # @type SqlText: String
-        # @param Schema: schema
+        # @param Schema: 数据库名
         # @type Schema: String
         # @param QueryTimeRatio: 总耗时占比
         # @type QueryTimeRatio: Float

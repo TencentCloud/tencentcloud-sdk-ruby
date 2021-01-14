@@ -31,16 +31,19 @@ module TencentCloud
         # @type SecretBinary: String
         # @param SecretString: 文本类型凭据信息明文（不需要进行base64编码）。SecretBinary 和 SecretString 必须且只能设置一个，，最大支持4096字节。
         # @type SecretString: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
 
-        attr_accessor :SecretName, :VersionId, :Description, :KmsKeyId, :SecretBinary, :SecretString
+        attr_accessor :SecretName, :VersionId, :Description, :KmsKeyId, :SecretBinary, :SecretString, :Tags
         
-        def initialize(secretname=nil, versionid=nil, description=nil, kmskeyid=nil, secretbinary=nil, secretstring=nil)
+        def initialize(secretname=nil, versionid=nil, description=nil, kmskeyid=nil, secretbinary=nil, secretstring=nil, tags=nil)
           @SecretName = secretname
           @VersionId = versionid
           @Description = description
           @KmsKeyId = kmskeyid
           @SecretBinary = secretbinary
           @SecretString = secretstring
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -50,6 +53,7 @@ module TencentCloud
           @KmsKeyId = params['KmsKeyId']
           @SecretBinary = params['SecretBinary']
           @SecretString = params['SecretString']
+          @Tags = params['Tags']
         end
       end
 
@@ -59,20 +63,30 @@ module TencentCloud
         # @type SecretName: String
         # @param VersionId: 新创建的凭据版本。
         # @type VersionId: String
+        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagCode: Integer
+        # @param TagMsg: 标签操作的返回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagMsg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :VersionId, :RequestId
+        attr_accessor :SecretName, :VersionId, :TagCode, :TagMsg, :RequestId
         
-        def initialize(secretname=nil, versionid=nil, requestid=nil)
+        def initialize(secretname=nil, versionid=nil, tagcode=nil, tagmsg=nil, requestid=nil)
           @SecretName = secretname
           @VersionId = versionid
+          @TagCode = tagcode
+          @TagMsg = tagmsg
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SecretName = params['SecretName']
           @VersionId = params['VersionId']
+          @TagCode = params['TagCode']
+          @TagMsg = params['TagMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -468,15 +482,18 @@ module TencentCloud
         # @type State: Integer
         # @param SearchSecretName: 根据凭据名称进行过滤，为空表示不过滤。
         # @type SearchSecretName: String
+        # @param TagFilters: 标签过滤条件
+        # @type TagFilters: Array
 
-        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName
+        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters
         
-        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil)
+        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil)
           @Offset = offset
           @Limit = limit
           @OrderType = ordertype
           @State = state
           @SearchSecretName = searchsecretname
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -485,6 +502,7 @@ module TencentCloud
           @OrderType = params['OrderType']
           @State = params['State']
           @SearchSecretName = params['SearchSecretName']
+          @TagFilters = params['TagFilters']
         end
       end
 
@@ -641,6 +659,46 @@ module TencentCloud
           @DeleteTime = params['DeleteTime']
           @CreateTime = params['CreateTime']
           @KmsKeyType = params['KmsKeyType']
+        end
+      end
+
+      # 标签键和标签值
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签过滤器
+      class TagFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

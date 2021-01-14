@@ -489,6 +489,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 银企直连-单笔支付接口
+
+        # @param request: Request instance for CreateSinglePay.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::CreateSinglePayRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::CreateSinglePayResponse`
+        def CreateSinglePay(request)
+          body = send_request('CreateSinglePay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSinglePayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 微信商户发起批量转账
+
+        # @param request: Request instance for CreateTransferBatch.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::CreateTransferBatchRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::CreateTransferBatchResponse`
+        def CreateTransferBatch(request)
+          body = send_request('CreateTransferBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTransferBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 直播平台-删除代理商完税信息
 
         # @param request: Request instance for DeleteAgentTaxPaymentInfo.
@@ -619,6 +667,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExecuteMemberTransactionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 山姆聚合支付项目-存量订单退款接口。可以通过本接口将支付款全部或部分退还给付款方，在收到用户退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。
+
+        # @param request: Request instance for MigrateOrderRefund.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::MigrateOrderRefundRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::MigrateOrderRefundResponse`
+        def MigrateOrderRefund(request)
+          body = send_request('MigrateOrderRefund', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = MigrateOrderRefundResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时。
+
+        # @param request: Request instance for MigrateOrderRefundQuery.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::MigrateOrderRefundQueryRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::MigrateOrderRefundQueryResponse`
+        def MigrateOrderRefundQuery(request)
+          body = send_request('MigrateOrderRefundQuery', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = MigrateOrderRefundQueryResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -931,6 +1027,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryBankWithdrawCashDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取单笔代发转账对账单下载URL
+
+        # @param request: Request instance for QueryBillDownloadURL.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryBillDownloadURLRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryBillDownloadURLResponse`
+        def QueryBillDownloadURL(request)
+          body = send_request('QueryBillDownloadURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryBillDownloadURLResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1258,6 +1378,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 银企直连-单笔支付状态查询接口
+
+        # @param request: Request instance for QuerySinglePay.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QuerySinglePayRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QuerySinglePayResponse`
+        def QuerySinglePay(request)
+          body = send_request('QuerySinglePay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QuerySinglePayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询银行单笔交易状态。查询单笔交易的状态。
 
         # @param request: Request instance for QuerySingleTransactionStatus.
@@ -1316,6 +1460,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryTradeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过商家批次单号或者微信批次号查询批次单
+
+        # @param request: Request instance for QueryTransferBatch.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryTransferBatchRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryTransferBatchResponse`
+        def QueryTransferBatch(request)
+          body = send_request('QueryTransferBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryTransferBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过商家或者微信批次明细单号查询明细单
+
+        # @param request: Request instance for QueryTransferDetail.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryTransferDetailRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryTransferDetailResponse`
+        def QueryTransferDetail(request)
+          body = send_request('QueryTransferDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryTransferDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 智能代发-单笔代发转账查询接口
+
+        # @param request: Request instance for QueryTransferResult.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryTransferResultRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryTransferResultResponse`
+        def QueryTransferResult(request)
+          body = send_request('QueryTransferResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryTransferResultResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1556,6 +1772,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RevokeRechargeByThirdPayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 智能代发-单笔代发转账接口
+
+        # @param request: Request instance for TransferSinglePay.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::TransferSinglePayRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::TransferSinglePayResponse`
+        def TransferSinglePay(request)
+          body = send_request('TransferSinglePay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferSinglePayResponse.new
             model.deserialize(response['Response'])
             model
           else

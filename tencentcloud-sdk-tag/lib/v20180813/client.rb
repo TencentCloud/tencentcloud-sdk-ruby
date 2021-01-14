@@ -169,7 +169,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于查询已有资源标签键值对
+        # 用于批量查询已有资源关联的标签键值对
 
         # @param request: Request instance for DescribeResourceTagsByResourceIds.
         # @type request: :class:`Tencentcloud::tag::V20180813::DescribeResourceTagsByResourceIdsRequest`
@@ -251,6 +251,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeResourcesByTagsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过标签查询资源列表并集
+
+        # @param request: Request instance for DescribeResourcesByTagsUnion.
+        # @type request: :class:`Tencentcloud::tag::V20180813::DescribeResourcesByTagsUnionRequest`
+        # @rtype: :class:`Tencentcloud::tag::V20180813::DescribeResourcesByTagsUnionResponse`
+        def DescribeResourcesByTagsUnion(request)
+          body = send_request('DescribeResourcesByTagsUnion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourcesByTagsUnionResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -67,10 +67,12 @@ module TencentCloud
         # @type InternalStatus: String
         # @param Dbs: 该账户对相关db的读写权限信息
         # @type Dbs: Array
+        # @param IsAdmin: 是否为管理员账户
+        # @type IsAdmin: Boolean
 
-        attr_accessor :Name, :Remark, :CreateTime, :Status, :UpdateTime, :PassTime, :InternalStatus, :Dbs
+        attr_accessor :Name, :Remark, :CreateTime, :Status, :UpdateTime, :PassTime, :InternalStatus, :Dbs, :IsAdmin
         
-        def initialize(name=nil, remark=nil, createtime=nil, status=nil, updatetime=nil, passtime=nil, internalstatus=nil, dbs=nil)
+        def initialize(name=nil, remark=nil, createtime=nil, status=nil, updatetime=nil, passtime=nil, internalstatus=nil, dbs=nil, isadmin=nil)
           @Name = name
           @Remark = remark
           @CreateTime = createtime
@@ -79,6 +81,7 @@ module TencentCloud
           @PassTime = passtime
           @InternalStatus = internalstatus
           @Dbs = dbs
+          @IsAdmin = isadmin
         end
 
         def deserialize(params)
@@ -90,6 +93,7 @@ module TencentCloud
           @PassTime = params['PassTime']
           @InternalStatus = params['InternalStatus']
           @Dbs = params['Dbs']
+          @IsAdmin = params['IsAdmin']
         end
       end
 
@@ -173,6 +177,42 @@ module TencentCloud
         end
       end
 
+      # AssociateSecurityGroups请求参数结构体
+      class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupId: 安全组ID。
+        # @type SecurityGroupId: String
+        # @param InstanceIdSet: 实例ID 列表，一个或者多个实例ID组成的数组。多个实例必须是同一个地域，同一个可用区，同一个项目下的。
+        # @type InstanceIdSet: Array
+
+        attr_accessor :SecurityGroupId, :InstanceIdSet
+        
+        def initialize(securitygroupid=nil, instanceidset=nil)
+          @SecurityGroupId = securitygroupid
+          @InstanceIdSet = instanceidset
+        end
+
+        def deserialize(params)
+          @SecurityGroupId = params['SecurityGroupId']
+          @InstanceIdSet = params['InstanceIdSet']
+        end
+      end
+
+      # AssociateSecurityGroups返回参数结构体
+      class AssociateSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 备份文件详细信息
       class Backup < TencentCloud::Common::AbstractModel
         # @param FileName: 文件名
@@ -197,10 +237,12 @@ module TencentCloud
         # @type Strategy: Integer
         # @param BackupWay: 备份方式，0-定时备份；1-手动临时备份
         # @type BackupWay: Integer
+        # @param BackupName: 备份名称，可自定义
+        # @type BackupName: String
 
-        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :BackupWay
+        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :BackupWay, :BackupName
         
-        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, backupway=nil)
+        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, backupway=nil, backupname=nil)
           @FileName = filename
           @Size = size
           @StartTime = starttime
@@ -212,6 +254,7 @@ module TencentCloud
           @DBs = dbs
           @Strategy = strategy
           @BackupWay = backupway
+          @BackupName = backupname
         end
 
         def deserialize(params)
@@ -226,6 +269,7 @@ module TencentCloud
           @DBs = params['DBs']
           @Strategy = params['Strategy']
           @BackupWay = params['BackupWay']
+          @BackupName = params['BackupName']
         end
       end
 
@@ -248,6 +292,42 @@ module TencentCloud
       # CompleteExpansion返回参数结构体
       class CompleteExpansionResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程ID，可通过接口DescribeFlowStatus查询立即切换升级任务的状态。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CompleteMigration请求参数结构体
+      class CompleteMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param MigrateId: 迁移任务ID
+        # @type MigrateId: Integer
+
+        attr_accessor :MigrateId
+        
+        def initialize(migrateid=nil)
+          @MigrateId = migrateid
+        end
+
+        def deserialize(params)
+          @MigrateId = params['MigrateId']
+        end
+      end
+
+      # CompleteMigration返回参数结构体
+      class CompleteMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 完成迁移流程发起后，返回的流程id
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -313,19 +393,23 @@ module TencentCloud
         # @type DBNames: Array
         # @param InstanceId: 实例ID，形如mssql-i1z41iwd
         # @type InstanceId: String
+        # @param BackupName: 备份名称，若不填则自动生成“实例ID_备份开始时间戳”
+        # @type BackupName: String
 
-        attr_accessor :Strategy, :DBNames, :InstanceId
+        attr_accessor :Strategy, :DBNames, :InstanceId, :BackupName
         
-        def initialize(strategy=nil, dbnames=nil, instanceid=nil)
+        def initialize(strategy=nil, dbnames=nil, instanceid=nil, backupname=nil)
           @Strategy = strategy
           @DBNames = dbnames
           @InstanceId = instanceid
+          @BackupName = backupname
         end
 
         def deserialize(params)
           @Strategy = params['Strategy']
           @DBNames = params['DBNames']
           @InstanceId = params['InstanceId']
+          @BackupName = params['BackupName']
         end
       end
 
@@ -345,6 +429,114 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBasicDBInstances请求参数结构体
+      class CreateBasicDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
+        # @type Zone: String
+        # @param Cpu: 实例的CPU核心数
+        # @type Cpu: Integer
+        # @param Memory: 实例内存大小，单位GB
+        # @type Memory: Integer
+        # @param Storage: 实例磁盘大小，单位GB
+        # @type Storage: Integer
+        # @param SubnetId: VPC子网ID，形如subnet-bdoe83fa
+        # @type SubnetId: String
+        # @param VpcId: VPC网络ID，形如vpc-dsp338hz
+        # @type VpcId: String
+        # @param MachineType: 购买实例的宿主机类型, CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘
+        # @type MachineType: String
+        # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
+        # @type InstanceChargeType: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param GoodsNum: 本次购买几个实例，默认值为1。取值不超过10
+        # @type GoodsNum: Integer
+        # @param DBVersion: sqlserver版本，目前只支持：2008R2（SQL Server 2008 Enterprise），2012SP3（SQL Server 2012 Enterprise），2016SP1（SQL Server 2016 Enterprise），201602（SQL Server 2016 Standard），2017（SQL Server 2017 Enterprise），201202（SQL Server 2012 Standard），201402（SQL Server 2014 Standard），2014SP2（SQL Server 2014 Enterprise），201702（SQL Server 2017 Standard）版本。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。
+        # @type DBVersion: String
+        # @param Period: 购买实例周期，默认取值为1，表示一个月。取值不超过48
+        # @type Period: Integer
+        # @param SecurityGroupList: 安全组列表，填写形如sg-xxx的安全组ID
+        # @type SecurityGroupList: Array
+        # @param AutoRenewFlag: 自动续费标志：0-正常续费  1-自动续费，默认为1自动续费。只在购买预付费实例时有效。
+        # @type AutoRenewFlag: Integer
+        # @param AutoVoucher: 是否自动使用代金券；1 - 是，0 - 否，默认不使用
+        # @type AutoVoucher: Integer
+        # @param VoucherIds: 代金券ID数组，目前单个订单只能使用一张
+        # @type VoucherIds: Array
+        # @param Weekly: 可维护时间窗配置，以周为单位，表示周几允许维护，1-7分别代表周一到周末
+        # @type Weekly: Array
+        # @param StartTime: 可维护时间窗配置，每天可维护的开始时间
+        # @type StartTime: String
+        # @param Span: 可维护时间窗配置，持续时间，单位：小时
+        # @type Span: Integer
+
+        attr_accessor :Zone, :Cpu, :Memory, :Storage, :SubnetId, :VpcId, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :Period, :SecurityGroupList, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :Weekly, :StartTime, :Span
+        
+        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, subnetid=nil, vpcid=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, weekly=nil, starttime=nil, span=nil)
+          @Zone = zone
+          @Cpu = cpu
+          @Memory = memory
+          @Storage = storage
+          @SubnetId = subnetid
+          @VpcId = vpcid
+          @MachineType = machinetype
+          @InstanceChargeType = instancechargetype
+          @ProjectId = projectid
+          @GoodsNum = goodsnum
+          @DBVersion = dbversion
+          @Period = period
+          @SecurityGroupList = securitygrouplist
+          @AutoRenewFlag = autorenewflag
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
+          @Weekly = weekly
+          @StartTime = starttime
+          @Span = span
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @SubnetId = params['SubnetId']
+          @VpcId = params['VpcId']
+          @MachineType = params['MachineType']
+          @InstanceChargeType = params['InstanceChargeType']
+          @ProjectId = params['ProjectId']
+          @GoodsNum = params['GoodsNum']
+          @DBVersion = params['DBVersion']
+          @Period = params['Period']
+          @SecurityGroupList = params['SecurityGroupList']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
+          @Weekly = params['Weekly']
+          @StartTime = params['StartTime']
+          @Span = params['Span']
+        end
+      end
+
+      # CreateBasicDBInstances返回参数结构体
+      class CreateBasicDBInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单名称
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+        
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -515,16 +707,19 @@ module TencentCloud
         # @type Target: :class:`Tencentcloud::Sqlserver.v20180328.models.MigrateTarget`
         # @param MigrateDBSet: 迁移DB对象 ，离线迁移不使用（SourceType=4或SourceType=5）。
         # @type MigrateDBSet: Array
+        # @param RenameRestore: 按照ReNameRestoreDatabase中的库进行恢复，并重命名，不填则按照默认方式命名恢复的库，且恢复所有的库。SourceType=5的情况下有效。
+        # @type RenameRestore: Array
 
-        attr_accessor :MigrateName, :MigrateType, :SourceType, :Source, :Target, :MigrateDBSet
+        attr_accessor :MigrateName, :MigrateType, :SourceType, :Source, :Target, :MigrateDBSet, :RenameRestore
         
-        def initialize(migratename=nil, migratetype=nil, sourcetype=nil, source=nil, target=nil, migratedbset=nil)
+        def initialize(migratename=nil, migratetype=nil, sourcetype=nil, source=nil, target=nil, migratedbset=nil, renamerestore=nil)
           @MigrateName = migratename
           @MigrateType = migratetype
           @SourceType = sourcetype
           @Source = source
           @Target = target
           @MigrateDBSet = migratedbset
+          @RenameRestore = renamerestore
         end
 
         def deserialize(params)
@@ -538,6 +733,7 @@ module TencentCloud
             @Target = MigrateTarget.new.deserialize(params[Target])
           end
           @MigrateDBSet = params['MigrateDBSet']
+          @RenameRestore = params['RenameRestore']
         end
       end
 
@@ -605,6 +801,114 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateReadOnlyDBInstances请求参数结构体
+      class CreateReadOnlyDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 主实例ID，格式如：mssql-3l3fgqn7
+        # @type InstanceId: String
+        # @param Zone: 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
+        # @type Zone: String
+        # @param ReadOnlyGroupType: 只读组类型选项，1-按照一个实例一个只读组的方式发货，2-新建只读组后发货，所有实例都在这个只读组下面， 3-发货的所有实例都在已有的只读组下面
+        # @type ReadOnlyGroupType: Integer
+        # @param Memory: 实例内存大小，单位GB
+        # @type Memory: Integer
+        # @param Storage: 实例磁盘大小，单位GB
+        # @type Storage: Integer
+        # @param ReadOnlyGroupForcedUpgrade: 0-默认不升级主实例，1-强制升级主实例完成ro部署；主实例为非集群版时需要填1，强制升级为集群版。填1 说明您已同意将主实例升级到集群版实例。
+        # @type ReadOnlyGroupForcedUpgrade: Integer
+        # @param ReadOnlyGroupId: ReadOnlyGroupType=3时必填,已存在的只读组ID
+        # @type ReadOnlyGroupId: String
+        # @param ReadOnlyGroupName: ReadOnlyGroupType=2时必填，新建的只读组名称
+        # @type ReadOnlyGroupName: String
+        # @param ReadOnlyGroupIsOfflineDelay: ReadOnlyGroupType=2时必填，新建的只读组是否开启延迟剔除功能，1-开启，0-关闭。当只读副本与主实例延迟大于阈值后，自动剔除。
+        # @type ReadOnlyGroupIsOfflineDelay: Integer
+        # @param ReadOnlyGroupMaxDelayTime: ReadOnlyGroupType=2 且 ReadOnlyGroupIsOfflineDelay=1时必填，新建的只读组延迟剔除的阈值。
+        # @type ReadOnlyGroupMaxDelayTime: Integer
+        # @param ReadOnlyGroupMinInGroup: ReadOnlyGroupType=2 且 ReadOnlyGroupIsOfflineDelay=1时必填，新建的只读组延迟剔除后至少保留只读副本的个数。
+        # @type ReadOnlyGroupMinInGroup: Integer
+        # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
+        # @type InstanceChargeType: String
+        # @param GoodsNum: 本次购买几个只读实例，默认值为1。
+        # @type GoodsNum: Integer
+        # @param SubnetId: VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置
+        # @type SubnetId: String
+        # @param VpcId: VPC网络ID，形如vpc-dsp338hz；SubnetId和VpcId需同时设置或者同时不设置
+        # @type VpcId: String
+        # @param Period: 购买实例周期，默认取值为1，表示一个月。取值不超过48
+        # @type Period: Integer
+        # @param SecurityGroupList: 安全组列表，填写形如sg-xxx的安全组ID
+        # @type SecurityGroupList: Array
+        # @param AutoVoucher: 是否自动使用代金券；1 - 是，0 - 否，默认不使用
+        # @type AutoVoucher: Integer
+        # @param VoucherIds: 代金券ID数组，目前单个订单只能使用一张
+        # @type VoucherIds: Array
+
+        attr_accessor :InstanceId, :Zone, :ReadOnlyGroupType, :Memory, :Storage, :ReadOnlyGroupForcedUpgrade, :ReadOnlyGroupId, :ReadOnlyGroupName, :ReadOnlyGroupIsOfflineDelay, :ReadOnlyGroupMaxDelayTime, :ReadOnlyGroupMinInGroup, :InstanceChargeType, :GoodsNum, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoVoucher, :VoucherIds
+        
+        def initialize(instanceid=nil, zone=nil, readonlygrouptype=nil, memory=nil, storage=nil, readonlygroupforcedupgrade=nil, readonlygroupid=nil, readonlygroupname=nil, readonlygroupisofflinedelay=nil, readonlygroupmaxdelaytime=nil, readonlygroupminingroup=nil, instancechargetype=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autovoucher=nil, voucherids=nil)
+          @InstanceId = instanceid
+          @Zone = zone
+          @ReadOnlyGroupType = readonlygrouptype
+          @Memory = memory
+          @Storage = storage
+          @ReadOnlyGroupForcedUpgrade = readonlygroupforcedupgrade
+          @ReadOnlyGroupId = readonlygroupid
+          @ReadOnlyGroupName = readonlygroupname
+          @ReadOnlyGroupIsOfflineDelay = readonlygroupisofflinedelay
+          @ReadOnlyGroupMaxDelayTime = readonlygroupmaxdelaytime
+          @ReadOnlyGroupMinInGroup = readonlygroupminingroup
+          @InstanceChargeType = instancechargetype
+          @GoodsNum = goodsnum
+          @SubnetId = subnetid
+          @VpcId = vpcid
+          @Period = period
+          @SecurityGroupList = securitygrouplist
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Zone = params['Zone']
+          @ReadOnlyGroupType = params['ReadOnlyGroupType']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @ReadOnlyGroupForcedUpgrade = params['ReadOnlyGroupForcedUpgrade']
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+          @ReadOnlyGroupName = params['ReadOnlyGroupName']
+          @ReadOnlyGroupIsOfflineDelay = params['ReadOnlyGroupIsOfflineDelay']
+          @ReadOnlyGroupMaxDelayTime = params['ReadOnlyGroupMaxDelayTime']
+          @ReadOnlyGroupMinInGroup = params['ReadOnlyGroupMinInGroup']
+          @InstanceChargeType = params['InstanceChargeType']
+          @GoodsNum = params['GoodsNum']
+          @SubnetId = params['SubnetId']
+          @VpcId = params['VpcId']
+          @Period = params['Period']
+          @SecurityGroupList = params['SecurityGroupList']
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
+        end
+      end
+
+      # CreateReadOnlyDBInstances返回参数结构体
+      class CreateReadOnlyDBInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param DealNames: 订单名称数组
+        # @type DealNames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealNames, :RequestId
+        
+        def initialize(dealnames=nil, requestid=nil)
+          @DealNames = dealnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
           @RequestId = params['RequestId']
         end
       end
@@ -719,7 +1023,7 @@ module TencentCloud
         # @type VersionName: String
         # @param RenewFlag: 实例续费标记，0-正常续费，1-自动续费，2-到期不续费
         # @type RenewFlag: Integer
-        # @param Model: 实例高可用， 1-双机高可用，2-单机
+        # @param Model: 实例高可用， 1-双机高可用，2-单机，3-跨可用区，4-集群跨可用区，5-集群，9-自研机房
         # @type Model: Integer
         # @param Region: 实例所在地域名称，如 ap-guangzhou
         # @type Region: String
@@ -1045,6 +1349,38 @@ module TencentCloud
         end
       end
 
+      # DeleteDBInstance请求参数结构体
+      class DeleteDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：mssql-3l3fgqn7 或 mssqlro-3l3fgqn7
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteDBInstance返回参数结构体
+      class DeleteDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDB请求参数结构体
       class DeleteDBRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-rljoi3bf
@@ -1205,6 +1541,90 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupByFlowId请求参数结构体
+      class DescribeBackupByFlowIdRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：mssql-3l3fgqn7
+        # @type InstanceId: String
+        # @param FlowId: 创建备份流程ID，可通过 [CreateBackup](https://cloud.tencent.com/document/product/238/19946) 接口获取
+        # @type FlowId: String
+
+        attr_accessor :InstanceId, :FlowId
+        
+        def initialize(instanceid=nil, flowid=nil)
+          @InstanceId = instanceid
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # DescribeBackupByFlowId返回参数结构体
+      class DescribeBackupByFlowIdResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 备份文件唯一标识，RestoreInstance接口会用到该字段
+        # @type Id: Integer
+        # @param FileName: 存储文件名
+        # @type FileName: String
+        # @param BackupName: 备份名称，可自定义
+        # @type BackupName: String
+        # @param StartTime: 备份开始时间
+        # @type StartTime: String
+        # @param EndTime: 备份结束时间
+        # @type EndTime: String
+        # @param Size: 文件大小，单位 KB
+        # @type Size: Integer
+        # @param Strategy: 备份策略，0-实例备份；1-多库备份；实例状态是0-创建中时，该字段为默认值0，无实际意义
+        # @type Strategy: Integer
+        # @param BackupWay: 备份方式，0-定时备份；1-手动临时备份；实例状态是0-创建中时，该字段为默认值0，无实际意义
+        # @type BackupWay: Integer
+        # @param Status: 备份文件状态，0-创建中；1-成功；2-失败
+        # @type Status: Integer
+        # @param DBs: 多库备份时的DB列表
+        # @type DBs: Array
+        # @param InternalAddr: 内网下载地址
+        # @type InternalAddr: String
+        # @param ExternalAddr: 外网下载地址
+        # @type ExternalAddr: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :FileName, :BackupName, :StartTime, :EndTime, :Size, :Strategy, :BackupWay, :Status, :DBs, :InternalAddr, :ExternalAddr, :RequestId
+        
+        def initialize(id=nil, filename=nil, backupname=nil, starttime=nil, endtime=nil, size=nil, strategy=nil, backupway=nil, status=nil, dbs=nil, internaladdr=nil, externaladdr=nil, requestid=nil)
+          @Id = id
+          @FileName = filename
+          @BackupName = backupname
+          @StartTime = starttime
+          @EndTime = endtime
+          @Size = size
+          @Strategy = strategy
+          @BackupWay = backupway
+          @Status = status
+          @DBs = dbs
+          @InternalAddr = internaladdr
+          @ExternalAddr = externaladdr
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @FileName = params['FileName']
+          @BackupName = params['BackupName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Size = params['Size']
+          @Strategy = params['Strategy']
+          @BackupWay = params['BackupWay']
+          @Status = params['Status']
+          @DBs = params['DBs']
+          @InternalAddr = params['InternalAddr']
+          @ExternalAddr = params['ExternalAddr']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackups请求参数结构体
       class DescribeBackupsRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间(yyyy-MM-dd HH:mm:ss)
@@ -1217,15 +1637,27 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页返回，页编号，默认值为第0页
         # @type Offset: Integer
+        # @param BackupName: 按照备份名称筛选，不填则不筛选此项
+        # @type BackupName: String
+        # @param Strategy: 按照备份策略筛选，0-实例备份，1-多库备份，不填则不筛选此项
+        # @type Strategy: Integer
+        # @param BackupWay: 按照备份方式筛选，0-后台自动定时备份，1-用户手动临时备份，不填则不筛选此项
+        # @type BackupWay: Integer
+        # @param BackupId: 按照备份ID筛选，不填则不筛选此项
+        # @type BackupId: Integer
 
-        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset
+        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset, :BackupName, :Strategy, :BackupWay, :BackupId
         
-        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil)
+        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil, backupname=nil, strategy=nil, backupway=nil, backupid=nil)
           @StartTime = starttime
           @EndTime = endtime
           @InstanceId = instanceid
           @Limit = limit
           @Offset = offset
+          @BackupName = backupname
+          @Strategy = strategy
+          @BackupWay = backupway
+          @BackupId = backupid
         end
 
         def deserialize(params)
@@ -1234,6 +1666,10 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @BackupName = params['BackupName']
+          @Strategy = params['Strategy']
+          @BackupWay = params['BackupWay']
+          @BackupId = params['BackupId']
         end
       end
 
@@ -1257,6 +1693,46 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @Backups = params['Backups']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCrossRegionZone请求参数结构体
+      class DescribeCrossRegionZoneRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：mssql-3l3fgqn7
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeCrossRegionZone返回参数结构体
+      class DescribeCrossRegionZoneResponse < TencentCloud::Common::AbstractModel
+        # @param Region: 备机所在地域的字符串ID，形如：ap-guangzhou
+        # @type Region: String
+        # @param Zone: 备机所在可用区的字符串ID，形如：ap-guangzhou-1
+        # @type Zone: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Region, :Zone, :RequestId
+        
+        def initialize(region=nil, zone=nil, requestid=nil)
+          @Region = region
+          @Zone = zone
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Zone = params['Zone']
           @RequestId = params['RequestId']
         end
       end
@@ -1337,6 +1813,42 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @DBInstances = params['DBInstances']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBSecurityGroups请求参数结构体
+      class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：mssql-c1nl9rpv或者mssqlro-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBSecurityGroups返回参数结构体
+      class DescribeDBSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupSet: 安全组详情。
+        # @type SecurityGroupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecurityGroupSet, :RequestId
+        
+        def initialize(securitygroupset=nil, requestid=nil)
+          @SecurityGroupSet = securitygroupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SecurityGroupSet = params['SecurityGroupSet']
           @RequestId = params['RequestId']
         end
       end
@@ -1465,6 +1977,54 @@ module TencentCloud
           @Weekly = params['Weekly']
           @StartTime = params['StartTime']
           @Span = params['Span']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMigrationDatabases请求参数结构体
+      class DescribeMigrationDatabasesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 迁移源实例的ID，格式如：mssql-si2823jyl
+        # @type InstanceId: String
+        # @param UserName: 迁移源实例用户名
+        # @type UserName: String
+        # @param Password: 迁移源实例密码
+        # @type Password: String
+
+        attr_accessor :InstanceId, :UserName, :Password
+        
+        def initialize(instanceid=nil, username=nil, password=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+        end
+      end
+
+      # DescribeMigrationDatabases返回参数结构体
+      class DescribeMigrationDatabasesResponse < TencentCloud::Common::AbstractModel
+        # @param Amount: 数据库数量
+        # @type Amount: Integer
+        # @param MigrateDBSet: 数据库名称数组
+        # @type MigrateDBSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Amount, :MigrateDBSet, :RequestId
+        
+        def initialize(amount=nil, migratedbset=nil, requestid=nil)
+          @Amount = amount
+          @MigrateDBSet = migratedbset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Amount = params['Amount']
+          @MigrateDBSet = params['MigrateDBSet']
           @RequestId = params['RequestId']
         end
       end
@@ -1665,15 +2225,19 @@ module TencentCloud
       class DescribeProductConfigRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区英文ID，形如ap-guangzhou-1
         # @type Zone: String
+        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-基础版本型
+        # @type InstanceType: String
 
-        attr_accessor :Zone
+        attr_accessor :Zone, :InstanceType
         
-        def initialize(zone=nil)
+        def initialize(zone=nil, instancetype=nil)
           @Zone = zone
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
           @Zone = params['Zone']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -1697,6 +2261,42 @@ module TencentCloud
         def deserialize(params)
           @SpecInfoList = params['SpecInfoList']
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProjectSecurityGroups请求参数结构体
+      class DescribeProjectSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID，可通过控制台项目管理中查看
+        # @type ProjectId: Integer
+
+        attr_accessor :ProjectId
+        
+        def initialize(projectid=nil)
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribeProjectSecurityGroups返回参数结构体
+      class DescribeProjectSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupSet: 安全组详情。
+        # @type SecurityGroupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecurityGroupSet, :RequestId
+        
+        def initialize(securitygroupset=nil, requestid=nil)
+          @SecurityGroupSet = securitygroupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SecurityGroupSet = params['SecurityGroupSet']
           @RequestId = params['RequestId']
         end
       end
@@ -1769,6 +2369,214 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @PublishSubscribeSet = params['PublishSubscribeSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReadOnlyGroupByReadOnlyInstance请求参数结构体
+      class DescribeReadOnlyGroupByReadOnlyInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：mssqlro-3l3fgqn7
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeReadOnlyGroupByReadOnlyInstance返回参数结构体
+      class DescribeReadOnlyGroupByReadOnlyInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param ReadOnlyGroupId: 只读组ID
+        # @type ReadOnlyGroupId: String
+        # @param ReadOnlyGroupName: 只读组名称
+        # @type ReadOnlyGroupName: String
+        # @param RegionId: 只读组的地域ID
+        # @type RegionId: String
+        # @param ZoneId: 只读组的可用区ID
+        # @type ZoneId: String
+        # @param IsOfflineDelay: 是否启动超时剔除功能 ,0-不开启剔除功能，1-开启剔除功能
+        # @type IsOfflineDelay: Integer
+        # @param ReadOnlyMaxDelayTime: 启动超时剔除功能后，使用的超时阈值，单位是秒
+        # @type ReadOnlyMaxDelayTime: Integer
+        # @param MinReadOnlyInGroup: 启动超时剔除功能后，只读组至少保留的只读副本数
+        # @type MinReadOnlyInGroup: Integer
+        # @param Vip: 只读组vip
+        # @type Vip: String
+        # @param Vport: 只读组vport
+        # @type Vport: Integer
+        # @param VpcId: 只读组在私有网络ID
+        # @type VpcId: String
+        # @param SubnetId: 只读组在私有网络子网ID
+        # @type SubnetId: String
+        # @param MasterInstanceId: 主实例ID，形如mssql-sgeshe3th
+        # @type MasterInstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :RegionId, :ZoneId, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :Vip, :Vport, :VpcId, :SubnetId, :MasterInstanceId, :RequestId
+        
+        def initialize(readonlygroupid=nil, readonlygroupname=nil, regionid=nil, zoneid=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, masterinstanceid=nil, requestid=nil)
+          @ReadOnlyGroupId = readonlygroupid
+          @ReadOnlyGroupName = readonlygroupname
+          @RegionId = regionid
+          @ZoneId = zoneid
+          @IsOfflineDelay = isofflinedelay
+          @ReadOnlyMaxDelayTime = readonlymaxdelaytime
+          @MinReadOnlyInGroup = minreadonlyingroup
+          @Vip = vip
+          @Vport = vport
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @MasterInstanceId = masterinstanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+          @ReadOnlyGroupName = params['ReadOnlyGroupName']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
+          @IsOfflineDelay = params['IsOfflineDelay']
+          @ReadOnlyMaxDelayTime = params['ReadOnlyMaxDelayTime']
+          @MinReadOnlyInGroup = params['MinReadOnlyInGroup']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @MasterInstanceId = params['MasterInstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReadOnlyGroupDetails请求参数结构体
+      class DescribeReadOnlyGroupDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 主实例ID，格式如：mssql-3l3fgqn7
+        # @type InstanceId: String
+        # @param ReadOnlyGroupId: 只读组ID，格式如：mssqlrg-3l3fgqn7
+        # @type ReadOnlyGroupId: String
+
+        attr_accessor :InstanceId, :ReadOnlyGroupId
+        
+        def initialize(instanceid=nil, readonlygroupid=nil)
+          @InstanceId = instanceid
+          @ReadOnlyGroupId = readonlygroupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+        end
+      end
+
+      # DescribeReadOnlyGroupDetails返回参数结构体
+      class DescribeReadOnlyGroupDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param ReadOnlyGroupId: 只读组ID
+        # @type ReadOnlyGroupId: String
+        # @param ReadOnlyGroupName: 只读组名称
+        # @type ReadOnlyGroupName: String
+        # @param RegionId: 只读组的地域ID，与主实例相同
+        # @type RegionId: String
+        # @param ZoneId: 只读组的可用区ID，与主实例相同
+        # @type ZoneId: String
+        # @param IsOfflineDelay: 是否启动超时剔除功能，0-不开启剔除功能，1-开启剔除功能
+        # @type IsOfflineDelay: Integer
+        # @param ReadOnlyMaxDelayTime: 启动超时剔除功能后，使用的超时阈值
+        # @type ReadOnlyMaxDelayTime: Integer
+        # @param MinReadOnlyInGroup: 启动超时剔除功能后，至少只读组保留的只读副本数
+        # @type MinReadOnlyInGroup: Integer
+        # @param Vip: 只读组vip
+        # @type Vip: String
+        # @param Vport: 只读组vport
+        # @type Vport: Integer
+        # @param VpcId: 只读组私有网络ID
+        # @type VpcId: String
+        # @param SubnetId: 只读组私有网络子网ID
+        # @type SubnetId: String
+        # @param ReadOnlyInstanceSet: 只读实例副本集合
+        # @type ReadOnlyInstanceSet: Array
+        # @param Status: 只读组状态: 1-申请成功运行中，5-申请中
+        # @type Status: Integer
+        # @param MasterInstanceId: 主实例ID，形如mssql-sgeshe3th
+        # @type MasterInstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :RegionId, :ZoneId, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :Vip, :Vport, :VpcId, :SubnetId, :ReadOnlyInstanceSet, :Status, :MasterInstanceId, :RequestId
+        
+        def initialize(readonlygroupid=nil, readonlygroupname=nil, regionid=nil, zoneid=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, readonlyinstanceset=nil, status=nil, masterinstanceid=nil, requestid=nil)
+          @ReadOnlyGroupId = readonlygroupid
+          @ReadOnlyGroupName = readonlygroupname
+          @RegionId = regionid
+          @ZoneId = zoneid
+          @IsOfflineDelay = isofflinedelay
+          @ReadOnlyMaxDelayTime = readonlymaxdelaytime
+          @MinReadOnlyInGroup = minreadonlyingroup
+          @Vip = vip
+          @Vport = vport
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ReadOnlyInstanceSet = readonlyinstanceset
+          @Status = status
+          @MasterInstanceId = masterinstanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+          @ReadOnlyGroupName = params['ReadOnlyGroupName']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
+          @IsOfflineDelay = params['IsOfflineDelay']
+          @ReadOnlyMaxDelayTime = params['ReadOnlyMaxDelayTime']
+          @MinReadOnlyInGroup = params['MinReadOnlyInGroup']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ReadOnlyInstanceSet = params['ReadOnlyInstanceSet']
+          @Status = params['Status']
+          @MasterInstanceId = params['MasterInstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReadOnlyGroupList请求参数结构体
+      class DescribeReadOnlyGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 主实例ID，格式如：mssql-3l3fgqn7
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeReadOnlyGroupList返回参数结构体
+      class DescribeReadOnlyGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param ReadOnlyGroupSet: 只读组列表
+        # @type ReadOnlyGroupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReadOnlyGroupSet, :RequestId
+        
+        def initialize(readonlygroupset=nil, requestid=nil)
+          @ReadOnlyGroupSet = readonlygroupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReadOnlyGroupSet = params['ReadOnlyGroupSet']
           @RequestId = params['RequestId']
         end
       end
@@ -1935,6 +2743,42 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @ZoneSet = params['ZoneSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisassociateSecurityGroups请求参数结构体
+      class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupId: 安全组ID。
+        # @type SecurityGroupId: String
+        # @param InstanceIdSet: 实例ID 列表，一个或者多个实例ID组成的数组。多个实例必须是同一个地域，同一个可用区，同一个项目下的。
+        # @type InstanceIdSet: Array
+
+        attr_accessor :SecurityGroupId, :InstanceIdSet
+        
+        def initialize(securitygroupid=nil, instanceidset=nil)
+          @SecurityGroupId = securitygroupid
+          @InstanceIdSet = instanceidset
+        end
+
+        def deserialize(params)
+          @SecurityGroupId = params['SecurityGroupId']
+          @InstanceIdSet = params['InstanceIdSet']
+        end
+      end
+
+      # DisassociateSecurityGroups返回参数结构体
+      class DisassociateSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2285,7 +3129,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 迁移任务的结束时间
         # @type EndTime: String
-        # @param Status: 迁移任务的状态（1:初始化,4:迁移中,5.迁移失败,6.迁移成功）
+        # @param Status: 迁移任务的状态（1:初始化,4:迁移中,5.迁移失败,6.迁移成功,7已中止,8已删除,9中止中,10完成中,11中止失败,12完成失败）
         # @type Status: Integer
         # @param Message: 信息
         # @type Message: String
@@ -2395,6 +3239,46 @@ module TencentCloud
 
       # ModifyAccountRemark返回参数结构体
       class ModifyAccountRemarkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBackupName请求参数结构体
+      class ModifyBackupNameRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：mssql-3l3fgqn7
+        # @type InstanceId: String
+        # @param BackupId: 要修改名称的备份ID，可通过 [DescribeBackups](https://cloud.tencent.com/document/product/238/19943)  接口获取。
+        # @type BackupId: Integer
+        # @param BackupName: 修改的备份名称
+        # @type BackupName: String
+
+        attr_accessor :InstanceId, :BackupId, :BackupName
+        
+        def initialize(instanceid=nil, backupid=nil, backupname=nil)
+          @InstanceId = instanceid
+          @BackupId = backupid
+          @BackupName = backupname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupId = params['BackupId']
+          @BackupName = params['BackupName']
+        end
+      end
+
+      # ModifyBackupName返回参数结构体
+      class ModifyBackupNameResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2569,6 +3453,42 @@ module TencentCloud
 
         def deserialize(params)
           @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBInstanceSecurityGroups请求参数结构体
+      class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：mssql-c1nl9rpv 或者 mssqlro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param SecurityGroupIdSet: 要修改的安全组 ID 列表，一个或者多个安全组 ID 组成的数组。
+        # @type SecurityGroupIdSet: Array
+
+        attr_accessor :InstanceId, :SecurityGroupIdSet
+        
+        def initialize(instanceid=nil, securitygroupidset=nil)
+          @InstanceId = instanceid
+          @SecurityGroupIdSet = securitygroupidset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SecurityGroupIdSet = params['SecurityGroupIdSet']
+        end
+      end
+
+      # ModifyDBInstanceSecurityGroups返回参数结构体
+      class ModifyDBInstanceSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2797,6 +3717,70 @@ module TencentCloud
         end
       end
 
+      # ModifyReadOnlyGroupDetails请求参数结构体
+      class ModifyReadOnlyGroupDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 主实例ID，格式如：mssql-3l3fgqn7
+        # @type InstanceId: String
+        # @param ReadOnlyGroupId: 只读组ID
+        # @type ReadOnlyGroupId: String
+        # @param ReadOnlyGroupName: 只读组名称，不填此参数，则不修改
+        # @type ReadOnlyGroupName: String
+        # @param IsOfflineDelay: 是否启动超时剔除功能,0-不开启剔除功能，1-开启剔除功能，不填此参数，则不修改
+        # @type IsOfflineDelay: Integer
+        # @param ReadOnlyMaxDelayTime: 启动超时剔除功能后，使用的超时阈值，不填此参数，则不修改
+        # @type ReadOnlyMaxDelayTime: Integer
+        # @param MinReadOnlyInGroup: 启动超时剔除功能后，只读组至少保留的只读副本数，不填此参数，则不修改
+        # @type MinReadOnlyInGroup: Integer
+        # @param WeightPairs: 只读组实例权重修改集合，不填此参数，则不修改
+        # @type WeightPairs: Array
+        # @param AutoWeight: 0-用户自定义权重（根据WeightPairs调整）,1-系统自动分配权重(WeightPairs无效)， 默认为0
+        # @type AutoWeight: Integer
+        # @param BalanceWeight: 0-不重新均衡负载，1-重新均衡负载，默认为0
+        # @type BalanceWeight: Integer
+
+        attr_accessor :InstanceId, :ReadOnlyGroupId, :ReadOnlyGroupName, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :WeightPairs, :AutoWeight, :BalanceWeight
+        
+        def initialize(instanceid=nil, readonlygroupid=nil, readonlygroupname=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, weightpairs=nil, autoweight=nil, balanceweight=nil)
+          @InstanceId = instanceid
+          @ReadOnlyGroupId = readonlygroupid
+          @ReadOnlyGroupName = readonlygroupname
+          @IsOfflineDelay = isofflinedelay
+          @ReadOnlyMaxDelayTime = readonlymaxdelaytime
+          @MinReadOnlyInGroup = minreadonlyingroup
+          @WeightPairs = weightpairs
+          @AutoWeight = autoweight
+          @BalanceWeight = balanceweight
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+          @ReadOnlyGroupName = params['ReadOnlyGroupName']
+          @IsOfflineDelay = params['IsOfflineDelay']
+          @ReadOnlyMaxDelayTime = params['ReadOnlyMaxDelayTime']
+          @MinReadOnlyInGroup = params['MinReadOnlyInGroup']
+          @WeightPairs = params['WeightPairs']
+          @AutoWeight = params['AutoWeight']
+          @BalanceWeight = params['BalanceWeight']
+        end
+      end
+
+      # ModifyReadOnlyGroupDetails返回参数结构体
+      class ModifyReadOnlyGroupDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 发布订阅对象
       class PublishSubscribe < TencentCloud::Common::AbstractModel
         # @param Id: 发布订阅ID
@@ -2842,6 +3826,328 @@ module TencentCloud
           @SubscribeInstanceName = params['SubscribeInstanceName']
           @SubscribeInstanceIp = params['SubscribeInstanceIp']
           @DatabaseTupleSet = params['DatabaseTupleSet']
+        end
+      end
+
+      # QueryMigrationCheckProcess请求参数结构体
+      class QueryMigrationCheckProcessRequest < TencentCloud::Common::AbstractModel
+        # @param MigrateId: 迁移任务ID
+        # @type MigrateId: Integer
+
+        attr_accessor :MigrateId
+        
+        def initialize(migrateid=nil)
+          @MigrateId = migrateid
+        end
+
+        def deserialize(params)
+          @MigrateId = params['MigrateId']
+        end
+      end
+
+      # QueryMigrationCheckProcess返回参数结构体
+      class QueryMigrationCheckProcessResponse < TencentCloud::Common::AbstractModel
+        # @param TotalStep: 总步骤数量
+        # @type TotalStep: Integer
+        # @param CurrentStep: 当前步骤编号，从1开始
+        # @type CurrentStep: Integer
+        # @param StepDetails: 所有步骤详情
+        # @type StepDetails: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalStep, :CurrentStep, :StepDetails, :RequestId
+        
+        def initialize(totalstep=nil, currentstep=nil, stepdetails=nil, requestid=nil)
+          @TotalStep = totalstep
+          @CurrentStep = currentstep
+          @StepDetails = stepdetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalStep = params['TotalStep']
+          @CurrentStep = params['CurrentStep']
+          @StepDetails = params['StepDetails']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 只读组对象
+      class ReadOnlyGroup < TencentCloud::Common::AbstractModel
+        # @param ReadOnlyGroupId: 只读组ID
+        # @type ReadOnlyGroupId: String
+        # @param ReadOnlyGroupName: 只读组名称
+        # @type ReadOnlyGroupName: String
+        # @param RegionId: 只读组的地域ID，与主实例相同
+        # @type RegionId: String
+        # @param ZoneId: 只读组的可用区ID，与主实例相同
+        # @type ZoneId: String
+        # @param IsOfflineDelay: 是否启动超时剔除功能，0-不开启剔除功能，1-开启剔除功能
+        # @type IsOfflineDelay: Integer
+        # @param ReadOnlyMaxDelayTime: 启动超时剔除功能后，使用的超时阈值
+        # @type ReadOnlyMaxDelayTime: Integer
+        # @param MinReadOnlyInGroup: 启动超时剔除功能后，只读组至少保留的只读副本数
+        # @type MinReadOnlyInGroup: Integer
+        # @param Vip: 只读组vip
+        # @type Vip: String
+        # @param Vport: 只读组vport
+        # @type Vport: Integer
+        # @param VpcId: 只读组私有网络ID
+        # @type VpcId: String
+        # @param SubnetId: 只读组私有网络子网ID
+        # @type SubnetId: String
+        # @param Status: 只读组状态: 1-申请成功运行中，5-申请中
+        # @type Status: Integer
+        # @param MasterInstanceId: 主实例ID，形如mssql-sgeshe3th
+        # @type MasterInstanceId: String
+        # @param ReadOnlyInstanceSet: 只读实例副本集合
+        # @type ReadOnlyInstanceSet: Array
+
+        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :RegionId, :ZoneId, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :Vip, :Vport, :VpcId, :SubnetId, :Status, :MasterInstanceId, :ReadOnlyInstanceSet
+        
+        def initialize(readonlygroupid=nil, readonlygroupname=nil, regionid=nil, zoneid=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, status=nil, masterinstanceid=nil, readonlyinstanceset=nil)
+          @ReadOnlyGroupId = readonlygroupid
+          @ReadOnlyGroupName = readonlygroupname
+          @RegionId = regionid
+          @ZoneId = zoneid
+          @IsOfflineDelay = isofflinedelay
+          @ReadOnlyMaxDelayTime = readonlymaxdelaytime
+          @MinReadOnlyInGroup = minreadonlyingroup
+          @Vip = vip
+          @Vport = vport
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Status = status
+          @MasterInstanceId = masterinstanceid
+          @ReadOnlyInstanceSet = readonlyinstanceset
+        end
+
+        def deserialize(params)
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+          @ReadOnlyGroupName = params['ReadOnlyGroupName']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
+          @IsOfflineDelay = params['IsOfflineDelay']
+          @ReadOnlyMaxDelayTime = params['ReadOnlyMaxDelayTime']
+          @MinReadOnlyInGroup = params['MinReadOnlyInGroup']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Status = params['Status']
+          @MasterInstanceId = params['MasterInstanceId']
+          @ReadOnlyInstanceSet = params['ReadOnlyInstanceSet']
+        end
+      end
+
+      # 只读副本实例
+      class ReadOnlyInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 只读副本ID，格式如：mssqlro-3l3fgqn7
+        # @type InstanceId: String
+        # @param Name: 只读副本名称
+        # @type Name: String
+        # @param Uid: 只读副本唯一UID
+        # @type Uid: String
+        # @param ProjectId: 只读副本所在项目ID
+        # @type ProjectId: Integer
+        # @param Status: 只读副本状态。1：申请中 2：运行中 3：被延迟剔除 4：已隔离 5：回收中 6：已回收 7：任务执行中 8：已下线 9：实例扩容中 10：实例迁移中  12：重启中
+        # @type Status: Integer
+        # @param CreateTime: 只读副本创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 只读副本更新时间
+        # @type UpdateTime: String
+        # @param Memory: 只读副本内存大小，单位G
+        # @type Memory: Integer
+        # @param Storage: 只读副本存储空间大小，单位G
+        # @type Storage: Integer
+        # @param Cpu: 只读副本cpu核心数
+        # @type Cpu: Integer
+        # @param Version: 只读副本版本代号
+        # @type Version: String
+        # @param Type: 宿主机代号
+        # @type Type: String
+        # @param Model: 只读副本模式，2-单机
+        # @type Model: Integer
+        # @param PayMode: 只读副本计费模式，1-包年包月，0-按量计费
+        # @type PayMode: Integer
+        # @param Weight: 只读副本权重
+        # @type Weight: Integer
+        # @param DelayTime: 只读副本延迟时间，单位秒
+        # @type DelayTime: String
+        # @param SynStatus: 只读副本与主实例的同步状态。
+        # Init:初始化
+        # DeployReadOnlyInPorgress:部署副本进行中
+        # DeployReadOnlySuccess:部署副本成功
+        # DeployReadOnlyFail:部署副本失败
+        # DeployMasterDBInPorgress:主节点上加入副本数据库进行中
+        # DeployMasterDBSuccess:主节点上加入副本数据库成功
+        # DeployMasterDBFail:主节点上加入副本数据库进失败
+        # DeployReadOnlyDBInPorgress:副本还原加入数据库开始
+        # DeployReadOnlyDBSuccess:副本还原加入数据库成功
+        # DeployReadOnlyDBFail:副本还原加入数据库失败
+        # SyncDelay:同步延迟
+        # SyncFail:同步故障
+        # SyncExcluded:已剔除只读组
+        # SyncNormal:正常
+        # @type SynStatus: String
+        # @param DatabaseDifference: 只读副本与主实例没有同步的库
+        # @type DatabaseDifference: String
+        # @param AccountDifference: 只读副本与主实例没有同步的账户
+        # @type AccountDifference: String
+        # @param StartTime: 只读副本计费开始时间
+        # @type StartTime: String
+        # @param EndTime: 只读副本计费结束时间
+        # @type EndTime: String
+        # @param IsolateTime: 只读副本隔离时间
+        # @type IsolateTime: String
+
+        attr_accessor :InstanceId, :Name, :Uid, :ProjectId, :Status, :CreateTime, :UpdateTime, :Memory, :Storage, :Cpu, :Version, :Type, :Model, :PayMode, :Weight, :DelayTime, :SynStatus, :DatabaseDifference, :AccountDifference, :StartTime, :EndTime, :IsolateTime
+        
+        def initialize(instanceid=nil, name=nil, uid=nil, projectid=nil, status=nil, createtime=nil, updatetime=nil, memory=nil, storage=nil, cpu=nil, version=nil, type=nil, model=nil, paymode=nil, weight=nil, delaytime=nil, synstatus=nil, databasedifference=nil, accountdifference=nil, starttime=nil, endtime=nil, isolatetime=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Uid = uid
+          @ProjectId = projectid
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Memory = memory
+          @Storage = storage
+          @Cpu = cpu
+          @Version = version
+          @Type = type
+          @Model = model
+          @PayMode = paymode
+          @Weight = weight
+          @DelayTime = delaytime
+          @SynStatus = synstatus
+          @DatabaseDifference = databasedifference
+          @AccountDifference = accountdifference
+          @StartTime = starttime
+          @EndTime = endtime
+          @IsolateTime = isolatetime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Uid = params['Uid']
+          @ProjectId = params['ProjectId']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @Cpu = params['Cpu']
+          @Version = params['Version']
+          @Type = params['Type']
+          @Model = params['Model']
+          @PayMode = params['PayMode']
+          @Weight = params['Weight']
+          @DelayTime = params['DelayTime']
+          @SynStatus = params['SynStatus']
+          @DatabaseDifference = params['DatabaseDifference']
+          @AccountDifference = params['AccountDifference']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @IsolateTime = params['IsolateTime']
+        end
+      end
+
+      # 只读实例与权重对应关系
+      class ReadOnlyInstanceWeightPair < TencentCloud::Common::AbstractModel
+        # @param ReadOnlyInstanceId: 只读实例ID，格式如：mssqlro-3l3fgqn7
+        # @type ReadOnlyInstanceId: String
+        # @param ReadOnlyWeight: 只读实例权重 ，范围是0-100
+        # @type ReadOnlyWeight: Integer
+
+        attr_accessor :ReadOnlyInstanceId, :ReadOnlyWeight
+        
+        def initialize(readonlyinstanceid=nil, readonlyweight=nil)
+          @ReadOnlyInstanceId = readonlyinstanceid
+          @ReadOnlyWeight = readonlyweight
+        end
+
+        def deserialize(params)
+          @ReadOnlyInstanceId = params['ReadOnlyInstanceId']
+          @ReadOnlyWeight = params['ReadOnlyWeight']
+        end
+      end
+
+      # RecycleDBInstance请求参数结构体
+      class RecycleDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # RecycleDBInstance返回参数结构体
+      class RecycleDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecycleReadOnlyGroup请求参数结构体
+      class RecycleReadOnlyGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 主实例的ID
+        # @type InstanceId: String
+        # @param ReadOnlyGroupId: 只读组的ID
+        # @type ReadOnlyGroupId: String
+
+        attr_accessor :InstanceId, :ReadOnlyGroupId
+        
+        def initialize(instanceid=nil, readonlygroupid=nil)
+          @InstanceId = instanceid
+          @ReadOnlyGroupId = readonlygroupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ReadOnlyGroupId = params['ReadOnlyGroupId']
+        end
+      end
+
+      # RecycleReadOnlyGroup返回参数结构体
+      class RecycleReadOnlyGroupResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2909,6 +4215,27 @@ module TencentCloud
         end
       end
 
+      # 用于RestoreInstance，RollbackInstance，CreateMigration 等接口；对恢复的库进行重命名，且支持选择要恢复的库。
+      class RenameRestoreDatabase < TencentCloud::Common::AbstractModel
+        # @param OldName: 库的名字，如果oldName不存在则返回失败。
+        # 在用于离线迁移任务时可不填。
+        # @type OldName: String
+        # @param NewName: 库的新名字，如果不填则按照系统默认方式命名恢复的库。在用于离线迁移任务时，不填则按照OldName命名，OldName和NewName不能同时不填。
+        # @type NewName: String
+
+        attr_accessor :OldName, :NewName
+        
+        def initialize(oldname=nil, newname=nil)
+          @OldName = oldname
+          @NewName = newname
+        end
+
+        def deserialize(params)
+          @OldName = params['OldName']
+          @NewName = params['NewName']
+        end
+      end
+
       # RenewDBInstance请求参数结构体
       class RenewDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-j8kv137v
@@ -2953,6 +4280,38 @@ module TencentCloud
 
         def deserialize(params)
           @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RenewPostpaidDBInstance请求参数结构体
+      class RenewPostpaidDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：mssql-3l3fgqn7 或 mssqlro-3l3fgqn7
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # RenewPostpaidDBInstance返回参数结构体
+      class RenewPostpaidDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3039,17 +4398,25 @@ module TencentCloud
         # @type InstanceId: String
         # @param BackupId: 备份文件ID，该ID可以通过DescribeBackups接口返回数据中的Id字段获得
         # @type BackupId: Integer
+        # @param TargetInstanceId: 备份恢复到的同一个APPID下的实例ID，不填则恢复到原实例ID
+        # @type TargetInstanceId: String
+        # @param RenameRestore: 按照ReNameRestoreDatabase中的库进行恢复，并重命名，不填则按照默认方式命名恢复的库，且恢复所有的库。
+        # @type RenameRestore: Array
 
-        attr_accessor :InstanceId, :BackupId
+        attr_accessor :InstanceId, :BackupId, :TargetInstanceId, :RenameRestore
         
-        def initialize(instanceid=nil, backupid=nil)
+        def initialize(instanceid=nil, backupid=nil, targetinstanceid=nil, renamerestore=nil)
           @InstanceId = instanceid
           @BackupId = backupid
+          @TargetInstanceId = targetinstanceid
+          @RenameRestore = renamerestore
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @BackupId = params['BackupId']
+          @TargetInstanceId = params['TargetInstanceId']
+          @RenameRestore = params['RenameRestore']
         end
       end
 
@@ -3083,14 +4450,20 @@ module TencentCloud
         # @type DBs: Array
         # @param Time: 回档目标时间点
         # @type Time: String
+        # @param TargetInstanceId: 备份恢复到的同一个APPID下的实例ID，不填则恢复到原实例ID
+        # @type TargetInstanceId: String
+        # @param RenameRestore: 按照ReNameRestoreDatabase中的库进行重命名，仅在Type = 1重命名回档方式有效；不填则按照默认方式命名库，DBs参数确定要恢复的库
+        # @type RenameRestore: Array
 
-        attr_accessor :InstanceId, :Type, :DBs, :Time
+        attr_accessor :InstanceId, :Type, :DBs, :Time, :TargetInstanceId, :RenameRestore
         
-        def initialize(instanceid=nil, type=nil, dbs=nil, time=nil)
+        def initialize(instanceid=nil, type=nil, dbs=nil, time=nil, targetinstanceid=nil, renamerestore=nil)
           @InstanceId = instanceid
           @Type = type
           @DBs = dbs
           @Time = time
+          @TargetInstanceId = targetinstanceid
+          @RenameRestore = renamerestore
         end
 
         def deserialize(params)
@@ -3098,6 +4471,8 @@ module TencentCloud
           @Type = params['Type']
           @DBs = params['DBs']
           @Time = params['Time']
+          @TargetInstanceId = params['TargetInstanceId']
+          @RenameRestore = params['RenameRestore']
         end
       end
 
@@ -3154,6 +4529,78 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 安全组
+      class SecurityGroup < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param CreateTime: 创建时间，时间格式：yyyy-mm-dd hh:mm:ss
+        # @type CreateTime: String
+        # @param InboundSet: 入站规则
+        # @type InboundSet: Array
+        # @param OutboundSet: 出站规则
+        # @type OutboundSet: Array
+        # @param SecurityGroupId: 安全组ID
+        # @type SecurityGroupId: String
+        # @param SecurityGroupName: 安全组名称
+        # @type SecurityGroupName: String
+        # @param SecurityGroupRemark: 安全组备注
+        # @type SecurityGroupRemark: String
+
+        attr_accessor :ProjectId, :CreateTime, :InboundSet, :OutboundSet, :SecurityGroupId, :SecurityGroupName, :SecurityGroupRemark
+        
+        def initialize(projectid=nil, createtime=nil, inboundset=nil, outboundset=nil, securitygroupid=nil, securitygroupname=nil, securitygroupremark=nil)
+          @ProjectId = projectid
+          @CreateTime = createtime
+          @InboundSet = inboundset
+          @OutboundSet = outboundset
+          @SecurityGroupId = securitygroupid
+          @SecurityGroupName = securitygroupname
+          @SecurityGroupRemark = securitygroupremark
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @CreateTime = params['CreateTime']
+          @InboundSet = params['InboundSet']
+          @OutboundSet = params['OutboundSet']
+          @SecurityGroupId = params['SecurityGroupId']
+          @SecurityGroupName = params['SecurityGroupName']
+          @SecurityGroupRemark = params['SecurityGroupRemark']
+        end
+      end
+
+      # 安全组策略
+      class SecurityGroupPolicy < TencentCloud::Common::AbstractModel
+        # @param Action: 策略，ACCEPT 或者 DROP
+        # @type Action: String
+        # @param CidrIp: 目的 IP 或 IP 段，例如172.16.0.0/12
+        # @type CidrIp: String
+        # @param PortRange: 端口或者端口范围
+        # @type PortRange: String
+        # @param IpProtocol: 网络协议，支持 UDP、TCP等
+        # @type IpProtocol: String
+        # @param Dir: 规则限定的方向，OUTPUT-出战规则  INPUT-进站规则
+        # @type Dir: String
+
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir
+        
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil)
+          @Action = action
+          @CidrIp = cidrip
+          @PortRange = portrange
+          @IpProtocol = ipprotocol
+          @Dir = dir
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @CidrIp = params['CidrIp']
+          @PortRange = params['PortRange']
+          @IpProtocol = params['IpProtocol']
+          @Dir = params['Dir']
         end
       end
 
@@ -3233,10 +4680,14 @@ module TencentCloud
         # @type PostPid: Array
         # @param PayModeStatus: 此规格下支持的付费模式，POST-仅支持按量计费 PRE-仅支持包年包月 ALL-支持所有
         # @type PayModeStatus: String
+        # @param InstanceType: 产品类型，HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-基础版本型
+        # @type InstanceType: String
+        # @param MultiZonesStatus: 跨可用区类型，MultiZones-只支持跨可用区，SameZones-只支持同可用区，ALL-支持所有
+        # @type MultiZonesStatus: String
 
-        attr_accessor :SpecId, :MachineType, :MachineTypeName, :Version, :VersionName, :Memory, :CPU, :MinStorage, :MaxStorage, :QPS, :SuitInfo, :Pid, :PostPid, :PayModeStatus
+        attr_accessor :SpecId, :MachineType, :MachineTypeName, :Version, :VersionName, :Memory, :CPU, :MinStorage, :MaxStorage, :QPS, :SuitInfo, :Pid, :PostPid, :PayModeStatus, :InstanceType, :MultiZonesStatus
         
-        def initialize(specid=nil, machinetype=nil, machinetypename=nil, version=nil, versionname=nil, memory=nil, cpu=nil, minstorage=nil, maxstorage=nil, qps=nil, suitinfo=nil, pid=nil, postpid=nil, paymodestatus=nil)
+        def initialize(specid=nil, machinetype=nil, machinetypename=nil, version=nil, versionname=nil, memory=nil, cpu=nil, minstorage=nil, maxstorage=nil, qps=nil, suitinfo=nil, pid=nil, postpid=nil, paymodestatus=nil, instancetype=nil, multizonesstatus=nil)
           @SpecId = specid
           @MachineType = machinetype
           @MachineTypeName = machinetypename
@@ -3251,6 +4702,8 @@ module TencentCloud
           @Pid = pid
           @PostPid = postpid
           @PayModeStatus = paymodestatus
+          @InstanceType = instancetype
+          @MultiZonesStatus = multizonesstatus
         end
 
         def deserialize(params)
@@ -3268,6 +4721,104 @@ module TencentCloud
           @Pid = params['Pid']
           @PostPid = params['PostPid']
           @PayModeStatus = params['PayModeStatus']
+          @InstanceType = params['InstanceType']
+          @MultiZonesStatus = params['MultiZonesStatus']
+        end
+      end
+
+      # StartMigrationCheck请求参数结构体
+      class StartMigrationCheckRequest < TencentCloud::Common::AbstractModel
+        # @param MigrateId: 迁移任务id
+        # @type MigrateId: Integer
+
+        attr_accessor :MigrateId
+        
+        def initialize(migrateid=nil)
+          @MigrateId = migrateid
+        end
+
+        def deserialize(params)
+          @MigrateId = params['MigrateId']
+        end
+      end
+
+      # StartMigrationCheck返回参数结构体
+      class StartMigrationCheckResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 迁移检查流程发起后，返回的流程id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 进度步骤详情
+      class StepDetail < TencentCloud::Common::AbstractModel
+        # @param Msg: 具体步骤返回信息
+        # @type Msg: String
+        # @param Status: 当前步骤状态，0成功，-2未开始
+        # @type Status: Integer
+        # @param Name: 步骤名称
+        # @type Name: String
+
+        attr_accessor :Msg, :Status, :Name
+        
+        def initialize(msg=nil, status=nil, name=nil)
+          @Msg = msg
+          @Status = status
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Msg = params['Msg']
+          @Status = params['Status']
+          @Name = params['Name']
+        end
+      end
+
+      # StopMigration请求参数结构体
+      class StopMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param MigrateId: 迁移任务ID
+        # @type MigrateId: Integer
+
+        attr_accessor :MigrateId
+        
+        def initialize(migrateid=nil)
+          @MigrateId = migrateid
+        end
+
+        def deserialize(params)
+          @MigrateId = params['MigrateId']
+        end
+      end
+
+      # StopMigration返回参数结构体
+      class StopMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 中止迁移流程发起后，返回的流程id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 

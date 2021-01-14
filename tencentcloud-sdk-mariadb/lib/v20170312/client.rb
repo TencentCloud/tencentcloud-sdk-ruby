@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'MARIADB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 本接口 (AssociateSecurityGroups) 用于安全组批量绑定云资源。
+
+        # @param request: Request instance for AssociateSecurityGroups.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::AssociateSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::AssociateSecurityGroupsResponse`
+        def AssociateSecurityGroups(request)
+          body = send_request('AssociateSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssociateSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CloneAccount）用于克隆实例账户。
 
         # @param request: Request instance for CloneAccount.
@@ -460,6 +484,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
+
+        # @param request: Request instance for DescribeDBSecurityGroups.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeDBSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeDBSecurityGroupsResponse`
+        def DescribeDBSecurityGroups(request)
+          body = send_request('DescribeDBSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
 
         # @param request: Request instance for DescribeDBSlowLogs.
@@ -604,6 +652,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeProjectSecurityGroups）用于查询项目安全组信息
+
+        # @param request: Request instance for DescribeProjectSecurityGroups.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeProjectSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeProjectSecurityGroupsResponse`
+        def DescribeProjectSecurityGroups(request)
+          body = send_request('DescribeProjectSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProjectSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
 
         # @param request: Request instance for DescribeRenewalPrice.
@@ -686,6 +758,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUpgradePriceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
+
+        # @param request: Request instance for DisassociateSecurityGroups.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DisassociateSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DisassociateSecurityGroupsResponse`
+        def DisassociateSecurityGroups(request)
+          body = send_request('DisassociateSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisassociateSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 相当于在mysqld中执行flush logs，完成切分的binlog将展示在实例控制台binlog列表里。
+
+        # @param request: Request instance for FlushBinlog.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::FlushBinlogRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::FlushBinlogResponse`
+        def FlushBinlog(request)
+          body = send_request('FlushBinlog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FlushBinlogResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -808,6 +928,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDBInstanceNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyDBInstanceSecurityGroups）用于修改云数据库安全组
+
+        # @param request: Request instance for ModifyDBInstanceSecurityGroups.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::ModifyDBInstanceSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::ModifyDBInstanceSecurityGroupsResponse`
+        def ModifyDBInstanceSecurityGroups(request)
+          body = send_request('ModifyDBInstanceSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceSecurityGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else

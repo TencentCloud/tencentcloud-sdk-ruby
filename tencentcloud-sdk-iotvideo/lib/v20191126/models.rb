@@ -66,19 +66,139 @@ module TencentCloud
         end
       end
 
+      # ClearDeviceActiveCode请求参数结构体
+      class ClearDeviceActiveCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Tids: 设备TID列表，0<元素数量<=100
+        # @type Tids: Array
+
+        attr_accessor :Tids
+        
+        def initialize(tids=nil)
+          @Tids = tids
+        end
+
+        def deserialize(params)
+          @Tids = params['Tids']
+        end
+      end
+
+      # ClearDeviceActiveCode返回参数结构体
+      class ClearDeviceActiveCodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 版本发布的描述信息，需要国际化，可以为空
+      class Contents < TencentCloud::Common::AbstractModel
+        # @param En: 英文，长度不超过300个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type En: String
+        # @param Cn: 中文简体，长度不超过300个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cn: String
+        # @param Tc: 中文繁体(Traditional Chinese)，长度不超过300个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tc: String
+        # @param Default: 默认语言，最多不超过300个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Default: String
+
+        attr_accessor :En, :Cn, :Tc, :Default
+        
+        def initialize(en=nil, cn=nil, tc=nil, default=nil)
+          @En = en
+          @Cn = cn
+          @Tc = tc
+          @Default = default
+        end
+
+        def deserialize(params)
+          @En = params['En']
+          @Cn = params['Cn']
+          @Tc = params['Tc']
+          @Default = params['Default']
+        end
+      end
+
+      # CreateAnonymousAccessToken请求参数结构体
+      class CreateAnonymousAccessTokenRequest < TencentCloud::Common::AbstractModel
+        # @param TtlMinutes: Token的TTL(time to alive)分钟数,最大值1440(即24小时)
+        # @type TtlMinutes: Integer
+        # @param Tid: 设备ID。创建Token时, 此参数为必须项
+        # @type Tid: String
+        # @param OldAccessToken: 旧的AccessToken。续期Token时，此参数为必须
+        # @type OldAccessToken: String
+
+        attr_accessor :TtlMinutes, :Tid, :OldAccessToken
+        
+        def initialize(ttlminutes=nil, tid=nil, oldaccesstoken=nil)
+          @TtlMinutes = ttlminutes
+          @Tid = tid
+          @OldAccessToken = oldaccesstoken
+        end
+
+        def deserialize(params)
+          @TtlMinutes = params['TtlMinutes']
+          @Tid = params['Tid']
+          @OldAccessToken = params['OldAccessToken']
+        end
+      end
+
+      # CreateAnonymousAccessToken返回参数结构体
+      class CreateAnonymousAccessTokenResponse < TencentCloud::Common::AbstractModel
+        # @param AccessId: 终端用户在IoT Video上的唯一标识ID
+        # @type AccessId: String
+        # @param AccessToken: IoT Video平台的AccessToken
+        # @type AccessToken: String
+        # @param ExpireTime: Token的过期时间，单位秒(UTC时间)
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccessId, :AccessToken, :ExpireTime, :RequestId
+        
+        def initialize(accessid=nil, accesstoken=nil, expiretime=nil, requestid=nil)
+          @AccessId = accessid
+          @AccessToken = accesstoken
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AccessId = params['AccessId']
+          @AccessToken = params['AccessToken']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAppUsr请求参数结构体
       class CreateAppUsrRequest < TencentCloud::Common::AbstractModel
         # @param CunionId: 标识用户的唯一ID，防止同一个用户多次注册
         # @type CunionId: String
+        # @param Mobile: 用于小程序关联手机号
+        # @type Mobile: String
 
-        attr_accessor :CunionId
+        attr_accessor :CunionId, :Mobile
         
-        def initialize(cunionid=nil)
+        def initialize(cunionid=nil, mobile=nil)
           @CunionId = cunionid
+          @Mobile = mobile
         end
 
         def deserialize(params)
           @CunionId = params['CunionId']
+          @Mobile = params['Mobile']
         end
       end
 
@@ -255,7 +375,7 @@ module TencentCloud
       class CreateGencodeRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
         # @type ProductId: String
-        # @param Revision: 物模型发布版本号，-1代表最新编辑（未发布）的版本
+        # @param Revision: 物模型发布版本号,-1代表未发布的，保存的是草稿箱的版本。1代表已发布的物模型。
         # @type Revision: Integer
 
         attr_accessor :ProductId, :Revision
@@ -364,37 +484,63 @@ module TencentCloud
       class CreateProductRequest < TencentCloud::Common::AbstractModel
         # @param ProductModel: 产器型号(APP产品,为APP包名)
         # @type ProductModel: String
-        # @param Features: 设备功能码（ypsxth:音频双向通话 ，spdxth:视频单向通话）
-        # @type Features: Array
         # @param ProductName: 产品名称
         # 仅支持中文、英文、数字、下划线，不超过32个字符
         # @type ProductName: String
         # @param ProductDescription: 产品描述信息
         # 不支持单引号、双引号、退格符、回车符、换行符、制表符、反斜杠、下划线、“%”、“#”、“$”，不超过128字符
         # @type ProductDescription: String
+        # @param Features: 设备功能码（ypsxth:音频双向通话 ，spdxth:视频单向通话）
+        # @type Features: Array
         # @param ChipManufactureId: 主芯片产商ID
         # @type ChipManufactureId: String
         # @param ChipId: 主芯片ID
         # @type ChipId: String
+        # @param ProductRegion: 地域：
+        # China-Mainland（中国大陆）
+        # China-Hong Kong, Macao and Taiwan（港澳台地区）
+        # America（美国）
+        # Europe（欧洲）
+        # India（印度）
+        # Other-Overseas（其他境外地区）
+        # @type ProductRegion: String
+        # @param ProductCate: 设备类型, 0-普通视频设备，1-NVR设备
+        # @type ProductCate: Integer
+        # @param AccessMode: 接入模型，bit0是0：公版小程序未接入，bit0是1：公版小程序已接入
+        # @type AccessMode: Integer
+        # @param Os: Linux,Android,Liteos等系统
+        # @type Os: String
+        # @param ChipArch: 芯片架构，只是针对操作系统为android的
+        # @type ChipArch: String
 
-        attr_accessor :ProductModel, :Features, :ProductName, :ProductDescription, :ChipManufactureId, :ChipId
+        attr_accessor :ProductModel, :ProductName, :ProductDescription, :Features, :ChipManufactureId, :ChipId, :ProductRegion, :ProductCate, :AccessMode, :Os, :ChipArch
         
-        def initialize(productmodel=nil, features=nil, productname=nil, productdescription=nil, chipmanufactureid=nil, chipid=nil)
+        def initialize(productmodel=nil, productname=nil, productdescription=nil, features=nil, chipmanufactureid=nil, chipid=nil, productregion=nil, productcate=nil, accessmode=nil, os=nil, chiparch=nil)
           @ProductModel = productmodel
-          @Features = features
           @ProductName = productname
           @ProductDescription = productdescription
+          @Features = features
           @ChipManufactureId = chipmanufactureid
           @ChipId = chipid
+          @ProductRegion = productregion
+          @ProductCate = productcate
+          @AccessMode = accessmode
+          @Os = os
+          @ChipArch = chiparch
         end
 
         def deserialize(params)
           @ProductModel = params['ProductModel']
-          @Features = params['Features']
           @ProductName = params['ProductName']
           @ProductDescription = params['ProductDescription']
+          @Features = params['Features']
           @ChipManufactureId = params['ChipManufactureId']
           @ChipId = params['ChipId']
+          @ProductRegion = params['ProductRegion']
+          @ProductCate = params['ProductCate']
+          @AccessMode = params['AccessMode']
+          @Os = params['Os']
+          @ChipArch = params['ChipArch']
         end
       end
 
@@ -456,6 +602,116 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStorageService请求参数结构体
+      class CreateStorageServiceRequest < TencentCloud::Common::AbstractModel
+        # @param PkgId: 云存套餐ID：
+        # yc1m3d ： 全时3天存储月套餐。
+        # yc1m7d ： 全时7天存储月套餐。
+        # yc1m30d ：全时30天存储月套餐。
+        # yc1y3d ：全时3天存储年套餐。
+        # yc1y7d ：全时7天存储年套餐。
+        # yc1y30d ：全时30天存储年套餐。
+        # ye1m3d ：事件3天存储月套餐。
+        # ye1m7d ：事件7天存储月套餐。
+        # ye1m30d ：事件30天存储月套餐 。
+        # ye1y3d ：事件3天存储年套餐。
+        # ye1y7d ：事件7天存储年套餐。
+        # ye1y30d ：事件30天存储年套餐。
+        # yc1w7d : 全时7天存储周套餐。
+        # ye1w7d : 事件7天存储周套餐。
+        # @type PkgId: String
+        # @param Tid: 设备TID
+        # @type Tid: String
+        # @param OrderCount: 订单数量,可一次性创建多个订单
+        # @type OrderCount: Integer
+        # @param StorageRegion: 云存服务所在的区域,如ap-guangzhou,ap-singapore, na-siliconvalley, eu-frankfurt
+        # @type StorageRegion: String
+        # @param ChnNum: 视频流通道号。(对于存在多路视频流的设备，如NVR设备，与设备实际视频流通道号对应)
+        # @type ChnNum: Integer
+        # @param AccessId: 设备主人用户在IoT Video平台的注册ID。该参数用于验证Paas/Saas平台的设备/用户关系链是否一致
+        # @type AccessId: String
+        # @param EnableTime: 服务生效时间,若不指定此参数，服务立即生效
+        # @type EnableTime: Integer
+
+        attr_accessor :PkgId, :Tid, :OrderCount, :StorageRegion, :ChnNum, :AccessId, :EnableTime
+        
+        def initialize(pkgid=nil, tid=nil, ordercount=nil, storageregion=nil, chnnum=nil, accessid=nil, enabletime=nil)
+          @PkgId = pkgid
+          @Tid = tid
+          @OrderCount = ordercount
+          @StorageRegion = storageregion
+          @ChnNum = chnnum
+          @AccessId = accessid
+          @EnableTime = enabletime
+        end
+
+        def deserialize(params)
+          @PkgId = params['PkgId']
+          @Tid = params['Tid']
+          @OrderCount = params['OrderCount']
+          @StorageRegion = params['StorageRegion']
+          @ChnNum = params['ChnNum']
+          @AccessId = params['AccessId']
+          @EnableTime = params['EnableTime']
+        end
+      end
+
+      # CreateStorageService返回参数结构体
+      class CreateStorageServiceResponse < TencentCloud::Common::AbstractModel
+        # @param IsRenew: 标志是否为续订
+        # @type IsRenew: Boolean
+        # @param ServiceId: 云存服务ID
+        # @type ServiceId: String
+        # @param StorageRegion: 云存服务所在的区域
+        # @type StorageRegion: String
+        # @param Tid: 设备TID
+        # @type Tid: String
+        # @param ChnNum: 视频流通道号。(对于存在多路视频流的设备，如NVR设备，与设备实际视频流通道号对应)
+        # @type ChnNum: Integer
+        # @param AccessId: 终端用户在IoT Video平台的注册ID
+        # @type AccessId: String
+        # @param StartTime: 服务开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 服务失效时间
+        # @type EndTime: Integer
+        # @param Status: 服务状态
+        # @type Status: Integer
+        # @param Data: 新增的云存定单列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsRenew, :ServiceId, :StorageRegion, :Tid, :ChnNum, :AccessId, :StartTime, :EndTime, :Status, :Data, :RequestId
+        
+        def initialize(isrenew=nil, serviceid=nil, storageregion=nil, tid=nil, chnnum=nil, accessid=nil, starttime=nil, endtime=nil, status=nil, data=nil, requestid=nil)
+          @IsRenew = isrenew
+          @ServiceId = serviceid
+          @StorageRegion = storageregion
+          @Tid = tid
+          @ChnNum = chnnum
+          @AccessId = accessid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsRenew = params['IsRenew']
+          @ServiceId = params['ServiceId']
+          @StorageRegion = params['StorageRegion']
+          @Tid = params['Tid']
+          @ChnNum = params['ChnNum']
+          @AccessId = params['AccessId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -857,6 +1113,142 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeliverStorageService请求参数结构体
+      class DeliverStorageServiceRequest < TencentCloud::Common::AbstractModel
+        # @param SrcServiceId: 待转移的源云存服务ID
+        # @type SrcServiceId: String
+        # @param Tid: 设备TID
+        # @type Tid: String
+        # @param ChnNum: 视频流通道号。(对于存在多路视频流的设备，如NVR设备，与设备实际视频流通道号对应)
+        # @type ChnNum: Integer
+        # @param AccessId: 设备主人用户在IoT Video平台的注册ID。该参数用于验证Paas/Saas平台的设备/用户关系链是否一致
+        # @type AccessId: String
+
+        attr_accessor :SrcServiceId, :Tid, :ChnNum, :AccessId
+        
+        def initialize(srcserviceid=nil, tid=nil, chnnum=nil, accessid=nil)
+          @SrcServiceId = srcserviceid
+          @Tid = tid
+          @ChnNum = chnnum
+          @AccessId = accessid
+        end
+
+        def deserialize(params)
+          @SrcServiceId = params['SrcServiceId']
+          @Tid = params['Tid']
+          @ChnNum = params['ChnNum']
+          @AccessId = params['AccessId']
+        end
+      end
+
+      # DeliverStorageService返回参数结构体
+      class DeliverStorageServiceResponse < TencentCloud::Common::AbstractModel
+        # @param SrcServiceId: 被转出的云存服务ID
+        # @type SrcServiceId: String
+        # @param ServiceId: 被转入的云存服务ID
+        # @type ServiceId: String
+        # @param StorageRegion: 云存服务所在的区域
+        # @type StorageRegion: String
+        # @param Tid: 设备TID
+        # @type Tid: String
+        # @param ChnNum: 视频流通道号。(对于存在多路视频流的设备，如NVR设备，与设备实际视频流通道号对应)
+        # @type ChnNum: Integer
+        # @param AccessId: 终端用户在IoT Video平台的注册ID
+        # @type AccessId: String
+        # @param StartTime: 服务开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 服务失效时间
+        # @type EndTime: Integer
+        # @param Status: 服务状态
+        # @type Status: Integer
+        # @param Data: 新增的云存定单列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SrcServiceId, :ServiceId, :StorageRegion, :Tid, :ChnNum, :AccessId, :StartTime, :EndTime, :Status, :Data, :RequestId
+        
+        def initialize(srcserviceid=nil, serviceid=nil, storageregion=nil, tid=nil, chnnum=nil, accessid=nil, starttime=nil, endtime=nil, status=nil, data=nil, requestid=nil)
+          @SrcServiceId = srcserviceid
+          @ServiceId = serviceid
+          @StorageRegion = storageregion
+          @Tid = tid
+          @ChnNum = chnnum
+          @AccessId = accessid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SrcServiceId = params['SrcServiceId']
+          @ServiceId = params['ServiceId']
+          @StorageRegion = params['StorageRegion']
+          @Tid = params['Tid']
+          @ChnNum = params['ChnNum']
+          @AccessId = params['AccessId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccountBalance请求参数结构体
+      class DescribeAccountBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param AccountType: 账户类型 1:设备接入 2:云存
+        # @type AccountType: Integer
+
+        attr_accessor :AccountType
+        
+        def initialize(accounttype=nil)
+          @AccountType = accounttype
+        end
+
+        def deserialize(params)
+          @AccountType = params['AccountType']
+        end
+      end
+
+      # DescribeAccountBalance返回参数结构体
+      class DescribeAccountBalanceResponse < TencentCloud::Common::AbstractModel
+        # @param AccountType: 账户类型 1=设备接入;2=云存。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountType: Integer
+        # @param Balance: 余额, 单位 : 分(人民币)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Balance: Integer
+        # @param State: 账户状态，1=正常；8=冻结；9=销户。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param LastUpdateTime: 最后修改时间，UTC值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccountType, :Balance, :State, :LastUpdateTime, :RequestId
+        
+        def initialize(accounttype=nil, balance=nil, state=nil, lastupdatetime=nil, requestid=nil)
+          @AccountType = accounttype
+          @Balance = balance
+          @State = state
+          @LastUpdateTime = lastupdatetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AccountType = params['AccountType']
+          @Balance = params['Balance']
+          @State = params['State']
+          @LastUpdateTime = params['LastUpdateTime']
           @RequestId = params['RequestId']
         end
       end
@@ -1339,6 +1731,40 @@ module TencentCloud
         end
       end
 
+      # DescribeOsList请求参数结构体
+      class DescribeOsListRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeOsList返回参数结构体
+      class DescribeOsListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 系统类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Iotvideo.v20191126.models.SystemType`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = SystemType.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOtaVersions请求参数结构体
       class DescribeOtaVersionsRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页偏移量
@@ -1529,6 +1955,56 @@ module TencentCloud
         end
       end
 
+      # DescribeRechargeRecords请求参数结构体
+      class DescribeRechargeRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param AccountType: 账户类型 1:设备接入 2:云存。
+        # @type AccountType: Integer
+        # @param Offset: 从第几条记录开始显示, 默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 总共查询多少条记录，默认为值50。
+        # @type Limit: Integer
+
+        attr_accessor :AccountType, :Offset, :Limit
+        
+        def initialize(accounttype=nil, offset=nil, limit=nil)
+          @AccountType = accounttype
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @AccountType = params['AccountType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRechargeRecords返回参数结构体
+      class DescribeRechargeRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param AccountType: 账户类型 1:设备接入 2:云存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountType: Integer
+        # @param Records: 充值记录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccountType, :Records, :RequestId
+        
+        def initialize(accounttype=nil, records=nil, requestid=nil)
+          @AccountType = accounttype
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AccountType = params['AccountType']
+          @Records = params['Records']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRegistrationStatus请求参数结构体
       class DescribeRegistrationStatusRequest < TencentCloud::Common::AbstractModel
         # @param CunionIds: 终端用户的唯一ID列表，0<元素数量<=100
@@ -1597,6 +2073,78 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStorageService请求参数结构体
+      class DescribeStorageServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 云存服务ID
+        # @type ServiceId: String
+        # @param GetFinishedOrder: 是否返回已结束的订单信息(已过期/已退订/已转移)
+        # @type GetFinishedOrder: Boolean
+
+        attr_accessor :ServiceId, :GetFinishedOrder
+        
+        def initialize(serviceid=nil, getfinishedorder=nil)
+          @ServiceId = serviceid
+          @GetFinishedOrder = getfinishedorder
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @GetFinishedOrder = params['GetFinishedOrder']
+        end
+      end
+
+      # DescribeStorageService返回参数结构体
+      class DescribeStorageServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 云存服务ID
+        # @type ServiceId: String
+        # @param StorageRegion: 云存服务所在的区域
+        # @type StorageRegion: String
+        # @param Tid: 设备TID
+        # @type Tid: String
+        # @param ChnNum: 视频流通道号。(对于存在多路视频流的设备，如NVR设备，与设备实际视频流通道号对应)
+        # @type ChnNum: Integer
+        # @param AccessId: 终端用户在IoT Video平台的注册ID
+        # @type AccessId: String
+        # @param StartTime: 服务开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 服务失效时间
+        # @type EndTime: Integer
+        # @param Status: 服务状态
+        # @type Status: Integer
+        # @param Data: 云存定单列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :StorageRegion, :Tid, :ChnNum, :AccessId, :StartTime, :EndTime, :Status, :Data, :RequestId
+        
+        def initialize(serviceid=nil, storageregion=nil, tid=nil, chnnum=nil, accessid=nil, starttime=nil, endtime=nil, status=nil, data=nil, requestid=nil)
+          @ServiceId = serviceid
+          @StorageRegion = storageregion
+          @Tid = tid
+          @ChnNum = chnnum
+          @AccessId = accessid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @StorageRegion = params['StorageRegion']
+          @Tid = params['Tid']
+          @ChnNum = params['ChnNum']
+          @AccessId = params['AccessId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
           @Data = params['Data']
           @RequestId = params['RequestId']
         end
@@ -2187,6 +2735,56 @@ module TencentCloud
         end
       end
 
+      # ModifyVerContent请求参数结构体
+      class ModifyVerContentRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品id
+        # @type ProductId: String
+        # @param OtaVersion: 需要修改的版本号
+        # @type OtaVersion: String
+        # @param Operator: 操作人,字符长度<=64
+        # @type Operator: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param Contents: 版本发布的描述信息，需要国际化，可以为空
+        # @type Contents: :class:`Tencentcloud::Iotvideo.v20191126.models.Contents`
+
+        attr_accessor :ProductId, :OtaVersion, :Operator, :Remark, :Contents
+        
+        def initialize(productid=nil, otaversion=nil, operator=nil, remark=nil, contents=nil)
+          @ProductId = productid
+          @OtaVersion = otaversion
+          @Operator = operator
+          @Remark = remark
+          @Contents = contents
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @OtaVersion = params['OtaVersion']
+          @Operator = params['Operator']
+          @Remark = params['Remark']
+          unless params['Contents'].nil?
+            @Contents = Contents.new.deserialize(params[Contents])
+          end
+        end
+      end
+
+      # ModifyVerContent返回参数结构体
+      class ModifyVerContentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 产品转发消息队列配置
       class MsgQueueData < TencentCloud::Common::AbstractModel
         # @param MsgQueueType: 消息队列类型 1：CMQ 2：kafka
@@ -2216,6 +2814,28 @@ module TencentCloud
           @Topic = params['Topic']
           @Instance = params['Instance']
           @MsgRegion = params['MsgRegion']
+        end
+      end
+
+      # 操作系统信息
+      class OsData < TencentCloud::Common::AbstractModel
+        # @param ChipId: 芯片型号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChipId: String
+        # @param ChipManufacture: 芯片厂商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChipManufacture: String
+
+        attr_accessor :ChipId, :ChipManufacture
+        
+        def initialize(chipid=nil, chipmanufacture=nil)
+          @ChipId = chipid
+          @ChipManufacture = chipmanufacture
+        end
+
+        def deserialize(params)
+          @ChipId = params['ChipId']
+          @ChipManufacture = params['ChipManufacture']
         end
       end
 
@@ -2255,10 +2875,31 @@ module TencentCloud
         # @type IotModelRevision: Integer
         # @param SecretKey: 产品密钥
         # @type SecretKey: String
+        # @param FuncCode: 设备功能码
+        # ypsxth : 音频双向通话;
+        # spdxth : 视频单向通话(监控);
+        # NVR0824 : NVR设备,大于8路，小于等于24路;
+        # WifiKeepalive : Wifi保活(低功耗产品);
+        # Alexa : Alexa接入;
+        # Google : Google接入;
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FuncCode: Array
+        # @param ProductCate: 产品类别，0 : 普通视频设备；1 : NVR设备
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCate: Integer
+        # @param ProductRegion: 产品地域
+        # China-Mainland（中国大陆）
+        # China-Hong Kong, Macao and Taiwan（港澳台地区）
+        # America（美国）
+        # Europe（欧洲）
+        # India（印度）
+        # Other-Overseas（其他境外地区）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductRegion: String
 
-        attr_accessor :ProductId, :ProductModel, :ProductName, :ProductDescription, :CreateTime, :IotModelRevision, :SecretKey
+        attr_accessor :ProductId, :ProductModel, :ProductName, :ProductDescription, :CreateTime, :IotModelRevision, :SecretKey, :FuncCode, :ProductCate, :ProductRegion
         
-        def initialize(productid=nil, productmodel=nil, productname=nil, productdescription=nil, createtime=nil, iotmodelrevision=nil, secretkey=nil)
+        def initialize(productid=nil, productmodel=nil, productname=nil, productdescription=nil, createtime=nil, iotmodelrevision=nil, secretkey=nil, funccode=nil, productcate=nil, productregion=nil)
           @ProductId = productid
           @ProductModel = productmodel
           @ProductName = productname
@@ -2266,6 +2907,9 @@ module TencentCloud
           @CreateTime = createtime
           @IotModelRevision = iotmodelrevision
           @SecretKey = secretkey
+          @FuncCode = funccode
+          @ProductCate = productcate
+          @ProductRegion = productregion
         end
 
         def deserialize(params)
@@ -2276,6 +2920,9 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @IotModelRevision = params['IotModelRevision']
           @SecretKey = params['SecretKey']
+          @FuncCode = params['FuncCode']
+          @ProductCate = params['ProductCate']
+          @ProductRegion = params['ProductRegion']
         end
       end
 
@@ -2311,10 +2958,28 @@ module TencentCloud
         # @param ChipId: 主芯片型号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChipId: String
+        # @param ProductCate: 产品类别，0：普通视频设备；1：NVR设备
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCate: Integer
+        # @param ProductRegion: 产品地区
+        # China-Mainland（中国大陆）
+        # China-Hong Kong, Macao and Taiwan（港澳台地区）
+        # America（美国）
+        # Europe（欧洲）
+        # India（印度）
+        # Other-Overseas（其他境外地区）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductRegion: String
+        # @param AccessMode: 接入模型，bit0是0：公版小程序未接入，bit0是1：公版小程序已接入
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessMode: Integer
+        # @param Os: linux,android,liteos
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Os: String
 
-        attr_accessor :ProductId, :ProductName, :ProductDescription, :CreateTime, :IotModelRevision, :SecretKey, :Features, :ProductModel, :ChipManufactureId, :ChipId
+        attr_accessor :ProductId, :ProductName, :ProductDescription, :CreateTime, :IotModelRevision, :SecretKey, :Features, :ProductModel, :ChipManufactureId, :ChipId, :ProductCate, :ProductRegion, :AccessMode, :Os
         
-        def initialize(productid=nil, productname=nil, productdescription=nil, createtime=nil, iotmodelrevision=nil, secretkey=nil, features=nil, productmodel=nil, chipmanufactureid=nil, chipid=nil)
+        def initialize(productid=nil, productname=nil, productdescription=nil, createtime=nil, iotmodelrevision=nil, secretkey=nil, features=nil, productmodel=nil, chipmanufactureid=nil, chipid=nil, productcate=nil, productregion=nil, accessmode=nil, os=nil)
           @ProductId = productid
           @ProductName = productname
           @ProductDescription = productdescription
@@ -2325,6 +2990,10 @@ module TencentCloud
           @ProductModel = productmodel
           @ChipManufactureId = chipmanufactureid
           @ChipId = chipid
+          @ProductCate = productcate
+          @ProductRegion = productregion
+          @AccessMode = accessmode
+          @Os = os
         end
 
         def deserialize(params)
@@ -2338,6 +3007,114 @@ module TencentCloud
           @ProductModel = params['ProductModel']
           @ChipManufactureId = params['ChipManufactureId']
           @ChipId = params['ChipId']
+          @ProductCate = params['ProductCate']
+          @ProductRegion = params['ProductRegion']
+          @AccessMode = params['AccessMode']
+          @Os = params['Os']
+        end
+      end
+
+      # 充值记录列表
+      class RechargeRecord < TencentCloud::Common::AbstractModel
+        # @param WaterId: 流水记录号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaterId: Integer
+        # @param BalanceBeforeRecharge: 充值前的余额，单位0.01元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BalanceBeforeRecharge: Integer
+        # @param Money: 充值金额，单位0.01元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Money: Integer
+        # @param OperateTime: 充值时间, UTC值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateTime: Integer
+
+        attr_accessor :WaterId, :BalanceBeforeRecharge, :Money, :OperateTime
+        
+        def initialize(waterid=nil, balancebeforerecharge=nil, money=nil, operatetime=nil)
+          @WaterId = waterid
+          @BalanceBeforeRecharge = balancebeforerecharge
+          @Money = money
+          @OperateTime = operatetime
+        end
+
+        def deserialize(params)
+          @WaterId = params['WaterId']
+          @BalanceBeforeRecharge = params['BalanceBeforeRecharge']
+          @Money = params['Money']
+          @OperateTime = params['OperateTime']
+        end
+      end
+
+      # RefundStorageService请求参数结构体
+      class RefundStorageServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 云存服务ID
+        # @type ServiceId: String
+        # @param OrderId: 云存子订单ID。如果指定子订单ID,则仅退订该子订单，如果未指定子定单ID，则退订所有子订单
+        # @type OrderId: String
+
+        attr_accessor :ServiceId, :OrderId
+        
+        def initialize(serviceid=nil, orderid=nil)
+          @ServiceId = serviceid
+          @OrderId = orderid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @OrderId = params['OrderId']
+        end
+      end
+
+      # RefundStorageService返回参数结构体
+      class RefundStorageServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 云存服务ID
+        # @type ServiceId: String
+        # @param StorageRegion: 云存服务所在的区域
+        # @type StorageRegion: String
+        # @param Tid: 设备TID
+        # @type Tid: String
+        # @param ChnNum: 视频流通道号。(对于存在多路视频流的设备，如NVR设备，与设备实际视频流通道号对应)
+        # @type ChnNum: Integer
+        # @param AccessId: 终端用户在IoT Video平台的注册ID
+        # @type AccessId: String
+        # @param StartTime: 服务开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 服务失效时间
+        # @type EndTime: Integer
+        # @param Status: 服务状态
+        # @type Status: Integer
+        # @param Data: 有效云存定单列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :StorageRegion, :Tid, :ChnNum, :AccessId, :StartTime, :EndTime, :Status, :Data, :RequestId
+        
+        def initialize(serviceid=nil, storageregion=nil, tid=nil, chnnum=nil, accessid=nil, starttime=nil, endtime=nil, status=nil, data=nil, requestid=nil)
+          @ServiceId = serviceid
+          @StorageRegion = storageregion
+          @Tid = tid
+          @ChnNum = chnnum
+          @AccessId = accessid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @StorageRegion = params['StorageRegion']
+          @Tid = params['Tid']
+          @ChnNum = params['ChnNum']
+          @AccessId = params['AccessId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2473,15 +3250,21 @@ module TencentCloud
         # @type OldVersions: Array
         # @param Operator: 操作人
         # @type Operator: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param Contents: 版本发布的描述信息，需要国际化，可以为空
+        # @type Contents: :class:`Tencentcloud::Iotvideo.v20191126.models.Contents`
 
-        attr_accessor :ProductId, :OtaVersion, :GrayValue, :OldVersions, :Operator
+        attr_accessor :ProductId, :OtaVersion, :GrayValue, :OldVersions, :Operator, :Remark, :Contents
         
-        def initialize(productid=nil, otaversion=nil, grayvalue=nil, oldversions=nil, operator=nil)
+        def initialize(productid=nil, otaversion=nil, grayvalue=nil, oldversions=nil, operator=nil, remark=nil, contents=nil)
           @ProductId = productid
           @OtaVersion = otaversion
           @GrayValue = grayvalue
           @OldVersions = oldversions
           @Operator = operator
+          @Remark = remark
+          @Contents = contents
         end
 
         def deserialize(params)
@@ -2490,6 +3273,10 @@ module TencentCloud
           @GrayValue = params['GrayValue']
           @OldVersions = params['OldVersions']
           @Operator = params['Operator']
+          @Remark = params['Remark']
+          unless params['Contents'].nil?
+            @Contents = Contents.new.deserialize(params[Contents])
+          end
         end
       end
 
@@ -2519,14 +3306,17 @@ module TencentCloud
         # @type Tids: Array
         # @param Operator: 操作人
         # @type Operator: String
+        # @param Remark: 备注信息
+        # @type Remark: String
 
-        attr_accessor :ProductId, :OtaVersion, :Tids, :Operator
+        attr_accessor :ProductId, :OtaVersion, :Tids, :Operator, :Remark
         
-        def initialize(productid=nil, otaversion=nil, tids=nil, operator=nil)
+        def initialize(productid=nil, otaversion=nil, tids=nil, operator=nil, remark=nil)
           @ProductId = productid
           @OtaVersion = otaversion
           @Tids = tids
           @Operator = operator
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -2534,6 +3324,7 @@ module TencentCloud
           @OtaVersion = params['OtaVersion']
           @Tids = params['Tids']
           @Operator = params['Operator']
+          @Remark = params['Remark']
         end
       end
 
@@ -2670,6 +3461,65 @@ module TencentCloud
         end
       end
 
+      # 云存订单信息
+      class StorageOrder < TencentCloud::Common::AbstractModel
+        # @param OrderId: 定单唯一性ID
+        # @type OrderId: String
+        # @param PkgId: 云存套餐ID
+        # @type PkgId: String
+        # @param Status: 定单服务状态
+        # @type Status: Integer
+        # @param StartTime: 定单服务生效时间
+        # @type StartTime: Integer
+        # @param EndTime: 定单服务失效时间
+        # @type EndTime: Integer
+
+        attr_accessor :OrderId, :PkgId, :Status, :StartTime, :EndTime
+        
+        def initialize(orderid=nil, pkgid=nil, status=nil, starttime=nil, endtime=nil)
+          @OrderId = orderid
+          @PkgId = pkgid
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @PkgId = params['PkgId']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 系统类型
+      class SystemType < TencentCloud::Common::AbstractModel
+        # @param Android: 安卓系统
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Android: Array
+        # @param Linux: linux系统
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Linux: Array
+        # @param LiteOs: LiteOs系统
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiteOs: Array
+
+        attr_accessor :Android, :Linux, :LiteOs
+        
+        def initialize(android=nil, linux=nil, liteos=nil)
+          @Android = android
+          @Linux = linux
+          @LiteOs = liteos
+        end
+
+        def deserialize(params)
+          @Android = params['Android']
+          @Linux = params['Linux']
+          @LiteOs = params['LiteOs']
+        end
+      end
+
       # 布尔值，标识指定设备是否在白名单中
       class TraceStatus < TencentCloud::Common::AbstractModel
         # @param Tid: 设备TID
@@ -2749,16 +3599,22 @@ module TencentCloud
         # @type Md5: String
         # @param Operator: 操作人
         # @type Operator: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param Contents: 版本发布的描述信息，需要国际化，可以为空
+        # @type Contents: :class:`Tencentcloud::Iotvideo.v20191126.models.Contents`
 
-        attr_accessor :ProductId, :OtaVersion, :VersionUrl, :FileSize, :Md5, :Operator
+        attr_accessor :ProductId, :OtaVersion, :VersionUrl, :FileSize, :Md5, :Operator, :Remark, :Contents
         
-        def initialize(productid=nil, otaversion=nil, versionurl=nil, filesize=nil, md5=nil, operator=nil)
+        def initialize(productid=nil, otaversion=nil, versionurl=nil, filesize=nil, md5=nil, operator=nil, remark=nil, contents=nil)
           @ProductId = productid
           @OtaVersion = otaversion
           @VersionUrl = versionurl
           @FileSize = filesize
           @Md5 = md5
           @Operator = operator
+          @Remark = remark
+          @Contents = contents
         end
 
         def deserialize(params)
@@ -2768,6 +3624,10 @@ module TencentCloud
           @FileSize = params['FileSize']
           @Md5 = params['Md5']
           @Operator = params['Operator']
+          @Remark = params['Remark']
+          unless params['Contents'].nil?
+            @Contents = Contents.new.deserialize(params[Contents])
+          end
         end
       end
 
@@ -2834,10 +3694,19 @@ module TencentCloud
         # @param ModifyTimes: 该固件版本发布的变更次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTimes: Integer
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Contents: 版本发布的描述信息，需要国际化，可以为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Contents: :class:`Tencentcloud::Iotvideo.v20191126.models.Contents`
+        # @param AliveInMonthCnt: 月活设备数，当月第一天开始有上线的设备数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliveInMonthCnt: Integer
 
-        attr_accessor :ProductId, :OtaVersion, :PubStatus, :VersionUrl, :FileSize, :Md5, :OldVersions, :Tids, :GrayValue, :PublishTime, :ActiveCount, :OnlineCount, :UpdateTime, :UploadTime, :ModifyTimes
+        attr_accessor :ProductId, :OtaVersion, :PubStatus, :VersionUrl, :FileSize, :Md5, :OldVersions, :Tids, :GrayValue, :PublishTime, :ActiveCount, :OnlineCount, :UpdateTime, :UploadTime, :ModifyTimes, :Remark, :Contents, :AliveInMonthCnt
         
-        def initialize(productid=nil, otaversion=nil, pubstatus=nil, versionurl=nil, filesize=nil, md5=nil, oldversions=nil, tids=nil, grayvalue=nil, publishtime=nil, activecount=nil, onlinecount=nil, updatetime=nil, uploadtime=nil, modifytimes=nil)
+        def initialize(productid=nil, otaversion=nil, pubstatus=nil, versionurl=nil, filesize=nil, md5=nil, oldversions=nil, tids=nil, grayvalue=nil, publishtime=nil, activecount=nil, onlinecount=nil, updatetime=nil, uploadtime=nil, modifytimes=nil, remark=nil, contents=nil, aliveinmonthcnt=nil)
           @ProductId = productid
           @OtaVersion = otaversion
           @PubStatus = pubstatus
@@ -2853,6 +3722,9 @@ module TencentCloud
           @UpdateTime = updatetime
           @UploadTime = uploadtime
           @ModifyTimes = modifytimes
+          @Remark = remark
+          @Contents = contents
+          @AliveInMonthCnt = aliveinmonthcnt
         end
 
         def deserialize(params)
@@ -2871,6 +3743,11 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @UploadTime = params['UploadTime']
           @ModifyTimes = params['ModifyTimes']
+          @Remark = params['Remark']
+          unless params['Contents'].nil?
+            @Contents = Contents.new.deserialize(params[Contents])
+          end
+          @AliveInMonthCnt = params['AliveInMonthCnt']
         end
       end
 

@@ -79,6 +79,76 @@ module TencentCloud
         end
       end
 
+      # 文件系统(cfs)配置描述
+      class CfsConfig < TencentCloud::Common::AbstractModel
+        # @param CfsInsList: 文件系统信息列表
+        # @type CfsInsList: Array
+
+        attr_accessor :CfsInsList
+        
+        def initialize(cfsinslist=nil)
+          @CfsInsList = cfsinslist
+        end
+
+        def deserialize(params)
+          @CfsInsList = params['CfsInsList']
+        end
+      end
+
+      # 云函数关联的cfs配置信息
+      class CfsInsInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户id
+        # @type UserId: String
+        # @param UserGroupId: 用户组id
+        # @type UserGroupId: String
+        # @param CfsId: 文件系统实例id
+        # @type CfsId: String
+        # @param MountInsId: 文件系统挂载点id
+        # @type MountInsId: String
+        # @param LocalMountDir: 本地挂载点
+        # @type LocalMountDir: String
+        # @param RemoteMountDir: 远程挂载点
+        # @type RemoteMountDir: String
+        # @param IpAddress: 文件系统ip，配置 cfs 时无需填写。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpAddress: String
+        # @param MountVpcId: 文件系统所在的私有网络id，配置 cfs 时无需填写。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountVpcId: String
+        # @param MountSubnetId: 文件系统所在私有网络的子网id，配置 cfs 时无需填写。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountSubnetId: String
+
+        attr_accessor :UserId, :UserGroupId, :CfsId, :MountInsId, :LocalMountDir, :RemoteMountDir, :IpAddress, :MountVpcId, :MountSubnetId
+        
+        def initialize(userid=nil, usergroupid=nil, cfsid=nil, mountinsid=nil, localmountdir=nil, remotemountdir=nil, ipaddress=nil, mountvpcid=nil, mountsubnetid=nil)
+          @UserId = userid
+          @UserGroupId = usergroupid
+          @CfsId = cfsid
+          @MountInsId = mountinsid
+          @LocalMountDir = localmountdir
+          @RemoteMountDir = remotemountdir
+          @IpAddress = ipaddress
+          @MountVpcId = mountvpcid
+          @MountSubnetId = mountsubnetid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserGroupId = params['UserGroupId']
+          @CfsId = params['CfsId']
+          @MountInsId = params['MountInsId']
+          @LocalMountDir = params['LocalMountDir']
+          @RemoteMountDir = params['RemoteMountDir']
+          @IpAddress = params['IpAddress']
+          @MountVpcId = params['MountVpcId']
+          @MountSubnetId = params['MountSubnetId']
+        end
+      end
+
       # 函数代码
       class Code < TencentCloud::Common::AbstractModel
         # @param CosBucketName: 对象存储桶名称
@@ -270,9 +340,9 @@ module TencentCloud
       class CreateFunctionRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 创建的函数名称，函数名称支持26个英文字母大小写、数字、连接符和下划线，第一个字符只能以字母开头，最后一个字符不能为连接符或者下划线，名称长度2-60
         # @type FunctionName: String
-        # @param Code: 函数的代码. 注意：不能同时指定Cos与ZipFile
+        # @param Code: 函数代码. 注意：不能同时指定Cos、ZipFile或 DemoId。
         # @type Code: :class:`Tencentcloud::Scf.v20180416.models.Code`
-        # @param Handler: 函数处理方法名称，名称格式支持 "文件名称.方法名称" 形式，文件名称和函数名称之间以"."隔开，文件名称和函数名称要求以字母开始和结尾，中间允许插入字母、数字、下划线和连接符，文件名称和函数名字的长度要求是 2-60 个字符
+        # @param Handler: 函数处理方法名称，名称格式支持 "文件名称.方法名称" 形式（java 名称格式 包名.类名::方法名），文件名称和函数名称之间以"."隔开，文件名称和函数名称要求以字母开始和结尾，中间允许插入字母、数字、下划线和连接符，文件名称和函数名字的长度要求是 2-60 个字符
         # @type Handler: String
         # @param Description: 函数描述,最大支持 1000 个英文字母、数字、空格、逗号、换行符和英文句号，支持中文
         # @type Description: String
@@ -282,7 +352,7 @@ module TencentCloud
         # @type Timeout: Integer
         # @param Environment: 函数的环境变量
         # @type Environment: :class:`Tencentcloud::Scf.v20180416.models.Environment`
-        # @param Runtime: 函数运行环境，目前仅支持 Python2.7，Python3.6，Nodejs6.10，Nodejs8.9，Nodejs10.15，Nodejs12.16， PHP5， PHP7，Golang1 和 Java8，默认Python2.7
+        # @param Runtime: 函数运行环境，目前仅支持 Python2.7，Python3.6，Nodejs6.10，Nodejs8.9，Nodejs10.15，Nodejs12.16， Php5， Php7，Go1，Java8 和 CustomRuntime，默认Python2.7
         # @type Runtime: String
         # @param VpcConfig: 函数的私有网络配置
         # @type VpcConfig: :class:`Tencentcloud::Scf.v20180416.models.VpcConfig`
@@ -296,7 +366,7 @@ module TencentCloud
         # @type ClsTopicId: String
         # @param Type: 函数类型，默认值为Event，创建触发器函数请填写Event，创建HTTP函数级服务请填写HTTP
         # @type Type: String
-        # @param CodeSource: CodeSource 代码来源，支持以下'ZipFile', 'Cos', 'Demo', 'TempCos', 'Git'之一，使用Git来源必须指定此字段
+        # @param CodeSource: CodeSource 代码来源，支持ZipFile, Cos, Demo 其中之一
         # @type CodeSource: String
         # @param Layers: 函数要关联的Layer版本列表，Layer会按照在列表中顺序依次覆盖。
         # @type Layers: Array
@@ -304,10 +374,16 @@ module TencentCloud
         # @type DeadLetterConfig: :class:`Tencentcloud::Scf.v20180416.models.DeadLetterConfig`
         # @param PublicNetConfig: 公网访问配置
         # @type PublicNetConfig: :class:`Tencentcloud::Scf.v20180416.models.PublicNetConfigIn`
+        # @param CfsConfig: 文件系统配置参数，用于云函数挂载文件系统
+        # @type CfsConfig: :class:`Tencentcloud::Scf.v20180416.models.CfsConfig`
+        # @param InitTimeout: 函数初始化超时时间
+        # @type InitTimeout: Integer
+        # @param Tags: 函数 Tag 参数，以键值对数组形式传入
+        # @type Tags: Array
 
-        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig
+        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags
         
-        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil)
+        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil)
           @FunctionName = functionname
           @Code = code
           @Handler = handler
@@ -326,6 +402,9 @@ module TencentCloud
           @Layers = layers
           @DeadLetterConfig = deadletterconfig
           @PublicNetConfig = publicnetconfig
+          @CfsConfig = cfsconfig
+          @InitTimeout = inittimeout
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -357,6 +436,11 @@ module TencentCloud
           unless params['PublicNetConfig'].nil?
             @PublicNetConfig = PublicNetConfigIn.new.deserialize(params[PublicNetConfig])
           end
+          unless params['CfsConfig'].nil?
+            @CfsConfig = CfsConfig.new.deserialize(params[CfsConfig])
+          end
+          @InitTimeout = params['InitTimeout']
+          @Tags = params['Tags']
         end
       end
 
@@ -418,7 +502,7 @@ module TencentCloud
         # @type FunctionName: String
         # @param TriggerName: 新建触发器名称。如果是定时触发器，名称支持英文字母、数字、连接符和下划线，最长100个字符；如果是cos触发器，需要是对应cos存储桶适用于XML API的访问域名(例如:5401-5ff414-12345.cos.ap-shanghai.myqcloud.com);如果是其他触发器，见具体触发器绑定参数的说明
         # @type TriggerName: String
-        # @param Type: 触发器类型，目前支持 cos 、cmq、 timer、 ckafka类型
+        # @param Type: 触发器类型，目前支持 cos 、cmq、 timer、 ckafka、apigw类型
         # @type Type: String
         # @param TriggerDesc: 触发器对应的参数，可见具体[触发器描述说明](https://cloud.tencent.com/document/product/583/39901)
         # @type TriggerDesc: String
@@ -428,10 +512,12 @@ module TencentCloud
         # @type Qualifier: String
         # @param Enable: 触发器的初始是能状态 OPEN表示开启 CLOSE表示关闭
         # @type Enable: String
+        # @param CustomArgument: 用户自定义参数，仅支持timer触发器
+        # @type CustomArgument: String
 
-        attr_accessor :FunctionName, :TriggerName, :Type, :TriggerDesc, :Namespace, :Qualifier, :Enable
+        attr_accessor :FunctionName, :TriggerName, :Type, :TriggerDesc, :Namespace, :Qualifier, :Enable, :CustomArgument
         
-        def initialize(functionname=nil, triggername=nil, type=nil, triggerdesc=nil, namespace=nil, qualifier=nil, enable=nil)
+        def initialize(functionname=nil, triggername=nil, type=nil, triggerdesc=nil, namespace=nil, qualifier=nil, enable=nil, customargument=nil)
           @FunctionName = functionname
           @TriggerName = triggername
           @Type = type
@@ -439,6 +525,7 @@ module TencentCloud
           @Namespace = namespace
           @Qualifier = qualifier
           @Enable = enable
+          @CustomArgument = customargument
         end
 
         def deserialize(params)
@@ -449,6 +536,7 @@ module TencentCloud
           @Namespace = params['Namespace']
           @Qualifier = params['Qualifier']
           @Enable = params['Enable']
+          @CustomArgument = params['CustomArgument']
         end
       end
 
@@ -544,17 +632,21 @@ module TencentCloud
         # @type FunctionName: String
         # @param Namespace: 函数所属命名空间
         # @type Namespace: String
+        # @param Qualifier: 函数版本
+        # @type Qualifier: String
 
-        attr_accessor :FunctionName, :Namespace
+        attr_accessor :FunctionName, :Namespace, :Qualifier
         
-        def initialize(functionname=nil, namespace=nil)
+        def initialize(functionname=nil, namespace=nil, qualifier=nil)
           @FunctionName = functionname
           @Namespace = namespace
+          @Qualifier = qualifier
         end
 
         def deserialize(params)
           @FunctionName = params['FunctionName']
           @Namespace = params['Namespace']
+          @Qualifier = params['Qualifier']
         end
       end
 
@@ -628,6 +720,82 @@ module TencentCloud
 
       # DeleteNamespace返回参数结构体
       class DeleteNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProvisionedConcurrencyConfig请求参数结构体
+      class DeleteProvisionedConcurrencyConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 需要删除预置并发的函数的名称
+        # @type FunctionName: String
+        # @param Qualifier: 函数的版本号
+        # @type Qualifier: String
+        # @param Namespace: 函数所属命名空间，默认为default
+        # @type Namespace: String
+
+        attr_accessor :FunctionName, :Qualifier, :Namespace
+        
+        def initialize(functionname=nil, qualifier=nil, namespace=nil)
+          @FunctionName = functionname
+          @Qualifier = qualifier
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Qualifier = params['Qualifier']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # DeleteProvisionedConcurrencyConfig返回参数结构体
+      class DeleteProvisionedConcurrencyConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteReservedConcurrencyConfig请求参数结构体
+      class DeleteReservedConcurrencyConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 需要删除预置并发的函数的名称
+        # @type FunctionName: String
+        # @param Namespace: 函数所属命名空间，默认为default
+        # @type Namespace: String
+
+        attr_accessor :FunctionName, :Namespace
+        
+        def initialize(functionname=nil, namespace=nil)
+          @FunctionName = functionname
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # DeleteReservedConcurrencyConfig返回参数结构体
+      class DeleteReservedConcurrencyConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -803,7 +971,7 @@ module TencentCloud
         # @type FunctionId: String
         # @param Namespace: 命名空间
         # @type Namespace: String
-        # @param Status: 函数状态
+        # @param Status: 函数状态，状态值及流转[参考此处](https://cloud.tencent.com/document/product/583/47175)
         # @type Status: String
         # @param StatusDesc: 函数状态详情
         # @type StatusDesc: String
@@ -813,10 +981,18 @@ module TencentCloud
         # @type Tags: Array
         # @param Type: 函数类型，取值为 HTTP 或者 Event
         # @type Type: String
+        # @param StatusReasons: 函数状态失败原因
+        # @type StatusReasons: Array
+        # @param TotalProvisionedConcurrencyMem: 函数所有版本预置并发内存总和
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalProvisionedConcurrencyMem: Integer
+        # @param ReservedConcurrencyMem: 函数并发保留内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReservedConcurrencyMem: Integer
 
-        attr_accessor :ModTime, :AddTime, :Runtime, :FunctionName, :FunctionId, :Namespace, :Status, :StatusDesc, :Description, :Tags, :Type
+        attr_accessor :ModTime, :AddTime, :Runtime, :FunctionName, :FunctionId, :Namespace, :Status, :StatusDesc, :Description, :Tags, :Type, :StatusReasons, :TotalProvisionedConcurrencyMem, :ReservedConcurrencyMem
         
-        def initialize(modtime=nil, addtime=nil, runtime=nil, functionname=nil, functionid=nil, namespace=nil, status=nil, statusdesc=nil, description=nil, tags=nil, type=nil)
+        def initialize(modtime=nil, addtime=nil, runtime=nil, functionname=nil, functionid=nil, namespace=nil, status=nil, statusdesc=nil, description=nil, tags=nil, type=nil, statusreasons=nil, totalprovisionedconcurrencymem=nil, reservedconcurrencymem=nil)
           @ModTime = modtime
           @AddTime = addtime
           @Runtime = runtime
@@ -828,6 +1004,9 @@ module TencentCloud
           @Description = description
           @Tags = tags
           @Type = type
+          @StatusReasons = statusreasons
+          @TotalProvisionedConcurrencyMem = totalprovisionedconcurrencymem
+          @ReservedConcurrencyMem = reservedconcurrencymem
         end
 
         def deserialize(params)
@@ -842,6 +1021,9 @@ module TencentCloud
           @Description = params['Description']
           @Tags = params['Tags']
           @Type = params['Type']
+          @StatusReasons = params['StatusReasons']
+          @TotalProvisionedConcurrencyMem = params['TotalProvisionedConcurrencyMem']
+          @ReservedConcurrencyMem = params['ReservedConcurrencyMem']
         end
       end
 
@@ -1081,7 +1263,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 查询的具体日期，例如：2017-05-16 20:59:59，只能与startTime相差一天之内
         # @type EndTime: String
-        # @param SearchContext: 服务日志相关参数，第一页日志 Offset 为空字符串，后续分页按响应字段里的SearchContext填写
+        # @param SearchContext: 该字段已下线
         # @type SearchContext: :class:`Tencentcloud::Scf.v20180416.models.LogSearchContext`
 
         attr_accessor :FunctionName, :Offset, :Limit, :Order, :OrderBy, :Filter, :Namespace, :Qualifier, :FunctionRequestId, :StartTime, :EndTime, :SearchContext
@@ -1127,7 +1309,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Data: 函数日志信息
         # @type Data: Array
-        # @param SearchContext: 日志服务分页参数
+        # @param SearchContext: 该字段已下线
         # @type SearchContext: :class:`Tencentcloud::Scf.v20180416.models.LogSearchContext`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1221,7 +1403,7 @@ module TencentCloud
         # @type Role: String
         # @param InstallDependency: 是否自动安装依赖
         # @type InstallDependency: String
-        # @param Status: 函数状态
+        # @param Status: 函数状态，状态值及流转[参考说明](https://cloud.tencent.com/document/product/583/47175)
         # @type Status: String
         # @param StatusDesc: 状态描述
         # @type StatusDesc: String
@@ -1253,12 +1435,26 @@ module TencentCloud
         # @param OnsEnable: 是否启用Ons
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OnsEnable: String
+        # @param CfsConfig: 文件系统配置参数，用于云函数挂载文件系统
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CfsConfig: :class:`Tencentcloud::Scf.v20180416.models.CfsConfig`
+        # @param AvailableStatus: 函数的计费状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/47175#.E5.87.BD.E6.95.B0.E8.AE.A1.E8.B4.B9.E7.8A.B6.E6.80.81)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableStatus: String
+        # @param Qualifier: 函数版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Qualifier: String
+        # @param InitTimeout: 函数初始化超时时间
+        # @type InitTimeout: Integer
+        # @param StatusReasons: 函数状态失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusReasons: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :Environment, :CodeResult, :CodeError, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :StatusDesc, :ClsLogsetId, :ClsTopicId, :FunctionId, :Tags, :EipConfig, :AccessInfo, :Type, :L5Enable, :Layers, :DeadLetterConfig, :AddTime, :PublicNetConfig, :OnsEnable, :RequestId
+        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :Environment, :CodeResult, :CodeError, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :StatusDesc, :ClsLogsetId, :ClsTopicId, :FunctionId, :Tags, :EipConfig, :AccessInfo, :Type, :L5Enable, :Layers, :DeadLetterConfig, :AddTime, :PublicNetConfig, :OnsEnable, :CfsConfig, :AvailableStatus, :Qualifier, :InitTimeout, :StatusReasons, :RequestId
         
-        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, environment=nil, coderesult=nil, codeerror=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, statusdesc=nil, clslogsetid=nil, clstopicid=nil, functionid=nil, tags=nil, eipconfig=nil, accessinfo=nil, type=nil, l5enable=nil, layers=nil, deadletterconfig=nil, addtime=nil, publicnetconfig=nil, onsenable=nil, requestid=nil)
+        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, environment=nil, coderesult=nil, codeerror=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, statusdesc=nil, clslogsetid=nil, clstopicid=nil, functionid=nil, tags=nil, eipconfig=nil, accessinfo=nil, type=nil, l5enable=nil, layers=nil, deadletterconfig=nil, addtime=nil, publicnetconfig=nil, onsenable=nil, cfsconfig=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, statusreasons=nil, requestid=nil)
           @ModTime = modtime
           @CodeInfo = codeinfo
           @Description = description
@@ -1294,6 +1490,11 @@ module TencentCloud
           @AddTime = addtime
           @PublicNetConfig = publicnetconfig
           @OnsEnable = onsenable
+          @CfsConfig = cfsconfig
+          @AvailableStatus = availablestatus
+          @Qualifier = qualifier
+          @InitTimeout = inittimeout
+          @StatusReasons = statusreasons
           @RequestId = requestid
         end
 
@@ -1345,6 +1546,13 @@ module TencentCloud
             @PublicNetConfig = PublicNetConfigOut.new.deserialize(params[PublicNetConfig])
           end
           @OnsEnable = params['OnsEnable']
+          unless params['CfsConfig'].nil?
+            @CfsConfig = CfsConfig.new.deserialize(params[CfsConfig])
+          end
+          @AvailableStatus = params['AvailableStatus']
+          @Qualifier = params['Qualifier']
+          @InitTimeout = params['InitTimeout']
+          @StatusReasons = params['StatusReasons']
           @RequestId = params['RequestId']
         end
       end
@@ -1421,6 +1629,95 @@ module TencentCloud
           @LayerVersion = params['LayerVersion']
           @LayerName = params['LayerName']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetProvisionedConcurrencyConfig请求参数结构体
+      class GetProvisionedConcurrencyConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 需要获取预置并发详情的函数名称。
+        # @type FunctionName: String
+        # @param Namespace: 函数所在的命名空间，默认为default。
+        # @type Namespace: String
+        # @param Qualifier: 函数版本号，不传则返回函数所有版本的预置并发信息。
+        # @type Qualifier: String
+
+        attr_accessor :FunctionName, :Namespace, :Qualifier
+        
+        def initialize(functionname=nil, namespace=nil, qualifier=nil)
+          @FunctionName = functionname
+          @Namespace = namespace
+          @Qualifier = qualifier
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Namespace = params['Namespace']
+          @Qualifier = params['Qualifier']
+        end
+      end
+
+      # GetProvisionedConcurrencyConfig返回参数结构体
+      class GetProvisionedConcurrencyConfigResponse < TencentCloud::Common::AbstractModel
+        # @param UnallocatedConcurrencyNum: 该函数剩余可配置的预置并发数。
+        # @type UnallocatedConcurrencyNum: Integer
+        # @param Allocated: 函数已预置的并发配置详情。
+        # @type Allocated: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UnallocatedConcurrencyNum, :Allocated, :RequestId
+        
+        def initialize(unallocatedconcurrencynum=nil, allocated=nil, requestid=nil)
+          @UnallocatedConcurrencyNum = unallocatedconcurrencynum
+          @Allocated = allocated
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UnallocatedConcurrencyNum = params['UnallocatedConcurrencyNum']
+          @Allocated = params['Allocated']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetReservedConcurrencyConfig请求参数结构体
+      class GetReservedConcurrencyConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 需要获取预置并发详情的函数名称。
+        # @type FunctionName: String
+        # @param Namespace: 函数所在的命名空间，默认为default。
+        # @type Namespace: String
+
+        attr_accessor :FunctionName, :Namespace
+        
+        def initialize(functionname=nil, namespace=nil)
+          @FunctionName = functionname
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # GetReservedConcurrencyConfig返回参数结构体
+      class GetReservedConcurrencyConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ReservedMem: 该函数的保留并发内存。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReservedMem: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReservedMem, :RequestId
+        
+        def initialize(reservedmem=nil, requestid=nil)
+          @ReservedMem = reservedmem
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReservedMem = params['ReservedMem']
           @RequestId = params['RequestId']
         end
       end
@@ -1504,11 +1801,7 @@ module TencentCloud
         # @type LayerVersion: Integer
         # @param LayerName: 层名称
         # @type LayerName: String
-        # @param Status: 层的具体版本当前状态，可能取值：
-        # Active 正常
-        # Publishing  发布中
-        # PublishFailed  发布失败
-        # Deleted 已删除
+        # @param Status: 层的具体版本当前状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/47175#.E5.B1.82.EF.BC.88layer.EF.BC.89.E7.8A.B6.E6.80.81)
         # @type Status: String
 
         attr_accessor :CompatibleRuntimes, :AddTime, :Description, :LicenseInfo, :LayerVersion, :LayerName, :Status
@@ -1726,9 +2019,9 @@ module TencentCloud
       class ListLayersRequest < TencentCloud::Common::AbstractModel
         # @param CompatibleRuntime: 适配的运行时
         # @type CompatibleRuntime: String
-        # @param Offset: Offset
+        # @param Offset: 偏移位置
         # @type Offset: Integer
-        # @param Limit: Limit
+        # @param Limit: 查询数目限制
         # @type Limit: Integer
         # @param SearchKey: 查询key，模糊匹配名称
         # @type SearchKey: String
@@ -1836,7 +2129,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数据长度，默认值为 20
         # @type Limit: Integer
-        # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：AddTime, ModTime，默认ModTime
+        # @param OrderBy: 根据哪个字段进行返回结果排序,支持以下字段：add_time，mod_time，默认mod_time
         # @type OrderBy: String
         # @param Order: 以升序还是降序的方式返回结果，可选值 ASC 和 DESC，默认DESC
         # @type Order: String
@@ -2209,6 +2502,126 @@ module TencentCloud
         end
       end
 
+      # PutProvisionedConcurrencyConfig请求参数结构体
+      class PutProvisionedConcurrencyConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 需要设置预置并发的函数的名称
+        # @type FunctionName: String
+        # @param Qualifier: 函数的版本号，注：$LATEST版本不支持预置并发
+        # @type Qualifier: String
+        # @param VersionProvisionedConcurrencyNum: 预置并发数量，注：所有版本的预置并发数总和存在上限限制，当前的上限是：函数最大并发配额 - 100
+        # @type VersionProvisionedConcurrencyNum: Integer
+        # @param Namespace: 函数所属命名空间，默认为default
+        # @type Namespace: String
+
+        attr_accessor :FunctionName, :Qualifier, :VersionProvisionedConcurrencyNum, :Namespace
+        
+        def initialize(functionname=nil, qualifier=nil, versionprovisionedconcurrencynum=nil, namespace=nil)
+          @FunctionName = functionname
+          @Qualifier = qualifier
+          @VersionProvisionedConcurrencyNum = versionprovisionedconcurrencynum
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Qualifier = params['Qualifier']
+          @VersionProvisionedConcurrencyNum = params['VersionProvisionedConcurrencyNum']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # PutProvisionedConcurrencyConfig返回参数结构体
+      class PutProvisionedConcurrencyConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PutReservedConcurrencyConfig请求参数结构体
+      class PutReservedConcurrencyConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 需要设置预置并发的函数的名称
+        # @type FunctionName: String
+        # @param ReservedConcurrencyMem: 函数保留并发内存，注：函数的保留并发内存总和上限：用户总并发内存配额 - 12800
+        # @type ReservedConcurrencyMem: Integer
+        # @param Namespace: 函数所属命名空间，默认为default
+        # @type Namespace: String
+
+        attr_accessor :FunctionName, :ReservedConcurrencyMem, :Namespace
+        
+        def initialize(functionname=nil, reservedconcurrencymem=nil, namespace=nil)
+          @FunctionName = functionname
+          @ReservedConcurrencyMem = reservedconcurrencymem
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @ReservedConcurrencyMem = params['ReservedConcurrencyMem']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # PutReservedConcurrencyConfig返回参数结构体
+      class PutReservedConcurrencyConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PutTotalConcurrencyConfig请求参数结构体
+      class PutTotalConcurrencyConfigRequest < TencentCloud::Common::AbstractModel
+        # @param TotalConcurrencyMem: 账号并发内存配额，注：账号并发内存配额下限：用户已用并发内存总额 + 12800
+        # @type TotalConcurrencyMem: Integer
+        # @param Namespace: 命名空间，默认为default
+        # @type Namespace: String
+
+        attr_accessor :TotalConcurrencyMem, :Namespace
+        
+        def initialize(totalconcurrencymem=nil, namespace=nil)
+          @TotalConcurrencyMem = totalconcurrencymem
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @TotalConcurrencyMem = params['TotalConcurrencyMem']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # PutTotalConcurrencyConfig返回参数结构体
+      class PutTotalConcurrencyConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 运行函数的返回
       class Result < TencentCloud::Common::AbstractModel
         # @param Log: 表示执行过程中的日志输出，异步调用返回为空
@@ -2273,6 +2686,26 @@ module TencentCloud
         end
       end
 
+      # 状态原因描述
+      class StatusReason < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 错误码
+        # @type ErrorCode: String
+        # @param ErrorMessage: 错误描述
+        # @type ErrorMessage: String
+
+        attr_accessor :ErrorCode, :ErrorMessage
+        
+        def initialize(errorcode=nil, errormessage=nil)
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
       # 函数标签
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签的key
@@ -2311,10 +2744,18 @@ module TencentCloud
         # @type CustomArgument: String
         # @param AvailableStatus: 触发器状态
         # @type AvailableStatus: String
+        # @param ResourceId: 触发器最小资源ID
+        # @type ResourceId: String
+        # @param BindStatus: 触发器和云函数绑定状态
+        # @type BindStatus: String
+        # @param TriggerAttribute: 触发器类型，双向表示两侧控制台均可操作，单向表示SCF控制台单向创建
+        # @type TriggerAttribute: String
+        # @param Qualifier: 触发器绑定的别名或版本
+        # @type Qualifier: String
 
-        attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus
+        attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier
         
-        def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil)
+        def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil)
           @ModTime = modtime
           @Type = type
           @TriggerDesc = triggerdesc
@@ -2323,6 +2764,10 @@ module TencentCloud
           @Enable = enable
           @CustomArgument = customargument
           @AvailableStatus = availablestatus
+          @ResourceId = resourceid
+          @BindStatus = bindstatus
+          @TriggerAttribute = triggerattribute
+          @Qualifier = qualifier
         end
 
         def deserialize(params)
@@ -2334,6 +2779,10 @@ module TencentCloud
           @Enable = params['Enable']
           @CustomArgument = params['CustomArgument']
           @AvailableStatus = params['AvailableStatus']
+          @ResourceId = params['ResourceId']
+          @BindStatus = params['BindStatus']
+          @TriggerAttribute = params['TriggerAttribute']
+          @Qualifier = params['Qualifier']
         end
       end
 
@@ -2358,10 +2807,16 @@ module TencentCloud
         # @type AddTime: String
         # @param ModTime: 触发器最后修改时间
         # @type ModTime: String
+        # @param ResourceId: 触发器最小资源ID
+        # @type ResourceId: String
+        # @param BindStatus: 触发器和云函数绑定状态
+        # @type BindStatus: String
+        # @param TriggerAttribute: 触发器类型，双向表示两侧控制台均可操作，单向表示SCF控制台单向创建
+        # @type TriggerAttribute: String
 
-        attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime
+        attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute
         
-        def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil)
+        def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil)
           @Enable = enable
           @Qualifier = qualifier
           @TriggerName = triggername
@@ -2371,6 +2826,9 @@ module TencentCloud
           @CustomArgument = customargument
           @AddTime = addtime
           @ModTime = modtime
+          @ResourceId = resourceid
+          @BindStatus = bindstatus
+          @TriggerAttribute = triggerattribute
         end
 
         def deserialize(params)
@@ -2383,6 +2841,9 @@ module TencentCloud
           @CustomArgument = params['CustomArgument']
           @AddTime = params['AddTime']
           @ModTime = params['ModTime']
+          @ResourceId = params['ResourceId']
+          @BindStatus = params['BindStatus']
+          @TriggerAttribute = params['TriggerAttribute']
         end
       end
 
@@ -2462,7 +2923,7 @@ module TencentCloud
         # @type Publish: String
         # @param Code: 函数代码
         # @type Code: :class:`Tencentcloud::Scf.v20180416.models.Code`
-        # @param CodeSource: 代码来源方式，支持以下'ZipFile', 'Cos', 'Inline', 'TempCos', 'Git' 之一，使用Git来源必须指定此字段
+        # @param CodeSource: 代码来源方式，支持 ZipFile, Cos, Inline 之一
         # @type CodeSource: String
 
         attr_accessor :Handler, :FunctionName, :CosBucketName, :CosObjectName, :ZipFile, :Namespace, :CosBucketRegion, :EnvId, :Publish, :Code, :CodeSource
@@ -2524,7 +2985,7 @@ module TencentCloud
         # @type MemorySize: Integer
         # @param Timeout: 函数最长执行时间，单位为秒，可选值范 1-900 秒，默认为 3 秒
         # @type Timeout: Integer
-        # @param Runtime: 函数运行环境，目前仅支持 Python2.7，Python3.6，Nodejs6.10，Nodejs8.9，Nodejs10.15，Nodejs12.16，PHP5， PHP7，Golang1 和 Java8
+        # @param Runtime: 函数运行环境，目前仅支持 Python2.7，Python3.6，Nodejs6.10，Nodejs8.9，Nodejs10.15，Nodejs12.16， PHP5， PHP7，Go1 ， Java8和CustomRuntime
         # @type Runtime: String
         # @param Environment: 函数的环境变量
         # @type Environment: :class:`Tencentcloud::Scf.v20180416.models.Environment`
@@ -2538,7 +2999,7 @@ module TencentCloud
         # @type ClsLogsetId: String
         # @param ClsTopicId: 日志投递到的cls Topic ID
         # @type ClsTopicId: String
-        # @param Publish: 在更新时是否同步发布新版本，默认为：FALSE，不发布
+        # @param Publish: 在更新时是否同步发布新版本，默认为：FALSE，不发布新版本
         # @type Publish: String
         # @param L5Enable: 是否开启L5访问能力，TRUE 为开启，FALSE为关闭
         # @type L5Enable: String
@@ -2548,10 +3009,14 @@ module TencentCloud
         # @type DeadLetterConfig: :class:`Tencentcloud::Scf.v20180416.models.DeadLetterConfig`
         # @param PublicNetConfig: 公网访问配置
         # @type PublicNetConfig: :class:`Tencentcloud::Scf.v20180416.models.PublicNetConfigIn`
+        # @param CfsConfig: 文件系统配置入参，用于云函数绑定CFS文件系统
+        # @type CfsConfig: :class:`Tencentcloud::Scf.v20180416.models.CfsConfig`
+        # @param InitTimeout: 函数初始化执行超时时间，默认15秒
+        # @type InitTimeout: Integer
 
-        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig
+        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout
         
-        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil)
+        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil)
           @FunctionName = functionname
           @Description = description
           @MemorySize = memorysize
@@ -2568,6 +3033,8 @@ module TencentCloud
           @Layers = layers
           @DeadLetterConfig = deadletterconfig
           @PublicNetConfig = publicnetconfig
+          @CfsConfig = cfsconfig
+          @InitTimeout = inittimeout
         end
 
         def deserialize(params)
@@ -2595,6 +3062,10 @@ module TencentCloud
           unless params['PublicNetConfig'].nil?
             @PublicNetConfig = PublicNetConfigIn.new.deserialize(params[PublicNetConfig])
           end
+          unless params['CfsConfig'].nil?
+            @CfsConfig = CfsConfig.new.deserialize(params[CfsConfig])
+          end
+          @InitTimeout = params['InitTimeout']
         end
       end
 
@@ -2702,6 +3173,38 @@ module TencentCloud
           @Key = params['Key']
           @Method = params['Method']
           @Expression = params['Expression']
+        end
+      end
+
+      # 函数版本的预置并发信息，包括设置预置并发数、已完成预置的并发数和预置任务状态。
+      class VersionProvisionedConcurrencyInfo < TencentCloud::Common::AbstractModel
+        # @param AllocatedProvisionedConcurrencyNum: 设置的预置并发数。
+        # @type AllocatedProvisionedConcurrencyNum: Integer
+        # @param AvailableProvisionedConcurrencyNum: 当前已完成预置的并发数。
+        # @type AvailableProvisionedConcurrencyNum: Integer
+        # @param Status: 预置任务状态，Done表示已完成，InProgress表示进行中，Failed表示部分或全部失败。
+        # @type Status: String
+        # @param StatusReason: 对预置任务状态Status的说明。
+        # @type StatusReason: String
+        # @param Qualifier: 函数版本号
+        # @type Qualifier: String
+
+        attr_accessor :AllocatedProvisionedConcurrencyNum, :AvailableProvisionedConcurrencyNum, :Status, :StatusReason, :Qualifier
+        
+        def initialize(allocatedprovisionedconcurrencynum=nil, availableprovisionedconcurrencynum=nil, status=nil, statusreason=nil, qualifier=nil)
+          @AllocatedProvisionedConcurrencyNum = allocatedprovisionedconcurrencynum
+          @AvailableProvisionedConcurrencyNum = availableprovisionedconcurrencynum
+          @Status = status
+          @StatusReason = statusreason
+          @Qualifier = qualifier
+        end
+
+        def deserialize(params)
+          @AllocatedProvisionedConcurrencyNum = params['AllocatedProvisionedConcurrencyNum']
+          @AvailableProvisionedConcurrencyNum = params['AvailableProvisionedConcurrencyNum']
+          @Status = params['Status']
+          @StatusReason = params['StatusReason']
+          @Qualifier = params['Qualifier']
         end
       end
 

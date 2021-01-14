@@ -17,6 +17,79 @@
 module TencentCloud
   module Iai
     module V20180301
+      # AnalyzeDenseLandmarks请求参数结构体
+      class AnalyzeDenseLandmarksRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 检测模式。0 为检测所有出现的人脸， 1 为检测面积最大的人脸。
+        # 默认为 0。
+        # 最多返回 5 张人脸的五官定位（人脸关键点）具体信息。
+        # @type Mode: Integer
+        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
+        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type Image: String
+        # @param Url: 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
+        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # Url、Image必须提供一个，如果都提供，只使用 Url。
+        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type Url: String
+        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。本接口仅支持 “3.0“ 输入。
+        # @type FaceModelVersion: String
+        # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
+        # @type NeedRotateDetection: Integer
+
+        attr_accessor :Mode, :Image, :Url, :FaceModelVersion, :NeedRotateDetection
+        
+        def initialize(mode=nil, image=nil, url=nil, facemodelversion=nil, needrotatedetection=nil)
+          @Mode = mode
+          @Image = image
+          @Url = url
+          @FaceModelVersion = facemodelversion
+          @NeedRotateDetection = needrotatedetection
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @Image = params['Image']
+          @Url = params['Url']
+          @FaceModelVersion = params['FaceModelVersion']
+          @NeedRotateDetection = params['NeedRotateDetection']
+        end
+      end
+
+      # AnalyzeDenseLandmarks返回参数结构体
+      class AnalyzeDenseLandmarksResponse < TencentCloud::Common::AbstractModel
+        # @param ImageWidth: 请求的图片宽度。
+        # @type ImageWidth: Integer
+        # @param ImageHeight: 请求的图片高度。
+        # @type ImageHeight: Integer
+        # @param DenseFaceShapeSet: 稠密人脸关键点具体信息。
+        # @type DenseFaceShapeSet: Array
+        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。本接口仅支持 “3.0“ 输入。
+        # @type FaceModelVersion: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ImageWidth, :ImageHeight, :DenseFaceShapeSet, :FaceModelVersion, :RequestId
+        
+        def initialize(imagewidth=nil, imageheight=nil, densefaceshapeset=nil, facemodelversion=nil, requestid=nil)
+          @ImageWidth = imagewidth
+          @ImageHeight = imageheight
+          @DenseFaceShapeSet = densefaceshapeset
+          @FaceModelVersion = facemodelversion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ImageWidth = params['ImageWidth']
+          @ImageHeight = params['ImageHeight']
+          @DenseFaceShapeSet = params['DenseFaceShapeSet']
+          @FaceModelVersion = params['FaceModelVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AnalyzeFace请求参数结构体
       class AnalyzeFaceRequest < TencentCloud::Common::AbstractModel
         # @param Mode: 检测模式。0 为检测所有出现的人脸， 1 为检测面积最大的人脸。默认为 0。最多返回 10 张人脸的五官定位（人脸关键点）具体信息。
@@ -30,9 +103,15 @@ module TencentCloud
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
-        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。目前入参支持 “2.0”和“3.0“ 两个输入。
+        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。
+
+        # 目前入参支持 “2.0”和“3.0“ 两个输入。
+
         # 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
-        # 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用最新版本。
+
+        # 2020年11月26日后开通服务的账号仅支持输入“3.0”。
+
+        # 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         # @type FaceModelVersion: String
         # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
@@ -85,6 +164,26 @@ module TencentCloud
           @FaceShapeSet = params['FaceShapeSet']
           @FaceModelVersion = params['FaceModelVersion']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 人脸属性信息
+      class AttributeItem < TencentCloud::Common::AbstractModel
+        # @param Type: 属性值
+        # @type Type: Integer
+        # @param Probability: Type识别概率值，【0,1】,代表判断正确的概率。
+        # @type Probability: Float
+
+        attr_accessor :Type, :Probability
+        
+        def initialize(type=nil, probability=nil)
+          @Type = type
+          @Probability = probability
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Probability = params['Probability']
         end
       end
 
@@ -200,8 +299,14 @@ module TencentCloud
         # 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type UrlB: String
-        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。目前入参支持 “2.0”和“3.0“ 两个输入。
+        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。
+
+        # 目前入参支持 “2.0”和“3.0“ 两个输入。
+
         # 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
+
+        # 2020年11月26日后开通服务的账号仅支持输入“3.0”。
+
         # 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         # @type FaceModelVersion: String
         # @param QualityControl: 图片质量控制。
@@ -424,8 +529,14 @@ module TencentCloud
         # @type GroupExDescriptions: Array
         # @param Tag: 人员库信息备注，[0，40]个字符。
         # @type Tag: String
-        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。目前入参支持 “2.0”和“3.0“ 两个输入。
+        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。
+
+        # 目前入参支持 “2.0”和“3.0“ 两个输入。
+
         # 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
+
+        # 2020年11月26日后开通服务的账号仅支持输入“3.0”。
+
         # 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         # @type FaceModelVersion: String
 
@@ -721,6 +832,174 @@ module TencentCloud
         end
       end
 
+      # 稠密关键点详细信息
+      class DenseFaceShape < TencentCloud::Common::AbstractModel
+        # @param X: 人脸框左上角横坐标。
+        # @type X: Integer
+        # @param Y: 人脸框左上角纵坐标。
+        # @type Y: Integer
+        # @param Width: 人脸框宽度。
+        # @type Width: Integer
+        # @param Height: 人脸框高度。
+        # @type Height: Integer
+        # @param LeftEye: 描述左侧眼睛轮廓的 XX 点。
+        # @type LeftEye: Array
+        # @param RightEye: 描述右侧眼睛轮廓的 XX 点。
+        # @type RightEye: Array
+        # @param LeftEyeBrow: 描述左侧眉毛轮廓的 XX 点。
+        # @type LeftEyeBrow: Array
+        # @param RightEyeBrow: 描述右侧眉毛轮廓的 XX 点。
+        # @type RightEyeBrow: Array
+        # @param MouthOutside: 描述外嘴巴轮廓的 XX 点， 从左侧开始逆时针返回。
+        # @type MouthOutside: Array
+        # @param MouthInside: 描述内嘴巴轮廓的 XX 点，从左侧开始逆时针返回。
+        # @type MouthInside: Array
+        # @param Nose: 描述鼻子轮廓的 XX 点。
+        # @type Nose: Array
+        # @param LeftPupil: 左瞳孔轮廓的 XX 个点。
+        # @type LeftPupil: Array
+        # @param RightPupil: 右瞳孔轮廓的 XX 个点。
+        # @type RightPupil: Array
+        # @param CentralAxis: 中轴线轮廓的 XX 个点。
+        # @type CentralAxis: Array
+        # @param Chin: 下巴轮廓的 XX 个点。
+        # @type Chin: Array
+        # @param LeftEyeBags: 左眼袋的 XX 个点。
+        # @type LeftEyeBags: Array
+        # @param RightEyeBags: 右眼袋的 XX 个点。
+        # @type RightEyeBags: Array
+        # @param Forehead: 额头的 XX 个点。
+        # @type Forehead: Array
+
+        attr_accessor :X, :Y, :Width, :Height, :LeftEye, :RightEye, :LeftEyeBrow, :RightEyeBrow, :MouthOutside, :MouthInside, :Nose, :LeftPupil, :RightPupil, :CentralAxis, :Chin, :LeftEyeBags, :RightEyeBags, :Forehead
+        
+        def initialize(x=nil, y=nil, width=nil, height=nil, lefteye=nil, righteye=nil, lefteyebrow=nil, righteyebrow=nil, mouthoutside=nil, mouthinside=nil, nose=nil, leftpupil=nil, rightpupil=nil, centralaxis=nil, chin=nil, lefteyebags=nil, righteyebags=nil, forehead=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+          @LeftEye = lefteye
+          @RightEye = righteye
+          @LeftEyeBrow = lefteyebrow
+          @RightEyeBrow = righteyebrow
+          @MouthOutside = mouthoutside
+          @MouthInside = mouthinside
+          @Nose = nose
+          @LeftPupil = leftpupil
+          @RightPupil = rightpupil
+          @CentralAxis = centralaxis
+          @Chin = chin
+          @LeftEyeBags = lefteyebags
+          @RightEyeBags = righteyebags
+          @Forehead = forehead
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+          @LeftEye = params['LeftEye']
+          @RightEye = params['RightEye']
+          @LeftEyeBrow = params['LeftEyeBrow']
+          @RightEyeBrow = params['RightEyeBrow']
+          @MouthOutside = params['MouthOutside']
+          @MouthInside = params['MouthInside']
+          @Nose = params['Nose']
+          @LeftPupil = params['LeftPupil']
+          @RightPupil = params['RightPupil']
+          @CentralAxis = params['CentralAxis']
+          @Chin = params['Chin']
+          @LeftEyeBags = params['LeftEyeBags']
+          @RightEyeBags = params['RightEyeBags']
+          @Forehead = params['Forehead']
+        end
+      end
+
+      # DetectFaceAttributes请求参数结构体
+      class DetectFaceAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param MaxFaceNum: 最多处理的人脸数目。
+        # 默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。
+        # 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
+        # @type MaxFaceNum: Integer
+        # @param Image: 图片 base64 数据，base64 编码后大小不可超过5M。
+        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type Image: String
+        # @param Url: 图片的 Url 。
+        # 对应图片 base64 编码后大小不可超过5M。
+        # jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
+        # Url、Image必须提供一个，如果都提供，只使用 Url。
+        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type Url: String
+        # @param FaceAttributesType: 是否返回年龄、性别、情绪等属性。
+        # 合法值为（大小写不敏感）：None、Age、Beauty、Emotion、Eye、Eyebrow
+        # Gender、Hair、Hat、Headpose、Mask、Mouth、Moustache、Nose、Shape、Skin、Smile。
+        # None为不需要返回。默认为 None。
+        # 需要将属性组成一个用逗号分隔的字符串，属性之间的顺序没有要求。
+        # 关于各属性的详细描述，参见下文出参。
+        # 最多返回面积最大的 5 张人脸属性信息，超过 5 张人脸（第 6 张及以后的人脸）的 AttributesInfo 不具备参考意义。
+        # @type FaceAttributesType: String
+        # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
+        # @type NeedRotateDetection: Integer
+        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。本接口仅支持“3.0”输入
+        # @type FaceModelVersion: String
+
+        attr_accessor :MaxFaceNum, :Image, :Url, :FaceAttributesType, :NeedRotateDetection, :FaceModelVersion
+        
+        def initialize(maxfacenum=nil, image=nil, url=nil, faceattributestype=nil, needrotatedetection=nil, facemodelversion=nil)
+          @MaxFaceNum = maxfacenum
+          @Image = image
+          @Url = url
+          @FaceAttributesType = faceattributestype
+          @NeedRotateDetection = needrotatedetection
+          @FaceModelVersion = facemodelversion
+        end
+
+        def deserialize(params)
+          @MaxFaceNum = params['MaxFaceNum']
+          @Image = params['Image']
+          @Url = params['Url']
+          @FaceAttributesType = params['FaceAttributesType']
+          @NeedRotateDetection = params['NeedRotateDetection']
+          @FaceModelVersion = params['FaceModelVersion']
+        end
+      end
+
+      # DetectFaceAttributes返回参数结构体
+      class DetectFaceAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param ImageWidth: 请求的图片宽度。
+        # @type ImageWidth: Integer
+        # @param ImageHeight: 请求的图片高度。
+        # @type ImageHeight: Integer
+        # @param FaceDetailInfos: 人脸信息列表。
+        # @type FaceDetailInfos: Array
+        # @param FaceModelVersion: 人脸识别所用的算法模型版本。
+        # @type FaceModelVersion: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ImageWidth, :ImageHeight, :FaceDetailInfos, :FaceModelVersion, :RequestId
+        
+        def initialize(imagewidth=nil, imageheight=nil, facedetailinfos=nil, facemodelversion=nil, requestid=nil)
+          @ImageWidth = imagewidth
+          @ImageHeight = imageheight
+          @FaceDetailInfos = facedetailinfos
+          @FaceModelVersion = facemodelversion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ImageWidth = params['ImageWidth']
+          @ImageHeight = params['ImageHeight']
+          @FaceDetailInfos = params['FaceDetailInfos']
+          @FaceModelVersion = params['FaceModelVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetectFace请求参数结构体
       class DetectFaceRequest < TencentCloud::Common::AbstractModel
         # @param MaxFaceNum: 最多处理的人脸数目。默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。
@@ -789,7 +1068,15 @@ module TencentCloud
         # @type ImageHeight: Integer
         # @param FaceInfos: 人脸信息列表。包含人脸坐标信息、属性信息（若需要）、质量分信息（若需要）。
         # @type FaceInfos: Array
-        # @param FaceModelVersion: 人脸识别所用的算法模型版本。
+        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。
+
+        # 目前入参支持 “2.0”和“3.0“ 两个输入。
+
+        # 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
+
+        # 2020年11月26日后开通服务的账号仅支持输入“3.0”。
+
+        # 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         # @type FaceModelVersion: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -825,8 +1112,14 @@ module TencentCloud
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
-        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。目前入参支持 “2.0”和“3.0“ 两个输入。
+        # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。
+
+        # 目前入参支持 “2.0”和“3.0“ 两个输入。
+
         # 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
+
+        # 2020年11月26日后开通服务的账号仅支持输入“3.0”。
+
         # 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         # @type FaceModelVersion: String
 
@@ -912,6 +1205,79 @@ module TencentCloud
         end
       end
 
+      # 眼睛信息
+      class Eye < TencentCloud::Common::AbstractModel
+        # @param Glass: 识别是否佩戴眼镜。
+        # AttributeItem对应的Type为 —— 0：无眼镜，1：普通眼镜，2：墨镜
+        # @type Glass: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param EyeOpen: 识别眼睛的睁开、闭合状态。
+        # AttributeItem对应的Type为 —— 0：睁开，1：闭眼
+        # @type EyeOpen: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param EyelidType: 识别是否双眼皮。
+        # AttributeItem对应的Type为 —— 0：无，1：有。
+        # @type EyelidType: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param EyeSize: 眼睛大小。
+        # AttributeItem对应的Type为 —— 0：小眼睛，1：普通眼睛，2：大眼睛。
+        # @type EyeSize: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+
+        attr_accessor :Glass, :EyeOpen, :EyelidType, :EyeSize
+        
+        def initialize(glass=nil, eyeopen=nil, eyelidtype=nil, eyesize=nil)
+          @Glass = glass
+          @EyeOpen = eyeopen
+          @EyelidType = eyelidtype
+          @EyeSize = eyesize
+        end
+
+        def deserialize(params)
+          unless params['Glass'].nil?
+            @Glass = AttributeItem.new.deserialize(params[Glass])
+          end
+          unless params['EyeOpen'].nil?
+            @EyeOpen = AttributeItem.new.deserialize(params[EyeOpen])
+          end
+          unless params['EyelidType'].nil?
+            @EyelidType = AttributeItem.new.deserialize(params[EyelidType])
+          end
+          unless params['EyeSize'].nil?
+            @EyeSize = AttributeItem.new.deserialize(params[EyeSize])
+          end
+        end
+      end
+
+      # 眉毛信息
+      class Eyebrow < TencentCloud::Common::AbstractModel
+        # @param EyebrowDensity: 眉毛浓密。
+        # AttributeItem对应的Type为 —— 0：淡眉，1：浓眉。
+        # @type EyebrowDensity: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param EyebrowCurve: 眉毛弯曲。
+        # AttributeItem对应的Type为 —— 0：不弯，1：弯眉。
+        # @type EyebrowCurve: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param EyebrowLength: 眉毛长短。
+        # AttributeItem对应的Type为 —— 0：短眉毛，1：长眉毛。
+        # @type EyebrowLength: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+
+        attr_accessor :EyebrowDensity, :EyebrowCurve, :EyebrowLength
+        
+        def initialize(eyebrowdensity=nil, eyebrowcurve=nil, eyebrowlength=nil)
+          @EyebrowDensity = eyebrowdensity
+          @EyebrowCurve = eyebrowcurve
+          @EyebrowLength = eyebrowlength
+        end
+
+        def deserialize(params)
+          unless params['EyebrowDensity'].nil?
+            @EyebrowDensity = AttributeItem.new.deserialize(params[EyebrowDensity])
+          end
+          unless params['EyebrowCurve'].nil?
+            @EyebrowCurve = AttributeItem.new.deserialize(params[EyebrowCurve])
+          end
+          unless params['EyebrowLength'].nil?
+            @EyebrowLength = AttributeItem.new.deserialize(params[EyebrowLength])
+          end
+        end
+      end
+
       # 人脸属性信息，包含性别( gender )、年龄( age )、表情( expression )、
       # 魅力( beauty )、眼镜( glass )、口罩（mask）、头发（hair）和姿态 (pitch，roll，yaw )。只有当 NeedFaceAttributes 设为 1 时才返回有效信息，最多返回面积最大的 5 张人脸属性信息，超过 5 张人脸（第 6 张及以后的人脸）的 FaceAttributesInfo 不具备参考意义。
       class FaceAttributesInfo < TencentCloud::Common::AbstractModel
@@ -979,6 +1345,163 @@ module TencentCloud
             @Hair = FaceHairAttributesInfo.new.deserialize(params[Hair])
           end
           @EyeOpen = params['EyeOpen']
+        end
+      end
+
+      # 人脸属性信息，根据 FaceAttributesType 输入的类型，返回年龄（Age）、颜值（Beauty）
+      # 情绪（Emotion）、眼睛信息（Eye）、眉毛（Eyebrow）、性别（Gender）
+      # 头发（Hair）、帽子（Hat）、姿态（Headpose）、口罩（Mask）、嘴巴（Mouse）、胡子（Moustache）
+      # 鼻子（Nose）、脸型（Shape）、肤色（Skin）、微笑（Smile）等人脸属性信息。
+      # 若 FaceAttributesType 没有输入相关类型，则FaceDetaiAttributesInfo返回的细项不具备参考意义。
+      class FaceDetailAttributesInfo < TencentCloud::Common::AbstractModel
+        # @param Age: 年龄 [0,65]，其中65代表“65岁及以上”。
+        # FaceAttributesType 不为含Age 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Age: Integer
+        # @param Beauty: 美丑打分[0,100]。
+        # FaceAttributesType 不含 Beauty 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Beauty: Integer
+        # @param Emotion: 情绪，可识别自然、高兴、惊讶、生气、悲伤、厌恶、害怕。
+        # AttributeItem对应的Type为 —— 0：自然，1：高兴，2：惊讶，3：生气，4：悲伤，5：厌恶，6：害怕
+        # FaceAttributesType 不含Emotion 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Emotion: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Eye: 眼睛相关信息，可识别是否戴眼镜、是否闭眼、是否双眼皮和眼睛大小。
+        # FaceAttributesType 不含Eye 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Eye: :class:`Tencentcloud::Iai.v20180301.models.Eye`
+        # @param Eyebrow: 眉毛相关信息，可识别眉毛浓密、弯曲、长短信息。
+        # FaceAttributesType 不含Eyebrow 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Eyebrow: :class:`Tencentcloud::Iai.v20180301.models.Eyebrow`
+        # @param Gender: 性别信息。
+        # AttributeItem对应的Type为 —— 	0：男性，1：女性。
+        # FaceAttributesType 不含Gender 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Gender: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Hair: 头发信息，包含头发长度、有无刘海、头发颜色。
+        # FaceAttributesType 不含Hair 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Hair: :class:`Tencentcloud::Iai.v20180301.models.Hair`
+        # @param Hat: 帽子信息，可识别是否佩戴帽子、帽子款式、帽子颜色。
+        # FaceAttributesType 不含Hat 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Hat: :class:`Tencentcloud::Iai.v20180301.models.Hat`
+        # @param HeadPose: 姿态信息，包含人脸的上下偏移、左右偏移、平面旋转信息。
+        # FaceAttributesType 不含Headpose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type HeadPose: :class:`Tencentcloud::Iai.v20180301.models.HeadPose`
+        # @param Mask: 口罩佩戴信息。
+        # AttributeItem对应的Type为 —— 0: 无口罩， 1: 有口罩不遮脸，2: 有口罩遮下巴，3: 有口罩遮嘴，4: 正确佩戴口罩。
+        # FaceAttributesType 不含Mask 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Mask: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Mouth: 嘴巴信息，可识别是否张嘴、嘴唇厚度。
+        # FaceAttributesType 不含 Mouth 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Mouth: :class:`Tencentcloud::Iai.v20180301.models.Mouth`
+        # @param Moustache: 胡子信息。
+        # AttributeItem对应的Type为 —— 0：无胡子，1：有胡子。
+        # FaceAttributesType 不含 Moustache 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Moustache: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Nose: 鼻子信息。
+        # AttributeItem对应的Type为 —— 0：朝天鼻，1：鹰钩鼻，2：普通，3：圆鼻头
+        # FaceAttributesType 不含 Nose 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Nose: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Shape: 脸型信息。
+        # AttributeItem对应的Type为 —— 0：方脸，1：三角脸，2：鹅蛋脸，3：心形脸，4：圆脸。
+        # FaceAttributesType 不含 Shape 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Shape: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Skin: 肤色信息。
+        # AttributeItem对应的Type为 —— 0：黄色皮肤，1：棕色皮肤，2：黑色皮肤，3：白色皮肤。
+        # FaceAttributesType 不含 Skin 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Skin: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Smile: 微笑程度，[0,100]。
+        # FaceAttributesType 不含 Smile 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
+        # @type Smile: Integer
+
+        attr_accessor :Age, :Beauty, :Emotion, :Eye, :Eyebrow, :Gender, :Hair, :Hat, :HeadPose, :Mask, :Mouth, :Moustache, :Nose, :Shape, :Skin, :Smile
+        
+        def initialize(age=nil, beauty=nil, emotion=nil, eye=nil, eyebrow=nil, gender=nil, hair=nil, hat=nil, headpose=nil, mask=nil, mouth=nil, moustache=nil, nose=nil, shape=nil, skin=nil, smile=nil)
+          @Age = age
+          @Beauty = beauty
+          @Emotion = emotion
+          @Eye = eye
+          @Eyebrow = eyebrow
+          @Gender = gender
+          @Hair = hair
+          @Hat = hat
+          @HeadPose = headpose
+          @Mask = mask
+          @Mouth = mouth
+          @Moustache = moustache
+          @Nose = nose
+          @Shape = shape
+          @Skin = skin
+          @Smile = smile
+        end
+
+        def deserialize(params)
+          @Age = params['Age']
+          @Beauty = params['Beauty']
+          unless params['Emotion'].nil?
+            @Emotion = AttributeItem.new.deserialize(params[Emotion])
+          end
+          unless params['Eye'].nil?
+            @Eye = Eye.new.deserialize(params[Eye])
+          end
+          unless params['Eyebrow'].nil?
+            @Eyebrow = Eyebrow.new.deserialize(params[Eyebrow])
+          end
+          unless params['Gender'].nil?
+            @Gender = AttributeItem.new.deserialize(params[Gender])
+          end
+          unless params['Hair'].nil?
+            @Hair = Hair.new.deserialize(params[Hair])
+          end
+          unless params['Hat'].nil?
+            @Hat = Hat.new.deserialize(params[Hat])
+          end
+          unless params['HeadPose'].nil?
+            @HeadPose = HeadPose.new.deserialize(params[HeadPose])
+          end
+          unless params['Mask'].nil?
+            @Mask = AttributeItem.new.deserialize(params[Mask])
+          end
+          unless params['Mouth'].nil?
+            @Mouth = Mouth.new.deserialize(params[Mouth])
+          end
+          unless params['Moustache'].nil?
+            @Moustache = AttributeItem.new.deserialize(params[Moustache])
+          end
+          unless params['Nose'].nil?
+            @Nose = AttributeItem.new.deserialize(params[Nose])
+          end
+          unless params['Shape'].nil?
+            @Shape = AttributeItem.new.deserialize(params[Shape])
+          end
+          unless params['Skin'].nil?
+            @Skin = AttributeItem.new.deserialize(params[Skin])
+          end
+          @Smile = params['Smile']
+        end
+      end
+
+      # 人脸信息列表。
+      class FaceDetailInfo < TencentCloud::Common::AbstractModel
+        # @param FaceRect: 检测出的人脸框位置。
+        # @type FaceRect: :class:`Tencentcloud::Iai.v20180301.models.FaceRect`
+        # @param FaceDetailAttributesInfo: 人脸属性信息，根据 FaceAttributesType 输入的类型，返回年龄（Age）、颜值（Beauty）
+        # 情绪（Emotion）、眼睛信息（Eye）、眉毛（Eyebrow）、性别（Gender）
+        # 头发（Hair）、帽子（Hat）、姿态（Headpose）、口罩（Mask）、嘴巴（Mouse）、胡子（Moustache）
+        # 鼻子（Nose）、脸型（Shape）、肤色（Skin）、微笑（Smile）等人脸属性信息。
+        # 若 FaceAttributesType 没有输入相关类型，则FaceDetaiAttributesInfo返回的细项不具备参考意义。
+        # @type FaceDetailAttributesInfo: :class:`Tencentcloud::Iai.v20180301.models.FaceDetailAttributesInfo`
+
+        attr_accessor :FaceRect, :FaceDetailAttributesInfo
+        
+        def initialize(facerect=nil, facedetailattributesinfo=nil)
+          @FaceRect = facerect
+          @FaceDetailAttributesInfo = facedetailattributesinfo
+        end
+
+        def deserialize(params)
+          unless params['FaceRect'].nil?
+            @FaceRect = FaceRect.new.deserialize(params[FaceRect])
+          end
+          unless params['FaceDetailAttributesInfo'].nil?
+            @FaceDetailAttributesInfo = FaceDetailAttributesInfo.new.deserialize(params[FaceDetailAttributesInfo])
+          end
         end
       end
 
@@ -1607,6 +2130,119 @@ module TencentCloud
         end
       end
 
+      # GetUpgradeGroupFaceModelVersionJobList请求参数结构体
+      class GetUpgradeGroupFaceModelVersionJobListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 起始序号，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认值为10，最大值为1000。
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+        
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetUpgradeGroupFaceModelVersionJobList返回参数结构体
+      class GetUpgradeGroupFaceModelVersionJobListResponse < TencentCloud::Common::AbstractModel
+        # @param JobInfos: 人员库升级任务信息列表。
+        # @type JobInfos: Array
+        # @param JobNum: 升级任务总数量。
+        # @type JobNum: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobInfos, :JobNum, :RequestId
+        
+        def initialize(jobinfos=nil, jobnum=nil, requestid=nil)
+          @JobInfos = jobinfos
+          @JobNum = jobnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobInfos = params['JobInfos']
+          @JobNum = params['JobNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetUpgradeGroupFaceModelVersionResult请求参数结构体
+      class GetUpgradeGroupFaceModelVersionResultRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 升级任务ID，用于查询、获取人员库升级的进度和结果。
+        # @type JobId: String
+
+        attr_accessor :JobId
+        
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # GetUpgradeGroupFaceModelVersionResult返回参数结构体
+      class GetUpgradeGroupFaceModelVersionResultResponse < TencentCloud::Common::AbstractModel
+        # @param EndTimestamp: 人员升级任务预估结束时间。 StartTimestamp的值是自 Unix 纪元时间到人员查重任务预估结束的毫秒数。
+        # Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。
+        # 如果为0表示这个任务已经执行完毕。
+        # @type EndTimestamp: Integer
+        # @param Progress: 升级任务完成进度。取值[0.0，100.0]。
+        # @type Progress: Float
+        # @param Status: 0表示升级中，1表示升级完毕，2表示回滚完毕。
+        # @type Status: Integer
+        # @param StartTime: 升级起始时间。
+        # StartTime的值是自 Unix 纪元时间到Group创建时间的毫秒数。
+        # Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。
+        # 有关更多信息，请参阅 Unix 时间。
+        # @type StartTime: Integer
+        # @param FromFaceModelVersion: 当前算法模型版本。
+        # @type FromFaceModelVersion: String
+        # @param ToFaceModelVersion: 目标算法模型版本。
+        # @type ToFaceModelVersion: String
+        # @param GroupId: 人员库ID。
+        # @type GroupId: String
+        # @param FailedFacesUrl: 无法升级的人脸Id信息，文件格式
+        # @type FailedFacesUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndTimestamp, :Progress, :Status, :StartTime, :FromFaceModelVersion, :ToFaceModelVersion, :GroupId, :FailedFacesUrl, :RequestId
+        
+        def initialize(endtimestamp=nil, progress=nil, status=nil, starttime=nil, fromfacemodelversion=nil, tofacemodelversion=nil, groupid=nil, failedfacesurl=nil, requestid=nil)
+          @EndTimestamp = endtimestamp
+          @Progress = progress
+          @Status = status
+          @StartTime = starttime
+          @FromFaceModelVersion = fromfacemodelversion
+          @ToFaceModelVersion = tofacemodelversion
+          @GroupId = groupid
+          @FailedFacesUrl = failedfacesurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EndTimestamp = params['EndTimestamp']
+          @Progress = params['Progress']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @FromFaceModelVersion = params['FromFaceModelVersion']
+          @ToFaceModelVersion = params['ToFaceModelVersion']
+          @GroupId = params['GroupId']
+          @FailedFacesUrl = params['FailedFacesUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 分组识别结果Item
       class GroupCandidate < TencentCloud::Common::AbstractModel
         # @param GroupId: 人员库ID 。
@@ -1686,6 +2322,89 @@ module TencentCloud
           @Tag = params['Tag']
           @FaceModelVersion = params['FaceModelVersion']
           @CreationTimestamp = params['CreationTimestamp']
+        end
+      end
+
+      # 头发信息
+      class Hair < TencentCloud::Common::AbstractModel
+        # @param Length: 头发长度信息。
+        # AttributeItem对应的Type为 —— 0：光头，1：短发，2：中发，3：长发，4：绑发。
+        # @type Length: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Bang: 刘海信息。
+        # AttributeItem对应的Type为 —— 0：无刘海，1：有刘海。
+        # @type Bang: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Color: 头发颜色信息。
+        # AttributeItem对应的Type为 —— 0：黑色，1：金色，2：棕色，3：灰白色。
+        # @type Color: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+
+        attr_accessor :Length, :Bang, :Color
+        
+        def initialize(length=nil, bang=nil, color=nil)
+          @Length = length
+          @Bang = bang
+          @Color = color
+        end
+
+        def deserialize(params)
+          unless params['Length'].nil?
+            @Length = AttributeItem.new.deserialize(params[Length])
+          end
+          unless params['Bang'].nil?
+            @Bang = AttributeItem.new.deserialize(params[Bang])
+          end
+          unless params['Color'].nil?
+            @Color = AttributeItem.new.deserialize(params[Color])
+          end
+        end
+      end
+
+      # 帽子信息
+      class Hat < TencentCloud::Common::AbstractModel
+        # @param Style: 帽子佩戴状态信息。
+        # AttributeItem对应的Type为 —— 0：不戴帽子，1：普通帽子，2：头盔，3：保安帽。
+        # @type Style: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+        # @param Color: 帽子颜色。
+        # AttributeItem对应的Type为 —— 0：不戴帽子，1：红色系，2：黄色系，3：蓝色系，4：黑色系，5：灰白色系，6：混色系子。
+        # @type Color: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+
+        attr_accessor :Style, :Color
+        
+        def initialize(style=nil, color=nil)
+          @Style = style
+          @Color = color
+        end
+
+        def deserialize(params)
+          unless params['Style'].nil?
+            @Style = AttributeItem.new.deserialize(params[Style])
+          end
+          unless params['Color'].nil?
+            @Color = AttributeItem.new.deserialize(params[Color])
+          end
+        end
+      end
+
+      # 姿态信息
+      class HeadPose < TencentCloud::Common::AbstractModel
+        # @param Pitch: 上下偏移[-30,30]。
+        # @type Pitch: Integer
+        # @param Yaw: 左右偏移[-30,30]。
+        # @type Yaw: Integer
+        # @param Roll: 平面旋转[-180,180]。
+        # @type Roll: Integer
+
+        attr_accessor :Pitch, :Yaw, :Roll
+        
+        def initialize(pitch=nil, yaw=nil, roll=nil)
+          @Pitch = pitch
+          @Yaw = yaw
+          @Roll = roll
+        end
+
+        def deserialize(params)
+          @Pitch = params['Pitch']
+          @Yaw = params['Yaw']
+          @Roll = params['Roll']
         end
       end
 
@@ -1840,6 +2559,25 @@ module TencentCloud
         end
       end
 
+      # 嘴巴信息。
+      class Mouth < TencentCloud::Common::AbstractModel
+        # @param MouthOpen: 是否张嘴信息。
+        # AttributeItem对应的Type为 —— 0：不张嘴，1：张嘴。
+        # @type MouthOpen: :class:`Tencentcloud::Iai.v20180301.models.AttributeItem`
+
+        attr_accessor :MouthOpen
+        
+        def initialize(mouthopen=nil)
+          @MouthOpen = mouthopen
+        end
+
+        def deserialize(params)
+          unless params['MouthOpen'].nil?
+            @MouthOpen = AttributeItem.new.deserialize(params[MouthOpen])
+          end
+        end
+      end
+
       # 需要修改的人员描述字段内容，key-value
       class PersonExDescriptionInfo < TencentCloud::Common::AbstractModel
         # @param PersonExDescriptionIndex: 人员描述字段Index，从0开始
@@ -1989,6 +2727,38 @@ module TencentCloud
           end
           @GroupCandidates = params['GroupCandidates']
           @RetCode = params['RetCode']
+        end
+      end
+
+      # RevertGroupFaceModelVersion请求参数结构体
+      class RevertGroupFaceModelVersionRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 需要回滚的升级任务ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+        
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # RevertGroupFaceModelVersion返回参数结构体
+      class RevertGroupFaceModelVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2378,6 +3148,85 @@ module TencentCloud
         end
       end
 
+      # UpgradeGroupFaceModelVersion请求参数结构体
+      class UpgradeGroupFaceModelVersionRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 需要升级的人员库ID。
+        # @type GroupId: String
+        # @param FaceModelVersion: 需要升级至的算法模型版本。默认为最新版本。
+        # @type FaceModelVersion: String
+
+        attr_accessor :GroupId, :FaceModelVersion
+        
+        def initialize(groupid=nil, facemodelversion=nil)
+          @GroupId = groupid
+          @FaceModelVersion = facemodelversion
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @FaceModelVersion = params['FaceModelVersion']
+        end
+      end
+
+      # UpgradeGroupFaceModelVersion返回参数结构体
+      class UpgradeGroupFaceModelVersionResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 升级任务ID，用于查询、获取升级的进度和结果。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+        
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 人员库升级任务信息
+      class UpgradeJobInfo < TencentCloud::Common::AbstractModel
+        # @param JobId: 人员库升级任务ID，用于查询、获取升级的进度和结果。
+        # @type JobId: String
+        # @param GroupId: 人员库ID。
+        # @type GroupId: String
+        # @param FromFaceModelVersion: 当前算法模型版本。
+        # @type FromFaceModelVersion: String
+        # @param ToFaceModelVersion: 目标算法模型版本。
+        # @type ToFaceModelVersion: String
+        # @param StartTime: 升级起始时间。
+        # StartTime的值是自 Unix 纪元时间到Group创建时间的毫秒数。
+        # Unix 纪元时间是 1970 年 1 月 1 日星期四，协调世界时 (UTC) 00:00:00。
+        # 有关更多信息，请参阅 Unix 时间。
+        # @type StartTime: Integer
+        # @param Status: 0表示升级中，1表示升级完毕，2表示回滚完毕。
+        # @type Status: Integer
+
+        attr_accessor :JobId, :GroupId, :FromFaceModelVersion, :ToFaceModelVersion, :StartTime, :Status
+        
+        def initialize(jobid=nil, groupid=nil, fromfacemodelversion=nil, tofacemodelversion=nil, starttime=nil, status=nil)
+          @JobId = jobid
+          @GroupId = groupid
+          @FromFaceModelVersion = fromfacemodelversion
+          @ToFaceModelVersion = tofacemodelversion
+          @StartTime = starttime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @GroupId = params['GroupId']
+          @FromFaceModelVersion = params['FromFaceModelVersion']
+          @ToFaceModelVersion = params['ToFaceModelVersion']
+          @StartTime = params['StartTime']
+          @Status = params['Status']
+        end
+      end
+
       # VerifyFace请求参数结构体
       class VerifyFaceRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 待验证的人员ID。人员ID具体信息请参考人员库管理相关接口。
@@ -2458,6 +3307,8 @@ module TencentCloud
 
       # VerifyPerson请求参数结构体
       class VerifyPersonRequest < TencentCloud::Common::AbstractModel
+        # @param PersonId: 待验证的人员ID。人员ID具体信息请参考人员库管理相关接口。
+        # @type PersonId: String
         # @param Image: 图片 base64 数据。
         # 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
@@ -2468,8 +3319,6 @@ module TencentCloud
         # 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
-        # @param PersonId: 待验证的人员ID。人员ID具体信息请参考人员库管理相关接口。
-        # @type PersonId: String
         # @param QualityControl: 图片质量控制。
         # 0: 不进行控制；
         # 1:较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况；
@@ -2482,20 +3331,20 @@ module TencentCloud
         # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
 
-        attr_accessor :Image, :Url, :PersonId, :QualityControl, :NeedRotateDetection
+        attr_accessor :PersonId, :Image, :Url, :QualityControl, :NeedRotateDetection
         
-        def initialize(image=nil, url=nil, personid=nil, qualitycontrol=nil, needrotatedetection=nil)
+        def initialize(personid=nil, image=nil, url=nil, qualitycontrol=nil, needrotatedetection=nil)
+          @PersonId = personid
           @Image = image
           @Url = url
-          @PersonId = personid
           @QualityControl = qualitycontrol
           @NeedRotateDetection = needrotatedetection
         end
 
         def deserialize(params)
+          @PersonId = params['PersonId']
           @Image = params['Image']
           @Url = params['Url']
-          @PersonId = params['PersonId']
           @QualityControl = params['QualityControl']
           @NeedRotateDetection = params['NeedRotateDetection']
         end

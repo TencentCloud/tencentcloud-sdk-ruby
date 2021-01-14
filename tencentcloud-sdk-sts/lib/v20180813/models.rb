@@ -43,9 +43,14 @@ module TencentCloud
 
       # AssumeRole请求参数结构体
       class AssumeRoleRequest < TencentCloud::Common::AbstractModel
-        # @param RoleArn: 角色的资源描述。例如：qcs::cam::uin/12345678:role/4611686018427397919、qcs::cam::uin/12345678:roleName/testRoleName
+        # @param RoleArn: 角色的资源描述，可在[访问管理](https://console.cloud.tencent.com/cam/role)，点击角色名获取。
+        # 普通角色：
+        # qcs::cam::uin/12345678:role/4611686018427397919、qcs::cam::uin/12345678:roleName/testRoleName
+        # 服务角色：
+        # qcs::cam::uin/12345678:role/tencentcloudServiceRole/4611686018427397920、qcs::cam::uin/12345678:role/tencentcloudServiceRoleName/testServiceRoleName
         # @type RoleArn: String
-        # @param RoleSessionName: 临时会话名称，由用户自定义名称
+        # @param RoleSessionName: 临时会话名称，由用户自定义名称。
+        # 长度在2到128之间，可包含大小写字符，数字以及特殊字符：=,.@_-。 正则为：[\w+=,.@_-]*
         # @type RoleSessionName: String
         # @param DurationSeconds: 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
         # @type DurationSeconds: Integer
@@ -55,14 +60,18 @@ module TencentCloud
         # 2、策略语法参照[ CAM 策略语法](https://cloud.tencent.com/document/product/598/10603)。
         # 3、策略中不能包含 principal 元素。
         # @type Policy: String
+        # @param ExternalId: 角色外部ID，可在[访问管理](https://console.cloud.tencent.com/cam/role)，点击角色名获取。
+        # 长度在2到128之间，可包含大小写字符，数字以及特殊字符：=,.@:/-。 正则为：[\w+=,.@:\/-]*
+        # @type ExternalId: String
 
-        attr_accessor :RoleArn, :RoleSessionName, :DurationSeconds, :Policy
+        attr_accessor :RoleArn, :RoleSessionName, :DurationSeconds, :Policy, :ExternalId
         
-        def initialize(rolearn=nil, rolesessionname=nil, durationseconds=nil, policy=nil)
+        def initialize(rolearn=nil, rolesessionname=nil, durationseconds=nil, policy=nil, externalid=nil)
           @RoleArn = rolearn
           @RoleSessionName = rolesessionname
           @DurationSeconds = durationseconds
           @Policy = policy
+          @ExternalId = externalid
         end
 
         def deserialize(params)
@@ -70,6 +79,7 @@ module TencentCloud
           @RoleSessionName = params['RoleSessionName']
           @DurationSeconds = params['DurationSeconds']
           @Policy = params['Policy']
+          @ExternalId = params['ExternalId']
         end
       end
 
@@ -113,7 +123,7 @@ module TencentCloud
         # @type RoleArn: String
         # @param RoleSessionName: 会话名称
         # @type RoleSessionName: String
-        # @param DurationSeconds: 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 7200 秒
+        # @param DurationSeconds: 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
         # @type DurationSeconds: Integer
 
         attr_accessor :SAMLAssertion, :PrincipalArn, :RoleArn, :RoleSessionName, :DurationSeconds
@@ -167,11 +177,11 @@ module TencentCloud
 
       # 临时证书
       class Credentials < TencentCloud::Common::AbstractModel
-        # @param Token: token
+        # @param Token: token。token长度和绑定的策略有关，最长不超过4096字节。
         # @type Token: String
-        # @param TmpSecretId: 临时证书密钥ID
+        # @param TmpSecretId: 临时证书密钥ID。最长不超过1024字节。
         # @type TmpSecretId: String
-        # @param TmpSecretKey: 临时证书密钥Key
+        # @param TmpSecretKey: 临时证书密钥Key。最长不超过1024字节。
         # @type TmpSecretKey: String
 
         attr_accessor :Token, :TmpSecretId, :TmpSecretKey
@@ -199,7 +209,7 @@ module TencentCloud
         # 2、策略中不能包含 principal 元素。
         # 3、该参数需要做urlencode。
         # @type Policy: String
-        # @param DurationSeconds: 指定临时证书的有效期，单位：秒，默认1800秒，最长可设定有效期为7200秒。
+        # @param DurationSeconds: 指定临时证书的有效期，单位：秒，默认1800秒，主账号最长可设定有效期为7200秒，子账号最长可设定有效期为129600秒。
         # @type DurationSeconds: Integer
 
         attr_accessor :Name, :Policy, :DurationSeconds

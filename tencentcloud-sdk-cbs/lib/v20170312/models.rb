@@ -267,7 +267,7 @@ module TencentCloud
 
       # CreateDisks请求参数结构体
       class CreateDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘。
+        # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘<br><li>CLOUD_TSSD：表示极速型SSD云硬盘。
         # @type DiskType: String
         # @param DiskChargeType: 云硬盘计费类型。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>CDCPAID：独享集群付费<br>各类型价格请参考云硬盘[价格总览](/document/product/362/2413)。
         # @type DiskChargeType: String
@@ -291,10 +291,12 @@ module TencentCloud
         # @type Tags: Array
         # @param Shareable: 可选参数，默认为False。传入True时，云盘将创建为共享型云盘。
         # @type Shareable: Boolean
+        # @param ThroughputPerformance: 可选参数。使用此参数可给云硬盘购买额外的性能。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :DiskType, :DiskChargeType, :Placement, :DiskName, :DiskCount, :DiskChargePrepaid, :DiskSize, :SnapshotId, :ClientToken, :Encrypt, :Tags, :Shareable
+        attr_accessor :DiskType, :DiskChargeType, :Placement, :DiskName, :DiskCount, :DiskChargePrepaid, :DiskSize, :SnapshotId, :ClientToken, :Encrypt, :Tags, :Shareable, :ThroughputPerformance
         
-        def initialize(disktype=nil, diskchargetype=nil, placement=nil, diskname=nil, diskcount=nil, diskchargeprepaid=nil, disksize=nil, snapshotid=nil, clienttoken=nil, encrypt=nil, tags=nil, shareable=nil)
+        def initialize(disktype=nil, diskchargetype=nil, placement=nil, diskname=nil, diskcount=nil, diskchargeprepaid=nil, disksize=nil, snapshotid=nil, clienttoken=nil, encrypt=nil, tags=nil, shareable=nil, throughputperformance=nil)
           @DiskType = disktype
           @DiskChargeType = diskchargetype
           @Placement = placement
@@ -307,6 +309,7 @@ module TencentCloud
           @Encrypt = encrypt
           @Tags = tags
           @Shareable = shareable
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -326,6 +329,7 @@ module TencentCloud
           @Encrypt = params['Encrypt']
           @Tags = params['Tags']
           @Shareable = params['Shareable']
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
@@ -355,17 +359,21 @@ module TencentCloud
         # @type DiskId: String
         # @param SnapshotName: 快照名称，不传则新快照名称默认为“未命名”。
         # @type SnapshotName: String
+        # @param Deadline: 快照的到期时间，到期后该快照将会自动删除
+        # @type Deadline: String
 
-        attr_accessor :DiskId, :SnapshotName
+        attr_accessor :DiskId, :SnapshotName, :Deadline
         
-        def initialize(diskid=nil, snapshotname=nil)
+        def initialize(diskid=nil, snapshotname=nil, deadline=nil)
           @DiskId = diskid
           @SnapshotName = snapshotname
+          @Deadline = deadline
         end
 
         def deserialize(params)
           @DiskId = params['DiskId']
           @SnapshotName = params['SnapshotName']
+          @Deadline = params['Deadline']
         end
       end
 
@@ -561,7 +569,7 @@ module TencentCloud
         # @type Zones: Array
         # @param DiskChargeType: 付费模式。取值范围：<br><li>PREPAID：预付费<br><li>POSTPAID_BY_HOUR：后付费。
         # @type DiskChargeType: String
-        # @param DiskTypes: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘。
+        # @param DiskTypes: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘。
         # @type DiskTypes: Array
         # @param DiskUsage: 系统盘或数据盘。取值范围：<br><li>SYSTEM_DISK：表示系统盘<br><li>DATA_DISK：表示数据盘。
         # @type DiskUsage: String
@@ -848,6 +856,8 @@ module TencentCloud
         # @param SnapshotIds: 要查询快照的ID列表。参数不支持同时指定`SnapshotIds`和`Filters`。
         # @type SnapshotIds: Array
         # @param Filters: 过滤条件。参数不支持同时指定`SnapshotIds`和`Filters`。<br><li>snapshot-id - Array of String - 是否必填：否 -（过滤条件）按照快照的ID过滤。快照ID形如：`snap-11112222`。<br><li>snapshot-name - Array of String - 是否必填：否 -（过滤条件）按照快照名称过滤。<br><li>snapshot-state - Array of String - 是否必填：否 -（过滤条件）按照快照状态过滤。 (NORMAL：正常 | CREATING：创建中 | ROLLBACKING：回滚中。)<br><li>disk-usage - Array of String - 是否必填：否 -（过滤条件）按创建快照的云盘类型过滤。 (SYSTEM_DISK：代表系统盘 | DATA_DISK：代表数据盘。)<br><li>project-id  - Array of String - 是否必填：否 -（过滤条件）按云硬盘所属项目ID过滤。<br><li>disk-id  - Array of String - 是否必填：否 -（过滤条件）按照创建快照的云硬盘ID过滤。<br><li>zone - Array of String - 是否必填：否 -（过滤条件）按照[可用区](/document/product/213/15753#ZoneInfo)过滤。<br><li>encrypt - Array of String - 是否必填：否 -（过滤条件）按是否加密盘快照过滤。 (TRUE：表示加密盘快照 | FALSE：表示非加密盘快照。)
+        # <li>snapshot-type- Array of String - 是否必填：否 -（过滤条件）根据snapshot-type指定的快照类型查询对应的快照。
+        # (SHARED_SNAPSHOT：表示共享过来的快照 | PRIVATE_SNAPSHOT：表示自己私有快照。)
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
         # @type Offset: Integer
@@ -1301,9 +1311,51 @@ module TencentCloud
         end
       end
 
+      # InquirePriceModifyDiskExtraPerformance请求参数结构体
+      class InquirePriceModifyDiskExtraPerformanceRequest < TencentCloud::Common::AbstractModel
+        # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
+        # @type DiskId: String
+        # @param ThroughputPerformance: 额外购买的云硬盘性能值，单位MB/s。
+        # @type ThroughputPerformance: Integer
+
+        attr_accessor :DiskId, :ThroughputPerformance
+        
+        def initialize(diskid=nil, throughputperformance=nil)
+          @DiskId = diskid
+          @ThroughputPerformance = throughputperformance
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @ThroughputPerformance = params['ThroughputPerformance']
+        end
+      end
+
+      # InquirePriceModifyDiskExtraPerformance返回参数结构体
+      class InquirePriceModifyDiskExtraPerformanceResponse < TencentCloud::Common::AbstractModel
+        # @param DiskPrice: 描述了调整云盘额外性能时对应的价格。
+        # @type DiskPrice: :class:`Tencentcloud::Cbs.v20170312.models.Price`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskPrice, :RequestId
+        
+        def initialize(diskprice=nil, requestid=nil)
+          @DiskPrice = diskprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DiskPrice'].nil?
+            @DiskPrice = Price.new.deserialize(params[DiskPrice])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InquiryPriceCreateDisks请求参数结构体
       class InquiryPriceCreateDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskType: 云硬盘类型。取值范围：<br><li>普通云硬盘：CLOUD_BASIC<br><li>高性能云硬盘：CLOUD_PREMIUM<br><li>SSD云硬盘：CLOUD_SSD。
+        # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘<br><li>CLOUD_TSSD：表示极速型SSD云硬盘。
         # @type DiskType: String
         # @param DiskSize: 云硬盘大小，单位为GB。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
         # @type DiskSize: Integer
@@ -1315,16 +1367,19 @@ module TencentCloud
         # @type DiskCount: Integer
         # @param ProjectId: 云盘所属项目ID。
         # @type ProjectId: Integer
+        # @param ThroughputPerformance: 额外购买的云硬盘性能值，单位MB/s。<br>目前仅支持增强型SSD云硬盘（CLOUD_HSSD）和极速型SSD云硬盘（CLOUD_TSSD）
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :DiskType, :DiskSize, :DiskChargeType, :DiskChargePrepaid, :DiskCount, :ProjectId
+        attr_accessor :DiskType, :DiskSize, :DiskChargeType, :DiskChargePrepaid, :DiskCount, :ProjectId, :ThroughputPerformance
         
-        def initialize(disktype=nil, disksize=nil, diskchargetype=nil, diskchargeprepaid=nil, diskcount=nil, projectid=nil)
+        def initialize(disktype=nil, disksize=nil, diskchargetype=nil, diskchargeprepaid=nil, diskcount=nil, projectid=nil, throughputperformance=nil)
           @DiskType = disktype
           @DiskSize = disksize
           @DiskChargeType = diskchargetype
           @DiskChargePrepaid = diskchargeprepaid
           @DiskCount = diskcount
           @ProjectId = projectid
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -1336,6 +1391,7 @@ module TencentCloud
           end
           @DiskCount = params['DiskCount']
           @ProjectId = params['ProjectId']
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
@@ -1561,6 +1617,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDiskExtraPerformance请求参数结构体
+      class ModifyDiskExtraPerformanceRequest < TencentCloud::Common::AbstractModel
+        # @param DiskId: 需要创建快照的云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
+        # @type DiskId: String
+        # @param ThroughputPerformance: 额外购买的云硬盘性能值，单位MB/s。
+        # @type ThroughputPerformance: Integer
+
+        attr_accessor :DiskId, :ThroughputPerformance
+        
+        def initialize(diskid=nil, throughputperformance=nil)
+          @DiskId = diskid
+          @ThroughputPerformance = throughputperformance
+        end
+
+        def deserialize(params)
+          @DiskId = params['DiskId']
+          @ThroughputPerformance = params['ThroughputPerformance']
+        end
+      end
+
+      # ModifyDiskExtraPerformance返回参数结构体
+      class ModifyDiskExtraPerformanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDisksChargeType请求参数结构体
       class ModifyDisksChargeTypeRequest < TencentCloud::Common::AbstractModel
         # @param DiskIds: 一个或多个待操作的云硬盘ID。每次请求批量云盘上限为100。
@@ -1641,21 +1733,25 @@ module TencentCloud
         # @type SnapshotId: String
         # @param SnapshotName: 新的快照名称。最长为60个字符。
         # @type SnapshotName: String
-        # @param IsPermanent: 快照的保留时间，FALSE表示非永久保留，TRUE表示永久保留。仅支持将非永久快照修改为永久快照。
+        # @param IsPermanent: 快照的保留方式，FALSE表示非永久保留，TRUE表示永久保留。
         # @type IsPermanent: Boolean
+        # @param Deadline: 快照的到期时间；设置好快照将会被同时设置为非永久保留方式；超过到期时间后快照将会被自动删除。
+        # @type Deadline: String
 
-        attr_accessor :SnapshotId, :SnapshotName, :IsPermanent
+        attr_accessor :SnapshotId, :SnapshotName, :IsPermanent, :Deadline
         
-        def initialize(snapshotid=nil, snapshotname=nil, ispermanent=nil)
+        def initialize(snapshotid=nil, snapshotname=nil, ispermanent=nil, deadline=nil)
           @SnapshotId = snapshotid
           @SnapshotName = snapshotname
           @IsPermanent = ispermanent
+          @Deadline = deadline
         end
 
         def deserialize(params)
           @SnapshotId = params['SnapshotId']
           @SnapshotName = params['SnapshotName']
           @IsPermanent = params['IsPermanent']
+          @Deadline = params['Deadline']
         end
       end
 
@@ -1776,17 +1872,50 @@ module TencentCloud
         # @type OriginalPrice: Float
         # @param DiscountPrice: 预付费云盘或快照预支费用的折扣价，单位：元。
         # @type DiscountPrice: Float
+        # @param OriginalPriceHigh: 高精度预付费云盘或快照预支费用的原价，单位：元
+        # @type OriginalPriceHigh: String
+        # @param DiscountPriceHigh: 高精度预付费云盘或快照预支费用的折扣价，单位：元
+        # @type DiscountPriceHigh: String
+        # @param UnitPrice: 后付费云盘原单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPrice: String
+        # @param ChargeUnit: 后付费云盘的计价单元，取值范围：<br><li>HOUR：表示后付费云盘的计价单元是按小时计算。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeUnit: String
+        # @param UnitPriceDiscount: 后付费云盘折扣单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscount: String
+        # @param UnitPriceHigh: 高精度后付费云盘原单价, 单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceHigh: String
+        # @param UnitPriceDiscountHigh: 高精度后付费云盘折扣单价, 单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscountHigh: String
 
-        attr_accessor :OriginalPrice, :DiscountPrice
+        attr_accessor :OriginalPrice, :DiscountPrice, :OriginalPriceHigh, :DiscountPriceHigh, :UnitPrice, :ChargeUnit, :UnitPriceDiscount, :UnitPriceHigh, :UnitPriceDiscountHigh
         
-        def initialize(originalprice=nil, discountprice=nil)
+        def initialize(originalprice=nil, discountprice=nil, originalpricehigh=nil, discountpricehigh=nil, unitprice=nil, chargeunit=nil, unitpricediscount=nil, unitpricehigh=nil, unitpricediscounthigh=nil)
           @OriginalPrice = originalprice
           @DiscountPrice = discountprice
+          @OriginalPriceHigh = originalpricehigh
+          @DiscountPriceHigh = discountpricehigh
+          @UnitPrice = unitprice
+          @ChargeUnit = chargeunit
+          @UnitPriceDiscount = unitpricediscount
+          @UnitPriceHigh = unitpricehigh
+          @UnitPriceDiscountHigh = unitpricediscounthigh
         end
 
         def deserialize(params)
           @OriginalPrice = params['OriginalPrice']
           @DiscountPrice = params['DiscountPrice']
+          @OriginalPriceHigh = params['OriginalPriceHigh']
+          @DiscountPriceHigh = params['DiscountPriceHigh']
+          @UnitPrice = params['UnitPrice']
+          @ChargeUnit = params['ChargeUnit']
+          @UnitPriceDiscount = params['UnitPriceDiscount']
+          @UnitPriceHigh = params['UnitPriceHigh']
+          @UnitPriceDiscountHigh = params['UnitPriceDiscountHigh']
         end
       end
 
@@ -1807,15 +1936,31 @@ module TencentCloud
         # @param UnitPriceDiscount: 后付费云盘折扣单价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscount: Float
+        # @param OriginalPriceHigh: 高精度预付费云盘预支费用的原价, 单位：元	。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceHigh: String
+        # @param DiscountPriceHigh: 高精度预付费云盘预支费用的折扣价, 单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPriceHigh: String
+        # @param UnitPriceHigh: 高精度后付费云盘原单价, 单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceHigh: String
+        # @param UnitPriceDiscountHigh: 高精度后付费云盘折扣单价, 单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscountHigh: String
 
-        attr_accessor :OriginalPrice, :DiscountPrice, :UnitPrice, :ChargeUnit, :UnitPriceDiscount
+        attr_accessor :OriginalPrice, :DiscountPrice, :UnitPrice, :ChargeUnit, :UnitPriceDiscount, :OriginalPriceHigh, :DiscountPriceHigh, :UnitPriceHigh, :UnitPriceDiscountHigh
         
-        def initialize(originalprice=nil, discountprice=nil, unitprice=nil, chargeunit=nil, unitpricediscount=nil)
+        def initialize(originalprice=nil, discountprice=nil, unitprice=nil, chargeunit=nil, unitpricediscount=nil, originalpricehigh=nil, discountpricehigh=nil, unitpricehigh=nil, unitpricediscounthigh=nil)
           @OriginalPrice = originalprice
           @DiscountPrice = discountprice
           @UnitPrice = unitprice
           @ChargeUnit = chargeunit
           @UnitPriceDiscount = unitpricediscount
+          @OriginalPriceHigh = originalpricehigh
+          @DiscountPriceHigh = discountpricehigh
+          @UnitPriceHigh = unitpricehigh
+          @UnitPriceDiscountHigh = unitpricediscounthigh
         end
 
         def deserialize(params)
@@ -1824,6 +1969,10 @@ module TencentCloud
           @UnitPrice = params['UnitPrice']
           @ChargeUnit = params['ChargeUnit']
           @UnitPriceDiscount = params['UnitPriceDiscount']
+          @OriginalPriceHigh = params['OriginalPriceHigh']
+          @DiscountPriceHigh = params['DiscountPriceHigh']
+          @UnitPriceHigh = params['UnitPriceHigh']
+          @UnitPriceDiscountHigh = params['UnitPriceDiscountHigh']
         end
       end
 
@@ -1933,7 +2082,7 @@ module TencentCloud
         # @type DiskId: String
         # @param DiskSize: 创建此快照的云硬盘大小，单位GB。
         # @type DiskSize: Integer
-        # @param SnapshotState: 快照的状态。取值范围：<br><li>NORMAL：正常<br><li>CREATING：创建中<br><li>ROLLBACKING：回滚中<br><li>COPYING_FROM_REMOTE：跨地域复制快照拷贝中。
+        # @param SnapshotState: 快照的状态。取值范围：<br><li>NORMAL：正常<br><li>CREATING：创建中<br><li>ROLLBACKING：回滚中<br><li>COPYING_FROM_REMOTE：跨地域复制中<br><li>CHECKING_COPIED：复制校验中<br><li>TORECYCLE：待回收。
         # @type SnapshotState: String
         # @param SnapshotName: 快照名称，用户自定义的快照别名。调用[ModifySnapshotAttribute](/document/product/362/15650)可修改此字段。
         # @type SnapshotName: String
@@ -1957,12 +2106,14 @@ module TencentCloud
         # @type ImageCount: Integer
         # @param SnapshotType: 快照类型，目前该项取值可以为PRIVATE_SNAPSHOT或者SHARED_SNAPSHOT
         # @type SnapshotType: String
-        # @param ShareReference: 快照当前被共享数
+        # @param ShareReference: 快照当前被共享数。
         # @type ShareReference: Integer
+        # @param TimeStartShare: 快照开始共享的时间。
+        # @type TimeStartShare: String
 
-        attr_accessor :SnapshotId, :Placement, :DiskUsage, :DiskId, :DiskSize, :SnapshotState, :SnapshotName, :Percent, :CreateTime, :DeadlineTime, :Encrypt, :IsPermanent, :CopyingToRegions, :CopyFromRemote, :Images, :ImageCount, :SnapshotType, :ShareReference
+        attr_accessor :SnapshotId, :Placement, :DiskUsage, :DiskId, :DiskSize, :SnapshotState, :SnapshotName, :Percent, :CreateTime, :DeadlineTime, :Encrypt, :IsPermanent, :CopyingToRegions, :CopyFromRemote, :Images, :ImageCount, :SnapshotType, :ShareReference, :TimeStartShare
         
-        def initialize(snapshotid=nil, placement=nil, diskusage=nil, diskid=nil, disksize=nil, snapshotstate=nil, snapshotname=nil, percent=nil, createtime=nil, deadlinetime=nil, encrypt=nil, ispermanent=nil, copyingtoregions=nil, copyfromremote=nil, images=nil, imagecount=nil, snapshottype=nil, sharereference=nil)
+        def initialize(snapshotid=nil, placement=nil, diskusage=nil, diskid=nil, disksize=nil, snapshotstate=nil, snapshotname=nil, percent=nil, createtime=nil, deadlinetime=nil, encrypt=nil, ispermanent=nil, copyingtoregions=nil, copyfromremote=nil, images=nil, imagecount=nil, snapshottype=nil, sharereference=nil, timestartshare=nil)
           @SnapshotId = snapshotid
           @Placement = placement
           @DiskUsage = diskusage
@@ -1981,6 +2132,7 @@ module TencentCloud
           @ImageCount = imagecount
           @SnapshotType = snapshottype
           @ShareReference = sharereference
+          @TimeStartShare = timestartshare
         end
 
         def deserialize(params)
@@ -2004,6 +2156,7 @@ module TencentCloud
           @ImageCount = params['ImageCount']
           @SnapshotType = params['SnapshotType']
           @ShareReference = params['ShareReference']
+          @TimeStartShare = params['TimeStartShare']
         end
       end
 

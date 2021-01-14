@@ -17,11 +17,43 @@
 module TencentCloud
   module Tke
     module V20180525
+      # AcquireClusterAdminRole请求参数结构体
+      class AcquireClusterAdminRoleRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # AcquireClusterAdminRole返回参数结构体
+      class AcquireClusterAdminRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddExistedInstances请求参数结构体
       class AddExistedInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param InstanceIds: 实例列表
+        # @param InstanceIds: 实例列表，不支持竞价实例
         # @type InstanceIds: Array
         # @param InstanceAdvancedSettings: 实例额外需要设置参数信息
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
@@ -33,10 +65,12 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param HostName: 重装系统时，可以指定修改实例的HostName(集群为HostName模式时，此参数必传，规则名称除不支持大写字符外与[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口HostName一致)
         # @type HostName: String
+        # @param NodePool: 节点池选项
+        # @type NodePool: :class:`Tencentcloud::Tke.v20180525.models.NodePoolOption`
 
-        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :SecurityGroupIds, :HostName
+        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :SecurityGroupIds, :HostName, :NodePool
         
-        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, securitygroupids=nil, hostname=nil)
+        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, securitygroupids=nil, hostname=nil, nodepool=nil)
           @ClusterId = clusterid
           @InstanceIds = instanceids
           @InstanceAdvancedSettings = instanceadvancedsettings
@@ -44,6 +78,7 @@ module TencentCloud
           @LoginSettings = loginsettings
           @SecurityGroupIds = securitygroupids
           @HostName = hostname
+          @NodePool = nodepool
         end
 
         def deserialize(params)
@@ -60,6 +95,9 @@ module TencentCloud
           end
           @SecurityGroupIds = params['SecurityGroupIds']
           @HostName = params['HostName']
+          unless params['NodePool'].nil?
+            @NodePool = NodePoolOption.new.deserialize(params[NodePool])
+          end
         end
       end
 
@@ -74,15 +112,19 @@ module TencentCloud
         # @param TimeoutInstanceIds: 超时未返回出来节点的ID(可能失败，也可能成功)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeoutInstanceIds: Array
+        # @param FailedReasons: 失败的节点的失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedReasons: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FailedInstanceIds, :SuccInstanceIds, :TimeoutInstanceIds, :RequestId
+        attr_accessor :FailedInstanceIds, :SuccInstanceIds, :TimeoutInstanceIds, :FailedReasons, :RequestId
         
-        def initialize(failedinstanceids=nil, succinstanceids=nil, timeoutinstanceids=nil, requestid=nil)
+        def initialize(failedinstanceids=nil, succinstanceids=nil, timeoutinstanceids=nil, failedreasons=nil, requestid=nil)
           @FailedInstanceIds = failedinstanceids
           @SuccInstanceIds = succinstanceids
           @TimeoutInstanceIds = timeoutinstanceids
+          @FailedReasons = failedreasons
           @RequestId = requestid
         end
 
@@ -90,6 +132,47 @@ module TencentCloud
           @FailedInstanceIds = params['FailedInstanceIds']
           @SuccInstanceIds = params['SuccInstanceIds']
           @TimeoutInstanceIds = params['TimeoutInstanceIds']
+          @FailedReasons = params['FailedReasons']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddNodeToNodePool请求参数结构体
+      class AddNodeToNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池id
+        # @type NodePoolId: String
+        # @param InstanceIds: 节点id
+        # @type InstanceIds: Array
+
+        attr_accessor :ClusterId, :NodePoolId, :InstanceIds
+        
+        def initialize(clusterid=nil, nodepoolid=nil, instanceids=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # AddNodeToNodePool返回参数结构体
+      class AddNodeToNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -111,6 +194,104 @@ module TencentCloud
         def deserialize(params)
           @MinSize = params['MinSize']
           @MaxSize = params['MaxSize']
+        end
+      end
+
+      # 自动扩所容的节点
+      class AutoscalingAdded < TencentCloud::Common::AbstractModel
+        # @param Joining: 正在加入中的节点数量
+        # @type Joining: Integer
+        # @param Initializing: 初始化中的节点数量
+        # @type Initializing: Integer
+        # @param Normal: 正常的节点数量
+        # @type Normal: Integer
+        # @param Total: 节点总数
+        # @type Total: Integer
+
+        attr_accessor :Joining, :Initializing, :Normal, :Total
+        
+        def initialize(joining=nil, initializing=nil, normal=nil, total=nil)
+          @Joining = joining
+          @Initializing = initializing
+          @Normal = normal
+          @Total = total
+        end
+
+        def deserialize(params)
+          @Joining = params['Joining']
+          @Initializing = params['Initializing']
+          @Normal = params['Normal']
+          @Total = params['Total']
+        end
+      end
+
+      # CheckInstancesUpgradeAble请求参数结构体
+      class CheckInstancesUpgradeAbleRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIds: 节点列表，空为全部节点
+        # @type InstanceIds: Array
+        # @param UpgradeType: 升级类型
+        # @type UpgradeType: String
+        # @param Offset: 分页Offset
+        # @type Offset: Integer
+        # @param Limit: 分页Limit
+        # @type Limit: Integer
+        # @param Filter: 过滤
+        # @type Filter: Array
+
+        attr_accessor :ClusterId, :InstanceIds, :UpgradeType, :Offset, :Limit, :Filter
+        
+        def initialize(clusterid=nil, instanceids=nil, upgradetype=nil, offset=nil, limit=nil, filter=nil)
+          @ClusterId = clusterid
+          @InstanceIds = instanceids
+          @UpgradeType = upgradetype
+          @Offset = offset
+          @Limit = limit
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIds = params['InstanceIds']
+          @UpgradeType = params['UpgradeType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Filter = params['Filter']
+        end
+      end
+
+      # CheckInstancesUpgradeAble返回参数结构体
+      class CheckInstancesUpgradeAbleResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterVersion: 集群master当前小版本
+        # @type ClusterVersion: String
+        # @param LatestVersion: 集群master对应的大版本目前最新小版本
+        # @type LatestVersion: String
+        # @param UpgradeAbleInstances: 可升级节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpgradeAbleInstances: Array
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterVersion, :LatestVersion, :UpgradeAbleInstances, :Total, :RequestId
+        
+        def initialize(clusterversion=nil, latestversion=nil, upgradeableinstances=nil, total=nil, requestid=nil)
+          @ClusterVersion = clusterversion
+          @LatestVersion = latestversion
+          @UpgradeAbleInstances = upgradeableinstances
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterVersion = params['ClusterVersion']
+          @LatestVersion = params['LatestVersion']
+          @UpgradeAbleInstances = params['UpgradeAbleInstances']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -225,12 +406,28 @@ module TencentCloud
         # @type IsNonStaticIpMode: Boolean
         # @param DeletionProtection: 是否启用集群删除保护
         # @type DeletionProtection: Boolean
-        # @param KubeProxyMode: 集群的网络代理模型
+        # @param KubeProxyMode: 集群的网络代理模型，目前tke集群支持的网络代理模式有三种：iptables,ipvs,ipvs-bpf，此参数仅在使用ipvs-bpf模式时使用，三种网络模式的参数设置关系如下：
+        # iptables模式：IPVS和KubeProxyMode都不设置
+        # ipvs模式: 设置IPVS为true, KubeProxyMode不设置
+        # ipvs-bpf模式: 设置KubeProxyMode为kube-proxy-bpf
+        # 使用ipvs-bpf的网络模式需要满足以下条件：
+        # 1. 集群版本必须为1.14及以上；
+        # 2. 系统镜像必须是: Tencent Linux 2.4；
         # @type KubeProxyMode: String
+        # @param AuditEnabled: 是否开启审计开关
+        # @type AuditEnabled: Boolean
+        # @param AuditLogsetId: 审计日志上传到的logset日志集
+        # @type AuditLogsetId: String
+        # @param AuditLogTopicId: 审计日志上传到的topic
+        # @type AuditLogTopicId: String
+        # @param VpcCniType: 区分单网卡多IP模式和独立网卡模式
+        # @type VpcCniType: String
+        # @param RuntimeVersion: 运行时版本
+        # @type RuntimeVersion: String
 
-        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode
+        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion
         
-        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil)
+        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil)
           @IPVS = ipvs
           @AsEnabled = asenabled
           @ContainerRuntime = containerruntime
@@ -240,6 +437,11 @@ module TencentCloud
           @IsNonStaticIpMode = isnonstaticipmode
           @DeletionProtection = deletionprotection
           @KubeProxyMode = kubeproxymode
+          @AuditEnabled = auditenabled
+          @AuditLogsetId = auditlogsetid
+          @AuditLogTopicId = auditlogtopicid
+          @VpcCniType = vpccnitype
+          @RuntimeVersion = runtimeversion
         end
 
         def deserialize(params)
@@ -254,6 +456,11 @@ module TencentCloud
           @IsNonStaticIpMode = params['IsNonStaticIpMode']
           @DeletionProtection = params['DeletionProtection']
           @KubeProxyMode = params['KubeProxyMode']
+          @AuditEnabled = params['AuditEnabled']
+          @AuditLogsetId = params['AuditLogsetId']
+          @AuditLogTopicId = params['AuditLogTopicId']
+          @VpcCniType = params['VpcCniType']
+          @RuntimeVersion = params['RuntimeVersion']
         end
       end
 
@@ -484,7 +691,7 @@ module TencentCloud
 
       # 集群master自定义参数
       class ClusterExtraArgs < TencentCloud::Common::AbstractModel
-        # @param KubeAPIServer: kube-apiserver自定义参数
+        # @param KubeAPIServer: kube-apiserver自定义参数，参数格式为["k1=v1", "k1=v2"]， 例如["max-requests-inflight=500","feature-gates=PodShareProcessNamespace=true,DynamicKubeletConfig=true"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KubeAPIServer: Array
         # @param KubeControllerManager: kube-controller-manager自定义参数
@@ -691,7 +898,7 @@ module TencentCloud
       class CreateClusterInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID，请填写 查询集群列表 接口中返回的 clusterId 字段
         # @type ClusterId: String
-        # @param RunInstancePara: CVM创建透传参数，json化字符串格式，详见[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口。
+        # @param RunInstancePara: CVM创建透传参数，json化字符串格式，如需要保证扩展集群节点请求幂等性需要在此参数添加ClientToken字段，详见[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口。
         # @type RunInstancePara: String
         # @param InstanceAdvancedSettings: 实例额外需要设置参数信息
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
@@ -733,6 +940,112 @@ module TencentCloud
         end
       end
 
+      # CreateClusterNodePoolFromExistingAsg请求参数结构体
+      class CreateClusterNodePoolFromExistingAsgRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param AutoscalingGroupId: 伸缩组ID
+        # @type AutoscalingGroupId: String
+
+        attr_accessor :ClusterId, :AutoscalingGroupId
+        
+        def initialize(clusterid=nil, autoscalinggroupid=nil)
+          @ClusterId = clusterid
+          @AutoscalingGroupId = autoscalinggroupid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AutoscalingGroupId = params['AutoscalingGroupId']
+        end
+      end
+
+      # CreateClusterNodePoolFromExistingAsg返回参数结构体
+      class CreateClusterNodePoolFromExistingAsgResponse < TencentCloud::Common::AbstractModel
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodePoolId, :RequestId
+        
+        def initialize(nodepoolid=nil, requestid=nil)
+          @NodePoolId = nodepoolid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NodePoolId = params['NodePoolId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateClusterNodePool请求参数结构体
+      class CreateClusterNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: cluster id
+        # @type ClusterId: String
+        # @param AutoScalingGroupPara: AutoScalingGroupPara AS组参数
+        # @type AutoScalingGroupPara: String
+        # @param LaunchConfigurePara: LaunchConfigurePara 运行参数
+        # @type LaunchConfigurePara: String
+        # @param InstanceAdvancedSettings: InstanceAdvancedSettings 示例参数
+        # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
+        # @param EnableAutoscale: 是否启用自动伸缩
+        # @type EnableAutoscale: Boolean
+        # @param Name: 节点池名称
+        # @type Name: String
+        # @param Labels: Labels标签
+        # @type Labels: Array
+        # @param Taints: Taints互斥
+        # @type Taints: Array
+
+        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints
+        
+        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil)
+          @ClusterId = clusterid
+          @AutoScalingGroupPara = autoscalinggrouppara
+          @LaunchConfigurePara = launchconfigurepara
+          @InstanceAdvancedSettings = instanceadvancedsettings
+          @EnableAutoscale = enableautoscale
+          @Name = name
+          @Labels = labels
+          @Taints = taints
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AutoScalingGroupPara = params['AutoScalingGroupPara']
+          @LaunchConfigurePara = params['LaunchConfigurePara']
+          unless params['InstanceAdvancedSettings'].nil?
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params[InstanceAdvancedSettings])
+          end
+          @EnableAutoscale = params['EnableAutoscale']
+          @Name = params['Name']
+          @Labels = params['Labels']
+          @Taints = params['Taints']
+        end
+      end
+
+      # CreateClusterNodePool返回参数结构体
+      class CreateClusterNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param NodePoolId: 节点池id
+        # @type NodePoolId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodePoolId, :RequestId
+        
+        def initialize(nodepoolid=nil, requestid=nil)
+          @NodePoolId = nodepoolid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NodePoolId = params['NodePoolId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCluster请求参数结构体
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterCIDRSettings: 集群容器网络配置信息
@@ -751,10 +1064,12 @@ module TencentCloud
         # @type ExistedInstancesForNode: Array
         # @param InstanceDataDiskMountSettings: CVM类型和其对应的数据盘挂载配置信息
         # @type InstanceDataDiskMountSettings: Array
+        # @param ExtensionAddons: 需要安装的扩展组件信息
+        # @type ExtensionAddons: Array
 
-        attr_accessor :ClusterCIDRSettings, :ClusterType, :RunInstancesForNode, :ClusterBasicSettings, :ClusterAdvancedSettings, :InstanceAdvancedSettings, :ExistedInstancesForNode, :InstanceDataDiskMountSettings
+        attr_accessor :ClusterCIDRSettings, :ClusterType, :RunInstancesForNode, :ClusterBasicSettings, :ClusterAdvancedSettings, :InstanceAdvancedSettings, :ExistedInstancesForNode, :InstanceDataDiskMountSettings, :ExtensionAddons
         
-        def initialize(clustercidrsettings=nil, clustertype=nil, runinstancesfornode=nil, clusterbasicsettings=nil, clusteradvancedsettings=nil, instanceadvancedsettings=nil, existedinstancesfornode=nil, instancedatadiskmountsettings=nil)
+        def initialize(clustercidrsettings=nil, clustertype=nil, runinstancesfornode=nil, clusterbasicsettings=nil, clusteradvancedsettings=nil, instanceadvancedsettings=nil, existedinstancesfornode=nil, instancedatadiskmountsettings=nil, extensionaddons=nil)
           @ClusterCIDRSettings = clustercidrsettings
           @ClusterType = clustertype
           @RunInstancesForNode = runinstancesfornode
@@ -763,6 +1078,7 @@ module TencentCloud
           @InstanceAdvancedSettings = instanceadvancedsettings
           @ExistedInstancesForNode = existedinstancesfornode
           @InstanceDataDiskMountSettings = instancedatadiskmountsettings
+          @ExtensionAddons = extensionaddons
         end
 
         def deserialize(params)
@@ -782,6 +1098,7 @@ module TencentCloud
           end
           @ExistedInstancesForNode = params['ExistedInstancesForNode']
           @InstanceDataDiskMountSettings = params['InstanceDataDiskMountSettings']
+          @ExtensionAddons = params['ExtensionAddons']
         end
       end
 
@@ -885,6 +1202,85 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrometheusDashboard请求参数结构体
+      class CreatePrometheusDashboardRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param DashboardName: 面板组名称
+        # @type DashboardName: String
+        # @param Contents: 面板列表
+        # 每一项是一个grafana dashboard的json定义
+        # @type Contents: Array
+
+        attr_accessor :InstanceId, :DashboardName, :Contents
+        
+        def initialize(instanceid=nil, dashboardname=nil, contents=nil)
+          @InstanceId = instanceid
+          @DashboardName = dashboardname
+          @Contents = contents
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DashboardName = params['DashboardName']
+          @Contents = params['Contents']
+        end
+      end
+
+      # CreatePrometheusDashboard返回参数结构体
+      class CreatePrometheusDashboardResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrometheusTemplate请求参数结构体
+      class CreatePrometheusTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Template: 模板设置
+        # @type Template: :class:`Tencentcloud::Tke.v20180525.models.PrometheusTemplate`
+
+        attr_accessor :Template
+        
+        def initialize(template=nil)
+          @Template = template
+        end
+
+        def deserialize(params)
+          unless params['Template'].nil?
+            @Template = PrometheusTemplate.new.deserialize(params[Template])
+          end
+        end
+      end
+
+      # CreatePrometheusTemplate返回参数结构体
+      class CreatePrometheusTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板Id
+        # @type TemplateId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+        
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
           @RequestId = params['RequestId']
         end
       end
@@ -1093,6 +1489,46 @@ module TencentCloud
         end
       end
 
+      # DeleteClusterNodePool请求参数结构体
+      class DeleteClusterNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 节点池对应的 ClusterId
+        # @type ClusterId: String
+        # @param NodePoolIds: 需要删除的节点池 Id 列表
+        # @type NodePoolIds: Array
+        # @param KeepInstance: 删除节点池时是否保留节点池内节点(节点仍然会被移出集群，但对应的实例不会被销毁)
+        # @type KeepInstance: Boolean
+
+        attr_accessor :ClusterId, :NodePoolIds, :KeepInstance
+        
+        def initialize(clusterid=nil, nodepoolids=nil, keepinstance=nil)
+          @ClusterId = clusterid
+          @NodePoolIds = nodepoolids
+          @KeepInstance = keepinstance
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolIds = params['NodePoolIds']
+          @KeepInstance = params['KeepInstance']
+        end
+      end
+
+      # DeleteClusterNodePool返回参数结构体
+      class DeleteClusterNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCluster请求参数结构体
       class DeleteClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -1191,6 +1627,74 @@ module TencentCloud
 
       # DeleteClusterRouteTable返回参数结构体
       class DeleteClusterRouteTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusTemplate请求参数结构体
+      class DeletePrometheusTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板id
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeletePrometheusTemplate返回参数结构体
+      class DeletePrometheusTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusTemplateSync请求参数结构体
+      class DeletePrometheusTemplateSyncRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板id
+        # @type TemplateId: String
+        # @param Targets: 取消同步的对象列表
+        # @type Targets: Array
+
+        attr_accessor :TemplateId, :Targets
+        
+        def initialize(templateid=nil, targets=nil)
+          @TemplateId = templateid
+          @Targets = targets
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @Targets = params['Targets']
+        end
+      end
+
+      # DeletePrometheusTemplateSync返回参数结构体
+      class DeletePrometheusTemplateSyncResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1434,6 +1938,125 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterKubeconfig请求参数结构体
+      class DescribeClusterKubeconfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterKubeconfig返回参数结构体
+      class DescribeClusterKubeconfigResponse < TencentCloud::Common::AbstractModel
+        # @param Kubeconfig: 子账户kubeconfig文件，可用于直接访问集群kube-apiserver
+        # @type Kubeconfig: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Kubeconfig, :RequestId
+        
+        def initialize(kubeconfig=nil, requestid=nil)
+          @Kubeconfig = kubeconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Kubeconfig = params['Kubeconfig']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterNodePoolDetail请求参数结构体
+      class DescribeClusterNodePoolDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池id
+        # @type NodePoolId: String
+
+        attr_accessor :ClusterId, :NodePoolId
+        
+        def initialize(clusterid=nil, nodepoolid=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+        end
+      end
+
+      # DescribeClusterNodePoolDetail返回参数结构体
+      class DescribeClusterNodePoolDetailResponse < TencentCloud::Common::AbstractModel
+        # @param NodePool: 节点池详情
+        # @type NodePool: :class:`Tencentcloud::Tke.v20180525.models.NodePool`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodePool, :RequestId
+        
+        def initialize(nodepool=nil, requestid=nil)
+          @NodePool = nodepool
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NodePool'].nil?
+            @NodePool = NodePool.new.deserialize(params[NodePool])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterNodePools请求参数结构体
+      class DescribeClusterNodePoolsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: ClusterId（集群id）
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterNodePools返回参数结构体
+      class DescribeClusterNodePoolsResponse < TencentCloud::Common::AbstractModel
+        # @param NodePoolSet: NodePools（节点池列表）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodePoolSet: Array
+        # @param TotalCount: 资源总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodePoolSet, :TotalCount, :RequestId
+        
+        def initialize(nodepoolset=nil, totalcount=nil, requestid=nil)
+          @NodePoolSet = nodepoolset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NodePoolSet = params['NodePoolSet']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterRouteTables请求参数结构体
       class DescribeClusterRouteTablesRequest < TencentCloud::Common::AbstractModel
 
@@ -1473,15 +2096,19 @@ module TencentCloud
       class DescribeClusterRoutesRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableName: 路由表名称。
         # @type RouteTableName: String
+        # @param Filters: 过滤条件,当前只支持按照单个条件GatewayIP进行过滤（可选）
+        # @type Filters: Array
 
-        attr_accessor :RouteTableName
+        attr_accessor :RouteTableName, :Filters
         
-        def initialize(routetablename=nil)
+        def initialize(routetablename=nil, filters=nil)
           @RouteTableName = routetablename
+          @Filters = filters
         end
 
         def deserialize(params)
           @RouteTableName = params['RouteTableName']
+          @Filters = params['Filters']
         end
       end
 
@@ -1731,6 +2358,334 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @ImageInstanceSet = params['ImageInstanceSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusAgentInstances请求参数结构体
+      class DescribePrometheusAgentInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # 可以是tke, eks, edge的集群id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribePrometheusAgentInstances返回参数结构体
+      class DescribePrometheusAgentInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Instances: 关联该集群的实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instances: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Instances, :RequestId
+        
+        def initialize(instances=nil, requestid=nil)
+          @Instances = instances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Instances = params['Instances']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusAgents请求参数结构体
+      class DescribePrometheusAgentsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Offset: 用于分页
+        # @type Offset: Integer
+        # @param Limit: 用于分页
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePrometheusAgents返回参数结构体
+      class DescribePrometheusAgentsResponse < TencentCloud::Common::AbstractModel
+        # @param Agents: 被关联集群信息
+        # @type Agents: Array
+        # @param Total: 被关联集群总量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Agents, :Total, :RequestId
+        
+        def initialize(agents=nil, total=nil, requestid=nil)
+          @Agents = agents
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Agents = params['Agents']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusAlertRule请求参数结构体
+      class DescribePrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Limit: 分页
+        # @type Limit: Integer
+        # @param Filters: 过滤
+        # 支持ID，Name
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Filters
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil, filters=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribePrometheusAlertRule返回参数结构体
+      class DescribePrometheusAlertRuleResponse < TencentCloud::Common::AbstractModel
+        # @param AlertRules: 告警详情
+        # @type AlertRules: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlertRules, :Total, :RequestId
+        
+        def initialize(alertrules=nil, total=nil, requestid=nil)
+          @AlertRules = alertrules
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AlertRules = params['AlertRules']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusOverviews请求参数结构体
+      class DescribePrometheusOverviewsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 用于分页
+        # @type Offset: Integer
+        # @param Limit: 用于分页
+        # @type Limit: Integer
+        # @param Filters: 过滤实例，目前支持：
+        # ID: 通过实例ID来过滤
+        # Name: 通过实例名称来过滤
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribePrometheusOverviews返回参数结构体
+      class DescribePrometheusOverviewsResponse < TencentCloud::Common::AbstractModel
+        # @param Instances: 实例列表
+        # @type Instances: Array
+        # @param Total: 实例总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Instances, :Total, :RequestId
+        
+        def initialize(instances=nil, total=nil, requestid=nil)
+          @Instances = instances
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Instances = params['Instances']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusTargets请求参数结构体
+      class DescribePrometheusTargetsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Filters: 过滤条件，当前支持
+        # Name=state
+        # Value=up, down, unknown
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :ClusterType, :ClusterId, :Filters
+        
+        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, filters=nil)
+          @InstanceId = instanceid
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribePrometheusTargets返回参数结构体
+      class DescribePrometheusTargetsResponse < TencentCloud::Common::AbstractModel
+        # @param Jobs: 所有Job的targets信息
+        # @type Jobs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Jobs, :RequestId
+        
+        def initialize(jobs=nil, requestid=nil)
+          @Jobs = jobs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Jobs = params['Jobs']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusTemplateSync请求参数结构体
+      class DescribePrometheusTemplateSyncRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribePrometheusTemplateSync返回参数结构体
+      class DescribePrometheusTemplateSyncResponse < TencentCloud::Common::AbstractModel
+        # @param Targets: 同步目标详情
+        # @type Targets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Targets, :RequestId
+        
+        def initialize(targets=nil, requestid=nil)
+          @Targets = targets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Targets = params['Targets']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusTemplates请求参数结构体
+      class DescribePrometheusTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 模糊过滤条件，支持
+        # Level 按模板级别过滤
+        # Name 按名称过滤
+        # Describe 按描述过滤
+        # ID 按templateId过滤
+        # @type Filters: Array
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 总数限制
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+        
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Filters = params['Filters']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePrometheusTemplates返回参数结构体
+      class DescribePrometheusTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param Templates: 模板列表
+        # @type Templates: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Templates, :Total, :RequestId
+        
+        def initialize(templates=nil, total=nil, requestid=nil)
+          @Templates = templates
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Templates = params['Templates']
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -1993,6 +2948,26 @@ module TencentCloud
         end
       end
 
+      # 创建集群时，选择安装的扩展组件的信息
+      class ExtensionAddon < TencentCloud::Common::AbstractModel
+        # @param AddonName: 扩展组件名称
+        # @type AddonName: String
+        # @param AddonParam: 扩展组件信息(扩展组件资源对象的json字符串描述)
+        # @type AddonParam: String
+
+        attr_accessor :AddonName, :AddonParam
+        
+        def initialize(addonname=nil, addonparam=nil)
+          @AddonName = addonname
+          @AddonParam = addonparam
+        end
+
+        def deserialize(params)
+          @AddonName = params['AddonName']
+          @AddonParam = params['AddonParam']
+        end
+      end
+
       # >描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
       # > * 若存在多个`Filter`时，`Filter`间的关系为逻辑与（`AND`）关系。
       # > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
@@ -2118,6 +3093,7 @@ module TencentCloud
       # 描述了k8s集群相关配置与信息。
       class InstanceAdvancedSettings < TencentCloud::Common::AbstractModel
         # @param MountTarget: 数据盘挂载点, 默认不挂载数据盘. 已格式化的 ext3，ext4，xfs 文件系统的数据盘将直接挂载，其他文件系统或未格式化的数据盘将自动格式化为ext4 并挂载，请注意备份数据! 无数据盘或有多块数据盘的云主机此设置不生效。
+        # 注意，注意，多盘场景请使用下方的DataDisks数据结构，设置对应的云盘类型、云盘大小、挂载路径、是否格式化等信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountTarget: String
         # @param DockerGraphPath: dockerd --graph 指定值, 默认为 /var/lib/docker
@@ -2131,7 +3107,7 @@ module TencentCloud
         # @param Labels: 节点Label数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
-        # @param DataDisks: 数据盘相关信息
+        # @param DataDisks: 多盘数据盘挂载信息，同时请确保购买CVM的参数传递了购买多个数据盘的信息，如添加节点CreateClusterInstances API的RunInstancesPara下的DataDisks也设置了购买多个数据盘, 具体可以参考CreateClusterInstances接口的，添加集群节点(多块数据盘)样例
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataDisks: Array
         # @param ExtraArgs: 节点相关的自定义参数信息
@@ -2189,7 +3165,7 @@ module TencentCloud
 
       # 节点自定义参数
       class InstanceExtraArgs < TencentCloud::Common::AbstractModel
-        # @param Kubelet: kubelet自定义参数
+        # @param Kubelet: kubelet自定义参数，参数格式为["k1=v1", "k1=v2"]， 例如["root-dir=/var/lib/kubelet","feature-gates=PodShareProcessNamespace=true,DynamicKubeletConfig=true"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kubelet: Array
 
@@ -2251,6 +3227,34 @@ module TencentCloud
         end
       end
 
+      # 手动加入的节点
+      class ManuallyAdded < TencentCloud::Common::AbstractModel
+        # @param Joining: 加入中节的点数量
+        # @type Joining: Integer
+        # @param Initializing: 初始化中的节点数量
+        # @type Initializing: Integer
+        # @param Normal: 正常的节点数量
+        # @type Normal: Integer
+        # @param Total: 节点总数
+        # @type Total: Integer
+
+        attr_accessor :Joining, :Initializing, :Normal, :Total
+        
+        def initialize(joining=nil, initializing=nil, normal=nil, total=nil)
+          @Joining = joining
+          @Initializing = initializing
+          @Normal = normal
+          @Total = total
+        end
+
+        def deserialize(params)
+          @Joining = params['Joining']
+          @Initializing = params['Initializing']
+          @Normal = params['Normal']
+          @Total = params['Total']
+        end
+      end
+
       # ModifyClusterAsGroupAttribute请求参数结构体
       class ModifyClusterAsGroupAttributeRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -2275,6 +3279,44 @@ module TencentCloud
 
       # ModifyClusterAsGroupAttribute返回参数结构体
       class ModifyClusterAsGroupAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterAsGroupOptionAttribute请求参数结构体
+      class ModifyClusterAsGroupOptionAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterAsGroupOption: 集群弹性伸缩属性
+        # @type ClusterAsGroupOption: :class:`Tencentcloud::Tke.v20180525.models.ClusterAsGroupOption`
+
+        attr_accessor :ClusterId, :ClusterAsGroupOption
+        
+        def initialize(clusterid=nil, clusterasgroupoption=nil)
+          @ClusterId = clusterid
+          @ClusterAsGroupOption = clusterasgroupoption
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ClusterAsGroupOption'].nil?
+            @ClusterAsGroupOption = ClusterAsGroupOption.new.deserialize(params[ClusterAsGroupOption])
+          end
+        end
+      end
+
+      # ModifyClusterAsGroupOptionAttribute返回参数结构体
+      class ModifyClusterAsGroupOptionAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2384,6 +3426,793 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterNodePool请求参数结构体
+      class ModifyClusterNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池ID
+        # @type NodePoolId: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param MaxNodesNum: 最大节点数
+        # @type MaxNodesNum: Integer
+        # @param MinNodesNum: 最小节点数
+        # @type MinNodesNum: Integer
+        # @param Labels: 标签
+        # @type Labels: Array
+        # @param Taints: 污点
+        # @type Taints: Array
+        # @param EnableAutoscale: 是否开启伸缩
+        # @type EnableAutoscale: Boolean
+        # @param OsName: 操作系统名称
+        # @type OsName: String
+        # @param OsCustomizeType: 镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
+        # @type OsCustomizeType: String
+
+        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType
+        
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @Name = name
+          @MaxNodesNum = maxnodesnum
+          @MinNodesNum = minnodesnum
+          @Labels = labels
+          @Taints = taints
+          @EnableAutoscale = enableautoscale
+          @OsName = osname
+          @OsCustomizeType = oscustomizetype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @Name = params['Name']
+          @MaxNodesNum = params['MaxNodesNum']
+          @MinNodesNum = params['MinNodesNum']
+          @Labels = params['Labels']
+          @Taints = params['Taints']
+          @EnableAutoscale = params['EnableAutoscale']
+          @OsName = params['OsName']
+          @OsCustomizeType = params['OsCustomizeType']
+        end
+      end
+
+      # ModifyClusterNodePool返回参数结构体
+      class ModifyClusterNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNodePoolDesiredCapacityAboutAsg请求参数结构体
+      class ModifyNodePoolDesiredCapacityAboutAsgRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池id
+        # @type NodePoolId: String
+        # @param DesiredCapacity: 节点池所关联的伸缩组的期望实例数
+        # @type DesiredCapacity: Integer
+
+        attr_accessor :ClusterId, :NodePoolId, :DesiredCapacity
+        
+        def initialize(clusterid=nil, nodepoolid=nil, desiredcapacity=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @DesiredCapacity = desiredcapacity
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @DesiredCapacity = params['DesiredCapacity']
+        end
+      end
+
+      # ModifyNodePoolDesiredCapacityAboutAsg返回参数结构体
+      class ModifyNodePoolDesiredCapacityAboutAsgResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPrometheusTemplate请求参数结构体
+      class ModifyPrometheusTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+        # @param Template: 修改内容
+        # @type Template: :class:`Tencentcloud::Tke.v20180525.models.PrometheusTemplateModify`
+
+        attr_accessor :TemplateId, :Template
+        
+        def initialize(templateid=nil, template=nil)
+          @TemplateId = templateid
+          @Template = template
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['Template'].nil?
+            @Template = PrometheusTemplateModify.new.deserialize(params[Template])
+          end
+        end
+      end
+
+      # ModifyPrometheusTemplate返回参数结构体
+      class ModifyPrometheusTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 节点统计列表
+      class NodeCountSummary < TencentCloud::Common::AbstractModel
+        # @param ManuallyAdded: 手动管理的节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManuallyAdded: :class:`Tencentcloud::Tke.v20180525.models.ManuallyAdded`
+        # @param AutoscalingAdded: 自动管理的节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoscalingAdded: :class:`Tencentcloud::Tke.v20180525.models.AutoscalingAdded`
+
+        attr_accessor :ManuallyAdded, :AutoscalingAdded
+        
+        def initialize(manuallyadded=nil, autoscalingadded=nil)
+          @ManuallyAdded = manuallyadded
+          @AutoscalingAdded = autoscalingadded
+        end
+
+        def deserialize(params)
+          unless params['ManuallyAdded'].nil?
+            @ManuallyAdded = ManuallyAdded.new.deserialize(params[ManuallyAdded])
+          end
+          unless params['AutoscalingAdded'].nil?
+            @AutoscalingAdded = AutoscalingAdded.new.deserialize(params[AutoscalingAdded])
+          end
+        end
+      end
+
+      # 节点池描述
+      class NodePool < TencentCloud::Common::AbstractModel
+        # @param NodePoolId: NodePoolId 资源池id
+        # @type NodePoolId: String
+        # @param Name: Name 资源池名称
+        # @type Name: String
+        # @param ClusterInstanceId: ClusterInstanceId 集群实例id
+        # @type ClusterInstanceId: String
+        # @param LifeState: LifeState 状态
+        # @type LifeState: String
+        # @param LaunchConfigurationId: LaunchConfigurationId 配置
+        # @type LaunchConfigurationId: String
+        # @param AutoscalingGroupId: AutoscalingGroupId 分组id
+        # @type AutoscalingGroupId: String
+        # @param Labels: Labels 标签
+        # @type Labels: Array
+        # @param Taints: Taints 污点标记
+        # @type Taints: Array
+        # @param NodeCountSummary: NodeCountSummary 节点列表
+        # @type NodeCountSummary: :class:`Tencentcloud::Tke.v20180525.models.NodeCountSummary`
+        # @param AutoscalingGroupStatus: 状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoscalingGroupStatus: String
+        # @param MaxNodesNum: 最大节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxNodesNum: Integer
+        # @param MinNodesNum: 最小节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinNodesNum: Integer
+        # @param DesiredNodesNum: 期望的节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DesiredNodesNum: Integer
+        # @param NodePoolOs: 节点池osName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodePoolOs: String
+        # @param OsCustomizeType: 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OsCustomizeType: String
+        # @param ImageId: 镜像id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageId: String
+
+        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId
+        
+        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil)
+          @NodePoolId = nodepoolid
+          @Name = name
+          @ClusterInstanceId = clusterinstanceid
+          @LifeState = lifestate
+          @LaunchConfigurationId = launchconfigurationid
+          @AutoscalingGroupId = autoscalinggroupid
+          @Labels = labels
+          @Taints = taints
+          @NodeCountSummary = nodecountsummary
+          @AutoscalingGroupStatus = autoscalinggroupstatus
+          @MaxNodesNum = maxnodesnum
+          @MinNodesNum = minnodesnum
+          @DesiredNodesNum = desirednodesnum
+          @NodePoolOs = nodepoolos
+          @OsCustomizeType = oscustomizetype
+          @ImageId = imageid
+        end
+
+        def deserialize(params)
+          @NodePoolId = params['NodePoolId']
+          @Name = params['Name']
+          @ClusterInstanceId = params['ClusterInstanceId']
+          @LifeState = params['LifeState']
+          @LaunchConfigurationId = params['LaunchConfigurationId']
+          @AutoscalingGroupId = params['AutoscalingGroupId']
+          @Labels = params['Labels']
+          @Taints = params['Taints']
+          unless params['NodeCountSummary'].nil?
+            @NodeCountSummary = NodeCountSummary.new.deserialize(params[NodeCountSummary])
+          end
+          @AutoscalingGroupStatus = params['AutoscalingGroupStatus']
+          @MaxNodesNum = params['MaxNodesNum']
+          @MinNodesNum = params['MinNodesNum']
+          @DesiredNodesNum = params['DesiredNodesNum']
+          @NodePoolOs = params['NodePoolOs']
+          @OsCustomizeType = params['OsCustomizeType']
+          @ImageId = params['ImageId']
+        end
+      end
+
+      # 加入存量节点时的节点池选项
+      class NodePoolOption < TencentCloud::Common::AbstractModel
+        # @param AddToNodePool: 是否加入节点池
+        # @type AddToNodePool: Boolean
+        # @param NodePoolId: 节点池id
+        # @type NodePoolId: String
+        # @param InheritConfigurationFromNodePool: 是否继承节点池相关配置
+        # @type InheritConfigurationFromNodePool: Boolean
+
+        attr_accessor :AddToNodePool, :NodePoolId, :InheritConfigurationFromNodePool
+        
+        def initialize(addtonodepool=nil, nodepoolid=nil, inheritconfigurationfromnodepool=nil)
+          @AddToNodePool = addtonodepool
+          @NodePoolId = nodepoolid
+          @InheritConfigurationFromNodePool = inheritconfigurationfromnodepool
+        end
+
+        def deserialize(params)
+          @AddToNodePool = params['AddToNodePool']
+          @NodePoolId = params['NodePoolId']
+          @InheritConfigurationFromNodePool = params['InheritConfigurationFromNodePool']
+        end
+      end
+
+      # 托管prometheus agent概览
+      class PrometheusAgentOverview < TencentCloud::Common::AbstractModel
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Status: agent状态
+        # normal = 正常
+        # abnormal = 异常
+        # @type Status: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+
+        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName
+        
+        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil)
+          @ClusterType = clustertype
+          @ClusterId = clusterid
+          @Status = status
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @ClusterType = params['ClusterType']
+          @ClusterId = params['ClusterId']
+          @Status = params['Status']
+          @ClusterName = params['ClusterName']
+        end
+      end
+
+      # Prometheus告警规则
+      class PrometheusAlertRule < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Rule: prometheus语句
+        # @type Rule: String
+        # @param Labels: 额外标签
+        # @type Labels: Array
+        # @param Template: 告警发送模板
+        # @type Template: String
+        # @param For: 持续时间
+        # @type For: String
+        # @param Describe: 该条规则的描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describe: String
+
+        attr_accessor :Name, :Rule, :Labels, :Template, :For, :Describe
+        
+        def initialize(name=nil, rule=nil, labels=nil, template=nil, for=nil, describe=nil)
+          @Name = name
+          @Rule = rule
+          @Labels = labels
+          @Template = template
+          @For = for
+          @Describe = describe
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Rule = params['Rule']
+          @Labels = params['Labels']
+          @Template = params['Template']
+          @For = params['For']
+          @Describe = params['Describe']
+        end
+      end
+
+      # 托管prometheus告警配置实例
+      class PrometheusAlertRuleDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Rules: 规则列表
+        # @type Rules: Array
+        # @param UpdatedAt: 最后修改时间
+        # @type UpdatedAt: String
+        # @param Notification: 告警渠道
+        # @type Notification: :class:`Tencentcloud::Tke.v20180525.models.PrometheusNotification`
+        # @param Id: 告警 id
+        # @type Id: String
+        # @param TemplateId: 如果该告警来至模板下发，则TemplateId为模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+
+        attr_accessor :Name, :Rules, :UpdatedAt, :Notification, :Id, :TemplateId
+        
+        def initialize(name=nil, rules=nil, updatedat=nil, notification=nil, id=nil, templateid=nil)
+          @Name = name
+          @Rules = rules
+          @UpdatedAt = updatedat
+          @Notification = notification
+          @Id = id
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Rules = params['Rules']
+          @UpdatedAt = params['UpdatedAt']
+          unless params['Notification'].nil?
+            @Notification = PrometheusNotification.new.deserialize(params[Notification])
+          end
+          @Id = params['Id']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # prometheus配置
+      class PrometheusConfigItem < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Config: 配置内容
+        # @type Config: String
+        # @param TemplateId: 用于出参，如果该配置来至模板，则为模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+
+        attr_accessor :Name, :Config, :TemplateId
+        
+        def initialize(name=nil, config=nil, templateid=nil)
+          @Name = name
+          @Config = config
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Config = params['Config']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # 托管prometheus实例概览
+      class PrometheusInstanceOverview < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param VpcId: 实例vpcId
+        # @type VpcId: String
+        # @param SubnetId: 实例子网Id
+        # @type SubnetId: String
+        # @param Status: 实例当前的状态
+        # prepare_env = 初始化环境
+        # install_suit = 安装组件
+        # running = 运行中
+        # @type Status: String
+        # @param COSBucket: COS桶存储
+        # @type COSBucket: String
+
+        attr_accessor :InstanceId, :Name, :VpcId, :SubnetId, :Status, :COSBucket
+        
+        def initialize(instanceid=nil, name=nil, vpcid=nil, subnetid=nil, status=nil, cosbucket=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Status = status
+          @COSBucket = cosbucket
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Status = params['Status']
+          @COSBucket = params['COSBucket']
+        end
+      end
+
+      # prometheus一个job的targets
+      class PrometheusJobTargets < TencentCloud::Common::AbstractModel
+        # @param Targets: 该Job的targets列表
+        # @type Targets: Array
+        # @param JobName: job的名称
+        # @type JobName: String
+        # @param Total: targets总数
+        # @type Total: Integer
+        # @param Up: 健康的target总数
+        # @type Up: Integer
+
+        attr_accessor :Targets, :JobName, :Total, :Up
+        
+        def initialize(targets=nil, jobname=nil, total=nil, up=nil)
+          @Targets = targets
+          @JobName = jobname
+          @Total = total
+          @Up = up
+        end
+
+        def deserialize(params)
+          @Targets = params['Targets']
+          @JobName = params['JobName']
+          @Total = params['Total']
+          @Up = params['Up']
+        end
+      end
+
+      # amp告警渠道配置
+      class PrometheusNotification < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否启用
+        # @type Enabled: Boolean
+        # @param RepeatInterval: 收敛时间
+        # @type RepeatInterval: String
+        # @param TimeRangeStart: 生效起始时间
+        # @type TimeRangeStart: String
+        # @param TimeRangeEnd: 生效结束时间
+        # @type TimeRangeEnd: String
+        # @param NotifyWay: 告警通知方式。目前有SMS、EMAIL、CALL、WECHAT方式。
+        # 分别代表：短信、邮件、电话、微信
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyWay: Array
+        # @param ReceiverGroups: 告警接收组（用户组）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverGroups: Array
+        # @param PhoneNotifyOrder: 电话告警顺序。
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneNotifyOrder: Array
+        # @param PhoneCircleTimes: 电话告警次数。
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneCircleTimes: Integer
+        # @param PhoneInnerInterval: 电话告警轮内间隔。单位：秒
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneInnerInterval: Integer
+        # @param PhoneCircleInterval: 电话告警轮外间隔。单位：秒
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneCircleInterval: Integer
+        # @param PhoneArriveNotice: 电话告警触达通知
+        # 注：NotifyWay选择CALL，采用该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneArriveNotice: Boolean
+        # @param Type: 通道类型，默认为amp，支持以下
+        # amp
+        # webhook
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param WebHook: 如果Type为webhook, 则该字段为必填项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebHook: String
+
+        attr_accessor :Enabled, :RepeatInterval, :TimeRangeStart, :TimeRangeEnd, :NotifyWay, :ReceiverGroups, :PhoneNotifyOrder, :PhoneCircleTimes, :PhoneInnerInterval, :PhoneCircleInterval, :PhoneArriveNotice, :Type, :WebHook
+        
+        def initialize(enabled=nil, repeatinterval=nil, timerangestart=nil, timerangeend=nil, notifyway=nil, receivergroups=nil, phonenotifyorder=nil, phonecircletimes=nil, phoneinnerinterval=nil, phonecircleinterval=nil, phonearrivenotice=nil, type=nil, webhook=nil)
+          @Enabled = enabled
+          @RepeatInterval = repeatinterval
+          @TimeRangeStart = timerangestart
+          @TimeRangeEnd = timerangeend
+          @NotifyWay = notifyway
+          @ReceiverGroups = receivergroups
+          @PhoneNotifyOrder = phonenotifyorder
+          @PhoneCircleTimes = phonecircletimes
+          @PhoneInnerInterval = phoneinnerinterval
+          @PhoneCircleInterval = phonecircleinterval
+          @PhoneArriveNotice = phonearrivenotice
+          @Type = type
+          @WebHook = webhook
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @RepeatInterval = params['RepeatInterval']
+          @TimeRangeStart = params['TimeRangeStart']
+          @TimeRangeEnd = params['TimeRangeEnd']
+          @NotifyWay = params['NotifyWay']
+          @ReceiverGroups = params['ReceiverGroups']
+          @PhoneNotifyOrder = params['PhoneNotifyOrder']
+          @PhoneCircleTimes = params['PhoneCircleTimes']
+          @PhoneInnerInterval = params['PhoneInnerInterval']
+          @PhoneCircleInterval = params['PhoneCircleInterval']
+          @PhoneArriveNotice = params['PhoneArriveNotice']
+          @Type = params['Type']
+          @WebHook = params['WebHook']
+        end
+      end
+
+      # prometheus一个抓取目标的信息
+      class PrometheusTarget < TencentCloud::Common::AbstractModel
+        # @param Url: 抓取目标的URL
+        # @type Url: String
+        # @param State: target当前状态,当前支持
+        # up = 健康
+        # down = 不健康
+        # unknown = 未知
+        # @type State: String
+        # @param Labels: target的元label
+        # @type Labels: Array
+        # @param LastScrape: 上一次抓取的时间
+        # @type LastScrape: String
+        # @param ScrapeDuration: 上一次抓取的耗时，单位是s
+        # @type ScrapeDuration: Float
+        # @param Error: 上一次抓取如果错误，该字段存储错误信息
+        # @type Error: String
+
+        attr_accessor :Url, :State, :Labels, :LastScrape, :ScrapeDuration, :Error
+        
+        def initialize(url=nil, state=nil, labels=nil, lastscrape=nil, scrapeduration=nil, error=nil)
+          @Url = url
+          @State = state
+          @Labels = labels
+          @LastScrape = lastscrape
+          @ScrapeDuration = scrapeduration
+          @Error = error
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @State = params['State']
+          @Labels = params['Labels']
+          @LastScrape = params['LastScrape']
+          @ScrapeDuration = params['ScrapeDuration']
+          @Error = params['Error']
+        end
+      end
+
+      # 模板实例
+      class PrometheusTemplate < TencentCloud::Common::AbstractModel
+        # @param Name: 模板名称
+        # @type Name: String
+        # @param Level: 模板维度，支持以下类型
+        # instance 实例级别
+        # cluster 集群级别
+        # @type Level: String
+        # @param Describe: 模板描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describe: String
+        # @param AlertRules: 当Level为instance时有效，
+        # 模板中的告警配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertRules: Array
+        # @param RecordRules: 当Level为instance时有效，
+        # 模板中的聚合规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordRules: Array
+        # @param ServiceMonitors: 当Level为cluster时有效，
+        # 模板中的ServiceMonitor规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: 当Level为cluster时有效，
+        # 模板中的PodMonitors规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodMonitors: Array
+        # @param RawJobs: 当Level为cluster时有效，
+        # 模板中的RawJobs规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawJobs: Array
+        # @param TemplateId: 模板的ID, 用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+        # @param UpdateTime: 最近更新时间，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Version: 当前版本，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param IsDefault: 是否系统提供的默认模板，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: Boolean
+        # @param AlertDetailRules: 当Level为instance时有效，
+        # 模板中的告警配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertDetailRules: Array
+
+        attr_accessor :Name, :Level, :Describe, :AlertRules, :RecordRules, :ServiceMonitors, :PodMonitors, :RawJobs, :TemplateId, :UpdateTime, :Version, :IsDefault, :AlertDetailRules
+        
+        def initialize(name=nil, level=nil, describe=nil, alertrules=nil, recordrules=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, templateid=nil, updatetime=nil, version=nil, isdefault=nil, alertdetailrules=nil)
+          @Name = name
+          @Level = level
+          @Describe = describe
+          @AlertRules = alertrules
+          @RecordRules = recordrules
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
+          @TemplateId = templateid
+          @UpdateTime = updatetime
+          @Version = version
+          @IsDefault = isdefault
+          @AlertDetailRules = alertdetailrules
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Level = params['Level']
+          @Describe = params['Describe']
+          @AlertRules = params['AlertRules']
+          @RecordRules = params['RecordRules']
+          @ServiceMonitors = params['ServiceMonitors']
+          @PodMonitors = params['PodMonitors']
+          @RawJobs = params['RawJobs']
+          @TemplateId = params['TemplateId']
+          @UpdateTime = params['UpdateTime']
+          @Version = params['Version']
+          @IsDefault = params['IsDefault']
+          @AlertDetailRules = params['AlertDetailRules']
+        end
+      end
+
+      # 云原生Prometheus模板可修改项
+      class PrometheusTemplateModify < TencentCloud::Common::AbstractModel
+        # @param Name: 修改名称
+        # @type Name: String
+        # @param Describe: 修改描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describe: String
+        # @param AlertRules: 修改内容，只有当模板类型是Alert时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertRules: Array
+        # @param RecordRules: 当Level为instance时有效，
+        # 模板中的聚合规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordRules: Array
+        # @param ServiceMonitors: 当Level为cluster时有效，
+        # 模板中的ServiceMonitor规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceMonitors: Array
+        # @param PodMonitors: 当Level为cluster时有效，
+        # 模板中的PodMonitors规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodMonitors: Array
+        # @param RawJobs: 当Level为cluster时有效，
+        # 模板中的RawJobs规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawJobs: Array
+        # @param AlertDetailRules: 修改内容，只有当模板类型是Alert时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertDetailRules: Array
+
+        attr_accessor :Name, :Describe, :AlertRules, :RecordRules, :ServiceMonitors, :PodMonitors, :RawJobs, :AlertDetailRules
+        
+        def initialize(name=nil, describe=nil, alertrules=nil, recordrules=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, alertdetailrules=nil)
+          @Name = name
+          @Describe = describe
+          @AlertRules = alertrules
+          @RecordRules = recordrules
+          @ServiceMonitors = servicemonitors
+          @PodMonitors = podmonitors
+          @RawJobs = rawjobs
+          @AlertDetailRules = alertdetailrules
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Describe = params['Describe']
+          @AlertRules = params['AlertRules']
+          @RecordRules = params['RecordRules']
+          @ServiceMonitors = params['ServiceMonitors']
+          @PodMonitors = params['PodMonitors']
+          @RawJobs = params['RawJobs']
+          @AlertDetailRules = params['AlertDetailRules']
+        end
+      end
+
+      # 云原生Prometheus模板同步目标
+      class PrometheusTemplateSyncTarget < TencentCloud::Common::AbstractModel
+        # @param Region: 目标所在地域
+        # @type Region: String
+        # @param InstanceId: 目标实例
+        # @type InstanceId: String
+        # @param ClusterId: 集群id，只有当采集模板的Level为cluster的时候需要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param SyncTime: 最后一次同步时间， 用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncTime: String
+        # @param Version: 当前使用的模板版本，用于出参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param ClusterType: 集群类型，只有当采集模板的Level为cluster的时候需要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param InstanceName: 用于出参，实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param ClusterName: 用于出参，集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+
+        attr_accessor :Region, :InstanceId, :ClusterId, :SyncTime, :Version, :ClusterType, :InstanceName, :ClusterName
+        
+        def initialize(region=nil, instanceid=nil, clusterid=nil, synctime=nil, version=nil, clustertype=nil, instancename=nil, clustername=nil)
+          @Region = region
+          @InstanceId = instanceid
+          @ClusterId = clusterid
+          @SyncTime = synctime
+          @Version = version
+          @ClusterType = clustertype
+          @InstanceName = instancename
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @InstanceId = params['InstanceId']
+          @ClusterId = params['ClusterId']
+          @SyncTime = params['SyncTime']
+          @Version = params['Version']
+          @ClusterType = params['ClusterType']
+          @InstanceName = params['InstanceName']
+          @ClusterName = params['ClusterName']
+        end
+      end
+
       # 地域属性信息
       class RegionInstance < TencentCloud::Common::AbstractModel
         # @param RegionName: 地域名称
@@ -2423,6 +4252,46 @@ module TencentCloud
           @FeatureGates = params['FeatureGates']
           @Alias = params['Alias']
           @Remark = params['Remark']
+        end
+      end
+
+      # RemoveNodeFromNodePool请求参数结构体
+      class RemoveNodeFromNodePoolRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池id
+        # @type NodePoolId: String
+        # @param InstanceIds: 节点id列表
+        # @type InstanceIds: Array
+
+        attr_accessor :ClusterId, :NodePoolId, :InstanceIds
+        
+        def initialize(clusterid=nil, nodepoolid=nil, instanceids=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # RemoveNodeFromNodePool返回参数结构体
+      class RemoveNodeFromNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2581,6 +4450,42 @@ module TencentCloud
         end
       end
 
+      # SyncPrometheusTemplate请求参数结构体
+      class SyncPrometheusTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 实例id
+        # @type TemplateId: String
+        # @param Targets: 同步目标
+        # @type Targets: Array
+
+        attr_accessor :TemplateId, :Targets
+        
+        def initialize(templateid=nil, targets=nil)
+          @TemplateId = templateid
+          @Targets = targets
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @Targets = params['Targets']
+        end
+      end
+
+      # SyncPrometheusTemplate返回参数结构体
+      class SyncPrometheusTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签绑定的资源类型，当前支持类型："cluster"
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
@@ -2620,6 +4525,153 @@ module TencentCloud
         def deserialize(params)
           @ResourceType = params['ResourceType']
           @Tags = params['Tags']
+        end
+      end
+
+      # kubernetes Taint
+      class Taint < TencentCloud::Common::AbstractModel
+        # @param Key: Key
+        # @type Key: String
+        # @param Value: Value
+        # @type Value: String
+        # @param Effect: Effect
+        # @type Effect: String
+
+        attr_accessor :Key, :Value, :Effect
+        
+        def initialize(key=nil, value=nil, effect=nil)
+          @Key = key
+          @Value = value
+          @Effect = effect
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Effect = params['Effect']
+        end
+      end
+
+      # 可升级节点信息
+      class UpgradeAbleInstancesItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 节点Id
+        # @type InstanceId: String
+        # @param Version: 节点的当前版本
+        # @type Version: String
+        # @param LatestVersion: 当前版本的最新小版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestVersion: String
+
+        attr_accessor :InstanceId, :Version, :LatestVersion
+        
+        def initialize(instanceid=nil, version=nil, latestversion=nil)
+          @InstanceId = instanceid
+          @Version = version
+          @LatestVersion = latestversion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Version = params['Version']
+          @LatestVersion = params['LatestVersion']
+        end
+      end
+
+      # UpgradeClusterInstances请求参数结构体
+      class UpgradeClusterInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Operation: create 表示开始一次升级任务
+        # pause 表示停止任务
+        # resume表示继续任务
+        # abort表示终止任务
+        # @type Operation: String
+        # @param UpgradeType: 升级类型，只有Operation是create需要设置
+        # reset 大版本重装升级
+        # hot 小版本热升级
+        # major 大版本原地升级
+        # @type UpgradeType: String
+        # @param InstanceIds: 需要升级的节点列表
+        # @type InstanceIds: Array
+        # @param ResetParam: 当节点重新加入集群时候所使用的参数，参考添加已有节点接口
+        # @type ResetParam: :class:`Tencentcloud::Tke.v20180525.models.UpgradeNodeResetParam`
+        # @param SkipPreCheck: 是否忽略节点升级前检查
+        # @type SkipPreCheck: Boolean
+        # @param MaxNotReadyPercent: 最大可容忍的不可用Pod比例
+        # @type MaxNotReadyPercent: Float
+
+        attr_accessor :ClusterId, :Operation, :UpgradeType, :InstanceIds, :ResetParam, :SkipPreCheck, :MaxNotReadyPercent
+        
+        def initialize(clusterid=nil, operation=nil, upgradetype=nil, instanceids=nil, resetparam=nil, skipprecheck=nil, maxnotreadypercent=nil)
+          @ClusterId = clusterid
+          @Operation = operation
+          @UpgradeType = upgradetype
+          @InstanceIds = instanceids
+          @ResetParam = resetparam
+          @SkipPreCheck = skipprecheck
+          @MaxNotReadyPercent = maxnotreadypercent
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Operation = params['Operation']
+          @UpgradeType = params['UpgradeType']
+          @InstanceIds = params['InstanceIds']
+          unless params['ResetParam'].nil?
+            @ResetParam = UpgradeNodeResetParam.new.deserialize(params[ResetParam])
+          end
+          @SkipPreCheck = params['SkipPreCheck']
+          @MaxNotReadyPercent = params['MaxNotReadyPercent']
+        end
+      end
+
+      # UpgradeClusterInstances返回参数结构体
+      class UpgradeClusterInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 节点升级重装参数
+      class UpgradeNodeResetParam < TencentCloud::Common::AbstractModel
+        # @param InstanceAdvancedSettings: 实例额外需要设置参数信息
+        # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
+        # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
+        # @type EnhancedService: :class:`Tencentcloud::Tke.v20180525.models.EnhancedService`
+        # @param LoginSettings: 节点登录信息（目前仅支持使用Password或者单个KeyIds）
+        # @type LoginSettings: :class:`Tencentcloud::Tke.v20180525.models.LoginSettings`
+        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 DescribeSecurityGroups 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。（目前仅支持设置单个sgId）
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :SecurityGroupIds
+        
+        def initialize(instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, securitygroupids=nil)
+          @InstanceAdvancedSettings = instanceadvancedsettings
+          @EnhancedService = enhancedservice
+          @LoginSettings = loginsettings
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          unless params['InstanceAdvancedSettings'].nil?
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params[InstanceAdvancedSettings])
+          end
+          unless params['EnhancedService'].nil?
+            @EnhancedService = EnhancedService.new.deserialize(params[EnhancedService])
+          end
+          unless params['LoginSettings'].nil?
+            @LoginSettings = LoginSettings.new.deserialize(params[LoginSettings])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 

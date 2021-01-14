@@ -145,6 +145,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取接收客户端请求的节点类型
+
+        # @param request: Request instance for GetRequestTargetNodeTypes.
+        # @type request: :class:`Tencentcloud::es::V20180416::GetRequestTargetNodeTypesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::GetRequestTargetNodeTypesResponse`
+        def GetRequestTargetNodeTypes(request)
+          body = send_request('GetRequestTargetNodeTypes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRequestTargetNodeTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重启ES集群实例(用于系统版本更新等操作)
 
         # @param request: Request instance for RestartInstance.
@@ -155,6 +179,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RestartInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重启Kibana
+
+        # @param request: Request instance for RestartKibana.
+        # @type request: :class:`Tencentcloud::es::V20180416::RestartKibanaRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::RestartKibanaResponse`
+        def RestartKibana(request)
+          body = send_request('RestartKibana', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartKibanaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于重启集群节点
+
+        # @param request: Request instance for RestartNodes.
+        # @type request: :class:`Tencentcloud::es::V20180416::RestartNodesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::RestartNodesResponse`
+        def RestartNodes(request)
+          body = send_request('RestartNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartNodesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -210,6 +282,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdatePluginsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新接收客户端请求的节点类型
+
+        # @param request: Request instance for UpdateRequestTargetNodeTypes.
+        # @type request: :class:`Tencentcloud::es::V20180416::UpdateRequestTargetNodeTypesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::UpdateRequestTargetNodeTypesResponse`
+        def UpdateRequestTargetNodeTypes(request)
+          body = send_request('UpdateRequestTargetNodeTypes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateRequestTargetNodeTypesResponse.new
             model.deserialize(response['Response'])
             model
           else

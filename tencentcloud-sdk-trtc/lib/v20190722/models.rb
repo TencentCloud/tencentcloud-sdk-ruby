@@ -194,11 +194,11 @@ module TencentCloud
       class DescribeCallDetailRequest < TencentCloud::Common::AbstractModel
         # @param CommId: 通话 ID（唯一标识一次通话）： sdkappid_roomgString（房间号_createTime（房间创建时间，unix时间戳，单位为s）例：1400353843_218695_1590065777。通过 DescribeRoomInformation（查询房间列表）接口获取（链接：https://cloud.tencent.com/document/product/647/44050）
         # @type CommId: String
-        # @param StartTime: 查询开始时间，5天内。本地unix时间戳（1588031999s）
+        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588031999s）
         # @type StartTime: Integer
         # @param EndTime: 查询结束时间，本地unix时间戳（1588031999s）
         # @type EndTime: Integer
-        # @param SdkAppId: 用户sdkappid（1400188366）
+        # @param SdkAppId: 用户SDKAppID（1400188366）
         # @type SdkAppId: String
         # @param UserIds: 需查询的用户数组，不填默认返回6个用户,最多可填6个用户
         # @type UserIds: Array
@@ -217,16 +217,22 @@ module TencentCloud
         # bigvWidth：上/下行分辨率宽；
         # bigvHeight：上/下行分辨率高
         # @type DataType: Array
+        # @param PageNumber: 设置分页index，从0开始（PageNumber和PageSize 其中一个不填均默认返回6条数据）
+        # @type PageNumber: String
+        # @param PageSize: 设置分页大小（PageNumber和PageSize 其中一个不填均默认返回6条数据,DataType，UserIds不为null，PageSize最大不超过6，DataType，UserIds为null，PageSize最大不超过100）
+        # @type PageSize: String
 
-        attr_accessor :CommId, :StartTime, :EndTime, :SdkAppId, :UserIds, :DataType
+        attr_accessor :CommId, :StartTime, :EndTime, :SdkAppId, :UserIds, :DataType, :PageNumber, :PageSize
         
-        def initialize(commid=nil, starttime=nil, endtime=nil, sdkappid=nil, userids=nil, datatype=nil)
+        def initialize(commid=nil, starttime=nil, endtime=nil, sdkappid=nil, userids=nil, datatype=nil, pagenumber=nil, pagesize=nil)
           @CommId = commid
           @StartTime = starttime
           @EndTime = endtime
           @SdkAppId = sdkappid
           @UserIds = userids
           @DataType = datatype
+          @PageNumber = pagenumber
+          @PageSize = pagesize
         end
 
         def deserialize(params)
@@ -236,6 +242,8 @@ module TencentCloud
           @SdkAppId = params['SdkAppId']
           @UserIds = params['UserIds']
           @DataType = params['DataType']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
         end
       end
 
@@ -273,7 +281,7 @@ module TencentCloud
       class DescribeDetailEventRequest < TencentCloud::Common::AbstractModel
         # @param CommId: 通话 ID（唯一标识一次通话）： sdkappid_roomgString（房间号_createTime（房间创建时间，unix时间戳，单位s）。通过 DescribeRoomInformation（查询房间列表）接口获取。（链接：https://cloud.tencent.com/document/product/647/44050）
         # @type CommId: String
-        # @param StartTime: 查询开始时间，5天内。本地unix时间戳（1588031999s）
+        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588031999s）
         # @type StartTime: Integer
         # @param EndTime: 查询结束时间，本地unix时间戳（1588031999s）
         # @type EndTime: Integer
@@ -522,19 +530,64 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordStatistic请求参数结构体
+      class DescribeRecordStatisticRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始日期，格式为YYYY-MM-DD。
+        # @type StartTime: String
+        # @param EndTime: 查询结束日期，格式为YYYY-MM-DD。
+        # 单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param SdkAppId: 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回多个应用的合计值。
+        # @type SdkAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :SdkAppId
+        
+        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeRecordStatistic返回参数结构体
+      class DescribeRecordStatisticResponse < TencentCloud::Common::AbstractModel
+        # @param SdkAppIdUsages: 应用的用量信息数组。
+        # @type SdkAppIdUsages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SdkAppIdUsages, :RequestId
+        
+        def initialize(sdkappidusages=nil, requestid=nil)
+          @SdkAppIdUsages = sdkappidusages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SdkAppIdUsages = params['SdkAppIdUsages']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoomInformation请求参数结构体
       class DescribeRoomInformationRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 用户sdkappid
         # @type SdkAppId: String
-        # @param StartTime: 查询开始时间，5天内。本地unix时间戳（1588031999s）
+        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588031999s）
         # @type StartTime: Integer
         # @param EndTime: 查询结束时间，本地unix时间戳（1588031999s）
         # @type EndTime: Integer
-        # @param RoomId: 数字房间号
+        # @param RoomId: 字符串房间号
         # @type RoomId: String
-        # @param PageNumber: 分页index（不填默认只返回10个）
+        # @param PageNumber: 分页index，从0开始（PageNumber和PageSize 其中一个不填均默认返回10条数据）
         # @type PageNumber: String
-        # @param PageSize: 分页大小（不填默认返回10个,最多不超过100条）
+        # @param PageSize: 分页大小（PageNumber和PageSize 其中一个不填均默认返回10条数据,最大不超过100）
         # @type PageSize: String
 
         attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId, :PageNumber, :PageSize
@@ -560,7 +613,7 @@ module TencentCloud
 
       # DescribeRoomInformation返回参数结构体
       class DescribeRoomInformationResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 返回的数据总条数
+        # @param Total: 返回当页数据总数
         # @type Total: Integer
         # @param RoomList: 房间信息列表
         # @type RoomList: Array
@@ -578,6 +631,197 @@ module TencentCloud
         def deserialize(params)
           @Total = params['Total']
           @RoomList = params['RoomList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTrtcInteractiveTime请求参数结构体
+      class DescribeTrtcInteractiveTimeRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
+        # 单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param SdkAppId: 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回所有应用的合计值。
+        # @type SdkAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :SdkAppId
+        
+        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeTrtcInteractiveTime返回参数结构体
+      class DescribeTrtcInteractiveTimeResponse < TencentCloud::Common::AbstractModel
+        # @param Usages: 应用的用量信息数组。
+        # @type Usages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Usages, :RequestId
+        
+        def initialize(usages=nil, requestid=nil)
+          @Usages = usages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Usages = params['Usages']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTrtcMcuTranscodeTime请求参数结构体
+      class DescribeTrtcMcuTranscodeTimeRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
+        # 单次查询统计区间最多不能超过31天。
+        # @type EndTime: String
+        # @param SdkAppId: 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回多个应用的合计值。
+        # @type SdkAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :SdkAppId
+        
+        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeTrtcMcuTranscodeTime返回参数结构体
+      class DescribeTrtcMcuTranscodeTimeResponse < TencentCloud::Common::AbstractModel
+        # @param Usages: 应用的用量信息数组。
+        # @type Usages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Usages, :RequestId
+        
+        def initialize(usages=nil, requestid=nil)
+          @Usages = usages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Usages = params['Usages']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserInformation请求参数结构体
+      class DescribeUserInformationRequest < TencentCloud::Common::AbstractModel
+        # @param CommId: 通话 ID（唯一标识一次通话）： sdkappid_roomgString（房间号_createTime（房间创建时间，unix时间戳，单位为s）例：1400353843_218695_1590065777。通过 DescribeRoomInformation（查询房间列表）接口获取（链接：https://cloud.tencent.com/document/product/647/44050）
+        # @type CommId: String
+        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588031999s）
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，本地unix时间戳（1588031999s）
+        # @type EndTime: Integer
+        # @param SdkAppId: 用户SDKAppID（1400188366）
+        # @type SdkAppId: String
+        # @param UserIds: 需查询的用户数组，不填默认返回6个用户,最多可填6个用户
+        # @type UserIds: Array
+        # @param PageNumber: 设置分页index，从0开始（PageNumber和PageSize 其中一个不填均默认返回6条数据）
+        # @type PageNumber: String
+        # @param PageSize: 设置分页大小（PageNumber和PageSize 其中一个不填均默认返回6条数据,PageSize最大不超过100）
+        # @type PageSize: String
+
+        attr_accessor :CommId, :StartTime, :EndTime, :SdkAppId, :UserIds, :PageNumber, :PageSize
+        
+        def initialize(commid=nil, starttime=nil, endtime=nil, sdkappid=nil, userids=nil, pagenumber=nil, pagesize=nil)
+          @CommId = commid
+          @StartTime = starttime
+          @EndTime = endtime
+          @SdkAppId = sdkappid
+          @UserIds = userids
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @CommId = params['CommId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SdkAppId = params['SdkAppId']
+          @UserIds = params['UserIds']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeUserInformation返回参数结构体
+      class DescribeUserInformationResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回的用户总条数
+        # @type Total: Integer
+        # @param UserList: 用户信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :UserList, :RequestId
+        
+        def initialize(total=nil, userlist=nil, requestid=nil)
+          @Total = total
+          @UserList = userlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @UserList = params['UserList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DismissRoomByStrRoomId请求参数结构体
+      class DismissRoomByStrRoomIdRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的SDKAppId。
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间号。
+        # @type RoomId: String
+
+        attr_accessor :SdkAppId, :RoomId
+        
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DismissRoomByStrRoomId返回参数结构体
+      class DismissRoomByStrRoomIdResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -620,11 +864,11 @@ module TencentCloud
 
       # MCU混流输出流编码参数
       class EncodeParams < TencentCloud::Common::AbstractModel
-        # @param AudioSampleRate: 混流-输出流音频采样率。取值为[48000, 44100, 32000,24000, 22050, 16000, 12000, 11025, 8000]。
+        # @param AudioSampleRate: 混流-输出流音频采样率。取值为[48000, 44100, 32000,24000,, 16000, 12000, 8000]，单位是Hz。
         # @type AudioSampleRate: Integer
         # @param AudioBitrate: 混流-输出流音频码率。取值范围[8,500]，单位为Kbps。
         # @type AudioBitrate: Integer
-        # @param AudioChannels: 混流-输出流音频声道数，取值范围[1,2]。
+        # @param AudioChannels: 混流-输出流音频声道数，取值范围[1,2]，1表示混流输出音频为单声道，2表示混流输出音频为双声道。
         # @type AudioChannels: Integer
         # @param VideoWidth: 混流-输出流宽，音视频输出时必填。取值范围[0,1920]，单位为像素值。
         # @type VideoWidth: Integer
@@ -632,7 +876,7 @@ module TencentCloud
         # @type VideoHeight: Integer
         # @param VideoBitrate: 混流-输出流码率，音视频输出时必填。取值范围[1,10000]，单位为Kbps。
         # @type VideoBitrate: Integer
-        # @param VideoFramerate: 混流-输出流帧率，音视频输出时必填。取值为[6,12,15,24,30,48,60]，不在上述帧率值内系统会自动调整。
+        # @param VideoFramerate: 混流-输出流帧率，音视频输出时必填。取值范围[1,60]，表示混流的输出帧率可选范围为1到60fps。
         # @type VideoFramerate: Integer
         # @param VideoGop: 混流-输出流gop，音视频输出时必填。取值范围[1,5]，单位为秒。
         # @type VideoGop: Integer
@@ -728,25 +972,95 @@ module TencentCloud
 
       # MCU混流布局参数
       class LayoutParams < TencentCloud::Common::AbstractModel
-        # @param Template: 混流布局模板ID，0为悬浮模板(默认);1为九宫格模板;2为屏幕分享模板
+        # @param Template: 混流布局模板ID，0为悬浮模板(默认);1为九宫格模板;2为屏幕分享模板;3为画中画模板;4为自定义模板。
         # @type Template: Integer
-        # @param MainVideoUserId: 屏幕分享模板中有效，代表左侧大画面对应的用户ID
+        # @param MainVideoUserId: 屏幕分享模板、悬浮模板、画中画模板中有效，代表大画面对应的用户ID。
         # @type MainVideoUserId: String
-        # @param MainVideoStreamType: 屏幕分享模板中有效，代表左侧大画面对应的流类型，0为摄像头，1为屏幕分享。左侧大画面为web用户时此值填0
+        # @param MainVideoStreamType: 屏幕分享模板、悬浮模板、画中画模板中有效，代表大画面对应的流类型，0为摄像头，1为屏幕分享。左侧大画面为web用户时此值填0。
         # @type MainVideoStreamType: Integer
+        # @param SmallVideoLayoutParams: 画中画模板中有效，代表小画面的布局参数。
+        # @type SmallVideoLayoutParams: :class:`Tencentcloud::Trtc.v20190722.models.SmallVideoLayoutParams`
+        # @param MainVideoRightAlign: 屏幕分享模板有效。设置为1时代表大画面居右，小画面居左布局。默认为0。
+        # @type MainVideoRightAlign: Integer
+        # @param MixVideoUids: 悬浮模板、九宫格、屏幕分享模板有效。设置此参数后，输出流混合此参数中包含用户的音视频，以及其他用户的纯音频。最多可设置16个用户。
+        # @type MixVideoUids: Array
+        # @param PresetLayoutConfig: 自定义模板中有效，指定用户视频在混合画面中的位置。
+        # @type PresetLayoutConfig: Array
+        # @param PlaceHolderMode: 自定义模板中有效，设置为1时代表启用占位图功能，0时代表不启用占位图功能，默认为0。启用占位图功能时，在预设位置的用户没有上行视频时可显示对应的占位图。
+        # @type PlaceHolderMode: Integer
 
-        attr_accessor :Template, :MainVideoUserId, :MainVideoStreamType
+        attr_accessor :Template, :MainVideoUserId, :MainVideoStreamType, :SmallVideoLayoutParams, :MainVideoRightAlign, :MixVideoUids, :PresetLayoutConfig, :PlaceHolderMode
         
-        def initialize(template=nil, mainvideouserid=nil, mainvideostreamtype=nil)
+        def initialize(template=nil, mainvideouserid=nil, mainvideostreamtype=nil, smallvideolayoutparams=nil, mainvideorightalign=nil, mixvideouids=nil, presetlayoutconfig=nil, placeholdermode=nil)
           @Template = template
           @MainVideoUserId = mainvideouserid
           @MainVideoStreamType = mainvideostreamtype
+          @SmallVideoLayoutParams = smallvideolayoutparams
+          @MainVideoRightAlign = mainvideorightalign
+          @MixVideoUids = mixvideouids
+          @PresetLayoutConfig = presetlayoutconfig
+          @PlaceHolderMode = placeholdermode
         end
 
         def deserialize(params)
           @Template = params['Template']
           @MainVideoUserId = params['MainVideoUserId']
           @MainVideoStreamType = params['MainVideoStreamType']
+          unless params['SmallVideoLayoutParams'].nil?
+            @SmallVideoLayoutParams = SmallVideoLayoutParams.new.deserialize(params[SmallVideoLayoutParams])
+          end
+          @MainVideoRightAlign = params['MainVideoRightAlign']
+          @MixVideoUids = params['MixVideoUids']
+          @PresetLayoutConfig = params['PresetLayoutConfig']
+          @PlaceHolderMode = params['PlaceHolderMode']
+        end
+      end
+
+      # 旁路转码时长的查询结果
+      class OneSdkAppIdTranscodeTimeUsagesInfo < TencentCloud::Common::AbstractModel
+        # @param SdkAppIdTranscodeTimeUsages: 旁路转码时长查询结果数组
+        # @type SdkAppIdTranscodeTimeUsages: Array
+        # @param TotalNum: 查询记录数量
+        # @type TotalNum: Integer
+        # @param SdkAppId: 所查询的应用ID，可能值为:1-应用的应用ID，2-total，显示为total则表示查询的是所有应用的用量合计值。
+        # @type SdkAppId: String
+
+        attr_accessor :SdkAppIdTranscodeTimeUsages, :TotalNum, :SdkAppId
+        
+        def initialize(sdkappidtranscodetimeusages=nil, totalnum=nil, sdkappid=nil)
+          @SdkAppIdTranscodeTimeUsages = sdkappidtranscodetimeusages
+          @TotalNum = totalnum
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @SdkAppIdTranscodeTimeUsages = params['SdkAppIdTranscodeTimeUsages']
+          @TotalNum = params['TotalNum']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # 单个SdkAppId的音视频互动计费时长用量数组和数组长度。
+      class OneSdkAppIdUsagesInfo < TencentCloud::Common::AbstractModel
+        # @param TotalNum: 该 SdkAppId 对应的用量记录数长度
+        # @type TotalNum: Integer
+        # @param SdkAppIdTrtcTimeUsages: 用量数组
+        # @type SdkAppIdTrtcTimeUsages: Array
+        # @param SdkAppId: 应用ID
+        # @type SdkAppId: String
+
+        attr_accessor :TotalNum, :SdkAppIdTrtcTimeUsages, :SdkAppId
+        
+        def initialize(totalnum=nil, sdkappidtrtctimeusages=nil, sdkappid=nil)
+          @TotalNum = totalnum
+          @SdkAppIdTrtcTimeUsages = sdkappidtrtctimeusages
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @TotalNum = params['TotalNum']
+          @SdkAppIdTrtcTimeUsages = params['SdkAppIdTrtcTimeUsages']
+          @SdkAppId = params['SdkAppId']
         end
       end
 
@@ -756,7 +1070,7 @@ module TencentCloud
         # @type StreamId: String
         # @param PureAudioStream: 取值范围[0,1]， 填0：直播流为音视频(默认); 填1：直播流为纯音频
         # @type PureAudioStream: Integer
-        # @param RecordId: 自定义录制文件名
+        # @param RecordId: 自定义录制文件名。请先在实时音视频控制台开通录制功能，https://cloud.tencent.com/document/product/647/50768
         # @type RecordId: String
         # @param RecordAudioOnly: 取值范围[0,1]，填0无实际含义; 填1：指定录制文件格式为mp3
         # @type RecordAudioOnly: Integer
@@ -775,6 +1089,78 @@ module TencentCloud
           @PureAudioStream = params['PureAudioStream']
           @RecordId = params['RecordId']
           @RecordAudioOnly = params['RecordAudioOnly']
+        end
+      end
+
+      # 自定义模板中有效，指定用户视频在混合画面中的位置。
+      class PresetLayoutConfig < TencentCloud::Common::AbstractModel
+        # @param UserId: 指定显示在该画面上的用户ID。如果不指定用户ID，会按照用户加入房间的顺序自动匹配PresetLayoutConfig中的画面设置。
+        # @type UserId: String
+        # @param StreamType: 当该画面指定用户时，代表用户的流类型。0为摄像头，1为屏幕分享。小画面为web用户时此值填0。
+        # @type StreamType: Integer
+        # @param ImageWidth: 该画面在输出时的宽度，单位为像素值，不填默认为0。
+        # @type ImageWidth: Integer
+        # @param ImageHeight: 该画面在输出时的高度，单位为像素值，不填默认为0。
+        # @type ImageHeight: Integer
+        # @param LocationX: 该画面在输出时的X偏移，单位为像素值，LocationX与ImageWidth之和不能超过混流输出的总宽度，不填默认为0。
+        # @type LocationX: Integer
+        # @param LocationY: 该画面在输出时的Y偏移，单位为像素值，LocationY与ImageHeight之和不能超过混流输出的总高度，不填默认为0。
+        # @type LocationY: Integer
+        # @param ZOrder: 该画面在输出时的层级，单位为像素值，不填默认为0。
+        # @type ZOrder: Integer
+        # @param RenderMode: 该画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底。不填默认为0。
+        # @type RenderMode: Integer
+        # @param MixInputType: 该当前位置用户混入的流类型：0为混入音视频，1为只混入视频，2为只混入音频。默认为0，建议配合指定用户ID使用。
+        # @type MixInputType: Integer
+        # @param PlaceImageId: 占位图ID。启用占位图功能时，在当前位置的用户没有上行视频时显示占位图。占位图在实时音视频控制台上传并生成，https://cloud.tencent.com/document/product/647/50769
+        # @type PlaceImageId: Integer
+
+        attr_accessor :UserId, :StreamType, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :MixInputType, :PlaceImageId
+        
+        def initialize(userid=nil, streamtype=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, mixinputtype=nil, placeimageid=nil)
+          @UserId = userid
+          @StreamType = streamtype
+          @ImageWidth = imagewidth
+          @ImageHeight = imageheight
+          @LocationX = locationx
+          @LocationY = locationy
+          @ZOrder = zorder
+          @RenderMode = rendermode
+          @MixInputType = mixinputtype
+          @PlaceImageId = placeimageid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @StreamType = params['StreamType']
+          @ImageWidth = params['ImageWidth']
+          @ImageHeight = params['ImageHeight']
+          @LocationX = params['LocationX']
+          @LocationY = params['LocationY']
+          @ZOrder = params['ZOrder']
+          @RenderMode = params['RenderMode']
+          @MixInputType = params['MixInputType']
+          @PlaceImageId = params['PlaceImageId']
+        end
+      end
+
+      # 第三方CDN转推参数
+      class PublishCdnParams < TencentCloud::Common::AbstractModel
+        # @param BizId: 腾讯云直播BizId。
+        # @type BizId: Integer
+        # @param PublishCdnUrls: 第三方CDN转推的目的地址，同时只支持转推一个第三方CDN地址。
+        # @type PublishCdnUrls: Array
+
+        attr_accessor :BizId, :PublishCdnUrls
+        
+        def initialize(bizid=nil, publishcdnurls=nil)
+          @BizId = bizid
+          @PublishCdnUrls = publishcdnurls
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @PublishCdnUrls = params['PublishCdnUrls']
         end
       end
 
@@ -825,6 +1211,78 @@ module TencentCloud
         def deserialize(params)
           @Content = params['Content']
           @DataType = params['DataType']
+        end
+      end
+
+      # 录制的使用信息。
+      class RecordUsage < TencentCloud::Common::AbstractModel
+        # @param TimeKey: 本组数据对应的时间点，格式如:2020-09-07或2020-09-07 00:05:05。
+        # @type TimeKey: String
+        # @param Class1VideoTime: 视频时长-标清SD，单位：秒。
+        # @type Class1VideoTime: Integer
+        # @param Class2VideoTime: 视频时长-高清HD，单位：秒。
+        # @type Class2VideoTime: Integer
+        # @param Class3VideoTime: 视频时长-超清HD，单位：秒。
+        # @type Class3VideoTime: Integer
+        # @param AudioTime: 语音时长，单位：秒。
+        # @type AudioTime: Integer
+
+        attr_accessor :TimeKey, :Class1VideoTime, :Class2VideoTime, :Class3VideoTime, :AudioTime
+        
+        def initialize(timekey=nil, class1videotime=nil, class2videotime=nil, class3videotime=nil, audiotime=nil)
+          @TimeKey = timekey
+          @Class1VideoTime = class1videotime
+          @Class2VideoTime = class2videotime
+          @Class3VideoTime = class3videotime
+          @AudioTime = audiotime
+        end
+
+        def deserialize(params)
+          @TimeKey = params['TimeKey']
+          @Class1VideoTime = params['Class1VideoTime']
+          @Class2VideoTime = params['Class2VideoTime']
+          @Class3VideoTime = params['Class3VideoTime']
+          @AudioTime = params['AudioTime']
+        end
+      end
+
+      # RemoveUserByStrRoomId请求参数结构体
+      class RemoveUserByStrRoomIdRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的SDKAppId。
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间号。
+        # @type RoomId: String
+        # @param UserIds: 要移出的用户列表，最多10个。
+        # @type UserIds: Array
+
+        attr_accessor :SdkAppId, :RoomId, :UserIds
+        
+        def initialize(sdkappid=nil, roomid=nil, userids=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @UserIds = userids
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @UserIds = params['UserIds']
+        end
+      end
+
+      # RemoveUserByStrRoomId返回参数结构体
+      class RemoveUserByStrRoomIdResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -935,6 +1393,193 @@ module TencentCloud
         end
       end
 
+      # SdkAppId级别录制时长数据。
+      class SdkAppIdRecordUsage < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: SdkAppId的值。
+        # @type SdkAppId: String
+        # @param Usages: 统计的时间点数据。
+        # @type Usages: Array
+
+        attr_accessor :SdkAppId, :Usages
+        
+        def initialize(sdkappid=nil, usages=nil)
+          @SdkAppId = sdkappid
+          @Usages = usages
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Usages = params['Usages']
+        end
+      end
+
+      # 查询旁路转码计费时长。
+      # 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+      class SdkAppIdTrtcMcuTranscodeTimeUsage < TencentCloud::Common::AbstractModel
+        # @param TimeKey: 本组数据对应的时间点，格式如：2020-09-07或2020-09-07 00:05:05。
+        # @type TimeKey: String
+        # @param AudioTime: 语音时长，单位：秒。
+        # @type AudioTime: Integer
+        # @param VideoTimeSd: 视频时长-标清SD，单位：秒。
+        # @type VideoTimeSd: Integer
+        # @param VideoTimeHd: 视频时长-高清HD，单位：秒。
+        # @type VideoTimeHd: Integer
+        # @param VideoTimeFhd: 视频时长-全高清FHD，单位：秒。
+        # @type VideoTimeFhd: Integer
+
+        attr_accessor :TimeKey, :AudioTime, :VideoTimeSd, :VideoTimeHd, :VideoTimeFhd
+        
+        def initialize(timekey=nil, audiotime=nil, videotimesd=nil, videotimehd=nil, videotimefhd=nil)
+          @TimeKey = timekey
+          @AudioTime = audiotime
+          @VideoTimeSd = videotimesd
+          @VideoTimeHd = videotimehd
+          @VideoTimeFhd = videotimefhd
+        end
+
+        def deserialize(params)
+          @TimeKey = params['TimeKey']
+          @AudioTime = params['AudioTime']
+          @VideoTimeSd = params['VideoTimeSd']
+          @VideoTimeHd = params['VideoTimeHd']
+          @VideoTimeFhd = params['VideoTimeFhd']
+        end
+      end
+
+      # 查询音视频互动时长的输出数据。
+      # 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+      class SdkAppIdTrtcUsage < TencentCloud::Common::AbstractModel
+        # @param TimeKey: 本组数据对应的时间点，格式如：2020-09-07或2020-09-07 00:05:05。
+        # @type TimeKey: String
+        # @param AudioTime: 语音时长，单位：秒。
+        # @type AudioTime: Integer
+        # @param AudioVideoTime: 音视频时长，单位：秒。
+        # 2019年10月11日前注册，没有变更为 [新计费模式](https://cloud.tencent.com/document/product/647/17157) 的用户才会返回此值。
+        # @type AudioVideoTime: Integer
+        # @param VideoTimeSd: 视频时长-标清SD，单位：秒。
+        # @type VideoTimeSd: Integer
+        # @param VideoTimeHd: 视频时长-高清HD，单位：秒。
+        # @type VideoTimeHd: Integer
+        # @param VideoTimeHdp: 视频时长-超清HD，单位：秒。
+        # @type VideoTimeHdp: Integer
+
+        attr_accessor :TimeKey, :AudioTime, :AudioVideoTime, :VideoTimeSd, :VideoTimeHd, :VideoTimeHdp
+        
+        def initialize(timekey=nil, audiotime=nil, audiovideotime=nil, videotimesd=nil, videotimehd=nil, videotimehdp=nil)
+          @TimeKey = timekey
+          @AudioTime = audiotime
+          @AudioVideoTime = audiovideotime
+          @VideoTimeSd = videotimesd
+          @VideoTimeHd = videotimehd
+          @VideoTimeHdp = videotimehdp
+        end
+
+        def deserialize(params)
+          @TimeKey = params['TimeKey']
+          @AudioTime = params['AudioTime']
+          @AudioVideoTime = params['AudioVideoTime']
+          @VideoTimeSd = params['VideoTimeSd']
+          @VideoTimeHd = params['VideoTimeHd']
+          @VideoTimeHdp = params['VideoTimeHdp']
+        end
+      end
+
+      # 画中画模板中有效，代表小画面的布局参数
+      class SmallVideoLayoutParams < TencentCloud::Common::AbstractModel
+        # @param UserId: 代表小画面对应的用户ID。
+        # @type UserId: String
+        # @param StreamType: 代表小画面对应的流类型，0为摄像头，1为屏幕分享。小画面为web用户时此值填0。
+        # @type StreamType: Integer
+        # @param ImageWidth: 小画面在输出时的宽度，单位为像素值，不填默认为0。
+        # @type ImageWidth: Integer
+        # @param ImageHeight: 小画面在输出时的高度，单位为像素值，不填默认为0。
+        # @type ImageHeight: Integer
+        # @param LocationX: 小画面在输出时的X偏移，单位为像素值，LocationX与ImageWidth之和不能超过混流输出的总宽度，不填默认为0。
+        # @type LocationX: Integer
+        # @param LocationY: 小画面在输出时的Y偏移，单位为像素值，LocationY与ImageHeight之和不能超过混流输出的总高度，不填默认为0。
+        # @type LocationY: Integer
+
+        attr_accessor :UserId, :StreamType, :ImageWidth, :ImageHeight, :LocationX, :LocationY
+        
+        def initialize(userid=nil, streamtype=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil)
+          @UserId = userid
+          @StreamType = streamtype
+          @ImageWidth = imagewidth
+          @ImageHeight = imageheight
+          @LocationX = locationx
+          @LocationY = locationy
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @StreamType = params['StreamType']
+          @ImageWidth = params['ImageWidth']
+          @ImageHeight = params['ImageHeight']
+          @LocationX = params['LocationX']
+          @LocationY = params['LocationY']
+        end
+      end
+
+      # StartMCUMixTranscodeByStrRoomId请求参数结构体
+      class StartMCUMixTranscodeByStrRoomIdRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的SDKAppId。
+        # @type SdkAppId: Integer
+        # @param StrRoomId: 字符串房间号。
+        # @type StrRoomId: String
+        # @param OutputParams: 混流输出控制参数。
+        # @type OutputParams: :class:`Tencentcloud::Trtc.v20190722.models.OutputParams`
+        # @param EncodeParams: 混流输出编码参数。
+        # @type EncodeParams: :class:`Tencentcloud::Trtc.v20190722.models.EncodeParams`
+        # @param LayoutParams: 混流输出布局参数。
+        # @type LayoutParams: :class:`Tencentcloud::Trtc.v20190722.models.LayoutParams`
+        # @param PublishCdnParams: 第三方CDN转推参数。
+        # @type PublishCdnParams: :class:`Tencentcloud::Trtc.v20190722.models.PublishCdnParams`
+
+        attr_accessor :SdkAppId, :StrRoomId, :OutputParams, :EncodeParams, :LayoutParams, :PublishCdnParams
+        
+        def initialize(sdkappid=nil, strroomid=nil, outputparams=nil, encodeparams=nil, layoutparams=nil, publishcdnparams=nil)
+          @SdkAppId = sdkappid
+          @StrRoomId = strroomid
+          @OutputParams = outputparams
+          @EncodeParams = encodeparams
+          @LayoutParams = layoutparams
+          @PublishCdnParams = publishcdnparams
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StrRoomId = params['StrRoomId']
+          unless params['OutputParams'].nil?
+            @OutputParams = OutputParams.new.deserialize(params[OutputParams])
+          end
+          unless params['EncodeParams'].nil?
+            @EncodeParams = EncodeParams.new.deserialize(params[EncodeParams])
+          end
+          unless params['LayoutParams'].nil?
+            @LayoutParams = LayoutParams.new.deserialize(params[LayoutParams])
+          end
+          unless params['PublishCdnParams'].nil?
+            @PublishCdnParams = PublishCdnParams.new.deserialize(params[PublishCdnParams])
+          end
+        end
+      end
+
+      # StartMCUMixTranscodeByStrRoomId返回参数结构体
+      class StartMCUMixTranscodeByStrRoomIdResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartMCUMixTranscode请求参数结构体
       class StartMCUMixTranscodeRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的SDKAppId。
@@ -947,15 +1592,18 @@ module TencentCloud
         # @type EncodeParams: :class:`Tencentcloud::Trtc.v20190722.models.EncodeParams`
         # @param LayoutParams: 混流输出布局参数。
         # @type LayoutParams: :class:`Tencentcloud::Trtc.v20190722.models.LayoutParams`
+        # @param PublishCdnParams: 第三方CDN转推参数。
+        # @type PublishCdnParams: :class:`Tencentcloud::Trtc.v20190722.models.PublishCdnParams`
 
-        attr_accessor :SdkAppId, :RoomId, :OutputParams, :EncodeParams, :LayoutParams
+        attr_accessor :SdkAppId, :RoomId, :OutputParams, :EncodeParams, :LayoutParams, :PublishCdnParams
         
-        def initialize(sdkappid=nil, roomid=nil, outputparams=nil, encodeparams=nil, layoutparams=nil)
+        def initialize(sdkappid=nil, roomid=nil, outputparams=nil, encodeparams=nil, layoutparams=nil, publishcdnparams=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @OutputParams = outputparams
           @EncodeParams = encodeparams
           @LayoutParams = layoutparams
+          @PublishCdnParams = publishcdnparams
         end
 
         def deserialize(params)
@@ -970,11 +1618,50 @@ module TencentCloud
           unless params['LayoutParams'].nil?
             @LayoutParams = LayoutParams.new.deserialize(params[LayoutParams])
           end
+          unless params['PublishCdnParams'].nil?
+            @PublishCdnParams = PublishCdnParams.new.deserialize(params[PublishCdnParams])
+          end
         end
       end
 
       # StartMCUMixTranscode返回参数结构体
       class StartMCUMixTranscodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopMCUMixTranscodeByStrRoomId请求参数结构体
+      class StopMCUMixTranscodeByStrRoomIdRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的SDKAppId。
+        # @type SdkAppId: Integer
+        # @param StrRoomId: 字符串房间号。
+        # @type StrRoomId: String
+
+        attr_accessor :SdkAppId, :StrRoomId
+        
+        def initialize(sdkappid=nil, strroomid=nil)
+          @SdkAppId = sdkappid
+          @StrRoomId = strroomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StrRoomId = params['StrRoomId']
+        end
+      end
+
+      # StopMCUMixTranscodeByStrRoomId返回参数结构体
+      class StopMCUMixTranscodeByStrRoomIdResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1053,7 +1740,7 @@ module TencentCloud
         # @type UserId: String
         # @param JoinTs: 用户进房时间
         # @type JoinTs: Integer
-        # @param LeaveTs: 用户退房时间
+        # @param LeaveTs: 用户退房时间，用户没有退房则返回当前时间
         # @type LeaveTs: Integer
         # @param DeviceType: 终端类型
         # @type DeviceType: String

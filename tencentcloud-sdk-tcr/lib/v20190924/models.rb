@@ -17,6 +17,34 @@
 module TencentCloud
   module Tcr
     module V20190924
+      # 内网接入信息
+      class AccessVpc < TencentCloud::Common::AbstractModel
+        # @param VpcId: Vpc的Id
+        # @type VpcId: String
+        # @param SubnetId: 子网Id
+        # @type SubnetId: String
+        # @param Status: 内网接入状态
+        # @type Status: String
+        # @param AccessIp: 内网接入Ip
+        # @type AccessIp: String
+
+        attr_accessor :VpcId, :SubnetId, :Status, :AccessIp
+        
+        def initialize(vpcid=nil, subnetid=nil, status=nil, accessip=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Status = status
+          @AccessIp = accessip
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Status = params['Status']
+          @AccessIp = params['AccessIp']
+        end
+      end
+
       # 自动删除策略信息
       class AutoDelStrategyInfo < TencentCloud::Common::AbstractModel
         # @param Username: 用户名
@@ -256,17 +284,27 @@ module TencentCloud
         # @type RegistryName: String
         # @param RegistryType: 企业版实例类型
         # @type RegistryType: String
+        # @param TagSpecification: 云标签描述
+        # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
+        # @param RegistryChargeType: 实例计费类型，0表示按量计费，1表示预付费，当前版本只支持后付费，默认为按量计费
+        # @type RegistryChargeType: Integer
 
-        attr_accessor :RegistryName, :RegistryType
+        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType
         
-        def initialize(registryname=nil, registrytype=nil)
+        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil)
           @RegistryName = registryname
           @RegistryType = registrytype
+          @TagSpecification = tagspecification
+          @RegistryChargeType = registrychargetype
         end
 
         def deserialize(params)
           @RegistryName = params['RegistryName']
           @RegistryType = params['RegistryType']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = TagSpecification.new.deserialize(params[TagSpecification])
+          end
+          @RegistryChargeType = params['RegistryChargeType']
         end
       end
 
@@ -323,15 +361,19 @@ module TencentCloud
         # @type Token: String
         # @param ExpTime: 访问凭证过期时间戳
         # @type ExpTime: Integer
+        # @param TokenId: 长期凭证的TokenId，短期凭证没有TokenId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TokenId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Username, :Token, :ExpTime, :RequestId
+        attr_accessor :Username, :Token, :ExpTime, :TokenId, :RequestId
         
-        def initialize(username=nil, token=nil, exptime=nil, requestid=nil)
+        def initialize(username=nil, token=nil, exptime=nil, tokenid=nil, requestid=nil)
           @Username = username
           @Token = token
           @ExpTime = exptime
+          @TokenId = tokenid
           @RequestId = requestid
         end
 
@@ -339,6 +381,7 @@ module TencentCloud
           @Username = params['Username']
           @Token = params['Token']
           @ExpTime = params['ExpTime']
+          @TokenId = params['TokenId']
           @RequestId = params['RequestId']
         end
       end
@@ -696,6 +739,86 @@ module TencentCloud
 
       # DeleteImagePersonal返回参数结构体
       class DeleteImagePersonalResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteImage请求参数结构体
+      class DeleteImageRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param RepositoryName: 镜像仓库名称
+        # @type RepositoryName: String
+        # @param ImageVersion: 镜像版本
+        # @type ImageVersion: String
+        # @param NamespaceName: 命名空间名称
+        # @type NamespaceName: String
+
+        attr_accessor :RegistryId, :RepositoryName, :ImageVersion, :NamespaceName
+        
+        def initialize(registryid=nil, repositoryname=nil, imageversion=nil, namespacename=nil)
+          @RegistryId = registryid
+          @RepositoryName = repositoryname
+          @ImageVersion = imageversion
+          @NamespaceName = namespacename
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RepositoryName = params['RepositoryName']
+          @ImageVersion = params['ImageVersion']
+          @NamespaceName = params['NamespaceName']
+        end
+      end
+
+      # DeleteImage返回参数结构体
+      class DeleteImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInstance请求参数结构体
+      class DeleteInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例id
+        # @type RegistryId: String
+        # @param DeleteBucket: 是否删除存储桶，默认为false
+        # @type DeleteBucket: Boolean
+
+        attr_accessor :RegistryId, :DeleteBucket
+        
+        def initialize(registryid=nil, deletebucket=nil)
+          @RegistryId = registryid
+          @DeleteBucket = deletebucket
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @DeleteBucket = params['DeleteBucket']
+        end
+      end
+
+      # DeleteInstance返回参数结构体
+      class DeleteInstanceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1535,6 +1658,47 @@ module TencentCloud
         end
       end
 
+      # DescribeInternalEndpoints请求参数结构体
+      class DescribeInternalEndpointsRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+
+        attr_accessor :RegistryId
+        
+        def initialize(registryid=nil)
+          @RegistryId = registryid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+        end
+      end
+
+      # DescribeInternalEndpoints返回参数结构体
+      class DescribeInternalEndpointsResponse < TencentCloud::Common::AbstractModel
+        # @param AccessVpcSet: 内网接入信息的列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessVpcSet: Array
+        # @param TotalCount: 内网接入总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccessVpcSet, :TotalCount, :RequestId
+        
+        def initialize(accessvpcset=nil, totalcount=nil, requestid=nil)
+          @AccessVpcSet = accessvpcset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AccessVpcSet = params['AccessVpcSet']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNamespacePersonal请求参数结构体
       class DescribeNamespacePersonalRequest < TencentCloud::Common::AbstractModel
         # @param Namespace: 命名空间，支持模糊查询
@@ -1629,6 +1793,99 @@ module TencentCloud
         def deserialize(params)
           @NamespaceList = params['NamespaceList']
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReplicationInstanceCreateTasks请求参数结构体
+      class DescribeReplicationInstanceCreateTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ReplicationRegistryId: 同步实例Id
+        # @type ReplicationRegistryId: String
+        # @param ReplicationRegionId: 同步实例的地域ID
+        # @type ReplicationRegionId: Integer
+
+        attr_accessor :ReplicationRegistryId, :ReplicationRegionId
+        
+        def initialize(replicationregistryid=nil, replicationregionid=nil)
+          @ReplicationRegistryId = replicationregistryid
+          @ReplicationRegionId = replicationregionid
+        end
+
+        def deserialize(params)
+          @ReplicationRegistryId = params['ReplicationRegistryId']
+          @ReplicationRegionId = params['ReplicationRegionId']
+        end
+      end
+
+      # DescribeReplicationInstanceCreateTasks返回参数结构体
+      class DescribeReplicationInstanceCreateTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TaskDetail: 任务详情
+        # @type TaskDetail: Array
+        # @param Status: 整体任务状态
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskDetail, :Status, :RequestId
+        
+        def initialize(taskdetail=nil, status=nil, requestid=nil)
+          @TaskDetail = taskdetail
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskDetail = params['TaskDetail']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReplicationInstances请求参数结构体
+      class DescribeReplicationInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条数，默认20，最大为100
+        # @type Limit: Integer
+
+        attr_accessor :RegistryId, :Offset, :Limit
+        
+        def initialize(registryid=nil, offset=nil, limit=nil)
+          @RegistryId = registryid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeReplicationInstances返回参数结构体
+      class DescribeReplicationInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总实例个数
+        # @type TotalCount: Integer
+        # @param ReplicationRegistries: 同步实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicationRegistries: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ReplicationRegistries, :RequestId
+        
+        def initialize(totalcount=nil, replicationregistries=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ReplicationRegistries = replicationregistries
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ReplicationRegistries = params['ReplicationRegistries']
           @RequestId = params['RequestId']
         end
       end
@@ -2209,6 +2466,58 @@ module TencentCloud
         end
       end
 
+      # ManageInternalEndpoint请求参数结构体
+      class ManageInternalEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param Operation: Create/Delete
+        # @type Operation: String
+        # @param VpcId: 需要接入的用户vpcid
+        # @type VpcId: String
+        # @param SubnetId: 需要接入的用户子网id
+        # @type SubnetId: String
+        # @param RegionId: 请求的地域ID
+        # @type RegionId: Integer
+
+        attr_accessor :RegistryId, :Operation, :VpcId, :SubnetId, :RegionId
+        
+        def initialize(registryid=nil, operation=nil, vpcid=nil, subnetid=nil, regionid=nil)
+          @RegistryId = registryid
+          @Operation = operation
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Operation = params['Operation']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @RegionId = params['RegionId']
+        end
+      end
+
+      # ManageInternalEndpoint返回参数结构体
+      class ManageInternalEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegistryId, :RequestId
+        
+        def initialize(registryid=nil, requestid=nil)
+          @RegistryId = registryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyApplicationTriggerPersonal请求参数结构体
       class ModifyApplicationTriggerPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 触发器关联的镜像仓库，library/test格式
@@ -2643,10 +2952,22 @@ module TencentCloud
         # @type TokenValidTime: Integer
         # @param InternalEndpoint: 实例内部访问地址
         # @type InternalEndpoint: String
+        # @param TagSpecification: 实例云标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
+        # @param ExpiredAt: 实例过期时间（预付费）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredAt: String
+        # @param PayMod: 实例付费类型，0表示后付费，1表示预付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMod: Integer
+        # @param RenewFlag: 预付费续费标识，0表示手动续费，1表示自动续费，2不续费并且不通知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
 
-        attr_accessor :RegistryId, :RegistryName, :RegistryType, :Status, :PublicDomain, :CreatedAt, :RegionName, :RegionId, :EnableAnonymous, :TokenValidTime, :InternalEndpoint
+        attr_accessor :RegistryId, :RegistryName, :RegistryType, :Status, :PublicDomain, :CreatedAt, :RegionName, :RegionId, :EnableAnonymous, :TokenValidTime, :InternalEndpoint, :TagSpecification, :ExpiredAt, :PayMod, :RenewFlag
         
-        def initialize(registryid=nil, registryname=nil, registrytype=nil, status=nil, publicdomain=nil, createdat=nil, regionname=nil, regionid=nil, enableanonymous=nil, tokenvalidtime=nil, internalendpoint=nil)
+        def initialize(registryid=nil, registryname=nil, registrytype=nil, status=nil, publicdomain=nil, createdat=nil, regionname=nil, regionid=nil, enableanonymous=nil, tokenvalidtime=nil, internalendpoint=nil, tagspecification=nil, expiredat=nil, paymod=nil, renewflag=nil)
           @RegistryId = registryid
           @RegistryName = registryname
           @RegistryType = registrytype
@@ -2658,6 +2979,10 @@ module TencentCloud
           @EnableAnonymous = enableanonymous
           @TokenValidTime = tokenvalidtime
           @InternalEndpoint = internalendpoint
+          @TagSpecification = tagspecification
+          @ExpiredAt = expiredat
+          @PayMod = paymod
+          @RenewFlag = renewflag
         end
 
         def deserialize(params)
@@ -2672,6 +2997,32 @@ module TencentCloud
           @EnableAnonymous = params['EnableAnonymous']
           @TokenValidTime = params['TokenValidTime']
           @InternalEndpoint = params['InternalEndpoint']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = TagSpecification.new.deserialize(params[TagSpecification])
+          end
+          @ExpiredAt = params['ExpiredAt']
+          @PayMod = params['PayMod']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # 实例预付费模式
+      class RegistryChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 购买实例的时长，单位：月
+        # @type Period: Integer
+        # @param RenewFlag: 自动续费标识，0：手动续费，1：自动续费，2：不续费并且不通知
+        # @type RenewFlag: Integer
+
+        attr_accessor :Period, :RenewFlag
+        
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
         end
       end
 
@@ -2722,6 +3073,88 @@ module TencentCloud
           @RegistryId = params['RegistryId']
           @Status = params['Status']
           @Conditions = params['Conditions']
+        end
+      end
+
+      # RenewInstance请求参数结构体
+      class RenewInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param RegistryChargePrepaid: 预付费自动续费标识和购买时长
+        # @type RegistryChargePrepaid: :class:`Tencentcloud::Tcr.v20190924.models.RegistryChargePrepaid`
+        # @param Flag: 0 续费， 1按量转包年包月
+        # @type Flag: Integer
+
+        attr_accessor :RegistryId, :RegistryChargePrepaid, :Flag
+        
+        def initialize(registryid=nil, registrychargeprepaid=nil, flag=nil)
+          @RegistryId = registryid
+          @RegistryChargePrepaid = registrychargeprepaid
+          @Flag = flag
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          unless params['RegistryChargePrepaid'].nil?
+            @RegistryChargePrepaid = RegistryChargePrepaid.new.deserialize(params[RegistryChargePrepaid])
+          end
+          @Flag = params['Flag']
+        end
+      end
+
+      # RenewInstance返回参数结构体
+      class RenewInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 企业版实例Id
+        # @type RegistryId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegistryId, :RequestId
+        
+        def initialize(registryid=nil, requestid=nil)
+          @RegistryId = registryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 企业版复制实例
+      class ReplicationRegistry < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例ID
+        # @type RegistryId: String
+        # @param ReplicationRegistryId: 复制实例ID
+        # @type ReplicationRegistryId: String
+        # @param ReplicationRegionId: 复制实例的地域ID
+        # @type ReplicationRegionId: Integer
+        # @param ReplicationRegionName: 复制实例的地域名称
+        # @type ReplicationRegionName: String
+        # @param Status: 复制实例的状态
+        # @type Status: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+
+        attr_accessor :RegistryId, :ReplicationRegistryId, :ReplicationRegionId, :ReplicationRegionName, :Status, :CreatedAt
+        
+        def initialize(registryid=nil, replicationregistryid=nil, replicationregionid=nil, replicationregionname=nil, status=nil, createdat=nil)
+          @RegistryId = registryid
+          @ReplicationRegistryId = replicationregistryid
+          @ReplicationRegionId = replicationregionid
+          @ReplicationRegionName = replicationregionname
+          @Status = status
+          @CreatedAt = createdat
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @ReplicationRegistryId = params['ReplicationRegistryId']
+          @ReplicationRegionId = params['ReplicationRegionId']
+          @ReplicationRegionName = params['ReplicationRegionName']
+          @Status = params['Status']
+          @CreatedAt = params['CreatedAt']
         end
       end
 
@@ -2935,6 +3368,26 @@ module TencentCloud
         end
       end
 
+      # 云标签Tag
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 云标签的key
+        # @type Key: String
+        # @param Value: 云标签的值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 镜像tag信息
       class TagInfo < TencentCloud::Common::AbstractModel
         # @param TagName: Tag名称
@@ -3029,6 +3482,66 @@ module TencentCloud
           @TagInfo = params['TagInfo']
           @Server = params['Server']
           @RepoName = params['RepoName']
+        end
+      end
+
+      # 云标签
+      class TagSpecification < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 默认值为instance
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param Tags: 云标签数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :ResourceType, :Tags
+        
+        def initialize(resourcetype=nil, tags=nil)
+          @ResourceType = resourcetype
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @Tags = params['Tags']
+        end
+      end
+
+      # 任务详情
+      class TaskDetail < TencentCloud::Common::AbstractModel
+        # @param TaskName: 任务
+        # @type TaskName: String
+        # @param TaskUUID: 任务UUID
+        # @type TaskUUID: String
+        # @param TaskStatus: 任务状态
+        # @type TaskStatus: String
+        # @param TaskMessage: 任务的状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskMessage: String
+        # @param CreatedTime: 任务开始时间
+        # @type CreatedTime: String
+        # @param FinishedTime: 任务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishedTime: String
+
+        attr_accessor :TaskName, :TaskUUID, :TaskStatus, :TaskMessage, :CreatedTime, :FinishedTime
+        
+        def initialize(taskname=nil, taskuuid=nil, taskstatus=nil, taskmessage=nil, createdtime=nil, finishedtime=nil)
+          @TaskName = taskname
+          @TaskUUID = taskuuid
+          @TaskStatus = taskstatus
+          @TaskMessage = taskmessage
+          @CreatedTime = createdtime
+          @FinishedTime = finishedtime
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @TaskUUID = params['TaskUUID']
+          @TaskStatus = params['TaskStatus']
+          @TaskMessage = params['TaskMessage']
+          @CreatedTime = params['CreatedTime']
+          @FinishedTime = params['FinishedTime']
         end
       end
 

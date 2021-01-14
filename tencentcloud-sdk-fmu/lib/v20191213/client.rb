@@ -49,6 +49,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 视频美颜
+
+        # @param request: Request instance for BeautifyVideo.
+        # @type request: :class:`Tencentcloud::fmu::V20191213::BeautifyVideoRequest`
+        # @rtype: :class:`Tencentcloud::fmu::V20191213::BeautifyVideoResponse`
+        def BeautifyVideo(request)
+          body = send_request('BeautifyVideo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BeautifyVideoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 撤销视频美颜任务请求
+
+        # @param request: Request instance for CancelBeautifyVideoJob.
+        # @type request: :class:`Tencentcloud::fmu::V20191213::CancelBeautifyVideoJobRequest`
+        # @rtype: :class:`Tencentcloud::fmu::V20191213::CancelBeautifyVideoJobResponse`
+        def CancelBeautifyVideoJob(request)
+          body = send_request('CancelBeautifyVideoJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelBeautifyVideoJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在使用LUT素材的modelid实现试唇色前，您需要先上传 LUT 格式的cube文件注册唇色ID。查看 [LUT文件的使用说明](https://cloud.tencent.com/document/product/1172/41701)。
 
         # 注：您也可以直接使用 [试唇色接口](https://cloud.tencent.com/document/product/1172/40706)，通过输入RGBA模型数值的方式指定唇色，更简单易用。
@@ -109,6 +157,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetModelListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询视频美颜处理进度
+
+        # @param request: Request instance for QueryBeautifyVideoJob.
+        # @type request: :class:`Tencentcloud::fmu::V20191213::QueryBeautifyVideoJobRequest`
+        # @rtype: :class:`Tencentcloud::fmu::V20191213::QueryBeautifyVideoJobResponse`
+        def QueryBeautifyVideoJob(request)
+          body = send_request('QueryBeautifyVideoJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryBeautifyVideoJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 上传一张照片，输出滤镜处理后的图片。
+
+        # @param request: Request instance for StyleImage.
+        # @type request: :class:`Tencentcloud::fmu::V20191213::StyleImageRequest`
+        # @rtype: :class:`Tencentcloud::fmu::V20191213::StyleImageResponse`
+        def StyleImage(request)
+          body = send_request('StyleImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StyleImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 上传一张照片，输出滤镜处理后的图片。
+
+        # @param request: Request instance for StyleImagePro.
+        # @type request: :class:`Tencentcloud::fmu::V20191213::StyleImageProRequest`
+        # @rtype: :class:`Tencentcloud::fmu::V20191213::StyleImageProResponse`
+        def StyleImagePro(request)
+          body = send_request('StyleImagePro', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StyleImageProResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -25,7 +25,7 @@ module TencentCloud
         @@sdk_version = 'REDIS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
-        # 本接口 (AssociateSecurityGroups) 用于绑定安全组到指定实例。
+        # 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
 
         # @param request: Request instance for AssociateSecurityGroups.
         # @type request: :class:`Tencentcloud::redis::V20180412::AssociateSecurityGroupsRequest`
@@ -121,7 +121,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建redis实例
+        # 本接口(CreateInstances)用于创建redis实例。
 
         # @param request: Request instance for CreateInstances.
         # @type request: :class:`Tencentcloud::redis::V20180412::CreateInstancesRequest`
@@ -203,6 +203,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBackupUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Redis实例列表信息
+
+        # @param request: Request instance for DescribeCommonDBInstances.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeCommonDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeCommonDBInstancesResponse`
+        def DescribeCommonDBInstances(request)
+          body = send_request('DescribeCommonDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCommonDBInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -529,6 +553,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例节点信息
+
+        # @param request: Request instance for DescribeInstanceNodeInfo.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceNodeInfoRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeInstanceNodeInfoResponse`
+        def DescribeInstanceNodeInfo(request)
+          body = send_request('DescribeInstanceNodeInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceNodeInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询参数修改历史列表
 
         # @param request: Request instance for DescribeInstanceParamRecords.
@@ -611,6 +659,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstanceShardsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Redis节点信息
+
+        # @param request: Request instance for DescribeInstanceZoneInfo.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceZoneInfoRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeInstanceZoneInfoResponse`
+        def DescribeInstanceZoneInfo(request)
+          body = send_request('DescribeInstanceZoneInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceZoneInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -745,6 +817,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeProxySlowLog）用于查询代理慢查询。
+
+        # @param request: Request instance for DescribeProxySlowLog.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeProxySlowLogRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeProxySlowLogResponse`
+        def DescribeProxySlowLog(request)
+          body = send_request('DescribeProxySlowLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProxySlowLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实例慢查询记录
 
         # @param request: Request instance for DescribeSlowLog.
@@ -803,6 +899,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Tendis慢查询
+
+        # @param request: Request instance for DescribeTendisSlowLog.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeTendisSlowLogRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeTendisSlowLogResponse`
+        def DescribeTendisSlowLog(request)
+          body = send_request('DescribeTendisSlowLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTendisSlowLogResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1081,7 +1201,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组
+        # 修改实例的连接配置，包括带宽和最大连接数
+
+        # @param request: Request instance for ModifyConnectionConfig.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyConnectionConfigRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyConnectionConfigResponse`
+        def ModifyConnectionConfig(request)
+          body = send_request('ModifyConnectionConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConnectionConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
 
         # @param request: Request instance for ModifyDBInstanceSecurityGroups.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyDBInstanceSecurityGroupsRequest`
@@ -1153,7 +1297,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例参数
+        # 本接口(ModifyInstanceParams)用于修改实例参数。
 
         # @param request: Request instance for ModifyInstanceParams.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceParamsRequest`

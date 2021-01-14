@@ -389,7 +389,9 @@ module TencentCloud
       class AiAnalysisTaskClassificationResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -399,10 +401,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskClassificationOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -411,6 +414,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -464,7 +468,9 @@ module TencentCloud
       class AiAnalysisTaskCoverResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -474,10 +480,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskCoverOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -486,6 +493,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -533,7 +541,9 @@ module TencentCloud
       class AiAnalysisTaskFrameTagResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -543,10 +553,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskFrameTagOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -555,6 +566,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -618,7 +630,9 @@ module TencentCloud
       class AiAnalysisTaskTagResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -628,10 +642,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskTagOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -640,6 +655,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -836,7 +852,9 @@ module TencentCloud
       class AiRecognitionTaskAsrFullTextResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -846,10 +864,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskAsrFullTextResultOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -858,6 +877,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -943,7 +963,9 @@ module TencentCloud
       class AiRecognitionTaskAsrWordsResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -953,10 +975,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskAsrWordsResultOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -965,6 +988,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -1056,7 +1080,9 @@ module TencentCloud
       class AiRecognitionTaskFaceResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -1066,10 +1092,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskFaceResultOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -1078,6 +1105,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -1199,7 +1227,9 @@ module TencentCloud
       class AiRecognitionTaskOcrFullTextResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -1209,10 +1239,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskOcrFullTextResultOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -1221,6 +1252,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -1316,7 +1348,9 @@ module TencentCloud
       class AiRecognitionTaskOcrWordsResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -1326,10 +1360,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskOcrWordsResultOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -1338,6 +1373,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -1793,7 +1829,9 @@ module TencentCloud
       class AiReviewTaskPoliticalAsrResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -1803,10 +1841,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewPoliticalAsrTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -1815,6 +1854,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -1828,9 +1868,11 @@ module TencentCloud
 
       # 内容审核 Ocr 文字鉴政、敏感任务结果类型
       class AiReviewTaskPoliticalOcrResult < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态，有 PROCESSING，SUCCESS �� FAIL 三种。
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS，FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -1840,10 +1882,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewPoliticalOcrTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -1852,6 +1895,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -1867,7 +1911,9 @@ module TencentCloud
       class AiReviewTaskPoliticalResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -1877,10 +1923,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewPoliticalTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -1889,6 +1936,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -1904,7 +1952,9 @@ module TencentCloud
       class AiReviewTaskPornAsrResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -1914,10 +1964,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewPornAsrTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -1926,6 +1977,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -1941,7 +1993,9 @@ module TencentCloud
       class AiReviewTaskPornOcrResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -1951,10 +2005,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewPornOcrTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -1963,6 +2018,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -1978,7 +2034,9 @@ module TencentCloud
       class AiReviewTaskPornResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -1988,10 +2046,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewPornTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -2000,6 +2059,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -2015,10 +2075,9 @@ module TencentCloud
       class AiReviewTaskProhibitedAsrResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
-        # <li>40000：输入参数不合法，请检查输入参数；</li>
-        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        # <li>70000：内部服务错误，建议重试。</li>
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -2028,10 +2087,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewProhibitedAsrTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -2040,6 +2100,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -2055,10 +2116,9 @@ module TencentCloud
       class AiReviewTaskProhibitedOcrResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
-        # <li>40000：输入参数不合法，请检查输入参数；</li>
-        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        # <li>70000：内部服务错误，建议重试。</li>
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -2068,10 +2128,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewProhibitedOcrTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -2080,6 +2141,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -2095,10 +2157,9 @@ module TencentCloud
       class AiReviewTaskTerrorismOcrResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
-        # <li>40000：输入参数不合法，请检查输入参数；</li>
-        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        # <li>70000：内部服务错误，建议重试。</li>
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -2108,10 +2169,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewTerrorismOcrTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -2120,6 +2182,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -2135,7 +2198,9 @@ module TencentCloud
       class AiReviewTaskTerrorismResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -2145,10 +2210,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiReviewTerrorismTaskOutput`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -2157,6 +2223,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -2690,6 +2757,7 @@ module TencentCloud
         # <li>1：单通道</li>
         # <li>2：双通道</li>
         # <li>6：立体声</li>
+        # 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         # 默认值：2。
         # @type AudioChannel: Integer
 
@@ -2741,6 +2809,7 @@ module TencentCloud
         # <li>1：单通道</li>
         # <li>2：双通道</li>
         # <li>6：立体声</li>
+        # 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         # @type AudioChannel: Integer
 
         attr_accessor :Codec, :Bitrate, :SampleRate, :AudioChannel
@@ -3251,22 +3320,22 @@ module TencentCloud
 
       # CreateContentReviewTemplate请求参数结构体
       class CreateContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 内容审核模板名称，长度限制：64 个字符。
+        # @param Name: 内容智能识别模板名称，长度限制：64 个字符。
         # @type Name: String
-        # @param Comment: 内容审核模板描述信息，长度限制：256 个字符。
+        # @param Comment: 内容智能识别模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param PornConfigure: 鉴黄控制参数。
+        # @param PornConfigure: 令人反感的信息的控制参数。
         # @type PornConfigure: :class:`Tencentcloud::Mps.v20190612.models.PornConfigureInfo`
-        # @param TerrorismConfigure: 鉴恐控制参数。
+        # @param TerrorismConfigure: 令人不安全的信息的控制参数。
         # @type TerrorismConfigure: :class:`Tencentcloud::Mps.v20190612.models.TerrorismConfigureInfo`
-        # @param PoliticalConfigure: 鉴政控制参数。
+        # @param PoliticalConfigure: 令人不适宜的信息的控制参数。
         # @type PoliticalConfigure: :class:`Tencentcloud::Mps.v20190612.models.PoliticalConfigureInfo`
         # @param ProhibitedConfigure: 违禁控制参数。违禁内容包括：
         # <li>谩骂；</li>
         # <li>涉毒违法。</li>
         # 注意：此参数尚未支持。
         # @type ProhibitedConfigure: :class:`Tencentcloud::Mps.v20190612.models.ProhibitedConfigureInfo`
-        # @param UserDefineConfigure: 用户自定义内容审核控制参数。
+        # @param UserDefineConfigure: 用户自定义内容智能识别控制参数。
         # @type UserDefineConfigure: :class:`Tencentcloud::Mps.v20190612.models.UserDefineConfigureInfo`
 
         attr_accessor :Name, :Comment, :PornConfigure, :TerrorismConfigure, :PoliticalConfigure, :ProhibitedConfigure, :UserDefineConfigure
@@ -3304,7 +3373,7 @@ module TencentCloud
 
       # CreateContentReviewTemplate返回参数结构体
       class CreateContentReviewTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 内容审核模板唯一标识。
+        # @param Definition: 内容智能识别模板唯一标识。
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3416,19 +3485,19 @@ module TencentCloud
 
       # CreatePersonSample请求参数结构体
       class CreatePersonSampleRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 人物名称，长度限制：20 个字符。
+        # @param Name: 素材名称，长度限制：20 个字符。
         # @type Name: String
-        # @param Usages: 人物应用场景，可选值：
+        # @param Usages: 素材应用场景，可选值：
         # 1. Recognition：用于内容识别，等价于 Recognition.Face。
-        # 2. Review：用于内容审核，等价于 Review.Face。
-        # 3. All：用于内容识别、内容审核，等价于 1+2。
+        # 2. Review：用于不适宜内容识别，等价于 Review.Face。
+        # 3. All：包含以上全部，等价于 1+2。
         # @type Usages: Array
-        # @param Description: 人物描述，长度限制：1024 个字符。
+        # @param Description: 素材描述，长度限制：1024 个字符。
         # @type Description: String
-        # @param FaceContents: 人脸图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串，仅支持 jpeg、png 图片格式。数组长度限制：5 张图片。
-        # 注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
+        # @param FaceContents: 素材图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串，仅支持 jpeg、png 图片格式。数组长度限制：5 张图片。
+        # 注意：图片必须是单人像五官较清晰的照片，像素不低于 200*200。
         # @type FaceContents: Array
-        # @param Tags: 人物标签
+        # @param Tags: 素材标签
         # <li>数组长度限制：20 个标签；</li>
         # <li>单个标签长度限制：128 个字符。</li>
         # @type Tags: Array
@@ -3454,9 +3523,9 @@ module TencentCloud
 
       # CreatePersonSample返回参数结构体
       class CreatePersonSampleResponse < TencentCloud::Common::AbstractModel
-        # @param Person: 人物信息。
+        # @param Person: 素材信息。
         # @type Person: :class:`Tencentcloud::Mps.v20190612.models.AiSamplePerson`
-        # @param FailFaceInfoSet: 处理失败的人脸信息。
+        # @param FailFaceInfoSet: 处理失败的五官定位信息。
         # @type FailFaceInfoSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3818,13 +3887,13 @@ module TencentCloud
       class CreateWordSamplesRequest < TencentCloud::Common::AbstractModel
         # @param Usages: <b>关键词应用场景，可选值：</b>
         # 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
-        # 2. Recognition.Asr：通过语音识别技术，进行内容识别；
-        # 3. Review.Ocr：通过光学字符识别技术，进行内容审核；
-        # 4. Review.Asr：通过语音识别技术，进行内容审核；
+        # 2. Recognition.Asr：通过音频识别技术，进行内容识别；
+        # 3. Review.Ocr：通过光学字符识别技术，进行不适宜内容识别；
+        # 4. Review.Asr：通过音频识别技术，进行不适宜内容识别；
         # <b>可合并简写为：</b>
-        # 5. Recognition：通过光学字符识别技术、语音识别技术，进行内容识别，等价于 1+2；
-        # 6. Review：通过光学字符识别技术、语音识别技术，进行内容审核，等价于 3+4；
-        # 7. All：通过光学字符识别技术、语音识别技术，进行内容识别、内容审核，等价于 1+2+3+4。
+        # 5. Recognition：通过光学字符识别技术、音频识别技术，进行内容识别，等价于 1+2；
+        # 6. Review：通过光学字符识别技术、音频识别技术，进行不适宜内容识别，等价于 3+4；
+        # 7. All：通过光学字符识别技术、音频识别技术，进行内容识别、不适宜内容识别，等价于 1+2+3+4。
         # @type Usages: Array
         # @param Words: 关键词，数组长度限制：100。
         # @type Words: Array
@@ -4074,7 +4143,7 @@ module TencentCloud
 
       # DeleteContentReviewTemplate请求参数结构体
       class DeleteContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 内容审核模板唯一标识。
+        # @param Definition: 内容智能识别模板唯一标识。
         # @type Definition: Integer
 
         attr_accessor :Definition
@@ -4138,7 +4207,7 @@ module TencentCloud
 
       # DeletePersonSample请求参数结构体
       class DeletePersonSampleRequest < TencentCloud::Common::AbstractModel
-        # @param PersonId: 人物 ID。
+        # @param PersonId: 素材 ID。
         # @type PersonId: String
 
         attr_accessor :PersonId
@@ -4566,7 +4635,7 @@ module TencentCloud
 
       # DescribeContentReviewTemplates请求参数结构体
       class DescribeContentReviewTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Definitions: 内容审核模板唯一标识过滤条件，数组长度限制：50。
+        # @param Definitions: 内容智能识别模板唯一标识过滤条件，数组长度限制：50。
         # @type Definitions: Array
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
@@ -4708,18 +4777,18 @@ module TencentCloud
 
       # DescribePersonSamples请求参数结构体
       class DescribePersonSamplesRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 拉取的人物类型，可选值：
-        # <li>UserDefine：用户自定义人物库；</li>
-        # <li>Default：系统默认人物库。</li>
+        # @param Type: 拉取的素材类型，可选值：
+        # <li>UserDefine：用户自定义素材库；</li>
+        # <li>Default：系统默认素材库。</li>
 
-        # 默认值：UserDefine，拉取用户自定义人物库人物。
-        # 说明：如果是拉取系统默认人物库，只能使用人物名字或者人物 ID + 人物名字的方式进行拉取，且人脸图片只返回一张。
+        # 默认值：UserDefine，拉取用户自定义素材库素材。
+        # 说明：如果是拉取系统默认素材库，只能使用素材名字或者素材 ID + 素材名字的方式进行拉取，且人脸图片只返回一张。
         # @type Type: String
-        # @param PersonIds: 人物 ID，数组长度限制：100。
+        # @param PersonIds: 素材 ID，数组长度限制：100。
         # @type PersonIds: Array
-        # @param Names: 人物名称，数组长度限制：20。
+        # @param Names: 素材名称，数组长度限制：20。
         # @type Names: Array
-        # @param Tags: 人物标签，数组长度限制：20。
+        # @param Tags: 素材标签，数组长度限制：20。
         # @type Tags: Array
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
@@ -4751,7 +4820,7 @@ module TencentCloud
       class DescribePersonSamplesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的记录总数。
         # @type TotalCount: Integer
-        # @param PersonSet: 人物信息。
+        # @param PersonSet: 素材信息。
         # @type PersonSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4931,12 +5000,14 @@ module TencentCloud
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长1000个字符。
         # @type SessionContext: String
+        # @param ExtInfo: 扩展信息字段，仅用于特定场景。
+        # @type ExtInfo: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :WorkflowTask, :EditMediaTask, :LiveStreamProcessTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :WorkflowTask, :EditMediaTask, :LiveStreamProcessTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ExtInfo, :RequestId
         
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, workflowtask=nil, editmediatask=nil, livestreamprocesstask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, workflowtask=nil, editmediatask=nil, livestreamprocesstask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, extinfo=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -4949,6 +5020,7 @@ module TencentCloud
           @TasksPriority = taskspriority
           @SessionId = sessionid
           @SessionContext = sessioncontext
+          @ExtInfo = extinfo
           @RequestId = requestid
         end
 
@@ -4973,6 +5045,7 @@ module TencentCloud
           @TasksPriority = params['TasksPriority']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
+          @ExtInfo = params['ExtInfo']
           @RequestId = params['RequestId']
         end
       end
@@ -5149,18 +5222,18 @@ module TencentCloud
 
       # DescribeWordSamples请求参数结构体
       class DescribeWordSamplesRequest < TencentCloud::Common::AbstractModel
-        # @param Usages: <b>关键词应用场景过滤条件，可选值：</b>
-        # 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
-        # 2. Recognition.Asr：通过语音识别技术，进行内容识别；
-        # 3. Review.Ocr：通过光学字符识别技术，进行内容审核；
-        # 4. Review.Asr：通过语音识别技术，进行内容审核；
-        # <b>可合并简写为：</b>
-        # 5. Recognition：通过光学字符识别技术、语音识别技术，进行内容识别，等价于 1+2；
-        # 6. Review：通过光学字符识别技术、语音识别技术，进行内容审核，等价于 3+4；
-        # 可多选，元素间关系为 or，即关键词的应用场景包含该字段集合中任意元素的记录，均符合该条件。
-        # @type Usages: Array
         # @param Keywords: 关键词过滤条件，数组长度限制：100 个词。
         # @type Keywords: Array
+        # @param Usages: <b>关键词应用场景过滤条件，可选值：</b>
+        # 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
+        # 2. Recognition.Asr：通过音频识别技术，进行内容识别；
+        # 3. Review.Ocr：通过光学字符识别技术，进行不适宜内容的识别；
+        # 4. Review.Asr：通过音频识别技术，进行不适宜内容的识别；
+        # <b>可合并简写为：</b>
+        # 5. Recognition：通过光学字符识别技术、音频识别技术，进行内容识别，等价于 1+2；
+        # 6. Review：通过光学字符识别技术、音频识别技术，进行不适宜内容的识别，等价于 3+4；
+        # 可多选，元素间关系为 or，即关键词的应用场景包含该字段集合中任意元素的记录，均符合该条件。
+        # @type Usages: Array
         # @param Tags: 标签过滤条件，数组长度限制：20 个词。
         # @type Tags: Array
         # @param Offset: 分页偏移量，默认值：0。
@@ -5168,19 +5241,19 @@ module TencentCloud
         # @param Limit: 返回记录条数，默认值：100，最大值：100。
         # @type Limit: Integer
 
-        attr_accessor :Usages, :Keywords, :Tags, :Offset, :Limit
+        attr_accessor :Keywords, :Usages, :Tags, :Offset, :Limit
         
-        def initialize(usages=nil, keywords=nil, tags=nil, offset=nil, limit=nil)
-          @Usages = usages
+        def initialize(keywords=nil, usages=nil, tags=nil, offset=nil, limit=nil)
           @Keywords = keywords
+          @Usages = usages
           @Tags = tags
           @Offset = offset
           @Limit = limit
         end
 
         def deserialize(params)
-          @Usages = params['Usages']
           @Keywords = params['Keywords']
+          @Usages = params['Usages']
           @Tags = params['Tags']
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -5338,7 +5411,7 @@ module TencentCloud
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
         # @param TasksPriority: 任务优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
         # @type TasksPriority: Integer
-        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
@@ -5501,6 +5574,46 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExecuteFunction请求参数结构体
+      class ExecuteFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 调用后端接口名称。
+        # @type FunctionName: String
+        # @param FunctionArg: 接口参数，具体参数格式调用时与后端协调。
+        # @type FunctionArg: String
+
+        attr_accessor :FunctionName, :FunctionArg
+        
+        def initialize(functionname=nil, functionarg=nil)
+          @FunctionName = functionname
+          @FunctionArg = functionarg
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @FunctionArg = params['FunctionArg']
+        end
+      end
+
+      # ExecuteFunction返回参数结构体
+      class ExecuteFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 处理结果打包后的字符串，具体与后台一同协调。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -5754,12 +5867,12 @@ module TencentCloud
         # @type ImageContent: String
         # @param Width: 水印的宽度。支持 %、px 两种格式：
         # <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        # <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
+        # <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。</li>
         # 默认值：10%。
         # @type Width: String
         # @param Height: 水印的高度。支持 %、px 两种格式：
         # <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        # <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。</li>
+        # <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
         # 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         # @type Height: String
 
@@ -5784,12 +5897,12 @@ module TencentCloud
         # @type ImageContent: String
         # @param Width: 水印的宽度。支持 %、px 两种格式：
         # <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        # <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
+        # <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。</li>
         # @type Width: String
         # @param Height: 水印的高度。支持 %、px 两种格式：
         # <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        # <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
-        # 0px 表示 Height 按照 Width 对视频宽度的比例缩放。
+        # <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
+        # 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         # @type Height: String
 
         attr_accessor :ImageContent, :Width, :Height
@@ -5817,7 +5930,7 @@ module TencentCloud
         # @type Width: String
         # @param Height: 水印的高度。支持 %、px 两种格式：
         # <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        # <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；</li>
+        # <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；</li>
         # 0px：表示 Height 按照 Width 对视频宽度的比例缩放。
         # @type Height: String
 
@@ -6388,7 +6501,11 @@ module TencentCloud
       # ManageTask请求参数结构体
       class ManageTaskRequest < TencentCloud::Common::AbstractModel
         # @param OperationType: 操作类型，取值范围：
-        # <li>Abort：终止任务。</li>
+        # <ul>
+        # <li>Abort：终止任务。使用说明：
+        # <ul><li>若 [任务类型](/document/product/862/37614#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0) 为直播流处理任务（LiveStreamProcessTask），支持终止 [任务状态](/document/product/862/37614#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0) 为等待中（WAITING）或处理中（PROCESSING）的任务；</li>
+        # <li>否则，对于其他 [任务类型](/document/product/862/37614#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)，只支持终止 [任务状态](/document/product/862/37614#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0) 为等待中（WAITING）的任务。</li></ul>
+        # </li></ul>
         # @type OperationType: String
         # @param TaskId: 视频处理的任务 ID。
         # @type TaskId: String
@@ -6466,18 +6583,23 @@ module TencentCloud
       class MediaAiAnalysisFrameTagItem < TencentCloud::Common::AbstractModel
         # @param Tag: 按帧标签名称。
         # @type Tag: String
+        # @param CategorySet: 按帧标签名称的分类列表，CategorySet.N 表示第 N+1级分类。
+        # 比如 Tag 为“塔楼”时，CategorySet 包含两个元素：CategorySet.0 为“场景”，CategorySet.1为 “建筑”，表示按帧标签为“塔楼”，且第1级分类是“场景”，第2级分类是“建筑”。
+        # @type CategorySet: Array
         # @param Confidence: 按帧标签的可信度，取值范围是 0 到 100。
         # @type Confidence: Float
 
-        attr_accessor :Tag, :Confidence
+        attr_accessor :Tag, :CategorySet, :Confidence
         
-        def initialize(tag=nil, confidence=nil)
+        def initialize(tag=nil, categoryset=nil, confidence=nil)
           @Tag = tag
+          @CategorySet = categoryset
           @Confidence = confidence
         end
 
         def deserialize(params)
           @Tag = params['Tag']
+          @CategorySet = params['CategorySet']
           @Confidence = params['Confidence']
         end
       end
@@ -6715,7 +6837,8 @@ module TencentCloud
         # <li>bureau_politician：厅局级领导人；</li>
         # <li>county_politician：县处级领导人；</li>
         # <li>rural_politician：乡科级领导人；</li>
-        # <li>sensitive_politician：敏感政治人物。</li>
+        # <li>sensitive_politician：敏感政治人物；</li>
+        # <li>foreign_politician：国外领导人。</li>
         # entertainment：
         # <li>sensitive_entertainment：敏感娱乐人物。</li>
         # sport：
@@ -6725,7 +6848,8 @@ module TencentCloud
         # scholar：
         # <li>sensitive_scholar：敏感教育学者。</li>
         # celebrity：
-        # <li>sensitive_celebrity：敏感知名人物。</li>
+        # <li>sensitive_celebrity：敏感知名人物；</li>
+        # <li>historical_celebrity：历史知名人物。</li>
         # military：
         # <li>sensitive_military：敏感军事人物。</li>
         # @type Label: String
@@ -6852,22 +6976,29 @@ module TencentCloud
 
       # 视频处理的输入对象信息。
       class MediaInputInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 输入来源对象的类型，现在仅支持 COS。
+        # @param Type: 输入来源对象的类型，支持 COS 和 URL 两种。
         # @type Type: String
         # @param CosInputInfo: 当 Type 为 COS 时有效，则该项为必填，表示视频处理 COS 对象信息。
         # @type CosInputInfo: :class:`Tencentcloud::Mps.v20190612.models.CosInputInfo`
+        # @param UrlInputInfo: 当 Type 为 URL 时有效，则该项为必填，表示视频处理 URL 对象信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UrlInputInfo: :class:`Tencentcloud::Mps.v20190612.models.UrlInputInfo`
 
-        attr_accessor :Type, :CosInputInfo
+        attr_accessor :Type, :CosInputInfo, :UrlInputInfo
         
-        def initialize(type=nil, cosinputinfo=nil)
+        def initialize(type=nil, cosinputinfo=nil, urlinputinfo=nil)
           @Type = type
           @CosInputInfo = cosinputinfo
+          @UrlInputInfo = urlinputinfo
         end
 
         def deserialize(params)
           @Type = params['Type']
           unless params['CosInputInfo'].nil?
             @CosInputInfo = CosInputInfo.new.deserialize(params[CosInputInfo])
+          end
+          unless params['UrlInputInfo'].nil?
+            @UrlInputInfo = UrlInputInfo.new.deserialize(params[UrlInputInfo])
           end
         end
       end
@@ -6932,7 +7063,9 @@ module TencentCloud
       class MediaProcessTaskAdaptiveDynamicStreamingResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -6942,10 +7075,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AdaptiveDynamicStreamingInfoItem`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -6954,6 +7088,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -6969,10 +7104,9 @@ module TencentCloud
       class MediaProcessTaskAnimatedGraphicResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
-        # <li>40000：输入参数不合法，请检查输入参数；</li>
-        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        # <li>70000：内部服务错误，建议重试。</li>
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -6982,10 +7116,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaAnimatedGraphicsItem`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -6994,6 +7129,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -7009,10 +7145,9 @@ module TencentCloud
       class MediaProcessTaskImageSpriteResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
-        # <li>40000：输入参数不合法，请检查输入参数；</li>
-        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        # <li>70000：内部服务错误，建议重试。</li>
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -7022,10 +7157,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaImageSpriteItem`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -7034,6 +7170,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -7150,10 +7287,9 @@ module TencentCloud
       class MediaProcessTaskSampleSnapshotResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
-        # <li>40000：输入参数不合法，请检查输入参数；</li>
-        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        # <li>70000：内部服务错误，建议重试。</li>
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -7163,10 +7299,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaSampleSnapshotItem`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -7175,6 +7312,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -7190,10 +7328,9 @@ module TencentCloud
       class MediaProcessTaskSnapshotByTimeOffsetResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
-        # <li>40000：输入参数不合法，请检查输入参数；</li>
-        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        # <li>70000：内部服务错误，建议重试。</li>
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -7203,10 +7340,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaSnapshotByTimeOffsetItem`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -7215,6 +7353,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -7230,10 +7369,9 @@ module TencentCloud
       class MediaProcessTaskTranscodeResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
-        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
-        # <li>40000：输入参数不合法，请检查输入参数；</li>
-        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        # <li>70000：内部服务错误，建议重试。</li>
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
@@ -7243,10 +7381,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaTranscodeItem`
 
-        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
         
-        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
           @Status = status
+          @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
@@ -7255,6 +7394,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           unless params['Input'].nil?
@@ -7728,24 +7868,24 @@ module TencentCloud
 
       # ModifyContentReviewTemplate请求参数结构体
       class ModifyContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 内容审核模板唯一标识。
+        # @param Definition: 内容智能识别模板唯一标识。
         # @type Definition: Integer
-        # @param Name: 内容审核模板名称，长度限制：64 个字符。
+        # @param Name: 内容智能识别模板名称，长度限制：64 个字符。
         # @type Name: String
-        # @param Comment: 内容审核模板描述信息，长度限制：256 个字符。
+        # @param Comment: 内容智能识别模板描述信息，长度限制：256 个字符。
         # @type Comment: String
-        # @param PornConfigure: 鉴黄控制参数。
+        # @param PornConfigure: 令人反感的信息的控制参数。
         # @type PornConfigure: :class:`Tencentcloud::Mps.v20190612.models.PornConfigureInfoForUpdate`
-        # @param TerrorismConfigure: 鉴恐控制参数。
+        # @param TerrorismConfigure: 令人不安全的信息的控制参数。
         # @type TerrorismConfigure: :class:`Tencentcloud::Mps.v20190612.models.TerrorismConfigureInfoForUpdate`
-        # @param PoliticalConfigure: 鉴政控制参数。
+        # @param PoliticalConfigure: 令人不适宜的控制参数。
         # @type PoliticalConfigure: :class:`Tencentcloud::Mps.v20190612.models.PoliticalConfigureInfoForUpdate`
         # @param ProhibitedConfigure: 违禁控制参数。违禁内容包括：
         # <li>谩骂；</li>
         # <li>涉毒违法。</li>
         # 注意：此参数尚未支持。
         # @type ProhibitedConfigure: :class:`Tencentcloud::Mps.v20190612.models.ProhibitedConfigureInfoForUpdate`
-        # @param UserDefineConfigure: 用户自定义内容审核控制参数。
+        # @param UserDefineConfigure: 用户自定义内容智能识别控制参数。
         # @type UserDefineConfigure: :class:`Tencentcloud::Mps.v20190612.models.UserDefineConfigureInfoForUpdate`
 
         attr_accessor :Definition, :Name, :Comment, :PornConfigure, :TerrorismConfigure, :PoliticalConfigure, :ProhibitedConfigure, :UserDefineConfigure
@@ -7893,18 +8033,18 @@ module TencentCloud
 
       # ModifyPersonSample请求参数结构体
       class ModifyPersonSampleRequest < TencentCloud::Common::AbstractModel
-        # @param PersonId: 人物 ID。
+        # @param PersonId: 素材 ID。
         # @type PersonId: String
         # @param Name: 名称，长度限制：128 个字符。
         # @type Name: String
         # @param Description: 描述，长度限制：1024 个字符。
         # @type Description: String
-        # @param Usages: 人物应用场景，可选值：
+        # @param Usages: 素材应用场景，可选值：
         # 1. Recognition：用于内容识别，等价于 Recognition.Face。
-        # 2. Review：用于内容审核，等价于 Review.Face。
-        # 3. All：用于内容识别、内容审核，等价于 1+2。
+        # 2. Review：用于不适宜的内容识别，等价于 Review.Face。
+        # 3. All：用于内容识别、不适宜的内容识别，等价于 1+2。
         # @type Usages: Array
-        # @param FaceOperationInfo: 人脸操作信息。
+        # @param FaceOperationInfo: 五官操作信息。
         # @type FaceOperationInfo: :class:`Tencentcloud::Mps.v20190612.models.AiSampleFaceOperation`
         # @param TagOperationInfo: 标签操作信息。
         # @type TagOperationInfo: :class:`Tencentcloud::Mps.v20190612.models.AiSampleTagOperation`
@@ -7936,9 +8076,9 @@ module TencentCloud
 
       # ModifyPersonSample返回参数结构体
       class ModifyPersonSampleResponse < TencentCloud::Common::AbstractModel
-        # @param Person: 人物信息。
+        # @param Person: 素材信息。
         # @type Person: :class:`Tencentcloud::Mps.v20190612.models.AiSamplePerson`
-        # @param FailFaceInfoSet: 处理失败的人脸信息。
+        # @param FailFaceInfoSet: 处理失败的五官信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailFaceInfoSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -8137,7 +8277,7 @@ module TencentCloud
         # @type Container: String
         # @param Name: 转码模板名称，长度限制：64 个字符。
         # @type Name: String
-        # @param Comment: 模板描述信息，长度限制：256 个字节。
+        # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
         # @param RemoveVideo: 是否去除视频数据，可选值：
         # <li>0：保留</li>
@@ -8291,13 +8431,13 @@ module TencentCloud
         # @type Keyword: String
         # @param Usages: <b>关键词应用场景，可选值：</b>
         # 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
-        # 2. Recognition.Asr：通过语音识别技术，进行内容识别；
-        # 3. Review.Ocr：通过光学字符识别技术，进行内容审核；
-        # 4. Review.Asr：通过语音识别技术，进行内容审核；
+        # 2. Recognition.Asr：通过音频识别技术，进行内容识别；
+        # 3. Review.Ocr：通过光学字符识别技术，进行不适宜的内容识别；
+        # 4. Review.Asr：通过音频识别技术，进行不适宜的音频识别；
         # <b>可合并简写为：</b>
-        # 5. Recognition：通过光学字符识别技术、语音识别技术，进行内容识别，等价于 1+2；
-        # 6. Review：通过光学字符识别技术、语音识别技术，进行内容审核，等价于 3+4；
-        # 7. All：通过光学字符识别技术、语音识别技术，进行内容识别、内容审核，等价于 1+2+3+4。
+        # 5. Recognition：通过光学字符识别技术、音频识别技术，进行内容识别，等价于 1+2；
+        # 6. Review：通过光学字符识别技术、音频识别技术，进行不适宜的内容识别，等价于 3+4；
+        # 7. All：包含以上全部，等价于 1+2+3+4。
         # @type Usages: Array
         # @param TagOperationInfo: 标签操作信息。
         # @type TagOperationInfo: :class:`Tencentcloud::Mps.v20190612.models.AiSampleTagOperation`
@@ -8502,6 +8642,52 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @LabelSet = params['LabelSet']
+        end
+      end
+
+      # 自定义转码的规格参数。用于覆盖模板中对应参数值。
+      class OverrideTranscodeParameter < TencentCloud::Common::AbstractModel
+        # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a。其中，mp3、flac、ogg、m4a 为纯音频文件。
+        # @type Container: String
+        # @param RemoveVideo: 是否去除视频数据，取值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，取值：
+        # <li>0：保留；</li>
+        # <li>1：去除。</li>
+        # @type RemoveAudio: Integer
+        # @param VideoTemplate: 视频流配置参数。
+        # @type VideoTemplate: :class:`Tencentcloud::Mps.v20190612.models.VideoTemplateInfoForUpdate`
+        # @param AudioTemplate: 音频流配置参数。
+        # @type AudioTemplate: :class:`Tencentcloud::Mps.v20190612.models.AudioTemplateInfoForUpdate`
+        # @param TEHDConfig: 极速高清转码参数。
+        # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfigForUpdate`
+
+        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig
+        
+        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil)
+          @Container = container
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+          @VideoTemplate = videotemplate
+          @AudioTemplate = audiotemplate
+          @TEHDConfig = tehdconfig
+        end
+
+        def deserialize(params)
+          @Container = params['Container']
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+          unless params['VideoTemplate'].nil?
+            @VideoTemplate = VideoTemplateInfoForUpdate.new.deserialize(params[VideoTemplate])
+          end
+          unless params['AudioTemplate'].nil?
+            @AudioTemplate = AudioTemplateInfoForUpdate.new.deserialize(params[AudioTemplate])
+          end
+          unless params['TEHDConfig'].nil?
+            @TEHDConfig = TEHDConfigForUpdate.new.deserialize(params[TEHDConfig])
+          end
         end
       end
 
@@ -9201,7 +9387,7 @@ module TencentCloud
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
         # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
         # @type TasksPriority: Integer
-        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
@@ -10372,11 +10558,26 @@ module TencentCloud
         # 该参数用于高度定制场景，建议您优先使用 Definition 指定转码参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawTranscodeParameter`
+        # @param OverrideParameter: 视频转码自定义参数，当 Definition 不填 0 时有效。
+        # 当填写了该结构中的部分转码参数时，将使用填写的参数覆盖转码模板中的参数。
+        # 该参数用于高度定制场景，建议您仅使用 Definition 指定转码参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OverrideParameter: :class:`Tencentcloud::Mps.v20190612.models.OverrideTranscodeParameter`
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WatermarkSet: Array
         # @param MosaicSet: 马赛克列表，最大可支持 10 张。
         # @type MosaicSet: Array
+        # @param StartTimeOffset: 转码后的视频的起始时间偏移，单位：秒。
+        # <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
+        # <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
+        # <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 转码后视频的终止时间偏移，单位：秒。
+        # <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
+        # <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
+        # <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
+        # @type EndTimeOffset: Float
         # @param OutputStorage: 转码后文件的目标存储，不填则继承上层的 OutputStorage 值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
@@ -10388,13 +10589,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectNumberFormat: :class:`Tencentcloud::Mps.v20190612.models.NumberFormat`
 
-        attr_accessor :Definition, :RawParameter, :WatermarkSet, :MosaicSet, :OutputStorage, :OutputObjectPath, :SegmentObjectName, :ObjectNumberFormat
+        attr_accessor :Definition, :RawParameter, :OverrideParameter, :WatermarkSet, :MosaicSet, :StartTimeOffset, :EndTimeOffset, :OutputStorage, :OutputObjectPath, :SegmentObjectName, :ObjectNumberFormat
         
-        def initialize(definition=nil, rawparameter=nil, watermarkset=nil, mosaicset=nil, outputstorage=nil, outputobjectpath=nil, segmentobjectname=nil, objectnumberformat=nil)
+        def initialize(definition=nil, rawparameter=nil, overrideparameter=nil, watermarkset=nil, mosaicset=nil, starttimeoffset=nil, endtimeoffset=nil, outputstorage=nil, outputobjectpath=nil, segmentobjectname=nil, objectnumberformat=nil)
           @Definition = definition
           @RawParameter = rawparameter
+          @OverrideParameter = overrideparameter
           @WatermarkSet = watermarkset
           @MosaicSet = mosaicset
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
           @SegmentObjectName = segmentobjectname
@@ -10406,8 +10610,13 @@ module TencentCloud
           unless params['RawParameter'].nil?
             @RawParameter = RawTranscodeParameter.new.deserialize(params[RawParameter])
           end
+          unless params['OverrideParameter'].nil?
+            @OverrideParameter = OverrideTranscodeParameter.new.deserialize(params[OverrideParameter])
+          end
           @WatermarkSet = params['WatermarkSet']
           @MosaicSet = params['MosaicSet']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
           unless params['OutputStorage'].nil?
             @OutputStorage = TaskOutputStorage.new.deserialize(params[OutputStorage])
           end
@@ -10495,6 +10704,22 @@ module TencentCloud
           @ContainerType = params['ContainerType']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 视频处理 URL 对象信息。
+      class UrlInputInfo < TencentCloud::Common::AbstractModel
+        # @param Url: 视频的 URL。
+        # @type Url: String
+
+        attr_accessor :Url
+        
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
         end
       end
 
@@ -10752,7 +10977,7 @@ module TencentCloud
         # <li>av1：AOMedia Video 1 编码</li>
         # 目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。av1 编码容器目前只支持 mp4 。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 60]，单位：Hz。
+        # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。
         # 当取值为 0，表示帧率和原始视频保持一致。
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
@@ -10783,12 +11008,18 @@ module TencentCloud
         # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
+        # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
         # 默认值：black 。
         # @type FillType: String
+        # @param Vcrf: 视频恒定码率控制因子，取值范围为[1, 51]。
+        # 如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）。
+        # 如果没有特殊需求，不建议指定该参数。
+        # @type Vcrf: Integer
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf
         
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -10797,6 +11028,7 @@ module TencentCloud
           @Height = height
           @Gop = gop
           @FillType = filltype
+          @Vcrf = vcrf
         end
 
         def deserialize(params)
@@ -10808,6 +11040,7 @@ module TencentCloud
           @Height = params['Height']
           @Gop = params['Gop']
           @FillType = params['FillType']
+          @Vcrf = params['Vcrf']
         end
       end
 
@@ -10819,7 +11052,7 @@ module TencentCloud
         # <li>av1：AOMedia Video 1 编码</li>
         # 目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。av1 编码容器目前只支持 mp4 。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 60]，单位：Hz。
+        # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。
         # 当取值为 0，表示帧率和原始视频保持一致。
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
@@ -10842,11 +11075,16 @@ module TencentCloud
         # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
         # <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        # <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
+        # <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
         # @type FillType: String
+        # @param Vcrf: 视频恒定码率控制因子。取值范围为[0, 51]，填0表示禁用该参数。
+        # 如果没有特殊需求，不建议指定该参数。
+        # @type Vcrf: Integer
 
-        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Gop, :FillType, :Vcrf
         
-        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, gop=nil, filltype=nil, vcrf=nil)
           @Codec = codec
           @Fps = fps
           @Bitrate = bitrate
@@ -10855,6 +11093,7 @@ module TencentCloud
           @Height = height
           @Gop = gop
           @FillType = filltype
+          @Vcrf = vcrf
         end
 
         def deserialize(params)
@@ -10866,6 +11105,7 @@ module TencentCloud
           @Height = params['Height']
           @Gop = params['Gop']
           @FillType = params['FillType']
+          @Vcrf = params['Vcrf']
         end
       end
 
@@ -10875,10 +11115,13 @@ module TencentCloud
         # @type Definition: Integer
         # @param RawParameter: 水印自定义参数，当 Definition 填 0 时有效。
         # 该参数用于高度定制场景，建议您优先使用 Definition 指定水印参数。
+        # 水印自定义参数不支持截图打水印。
         # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawWatermarkParameter`
         # @param TextContent: 文字内容，长度不超过100个字符。仅当水印类型为文字水印时填写。
+        # 文字水印不支持截图打水印。
         # @type TextContent: String
         # @param SvgContent: SVG 内容。长度不超过 2000000 个字符。仅当水印类型为 SVG 水印时填写。
+        # SVG 水印不支持截图打水印。
         # @type SvgContent: String
         # @param StartTimeOffset: 水印的起始时间偏移，单位：秒。不填或填0，表示水印从画面出现时开始显现。
         # <li>不填或填0，表示水印从画面开始就出现；</li>

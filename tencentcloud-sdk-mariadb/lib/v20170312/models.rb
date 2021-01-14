@@ -17,6 +17,46 @@
 module TencentCloud
   module Mariadb
     module V20170312
+      # AssociateSecurityGroups请求参数结构体
+      class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 数据库引擎名称，本接口取值：mariadb。
+        # @type Product: String
+        # @param SecurityGroupId: 要绑定的安全组ID，类似sg-efil73jd。
+        # @type SecurityGroupId: String
+        # @param InstanceIds: 被绑定的实例ID，类似tdsql-lesecurk，支持指定多个实例。
+        # @type InstanceIds: Array
+
+        attr_accessor :Product, :SecurityGroupId, :InstanceIds
+        
+        def initialize(product=nil, securitygroupid=nil, instanceids=nil)
+          @Product = product
+          @SecurityGroupId = securitygroupid
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @SecurityGroupId = params['SecurityGroupId']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # AssociateSecurityGroups返回参数结构体
+      class AssociateSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloneAccount请求参数结构体
       class CloneAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -298,10 +338,12 @@ module TencentCloud
         # @type AutoRenewFlag: Integer
         # @param Ipv6Flag: 是否支持IPv6
         # @type Ipv6Flag: Integer
+        # @param ResourceTags: 标签键值对数组
+        # @type ResourceTags: Array
 
-        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Period, :Count, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :ProjectId, :DbVersionId, :InstanceName, :SecurityGroupIds, :AutoRenewFlag, :Ipv6Flag
+        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Period, :Count, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :ProjectId, :DbVersionId, :InstanceName, :SecurityGroupIds, :AutoRenewFlag, :Ipv6Flag, :ResourceTags
         
-        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, projectid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, autorenewflag=nil, ipv6flag=nil)
+        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, projectid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, autorenewflag=nil, ipv6flag=nil, resourcetags=nil)
           @Zones = zones
           @NodeCount = nodecount
           @Memory = memory
@@ -318,6 +360,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @AutoRenewFlag = autorenewflag
           @Ipv6Flag = ipv6flag
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -337,6 +380,7 @@ module TencentCloud
           @SecurityGroupIds = params['SecurityGroupIds']
           @AutoRenewFlag = params['AutoRenewFlag']
           @Ipv6Flag = params['Ipv6Flag']
+          @ResourceTags = params['ResourceTags']
         end
       end
 
@@ -554,10 +598,43 @@ module TencentCloud
         # @type IsEncryptSupported: Integer
         # @param Cpu: 实例CPU核数
         # @type Cpu: Integer
+        # @param Ipv6Flag: 实例IPv6标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6Flag: Integer
+        # @param Vipv6: 内网IPv6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vipv6: String
+        # @param WanVipv6: 外网IPv6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanVipv6: String
+        # @param WanPortIpv6: 外网IPv6端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanPortIpv6: Integer
+        # @param WanStatusIpv6: 外网IPv6状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanStatusIpv6: Integer
+        # @param DbEngine: 数据库引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbEngine: String
+        # @param DbVersion: 数据库版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbVersion: String
+        # @param DcnFlag: DCN标志，0-无，1-主实例，2-灾备实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DcnFlag: Integer
+        # @param DcnStatus: DCN状态，0-无，1-创建中，2-同步中，3-已断开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DcnStatus: Integer
+        # @param DcnDstNum: DCN灾备实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DcnDstNum: Integer
+        # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :Status, :Vip, :Vport, :WanDomain, :WanVip, :WanPort, :CreateTime, :UpdateTime, :AutoRenewFlag, :PeriodEndTime, :Uin, :TdsqlVersion, :Memory, :Storage, :UniqueVpcId, :UniqueSubnetId, :OriginSerialId, :NodeCount, :IsTmp, :ExclusterId, :Id, :Pid, :Qps, :Paymode, :Locker, :StatusDesc, :WanStatus, :IsAuditSupported, :Machine, :IsEncryptSupported, :Cpu
+        attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :Status, :Vip, :Vport, :WanDomain, :WanVip, :WanPort, :CreateTime, :UpdateTime, :AutoRenewFlag, :PeriodEndTime, :Uin, :TdsqlVersion, :Memory, :Storage, :UniqueVpcId, :UniqueSubnetId, :OriginSerialId, :NodeCount, :IsTmp, :ExclusterId, :Id, :Pid, :Qps, :Paymode, :Locker, :StatusDesc, :WanStatus, :IsAuditSupported, :Machine, :IsEncryptSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DbEngine, :DbVersion, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType
         
-        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, wandomain=nil, wanvip=nil, wanport=nil, createtime=nil, updatetime=nil, autorenewflag=nil, periodendtime=nil, uin=nil, tdsqlversion=nil, memory=nil, storage=nil, uniquevpcid=nil, uniquesubnetid=nil, originserialid=nil, nodecount=nil, istmp=nil, exclusterid=nil, id=nil, pid=nil, qps=nil, paymode=nil, locker=nil, statusdesc=nil, wanstatus=nil, isauditsupported=nil, machine=nil, isencryptsupported=nil, cpu=nil)
+        def initialize(instanceid=nil, instancename=nil, appid=nil, projectid=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, wandomain=nil, wanvip=nil, wanport=nil, createtime=nil, updatetime=nil, autorenewflag=nil, periodendtime=nil, uin=nil, tdsqlversion=nil, memory=nil, storage=nil, uniquevpcid=nil, uniquesubnetid=nil, originserialid=nil, nodecount=nil, istmp=nil, exclusterid=nil, id=nil, pid=nil, qps=nil, paymode=nil, locker=nil, statusdesc=nil, wanstatus=nil, isauditsupported=nil, machine=nil, isencryptsupported=nil, cpu=nil, ipv6flag=nil, vipv6=nil, wanvipv6=nil, wanportipv6=nil, wanstatusipv6=nil, dbengine=nil, dbversion=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @AppId = appid
@@ -597,6 +674,17 @@ module TencentCloud
           @Machine = machine
           @IsEncryptSupported = isencryptsupported
           @Cpu = cpu
+          @Ipv6Flag = ipv6flag
+          @Vipv6 = vipv6
+          @WanVipv6 = wanvipv6
+          @WanPortIpv6 = wanportipv6
+          @WanStatusIpv6 = wanstatusipv6
+          @DbEngine = dbengine
+          @DbVersion = dbversion
+          @DcnFlag = dcnflag
+          @DcnStatus = dcnstatus
+          @DcnDstNum = dcndstnum
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -639,6 +727,17 @@ module TencentCloud
           @Machine = params['Machine']
           @IsEncryptSupported = params['IsEncryptSupported']
           @Cpu = params['Cpu']
+          @Ipv6Flag = params['Ipv6Flag']
+          @Vipv6 = params['Vipv6']
+          @WanVipv6 = params['WanVipv6']
+          @WanPortIpv6 = params['WanPortIpv6']
+          @WanStatusIpv6 = params['WanStatusIpv6']
+          @DbEngine = params['DbEngine']
+          @DbVersion = params['DbVersion']
+          @DcnFlag = params['DcnFlag']
+          @DcnStatus = params['DcnStatus']
+          @DcnDstNum = params['DcnDstNum']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -971,10 +1070,14 @@ module TencentCloud
         # @type ExclusterType: Integer
         # @param ExclusterIds: 按独享集群ID过滤实例，独享集群ID形如dbdc-4ih6uct9
         # @type ExclusterIds: Array
+        # @param TagKeys: 按标签key查询
+        # @type TagKeys: Array
+        # @param FilterInstanceType: 实例类型过滤，1-独享实例，2-主实例，3-灾备实例，多个按逗号分隔
+        # @type FilterInstanceType: String
 
-        attr_accessor :InstanceIds, :SearchName, :SearchKey, :ProjectIds, :IsFilterVpc, :VpcId, :SubnetId, :OrderBy, :OrderByType, :Offset, :Limit, :OriginSerialIds, :IsFilterExcluster, :ExclusterType, :ExclusterIds
+        attr_accessor :InstanceIds, :SearchName, :SearchKey, :ProjectIds, :IsFilterVpc, :VpcId, :SubnetId, :OrderBy, :OrderByType, :Offset, :Limit, :OriginSerialIds, :IsFilterExcluster, :ExclusterType, :ExclusterIds, :TagKeys, :FilterInstanceType
         
-        def initialize(instanceids=nil, searchname=nil, searchkey=nil, projectids=nil, isfiltervpc=nil, vpcid=nil, subnetid=nil, orderby=nil, orderbytype=nil, offset=nil, limit=nil, originserialids=nil, isfilterexcluster=nil, exclustertype=nil, exclusterids=nil)
+        def initialize(instanceids=nil, searchname=nil, searchkey=nil, projectids=nil, isfiltervpc=nil, vpcid=nil, subnetid=nil, orderby=nil, orderbytype=nil, offset=nil, limit=nil, originserialids=nil, isfilterexcluster=nil, exclustertype=nil, exclusterids=nil, tagkeys=nil, filterinstancetype=nil)
           @InstanceIds = instanceids
           @SearchName = searchname
           @SearchKey = searchkey
@@ -990,6 +1093,8 @@ module TencentCloud
           @IsFilterExcluster = isfilterexcluster
           @ExclusterType = exclustertype
           @ExclusterIds = exclusterids
+          @TagKeys = tagkeys
+          @FilterInstanceType = filterinstancetype
         end
 
         def deserialize(params)
@@ -1008,6 +1113,8 @@ module TencentCloud
           @IsFilterExcluster = params['IsFilterExcluster']
           @ExclusterType = params['ExclusterType']
           @ExclusterIds = params['ExclusterIds']
+          @TagKeys = params['TagKeys']
+          @FilterInstanceType = params['FilterInstanceType']
         end
       end
 
@@ -1435,6 +1542,46 @@ module TencentCloud
         end
       end
 
+      # DescribeDBSecurityGroups请求参数结构体
+      class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 数据库引擎名称，本接口取值：mariadb。
+        # @type Product: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :Product, :InstanceId
+        
+        def initialize(product=nil, instanceid=nil)
+          @Product = product
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBSecurityGroups返回参数结构体
+      class DescribeDBSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Groups: 安全组详情。
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Groups, :RequestId
+        
+        def initialize(groups=nil, requestid=nil)
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Groups = params['Groups']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBSlowLogs请求参数结构体
       class DescribeDBSlowLogsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。
@@ -1742,6 +1889,46 @@ module TencentCloud
         end
       end
 
+      # DescribeProjectSecurityGroups请求参数结构体
+      class DescribeProjectSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 数据库引擎名称，本接口取值：mariadb。
+        # @type Product: String
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: Integer
+
+        attr_accessor :Product, :ProjectId
+        
+        def initialize(product=nil, projectid=nil)
+          @Product = product
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribeProjectSecurityGroups返回参数结构体
+      class DescribeProjectSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Groups: 安全组详情。
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Groups, :RequestId
+        
+        def initialize(groups=nil, requestid=nil)
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Groups = params['Groups']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRenewalPrice请求参数结构体
       class DescribeRenewalPriceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 待续费的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -1927,6 +2114,78 @@ module TencentCloud
         def deserialize(params)
           @OriginalPrice = params['OriginalPrice']
           @Price = params['Price']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisassociateSecurityGroups请求参数结构体
+      class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 数据库引擎名称，本接口取值：mariadb。
+        # @type Product: String
+        # @param SecurityGroupId: 安全组Id。
+        # @type SecurityGroupId: String
+        # @param InstanceIds: 实例ID列表，一个或者多个实例Id组成的数组。
+        # @type InstanceIds: Array
+
+        attr_accessor :Product, :SecurityGroupId, :InstanceIds
+        
+        def initialize(product=nil, securitygroupid=nil, instanceids=nil)
+          @Product = product
+          @SecurityGroupId = securitygroupid
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @SecurityGroupId = params['SecurityGroupId']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DisassociateSecurityGroups返回参数结构体
+      class DisassociateSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # FlushBinlog请求参数结构体
+      class FlushBinlogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # FlushBinlog返回参数结构体
+      class FlushBinlogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2211,6 +2470,46 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBInstanceSecurityGroups请求参数结构体
+      class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 数据库引擎名称，本接口取值：mariadb。
+        # @type Product: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param SecurityGroupIds: 要修改的安全组 ID 列表，一个或者多个安全组 ID 组成的数组
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :Product, :InstanceId, :SecurityGroupIds
+        
+        def initialize(product=nil, instanceid=nil, securitygroupids=nil)
+          @Product = product
+          @InstanceId = instanceid
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # ModifyDBInstanceSecurityGroups返回参数结构体
+      class ModifyDBInstanceSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2686,6 +2985,26 @@ module TencentCloud
         end
       end
 
+      # 标签对象，包含tagKey & tagValue
+      class ResourceTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键key
+        # @type TagKey: String
+        # @param TagValue: 标签值value
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # DB资源使用情况监控指标集合
       class ResourceUsageMonitorSet < TencentCloud::Common::AbstractModel
         # @param BinlogDiskAvailable: binlog日志磁盘可用空间,单位GB
@@ -2755,6 +3074,74 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 安全组详情
+      class SecurityGroup < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param CreateTime: 创建时间，时间格式：yyyy-mm-dd hh:mm:ss
+        # @type CreateTime: String
+        # @param SecurityGroupId: 安全组ID
+        # @type SecurityGroupId: String
+        # @param SecurityGroupName: 安全组名称
+        # @type SecurityGroupName: String
+        # @param SecurityGroupRemark: 安全组备注
+        # @type SecurityGroupRemark: String
+        # @param Inbound: 入站规则
+        # @type Inbound: Array
+        # @param Outbound: 出站规则
+        # @type Outbound: Array
+
+        attr_accessor :ProjectId, :CreateTime, :SecurityGroupId, :SecurityGroupName, :SecurityGroupRemark, :Inbound, :Outbound
+        
+        def initialize(projectid=nil, createtime=nil, securitygroupid=nil, securitygroupname=nil, securitygroupremark=nil, inbound=nil, outbound=nil)
+          @ProjectId = projectid
+          @CreateTime = createtime
+          @SecurityGroupId = securitygroupid
+          @SecurityGroupName = securitygroupname
+          @SecurityGroupRemark = securitygroupremark
+          @Inbound = inbound
+          @Outbound = outbound
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @CreateTime = params['CreateTime']
+          @SecurityGroupId = params['SecurityGroupId']
+          @SecurityGroupName = params['SecurityGroupName']
+          @SecurityGroupRemark = params['SecurityGroupRemark']
+          @Inbound = params['Inbound']
+          @Outbound = params['Outbound']
+        end
+      end
+
+      # 安全出入口规则
+      class SecurityGroupBound < TencentCloud::Common::AbstractModel
+        # @param Action: 策略，ACCEPT 或者 DROP
+        # @type Action: String
+        # @param CidrIp: 来源 IP 或 IP 段，例如192.168.0.0/16
+        # @type CidrIp: String
+        # @param PortRange: 端口
+        # @type PortRange: String
+        # @param IpProtocol: 网络协议，支持 UDP、TCP 等
+        # @type IpProtocol: String
+
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol
+        
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil)
+          @Action = action
+          @CidrIp = cidrip
+          @PortRange = portrange
+          @IpProtocol = ipprotocol
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @CidrIp = params['CidrIp']
+          @PortRange = params['PortRange']
+          @IpProtocol = params['IpProtocol']
         end
       end
 

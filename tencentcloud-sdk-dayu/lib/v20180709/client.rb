@@ -433,6 +433,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量上传7层转发规则
+
+        # @param request: Request instance for CreateNewL7RulesUpload.
+        # @type request: :class:`Tencentcloud::dayu::V20180709::CreateNewL7RulesUploadRequest`
+        # @rtype: :class:`Tencentcloud::dayu::V20180709::CreateNewL7RulesUploadResponse`
+        def CreateNewL7RulesUpload(request)
+          body = send_request('CreateNewL7RulesUpload', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNewL7RulesUploadResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # IP解封操作
 
         # @param request: Request instance for CreateUnblockIp.
@@ -755,6 +779,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBasicDeviceThresholdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取业务流量曲线
+
+        # @param request: Request instance for DescribeBizTrend.
+        # @type request: :class:`Tencentcloud::dayu::V20180709::DescribeBizTrendRequest`
+        # @rtype: :class:`Tencentcloud::dayu::V20180709::DescribeBizTrendResponse`
+        def DescribeBizTrend(request)
+          body = send_request('DescribeBizTrend', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBizTrendResponse.new
             model.deserialize(response['Response'])
             model
           else

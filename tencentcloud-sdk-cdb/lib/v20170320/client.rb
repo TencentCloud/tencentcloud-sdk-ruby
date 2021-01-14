@@ -241,6 +241,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateCloneInstance) 用于从目标源实例创建一个克隆实例，可以指定克隆实例回档到源实例的指定物理备份文件或者指定的回档时间点。
+
+        # @param request: Request instance for CreateCloneInstance.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::CreateCloneInstanceRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::CreateCloneInstanceResponse`
+        def CreateCloneInstance(request)
+          body = send_request('CreateCloneInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloneInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateDBImportJob)用于创建云数据库数据导入任务。
 
         # 注意，用户进行数据导入任务的文件，必须提前上传到腾讯云。用户须在控制台进行文件导入。
@@ -365,6 +389,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
+
+        # @param request: Request instance for CreateRoInstanceIp.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::CreateRoInstanceIpRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::CreateRoInstanceIpResponse`
+        def CreateRoInstanceIp(request)
+          body = send_request('CreateRoInstanceIp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRoInstanceIpResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -921,6 +969,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBinlogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
+
+        # @param request: Request instance for DescribeCloneList.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeCloneListRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeCloneListResponse`
+        def DescribeCloneList(request)
+          body = send_request('DescribeCloneList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloneListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2236,6 +2308,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改延迟只读实例的延迟复制时间。
+
+        # @param request: Request instance for ModifyRoReplicationDelay.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyRoReplicationDelayRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::ModifyRoReplicationDelayResponse`
+        def ModifyRoReplicationDelay(request)
+          body = send_request('ModifyRoReplicationDelay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRoReplicationDelayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改只读实例类型，可以将普通只读实例变为延迟只读实例，或者将延迟只读实例变为普通只读实例。
+
+        # @param request: Request instance for ModifyRoType.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyRoTypeRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::ModifyRoTypeResponse`
+        def ModifyRoType(request)
+          body = send_request('ModifyRoType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRoTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
 
         # @param request: Request instance for ModifyTimeWindow.
@@ -2438,6 +2558,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 启动延迟只读实例的延迟复制。
+
+        # @param request: Request instance for StartDelayReplication.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::StartDelayReplicationRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::StartDelayReplicationResponse`
+        def StartDelayReplication(request)
+          body = send_request('StartDelayReplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartDelayReplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(StopDBImportJob)用于终止数据导入任务。
 
         # @param request: Request instance for StopDBImportJob.
@@ -2448,6 +2592,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopDBImportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止延迟只读实例的延迟复制。
+
+        # @param request: Request instance for StopDelayReplication.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::StopDelayReplicationRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::StopDelayReplicationResponse`
+        def StopDelayReplication(request)
+          body = send_request('StopDelayReplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopDelayReplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(StopRollback) 用于撤销实例正在进行的回档任务，该接口返回一个异步任务id。 撤销结果可以通过 DescribeAsyncRequestInfo 查询任务的执行情况。
+
+        # @param request: Request instance for StopRollback.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::StopRollbackRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::StopRollbackResponse`
+        def StopRollback(request)
+          body = send_request('StopRollback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopRollbackResponse.new
             model.deserialize(response['Response'])
             model
           else

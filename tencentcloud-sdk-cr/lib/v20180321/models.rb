@@ -121,6 +121,289 @@ module TencentCloud
         end
       end
 
+      # 机器人文件结构
+      class BotFileData < TencentCloud::Common::AbstractModel
+        # @param FileType: 文件类型 A 拨打结果 T 记录详情
+        # @type FileType: String
+        # @param CosUrl: 文件地址
+        # @type CosUrl: String
+
+        attr_accessor :FileType, :CosUrl
+        
+        def initialize(filetype=nil, cosurl=nil)
+          @FileType = filetype
+          @CosUrl = cosurl
+        end
+
+        def deserialize(params)
+          @FileType = params['FileType']
+          @CosUrl = params['CosUrl']
+        end
+      end
+
+      # 机器人对话流信息
+      class BotFlow < TencentCloud::Common::AbstractModel
+        # @param BotFlowId: 对话流ID
+        # @type BotFlowId: String
+        # @param BotFlowName: 对话流名称
+        # @type BotFlowName: String
+        # @param PhonePoolList: 号码组信息列表
+        # @type PhonePoolList: Array
+
+        attr_accessor :BotFlowId, :BotFlowName, :PhonePoolList
+        
+        def initialize(botflowid=nil, botflowname=nil, phonepoollist=nil)
+          @BotFlowId = botflowid
+          @BotFlowName = botflowname
+          @PhonePoolList = phonepoollist
+        end
+
+        def deserialize(params)
+          @BotFlowId = params['BotFlowId']
+          @BotFlowName = params['BotFlowName']
+          @PhonePoolList = params['PhonePoolList']
+        end
+      end
+
+      # 机器人列表
+      class BotInfo < TencentCloud::Common::AbstractModel
+        # @param BotId: 机器人ID
+        # @type BotId: String
+        # @param BotName: 机器人名称
+        # @type BotName: String
+        # @param BotStatus: 机器人状态。0-停用 1-启用 2-待审核
+        # @type BotStatus: String
+
+        attr_accessor :BotId, :BotName, :BotStatus
+        
+        def initialize(botid=nil, botname=nil, botstatus=nil)
+          @BotId = botid
+          @BotName = botname
+          @BotStatus = botstatus
+        end
+
+        def deserialize(params)
+          @BotId = params['BotId']
+          @BotName = params['BotName']
+          @BotStatus = params['BotStatus']
+        end
+      end
+
+      # 产品拨打时间集合
+      class CallTimeDict < TencentCloud::Common::AbstractModel
+        # @param Monday: 周一
+        # @type Monday: :class:`Tencentcloud::Cr.v20180321.models.CallTimeInfo`
+        # @param Tuesday: 周二
+        # @type Tuesday: :class:`Tencentcloud::Cr.v20180321.models.CallTimeInfo`
+        # @param Wednesday: 周三
+        # @type Wednesday: :class:`Tencentcloud::Cr.v20180321.models.CallTimeInfo`
+        # @param Thursday: 周四
+        # @type Thursday: :class:`Tencentcloud::Cr.v20180321.models.CallTimeInfo`
+        # @param Friday: 周五
+        # @type Friday: :class:`Tencentcloud::Cr.v20180321.models.CallTimeInfo`
+        # @param Saturday: 周六
+        # @type Saturday: :class:`Tencentcloud::Cr.v20180321.models.CallTimeInfo`
+        # @param Sunday: 周日
+        # @type Sunday: :class:`Tencentcloud::Cr.v20180321.models.CallTimeInfo`
+
+        attr_accessor :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday, :Sunday
+        
+        def initialize(monday=nil, tuesday=nil, wednesday=nil, thursday=nil, friday=nil, saturday=nil, sunday=nil)
+          @Monday = monday
+          @Tuesday = tuesday
+          @Wednesday = wednesday
+          @Thursday = thursday
+          @Friday = friday
+          @Saturday = saturday
+          @Sunday = sunday
+        end
+
+        def deserialize(params)
+          unless params['Monday'].nil?
+            @Monday = CallTimeInfo.new.deserialize(params[Monday])
+          end
+          unless params['Tuesday'].nil?
+            @Tuesday = CallTimeInfo.new.deserialize(params[Tuesday])
+          end
+          unless params['Wednesday'].nil?
+            @Wednesday = CallTimeInfo.new.deserialize(params[Wednesday])
+          end
+          unless params['Thursday'].nil?
+            @Thursday = CallTimeInfo.new.deserialize(params[Thursday])
+          end
+          unless params['Friday'].nil?
+            @Friday = CallTimeInfo.new.deserialize(params[Friday])
+          end
+          unless params['Saturday'].nil?
+            @Saturday = CallTimeInfo.new.deserialize(params[Saturday])
+          end
+          unless params['Sunday'].nil?
+            @Sunday = CallTimeInfo.new.deserialize(params[Sunday])
+          end
+        end
+      end
+
+      # 产品拨打时间信息
+      class CallTimeInfo < TencentCloud::Common::AbstractModel
+        # @param StartTime: 产品开始拨打时间，HHmmss格式
+        # @type StartTime: String
+        # @param EndTime: 产品结束拨打时间，HHmmss格式
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+        
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # CreateBotTask请求参数结构体
+      class CreateBotTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名。默认值（固定）：AiApi
+        # @type Module: String
+        # @param Operation: 操作名。默认值（固定）：CreateTask
+        # @type Operation: String
+        # @param BotName: 任务名称
+        # @type BotName: String
+        # @param FlowId: 对话流ID
+        # @type FlowId: String
+        # @param CallTimeCollection: 产品拨打时间集合
+        # @type CallTimeCollection: :class:`Tencentcloud::Cr.v20180321.models.CallTimeDict`
+        # @param BanCall: 是否禁止拨打
+        # @type BanCall: String
+        # @param StartTimeBan: 禁止拨打起始时间
+        # @type StartTimeBan: String
+        # @param EndTimeBan: 禁止拨打结束时间
+        # @type EndTimeBan: String
+        # @param PhoneCollection: 拨打线路集合
+        # @type PhoneCollection: String
+        # @param CodeType: 重播方式，NON：未接通、LABEL：意向分级，可多选，用竖线分隔：NON|LABEL
+        # @type CodeType: String
+        # @param CodeCollection: 重播值集合，A：强意向、B：中意向、C：低意向、D：无意向、E：在忙、F：未接通、G：无效号码，可多选，用竖线分隔：A|B|C|D|E|F|G
+        # @type CodeCollection: String
+        # @param CallCount: 继续拨打次数
+        # @type CallCount: Integer
+        # @param CallInterval: 拨打间隔
+        # @type CallInterval: Integer
+        # @param SmsSignId: 未接通引用短信签名ID
+        # @type SmsSignId: String
+        # @param SmsTemplateId: 未接通引用短信模板ID
+        # @type SmsTemplateId: String
+
+        attr_accessor :Module, :Operation, :BotName, :FlowId, :CallTimeCollection, :BanCall, :StartTimeBan, :EndTimeBan, :PhoneCollection, :CodeType, :CodeCollection, :CallCount, :CallInterval, :SmsSignId, :SmsTemplateId
+        
+        def initialize(module=nil, operation=nil, botname=nil, flowid=nil, calltimecollection=nil, bancall=nil, starttimeban=nil, endtimeban=nil, phonecollection=nil, codetype=nil, codecollection=nil, callcount=nil, callinterval=nil, smssignid=nil, smstemplateid=nil)
+          @Module = module
+          @Operation = operation
+          @BotName = botname
+          @FlowId = flowid
+          @CallTimeCollection = calltimecollection
+          @BanCall = bancall
+          @StartTimeBan = starttimeban
+          @EndTimeBan = endtimeban
+          @PhoneCollection = phonecollection
+          @CodeType = codetype
+          @CodeCollection = codecollection
+          @CallCount = callcount
+          @CallInterval = callinterval
+          @SmsSignId = smssignid
+          @SmsTemplateId = smstemplateid
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @BotName = params['BotName']
+          @FlowId = params['FlowId']
+          unless params['CallTimeCollection'].nil?
+            @CallTimeCollection = CallTimeDict.new.deserialize(params[CallTimeCollection])
+          end
+          @BanCall = params['BanCall']
+          @StartTimeBan = params['StartTimeBan']
+          @EndTimeBan = params['EndTimeBan']
+          @PhoneCollection = params['PhoneCollection']
+          @CodeType = params['CodeType']
+          @CodeCollection = params['CodeCollection']
+          @CallCount = params['CallCount']
+          @CallInterval = params['CallInterval']
+          @SmsSignId = params['SmsSignId']
+          @SmsTemplateId = params['SmsTemplateId']
+        end
+      end
+
+      # CreateBotTask返回参数结构体
+      class CreateBotTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBotFlow请求参数结构体
+      class DescribeBotFlowRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名。默认值（固定）：AiApi
+        # @type Module: String
+        # @param Operation: 操作名。默认值（固定）：GetFlow
+        # @type Operation: String
+
+        attr_accessor :Module, :Operation
+        
+        def initialize(module=nil, operation=nil)
+          @Module = module
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+        end
+      end
+
+      # DescribeBotFlow返回参数结构体
+      class DescribeBotFlowResponse < TencentCloud::Common::AbstractModel
+        # @param BotFlowList: 机器人对话流列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotFlowList: Array
+        # @param SmsSignList: 短信签名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmsSignList: Array
+        # @param SmsTemplateList: 短信模板列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmsTemplateList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BotFlowList, :SmsSignList, :SmsTemplateList, :RequestId
+        
+        def initialize(botflowlist=nil, smssignlist=nil, smstemplatelist=nil, requestid=nil)
+          @BotFlowList = botflowlist
+          @SmsSignList = smssignlist
+          @SmsTemplateList = smstemplatelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BotFlowList = params['BotFlowList']
+          @SmsSignList = params['SmsSignList']
+          @SmsTemplateList = params['SmsTemplateList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCreditResult请求参数结构体
       class DescribeCreditResultRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，本接口取值：Credit
@@ -196,6 +479,58 @@ module TencentCloud
           @RingDuration = params['RingDuration']
           @AnswerDuration = params['AnswerDuration']
           @ContextValue = params['ContextValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFileModel请求参数结构体
+      class DescribeFileModelRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名。默认值（固定）：AiApi
+        # @type Module: String
+        # @param Operation: 操作名。默认值（固定）：DescribeFileModel
+        # @type Operation: String
+        # @param FileType: 模板文件类型，输入input，停拨stop
+        # @type FileType: String
+        # @param BotId: 任务ID，二者必填一个
+        # @type BotId: String
+        # @param BotName: 任务名称，二者必填一个
+        # @type BotName: String
+
+        attr_accessor :Module, :Operation, :FileType, :BotId, :BotName
+        
+        def initialize(module=nil, operation=nil, filetype=nil, botid=nil, botname=nil)
+          @Module = module
+          @Operation = operation
+          @FileType = filetype
+          @BotId = botid
+          @BotName = botname
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @FileType = params['FileType']
+          @BotId = params['BotId']
+          @BotName = params['BotName']
+        end
+      end
+
+      # DescribeFileModel返回参数结构体
+      class DescribeFileModelResponse < TencentCloud::Common::AbstractModel
+        # @param CosUrl: 模板下载链接
+        # @type CosUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosUrl, :RequestId
+        
+        def initialize(cosurl=nil, requestid=nil)
+          @CosUrl = cosurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CosUrl = params['CosUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -504,6 +839,153 @@ module TencentCloud
         end
       end
 
+      # ExportBotData请求参数结构体
+      class ExportBotDataRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名。默认值（固定）：AiApi
+        # @type Module: String
+        # @param Operation: 操作名。默认值（固定）：ExportBotData
+        # @type Operation: String
+        # @param BizDate: 业务日期。YYYY-MM-DD
+        # @type BizDate: String
+        # @param BotId: 任务ID，二者必填一个
+        # @type BotId: String
+        # @param BotName: 任务名称，二者必填一个
+        # @type BotName: String
+
+        attr_accessor :Module, :Operation, :BizDate, :BotId, :BotName
+        
+        def initialize(module=nil, operation=nil, bizdate=nil, botid=nil, botname=nil)
+          @Module = module
+          @Operation = operation
+          @BizDate = bizdate
+          @BotId = botid
+          @BotName = botname
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @BizDate = params['BizDate']
+          @BotId = params['BotId']
+          @BotName = params['BotName']
+        end
+      end
+
+      # ExportBotData返回参数结构体
+      class ExportBotDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 导出文件列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 号码组信息
+      class PhonePool < TencentCloud::Common::AbstractModel
+        # @param PoolId: 号码组ID
+        # @type PoolId: String
+        # @param PoolName: 号码组名称
+        # @type PoolName: String
+
+        attr_accessor :PoolId, :PoolName
+        
+        def initialize(poolid=nil, poolname=nil)
+          @PoolId = poolid
+          @PoolName = poolname
+        end
+
+        def deserialize(params)
+          @PoolId = params['PoolId']
+          @PoolName = params['PoolName']
+        end
+      end
+
+      # QueryProducts接口对应数据结构。产品对应的相关信息。
+      class ProductQueryInfo < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param ProductCode: 产品编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCode: String
+        # @param ProductStatus: 产品状态 0 禁用 1 启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductStatus: Integer
+        # @param SceneType: 场景类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneType: String
+
+        attr_accessor :ProductId, :ProductName, :ProductCode, :ProductStatus, :SceneType
+        
+        def initialize(productid=nil, productname=nil, productcode=nil, productstatus=nil, scenetype=nil)
+          @ProductId = productid
+          @ProductName = productname
+          @ProductCode = productcode
+          @ProductStatus = productstatus
+          @SceneType = scenetype
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ProductName = params['ProductName']
+          @ProductCode = params['ProductCode']
+          @ProductStatus = params['ProductStatus']
+          @SceneType = params['SceneType']
+        end
+      end
+
+      # QueryBotList请求参数结构体
+      class QueryBotListRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名：AiApi
+        # @type Module: String
+        # @param Operation: 操作名：QueryBotList
+        # @type Operation: String
+
+        attr_accessor :Module, :Operation
+        
+        def initialize(module=nil, operation=nil)
+          @Module = module
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+        end
+      end
+
+      # QueryBotList返回参数结构体
+      class QueryBotListResponse < TencentCloud::Common::AbstractModel
+        # @param BotList: 任务列表。
+        # @type BotList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BotList, :RequestId
+        
+        def initialize(botlist=nil, requestid=nil)
+          @BotList = botlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BotList = params['BotList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryInstantData请求参数结构体
       class QueryInstantDataRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，本接口取值：Data
@@ -563,6 +1045,166 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryProducts请求参数结构体
+      class QueryProductsRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名。默认值（固定）：Product
+        # @type Module: String
+        # @param Operation: 操作名。默认值（固定）：QueryProducts
+        # @type Operation: String
+        # @param InstanceId: 实例Id。
+        # @type InstanceId: String
+
+        attr_accessor :Module, :Operation, :InstanceId
+        
+        def initialize(module=nil, operation=nil, instanceid=nil)
+          @Module = module
+          @Operation = operation
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # QueryProducts返回参数结构体
+      class QueryProductsResponse < TencentCloud::Common::AbstractModel
+        # @param ProductList: 产品信息。
+        # @type ProductList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProductList, :RequestId
+        
+        def initialize(productlist=nil, requestid=nil)
+          @ProductList = productlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProductList = params['ProductList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryRecordList请求参数结构体
+      class QueryRecordListRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名。AiApi
+        # @type Module: String
+        # @param Operation: 操作名。QueryRecordList
+        # @type Operation: String
+        # @param Offset: 偏移值
+        # @type Offset: Integer
+        # @param Limit: 偏移位移，最大20
+        # @type Limit: Integer
+        # @param BotId: 任务ID，二者必填一个
+        # @type BotId: String
+        # @param BotName: 任务名称，二者必填一个
+        # @type BotName: String
+        # @param CalledPhone: 被叫号码
+        # @type CalledPhone: String
+        # @param StartBizDate: 开始日期
+        # @type StartBizDate: String
+        # @param EndBizDate: 结束日期
+        # @type EndBizDate: String
+
+        attr_accessor :Module, :Operation, :Offset, :Limit, :BotId, :BotName, :CalledPhone, :StartBizDate, :EndBizDate
+        
+        def initialize(module=nil, operation=nil, offset=nil, limit=nil, botid=nil, botname=nil, calledphone=nil, startbizdate=nil, endbizdate=nil)
+          @Module = module
+          @Operation = operation
+          @Offset = offset
+          @Limit = limit
+          @BotId = botid
+          @BotName = botname
+          @CalledPhone = calledphone
+          @StartBizDate = startbizdate
+          @EndBizDate = endbizdate
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @BotId = params['BotId']
+          @BotName = params['BotName']
+          @CalledPhone = params['CalledPhone']
+          @StartBizDate = params['StartBizDate']
+          @EndBizDate = params['EndBizDate']
+        end
+      end
+
+      # QueryRecordList返回参数结构体
+      class QueryRecordListResponse < TencentCloud::Common::AbstractModel
+        # @param RecordList: 录音列表。
+        # @type RecordList: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordList, :TotalCount, :RequestId
+        
+        def initialize(recordlist=nil, totalcount=nil, requestid=nil)
+          @RecordList = recordlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RecordList = params['RecordList']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 录音文件详情
+      class RecordInfo < TencentCloud::Common::AbstractModel
+        # @param BotId: 任务Id
+        # @type BotId: String
+        # @param BotName: 任务名称
+        # @type BotName: String
+        # @param BizDate: 任务日期
+        # @type BizDate: String
+        # @param CalledPhone: 被叫号码
+        # @type CalledPhone: String
+        # @param CallStartTime: 开始通话时间
+        # @type CallStartTime: String
+        # @param Duration: 通话时长
+        # @type Duration: Integer
+        # @param CosUrl: 录音文件地址
+        # @type CosUrl: String
+        # @param DialogueLog: 对话日志。JSON格式
+        # @type DialogueLog: String
+
+        attr_accessor :BotId, :BotName, :BizDate, :CalledPhone, :CallStartTime, :Duration, :CosUrl, :DialogueLog
+        
+        def initialize(botid=nil, botname=nil, bizdate=nil, calledphone=nil, callstarttime=nil, duration=nil, cosurl=nil, dialoguelog=nil)
+          @BotId = botid
+          @BotName = botname
+          @BizDate = bizdate
+          @CalledPhone = calledphone
+          @CallStartTime = callstarttime
+          @Duration = duration
+          @CosUrl = cosurl
+          @DialogueLog = dialoguelog
+        end
+
+        def deserialize(params)
+          @BotId = params['BotId']
+          @BotName = params['BotName']
+          @BizDate = params['BizDate']
+          @CalledPhone = params['CalledPhone']
+          @CallStartTime = params['CallStartTime']
+          @Duration = params['Duration']
+          @CosUrl = params['CosUrl']
+          @DialogueLog = params['DialogueLog']
         end
       end
 
@@ -641,6 +1283,150 @@ module TencentCloud
           @Duration = params['Duration']
           @ProductId = params['ProductId']
           @RecordCosUrl = params['RecordCosUrl']
+        end
+      end
+
+      # 短信签名信息
+      class SmsSign < TencentCloud::Common::AbstractModel
+        # @param SignId: 短信签名ID
+        # @type SignId: String
+        # @param SignName: 短信签名名称
+        # @type SignName: String
+
+        attr_accessor :SignId, :SignName
+        
+        def initialize(signid=nil, signname=nil)
+          @SignId = signid
+          @SignName = signname
+        end
+
+        def deserialize(params)
+          @SignId = params['SignId']
+          @SignName = params['SignName']
+        end
+      end
+
+      # 短信模板信息
+      class SmsTemplate < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 短信模板ID
+        # @type TemplateId: String
+        # @param TemplateName: 短信模板名称
+        # @type TemplateName: String
+
+        attr_accessor :TemplateId, :TemplateName
+        
+        def initialize(templateid=nil, templatename=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+        end
+      end
+
+      # UploadBotData请求参数结构体
+      class UploadBotDataRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名。默认值（固定）：AiApi
+        # @type Module: String
+        # @param Operation: 操作名。默认值（固定）：UploadData
+        # @type Operation: String
+        # @param Data: 任务数据。JSON格式
+        # @type Data: String
+        # @param BotId: 任务ID，二者必填一个
+        # @type BotId: String
+        # @param BotName: 任务名称，二者必填一个
+        # @type BotName: String
+
+        attr_accessor :Module, :Operation, :Data, :BotId, :BotName
+        
+        def initialize(module=nil, operation=nil, data=nil, botid=nil, botname=nil)
+          @Module = module
+          @Operation = operation
+          @Data = data
+          @BotId = botid
+          @BotName = botname
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @Data = params['Data']
+          @BotId = params['BotId']
+          @BotName = params['BotName']
+        end
+      end
+
+      # UploadBotData返回参数结构体
+      class UploadBotDataResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadBotFile请求参数结构体
+      class UploadBotFileRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块名。默认值（固定）：AiApi
+        # @type Module: String
+        # @param Operation: 操作名。默认值（固定）：Upload
+        # @type Operation: String
+        # @param FileType: 文件类型，输入input，停拨stop
+        # @type FileType: String
+        # @param FileUrl: 文件链接
+        # @type FileUrl: String
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param BotId: 任务ID，二者必填一个
+        # @type BotId: String
+        # @param BotName: 任务名称，二者必填一个
+        # @type BotName: String
+
+        attr_accessor :Module, :Operation, :FileType, :FileUrl, :FileName, :BotId, :BotName
+        
+        def initialize(module=nil, operation=nil, filetype=nil, fileurl=nil, filename=nil, botid=nil, botname=nil)
+          @Module = module
+          @Operation = operation
+          @FileType = filetype
+          @FileUrl = fileurl
+          @FileName = filename
+          @BotId = botid
+          @BotName = botname
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @FileType = params['FileType']
+          @FileUrl = params['FileUrl']
+          @FileName = params['FileName']
+          @BotId = params['BotId']
+          @BotName = params['BotName']
+        end
+      end
+
+      # UploadBotFile返回参数结构体
+      class UploadBotFileResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

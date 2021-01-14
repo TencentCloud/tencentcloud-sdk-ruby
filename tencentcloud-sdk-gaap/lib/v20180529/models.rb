@@ -143,17 +143,21 @@ module TencentCloud
         # @type BandwidthRange: Array
         # @param BandwidthUnitPrice: 在对应带宽范围内的单宽单价，单位：元/Mbps/天。
         # @type BandwidthUnitPrice: Float
+        # @param DiscountBandwidthUnitPrice: 带宽折扣价，单位：元/Mbps/天。
+        # @type DiscountBandwidthUnitPrice: Float
 
-        attr_accessor :BandwidthRange, :BandwidthUnitPrice
+        attr_accessor :BandwidthRange, :BandwidthUnitPrice, :DiscountBandwidthUnitPrice
         
-        def initialize(bandwidthrange=nil, bandwidthunitprice=nil)
+        def initialize(bandwidthrange=nil, bandwidthunitprice=nil, discountbandwidthunitprice=nil)
           @BandwidthRange = bandwidthrange
           @BandwidthUnitPrice = bandwidthunitprice
+          @DiscountBandwidthUnitPrice = discountbandwidthunitprice
         end
 
         def deserialize(params)
           @BandwidthRange = params['BandwidthRange']
           @BandwidthUnitPrice = params['BandwidthUnitPrice']
+          @DiscountBandwidthUnitPrice = params['DiscountBandwidthUnitPrice']
         end
       end
 
@@ -1282,10 +1286,12 @@ module TencentCloud
         # @type ConnectTimeout: Integer
         # @param RealServerPorts: 源站端口列表，该参数仅支持v1版本监听器和通道组监听器。
         # @type RealServerPorts: Array
+        # @param ClientIPMethod: 监听器获取客户端 IP 的方式，0表示 TOA, 1表示Proxy Protocol
+        # @type ClientIPMethod: Integer
 
-        attr_accessor :ListenerName, :Ports, :Scheduler, :HealthCheck, :RealServerType, :ProxyId, :GroupId, :DelayLoop, :ConnectTimeout, :RealServerPorts
+        attr_accessor :ListenerName, :Ports, :Scheduler, :HealthCheck, :RealServerType, :ProxyId, :GroupId, :DelayLoop, :ConnectTimeout, :RealServerPorts, :ClientIPMethod
         
-        def initialize(listenername=nil, ports=nil, scheduler=nil, healthcheck=nil, realservertype=nil, proxyid=nil, groupid=nil, delayloop=nil, connecttimeout=nil, realserverports=nil)
+        def initialize(listenername=nil, ports=nil, scheduler=nil, healthcheck=nil, realservertype=nil, proxyid=nil, groupid=nil, delayloop=nil, connecttimeout=nil, realserverports=nil, clientipmethod=nil)
           @ListenerName = listenername
           @Ports = ports
           @Scheduler = scheduler
@@ -1296,6 +1302,7 @@ module TencentCloud
           @DelayLoop = delayloop
           @ConnectTimeout = connecttimeout
           @RealServerPorts = realserverports
+          @ClientIPMethod = clientipmethod
         end
 
         def deserialize(params)
@@ -1309,6 +1316,7 @@ module TencentCloud
           @DelayLoop = params['DelayLoop']
           @ConnectTimeout = params['ConnectTimeout']
           @RealServerPorts = params['RealServerPorts']
+          @ClientIPMethod = params['ClientIPMethod']
         end
       end
 
@@ -2697,7 +2705,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间(2019-03-25 12:00:00)
         # @type EndTime: String
-        # @param MetricNames: 统计指标名称列表，支持: 入带宽:InBandwidth, 出带宽:OutBandwidth, 并发:Concurrent, 入包量:InPackets, 出包量:OutPackets, 丢包率:PacketLoss, 延迟:Latency
+        # @param MetricNames: 统计指标名称列表，支持: 入带宽:InBandwidth, 出带宽:OutBandwidth, 并发:Concurrent, 入包量:InPackets, 出包量:OutPackets, 丢包率:PacketLoss, 延迟:Latency，http请求量：HttpQPS, Https请求量：HttpsQPS
         # @type MetricNames: Array
         # @param Granularity: 监控粒度，目前支持60，300，3600，86400，单位：秒。
         # 当时间范围不超过3天，支持最小粒度60秒；
@@ -2750,44 +2758,60 @@ module TencentCloud
         # @type RealServerId: String
         # @param ListenerId: 监听器ID
         # @type ListenerId: String
+        # @param RuleId: L7层规则ID
+        # @type RuleId: String
         # @param WithinTime: 统计时长，单位：小时。仅支持最近1,3,6,12,24小时的统计查询
         # @type WithinTime: Integer
-        # @param RuleId: 规则ID
-        # @type RuleId: String
+        # @param StartTime: 统计开始时间(2020-08-19 00:00:00)
+        # @type StartTime: String
+        # @param EndTime: 统计结束时间(2020-08-19 23:59:59)
+        # @type EndTime: String
+        # @param Granularity: 统计的数据粒度，单位：秒，仅支持1分钟-60和5分钟-300粒度
+        # @type Granularity: Integer
 
-        attr_accessor :RealServerId, :ListenerId, :WithinTime, :RuleId
+        attr_accessor :RealServerId, :ListenerId, :RuleId, :WithinTime, :StartTime, :EndTime, :Granularity
         
-        def initialize(realserverid=nil, listenerid=nil, withintime=nil, ruleid=nil)
+        def initialize(realserverid=nil, listenerid=nil, ruleid=nil, withintime=nil, starttime=nil, endtime=nil, granularity=nil)
           @RealServerId = realserverid
           @ListenerId = listenerid
-          @WithinTime = withintime
           @RuleId = ruleid
+          @WithinTime = withintime
+          @StartTime = starttime
+          @EndTime = endtime
+          @Granularity = granularity
         end
 
         def deserialize(params)
           @RealServerId = params['RealServerId']
           @ListenerId = params['ListenerId']
-          @WithinTime = params['WithinTime']
           @RuleId = params['RuleId']
+          @WithinTime = params['WithinTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Granularity = params['Granularity']
         end
       end
 
       # DescribeRealServerStatistics返回参数结构体
       class DescribeRealServerStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param StatisticsData: 源站状态统计数据
+        # @param StatisticsData: 指定监听器的源站状态统计数据
         # @type StatisticsData: Array
+        # @param RsStatisticsData: 多个源站状态统计数据
+        # @type RsStatisticsData: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StatisticsData, :RequestId
+        attr_accessor :StatisticsData, :RsStatisticsData, :RequestId
         
-        def initialize(statisticsdata=nil, requestid=nil)
+        def initialize(statisticsdata=nil, rsstatisticsdata=nil, requestid=nil)
           @StatisticsData = statisticsdata
+          @RsStatisticsData = rsstatisticsdata
           @RequestId = requestid
         end
 
         def deserialize(params)
           @StatisticsData = params['StatisticsData']
+          @RsStatisticsData = params['RsStatisticsData']
           @RequestId = params['RequestId']
         end
       end
@@ -2994,15 +3018,23 @@ module TencentCloud
       class DescribeRuleRealServersRequest < TencentCloud::Common::AbstractModel
         # @param RuleId: 转发规则ID
         # @type RuleId: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为1000。
+        # @type Limit: Integer
 
-        attr_accessor :RuleId
+        attr_accessor :RuleId, :Offset, :Limit
         
-        def initialize(ruleid=nil)
+        def initialize(ruleid=nil, offset=nil, limit=nil)
           @RuleId = ruleid
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @RuleId = params['RuleId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -3560,10 +3592,16 @@ module TencentCloud
         # @param PolyRealServerCertificateAliasInfo: 多源站证书时，返回多个证书的id和别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolyRealServerCertificateAliasInfo: Array
+        # @param DomainStatus: 域名的状态。
+        # 0表示运行中，
+        # 1表示变更中，
+        # 2表示删除中。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainStatus: Integer
 
-        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo
+        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus
         
-        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil)
+        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil, domainstatus=nil)
           @Domain = domain
           @RuleSet = ruleset
           @CertificateId = certificateid
@@ -3582,6 +3620,7 @@ module TencentCloud
           @RealServerCertificateDomain = realservercertificatedomain
           @PolyClientCertificateAliasInfo = polyclientcertificatealiasinfo
           @PolyRealServerCertificateAliasInfo = polyrealservercertificatealiasinfo
+          @DomainStatus = domainstatus
         end
 
         def deserialize(params)
@@ -3603,6 +3642,7 @@ module TencentCloud
           @RealServerCertificateDomain = params['RealServerCertificateDomain']
           @PolyClientCertificateAliasInfo = params['PolyClientCertificateAliasInfo']
           @PolyRealServerCertificateAliasInfo = params['PolyRealServerCertificateAliasInfo']
+          @DomainStatus = params['DomainStatus']
         end
       end
 
@@ -4844,10 +4884,19 @@ module TencentCloud
         # @param TagSet: 标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagSet: Array
+        # @param PolicyId: 安全策略ID，当设置了安全策略时，存在该字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: String
+        # @param Version: 通道组版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param ClientIPMethod: 通道获取客户端IP的方式，0表示TOA，1表示Proxy Protocol
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIPMethod: Array
 
-        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet
+        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod
         
-        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil)
+        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil)
           @CreateTime = createtime
           @ProjectId = projectid
           @ProxyNum = proxynum
@@ -4861,6 +4910,9 @@ module TencentCloud
           @IsOldGroup = isoldgroup
           @GroupId = groupid
           @TagSet = tagset
+          @PolicyId = policyid
+          @Version = version
+          @ClientIPMethod = clientipmethod
         end
 
         def deserialize(params)
@@ -4879,6 +4931,9 @@ module TencentCloud
           @IsOldGroup = params['IsOldGroup']
           @GroupId = params['GroupId']
           @TagSet = params['TagSet']
+          @PolicyId = params['PolicyId']
+          @Version = params['Version']
+          @ClientIPMethod = params['ClientIPMethod']
         end
       end
 
@@ -4911,10 +4966,13 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
+        # @param ProxyType: 通道组是否包含微软通道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyType: Integer
 
-        attr_accessor :GroupId, :Domain, :GroupName, :ProjectId, :RealServerRegionInfo, :Status, :TagSet, :Version, :CreateTime
+        attr_accessor :GroupId, :Domain, :GroupName, :ProjectId, :RealServerRegionInfo, :Status, :TagSet, :Version, :CreateTime, :ProxyType
         
-        def initialize(groupid=nil, domain=nil, groupname=nil, projectid=nil, realserverregioninfo=nil, status=nil, tagset=nil, version=nil, createtime=nil)
+        def initialize(groupid=nil, domain=nil, groupname=nil, projectid=nil, realserverregioninfo=nil, status=nil, tagset=nil, version=nil, createtime=nil, proxytype=nil)
           @GroupId = groupid
           @Domain = domain
           @GroupName = groupname
@@ -4924,6 +4982,7 @@ module TencentCloud
           @TagSet = tagset
           @Version = version
           @CreateTime = createtime
+          @ProxyType = proxytype
         end
 
         def deserialize(params)
@@ -4938,6 +4997,7 @@ module TencentCloud
           @TagSet = params['TagSet']
           @Version = params['Version']
           @CreateTime = params['CreateTime']
+          @ProxyType = params['ProxyType']
         end
       end
 
@@ -5031,10 +5091,16 @@ module TencentCloud
         # @param ModifyConfigTime: 配置变更时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyConfigTime: Integer
+        # @param ProxyType: 通道类型，104表示新的银牌质量通道类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyType: Integer
+        # @param ClientIPMethod: 通道获取客户端IP的方式，0表示TOA，1表示Proxy Protocol
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIPMethod: Array
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod
         
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -5060,6 +5126,8 @@ module TencentCloud
           @BillingType = billingtype
           @RelatedGlobalDomains = relatedglobaldomains
           @ModifyConfigTime = modifyconfigtime
+          @ProxyType = proxytype
+          @ClientIPMethod = clientipmethod
         end
 
         def deserialize(params)
@@ -5092,6 +5160,8 @@ module TencentCloud
           @BillingType = params['BillingType']
           @RelatedGlobalDomains = params['RelatedGlobalDomains']
           @ModifyConfigTime = params['ModifyConfigTime']
+          @ProxyType = params['ProxyType']
+          @ClientIPMethod = params['ClientIPMethod']
         end
       end
 
@@ -5297,16 +5367,28 @@ module TencentCloud
         # @param Domain: 健康检查的检查域名。
         # 当调用ModifyRuleAttribute时，不支持修改该参数。
         # @type Domain: String
+        # @param FailedCountInter: 源站服务失败统计频率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedCountInter: Integer
+        # @param FailedThreshold: 源站健康性检查阀值，超过该阀值会屏蔽服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedThreshold: Integer
+        # @param BlockInter: 源站健康性检测超出阀值后，屏蔽的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockInter: Integer
 
-        attr_accessor :DelayLoop, :ConnectTimeout, :Path, :Method, :StatusCode, :Domain
+        attr_accessor :DelayLoop, :ConnectTimeout, :Path, :Method, :StatusCode, :Domain, :FailedCountInter, :FailedThreshold, :BlockInter
         
-        def initialize(delayloop=nil, connecttimeout=nil, path=nil, method=nil, statuscode=nil, domain=nil)
+        def initialize(delayloop=nil, connecttimeout=nil, path=nil, method=nil, statuscode=nil, domain=nil, failedcountinter=nil, failedthreshold=nil, blockinter=nil)
           @DelayLoop = delayloop
           @ConnectTimeout = connecttimeout
           @Path = path
           @Method = method
           @StatusCode = statuscode
           @Domain = domain
+          @FailedCountInter = failedcountinter
+          @FailedThreshold = failedthreshold
+          @BlockInter = blockinter
         end
 
         def deserialize(params)
@@ -5316,6 +5398,9 @@ module TencentCloud
           @Method = params['Method']
           @StatusCode = params['StatusCode']
           @Domain = params['Domain']
+          @FailedCountInter = params['FailedCountInter']
+          @FailedThreshold = params['FailedThreshold']
+          @BlockInter = params['BlockInter']
         end
       end
 
@@ -5605,10 +5690,13 @@ module TencentCloud
         # @type RealServerSet: Array
         # @param CreateTime: 监听器创建时间，Unix时间戳
         # @type CreateTime: Integer
+        # @param ClientIPMethod: 监听器获取客户端 IP 的方式，0表示TOA, 1表示Proxy Protocol
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIPMethod: Integer
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :ConnectTimeout, :DelayLoop, :HealthCheck, :BindStatus, :RealServerSet, :CreateTime
+        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :ConnectTimeout, :DelayLoop, :HealthCheck, :BindStatus, :RealServerSet, :CreateTime, :ClientIPMethod
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, connecttimeout=nil, delayloop=nil, healthcheck=nil, bindstatus=nil, realserverset=nil, createtime=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, connecttimeout=nil, delayloop=nil, healthcheck=nil, bindstatus=nil, realserverset=nil, createtime=nil, clientipmethod=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -5623,6 +5711,7 @@ module TencentCloud
           @BindStatus = bindstatus
           @RealServerSet = realserverset
           @CreateTime = createtime
+          @ClientIPMethod = clientipmethod
         end
 
         def deserialize(params)
@@ -5640,6 +5729,7 @@ module TencentCloud
           @BindStatus = params['BindStatus']
           @RealServerSet = params['RealServerSet']
           @CreateTime = params['CreateTime']
+          @ClientIPMethod = params['ClientIPMethod']
         end
       end
 

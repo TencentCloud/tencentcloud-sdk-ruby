@@ -147,6 +147,17 @@ module TencentCloud
         end
       end
 
+      # 接口入参
+      class InputRecognizeEffectiveFlow < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # 流量反欺诈-验准入参
       class InputRecognizeTargetAudience < TencentCloud::Common::AbstractModel
         # @param Uid: 设备ID，AccountType指定的类型
@@ -502,6 +513,57 @@ module TencentCloud
         end
       end
 
+      # 业务出参
+      class OutputRecognizeEffectiveFlow < TencentCloud::Common::AbstractModel
+        # @param Code: 返回码。0表示成功，非0标识失败错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: Integer
+        # @param Message: UTF-8编码，出错消息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Value: 业务入参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: :class:`Tencentcloud::Taf.v20200210.models.OutputRecognizeEffectiveFlowValue`
+
+        attr_accessor :Code, :Message, :Value
+        
+        def initialize(code=nil, message=nil, value=nil)
+          @Code = code
+          @Message = message
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          unless params['Value'].nil?
+            @Value = OutputRecognizeEffectiveFlowValue.new.deserialize(params[Value])
+          end
+        end
+      end
+
+      # 业务出参
+      class OutputRecognizeEffectiveFlowValue < TencentCloud::Common::AbstractModel
+        # @param Lable: 返回标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lable: String
+        # @param Score: 返回分值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Float
+
+        attr_accessor :Lable, :Score
+        
+        def initialize(lable=nil, score=nil)
+          @Lable = lable
+          @Score = score
+        end
+
+        def deserialize(params)
+          @Lable = params['Lable']
+          @Score = params['Score']
+        end
+      end
+
       # 流量反欺诈-验准返回值
       class OutputRecognizeTargetAudience < TencentCloud::Common::AbstractModel
         # @param Code: 返回码（0，成功，其他失败）
@@ -667,6 +729,46 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = OutputRecognizeTargetAudience.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecognizeEffectiveFlow请求参数结构体
+      class RecognizeEffectiveFlowRequest < TencentCloud::Common::AbstractModel
+        # @param BusinessSecurityData: 业务入参
+        # @type BusinessSecurityData: :class:`Tencentcloud::Taf.v20200210.models.InputRecognizeEffectiveFlow`
+
+        attr_accessor :BusinessSecurityData
+        
+        def initialize(businesssecuritydata=nil)
+          @BusinessSecurityData = businesssecuritydata
+        end
+
+        def deserialize(params)
+          unless params['BusinessSecurityData'].nil?
+            @BusinessSecurityData = InputRecognizeEffectiveFlow.new.deserialize(params[BusinessSecurityData])
+          end
+        end
+      end
+
+      # RecognizeEffectiveFlow返回参数结构体
+      class RecognizeEffectiveFlowResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务出参
+        # @type Data: :class:`Tencentcloud::Taf.v20200210.models.OutputRecognizeEffectiveFlow`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OutputRecognizeEffectiveFlow.new.deserialize(params[Data])
           end
           @RequestId = params['RequestId']
         end

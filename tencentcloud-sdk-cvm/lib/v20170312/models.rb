@@ -278,7 +278,7 @@ module TencentCloud
         # @param ForcePoweroff: 是否执行强制关机以制作镜像。
         # 取值范围：<br><li>TRUE：表示关机之后制作镜像<br><li>FALSE：表示开机状态制作镜像<br><br>默认取值：FALSE。<br><br>开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
         # @type ForcePoweroff: String
-        # @param Sysprep: 创建Windows镜像时是否启用Sysprep
+        # @param Sysprep: 创建Windows镜像时是否启用Sysprep，关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)
         # @type Sysprep: String
         # @param DataDiskIds: 基于实例创建整机镜像时，指定包含在镜像里的数据盘Id
         # @type DataDiskIds: Array
@@ -382,7 +382,7 @@ module TencentCloud
       class DataDisk < TencentCloud::Common::AbstractModel
         # @param DiskSize: 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
         # @type DiskSize: Integer
-        # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><br>默认取值：LOCAL_BASIC。<br><br>该参数对`ResizeInstanceDisk`接口无效。
+        # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><br>默认取值：LOCAL_BASIC。<br><br>该参数对`ResizeInstanceDisk`接口无效。
         # @type DiskType: String
         # @param DiskId: 数据盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID，暂时不支持该参数。
         # @type DiskId: String
@@ -1050,12 +1050,16 @@ module TencentCloud
         # <p style="padding-left: 30px;">按照【<strong>子网ID</strong>】进行过滤。子网ID形如：subnet-xxxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>instance-id</strong></li>
         # <p style="padding-left: 30px;">按照【<strong>实例ID</strong>】进行过滤。实例ID形如：ins-xxxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>uuid</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例UUID</strong>】进行过滤。实例UUID形如：xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>security-group-id</strong></li>
         # <p style="padding-left: 30px;">按照【<strong>安全组ID</strong>】进行过滤。安全组ID形如: sg-8jlk3f3r。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>instance-name</strong></li>
         # <p style="padding-left: 30px;">按照【<strong>实例名称</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>instance-charge-type</strong></li>
         # <p style="padding-left: 30px;">按照【<strong>实例计费模式</strong>】进行过滤。(PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费 | CDHPAID：表示[CDH](https://cloud.tencent.com/document/product/416)付费，即只对[CDH](https://cloud.tencent.com/document/product/416)计费，不对[CDH](https://cloud.tencent.com/document/product/416)上的实例计费。)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # <li><strong>instance-state</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>实例状态</strong>】进行过滤。状态类型详见[实例状态表](https://cloud.tencent.com/document/api/213/15753#InstanceStatus)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>private-ip-address</strong></li>
         # <p style="padding-left: 30px;">按照【<strong>实例主网卡的内网IP</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>public-ip-address</strong></li>
@@ -1282,6 +1286,59 @@ module TencentCloud
         end
       end
 
+      # DescribeReservedInstancesConfigInfos请求参数结构体
+      class DescribeReservedInstancesConfigInfosRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: zone
+        # 按照预留实例计费可购买的可用区进行过滤。形如：ap-guangzhou-1。
+        # 类型：String
+        # 必选：否
+        # 可选项：各地域可用区列表
+
+        # product-description
+        # 按照预留实例计费的平台描述（即操作系统）进行过滤。形如：linux。
+        # 类型：String
+        # 必选：否
+        # 可选项：linux
+
+        # duration
+        # 按照预留实例计费有效期，即预留实例计费购买时长进行过滤。形如：31536000。
+        # 类型：Integer
+        # 计量单位：秒
+        # 必选：否
+        # 可选项：31536000 (1年)
+        # @type Filters: Array
+
+        attr_accessor :Filters
+        
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribeReservedInstancesConfigInfos返回参数结构体
+      class DescribeReservedInstancesConfigInfosResponse < TencentCloud::Common::AbstractModel
+        # @param ReservedInstanceConfigInfos: 预留实例静态配置信息列表。
+        # @type ReservedInstanceConfigInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReservedInstanceConfigInfos, :RequestId
+        
+        def initialize(reservedinstanceconfiginfos=nil, requestid=nil)
+          @ReservedInstanceConfigInfos = reservedinstanceconfiginfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReservedInstanceConfigInfos = params['ReservedInstanceConfigInfos']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeReservedInstancesOfferings请求参数结构体
       class DescribeReservedInstancesOfferingsRequest < TencentCloud::Common::AbstractModel
         # @param DryRun: 试运行, 默认为 false。
@@ -1371,15 +1428,18 @@ module TencentCloud
         # <li><strong>duration</strong></li>
         # <p style="padding-left: 30px;">按照预留实例计费【<strong>有效期</strong>】即预留实例计费购买时长进行过滤。形如：31536000。</p><p style="padding-left: 30px;">类型：Integer</p><p style="padding-left: 30px;">计量单位：秒</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：31536000 (1年) | 94608000（3年）</p>
         # <li><strong>instance-type</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>预留实例计费类型</strong>】进行过滤。形如：S3.MEDIUM4。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例计费类型列表</a></p>
+        # <p style="padding-left: 30px;">按照【<strong>预留实例规格</strong>】进行过滤。形如：S3.MEDIUM4。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例规格列表</a></p>
+        # <li><strong>instance-family</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>预留实例类型</strong>】进行过滤。形如：S3。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例类型列表</a></p>
         # <li><strong>offering-type</strong></li>
-        # <p style="padding-left: 30px;">按照【<strong>付款类型</strong>】进行过滤。形如：All Upfront (预付全部费用)。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：All Upfront (预付全部费用)</p>
+        # <li><strong>offering-type</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>付款类型</strong>】进行过滤。形如：All Upfront (全预付)。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：All Upfront (全预付) | Partial Upfront (部分预付) | No Upfront (零预付)</p>
         # <li><strong>product-description</strong></li>
         # <p style="padding-left: 30px;">按照预留实例计费的【<strong>平台描述</strong>】（即操作系统）进行过滤。形如：linux。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：linux</p>
         # <li><strong>reserved-instances-id</strong></li>
         # <p style="padding-left: 30px;">按照已购买【<strong>预留实例计费ID</strong>】进行过滤。形如：650c138f-ae7e-4750-952a-96841d6e9fc1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         # <li><strong>state</strong></li>
-        # <p style="padding-left: 30px;">按照已购买【<strong>预留实例计费状态</strong>】进行过滤。形如：active。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：active (以创建) | pending (等待被创建) | retired (过期)</p>
+        # <p style="padding-left: 30px;">按照已购买【<strong>预留实例计费状态</strong>】进行过滤。形如：active。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：active (已创建) | pending (等待被创建) | retired (过期)</p>
         # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
         # @type Filters: Array
 
@@ -2024,6 +2084,60 @@ module TencentCloud
         end
       end
 
+      # InquirePricePurchaseReservedInstancesOffering请求参数结构体
+      class InquirePricePurchaseReservedInstancesOfferingRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceCount: 购买预留实例计费数量
+        # @type InstanceCount: Integer
+        # @param ReservedInstancesOfferingId: 预留实例计费配置ID
+        # @type ReservedInstancesOfferingId: String
+        # @param DryRun: 试运行
+        # @type DryRun: Boolean
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性
+        # @type ClientToken: String
+        # @param ReservedInstanceName: 预留实例显示名称。<br><li>不指定实例显示名称则默认显示‘未命名’。</li><li>最多支持60个字符（包含模式串）。</li>
+        # @type ReservedInstanceName: String
+
+        attr_accessor :InstanceCount, :ReservedInstancesOfferingId, :DryRun, :ClientToken, :ReservedInstanceName
+        
+        def initialize(instancecount=nil, reservedinstancesofferingid=nil, dryrun=nil, clienttoken=nil, reservedinstancename=nil)
+          @InstanceCount = instancecount
+          @ReservedInstancesOfferingId = reservedinstancesofferingid
+          @DryRun = dryrun
+          @ClientToken = clienttoken
+          @ReservedInstanceName = reservedinstancename
+        end
+
+        def deserialize(params)
+          @InstanceCount = params['InstanceCount']
+          @ReservedInstancesOfferingId = params['ReservedInstancesOfferingId']
+          @DryRun = params['DryRun']
+          @ClientToken = params['ClientToken']
+          @ReservedInstanceName = params['ReservedInstanceName']
+        end
+      end
+
+      # InquirePricePurchaseReservedInstancesOffering返回参数结构体
+      class InquirePricePurchaseReservedInstancesOfferingResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 该参数表示对应配置预留实例的价格。
+        # @type Price: :class:`Tencentcloud::Cvm.v20170312.models.ReservedInstancePrice`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+        
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = ReservedInstancePrice.new.deserialize(params[Price])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InquiryPriceModifyInstancesChargeType请求参数结构体
       class InquiryPriceModifyInstancesChargeTypeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
@@ -2362,10 +2476,12 @@ module TencentCloud
         # @type TagSpecification: Array
         # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数
         # @type InstanceMarketOptions: :class:`Tencentcloud::Cvm.v20170312.models.InstanceMarketOptionsRequest`
+        # @param HpcClusterId: 高性能计算集群ID。
+        # @type HpcClusterId: String
 
-        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions
+        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions, :HpcClusterId
         
-        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil)
+        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil, hpcclusterid=nil)
           @Placement = placement
           @ImageId = imageid
           @InstanceChargeType = instancechargetype
@@ -2384,6 +2500,7 @@ module TencentCloud
           @HostName = hostname
           @TagSpecification = tagspecification
           @InstanceMarketOptions = instancemarketoptions
+          @HpcClusterId = hpcclusterid
         end
 
         def deserialize(params)
@@ -2421,6 +2538,7 @@ module TencentCloud
           unless params['InstanceMarketOptions'].nil?
             @InstanceMarketOptions = InstanceMarketOptionsRequest.new.deserialize(params[InstanceMarketOptions])
           end
+          @HpcClusterId = params['HpcClusterId']
         end
       end
 
@@ -2519,10 +2637,16 @@ module TencentCloud
         # @param CamRoleName: CAM角色名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CamRoleName: String
+        # @param HpcClusterId: 高性能计算集群`ID`。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HpcClusterId: String
+        # @param RdmaIpAddresses: 高性能计算集群`IP`列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RdmaIpAddresses: Array
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses
         
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -2554,6 +2678,8 @@ module TencentCloud
           @DisasterRecoverGroupId = disasterrecovergroupid
           @IPv6Addresses = ipv6addresses
           @CamRoleName = camrolename
+          @HpcClusterId = hpcclusterid
+          @RdmaIpAddresses = rdmaipaddresses
         end
 
         def deserialize(params)
@@ -2598,6 +2724,8 @@ module TencentCloud
           @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
           @IPv6Addresses = params['IPv6Addresses']
           @CamRoleName = params['CamRoleName']
+          @HpcClusterId = params['HpcClusterId']
+          @RdmaIpAddresses = params['RdmaIpAddresses']
         end
       end
 
@@ -2910,7 +3038,7 @@ module TencentCloud
         # @param DiscountPrice: 预支合计费用的折扣价，预付费模式使用，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
-        # @param Discount: 折扣，如20.0代表2折
+        # @param Discount: 折扣，如20.0代表2折。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Discount: Float
         # @param UnitPriceDiscount: 后续合计费用的折扣价，后付费模式使用，单位：元<br><li>如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
@@ -2928,10 +3056,46 @@ module TencentCloud
         # @param UnitPriceDiscountThirdStep: 使用时间区间在(360, ∞)小时的后续合计费用的折扣价，后付费模式使用，单位：元
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscountThirdStep: Float
+        # @param OriginalPriceThreeYear: 预支三年合计费用的原价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceThreeYear: Float
+        # @param DiscountPriceThreeYear: 预支三年合计费用的折扣价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPriceThreeYear: Float
+        # @param DiscountThreeYear: 预支三年应用的折扣，如20.0代表2折。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountThreeYear: Float
+        # @param OriginalPriceFiveYear: 预支五年合计费用的原价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceFiveYear: Float
+        # @param DiscountPriceFiveYear: 预支五年合计费用的折扣价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPriceFiveYear: Float
+        # @param DiscountFiveYear: 预支五年应用的折扣，如20.0代表2折。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountFiveYear: Float
+        # @param OriginalPriceOneYear: 预支一年合计费用的原价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceOneYear: Float
+        # @param DiscountPriceOneYear: 预支一年合计费用的折扣价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPriceOneYear: Float
+        # @param DiscountOneYear: 预支一年应用的折扣，如20.0代表2折。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountOneYear: Float
 
-        attr_accessor :UnitPrice, :ChargeUnit, :OriginalPrice, :DiscountPrice, :Discount, :UnitPriceDiscount, :UnitPriceSecondStep, :UnitPriceDiscountSecondStep, :UnitPriceThirdStep, :UnitPriceDiscountThirdStep
+        attr_accessor :UnitPrice, :ChargeUnit, :OriginalPrice, :DiscountPrice, :Discount, :UnitPriceDiscount, :UnitPriceSecondStep, :UnitPriceDiscountSecondStep, :UnitPriceThirdStep, :UnitPriceDiscountThirdStep, :OriginalPriceThreeYear, :DiscountPriceThreeYear, :DiscountThreeYear, :OriginalPriceFiveYear, :DiscountPriceFiveYear, :DiscountFiveYear, :OriginalPriceOneYear, :DiscountPriceOneYear, :DiscountOneYear
         
-        def initialize(unitprice=nil, chargeunit=nil, originalprice=nil, discountprice=nil, discount=nil, unitpricediscount=nil, unitpricesecondstep=nil, unitpricediscountsecondstep=nil, unitpricethirdstep=nil, unitpricediscountthirdstep=nil)
+        def initialize(unitprice=nil, chargeunit=nil, originalprice=nil, discountprice=nil, discount=nil, unitpricediscount=nil, unitpricesecondstep=nil, unitpricediscountsecondstep=nil, unitpricethirdstep=nil, unitpricediscountthirdstep=nil, originalpricethreeyear=nil, discountpricethreeyear=nil, discountthreeyear=nil, originalpricefiveyear=nil, discountpricefiveyear=nil, discountfiveyear=nil, originalpriceoneyear=nil, discountpriceoneyear=nil, discountoneyear=nil)
           @UnitPrice = unitprice
           @ChargeUnit = chargeunit
           @OriginalPrice = originalprice
@@ -2942,6 +3106,15 @@ module TencentCloud
           @UnitPriceDiscountSecondStep = unitpricediscountsecondstep
           @UnitPriceThirdStep = unitpricethirdstep
           @UnitPriceDiscountThirdStep = unitpricediscountthirdstep
+          @OriginalPriceThreeYear = originalpricethreeyear
+          @DiscountPriceThreeYear = discountpricethreeyear
+          @DiscountThreeYear = discountthreeyear
+          @OriginalPriceFiveYear = originalpricefiveyear
+          @DiscountPriceFiveYear = discountpricefiveyear
+          @DiscountFiveYear = discountfiveyear
+          @OriginalPriceOneYear = originalpriceoneyear
+          @DiscountPriceOneYear = discountpriceoneyear
+          @DiscountOneYear = discountoneyear
         end
 
         def deserialize(params)
@@ -2955,6 +3128,15 @@ module TencentCloud
           @UnitPriceDiscountSecondStep = params['UnitPriceDiscountSecondStep']
           @UnitPriceThirdStep = params['UnitPriceThirdStep']
           @UnitPriceDiscountThirdStep = params['UnitPriceDiscountThirdStep']
+          @OriginalPriceThreeYear = params['OriginalPriceThreeYear']
+          @DiscountPriceThreeYear = params['DiscountPriceThreeYear']
+          @DiscountThreeYear = params['DiscountThreeYear']
+          @OriginalPriceFiveYear = params['OriginalPriceFiveYear']
+          @DiscountPriceFiveYear = params['DiscountPriceFiveYear']
+          @DiscountFiveYear = params['DiscountFiveYear']
+          @OriginalPriceOneYear = params['OriginalPriceOneYear']
+          @DiscountPriceOneYear = params['DiscountPriceOneYear']
+          @DiscountOneYear = params['DiscountOneYear']
         end
       end
 
@@ -3515,7 +3697,7 @@ module TencentCloud
 
       # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅CDH产品可用），母机ip等
       class Placement < TencentCloud::Common::AbstractModel
-        # @param Zone: 实例所属的[可用区](https://cloud.tencent.com/document/product/213/15753#ZoneInfo)ID。该参数也可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
+        # @param Zone: 实例所属的可用区ID。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
         # @type Zone: String
         # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](/document/api/378/4400) 的返回值中的 projectId 字段来获取。不填为默认项目。
         # @type ProjectId: Integer
@@ -3579,14 +3761,17 @@ module TencentCloud
         # @type DryRun: Boolean
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性
         # @type ClientToken: String
+        # @param ReservedInstanceName: 预留实例显示名称。<br><li>不指定实例显示名称则默认显示‘未命名’。</li><li>最多支持60个字符（包含模式串）。</li>
+        # @type ReservedInstanceName: String
 
-        attr_accessor :InstanceCount, :ReservedInstancesOfferingId, :DryRun, :ClientToken
+        attr_accessor :InstanceCount, :ReservedInstancesOfferingId, :DryRun, :ClientToken, :ReservedInstanceName
         
-        def initialize(instancecount=nil, reservedinstancesofferingid=nil, dryrun=nil, clienttoken=nil)
+        def initialize(instancecount=nil, reservedinstancesofferingid=nil, dryrun=nil, clienttoken=nil, reservedinstancename=nil)
           @InstanceCount = instancecount
           @ReservedInstancesOfferingId = reservedinstancesofferingid
           @DryRun = dryrun
           @ClientToken = clienttoken
+          @ReservedInstanceName = reservedinstancename
         end
 
         def deserialize(params)
@@ -3594,6 +3779,7 @@ module TencentCloud
           @ReservedInstancesOfferingId = params['ReservedInstancesOfferingId']
           @DryRun = params['DryRun']
           @ClientToken = params['ClientToken']
+          @ReservedInstanceName = params['ReservedInstanceName']
         end
       end
 
@@ -3761,12 +3947,204 @@ module TencentCloud
         end
       end
 
+      # 预留实例静态配置信息。预留实例当前只针对国际站白名单用户开放。
+      class ReservedInstanceConfigInfoItem < TencentCloud::Common::AbstractModel
+        # @param Type: 实例规格。
+        # @type Type: String
+        # @param TypeName: 实例规格名称。
+        # @type TypeName: String
+        # @param Order: 优先级。
+        # @type Order: Integer
+        # @param InstanceFamilies: 实例族信息列表。
+        # @type InstanceFamilies: Array
+
+        attr_accessor :Type, :TypeName, :Order, :InstanceFamilies
+        
+        def initialize(type=nil, typename=nil, order=nil, instancefamilies=nil)
+          @Type = type
+          @TypeName = typename
+          @Order = order
+          @InstanceFamilies = instancefamilies
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TypeName = params['TypeName']
+          @Order = params['Order']
+          @InstanceFamilies = params['InstanceFamilies']
+        end
+      end
+
+      # 预留实例相关实例族信息。预留实例当前只针对国际站白名单用户开放。
+      class ReservedInstanceFamilyItem < TencentCloud::Common::AbstractModel
+        # @param InstanceFamily: 实例族。
+        # @type InstanceFamily: String
+        # @param Order: 优先级。
+        # @type Order: Integer
+        # @param InstanceTypes: 实例类型信息列表。
+        # @type InstanceTypes: Array
+
+        attr_accessor :InstanceFamily, :Order, :InstanceTypes
+        
+        def initialize(instancefamily=nil, order=nil, instancetypes=nil)
+          @InstanceFamily = instancefamily
+          @Order = order
+          @InstanceTypes = instancetypes
+        end
+
+        def deserialize(params)
+          @InstanceFamily = params['InstanceFamily']
+          @Order = params['Order']
+          @InstanceTypes = params['InstanceTypes']
+        end
+      end
+
+      # 预留实例相关价格信息。预留实例当前只针对国际站白名单用户开放。
+      class ReservedInstancePrice < TencentCloud::Common::AbstractModel
+        # @param OriginalFixedPrice: 预支合计费用的原价，单位：元。
+        # @type OriginalFixedPrice: Float
+        # @param DiscountFixedPrice: 预支合计费用的折扣价，单位：元。
+        # @type DiscountFixedPrice: Float
+        # @param OriginalUsagePrice: 后续合计费用的原价，单位：元/小时
+        # @type OriginalUsagePrice: Float
+        # @param DiscountUsagePrice: 后续合计费用的折扣价，单位：元/小时
+        # @type DiscountUsagePrice: Float
+
+        attr_accessor :OriginalFixedPrice, :DiscountFixedPrice, :OriginalUsagePrice, :DiscountUsagePrice
+        
+        def initialize(originalfixedprice=nil, discountfixedprice=nil, originalusageprice=nil, discountusageprice=nil)
+          @OriginalFixedPrice = originalfixedprice
+          @DiscountFixedPrice = discountfixedprice
+          @OriginalUsagePrice = originalusageprice
+          @DiscountUsagePrice = discountusageprice
+        end
+
+        def deserialize(params)
+          @OriginalFixedPrice = params['OriginalFixedPrice']
+          @DiscountFixedPrice = params['DiscountFixedPrice']
+          @OriginalUsagePrice = params['OriginalUsagePrice']
+          @DiscountUsagePrice = params['DiscountUsagePrice']
+        end
+      end
+
+      # 基于付费类型的预留实例相关价格信息。预留实例当前只针对国际站白名单用户开放。
+      class ReservedInstancePriceItem < TencentCloud::Common::AbstractModel
+        # @param OfferingType: 付费类型，如："All Upfront","Partial Upfront","No Upfront"
+        # @type OfferingType: String
+        # @param FixedPrice: 预支合计费用，单位：元。
+        # @type FixedPrice: Float
+        # @param UsagePrice: 后续合计费用，单位：元/小时
+        # @type UsagePrice: Float
+        # @param ReservedInstancesOfferingId: 预留实例配置ID
+        # @type ReservedInstancesOfferingId: String
+        # @param Zone: 预留实例计费可购买的可用区。
+        # @type Zone: String
+        # @param Duration: 预留实例计费【有效期】即预留实例计费购买时长。形如：31536000。
+        # 计量单位：秒
+        # @type Duration: Integer
+        # @param ProductDescription: 预留实例计费的平台描述（即操作系统）。形如：linux。
+        # 返回项： linux 。
+        # @type ProductDescription: String
+
+        attr_accessor :OfferingType, :FixedPrice, :UsagePrice, :ReservedInstancesOfferingId, :Zone, :Duration, :ProductDescription
+        
+        def initialize(offeringtype=nil, fixedprice=nil, usageprice=nil, reservedinstancesofferingid=nil, zone=nil, duration=nil, productdescription=nil)
+          @OfferingType = offeringtype
+          @FixedPrice = fixedprice
+          @UsagePrice = usageprice
+          @ReservedInstancesOfferingId = reservedinstancesofferingid
+          @Zone = zone
+          @Duration = duration
+          @ProductDescription = productdescription
+        end
+
+        def deserialize(params)
+          @OfferingType = params['OfferingType']
+          @FixedPrice = params['FixedPrice']
+          @UsagePrice = params['UsagePrice']
+          @ReservedInstancesOfferingId = params['ReservedInstancesOfferingId']
+          @Zone = params['Zone']
+          @Duration = params['Duration']
+          @ProductDescription = params['ProductDescription']
+        end
+      end
+
+      # 预留实例类型信息。预留实例当前只针对国际站白名单用户开放。
+      class ReservedInstanceTypeItem < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型。
+        # @type InstanceType: String
+        # @param Cpu: CPU核数。
+        # @type Cpu: Integer
+        # @param Memory: 内存大小。
+        # @type Memory: Integer
+        # @param Gpu: GPU数量。
+        # @type Gpu: Integer
+        # @param Fpga: FPGA数量。
+        # @type Fpga: Integer
+        # @param StorageBlock: 本地存储块数量。
+        # @type StorageBlock: Integer
+        # @param NetworkCard: 网卡数。
+        # @type NetworkCard: Integer
+        # @param MaxBandwidth: 最大带宽。
+        # @type MaxBandwidth: Float
+        # @param Frequency: 主频。
+        # @type Frequency: String
+        # @param CpuModelName: CPU型号名称。
+        # @type CpuModelName: String
+        # @param Pps: 包转发率。
+        # @type Pps: Integer
+        # @param Externals: 外部信息。
+        # @type Externals: :class:`Tencentcloud::Cvm.v20170312.models.Externals`
+        # @param Remark: 备注信息。
+        # @type Remark: String
+        # @param Prices: 预留实例配置价格信息。
+        # @type Prices: Array
+
+        attr_accessor :InstanceType, :Cpu, :Memory, :Gpu, :Fpga, :StorageBlock, :NetworkCard, :MaxBandwidth, :Frequency, :CpuModelName, :Pps, :Externals, :Remark, :Prices
+        
+        def initialize(instancetype=nil, cpu=nil, memory=nil, gpu=nil, fpga=nil, storageblock=nil, networkcard=nil, maxbandwidth=nil, frequency=nil, cpumodelname=nil, pps=nil, externals=nil, remark=nil, prices=nil)
+          @InstanceType = instancetype
+          @Cpu = cpu
+          @Memory = memory
+          @Gpu = gpu
+          @Fpga = fpga
+          @StorageBlock = storageblock
+          @NetworkCard = networkcard
+          @MaxBandwidth = maxbandwidth
+          @Frequency = frequency
+          @CpuModelName = cpumodelname
+          @Pps = pps
+          @Externals = externals
+          @Remark = remark
+          @Prices = prices
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Gpu = params['Gpu']
+          @Fpga = params['Fpga']
+          @StorageBlock = params['StorageBlock']
+          @NetworkCard = params['NetworkCard']
+          @MaxBandwidth = params['MaxBandwidth']
+          @Frequency = params['Frequency']
+          @CpuModelName = params['CpuModelName']
+          @Pps = params['Pps']
+          unless params['Externals'].nil?
+            @Externals = Externals.new.deserialize(params[Externals])
+          end
+          @Remark = params['Remark']
+          @Prices = params['Prices']
+        end
+      end
+
       # 描述用户已购买预留实例计费信息
       class ReservedInstances < TencentCloud::Common::AbstractModel
         # @param ReservedInstancesId: 已购买的预留实例计费ID。形如：650c138f-ae7e-4750-952a-96841d6e9fc1。
         # @type ReservedInstancesId: String
-        # @param InstanceType: 预留实例计费的类型。形如：S3.MEDIUM4。
-        # 返回项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例计费类型列表</a>
+        # @param InstanceType: 预留实例计费的规格。形如：S3.MEDIUM4。
+        # 返回项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例计费规格列表</a>
         # @type InstanceType: String
         # @param Zone: 预留实例计费可购买的可用区。形如：ap-guangzhou-1。
         # 返回项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a>
@@ -3792,10 +4170,13 @@ module TencentCloud
         # @param OfferingType: 预留实例计费的付款类型。形如：All Upfront。
         # 返回项： All Upfront (预付全部费用)。
         # @type OfferingType: String
+        # @param InstanceFamily: 预留实例计费的类型。形如：S3。
+        # 返回项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例计费类型列表</a>
+        # @type InstanceFamily: String
 
-        attr_accessor :ReservedInstancesId, :InstanceType, :Zone, :StartTime, :EndTime, :Duration, :InstanceCount, :ProductDescription, :State, :CurrencyCode, :OfferingType
+        attr_accessor :ReservedInstancesId, :InstanceType, :Zone, :StartTime, :EndTime, :Duration, :InstanceCount, :ProductDescription, :State, :CurrencyCode, :OfferingType, :InstanceFamily
         
-        def initialize(reservedinstancesid=nil, instancetype=nil, zone=nil, starttime=nil, endtime=nil, duration=nil, instancecount=nil, productdescription=nil, state=nil, currencycode=nil, offeringtype=nil)
+        def initialize(reservedinstancesid=nil, instancetype=nil, zone=nil, starttime=nil, endtime=nil, duration=nil, instancecount=nil, productdescription=nil, state=nil, currencycode=nil, offeringtype=nil, instancefamily=nil)
           @ReservedInstancesId = reservedinstancesid
           @InstanceType = instancetype
           @Zone = zone
@@ -3807,6 +4188,7 @@ module TencentCloud
           @State = state
           @CurrencyCode = currencycode
           @OfferingType = offeringtype
+          @InstanceFamily = instancefamily
         end
 
         def deserialize(params)
@@ -3821,6 +4203,7 @@ module TencentCloud
           @State = params['State']
           @CurrencyCode = params['CurrencyCode']
           @OfferingType = params['OfferingType']
+          @InstanceFamily = params['InstanceFamily']
         end
       end
 
@@ -4114,22 +4497,22 @@ module TencentCloud
 
       # RunInstances请求参数结构体
       class RunInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目，所属宿主机（在专用宿主机上创建子机时指定）等属性。
-        # @type Placement: :class:`Tencentcloud::Cvm.v20170312.models.Placement`
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，传入InstanceType获取当前机型支持的镜像列表，取返回信息中的`ImageId`字段。</li>
-        # @type ImageId: String
         # @param InstanceChargeType: 实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>CDHPAID：独享子机（基于专用宿主机创建，宿主机部分的资源不收费）<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
         # @type InstanceChargeType: String
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Cvm.v20170312.models.InstanceChargePrepaid`
+        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目，所属宿主机（在专用宿主机上创建子机时指定）等属性。
+        # @type Placement: :class:`Tencentcloud::Cvm.v20170312.models.Placement`
         # @param InstanceType: 实例机型。不同实例机型指定了不同的资源规格。
-        # <br><li>对于付费模式为PREPAID或POSTPAID\_BY\_HOUR的实例创建，具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。若不指定该参数，则默认机型为S1.SMALL1。<br><li>对于付费模式为CDHPAID的实例创建，该参数以"CDH_"为前缀，根据CPU和内存配置生成，具体形式为：CDH_XCXG，例如对于创建CPU为1核，内存为1G大小的专用宿主机的实例，该参数应该为CDH_1C1G。
+        # <br><li>对于付费模式为PREPAID或POSTPAID\_BY\_HOUR的实例创建，具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。若不指定该参数，则系统将根据当前地域的资源售卖情况动态指定默认机型。<br><li>对于付费模式为CDHPAID的实例创建，该参数以"CDH_"为前缀，根据CPU和内存配置生成，具体形式为：CDH_XCXG，例如对于创建CPU为1核，内存为1G大小的专用宿主机的实例，该参数应该为CDH_1C1G。
         # @type InstanceType: String
+        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，传入InstanceType获取当前机型支持的镜像列表，取返回信息中的`ImageId`字段。</li>
+        # @type ImageId: String
         # @param SystemDisk: 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
         # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
         # @param DataDisks: 实例数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
         # @type DataDisks: Array
-        # @param VirtualPrivateCloud: 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。若不指定该参数，则默认使用基础网络。若在此参数中指定了私有网络IP，表示每个实例的主网卡IP，而且InstanceCount参数必须与私有网络IP的个数一致。
+        # @param VirtualPrivateCloud: 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。若不指定该参数，则默认使用基础网络。若在此参数中指定了私有网络IP，即表示每个实例的主网卡IP；同时，InstanceCount参数必须与私有网络IP的个数一致且不能大于20。
         # @type VirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
         # @param InternetAccessible: 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         # @type InternetAccessible: :class:`Tencentcloud::Cvm.v20170312.models.InternetAccessible`
@@ -4163,15 +4546,19 @@ module TencentCloud
         # 如果检查通过，则返回RequestId.
         # false（默认）：发送正常请求，通过检查后直接创建实例
         # @type DryRun: Boolean
+        # @param CamRoleName: CAM角色名称。可通过[`DescribeRoleList`](https://cloud.tencent.com/document/product/598/13887)接口返回值中的`roleName`获取。
+        # @type CamRoleName: String
+        # @param HpcClusterId: 高性能计算集群ID。若创建的实例为高性能计算实例，需指定实例放置的集群，否则不可指定。
+        # @type HpcClusterId: String
 
-        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :Placement, :InstanceType, :ImageId, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :ActionTimer, :DisasterRecoverGroupIds, :TagSpecification, :InstanceMarketOptions, :UserData, :DryRun, :CamRoleName, :HpcClusterId
         
-        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil)
-          @Placement = placement
-          @ImageId = imageid
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, placement=nil, instancetype=nil, imageid=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, actiontimer=nil, disasterrecovergroupids=nil, tagspecification=nil, instancemarketoptions=nil, userdata=nil, dryrun=nil, camrolename=nil, hpcclusterid=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
+          @Placement = placement
           @InstanceType = instancetype
+          @ImageId = imageid
           @SystemDisk = systemdisk
           @DataDisks = datadisks
           @VirtualPrivateCloud = virtualprivatecloud
@@ -4189,18 +4576,20 @@ module TencentCloud
           @InstanceMarketOptions = instancemarketoptions
           @UserData = userdata
           @DryRun = dryrun
+          @CamRoleName = camrolename
+          @HpcClusterId = hpcclusterid
         end
 
         def deserialize(params)
-          unless params['Placement'].nil?
-            @Placement = Placement.new.deserialize(params[Placement])
-          end
-          @ImageId = params['ImageId']
           @InstanceChargeType = params['InstanceChargeType']
           unless params['InstanceChargePrepaid'].nil?
             @InstanceChargePrepaid = InstanceChargePrepaid.new.deserialize(params[InstanceChargePrepaid])
           end
+          unless params['Placement'].nil?
+            @Placement = Placement.new.deserialize(params[Placement])
+          end
           @InstanceType = params['InstanceType']
+          @ImageId = params['ImageId']
           unless params['SystemDisk'].nil?
             @SystemDisk = SystemDisk.new.deserialize(params[SystemDisk])
           end
@@ -4232,6 +4621,8 @@ module TencentCloud
           end
           @UserData = params['UserData']
           @DryRun = params['DryRun']
+          @CamRoleName = params['CamRoleName']
+          @HpcClusterId = params['HpcClusterId']
         end
       end
 
@@ -4496,7 +4887,7 @@ module TencentCloud
 
       # 描述了操作系统所在块设备即系统盘的信息
       class SystemDisk < TencentCloud::Common::AbstractModel
-        # @param DiskType: 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><br>默认取值：CLOUD_BASIC。
+        # @param DiskType: 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><br>默认取值：当前有库存的硬盘类型。
         # @type DiskType: String
         # @param DiskId: 系统盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID。暂时不支持该参数。
         # @type DiskId: String
@@ -4540,7 +4931,7 @@ module TencentCloud
 
       # 创建资源实例时同时绑定的标签对说明
       class TagSpecification < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 标签绑定的资源类型，当前支持类型："instance"和"host"
+        # @param ResourceType: 标签绑定的资源类型，云服务器为“instance”，专用宿主机为“host”
         # @type ResourceType: String
         # @param Tags: 标签对列表
         # @type Tags: Array
@@ -4628,6 +5019,7 @@ module TencentCloud
         # 全网可用区名称如下：
         # <li> ap-chongqing-1 </li>
         # <li> ap-seoul-1 </li>
+        # <li> ap-seoul-2 </li>
         # <li> ap-chengdu-1 </li>
         # <li> ap-chengdu-2 </li>
         # <li> ap-hongkong-1 </li>
@@ -4639,8 +5031,10 @@ module TencentCloud
         # <li> ap-guangzhou-2（售罄）</li>
         # <li> ap-guangzhou-3 </li>
         # <li> ap-guangzhou-4 </li>
+        # <li> ap-guangzhou-6 </li>
         # <li> ap-tokyo-1 </li>
         # <li> ap-singapore-1 </li>
+        # <li> ap-singapore-2 </li>
         # <li> ap-shanghai-fsi-1 </li>
         # <li> ap-shanghai-fsi-2 </li>
         # <li> ap-shanghai-fsi-3 </li>
@@ -4649,6 +5043,7 @@ module TencentCloud
         # <li> ap-shanghai-2 </li>
         # <li> ap-shanghai-3 </li>
         # <li> ap-shanghai-4 </li>
+        # <li> ap-shanghai-5 </li>
         # <li> ap-mumbai-1 </li>
         # <li> ap-mumbai-2 </li>
         # <li> eu-moscow-1 </li>
@@ -4656,6 +5051,7 @@ module TencentCloud
         # <li> ap-beijing-2 </li>
         # <li> ap-beijing-3 </li>
         # <li> ap-beijing-4 </li>
+        # <li> ap-beijing-5 </li>
         # <li> na-siliconvalley-1 </li>
         # <li> na-siliconvalley-2 </li>
         # <li> eu-frankfurt-1 </li>

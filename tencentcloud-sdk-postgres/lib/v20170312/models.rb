@@ -163,10 +163,12 @@ module TencentCloud
         # @type Name: String
         # @param NeedSupportIpv6: 是否需要支持Ipv6，1：是，0：否
         # @type NeedSupportIpv6: Integer
+        # @param TagList: 实例需要绑定的Tag信息，默认为空
+        # @type TagList: Array
 
-        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :Zone, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6
+        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :Zone, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList
         
-        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, zone=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil)
+        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, zone=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil)
           @SpecCode = speccode
           @DBVersion = dbversion
           @Storage = storage
@@ -183,6 +185,7 @@ module TencentCloud
           @ActivityId = activityid
           @Name = name
           @NeedSupportIpv6 = needsupportipv6
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -202,6 +205,7 @@ module TencentCloud
           @ActivityId = params['ActivityId']
           @Name = params['Name']
           @NeedSupportIpv6 = params['NeedSupportIpv6']
+          @TagList = params['TagList']
         end
       end
 
@@ -249,10 +253,12 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 私有网络子网ID。
         # @type SubnetId: String
+        # @param TagList: 实例需要绑定的标签数组信息
+        # @type TagList: Array
 
-        attr_accessor :Zone, :DBInstanceName, :DBVersion, :DBCharset, :ProjectId, :VpcId, :SubnetId
+        attr_accessor :Zone, :DBInstanceName, :DBVersion, :DBCharset, :ProjectId, :VpcId, :SubnetId, :TagList
         
-        def initialize(zone=nil, dbinstancename=nil, dbversion=nil, dbcharset=nil, projectid=nil, vpcid=nil, subnetid=nil)
+        def initialize(zone=nil, dbinstancename=nil, dbversion=nil, dbcharset=nil, projectid=nil, vpcid=nil, subnetid=nil, taglist=nil)
           @Zone = zone
           @DBInstanceName = dbinstancename
           @DBVersion = dbversion
@@ -260,6 +266,7 @@ module TencentCloud
           @ProjectId = projectid
           @VpcId = vpcid
           @SubnetId = subnetid
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -270,6 +277,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @TagList = params['TagList']
         end
       end
 
@@ -405,10 +413,22 @@ module TencentCloud
         # @type Uid: Integer
         # @param SupportIpv6: 实例是否支持Ipv6，1：支持，0：不支持
         # @type SupportIpv6: Integer
+        # @param TagList: 实例绑定的标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+        # @param MasterDBInstanceId: 主实例信息，仅在实例为只读实例时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterDBInstanceId: String
+        # @param ReadOnlyInstanceNum: 只读实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadOnlyInstanceNum: Integer
+        # @param StatusInReadonlyGroup: 只读实例在只读组中的状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusInReadonlyGroup: String
 
-        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6
+        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup
         
-        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil)
+        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil)
           @Region = region
           @Zone = zone
           @ProjectId = projectid
@@ -436,6 +456,10 @@ module TencentCloud
           @AppId = appid
           @Uid = uid
           @SupportIpv6 = supportipv6
+          @TagList = taglist
+          @MasterDBInstanceId = masterdbinstanceid
+          @ReadOnlyInstanceNum = readonlyinstancenum
+          @StatusInReadonlyGroup = statusinreadonlygroup
         end
 
         def deserialize(params)
@@ -466,6 +490,10 @@ module TencentCloud
           @AppId = params['AppId']
           @Uid = params['Uid']
           @SupportIpv6 = params['SupportIpv6']
+          @TagList = params['TagList']
+          @MasterDBInstanceId = params['MasterDBInstanceId']
+          @ReadOnlyInstanceNum = params['ReadOnlyInstanceNum']
+          @StatusInReadonlyGroup = params['StatusInReadonlyGroup']
         end
       end
 
@@ -757,7 +785,7 @@ module TencentCloud
 
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件，目前支持：db-instance-id、db-instance-name、db-project-id、db-pay-mode。
+        # @param Filters: 过滤条件，目前支持：db-instance-id、db-instance-name、db-project-id、db-pay-mode、db-tag-key。
         # @type Filters: Array
         # @param Limit: 每页显示数量，默认返回10条。
         # @type Limit: Integer
@@ -1092,19 +1120,27 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer
+        # @param OrderBy: 排序指标，目前支持实例创建时间CreateTime
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，包括升序、降序
+        # @type OrderByType: String
 
-        attr_accessor :Filter, :Limit, :Offset
+        attr_accessor :Filter, :Limit, :Offset, :OrderBy, :OrderByType
         
-        def initialize(filter=nil, limit=nil, offset=nil)
+        def initialize(filter=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
           @Filter = filter
           @Limit = limit
           @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
         end
 
         def deserialize(params)
           @Filter = params['Filter']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
         end
       end
 
@@ -1954,10 +1990,10 @@ module TencentCloud
         # @param Zone: 可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zone: String
-        # @param ProjectId: projectId
+        # @param ProjectId: 项目id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
-        # @param VpcId: VpcId
+        # @param VpcId: 私有网络Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
         # @param SubnetId: 子网id
@@ -1981,10 +2017,13 @@ module TencentCloud
         # @param DBDatabaseList: 实例下的db信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBDatabaseList: Array
+        # @param TagList: 实例绑定的标签数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
 
-        attr_accessor :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBCharset, :DBVersion, :CreateTime, :DBInstanceNetInfo, :DBAccountSet, :DBDatabaseList
+        attr_accessor :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBCharset, :DBVersion, :CreateTime, :DBInstanceNetInfo, :DBAccountSet, :DBDatabaseList, :TagList
         
-        def initialize(dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbcharset=nil, dbversion=nil, createtime=nil, dbinstancenetinfo=nil, dbaccountset=nil, dbdatabaselist=nil)
+        def initialize(dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbcharset=nil, dbversion=nil, createtime=nil, dbinstancenetinfo=nil, dbaccountset=nil, dbdatabaselist=nil, taglist=nil)
           @DBInstanceId = dbinstanceid
           @DBInstanceName = dbinstancename
           @DBInstanceStatus = dbinstancestatus
@@ -1999,6 +2038,7 @@ module TencentCloud
           @DBInstanceNetInfo = dbinstancenetinfo
           @DBAccountSet = dbaccountset
           @DBDatabaseList = dbdatabaselist
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -2016,6 +2056,7 @@ module TencentCloud
           @DBInstanceNetInfo = params['DBInstanceNetInfo']
           @DBAccountSet = params['DBAccountSet']
           @DBDatabaseList = params['DBDatabaseList']
+          @TagList = params['TagList']
         end
       end
 
@@ -2144,7 +2185,7 @@ module TencentCloud
         end
       end
 
-      # 描述一种规格的信息信息
+      # 描述一种规格的信息
       class SpecItemInfo < TencentCloud::Common::AbstractModel
         # @param SpecCode: 规格ID
         # @type SpecCode: String
@@ -2193,6 +2234,26 @@ module TencentCloud
           @Qps = params['Qps']
           @Pid = params['Pid']
           @Type = params['Type']
+        end
+      end
+
+      # 实例绑定的标签信息，包含标签键TagKey和标签值TagValue
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

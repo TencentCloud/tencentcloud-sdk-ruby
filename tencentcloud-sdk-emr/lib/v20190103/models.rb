@@ -17,6 +17,33 @@
 module TencentCloud
   module Emr
     module V20190103
+      # 引导脚本
+      class BootstrapAction < TencentCloud::Common::AbstractModel
+        # @param Path: 脚本位置，支持cos上的文件，且只支持https协议。
+        # @type Path: String
+        # @param WhenRun: 执行时间。
+        # resourceAfter 表示在机器资源申请成功后执行。
+        # clusterBefore 表示在集群初始化前执行。
+        # clusterAfter 表示在集群初始化后执行。
+        # @type WhenRun: String
+        # @param Args: 脚本参数
+        # @type Args: Array
+
+        attr_accessor :Path, :WhenRun, :Args
+        
+        def initialize(path=nil, whenrun=nil, args=nil)
+          @Path = path
+          @WhenRun = whenrun
+          @Args = args
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @WhenRun = params['WhenRun']
+          @Args = params['Args']
+        end
+      end
+
       # COS 相关配置
       class COSSettings < TencentCloud::Common::AbstractModel
         # @param CosSecretId: COS SecretId
@@ -314,6 +341,108 @@ module TencentCloud
         end
       end
 
+      # 集群配置。
+      class ClusterSetting < TencentCloud::Common::AbstractModel
+        # @param InstanceChargeType: 付费方式。
+        # PREPAID 包年包月。
+        # POSTPAID_BY_HOUR 按量计费，默认方式。
+        # @type InstanceChargeType: String
+        # @param SupportHA: 是否为HA集群。
+        # @type SupportHA: Boolean
+        # @param SecurityGroupIds: 集群所使用的安全组，目前仅支持一个。
+        # @type SecurityGroupIds: Array
+        # @param Placement: 实例位置。
+        # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
+        # @param VPCSettings: 实例所在VPC。
+        # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
+        # @param LoginSettings: 实例登录配置。
+        # @type LoginSettings: :class:`Tencentcloud::Emr.v20190103.models.LoginSettings`
+        # @param TagSpecification: 实例标签。
+        # @type TagSpecification: Array
+        # @param MetaDB: 元数据库配置。
+        # @type MetaDB: :class:`Tencentcloud::Emr.v20190103.models.MetaDbInfo`
+        # @param ResourceSpec: 实例硬件配置。
+        # @type ResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.JobFlowResourceSpec`
+        # @param PublicIpAssigned: 是否申请公网IP，默认为false。
+        # @type PublicIpAssigned: Boolean
+        # @param InstanceChargePrepaid: 包年包月配置，只对包年包月集群生效。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Emr.v20190103.models.InstanceChargePrepaid`
+        # @param DisasterRecoverGroupIds: 集群置放群组。
+        # @type DisasterRecoverGroupIds: String
+        # @param CbsEncryptFlag: 是否使用cbs加密。
+        # @type CbsEncryptFlag: Boolean
+        # @param RemoteTcpDefaultPort: 是否使用远程登录，默认为false。
+        # @type RemoteTcpDefaultPort: Boolean
+
+        attr_accessor :InstanceChargeType, :SupportHA, :SecurityGroupIds, :Placement, :VPCSettings, :LoginSettings, :TagSpecification, :MetaDB, :ResourceSpec, :PublicIpAssigned, :InstanceChargePrepaid, :DisasterRecoverGroupIds, :CbsEncryptFlag, :RemoteTcpDefaultPort
+        
+        def initialize(instancechargetype=nil, supportha=nil, securitygroupids=nil, placement=nil, vpcsettings=nil, loginsettings=nil, tagspecification=nil, metadb=nil, resourcespec=nil, publicipassigned=nil, instancechargeprepaid=nil, disasterrecovergroupids=nil, cbsencryptflag=nil, remotetcpdefaultport=nil)
+          @InstanceChargeType = instancechargetype
+          @SupportHA = supportha
+          @SecurityGroupIds = securitygroupids
+          @Placement = placement
+          @VPCSettings = vpcsettings
+          @LoginSettings = loginsettings
+          @TagSpecification = tagspecification
+          @MetaDB = metadb
+          @ResourceSpec = resourcespec
+          @PublicIpAssigned = publicipassigned
+          @InstanceChargePrepaid = instancechargeprepaid
+          @DisasterRecoverGroupIds = disasterrecovergroupids
+          @CbsEncryptFlag = cbsencryptflag
+          @RemoteTcpDefaultPort = remotetcpdefaultport
+        end
+
+        def deserialize(params)
+          @InstanceChargeType = params['InstanceChargeType']
+          @SupportHA = params['SupportHA']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['Placement'].nil?
+            @Placement = Placement.new.deserialize(params[Placement])
+          end
+          unless params['VPCSettings'].nil?
+            @VPCSettings = VPCSettings.new.deserialize(params[VPCSettings])
+          end
+          unless params['LoginSettings'].nil?
+            @LoginSettings = LoginSettings.new.deserialize(params[LoginSettings])
+          end
+          @TagSpecification = params['TagSpecification']
+          unless params['MetaDB'].nil?
+            @MetaDB = MetaDbInfo.new.deserialize(params[MetaDB])
+          end
+          unless params['ResourceSpec'].nil?
+            @ResourceSpec = JobFlowResourceSpec.new.deserialize(params[ResourceSpec])
+          end
+          @PublicIpAssigned = params['PublicIpAssigned']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new.deserialize(params[InstanceChargePrepaid])
+          end
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
+          @CbsEncryptFlag = params['CbsEncryptFlag']
+          @RemoteTcpDefaultPort = params['RemoteTcpDefaultPort']
+        end
+      end
+
+      # 自定义配置参数
+      class Configuration < TencentCloud::Common::AbstractModel
+        # @param Classification: 配置文件名，支持SPARK、HIVE、HDFS、YARN的部分配置文件自定义。
+        # @type Classification: String
+        # @param Properties: 配置参数通过KV的形式传入，部分文件支持自定义，可以通过特殊的键"content"传入所有内容。
+        # @type Properties: String
+
+        attr_accessor :Classification, :Properties
+        
+        def initialize(classification=nil, properties=nil)
+          @Classification = classification
+          @Properties = properties
+        end
+
+        def deserialize(params)
+          @Classification = params['Classification']
+          @Properties = params['Properties']
+        end
+      end
+
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
@@ -395,10 +524,12 @@ module TencentCloud
         # @type UnifyMetaInstanceId: String
         # @param MetaDBInfo: 自定义MetaDB信息
         # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaInfo`
+        # @param ApplicationRole: 自定义应用角色。
+        # @type ApplicationRole: String
 
-        attr_accessor :ProductId, :VPCSettings, :Software, :ResourceSpec, :SupportHA, :InstanceName, :PayMode, :Placement, :TimeSpan, :TimeUnit, :LoginSettings, :COSSettings, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo
+        attr_accessor :ProductId, :VPCSettings, :Software, :ResourceSpec, :SupportHA, :InstanceName, :PayMode, :Placement, :TimeSpan, :TimeUnit, :LoginSettings, :COSSettings, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole
         
-        def initialize(productid=nil, vpcsettings=nil, software=nil, resourcespec=nil, supportha=nil, instancename=nil, paymode=nil, placement=nil, timespan=nil, timeunit=nil, loginsettings=nil, cossettings=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil)
+        def initialize(productid=nil, vpcsettings=nil, software=nil, resourcespec=nil, supportha=nil, instancename=nil, paymode=nil, placement=nil, timespan=nil, timeunit=nil, loginsettings=nil, cossettings=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil)
           @ProductId = productid
           @VPCSettings = vpcsettings
           @Software = software
@@ -425,6 +556,7 @@ module TencentCloud
           @MetaType = metatype
           @UnifyMetaInstanceId = unifymetainstanceid
           @MetaDBInfo = metadbinfo
+          @ApplicationRole = applicationrole
         end
 
         def deserialize(params)
@@ -466,6 +598,7 @@ module TencentCloud
           unless params['MetaDBInfo'].nil?
             @MetaDBInfo = CustomMetaInfo.new.deserialize(params[MetaDBInfo])
           end
+          @ApplicationRole = params['ApplicationRole']
         end
       end
 
@@ -529,14 +662,20 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页返回数量，默认值为100，最大值为100。
         # @type Limit: Integer
+        # @param HardwareResourceType: 资源类型:支持all/host/pod，默认为all
+        # @type HardwareResourceType: String
+        # @param SearchFields: 支持搜索的字段
+        # @type SearchFields: Array
 
-        attr_accessor :InstanceId, :NodeFlag, :Offset, :Limit
+        attr_accessor :InstanceId, :NodeFlag, :Offset, :Limit, :HardwareResourceType, :SearchFields
         
-        def initialize(instanceid=nil, nodeflag=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, nodeflag=nil, offset=nil, limit=nil, hardwareresourcetype=nil, searchfields=nil)
           @InstanceId = instanceid
           @NodeFlag = nodeflag
           @Offset = offset
           @Limit = limit
+          @HardwareResourceType = hardwareresourcetype
+          @SearchFields = searchfields
         end
 
         def deserialize(params)
@@ -544,6 +683,8 @@ module TencentCloud
           @NodeFlag = params['NodeFlag']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @HardwareResourceType = params['HardwareResourceType']
+          @SearchFields = params['SearchFields']
         end
       end
 
@@ -557,15 +698,19 @@ module TencentCloud
         # @param TagKeys: 用户所有的标签键列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKeys: Array
+        # @param HardwareResourceTypeList: 资源类型列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HardwareResourceTypeList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCnt, :NodeList, :TagKeys, :RequestId
+        attr_accessor :TotalCnt, :NodeList, :TagKeys, :HardwareResourceTypeList, :RequestId
         
-        def initialize(totalcnt=nil, nodelist=nil, tagkeys=nil, requestid=nil)
+        def initialize(totalcnt=nil, nodelist=nil, tagkeys=nil, hardwareresourcetypelist=nil, requestid=nil)
           @TotalCnt = totalcnt
           @NodeList = nodelist
           @TagKeys = tagkeys
+          @HardwareResourceTypeList = hardwareresourcetypelist
           @RequestId = requestid
         end
 
@@ -573,6 +718,7 @@ module TencentCloud
           @TotalCnt = params['TotalCnt']
           @NodeList = params['NodeList']
           @TagKeys = params['TagKeys']
+          @HardwareResourceTypeList = params['HardwareResourceTypeList']
           @RequestId = params['RequestId']
         end
       end
@@ -654,6 +800,101 @@ module TencentCloud
           @ClusterList = params['ClusterList']
           @TagKeys = params['TagKeys']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobFlow请求参数结构体
+      class DescribeJobFlowRequest < TencentCloud::Common::AbstractModel
+        # @param JobFlowId: 流程任务Id，RunJobFlow接口返回的值。
+        # @type JobFlowId: Integer
+
+        attr_accessor :JobFlowId
+        
+        def initialize(jobflowid=nil)
+          @JobFlowId = jobflowid
+        end
+
+        def deserialize(params)
+          @JobFlowId = params['JobFlowId']
+        end
+      end
+
+      # DescribeJobFlow返回参数结构体
+      class DescribeJobFlowResponse < TencentCloud::Common::AbstractModel
+        # @param State: 流程任务状态，可以为以下值：
+        # JobFlowInit，流程任务初始化。
+        # JobFlowResourceApplied，资源申请中，通常为JobFlow需要新建集群时的状态。
+        # JobFlowResourceReady，执行流程任务的资源就绪。
+        # JobFlowStepsRunning，流程任务步骤已提交。
+        # JobFlowStepsComplete，流程任务步骤已完成。
+        # JobFlowTerminating，流程任务所需资源销毁中。
+        # JobFlowFinish，流程任务已完成。
+        # @type State: String
+        # @param Details: 流程任务步骤结果。
+        # @type Details: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :State, :Details, :RequestId
+        
+        def initialize(state=nil, details=nil, requestid=nil)
+          @State = state
+          @Details = details
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @State = params['State']
+          @Details = params['Details']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 磁盘组。
+      class DiskGroup < TencentCloud::Common::AbstractModel
+        # @param Spec: 磁盘规格。
+        # @type Spec: :class:`Tencentcloud::Emr.v20190103.models.DiskSpec`
+        # @param Count: 同类型磁盘数量。
+        # @type Count: Integer
+
+        attr_accessor :Spec, :Count
+        
+        def initialize(spec=nil, count=nil)
+          @Spec = spec
+          @Count = count
+        end
+
+        def deserialize(params)
+          unless params['Spec'].nil?
+            @Spec = DiskSpec.new.deserialize(params[Spec])
+          end
+          @Count = params['Count']
+        end
+      end
+
+      # 磁盘描述。
+      class DiskSpec < TencentCloud::Common::AbstractModel
+        # @param DiskType: 磁盘类型。
+        # LOCAL_BASIC  本地盘。
+        # CLOUD_BASIC 云硬盘。
+        # LOCAL_SSD 本地SSD。
+        # CLOUD_SSD 云SSD。
+        # CLOUD_PREMIUM 高效云盘。
+        # CLOUD_HSSD 增强型云SSD。
+        # @type DiskType: String
+        # @param DiskSize: 磁盘大小，单位GB。
+        # @type DiskSize: Integer
+
+        attr_accessor :DiskType, :DiskSize
+        
+        def initialize(disktype=nil, disksize=nil)
+          @DiskType = disktype
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
         end
       end
 
@@ -754,6 +995,46 @@ module TencentCloud
           @SecurityOn = params['SecurityOn']
           @SecurityGroup = params['SecurityGroup']
           @CbsEncrypt = params['CbsEncrypt']
+        end
+      end
+
+      # 执行动作。
+      class Execution < TencentCloud::Common::AbstractModel
+        # @param JobType: 任务类型，目前支持以下类型。
+        # 1. “MR”，将通过hadoop jar的方式提交。
+        # 2. "HIVE"，将通过hive -f的方式提交。
+        # 3. "SPARK"，将通过spark-submit的方式提交。
+        # @type JobType: String
+        # @param Args: 任务参数，提供除提交指令以外的参数。
+        # @type Args: Array
+
+        attr_accessor :JobType, :Args
+        
+        def initialize(jobtype=nil, args=nil)
+          @JobType = jobtype
+          @Args = args
+        end
+
+        def deserialize(params)
+          @JobType = params['JobType']
+          @Args = params['Args']
+        end
+      end
+
+      # Pod HostPath挂载方式描述
+      class HostVolumeContext < TencentCloud::Common::AbstractModel
+        # @param VolumePath: Pod挂载宿主机的目录。资源对宿主机的挂载点，指定的挂载点对应了宿主机的路径，该挂载点在Pod中作为数据存储目录使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumePath: String
+
+        attr_accessor :VolumePath
+        
+        def initialize(volumepath=nil)
+          @VolumePath = volumepath
+        end
+
+        def deserialize(params)
+          @VolumePath = params['VolumePath']
         end
       end
 
@@ -1144,6 +1425,141 @@ module TencentCloud
         end
       end
 
+      # 实例预付费参数，只有在付费类型为PREPAID时生效。
+      class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 包年包月时间，默认为1，单位：月。
+        # 取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11, 12, 24, 36, 48, 60。
+        # @type Period: Integer
+        # @param RenewFlag: 是否自动续费，默认为否。
+        # @type RenewFlag: Boolean
+
+        attr_accessor :Period, :RenewFlag
+        
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # 机器资源描述。
+      class JobFlowResource < TencentCloud::Common::AbstractModel
+        # @param Spec: 机器类型描述。
+        # @type Spec: String
+        # @param InstanceType: 机器类型描述，可参考CVM的该含义。
+        # @type InstanceType: String
+        # @param Tags: 标签KV对。
+        # @type Tags: Array
+        # @param DiskGroups: 磁盘描述列表。
+        # @type DiskGroups: Array
+
+        attr_accessor :Spec, :InstanceType, :Tags, :DiskGroups
+        
+        def initialize(spec=nil, instancetype=nil, tags=nil, diskgroups=nil)
+          @Spec = spec
+          @InstanceType = instancetype
+          @Tags = tags
+          @DiskGroups = diskgroups
+        end
+
+        def deserialize(params)
+          @Spec = params['Spec']
+          @InstanceType = params['InstanceType']
+          @Tags = params['Tags']
+          @DiskGroups = params['DiskGroups']
+        end
+      end
+
+      # 流程作业资源描述
+      class JobFlowResourceSpec < TencentCloud::Common::AbstractModel
+        # @param MasterCount: 主节点数量。
+        # @type MasterCount: Integer
+        # @param MasterResourceSpec: 主节点配置。
+        # @type MasterResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.JobFlowResource`
+        # @param CoreCount: Core节点数量
+        # @type CoreCount: Integer
+        # @param CoreResourceSpec: Core节点配置。
+        # @type CoreResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.JobFlowResource`
+        # @param TaskCount: Task节点数量。
+        # @type TaskCount: Integer
+        # @param CommonCount: Common节点数量。
+        # @type CommonCount: Integer
+        # @param TaskResourceSpec: Task节点配置。
+        # @type TaskResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.JobFlowResource`
+        # @param CommonResourceSpec: Common节点配置。
+        # @type CommonResourceSpec: :class:`Tencentcloud::Emr.v20190103.models.JobFlowResource`
+
+        attr_accessor :MasterCount, :MasterResourceSpec, :CoreCount, :CoreResourceSpec, :TaskCount, :CommonCount, :TaskResourceSpec, :CommonResourceSpec
+        
+        def initialize(mastercount=nil, masterresourcespec=nil, corecount=nil, coreresourcespec=nil, taskcount=nil, commoncount=nil, taskresourcespec=nil, commonresourcespec=nil)
+          @MasterCount = mastercount
+          @MasterResourceSpec = masterresourcespec
+          @CoreCount = corecount
+          @CoreResourceSpec = coreresourcespec
+          @TaskCount = taskcount
+          @CommonCount = commoncount
+          @TaskResourceSpec = taskresourcespec
+          @CommonResourceSpec = commonresourcespec
+        end
+
+        def deserialize(params)
+          @MasterCount = params['MasterCount']
+          unless params['MasterResourceSpec'].nil?
+            @MasterResourceSpec = JobFlowResource.new.deserialize(params[MasterResourceSpec])
+          end
+          @CoreCount = params['CoreCount']
+          unless params['CoreResourceSpec'].nil?
+            @CoreResourceSpec = JobFlowResource.new.deserialize(params[CoreResourceSpec])
+          end
+          @TaskCount = params['TaskCount']
+          @CommonCount = params['CommonCount']
+          unless params['TaskResourceSpec'].nil?
+            @TaskResourceSpec = JobFlowResource.new.deserialize(params[TaskResourceSpec])
+          end
+          unless params['CommonResourceSpec'].nil?
+            @CommonResourceSpec = JobFlowResource.new.deserialize(params[CommonResourceSpec])
+          end
+        end
+      end
+
+      # 任务步骤结果描述
+      class JobResult < TencentCloud::Common::AbstractModel
+        # @param Name: 任务步骤名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ActionOnFailure: 任务步骤失败时的处理策略，可以为以下值：
+        # "CONTINUE"，跳过当前失败步骤，继续后续步骤。
+        # “TERMINATE_CLUSTER”，终止当前及后续步骤，并销毁集群。
+        # “CANCEL_AND_WAIT”，取消当前步骤并阻塞等待处理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionOnFailure: String
+        # @param JobState: 当前步骤的状态，可以为以下值：
+        # “JobFlowStepStatusInit”，初始化状态，等待执行。
+        # “JobFlowStepStatusRunning”，任务步骤正在执行。
+        # “JobFlowStepStatusFailed”，任务步骤执行失败。
+        # “JobFlowStepStatusSucceed”，任务步骤执行成功。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobState: String
+
+        attr_accessor :Name, :ActionOnFailure, :JobState
+        
+        def initialize(name=nil, actiononfailure=nil, jobstate=nil)
+          @Name = name
+          @ActionOnFailure = actiononfailure
+          @JobState = jobstate
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ActionOnFailure = params['ActionOnFailure']
+          @JobState = params['JobState']
+        end
+      end
+
       # 登录设置
       class LoginSettings < TencentCloud::Common::AbstractModel
         # @param Password: Password
@@ -1161,6 +1577,32 @@ module TencentCloud
         def deserialize(params)
           @Password = params['Password']
           @PublicKeyId = params['PublicKeyId']
+        end
+      end
+
+      # 元数据库信息
+      class MetaDbInfo < TencentCloud::Common::AbstractModel
+        # @param MetaType: 元数据类型。
+        # @type MetaType: String
+        # @param UnifyMetaInstanceId: 统一元数据库实例ID。
+        # @type UnifyMetaInstanceId: String
+        # @param MetaDBInfo: 自建元数据库信息。
+        # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaInfo`
+
+        attr_accessor :MetaType, :UnifyMetaInstanceId, :MetaDBInfo
+        
+        def initialize(metatype=nil, unifymetainstanceid=nil, metadbinfo=nil)
+          @MetaType = metatype
+          @UnifyMetaInstanceId = unifymetainstanceid
+          @MetaDBInfo = metadbinfo
+        end
+
+        def deserialize(params)
+          @MetaType = params['MetaType']
+          @UnifyMetaInstanceId = params['UnifyMetaInstanceId']
+          unless params['MetaDBInfo'].nil?
+            @MetaDBInfo = CustomMetaInfo.new.deserialize(params[MetaDBInfo])
+          end
         end
       end
 
@@ -1281,7 +1723,8 @@ module TencentCloud
         # @param WanIp: master节点绑定外网IP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanIp: String
-        # @param Flag: 节点类型
+        # @param Flag: 节点类型。0:common节点；1:master节点
+        # ；2:core节点；3:task节点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Flag: Integer
         # @param Spec: 节点规格
@@ -1377,10 +1820,13 @@ module TencentCloud
         # @param AutoFlag: 是否是自动扩缩容节点，0为普通节点，1为自动扩缩容节点。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoFlag: Integer
+        # @param HardwareResourceType: 资源类型, host/pod
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HardwareResourceType: String
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType
         
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -1417,6 +1863,7 @@ module TencentCloud
           @Destroyable = destroyable
           @Tags = tags
           @AutoFlag = autoflag
+          @HardwareResourceType = hardwareresourcetype
         end
 
         def deserialize(params)
@@ -1458,6 +1905,7 @@ module TencentCloud
           @Destroyable = params['Destroyable']
           @Tags = params['Tags']
           @AutoFlag = params['AutoFlag']
+          @HardwareResourceType = params['HardwareResourceType']
         end
       end
 
@@ -1518,6 +1966,33 @@ module TencentCloud
         end
       end
 
+      # Pod PVC存储方式描述
+      class PersistentVolumeContext < TencentCloud::Common::AbstractModel
+        # @param DiskSize: 磁盘大小，单位为GB。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+        # @param DiskType: 磁盘类型。CLOUD_PREMIUM;CLOUD_SSD
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param DiskNum: 磁盘数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskNum: Integer
+
+        attr_accessor :DiskSize, :DiskType, :DiskNum
+        
+        def initialize(disksize=nil, disktype=nil, disknum=nil)
+          @DiskSize = disksize
+          @DiskType = disktype
+          @DiskNum = disknum
+        end
+
+        def deserialize(params)
+          @DiskSize = params['DiskSize']
+          @DiskType = params['DiskType']
+          @DiskNum = params['DiskNum']
+        end
+      end
+
       # 描述集群实例位置信息
       class Placement < TencentCloud::Common::AbstractModel
         # @param ProjectId: 实例所属项目ID。该参数可以通过调用 DescribeProject 的返回值中的 projectId 字段来获取。填0为默认项目。
@@ -1535,6 +2010,81 @@ module TencentCloud
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @Zone = params['Zone']
+        end
+      end
+
+      # 扩容容器资源时的资源描述
+      class PodSpec < TencentCloud::Common::AbstractModel
+        # @param ResourceProviderIdentifier: 外部资源提供者的标识符，例如"cls-a1cd23fa"。
+        # @type ResourceProviderIdentifier: String
+        # @param ResourceProviderType: 外部资源提供者类型，例如"tke",当前仅支持"tke"。
+        # @type ResourceProviderType: String
+        # @param NodeType: 资源的用途，即节点类型，当前仅支持"TASK"。
+        # @type NodeType: String
+        # @param Cpu: CPU核数。
+        # @type Cpu: Integer
+        # @param Memory: 内存大小，单位为GB。
+        # @type Memory: Integer
+        # @param DataVolumes: 资源对宿主机的挂载点，指定的挂载点对应了宿主机的路径，该挂载点在Pod中作为数据存储目录使用。弃用
+        # @type DataVolumes: Array
+        # @param CpuType: Eks集群-CPU类型，当前支持"intel"和"amd"
+        # @type CpuType: String
+        # @param PodVolumes: Pod节点数据目录挂载信息。
+        # @type PodVolumes: Array
+
+        attr_accessor :ResourceProviderIdentifier, :ResourceProviderType, :NodeType, :Cpu, :Memory, :DataVolumes, :CpuType, :PodVolumes
+        
+        def initialize(resourceprovideridentifier=nil, resourceprovidertype=nil, nodetype=nil, cpu=nil, memory=nil, datavolumes=nil, cputype=nil, podvolumes=nil)
+          @ResourceProviderIdentifier = resourceprovideridentifier
+          @ResourceProviderType = resourceprovidertype
+          @NodeType = nodetype
+          @Cpu = cpu
+          @Memory = memory
+          @DataVolumes = datavolumes
+          @CpuType = cputype
+          @PodVolumes = podvolumes
+        end
+
+        def deserialize(params)
+          @ResourceProviderIdentifier = params['ResourceProviderIdentifier']
+          @ResourceProviderType = params['ResourceProviderType']
+          @NodeType = params['NodeType']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @DataVolumes = params['DataVolumes']
+          @CpuType = params['CpuType']
+          @PodVolumes = params['PodVolumes']
+        end
+      end
+
+      # Pod的存储设备描述信息。
+      class PodVolume < TencentCloud::Common::AbstractModel
+        # @param VolumeType: 存储类型，可为"pvc"，"hostpath"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeType: String
+        # @param PVCVolume: 当VolumeType为"pvc"时，该字段生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PVCVolume: :class:`Tencentcloud::Emr.v20190103.models.PersistentVolumeContext`
+        # @param HostVolume: 当VolumeType为"hostpath"时，该字段生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostVolume: :class:`Tencentcloud::Emr.v20190103.models.HostVolumeContext`
+
+        attr_accessor :VolumeType, :PVCVolume, :HostVolume
+        
+        def initialize(volumetype=nil, pvcvolume=nil, hostvolume=nil)
+          @VolumeType = volumetype
+          @PVCVolume = pvcvolume
+          @HostVolume = hostvolume
+        end
+
+        def deserialize(params)
+          @VolumeType = params['VolumeType']
+          unless params['PVCVolume'].nil?
+            @PVCVolume = PersistentVolumeContext.new.deserialize(params[PVCVolume])
+          end
+          unless params['HostVolume'].nil?
+            @HostVolume = HostVolumeContext.new.deserialize(params[HostVolume])
+          end
         end
       end
 
@@ -1747,6 +2297,102 @@ module TencentCloud
         end
       end
 
+      # RunJobFlow请求参数结构体
+      class RunJobFlowRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 作业名称。
+        # @type Name: String
+        # @param CreateCluster: 是否新创建集群。
+        # true，新创建集群，则使用Instance中的参数进行集群创建。
+        # false，使用已有集群，则通过InstanceId传入。
+        # @type CreateCluster: Boolean
+        # @param Steps: 作业流程执行步骤。
+        # @type Steps: Array
+        # @param InstancePolicy: 作业流程正常完成时，集群的处理方式，可选择:
+        # Terminate 销毁集群。
+        # Reserve 保留集群。
+        # @type InstancePolicy: String
+        # @param ProductVersion: 只有CreateCluster为true时生效，目前只支持EMR版本，例如EMR-2.2.0，不支持ClickHouse和Druid版本。
+        # @type ProductVersion: String
+        # @param SecurityClusterFlag: 只在CreateCluster为true时生效。
+        # true 表示安装kerberos，false表示不安装kerberos。
+        # @type SecurityClusterFlag: Boolean
+        # @param Software: 只在CreateCluster为true时生效。
+        # 新建集群时，要安装的软件列表。
+        # @type Software: Array
+        # @param BootstrapActions: 引导脚本。
+        # @type BootstrapActions: Array
+        # @param Configurations: 指定配置创建集群。
+        # @type Configurations: Array
+        # @param LogUri: 作业日志保存地址。
+        # @type LogUri: String
+        # @param InstanceId: 只在CreateCluster为false时生效。
+        # @type InstanceId: String
+        # @param ApplicationRole: 自定义应用角色，大数据应用访问外部服务时使用的角色，默认为"EME_QCSRole"。
+        # @type ApplicationRole: String
+        # @param ClientToken: 重入标签，用来可重入检查，防止在一段时间内，创建相同的流程作业。
+        # @type ClientToken: String
+        # @param Instance: 只在CreateCluster为true时生效，使用该配置创建集群。
+        # @type Instance: :class:`Tencentcloud::Emr.v20190103.models.ClusterSetting`
+
+        attr_accessor :Name, :CreateCluster, :Steps, :InstancePolicy, :ProductVersion, :SecurityClusterFlag, :Software, :BootstrapActions, :Configurations, :LogUri, :InstanceId, :ApplicationRole, :ClientToken, :Instance
+        
+        def initialize(name=nil, createcluster=nil, steps=nil, instancepolicy=nil, productversion=nil, securityclusterflag=nil, software=nil, bootstrapactions=nil, configurations=nil, loguri=nil, instanceid=nil, applicationrole=nil, clienttoken=nil, instance=nil)
+          @Name = name
+          @CreateCluster = createcluster
+          @Steps = steps
+          @InstancePolicy = instancepolicy
+          @ProductVersion = productversion
+          @SecurityClusterFlag = securityclusterflag
+          @Software = software
+          @BootstrapActions = bootstrapactions
+          @Configurations = configurations
+          @LogUri = loguri
+          @InstanceId = instanceid
+          @ApplicationRole = applicationrole
+          @ClientToken = clienttoken
+          @Instance = instance
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @CreateCluster = params['CreateCluster']
+          @Steps = params['Steps']
+          @InstancePolicy = params['InstancePolicy']
+          @ProductVersion = params['ProductVersion']
+          @SecurityClusterFlag = params['SecurityClusterFlag']
+          @Software = params['Software']
+          @BootstrapActions = params['BootstrapActions']
+          @Configurations = params['Configurations']
+          @LogUri = params['LogUri']
+          @InstanceId = params['InstanceId']
+          @ApplicationRole = params['ApplicationRole']
+          @ClientToken = params['ClientToken']
+          unless params['Instance'].nil?
+            @Instance = ClusterSetting.new.deserialize(params[Instance])
+          end
+        end
+      end
+
+      # RunJobFlow返回参数结构体
+      class RunJobFlowResponse < TencentCloud::Common::AbstractModel
+        # @param JobFlowId: 作业流程ID。
+        # @type JobFlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobFlowId, :RequestId
+        
+        def initialize(jobflowid=nil, requestid=nil)
+          @JobFlowId = jobflowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobFlowId = params['JobFlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ScaleOutInstance请求参数结构体
       class ScaleOutInstanceRequest < TencentCloud::Common::AbstractModel
         # @param TimeUnit: 扩容的时间单位。取值范围：
@@ -1785,10 +2431,20 @@ module TencentCloud
         # @type DisasterRecoverGroupIds: Array
         # @param Tags: 扩容节点绑定标签列表。
         # @type Tags: Array
+        # @param HardwareResourceType: 扩容所选资源类型，可选范围为"host","pod"，host为普通的CVM资源，Pod为TKE集群提供的资源
+        # @type HardwareResourceType: String
+        # @param PodSpec: 使用Pod资源扩容时，指定的Pod规格以及来源等信息
+        # @type PodSpec: :class:`Tencentcloud::Emr.v20190103.models.PodSpec`
+        # @param ClickHouseClusterName: 使用clickhouse集群扩容时，选择的机器分组名称
+        # @type ClickHouseClusterName: String
+        # @param ClickHouseClusterType: 使用clickhouse集群扩容时，选择的机器分组类型。new为新增，old为选择旧分组
+        # @type ClickHouseClusterType: String
+        # @param YarnNodeLabel: 规则扩容指定 yarn node label
+        # @type YarnNodeLabel: String
 
-        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags
+        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel
         
-        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil)
+        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @InstanceId = instanceid
@@ -1803,6 +2459,11 @@ module TencentCloud
           @ServiceNodeInfo = servicenodeinfo
           @DisasterRecoverGroupIds = disasterrecovergroupids
           @Tags = tags
+          @HardwareResourceType = hardwareresourcetype
+          @PodSpec = podspec
+          @ClickHouseClusterName = clickhouseclustername
+          @ClickHouseClusterType = clickhouseclustertype
+          @YarnNodeLabel = yarnnodelabel
         end
 
         def deserialize(params)
@@ -1820,6 +2481,13 @@ module TencentCloud
           @ServiceNodeInfo = params['ServiceNodeInfo']
           @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
           @Tags = params['Tags']
+          @HardwareResourceType = params['HardwareResourceType']
+          unless params['PodSpec'].nil?
+            @PodSpec = PodSpec.new.deserialize(params[PodSpec])
+          end
+          @ClickHouseClusterName = params['ClickHouseClusterName']
+          @ClickHouseClusterType = params['ClickHouseClusterType']
+          @YarnNodeLabel = params['YarnNodeLabel']
         end
       end
 
@@ -1860,6 +2528,59 @@ module TencentCloud
           @FlowId = params['FlowId']
           @BillId = params['BillId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 搜索字段
+      class SearchItem < TencentCloud::Common::AbstractModel
+        # @param SearchType: 支持搜索的类型
+        # @type SearchType: String
+        # @param SearchValue: 支持搜索的值
+        # @type SearchValue: String
+
+        attr_accessor :SearchType, :SearchValue
+        
+        def initialize(searchtype=nil, searchvalue=nil)
+          @SearchType = searchtype
+          @SearchValue = searchvalue
+        end
+
+        def deserialize(params)
+          @SearchType = params['SearchType']
+          @SearchValue = params['SearchValue']
+        end
+      end
+
+      # 执行步骤
+      class Step < TencentCloud::Common::AbstractModel
+        # @param Name: 执行步骤名称。
+        # @type Name: String
+        # @param ExecutionStep: 执行动作。
+        # @type ExecutionStep: :class:`Tencentcloud::Emr.v20190103.models.Execution`
+        # @param ActionOnFailure: 执行失败策略。
+        # 1. TERMINATE_CLUSTER 执行失败时退出并销毁集群。
+        # 2. CANCEL_AND_WAIT 执行失败时阻塞等待。
+        # 3. CONTINUE 执行失败时跳过并执行后续步骤。
+        # @type ActionOnFailure: String
+        # @param User: 指定执行Step时的用户名，非必须，默认为hadoop。
+        # @type User: String
+
+        attr_accessor :Name, :ExecutionStep, :ActionOnFailure, :User
+        
+        def initialize(name=nil, executionstep=nil, actiononfailure=nil, user=nil)
+          @Name = name
+          @ExecutionStep = executionstep
+          @ActionOnFailure = actiononfailure
+          @User = user
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['ExecutionStep'].nil?
+            @ExecutionStep = Execution.new.deserialize(params[ExecutionStep])
+          end
+          @ActionOnFailure = params['ActionOnFailure']
+          @User = params['User']
         end
       end
 

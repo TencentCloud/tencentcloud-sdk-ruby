@@ -88,6 +88,444 @@ module TencentCloud
         end
       end
 
+      # 代码仓库里 Repo的信息描述
+      class CloudBaseCodeRepoDetail < TencentCloud::Common::AbstractModel
+        # @param Name: repo的名字
+        # @type Name: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseCodeRepoName`
+        # @param Url: repo的url
+        # @type Url: String
+
+        attr_accessor :Name, :Url
+        
+        def initialize(name=nil, url=nil)
+          @Name = name
+          @Url = url
+        end
+
+        def deserialize(params)
+          unless params['Name'].nil?
+            @Name = CloudBaseCodeRepoName.new.deserialize(params[Name])
+          end
+          @Url = params['Url']
+        end
+      end
+
+      # 代码仓库 repo的名字
+      class CloudBaseCodeRepoName < TencentCloud::Common::AbstractModel
+        # @param Name: repo的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param FullName: repo的完整全名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullName: String
+
+        attr_accessor :Name, :FullName
+        
+        def initialize(name=nil, fullname=nil)
+          @Name = name
+          @FullName = fullname
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @FullName = params['FullName']
+        end
+      end
+
+      # es信息
+      class CloudBaseEsInfo < TencentCloud::Common::AbstractModel
+        # @param Id: es的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param SecretName: secret名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretName: String
+        # @param Ip: ip地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param Index: 索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: String
+        # @param Account: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Account: String
+        # @param Password: 密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+
+        attr_accessor :Id, :SecretName, :Ip, :Port, :Index, :Account, :Password
+        
+        def initialize(id=nil, secretname=nil, ip=nil, port=nil, index=nil, account=nil, password=nil)
+          @Id = id
+          @SecretName = secretname
+          @Ip = ip
+          @Port = port
+          @Index = index
+          @Account = account
+          @Password = password
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @SecretName = params['SecretName']
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @Index = params['Index']
+          @Account = params['Account']
+          @Password = params['Password']
+        end
+      end
+
+      # CloudBaseRun 镜像信息
+      class CloudBaseRunImageInfo < TencentCloud::Common::AbstractModel
+        # @param RepositoryName: 镜像仓库名称
+        # @type RepositoryName: String
+        # @param IsPublic: 是否公有
+        # @type IsPublic: Boolean
+        # @param TagName: 镜像tag名称
+        # @type TagName: String
+        # @param ServerAddr: 镜像server
+        # @type ServerAddr: String
+        # @param ImageUrl: 镜像拉取地址
+        # @type ImageUrl: String
+
+        attr_accessor :RepositoryName, :IsPublic, :TagName, :ServerAddr, :ImageUrl
+        
+        def initialize(repositoryname=nil, ispublic=nil, tagname=nil, serveraddr=nil, imageurl=nil)
+          @RepositoryName = repositoryname
+          @IsPublic = ispublic
+          @TagName = tagname
+          @ServerAddr = serveraddr
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @RepositoryName = params['RepositoryName']
+          @IsPublic = params['IsPublic']
+          @TagName = params['TagName']
+          @ServerAddr = params['ServerAddr']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # ImageSecretInfo的信息
+      class CloudBaseRunImageSecretInfo < TencentCloud::Common::AbstractModel
+        # @param RegistryServer: 镜像地址
+        # @type RegistryServer: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param Password: 仓库密码
+        # @type Password: String
+        # @param Email: 邮箱
+        # @type Email: String
+
+        attr_accessor :RegistryServer, :UserName, :Password, :Email
+        
+        def initialize(registryserver=nil, username=nil, password=nil, email=nil)
+          @RegistryServer = registryserver
+          @UserName = username
+          @Password = password
+          @Email = email
+        end
+
+        def deserialize(params)
+          @RegistryServer = params['RegistryServer']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @Email = params['Email']
+        end
+      end
+
+      # nfs挂载资源
+      class CloudBaseRunNfsVolumeSource < TencentCloud::Common::AbstractModel
+        # @param Server: NFS挂载Server
+        # @type Server: String
+        # @param Path: Server路径
+        # @type Path: String
+        # @param ReadOnly: 是否只读
+        # @type ReadOnly: Boolean
+
+        attr_accessor :Server, :Path, :ReadOnly
+        
+        def initialize(server=nil, path=nil, readonly=nil)
+          @Server = server
+          @Path = path
+          @ReadOnly = readonly
+        end
+
+        def deserialize(params)
+          @Server = params['Server']
+          @Path = params['Path']
+          @ReadOnly = params['ReadOnly']
+        end
+      end
+
+      # cfs挂载点
+      class CloudBaseRunVolumeMount < TencentCloud::Common::AbstractModel
+        # @param Name: 资源名
+        # @type Name: String
+        # @param MountPath: 挂载路径
+        # @type MountPath: String
+        # @param ReadOnly: 是否只读
+        # @type ReadOnly: Boolean
+        # @param NfsVolumes: Nfs挂载信息
+        # @type NfsVolumes: Array
+
+        attr_accessor :Name, :MountPath, :ReadOnly, :NfsVolumes
+        
+        def initialize(name=nil, mountpath=nil, readonly=nil, nfsvolumes=nil)
+          @Name = name
+          @MountPath = mountpath
+          @ReadOnly = readonly
+          @NfsVolumes = nfsvolumes
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @MountPath = params['MountPath']
+          @ReadOnly = params['ReadOnly']
+          @NfsVolumes = params['NfsVolumes']
+        end
+      end
+
+      # vpc信息
+      class CloudBaseRunVpcInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetIds: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetIds: Array
+        # @param CreateType: 创建类型(0=继承; 1=新建; 2=指定)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateType: Integer
+
+        attr_accessor :VpcId, :SubnetIds, :CreateType
+        
+        def initialize(vpcid=nil, subnetids=nil, createtype=nil)
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+          @CreateType = createtype
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+          @CreateType = params['CreateType']
+        end
+      end
+
+      # 子网信息
+      class CloudBaseRunVpcSubnet < TencentCloud::Common::AbstractModel
+        # @param Id: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Cidr: 子网的ipv4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cidr: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Target: subnet类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Target: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Name: 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :Id, :Cidr, :Zone, :Type, :Target, :Region, :Name
+        
+        def initialize(id=nil, cidr=nil, zone=nil, type=nil, target=nil, region=nil, name=nil)
+          @Id = id
+          @Cidr = cidr
+          @Zone = zone
+          @Type = type
+          @Target = target
+          @Region = region
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Cidr = params['Cidr']
+          @Zone = params['Zone']
+          @Type = params['Type']
+          @Target = params['Target']
+          @Region = params['Region']
+          @Name = params['Name']
+        end
+      end
+
+      # CloudRunServiceSimpleVersionSnapshot 信息
+      class CloudRunServiceSimpleVersionSnapshot < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param Remark: 版本备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Cpu: cpu规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Float
+        # @param Mem: 内存规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mem: Float
+        # @param MinNum: 最小副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinNum: Integer
+        # @param MaxNum: 最大副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxNum: Integer
+        # @param ImageUrl: 镜像url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
+        # @param PolicyType: 扩容策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyType: String
+        # @param PolicyThreshold: 策略阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyThreshold: Integer
+        # @param EnvParams: 环境参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvParams: String
+        # @param ContainerPort: 容器端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerPort: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param UploadType: 更新类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadType: String
+        # @param DockerfilePath: dockerfile路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DockerfilePath: String
+        # @param BuildDir: 构建路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildDir: String
+        # @param RepoType: repo类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoType: String
+        # @param Repo: 仓库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Repo: String
+        # @param Branch: 分支
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Branch: String
+        # @param EnvId: 环境id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvId: String
+        # @param ServerName: 服务名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerName: String
+        # @param PackageName: package名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageName: String
+        # @param PackageVersion: package版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageVersion: String
+        # @param CustomLogs: 自定义log路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomLogs: String
+        # @param InitialDelaySeconds: 延时健康检查时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InitialDelaySeconds: Integer
+        # @param SnapshotName: snapshot名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotName: String
+        # @param ImageInfo: 镜像信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageInfo: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunImageInfo`
+        # @param CodeDetail: 代码仓库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodeDetail: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseCodeRepoDetail`
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :VersionName, :Remark, :Cpu, :Mem, :MinNum, :MaxNum, :ImageUrl, :PolicyType, :PolicyThreshold, :EnvParams, :ContainerPort, :CreateTime, :UpdateTime, :UploadType, :DockerfilePath, :BuildDir, :RepoType, :Repo, :Branch, :EnvId, :ServerName, :PackageName, :PackageVersion, :CustomLogs, :InitialDelaySeconds, :SnapshotName, :ImageInfo, :CodeDetail, :Status
+        
+        def initialize(versionname=nil, remark=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, imageurl=nil, policytype=nil, policythreshold=nil, envparams=nil, containerport=nil, createtime=nil, updatetime=nil, uploadtype=nil, dockerfilepath=nil, builddir=nil, repotype=nil, repo=nil, branch=nil, envid=nil, servername=nil, packagename=nil, packageversion=nil, customlogs=nil, initialdelayseconds=nil, snapshotname=nil, imageinfo=nil, codedetail=nil, status=nil)
+          @VersionName = versionname
+          @Remark = remark
+          @Cpu = cpu
+          @Mem = mem
+          @MinNum = minnum
+          @MaxNum = maxnum
+          @ImageUrl = imageurl
+          @PolicyType = policytype
+          @PolicyThreshold = policythreshold
+          @EnvParams = envparams
+          @ContainerPort = containerport
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @UploadType = uploadtype
+          @DockerfilePath = dockerfilepath
+          @BuildDir = builddir
+          @RepoType = repotype
+          @Repo = repo
+          @Branch = branch
+          @EnvId = envid
+          @ServerName = servername
+          @PackageName = packagename
+          @PackageVersion = packageversion
+          @CustomLogs = customlogs
+          @InitialDelaySeconds = initialdelayseconds
+          @SnapshotName = snapshotname
+          @ImageInfo = imageinfo
+          @CodeDetail = codedetail
+          @Status = status
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @Remark = params['Remark']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @MinNum = params['MinNum']
+          @MaxNum = params['MaxNum']
+          @ImageUrl = params['ImageUrl']
+          @PolicyType = params['PolicyType']
+          @PolicyThreshold = params['PolicyThreshold']
+          @EnvParams = params['EnvParams']
+          @ContainerPort = params['ContainerPort']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @UploadType = params['UploadType']
+          @DockerfilePath = params['DockerfilePath']
+          @BuildDir = params['BuildDir']
+          @RepoType = params['RepoType']
+          @Repo = params['Repo']
+          @Branch = params['Branch']
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @PackageName = params['PackageName']
+          @PackageVersion = params['PackageVersion']
+          @CustomLogs = params['CustomLogs']
+          @InitialDelaySeconds = params['InitialDelaySeconds']
+          @SnapshotName = params['SnapshotName']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = CloudBaseRunImageInfo.new.deserialize(params[ImageInfo])
+          end
+          unless params['CodeDetail'].nil?
+            @CodeDetail = CloudBaseCodeRepoDetail.new.deserialize(params[CodeDetail])
+          end
+          @Status = params['Status']
+        end
+      end
+
       # CommonServiceAPI请求参数结构体
       class CommonServiceAPIRequest < TencentCloud::Common::AbstractModel
         # @param Service: Service名，需要转发访问的接口名
@@ -164,6 +602,225 @@ module TencentCloud
         end
       end
 
+      # CreateCloudBaseRunResource请求参数结构体
+      class CreateCloudBaseRunResourceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param VpcId: vpc的ID
+        # @type VpcId: String
+        # @param SubnetIds: 子网ID列表，当VpcId不为空，SubnetIds也不能为空
+        # @type SubnetIds: Array
+
+        attr_accessor :EnvId, :VpcId, :SubnetIds
+        
+        def initialize(envid=nil, vpcid=nil, subnetids=nil)
+          @EnvId = envid
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+        end
+      end
+
+      # CreateCloudBaseRunResource返回参数结构体
+      class CreateCloudBaseRunResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回集群创建是否成功 succ为成功。并且中间无err
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudBaseRunServerVersion请求参数结构体
+      class CreateCloudBaseRunServerVersionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param UploadType: 枚举（package/repository/image)
+        # @type UploadType: String
+        # @param FlowRatio: 流量占比
+        # @type FlowRatio: Integer
+        # @param Cpu: Cpu的大小，单位：核
+        # @type Cpu: Float
+        # @param Mem: Mem的大小，单位：G
+        # @type Mem: Float
+        # @param MinNum: 最小副本数，最小值：0
+        # @type MinNum: Integer
+        # @param MaxNum: 副本最大数，最大值：50
+        # @type MaxNum: Integer
+        # @param PolicyType: 策略类型(枚举值：比如cpu)
+        # @type PolicyType: String
+        # @param PolicyThreshold: 策略阈值
+        # @type PolicyThreshold: Integer
+        # @param ContainerPort: 服务端口
+        # @type ContainerPort: Integer
+        # @param ServerName: 服务名称
+        # @type ServerName: String
+        # @param RepositoryType: repository的类型(coding/gitlab/github/coding)
+        # @type RepositoryType: String
+        # @param DockerfilePath: Dockerfile地址
+        # @type DockerfilePath: String
+        # @param BuildDir: 构建目录
+        # @type BuildDir: String
+        # @param EnvParams: 环境变量
+        # @type EnvParams: String
+        # @param Repository: repository地址
+        # @type Repository: String
+        # @param Branch: 分支
+        # @type Branch: String
+        # @param VersionRemark: 版本备注
+        # @type VersionRemark: String
+        # @param PackageName: 代码包名字
+        # @type PackageName: String
+        # @param PackageVersion: 代码包的版本
+        # @type PackageVersion: String
+        # @param ImageInfo: Image的详情
+        # @type ImageInfo: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunImageInfo`
+        # @param CodeDetail: Github等拉取代码的详情
+        # @type CodeDetail: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseCodeRepoDetail`
+        # @param ImageSecretInfo: 私有镜像秘钥信息
+        # @type ImageSecretInfo: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunImageSecretInfo`
+        # @param ImagePullSecret: 私有镜像 认证名称
+        # @type ImagePullSecret: String
+        # @param CustomLogs: 用户自定义采集日志路径
+        # @type CustomLogs: String
+        # @param InitialDelaySeconds: 延迟多长时间开始健康检查（单位s）
+        # @type InitialDelaySeconds: Integer
+        # @param MountVolumeInfo: cfs挂载信息
+        # @type MountVolumeInfo: Array
+        # @param AccessType: 4 代表只能微信链路访问
+        # @type AccessType: Integer
+        # @param EsInfo: es信息
+        # @type EsInfo: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseEsInfo`
+        # @param EnableUnion: 是否使用统一域名
+        # @type EnableUnion: Boolean
+        # @param OperatorRemark: 操作备注
+        # @type OperatorRemark: String
+        # @param ServerPath: 服务路劲
+        # @type ServerPath: String
+
+        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath
+        
+        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil)
+          @EnvId = envid
+          @UploadType = uploadtype
+          @FlowRatio = flowratio
+          @Cpu = cpu
+          @Mem = mem
+          @MinNum = minnum
+          @MaxNum = maxnum
+          @PolicyType = policytype
+          @PolicyThreshold = policythreshold
+          @ContainerPort = containerport
+          @ServerName = servername
+          @RepositoryType = repositorytype
+          @DockerfilePath = dockerfilepath
+          @BuildDir = builddir
+          @EnvParams = envparams
+          @Repository = repository
+          @Branch = branch
+          @VersionRemark = versionremark
+          @PackageName = packagename
+          @PackageVersion = packageversion
+          @ImageInfo = imageinfo
+          @CodeDetail = codedetail
+          @ImageSecretInfo = imagesecretinfo
+          @ImagePullSecret = imagepullsecret
+          @CustomLogs = customlogs
+          @InitialDelaySeconds = initialdelayseconds
+          @MountVolumeInfo = mountvolumeinfo
+          @AccessType = accesstype
+          @EsInfo = esinfo
+          @EnableUnion = enableunion
+          @OperatorRemark = operatorremark
+          @ServerPath = serverpath
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @UploadType = params['UploadType']
+          @FlowRatio = params['FlowRatio']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @MinNum = params['MinNum']
+          @MaxNum = params['MaxNum']
+          @PolicyType = params['PolicyType']
+          @PolicyThreshold = params['PolicyThreshold']
+          @ContainerPort = params['ContainerPort']
+          @ServerName = params['ServerName']
+          @RepositoryType = params['RepositoryType']
+          @DockerfilePath = params['DockerfilePath']
+          @BuildDir = params['BuildDir']
+          @EnvParams = params['EnvParams']
+          @Repository = params['Repository']
+          @Branch = params['Branch']
+          @VersionRemark = params['VersionRemark']
+          @PackageName = params['PackageName']
+          @PackageVersion = params['PackageVersion']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = CloudBaseRunImageInfo.new.deserialize(params[ImageInfo])
+          end
+          unless params['CodeDetail'].nil?
+            @CodeDetail = CloudBaseCodeRepoDetail.new.deserialize(params[CodeDetail])
+          end
+          unless params['ImageSecretInfo'].nil?
+            @ImageSecretInfo = CloudBaseRunImageSecretInfo.new.deserialize(params[ImageSecretInfo])
+          end
+          @ImagePullSecret = params['ImagePullSecret']
+          @CustomLogs = params['CustomLogs']
+          @InitialDelaySeconds = params['InitialDelaySeconds']
+          @MountVolumeInfo = params['MountVolumeInfo']
+          @AccessType = params['AccessType']
+          unless params['EsInfo'].nil?
+            @EsInfo = CloudBaseEsInfo.new.deserialize(params[EsInfo])
+          end
+          @EnableUnion = params['EnableUnion']
+          @OperatorRemark = params['OperatorRemark']
+          @ServerPath = params['ServerPath']
+        end
+      end
+
+      # CreateCloudBaseRunServerVersion返回参数结构体
+      class CreateCloudBaseRunServerVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 状态(creating/succ)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param VersionName: 版本名称（只有Result为succ的时候，才会返回VersionName)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :VersionName, :RequestId
+        
+        def initialize(result=nil, versionname=nil, requestid=nil)
+          @Result = result
+          @VersionName = versionname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @VersionName = params['VersionName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateHostingDomain请求参数结构体
       class CreateHostingDomainRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -206,7 +863,7 @@ module TencentCloud
 
       # CreatePostpayPackage请求参数结构体
       class CreatePostpayPackageRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境ID
+        # @param EnvId: 环境ID，需要系统自动创建环境时，此字段不传
         # @type EnvId: String
         # @param WxAppId: 微信 AppId，微信必传
         # @type WxAppId: String
@@ -216,29 +873,37 @@ module TencentCloud
         # @type Source: String
         # @param FreeQuota: 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，标识不享受免费额度。
         # @type FreeQuota: String
-        # @param Alias: 环境别名，要以a-z开头，不能包含 a-zA-z0-9- 以外的字符
-        # @type Alias: String
         # @param EnvSource: 环境创建来源，取值：
         # <li>miniapp</li>
         # <li>qcloud</li>
         # 用法同CreateEnv接口的Source参数
         # 和 Channel 参数同时传，或者同时不传；EnvId 为空时必传。
         # @type EnvSource: String
+        # @param Alias: 环境别名，要以a-z开头，不能包含  a-z,0-9,-  以外的字符
+        # @type Alias: String
         # @param Channel: 如果envsource为miniapp, channel可以为ide或api;
-        # 如果envsource为qcloud, channel可以为qc_console,cocos, qq, cloudgame,dcloud
+        # 如果envsource为qcloud, channel可以为qc_console,cocos, qq, cloudgame,dcloud,serverless_framework
         # 和 EnvSource 参数同时传，或者同时不传；EnvId 为空时必传。
         # @type Channel: String
+        # @param ExtensionId: 扩展ID
+        # @type ExtensionId: String
+        # @param Flag: 订单标记。建议使用方统一转大小写之后再判断。
+        # <li>QuickStart：快速启动来源</li>
+        # <li>Activity：活动来源</li>
+        # @type Flag: String
 
-        attr_accessor :EnvId, :WxAppId, :Source, :FreeQuota, :Alias, :EnvSource, :Channel
+        attr_accessor :EnvId, :WxAppId, :Source, :FreeQuota, :EnvSource, :Alias, :Channel, :ExtensionId, :Flag
         
-        def initialize(envid=nil, wxappid=nil, source=nil, freequota=nil, alias=nil, envsource=nil, channel=nil)
+        def initialize(envid=nil, wxappid=nil, source=nil, freequota=nil, envsource=nil, alias=nil, channel=nil, extensionid=nil, flag=nil)
           @EnvId = envid
           @WxAppId = wxappid
           @Source = source
           @FreeQuota = freequota
-          @Alias = alias
           @EnvSource = envsource
+          @Alias = alias
           @Channel = channel
+          @ExtensionId = extensionid
+          @Flag = flag
         end
 
         def deserialize(params)
@@ -246,9 +911,11 @@ module TencentCloud
           @WxAppId = params['WxAppId']
           @Source = params['Source']
           @FreeQuota = params['FreeQuota']
-          @Alias = params['Alias']
           @EnvSource = params['EnvSource']
+          @Alias = params['Alias']
           @Channel = params['Channel']
+          @ExtensionId = params['ExtensionId']
+          @Flag = params['Flag']
         end
       end
 
@@ -281,15 +948,19 @@ module TencentCloud
       class CreateStaticStoreRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
         # @type EnvId: String
+        # @param EnableUnion: 是否启用统一域名
+        # @type EnableUnion: Boolean
 
-        attr_accessor :EnvId
+        attr_accessor :EnvId, :EnableUnion
         
-        def initialize(envid=nil)
+        def initialize(envid=nil, enableunion=nil)
           @EnvId = envid
+          @EnableUnion = enableunion
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
+          @EnableUnion = params['EnableUnion']
         end
       end
 
@@ -340,6 +1011,42 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Status = params['Status']
           @Region = params['Region']
+        end
+      end
+
+      # DeleteCloudBaseProjectLatestVersion请求参数结构体
+      class DeleteCloudBaseProjectLatestVersionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param ProjectName: 项目名
+        # @type ProjectName: String
+
+        attr_accessor :EnvId, :ProjectName
+        
+        def initialize(envid=nil, projectname=nil)
+          @EnvId = envid
+          @ProjectName = projectname
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ProjectName = params['ProjectName']
+        end
+      end
+
+      # DeleteCloudBaseProjectLatestVersion返回参数结构体
+      class DeleteCloudBaseProjectLatestVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -415,6 +1122,424 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudBaseBuildService请求参数结构体
+      class DescribeCloudBaseBuildServiceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+        # @param CIBusiness: build类型,枚举值有: cloudbaserun, framework-ci
+        # @type CIBusiness: String
+
+        attr_accessor :EnvId, :ServiceName, :CIBusiness
+        
+        def initialize(envid=nil, servicename=nil, cibusiness=nil)
+          @EnvId = envid
+          @ServiceName = servicename
+          @CIBusiness = cibusiness
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServiceName = params['ServiceName']
+          @CIBusiness = params['CIBusiness']
+        end
+      end
+
+      # DescribeCloudBaseBuildService返回参数结构体
+      class DescribeCloudBaseBuildServiceResponse < TencentCloud::Common::AbstractModel
+        # @param UploadUrl: 上传url
+        # @type UploadUrl: String
+        # @param UploadHeaders: heder
+        # @type UploadHeaders: Array
+        # @param PackageName: 包名
+        # @type PackageName: String
+        # @param PackageVersion: 包版本
+        # @type PackageVersion: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UploadUrl, :UploadHeaders, :PackageName, :PackageVersion, :RequestId
+        
+        def initialize(uploadurl=nil, uploadheaders=nil, packagename=nil, packageversion=nil, requestid=nil)
+          @UploadUrl = uploadurl
+          @UploadHeaders = uploadheaders
+          @PackageName = packagename
+          @PackageVersion = packageversion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UploadUrl = params['UploadUrl']
+          @UploadHeaders = params['UploadHeaders']
+          @PackageName = params['PackageName']
+          @PackageVersion = params['PackageVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunResourceForExtend请求参数结构体
+      class DescribeCloudBaseRunResourceForExtendRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+        
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeCloudBaseRunResourceForExtend返回参数结构体
+      class DescribeCloudBaseRunResourceForExtendResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterStatus: 集群状态(creating/succ)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStatus: String
+        # @param VirtualClusterId: 虚拟集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualClusterId: String
+        # @param VpcId: vpc id信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param Region: 地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param SubnetIds: 子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterStatus, :VirtualClusterId, :VpcId, :Region, :SubnetIds, :RequestId
+        
+        def initialize(clusterstatus=nil, virtualclusterid=nil, vpcid=nil, region=nil, subnetids=nil, requestid=nil)
+          @ClusterStatus = clusterstatus
+          @VirtualClusterId = virtualclusterid
+          @VpcId = vpcid
+          @Region = region
+          @SubnetIds = subnetids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterStatus = params['ClusterStatus']
+          @VirtualClusterId = params['VirtualClusterId']
+          @VpcId = params['VpcId']
+          @Region = params['Region']
+          @SubnetIds = params['SubnetIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunResource请求参数结构体
+      class DescribeCloudBaseRunResourceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+        
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeCloudBaseRunResource返回参数结构体
+      class DescribeCloudBaseRunResourceResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterStatus: 集群状态(creating/succ)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStatus: String
+        # @param VirtualClusterId: 虚拟集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualClusterId: String
+        # @param VpcId: vpc id信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param Region: 地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param SubnetIds: 子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterStatus, :VirtualClusterId, :VpcId, :Region, :SubnetIds, :RequestId
+        
+        def initialize(clusterstatus=nil, virtualclusterid=nil, vpcid=nil, region=nil, subnetids=nil, requestid=nil)
+          @ClusterStatus = clusterstatus
+          @VirtualClusterId = virtualclusterid
+          @VpcId = vpcid
+          @Region = region
+          @SubnetIds = subnetids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterStatus = params['ClusterStatus']
+          @VirtualClusterId = params['VirtualClusterId']
+          @VpcId = params['VpcId']
+          @Region = params['Region']
+          @SubnetIds = params['SubnetIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunServerVersion请求参数结构体
+      class DescribeCloudBaseRunServerVersionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerName: 服务名称
+        # @type ServerName: String
+        # @param VersionName: 版本名称
+        # @type VersionName: String
+
+        attr_accessor :EnvId, :ServerName, :VersionName
+        
+        def initialize(envid=nil, servername=nil, versionname=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @VersionName = versionname
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @VersionName = params['VersionName']
+        end
+      end
+
+      # DescribeCloudBaseRunServerVersion返回参数结构体
+      class DescribeCloudBaseRunServerVersionResponse < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本名称
+        # @type VersionName: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param DockerfilePath: Dockefile的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DockerfilePath: String
+        # @param BuildDir: DockerBuild的目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildDir: String
+        # @param Cpu: 请使用CPUSize
+        # @type Cpu: Integer
+        # @param Mem: 请使用MemSize
+        # @type Mem: Integer
+        # @param MinNum: 副本最小值
+        # @type MinNum: Integer
+        # @param MaxNum: 副本最大值
+        # @type MaxNum: Integer
+        # @param PolicyType: 策略类型
+        # @type PolicyType: String
+        # @param PolicyThreshold: 策略阈值
+        # @type PolicyThreshold: Float
+        # @param EnvParams: 环境变量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvParams: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param UpdatedTime: 更新时间
+        # @type UpdatedTime: String
+        # @param VersionIP: 版本的IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionIP: String
+        # @param VersionPort: 版本的端口号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionPort: Integer
+        # @param Status: 版本状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param PackageName: 代码包的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageName: String
+        # @param PackageVersion: 代码版本的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageVersion: String
+        # @param UploadType: 枚举（package/repository/image)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadType: String
+        # @param RepoType: Repo的类型(coding/gitlab/github/coding)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoType: String
+        # @param Repo: 地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Repo: String
+        # @param Branch: 分支
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Branch: String
+        # @param ServerName: 服务名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerName: String
+        # @param IsPublic: 是否对于外网开放
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPublic: Boolean
+        # @param VpcId: vpc id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetIds: 子网实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetIds: Array
+        # @param CustomLogs: 日志采集路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomLogs: String
+        # @param ContainerPort: 监听端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerPort: Integer
+        # @param InitialDelaySeconds: 延迟多长时间开始健康检查（单位s）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InitialDelaySeconds: Integer
+        # @param ImageUrl: 镜像地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
+        # @param CpuSize: CPU 大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuSize: Float
+        # @param MemSize: MEM 大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemSize: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :RequestId
+        
+        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, requestid=nil)
+          @VersionName = versionname
+          @Remark = remark
+          @DockerfilePath = dockerfilepath
+          @BuildDir = builddir
+          @Cpu = cpu
+          @Mem = mem
+          @MinNum = minnum
+          @MaxNum = maxnum
+          @PolicyType = policytype
+          @PolicyThreshold = policythreshold
+          @EnvParams = envparams
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+          @VersionIP = versionip
+          @VersionPort = versionport
+          @Status = status
+          @PackageName = packagename
+          @PackageVersion = packageversion
+          @UploadType = uploadtype
+          @RepoType = repotype
+          @Repo = repo
+          @Branch = branch
+          @ServerName = servername
+          @IsPublic = ispublic
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+          @CustomLogs = customlogs
+          @ContainerPort = containerport
+          @InitialDelaySeconds = initialdelayseconds
+          @ImageUrl = imageurl
+          @CpuSize = cpusize
+          @MemSize = memsize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @Remark = params['Remark']
+          @DockerfilePath = params['DockerfilePath']
+          @BuildDir = params['BuildDir']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @MinNum = params['MinNum']
+          @MaxNum = params['MaxNum']
+          @PolicyType = params['PolicyType']
+          @PolicyThreshold = params['PolicyThreshold']
+          @EnvParams = params['EnvParams']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+          @VersionIP = params['VersionIP']
+          @VersionPort = params['VersionPort']
+          @Status = params['Status']
+          @PackageName = params['PackageName']
+          @PackageVersion = params['PackageVersion']
+          @UploadType = params['UploadType']
+          @RepoType = params['RepoType']
+          @Repo = params['Repo']
+          @Branch = params['Branch']
+          @ServerName = params['ServerName']
+          @IsPublic = params['IsPublic']
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+          @CustomLogs = params['CustomLogs']
+          @ContainerPort = params['ContainerPort']
+          @InitialDelaySeconds = params['InitialDelaySeconds']
+          @ImageUrl = params['ImageUrl']
+          @CpuSize = params['CpuSize']
+          @MemSize = params['MemSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunVersionSnapshot请求参数结构体
+      class DescribeCloudBaseRunVersionSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param VersionName: 版本名
+        # @type VersionName: String
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param SnapshotName: 版本历史名
+        # @type SnapshotName: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制大小
+        # @type Limit: Integer
+
+        attr_accessor :ServerName, :VersionName, :EnvId, :SnapshotName, :Offset, :Limit
+        
+        def initialize(servername=nil, versionname=nil, envid=nil, snapshotname=nil, offset=nil, limit=nil)
+          @ServerName = servername
+          @VersionName = versionname
+          @EnvId = envid
+          @SnapshotName = snapshotname
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ServerName = params['ServerName']
+          @VersionName = params['VersionName']
+          @EnvId = params['EnvId']
+          @SnapshotName = params['SnapshotName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCloudBaseRunVersionSnapshot返回参数结构体
+      class DescribeCloudBaseRunVersionSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param Snapshots: 版本历史
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Snapshots: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Snapshots, :RequestId
+        
+        def initialize(snapshots=nil, requestid=nil)
+          @Snapshots = snapshots
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Snapshots = params['Snapshots']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDatabaseACL请求参数结构体
       class DescribeDatabaseACLRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -455,6 +1580,53 @@ module TencentCloud
 
         def deserialize(params)
           @AclTag = params['AclTag']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDownloadFile请求参数结构体
+      class DescribeDownloadFileRequest < TencentCloud::Common::AbstractModel
+        # @param CodeUri: 代码uri
+        # @type CodeUri: String
+
+        attr_accessor :CodeUri
+        
+        def initialize(codeuri=nil)
+          @CodeUri = codeuri
+        end
+
+        def deserialize(params)
+          @CodeUri = params['CodeUri']
+        end
+      end
+
+      # DescribeDownloadFile返回参数结构体
+      class DescribeDownloadFileResponse < TencentCloud::Common::AbstractModel
+        # @param FilePath: 文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilePath: String
+        # @param CustomKey: 加密key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomKey: String
+        # @param DownloadUrl: 下载链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FilePath, :CustomKey, :DownloadUrl, :RequestId
+        
+        def initialize(filepath=nil, customkey=nil, downloadurl=nil, requestid=nil)
+          @FilePath = filepath
+          @CustomKey = customkey
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FilePath = params['FilePath']
+          @CustomKey = params['CustomKey']
+          @DownloadUrl = params['DownloadUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -781,6 +1953,43 @@ module TencentCloud
         end
       end
 
+      # DescribePostpayFreeQuotas请求参数结构体
+      class DescribePostpayFreeQuotasRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+        
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribePostpayFreeQuotas返回参数结构体
+      class DescribePostpayFreeQuotasResponse < TencentCloud::Common::AbstractModel
+        # @param FreequotaInfoList: 免费量资源信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreequotaInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FreequotaInfoList, :RequestId
+        
+        def initialize(freequotainfolist=nil, requestid=nil)
+          @FreequotaInfoList = freequotainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FreequotaInfoList = params['FreequotaInfoList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePostpayPackageFreeQuotas请求参数结构体
       class DescribePostpayPackageFreeQuotasRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -899,17 +2108,21 @@ module TencentCloud
         # @type EnvId: String
         # @param IsForce: 针对预付费 删除隔离中的环境时要传true 正常环境直接跳过隔离期删除
         # @type IsForce: Boolean
+        # @param BypassCheck: 是否绕过资源检查，资源包等额外资源，默认为false，如果为true，则不检查资源是否有数据，直接删除。
+        # @type BypassCheck: Boolean
 
-        attr_accessor :EnvId, :IsForce
+        attr_accessor :EnvId, :IsForce, :BypassCheck
         
-        def initialize(envid=nil, isforce=nil)
+        def initialize(envid=nil, isforce=nil, bypasscheck=nil)
           @EnvId = envid
           @IsForce = isforce
+          @BypassCheck = bypasscheck
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
           @IsForce = params['IsForce']
+          @BypassCheck = params['BypassCheck']
         end
       end
 
@@ -1155,10 +2368,21 @@ module TencentCloud
         # @param EnvChannel: 环境渠道
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvChannel: String
+        # @param PayMode: 支付方式。包含以下取值：
+        # <li> prepayment：预付费</li>
+        # <li> postpaid：后付费</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: String
+        # @param IsDefault: 是否为默认环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: Boolean
+        # @param Region: 环境所属地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
 
-        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel
+        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region
         
-        def initialize(envid=nil, source=nil, alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil)
+        def initialize(envid=nil, source=nil, alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil)
           @EnvId = envid
           @Source = source
           @Alias = alias
@@ -1174,6 +2398,9 @@ module TencentCloud
           @StaticStorages = staticstorages
           @IsAutoDegrade = isautodegrade
           @EnvChannel = envchannel
+          @PayMode = paymode
+          @IsDefault = isdefault
+          @Region = region
         end
 
         def deserialize(params)
@@ -1192,6 +2419,131 @@ module TencentCloud
           @StaticStorages = params['StaticStorages']
           @IsAutoDegrade = params['IsAutoDegrade']
           @EnvChannel = params['EnvChannel']
+          @PayMode = params['PayMode']
+          @IsDefault = params['IsDefault']
+          @Region = params['Region']
+        end
+      end
+
+      # EstablishCloudBaseRunServer请求参数结构体
+      class EstablishCloudBaseRunServerRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param IsPublic: 是否开通外网访问
+        # @type IsPublic: Boolean
+        # @param ImageRepo: 镜像仓库
+        # @type ImageRepo: String
+        # @param Remark: 服务描述
+        # @type Remark: String
+        # @param EsInfo: es信息
+        # @type EsInfo: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseEsInfo`
+        # @param LogType: 日志类型; es/cls
+        # @type LogType: String
+        # @param OperatorRemark: 操作备注
+        # @type OperatorRemark: String
+        # @param Source: 来源方（默认值：qcloud，微信侧来源miniapp)
+        # @type Source: String
+        # @param VpcInfo: vpc信息
+        # @type VpcInfo: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunVpcInfo`
+        # @param PublicAccess: 0/1=允许公网访问;2=关闭公网访问
+        # @type PublicAccess: Integer
+
+        attr_accessor :EnvId, :ServiceName, :IsPublic, :ImageRepo, :Remark, :EsInfo, :LogType, :OperatorRemark, :Source, :VpcInfo, :PublicAccess
+        
+        def initialize(envid=nil, servicename=nil, ispublic=nil, imagerepo=nil, remark=nil, esinfo=nil, logtype=nil, operatorremark=nil, source=nil, vpcinfo=nil, publicaccess=nil)
+          @EnvId = envid
+          @ServiceName = servicename
+          @IsPublic = ispublic
+          @ImageRepo = imagerepo
+          @Remark = remark
+          @EsInfo = esinfo
+          @LogType = logtype
+          @OperatorRemark = operatorremark
+          @Source = source
+          @VpcInfo = vpcinfo
+          @PublicAccess = publicaccess
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServiceName = params['ServiceName']
+          @IsPublic = params['IsPublic']
+          @ImageRepo = params['ImageRepo']
+          @Remark = params['Remark']
+          unless params['EsInfo'].nil?
+            @EsInfo = CloudBaseEsInfo.new.deserialize(params[EsInfo])
+          end
+          @LogType = params['LogType']
+          @OperatorRemark = params['OperatorRemark']
+          @Source = params['Source']
+          unless params['VpcInfo'].nil?
+            @VpcInfo = CloudBaseRunVpcInfo.new.deserialize(params[VpcInfo])
+          end
+          @PublicAccess = params['PublicAccess']
+        end
+      end
+
+      # EstablishCloudBaseRunServer返回参数结构体
+      class EstablishCloudBaseRunServerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 后付费资源免费量信息
+      class FreequotaInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型
+        # <li>COS</li>
+        # <li>CDN</li>
+        # <li>FLEXDB</li>
+        # <li>SCF</li>
+        # @type ResourceType: String
+        # @param ResourceMetric: 资源指标名称
+        # @type ResourceMetric: String
+        # @param FreeQuota: 资源指标免费量
+        # @type FreeQuota: Integer
+        # @param MetricUnit: 指标单位
+        # @type MetricUnit: String
+        # @param DeductType: 免费量抵扣周期
+        # <li>sum-month:以月为单位抵扣</li>
+        # <li>sum-day:以天为单位抵扣</li>
+        # <li>totalize:总容量抵扣</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeductType: String
+        # @param FreeQuotaType: 免费量类型
+        # <li>basic:通用量抵扣</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreeQuotaType: String
+
+        attr_accessor :ResourceType, :ResourceMetric, :FreeQuota, :MetricUnit, :DeductType, :FreeQuotaType
+        
+        def initialize(resourcetype=nil, resourcemetric=nil, freequota=nil, metricunit=nil, deducttype=nil, freequotatype=nil)
+          @ResourceType = resourcetype
+          @ResourceMetric = resourcemetric
+          @FreeQuota = freequota
+          @MetricUnit = metricunit
+          @DeductType = deducttype
+          @FreeQuotaType = freequotatype
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceMetric = params['ResourceMetric']
+          @FreeQuota = params['FreeQuota']
+          @MetricUnit = params['MetricUnit']
+          @DeductType = params['DeductType']
+          @FreeQuotaType = params['FreeQuotaType']
         end
       end
 
@@ -1213,6 +2565,26 @@ module TencentCloud
         def deserialize(params)
           @Namespace = params['Namespace']
           @Region = params['Region']
+        end
+      end
+
+      # 键值对
+      class KVPair < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -1429,10 +2801,16 @@ module TencentCloud
         # <li>prepayment 预付费</li>
         # <li>postpaid 后付费</li>
         # @type PayMode: String
+        # @param ExtensionId: 订单绑定的扩展ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtensionId: String
+        # @param ResourceReady: 资源初始化结果(仅当ExtensionId不为空时有效): successful(初始化成功), failed(初始化失败), doing(初始化进行中), init(准备初始化)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceReady: String
 
-        attr_accessor :TranId, :PackageId, :TranType, :TranStatus, :UpdateTime, :CreateTime, :PayMode
+        attr_accessor :TranId, :PackageId, :TranType, :TranStatus, :UpdateTime, :CreateTime, :PayMode, :ExtensionId, :ResourceReady
         
-        def initialize(tranid=nil, packageid=nil, trantype=nil, transtatus=nil, updatetime=nil, createtime=nil, paymode=nil)
+        def initialize(tranid=nil, packageid=nil, trantype=nil, transtatus=nil, updatetime=nil, createtime=nil, paymode=nil, extensionid=nil, resourceready=nil)
           @TranId = tranid
           @PackageId = packageid
           @TranType = trantype
@@ -1440,6 +2818,8 @@ module TencentCloud
           @UpdateTime = updatetime
           @CreateTime = createtime
           @PayMode = paymode
+          @ExtensionId = extensionid
+          @ResourceReady = resourceready
         end
 
         def deserialize(params)
@@ -1450,6 +2830,8 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @CreateTime = params['CreateTime']
           @PayMode = params['PayMode']
+          @ExtensionId = params['ExtensionId']
+          @ResourceReady = params['ResourceReady']
         end
       end
 

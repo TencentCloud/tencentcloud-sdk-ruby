@@ -202,6 +202,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeIpStatus 用于查询域名所在加速平台的所有节点明细。
+
+        # @param request: Request instance for DescribeIpStatus.
+        # @type request: :class:`Tencentcloud::ecdn::V20191012::DescribeIpStatusRequest`
+        # @rtype: :class:`Tencentcloud::ecdn::V20191012::DescribeIpStatusResponse`
+        def DescribeIpStatus(request)
+          body = send_request('DescribeIpStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIpStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询刷新接口的用量配额。
 
         # @param request: Request instance for DescribePurgeQuota.

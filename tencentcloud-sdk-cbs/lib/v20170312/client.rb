@@ -524,6 +524,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（InquirePriceModifyDiskExtraPerformance）用于调整云硬盘额外性能询价。
+
+        # @param request: Request instance for InquirePriceModifyDiskExtraPerformance.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::InquirePriceModifyDiskExtraPerformanceRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::InquirePriceModifyDiskExtraPerformanceResponse`
+        def InquirePriceModifyDiskExtraPerformance(request)
+          body = send_request('InquirePriceModifyDiskExtraPerformance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceModifyDiskExtraPerformanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
 
         # * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
@@ -643,6 +667,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDiskAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyDiskExtraPerformance）用于调整云硬盘额外的性能。
+
+        # * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
+
+        # @param request: Request instance for ModifyDiskExtraPerformance.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::ModifyDiskExtraPerformanceRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::ModifyDiskExtraPerformanceResponse`
+        def ModifyDiskExtraPerformance(request)
+          body = send_request('ModifyDiskExtraPerformance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDiskExtraPerformanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -797,8 +847,8 @@ module TencentCloud
 
         # 本接口（ResizeDisk）用于扩容云硬盘。
 
-        # * 只支持扩容弹性云盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中Portable字段解释。随云主机创建的云硬盘需通过[ResizeInstanceDisks](/document/product/213/15731)接口扩容。
-        # * 本接口为异步接口，接口成功返回时，云盘并未立即扩容到指定大小，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态为“EXPANDING”，表示正在扩容中，当状态变为“UNATTACHED”，表示扩容完成。
+        # * 只支持扩容弹性云盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中Portable字段解释。非弹性云硬盘需通过[ResizeInstanceDisks](/document/product/213/15731)接口扩容。
+        # * 本接口为异步接口，接口成功返回时，云盘并未立即扩容到指定大小，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态为“EXPANDING”，表示正在扩容中。
 
         # @param request: Request instance for ResizeDisk.
         # @type request: :class:`Tencentcloud::cbs::V20170312::ResizeDiskRequest`

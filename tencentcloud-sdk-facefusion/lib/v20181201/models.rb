@@ -69,6 +69,67 @@ module TencentCloud
         end
       end
 
+      # FaceFusionLite请求参数结构体
+      class FaceFusionLiteRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 活动 ID，请在人脸融合控制台查看。
+        # @type ProjectId: String
+        # @param ModelId: 素材 ID，请在人脸融合控制台查看。
+        # @type ModelId: String
+        # @param MergeInfos: 用户人脸图片、素材模板图的人脸位置信息。
+        # @type MergeInfos: Array
+        # @param RspImgType: 返回图像方式（url 或 base64) ，二选一。默认url, url有效期为30天。
+        # @type RspImgType: String
+        # @param CelebrityIdentify: 请注意，鉴政服务开启后，您需要根据返回结果自行判断是否调整您的业务逻辑。例如提示您的用户图片非法，请更换图片。
+        # @type CelebrityIdentify: Integer
+        # @param Engine: 算法引擎参数:  1）选脸版 - youturecreat; 2）优享版 - youtu1vN； 3）畅享版 - ptu； 4）随机 - ALL;  默认为活动选择的算法
+        # @type Engine: String
+
+        attr_accessor :ProjectId, :ModelId, :MergeInfos, :RspImgType, :CelebrityIdentify, :Engine
+        
+        def initialize(projectid=nil, modelid=nil, mergeinfos=nil, rspimgtype=nil, celebrityidentify=nil, engine=nil)
+          @ProjectId = projectid
+          @ModelId = modelid
+          @MergeInfos = mergeinfos
+          @RspImgType = rspimgtype
+          @CelebrityIdentify = celebrityidentify
+          @Engine = engine
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ModelId = params['ModelId']
+          @MergeInfos = params['MergeInfos']
+          @RspImgType = params['RspImgType']
+          @CelebrityIdentify = params['CelebrityIdentify']
+          @Engine = params['Engine']
+        end
+      end
+
+      # FaceFusionLite返回参数结构体
+      class FaceFusionLiteResponse < TencentCloud::Common::AbstractModel
+        # @param Image: RspImgType 为 url 时，返回结果的 url， RspImgType 为 base64 时返回 base64 数据。
+        # @type Image: String
+        # @param ReviewResultSet: 鉴政结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReviewResultSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Image, :ReviewResultSet, :RequestId
+        
+        def initialize(image=nil, reviewresultset=nil, requestid=nil)
+          @Image = image
+          @ReviewResultSet = reviewresultset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @ReviewResultSet = params['ReviewResultSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # FaceFusion请求参数结构体
       class FaceFusionRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 活动 ID，请在人脸融合控制台查看。
@@ -81,8 +142,8 @@ module TencentCloud
         # @type RspImgType: String
         # @param PornDetect: 历史遗留字段，无需填写。因为融合只需提取人脸特征，不需要鉴黄。
         # @type PornDetect: Integer
-        # @param CelebrityIdentify: 0表示不需要鉴政，1表示需要鉴政。默认值为0。
-        # 请注意，鉴政服务开启后，您需要根据返回结果自行判断是否调整您的业务逻辑。例如提示您的用户图片非法，请更换图片。
+        # @param CelebrityIdentify: 0表示不需要不适宜内容识别，1表示需要不适宜内容识别。默认值为0。
+        # 请注意，不适宜内容识别服务开启后，您需要根据返回结果自行判断是否调整您的业务逻辑。例如提示您的用户图片非法，请更换图片。
         # @type CelebrityIdentify: Integer
 
         attr_accessor :ProjectId, :ModelId, :Image, :RspImgType, :PornDetect, :CelebrityIdentify
@@ -110,7 +171,7 @@ module TencentCloud
       class FaceFusionResponse < TencentCloud::Common::AbstractModel
         # @param Image: RspImgType 为 url 时，返回结果的 url， RspImgType 为 base64 时返回 base64 数据。
         # @type Image: String
-        # @param ReviewResultSet: 鉴政结果
+        # @param ReviewResultSet: 不适宜内容识别结果
         # @type ReviewResultSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -202,8 +263,8 @@ module TencentCloud
         # @param FuseFaceDegree: 五官融合比例，数值越高，融合后的五官越像素材人物。取值范围[0,100]
         # 若此参数不填写，则使用人脸融合控制台中五官参数数值。（换脸版算法暂不支持此参数调整）
         # @type FuseFaceDegree: Integer
-        # @param CelebrityIdentify: 0表示不需要鉴政，1表示需要鉴政。默认值为0。
-        # 请注意，鉴政服务开启后，您需要根据返回结果自行判断是否调整您的业务逻辑。例如提示您的用户图片非法，请更换图片。
+        # @param CelebrityIdentify: 0表示不需要不适宜内容识别，1表示需要不适宜内容识别。默认值为0。
+        # 请注意，不适宜内容识别服务开启后，您需要根据返回结果自行判断是否调整您的业务逻辑。例如提示您的用户图片非法，请更换图片。
         # @type CelebrityIdentify: Integer
 
         attr_accessor :ProjectId, :ModelId, :RspImgType, :MergeInfos, :FuseProfileDegree, :FuseFaceDegree, :CelebrityIdentify
@@ -233,7 +294,7 @@ module TencentCloud
       class FuseFaceResponse < TencentCloud::Common::AbstractModel
         # @param FusedImage: RspImgType 为 url 时，返回结果的 url， RspImgType 为 base64 时返回 base64 数据。
         # @type FusedImage: String
-        # @param ReviewResultSet: 鉴政结果。该数组的顺序和请求中mergeinfo的顺序一致，一一对应
+        # @param ReviewResultSet: 不适宜内容识别结果。该数组的顺序和请求中mergeinfo的顺序一致，一一对应
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReviewResultSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -254,7 +315,7 @@ module TencentCloud
         end
       end
 
-      # 人脸融合鉴黄鉴政人脸信息
+      # 人脸融合不适宜内容识别人脸信息
       class FuseFaceReviewDetail < TencentCloud::Common::AbstractModel
         # @param Field: 保留字段
         # @type Field: String
@@ -288,7 +349,7 @@ module TencentCloud
         end
       end
 
-      # 人脸融合鉴黄鉴政返回参数item
+      # 人脸融合不适宜内容识别返回参数item
       class FuseFaceReviewResult < TencentCloud::Common::AbstractModel
         # @param Category: 保留字段
         # @type Category: String

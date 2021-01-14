@@ -331,6 +331,50 @@ module TencentCloud
         end
       end
 
+      # CheckCertificateChain请求参数结构体
+      class CheckCertificateChainRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateChain: 待检查的证书链
+        # @type CertificateChain: String
+
+        attr_accessor :CertificateChain
+        
+        def initialize(certificatechain=nil)
+          @CertificateChain = certificatechain
+        end
+
+        def deserialize(params)
+          @CertificateChain = params['CertificateChain']
+        end
+      end
+
+      # CheckCertificateChain返回参数结构体
+      class CheckCertificateChainResponse < TencentCloud::Common::AbstractModel
+        # @param IsValid: true为通过检查，false为未通过检查。
+        # @type IsValid: Boolean
+        # @param IsTrustedCA: true为可信CA，false为不可信CA。
+        # @type IsTrustedCA: Boolean
+        # @param Chains: 包含证书链中每一段证书的通用名称。
+        # @type Chains: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsValid, :IsTrustedCA, :Chains, :RequestId
+        
+        def initialize(isvalid=nil, istrustedca=nil, chains=nil, requestid=nil)
+          @IsValid = isvalid
+          @IsTrustedCA = istrustedca
+          @Chains = chains
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsValid = params['IsValid']
+          @IsTrustedCA = params['IsTrustedCA']
+          @Chains = params['Chains']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CommitCertificateInformation请求参数结构体
       class CommitCertificateInformationRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
@@ -349,9 +393,9 @@ module TencentCloud
 
       # CommitCertificateInformation返回参数结构体
       class CommitCertificateInformationResponse < TencentCloud::Common::AbstractModel
-        # @param OrderId: 亚信订单号。
+        # @param OrderId: CA机构侧订单号。
         # @type OrderId: String
-        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函。
+        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -367,6 +411,90 @@ module TencentCloud
         def deserialize(params)
           @OrderId = params['OrderId']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CompleteCertificate请求参数结构体
+      class CompleteCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID
+        # @type CertificateId: String
+
+        attr_accessor :CertificateId
+        
+        def initialize(certificateid=nil)
+          @CertificateId = certificateid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+        end
+      end
+
+      # CompleteCertificate返回参数结构体
+      class CompleteCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID
+        # @type CertificateId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertificateId, :RequestId
+        
+        def initialize(certificateid=nil, requestid=nil)
+          @CertificateId = certificateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCertificate请求参数结构体
+      class CreateCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 证书商品ID，3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = DNSPod 国密域名型证书，34 = DNSPod 国密域名型多域名证书，35 = DNSPod 国密域名型通配符证书，37 = DNSPod 国密企业型证书，38 = DNSPod 国密企业型多域名证书，39 = DNSPod 国密企业型通配符证书，40 = DNSPod 国密增强型证书，41 = DNSPod 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书。
+        # @type ProductId: Integer
+        # @param DomainNum: 证书包含的域名数量
+        # @type DomainNum: Integer
+        # @param TimeSpan: 证书年限，当前只支持 1 年证书的购买
+        # @type TimeSpan: Integer
+
+        attr_accessor :ProductId, :DomainNum, :TimeSpan
+        
+        def initialize(productid=nil, domainnum=nil, timespan=nil)
+          @ProductId = productid
+          @DomainNum = domainnum
+          @TimeSpan = timespan
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DomainNum = params['DomainNum']
+          @TimeSpan = params['TimeSpan']
+        end
+      end
+
+      # CreateCertificate返回参数结构体
+      class CreateCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param CertificateIds: 证书ID列表
+        # @type CertificateIds: Array
+        # @param DealIds: 订单号列表
+        # @type DealIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertificateIds, :DealIds, :RequestId
+        
+        def initialize(certificateids=nil, dealids=nil, requestid=nil)
+          @CertificateIds = certificateids
+          @DealIds = dealids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertificateIds = params['CertificateIds']
+          @DealIds = params['DealIds']
           @RequestId = params['RequestId']
         end
       end
@@ -389,7 +517,7 @@ module TencentCloud
 
       # DeleteCertificate返回参数结构体
       class DeleteCertificateResponse < TencentCloud::Common::AbstractModel
-        # @param DeleteResult: 删除结果。
+        # @param DeleteResult: 删除结果（true：删除成功，false：删除失败）
         # @type DeleteResult: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -437,7 +565,7 @@ module TencentCloud
         # @param CertificateType: 证书类型：CA = 客户端证书，SVR = 服务器证书。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificateType: String
-        # @param PackageType: 证书套餐类型：1 = GeoTrust DV SSL CA - G3， 2 = TrustAsia TLS RSA CA， 3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书。
+        # @param PackageType: 证书套餐类型：1 = GeoTrust DV SSL CA - G3， 2 = TrustAsia TLS RSA CA， 3 = SecureSite 增强型企业版（EV Pro）， 4 = SecureSite 增强型（EV）， 5 = SecureSite 企业型专业版（OV Pro）， 6 = SecureSite 企业型（OV）， 7 = SecureSite 企业型（OV）通配符， 8 = Geotrust 增强型（EV）， 9 = Geotrust 企业型（OV）， 10 = Geotrust 企业型（OV）通配符， 11 = TrustAsia 域名型多域名 SSL 证书， 12 = TrustAsia 域名型（DV）通配符， 13 = TrustAsia 企业型通配符（OV）SSL 证书（D3）， 14 = TrustAsia 企业型（OV）SSL 证书（D3）， 15 = TrustAsia 企业型多域名 （OV）SSL 证书（D3）， 16 = TrustAsia 增强型 （EV）SSL 证书（D3）， 17 = TrustAsia 增强型多域名（EV）SSL 证书（D3）， 18 = GlobalSign 企业型（OV）SSL 证书， 19 = GlobalSign 企业型通配符 （OV）SSL 证书， 20 = GlobalSign 增强型 （EV）SSL 证书， 21 = TrustAsia 企业型通配符多域名（OV）SSL 证书（D3）， 22 = GlobalSign 企业型多域名（OV）SSL 证书， 23 = GlobalSign 企业型通配符多域名（OV）SSL 证书， 24 = GlobalSign 增强型多域名（EV）SSL 证书，25 = Wotrus 域名型证书，26 = Wotrus 域名型多域名证书，27 = Wotrus 域名型通配符证书，28 = Wotrus 企业型证书，29 = Wotrus 企业型多域名证书，30 = Wotrus 企业型通配符证书，31 = Wotrus 增强型证书，32 = Wotrus 增强型多域名证书，33 = DNSPod 国密域名型证书，34 = DNSPod 国密域名型多域名证书，35 = DNSPod 国密域名型通配符证书，37 = DNSPod 国密企业型证书，38 = DNSPod 国密企业型多域名证书，39 = DNSPod 国密企业型通配符证书，40 = DNSPod 国密增强型证书，41 = DNSPod 国密增强型多域名证书，42 = TrustAsia 域名型通配符多域名证书。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
         # @param ProductZhName: 颁发者。
@@ -449,7 +577,7 @@ module TencentCloud
         # @param Alias: 备注名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
-        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函。
+        # @param Status: 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param StatusMsg: 状态信息。
@@ -482,7 +610,7 @@ module TencentCloud
         # @param CertificatePrivateKey: 证书私钥
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificatePrivateKey: String
-        # @param CertificatePublicKey: 证书公钥
+        # @param CertificatePublicKey: 证书公钥（即证书内容）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificatePublicKey: String
         # @param DvAuthDetail: DV 认证信息。
@@ -1208,7 +1336,7 @@ module TencentCloud
       class ReplaceCertificateRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
         # @type CertificateId: String
-        # @param ValidType: 验证类型：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证。
+        # @param ValidType: 验证类型：DNS_AUTO = 自动DNS验证（仅支持在腾讯云解析且解析状态正常的域名使用该验证类型），DNS = 手动DNS验证，FILE = 文件验证。
         # @type ValidType: String
         # @param CsrType: 类型，默认 Original。可选项：Original = 原证书 CSR，Upload = 手动上传，Online = 在线生成。
         # @type CsrType: String
@@ -1216,15 +1344,18 @@ module TencentCloud
         # @type CsrContent: String
         # @param CsrkeyPassword: KEY 密码。
         # @type CsrkeyPassword: String
+        # @param Reason: 重颁发原因。
+        # @type Reason: String
 
-        attr_accessor :CertificateId, :ValidType, :CsrType, :CsrContent, :CsrkeyPassword
+        attr_accessor :CertificateId, :ValidType, :CsrType, :CsrContent, :CsrkeyPassword, :Reason
         
-        def initialize(certificateid=nil, validtype=nil, csrtype=nil, csrcontent=nil, csrkeypassword=nil)
+        def initialize(certificateid=nil, validtype=nil, csrtype=nil, csrcontent=nil, csrkeypassword=nil, reason=nil)
           @CertificateId = certificateid
           @ValidType = validtype
           @CsrType = csrtype
           @CsrContent = csrcontent
           @CsrkeyPassword = csrkeypassword
+          @Reason = reason
         end
 
         def deserialize(params)
@@ -1233,6 +1364,7 @@ module TencentCloud
           @CsrType = params['CsrType']
           @CsrContent = params['CsrContent']
           @CsrkeyPassword = params['CsrkeyPassword']
+          @Reason = params['Reason']
         end
       end
 
@@ -1256,6 +1388,79 @@ module TencentCloud
         end
       end
 
+      # RevokeCertificate请求参数结构体
+      class RevokeCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书 ID。
+        # @type CertificateId: String
+        # @param Reason: 吊销证书原因。
+        # @type Reason: String
+
+        attr_accessor :CertificateId, :Reason
+        
+        def initialize(certificateid=nil, reason=nil)
+          @CertificateId = certificateid
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @Reason = params['Reason']
+        end
+      end
+
+      # RevokeCertificate返回参数结构体
+      class RevokeCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RevokeDomainValidateAuths: 吊销证书域名验证信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RevokeDomainValidateAuths: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RevokeDomainValidateAuths, :RequestId
+        
+        def initialize(revokedomainvalidateauths=nil, requestid=nil)
+          @RevokeDomainValidateAuths = revokedomainvalidateauths
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RevokeDomainValidateAuths = params['RevokeDomainValidateAuths']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 返回参数键为 RevokeDomainValidateAuths 的内容。
+      class RevokeDomainValidateAuths < TencentCloud::Common::AbstractModel
+        # @param DomainValidateAuthPath: DV 认证值路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainValidateAuthPath: String
+        # @param DomainValidateAuthKey: DV 认证 KEY。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainValidateAuthKey: String
+        # @param DomainValidateAuthValue: DV 认证值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainValidateAuthValue: String
+        # @param DomainValidateAuthDomain: DV 认证域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainValidateAuthDomain: String
+
+        attr_accessor :DomainValidateAuthPath, :DomainValidateAuthKey, :DomainValidateAuthValue, :DomainValidateAuthDomain
+        
+        def initialize(domainvalidateauthpath=nil, domainvalidateauthkey=nil, domainvalidateauthvalue=nil, domainvalidateauthdomain=nil)
+          @DomainValidateAuthPath = domainvalidateauthpath
+          @DomainValidateAuthKey = domainvalidateauthkey
+          @DomainValidateAuthValue = domainvalidateauthvalue
+          @DomainValidateAuthDomain = domainvalidateauthdomain
+        end
+
+        def deserialize(params)
+          @DomainValidateAuthPath = params['DomainValidateAuthPath']
+          @DomainValidateAuthKey = params['DomainValidateAuthKey']
+          @DomainValidateAuthValue = params['DomainValidateAuthValue']
+          @DomainValidateAuthDomain = params['DomainValidateAuthDomain']
+        end
+      end
+
       # SubmitCertificateInformation请求参数结构体
       class SubmitCertificateInformationRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
@@ -1268,7 +1473,7 @@ module TencentCloud
         # @type CertificateDomain: String
         # @param DomainList: 上传的域名数组（多域名证书可以上传）。
         # @type DomainList: Array
-        # @param KeyPassword: 私钥密码。
+        # @param KeyPassword: 私钥密码（非必填）。
         # @type KeyPassword: String
         # @param OrganizationName: 公司名称。
         # @type OrganizationName: String
@@ -1288,7 +1493,7 @@ module TencentCloud
         # @type PhoneAreaCode: String
         # @param PhoneNumber: 公司座机号码。
         # @type PhoneNumber: String
-        # @param VerifyType: 证书验证方式。
+        # @param VerifyType: 证书验证方式。验证类型：DNS_AUTO = 自动DNS验证（仅支持在腾讯云解析且解析状态正常的域名使用该验证类型），DNS = 手动DNS验证，FILE = 文件验证。
         # @type VerifyType: String
         # @param AdminFirstName: 管理人名。
         # @type AdminFirstName: String
@@ -1531,7 +1736,7 @@ module TencentCloud
 
       # UploadCertificate请求参数结构体
       class UploadCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param CertificatePublicKey: 证书公钥。
+        # @param CertificatePublicKey: 证书内容。
         # @type CertificatePublicKey: String
         # @param CertificatePrivateKey: 私钥内容，证书类型为 SVR 时必填，为 CA 时可不填。
         # @type CertificatePrivateKey: String
@@ -1577,6 +1782,94 @@ module TencentCloud
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadConfirmLetter请求参数结构体
+      class UploadConfirmLetterRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID
+        # @type CertificateId: String
+        # @param ConfirmLetter: base64编码后的证书确认函文件，格式应为jpg、jpeg、png、pdf，大小应在1kb与1.4M之间。
+        # @type ConfirmLetter: String
+
+        attr_accessor :CertificateId, :ConfirmLetter
+        
+        def initialize(certificateid=nil, confirmletter=nil)
+          @CertificateId = certificateid
+          @ConfirmLetter = confirmletter
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @ConfirmLetter = params['ConfirmLetter']
+        end
+      end
+
+      # UploadConfirmLetter返回参数结构体
+      class UploadConfirmLetterResponse < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID
+        # @type CertificateId: String
+        # @param IsSuccess: 是否成功
+        # @type IsSuccess: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertificateId, :IsSuccess, :RequestId
+        
+        def initialize(certificateid=nil, issuccess=nil, requestid=nil)
+          @CertificateId = certificateid
+          @IsSuccess = issuccess
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @IsSuccess = params['IsSuccess']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadRevokeLetter请求参数结构体
+      class UploadRevokeLetterRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书 ID。
+        # @type CertificateId: String
+        # @param RevokeLetter: base64编码后的证书确认函文件，格式应为jpg、jpeg、png、pdf，大小应在1kb与1.4M之间。
+        # @type RevokeLetter: String
+
+        attr_accessor :CertificateId, :RevokeLetter
+        
+        def initialize(certificateid=nil, revokeletter=nil)
+          @CertificateId = certificateid
+          @RevokeLetter = revokeletter
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @RevokeLetter = params['RevokeLetter']
+        end
+      end
+
+      # UploadRevokeLetter返回参数结构体
+      class UploadRevokeLetterResponse < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书 ID。
+        # @type CertificateId: String
+        # @param IsSuccess: 是否成功。
+        # @type IsSuccess: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertificateId, :IsSuccess, :RequestId
+        
+        def initialize(certificateid=nil, issuccess=nil, requestid=nil)
+          @CertificateId = certificateid
+          @IsSuccess = issuccess
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @IsSuccess = params['IsSuccess']
           @RequestId = params['RequestId']
         end
       end

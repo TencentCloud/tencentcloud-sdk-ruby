@@ -102,10 +102,10 @@ module TencentCloud
         # @param Tags: Tag 信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param BusinessCode: 商品名称代码（未开放的字段）
+        # @param BusinessCode: 商品名称代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessCode: String
-        # @param ProductCode: 子商品名称代码 （未开放的字段）
+        # @param ProductCode: 子商品名称代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCode: String
         # @param ActionType: 交易类型代码（未开放的字段）
@@ -114,10 +114,12 @@ module TencentCloud
         # @param RegionId: 区域ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: String
+        # @param ProjectId: 项目ID:资源所属项目ID
+        # @type ProjectId: Integer
 
-        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId
+        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId
         
-        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil)
+        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil)
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
           @PayModeName = paymodename
@@ -141,6 +143,7 @@ module TencentCloud
           @ProductCode = productcode
           @ActionType = actiontype
           @RegionId = regionid
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -167,6 +170,7 @@ module TencentCloud
           @ProductCode = params['ProductCode']
           @ActionType = params['ActionType']
           @RegionId = params['RegionId']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -204,10 +208,10 @@ module TencentCloud
         # @type CashPayAmount: String
         # @param IncentivePayAmount: 赠送账户支付金额
         # @type IncentivePayAmount: String
-        # @param ItemCode: 组件类型代码（未开放的字段）
+        # @param ItemCode: 组件类型代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemCode: String
-        # @param ComponentCode: 组件名称代码（未开放的字段）
+        # @param ComponentCode: 组件名称代码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentCode: String
         # @param ContractPrice: 合同价
@@ -446,10 +450,14 @@ module TencentCloud
         # @type Incentive: Integer
         # @param Freezing: 冻结余额，单位（分）
         # @type Freezing: Integer
+        # @param PayChannel: 交易渠道
+        # @type PayChannel: String
+        # @param DeductMode: 扣费模式：trade 包年包月(预付费)，hourh  按量-小时结，hourd 按量-日结，hourm 按量-月结，month 按量-月结
+        # @type DeductMode: String
 
-        attr_accessor :ActionType, :Amount, :Balance, :BillId, :OperationInfo, :OperationTime, :Cash, :Incentive, :Freezing
+        attr_accessor :ActionType, :Amount, :Balance, :BillId, :OperationInfo, :OperationTime, :Cash, :Incentive, :Freezing, :PayChannel, :DeductMode
         
-        def initialize(actiontype=nil, amount=nil, balance=nil, billid=nil, operationinfo=nil, operationtime=nil, cash=nil, incentive=nil, freezing=nil)
+        def initialize(actiontype=nil, amount=nil, balance=nil, billid=nil, operationinfo=nil, operationtime=nil, cash=nil, incentive=nil, freezing=nil, paychannel=nil, deductmode=nil)
           @ActionType = actiontype
           @Amount = amount
           @Balance = balance
@@ -459,6 +467,8 @@ module TencentCloud
           @Cash = cash
           @Incentive = incentive
           @Freezing = freezing
+          @PayChannel = paychannel
+          @DeductMode = deductmode
         end
 
         def deserialize(params)
@@ -471,6 +481,8 @@ module TencentCloud
           @Cash = params['Cash']
           @Incentive = params['Incentive']
           @Freezing = params['Freezing']
+          @PayChannel = params['PayChannel']
+          @DeductMode = params['DeductMode']
         end
       end
 
@@ -942,6 +954,46 @@ module TencentCloud
         end
       end
 
+      # cos产品用量明细返回数据结构
+      class CosDetailSets < TencentCloud::Common::AbstractModel
+        # @param BucketName: 存储桶名称
+        # @type BucketName: String
+        # @param DosageBeginTime: 用量开始时间
+        # @type DosageBeginTime: String
+        # @param DosageEndTime: 用量结束时间
+        # @type DosageEndTime: String
+        # @param SubProductCodeName: 一级产品类型名称
+        # @type SubProductCodeName: String
+        # @param BillingItemCodeName: 二级产品类型名称
+        # @type BillingItemCodeName: String
+        # @param DosageValue: 用量
+        # @type DosageValue: String
+        # @param Unit: 单位
+        # @type Unit: String
+
+        attr_accessor :BucketName, :DosageBeginTime, :DosageEndTime, :SubProductCodeName, :BillingItemCodeName, :DosageValue, :Unit
+        
+        def initialize(bucketname=nil, dosagebegintime=nil, dosageendtime=nil, subproductcodename=nil, billingitemcodename=nil, dosagevalue=nil, unit=nil)
+          @BucketName = bucketname
+          @DosageBeginTime = dosagebegintime
+          @DosageEndTime = dosageendtime
+          @SubProductCodeName = subproductcodename
+          @BillingItemCodeName = billingitemcodename
+          @DosageValue = dosagevalue
+          @Unit = unit
+        end
+
+        def deserialize(params)
+          @BucketName = params['BucketName']
+          @DosageBeginTime = params['DosageBeginTime']
+          @DosageEndTime = params['DosageEndTime']
+          @SubProductCodeName = params['SubProductCodeName']
+          @BillingItemCodeName = params['BillingItemCodeName']
+          @DosageValue = params['DosageValue']
+          @Unit = params['Unit']
+        end
+      end
+
       # 消耗组件明细
       class CostComponentSet < TencentCloud::Common::AbstractModel
         # @param ComponentCodeName: 组件类型名称
@@ -1126,10 +1178,12 @@ module TencentCloud
         # @param RefReturnDeals: 退费涉及订单信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefReturnDeals: String
+        # @param PayMode: 付费模式：prePay 预付费 postPay后付费 riPay预留实例
+        # @type PayMode: String
 
-        attr_accessor :OrderId, :Status, :Payer, :CreateTime, :Creator, :RealTotalCost, :VoucherDecline, :ProjectId, :GoodsCategoryId, :ProductInfo, :TimeSpan, :TimeUnit, :Currency, :Policy, :Price, :TotalCost, :ProductCode, :SubProductCode, :BigDealId, :Formula, :RefReturnDeals
+        attr_accessor :OrderId, :Status, :Payer, :CreateTime, :Creator, :RealTotalCost, :VoucherDecline, :ProjectId, :GoodsCategoryId, :ProductInfo, :TimeSpan, :TimeUnit, :Currency, :Policy, :Price, :TotalCost, :ProductCode, :SubProductCode, :BigDealId, :Formula, :RefReturnDeals, :PayMode
         
-        def initialize(orderid=nil, status=nil, payer=nil, createtime=nil, creator=nil, realtotalcost=nil, voucherdecline=nil, projectid=nil, goodscategoryid=nil, productinfo=nil, timespan=nil, timeunit=nil, currency=nil, policy=nil, price=nil, totalcost=nil, productcode=nil, subproductcode=nil, bigdealid=nil, formula=nil, refreturndeals=nil)
+        def initialize(orderid=nil, status=nil, payer=nil, createtime=nil, creator=nil, realtotalcost=nil, voucherdecline=nil, projectid=nil, goodscategoryid=nil, productinfo=nil, timespan=nil, timeunit=nil, currency=nil, policy=nil, price=nil, totalcost=nil, productcode=nil, subproductcode=nil, bigdealid=nil, formula=nil, refreturndeals=nil, paymode=nil)
           @OrderId = orderid
           @Status = status
           @Payer = payer
@@ -1151,6 +1205,7 @@ module TencentCloud
           @BigDealId = bigdealid
           @Formula = formula
           @RefReturnDeals = refreturndeals
+          @PayMode = paymode
         end
 
         def deserialize(params)
@@ -1175,6 +1230,7 @@ module TencentCloud
           @BigDealId = params['BigDealId']
           @Formula = params['Formula']
           @RefReturnDeals = params['RefReturnDeals']
+          @PayMode = params['PayMode']
         end
       end
 
@@ -1234,10 +1290,12 @@ module TencentCloud
         # @type ResourceId: String
         # @param ActionType: 查询交易类型。如 按量计费日结，按量计费小时结 等
         # @type ActionType: String
+        # @param ProjectId: 项目ID:资源所属项目ID
+        # @type ProjectId: Integer
 
-        attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType
+        attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId
         
-        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil)
+        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil)
           @Offset = offset
           @Limit = limit
           @PeriodType = periodtype
@@ -1249,6 +1307,7 @@ module TencentCloud
           @PayMode = paymode
           @ResourceId = resourceid
           @ActionType = actiontype
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -1263,6 +1322,7 @@ module TencentCloud
           @PayMode = params['PayMode']
           @ResourceId = params['ResourceId']
           @ActionType = params['ActionType']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -1347,12 +1407,22 @@ module TencentCloud
         # @type UnblockAmount: Float
         # @param DeductAmount: 扣费总额，单位（分）
         # @type DeductAmount: Float
+        # @param AgentInAmount: 资金转入总额，单位（分）
+        # @type AgentInAmount: Float
+        # @param AdvanceRechargeAmount: 垫付充值总额，单位（分）
+        # @type AdvanceRechargeAmount: Float
+        # @param WithdrawAmount: 提现扣减总额，单位（分）
+        # @type WithdrawAmount: Float
+        # @param AgentOutAmount: 资金转出总额，单位（分）
+        # @type AgentOutAmount: Float
+        # @param AdvancePayAmount: 还垫付总额，单位（分）
+        # @type AdvancePayAmount: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TransactionList, :Total, :ReturnAmount, :RechargeAmount, :BlockAmount, :UnblockAmount, :DeductAmount, :RequestId
+        attr_accessor :TransactionList, :Total, :ReturnAmount, :RechargeAmount, :BlockAmount, :UnblockAmount, :DeductAmount, :AgentInAmount, :AdvanceRechargeAmount, :WithdrawAmount, :AgentOutAmount, :AdvancePayAmount, :RequestId
         
-        def initialize(transactionlist=nil, total=nil, returnamount=nil, rechargeamount=nil, blockamount=nil, unblockamount=nil, deductamount=nil, requestid=nil)
+        def initialize(transactionlist=nil, total=nil, returnamount=nil, rechargeamount=nil, blockamount=nil, unblockamount=nil, deductamount=nil, agentinamount=nil, advancerechargeamount=nil, withdrawamount=nil, agentoutamount=nil, advancepayamount=nil, requestid=nil)
           @TransactionList = transactionlist
           @Total = total
           @ReturnAmount = returnamount
@@ -1360,6 +1430,11 @@ module TencentCloud
           @BlockAmount = blockamount
           @UnblockAmount = unblockamount
           @DeductAmount = deductamount
+          @AgentInAmount = agentinamount
+          @AdvanceRechargeAmount = advancerechargeamount
+          @WithdrawAmount = withdrawamount
+          @AgentOutAmount = agentoutamount
+          @AdvancePayAmount = advancepayamount
           @RequestId = requestid
         end
 
@@ -1371,6 +1446,11 @@ module TencentCloud
           @BlockAmount = params['BlockAmount']
           @UnblockAmount = params['UnblockAmount']
           @DeductAmount = params['DeductAmount']
+          @AgentInAmount = params['AgentInAmount']
+          @AdvanceRechargeAmount = params['AdvanceRechargeAmount']
+          @WithdrawAmount = params['WithdrawAmount']
+          @AgentOutAmount = params['AgentOutAmount']
+          @AdvancePayAmount = params['AdvancePayAmount']
           @RequestId = params['RequestId']
         end
       end
@@ -1439,25 +1519,25 @@ module TencentCloud
 
       # DescribeBillSummaryByPayMode请求参数结构体
       class DescribeBillSummaryByPayModeRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @type BeginTime: String
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @type EndTime: String
         # @param PayerUin: 查询账单数据的用户UIN
         # @type PayerUin: String
-        # @param BeginTime: 目前只支持传当月开始，且必须和EndTime为相同月份，例 2018-09-01 00:00:00
-        # @type BeginTime: String
-        # @param EndTime: 目前只支持传当月结束，且必须和BeginTime为相同月份，例 2018-09-30 23:59:59
-        # @type EndTime: String
 
-        attr_accessor :PayerUin, :BeginTime, :EndTime
+        attr_accessor :BeginTime, :EndTime, :PayerUin
         
-        def initialize(payeruin=nil, begintime=nil, endtime=nil)
-          @PayerUin = payeruin
+        def initialize(begintime=nil, endtime=nil, payeruin=nil)
           @BeginTime = begintime
           @EndTime = endtime
+          @PayerUin = payeruin
         end
 
         def deserialize(params)
-          @PayerUin = params['PayerUin']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
+          @PayerUin = params['PayerUin']
         end
       end
 
@@ -1488,25 +1568,25 @@ module TencentCloud
 
       # DescribeBillSummaryByProduct请求参数结构体
       class DescribeBillSummaryByProductRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @type BeginTime: String
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @type EndTime: String
         # @param PayerUin: 查询账单数据的用户UIN
         # @type PayerUin: String
-        # @param BeginTime: 目前只支持传当月开始，且必须和EndTime为相同月份，例 2018-09-01 00:00:00
-        # @type BeginTime: String
-        # @param EndTime: 目前只支持传当月结束，且必须和BeginTime为相同月份，例 2018-09-30 23:59:59
-        # @type EndTime: String
 
-        attr_accessor :PayerUin, :BeginTime, :EndTime
+        attr_accessor :BeginTime, :EndTime, :PayerUin
         
-        def initialize(payeruin=nil, begintime=nil, endtime=nil)
-          @PayerUin = payeruin
+        def initialize(begintime=nil, endtime=nil, payeruin=nil)
           @BeginTime = begintime
           @EndTime = endtime
+          @PayerUin = payeruin
         end
 
         def deserialize(params)
-          @PayerUin = params['PayerUin']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
+          @PayerUin = params['PayerUin']
         end
       end
 
@@ -1544,25 +1624,25 @@ module TencentCloud
 
       # DescribeBillSummaryByProject请求参数结构体
       class DescribeBillSummaryByProjectRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @type BeginTime: String
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @type EndTime: String
         # @param PayerUin: 查询账单数据的用户UIN
         # @type PayerUin: String
-        # @param BeginTime: 目前只支持传当月开始，且必须和EndTime为相同月份，例 2018-09-01 00:00:00
-        # @type BeginTime: String
-        # @param EndTime: 目前只支持传当月结束，且必须和BeginTime为相同月份，例 2018-09-30 23:59:59
-        # @type EndTime: String
 
-        attr_accessor :PayerUin, :BeginTime, :EndTime
+        attr_accessor :BeginTime, :EndTime, :PayerUin
         
-        def initialize(payeruin=nil, begintime=nil, endtime=nil)
-          @PayerUin = payeruin
+        def initialize(begintime=nil, endtime=nil, payeruin=nil)
           @BeginTime = begintime
           @EndTime = endtime
+          @PayerUin = payeruin
         end
 
         def deserialize(params)
-          @PayerUin = params['PayerUin']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
+          @PayerUin = params['PayerUin']
         end
       end
 
@@ -1593,25 +1673,25 @@ module TencentCloud
 
       # DescribeBillSummaryByRegion请求参数结构体
       class DescribeBillSummaryByRegionRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @type BeginTime: String
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @type EndTime: String
         # @param PayerUin: 查询账单数据的用户UIN
         # @type PayerUin: String
-        # @param BeginTime: 目前只支持传当月开始，且必须和EndTime为相同月份，例 2018-09-01 00:00:00
-        # @type BeginTime: String
-        # @param EndTime: 目前只支持传当月结束，且必须和BeginTime为相同月份，例 2018-09-30 23:59:59
-        # @type EndTime: String
 
-        attr_accessor :PayerUin, :BeginTime, :EndTime
+        attr_accessor :BeginTime, :EndTime, :PayerUin
         
-        def initialize(payeruin=nil, begintime=nil, endtime=nil)
-          @PayerUin = payeruin
+        def initialize(begintime=nil, endtime=nil, payeruin=nil)
           @BeginTime = begintime
           @EndTime = endtime
+          @PayerUin = payeruin
         end
 
         def deserialize(params)
-          @PayerUin = params['PayerUin']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
+          @PayerUin = params['PayerUin']
         end
       end
 
@@ -1642,29 +1722,29 @@ module TencentCloud
 
       # DescribeBillSummaryByTag请求参数结构体
       class DescribeBillSummaryByTagRequest < TencentCloud::Common::AbstractModel
-        # @param PayerUin: 查询账单数据的用户UIN
-        # @type PayerUin: String
-        # @param BeginTime: 目前只支持传当月开始，且必须和EndTime为相同月份，例 2018-09-01 00:00:00
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type BeginTime: String
-        # @param EndTime: 目前只支持传当月结束，且必须和BeginTime为相同月份，例 2018-09-30 23:59:59
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type EndTime: String
         # @param TagKey: 分账标签键
         # @type TagKey: String
+        # @param PayerUin: 查询账单数据的用户UIN
+        # @type PayerUin: String
 
-        attr_accessor :PayerUin, :BeginTime, :EndTime, :TagKey
+        attr_accessor :BeginTime, :EndTime, :TagKey, :PayerUin
         
-        def initialize(payeruin=nil, begintime=nil, endtime=nil, tagkey=nil)
-          @PayerUin = payeruin
+        def initialize(begintime=nil, endtime=nil, tagkey=nil, payeruin=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @TagKey = tagkey
+          @PayerUin = payeruin
         end
 
         def deserialize(params)
-          @PayerUin = params['PayerUin']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @TagKey = params['TagKey']
+          @PayerUin = params['PayerUin']
         end
       end
 
@@ -1699,16 +1779,16 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param BeginTime: 周期开始时间，格式为Y-m-d H:i:s，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通成本分析的月份，最多可拉取24个月内的数据。
+        # @param BeginTime: 周期开始时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通成本分析后，且距今 24 个月内的数据。
         # @type BeginTime: String
-        # @param EndTime: 周期结束时间，格式为Y-m-d H:i:s，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通成本分析的月份，最多可拉取24个月内的数据。
+        # @param EndTime: 周期结束时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通成本分析后，且距今 24 个月内的数据。
         # @type EndTime: String
         # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
         # 1-表示需要， 0-表示不需要
         # @type NeedRecordNum: Integer
         # @param Month: 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通成本分析的月份，最多可拉取24个月内的数据。
         # @type Month: String
-        # @param ProductCode: 查询指定产品信息
+        # @param ProductCode: 查询指定产品信息（暂时未开放获取）
         # @type ProductCode: String
         # @param PayMode: 付费模式 prePay/postPay
         # @type PayMode: String
@@ -1770,36 +1850,36 @@ module TencentCloud
 
       # DescribeCostSummaryByProduct请求参数结构体
       class DescribeCostSummaryByProductRequest < TencentCloud::Common::AbstractModel
-        # @param PayerUin: 查询账单数据的用户UIN
-        # @type PayerUin: String
-        # @param BeginTime: 目前只支持传当月1号 00:00:00，且必须和EndTime为相同月份，不支持跨月查询，例 2018-09-01 00:00:00
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type BeginTime: String
-        # @param EndTime: 目前只支持传当月最后一天 23:59:59，且必须和BeginTime为相同月份，不支持跨月查询，例 2018-09-30 23:59:59
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type EndTime: String
         # @param Limit: 每次获取数据量
         # @type Limit: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer
+        # @param PayerUin: 查询账单数据的用户UIN
+        # @type PayerUin: String
         # @param NeedRecordNum: 是否需要返回记录数量，0不需要，1需要，默认不需要
         # @type NeedRecordNum: Integer
 
-        attr_accessor :PayerUin, :BeginTime, :EndTime, :Limit, :Offset, :NeedRecordNum
+        attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum
         
-        def initialize(payeruin=nil, begintime=nil, endtime=nil, limit=nil, offset=nil, needrecordnum=nil)
-          @PayerUin = payeruin
+        def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @Limit = limit
           @Offset = offset
+          @PayerUin = payeruin
           @NeedRecordNum = needrecordnum
         end
 
         def deserialize(params)
-          @PayerUin = params['PayerUin']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @PayerUin = params['PayerUin']
           @NeedRecordNum = params['NeedRecordNum']
         end
       end
@@ -1842,36 +1922,36 @@ module TencentCloud
 
       # DescribeCostSummaryByProject请求参数结构体
       class DescribeCostSummaryByProjectRequest < TencentCloud::Common::AbstractModel
-        # @param PayerUin: 查询账单数据的用户UIN
-        # @type PayerUin: String
-        # @param BeginTime: 目前只支持传当月1号 00:00:00，且必须和EndTime为相同月份，不支持跨月查询，例 2018-09-01 00:00:00
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type BeginTime: String
-        # @param EndTime: 目前只支持传当月最后一天 23:59:59，且必须和BeginTime为相同月份，不支持跨月查询，例 2018-09-30 23:59:59
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type EndTime: String
         # @param Limit: 每次获取数据量
         # @type Limit: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer
+        # @param PayerUin: 查询账单数据的用户UIN
+        # @type PayerUin: String
         # @param NeedRecordNum: 是否需要返回记录数量，0不需要，1需要，默认不需要
         # @type NeedRecordNum: Integer
 
-        attr_accessor :PayerUin, :BeginTime, :EndTime, :Limit, :Offset, :NeedRecordNum
+        attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum
         
-        def initialize(payeruin=nil, begintime=nil, endtime=nil, limit=nil, offset=nil, needrecordnum=nil)
-          @PayerUin = payeruin
+        def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @Limit = limit
           @Offset = offset
+          @PayerUin = payeruin
           @NeedRecordNum = needrecordnum
         end
 
         def deserialize(params)
-          @PayerUin = params['PayerUin']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @PayerUin = params['PayerUin']
           @NeedRecordNum = params['NeedRecordNum']
         end
       end
@@ -1912,36 +1992,36 @@ module TencentCloud
 
       # DescribeCostSummaryByRegion请求参数结构体
       class DescribeCostSummaryByRegionRequest < TencentCloud::Common::AbstractModel
-        # @param PayerUin: 查询账单数据的用户UIN
-        # @type PayerUin: String
-        # @param BeginTime: 目前只支持传当月1号 00:00:00，且必须和EndTime为相同月份，不支持跨月查询，例 2018-09-01 00:00:00
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type BeginTime: String
-        # @param EndTime: 目前只支持传当月最后一天 23:59:59，且必须和BeginTime为相同月份，不支持跨月查询，例 2018-09-30 23:59:59
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type EndTime: String
         # @param Limit: 每次获取数据量
         # @type Limit: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer
+        # @param PayerUin: 查询账单数据的用户UIN
+        # @type PayerUin: String
         # @param NeedRecordNum: 是否需要返回记录数量，0不需要，1需要，默认不需要
         # @type NeedRecordNum: Integer
 
-        attr_accessor :PayerUin, :BeginTime, :EndTime, :Limit, :Offset, :NeedRecordNum
+        attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum
         
-        def initialize(payeruin=nil, begintime=nil, endtime=nil, limit=nil, offset=nil, needrecordnum=nil)
-          @PayerUin = payeruin
+        def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @Limit = limit
           @Offset = offset
+          @PayerUin = payeruin
           @NeedRecordNum = needrecordnum
         end
 
         def deserialize(params)
-          @PayerUin = params['PayerUin']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @PayerUin = params['PayerUin']
           @NeedRecordNum = params['NeedRecordNum']
         end
       end
@@ -1983,16 +2063,16 @@ module TencentCloud
 
       # DescribeCostSummaryByResource请求参数结构体
       class DescribeCostSummaryByResourceRequest < TencentCloud::Common::AbstractModel
-        # @param PayerUin: 查询账单数据的用户UIN
-        # @type PayerUin: String
-        # @param BeginTime: 目前只支持传当月1号 00:00:00，且必须和EndTime为相同月份，不支持跨月查询，例 2018-09-01 00:00:00
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type BeginTime: String
-        # @param EndTime: 目前只支持传当月最后一天 23:59:59，且必须和BeginTime为相同月份，不支持跨月查询，例 2018-09-30 23:59:59
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         # @type EndTime: String
         # @param Limit: 每次获取数据量
         # @type Limit: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer
+        # @param PayerUin: 查询账单数据的用户UIN
+        # @type PayerUin: String
         # @param NeedRecordNum: 是否需要返回记录数量，0不需要，1需要，默认不需要
         # @type NeedRecordNum: Integer
         # @param NeedConditionValue: 是否需要返回过滤条件，0不需要，1需要，默认不需要
@@ -2000,25 +2080,25 @@ module TencentCloud
         # @param Conditions: 过滤条件，只支持ResourceKeyword(资源关键字，支持资源id及资源名称模糊查询)，ProjectIds（项目id），RegionIds(地域id)，PayModes(付费模式，可选prePay和postPay)，HideFreeCost（是否隐藏0元流水，可选0和1），OrderByCost（按费用排序规则，可选desc和asc）
         # @type Conditions: :class:`Tencentcloud::Billing.v20180709.models.Conditions`
 
-        attr_accessor :PayerUin, :BeginTime, :EndTime, :Limit, :Offset, :NeedRecordNum, :NeedConditionValue, :Conditions
+        attr_accessor :BeginTime, :EndTime, :Limit, :Offset, :PayerUin, :NeedRecordNum, :NeedConditionValue, :Conditions
         
-        def initialize(payeruin=nil, begintime=nil, endtime=nil, limit=nil, offset=nil, needrecordnum=nil, needconditionvalue=nil, conditions=nil)
-          @PayerUin = payeruin
+        def initialize(begintime=nil, endtime=nil, limit=nil, offset=nil, payeruin=nil, needrecordnum=nil, needconditionvalue=nil, conditions=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @Limit = limit
           @Offset = offset
+          @PayerUin = payeruin
           @NeedRecordNum = needrecordnum
           @NeedConditionValue = needconditionvalue
           @Conditions = conditions
         end
 
         def deserialize(params)
-          @PayerUin = params['PayerUin']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @PayerUin = params['PayerUin']
           @NeedRecordNum = params['NeedRecordNum']
           @NeedConditionValue = params['NeedConditionValue']
           unless params['Conditions'].nil?
@@ -2143,6 +2223,50 @@ module TencentCloud
         def deserialize(params)
           @Deals = params['Deals']
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDosageCosDetailByDate请求参数结构体
+      class DescribeDosageCosDetailByDateRequest < TencentCloud::Common::AbstractModel
+        # @param StartDate: 查询用量开始时间
+        # @type StartDate: String
+        # @param EndDate: 查询用量结束时间（与开始时间同月，不支持跨月查询）
+        # @type EndDate: String
+        # @param BucketName: COS 存储桶名称，可通过Get Service 接口是用来获取请求者名下的所有存储空间列表（Bucket list）https://tcloud-dev.oa.com/document/product/555/30925?!preview&!document=1
+        # @type BucketName: String
+
+        attr_accessor :StartDate, :EndDate, :BucketName
+        
+        def initialize(startdate=nil, enddate=nil, bucketname=nil)
+          @StartDate = startdate
+          @EndDate = enddate
+          @BucketName = bucketname
+        end
+
+        def deserialize(params)
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @BucketName = params['BucketName']
+        end
+      end
+
+      # DescribeDosageCosDetailByDate返回参数结构体
+      class DescribeDosageCosDetailByDateResponse < TencentCloud::Common::AbstractModel
+        # @param DetailSets: 用量数组
+        # @type DetailSets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DetailSets, :RequestId
+        
+        def initialize(detailsets=nil, requestid=nil)
+          @DetailSets = detailsets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DetailSets = params['DetailSets']
           @RequestId = params['RequestId']
         end
       end

@@ -142,7 +142,7 @@ module TencentCloud
 
       # 监听器绑定的后端服务的详细信息
       class Backend < TencentCloud::Common::AbstractModel
-        # @param Type: 后端服务的类型，可取：CVM、ENI（即将支持）
+        # @param Type: 后端服务的类型，可取：CVM、ENI
         # @type Type: String
         # @param InstanceId: 后端服务的唯一 ID，如 ins-abcd1234
         # @type InstanceId: String
@@ -336,11 +336,11 @@ module TencentCloud
         # @type ListenerId: String
         # @param Port: 绑定端口
         # @type Port: Integer
-        # @param InstanceId: 子机ID
+        # @param InstanceId: 子机ID。表示绑定主网卡主IP
         # @type InstanceId: String
-        # @param EniIp: 弹性网卡ip
+        # @param EniIp: 弹性网卡ip或其他内网IP。如果是双栈IPV6子机，必须传该参数。
         # @type EniIp: String
-        # @param Weight: 子机权重，范围[0, 100]。绑定时如果不存在，则默认为10。
+        # @param Weight: 子机权重，范围[0, 100]。绑定时如果不存在，则默认为10
         # @type Weight: Integer
         # @param LocationId: 七层规则ID
         # @type LocationId: String
@@ -682,6 +682,119 @@ module TencentCloud
         end
       end
 
+      # 集群的详细信息，如集群ID，名称，类型，可用区，标签等
+      class Cluster < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群唯一ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterType: 集群类型，如TGW，STGW，VPCGW
+        # @type ClusterType: String
+        # @param ClusterTag: 集群标签，只有STGW集群有标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterTag: String
+        # @param Zone: 集群所在可用区，如ap-guangzhou-1
+        # @type Zone: String
+        # @param Network: 集群网络类型，如Public，Private
+        # @type Network: String
+        # @param MaxConn: 最大连接数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConn: Integer
+        # @param MaxInFlow: 最大入带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxInFlow: Integer
+        # @param MaxInPkg: 最大入包量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxInPkg: Integer
+        # @param MaxOutFlow: 最大出带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxOutFlow: Integer
+        # @param MaxOutPkg: 最大出包量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxOutPkg: Integer
+        # @param MaxNewConn: 最大新建连接数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxNewConn: Integer
+        # @param HTTPMaxNewConn: http最大新建连接数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HTTPMaxNewConn: Integer
+        # @param HTTPSMaxNewConn: https最大新建连接数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HTTPSMaxNewConn: Integer
+        # @param HTTPQps: http QPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HTTPQps: Integer
+        # @param HTTPSQps: https QPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HTTPSQps: Integer
+        # @param ResourceCount: 集群内资源总数目
+        # @type ResourceCount: Integer
+        # @param IdleResourceCount: 集群内空闲资源数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdleResourceCount: Integer
+        # @param LoadBalanceDirectorCount: 集群内转发机的数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalanceDirectorCount: Integer
+        # @param Isp: 集群的Isp属性，如："BGP","CMCC","CUCC","CTCC","INTERNAL"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Isp: String
+        # @param ClustersZone: 集群所在的可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClustersZone: :class:`Tencentcloud::Clb.v20180317.models.ClustersZone`
+
+        attr_accessor :ClusterId, :ClusterName, :ClusterType, :ClusterTag, :Zone, :Network, :MaxConn, :MaxInFlow, :MaxInPkg, :MaxOutFlow, :MaxOutPkg, :MaxNewConn, :HTTPMaxNewConn, :HTTPSMaxNewConn, :HTTPQps, :HTTPSQps, :ResourceCount, :IdleResourceCount, :LoadBalanceDirectorCount, :Isp, :ClustersZone
+        
+        def initialize(clusterid=nil, clustername=nil, clustertype=nil, clustertag=nil, zone=nil, network=nil, maxconn=nil, maxinflow=nil, maxinpkg=nil, maxoutflow=nil, maxoutpkg=nil, maxnewconn=nil, httpmaxnewconn=nil, httpsmaxnewconn=nil, httpqps=nil, httpsqps=nil, resourcecount=nil, idleresourcecount=nil, loadbalancedirectorcount=nil, isp=nil, clusterszone=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterType = clustertype
+          @ClusterTag = clustertag
+          @Zone = zone
+          @Network = network
+          @MaxConn = maxconn
+          @MaxInFlow = maxinflow
+          @MaxInPkg = maxinpkg
+          @MaxOutFlow = maxoutflow
+          @MaxOutPkg = maxoutpkg
+          @MaxNewConn = maxnewconn
+          @HTTPMaxNewConn = httpmaxnewconn
+          @HTTPSMaxNewConn = httpsmaxnewconn
+          @HTTPQps = httpqps
+          @HTTPSQps = httpsqps
+          @ResourceCount = resourcecount
+          @IdleResourceCount = idleresourcecount
+          @LoadBalanceDirectorCount = loadbalancedirectorcount
+          @Isp = isp
+          @ClustersZone = clusterszone
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterType = params['ClusterType']
+          @ClusterTag = params['ClusterTag']
+          @Zone = params['Zone']
+          @Network = params['Network']
+          @MaxConn = params['MaxConn']
+          @MaxInFlow = params['MaxInFlow']
+          @MaxInPkg = params['MaxInPkg']
+          @MaxOutFlow = params['MaxOutFlow']
+          @MaxOutPkg = params['MaxOutPkg']
+          @MaxNewConn = params['MaxNewConn']
+          @HTTPMaxNewConn = params['HTTPMaxNewConn']
+          @HTTPSMaxNewConn = params['HTTPSMaxNewConn']
+          @HTTPQps = params['HTTPQps']
+          @HTTPSQps = params['HTTPSQps']
+          @ResourceCount = params['ResourceCount']
+          @IdleResourceCount = params['IdleResourceCount']
+          @LoadBalanceDirectorCount = params['LoadBalanceDirectorCount']
+          @Isp = params['Isp']
+          unless params['ClustersZone'].nil?
+            @ClustersZone = ClustersZone.new.deserialize(params[ClustersZone])
+          end
+        end
+      end
+
       # 独占集群信息
       class ClusterItem < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群唯一ID
@@ -708,6 +821,102 @@ module TencentCloud
         end
       end
 
+      # 集群内资源类型
+      class ClusterResource < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群唯一ID，如tgw-12345678。
+        # @type ClusterId: String
+        # @param Vip: ip地址。
+        # @type Vip: String
+        # @param LoadBalancerId: 负载均衡唯一ID，如lb-12345678。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerId: String
+        # @param Idle: 资源是否闲置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Idle: String
+        # @param ClusterName: 集群名称。
+        # @type ClusterName: String
+
+        attr_accessor :ClusterId, :Vip, :LoadBalancerId, :Idle, :ClusterName
+        
+        def initialize(clusterid=nil, vip=nil, loadbalancerid=nil, idle=nil, clustername=nil)
+          @ClusterId = clusterid
+          @Vip = vip
+          @LoadBalancerId = loadbalancerid
+          @Idle = idle
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Vip = params['Vip']
+          @LoadBalancerId = params['LoadBalancerId']
+          @Idle = params['Idle']
+          @ClusterName = params['ClusterName']
+        end
+      end
+
+      # 集群所在的可用区。
+      class ClustersZone < TencentCloud::Common::AbstractModel
+        # @param MasterZone: 集群所在的主可用区。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterZone: Array
+        # @param SlaveZone: 集群所在的备可用区。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZone: Array
+
+        attr_accessor :MasterZone, :SlaveZone
+        
+        def initialize(masterzone=nil, slavezone=nil)
+          @MasterZone = masterzone
+          @SlaveZone = slavezone
+        end
+
+        def deserialize(params)
+          @MasterZone = params['MasterZone']
+          @SlaveZone = params['SlaveZone']
+        end
+      end
+
+      # CreateClsLogSet请求参数结构体
+      class CreateClsLogSetRequest < TencentCloud::Common::AbstractModel
+        # @param Period: 日志集的保存周期，单位：天，最大 90。
+        # @type Period: Integer
+        # @param LogsetName: 日志集的名字，不能和cls其他日志集重名。不填默认为clb_logset。
+        # @type LogsetName: String
+
+        attr_accessor :Period, :LogsetName
+        
+        def initialize(period=nil, logsetname=nil)
+          @Period = period
+          @LogsetName = logsetname
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @LogsetName = params['LogsetName']
+        end
+      end
+
+      # CreateClsLogSet返回参数结构体
+      class CreateClsLogSetResponse < TencentCloud::Common::AbstractModel
+        # @param LogsetId: 日志集的 ID。
+        # @type LogsetId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogsetId, :RequestId
+        
+        def initialize(logsetid=nil, requestid=nil)
+          @LogsetId = logsetid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateListener请求参数结构体
       class CreateListenerRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例 ID
@@ -731,10 +940,14 @@ module TencentCloud
         # @type SniSwitch: Integer
         # @param TargetType: 后端目标类型，NODE表示绑定普通节点，TARGETGROUP表示绑定目标组。
         # @type TargetType: String
+        # @param SessionType: 会话保持类型。不传或传NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。
+        # @type SessionType: String
+        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS监听器，0:关闭；1:开启， 默认关闭
+        # @type KeepaliveEnable: Integer
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable
         
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -745,6 +958,8 @@ module TencentCloud
           @Scheduler = scheduler
           @SniSwitch = sniswitch
           @TargetType = targettype
+          @SessionType = sessiontype
+          @KeepaliveEnable = keepaliveenable
         end
 
         def deserialize(params)
@@ -762,6 +977,8 @@ module TencentCloud
           @Scheduler = params['Scheduler']
           @SniSwitch = params['SniSwitch']
           @TargetType = params['TargetType']
+          @SessionType = params['SessionType']
+          @KeepaliveEnable = params['KeepaliveEnable']
         end
       end
 
@@ -792,7 +1009,7 @@ module TencentCloud
         # @type LoadBalancerType: String
         # @param Forward: 负载均衡实例的类型。1：通用的负载均衡实例，目前只支持传入1
         # @type Forward: Integer
-        # @param LoadBalancerName: 负载均衡实例的名称，只在创建一个实例的时候才会生效。规则：1-50 个英文、汉字、数字、连接线“-”或下划线“_”。
+        # @param LoadBalancerName: 负载均衡实例的名称，只在创建一个实例的时候才会生效。规则：1-60 个英文、汉字、数字、连接线“-”或下划线“_”。
         # 注意：如果名称与系统中已有负载均衡实例的名称相同，则系统将会自动生成此次创建的负载均衡实例的名称。
         # @type LoadBalancerName: String
         # @param VpcId: 负载均衡后端目标设备所属的网络 ID，如vpc-12345678，可以通过 DescribeVpcEx 接口获取。 不传此参数则默认为基础网络（"0"）。
@@ -816,10 +1033,26 @@ module TencentCloud
         # @type VipIsp: String
         # @param Tags: 购买负载均衡同时，给负载均衡打上标签
         # @type Tags: Array
+        # @param Vip: 指定Vip申请负载均衡
+        # @type Vip: String
+        # @param BandwidthPackageId: 带宽包ID，指定此参数时，网络计费方式（InternetAccessible.InternetChargeType）只支持按带宽包计费（BANDWIDTH_PACKAGE）
+        # @type BandwidthPackageId: String
+        # @param ExclusiveCluster: 独占集群信息
+        # @type ExclusiveCluster: :class:`Tencentcloud::Clb.v20180317.models.ExclusiveCluster`
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
+        # @param SnatPro: 是否支持绑定跨地域/跨Vpc绑定IP的功能。
+        # @type SnatPro: Boolean
+        # @param SnatIps: 开启绑定跨地域/跨Vpc绑定IP的功能后，创建SnatIp。
+        # @type SnatIps: Array
+        # @param ClusterTag: Stgw独占集群的标签。
+        # @type ClusterTag: String
+        # @param EipAddressId: EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP
+        # @type EipAddressId: String
 
-        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags
+        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :EipAddressId
         
-        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil)
+        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, eipaddressid=nil)
           @LoadBalancerType = loadbalancertype
           @Forward = forward
           @LoadBalancerName = loadbalancername
@@ -833,6 +1066,14 @@ module TencentCloud
           @InternetAccessible = internetaccessible
           @VipIsp = vipisp
           @Tags = tags
+          @Vip = vip
+          @BandwidthPackageId = bandwidthpackageid
+          @ExclusiveCluster = exclusivecluster
+          @ClientToken = clienttoken
+          @SnatPro = snatpro
+          @SnatIps = snatips
+          @ClusterTag = clustertag
+          @EipAddressId = eipaddressid
         end
 
         def deserialize(params)
@@ -851,6 +1092,16 @@ module TencentCloud
           end
           @VipIsp = params['VipIsp']
           @Tags = params['Tags']
+          @Vip = params['Vip']
+          @BandwidthPackageId = params['BandwidthPackageId']
+          unless params['ExclusiveCluster'].nil?
+            @ExclusiveCluster = ExclusiveCluster.new.deserialize(params[ExclusiveCluster])
+          end
+          @ClientToken = params['ClientToken']
+          @SnatPro = params['SnatPro']
+          @SnatIps = params['SnatIps']
+          @ClusterTag = params['ClusterTag']
+          @EipAddressId = params['EipAddressId']
         end
       end
 
@@ -998,6 +1249,46 @@ module TencentCloud
 
         def deserialize(params)
           @TargetGroupId = params['TargetGroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTopic请求参数结构体
+      class CreateTopicRequest < TencentCloud::Common::AbstractModel
+        # @param TopicName: 日志主题的名字
+        # @type TopicName: String
+        # @param PartitionCount: 主题分区 partition个数，不传参默认创建1个，最大创建允许10个，分裂/合并操作会改变分区数量，整体上限50个。
+        # @type PartitionCount: Integer
+
+        attr_accessor :TopicName, :PartitionCount
+        
+        def initialize(topicname=nil, partitioncount=nil)
+          @TopicName = topicname
+          @PartitionCount = partitioncount
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @PartitionCount = params['PartitionCount']
+        end
+      end
+
+      # CreateTopic返回参数结构体
+      class CreateTopicResponse < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题的 ID
+        # @type TopicId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopicId, :RequestId
+        
+        def initialize(topicid=nil, requestid=nil)
+          @TopicId = topicid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
           @RequestId = params['RequestId']
         end
       end
@@ -1649,6 +1940,146 @@ module TencentCloud
         end
       end
 
+      # DescribeClsLogSet请求参数结构体
+      class DescribeClsLogSetRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeClsLogSet返回参数结构体
+      class DescribeClsLogSetResponse < TencentCloud::Common::AbstractModel
+        # @param LogsetId: 日志集的 ID。
+        # @type LogsetId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogsetId, :RequestId
+        
+        def initialize(logsetid=nil, requestid=nil)
+          @LogsetId = logsetid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterResources请求参数结构体
+      class DescribeClusterResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回集群中资源列表数目，默认20，最大值100
+        # @type Limit: Integer
+        # @param Offset: 返回集群中资源列表起始偏移量，默认0
+        # @type Offset: Integer
+        # @param Filters: 查询集群中资源列表条件，详细的过滤条件如下：
+        # <li> cluster-id - String - 是否必填：否 - （过滤条件）按照 集群 的唯一ID过滤，如 ："tgw-12345678","stgw-12345678","vpcgw-12345678"。</li>
+        # <li> vip - String - 是否必填：否 - （过滤条件）按照vip过滤。</li>
+        # <li> loadblancer-id - String - 是否必填：否 - （过滤条件）按照负载均衡唯一ID过滤。</li>
+        # <li> idle - String 是否必填：否 - （过滤条件）按照是否闲置过滤，如"True","False"。</li>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribeClusterResources返回参数结构体
+      class DescribeClusterResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterResourceSet: 集群中资源列表
+        # @type ClusterResourceSet: Array
+        # @param TotalCount: 集群中资源总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterResourceSet, :TotalCount, :RequestId
+        
+        def initialize(clusterresourceset=nil, totalcount=nil, requestid=nil)
+          @ClusterResourceSet = clusterresourceset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterResourceSet = params['ClusterResourceSet']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExclusiveClusters请求参数结构体
+      class DescribeExclusiveClustersRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回集群列表数目，默认20，最大值100
+        # @type Limit: Integer
+        # @param Offset: 返回集群列表起始偏移量，默认0
+        # @type Offset: Integer
+        # @param Filters: 查询集群列表条件，详细的过滤条件如下：
+        # <li> cluster-type - String - 是否必填：否 - （过滤条件）按照 集群 的类型过滤，包括"TGW","STGW","VPCGW"。</li>
+        # <li> cluster-id - String - 是否必填：否 - （过滤条件）按照 集群 的唯一ID过滤，如 ："tgw-12345678","stgw-12345678","vpcgw-12345678"。</li>
+        # <li> cluster-name - String - 是否必填：否 - （过滤条件）按照 集群 的名称过滤。</li>
+        # <li> cluster-tag - String - 是否必填：否 - （过滤条件）按照 集群 的标签过滤。（只有TGW/STGW集群有集群标签） </li>
+        # <li> vip - String - 是否必填：否 - （过滤条件）按照 集群 内的vip过滤。</li>
+        # <li> loadblancer-id - String - 是否必填：否 - （过滤条件）按照 集群 内的负载均衡唯一ID过滤。</li>
+        # <li> network - String - 是否必填：否 - （过滤条件）按照 集群 的网络类型过滤，如："Public","Private"。</li>
+        # <li> zone - String - 是否必填：否 - （过滤条件）按照 集群 所在可用区过滤，如："ap-guangzhou-1"（广州一区）。</li>
+        # <li> isp -- String - 是否必填：否 - （过滤条件）按照TGW集群的 Isp 类型过滤，如："BGP","CMCC","CUCC","CTCC","INTERNAL"。</li>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribeExclusiveClusters返回参数结构体
+      class DescribeExclusiveClustersResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterSet: 集群列表
+        # @type ClusterSet: Array
+        # @param TotalCount: 集群总数目
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterSet, :TotalCount, :RequestId
+        
+        def initialize(clusterset=nil, totalcount=nil, requestid=nil)
+          @ClusterSet = clusterset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterSet = params['ClusterSet']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeListeners请求参数结构体
       class DescribeListenersRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例 ID
@@ -1738,6 +2169,110 @@ module TencentCloud
         end
       end
 
+      # DescribeLoadBalancerTraffic请求参数结构体
+      class DescribeLoadBalancerTrafficRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerRegion: 负载均衡所在地域，不传默认返回所有地域负载均衡。
+        # @type LoadBalancerRegion: String
+
+        attr_accessor :LoadBalancerRegion
+        
+        def initialize(loadbalancerregion=nil)
+          @LoadBalancerRegion = loadbalancerregion
+        end
+
+        def deserialize(params)
+          @LoadBalancerRegion = params['LoadBalancerRegion']
+        end
+      end
+
+      # DescribeLoadBalancerTraffic返回参数结构体
+      class DescribeLoadBalancerTrafficResponse < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerTraffic: 按出带宽从高到低排序后的负载均衡信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerTraffic: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoadBalancerTraffic, :RequestId
+        
+        def initialize(loadbalancertraffic=nil, requestid=nil)
+          @LoadBalancerTraffic = loadbalancertraffic
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LoadBalancerTraffic = params['LoadBalancerTraffic']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLoadBalancersDetail请求参数结构体
+      class DescribeLoadBalancersDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回负载均衡列表数目，默认20，最大值100。
+        # @type Limit: Integer
+        # @param Offset: 返回负载均衡列表起始偏移量，默认0
+        # @type Offset: Integer
+        # @param Fields: 选择返回的Fields列表，默认添加LoadBalancerId和LoadBalancerName。
+        # @type Fields: Array
+        # @param TargetType: 当Fields包含TargetId、TargetAddress、TargetPort、TargetWeight等Fields时，必选选择导出目标组的Target或者非目标组Target，值范围NODE、GROUP。
+        # @type TargetType: String
+        # @param Filters: 查询负载均衡详细信息列表条件，详细的过滤条件如下：
+        # <li> loadbalancer-id - String - 是否必填：否 - （过滤条件）按照 负载均衡ID 过滤，如："lb-12345678"。</li>
+        # <li> project-id - String - 是否必填：否 - （过滤条件）按照 项目ID 过滤，如："0","123"。</li>
+        # <li> network - String - 是否必填：否 - （过滤条件）按照 负载均衡网络类型 过滤，如："Public","Private"。</li>
+        # <li> vip - String - 是否必填：否 - （过滤条件）按照 负载均衡Vip 过滤，如："1.1.1.1","2204::22:3"。</li>
+        # <li> target-ip - String - 是否必填：否 - （过滤条件）按照 后端目标内网Ip 过滤，如："1.1.1.1","2203::214:4"。</li>
+        # <li> vpcid - String - 是否必填：否 - （过滤条件）按照 负载均衡所属vpcId 过滤，如："vpc-12345678"。</li>
+        # <li> zone - String - 是否必填：否 - （过滤条件）按照 负载均衡所属的可用区 过滤，如："ap-guangzhou-1"。</li>
+        # <li> tag-key - String - 是否必填：否 - （过滤条件）按照 负载均衡标签的标签键 过滤，如："name"。</li>
+        # <li> tag:* - String - 是否必填：否 - （过滤条件）按照 负载均衡的标签 过滤，':' 后面跟的是标签键。如：过滤标签键name，标签值zhangsan,lisi，{"Name": "tag:name","Values": ["zhangsan", "lisi"]}。</li>
+        # <li> fuzzy-search - String - 是否必填：否 - （过滤条件）按照 负载均衡Vip，负载均衡名称 模糊搜索，如："1.1"。</li>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Fields, :TargetType, :Filters
+        
+        def initialize(limit=nil, offset=nil, fields=nil, targettype=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Fields = fields
+          @TargetType = targettype
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Fields = params['Fields']
+          @TargetType = params['TargetType']
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribeLoadBalancersDetail返回参数结构体
+      class DescribeLoadBalancersDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 负载均衡详情列表总数。
+        # @type TotalCount: Integer
+        # @param LoadBalancerDetailSet: 负载均衡详情列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerDetailSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :LoadBalancerDetailSet, :RequestId
+        
+        def initialize(totalcount=nil, loadbalancerdetailset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @LoadBalancerDetailSet = loadbalancerdetailset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @LoadBalancerDetailSet = params['LoadBalancerDetailSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLoadBalancers请求参数结构体
       class DescribeLoadBalancersRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerIds: 负载均衡实例 ID。
@@ -1782,6 +2317,8 @@ module TencentCloud
         # <li> internet-charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的网络计费模式过滤，包括"BANDWIDTH_PREPAID","TRAFFIC_POSTPAID_BY_HOUR","BANDWIDTH_POSTPAID_BY_HOUR","BANDWIDTH_PACKAGE"。</li>
         # <li> master-zone-id - String - 是否必填：否 - （过滤条件）按照 CLB 的主可用区ID过滤，如 ："100001" （对应的是广州一区）。</li>
         # <li> tag-key - String - 是否必填：否 - （过滤条件）按照 CLB 标签的键过滤。</li>
+        # <li> tag-value - String - 是否必填：否 - （过滤条件）按照 CLB 标签的值过滤。</li>
+        # <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
         # @type Filters: Array
 
         attr_accessor :LoadBalancerIds, :LoadBalancerType, :Forward, :LoadBalancerName, :Domain, :LoadBalancerVips, :BackendPublicIps, :BackendPrivateIps, :Offset, :Limit, :OrderBy, :OrderType, :SearchKey, :ProjectId, :WithRs, :VpcId, :SecurityGroup, :MasterZone, :Filters
@@ -1851,6 +2388,37 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @LoadBalancerSet = params['LoadBalancerSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQuota请求参数结构体
+      class DescribeQuotaRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeQuota返回参数结构体
+      class DescribeQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param QuotaSet: 配额列表
+        # @type QuotaSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuotaSet, :RequestId
+        
+        def initialize(quotaset=nil, requestid=nil)
+          @QuotaSet = quotaset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QuotaSet = params['QuotaSet']
           @RequestId = params['RequestId']
         end
       end
@@ -2371,7 +2939,7 @@ module TencentCloud
       # 网络计费模式，最大出带宽
       class InternetAccessible < TencentCloud::Common::AbstractModel
         # @param InternetChargeType: TRAFFIC_POSTPAID_BY_HOUR 按流量按小时后计费 ; BANDWIDTH_POSTPAID_BY_HOUR 按带宽按小时后计费;
-        # BANDWIDTH_PACKAGE 按带宽包计费（当前，只有指定运营商时才支持此种计费模式）
+        # BANDWIDTH_PACKAGE 按带宽包计费;
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetChargeType: String
         # @param InternetMaxBandwidthOut: 最大出带宽，单位Mbps，范围支持0到2048，仅对公网属性的LB生效，默认值 10
@@ -2459,10 +3027,16 @@ module TencentCloud
         # @param TargetGroup: 绑定的目标组基本信息；当监听器绑定目标组时，会返回该字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetGroup: :class:`Tencentcloud::Clb.v20180317.models.BasicTargetGroupInfo`
+        # @param SessionType: 会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionType: String
+        # @param KeepaliveEnable: 是否开启长连接（本参数仅对于HTTP/HTTPS监听器有意义）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeepaliveEnable: Integer
 
-        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup
+        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable
         
-        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil)
+        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil)
           @ListenerId = listenerid
           @Protocol = protocol
           @Port = port
@@ -2477,6 +3051,8 @@ module TencentCloud
           @EndPort = endport
           @TargetType = targettype
           @TargetGroup = targetgroup
+          @SessionType = sessiontype
+          @KeepaliveEnable = keepaliveenable
         end
 
         def deserialize(params)
@@ -2500,6 +3076,8 @@ module TencentCloud
           unless params['TargetGroup'].nil?
             @TargetGroup = BasicTargetGroupInfo.new.deserialize(params[TargetGroup])
           end
+          @SessionType = params['SessionType']
+          @KeepaliveEnable = params['KeepaliveEnable']
         end
       end
 
@@ -2656,7 +3234,7 @@ module TencentCloud
         # @param ExpireTime: 负载均衡实例的过期时间，仅对预付费负载均衡生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
-        # @param ChargeType: 负载均衡实例的计费类型
+        # @param ChargeType: 负载均衡实例的计费类型，PREPAID：包年包月，POSTPAID_BY_HOUR：按量计费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: String
         # @param NetworkAttributes: 负载均衡实例的网络属性
@@ -2692,10 +3270,10 @@ module TencentCloud
         # @param IPv6Mode: IP地址版本为ipv6时此字段有意义， IPv6Nat64 | IPv6FullChain
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPv6Mode: String
-        # @param SnatPro: 是否开启SnatPro
+        # @param SnatPro: 是否开启SnatPro。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnatPro: Boolean
-        # @param SnatIps: 开启SnatPro负载均衡后，SnatIp列表
+        # @param SnatIps: 开启SnatPro负载均衡后，SnatIp列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnatIps: Array
         # @param SlaType: 性能保障规格
@@ -2710,10 +3288,19 @@ module TencentCloud
         # @param LocalBgp: IP类型是否是本地BGP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalBgp: Boolean
+        # @param ClusterTag: 7层独占标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterTag: String
+        # @param MixIpTarget: 开启IPv6FullChain负载均衡7层监听器支持混绑IPv4/IPv6目标功能。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MixIpTarget: Boolean
+        # @param Zones: 私有网络内网负载均衡，就近接入模式下规则所落在的可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zones: Array
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -2759,6 +3346,9 @@ module TencentCloud
           @IsBlock = isblock
           @IsBlockTime = isblocktime
           @LocalBgp = localbgp
+          @ClusterTag = clustertag
+          @MixIpTarget = mixiptarget
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -2819,6 +3409,177 @@ module TencentCloud
           @IsBlock = params['IsBlock']
           @IsBlockTime = params['IsBlockTime']
           @LocalBgp = params['LocalBgp']
+          @ClusterTag = params['ClusterTag']
+          @MixIpTarget = params['MixIpTarget']
+          @Zones = params['Zones']
+        end
+      end
+
+      # 负载均衡详细信息
+      class LoadBalancerDetail < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例 ID。
+        # @type LoadBalancerId: String
+        # @param LoadBalancerName: 负载均衡实例的名称。
+        # @type LoadBalancerName: String
+        # @param LoadBalancerType: 负载均衡实例的网络类型：
+        # Public：公网属性， Private：内网属性。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerType: String
+        # @param Status: 负载均衡实例的状态，包括
+        # 0：创建中，1：正常运行。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Address: 负载均衡实例的 VIP 。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param AddressIPv6: 负载均衡实例 VIP 的IPv6地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressIPv6: String
+        # @param AddressIPVersion: 负载均衡实例IP版本，IPv4 | IPv6。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressIPVersion: String
+        # @param IPv6Mode: 负载均衡实例IPv6地址类型，IPv6Nat64 | IPv6FullChain。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPv6Mode: String
+        # @param Zone: 负载均衡实例所在可用区。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param AddressIsp: 负载均衡实例IP地址所属的ISP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressIsp: String
+        # @param VpcId: 负载均衡实例所属私有网络的 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param ProjectId: 负载均衡实例所属的项目 ID， 0 表示默认项目。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param CreateTime: 负载均衡实例的创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ChargeType: 负载均衡实例的计费类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeType: String
+        # @param NetworkAttributes: 负载均衡实例的网络属性。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAttributes: :class:`Tencentcloud::Clb.v20180317.models.InternetAccessible`
+        # @param PrepaidAttributes: 负载均衡实例的预付费相关属性。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrepaidAttributes: :class:`Tencentcloud::Clb.v20180317.models.LBChargePrepaid`
+        # @param ExtraInfo: 暂做保留，一般用户无需关注。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: :class:`Tencentcloud::Clb.v20180317.models.ExtraInfo`
+        # @param ConfigId: 负载均衡维度的个性化配置ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigId: String
+        # @param Tags: 负载均衡实例的标签信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ListenerId: 负载均衡监听器 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListenerId: String
+        # @param Protocol: 监听器协议。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Port: 监听器端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param LocationId: 转发规则的 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocationId: String
+        # @param Domain: 转发规则的域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param Url: 转发规则的路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param TargetId: 后端目标ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetId: String
+        # @param TargetAddress: 后端目标的IP地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetAddress: String
+        # @param TargetPort: 后端目标监听端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetPort: Integer
+        # @param TargetWeight: 后端目标转发权重。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetWeight: Integer
+        # @param Isolation: 0：表示未被隔离，1：表示被隔离。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Isolation: Integer
+
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation
+        
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil)
+          @LoadBalancerId = loadbalancerid
+          @LoadBalancerName = loadbalancername
+          @LoadBalancerType = loadbalancertype
+          @Status = status
+          @Address = address
+          @AddressIPv6 = addressipv6
+          @AddressIPVersion = addressipversion
+          @IPv6Mode = ipv6mode
+          @Zone = zone
+          @AddressIsp = addressisp
+          @VpcId = vpcid
+          @ProjectId = projectid
+          @CreateTime = createtime
+          @ChargeType = chargetype
+          @NetworkAttributes = networkattributes
+          @PrepaidAttributes = prepaidattributes
+          @ExtraInfo = extrainfo
+          @ConfigId = configid
+          @Tags = tags
+          @ListenerId = listenerid
+          @Protocol = protocol
+          @Port = port
+          @LocationId = locationid
+          @Domain = domain
+          @Url = url
+          @TargetId = targetid
+          @TargetAddress = targetaddress
+          @TargetPort = targetport
+          @TargetWeight = targetweight
+          @Isolation = isolation
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @LoadBalancerName = params['LoadBalancerName']
+          @LoadBalancerType = params['LoadBalancerType']
+          @Status = params['Status']
+          @Address = params['Address']
+          @AddressIPv6 = params['AddressIPv6']
+          @AddressIPVersion = params['AddressIPVersion']
+          @IPv6Mode = params['IPv6Mode']
+          @Zone = params['Zone']
+          @AddressIsp = params['AddressIsp']
+          @VpcId = params['VpcId']
+          @ProjectId = params['ProjectId']
+          @CreateTime = params['CreateTime']
+          @ChargeType = params['ChargeType']
+          unless params['NetworkAttributes'].nil?
+            @NetworkAttributes = InternetAccessible.new.deserialize(params[NetworkAttributes])
+          end
+          unless params['PrepaidAttributes'].nil?
+            @PrepaidAttributes = LBChargePrepaid.new.deserialize(params[PrepaidAttributes])
+          end
+          unless params['ExtraInfo'].nil?
+            @ExtraInfo = ExtraInfo.new.deserialize(params[ExtraInfo])
+          end
+          @ConfigId = params['ConfigId']
+          @Tags = params['Tags']
+          @ListenerId = params['ListenerId']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+          @LocationId = params['LocationId']
+          @Domain = params['Domain']
+          @Url = params['Url']
+          @TargetId = params['TargetId']
+          @TargetAddress = params['TargetAddress']
+          @TargetPort = params['TargetPort']
+          @TargetWeight = params['TargetWeight']
+          @Isolation = params['Isolation']
         end
       end
 
@@ -2845,6 +3606,38 @@ module TencentCloud
           @LoadBalancerId = params['LoadBalancerId']
           @LoadBalancerName = params['LoadBalancerName']
           @Listeners = params['Listeners']
+        end
+      end
+
+      # 负载均衡流量数据。
+      class LoadBalancerTraffic < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡ID
+        # @type LoadBalancerId: String
+        # @param LoadBalancerName: 负载均衡名字
+        # @type LoadBalancerName: String
+        # @param Region: 负载均衡所在地域
+        # @type Region: String
+        # @param Vip: 负载均衡的vip
+        # @type Vip: String
+        # @param OutBandwidth: 最大出带宽，单位：Mbps
+        # @type OutBandwidth: Float
+
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :Region, :Vip, :OutBandwidth
+        
+        def initialize(loadbalancerid=nil, loadbalancername=nil, region=nil, vip=nil, outbandwidth=nil)
+          @LoadBalancerId = loadbalancerid
+          @LoadBalancerName = loadbalancername
+          @Region = region
+          @Vip = vip
+          @OutBandwidth = outbandwidth
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @LoadBalancerName = params['LoadBalancerName']
+          @Region = params['Region']
+          @Vip = params['Vip']
+          @OutBandwidth = params['OutBandwidth']
         end
       end
 
@@ -3079,10 +3872,12 @@ module TencentCloud
         # @type Scheduler: String
         # @param SniSwitch: 是否开启SNI特性，此参数仅适用于HTTPS监听器。注意：未开启SNI的监听器可以开启SNI；已开启SNI的监听器不能关闭SNI
         # @type SniSwitch: Integer
+        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS监听器
+        # @type KeepaliveEnable: Integer
 
-        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch
+        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :KeepaliveEnable
         
-        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, keepaliveenable=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -3091,6 +3886,7 @@ module TencentCloud
           @Certificate = certificate
           @Scheduler = scheduler
           @SniSwitch = sniswitch
+          @KeepaliveEnable = keepaliveenable
         end
 
         def deserialize(params)
@@ -3106,6 +3902,7 @@ module TencentCloud
           end
           @Scheduler = params['Scheduler']
           @SniSwitch = params['SniSwitch']
+          @KeepaliveEnable = params['KeepaliveEnable']
         end
       end
 
@@ -3481,6 +4278,36 @@ module TencentCloud
         end
       end
 
+      # 描述配额信息，所有配额均指当前地域下的配额。
+      class Quota < TencentCloud::Common::AbstractModel
+        # @param QuotaId: 配额名称，取值范围：
+        # <li> TOTAL_OPEN_CLB_QUOTA: 用户当前地域下的公网LB配额 </li>
+        # <li> TOTAL_INTERNAL_CLB_QUOTA: 用户当前地域下的内网LB配额 </li>
+        # <li> TOTAL_LISTENER_QUOTA: 一个CLB下的监听器配额 </li>
+        # <li> TOTAL_LISTENER_RULE_QUOTA: 一个监听器下的转发规则配额 </li>
+        # <li> TOTAL_TARGET_BIND_QUOTA: 一条转发规则下绑定设备配额 </li>
+        # @type QuotaId: String
+        # @param QuotaCurrent: 当前使用数量，为 null 时表示无意义。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaCurrent: Integer
+        # @param QuotaLimit: 配额数量。
+        # @type QuotaLimit: Integer
+
+        attr_accessor :QuotaId, :QuotaCurrent, :QuotaLimit
+        
+        def initialize(quotaid=nil, quotacurrent=nil, quotalimit=nil)
+          @QuotaId = quotaid
+          @QuotaCurrent = quotacurrent
+          @QuotaLimit = quotalimit
+        end
+
+        def deserialize(params)
+          @QuotaId = params['QuotaId']
+          @QuotaCurrent = params['QuotaCurrent']
+          @QuotaLimit = params['QuotaLimit']
+        end
+      end
+
       # RegisterTargetGroupInstances请求参数结构体
       class RegisterTargetGroupInstancesRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID
@@ -3733,7 +4560,7 @@ module TencentCloud
         # @param Url: 转发规则的Url
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
-        # @param Targets: 本规则上绑定的后端的健康检查状态
+        # @param Targets: 本规则上绑定的后端服务的健康检查状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Targets: Array
 
@@ -3762,7 +4589,7 @@ module TencentCloud
         # @type Url: String
         # @param SessionExpireTime: 会话保持时间。设置为0表示关闭会话保持，开启会话保持可取值30~3600，单位：秒。
         # @type SessionExpireTime: Integer
-        # @param HealthCheck: 健康检查信息
+        # @param HealthCheck: 健康检查信息。详情请参见：[健康检查](https://cloud.tencent.com/document/product/214/6097)
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
         # @param Certificate: 证书信息
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
@@ -4125,19 +4952,21 @@ module TencentCloud
 
       # 转发目标，即绑定在负载均衡上的后端服务
       class Target < TencentCloud::Common::AbstractModel
-        # @param Port: 后端服务的监听端口
+        # @param Port: 后端服务的监听端口。
+        # 注意：绑定CVM（云服务器）或ENI（弹性网卡）时必传此参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param Type: 后端服务的类型，可取：CVM（云服务器）、ENI（弹性网卡）；作为入参时，目前本参数暂不生效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param InstanceId: 绑定CVM时需要传入此参数，代表CVM的唯一 ID，可通过 DescribeInstances 接口返回字段中的 InstanceId 字段获取。
-        # 注意：参数 InstanceId 和 EniIp 只能传入一个且必须传入一个。
+        # @param InstanceId: 绑定CVM时需要传入此参数，代表CVM的唯一 ID，可通过 DescribeInstances 接口返回字段中的 InstanceId 字段获取。表示绑定主网卡主IP。
+        # 注意：参数 InstanceId、EniIp 只能传入一个且必须传入一个。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param Weight: 后端服务的转发权重，取值范围：[0, 100]，默认为 10。
         # @type Weight: Integer
-        # @param EniIp: 绑定弹性网卡时需要传入此参数，代表弹性网卡的IP，弹性网卡必须先绑定至CVM，然后才能绑定到负载均衡实例。注意：参数 InstanceId 和 EniIp 只能传入一个且必须传入一个。注意：绑定弹性网卡需要先提交工单开白名单使用。
+        # @param EniIp: 绑定IP时需要传入此参数，支持弹性网卡的IP和其他内网IP，如果是弹性网卡则必须先绑定至CVM，然后才能绑定到负载均衡实例。
+        # 注意：参数 InstanceId、EniIp 只能传入一个且必须传入一个。如果绑定双栈IPV6子机，必须传该参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EniIp: String
 

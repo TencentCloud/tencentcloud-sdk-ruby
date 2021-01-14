@@ -466,6 +466,26 @@ module TencentCloud
         end
       end
 
+      # CMK属性
+      class KeyMetadata < TencentCloud::Common::AbstractModel
+        # @param Alias: 作为密钥更容易辨识，更容易被人看懂的别名
+        # @type Alias: String
+        # @param KeyId: CMK的全局唯一标识
+        # @type KeyId: String
+
+        attr_accessor :Alias, :KeyId
+        
+        def initialize(alias=nil, keyid=nil)
+          @Alias = alias
+          @KeyId = keyid
+        end
+
+        def deserialize(params)
+          @Alias = params['Alias']
+          @KeyId = params['KeyId']
+        end
+      end
+
       # ListAudits请求参数结构体
       class ListAuditsRequest < TencentCloud::Common::AbstractModel
 
@@ -565,6 +585,54 @@ module TencentCloud
 
         def deserialize(params)
           @EnableRegions = params['EnableRegions']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListKeyAliasByRegion请求参数结构体
+      class ListKeyAliasByRegionRequest < TencentCloud::Common::AbstractModel
+        # @param KmsRegion: Kms地域
+        # @type KmsRegion: String
+        # @param Limit: 含义跟 SQL 查询的 Limit 一致，表示本次获最多获取 Limit 个元素。缺省值为10，最大值为200
+        # @type Limit: Integer
+        # @param Offset: 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
+        # @type Offset: Integer
+
+        attr_accessor :KmsRegion, :Limit, :Offset
+        
+        def initialize(kmsregion=nil, limit=nil, offset=nil)
+          @KmsRegion = kmsregion
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @KmsRegion = params['KmsRegion']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # ListKeyAliasByRegion返回参数结构体
+      class ListKeyAliasByRegionResponse < TencentCloud::Common::AbstractModel
+        # @param KeyMetadatas: 密钥别名
+        # @type KeyMetadatas: Array
+        # @param TotalCount: CMK的总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyMetadatas, :TotalCount, :RequestId
+        
+        def initialize(keymetadatas=nil, totalcount=nil, requestid=nil)
+          @KeyMetadatas = keymetadatas
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KeyMetadatas = params['KeyMetadatas']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

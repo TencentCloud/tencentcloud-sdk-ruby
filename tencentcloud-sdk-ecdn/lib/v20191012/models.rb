@@ -41,10 +41,14 @@ module TencentCloud
         # @type Https: :class:`Tencentcloud::Ecdn.v20191012.models.Https`
         # @param ForceRedirect: 访问协议强制跳转配置。
         # @type ForceRedirect: :class:`Tencentcloud::Ecdn.v20191012.models.ForceRedirect`
+        # @param Tag: 域名绑定的标签
+        # @type Tag: Array
+        # @param WebSocket: WebSocket配置
+        # @type WebSocket: :class:`Tencentcloud::Ecdn.v20191012.models.WebSocket`
 
-        attr_accessor :Domain, :Origin, :Area, :ProjectId, :IpFilter, :IpFreqLimit, :ResponseHeader, :CacheKey, :Cache, :Https, :ForceRedirect
+        attr_accessor :Domain, :Origin, :Area, :ProjectId, :IpFilter, :IpFreqLimit, :ResponseHeader, :CacheKey, :Cache, :Https, :ForceRedirect, :Tag, :WebSocket
         
-        def initialize(domain=nil, origin=nil, area=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, responseheader=nil, cachekey=nil, cache=nil, https=nil, forceredirect=nil)
+        def initialize(domain=nil, origin=nil, area=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, responseheader=nil, cachekey=nil, cache=nil, https=nil, forceredirect=nil, tag=nil, websocket=nil)
           @Domain = domain
           @Origin = origin
           @Area = area
@@ -56,6 +60,8 @@ module TencentCloud
           @Cache = cache
           @Https = https
           @ForceRedirect = forceredirect
+          @Tag = tag
+          @WebSocket = websocket
         end
 
         def deserialize(params)
@@ -85,6 +91,10 @@ module TencentCloud
           end
           unless params['ForceRedirect'].nil?
             @ForceRedirect = ForceRedirect.new.deserialize(params[ForceRedirect])
+          end
+          @Tag = params['Tag']
+          unless params['WebSocket'].nil?
+            @WebSocket = WebSocket.new.deserialize(params[WebSocket])
           end
         end
       end
@@ -545,6 +555,53 @@ module TencentCloud
         end
       end
 
+      # DescribeIpStatus请求参数结构体
+      class DescribeIpStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 加速域名
+        # @type Domain: String
+        # @param Area: 查询区域：
+        # mainland: 国内节点
+        # overseas: 海外节点
+        # global: 全球节点
+        # @type Area: String
+
+        attr_accessor :Domain, :Area
+        
+        def initialize(domain=nil, area=nil)
+          @Domain = domain
+          @Area = area
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Area = params['Area']
+        end
+      end
+
+      # DescribeIpStatus返回参数结构体
+      class DescribeIpStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Ips: 节点列表
+        # @type Ips: Array
+        # @param TotalCount: 节点总个数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ips, :TotalCount, :RequestId
+        
+        def initialize(ips=nil, totalcount=nil, requestid=nil)
+          @Ips = ips
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ips = params['Ips']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePurgeQuota请求参数结构体
       class DescribePurgeQuotaRequest < TencentCloud::Common::AbstractModel
 
@@ -805,10 +862,16 @@ module TencentCloud
         # @param Readonly: 域名锁定状态，normal、global 分别表示未被锁定，全球锁定。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Readonly: String
+        # @param Tag: 域名标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param WebSocket: WebSocket配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebSocket: :class:`Tencentcloud::Ecdn.v20191012.models.WebSocket`
 
-        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :ResponseHeader, :CacheKey, :Cache, :Https, :Disable, :ForceRedirect, :Area, :Readonly
+        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :ResponseHeader, :CacheKey, :Cache, :Https, :Disable, :ForceRedirect, :Area, :Readonly, :Tag, :WebSocket
         
-        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, responseheader=nil, cachekey=nil, cache=nil, https=nil, disable=nil, forceredirect=nil, area=nil, readonly=nil)
+        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, responseheader=nil, cachekey=nil, cache=nil, https=nil, disable=nil, forceredirect=nil, area=nil, readonly=nil, tag=nil, websocket=nil)
           @ResourceId = resourceid
           @AppId = appid
           @Domain = domain
@@ -828,6 +891,8 @@ module TencentCloud
           @ForceRedirect = forceredirect
           @Area = area
           @Readonly = readonly
+          @Tag = tag
+          @WebSocket = websocket
         end
 
         def deserialize(params)
@@ -866,6 +931,10 @@ module TencentCloud
           end
           @Area = params['Area']
           @Readonly = params['Readonly']
+          @Tag = params['Tag']
+          unless params['WebSocket'].nil?
+            @WebSocket = WebSocket.new.deserialize(params[WebSocket])
+          end
         end
       end
 
@@ -1145,6 +1214,44 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Qps = params['Qps']
+        end
+      end
+
+      # 节点 IP 信息
+      class IpStatus < TencentCloud::Common::AbstractModel
+        # @param Ip: 节点 IP
+        # @type Ip: String
+        # @param District: 节点所属区域
+        # @type District: String
+        # @param Isp: 节点所属运营商
+        # @type Isp: String
+        # @param City: 节点所在城市
+        # @type City: String
+        # @param Status: 节点状态
+        # online：上线状态，正常调度服务中
+        # offline：下线状态
+        # @type Status: String
+        # @param CreateTime: 节点 IP 添加时间
+        # @type CreateTime: String
+
+        attr_accessor :Ip, :District, :Isp, :City, :Status, :CreateTime
+        
+        def initialize(ip=nil, district=nil, isp=nil, city=nil, status=nil, createtime=nil)
+          @Ip = ip
+          @District = district
+          @Isp = isp
+          @City = city
+          @Status = status
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @District = params['District']
+          @Isp = params['Isp']
+          @City = params['City']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -1507,6 +1614,28 @@ module TencentCloud
         end
       end
 
+      # 标签键和标签值
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 时间戳与其对应的数值
       class TimestampData < TencentCloud::Common::AbstractModel
         # @param Time: 数据统计时间点，采用向前汇总模式
@@ -1552,10 +1681,12 @@ module TencentCloud
         # @type ForceRedirect: :class:`Tencentcloud::Ecdn.v20191012.models.ForceRedirect`
         # @param Area: 域名加速区域，mainland，overseas或global，分别表示中国境内加速，海外加速或全球加速。
         # @type Area: String
+        # @param WebSocket: WebSocket配置
+        # @type WebSocket: :class:`Tencentcloud::Ecdn.v20191012.models.WebSocket`
 
-        attr_accessor :Domain, :Origin, :ProjectId, :IpFilter, :IpFreqLimit, :ResponseHeader, :CacheKey, :Cache, :Https, :ForceRedirect, :Area
+        attr_accessor :Domain, :Origin, :ProjectId, :IpFilter, :IpFreqLimit, :ResponseHeader, :CacheKey, :Cache, :Https, :ForceRedirect, :Area, :WebSocket
         
-        def initialize(domain=nil, origin=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, responseheader=nil, cachekey=nil, cache=nil, https=nil, forceredirect=nil, area=nil)
+        def initialize(domain=nil, origin=nil, projectid=nil, ipfilter=nil, ipfreqlimit=nil, responseheader=nil, cachekey=nil, cache=nil, https=nil, forceredirect=nil, area=nil, websocket=nil)
           @Domain = domain
           @Origin = origin
           @ProjectId = projectid
@@ -1567,6 +1698,7 @@ module TencentCloud
           @Https = https
           @ForceRedirect = forceredirect
           @Area = area
+          @WebSocket = websocket
         end
 
         def deserialize(params)
@@ -1597,6 +1729,9 @@ module TencentCloud
             @ForceRedirect = ForceRedirect.new.deserialize(params[ForceRedirect])
           end
           @Area = params['Area']
+          unless params['WebSocket'].nil?
+            @WebSocket = WebSocket.new.deserialize(params[WebSocket])
+          end
         end
       end
 
@@ -1613,6 +1748,27 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # WebSocket配置。
+      class WebSocket < TencentCloud::Common::AbstractModel
+        # @param Switch: WebSocket配置开关，on或off。
+        # @type Switch: String
+        # @param Timeout: 设置超时时间，单位为秒，最大超时时间65秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeout: Integer
+
+        attr_accessor :Switch, :Timeout
+        
+        def initialize(switch=nil, timeout=nil)
+          @Switch = switch
+          @Timeout = timeout
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Timeout = params['Timeout']
         end
       end
 

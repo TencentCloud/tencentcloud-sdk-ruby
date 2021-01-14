@@ -50,9 +50,9 @@ module TencentCloud
 
       # 高防包绑定IP对象
       class BoundIpInfo < TencentCloud::Common::AbstractModel
-        # @param Ip: IP
+        # @param Ip: IP地址
         # @type Ip: String
-        # @param BizType: 绑定的产品分类，取值[public（CVM产品），bm（黑石产品），eni（弹性网卡），vpngw（VPN网关）， natgw（NAT网关），waf（Web应用安全产品），fpc（金融产品），gaap（GAAP产品）, other(托管IP)]
+        # @param BizType: 绑定的产品分类，取值[public（CVM、CLB产品），bm（黑石产品），eni（弹性网卡），vpngw（VPN网关）， natgw（NAT网关），waf（Web应用安全产品），fpc（金融产品），gaap（GAAP产品）, other(托管IP)]
         # @type BizType: String
         # @param DeviceType: 产品分类下的子类型，取值[cvm（CVM），lb（负载均衡器），eni（弹性网卡），vpngw（VPN），natgw（NAT），waf（WAF），fpc（金融），gaap（GAAP），other（托管IP），eip（黑石弹性IP）]
         # @type DeviceType: String
@@ -684,7 +684,7 @@ module TencentCloud
         # @type Name: String
         # @param PortLimits: 端口禁用，当没有禁用端口时填空数组
         # @type PortLimits: Array
-        # @param IpAllowDenys: IP黑白名单，当没有IP黑白名单时填空数组
+        # @param IpAllowDenys: 请求源IP黑白名单，当没有IP黑白名单时填空数组
         # @type IpAllowDenys: Array
         # @param PacketFilters: 报文过滤，当没有报文过滤时填空数组
         # @type PacketFilters: Array
@@ -1240,6 +1240,56 @@ module TencentCloud
 
       # CreateNewL7Rules返回参数结构体
       class CreateNewL7RulesResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功码
+        # @type Success: :class:`Tencentcloud::Dayu.v20180709.models.SuccessCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = SuccessCode.new.deserialize(params[Success])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNewL7RulesUpload请求参数结构体
+      class CreateNewL7RulesUploadRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @type Business: String
+        # @param IdList: 资源ID列表
+        # @type IdList: Array
+        # @param VipList: 资源IP列表
+        # @type VipList: Array
+        # @param Rules: 规则列表
+        # @type Rules: Array
+
+        attr_accessor :Business, :IdList, :VipList, :Rules
+        
+        def initialize(business=nil, idlist=nil, viplist=nil, rules=nil)
+          @Business = business
+          @IdList = idlist
+          @VipList = viplist
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @IdList = params['IdList']
+          @VipList = params['VipList']
+          @Rules = params['Rules']
+        end
+      end
+
+      # CreateNewL7RulesUpload返回参数结构体
+      class CreateNewL7RulesUploadResponse < TencentCloud::Common::AbstractModel
         # @param Success: 成功码
         # @type Success: :class:`Tencentcloud::Dayu.v20180709.models.SuccessCode`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2342,6 +2392,78 @@ module TencentCloud
         end
       end
 
+      # DescribeBizTrend请求参数结构体
+      class DescribeBizTrendRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @type Business: String
+        # @param Id: 资源实例ID
+        # @type Id: String
+        # @param Period: 统计周期，可取值300，1800，3600，21600，86400，单位秒
+        # @type Period: Integer
+        # @param StartTime: 统计开始时间
+        # @type StartTime: String
+        # @param EndTime: 统计结束时间
+        # @type EndTime: String
+        # @param Statistics: 统计方式，可取值max, min, avg, sum, 如统计纬度是流量速率或包量速率，仅可取值max
+        # @type Statistics: String
+        # @param MetricName: 统计纬度，可取值connum, new_conn, inactive_conn, intraffic, outtraffic, inpkg, outpkg, qps
+        # @type MetricName: String
+        # @param ProtoInfo: 协议及端口列表，协议可取值TCP, UDP, HTTP, HTTPS，仅统计纬度为连接数时有效
+        # @type ProtoInfo: Array
+        # @param Domain: 统计纬度为qps时，可选特定域名查询
+        # @type Domain: String
+
+        attr_accessor :Business, :Id, :Period, :StartTime, :EndTime, :Statistics, :MetricName, :ProtoInfo, :Domain
+        
+        def initialize(business=nil, id=nil, period=nil, starttime=nil, endtime=nil, statistics=nil, metricname=nil, protoinfo=nil, domain=nil)
+          @Business = business
+          @Id = id
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @Statistics = statistics
+          @MetricName = metricname
+          @ProtoInfo = protoinfo
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Id = params['Id']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Statistics = params['Statistics']
+          @MetricName = params['MetricName']
+          @ProtoInfo = params['ProtoInfo']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeBizTrend返回参数结构体
+      class DescribeBizTrendResponse < TencentCloud::Common::AbstractModel
+        # @param DataList: 曲线图各个时间点的值
+        # @type DataList: Array
+        # @param MetricName: 统计纬度
+        # @type MetricName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataList, :MetricName, :RequestId
+        
+        def initialize(datalist=nil, metricname=nil, requestid=nil)
+          @DataList = datalist
+          @MetricName = metricname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataList = params['DataList']
+          @MetricName = params['MetricName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCCAlarmThreshold请求参数结构体
       class DescribeCCAlarmThresholdRequest < TencentCloud::Common::AbstractModel
         # @param Business: 大禹子产品代号（shield表示棋牌；bgpip表示高防IP；bgp表示高防包；bgp-multip表示多ip高防包；net表示高防IP专业版）
@@ -2654,10 +2776,12 @@ module TencentCloud
         # @type EndTime: String
         # @param Id: 资源实例ID，当Business为basic时，此字段不用填写（因为基础防护没有资源实例）
         # @type Id: String
+        # @param Domain: 域名，可选
+        # @type Domain: String
 
-        attr_accessor :Business, :Ip, :MetricName, :Period, :StartTime, :EndTime, :Id
+        attr_accessor :Business, :Ip, :MetricName, :Period, :StartTime, :EndTime, :Id, :Domain
         
-        def initialize(business=nil, ip=nil, metricname=nil, period=nil, starttime=nil, endtime=nil, id=nil)
+        def initialize(business=nil, ip=nil, metricname=nil, period=nil, starttime=nil, endtime=nil, id=nil, domain=nil)
           @Business = business
           @Ip = ip
           @MetricName = metricname
@@ -2665,6 +2789,7 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @Id = id
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -2675,6 +2800,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Id = params['Id']
+          @Domain = params['Domain']
         end
       end
 
@@ -3945,7 +4071,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 统计结束时间
         # @type EndTime: String
-        # @param Data: 值数组
+        # @param Data: 值数组，攻击流量带宽单位为Mbps，包速率单位为pps
         # @type Data: Array
         # @param Count: 值个数
         # @type Count: Integer

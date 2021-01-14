@@ -552,6 +552,66 @@ module TencentCloud
         end
       end
 
+      # CreateBaselineStrategy请求参数结构体
+      class CreateBaselineStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param StrategyName: 策略名称
+        # @type StrategyName: String
+        # @param ScanCycle: 检测周期, 表示每隔多少天进行检测.示例: 2, 表示每2天进行检测一次.
+        # @type ScanCycle: Integer
+        # @param ScanAt: 定期检测时间，该时间下发扫描. 示例:“22:00”, 表示在22:00下发检测
+        # @type ScanAt: String
+        # @param CategoryIds: 该策略下选择的基线id数组. 示例: [1,3,5,7]
+        # @type CategoryIds: Array
+        # @param IsGlobal: 扫描范围是否全部服务器, 1:是  0:否, 为1则为全部专业版主机
+        # @type IsGlobal: Integer
+        # @param MachineType: 云主机类型：“CVM”：虚拟主机，"BMS"：裸金属，"ECM"：边缘计算主机
+        # @type MachineType: String
+        # @param RegionCode: 主机地域. 示例: "ap-bj"
+        # @type RegionCode: String
+        # @param Quuids: 主机id数组. 示例: ["quuid1","quuid2"]
+        # @type Quuids: Array
+
+        attr_accessor :StrategyName, :ScanCycle, :ScanAt, :CategoryIds, :IsGlobal, :MachineType, :RegionCode, :Quuids
+        
+        def initialize(strategyname=nil, scancycle=nil, scanat=nil, categoryids=nil, isglobal=nil, machinetype=nil, regioncode=nil, quuids=nil)
+          @StrategyName = strategyname
+          @ScanCycle = scancycle
+          @ScanAt = scanat
+          @CategoryIds = categoryids
+          @IsGlobal = isglobal
+          @MachineType = machinetype
+          @RegionCode = regioncode
+          @Quuids = quuids
+        end
+
+        def deserialize(params)
+          @StrategyName = params['StrategyName']
+          @ScanCycle = params['ScanCycle']
+          @ScanAt = params['ScanAt']
+          @CategoryIds = params['CategoryIds']
+          @IsGlobal = params['IsGlobal']
+          @MachineType = params['MachineType']
+          @RegionCode = params['RegionCode']
+          @Quuids = params['Quuids']
+        end
+      end
+
+      # CreateBaselineStrategy返回参数结构体
+      class CreateBaselineStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOpenPortTask请求参数结构体
       class CreateOpenPortTaskRequest < TencentCloud::Common::AbstractModel
         # @param Uuid: 云镜客户端唯一Uuid。
@@ -1562,19 +1622,27 @@ module TencentCloud
         # <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
         # <li>DateRange - String - 是否必填：否 - 时间范围(存储最近3个月的数据)，如最近一个月["2019-11-17", "2019-12-17"]</li>
         # @type Filters: Array
+        # @param Uuid: 主机安全客户端ID
+        # @type Uuid: String
+        # @param Quuid: 云主机机器ID
+        # @type Quuid: String
 
-        attr_accessor :Limit, :Offset, :Filters
+        attr_accessor :Limit, :Offset, :Filters, :Uuid, :Quuid
         
-        def initialize(limit=nil, offset=nil, filters=nil)
+        def initialize(limit=nil, offset=nil, filters=nil, uuid=nil, quuid=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
+          @Uuid = uuid
+          @Quuid = quuid
         end
 
         def deserialize(params)
           @Limit = params['Limit']
           @Offset = params['Offset']
           @Filters = params['Filters']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
         end
       end
 
@@ -2193,7 +2261,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Filters: 过滤条件。
         # <li>Keywords - String - 是否必填：否 - 查询关键字 </li>
-        # <li>Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线 | ONLINE: 在线）</li>
+        # <li>Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线 | ONLINE: 在线 | UNINSTALLED：未安装）</li>
         # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版）</li>
         # 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         # @type Filters: Array
@@ -3066,17 +3134,32 @@ module TencentCloud
         # @type Vuls: Array
         # @param BaseLines: 基线统计数据数组。
         # @type BaseLines: Array
+        # @param MaliciousRequests: 恶意请求统计数据数组。
+        # @type MaliciousRequests: Array
+        # @param HighRiskBashs: 高危命令统计数据数组。
+        # @type HighRiskBashs: Array
+        # @param ReverseShells: 反弹shell统计数据数组。
+        # @type ReverseShells: Array
+        # @param PrivilegeEscalations: 本地提权统计数据数组。
+        # @type PrivilegeEscalations: Array
+        # @param CyberAttacks: 网络攻击统计数据数组。
+        # @type CyberAttacks: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Malwares, :NonLocalLoginPlaces, :BruteAttacks, :Vuls, :BaseLines, :RequestId
+        attr_accessor :Malwares, :NonLocalLoginPlaces, :BruteAttacks, :Vuls, :BaseLines, :MaliciousRequests, :HighRiskBashs, :ReverseShells, :PrivilegeEscalations, :CyberAttacks, :RequestId
         
-        def initialize(malwares=nil, nonlocalloginplaces=nil, bruteattacks=nil, vuls=nil, baselines=nil, requestid=nil)
+        def initialize(malwares=nil, nonlocalloginplaces=nil, bruteattacks=nil, vuls=nil, baselines=nil, maliciousrequests=nil, highriskbashs=nil, reverseshells=nil, privilegeescalations=nil, cyberattacks=nil, requestid=nil)
           @Malwares = malwares
           @NonLocalLoginPlaces = nonlocalloginplaces
           @BruteAttacks = bruteattacks
           @Vuls = vuls
           @BaseLines = baselines
+          @MaliciousRequests = maliciousrequests
+          @HighRiskBashs = highriskbashs
+          @ReverseShells = reverseshells
+          @PrivilegeEscalations = privilegeescalations
+          @CyberAttacks = cyberattacks
           @RequestId = requestid
         end
 
@@ -3086,6 +3169,11 @@ module TencentCloud
           @BruteAttacks = params['BruteAttacks']
           @Vuls = params['Vuls']
           @BaseLines = params['BaseLines']
+          @MaliciousRequests = params['MaliciousRequests']
+          @HighRiskBashs = params['HighRiskBashs']
+          @ReverseShells = params['ReverseShells']
+          @PrivilegeEscalations = params['PrivilegeEscalations']
+          @CyberAttacks = params['CyberAttacks']
           @RequestId = params['RequestId']
         end
       end
@@ -3128,12 +3216,23 @@ module TencentCloud
 
       # DescribeTags请求参数结构体
       class DescribeTagsRequest < TencentCloud::Common::AbstractModel
+        # @param MachineType: 云主机类型。
+        # <li>CVM：表示虚拟主机</li>
+        # <li>BM:  表示黑石物理机</li>
+        # @type MachineType: String
+        # @param MachineRegion: 机器所属地域。如：ap-guangzhou，ap-shanghai
+        # @type MachineRegion: String
 
+        attr_accessor :MachineType, :MachineRegion
         
-        def initialize()
+        def initialize(machinetype=nil, machineregion=nil)
+          @MachineType = machinetype
+          @MachineRegion = machineregion
         end
 
         def deserialize(params)
+          @MachineType = params['MachineType']
+          @MachineRegion = params['MachineRegion']
         end
       end
 
@@ -3904,18 +4003,22 @@ module TencentCloud
       class ExportAttackLogsResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: 导出文件下载链接地址。
         # @type DownloadUrl: String
+        # @param TaskId: 导出任务ID
+        # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DownloadUrl, :RequestId
+        attr_accessor :DownloadUrl, :TaskId, :RequestId
         
-        def initialize(downloadurl=nil, requestid=nil)
+        def initialize(downloadurl=nil, taskid=nil, requestid=nil)
           @DownloadUrl = downloadurl
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -4059,18 +4162,22 @@ module TencentCloud
       class ExportNonlocalLoginPlacesResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: 导出文件下载链接地址。
         # @type DownloadUrl: String
+        # @param TaskId: 导出任务ID
+        # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DownloadUrl, :RequestId
+        attr_accessor :DownloadUrl, :TaskId, :RequestId
         
-        def initialize(downloadurl=nil, requestid=nil)
+        def initialize(downloadurl=nil, taskid=nil, requestid=nil)
           @DownloadUrl = downloadurl
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -4357,10 +4464,14 @@ module TencentCloud
         # @type MachineName: String
         # @param HostIp: 机器IP
         # @type HostIp: String
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
 
-        attr_accessor :Id, :Uuid, :Places, :UserName, :SrcIp, :IsGlobal, :CreateTime, :ModifyTime, :MachineName, :HostIp
+        attr_accessor :Id, :Uuid, :Places, :UserName, :SrcIp, :IsGlobal, :CreateTime, :ModifyTime, :MachineName, :HostIp, :StartTime, :EndTime
         
-        def initialize(id=nil, uuid=nil, places=nil, username=nil, srcip=nil, isglobal=nil, createtime=nil, modifytime=nil, machinename=nil, hostip=nil)
+        def initialize(id=nil, uuid=nil, places=nil, username=nil, srcip=nil, isglobal=nil, createtime=nil, modifytime=nil, machinename=nil, hostip=nil, starttime=nil, endtime=nil)
           @Id = id
           @Uuid = uuid
           @Places = places
@@ -4371,6 +4482,8 @@ module TencentCloud
           @ModifyTime = modifytime
           @MachineName = machinename
           @HostIp = hostip
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -4384,6 +4497,8 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @MachineName = params['MachineName']
           @HostIp = params['HostIp']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -4401,16 +4516,22 @@ module TencentCloud
         # @type HostIp: String
         # @param Id: 规则ID，用于更新规则
         # @type Id: Integer
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
 
-        attr_accessor :Places, :SrcIp, :UserName, :IsGlobal, :HostIp, :Id
+        attr_accessor :Places, :SrcIp, :UserName, :IsGlobal, :HostIp, :Id, :StartTime, :EndTime
         
-        def initialize(places=nil, srcip=nil, username=nil, isglobal=nil, hostip=nil, id=nil)
+        def initialize(places=nil, srcip=nil, username=nil, isglobal=nil, hostip=nil, id=nil, starttime=nil, endtime=nil)
           @Places = places
           @SrcIp = srcip
           @UserName = username
           @IsGlobal = isglobal
           @HostIp = hostip
           @Id = id
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -4420,6 +4541,8 @@ module TencentCloud
           @IsGlobal = params['IsGlobal']
           @HostIp = params['HostIp']
           @Id = params['Id']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -4456,10 +4579,23 @@ module TencentCloud
         # @type MalwareNum: Integer
         # @param Tag: 标签信息
         # @type Tag: Array
+        # @param BaselineNum: 基线风险数。
+        # @type BaselineNum: Integer
+        # @param CyberAttackNum: 网络风险数。
+        # @type CyberAttackNum: Integer
+        # @param SecurityStatus: 风险状态。
+        # <li>SAFE：安全</li>
+        # <li>RISK：风险</li>
+        # <li>UNKNOWN：未知</li>
+        # @type SecurityStatus: String
+        # @param InvasionNum: 入侵事件数
+        # @type InvasionNum: Integer
+        # @param RegionInfo: 地域信息
+        # @type RegionInfo: :class:`Tencentcloud::Yunjing.v20180228.models.RegionInfo`
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo
         
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -4472,6 +4608,11 @@ module TencentCloud
           @PayMode = paymode
           @MalwareNum = malwarenum
           @Tag = tag
+          @BaselineNum = baselinenum
+          @CyberAttackNum = cyberattacknum
+          @SecurityStatus = securitystatus
+          @InvasionNum = invasionnum
+          @RegionInfo = regioninfo
         end
 
         def deserialize(params)
@@ -4487,6 +4628,13 @@ module TencentCloud
           @PayMode = params['PayMode']
           @MalwareNum = params['MalwareNum']
           @Tag = params['Tag']
+          @BaselineNum = params['BaselineNum']
+          @CyberAttackNum = params['CyberAttackNum']
+          @SecurityStatus = params['SecurityStatus']
+          @InvasionNum = params['InvasionNum']
+          unless params['RegionInfo'].nil?
+            @RegionInfo = RegionInfo.new.deserialize(params[RegionInfo])
+          end
         end
       end
 
@@ -4496,17 +4644,21 @@ module TencentCloud
         # @type Rid: Integer
         # @param Name: 标签名
         # @type Name: String
+        # @param TagId: 标签ID
+        # @type TagId: Integer
 
-        attr_accessor :Rid, :Name
+        attr_accessor :Rid, :Name, :TagId
         
-        def initialize(rid=nil, name=nil)
+        def initialize(rid=nil, name=nil, tagid=nil)
           @Rid = rid
           @Name = name
+          @TagId = tagid
         end
 
         def deserialize(params)
           @Rid = params['Rid']
           @Name = params['Name']
+          @TagId = params['TagId']
         end
       end
 
@@ -5341,6 +5493,34 @@ module TencentCloud
         end
       end
 
+      # 地域信息
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param Region: 地域标志，如 ap-guangzhou，ap-shanghai，ap-beijing
+        # @type Region: String
+        # @param RegionName: 地域中文名，如华南地区（广州），华东地区（上海金融），华北地区（北京）
+        # @type RegionName: String
+        # @param RegionId: 地域ID
+        # @type RegionId: Integer
+        # @param RegionCode: 地域代码，如 gz，sh，bj
+        # @type RegionCode: String
+
+        attr_accessor :Region, :RegionName, :RegionId, :RegionCode
+        
+        def initialize(region=nil, regionname=nil, regionid=nil, regioncode=nil)
+          @Region = region
+          @RegionName = regionname
+          @RegionId = regionid
+          @RegionCode = regioncode
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionName = params['RegionName']
+          @RegionId = params['RegionId']
+          @RegionCode = params['RegionCode']
+        end
+      end
+
       # RenewProVersion请求参数结构体
       class RenewProVersionRequest < TencentCloud::Common::AbstractModel
         # @param ChargePrepaid: 购买相关参数。
@@ -5570,14 +5750,21 @@ module TencentCloud
         # @type EventType: String
         # @param Message: 安全事件消息。
         # @type Message: String
+        # @param SecurityLevel: 安全事件等级。
+        # <li>RISK: 严重</li>
+        # <li>HIGH: 高危</li>
+        # <li>NORMAL: 中危</li>
+        # <li>LOW: 低危</li>
+        # @type SecurityLevel: String
 
-        attr_accessor :Uuid, :EventTime, :EventType, :Message
+        attr_accessor :Uuid, :EventTime, :EventType, :Message, :SecurityLevel
         
-        def initialize(uuid=nil, eventtime=nil, eventtype=nil, message=nil)
+        def initialize(uuid=nil, eventtime=nil, eventtype=nil, message=nil, securitylevel=nil)
           @Uuid = uuid
           @EventTime = eventtime
           @EventType = eventtype
           @Message = message
+          @SecurityLevel = securitylevel
         end
 
         def deserialize(params)
@@ -5585,6 +5772,7 @@ module TencentCloud
           @EventTime = params['EventTime']
           @EventType = params['EventType']
           @Message = params['Message']
+          @SecurityLevel = params['SecurityLevel']
         end
       end
 

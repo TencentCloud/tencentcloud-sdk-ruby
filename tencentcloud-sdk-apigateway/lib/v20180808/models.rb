@@ -311,10 +311,13 @@ module TencentCloud
         # @param Tags: API绑定的tag信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param Environments: API已发布的环境信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Environments: Array
 
-        attr_accessor :ServiceId, :ServiceName, :ServiceDesc, :ApiId, :ApiDesc, :CreatedTime, :ModifiedTime, :ApiName, :ApiType, :Protocol, :AuthType, :ApiBusinessType, :AuthRelationApiId, :OauthConfig, :IsDebugAfterCharge, :RequestConfig, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ResponseErrorCodes, :RequestParameters, :ServiceTimeout, :ServiceType, :ServiceConfig, :ServiceParameters, :ConstantParameters, :ServiceMockReturnMessage, :ServiceScfFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceScfIsIntegratedResponse, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :InternalDomain, :ServiceWebsocketTransportFunctionName, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :MicroServices, :MicroServicesInfo, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :EnableCORS, :Tags
+        attr_accessor :ServiceId, :ServiceName, :ServiceDesc, :ApiId, :ApiDesc, :CreatedTime, :ModifiedTime, :ApiName, :ApiType, :Protocol, :AuthType, :ApiBusinessType, :AuthRelationApiId, :OauthConfig, :IsDebugAfterCharge, :RequestConfig, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ResponseErrorCodes, :RequestParameters, :ServiceTimeout, :ServiceType, :ServiceConfig, :ServiceParameters, :ConstantParameters, :ServiceMockReturnMessage, :ServiceScfFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceScfIsIntegratedResponse, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :InternalDomain, :ServiceWebsocketTransportFunctionName, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :MicroServices, :MicroServicesInfo, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :EnableCORS, :Tags, :Environments
         
-        def initialize(serviceid=nil, servicename=nil, servicedesc=nil, apiid=nil, apidesc=nil, createdtime=nil, modifiedtime=nil, apiname=nil, apitype=nil, protocol=nil, authtype=nil, apibusinesstype=nil, authrelationapiid=nil, oauthconfig=nil, isdebugaftercharge=nil, requestconfig=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, responseerrorcodes=nil, requestparameters=nil, servicetimeout=nil, servicetype=nil, serviceconfig=nil, serviceparameters=nil, constantparameters=nil, servicemockreturnmessage=nil, servicescffunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicescfisintegratedresponse=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsocketcleanupfunctionname=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, internaldomain=nil, servicewebsockettransportfunctionname=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, microservices=nil, microservicesinfo=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, enablecors=nil, tags=nil)
+        def initialize(serviceid=nil, servicename=nil, servicedesc=nil, apiid=nil, apidesc=nil, createdtime=nil, modifiedtime=nil, apiname=nil, apitype=nil, protocol=nil, authtype=nil, apibusinesstype=nil, authrelationapiid=nil, oauthconfig=nil, isdebugaftercharge=nil, requestconfig=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, responseerrorcodes=nil, requestparameters=nil, servicetimeout=nil, servicetype=nil, serviceconfig=nil, serviceparameters=nil, constantparameters=nil, servicemockreturnmessage=nil, servicescffunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicescfisintegratedresponse=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsocketcleanupfunctionname=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, internaldomain=nil, servicewebsockettransportfunctionname=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, microservices=nil, microservicesinfo=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, enablecors=nil, tags=nil, environments=nil)
           @ServiceId = serviceid
           @ServiceName = servicename
           @ServiceDesc = servicedesc
@@ -362,6 +365,7 @@ module TencentCloud
           @ServiceTsfHealthCheckConf = servicetsfhealthcheckconf
           @EnableCORS = enablecors
           @Tags = tags
+          @Environments = environments
         end
 
         def deserialize(params)
@@ -422,6 +426,7 @@ module TencentCloud
           end
           @EnableCORS = params['EnableCORS']
           @Tags = params['Tags']
+          @Environments = params['Environments']
         end
       end
 
@@ -797,10 +802,12 @@ module TencentCloud
         # @type CertificateId: String
         # @param PathMappingSet: 自定义域名路径映射，最多输入三个Environment，并且只能分别取值“test”、 ”prepub“、”release“。
         # @type PathMappingSet: Array
+        # @param IsForcedHttps: 是否将HTTP请求强制跳转 HTTPS，默认为false。参数为 true时，API网关会将所有使用该自定义域名的 HTTP 协议的请求重定向至 HTTPS 协议进行转发。
+        # @type IsForcedHttps: Boolean
 
-        attr_accessor :ServiceId, :SubDomain, :Protocol, :NetType, :IsDefaultMapping, :NetSubDomain, :CertificateId, :PathMappingSet
+        attr_accessor :ServiceId, :SubDomain, :Protocol, :NetType, :IsDefaultMapping, :NetSubDomain, :CertificateId, :PathMappingSet, :IsForcedHttps
         
-        def initialize(serviceid=nil, subdomain=nil, protocol=nil, nettype=nil, isdefaultmapping=nil, netsubdomain=nil, certificateid=nil, pathmappingset=nil)
+        def initialize(serviceid=nil, subdomain=nil, protocol=nil, nettype=nil, isdefaultmapping=nil, netsubdomain=nil, certificateid=nil, pathmappingset=nil, isforcedhttps=nil)
           @ServiceId = serviceid
           @SubDomain = subdomain
           @Protocol = protocol
@@ -809,6 +816,7 @@ module TencentCloud
           @NetSubDomain = netsubdomain
           @CertificateId = certificateid
           @PathMappingSet = pathmappingset
+          @IsForcedHttps = isforcedhttps
         end
 
         def deserialize(params)
@@ -820,21 +828,27 @@ module TencentCloud
           @NetSubDomain = params['NetSubDomain']
           @CertificateId = params['CertificateId']
           @PathMappingSet = params['PathMappingSet']
+          @IsForcedHttps = params['IsForcedHttps']
         end
       end
 
       # BindSubDomain返回参数结构体
       class BindSubDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 绑定操作是否成功。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -922,11 +936,11 @@ module TencentCloud
       class CreateApiRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: API 所在的服务唯一 ID。
         # @type ServiceId: String
-        # @param ServiceType: API 的后端服务类型。支持HTTP、MOCK、TSF、CLB、SCF、WEBSOCKET、TARGET（内测）。
+        # @param ServiceType: API 的后端服务类型。支持HTTP、MOCK、TSF、SCF、WEBSOCKET、TARGET（内测）。
         # @type ServiceType: String
         # @param ServiceTimeout: API 的后端服务超时时间，单位是秒。
         # @type ServiceTimeout: Integer
-        # @param Protocol: API 的前端请求类型，如 HTTP 或 HTTPS 或者 HTTP 和 HTTPS。
+        # @param Protocol: API 的前端请求协议，支持HTTP和WEBSOCKET。
         # @type Protocol: String
         # @param RequestConfig: 请求的前端配置。
         # @type RequestConfig: :class:`Tencentcloud::Apigateway.v20180808.models.ApiRequestConfig`
@@ -1230,7 +1244,7 @@ module TencentCloud
 
       # CreateService请求参数结构体
       class CreateServiceRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceName: 用户自定义的服务名称。如果没传，则系统自动生成一个唯一名称。
+        # @param ServiceName: 用户自定义的服务名称。
         # @type ServiceName: String
         # @param Protocol: 服务的前端请求类型。如 http、https、http&https。
         # @type Protocol: String
@@ -1246,10 +1260,12 @@ module TencentCloud
         # @type SetServerName: String
         # @param AppIdType: 用户类型。保留类型，serverless用户使用。
         # @type AppIdType: String
+        # @param Tags: 标签。
+        # @type Tags: Array
 
-        attr_accessor :ServiceName, :Protocol, :ServiceDesc, :ExclusiveSetName, :NetTypes, :IpVersion, :SetServerName, :AppIdType
+        attr_accessor :ServiceName, :Protocol, :ServiceDesc, :ExclusiveSetName, :NetTypes, :IpVersion, :SetServerName, :AppIdType, :Tags
         
-        def initialize(servicename=nil, protocol=nil, servicedesc=nil, exclusivesetname=nil, nettypes=nil, ipversion=nil, setservername=nil, appidtype=nil)
+        def initialize(servicename=nil, protocol=nil, servicedesc=nil, exclusivesetname=nil, nettypes=nil, ipversion=nil, setservername=nil, appidtype=nil, tags=nil)
           @ServiceName = servicename
           @Protocol = protocol
           @ServiceDesc = servicedesc
@@ -1258,6 +1274,7 @@ module TencentCloud
           @IpVersion = ipversion
           @SetServerName = setservername
           @AppIdType = appidtype
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1269,6 +1286,7 @@ module TencentCloud
           @IpVersion = params['IpVersion']
           @SetServerName = params['SetServerName']
           @AppIdType = params['AppIdType']
+          @Tags = params['Tags']
         end
       end
 
@@ -2571,12 +2589,15 @@ module TencentCloud
         # @param SetId: 预留字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetId: Integer
+        # @param Tags: 服务绑定的标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :ExclusiveSetName, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :RequestId
+        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :ExclusiveSetName, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :RequestId
         
-        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, exclusivesetname=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, requestid=nil)
+        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, exclusivesetname=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, requestid=nil)
           @ServiceId = serviceid
           @AvailableEnvironments = availableenvironments
           @ServiceName = servicename
@@ -2597,6 +2618,7 @@ module TencentCloud
           @IpVersion = ipversion
           @UserType = usertype
           @SetId = setid
+          @Tags = tags
           @RequestId = requestid
         end
 
@@ -2621,6 +2643,7 @@ module TencentCloud
           @IpVersion = params['IpVersion']
           @UserType = params['UserType']
           @SetId = params['SetId']
+          @Tags = params['Tags']
           @RequestId = params['RequestId']
         end
       end
@@ -4009,10 +4032,12 @@ module TencentCloud
         # @type PathMappingSet: Array
         # @param NetType: 网络类型 （'INNER' 或 'OUTER'）
         # @type NetType: String
+        # @param IsForcedHttps: 是否将HTTP请求强制跳转 HTTPS，默认为false。参数为 true时，API网关会将所有使用该自定义域名的 HTTP 协议的请求重定向至 HTTPS 协议进行转发。
+        # @type IsForcedHttps: Boolean
 
-        attr_accessor :ServiceId, :SubDomain, :IsDefaultMapping, :CertificateId, :Protocol, :PathMappingSet, :NetType
+        attr_accessor :ServiceId, :SubDomain, :IsDefaultMapping, :CertificateId, :Protocol, :PathMappingSet, :NetType, :IsForcedHttps
         
-        def initialize(serviceid=nil, subdomain=nil, isdefaultmapping=nil, certificateid=nil, protocol=nil, pathmappingset=nil, nettype=nil)
+        def initialize(serviceid=nil, subdomain=nil, isdefaultmapping=nil, certificateid=nil, protocol=nil, pathmappingset=nil, nettype=nil, isforcedhttps=nil)
           @ServiceId = serviceid
           @SubDomain = subdomain
           @IsDefaultMapping = isdefaultmapping
@@ -4020,6 +4045,7 @@ module TencentCloud
           @Protocol = protocol
           @PathMappingSet = pathmappingset
           @NetType = nettype
+          @IsForcedHttps = isforcedhttps
         end
 
         def deserialize(params)
@@ -4030,6 +4056,7 @@ module TencentCloud
           @Protocol = params['Protocol']
           @PathMappingSet = params['PathMappingSet']
           @NetType = params['NetType']
+          @IsForcedHttps = params['IsForcedHttps']
         end
       end
 
@@ -4228,7 +4255,7 @@ module TencentCloud
       class ReqParameter < TencentCloud::Common::AbstractModel
         # @param Name: API 的前端参数名称。
         # @type Name: String
-        # @param Position: API 的前端参数位置，如 head。目前支持 head、query、path。
+        # @param Position: API 的前端参数位置，如 header。目前支持 header、query、path。
         # @type Position: String
         # @param Type: API 的前端参数类型，如 String、int。
         # @type Type: String
@@ -4395,10 +4422,13 @@ module TencentCloud
         # @param TradeIsolateStatus: 服务的计费状态。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TradeIsolateStatus: Integer
+        # @param Tags: 服务绑定的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :InnerHttpsPort, :ServiceDesc, :Protocol, :ModifiedTime, :NetTypes, :ExclusiveSetName, :ServiceId, :IpVersion, :AvailableEnvironments, :ServiceName, :OuterSubDomain, :CreatedTime, :InnerHttpPort, :InnerSubDomain, :TradeIsolateStatus
+        attr_accessor :InnerHttpsPort, :ServiceDesc, :Protocol, :ModifiedTime, :NetTypes, :ExclusiveSetName, :ServiceId, :IpVersion, :AvailableEnvironments, :ServiceName, :OuterSubDomain, :CreatedTime, :InnerHttpPort, :InnerSubDomain, :TradeIsolateStatus, :Tags
         
-        def initialize(innerhttpsport=nil, servicedesc=nil, protocol=nil, modifiedtime=nil, nettypes=nil, exclusivesetname=nil, serviceid=nil, ipversion=nil, availableenvironments=nil, servicename=nil, outersubdomain=nil, createdtime=nil, innerhttpport=nil, innersubdomain=nil, tradeisolatestatus=nil)
+        def initialize(innerhttpsport=nil, servicedesc=nil, protocol=nil, modifiedtime=nil, nettypes=nil, exclusivesetname=nil, serviceid=nil, ipversion=nil, availableenvironments=nil, servicename=nil, outersubdomain=nil, createdtime=nil, innerhttpport=nil, innersubdomain=nil, tradeisolatestatus=nil, tags=nil)
           @InnerHttpsPort = innerhttpsport
           @ServiceDesc = servicedesc
           @Protocol = protocol
@@ -4414,6 +4444,7 @@ module TencentCloud
           @InnerHttpPort = innerhttpport
           @InnerSubDomain = innersubdomain
           @TradeIsolateStatus = tradeisolatestatus
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4432,6 +4463,7 @@ module TencentCloud
           @InnerHttpPort = params['InnerHttpPort']
           @InnerSubDomain = params['InnerSubDomain']
           @TradeIsolateStatus = params['TradeIsolateStatus']
+          @Tags = params['Tags']
         end
       end
 

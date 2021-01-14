@@ -54,6 +54,52 @@ module TencentCloud
         end
       end
 
+      # AuthInfo集合
+      class AuthInfo < TencentCloud::Common::AbstractModel
+        # @param SubjectName: 主体名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubjectName: String
+        # @param ProjectName: 项目名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param AppScene: 应用场景
+        # @type AppScene: Integer
+        # @param AppRegion: 应用地域
+        # @type AppRegion: Integer
+        # @param AuthPeriod: 授权时间
+        # @type AuthPeriod: Integer
+        # @param Commercialization: 是否可商业化
+        # @type Commercialization: Integer
+        # @param Platform: 是否可跨平台
+        # @type Platform: Integer
+        # @param Id: 加密后Id
+        # @type Id: String
+
+        attr_accessor :SubjectName, :ProjectName, :AppScene, :AppRegion, :AuthPeriod, :Commercialization, :Platform, :Id
+        
+        def initialize(subjectname=nil, projectname=nil, appscene=nil, appregion=nil, authperiod=nil, commercialization=nil, platform=nil, id=nil)
+          @SubjectName = subjectname
+          @ProjectName = projectname
+          @AppScene = appscene
+          @AppRegion = appregion
+          @AuthPeriod = authperiod
+          @Commercialization = commercialization
+          @Platform = platform
+          @Id = id
+        end
+
+        def deserialize(params)
+          @SubjectName = params['SubjectName']
+          @ProjectName = params['ProjectName']
+          @AppScene = params['AppScene']
+          @AppRegion = params['AppRegion']
+          @AuthPeriod = params['AuthPeriod']
+          @Commercialization = params['Commercialization']
+          @Platform = params['Platform']
+          @Id = params['Id']
+        end
+      end
+
       # 数据信息
       class DataInfo < TencentCloud::Common::AbstractModel
         # @param Name: Song Name
@@ -83,6 +129,154 @@ module TencentCloud
           @Duration = params['Duration']
           @AuditionBegin = params['AuditionBegin']
           @AuditionEnd = params['AuditionEnd']
+        end
+      end
+
+      # DescribeAuthInfo请求参数结构体
+      class DescribeAuthInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量：Offset=Offset+Limit
+        # @type Offset: Integer
+        # @param Limit: 数据条数
+        # @type Limit: Integer
+        # @param Key: 搜索关键字
+        # @type Key: String
+
+        attr_accessor :Offset, :Limit, :Key
+        
+        def initialize(offset=nil, limit=nil, key=nil)
+          @Offset = offset
+          @Limit = limit
+          @Key = key
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Key = params['Key']
+        end
+      end
+
+      # DescribeAuthInfo返回参数结构体
+      class DescribeAuthInfoResponse < TencentCloud::Common::AbstractModel
+        # @param AuthInfo: 授权项目列表
+        # @type AuthInfo: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthInfo, :TotalCount, :RequestId
+        
+        def initialize(authinfo=nil, totalcount=nil, requestid=nil)
+          @AuthInfo = authinfo
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AuthInfo = params['AuthInfo']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudMusicPurchased请求参数结构体
+      class DescribeCloudMusicPurchasedRequest < TencentCloud::Common::AbstractModel
+        # @param AuthInfoId: 授权项目Id
+        # @type AuthInfoId: String
+
+        attr_accessor :AuthInfoId
+        
+        def initialize(authinfoid=nil)
+          @AuthInfoId = authinfoid
+        end
+
+        def deserialize(params)
+          @AuthInfoId = params['AuthInfoId']
+        end
+      end
+
+      # DescribeCloudMusicPurchased返回参数结构体
+      class DescribeCloudMusicPurchasedResponse < TencentCloud::Common::AbstractModel
+        # @param MusicOpenDetail: 云音乐列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MusicOpenDetail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MusicOpenDetail, :RequestId
+        
+        def initialize(musicopendetail=nil, requestid=nil)
+          @MusicOpenDetail = musicopendetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MusicOpenDetail = params['MusicOpenDetail']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudMusic请求参数结构体
+      class DescribeCloudMusicRequest < TencentCloud::Common::AbstractModel
+        # @param MusicId: 歌曲Id
+        # @type MusicId: String
+        # @param MusicType: 歌曲类型，请填写：MP3-320K-FTD
+        # @type MusicType: String
+
+        attr_accessor :MusicId, :MusicType
+        
+        def initialize(musicid=nil, musictype=nil)
+          @MusicId = musicid
+          @MusicType = musictype
+        end
+
+        def deserialize(params)
+          @MusicId = params['MusicId']
+          @MusicType = params['MusicType']
+        end
+      end
+
+      # DescribeCloudMusic返回参数结构体
+      class DescribeCloudMusicResponse < TencentCloud::Common::AbstractModel
+        # @param MusicId: 歌曲Id
+        # @type MusicId: String
+        # @param MusicName: 歌曲名称
+        # @type MusicName: String
+        # @param Duration: 歌曲时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param MusicUrl: 歌曲链接
+        # @type MusicUrl: String
+        # @param MusicImageUrl: 歌曲图片
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MusicImageUrl: String
+        # @param Singers: 歌手列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Singers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MusicId, :MusicName, :Duration, :MusicUrl, :MusicImageUrl, :Singers, :RequestId
+        
+        def initialize(musicid=nil, musicname=nil, duration=nil, musicurl=nil, musicimageurl=nil, singers=nil, requestid=nil)
+          @MusicId = musicid
+          @MusicName = musicname
+          @Duration = duration
+          @MusicUrl = musicurl
+          @MusicImageUrl = musicimageurl
+          @Singers = singers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MusicId = params['MusicId']
+          @MusicName = params['MusicName']
+          @Duration = params['Duration']
+          @MusicUrl = params['MusicUrl']
+          @MusicImageUrl = params['MusicImageUrl']
+          @Singers = params['Singers']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -238,7 +432,8 @@ module TencentCloud
         # @type ItemId: String
         # @param IdentityId: 在应用前端播放音乐C端用户的唯一标识。无需是账户信息，用户唯一标识即可。
         # @type IdentityId: String
-        # @param SubItemType: 填 MP3-64K-FTD-P 获取歌曲热门片段
+        # @param SubItemType: MP3-64K-FTD-P  为获取64kbps歌曲热门片段。
+        # MP3-320K-FTD 为获取320kbps已核验歌曲完整资源。
         # @type SubItemType: String
         # @param Ssl: CDN URL Protocol:HTTP or HTTPS/SSL
         # Values:Y , N(default)
@@ -284,11 +479,97 @@ module TencentCloud
         end
       end
 
+      # DescribePackageItems请求参数结构体
+      class DescribePackageItemsRequest < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单id，从获取已购曲库包列表中获取
+        # @type OrderId: String
+        # @param Offset: 默认0，Offset=Offset+Length
+        # @type Offset: Integer
+        # @param Length: 默认20
+        # @type Length: Integer
+
+        attr_accessor :OrderId, :Offset, :Length
+        
+        def initialize(orderid=nil, offset=nil, length=nil)
+          @OrderId = orderid
+          @Offset = offset
+          @Length = length
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @Offset = params['Offset']
+          @Length = params['Length']
+        end
+      end
+
+      # DescribePackageItems返回参数结构体
+      class DescribePackageItemsResponse < TencentCloud::Common::AbstractModel
+        # @param PackageItems: 已核销歌曲信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageItems: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PackageItems, :RequestId
+        
+        def initialize(packageitems=nil, requestid=nil)
+          @PackageItems = packageitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PackageItems = params['PackageItems']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePackages请求参数结构体
+      class DescribePackagesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 默认0，Offset=Offset+Length
+        # @type Offset: Integer
+        # @param Length: 默认20
+        # @type Length: Integer
+
+        attr_accessor :Offset, :Length
+        
+        def initialize(offset=nil, length=nil)
+          @Offset = offset
+          @Length = length
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Length = params['Length']
+        end
+      end
+
+      # DescribePackages返回参数结构体
+      class DescribePackagesResponse < TencentCloud::Common::AbstractModel
+        # @param Packages: 已购曲库包列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Packages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Packages, :RequestId
+        
+        def initialize(packages=nil, requestid=nil)
+          @Packages = packages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Packages = params['Packages']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStations请求参数结构体
       class DescribeStationsRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 条数，必须大于0
         # @type Limit: Integer
-        # @param Offset: offset (Default = 0)，(当前页-1) * Limit
+        # @param Offset: offset (Default = 0)，Offset=Offset+Limit
         # @type Offset: Integer
 
         attr_accessor :Limit, :Offset
@@ -363,7 +644,7 @@ module TencentCloud
         end
       end
 
-      # Item
+      # 歌曲信息
       class Item < TencentCloud::Common::AbstractModel
         # @param ItemID: Song ID
         # @type ItemID: String
@@ -376,14 +657,18 @@ module TencentCloud
         # @param Artists: 多个歌手集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Artists: Array
+        # @param Status: 歌曲状态，1:添加进购物车；2:核销进曲库包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :ItemID, :DataInfo, :Album, :Artists
+        attr_accessor :ItemID, :DataInfo, :Album, :Artists, :Status
         
-        def initialize(itemid=nil, datainfo=nil, album=nil, artists=nil)
+        def initialize(itemid=nil, datainfo=nil, album=nil, artists=nil, status=nil)
           @ItemID = itemid
           @DataInfo = datainfo
           @Album = album
           @Artists = artists
+          @Status = status
         end
 
         def deserialize(params)
@@ -395,6 +680,7 @@ module TencentCloud
             @Album = Album.new.deserialize(params[Album])
           end
           @Artists = params['Artists']
+          @Status = params['Status']
         end
       end
 
@@ -458,6 +744,159 @@ module TencentCloud
           @AuditionBegin = params['AuditionBegin']
           @AuditionEnd = params['AuditionEnd']
           @FullUrl = params['FullUrl']
+        end
+      end
+
+      # 对外开放信息
+      class MusicOpenDetail < TencentCloud::Common::AbstractModel
+        # @param MusicId: 音乐Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MusicId: String
+        # @param AlbumName: 专辑名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlbumName: String
+        # @param AlbumImageUrl: 专辑图片路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlbumImageUrl: String
+        # @param MusicName: 音乐名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MusicName: String
+        # @param MusicImageUrl: 音乐图片路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MusicImageUrl: String
+        # @param Singers: 歌手
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Singers: Array
+        # @param Duration: 播放时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param LyricUrl: 歌词url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LyricUrl: String
+
+        attr_accessor :MusicId, :AlbumName, :AlbumImageUrl, :MusicName, :MusicImageUrl, :Singers, :Duration, :Tags, :LyricUrl
+        
+        def initialize(musicid=nil, albumname=nil, albumimageurl=nil, musicname=nil, musicimageurl=nil, singers=nil, duration=nil, tags=nil, lyricurl=nil)
+          @MusicId = musicid
+          @AlbumName = albumname
+          @AlbumImageUrl = albumimageurl
+          @MusicName = musicname
+          @MusicImageUrl = musicimageurl
+          @Singers = singers
+          @Duration = duration
+          @Tags = tags
+          @LyricUrl = lyricurl
+        end
+
+        def deserialize(params)
+          @MusicId = params['MusicId']
+          @AlbumName = params['AlbumName']
+          @AlbumImageUrl = params['AlbumImageUrl']
+          @MusicName = params['MusicName']
+          @MusicImageUrl = params['MusicImageUrl']
+          @Singers = params['Singers']
+          @Duration = params['Duration']
+          @Tags = params['Tags']
+          @LyricUrl = params['LyricUrl']
+        end
+      end
+
+      # 曲库包信息
+      class Package < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单id
+        # @type OrderId: String
+        # @param Name: 曲库包名称
+        # @type Name: String
+        # @param AuthorizedArea: 授权地区-global: 全球  CN: 中国
+        # @type AuthorizedArea: String
+        # @param AuthorizedLimit: 授权次数
+        # @type AuthorizedLimit: Integer
+        # @param TermOfValidity: 套餐有效期，单位:天
+        # @type TermOfValidity: Integer
+        # @param Commercial: 0:不可商业化；1:可商业化
+        # @type Commercial: Integer
+        # @param PackagePrice: 套餐价格，单位：元
+        # @type PackagePrice: Float
+        # @param EffectTime: 生效开始时间,格式yyyy-MM-dd HH:mm:ss
+        # @type EffectTime: String
+        # @param ExpireTime: 生效结束时间,格式yyyy-MM-dd HH:mm:ss
+        # @type ExpireTime: String
+        # @param UsedCount: 剩余授权次数
+        # @type UsedCount: Integer
+        # @param UseRanges: 曲库包用途信息
+        # @type UseRanges: Array
+
+        attr_accessor :OrderId, :Name, :AuthorizedArea, :AuthorizedLimit, :TermOfValidity, :Commercial, :PackagePrice, :EffectTime, :ExpireTime, :UsedCount, :UseRanges
+        
+        def initialize(orderid=nil, name=nil, authorizedarea=nil, authorizedlimit=nil, termofvalidity=nil, commercial=nil, packageprice=nil, effecttime=nil, expiretime=nil, usedcount=nil, useranges=nil)
+          @OrderId = orderid
+          @Name = name
+          @AuthorizedArea = authorizedarea
+          @AuthorizedLimit = authorizedlimit
+          @TermOfValidity = termofvalidity
+          @Commercial = commercial
+          @PackagePrice = packageprice
+          @EffectTime = effecttime
+          @ExpireTime = expiretime
+          @UsedCount = usedcount
+          @UseRanges = useranges
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @Name = params['Name']
+          @AuthorizedArea = params['AuthorizedArea']
+          @AuthorizedLimit = params['AuthorizedLimit']
+          @TermOfValidity = params['TermOfValidity']
+          @Commercial = params['Commercial']
+          @PackagePrice = params['PackagePrice']
+          @EffectTime = params['EffectTime']
+          @ExpireTime = params['ExpireTime']
+          @UsedCount = params['UsedCount']
+          @UseRanges = params['UseRanges']
+        end
+      end
+
+      # 曲库包歌曲信息
+      class PackageItem < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单id
+        # @type OrderId: String
+        # @param TrackName: 歌曲名
+        # @type TrackName: String
+        # @param ItemID: 歌曲ID
+        # @type ItemID: String
+        # @param Img: 专辑图片
+        # @type Img: String
+        # @param ArtistName: 歌手名
+        # @type ArtistName: String
+        # @param Duration: 歌曲时长
+        # @type Duration: String
+        # @param AuthorizedArea: 授权区域，global: 全球 CN: 中国
+        # @type AuthorizedArea: String
+
+        attr_accessor :OrderId, :TrackName, :ItemID, :Img, :ArtistName, :Duration, :AuthorizedArea
+        
+        def initialize(orderid=nil, trackname=nil, itemid=nil, img=nil, artistname=nil, duration=nil, authorizedarea=nil)
+          @OrderId = orderid
+          @TrackName = trackname
+          @ItemID = itemid
+          @Img = img
+          @ArtistName = artistname
+          @Duration = duration
+          @AuthorizedArea = authorizedarea
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @TrackName = params['TrackName']
+          @ItemID = params['ItemID']
+          @Img = params['Img']
+          @ArtistName = params['ArtistName']
+          @Duration = params['Duration']
+          @AuthorizedArea = params['AuthorizedArea']
         end
       end
 
@@ -538,6 +977,26 @@ module TencentCloud
           @Name = params['Name']
           @Rank = params['Rank']
           @ImagePathMap = params['ImagePathMap']
+        end
+      end
+
+      # 曲库包用途信息
+      class UseRange < TencentCloud::Common::AbstractModel
+        # @param UseRangeId: 用途id
+        # @type UseRangeId: Integer
+        # @param Name: 用途范围名称
+        # @type Name: String
+
+        attr_accessor :UseRangeId, :Name
+        
+        def initialize(userangeid=nil, name=nil)
+          @UseRangeId = userangeid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @UseRangeId = params['UseRangeId']
+          @Name = params['Name']
         end
       end
 

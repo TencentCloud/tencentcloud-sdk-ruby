@@ -315,7 +315,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取获取设备类型
+        # 获取设备类型
 
         # @param request: Request instance for DescribeDeviceClass.
         # @type request: :class:`Tencentcloud::bm::V20180423::DescribeDeviceClassRequest`

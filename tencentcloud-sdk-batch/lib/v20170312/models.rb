@@ -245,10 +245,13 @@ module TencentCloud
         # @type Notifications: Array
         # @param DesiredComputeNodeCount: 计算节点期望个数
         # @type DesiredComputeNodeCount: Integer
+        # @param Tags: 计算环境标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :EnvId, :EnvName, :EnvDescription, :EnvType, :EnvData, :MountDataDisks, :InputMappings, :Authentications, :Notifications, :DesiredComputeNodeCount
+        attr_accessor :EnvId, :EnvName, :EnvDescription, :EnvType, :EnvData, :MountDataDisks, :InputMappings, :Authentications, :Notifications, :DesiredComputeNodeCount, :Tags
         
-        def initialize(envid=nil, envname=nil, envdescription=nil, envtype=nil, envdata=nil, mountdatadisks=nil, inputmappings=nil, authentications=nil, notifications=nil, desiredcomputenodecount=nil)
+        def initialize(envid=nil, envname=nil, envdescription=nil, envtype=nil, envdata=nil, mountdatadisks=nil, inputmappings=nil, authentications=nil, notifications=nil, desiredcomputenodecount=nil, tags=nil)
           @EnvId = envid
           @EnvName = envname
           @EnvDescription = envdescription
@@ -259,6 +262,7 @@ module TencentCloud
           @Authentications = authentications
           @Notifications = notifications
           @DesiredComputeNodeCount = desiredcomputenodecount
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -274,6 +278,7 @@ module TencentCloud
           @Authentications = params['Authentications']
           @Notifications = params['Notifications']
           @DesiredComputeNodeCount = params['DesiredComputeNodeCount']
+          @Tags = params['Tags']
         end
       end
 
@@ -315,10 +320,13 @@ module TencentCloud
         # @type NextAction: String
         # @param AttachedComputeNodeCount: 用户添加到计算环境中的计算节点个数
         # @type AttachedComputeNodeCount: Integer
+        # @param Tags: 计算环境绑定的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :EnvId, :EnvName, :Placement, :CreateTime, :ComputeNodeMetrics, :EnvType, :DesiredComputeNodeCount, :ResourceType, :NextAction, :AttachedComputeNodeCount
+        attr_accessor :EnvId, :EnvName, :Placement, :CreateTime, :ComputeNodeMetrics, :EnvType, :DesiredComputeNodeCount, :ResourceType, :NextAction, :AttachedComputeNodeCount, :Tags
         
-        def initialize(envid=nil, envname=nil, placement=nil, createtime=nil, computenodemetrics=nil, envtype=nil, desiredcomputenodecount=nil, resourcetype=nil, nextaction=nil, attachedcomputenodecount=nil)
+        def initialize(envid=nil, envname=nil, placement=nil, createtime=nil, computenodemetrics=nil, envtype=nil, desiredcomputenodecount=nil, resourcetype=nil, nextaction=nil, attachedcomputenodecount=nil, tags=nil)
           @EnvId = envid
           @EnvName = envname
           @Placement = placement
@@ -329,6 +337,7 @@ module TencentCloud
           @ResourceType = resourcetype
           @NextAction = nextaction
           @AttachedComputeNodeCount = attachedcomputenodecount
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -346,6 +355,7 @@ module TencentCloud
           @ResourceType = params['ResourceType']
           @NextAction = params['NextAction']
           @AttachedComputeNodeCount = params['AttachedComputeNodeCount']
+          @Tags = params['Tags']
         end
       end
 
@@ -574,13 +584,16 @@ module TencentCloud
         # @type TaskTemplateInfo: :class:`Tencentcloud::Batch.v20170312.models.Task`
         # @param TaskTemplateDescription: 任务模板描述
         # @type TaskTemplateDescription: String
+        # @param Tags: 标签列表。通过指定该参数可以支持绑定标签到任务模板。每个任务模板最多绑定10个标签。
+        # @type Tags: Array
 
-        attr_accessor :TaskTemplateName, :TaskTemplateInfo, :TaskTemplateDescription
+        attr_accessor :TaskTemplateName, :TaskTemplateInfo, :TaskTemplateDescription, :Tags
         
-        def initialize(tasktemplatename=nil, tasktemplateinfo=nil, tasktemplatedescription=nil)
+        def initialize(tasktemplatename=nil, tasktemplateinfo=nil, tasktemplatedescription=nil, tags=nil)
           @TaskTemplateName = tasktemplatename
           @TaskTemplateInfo = tasktemplateinfo
           @TaskTemplateDescription = tasktemplatedescription
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -589,6 +602,7 @@ module TencentCloud
             @TaskTemplateInfo = Task.new.deserialize(params[TaskTemplateInfo])
           end
           @TaskTemplateDescription = params['TaskTemplateDescription']
+          @Tags = params['Tags']
         end
       end
 
@@ -616,7 +630,7 @@ module TencentCloud
       class DataDisk < TencentCloud::Common::AbstractModel
         # @param DiskSize: 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
         # @type DiskSize: Integer
-        # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><br>默认取值：LOCAL_BASIC。<br><br>该参数对`ResizeInstanceDisk`接口无效。
+        # @param DiskType: 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><br>默认取值：LOCAL_BASIC。<br><br>该参数对`ResizeInstanceDisk`接口无效。
         # @type DiskType: String
         # @param DiskId: 数据盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID，暂时不支持该参数。
         # @type DiskId: String
@@ -914,12 +928,15 @@ module TencentCloud
         # @type Notifications: Array
         # @param DesiredComputeNodeCount: 计算节点期望个数
         # @type DesiredComputeNodeCount: Integer
+        # @param Tags: 计算环境绑定的标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnvId, :EnvName, :EnvDescription, :EnvType, :EnvData, :MountDataDisks, :InputMappings, :Authentications, :Notifications, :DesiredComputeNodeCount, :RequestId
+        attr_accessor :EnvId, :EnvName, :EnvDescription, :EnvType, :EnvData, :MountDataDisks, :InputMappings, :Authentications, :Notifications, :DesiredComputeNodeCount, :Tags, :RequestId
         
-        def initialize(envid=nil, envname=nil, envdescription=nil, envtype=nil, envdata=nil, mountdatadisks=nil, inputmappings=nil, authentications=nil, notifications=nil, desiredcomputenodecount=nil, requestid=nil)
+        def initialize(envid=nil, envname=nil, envdescription=nil, envtype=nil, envdata=nil, mountdatadisks=nil, inputmappings=nil, authentications=nil, notifications=nil, desiredcomputenodecount=nil, tags=nil, requestid=nil)
           @EnvId = envid
           @EnvName = envname
           @EnvDescription = envdescription
@@ -930,6 +947,7 @@ module TencentCloud
           @Authentications = authentications
           @Notifications = notifications
           @DesiredComputeNodeCount = desiredcomputenodecount
+          @Tags = tags
           @RequestId = requestid
         end
 
@@ -946,6 +964,7 @@ module TencentCloud
           @Authentications = params['Authentications']
           @Notifications = params['Notifications']
           @DesiredComputeNodeCount = params['DesiredComputeNodeCount']
+          @Tags = params['Tags']
           @RequestId = params['RequestId']
         end
       end
@@ -1046,12 +1065,15 @@ module TencentCloud
         # @type NextAction: String
         # @param AttachedComputeNodeCount: 用户添加到计算环境中的计算节点个数
         # @type AttachedComputeNodeCount: Integer
+        # @param Tags: 计算环境绑定的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnvId, :EnvName, :Placement, :CreateTime, :ComputeNodeSet, :ComputeNodeMetrics, :DesiredComputeNodeCount, :EnvType, :ResourceType, :NextAction, :AttachedComputeNodeCount, :RequestId
+        attr_accessor :EnvId, :EnvName, :Placement, :CreateTime, :ComputeNodeSet, :ComputeNodeMetrics, :DesiredComputeNodeCount, :EnvType, :ResourceType, :NextAction, :AttachedComputeNodeCount, :Tags, :RequestId
         
-        def initialize(envid=nil, envname=nil, placement=nil, createtime=nil, computenodeset=nil, computenodemetrics=nil, desiredcomputenodecount=nil, envtype=nil, resourcetype=nil, nextaction=nil, attachedcomputenodecount=nil, requestid=nil)
+        def initialize(envid=nil, envname=nil, placement=nil, createtime=nil, computenodeset=nil, computenodemetrics=nil, desiredcomputenodecount=nil, envtype=nil, resourcetype=nil, nextaction=nil, attachedcomputenodecount=nil, tags=nil, requestid=nil)
           @EnvId = envid
           @EnvName = envname
           @Placement = placement
@@ -1063,6 +1085,7 @@ module TencentCloud
           @ResourceType = resourcetype
           @NextAction = nextaction
           @AttachedComputeNodeCount = attachedcomputenodecount
+          @Tags = tags
           @RequestId = requestid
         end
 
@@ -1082,6 +1105,7 @@ module TencentCloud
           @ResourceType = params['ResourceType']
           @NextAction = params['NextAction']
           @AttachedComputeNodeCount = params['AttachedComputeNodeCount']
+          @Tags = params['Tags']
           @RequestId = params['RequestId']
         end
       end
@@ -1095,6 +1119,9 @@ module TencentCloud
         # <li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li>
         # <li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li>
         # <li> resource-type - String - 是否必填：否 -（过滤条件）按照计算资源类型过滤，取值CVM或者CPM(黑石)。</li>
+        # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
+        # <li>tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
+        # <li>tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
         # 与EnvIds参数不能同时指定。
         # @type Filters: Array
         # @param Offset: 偏移量
@@ -1289,15 +1316,21 @@ module TencentCloud
         # @param TaskMetrics: 任务统计指标
         # @type TaskMetrics: :class:`Tencentcloud::Batch.v20170312.models.TaskMetrics`
         # @param TaskInstanceMetrics: 任务实例统计指标
-        # @type TaskInstanceMetrics: :class:`Tencentcloud::Batch.v20170312.models.TaskInstanceView`
+        # @type TaskInstanceMetrics: :class:`Tencentcloud::Batch.v20170312.models.TaskInstanceMetrics`
         # @param StateReason: 作业失败原因
         # @type StateReason: String
+        # @param Tags: 作业绑定的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param NextAction: 下一步动作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextAction: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :JobName, :Zone, :Priority, :JobState, :CreateTime, :EndTime, :TaskSet, :DependenceSet, :TaskMetrics, :TaskInstanceMetrics, :StateReason, :RequestId
+        attr_accessor :JobId, :JobName, :Zone, :Priority, :JobState, :CreateTime, :EndTime, :TaskSet, :DependenceSet, :TaskMetrics, :TaskInstanceMetrics, :StateReason, :Tags, :NextAction, :RequestId
         
-        def initialize(jobid=nil, jobname=nil, zone=nil, priority=nil, jobstate=nil, createtime=nil, endtime=nil, taskset=nil, dependenceset=nil, taskmetrics=nil, taskinstancemetrics=nil, statereason=nil, requestid=nil)
+        def initialize(jobid=nil, jobname=nil, zone=nil, priority=nil, jobstate=nil, createtime=nil, endtime=nil, taskset=nil, dependenceset=nil, taskmetrics=nil, taskinstancemetrics=nil, statereason=nil, tags=nil, nextaction=nil, requestid=nil)
           @JobId = jobid
           @JobName = jobname
           @Zone = zone
@@ -1310,6 +1343,8 @@ module TencentCloud
           @TaskMetrics = taskmetrics
           @TaskInstanceMetrics = taskinstancemetrics
           @StateReason = statereason
+          @Tags = tags
+          @NextAction = nextaction
           @RequestId = requestid
         end
 
@@ -1327,9 +1362,11 @@ module TencentCloud
             @TaskMetrics = TaskMetrics.new.deserialize(params[TaskMetrics])
           end
           unless params['TaskInstanceMetrics'].nil?
-            @TaskInstanceMetrics = TaskInstanceView.new.deserialize(params[TaskInstanceMetrics])
+            @TaskInstanceMetrics = TaskInstanceMetrics.new.deserialize(params[TaskInstanceMetrics])
           end
           @StateReason = params['StateReason']
+          @Tags = params['Tags']
+          @NextAction = params['NextAction']
           @RequestId = params['RequestId']
         end
       end
@@ -1364,18 +1401,22 @@ module TencentCloud
         # @type Tasks: Array
         # @param Dependences: 依赖信息
         # @type Dependences: Array
+        # @param Tags: 作业绑定的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :JobName, :JobDescription, :Priority, :Tasks, :Dependences, :RequestId
+        attr_accessor :JobId, :JobName, :JobDescription, :Priority, :Tasks, :Dependences, :Tags, :RequestId
         
-        def initialize(jobid=nil, jobname=nil, jobdescription=nil, priority=nil, tasks=nil, dependences=nil, requestid=nil)
+        def initialize(jobid=nil, jobname=nil, jobdescription=nil, priority=nil, tasks=nil, dependences=nil, tags=nil, requestid=nil)
           @JobId = jobid
           @JobName = jobname
           @JobDescription = jobdescription
           @Priority = priority
           @Tasks = tasks
           @Dependences = dependences
+          @Tags = tags
           @RequestId = requestid
         end
 
@@ -1386,6 +1427,7 @@ module TencentCloud
           @Priority = params['Priority']
           @Tasks = params['Tasks']
           @Dependences = params['Dependences']
+          @Tags = params['Tags']
           @RequestId = params['RequestId']
         end
       end
@@ -1399,6 +1441,9 @@ module TencentCloud
         # <li> job-name - String - 是否必填：否 -（过滤条件）按照作业名称过滤。</li>
         # <li> job-state - String - 是否必填：否 -（过滤条件）按照作业状态过滤。</li>
         # <li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。</li>
+        # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
+        # <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
+        # <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
         # 与JobIds参数不能同时指定。
         # @type Filters: Array
         # @param Offset: 偏移量
@@ -1592,6 +1637,9 @@ module TencentCloud
         # @type TaskTemplateIds: Array
         # @param Filters: 过滤条件
         # <li> task-template-name - String - 是否必填：否 -（过滤条件）按照任务模板名称过滤。</li>
+        # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
+        # <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
+        # <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
         # 与TaskTemplateIds参数不能同时指定。
         # @type Filters: Array
         # @param Offset: 偏移量
@@ -2322,7 +2370,7 @@ module TencentCloud
         # @param DiscountPrice: 预支合计费用的折扣价，预付费模式使用，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
-        # @param Discount: 折扣，如20.0代表2折
+        # @param Discount: 折扣，如20.0代表2折。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Discount: Float
         # @param UnitPriceDiscount: 后续合计费用的折扣价，后付费模式使用，单位：元<br><li>如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
@@ -2340,10 +2388,46 @@ module TencentCloud
         # @param UnitPriceDiscountThirdStep: 使用时间区间在(360, ∞)小时的后续合计费用的折扣价，后付费模式使用，单位：元
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceDiscountThirdStep: Float
+        # @param OriginalPriceThreeYear: 预支三年合计费用的原价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceThreeYear: Float
+        # @param DiscountPriceThreeYear: 预支三年合计费用的折扣价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPriceThreeYear: Float
+        # @param DiscountThreeYear: 预支三年应用的折扣，如20.0代表2折。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountThreeYear: Float
+        # @param OriginalPriceFiveYear: 预支五年合计费用的原价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceFiveYear: Float
+        # @param DiscountPriceFiveYear: 预支五年合计费用的折扣价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPriceFiveYear: Float
+        # @param DiscountFiveYear: 预支五年应用的折扣，如20.0代表2折。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountFiveYear: Float
+        # @param OriginalPriceOneYear: 预支一年合计费用的原价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPriceOneYear: Float
+        # @param DiscountPriceOneYear: 预支一年合计费用的折扣价，预付费模式使用，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPriceOneYear: Float
+        # @param DiscountOneYear: 预支一年应用的折扣，如20.0代表2折。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountOneYear: Float
 
-        attr_accessor :UnitPrice, :ChargeUnit, :OriginalPrice, :DiscountPrice, :Discount, :UnitPriceDiscount, :UnitPriceSecondStep, :UnitPriceDiscountSecondStep, :UnitPriceThirdStep, :UnitPriceDiscountThirdStep
+        attr_accessor :UnitPrice, :ChargeUnit, :OriginalPrice, :DiscountPrice, :Discount, :UnitPriceDiscount, :UnitPriceSecondStep, :UnitPriceDiscountSecondStep, :UnitPriceThirdStep, :UnitPriceDiscountThirdStep, :OriginalPriceThreeYear, :DiscountPriceThreeYear, :DiscountThreeYear, :OriginalPriceFiveYear, :DiscountPriceFiveYear, :DiscountFiveYear, :OriginalPriceOneYear, :DiscountPriceOneYear, :DiscountOneYear
         
-        def initialize(unitprice=nil, chargeunit=nil, originalprice=nil, discountprice=nil, discount=nil, unitpricediscount=nil, unitpricesecondstep=nil, unitpricediscountsecondstep=nil, unitpricethirdstep=nil, unitpricediscountthirdstep=nil)
+        def initialize(unitprice=nil, chargeunit=nil, originalprice=nil, discountprice=nil, discount=nil, unitpricediscount=nil, unitpricesecondstep=nil, unitpricediscountsecondstep=nil, unitpricethirdstep=nil, unitpricediscountthirdstep=nil, originalpricethreeyear=nil, discountpricethreeyear=nil, discountthreeyear=nil, originalpricefiveyear=nil, discountpricefiveyear=nil, discountfiveyear=nil, originalpriceoneyear=nil, discountpriceoneyear=nil, discountoneyear=nil)
           @UnitPrice = unitprice
           @ChargeUnit = chargeunit
           @OriginalPrice = originalprice
@@ -2354,6 +2438,15 @@ module TencentCloud
           @UnitPriceDiscountSecondStep = unitpricediscountsecondstep
           @UnitPriceThirdStep = unitpricethirdstep
           @UnitPriceDiscountThirdStep = unitpricediscountthirdstep
+          @OriginalPriceThreeYear = originalpricethreeyear
+          @DiscountPriceThreeYear = discountpricethreeyear
+          @DiscountThreeYear = discountthreeyear
+          @OriginalPriceFiveYear = originalpricefiveyear
+          @DiscountPriceFiveYear = discountpricefiveyear
+          @DiscountFiveYear = discountfiveyear
+          @OriginalPriceOneYear = originalpriceoneyear
+          @DiscountPriceOneYear = discountpriceoneyear
+          @DiscountOneYear = discountoneyear
         end
 
         def deserialize(params)
@@ -2367,6 +2460,15 @@ module TencentCloud
           @UnitPriceDiscountSecondStep = params['UnitPriceDiscountSecondStep']
           @UnitPriceThirdStep = params['UnitPriceThirdStep']
           @UnitPriceDiscountThirdStep = params['UnitPriceDiscountThirdStep']
+          @OriginalPriceThreeYear = params['OriginalPriceThreeYear']
+          @DiscountPriceThreeYear = params['DiscountPriceThreeYear']
+          @DiscountThreeYear = params['DiscountThreeYear']
+          @OriginalPriceFiveYear = params['OriginalPriceFiveYear']
+          @DiscountPriceFiveYear = params['DiscountPriceFiveYear']
+          @DiscountFiveYear = params['DiscountFiveYear']
+          @OriginalPriceOneYear = params['OriginalPriceOneYear']
+          @DiscountPriceOneYear = params['DiscountPriceOneYear']
+          @DiscountOneYear = params['DiscountOneYear']
         end
       end
 
@@ -2388,10 +2490,12 @@ module TencentCloud
         # @type TaskExecutionDependOn: String
         # @param StateIfCreateCvmFailed: 表示创建 CVM 失败按照何种策略处理。取值范围包括 FAILED，RUNNABLE。FAILED 表示创建 CVM 失败按照一次执行失败处理，RUNNABLE 表示创建 CVM 失败按照继续等待处理。默认值为FAILED。StateIfCreateCvmFailed对于提交的指定计算环境的作业无效。
         # @type StateIfCreateCvmFailed: String
+        # @param Tags: 标签列表。通过指定该参数可以支持绑定标签到作业。每个作业最多绑定10个标签。
+        # @type Tags: Array
 
-        attr_accessor :Tasks, :JobName, :JobDescription, :Priority, :Dependences, :Notifications, :TaskExecutionDependOn, :StateIfCreateCvmFailed
+        attr_accessor :Tasks, :JobName, :JobDescription, :Priority, :Dependences, :Notifications, :TaskExecutionDependOn, :StateIfCreateCvmFailed, :Tags
         
-        def initialize(tasks=nil, jobname=nil, jobdescription=nil, priority=nil, dependences=nil, notifications=nil, taskexecutiondependon=nil, stateifcreatecvmfailed=nil)
+        def initialize(tasks=nil, jobname=nil, jobdescription=nil, priority=nil, dependences=nil, notifications=nil, taskexecutiondependon=nil, stateifcreatecvmfailed=nil, tags=nil)
           @Tasks = tasks
           @JobName = jobname
           @JobDescription = jobdescription
@@ -2400,6 +2504,7 @@ module TencentCloud
           @Notifications = notifications
           @TaskExecutionDependOn = taskexecutiondependon
           @StateIfCreateCvmFailed = stateifcreatecvmfailed
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2411,6 +2516,7 @@ module TencentCloud
           @Notifications = params['Notifications']
           @TaskExecutionDependOn = params['TaskExecutionDependOn']
           @StateIfCreateCvmFailed = params['StateIfCreateCvmFailed']
+          @Tags = params['Tags']
         end
       end
 
@@ -2434,10 +2540,13 @@ module TencentCloud
         # @type EndTime: String
         # @param TaskMetrics: 任务统计指标
         # @type TaskMetrics: :class:`Tencentcloud::Batch.v20170312.models.TaskMetrics`
+        # @param Tags: 作业绑定的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :JobId, :JobName, :JobState, :Priority, :Placement, :CreateTime, :EndTime, :TaskMetrics
+        attr_accessor :JobId, :JobName, :JobState, :Priority, :Placement, :CreateTime, :EndTime, :TaskMetrics, :Tags
         
-        def initialize(jobid=nil, jobname=nil, jobstate=nil, priority=nil, placement=nil, createtime=nil, endtime=nil, taskmetrics=nil)
+        def initialize(jobid=nil, jobname=nil, jobstate=nil, priority=nil, placement=nil, createtime=nil, endtime=nil, taskmetrics=nil, tags=nil)
           @JobId = jobid
           @JobName = jobname
           @JobState = jobstate
@@ -2446,6 +2555,7 @@ module TencentCloud
           @CreateTime = createtime
           @EndTime = endtime
           @TaskMetrics = taskmetrics
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2461,6 +2571,7 @@ module TencentCloud
           unless params['TaskMetrics'].nil?
             @TaskMetrics = TaskMetrics.new.deserialize(params[TaskMetrics])
           end
+          @Tags = params['Tags']
         end
       end
 
@@ -2662,10 +2773,12 @@ module TencentCloud
         # @type ActionIfComputeNodeInactive: String
         # @param ResourceMaxRetryCount: 对于实例创建失败或异常退还的计算节点，定期重新创建实例资源的最大重试次数，最大值11，如果不设置的话，系统会设置一个默认值，当前为7
         # @type ResourceMaxRetryCount: Integer
+        # @param Tags: 标签列表。通过指定该参数可以支持绑定标签到计算环境。每个计算环境最多绑定10个标签。
+        # @type Tags: Array
 
-        attr_accessor :EnvName, :DesiredComputeNodeCount, :EnvDescription, :EnvType, :EnvData, :MountDataDisks, :Authentications, :InputMappings, :AgentRunningMode, :Notifications, :ActionIfComputeNodeInactive, :ResourceMaxRetryCount
+        attr_accessor :EnvName, :DesiredComputeNodeCount, :EnvDescription, :EnvType, :EnvData, :MountDataDisks, :Authentications, :InputMappings, :AgentRunningMode, :Notifications, :ActionIfComputeNodeInactive, :ResourceMaxRetryCount, :Tags
         
-        def initialize(envname=nil, desiredcomputenodecount=nil, envdescription=nil, envtype=nil, envdata=nil, mountdatadisks=nil, authentications=nil, inputmappings=nil, agentrunningmode=nil, notifications=nil, actionifcomputenodeinactive=nil, resourcemaxretrycount=nil)
+        def initialize(envname=nil, desiredcomputenodecount=nil, envdescription=nil, envtype=nil, envdata=nil, mountdatadisks=nil, authentications=nil, inputmappings=nil, agentrunningmode=nil, notifications=nil, actionifcomputenodeinactive=nil, resourcemaxretrycount=nil, tags=nil)
           @EnvName = envname
           @DesiredComputeNodeCount = desiredcomputenodecount
           @EnvDescription = envdescription
@@ -2678,6 +2791,7 @@ module TencentCloud
           @Notifications = notifications
           @ActionIfComputeNodeInactive = actionifcomputenodeinactive
           @ResourceMaxRetryCount = resourcemaxretrycount
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2699,6 +2813,7 @@ module TencentCloud
           end
           @ActionIfComputeNodeInactive = params['ActionIfComputeNodeInactive']
           @ResourceMaxRetryCount = params['ResourceMaxRetryCount']
+          @Tags = params['Tags']
         end
       end
 
@@ -2724,10 +2839,12 @@ module TencentCloud
         # @type ActionIfComputeNodeInactive: String
         # @param ResourceMaxRetryCount: 对于实例创建失败或异常退还的计算节点，定期重新创建实例资源的最大重试次数，最大值11，如果不设置的话，系统会设置一个默认值，当前为7
         # @type ResourceMaxRetryCount: Integer
+        # @param Tags: 标签列表。通过指定该参数可以支持绑定标签到黑石计算环境。每个黑石计算环境最多绑定10个标签。
+        # @type Tags: Array
 
-        attr_accessor :EnvName, :EnvData, :DesiredComputeNodeCount, :EnvDescription, :EnvType, :Authentications, :InputMappings, :Notifications, :ActionIfComputeNodeInactive, :ResourceMaxRetryCount
+        attr_accessor :EnvName, :EnvData, :DesiredComputeNodeCount, :EnvDescription, :EnvType, :Authentications, :InputMappings, :Notifications, :ActionIfComputeNodeInactive, :ResourceMaxRetryCount, :Tags
         
-        def initialize(envname=nil, envdata=nil, desiredcomputenodecount=nil, envdescription=nil, envtype=nil, authentications=nil, inputmappings=nil, notifications=nil, actionifcomputenodeinactive=nil, resourcemaxretrycount=nil)
+        def initialize(envname=nil, envdata=nil, desiredcomputenodecount=nil, envdescription=nil, envtype=nil, authentications=nil, inputmappings=nil, notifications=nil, actionifcomputenodeinactive=nil, resourcemaxretrycount=nil, tags=nil)
           @EnvName = envname
           @EnvData = envdata
           @DesiredComputeNodeCount = desiredcomputenodecount
@@ -2738,6 +2855,7 @@ module TencentCloud
           @Notifications = notifications
           @ActionIfComputeNodeInactive = actionifcomputenodeinactive
           @ResourceMaxRetryCount = resourcemaxretrycount
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2755,6 +2873,7 @@ module TencentCloud
           end
           @ActionIfComputeNodeInactive = params['ActionIfComputeNodeInactive']
           @ResourceMaxRetryCount = params['ResourceMaxRetryCount']
+          @Tags = params['Tags']
         end
       end
 
@@ -2864,7 +2983,7 @@ module TencentCloud
 
       # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅CDH产品可用），母机ip等
       class Placement < TencentCloud::Common::AbstractModel
-        # @param Zone: 实例所属的[可用区](https://cloud.tencent.com/document/product/213/15753#ZoneInfo)ID。该参数也可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
+        # @param Zone: 实例所属的可用区ID。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
         # @type Zone: String
         # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](/document/api/378/4400) 的返回值中的 projectId 字段来获取。不填为默认项目。
         # @type ProjectId: Integer
@@ -3111,7 +3230,7 @@ module TencentCloud
 
       # 描述了操作系统所在块设备即系统盘的信息
       class SystemDisk < TencentCloud::Common::AbstractModel
-        # @param DiskType: 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><br>默认取值：CLOUD_BASIC。
+        # @param DiskType: 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><br>默认取值：当前有库存的硬盘类型。
         # @type DiskType: String
         # @param DiskId: 系统盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID。暂时不支持该参数。
         # @type DiskId: String
@@ -3130,6 +3249,28 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskId = params['DiskId']
           @DiskSize = params['DiskSize']
+        end
+      end
+
+      # 标签。
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 标签值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -3434,15 +3575,19 @@ module TencentCloud
         # @type TaskTemplateInfo: :class:`Tencentcloud::Batch.v20170312.models.Task`
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param Tags: 任务模板绑定的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :TaskTemplateId, :TaskTemplateName, :TaskTemplateDescription, :TaskTemplateInfo, :CreateTime
+        attr_accessor :TaskTemplateId, :TaskTemplateName, :TaskTemplateDescription, :TaskTemplateInfo, :CreateTime, :Tags
         
-        def initialize(tasktemplateid=nil, tasktemplatename=nil, tasktemplatedescription=nil, tasktemplateinfo=nil, createtime=nil)
+        def initialize(tasktemplateid=nil, tasktemplatename=nil, tasktemplatedescription=nil, tasktemplateinfo=nil, createtime=nil, tags=nil)
           @TaskTemplateId = tasktemplateid
           @TaskTemplateName = tasktemplatename
           @TaskTemplateDescription = tasktemplatedescription
           @TaskTemplateInfo = tasktemplateinfo
           @CreateTime = createtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3453,6 +3598,7 @@ module TencentCloud
             @TaskTemplateInfo = Task.new.deserialize(params[TaskTemplateInfo])
           end
           @CreateTime = params['CreateTime']
+          @Tags = params['Tags']
         end
       end
 
