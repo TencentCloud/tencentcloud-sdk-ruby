@@ -563,7 +563,7 @@ module TencentCloud
 
       # BindingPolicyObject请求参数结构体
       class BindingPolicyObjectRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 策略分组Id
+        # @param GroupId: 策略组id，如传入PolicyId则该字段可传入任意值
         # @type GroupId: Integer
         # @param Module: 必填。固定值"monitor"
         # @type Module: String
@@ -571,14 +571,17 @@ module TencentCloud
         # @type InstanceGroupId: Integer
         # @param Dimensions: 需要绑定的对象维度信息
         # @type Dimensions: Array
+        # @param PolicyId: 告警策略ID，使用此字段时GroupId可传入任意值
+        # @type PolicyId: String
 
-        attr_accessor :GroupId, :Module, :InstanceGroupId, :Dimensions
+        attr_accessor :GroupId, :Module, :InstanceGroupId, :Dimensions, :PolicyId
         
-        def initialize(groupid=nil, module=nil, instancegroupid=nil, dimensions=nil)
+        def initialize(groupid=nil, module=nil, instancegroupid=nil, dimensions=nil, policyid=nil)
           @GroupId = groupid
           @Module = module
           @InstanceGroupId = instancegroupid
           @Dimensions = dimensions
+          @PolicyId = policyid
         end
 
         def deserialize(params)
@@ -586,6 +589,7 @@ module TencentCloud
           @Module = params['Module']
           @InstanceGroupId = params['InstanceGroupId']
           @Dimensions = params['Dimensions']
+          @PolicyId = params['PolicyId']
         end
       end
 
@@ -984,6 +988,7 @@ module TencentCloud
         # @param Type: 服务发现类型，取值如下：
         # <li> 1 = ServiceMonitor</li>
         # <li> 2 = PodMonitor</li>
+        # <li> 3 = JobMonitor</li>
         # @type Type: Integer
         # @param Yaml: 服务发现配置信息
         # @type Yaml: String
@@ -1173,6 +1178,7 @@ module TencentCloud
         # @param Type: 服务发现类型，取值如下：
         # <li> 1 = ServiceMonitor</li>
         # <li> 2 = PodMonitor</li>
+        # <li> 3 = PodMonitor</li>
         # @type Type: Integer
         # @param Yaml: 服务发现配置信息
         # @type Yaml: String
@@ -4996,19 +5002,23 @@ module TencentCloud
       class UnBindingAllPolicyObjectRequest < TencentCloud::Common::AbstractModel
         # @param Module: 固定值，为"monitor"
         # @type Module: String
-        # @param GroupId: 策略组id
+        # @param GroupId: 策略组id，如传入PolicyId则该字段可传入任意值
         # @type GroupId: Integer
+        # @param PolicyId: 告警策略ID，使用此字段时GroupId可传入任意值
+        # @type PolicyId: String
 
-        attr_accessor :Module, :GroupId
+        attr_accessor :Module, :GroupId, :PolicyId
         
-        def initialize(module=nil, groupid=nil)
+        def initialize(module=nil, groupid=nil, policyid=nil)
           @Module = module
           @GroupId = groupid
+          @PolicyId = policyid
         end
 
         def deserialize(params)
           @Module = params['Module']
           @GroupId = params['GroupId']
+          @PolicyId = params['PolicyId']
         end
       end
 
@@ -5032,20 +5042,23 @@ module TencentCloud
       class UnBindingPolicyObjectRequest < TencentCloud::Common::AbstractModel
         # @param Module: 固定值，为"monitor"
         # @type Module: String
-        # @param GroupId: 策略组id
+        # @param GroupId: 策略组id，如传入PolicyId则该字段可传入任意值
         # @type GroupId: Integer
         # @param UniqueId: 待删除对象实例的唯一id列表，UniqueId从调用[获取已绑定对象列表接口](https://cloud.tencent.com/document/api/248/40570)的出参的List中得到
         # @type UniqueId: Array
         # @param InstanceGroupId: 实例分组id, 如果按实例分组删除的话UniqueId参数是无效的
         # @type InstanceGroupId: Integer
+        # @param PolicyId: 告警策略ID，使用此字段时GroupId可传入任意值
+        # @type PolicyId: String
 
-        attr_accessor :Module, :GroupId, :UniqueId, :InstanceGroupId
+        attr_accessor :Module, :GroupId, :UniqueId, :InstanceGroupId, :PolicyId
         
-        def initialize(module=nil, groupid=nil, uniqueid=nil, instancegroupid=nil)
+        def initialize(module=nil, groupid=nil, uniqueid=nil, instancegroupid=nil, policyid=nil)
           @Module = module
           @GroupId = groupid
           @UniqueId = uniqueid
           @InstanceGroupId = instancegroupid
+          @PolicyId = policyid
         end
 
         def deserialize(params)
@@ -5053,6 +5066,7 @@ module TencentCloud
           @GroupId = params['GroupId']
           @UniqueId = params['UniqueId']
           @InstanceGroupId = params['InstanceGroupId']
+          @PolicyId = params['PolicyId']
         end
       end
 
@@ -5084,6 +5098,7 @@ module TencentCloud
         # @param Type: 服务发现类型，取值如下：
         # <li> 1 = ServiceMonitor</li>
         # <li> 2 = PodMonitor</li>
+        # <li> 3 = JobMonitor</li>
         # @type Type: Integer
         # @param Yaml: 服务发现配置信息
         # @type Yaml: String

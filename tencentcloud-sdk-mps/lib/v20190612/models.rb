@@ -5875,19 +5875,26 @@ module TencentCloud
         # <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
         # 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         # @type Height: String
+        # @param RepeatType: 水印重复类型。使用场景：水印为动态图像。取值范围：
+        # <li>once：动态水印播放完后，不再出现；</li>
+        # <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
+        # <li>repeat：水印循环播放，直到视频结束（默认值）。</li>
+        # @type RepeatType: String
 
-        attr_accessor :ImageContent, :Width, :Height
+        attr_accessor :ImageContent, :Width, :Height, :RepeatType
         
-        def initialize(imagecontent=nil, width=nil, height=nil)
+        def initialize(imagecontent=nil, width=nil, height=nil, repeattype=nil)
           @ImageContent = imagecontent
           @Width = width
           @Height = height
+          @RepeatType = repeattype
         end
 
         def deserialize(params)
           @ImageContent = params['ImageContent']
           @Width = params['Width']
           @Height = params['Height']
+          @RepeatType = params['RepeatType']
         end
       end
 
@@ -5904,19 +5911,26 @@ module TencentCloud
         # <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
         # 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         # @type Height: String
+        # @param RepeatType: 水印重复类型。使用场景：水印为动态图像。取值范围：
+        # <li>once：动态水印播放完后，不再出现；</li>
+        # <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
+        # <li>repeat：水印循环播放，直到视频结束。</li>
+        # @type RepeatType: String
 
-        attr_accessor :ImageContent, :Width, :Height
+        attr_accessor :ImageContent, :Width, :Height, :RepeatType
         
-        def initialize(imagecontent=nil, width=nil, height=nil)
+        def initialize(imagecontent=nil, width=nil, height=nil, repeattype=nil)
           @ImageContent = imagecontent
           @Width = width
           @Height = height
+          @RepeatType = repeattype
         end
 
         def deserialize(params)
           @ImageContent = params['ImageContent']
           @Width = params['Width']
           @Height = params['Height']
+          @RepeatType = params['RepeatType']
         end
       end
 
@@ -5933,19 +5947,26 @@ module TencentCloud
         # <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；</li>
         # 0px：表示 Height 按照 Width 对视频宽度的比例缩放。
         # @type Height: String
+        # @param RepeatType: 水印重复类型。使用场景：水印为动态图像。取值范围：
+        # <li>once：动态水印播放完后，不再出现；</li>
+        # <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
+        # <li>repeat：水印循环播放，直到视频结束。</li>
+        # @type RepeatType: String
 
-        attr_accessor :ImageUrl, :Width, :Height
+        attr_accessor :ImageUrl, :Width, :Height, :RepeatType
         
-        def initialize(imageurl=nil, width=nil, height=nil)
+        def initialize(imageurl=nil, width=nil, height=nil, repeattype=nil)
           @ImageUrl = imageurl
           @Width = width
           @Height = height
+          @RepeatType = repeattype
         end
 
         def deserialize(params)
           @ImageUrl = params['ImageUrl']
           @Width = params['Width']
           @Height = params['Height']
+          @RepeatType = params['RepeatType']
         end
       end
 

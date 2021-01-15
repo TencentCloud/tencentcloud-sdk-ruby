@@ -23,17 +23,23 @@ module TencentCloud
         # @type Domains: Array
         # @param TemplateId: 模板ID。
         # @type TemplateId: String
+        # @param LockTransfer: true： 开启60天内禁止转移注册商锁定
+        # false：关闭60天内禁止转移注册商锁定
+        # 默认 true
+        # @type LockTransfer: Boolean
 
-        attr_accessor :Domains, :TemplateId
+        attr_accessor :Domains, :TemplateId, :LockTransfer
         
-        def initialize(domains=nil, templateid=nil)
+        def initialize(domains=nil, templateid=nil, locktransfer=nil)
           @Domains = domains
           @TemplateId = templateid
+          @LockTransfer = locktransfer
         end
 
         def deserialize(params)
           @Domains = params['Domains']
           @TemplateId = params['TemplateId']
+          @LockTransfer = params['LockTransfer']
         end
       end
 
@@ -584,13 +590,17 @@ module TencentCloud
       class DescribeDomainBaseInfoResponse < TencentCloud::Common::AbstractModel
         # @param DomainInfo: 域名信息
         # @type DomainInfo: :class:`Tencentcloud::Domain.v20180808.models.DomainBaseInfo`
+        # @param Uin: 用户Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DomainInfo, :RequestId
+        attr_accessor :DomainInfo, :Uin, :RequestId
         
-        def initialize(domaininfo=nil, requestid=nil)
+        def initialize(domaininfo=nil, uin=nil, requestid=nil)
           @DomainInfo = domaininfo
+          @Uin = uin
           @RequestId = requestid
         end
 
@@ -598,6 +608,7 @@ module TencentCloud
           unless params['DomainInfo'].nil?
             @DomainInfo = DomainBaseInfo.new.deserialize(params[DomainInfo])
           end
+          @Uin = params['Uin']
           @RequestId = params['RequestId']
         end
       end
@@ -847,10 +858,15 @@ module TencentCloud
         # @type RegistrarType: String
         # @param NameServer: 域名绑定的ns
         # @type NameServer: Array
+        # @param LockTransfer: true：开启锁定
+        # false：关闭锁定
+        # @type LockTransfer: Boolean
+        # @param LockEndTime: 锁定结束时间
+        # @type LockEndTime: String
 
-        attr_accessor :DomainId, :DomainName, :RealNameAuditStatus, :RealNameAuditUnpassReason, :DomainNameAuditStatus, :DomainNameAuditUnpassReason, :CreationDate, :ExpirationDate, :DomainStatus, :BuyStatus, :RegistrarType, :NameServer
+        attr_accessor :DomainId, :DomainName, :RealNameAuditStatus, :RealNameAuditUnpassReason, :DomainNameAuditStatus, :DomainNameAuditUnpassReason, :CreationDate, :ExpirationDate, :DomainStatus, :BuyStatus, :RegistrarType, :NameServer, :LockTransfer, :LockEndTime
         
-        def initialize(domainid=nil, domainname=nil, realnameauditstatus=nil, realnameauditunpassreason=nil, domainnameauditstatus=nil, domainnameauditunpassreason=nil, creationdate=nil, expirationdate=nil, domainstatus=nil, buystatus=nil, registrartype=nil, nameserver=nil)
+        def initialize(domainid=nil, domainname=nil, realnameauditstatus=nil, realnameauditunpassreason=nil, domainnameauditstatus=nil, domainnameauditunpassreason=nil, creationdate=nil, expirationdate=nil, domainstatus=nil, buystatus=nil, registrartype=nil, nameserver=nil, locktransfer=nil, lockendtime=nil)
           @DomainId = domainid
           @DomainName = domainname
           @RealNameAuditStatus = realnameauditstatus
@@ -863,6 +879,8 @@ module TencentCloud
           @BuyStatus = buystatus
           @RegistrarType = registrartype
           @NameServer = nameserver
+          @LockTransfer = locktransfer
+          @LockEndTime = lockendtime
         end
 
         def deserialize(params)
@@ -878,6 +896,8 @@ module TencentCloud
           @BuyStatus = params['BuyStatus']
           @RegistrarType = params['RegistrarType']
           @NameServer = params['NameServer']
+          @LockTransfer = params['LockTransfer']
+          @LockEndTime = params['LockEndTime']
         end
       end
 
@@ -1291,15 +1311,20 @@ module TencentCloud
         # 0 表示关闭，不自动续费（默认值）
         # 1 表示开启，将自动续费
         # @type AutoRenewFlag: Integer
+        # @param LockTransfer: true： 开启60天内禁止转移注册商锁定
+        # false：关闭60天内禁止转移注册商锁定
+        # 默认 true
+        # @type LockTransfer: Boolean
 
-        attr_accessor :Domains, :PassWords, :TemplateId, :PayMode, :AutoRenewFlag
+        attr_accessor :Domains, :PassWords, :TemplateId, :PayMode, :AutoRenewFlag, :LockTransfer
         
-        def initialize(domains=nil, passwords=nil, templateid=nil, paymode=nil, autorenewflag=nil)
+        def initialize(domains=nil, passwords=nil, templateid=nil, paymode=nil, autorenewflag=nil, locktransfer=nil)
           @Domains = domains
           @PassWords = passwords
           @TemplateId = templateid
           @PayMode = paymode
           @AutoRenewFlag = autorenewflag
+          @LockTransfer = locktransfer
         end
 
         def deserialize(params)
@@ -1308,6 +1333,7 @@ module TencentCloud
           @TemplateId = params['TemplateId']
           @PayMode = params['PayMode']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @LockTransfer = params['LockTransfer']
         end
       end
 

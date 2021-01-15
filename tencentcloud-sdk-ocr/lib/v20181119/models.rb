@@ -1029,12 +1029,12 @@ module TencentCloud
       class EnglishOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
@@ -1066,18 +1066,22 @@ module TencentCloud
       class EnglishOCRResponse < TencentCloud::Common::AbstractModel
         # @param TextDetections: 检测到的文本信息，具体内容请点击左侧链接。
         # @type TextDetections: Array
+        # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        # @type Angel: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TextDetections, :RequestId
+        attr_accessor :TextDetections, :Angel, :RequestId
         
-        def initialize(textdetections=nil, requestid=nil)
+        def initialize(textdetections=nil, angel=nil, requestid=nil)
           @TextDetections = textdetections
+          @Angel = angel
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TextDetections = params['TextDetections']
+          @Angel = params['Angel']
           @RequestId = params['RequestId']
         end
       end
@@ -1533,7 +1537,7 @@ module TencentCloud
       class GeneralAccurateOCRResponse < TencentCloud::Common::AbstractModel
         # @param TextDetections: 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
         # @type TextDetections: Array
-        # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。
+        # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angel: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1747,12 +1751,12 @@ module TencentCloud
       class GeneralHandwritingOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过7M。图片下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
@@ -1783,18 +1787,22 @@ module TencentCloud
       class GeneralHandwritingOCRResponse < TencentCloud::Common::AbstractModel
         # @param TextDetections: 检测到的文本信息，具体内容请点击左侧链接。
         # @type TextDetections: Array
+        # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        # @type Angel: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TextDetections, :RequestId
+        attr_accessor :TextDetections, :Angel, :RequestId
         
-        def initialize(textdetections=nil, requestid=nil)
+        def initialize(textdetections=nil, angel=nil, requestid=nil)
           @TextDetections = textdetections
+          @Angel = angel
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TextDetections = params['TextDetections']
+          @Angel = params['Angel']
           @RequestId = params['RequestId']
         end
       end
@@ -3642,14 +3650,17 @@ module TencentCloud
         # @type IsPdf: Boolean
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         # @type PdfPageNumber: Integer
+        # @param TableLanguage: 语言，zh：中英文（默认）jap：日文
+        # @type TableLanguage: String
 
-        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber, :TableLanguage
         
-        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil, tablelanguage=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
+          @TableLanguage = tablelanguage
         end
 
         def deserialize(params)
@@ -3657,6 +3668,7 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @IsPdf = params['IsPdf']
           @PdfPageNumber = params['PdfPageNumber']
+          @TableLanguage = params['TableLanguage']
         end
       end
 
@@ -3668,15 +3680,19 @@ module TencentCloud
         # @type Data: String
         # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
         # @type PdfPageSize: Integer
+        # @param Angle: 图片旋转角度（角度制），文本的水平
+        # 方向为 0°；顺时针为正，逆时针为负
+        # @type Angle: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TableDetections, :Data, :PdfPageSize, :RequestId
+        attr_accessor :TableDetections, :Data, :PdfPageSize, :Angle, :RequestId
         
-        def initialize(tabledetections=nil, data=nil, pdfpagesize=nil, requestid=nil)
+        def initialize(tabledetections=nil, data=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TableDetections = tabledetections
           @Data = data
           @PdfPageSize = pdfpagesize
+          @Angle = angle
           @RequestId = requestid
         end
 
@@ -3684,6 +3700,7 @@ module TencentCloud
           @TableDetections = params['TableDetections']
           @Data = params['Data']
           @PdfPageSize = params['PdfPageSize']
+          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end
@@ -4208,17 +4225,30 @@ module TencentCloud
         # @param Titles: 表格标题
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Titles: Array
+        # @param Type: 图像中的文本块类型，0 为非表格文本，
+        # 1 为有线表格，2 为无线表格
+        # （接口暂不支持日文无线表格识别，若传入日文无线表格，返回0）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param TableCoordPoint: 表格主体四个顶点坐标（依次为左上角，
+        # 右上角，右下角，左下角）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableCoordPoint: Array
 
-        attr_accessor :Cells, :Titles
+        attr_accessor :Cells, :Titles, :Type, :TableCoordPoint
         
-        def initialize(cells=nil, titles=nil)
+        def initialize(cells=nil, titles=nil, type=nil, tablecoordpoint=nil)
           @Cells = cells
           @Titles = titles
+          @Type = type
+          @TableCoordPoint = tablecoordpoint
         end
 
         def deserialize(params)
           @Cells = params['Cells']
           @Titles = params['Titles']
+          @Type = params['Type']
+          @TableCoordPoint = params['TableCoordPoint']
         end
       end
 
@@ -5234,12 +5264,12 @@ module TencentCloud
       class VatInvoiceOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片/PDF的 Base64 值。
         # 支持的文件格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
-        # 支持的图片/PDF大小：所下载文件经Base64编码后不超过 3M。文件下载时间不超过 3 秒。
+        # 支持的图片/PDF大小：所下载文件经Base64编码后不超过 7M。文件下载时间不超过 3 秒。
         # 输入参数 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片/PDF的 Url 地址。
         # 支持的文件格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
-        # 支持的图片/PDF大小：所下载文件经 Base64 编码后不超过 3M。文件下载时间不超过 3 秒。
+        # 支持的图片/PDF大小：所下载文件经 Base64 编码后不超过 7M。文件下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
@@ -5273,15 +5303,18 @@ module TencentCloud
         # @type Items: Array
         # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
         # @type PdfPageSize: Integer
+        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        # @type Angle: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VatInvoiceInfos, :Items, :PdfPageSize, :RequestId
+        attr_accessor :VatInvoiceInfos, :Items, :PdfPageSize, :Angle, :RequestId
         
-        def initialize(vatinvoiceinfos=nil, items=nil, pdfpagesize=nil, requestid=nil)
+        def initialize(vatinvoiceinfos=nil, items=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @VatInvoiceInfos = vatinvoiceinfos
           @Items = items
           @PdfPageSize = pdfpagesize
+          @Angle = angle
           @RequestId = requestid
         end
 
@@ -5289,6 +5322,7 @@ module TencentCloud
           @VatInvoiceInfos = params['VatInvoiceInfos']
           @Items = params['Items']
           @PdfPageSize = params['PdfPageSize']
+          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end

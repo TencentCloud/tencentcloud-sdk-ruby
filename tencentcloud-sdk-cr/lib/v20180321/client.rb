@@ -217,6 +217,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
+
+        # @param request: Request instance for DownloadBotRecord.
+        # @type request: :class:`Tencentcloud::cr::V20180321::DownloadBotRecordRequest`
+        # @rtype: :class:`Tencentcloud::cr::V20180321::DownloadBotRecordResponse`
+        def DownloadBotRecord(request)
+          body = send_request('DownloadBotRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DownloadBotRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
 
         # @param request: Request instance for DownloadDialogueText.

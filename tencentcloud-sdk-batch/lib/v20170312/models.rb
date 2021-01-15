@@ -656,10 +656,13 @@ module TencentCloud
         # 该参数目前仅用于 `RunInstances` 接口。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KmsKeyId: String
+        # @param ThroughputPerformance: 云硬盘性能，单位：MB/s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :DiskSize, :DiskType, :DiskId, :DeleteWithInstance, :SnapshotId, :Encrypt, :KmsKeyId
+        attr_accessor :DiskSize, :DiskType, :DiskId, :DeleteWithInstance, :SnapshotId, :Encrypt, :KmsKeyId, :ThroughputPerformance
         
-        def initialize(disksize=nil, disktype=nil, diskid=nil, deletewithinstance=nil, snapshotid=nil, encrypt=nil, kmskeyid=nil)
+        def initialize(disksize=nil, disktype=nil, diskid=nil, deletewithinstance=nil, snapshotid=nil, encrypt=nil, kmskeyid=nil, throughputperformance=nil)
           @DiskSize = disksize
           @DiskType = disktype
           @DiskId = diskid
@@ -667,6 +670,7 @@ module TencentCloud
           @SnapshotId = snapshotid
           @Encrypt = encrypt
           @KmsKeyId = kmskeyid
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -677,6 +681,7 @@ module TencentCloud
           @SnapshotId = params['SnapshotId']
           @Encrypt = params['Encrypt']
           @KmsKeyId = params['KmsKeyId']
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 

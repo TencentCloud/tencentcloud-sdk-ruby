@@ -4541,19 +4541,39 @@ module TencentCloud
         # @type AliasName: String
         # @param PolicyId: 安全策略ID
         # @type PolicyId: String
+        # @param RuleAction: 安全规则动作
+        # @type RuleAction: String
+        # @param SourceCidr: 规则关联地址，格式需要满足CIDR网络地址规范
+        # @type SourceCidr: String
+        # @param Protocol: 协议类型
+        # @type Protocol: String
+        # @param DestPortRange: 端口范围，支持以下格式
+        # 单个端口: 80
+        # 多个端口: 80,443
+        # 连续端口: 3306-20000
+        # 所有端口: ALL
+        # @type DestPortRange: String
 
-        attr_accessor :RuleId, :AliasName, :PolicyId
+        attr_accessor :RuleId, :AliasName, :PolicyId, :RuleAction, :SourceCidr, :Protocol, :DestPortRange
         
-        def initialize(ruleid=nil, aliasname=nil, policyid=nil)
+        def initialize(ruleid=nil, aliasname=nil, policyid=nil, ruleaction=nil, sourcecidr=nil, protocol=nil, destportrange=nil)
           @RuleId = ruleid
           @AliasName = aliasname
           @PolicyId = policyid
+          @RuleAction = ruleaction
+          @SourceCidr = sourcecidr
+          @Protocol = protocol
+          @DestPortRange = destportrange
         end
 
         def deserialize(params)
           @RuleId = params['RuleId']
           @AliasName = params['AliasName']
           @PolicyId = params['PolicyId']
+          @RuleAction = params['RuleAction']
+          @SourceCidr = params['SourceCidr']
+          @Protocol = params['Protocol']
+          @DestPortRange = params['DestPortRange']
         end
       end
 

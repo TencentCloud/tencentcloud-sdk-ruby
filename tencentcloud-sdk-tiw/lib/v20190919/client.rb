@@ -433,6 +433,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发起一个白板推流任务
+
+        # @param request: Request instance for StartWhiteboardPush.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::StartWhiteboardPushRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::StartWhiteboardPushResponse`
+        def StartWhiteboardPush(request)
+          body = send_request('StartWhiteboardPush', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartWhiteboardPushResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 停止实时录制
 
         # @param request: Request instance for StopOnlineRecord.
@@ -443,6 +467,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopOnlineRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止白板推流任务
+
+        # @param request: Request instance for StopWhiteboardPush.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::StopWhiteboardPushRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::StopWhiteboardPushResponse`
+        def StopWhiteboardPush(request)
+          body = send_request('StopWhiteboardPush', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopWhiteboardPushResponse.new
             model.deserialize(response['Response'])
             model
           else

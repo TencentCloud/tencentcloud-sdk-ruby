@@ -669,6 +669,54 @@ module TencentCloud
         end
       end
 
+      # DownloadBotRecord请求参数结构体
+      class DownloadBotRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块：AiApi
+        # @type Module: String
+        # @param Operation: 操作：DownloadRecord
+        # @type Operation: String
+        # @param BizDate: 业务日期
+        # @type BizDate: String
+
+        attr_accessor :Module, :Operation, :BizDate
+        
+        def initialize(module=nil, operation=nil, bizdate=nil)
+          @Module = module
+          @Operation = operation
+          @BizDate = bizdate
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @BizDate = params['BizDate']
+        end
+      end
+
+      # DownloadBotRecord返回参数结构体
+      class DownloadBotRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RecordCosUrl: 录音地址。请求后30分钟内有效
+        # @type RecordCosUrl: String
+        # @param TextCosUrl: 文本地址。请求后30分钟内有效
+        # @type TextCosUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordCosUrl, :TextCosUrl, :RequestId
+        
+        def initialize(recordcosurl=nil, textcosurl=nil, requestid=nil)
+          @RecordCosUrl = recordcosurl
+          @TextCosUrl = textcosurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RecordCosUrl = params['RecordCosUrl']
+          @TextCosUrl = params['TextCosUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DownloadDialogueText请求参数结构体
       class DownloadDialogueTextRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，本接口取值：Report

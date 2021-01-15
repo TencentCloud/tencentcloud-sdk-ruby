@@ -17,6 +17,26 @@
 module TencentCloud
   module Ses
     module V20201002
+      # 附件结构，包含附件名和base之后的附件内容。
+      class Attachment < TencentCloud::Common::AbstractModel
+        # @param FileName: 附件名称，最大支持255个字符长度，不支持部分附件类型，详情请参考[附件类型](https://cloud.tencent.com/document/product/1288/51951)。
+        # @type FileName: String
+        # @param Content: base64之后的附件内容，您可以发送的附件大小上限为5 MB。 注意：腾讯云api目前要求请求包大小不得超过10 MB。如果您要发送多个附件，那么这些附件的总大小不能超过10 MB。
+        # @type Content: String
+
+        attr_accessor :FileName, :Content
+        
+        def initialize(filename=nil, content=nil)
+          @FileName = filename
+          @Content = content
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @Content = params['Content']
+        end
+      end
+
       # 邮箱黑名单结构，包含被拉黑的邮箱地址和被拉黑时间
       class BlackEmailAddress < TencentCloud::Common::AbstractModel
         # @param BounceTime: 邮箱被拉黑时间
@@ -39,7 +59,7 @@ module TencentCloud
 
       # CreateEmailAddress请求参数结构体
       class CreateEmailAddressRequest < TencentCloud::Common::AbstractModel
-        # @param EmailAddress: 您的发信地址，上限为10个
+        # @param EmailAddress: 您的发信地址（发信地址总数上限为10个）
         # @type EmailAddress: String
         # @param EmailSenderName: 发件人别名
         # @type EmailSenderName: String
@@ -285,7 +305,7 @@ module TencentCloud
 
       # DeleteEmailTemplate请求参数结构体
       class DeleteEmailTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateID: 删除发信模版
+        # @param TemplateID: 模版ID
         # @type TemplateID: Integer
 
         attr_accessor :TemplateID
@@ -555,13 +575,13 @@ module TencentCloud
 
       # ListBlackEmailAddress请求参数结构体
       class ListBlackEmailAddressRequest < TencentCloud::Common::AbstractModel
-        # @param StartDate: 开始日期
+        # @param StartDate: 开始日期，格式为YYYY-MM-DD
         # @type StartDate: String
-        # @param EndDate: 结束日期
+        # @param EndDate: 结束日期，格式为YYYY-MM-DD
         # @type EndDate: String
         # @param Limit: 规范，配合Offset使用
         # @type Limit: Integer
-        # @param Offset: 规范，配合Limit使用
+        # @param Offset: 规范，配合Limit使用，Limit最大取值为100
         # @type Offset: Integer
         # @param EmailAddress: 可以指定邮箱进行查询
         # @type EmailAddress: String
@@ -726,26 +746,29 @@ module TencentCloud
         # 发信人 &lt;邮件地址&gt; 的方式填写，例如：
         # 腾讯云团队 &lt;noreply@mail.qcloud.com&gt;
         # @type FromEmailAddress: String
-        # @param Destination: 收信人邮箱地址，最多支持群发50人。
+        # @param Destination: 收信人邮箱地址，最多支持群发50人。注意：邮件内容会显示所有收件人地址，非群发邮件请多次调用API发送。
         # @type Destination: Array
         # @param Subject: 邮件主题
         # @type Subject: String
-        # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人将会回复到腾讯云。注意：邮件内容会显示所有收件人地址，非群发邮件请多次调用API发送。
+        # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人将会回复到腾讯云。
         # @type ReplyToAddresses: String
         # @param Template: 使用模板发送时，填写的模板相关参数
         # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`
         # @param Simple: 使用API直接发送内容时，填写的邮件内容
         # @type Simple: :class:`Tencentcloud::Ses.v20201002.models.Simple`
+        # @param Attachments: 需要发送附件时，填写附件相关参数。
+        # @type Attachments: Array
 
-        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Template, :Simple
+        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Template, :Simple, :Attachments
         
-        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, template=nil, simple=nil)
+        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil)
           @FromEmailAddress = fromemailaddress
           @Destination = destination
           @Subject = subject
           @ReplyToAddresses = replytoaddresses
           @Template = template
           @Simple = simple
+          @Attachments = attachments
         end
 
         def deserialize(params)
@@ -759,12 +782,13 @@ module TencentCloud
           unless params['Simple'].nil?
             @Simple = Simple.new.deserialize(params[Simple])
           end
+          @Attachments = params['Attachments']
         end
       end
 
       # SendEmail返回参数结构体
       class SendEmailResponse < TencentCloud::Common::AbstractModel
-        # @param MessageId: 接受消息时生成的消息的唯一标识符。
+        # @param MessageId: 接受消息生成的唯一消息标识符。
         # @type MessageId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

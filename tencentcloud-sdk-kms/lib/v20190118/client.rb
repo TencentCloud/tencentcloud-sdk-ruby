@@ -1082,6 +1082,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 非对称密钥签名。
+        # 注意：只有成功创建了KeyUsage= ASYMMETRIC_SIGN_VERIFY_SM2 的密钥才可以使用签名功能
+
+        # @param request: Request instance for SignByAsymmetricKey.
+        # @type request: :class:`Tencentcloud::kms::V20190118::SignByAsymmetricKeyRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::SignByAsymmetricKeyResponse`
+        def SignByAsymmetricKey(request)
+          body = send_request('SignByAsymmetricKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SignByAsymmetricKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除指定（key, 资源，云产品）的记录，以表明：指定的云产品的资源已不再使用当前的key。
 
         # @param request: Request instance for UnbindCloudResource.
@@ -1140,6 +1165,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateKeyDescriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用非对称密钥验签
+
+        # @param request: Request instance for VerifyByAsymmetricKey.
+        # @type request: :class:`Tencentcloud::kms::V20190118::VerifyByAsymmetricKeyRequest`
+        # @rtype: :class:`Tencentcloud::kms::V20190118::VerifyByAsymmetricKeyResponse`
+        def VerifyByAsymmetricKey(request)
+          body = send_request('VerifyByAsymmetricKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyByAsymmetricKeyResponse.new
             model.deserialize(response['Response'])
             model
           else

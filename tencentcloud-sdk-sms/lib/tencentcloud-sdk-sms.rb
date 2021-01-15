@@ -2,6 +2,9 @@
 
 require 'tencentcloud-sdk-common'
 
+require_relative 'v20210111/client'
+require_relative 'v20210111/models'
+
 require_relative 'v20190711/client'
 require_relative 'v20190711/models'
 

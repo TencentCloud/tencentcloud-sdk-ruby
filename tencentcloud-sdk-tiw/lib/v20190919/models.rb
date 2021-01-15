@@ -1125,6 +1125,96 @@ module TencentCloud
         end
       end
 
+      # StartWhiteboardPush请求参数结构体
+      class StartWhiteboardPushRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param RoomId: 需要推流白板的房间号，取值范围: (1, 4294967295)
+        # @type RoomId: Integer
+        # @param PushUserId: 用于白板推流服务进房进行推流的用户ID，
+        # 该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
+        # @type PushUserId: String
+        # @param PushUserSig: 与PushUserId对应的签名
+        # @type PushUserSig: String
+        # @param Whiteboard: 白板参数，例如白板宽高、背景颜色等
+        # @type Whiteboard: :class:`Tencentcloud::Tiw.v20190919.models.Whiteboard`
+        # @param AutoStopTimeout: 自动停止推流超时时间，单位秒，取值范围[300, 259200], 默认值为1800秒。
+
+        # 当白板超过设定时间没有操作的时候，白板推流服务会自动停止白板推流。
+        # @type AutoStopTimeout: Integer
+        # @param AutoManageBackup: 对主白板推流任务进行操作时，是否同时同步操作备份任务
+        # @type AutoManageBackup: Boolean
+        # @param Backup: 备份白板推流相关参数。
+
+        # 指定了备份参数的情况下，白板推流服务会在房间内新增一路白板画面视频流，即同一个房间内会有两路白板画面推流。
+        # @type Backup: :class:`Tencentcloud::Tiw.v20190919.models.WhiteboardPushBackupParam`
+        # @param AutoRecord: 在实时音视频云端录制模式选择为 `指定用户录制` 模式的时候是否自动录制白板推流。
+
+        # 默认在实时音视频的云端录制模式选择为 `指定用户录制` 模式的情况下，不会自动进行白板推流录制，如果希望进行白板推流录制，请将此参数设置为true。
+
+        # 如果实时音视频的云端录制模式选择为 `全局自动录制` 模式，可忽略此参数。
+        # @type AutoRecord: Boolean
+        # @param ExtraData: 内部参数，不需要关注此参数
+        # @type ExtraData: String
+
+        attr_accessor :SdkAppId, :RoomId, :PushUserId, :PushUserSig, :Whiteboard, :AutoStopTimeout, :AutoManageBackup, :Backup, :AutoRecord, :ExtraData
+        
+        def initialize(sdkappid=nil, roomid=nil, pushuserid=nil, pushusersig=nil, whiteboard=nil, autostoptimeout=nil, automanagebackup=nil, backup=nil, autorecord=nil, extradata=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @PushUserId = pushuserid
+          @PushUserSig = pushusersig
+          @Whiteboard = whiteboard
+          @AutoStopTimeout = autostoptimeout
+          @AutoManageBackup = automanagebackup
+          @Backup = backup
+          @AutoRecord = autorecord
+          @ExtraData = extradata
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @PushUserId = params['PushUserId']
+          @PushUserSig = params['PushUserSig']
+          unless params['Whiteboard'].nil?
+            @Whiteboard = Whiteboard.new.deserialize(params[Whiteboard])
+          end
+          @AutoStopTimeout = params['AutoStopTimeout']
+          @AutoManageBackup = params['AutoManageBackup']
+          unless params['Backup'].nil?
+            @Backup = WhiteboardPushBackupParam.new.deserialize(params[Backup])
+          end
+          @AutoRecord = params['AutoRecord']
+          @ExtraData = params['ExtraData']
+        end
+      end
+
+      # StartWhiteboardPush返回参数结构体
+      class StartWhiteboardPushResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 推流任务Id
+        # @type TaskId: String
+        # @param Backup: 备份任务结果参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Backup: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Backup, :RequestId
+        
+        def initialize(taskid=nil, backup=nil, requestid=nil)
+          @TaskId = taskid
+          @Backup = backup
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Backup = params['Backup']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopOnlineRecord请求参数结构体
       class StopOnlineRecordRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
@@ -1157,6 +1247,47 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopWhiteboardPush请求参数结构体
+      class StopWhiteboardPushRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param TaskId: 需要停止的白板推流任务 Id
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+        
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopWhiteboardPush返回参数结构体
+      class StopWhiteboardPushResponse < TencentCloud::Common::AbstractModel
+        # @param Backup: 备份任务相关参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Backup: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Backup, :RequestId
+        
+        def initialize(backup=nil, requestid=nil)
+          @Backup = backup
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Backup = params['Backup']
           @RequestId = params['RequestId']
         end
       end
@@ -1326,6 +1457,27 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @InitParam = params['InitParam']
+        end
+      end
+
+      # 白板推流备份相关请求参数
+      class WhiteboardPushBackupParam < TencentCloud::Common::AbstractModel
+        # @param PushUserId: 用于白板推流服务进房的用户ID，
+        # 该ID必须是一个单独的未在SDK中使用的ID，白板推流服务将使用这个用户ID进入房间进行白板推流，若该ID和SDK中使用的ID重复，会导致SDK和录制服务互踢，影响正常推流。
+        # @type PushUserId: String
+        # @param PushUserSig: 与PushUserId对应的签名
+        # @type PushUserSig: String
+
+        attr_accessor :PushUserId, :PushUserSig
+        
+        def initialize(pushuserid=nil, pushusersig=nil)
+          @PushUserId = pushuserid
+          @PushUserSig = pushusersig
+        end
+
+        def deserialize(params)
+          @PushUserId = params['PushUserId']
+          @PushUserSig = params['PushUserSig']
         end
       end
 
