@@ -329,11 +329,11 @@ module TencentCloud
 
       # QueryCallDetails请求参数结构体
       class QueryCallDetailsRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 请求类型:1,人群特征洞察统计 2购车意向预测统计
+        # @param Type: 请求类型 1:人群特征洞察统计 2:购车意向预测统计
         # @type Type: Integer
         # @param StartTime: 开始时间戳（毫秒）
         # @type StartTime: Integer
-        # @param EndTime: 结束时间戳(毫秒）
+        # @param EndTime: 结束时间戳（毫秒）
         # @type EndTime: Integer
         # @param PageNumber: 页数
         # @type PageNumber: Integer
@@ -383,11 +383,11 @@ module TencentCloud
 
       # QueryCallStat请求参数结构体
       class QueryCallStatRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 请求类型:1,人群特征洞察统计 2购车意向预测统计
+        # @param Type: 请求类型 1:人群特征洞察统计 2:购车意向预测统计
         # @type Type: Integer
         # @param StartTime: 开始时间戳（毫秒）
         # @type StartTime: Integer
-        # @param EndTime: 结束时间戳(毫秒）
+        # @param EndTime: 结束时间戳（毫秒）
         # @type EndTime: Integer
 
         attr_accessor :Type, :StartTime, :EndTime

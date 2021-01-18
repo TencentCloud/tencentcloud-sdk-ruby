@@ -361,6 +361,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 代理商名下客户解绑记录查询接口
+
+        # @param request: Request instance for DescribeUnbindClientList.
+        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeUnbindClientListRequest`
+        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeUnbindClientListResponse`
+        def DescribeUnbindClientList(request)
+          body = send_request('DescribeUnbindClientList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnbindClientListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 代理商可以对名下客户添加备注、修改备注
 
         # @param request: Request instance for ModifyClientRemark.

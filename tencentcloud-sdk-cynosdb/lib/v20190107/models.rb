@@ -214,6 +214,26 @@ module TencentCloud
         end
       end
 
+      # 计费资源信息
+      class BillingResourceInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+
+        attr_accessor :ClusterId, :InstanceIds
+        
+        def initialize(clusterid=nil, instanceids=nil)
+          @ClusterId = clusterid
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
       # 集群实例信息
       class ClusterInstanceDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1617,6 +1637,42 @@ module TencentCloud
 
         def deserialize(params)
           @Groups = params['Groups']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourcesByDealName请求参数结构体
+      class DescribeResourcesByDealNameRequest < TencentCloud::Common::AbstractModel
+        # @param DealName: 计费订单id
+        # @type DealName: String
+
+        attr_accessor :DealName
+        
+        def initialize(dealname=nil)
+          @DealName = dealname
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+        end
+      end
+
+      # DescribeResourcesByDealName返回参数结构体
+      class DescribeResourcesByDealNameResponse < TencentCloud::Common::AbstractModel
+        # @param BillingResourceInfos: 计费资源id信息数组
+        # @type BillingResourceInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BillingResourceInfos, :RequestId
+        
+        def initialize(billingresourceinfos=nil, requestid=nil)
+          @BillingResourceInfos = billingresourceinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BillingResourceInfos = params['BillingResourceInfos']
           @RequestId = params['RequestId']
         end
       end

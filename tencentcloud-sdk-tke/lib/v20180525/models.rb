@@ -756,6 +756,26 @@ module TencentCloud
         end
       end
 
+      # 集群版本信息
+      class ClusterVersion < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Versions: 集群主版本号列表，例如1.18.4
+        # @type Versions: Array
+
+        attr_accessor :ClusterId, :Versions
+        
+        def initialize(clusterid=nil, versions=nil)
+          @ClusterId = clusterid
+          @Versions = versions
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Versions = params['Versions']
+        end
+      end
+
       # CreateClusterAsGroup请求参数结构体
       class CreateClusterAsGroupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -1705,6 +1725,52 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAvailableClusterVersion请求参数结构体
+      class DescribeAvailableClusterVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 Id
+        # @type ClusterId: String
+        # @param ClusterIds: 集群 Id 列表
+        # @type ClusterIds: Array
+
+        attr_accessor :ClusterId, :ClusterIds
+        
+        def initialize(clusterid=nil, clusterids=nil)
+          @ClusterId = clusterid
+          @ClusterIds = clusterids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterIds = params['ClusterIds']
+        end
+      end
+
+      # DescribeAvailableClusterVersion返回参数结构体
+      class DescribeAvailableClusterVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Versions: 可升级的集群版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Versions: Array
+        # @param Clusters: 集群信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Clusters: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Versions, :Clusters, :RequestId
+        
+        def initialize(versions=nil, clusters=nil, requestid=nil)
+          @Versions = versions
+          @Clusters = clusters
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Versions = params['Versions']
+          @Clusters = params['Clusters']
           @RequestId = params['RequestId']
         end
       end
@@ -2999,6 +3065,74 @@ module TencentCloud
         end
       end
 
+      # GetUpgradeInstanceProgress请求参数结构体
+      class GetUpgradeInstanceProgressRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Limit: 最多获取多少个节点的进度
+        # @type Limit: Integer
+        # @param Offset: 从第几个节点开始获取进度
+        # @type Offset: Integer
+
+        attr_accessor :ClusterId, :Limit, :Offset
+        
+        def initialize(clusterid=nil, limit=nil, offset=nil)
+          @ClusterId = clusterid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # GetUpgradeInstanceProgress返回参数结构体
+      class GetUpgradeInstanceProgressResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 升级节点总数
+        # @type Total: Integer
+        # @param Done: 已升级节点总数
+        # @type Done: Integer
+        # @param LifeState: 升级任务生命周期
+        # process 运行中
+        # paused 已停止
+        # pauing 正在停止
+        # done  已完成
+        # timeout 已超时
+        # aborted 已取消
+        # @type LifeState: String
+        # @param Instances: 各节点升级进度详情
+        # @type Instances: Array
+        # @param ClusterStatus: 集群当前状态
+        # @type ClusterStatus: :class:`Tencentcloud::Tke.v20180525.models.InstanceUpgradeClusterStatus`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Done, :LifeState, :Instances, :ClusterStatus, :RequestId
+        
+        def initialize(total=nil, done=nil, lifestate=nil, instances=nil, clusterstatus=nil, requestid=nil)
+          @Total = total
+          @Done = done
+          @LifeState = lifestate
+          @Instances = instances
+          @ClusterStatus = clusterstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Done = params['Done']
+          @LifeState = params['LifeState']
+          @Instances = params['Instances']
+          unless params['ClusterStatus'].nil?
+            @ClusterStatus = InstanceUpgradeClusterStatus.new.deserialize(params[ClusterStatus])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 镜像信息
       class ImageInstance < TencentCloud::Common::AbstractModel
         # @param Alias: 镜像别名
@@ -3177,6 +3311,133 @@ module TencentCloud
 
         def deserialize(params)
           @Kubelet = params['Kubelet']
+        end
+      end
+
+      # 节点升级过程中集群当前状态
+      class InstanceUpgradeClusterStatus < TencentCloud::Common::AbstractModel
+        # @param PodTotal: pod总数
+        # @type PodTotal: Integer
+        # @param NotReadyPod: NotReady pod总数
+        # @type NotReadyPod: Integer
+
+        attr_accessor :PodTotal, :NotReadyPod
+        
+        def initialize(podtotal=nil, notreadypod=nil)
+          @PodTotal = podtotal
+          @NotReadyPod = notreadypod
+        end
+
+        def deserialize(params)
+          @PodTotal = params['PodTotal']
+          @NotReadyPod = params['NotReadyPod']
+        end
+      end
+
+      # 某个节点升级前检查结果
+      class InstanceUpgradePreCheckResult < TencentCloud::Common::AbstractModel
+        # @param CheckPass: 检查是否通过
+        # @type CheckPass: Boolean
+        # @param Items: 检查项数组
+        # @type Items: Array
+        # @param SinglePods: 本节点独立pod列表
+        # @type SinglePods: Array
+
+        attr_accessor :CheckPass, :Items, :SinglePods
+        
+        def initialize(checkpass=nil, items=nil, singlepods=nil)
+          @CheckPass = checkpass
+          @Items = items
+          @SinglePods = singlepods
+        end
+
+        def deserialize(params)
+          @CheckPass = params['CheckPass']
+          @Items = params['Items']
+          @SinglePods = params['SinglePods']
+        end
+      end
+
+      # 节点升级检查项结果
+      class InstanceUpgradePreCheckResultItem < TencentCloud::Common::AbstractModel
+        # @param Namespace: 工作负载的命名空间
+        # @type Namespace: String
+        # @param WorkLoadKind: 工作负载类型
+        # @type WorkLoadKind: String
+        # @param WorkLoadName: 工作负载名称
+        # @type WorkLoadName: String
+        # @param Before: 驱逐节点前工作负载running的pod数目
+        # @type Before: Integer
+        # @param After: 驱逐节点后工作负载running的pod数目
+        # @type After: Integer
+        # @param Pods: 工作负载在本节点上的pod列表
+        # @type Pods: Array
+
+        attr_accessor :Namespace, :WorkLoadKind, :WorkLoadName, :Before, :After, :Pods
+        
+        def initialize(namespace=nil, workloadkind=nil, workloadname=nil, before=nil, after=nil, pods=nil)
+          @Namespace = namespace
+          @WorkLoadKind = workloadkind
+          @WorkLoadName = workloadname
+          @Before = before
+          @After = after
+          @Pods = pods
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @WorkLoadKind = params['WorkLoadKind']
+          @WorkLoadName = params['WorkLoadName']
+          @Before = params['Before']
+          @After = params['After']
+          @Pods = params['Pods']
+        end
+      end
+
+      # 某个节点的升级进度
+      class InstanceUpgradeProgressItem < TencentCloud::Common::AbstractModel
+        # @param InstanceID: 节点instanceID
+        # @type InstanceID: String
+        # @param LifeState: 任务生命周期
+        # process 运行中
+        # paused 已停止
+        # pauing 正在停止
+        # done  已完成
+        # timeout 已超时
+        # aborted 已取消
+        # pending 还未开始
+        # @type LifeState: String
+        # @param StartAt: 升级开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartAt: String
+        # @param EndAt: 升级结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndAt: String
+        # @param CheckResult: 升级前检查结果
+        # @type CheckResult: :class:`Tencentcloud::Tke.v20180525.models.InstanceUpgradePreCheckResult`
+        # @param Detail: 升级步骤详情
+        # @type Detail: Array
+
+        attr_accessor :InstanceID, :LifeState, :StartAt, :EndAt, :CheckResult, :Detail
+        
+        def initialize(instanceid=nil, lifestate=nil, startat=nil, endat=nil, checkresult=nil, detail=nil)
+          @InstanceID = instanceid
+          @LifeState = lifestate
+          @StartAt = startat
+          @EndAt = endat
+          @CheckResult = checkresult
+          @Detail = detail
+        end
+
+        def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @LifeState = params['LifeState']
+          @StartAt = params['StartAt']
+          @EndAt = params['EndAt']
+          unless params['CheckResult'].nil?
+            @CheckResult = InstanceUpgradePreCheckResult.new.deserialize(params[CheckResult])
+          end
+          @Detail = params['Detail']
         end
       end
 
@@ -4549,6 +4810,89 @@ module TencentCloud
           @Key = params['Key']
           @Value = params['Value']
           @Effect = params['Effect']
+        end
+      end
+
+      # 任务步骤信息
+      class TaskStepInfo < TencentCloud::Common::AbstractModel
+        # @param Step: 步骤名称
+        # @type Step: String
+        # @param LifeState: 生命周期
+        # pending : 步骤未开始
+        # running: 步骤执行中
+        # success: 步骤成功完成
+        # failed: 步骤失败
+        # @type LifeState: String
+        # @param StartAt: 步骤开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartAt: String
+        # @param EndAt: 步骤结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndAt: String
+        # @param FailedMsg: 若步骤生命周期为failed,则此字段显示错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedMsg: String
+
+        attr_accessor :Step, :LifeState, :StartAt, :EndAt, :FailedMsg
+        
+        def initialize(step=nil, lifestate=nil, startat=nil, endat=nil, failedmsg=nil)
+          @Step = step
+          @LifeState = lifestate
+          @StartAt = startat
+          @EndAt = endat
+          @FailedMsg = failedmsg
+        end
+
+        def deserialize(params)
+          @Step = params['Step']
+          @LifeState = params['LifeState']
+          @StartAt = params['StartAt']
+          @EndAt = params['EndAt']
+          @FailedMsg = params['FailedMsg']
+        end
+      end
+
+      # UpdateClusterVersion请求参数结构体
+      class UpdateClusterVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 Id
+        # @type ClusterId: String
+        # @param DstVersion: 需要升级到的版本
+        # @type DstVersion: String
+        # @param MaxNotReadyPercent: 可容忍的最大不可用pod数目
+        # @type MaxNotReadyPercent: Float
+        # @param SkipPreCheck: 是否跳过预检查阶段
+        # @type SkipPreCheck: Boolean
+
+        attr_accessor :ClusterId, :DstVersion, :MaxNotReadyPercent, :SkipPreCheck
+        
+        def initialize(clusterid=nil, dstversion=nil, maxnotreadypercent=nil, skipprecheck=nil)
+          @ClusterId = clusterid
+          @DstVersion = dstversion
+          @MaxNotReadyPercent = maxnotreadypercent
+          @SkipPreCheck = skipprecheck
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @DstVersion = params['DstVersion']
+          @MaxNotReadyPercent = params['MaxNotReadyPercent']
+          @SkipPreCheck = params['SkipPreCheck']
+        end
+      end
+
+      # UpdateClusterVersion返回参数结构体
+      class UpdateClusterVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

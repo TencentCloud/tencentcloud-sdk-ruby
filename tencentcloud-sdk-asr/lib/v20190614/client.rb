@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'ASR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 本接口用于关闭语音流异步识别任务。
+
+        # @param request: Request instance for CloseAsyncRecognitionTask.
+        # @type request: :class:`Tencentcloud::asr::V20190614::CloseAsyncRecognitionTaskRequest`
+        # @rtype: :class:`Tencentcloud::asr::V20190614::CloseAsyncRecognitionTaskResponse`
+        def CloseAsyncRecognitionTask(request)
+          body = send_request('CloseAsyncRecognitionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseAsyncRecognitionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用户通过本接口进行热词表的创建。
         # <br>•   默认最多可创建30个热词表。
         # <br>•   每个热词表最多可添加128个词，每个词最长10个字，不能超出限制。

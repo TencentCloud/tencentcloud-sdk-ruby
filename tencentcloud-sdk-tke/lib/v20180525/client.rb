@@ -625,6 +625,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取集群可以升级的所有版本
+
+        # @param request: Request instance for DescribeAvailableClusterVersion.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeAvailableClusterVersionRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeAvailableClusterVersionResponse`
+        def DescribeAvailableClusterVersion(request)
+          body = send_request('DescribeAvailableClusterVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAvailableClusterVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 集群弹性伸缩配置
 
         # @param request: Request instance for DescribeClusterAsGroupOption.
@@ -1177,6 +1201,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获得节点升级当前的进度
+
+        # @param request: Request instance for GetUpgradeInstanceProgress.
+        # @type request: :class:`Tencentcloud::tke::V20180525::GetUpgradeInstanceProgressRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::GetUpgradeInstanceProgressResponse`
+        def GetUpgradeInstanceProgress(request)
+          body = send_request('GetUpgradeInstanceProgress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetUpgradeInstanceProgressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改集群伸缩组属性
 
         # @param request: Request instance for ModifyClusterAsGroupAttribute.
@@ -1379,6 +1427,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SyncPrometheusTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 升级集群 Master 组件到指定版本
+
+        # @param request: Request instance for UpdateClusterVersion.
+        # @type request: :class:`Tencentcloud::tke::V20180525::UpdateClusterVersionRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::UpdateClusterVersionResponse`
+        def UpdateClusterVersion(request)
+          body = send_request('UpdateClusterVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateClusterVersionResponse.new
             model.deserialize(response['Response'])
             model
           else

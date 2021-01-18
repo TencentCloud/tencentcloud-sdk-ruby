@@ -54,6 +54,38 @@ module TencentCloud
         end
       end
 
+      # CloseAsyncRecognitionTask请求参数结构体
+      class CloseAsyncRecognitionTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 语音流异步识别任务的唯一标识，在创建任务时会返回
+        # @type TaskId: Integer
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # CloseAsyncRecognitionTask返回参数结构体
+      class CloseAsyncRecognitionTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAsrVocab请求参数结构体
       class CreateAsrVocabRequest < TencentCloud::Common::AbstractModel
         # @param Name: 热词表名称，长度在1-255之间

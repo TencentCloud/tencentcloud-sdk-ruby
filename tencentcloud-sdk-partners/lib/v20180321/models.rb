@@ -1181,6 +1181,70 @@ module TencentCloud
         end
       end
 
+      # DescribeUnbindClientList请求参数结构体
+      class DescribeUnbindClientListRequest < TencentCloud::Common::AbstractModel
+        # @param Status: 解绑状态：0:所有,1:审核中,2已解绑
+        # @type Status: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param UnbindUin: 解绑账号ID
+        # @type UnbindUin: String
+        # @param ApplyTimeStart: 解绑申请时间范围起始点
+        # @type ApplyTimeStart: String
+        # @param ApplyTimeEnd: 解绑申请时间范围终止点
+        # @type ApplyTimeEnd: String
+        # @param OrderDirection: 对申请时间的升序降序，值：asc，desc
+        # @type OrderDirection: String
+
+        attr_accessor :Status, :Offset, :Limit, :UnbindUin, :ApplyTimeStart, :ApplyTimeEnd, :OrderDirection
+        
+        def initialize(status=nil, offset=nil, limit=nil, unbinduin=nil, applytimestart=nil, applytimeend=nil, orderdirection=nil)
+          @Status = status
+          @Offset = offset
+          @Limit = limit
+          @UnbindUin = unbinduin
+          @ApplyTimeStart = applytimestart
+          @ApplyTimeEnd = applytimeend
+          @OrderDirection = orderdirection
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @UnbindUin = params['UnbindUin']
+          @ApplyTimeStart = params['ApplyTimeStart']
+          @ApplyTimeEnd = params['ApplyTimeEnd']
+          @OrderDirection = params['OrderDirection']
+        end
+      end
+
+      # DescribeUnbindClientList返回参数结构体
+      class DescribeUnbindClientListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的解绑客户数量
+        # @type TotalCount: Integer
+        # @param UnbindClientList: 符合条件的解绑客户列表
+        # @type UnbindClientList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :UnbindClientList, :RequestId
+        
+        def initialize(totalcount=nil, unbindclientlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @UnbindClientList = unbindclientlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @UnbindClientList = params['UnbindClientList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClientRemark请求参数结构体
       class ModifyClientRemarkRequest < TencentCloud::Common::AbstractModel
         # @param ClientRemark: 客户备注名称
@@ -1302,6 +1366,40 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 解绑客户信息
+      class UnbindClientElem < TencentCloud::Common::AbstractModel
+        # @param Uin: 解绑账号ID
+        # @type Uin: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param Status: 状态：0:审核中；1：已解绑；2：已撤销 3：关联撤销 4: 已驳回
+        # @type Status: Integer
+        # @param ApplyTime: 申请时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplyTime: String
+        # @param ActionTime: 解绑/撤销时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionTime: String
+
+        attr_accessor :Uin, :Name, :Status, :ApplyTime, :ActionTime
+        
+        def initialize(uin=nil, name=nil, status=nil, applytime=nil, actiontime=nil)
+          @Uin = uin
+          @Name = name
+          @Status = status
+          @ApplyTime = applytime
+          @ActionTime = actiontime
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @Name = params['Name']
+          @Status = params['Status']
+          @ApplyTime = params['ApplyTime']
+          @ActionTime = params['ActionTime']
         end
       end
 

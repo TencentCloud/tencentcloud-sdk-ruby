@@ -263,6 +263,53 @@ module TencentCloud
         end
       end
 
+      # CloudBaseRun 的 Side 描述定义
+      class CloudBaseRunSideSpec < TencentCloud::Common::AbstractModel
+        # @param ContainerImage: 容器镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerImage: String
+        # @param ContainerPort: 容器端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerPort: Integer
+        # @param ContainerName: 容器的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerName: String
+        # @param EnvVar: kv的json字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvVar: String
+        # @param InitialDelaySeconds: InitialDelaySeconds 延迟多长时间启动健康检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InitialDelaySeconds: Integer
+        # @param Cpu: CPU大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Mem: 内存大小（单位：M）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mem: Integer
+
+        attr_accessor :ContainerImage, :ContainerPort, :ContainerName, :EnvVar, :InitialDelaySeconds, :Cpu, :Mem
+        
+        def initialize(containerimage=nil, containerport=nil, containername=nil, envvar=nil, initialdelayseconds=nil, cpu=nil, mem=nil)
+          @ContainerImage = containerimage
+          @ContainerPort = containerport
+          @ContainerName = containername
+          @EnvVar = envvar
+          @InitialDelaySeconds = initialdelayseconds
+          @Cpu = cpu
+          @Mem = mem
+        end
+
+        def deserialize(params)
+          @ContainerImage = params['ContainerImage']
+          @ContainerPort = params['ContainerPort']
+          @ContainerName = params['ContainerName']
+          @EnvVar = params['EnvVar']
+          @InitialDelaySeconds = params['InitialDelaySeconds']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+        end
+      end
+
       # cfs挂载点
       class CloudBaseRunVolumeMount < TencentCloud::Common::AbstractModel
         # @param Name: 资源名
@@ -713,10 +760,14 @@ module TencentCloud
         # @type OperatorRemark: String
         # @param ServerPath: 服务路劲
         # @type ServerPath: String
+        # @param ImageReuseKey: 镜像复用的key
+        # @type ImageReuseKey: String
+        # @param SidecarSpecs: 容器的描述文件
+        # @type SidecarSpecs: Array
 
-        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath
+        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs
         
-        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil)
+        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil)
           @EnvId = envid
           @UploadType = uploadtype
           @FlowRatio = flowratio
@@ -749,6 +800,8 @@ module TencentCloud
           @EnableUnion = enableunion
           @OperatorRemark = operatorremark
           @ServerPath = serverpath
+          @ImageReuseKey = imagereusekey
+          @SidecarSpecs = sidecarspecs
         end
 
         def deserialize(params)
@@ -792,6 +845,8 @@ module TencentCloud
           @EnableUnion = params['EnableUnion']
           @OperatorRemark = params['OperatorRemark']
           @ServerPath = params['ServerPath']
+          @ImageReuseKey = params['ImageReuseKey']
+          @SidecarSpecs = params['SidecarSpecs']
         end
       end
 

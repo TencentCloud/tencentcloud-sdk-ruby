@@ -1645,10 +1645,12 @@ module TencentCloud
         # @type BackupWay: Integer
         # @param BackupId: 按照备份ID筛选，不填则不筛选此项
         # @type BackupId: Integer
+        # @param DatabaseName: 按照备份的库名称筛选，不填则不筛选此项
+        # @type DatabaseName: String
 
-        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset, :BackupName, :Strategy, :BackupWay, :BackupId
+        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset, :BackupName, :Strategy, :BackupWay, :BackupId, :DatabaseName
         
-        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil, backupname=nil, strategy=nil, backupway=nil, backupid=nil)
+        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil, backupname=nil, strategy=nil, backupway=nil, backupid=nil, databasename=nil)
           @StartTime = starttime
           @EndTime = endtime
           @InstanceId = instanceid
@@ -1658,6 +1660,7 @@ module TencentCloud
           @Strategy = strategy
           @BackupWay = backupway
           @BackupId = backupid
+          @DatabaseName = databasename
         end
 
         def deserialize(params)
@@ -1670,6 +1673,7 @@ module TencentCloud
           @Strategy = params['Strategy']
           @BackupWay = params['BackupWay']
           @BackupId = params['BackupId']
+          @DatabaseName = params['DatabaseName']
         end
       end
 
