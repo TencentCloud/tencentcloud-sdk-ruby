@@ -2112,8 +2112,12 @@ module TencentCloud
         # <li> StaticFsFluxPkgDay: 当日静态托管流量 </li>
         # <li> StaticFsFluxPkg: 当月静态托管流量</li>
         # <li> StaticFsSizePkg: 当月静态托管容量 </li>
-        # <li> TkeCpuUsedPkg: 当月容器托管CPU使用量，单位核 </li>
-        # <li> TkeMemUsedPkg: 当月容器托管内存使用量，单位MB </li>
+        # <li> TkeCpuUsedPkg: 当月容器托管CPU使用量，单位核*秒 </li>
+        # <li> TkeCpuUsedPkgDay: 当天容器托管CPU使用量，单位核*秒 </li>
+        # <li> TkeMemUsedPkg: 当月容器托管内存使用量，单位MB*秒 </li>
+        # <li> TkeMemUsedPkgDay: 当天容器托管内存使用量，单位MB*秒 </li>
+        # <li> CodingBuildTimePkgDay: 当天容器托管构建时间使用量，单位毫秒 </li>
+        # <li> TkeHttpServiceNatPkgDay: 当天容器托管流量使用量，单位B </li>
         # @type MetricName: String
         # @param ResourceID: 资源ID, 目前仅对云函数、容器托管相关的指标有意义。云函数(FunctionInvocationpkg, FunctionGBspkg, FunctionFluxpkg)、容器托管（服务名称）。如果想查询某个云函数的指标则在ResourceId中传入函数名; 如果只想查询整个namespace的指标, 则留空或不传。
         # @type ResourceID: String
@@ -2139,20 +2143,25 @@ module TencentCloud
         # @type MetricName: String
         # @param Value: 指标的值
         # @type Value: Integer
+        # @param SubValue: 指标的附加值信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubValue: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MetricName, :Value, :RequestId
+        attr_accessor :MetricName, :Value, :SubValue, :RequestId
         
-        def initialize(metricname=nil, value=nil, requestid=nil)
+        def initialize(metricname=nil, value=nil, subvalue=nil, requestid=nil)
           @MetricName = metricname
           @Value = value
+          @SubValue = subvalue
           @RequestId = requestid
         end
 
         def deserialize(params)
           @MetricName = params['MetricName']
           @Value = params['Value']
+          @SubValue = params['SubValue']
           @RequestId = params['RequestId']
         end
       end

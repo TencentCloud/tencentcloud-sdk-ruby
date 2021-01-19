@@ -286,15 +286,18 @@ module TencentCloud
         # @type Orientation: String
         # @param ImageSenseType: 图片类型，可选以下值：照片、插画
         # @type ImageSenseType: String
+        # @param LayeredGalleryIds: 分层图库id数组，可选以下数值：1(基础)，2(精选)，3(高级)
+        # @type LayeredGalleryIds: Array
 
-        attr_accessor :Offset, :Limit, :Keyword, :Orientation, :ImageSenseType
+        attr_accessor :Offset, :Limit, :Keyword, :Orientation, :ImageSenseType, :LayeredGalleryIds
         
-        def initialize(offset=nil, limit=nil, keyword=nil, orientation=nil, imagesensetype=nil)
+        def initialize(offset=nil, limit=nil, keyword=nil, orientation=nil, imagesensetype=nil, layeredgalleryids=nil)
           @Offset = offset
           @Limit = limit
           @Keyword = keyword
           @Orientation = orientation
           @ImageSenseType = imagesensetype
+          @LayeredGalleryIds = layeredgalleryids
         end
 
         def deserialize(params)
@@ -303,6 +306,7 @@ module TencentCloud
           @Keyword = params['Keyword']
           @Orientation = params['Orientation']
           @ImageSenseType = params['ImageSenseType']
+          @LayeredGalleryIds = params['LayeredGalleryIds']
         end
       end
 

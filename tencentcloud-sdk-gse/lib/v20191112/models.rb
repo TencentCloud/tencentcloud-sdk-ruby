@@ -34,10 +34,13 @@ module TencentCloud
         # @type CreationTime: String
         # @param LastUpdatedTime: 上次修改此数据对象的时间
         # @type LastUpdatedTime: String
+        # @param Tags: 标签列表，最大长度50组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :AliasId, :AliasArn, :Name, :Description, :RoutingStrategy, :CreationTime, :LastUpdatedTime
+        attr_accessor :AliasId, :AliasArn, :Name, :Description, :RoutingStrategy, :CreationTime, :LastUpdatedTime, :Tags
         
-        def initialize(aliasid=nil, aliasarn=nil, name=nil, description=nil, routingstrategy=nil, creationtime=nil, lastupdatedtime=nil)
+        def initialize(aliasid=nil, aliasarn=nil, name=nil, description=nil, routingstrategy=nil, creationtime=nil, lastupdatedtime=nil, tags=nil)
           @AliasId = aliasid
           @AliasArn = aliasarn
           @Name = name
@@ -45,6 +48,7 @@ module TencentCloud
           @RoutingStrategy = routingstrategy
           @CreationTime = creationtime
           @LastUpdatedTime = lastupdatedtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -57,6 +61,7 @@ module TencentCloud
           end
           @CreationTime = params['CreationTime']
           @LastUpdatedTime = params['LastUpdatedTime']
+          @Tags = params['Tags']
         end
       end
 
@@ -88,10 +93,13 @@ module TencentCloud
         # @type ResourceType: String
         # @param SharingStatus: 镜像资源共享类型，当 ResourceType 为 IMAGE 时该字段有意义，SHARED 表示共享、SHARED_IMAGE 表示未共享；ResourceType 为 ASSET 时这里返回 UNKNOWN_SHARED 用于占位
         # @type SharingStatus: String
+        # @param Tags: 标签列表，最大长度50组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :AssetId, :AssetName, :AssetVersion, :OperateSystem, :Stauts, :Size, :CreateTime, :BindFleetNum, :AssetArn, :ImageId, :OsType, :ResourceType, :SharingStatus
+        attr_accessor :AssetId, :AssetName, :AssetVersion, :OperateSystem, :Stauts, :Size, :CreateTime, :BindFleetNum, :AssetArn, :ImageId, :OsType, :ResourceType, :SharingStatus, :Tags
         
-        def initialize(assetid=nil, assetname=nil, assetversion=nil, operatesystem=nil, stauts=nil, size=nil, createtime=nil, bindfleetnum=nil, assetarn=nil, imageid=nil, ostype=nil, resourcetype=nil, sharingstatus=nil)
+        def initialize(assetid=nil, assetname=nil, assetversion=nil, operatesystem=nil, stauts=nil, size=nil, createtime=nil, bindfleetnum=nil, assetarn=nil, imageid=nil, ostype=nil, resourcetype=nil, sharingstatus=nil, tags=nil)
           @AssetId = assetid
           @AssetName = assetname
           @AssetVersion = assetversion
@@ -105,6 +113,7 @@ module TencentCloud
           @OsType = ostype
           @ResourceType = resourcetype
           @SharingStatus = sharingstatus
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -121,6 +130,7 @@ module TencentCloud
           @OsType = params['OsType']
           @ResourceType = params['ResourceType']
           @SharingStatus = params['SharingStatus']
+          @Tags = params['Tags']
         end
       end
 
@@ -283,10 +293,12 @@ module TencentCloud
         # @type SelectedScalingType: String
         # @param SelectedCcnType: 是否选择云联网：CCN_SELECTED 或者 CCN_UNSELECTED；默认是 CCN_UNSELECTED
         # @type SelectedCcnType: String
+        # @param Tags: 标签列表，最大长度50组
+        # @type Tags: Array
 
-        attr_accessor :FleetId, :CopyNumber, :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :GameServerSessionProtectionTimeLimit, :SelectedScalingType, :SelectedCcnType
+        attr_accessor :FleetId, :CopyNumber, :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :GameServerSessionProtectionTimeLimit, :SelectedScalingType, :SelectedCcnType, :Tags
         
-        def initialize(fleetid=nil, copynumber=nil, assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, gameserversessionprotectiontimelimit=nil, selectedscalingtype=nil, selectedccntype=nil)
+        def initialize(fleetid=nil, copynumber=nil, assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, gameserversessionprotectiontimelimit=nil, selectedscalingtype=nil, selectedccntype=nil, tags=nil)
           @FleetId = fleetid
           @CopyNumber = copynumber
           @AssetId = assetid
@@ -301,6 +313,7 @@ module TencentCloud
           @GameServerSessionProtectionTimeLimit = gameserversessionprotectiontimelimit
           @SelectedScalingType = selectedscalingtype
           @SelectedCcnType = selectedccntype
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -322,6 +335,7 @@ module TencentCloud
           @GameServerSessionProtectionTimeLimit = params['GameServerSessionProtectionTimeLimit']
           @SelectedScalingType = params['SelectedScalingType']
           @SelectedCcnType = params['SelectedCcnType']
+          @Tags = params['Tags']
         end
       end
 
@@ -358,13 +372,16 @@ module TencentCloud
         # @type RoutingStrategy: :class:`Tencentcloud::Gse.v20191112.models.RoutingStrategy`
         # @param Description: 别名的可读说明，长度不小于1字符不超过1024字符
         # @type Description: String
+        # @param Tags: 标签列表，最大长度50组
+        # @type Tags: Array
 
-        attr_accessor :Name, :RoutingStrategy, :Description
+        attr_accessor :Name, :RoutingStrategy, :Description, :Tags
         
-        def initialize(name=nil, routingstrategy=nil, description=nil)
+        def initialize(name=nil, routingstrategy=nil, description=nil, tags=nil)
           @Name = name
           @RoutingStrategy = routingstrategy
           @Description = description
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -373,6 +390,7 @@ module TencentCloud
             @RoutingStrategy = RoutingStrategy.new.deserialize(params[RoutingStrategy])
           end
           @Description = params['Description']
+          @Tags = params['Tags']
         end
       end
 
@@ -412,16 +430,19 @@ module TencentCloud
         # @type OperateSystem: String
         # @param ImageId: 生成包支持的操作系统镜像id，若传入OperateSystem字段的值是CentOS7.16，则不需要传入该值；如果不是，则需要通过[DescribeAssetSystems](https://cloud.tencent.com/document/product/1165/49191)接口获取asset支持的操作系统ImageId进行传入
         # @type ImageId: String
+        # @param Tags: 标签列表，最大长度50组
+        # @type Tags: Array
 
-        attr_accessor :BucketKey, :AssetName, :AssetVersion, :AssetRegion, :OperateSystem, :ImageId
+        attr_accessor :BucketKey, :AssetName, :AssetVersion, :AssetRegion, :OperateSystem, :ImageId, :Tags
         
-        def initialize(bucketkey=nil, assetname=nil, assetversion=nil, assetregion=nil, operatesystem=nil, imageid=nil)
+        def initialize(bucketkey=nil, assetname=nil, assetversion=nil, assetregion=nil, operatesystem=nil, imageid=nil, tags=nil)
           @BucketKey = bucketkey
           @AssetName = assetname
           @AssetVersion = assetversion
           @AssetRegion = assetregion
           @OperateSystem = operatesystem
           @ImageId = imageid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -431,6 +452,7 @@ module TencentCloud
           @AssetRegion = params['AssetRegion']
           @OperateSystem = params['OperateSystem']
           @ImageId = params['ImageId']
+          @Tags = params['Tags']
         end
       end
 
@@ -556,10 +578,12 @@ module TencentCloud
         # @type SubNetId: String
         # @param GameServerSessionProtectionTimeLimit: 时限保护超时时间，默认60分钟，最小值5，最大值1440；当NewGameSessionProtectionPolicy为TimeLimitProtection时参数有效
         # @type GameServerSessionProtectionTimeLimit: Integer
+        # @param Tags: 标签列表，最大长度50组
+        # @type Tags: Array
 
-        attr_accessor :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :PeerVpcId, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :SubNetId, :GameServerSessionProtectionTimeLimit
+        attr_accessor :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :PeerVpcId, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :SubNetId, :GameServerSessionProtectionTimeLimit, :Tags
         
-        def initialize(assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, peervpcid=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, subnetid=nil, gameserversessionprotectiontimelimit=nil)
+        def initialize(assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, peervpcid=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, subnetid=nil, gameserversessionprotectiontimelimit=nil, tags=nil)
           @AssetId = assetid
           @Description = description
           @InboundPermissions = inboundpermissions
@@ -572,6 +596,7 @@ module TencentCloud
           @RuntimeConfiguration = runtimeconfiguration
           @SubNetId = subnetid
           @GameServerSessionProtectionTimeLimit = gameserversessionprotectiontimelimit
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -591,6 +616,7 @@ module TencentCloud
           end
           @SubNetId = params['SubNetId']
           @GameServerSessionProtectionTimeLimit = params['GameServerSessionProtectionTimeLimit']
+          @Tags = params['Tags']
         end
       end
 
@@ -627,14 +653,17 @@ module TencentCloud
         # @type PlayerLatencyPolicies: Array
         # @param TimeoutInSeconds: 超时时间（单位秒，默认值为600秒）
         # @type TimeoutInSeconds: Integer
+        # @param Tags: 标签列表，最大长度50组
+        # @type Tags: Array
 
-        attr_accessor :Name, :Destinations, :PlayerLatencyPolicies, :TimeoutInSeconds
+        attr_accessor :Name, :Destinations, :PlayerLatencyPolicies, :TimeoutInSeconds, :Tags
         
-        def initialize(name=nil, destinations=nil, playerlatencypolicies=nil, timeoutinseconds=nil)
+        def initialize(name=nil, destinations=nil, playerlatencypolicies=nil, timeoutinseconds=nil, tags=nil)
           @Name = name
           @Destinations = destinations
           @PlayerLatencyPolicies = playerlatencypolicies
           @TimeoutInSeconds = timeoutinseconds
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -642,6 +671,7 @@ module TencentCloud
           @Destinations = params['Destinations']
           @PlayerLatencyPolicies = params['PlayerLatencyPolicies']
           @TimeoutInSeconds = params['TimeoutInSeconds']
+          @Tags = params['Tags']
         end
       end
 
@@ -2358,10 +2388,13 @@ module TencentCloud
         # @param BillingStatus: 计费状态：未开通、已开通、异常、欠费隔离、销毁、解冻
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingStatus: String
+        # @param Tags: 标签列表，最大长度50组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :AssetId, :CreationTime, :Description, :FleetArn, :FleetId, :FleetType, :InstanceType, :Name, :NewGameServerSessionProtectionPolicy, :OperatingSystem, :ResourceCreationLimitPolicy, :Status, :StoppedActions, :TerminationTime, :GameServerSessionProtectionTimeLimit, :BillingStatus
+        attr_accessor :AssetId, :CreationTime, :Description, :FleetArn, :FleetId, :FleetType, :InstanceType, :Name, :NewGameServerSessionProtectionPolicy, :OperatingSystem, :ResourceCreationLimitPolicy, :Status, :StoppedActions, :TerminationTime, :GameServerSessionProtectionTimeLimit, :BillingStatus, :Tags
         
-        def initialize(assetid=nil, creationtime=nil, description=nil, fleetarn=nil, fleetid=nil, fleettype=nil, instancetype=nil, name=nil, newgameserversessionprotectionpolicy=nil, operatingsystem=nil, resourcecreationlimitpolicy=nil, status=nil, stoppedactions=nil, terminationtime=nil, gameserversessionprotectiontimelimit=nil, billingstatus=nil)
+        def initialize(assetid=nil, creationtime=nil, description=nil, fleetarn=nil, fleetid=nil, fleettype=nil, instancetype=nil, name=nil, newgameserversessionprotectionpolicy=nil, operatingsystem=nil, resourcecreationlimitpolicy=nil, status=nil, stoppedactions=nil, terminationtime=nil, gameserversessionprotectiontimelimit=nil, billingstatus=nil, tags=nil)
           @AssetId = assetid
           @CreationTime = creationtime
           @Description = description
@@ -2378,6 +2411,7 @@ module TencentCloud
           @TerminationTime = terminationtime
           @GameServerSessionProtectionTimeLimit = gameserversessionprotectiontimelimit
           @BillingStatus = billingstatus
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2399,6 +2433,7 @@ module TencentCloud
           @TerminationTime = params['TerminationTime']
           @GameServerSessionProtectionTimeLimit = params['GameServerSessionProtectionTimeLimit']
           @BillingStatus = params['BillingStatus']
+          @Tags = params['Tags']
         end
       end
 
@@ -2827,15 +2862,19 @@ module TencentCloud
         # @type PlayerLatencyPolicies: Array
         # @param TimeoutInSeconds: 超时时间
         # @type TimeoutInSeconds: Integer
+        # @param Tags: 标签列表，最大长度50组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :Name, :GameServerSessionQueueArn, :Destinations, :PlayerLatencyPolicies, :TimeoutInSeconds
+        attr_accessor :Name, :GameServerSessionQueueArn, :Destinations, :PlayerLatencyPolicies, :TimeoutInSeconds, :Tags
         
-        def initialize(name=nil, gameserversessionqueuearn=nil, destinations=nil, playerlatencypolicies=nil, timeoutinseconds=nil)
+        def initialize(name=nil, gameserversessionqueuearn=nil, destinations=nil, playerlatencypolicies=nil, timeoutinseconds=nil, tags=nil)
           @Name = name
           @GameServerSessionQueueArn = gameserversessionqueuearn
           @Destinations = destinations
           @PlayerLatencyPolicies = playerlatencypolicies
           @TimeoutInSeconds = timeoutinseconds
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2844,6 +2883,7 @@ module TencentCloud
           @Destinations = params['Destinations']
           @PlayerLatencyPolicies = params['PlayerLatencyPolicies']
           @TimeoutInSeconds = params['TimeoutInSeconds']
+          @Tags = params['Tags']
         end
       end
 
@@ -4333,6 +4373,26 @@ module TencentCloud
             @GameServerSessionPlacement = GameServerSessionPlacement.new.deserialize(params[GameServerSessionPlacement])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 标签结构体
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键，最大长度127字节
+        # @type Key: String
+        # @param Value: 标签值，最大长度255字节
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

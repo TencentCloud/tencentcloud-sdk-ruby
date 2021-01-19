@@ -13327,10 +13327,18 @@ module TencentCloud
         # @type IKEOptionsSpecification: :class:`Tencentcloud::Vpc.v20170312.models.IKEOptionsSpecification`
         # @param IPSECOptionsSpecification: IPSEC选择。
         # @type IPSECOptionsSpecification: :class:`Tencentcloud::Vpc.v20170312.models.IPSECOptionsSpecification`
+        # @param EnableHealthCheck: 是否支持健康状态探测
+        # @type EnableHealthCheck: Boolean
+        # @param HealthCheckLocalIp: 本端探测ip
+        # @type HealthCheckLocalIp: String
+        # @param HealthCheckRemoteIp: 对端探测ip
+        # @type HealthCheckRemoteIp: String
+        # @param HealthCheckStatus: 通道健康检查状态，AVAILABLE：正常，UNAVAILABLE：不正常。 未配置健康检查不返回该对象
+        # @type HealthCheckStatus: String
 
-        attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :EncryptProto, :RouteType, :CreatedTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification
+        attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :EncryptProto, :RouteType, :CreatedTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :HealthCheckStatus
         
-        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, vpcid=nil, vpngatewayid=nil, customergatewayid=nil, presharekey=nil, vpnproto=nil, encryptproto=nil, routetype=nil, createdtime=nil, state=nil, netstatus=nil, securitypolicydatabaseset=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil)
+        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, vpcid=nil, vpngatewayid=nil, customergatewayid=nil, presharekey=nil, vpnproto=nil, encryptproto=nil, routetype=nil, createdtime=nil, state=nil, netstatus=nil, securitypolicydatabaseset=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, healthcheckstatus=nil)
           @VpnConnectionId = vpnconnectionid
           @VpnConnectionName = vpnconnectionname
           @VpcId = vpcid
@@ -13346,6 +13354,10 @@ module TencentCloud
           @SecurityPolicyDatabaseSet = securitypolicydatabaseset
           @IKEOptionsSpecification = ikeoptionsspecification
           @IPSECOptionsSpecification = ipsecoptionsspecification
+          @EnableHealthCheck = enablehealthcheck
+          @HealthCheckLocalIp = healthchecklocalip
+          @HealthCheckRemoteIp = healthcheckremoteip
+          @HealthCheckStatus = healthcheckstatus
         end
 
         def deserialize(params)
@@ -13368,6 +13380,10 @@ module TencentCloud
           unless params['IPSECOptionsSpecification'].nil?
             @IPSECOptionsSpecification = IPSECOptionsSpecification.new.deserialize(params[IPSECOptionsSpecification])
           end
+          @EnableHealthCheck = params['EnableHealthCheck']
+          @HealthCheckLocalIp = params['HealthCheckLocalIp']
+          @HealthCheckRemoteIp = params['HealthCheckRemoteIp']
+          @HealthCheckStatus = params['HealthCheckStatus']
         end
       end
 

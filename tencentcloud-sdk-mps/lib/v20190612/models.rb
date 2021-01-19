@@ -139,6 +139,24 @@ module TencentCloud
         end
       end
 
+      # 动作识别参数配置
+      class ActionConfigInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 动作识别任务开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # 转自适应码流信息
       class AdaptiveDynamicStreamingInfoItem < TencentCloud::Common::AbstractModel
         # @param Definition: 转自适应码流规格。
@@ -5618,6 +5636,24 @@ module TencentCloud
         end
       end
 
+      # 表情识别参数配置
+      class ExpressionConfigInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 表情识别任务开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+        
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
       # 人脸识别任务控制参数
       class FaceConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 人脸识别任务开关，可选值：
@@ -9752,6 +9788,56 @@ module TencentCloud
           unless params['ImageTemplate'].nil?
             @ImageTemplate = RawImageWatermarkInput.new.deserialize(params[ImageTemplate])
           end
+        end
+      end
+
+      # RecognizeMediaForZhiXue请求参数结构体
+      class RecognizeMediaForZhiXueRequest < TencentCloud::Common::AbstractModel
+        # @param InputInfo: 输入媒体文件存储信息。
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param ExpressionConfig: 表情识别参数配置。默认开启。
+        # @type ExpressionConfig: :class:`Tencentcloud::Mps.v20190612.models.ExpressionConfigInfo`
+        # @param ActionConfig: 动作识别参数配置。默认开启。
+        # @type ActionConfig: :class:`Tencentcloud::Mps.v20190612.models.ActionConfigInfo`
+
+        attr_accessor :InputInfo, :ExpressionConfig, :ActionConfig
+        
+        def initialize(inputinfo=nil, expressionconfig=nil, actionconfig=nil)
+          @InputInfo = inputinfo
+          @ExpressionConfig = expressionconfig
+          @ActionConfig = actionconfig
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new.deserialize(params[InputInfo])
+          end
+          unless params['ExpressionConfig'].nil?
+            @ExpressionConfig = ExpressionConfigInfo.new.deserialize(params[ExpressionConfig])
+          end
+          unless params['ActionConfig'].nil?
+            @ActionConfig = ActionConfigInfo.new.deserialize(params[ActionConfig])
+          end
+        end
+      end
+
+      # RecognizeMediaForZhiXue返回参数结构体
+      class RecognizeMediaForZhiXueResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID，可以通过该 ID 查询任务状态和结果。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

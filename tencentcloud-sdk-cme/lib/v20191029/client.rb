@@ -75,7 +75,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  创建素材链接或分类路径链接，将源资源信息链接到目标。
+        #  创建媒体链接或分类路径链接，将源资源信息链接到目标。
 
         # @param request: Request instance for CreateLink.
         # @type request: :class:`Tencentcloud::cme::V20191029::CreateLinkRequest`
@@ -587,7 +587,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 使用在线编辑轨道数据直接导出视频。
+        # 使用视频合成协议导出视频，支持导出到CME云媒资和VOD云媒资。
 
         # @param request: Request instance for ExportVideoByEditorTrackData.
         # @type request: :class:`Tencentcloud::cme::V20191029::ExportVideoByEditorTrackDataRequest`
@@ -755,7 +755,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 将云点播中的媒资或者用户自有媒资文件添加到媒体库中，供后续视频编辑使用。
+        # 将云点播中的媒资或者用户自有媒资文件添加到媒体库中，跟项目关联，供后续视频编辑使用。目前仅普通编辑项目和智能视频拆条项目有效。
 
         # @param request: Request instance for ImportMediaToProject.
         # @type request: :class:`Tencentcloud::cme::V20191029::ImportMediaToProjectRequest`

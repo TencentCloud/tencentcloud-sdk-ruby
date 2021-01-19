@@ -7681,6 +7681,54 @@ module TencentCloud
         end
       end
 
+      # SwitchDBInstanceMasterSlave请求参数结构体
+      class SwitchDBInstanceMasterSlaveRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param DstSlave: 模板从实例。可选值："first" - 第一备机；"second" - 第二备机。默认值为 "first"，仅多可用区实例支持设置为 "second"。
+        # @type DstSlave: String
+        # @param ForceSwitch: 是否强制切换。默认为 False。注意，若设置强制切换为 True，实例存在丢失数据的风险，请谨慎使用。
+        # @type ForceSwitch: Boolean
+        # @param WaitSwitch: 是否时间窗内切换。默认为 False，即不在时间窗内切换。注意，如果设置了 ForceSwitch 参数为 True，则该参数不生效。
+        # @type WaitSwitch: Boolean
+
+        attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch
+        
+        def initialize(instanceid=nil, dstslave=nil, forceswitch=nil, waitswitch=nil)
+          @InstanceId = instanceid
+          @DstSlave = dstslave
+          @ForceSwitch = forceswitch
+          @WaitSwitch = waitswitch
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DstSlave = params['DstSlave']
+          @ForceSwitch = params['ForceSwitch']
+          @WaitSwitch = params['WaitSwitch']
+        end
+      end
+
+      # SwitchDBInstanceMasterSlave返回参数结构体
+      class SwitchDBInstanceMasterSlaveResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务 ID。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SwitchForUpgrade请求参数结构体
       class SwitchForUpgradeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。

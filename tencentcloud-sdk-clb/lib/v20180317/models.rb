@@ -108,19 +108,27 @@ module TencentCloud
         # @type ListenerId: String
         # @param Domains: HTTPS:443监听器下需要重定向的域名，若不填，对HTTPS:443监听器下的所有域名都设置重定向。
         # @type Domains: Array
+        # @param RewriteCodes: 重定向状态码，可取值301,302,307
+        # @type RewriteCodes: Array
+        # @param TakeUrls: 重定向是否携带匹配的url
+        # @type TakeUrls: Array
 
-        attr_accessor :LoadBalancerId, :ListenerId, :Domains
+        attr_accessor :LoadBalancerId, :ListenerId, :Domains, :RewriteCodes, :TakeUrls
         
-        def initialize(loadbalancerid=nil, listenerid=nil, domains=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, domains=nil, rewritecodes=nil, takeurls=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @Domains = domains
+          @RewriteCodes = rewritecodes
+          @TakeUrls = takeurls
         end
 
         def deserialize(params)
           @LoadBalancerId = params['LoadBalancerId']
           @ListenerId = params['ListenerId']
           @Domains = params['Domains']
+          @RewriteCodes = params['RewriteCodes']
+          @TakeUrls = params['TakeUrls']
         end
       end
 
@@ -4476,17 +4484,29 @@ module TencentCloud
         # @type SourceLocationId: String
         # @param TargetLocationId: 重定向至的目标转发规则ID
         # @type TargetLocationId: String
+        # @param RewriteCode: 重定向状态码，可取值301,302,307
+        # @type RewriteCode: Integer
+        # @param TakeUrl: 重定向是否携带匹配的url，配置RewriteCode时必填
+        # @type TakeUrl: Boolean
+        # @param SourceDomain: 源转发的域名，必须是SourceLocationId对应的域名，配置RewriteCode时必填
+        # @type SourceDomain: String
 
-        attr_accessor :SourceLocationId, :TargetLocationId
+        attr_accessor :SourceLocationId, :TargetLocationId, :RewriteCode, :TakeUrl, :SourceDomain
         
-        def initialize(sourcelocationid=nil, targetlocationid=nil)
+        def initialize(sourcelocationid=nil, targetlocationid=nil, rewritecode=nil, takeurl=nil, sourcedomain=nil)
           @SourceLocationId = sourcelocationid
           @TargetLocationId = targetlocationid
+          @RewriteCode = rewritecode
+          @TakeUrl = takeurl
+          @SourceDomain = sourcedomain
         end
 
         def deserialize(params)
           @SourceLocationId = params['SourceLocationId']
           @TargetLocationId = params['TargetLocationId']
+          @RewriteCode = params['RewriteCode']
+          @TakeUrl = params['TakeUrl']
+          @SourceDomain = params['SourceDomain']
         end
       end
 
@@ -4500,17 +4520,32 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示无重定向。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetLocationId: String
+        # @param RewriteCode: 重定向状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RewriteCode: Integer
+        # @param TakeUrl: 重定向是否携带匹配的url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TakeUrl: Boolean
+        # @param RewriteType: 重定向类型，Manual: 手动重定向，Auto:  自动重定向
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RewriteType: String
 
-        attr_accessor :TargetListenerId, :TargetLocationId
+        attr_accessor :TargetListenerId, :TargetLocationId, :RewriteCode, :TakeUrl, :RewriteType
         
-        def initialize(targetlistenerid=nil, targetlocationid=nil)
+        def initialize(targetlistenerid=nil, targetlocationid=nil, rewritecode=nil, takeurl=nil, rewritetype=nil)
           @TargetListenerId = targetlistenerid
           @TargetLocationId = targetlocationid
+          @RewriteCode = rewritecode
+          @TakeUrl = takeurl
+          @RewriteType = rewritetype
         end
 
         def deserialize(params)
           @TargetListenerId = params['TargetListenerId']
           @TargetLocationId = params['TargetLocationId']
+          @RewriteCode = params['RewriteCode']
+          @TakeUrl = params['TakeUrl']
+          @RewriteType = params['RewriteType']
         end
       end
 

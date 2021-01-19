@@ -1724,7 +1724,7 @@ module TencentCloud
         # @type Vlan: Integer
         # @param BgpPeer: 用户侧BGP，Asn，AuthKey
         # @type BgpPeer: :class:`Tencentcloud::Dc.v20180410.models.BgpPeer`
-        # @param RouteFilterPrefixes: 用户侧网段地址
+        # @param RouteFilterPrefixes: 用户侧过滤网段地址
         # @type RouteFilterPrefixes: :class:`Tencentcloud::Dc.v20180410.models.RouteFilterPrefix`
         # @param TencentAddress: 腾讯侧互联IP
         # @type TencentAddress: String
@@ -1747,10 +1747,12 @@ module TencentCloud
         # @param IPv6Enable: 0：停用IPv6
         # 1: 启用IPv6
         # @type IPv6Enable: Integer
+        # @param CustomerIDCRoutes: 去往用户侧的路由信息
+        # @type CustomerIDCRoutes: Array
 
-        attr_accessor :DirectConnectTunnelId, :Vlan, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :Bandwidth, :EnableBGPCommunity, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :IPv6Enable
+        attr_accessor :DirectConnectTunnelId, :Vlan, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :Bandwidth, :EnableBGPCommunity, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :IPv6Enable, :CustomerIDCRoutes
         
-        def initialize(directconnecttunnelid=nil, vlan=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, bandwidth=nil, enablebgpcommunity=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, ipv6enable=nil)
+        def initialize(directconnecttunnelid=nil, vlan=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, bandwidth=nil, enablebgpcommunity=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, ipv6enable=nil, customeridcroutes=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @Vlan = vlan
           @BgpPeer = bgppeer
@@ -1765,6 +1767,7 @@ module TencentCloud
           @BfdInfo = bfdinfo
           @NqaInfo = nqainfo
           @IPv6Enable = ipv6enable
+          @CustomerIDCRoutes = customeridcroutes
         end
 
         def deserialize(params)
@@ -1790,6 +1793,7 @@ module TencentCloud
             @NqaInfo = NQAInfo.new.deserialize(params[NqaInfo])
           end
           @IPv6Enable = params['IPv6Enable']
+          @CustomerIDCRoutes = params['CustomerIDCRoutes']
         end
       end
 
