@@ -3305,10 +3305,13 @@ module TencentCloud
         # @param Zones: 私有网络内网负载均衡，就近接入模式下规则所落在的可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Zones: Array
+        # @param NfvInfo: CLB是否为NFV，空：不是，l7nfv：七层是NFV。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NfvInfo: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -3357,6 +3360,7 @@ module TencentCloud
           @ClusterTag = clustertag
           @MixIpTarget = mixiptarget
           @Zones = zones
+          @NfvInfo = nfvinfo
         end
 
         def deserialize(params)
@@ -3420,6 +3424,7 @@ module TencentCloud
           @ClusterTag = params['ClusterTag']
           @MixIpTarget = params['MixIpTarget']
           @Zones = params['Zones']
+          @NfvInfo = params['NfvInfo']
         end
       end
 
@@ -3515,10 +3520,16 @@ module TencentCloud
         # @param Isolation: 0：表示未被隔离，1：表示被隔离。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Isolation: Integer
+        # @param SecurityGroup: 负载均衡绑定的安全组列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroup: Array
+        # @param LoadBalancerPassToTarget: 负载均衡安全组上移特性是否开启标识。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerPassToTarget: Integer
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -3549,6 +3560,8 @@ module TencentCloud
           @TargetPort = targetport
           @TargetWeight = targetweight
           @Isolation = isolation
+          @SecurityGroup = securitygroup
+          @LoadBalancerPassToTarget = loadbalancerpasstotarget
         end
 
         def deserialize(params)
@@ -3588,6 +3601,8 @@ module TencentCloud
           @TargetPort = params['TargetPort']
           @TargetWeight = params['TargetWeight']
           @Isolation = params['Isolation']
+          @SecurityGroup = params['SecurityGroup']
+          @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
         end
       end
 

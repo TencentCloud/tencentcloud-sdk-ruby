@@ -170,6 +170,42 @@ module TencentCloud
         end
       end
 
+      # CheckInstanceName请求参数结构体
+      class CheckInstanceNameRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryName: 待创建的实例名称
+        # @type RegistryName: String
+
+        attr_accessor :RegistryName
+        
+        def initialize(registryname=nil)
+          @RegistryName = registryname
+        end
+
+        def deserialize(params)
+          @RegistryName = params['RegistryName']
+        end
+      end
+
+      # CheckInstanceName返回参数结构体
+      class CheckInstanceNameResponse < TencentCloud::Common::AbstractModel
+        # @param IsValidated: 检查结果，true为合法，false为非法
+        # @type IsValidated: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsValidated, :RequestId
+        
+        def initialize(isvalidated=nil, requestid=nil)
+          @IsValidated = isvalidated
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsValidated = params['IsValidated']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateApplicationTriggerPersonal请求参数结构体
       class CreateApplicationTriggerPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 触发器关联的镜像仓库，library/test格式

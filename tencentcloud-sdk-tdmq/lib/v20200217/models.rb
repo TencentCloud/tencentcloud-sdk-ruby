@@ -17,6 +17,87 @@
 module TencentCloud
   module Tdmq
     module V20200217
+      # 用户专享集群信息
+      class BindCluster < TencentCloud::Common::AbstractModel
+        # @param ClusterName: 物理集群的名称
+        # @type ClusterName: String
+
+        attr_accessor :ClusterName
+        
+        def initialize(clustername=nil)
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @ClusterName = params['ClusterName']
+        end
+      end
+
+      # 集群信息集合
+      class Cluster < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id。
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称。
+        # @type ClusterName: String
+        # @param Remark: 说明信息。
+        # @type Remark: String
+        # @param EndPointNum: 接入点数量
+        # @type EndPointNum: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Healthy: 集群是否健康，1表示健康，0表示异常
+        # @type Healthy: Integer
+        # @param HealthyInfo: 集群健康信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthyInfo: String
+        # @param Status: 集群状态，0:创建中，1:正常，2:删除中，3:已删除，5:创建失败，6: 删除失败
+        # @type Status: Integer
+        # @param MaxNamespaceNum: 最大命名空间数量
+        # @type MaxNamespaceNum: Integer
+        # @param MaxTopicNum: 最大Topic数量
+        # @type MaxTopicNum: Integer
+        # @param MaxQps: 最大QPS
+        # @type MaxQps: Integer
+        # @param MessageRetentionTime: 消息保留时间
+        # @type MessageRetentionTime: Integer
+        # @param MaxStorageCapacity: 最大存储容量
+        # @type MaxStorageCapacity: Integer
+
+        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity
+        
+        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Remark = remark
+          @EndPointNum = endpointnum
+          @CreateTime = createtime
+          @Healthy = healthy
+          @HealthyInfo = healthyinfo
+          @Status = status
+          @MaxNamespaceNum = maxnamespacenum
+          @MaxTopicNum = maxtopicnum
+          @MaxQps = maxqps
+          @MessageRetentionTime = messageretentiontime
+          @MaxStorageCapacity = maxstoragecapacity
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Remark = params['Remark']
+          @EndPointNum = params['EndPointNum']
+          @CreateTime = params['CreateTime']
+          @Healthy = params['Healthy']
+          @HealthyInfo = params['HealthyInfo']
+          @Status = params['Status']
+          @MaxNamespaceNum = params['MaxNamespaceNum']
+          @MaxTopicNum = params['MaxTopicNum']
+          @MaxQps = params['MaxQps']
+          @MessageRetentionTime = params['MessageRetentionTime']
+          @MaxStorageCapacity = params['MaxStorageCapacity']
+        end
+      end
+
       # 生产者连接实例
       class Connection < TencentCloud::Common::AbstractModel
         # @param Address: 生产者地址。
@@ -136,6 +217,54 @@ module TencentCloud
         end
       end
 
+      # CreateCluster请求参数结构体
+      class CreateClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterName: 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
+        # @type ClusterName: String
+        # @param BindClusterId: 用户专享物理集群ID，如果不传，则默认在公共集群上创建用户集群资源。
+        # @type BindClusterId: Integer
+        # @param Remark: 说明，128个字符以内。
+        # @type Remark: String
+        # @param Tags: 集群的标签列表
+        # @type Tags: Array
+
+        attr_accessor :ClusterName, :BindClusterId, :Remark, :Tags
+        
+        def initialize(clustername=nil, bindclusterid=nil, remark=nil, tags=nil)
+          @ClusterName = clustername
+          @BindClusterId = bindclusterid
+          @Remark = remark
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ClusterName = params['ClusterName']
+          @BindClusterId = params['BindClusterId']
+          @Remark = params['Remark']
+          @Tags = params['Tags']
+        end
+      end
+
+      # CreateCluster返回参数结构体
+      class CreateClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+        
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateEnvironment请求参数结构体
       class CreateEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
@@ -144,40 +273,47 @@ module TencentCloud
         # @type MsgTTL: Integer
         # @param Remark: 说明，128个字符以内。
         # @type Remark: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId
         
-        def initialize(environmentid=nil, msgttl=nil, remark=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @MsgTTL = params['MsgTTL']
           @Remark = params['Remark']
+          @ClusterId = params['ClusterId']
         end
       end
 
       # CreateEnvironment返回参数结构体
       class CreateEnvironmentResponse < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
+        # @param EnvironmentId: 命名空间名称。
         # @type EnvironmentId: String
         # @param MsgTTL: 未消费消息过期时间，单位：秒。
         # @type MsgTTL: Integer
         # @param Remark: 说明，128个字符以内。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
+        # @param NamespaceId: 命名空间ID
+        # @type NamespaceId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :RequestId
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :NamespaceId, :RequestId
         
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, requestid=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, namespaceid=nil, requestid=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
+          @NamespaceId = namespaceid
           @RequestId = requestid
         end
 
@@ -185,6 +321,7 @@ module TencentCloud
           @EnvironmentId = params['EnvironmentId']
           @MsgTTL = params['MsgTTL']
           @Remark = params['Remark']
+          @NamespaceId = params['NamespaceId']
           @RequestId = params['RequestId']
         end
       end
@@ -201,15 +338,21 @@ module TencentCloud
         # @type IsIdempotent: Boolean
         # @param Remark: 备注，128个字符以内。
         # @type Remark: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
+        # @param AutoCreatePolicyTopic: 是否自动创建死信和重试主题，True 表示创建，False表示不创建，默认自动创建死信和重试主题。
+        # @type AutoCreatePolicyTopic: Boolean
 
-        attr_accessor :EnvironmentId, :TopicName, :SubscriptionName, :IsIdempotent, :Remark
+        attr_accessor :EnvironmentId, :TopicName, :SubscriptionName, :IsIdempotent, :Remark, :ClusterId, :AutoCreatePolicyTopic
         
-        def initialize(environmentid=nil, topicname=nil, subscriptionname=nil, isidempotent=nil, remark=nil)
+        def initialize(environmentid=nil, topicname=nil, subscriptionname=nil, isidempotent=nil, remark=nil, clusterid=nil, autocreatepolicytopic=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @SubscriptionName = subscriptionname
           @IsIdempotent = isidempotent
           @Remark = remark
+          @ClusterId = clusterid
+          @AutoCreatePolicyTopic = autocreatepolicytopic
         end
 
         def deserialize(params)
@@ -218,6 +361,8 @@ module TencentCloud
           @SubscriptionName = params['SubscriptionName']
           @IsIdempotent = params['IsIdempotent']
           @Remark = params['Remark']
+          @ClusterId = params['ClusterId']
+          @AutoCreatePolicyTopic = params['AutoCreatePolicyTopic']
         end
       end
 
@@ -258,15 +403,18 @@ module TencentCloud
         # @type TopicType: Integer
         # @param Remark: 备注，128字符以内。
         # @type Remark: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :TopicType, :Remark
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :TopicType, :Remark, :ClusterId
         
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, topictype=nil, remark=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, topictype=nil, remark=nil, clusterid=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
           @TopicType = topictype
           @Remark = remark
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -275,6 +423,7 @@ module TencentCloud
           @Partitions = params['Partitions']
           @TopicType = params['TopicType']
           @Remark = params['Remark']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -321,19 +470,59 @@ module TencentCloud
         end
       end
 
+      # DeleteCluster请求参数结构体
+      class DeleteClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id，传入需要删除的集群Id。
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteCluster返回参数结构体
+      class DeleteClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群的ID
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+        
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteEnvironments请求参数结构体
       class DeleteEnvironmentsRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentIds: 环境（命名空间）数组，每次最多删除20个。
         # @type EnvironmentIds: Array
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentIds
+        attr_accessor :EnvironmentIds, :ClusterId
         
-        def initialize(environmentids=nil)
+        def initialize(environmentids=nil, clusterid=nil)
           @EnvironmentIds = environmentids
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @EnvironmentIds = params['EnvironmentIds']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -361,15 +550,23 @@ module TencentCloud
       class DeleteSubscriptionsRequest < TencentCloud::Common::AbstractModel
         # @param SubscriptionTopicSets: 订阅关系集合，每次最多删除20个。
         # @type SubscriptionTopicSets: Array
+        # @param ClusterId: pulsar集群Id。
+        # @type ClusterId: String
+        # @param EnvironmentId: 环境（命名空间）名称。
+        # @type EnvironmentId: String
 
-        attr_accessor :SubscriptionTopicSets
+        attr_accessor :SubscriptionTopicSets, :ClusterId, :EnvironmentId
         
-        def initialize(subscriptiontopicsets=nil)
+        def initialize(subscriptiontopicsets=nil, clusterid=nil, environmentid=nil)
           @SubscriptionTopicSets = subscriptiontopicsets
+          @ClusterId = clusterid
+          @EnvironmentId = environmentid
         end
 
         def deserialize(params)
           @SubscriptionTopicSets = params['SubscriptionTopicSets']
+          @ClusterId = params['ClusterId']
+          @EnvironmentId = params['EnvironmentId']
         end
       end
 
@@ -397,15 +594,23 @@ module TencentCloud
       class DeleteTopicsRequest < TencentCloud::Common::AbstractModel
         # @param TopicSets: 主题集合，每次最多删除20个。
         # @type TopicSets: Array
+        # @param ClusterId: pulsar集群Id。
+        # @type ClusterId: String
+        # @param EnvironmentId: 环境（命名空间）名称。
+        # @type EnvironmentId: String
 
-        attr_accessor :TopicSets
+        attr_accessor :TopicSets, :ClusterId, :EnvironmentId
         
-        def initialize(topicsets=nil)
+        def initialize(topicsets=nil, clusterid=nil, environmentid=nil)
           @TopicSets = topicsets
+          @ClusterId = clusterid
+          @EnvironmentId = environmentid
         end
 
         def deserialize(params)
           @TopicSets = params['TopicSets']
+          @ClusterId = params['ClusterId']
+          @EnvironmentId = params['EnvironmentId']
         end
       end
 
@@ -429,19 +634,188 @@ module TencentCloud
         end
       end
 
+      # DescribeBindClusters请求参数结构体
+      class DescribeBindClustersRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBindClusters返回参数结构体
+      class DescribeBindClustersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 专享集群的数量
+        # @type TotalCount: Integer
+        # @param ClusterSet: 专享集群的列表
+        # @type ClusterSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ClusterSet, :RequestId
+        
+        def initialize(totalcount=nil, clusterset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ClusterSet = clusterset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ClusterSet = params['ClusterSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBindVpcs请求参数结构体
+      class DescribeBindVpcsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 起始下标，不填默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，不填则默认为10，最大值为20。
+        # @type Limit: Integer
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
+
+        attr_accessor :Offset, :Limit, :ClusterId
+        
+        def initialize(offset=nil, limit=nil, clusterid=nil)
+          @Offset = offset
+          @Limit = limit
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeBindVpcs返回参数结构体
+      class DescribeBindVpcsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录数。
+        # @type TotalCount: Integer
+        # @param VpcSets: Vpc集合。
+        # @type VpcSets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VpcSets, :RequestId
+        
+        def initialize(totalcount=nil, vpcsets=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VpcSets = vpcsets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @VpcSets = params['VpcSets']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterDetail请求参数结构体
+      class DescribeClusterDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群的ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterDetail返回参数结构体
+      class DescribeClusterDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterSet: 集群的详细信息
+        # @type ClusterSet: :class:`Tencentcloud::Tdmq.v20200217.models.Cluster`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterSet, :RequestId
+        
+        def initialize(clusterset=nil, requestid=nil)
+          @ClusterSet = clusterset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterSet'].nil?
+            @ClusterSet = Cluster.new.deserialize(params[ClusterSet])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusters请求参数结构体
+      class DescribeClustersRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 起始下标，不填默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，不填则默认为10，最大值为20。
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+        
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeClusters返回参数结构体
+      class DescribeClustersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群列表数量
+        # @type TotalCount: Integer
+        # @param ClusterSet: 集群信息列表
+        # @type ClusterSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ClusterSet, :RequestId
+        
+        def initialize(totalcount=nil, clusterset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ClusterSet = clusterset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @ClusterSet = params['ClusterSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnvironmentAttributes请求参数结构体
       class DescribeEnvironmentAttributesRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称。
         # @type EnvironmentId: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId
+        attr_accessor :EnvironmentId, :ClusterId
         
-        def initialize(environmentid=nil)
+        def initialize(environmentid=nil, clusterid=nil)
           @EnvironmentId = environmentid
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -501,19 +875,27 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认为10，最大值为20。
         # @type Limit: Integer
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
+        # @param RoleName: 角色名称
+        # @type RoleName: String
 
-        attr_accessor :EnvironmentId, :Offset, :Limit
+        attr_accessor :EnvironmentId, :Offset, :Limit, :ClusterId, :RoleName
         
-        def initialize(environmentid=nil, offset=nil, limit=nil)
+        def initialize(environmentid=nil, offset=nil, limit=nil, clusterid=nil, rolename=nil)
           @EnvironmentId = environmentid
           @Offset = offset
           @Limit = limit
+          @ClusterId = clusterid
+          @RoleName = rolename
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ClusterId = params['ClusterId']
+          @RoleName = params['RoleName']
         end
       end
 
@@ -601,15 +983,18 @@ module TencentCloud
         # @type Limit: Integer
         # @param ProducerName: 生产者名称，模糊匹配。
         # @type ProducerName: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :ProducerName
+        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :ProducerName, :ClusterId
         
-        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, producername=nil)
+        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, producername=nil, clusterid=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Offset = offset
           @Limit = limit
           @ProducerName = producername
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -618,6 +1003,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ProducerName = params['ProducerName']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -659,16 +1045,19 @@ module TencentCloud
         # @type SubscriptionName: String
         # @param Filters: 数据过滤条件。
         # @type Filters: Array
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :SubscriptionName, :Filters
+        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :SubscriptionName, :Filters, :ClusterId
         
-        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, subscriptionname=nil, filters=nil)
+        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, subscriptionname=nil, filters=nil, clusterid=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Offset = offset
           @Limit = limit
           @SubscriptionName = subscriptionname
           @Filters = filters
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -678,6 +1067,7 @@ module TencentCloud
           @Limit = params['Limit']
           @SubscriptionName = params['SubscriptionName']
           @Filters = params['Filters']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -723,15 +1113,18 @@ module TencentCloud
         # 4：死信队列；
         # 5：事务消息。
         # @type TopicType: Integer
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :TopicType
+        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :TopicType, :ClusterId
         
-        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, topictype=nil)
+        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, topictype=nil, clusterid=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Offset = offset
           @Limit = limit
           @TopicType = topictype
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -740,6 +1133,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @TopicType = params['TopicType']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -767,9 +1161,9 @@ module TencentCloud
         end
       end
 
-      # 环境信息
+      # 命名空间信息
       class Environment < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称
+        # @param EnvironmentId: 命名空间名称
         # @type EnvironmentId: String
         # @param Remark: 说明
         # @type Remark: String
@@ -779,15 +1173,21 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 最近修改时间
         # @type UpdateTime: String
+        # @param NamespaceId: 命名空间ID
+        # @type NamespaceId: String
+        # @param NamespaceName: 命名空间名称
+        # @type NamespaceName: String
 
-        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime
+        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName
         
-        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil)
+        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil)
           @EnvironmentId = environmentid
           @Remark = remark
           @MsgTTL = msgttl
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @NamespaceId = namespaceid
+          @NamespaceName = namespacename
         end
 
         def deserialize(params)
@@ -796,6 +1196,8 @@ module TencentCloud
           @MsgTTL = params['MsgTTL']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @NamespaceId = params['NamespaceId']
+          @NamespaceName = params['NamespaceName']
         end
       end
 
@@ -859,6 +1261,50 @@ module TencentCloud
         end
       end
 
+      # ModifyCluster请求参数结构体
+      class ModifyClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id，需要更新的集群Id。
+        # @type ClusterId: String
+        # @param ClusterName: 更新后的集群名称。
+        # @type ClusterName: String
+        # @param Remark: 说明信息。
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :ClusterName, :Remark
+        
+        def initialize(clusterid=nil, clustername=nil, remark=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyCluster返回参数结构体
+      class ModifyClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群的ID
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+        
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyEnvironmentAttributes请求参数结构体
       class ModifyEnvironmentAttributesRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称。
@@ -867,40 +1313,48 @@ module TencentCloud
         # @type MsgTTL: Integer
         # @param Remark: 备注，字符串最长不超过128。
         # @type Remark: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId
         
-        def initialize(environmentid=nil, msgttl=nil, remark=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @MsgTTL = params['MsgTTL']
           @Remark = params['Remark']
+          @ClusterId = params['ClusterId']
         end
       end
 
       # ModifyEnvironmentAttributes返回参数结构体
       class ModifyEnvironmentAttributesResponse < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
+        # @param EnvironmentId: 命名空间名称。
         # @type EnvironmentId: String
         # @param MsgTTL: 未消费消息过期时间，单位：秒。
         # @type MsgTTL: Integer
         # @param Remark: 备注，字符串最长不超过128。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
+        # @param NamespaceId: 命名空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :RequestId
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :NamespaceId, :RequestId
         
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, requestid=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, namespaceid=nil, requestid=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
+          @NamespaceId = namespaceid
           @RequestId = requestid
         end
 
@@ -908,6 +1362,7 @@ module TencentCloud
           @EnvironmentId = params['EnvironmentId']
           @MsgTTL = params['MsgTTL']
           @Remark = params['Remark']
+          @NamespaceId = params['NamespaceId']
           @RequestId = params['RequestId']
         end
       end
@@ -922,14 +1377,17 @@ module TencentCloud
         # @type Partitions: Integer
         # @param Remark: 备注，128字符以内。
         # @type Remark: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark, :ClusterId
         
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, remark=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, remark=nil, clusterid=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
           @Remark = remark
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -937,6 +1395,7 @@ module TencentCloud
           @TopicName = params['TopicName']
           @Partitions = params['Partitions']
           @Remark = params['Remark']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -1081,14 +1540,17 @@ module TencentCloud
         # @type Subscription: String
         # @param ToTimestamp: 时间戳，精确到毫秒。
         # @type ToTimestamp: Integer
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Subscription, :ToTimestamp
+        attr_accessor :EnvironmentId, :TopicName, :Subscription, :ToTimestamp, :ClusterId
         
-        def initialize(environmentid=nil, topicname=nil, subscription=nil, totimestamp=nil)
+        def initialize(environmentid=nil, topicname=nil, subscription=nil, totimestamp=nil, clusterid=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Subscription = subscription
           @ToTimestamp = totimestamp
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -1096,6 +1558,7 @@ module TencentCloud
           @TopicName = params['TopicName']
           @Subscription = params['Subscription']
           @ToTimestamp = params['ToTimestamp']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -1239,6 +1702,26 @@ module TencentCloud
         end
       end
 
+      # 标签的key/value的类型
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签的key的值
+        # @type TagKey: String
+        # @param TagValue: 标签的Value的值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 主题实例
       class Topic < TencentCloud::Common::AbstractModel
         # @param AverageMsgSize: 最后一次间隔内发布消息的平均byte大小。
@@ -1369,6 +1852,43 @@ module TencentCloud
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @TopicName = params['TopicName']
+        end
+      end
+
+      # vcp绑定记录
+      class VpcBindRecord < TencentCloud::Common::AbstractModel
+        # @param UniqueVpcId: 租户Vpc Id
+        # @type UniqueVpcId: String
+        # @param UniqueSubnetId: 租户Vpc子网Id
+        # @type UniqueSubnetId: String
+        # @param RouterId: 路由Id
+        # @type RouterId: String
+        # @param Ip: Vpc的Id
+        # @type Ip: String
+        # @param Port: Vpc的Port
+        # @type Port: Integer
+        # @param Remark: 说明，128个字符以内
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :UniqueVpcId, :UniqueSubnetId, :RouterId, :Ip, :Port, :Remark
+        
+        def initialize(uniquevpcid=nil, uniquesubnetid=nil, routerid=nil, ip=nil, port=nil, remark=nil)
+          @UniqueVpcId = uniquevpcid
+          @UniqueSubnetId = uniquesubnetid
+          @RouterId = routerid
+          @Ip = ip
+          @Port = port
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @UniqueVpcId = params['UniqueVpcId']
+          @UniqueSubnetId = params['UniqueSubnetId']
+          @RouterId = params['RouterId']
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @Remark = params['Remark']
         end
       end
 

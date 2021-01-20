@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'TDMQ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 创建用户的集群
+
+        # @param request: Request instance for CreateCluster.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateClusterRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::CreateClusterResponse`
+        def CreateCluster(request)
+          body = send_request('CreateCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于在用户账户下创建消息队列 Tdmq环境（命名空间）
 
         # @param request: Request instance for CreateEnvironment.
@@ -97,6 +121,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除集群
+
+        # @param request: Request instance for DeleteCluster.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteClusterRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteClusterResponse`
+        def DeleteCluster(request)
+          body = send_request('DeleteCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除租户下的环境
 
         # @param request: Request instance for DeleteEnvironments.
@@ -155,6 +203,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTopicsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户绑定的专享集群列表
+
+        # @param request: Request instance for DescribeBindClusters.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeBindClustersRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeBindClustersResponse`
+        def DescribeBindClusters(request)
+          body = send_request('DescribeBindClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBindClustersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取租户VPC绑定关系
+
+        # @param request: Request instance for DescribeBindVpcs.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeBindVpcsRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeBindVpcsResponse`
+        def DescribeBindVpcs(request)
+          body = send_request('DescribeBindVpcs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBindVpcsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取集群的详细信息
+
+        # @param request: Request instance for DescribeClusterDetail.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeClusterDetailRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeClusterDetailResponse`
+        def DescribeClusterDetail(request)
+          body = send_request('DescribeClusterDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取集群列表
+
+        # @param request: Request instance for DescribeClusters.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeClustersRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeClustersResponse`
+        def DescribeClusters(request)
+          body = send_request('DescribeClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClustersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -299,6 +443,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTopicsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新集群信息
+
+        # @param request: Request instance for ModifyCluster.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyClusterRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyClusterResponse`
+        def ModifyCluster(request)
+          body = send_request('ModifyCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterResponse.new
             model.deserialize(response['Response'])
             model
           else

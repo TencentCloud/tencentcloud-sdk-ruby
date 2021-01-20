@@ -39,10 +39,14 @@ module TencentCloud
         # @type OsCustomizeType: String
         # @param FeatureIdList: 镜像特征ID列表
         # @type FeatureIdList: Array
+        # @param InstanceAdvancedSettings: 实例额外需要设置参数信息
+        # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tsf.v20180326.models.InstanceAdvancedSettings`
+        # @param SecurityGroupIds: 部署组ID
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :ClusterId, :InstanceIdList, :OsName, :ImageId, :Password, :KeyId, :SgId, :InstanceImportMode, :OsCustomizeType, :FeatureIdList
+        attr_accessor :ClusterId, :InstanceIdList, :OsName, :ImageId, :Password, :KeyId, :SgId, :InstanceImportMode, :OsCustomizeType, :FeatureIdList, :InstanceAdvancedSettings, :SecurityGroupIds
         
-        def initialize(clusterid=nil, instanceidlist=nil, osname=nil, imageid=nil, password=nil, keyid=nil, sgid=nil, instanceimportmode=nil, oscustomizetype=nil, featureidlist=nil)
+        def initialize(clusterid=nil, instanceidlist=nil, osname=nil, imageid=nil, password=nil, keyid=nil, sgid=nil, instanceimportmode=nil, oscustomizetype=nil, featureidlist=nil, instanceadvancedsettings=nil, securitygroupids=nil)
           @ClusterId = clusterid
           @InstanceIdList = instanceidlist
           @OsName = osname
@@ -53,6 +57,8 @@ module TencentCloud
           @InstanceImportMode = instanceimportmode
           @OsCustomizeType = oscustomizetype
           @FeatureIdList = featureidlist
+          @InstanceAdvancedSettings = instanceadvancedsettings
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -66,6 +72,10 @@ module TencentCloud
           @InstanceImportMode = params['InstanceImportMode']
           @OsCustomizeType = params['OsCustomizeType']
           @FeatureIdList = params['FeatureIdList']
+          unless params['InstanceAdvancedSettings'].nil?
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params[InstanceAdvancedSettings])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -103,19 +113,24 @@ module TencentCloud
         # @param TimeoutInstanceIds: 添加集群超时的节点列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeoutInstanceIds: Array
+        # @param FailedReasons: 失败的节点的失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedReasons: Array
 
-        attr_accessor :FailedInstanceIds, :SuccInstanceIds, :TimeoutInstanceIds
+        attr_accessor :FailedInstanceIds, :SuccInstanceIds, :TimeoutInstanceIds, :FailedReasons
         
-        def initialize(failedinstanceids=nil, succinstanceids=nil, timeoutinstanceids=nil)
+        def initialize(failedinstanceids=nil, succinstanceids=nil, timeoutinstanceids=nil, failedreasons=nil)
           @FailedInstanceIds = failedinstanceids
           @SuccInstanceIds = succinstanceids
           @TimeoutInstanceIds = timeoutinstanceids
+          @FailedReasons = failedreasons
         end
 
         def deserialize(params)
           @FailedInstanceIds = params['FailedInstanceIds']
           @SuccInstanceIds = params['SuccInstanceIds']
           @TimeoutInstanceIds = params['TimeoutInstanceIds']
+          @FailedReasons = params['FailedReasons']
         end
       end
 
@@ -337,7 +352,7 @@ module TencentCloud
         end
       end
 
-      # ApiDetailResponse
+      # ApiDetailResponse描述
       class ApiDetailResponse < TencentCloud::Common::AbstractModel
         # @param Request: API 请求参数
         # @type Request: Array
@@ -355,16 +370,20 @@ module TencentCloud
         # @param Status: API 状态 0:离线 1:在线，默认0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param Description: API 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :Request, :Response, :Definitions, :RequestContentType, :CanRun, :Status
+        attr_accessor :Request, :Response, :Definitions, :RequestContentType, :CanRun, :Status, :Description
         
-        def initialize(request=nil, response=nil, definitions=nil, requestcontenttype=nil, canrun=nil, status=nil)
+        def initialize(request=nil, response=nil, definitions=nil, requestcontenttype=nil, canrun=nil, status=nil, description=nil)
           @Request = request
           @Response = response
           @Definitions = definitions
           @RequestContentType = requestcontenttype
           @CanRun = canrun
           @Status = status
+          @Description = description
         end
 
         def deserialize(params)
@@ -374,6 +393,7 @@ module TencentCloud
           @RequestContentType = params['RequestContentType']
           @CanRun = params['CanRun']
           @Status = params['Status']
+          @Description = params['Description']
         end
       end
 
@@ -725,10 +745,13 @@ module TencentCloud
         # @param ApigatewayServiceId: Apigateway的serviceId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApigatewayServiceId: String
+        # @param ApplicationRemarkName: 应用备注名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationRemarkName: String
 
-        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationType, :MicroserviceType, :ProgLang, :CreateTime, :UpdateTime, :ApplicationResourceType, :ApplicationRuntimeType, :ApigatewayServiceId
+        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationType, :MicroserviceType, :ProgLang, :CreateTime, :UpdateTime, :ApplicationResourceType, :ApplicationRuntimeType, :ApigatewayServiceId, :ApplicationRemarkName
         
-        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationtype=nil, microservicetype=nil, proglang=nil, createtime=nil, updatetime=nil, applicationresourcetype=nil, applicationruntimetype=nil, apigatewayserviceid=nil)
+        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationtype=nil, microservicetype=nil, proglang=nil, createtime=nil, updatetime=nil, applicationresourcetype=nil, applicationruntimetype=nil, apigatewayserviceid=nil, applicationremarkname=nil)
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @ApplicationDesc = applicationdesc
@@ -740,6 +763,7 @@ module TencentCloud
           @ApplicationResourceType = applicationresourcetype
           @ApplicationRuntimeType = applicationruntimetype
           @ApigatewayServiceId = apigatewayserviceid
+          @ApplicationRemarkName = applicationremarkname
         end
 
         def deserialize(params)
@@ -754,6 +778,7 @@ module TencentCloud
           @ApplicationResourceType = params['ApplicationResourceType']
           @ApplicationRuntimeType = params['ApplicationRuntimeType']
           @ApigatewayServiceId = params['ApigatewayServiceId']
+          @ApplicationRemarkName = params['ApplicationRemarkName']
         end
       end
 
@@ -1828,10 +1853,12 @@ module TencentCloud
         # @type ApplicationResourceType: String
         # @param ApplicationRuntimeType: 应用runtime类型
         # @type ApplicationRuntimeType: String
+        # @param ProgramId: 需要绑定的数据集ID
+        # @type ProgramId: String
 
-        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType
+        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId
         
-        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil)
+        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil)
           @ApplicationName = applicationname
           @ApplicationType = applicationtype
           @MicroserviceType = microservicetype
@@ -1839,6 +1866,7 @@ module TencentCloud
           @ApplicationLogConfig = applicationlogconfig
           @ApplicationResourceType = applicationresourcetype
           @ApplicationRuntimeType = applicationruntimetype
+          @ProgramId = programid
         end
 
         def deserialize(params)
@@ -1849,6 +1877,7 @@ module TencentCloud
           @ApplicationLogConfig = params['ApplicationLogConfig']
           @ApplicationResourceType = params['ApplicationResourceType']
           @ApplicationRuntimeType = params['ApplicationRuntimeType']
+          @ProgramId = params['ProgramId']
         end
       end
 
@@ -1893,10 +1922,16 @@ module TencentCloud
         # @type SubnetId: String
         # @param ClusterVersion: 集群版本
         # @type ClusterVersion: String
+        # @param MaxNodePodNum: 集群中每个Node上最大的Pod数量。取值范围4～256。不为2的幂值时会向上取最接近的2的幂值。
+        # @type MaxNodePodNum: Integer
+        # @param MaxClusterServiceNum: 集群最大的service数量。取值范围32～32768，不为2的幂值时会向上取最接近的2的幂值。
+        # @type MaxClusterServiceNum: Integer
+        # @param ProgramId: 需要绑定的数据集ID
+        # @type ProgramId: String
 
-        attr_accessor :ClusterName, :ClusterType, :VpcId, :ClusterCIDR, :ClusterDesc, :TsfRegionId, :TsfZoneId, :SubnetId, :ClusterVersion
+        attr_accessor :ClusterName, :ClusterType, :VpcId, :ClusterCIDR, :ClusterDesc, :TsfRegionId, :TsfZoneId, :SubnetId, :ClusterVersion, :MaxNodePodNum, :MaxClusterServiceNum, :ProgramId
         
-        def initialize(clustername=nil, clustertype=nil, vpcid=nil, clustercidr=nil, clusterdesc=nil, tsfregionid=nil, tsfzoneid=nil, subnetid=nil, clusterversion=nil)
+        def initialize(clustername=nil, clustertype=nil, vpcid=nil, clustercidr=nil, clusterdesc=nil, tsfregionid=nil, tsfzoneid=nil, subnetid=nil, clusterversion=nil, maxnodepodnum=nil, maxclusterservicenum=nil, programid=nil)
           @ClusterName = clustername
           @ClusterType = clustertype
           @VpcId = vpcid
@@ -1906,6 +1941,9 @@ module TencentCloud
           @TsfZoneId = tsfzoneid
           @SubnetId = subnetid
           @ClusterVersion = clusterversion
+          @MaxNodePodNum = maxnodepodnum
+          @MaxClusterServiceNum = maxclusterservicenum
+          @ProgramId = programid
         end
 
         def deserialize(params)
@@ -1918,6 +1956,9 @@ module TencentCloud
           @TsfZoneId = params['TsfZoneId']
           @SubnetId = params['SubnetId']
           @ClusterVersion = params['ClusterVersion']
+          @MaxNodePodNum = params['MaxNodePodNum']
+          @MaxClusterServiceNum = params['MaxClusterServiceNum']
+          @ProgramId = params['ProgramId']
         end
       end
 
@@ -2387,10 +2428,12 @@ module TencentCloud
         # @type NamespaceId: String
         # @param IsHaEnable: 是否开启高可用
         # @type IsHaEnable: String
+        # @param ProgramId: 需要绑定的数据集ID
+        # @type ProgramId: String
 
-        attr_accessor :NamespaceName, :ClusterId, :NamespaceDesc, :NamespaceResourceType, :NamespaceType, :NamespaceId, :IsHaEnable
+        attr_accessor :NamespaceName, :ClusterId, :NamespaceDesc, :NamespaceResourceType, :NamespaceType, :NamespaceId, :IsHaEnable, :ProgramId
         
-        def initialize(namespacename=nil, clusterid=nil, namespacedesc=nil, namespaceresourcetype=nil, namespacetype=nil, namespaceid=nil, ishaenable=nil)
+        def initialize(namespacename=nil, clusterid=nil, namespacedesc=nil, namespaceresourcetype=nil, namespacetype=nil, namespaceid=nil, ishaenable=nil, programid=nil)
           @NamespaceName = namespacename
           @ClusterId = clusterid
           @NamespaceDesc = namespacedesc
@@ -2398,6 +2441,7 @@ module TencentCloud
           @NamespaceType = namespacetype
           @NamespaceId = namespaceid
           @IsHaEnable = ishaenable
+          @ProgramId = programid
         end
 
         def deserialize(params)
@@ -2408,6 +2452,7 @@ module TencentCloud
           @NamespaceType = params['NamespaceType']
           @NamespaceId = params['NamespaceId']
           @IsHaEnable = params['IsHaEnable']
+          @ProgramId = params['ProgramId']
         end
       end
 
@@ -2416,6 +2461,44 @@ module TencentCloud
         # @param Result: 成功时为命名空间ID，失败为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePathRewrites请求参数结构体
+      class CreatePathRewritesRequest < TencentCloud::Common::AbstractModel
+        # @param PathRewrites: 路径重写列表
+        # @type PathRewrites: :class:`Tencentcloud::Tsf.v20180326.models.PathRewriteCreateObject`
+
+        attr_accessor :PathRewrites
+        
+        def initialize(pathrewrites=nil)
+          @PathRewrites = pathrewrites
+        end
+
+        def deserialize(params)
+          unless params['PathRewrites'].nil?
+            @PathRewrites = PathRewriteCreateObject.new.deserialize(params[PathRewrites])
+          end
+        end
+      end
+
+      # CreatePathRewrites返回参数结构体
+      class CreatePathRewritesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: true/false
+        # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3086,6 +3169,42 @@ module TencentCloud
         # @param Result: 删除命名空间是否成功。
         # true：删除成功。
         # false：删除失败。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePathRewrites请求参数结构体
+      class DeletePathRewritesRequest < TencentCloud::Common::AbstractModel
+        # @param PathRewriteIds: 路径重写规则IDs
+        # @type PathRewriteIds: Array
+
+        attr_accessor :PathRewriteIds
+        
+        def initialize(pathrewriteids=nil)
+          @PathRewriteIds = pathrewriteids
+        end
+
+        def deserialize(params)
+          @PathRewriteIds = params['PathRewriteIds']
+        end
+      end
+
+      # DeletePathRewrites返回参数结构体
+      class DeletePathRewritesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: true/false
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5386,6 +5505,94 @@ module TencentCloud
         end
       end
 
+      # DescribePathRewrite请求参数结构体
+      class DescribePathRewriteRequest < TencentCloud::Common::AbstractModel
+        # @param PathRewriteId: 路径重写规则ID
+        # @type PathRewriteId: String
+
+        attr_accessor :PathRewriteId
+        
+        def initialize(pathrewriteid=nil)
+          @PathRewriteId = pathrewriteid
+        end
+
+        def deserialize(params)
+          @PathRewriteId = params['PathRewriteId']
+        end
+      end
+
+      # DescribePathRewrite返回参数结构体
+      class DescribePathRewriteResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 路径重写规则对象
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.PathRewrite`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = PathRewrite.new.deserialize(params[Result])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePathRewrites请求参数结构体
+      class DescribePathRewritesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayGroupId: 网关部署组ID
+        # @type GatewayGroupId: String
+        # @param SearchWord: 根据正则表达式或替换的内容模糊查询
+        # @type SearchWord: String
+        # @param Limit: 每页数量
+        # @type Limit: Integer
+        # @param Offset: 起始偏移量
+        # @type Offset: Integer
+
+        attr_accessor :GatewayGroupId, :SearchWord, :Limit, :Offset
+        
+        def initialize(gatewaygroupid=nil, searchword=nil, limit=nil, offset=nil)
+          @GatewayGroupId = gatewaygroupid
+          @SearchWord = searchword
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @GatewayGroupId = params['GatewayGroupId']
+          @SearchWord = params['SearchWord']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePathRewrites返回参数结构体
+      class DescribePathRewritesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 路径重写翻页对象
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.PathRewritePage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = PathRewritePage.new.deserialize(params[Result])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePkgs请求参数结构体
       class DescribePkgsRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID（只传入应用ID，返回该应用下所有软件包信息）
@@ -7487,6 +7694,29 @@ module TencentCloud
         end
       end
 
+      # 容器导入实例高级设置
+      class InstanceAdvancedSettings < TencentCloud::Common::AbstractModel
+        # @param MountTarget: 数据盘挂载点, 默认不挂载数据盘. 已格式化的 ext3，ext4，xfs 文件系统的数据盘将直接挂载，其他文件系统或未格式化的数据盘将自动格式化为ext4 并挂载，请注意备份数据! 无数据盘或有多块数据盘的云主机此设置不生效。
+        # 注意，注意，多盘场景请使用下方的DataDisks数据结构，设置对应的云盘类型、云盘大小、挂载路径、是否格式化等信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountTarget: String
+        # @param DockerGraphPath: dockerd --graph 指定值, 默认为 /var/lib/docker
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DockerGraphPath: String
+
+        attr_accessor :MountTarget, :DockerGraphPath
+        
+        def initialize(mounttarget=nil, dockergraphpath=nil)
+          @MountTarget = mounttarget
+          @DockerGraphPath = dockergraphpath
+        end
+
+        def deserialize(params)
+          @MountTarget = params['MountTarget']
+          @DockerGraphPath = params['DockerGraphPath']
+        end
+      end
+
       # 泳道部署组
       class LaneGroup < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID
@@ -8060,6 +8290,58 @@ module TencentCloud
         end
       end
 
+      # ModifyPathRewrite请求参数结构体
+      class ModifyPathRewriteRequest < TencentCloud::Common::AbstractModel
+        # @param PathRewriteId: 路径重写规则ID
+        # @type PathRewriteId: String
+        # @param Regex: 正则表达式
+        # @type Regex: String
+        # @param Replacement: 替换的内容
+        # @type Replacement: String
+        # @param Blocked: 是否屏蔽映射后路径，Y: 是 N: 否
+        # @type Blocked: String
+        # @param Order: 规则顺序，越小优先级越高
+        # @type Order: Integer
+
+        attr_accessor :PathRewriteId, :Regex, :Replacement, :Blocked, :Order
+        
+        def initialize(pathrewriteid=nil, regex=nil, replacement=nil, blocked=nil, order=nil)
+          @PathRewriteId = pathrewriteid
+          @Regex = regex
+          @Replacement = replacement
+          @Blocked = blocked
+          @Order = order
+        end
+
+        def deserialize(params)
+          @PathRewriteId = params['PathRewriteId']
+          @Regex = params['Regex']
+          @Replacement = params['Replacement']
+          @Blocked = params['Blocked']
+          @Order = params['Order']
+        end
+      end
+
+      # ModifyPathRewrite返回参数结构体
+      class ModifyPathRewriteResponse < TencentCloud::Common::AbstractModel
+        # @param Result: true/false
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTask请求参数结构体
       class ModifyTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -8603,6 +8885,94 @@ module TencentCloud
           @GroupCount = params['GroupCount']
           @PackageSpaceUsed = params['PackageSpaceUsed']
           @ConsulInstanceCount = params['ConsulInstanceCount']
+        end
+      end
+
+      # 路径重写
+      class PathRewrite < TencentCloud::Common::AbstractModel
+        # @param PathRewriteId: 路径重写规则ID
+        # @type PathRewriteId: String
+        # @param GatewayGroupId: 网关部署组ID
+        # @type GatewayGroupId: String
+        # @param Regex: 正则表达式
+        # @type Regex: String
+        # @param Replacement: 替换的内容
+        # @type Replacement: String
+        # @param Blocked: 是否屏蔽映射后路径，Y: 是 N: 否
+        # @type Blocked: String
+        # @param Order: 规则顺序，越小优先级越高
+        # @type Order: Integer
+
+        attr_accessor :PathRewriteId, :GatewayGroupId, :Regex, :Replacement, :Blocked, :Order
+        
+        def initialize(pathrewriteid=nil, gatewaygroupid=nil, regex=nil, replacement=nil, blocked=nil, order=nil)
+          @PathRewriteId = pathrewriteid
+          @GatewayGroupId = gatewaygroupid
+          @Regex = regex
+          @Replacement = replacement
+          @Blocked = blocked
+          @Order = order
+        end
+
+        def deserialize(params)
+          @PathRewriteId = params['PathRewriteId']
+          @GatewayGroupId = params['GatewayGroupId']
+          @Regex = params['Regex']
+          @Replacement = params['Replacement']
+          @Blocked = params['Blocked']
+          @Order = params['Order']
+        end
+      end
+
+      # 路径重写创建对象
+      class PathRewriteCreateObject < TencentCloud::Common::AbstractModel
+        # @param GatewayGroupId: 网关部署组ID
+        # @type GatewayGroupId: String
+        # @param Regex: 正则表达式
+        # @type Regex: String
+        # @param Replacement: 替换的内容
+        # @type Replacement: String
+        # @param Blocked: 是否屏蔽映射后路径，Y: 是 N: 否
+        # @type Blocked: String
+        # @param Order: 规则顺序，越小优先级越高
+        # @type Order: Integer
+
+        attr_accessor :GatewayGroupId, :Regex, :Replacement, :Blocked, :Order
+        
+        def initialize(gatewaygroupid=nil, regex=nil, replacement=nil, blocked=nil, order=nil)
+          @GatewayGroupId = gatewaygroupid
+          @Regex = regex
+          @Replacement = replacement
+          @Blocked = blocked
+          @Order = order
+        end
+
+        def deserialize(params)
+          @GatewayGroupId = params['GatewayGroupId']
+          @Regex = params['Regex']
+          @Replacement = params['Replacement']
+          @Blocked = params['Blocked']
+          @Order = params['Order']
+        end
+      end
+
+      # 路径重写翻页对象
+      class PathRewritePage < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param Content: 路径重写规则列表
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Content = params['Content']
         end
       end
 

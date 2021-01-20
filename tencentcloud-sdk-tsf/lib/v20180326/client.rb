@@ -457,6 +457,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建路径重写
+
+        # @param request: Request instance for CreatePathRewrites.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreatePathRewritesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreatePathRewritesResponse`
+        def CreatePathRewrites(request)
+          body = send_request('CreatePathRewrites', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePathRewritesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建公共配置项
 
         # @param request: Request instance for CreatePublicConfig.
@@ -779,6 +803,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteNamespaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除路径重写
+
+        # @param request: Request instance for DeletePathRewrites.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DeletePathRewritesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DeletePathRewritesResponse`
+        def DeletePathRewrites(request)
+          body = send_request('DeletePathRewrites', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePathRewritesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1851,6 +1899,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询路径重写
+
+        # @param request: Request instance for DescribePathRewrite.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribePathRewriteRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribePathRewriteResponse`
+        def DescribePathRewrite(request)
+          body = send_request('DescribePathRewrite', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePathRewriteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询路径重写列表
+
+        # @param request: Request instance for DescribePathRewrites.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribePathRewritesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribePathRewritesResponse`
+        def DescribePathRewrites(request)
+          body = send_request('DescribePathRewrites', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePathRewritesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 无
 
         # @param request: Request instance for DescribePkgs.
@@ -2582,6 +2678,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMicroserviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改路径重写
+
+        # @param request: Request instance for ModifyPathRewrite.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::ModifyPathRewriteRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::ModifyPathRewriteResponse`
+        def ModifyPathRewrite(request)
+          body = send_request('ModifyPathRewrite', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPathRewriteResponse.new
             model.deserialize(response['Response'])
             model
           else
