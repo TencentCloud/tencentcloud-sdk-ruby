@@ -221,7 +221,7 @@ module TencentCloud
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterName: 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
         # @type ClusterName: String
-        # @param BindClusterId: 用户专享物理集群ID，如果不传，则默认在公共集群上创建用户集群资源。
+        # @param BindClusterId: 用户专享物理集群ID，如果不传，则默认在公共集群上创建用户集群资源。
         # @type BindClusterId: Integer
         # @param Remark: 说明，128个字符以内。
         # @type Remark: String
@@ -295,7 +295,7 @@ module TencentCloud
 
       # CreateEnvironment返回参数结构体
       class CreateEnvironmentResponse < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 命名空间名称。
+        # @param EnvironmentId: 环境（命名空间）名称。
         # @type EnvironmentId: String
         # @param MsgTTL: 未消费消息过期时间，单位：秒。
         # @type MsgTTL: Integer
@@ -869,7 +869,7 @@ module TencentCloud
 
       # DescribeEnvironmentRoles请求参数结构体
       class DescribeEnvironmentRolesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）
+        # @param EnvironmentId: 环境（命名空间）名称。
         # @type EnvironmentId: String
         # @param Offset: 起始下标，不填默认为0。
         # @type Offset: Integer
@@ -903,7 +903,7 @@ module TencentCloud
       class DescribeEnvironmentRolesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 记录数。
         # @type TotalCount: Integer
-        # @param EnvironmentRoleSets: 环境角色集合。
+        # @param EnvironmentRoleSets: 命名空间角色集合。
         # @type EnvironmentRoleSets: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -925,33 +925,37 @@ module TencentCloud
 
       # DescribeEnvironments请求参数结构体
       class DescribeEnvironmentsRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称，模糊搜索。
+        # @param EnvironmentId: 命名空间名称，模糊搜索。
         # @type EnvironmentId: String
         # @param Offset: 起始下标，不填默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认为10，最大值为20。
         # @type Limit: Integer
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :Offset, :Limit
+        attr_accessor :EnvironmentId, :Offset, :Limit, :ClusterId
         
-        def initialize(environmentid=nil, offset=nil, limit=nil)
+        def initialize(environmentid=nil, offset=nil, limit=nil, clusterid=nil)
           @EnvironmentId = environmentid
           @Offset = offset
           @Limit = limit
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ClusterId = params['ClusterId']
         end
       end
 
       # DescribeEnvironments返回参数结构体
       class DescribeEnvironmentsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 环境（命名空间）记录数。
+        # @param TotalCount: 命名空间记录数。
         # @type TotalCount: Integer
-        # @param EnvironmentSet: 环境（命名空间）集合数组。
+        # @param EnvironmentSet: 命名空间集合数组。
         # @type EnvironmentSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1263,7 +1267,7 @@ module TencentCloud
 
       # ModifyCluster请求参数结构体
       class ModifyClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群Id，需要更新的集群Id。
+        # @param ClusterId: Pulsar 集群的ID，需要更新的集群Id。
         # @type ClusterId: String
         # @param ClusterName: 更新后的集群名称。
         # @type ClusterName: String
@@ -1287,7 +1291,7 @@ module TencentCloud
 
       # ModifyCluster返回参数结构体
       class ModifyClusterResponse < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群的ID
+        # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1307,13 +1311,13 @@ module TencentCloud
 
       # ModifyEnvironmentAttributes请求参数结构体
       class ModifyEnvironmentAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
+        # @param EnvironmentId: 命名空间名称。
         # @type EnvironmentId: String
         # @param MsgTTL: 未消费消息过期时间，单位：秒，最大1296000。
         # @type MsgTTL: Integer
         # @param Remark: 备注，字符串最长不超过128。
         # @type Remark: String
-        # @param ClusterId: Pulsar 集群的ID
+        # @param ClusterId: 集群ID
         # @type ClusterId: String
 
         attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId
@@ -1532,7 +1536,7 @@ module TencentCloud
 
       # ResetMsgSubOffsetByTimestamp请求参数结构体
       class ResetMsgSubOffsetByTimestampRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
+        # @param EnvironmentId: 命名空间名称。
         # @type EnvironmentId: String
         # @param TopicName: 主题名称。
         # @type TopicName: String

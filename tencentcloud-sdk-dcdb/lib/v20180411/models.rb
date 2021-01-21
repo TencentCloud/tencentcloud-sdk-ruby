@@ -768,10 +768,12 @@ module TencentCloud
         # @type ShardSlaveZones: Array
         # @param Cpu: CPU核数
         # @type Cpu: Integer
+        # @param Range: 分片ShardKey的范围（总共64个哈希值），例如： 0-31，32-63
+        # @type Range: String
 
-        attr_accessor :InstanceId, :ShardSerialId, :ShardInstanceId, :Status, :StatusDesc, :CreateTime, :VpcId, :SubnetId, :ProjectId, :Region, :Zone, :Memory, :Storage, :PeriodEndTime, :NodeCount, :StorageUsage, :MemoryUsage, :ShardId, :Pid, :ProxyVersion, :Paymode, :ShardMasterZone, :ShardSlaveZones, :Cpu
+        attr_accessor :InstanceId, :ShardSerialId, :ShardInstanceId, :Status, :StatusDesc, :CreateTime, :VpcId, :SubnetId, :ProjectId, :Region, :Zone, :Memory, :Storage, :PeriodEndTime, :NodeCount, :StorageUsage, :MemoryUsage, :ShardId, :Pid, :ProxyVersion, :Paymode, :ShardMasterZone, :ShardSlaveZones, :Cpu, :Range
         
-        def initialize(instanceid=nil, shardserialid=nil, shardinstanceid=nil, status=nil, statusdesc=nil, createtime=nil, vpcid=nil, subnetid=nil, projectid=nil, region=nil, zone=nil, memory=nil, storage=nil, periodendtime=nil, nodecount=nil, storageusage=nil, memoryusage=nil, shardid=nil, pid=nil, proxyversion=nil, paymode=nil, shardmasterzone=nil, shardslavezones=nil, cpu=nil)
+        def initialize(instanceid=nil, shardserialid=nil, shardinstanceid=nil, status=nil, statusdesc=nil, createtime=nil, vpcid=nil, subnetid=nil, projectid=nil, region=nil, zone=nil, memory=nil, storage=nil, periodendtime=nil, nodecount=nil, storageusage=nil, memoryusage=nil, shardid=nil, pid=nil, proxyversion=nil, paymode=nil, shardmasterzone=nil, shardslavezones=nil, cpu=nil, range=nil)
           @InstanceId = instanceid
           @ShardSerialId = shardserialid
           @ShardInstanceId = shardinstanceid
@@ -796,6 +798,7 @@ module TencentCloud
           @ShardMasterZone = shardmasterzone
           @ShardSlaveZones = shardslavezones
           @Cpu = cpu
+          @Range = range
         end
 
         def deserialize(params)
@@ -823,6 +826,7 @@ module TencentCloud
           @ShardMasterZone = params['ShardMasterZone']
           @ShardSlaveZones = params['ShardSlaveZones']
           @Cpu = params['Cpu']
+          @Range = params['Range']
         end
       end
 

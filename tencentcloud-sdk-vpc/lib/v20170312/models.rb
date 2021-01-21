@@ -8432,10 +8432,12 @@ module TencentCloud
         # @type FlowLogDescription: String
         # @param CreatedTime: 流日志创建时间
         # @type CreatedTime: String
+        # @param TagSet: 标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        # @type TagSet: Array
 
-        attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :FlowLogDescription, :CreatedTime
+        attr_accessor :VpcId, :FlowLogId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :CloudLogState, :FlowLogDescription, :CreatedTime, :TagSet
         
-        def initialize(vpcid=nil, flowlogid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, cloudlogstate=nil, flowlogdescription=nil, createdtime=nil)
+        def initialize(vpcid=nil, flowlogid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, cloudlogstate=nil, flowlogdescription=nil, createdtime=nil, tagset=nil)
           @VpcId = vpcid
           @FlowLogId = flowlogid
           @FlowLogName = flowlogname
@@ -8446,6 +8448,7 @@ module TencentCloud
           @CloudLogState = cloudlogstate
           @FlowLogDescription = flowlogdescription
           @CreatedTime = createdtime
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -8459,6 +8462,7 @@ module TencentCloud
           @CloudLogState = params['CloudLogState']
           @FlowLogDescription = params['FlowLogDescription']
           @CreatedTime = params['CreatedTime']
+          @TagSet = params['TagSet']
         end
       end
 

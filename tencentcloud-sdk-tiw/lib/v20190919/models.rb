@@ -80,16 +80,19 @@ module TencentCloud
         # zip： 生成`.zip`压缩包
         # tar.gz： 生成`.tar.gz`压缩包
         # @type CompressFileType: String
+        # @param ExtraData: 内部参数
+        # @type ExtraData: String
 
-        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType
+        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType, :ExtraData
         
-        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil)
+        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil, extradata=nil)
           @SdkAppId = sdkappid
           @Url = url
           @IsStaticPPT = isstaticppt
           @MinResolution = minresolution
           @ThumbnailResolution = thumbnailresolution
           @CompressFileType = compressfiletype
+          @ExtraData = extradata
         end
 
         def deserialize(params)
@@ -99,6 +102,7 @@ module TencentCloud
           @MinResolution = params['MinResolution']
           @ThumbnailResolution = params['ThumbnailResolution']
           @CompressFileType = params['CompressFileType']
+          @ExtraData = params['ExtraData']
         end
       end
 
@@ -144,16 +148,19 @@ module TencentCloud
 
         # 此参数与开始录制接口提供的RecordControl参数互斥，在本接口与开始录制接口都提供了RecordControl参数时，优先使用本接口指定的RecordControl参数进行视频生成控制，否则使用开始录制接口提供的RecordControl参数进行视频拼生成控制。
         # @type RecordControl: :class:`Tencentcloud::Tiw.v20190919.models.RecordControl`
+        # @param ExtraData: 内部参数
+        # @type ExtraData: String
 
-        attr_accessor :OnlineRecordTaskId, :SdkAppId, :Whiteboard, :Concat, :MixStream, :RecordControl
+        attr_accessor :OnlineRecordTaskId, :SdkAppId, :Whiteboard, :Concat, :MixStream, :RecordControl, :ExtraData
         
-        def initialize(onlinerecordtaskid=nil, sdkappid=nil, whiteboard=nil, concat=nil, mixstream=nil, recordcontrol=nil)
+        def initialize(onlinerecordtaskid=nil, sdkappid=nil, whiteboard=nil, concat=nil, mixstream=nil, recordcontrol=nil, extradata=nil)
           @OnlineRecordTaskId = onlinerecordtaskid
           @SdkAppId = sdkappid
           @Whiteboard = whiteboard
           @Concat = concat
           @MixStream = mixstream
           @RecordControl = recordcontrol
+          @ExtraData = extradata
         end
 
         def deserialize(params)
@@ -171,6 +178,7 @@ module TencentCloud
           unless params['RecordControl'].nil?
             @RecordControl = RecordControl.new.deserialize(params[RecordControl])
           end
+          @ExtraData = params['ExtraData']
         end
       end
 
@@ -587,6 +595,133 @@ module TencentCloud
             @VideoInfos = VideoInfo.new.deserialize(params[VideoInfos])
           end
           @VideoInfoList = params['VideoInfoList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWhiteboardPushCallback请求参数结构体
+      class DescribeWhiteboardPushCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用的SdkAppId
+        # @type SdkAppId: Integer
+
+        attr_accessor :SdkAppId
+        
+        def initialize(sdkappid=nil)
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeWhiteboardPushCallback返回参数结构体
+      class DescribeWhiteboardPushCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param Callback: 白板推流事件回调地址，如果未设置回调地址，该字段为空字符串
+        # @type Callback: String
+        # @param CallbackKey: 白板推流回调鉴权密钥
+        # @type CallbackKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Callback, :CallbackKey, :RequestId
+        
+        def initialize(callback=nil, callbackkey=nil, requestid=nil)
+          @Callback = callback
+          @CallbackKey = callbackkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Callback = params['Callback']
+          @CallbackKey = params['CallbackKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWhiteboardPush请求参数结构体
+      class DescribeWhiteboardPushRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param TaskId: 白板推流任务Id
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+        
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeWhiteboardPush返回参数结构体
+      class DescribeWhiteboardPushResponse < TencentCloud::Common::AbstractModel
+        # @param FinishReason: 推流结束原因，
+        # - AUTO: 房间内长时间没有音视频上行及白板操作导致自动停止推流
+        # - USER_CALL: 主动调用了停止推流接口
+        # - EXCEPTION: 推流异常结束
+        # @type FinishReason: String
+        # @param TaskId: 需要查询结果的白板推流任务Id
+        # @type TaskId: String
+        # @param Status: 推流任务状态
+        # - PREPARED: 表示推流正在准备中（进房/启动推流服务等操作）
+        # - PUSHING: 表示推流已开始
+        # - STOPPED: 表示推流已停止
+        # @type Status: String
+        # @param RoomId: 房间号
+        # @type RoomId: Integer
+        # @param GroupId: 白板的群组 Id
+        # @type GroupId: String
+        # @param PushUserId: 推流用户Id
+        # @type PushUserId: String
+        # @param PushStartTime: 实际开始推流时间，Unix 时间戳，单位秒
+        # @type PushStartTime: Integer
+        # @param PushStopTime: 实际停止推流时间，Unix 时间戳，单位秒
+        # @type PushStopTime: Integer
+        # @param ExceptionCnt: 推流过程中出现异常的次数
+        # @type ExceptionCnt: Integer
+        # @param IMSyncTime: 白板推流首帧对应的IM时间戳，可用于录制回放时IM聊天消息与白板推流视频进行同步对时。
+        # @type IMSyncTime: Integer
+        # @param Backup: 备份推流任务结果信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Backup: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FinishReason, :TaskId, :Status, :RoomId, :GroupId, :PushUserId, :PushStartTime, :PushStopTime, :ExceptionCnt, :IMSyncTime, :Backup, :RequestId
+        
+        def initialize(finishreason=nil, taskid=nil, status=nil, roomid=nil, groupid=nil, pushuserid=nil, pushstarttime=nil, pushstoptime=nil, exceptioncnt=nil, imsynctime=nil, backup=nil, requestid=nil)
+          @FinishReason = finishreason
+          @TaskId = taskid
+          @Status = status
+          @RoomId = roomid
+          @GroupId = groupid
+          @PushUserId = pushuserid
+          @PushStartTime = pushstarttime
+          @PushStopTime = pushstoptime
+          @ExceptionCnt = exceptioncnt
+          @IMSyncTime = imsynctime
+          @Backup = backup
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FinishReason = params['FinishReason']
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @RoomId = params['RoomId']
+          @GroupId = params['GroupId']
+          @PushUserId = params['PushUserId']
+          @PushStartTime = params['PushStartTime']
+          @PushStopTime = params['PushStopTime']
+          @ExceptionCnt = params['ExceptionCnt']
+          @IMSyncTime = params['IMSyncTime']
+          @Backup = params['Backup']
           @RequestId = params['RequestId']
         end
       end
@@ -1022,6 +1157,78 @@ module TencentCloud
         end
       end
 
+      # SetWhiteboardPushCallbackKey请求参数结构体
+      class SetWhiteboardPushCallbackKeyRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用的SdkAppId
+        # @type SdkAppId: Integer
+        # @param CallbackKey: 设置白板推流回调鉴权密钥，最长64字符，如果传入空字符串，那么删除现有的鉴权回调密钥。回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+        # @type CallbackKey: String
+
+        attr_accessor :SdkAppId, :CallbackKey
+        
+        def initialize(sdkappid=nil, callbackkey=nil)
+          @SdkAppId = sdkappid
+          @CallbackKey = callbackkey
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CallbackKey = params['CallbackKey']
+        end
+      end
+
+      # SetWhiteboardPushCallbackKey返回参数结构体
+      class SetWhiteboardPushCallbackKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetWhiteboardPushCallback请求参数结构体
+      class SetWhiteboardPushCallbackRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Callback: 白板推流任务结果回调地址，如果传空字符串会删除原来的回调地址配置，回调地址仅支持 http或https协议，即回调地址以http://或https://开头。回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+        # @type Callback: String
+
+        attr_accessor :SdkAppId, :Callback
+        
+        def initialize(sdkappid=nil, callback=nil)
+          @SdkAppId = sdkappid
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Callback = params['Callback']
+        end
+      end
+
+      # SetWhiteboardPushCallback返回参数结构体
+      class SetWhiteboardPushCallbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartOnlineRecord请求参数结构体
       class StartOnlineRecordRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
@@ -1061,10 +1268,12 @@ module TencentCloud
 
         # 在`视频生成模式`下，默认会记录白板群组内的非白板信令消息，如果指定了`ChatGroupId`，则会记录指定群ID的聊天消息。
         # @type ChatGroupId: String
+        # @param ExtraData: 内部参数
+        # @type ExtraData: String
 
-        attr_accessor :SdkAppId, :RoomId, :RecordUserId, :RecordUserSig, :GroupId, :Concat, :Whiteboard, :MixStream, :Extras, :AudioFileNeeded, :RecordControl, :RecordMode, :ChatGroupId
+        attr_accessor :SdkAppId, :RoomId, :RecordUserId, :RecordUserSig, :GroupId, :Concat, :Whiteboard, :MixStream, :Extras, :AudioFileNeeded, :RecordControl, :RecordMode, :ChatGroupId, :ExtraData
         
-        def initialize(sdkappid=nil, roomid=nil, recorduserid=nil, recordusersig=nil, groupid=nil, concat=nil, whiteboard=nil, mixstream=nil, extras=nil, audiofileneeded=nil, recordcontrol=nil, recordmode=nil, chatgroupid=nil)
+        def initialize(sdkappid=nil, roomid=nil, recorduserid=nil, recordusersig=nil, groupid=nil, concat=nil, whiteboard=nil, mixstream=nil, extras=nil, audiofileneeded=nil, recordcontrol=nil, recordmode=nil, chatgroupid=nil, extradata=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @RecordUserId = recorduserid
@@ -1078,6 +1287,7 @@ module TencentCloud
           @RecordControl = recordcontrol
           @RecordMode = recordmode
           @ChatGroupId = chatgroupid
+          @ExtraData = extradata
         end
 
         def deserialize(params)
@@ -1102,6 +1312,7 @@ module TencentCloud
           end
           @RecordMode = params['RecordMode']
           @ChatGroupId = params['ChatGroupId']
+          @ExtraData = params['ExtraData']
         end
       end
 

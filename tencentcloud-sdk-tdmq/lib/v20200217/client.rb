@@ -49,7 +49,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于在用户账户下创建消息队列 Tdmq环境（命名空间）
+        # 用于在用户账户下创建消息队列 Tdmq 命名空间
 
         # @param request: Request instance for CreateEnvironment.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateEnvironmentRequest`
@@ -145,7 +145,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量删除租户下的环境
+        # 批量删除租户下的命名空间
 
         # @param request: Request instance for DeleteEnvironments.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteEnvironmentsRequest`
@@ -313,7 +313,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取指定环境的属性
+        # 获取指定命名空间的属性
 
         # @param request: Request instance for DescribeEnvironmentAttributes.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeEnvironmentAttributesRequest`
@@ -337,7 +337,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取环境角色列表
+        # 获取命名空间角色列表
 
         # @param request: Request instance for DescribeEnvironmentRoles.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeEnvironmentRolesRequest`
@@ -361,7 +361,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取租户下环境列表
+        # 获取租户下命名空间列表
 
         # @param request: Request instance for DescribeEnvironments.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeEnvironmentsRequest`
@@ -481,7 +481,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改指定环境的属性值
+        # 修改指定命名空间的属性值
 
         # @param request: Request instance for ModifyEnvironmentAttributes.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyEnvironmentAttributesRequest`

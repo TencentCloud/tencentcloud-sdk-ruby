@@ -61,24 +61,27 @@ module TencentCloud
         # @type EnhancedService: :class:`Tencentcloud::Tke.v20180525.models.EnhancedService`
         # @param LoginSettings: 节点登录信息（目前仅支持使用Password或者单个KeyIds）
         # @type LoginSettings: :class:`Tencentcloud::Tke.v20180525.models.LoginSettings`
-        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 DescribeSecurityGroups 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。（目前仅支持设置单个sgId）
-        # @type SecurityGroupIds: Array
         # @param HostName: 重装系统时，可以指定修改实例的HostName(集群为HostName模式时，此参数必传，规则名称除不支持大写字符外与[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口HostName一致)
         # @type HostName: String
+        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 DescribeSecurityGroups 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。（目前仅支持设置单个sgId）
+        # @type SecurityGroupIds: Array
         # @param NodePool: 节点池选项
         # @type NodePool: :class:`Tencentcloud::Tke.v20180525.models.NodePoolOption`
+        # @param SkipValidateOptions: 校验规则相关选项，可配置跳过某些校验规则。目前支持GlobalRouteCIDRCheck（跳过GlobalRouter的相关校验），VpcCniCIDRCheck（跳过VpcCni相关校验）
+        # @type SkipValidateOptions: Array
 
-        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :SecurityGroupIds, :HostName, :NodePool
+        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :HostName, :SecurityGroupIds, :NodePool, :SkipValidateOptions
         
-        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, securitygroupids=nil, hostname=nil, nodepool=nil)
+        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, hostname=nil, securitygroupids=nil, nodepool=nil, skipvalidateoptions=nil)
           @ClusterId = clusterid
           @InstanceIds = instanceids
           @InstanceAdvancedSettings = instanceadvancedsettings
           @EnhancedService = enhancedservice
           @LoginSettings = loginsettings
-          @SecurityGroupIds = securitygroupids
           @HostName = hostname
+          @SecurityGroupIds = securitygroupids
           @NodePool = nodepool
+          @SkipValidateOptions = skipvalidateoptions
         end
 
         def deserialize(params)
@@ -93,11 +96,12 @@ module TencentCloud
           unless params['LoginSettings'].nil?
             @LoginSettings = LoginSettings.new.deserialize(params[LoginSettings])
           end
-          @SecurityGroupIds = params['SecurityGroupIds']
           @HostName = params['HostName']
+          @SecurityGroupIds = params['SecurityGroupIds']
           unless params['NodePool'].nil?
             @NodePool = NodePoolOption.new.deserialize(params[NodePool])
           end
+          @SkipValidateOptions = params['SkipValidateOptions']
         end
       end
 
@@ -922,13 +926,16 @@ module TencentCloud
         # @type RunInstancePara: String
         # @param InstanceAdvancedSettings: 实例额外需要设置参数信息
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
+        # @param SkipValidateOptions: 校验规则相关选项，可配置跳过某些校验规则。目前支持GlobalRouteCIDRCheck（跳过GlobalRouter的相关校验），VpcCniCIDRCheck（跳过VpcCni相关校验）
+        # @type SkipValidateOptions: Array
 
-        attr_accessor :ClusterId, :RunInstancePara, :InstanceAdvancedSettings
+        attr_accessor :ClusterId, :RunInstancePara, :InstanceAdvancedSettings, :SkipValidateOptions
         
-        def initialize(clusterid=nil, runinstancepara=nil, instanceadvancedsettings=nil)
+        def initialize(clusterid=nil, runinstancepara=nil, instanceadvancedsettings=nil, skipvalidateoptions=nil)
           @ClusterId = clusterid
           @RunInstancePara = runinstancepara
           @InstanceAdvancedSettings = instanceadvancedsettings
+          @SkipValidateOptions = skipvalidateoptions
         end
 
         def deserialize(params)
@@ -937,6 +944,7 @@ module TencentCloud
           unless params['InstanceAdvancedSettings'].nil?
             @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params[InstanceAdvancedSettings])
           end
+          @SkipValidateOptions = params['SkipValidateOptions']
         end
       end
 
@@ -4050,16 +4058,20 @@ module TencentCloud
         # @param TemplateId: 如果该告警来至模板下发，则TemplateId为模板id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
+        # @param Interval: 计算周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interval: String
 
-        attr_accessor :Name, :Rules, :UpdatedAt, :Notification, :Id, :TemplateId
+        attr_accessor :Name, :Rules, :UpdatedAt, :Notification, :Id, :TemplateId, :Interval
         
-        def initialize(name=nil, rules=nil, updatedat=nil, notification=nil, id=nil, templateid=nil)
+        def initialize(name=nil, rules=nil, updatedat=nil, notification=nil, id=nil, templateid=nil, interval=nil)
           @Name = name
           @Rules = rules
           @UpdatedAt = updatedat
           @Notification = notification
           @Id = id
           @TemplateId = templateid
+          @Interval = interval
         end
 
         def deserialize(params)
@@ -4071,6 +4083,7 @@ module TencentCloud
           end
           @Id = params['Id']
           @TemplateId = params['TemplateId']
+          @Interval = params['Interval']
         end
       end
 

@@ -5212,6 +5212,50 @@ module TencentCloud
         end
       end
 
+      # 发票商品
+      class VatInvoiceGoodsInfo < TencentCloud::Common::AbstractModel
+        # @param Item: 项目名称
+        # @type Item: String
+        # @param Specification: 规格型号
+        # @type Specification: String
+        # @param MeasurementDimension: 单位
+        # @type MeasurementDimension: String
+        # @param Price: 价格
+        # @type Price: String
+        # @param Quantity: 数量
+        # @type Quantity: String
+        # @param Amount: 金额
+        # @type Amount: String
+        # @param TaxScheme: 税率(如6%、免税)
+        # @type TaxScheme: String
+        # @param TaxAmount: 税额
+        # @type TaxAmount: String
+
+        attr_accessor :Item, :Specification, :MeasurementDimension, :Price, :Quantity, :Amount, :TaxScheme, :TaxAmount
+        
+        def initialize(item=nil, specification=nil, measurementdimension=nil, price=nil, quantity=nil, amount=nil, taxscheme=nil, taxamount=nil)
+          @Item = item
+          @Specification = specification
+          @MeasurementDimension = measurementdimension
+          @Price = price
+          @Quantity = quantity
+          @Amount = amount
+          @TaxScheme = taxscheme
+          @TaxAmount = taxamount
+        end
+
+        def deserialize(params)
+          @Item = params['Item']
+          @Specification = params['Specification']
+          @MeasurementDimension = params['MeasurementDimension']
+          @Price = params['Price']
+          @Quantity = params['Quantity']
+          @Amount = params['Amount']
+          @TaxScheme = params['TaxScheme']
+          @TaxAmount = params['TaxAmount']
+        end
+      end
+
       # 增值税发票项目明细
       class VatInvoiceItem < TencentCloud::Common::AbstractModel
         # @param LineNo: 行号
@@ -5324,6 +5368,34 @@ module TencentCloud
           @PdfPageSize = params['PdfPageSize']
           @Angle = params['Angle']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 发票人员信息
+      class VatInvoiceUserInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param TaxId: 纳税人识别号
+        # @type TaxId: String
+        # @param AddrTel: 地 址、电 话
+        # @type AddrTel: String
+        # @param FinancialAccount: 开户行及账号
+        # @type FinancialAccount: String
+
+        attr_accessor :Name, :TaxId, :AddrTel, :FinancialAccount
+        
+        def initialize(name=nil, taxid=nil, addrtel=nil, financialaccount=nil)
+          @Name = name
+          @TaxId = taxid
+          @AddrTel = addrtel
+          @FinancialAccount = financialaccount
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TaxId = params['TaxId']
+          @AddrTel = params['AddrTel']
+          @FinancialAccount = params['FinancialAccount']
         end
       end
 
@@ -5944,6 +6016,117 @@ module TencentCloud
           unless params['RegNumResult'].nil?
             @RegNumResult = BizLicenseVerifyResult.new.deserialize(params[RegNumResult])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyOfdVatInvoiceOCR请求参数结构体
+      class VerifyOfdVatInvoiceOCRRequest < TencentCloud::Common::AbstractModel
+        # @param OfdFileUrl: OFD文件的 Url 地址。
+        # @type OfdFileUrl: String
+        # @param OfdFileBase64: OFD文件的 Base64 值。
+        # OfdFileUrl 和 OfdFileBase64 必传其一，若两者都传，只解析OfdFileBase64。
+        # @type OfdFileBase64: String
+
+        attr_accessor :OfdFileUrl, :OfdFileBase64
+        
+        def initialize(ofdfileurl=nil, ofdfilebase64=nil)
+          @OfdFileUrl = ofdfileurl
+          @OfdFileBase64 = ofdfilebase64
+        end
+
+        def deserialize(params)
+          @OfdFileUrl = params['OfdFileUrl']
+          @OfdFileBase64 = params['OfdFileBase64']
+        end
+      end
+
+      # VerifyOfdVatInvoiceOCR返回参数结构体
+      class VerifyOfdVatInvoiceOCRResponse < TencentCloud::Common::AbstractModel
+        # @param Type: 发票类型
+        # 026:增值税电子普通发票
+        # 028:增值税电子专用发票
+        # @type Type: String
+        # @param InvoiceCode: 发票代码
+        # @type InvoiceCode: String
+        # @param InvoiceNumber: 发票号码
+        # @type InvoiceNumber: String
+        # @param IssueDate: 开票日期
+        # @type IssueDate: String
+        # @param InvoiceCheckCode: 验证码
+        # @type InvoiceCheckCode: String
+        # @param MachineNumber: 机器编号
+        # @type MachineNumber: String
+        # @param TaxControlCode: 密码区
+        # @type TaxControlCode: String
+        # @param Buyer: 购买方
+        # @type Buyer: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceUserInfo`
+        # @param Seller: 销售方
+        # @type Seller: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceUserInfo`
+        # @param TaxInclusiveTotalAmount: 价税合计
+        # @type TaxInclusiveTotalAmount: String
+        # @param InvoiceClerk: 开票人
+        # @type InvoiceClerk: String
+        # @param Payee: 收款人
+        # @type Payee: String
+        # @param Checker: 复核人
+        # @type Checker: String
+        # @param TaxTotalAmount: 税额
+        # @type TaxTotalAmount: String
+        # @param TaxExclusiveTotalAmount: 不含税金额
+        # @type TaxExclusiveTotalAmount: String
+        # @param Note: 备注
+        # @type Note: String
+        # @param GoodsInfos: 货物或服务清单
+        # @type GoodsInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :InvoiceCode, :InvoiceNumber, :IssueDate, :InvoiceCheckCode, :MachineNumber, :TaxControlCode, :Buyer, :Seller, :TaxInclusiveTotalAmount, :InvoiceClerk, :Payee, :Checker, :TaxTotalAmount, :TaxExclusiveTotalAmount, :Note, :GoodsInfos, :RequestId
+        
+        def initialize(type=nil, invoicecode=nil, invoicenumber=nil, issuedate=nil, invoicecheckcode=nil, machinenumber=nil, taxcontrolcode=nil, buyer=nil, seller=nil, taxinclusivetotalamount=nil, invoiceclerk=nil, payee=nil, checker=nil, taxtotalamount=nil, taxexclusivetotalamount=nil, note=nil, goodsinfos=nil, requestid=nil)
+          @Type = type
+          @InvoiceCode = invoicecode
+          @InvoiceNumber = invoicenumber
+          @IssueDate = issuedate
+          @InvoiceCheckCode = invoicecheckcode
+          @MachineNumber = machinenumber
+          @TaxControlCode = taxcontrolcode
+          @Buyer = buyer
+          @Seller = seller
+          @TaxInclusiveTotalAmount = taxinclusivetotalamount
+          @InvoiceClerk = invoiceclerk
+          @Payee = payee
+          @Checker = checker
+          @TaxTotalAmount = taxtotalamount
+          @TaxExclusiveTotalAmount = taxexclusivetotalamount
+          @Note = note
+          @GoodsInfos = goodsinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @InvoiceCode = params['InvoiceCode']
+          @InvoiceNumber = params['InvoiceNumber']
+          @IssueDate = params['IssueDate']
+          @InvoiceCheckCode = params['InvoiceCheckCode']
+          @MachineNumber = params['MachineNumber']
+          @TaxControlCode = params['TaxControlCode']
+          unless params['Buyer'].nil?
+            @Buyer = VatInvoiceUserInfo.new.deserialize(params[Buyer])
+          end
+          unless params['Seller'].nil?
+            @Seller = VatInvoiceUserInfo.new.deserialize(params[Seller])
+          end
+          @TaxInclusiveTotalAmount = params['TaxInclusiveTotalAmount']
+          @InvoiceClerk = params['InvoiceClerk']
+          @Payee = params['Payee']
+          @Checker = params['Checker']
+          @TaxTotalAmount = params['TaxTotalAmount']
+          @TaxExclusiveTotalAmount = params['TaxExclusiveTotalAmount']
+          @Note = params['Note']
+          @GoodsInfos = params['GoodsInfos']
           @RequestId = params['RequestId']
         end
       end

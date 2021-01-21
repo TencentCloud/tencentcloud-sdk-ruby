@@ -314,10 +314,19 @@ module TencentCloud
         # @param Environments: API已发布的环境信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Environments: Array
+        # @param IsBase64Encoded: 是否开启Base64编码，只有后端为scf时才会生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsBase64Encoded: Boolean
+        # @param IsBase64Trigger: 是否开启Base64编码的header触发，只有后端为scf时才会生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsBase64Trigger: Boolean
+        # @param Base64EncodedTriggerRules: Header触发规则，总规则数量不超过10。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Base64EncodedTriggerRules: Array
 
-        attr_accessor :ServiceId, :ServiceName, :ServiceDesc, :ApiId, :ApiDesc, :CreatedTime, :ModifiedTime, :ApiName, :ApiType, :Protocol, :AuthType, :ApiBusinessType, :AuthRelationApiId, :OauthConfig, :IsDebugAfterCharge, :RequestConfig, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ResponseErrorCodes, :RequestParameters, :ServiceTimeout, :ServiceType, :ServiceConfig, :ServiceParameters, :ConstantParameters, :ServiceMockReturnMessage, :ServiceScfFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceScfIsIntegratedResponse, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :InternalDomain, :ServiceWebsocketTransportFunctionName, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :MicroServices, :MicroServicesInfo, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :EnableCORS, :Tags, :Environments
+        attr_accessor :ServiceId, :ServiceName, :ServiceDesc, :ApiId, :ApiDesc, :CreatedTime, :ModifiedTime, :ApiName, :ApiType, :Protocol, :AuthType, :ApiBusinessType, :AuthRelationApiId, :OauthConfig, :IsDebugAfterCharge, :RequestConfig, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ResponseErrorCodes, :RequestParameters, :ServiceTimeout, :ServiceType, :ServiceConfig, :ServiceParameters, :ConstantParameters, :ServiceMockReturnMessage, :ServiceScfFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceScfIsIntegratedResponse, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :InternalDomain, :ServiceWebsocketTransportFunctionName, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :MicroServices, :MicroServicesInfo, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :EnableCORS, :Tags, :Environments, :IsBase64Encoded, :IsBase64Trigger, :Base64EncodedTriggerRules
         
-        def initialize(serviceid=nil, servicename=nil, servicedesc=nil, apiid=nil, apidesc=nil, createdtime=nil, modifiedtime=nil, apiname=nil, apitype=nil, protocol=nil, authtype=nil, apibusinesstype=nil, authrelationapiid=nil, oauthconfig=nil, isdebugaftercharge=nil, requestconfig=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, responseerrorcodes=nil, requestparameters=nil, servicetimeout=nil, servicetype=nil, serviceconfig=nil, serviceparameters=nil, constantparameters=nil, servicemockreturnmessage=nil, servicescffunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicescfisintegratedresponse=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsocketcleanupfunctionname=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, internaldomain=nil, servicewebsockettransportfunctionname=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, microservices=nil, microservicesinfo=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, enablecors=nil, tags=nil, environments=nil)
+        def initialize(serviceid=nil, servicename=nil, servicedesc=nil, apiid=nil, apidesc=nil, createdtime=nil, modifiedtime=nil, apiname=nil, apitype=nil, protocol=nil, authtype=nil, apibusinesstype=nil, authrelationapiid=nil, oauthconfig=nil, isdebugaftercharge=nil, requestconfig=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, responseerrorcodes=nil, requestparameters=nil, servicetimeout=nil, servicetype=nil, serviceconfig=nil, serviceparameters=nil, constantparameters=nil, servicemockreturnmessage=nil, servicescffunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicescfisintegratedresponse=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsocketcleanupfunctionname=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, internaldomain=nil, servicewebsockettransportfunctionname=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, microservices=nil, microservicesinfo=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, enablecors=nil, tags=nil, environments=nil, isbase64encoded=nil, isbase64trigger=nil, base64encodedtriggerrules=nil)
           @ServiceId = serviceid
           @ServiceName = servicename
           @ServiceDesc = servicedesc
@@ -366,6 +375,9 @@ module TencentCloud
           @EnableCORS = enablecors
           @Tags = tags
           @Environments = environments
+          @IsBase64Encoded = isbase64encoded
+          @IsBase64Trigger = isbase64trigger
+          @Base64EncodedTriggerRules = base64encodedtriggerrules
         end
 
         def deserialize(params)
@@ -427,6 +439,9 @@ module TencentCloud
           @EnableCORS = params['EnableCORS']
           @Tags = params['Tags']
           @Environments = params['Environments']
+          @IsBase64Encoded = params['IsBase64Encoded']
+          @IsBase64Trigger = params['IsBase64Trigger']
+          @Base64EncodedTriggerRules = params['Base64EncodedTriggerRules']
         end
       end
 
@@ -638,6 +653,33 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @ApiIdStatusSet = params['ApiIdStatusSet']
+        end
+      end
+
+      # Base64编码的header触发规则
+      class Base64EncodedTriggerRule < TencentCloud::Common::AbstractModel
+        # @param Name: 进行编码触发的header，可选值 "Accept"和"Content_Type" 对应实际数据流请求header中的Accept和 Content-Type。
+        # @type Name: String
+        # @param Value: 进行编码触发的header的可选值数组, 数组元素的字符串最大长度为40，元素可以包括数字，英文字母以及特殊字符，特殊字符的可选值为： `.`    `+`    `*`   `-`   `/`  `_`
+
+        # 例如 [
+        #     "application/x-vpeg005",
+        #     "application/xhtml+xml",
+        #     "application/vnd.ms-project",
+        #     "application/vnd.rn-rn_music_package"
+        # ] 等都是合法的。
+        # @type Value: Array
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -1024,10 +1066,12 @@ module TencentCloud
         # @type TargetNamespaceId: String
         # @param UserType: 用户类型。
         # @type UserType: String
+        # @param IsBase64Encoded: 是否打开Base64编码，只有后端是scf时才会生效。
+        # @type IsBase64Encoded: Boolean
 
-        attr_accessor :ServiceId, :ServiceType, :ServiceTimeout, :Protocol, :RequestConfig, :ApiName, :ApiDesc, :ApiType, :AuthType, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServices, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes, :TargetNamespaceId, :UserType
+        attr_accessor :ServiceId, :ServiceType, :ServiceTimeout, :Protocol, :RequestConfig, :ApiName, :ApiDesc, :ApiType, :AuthType, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServices, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes, :TargetNamespaceId, :UserType, :IsBase64Encoded
         
-        def initialize(serviceid=nil, servicetype=nil, servicetimeout=nil, protocol=nil, requestconfig=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservices=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil, targetnamespaceid=nil, usertype=nil)
+        def initialize(serviceid=nil, servicetype=nil, servicetimeout=nil, protocol=nil, requestconfig=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservices=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil, targetnamespaceid=nil, usertype=nil, isbase64encoded=nil)
           @ServiceId = serviceid
           @ServiceType = servicetype
           @ServiceTimeout = servicetimeout
@@ -1073,6 +1117,7 @@ module TencentCloud
           @ResponseErrorCodes = responseerrorcodes
           @TargetNamespaceId = targetnamespaceid
           @UserType = usertype
+          @IsBase64Encoded = isbase64encoded
         end
 
         def deserialize(params)
@@ -1133,6 +1178,7 @@ module TencentCloud
           @ResponseErrorCodes = params['ResponseErrorCodes']
           @TargetNamespaceId = params['TargetNamespaceId']
           @UserType = params['UserType']
+          @IsBase64Encoded = params['IsBase64Encoded']
         end
       end
 
@@ -3748,10 +3794,16 @@ module TencentCloud
         # @type OauthConfig: :class:`Tencentcloud::Apigateway.v20180808.models.OauthConfig`
         # @param ResponseErrorCodes: 用户自定义错误码配置。
         # @type ResponseErrorCodes: Array
+        # @param IsBase64Encoded: 是否开启Base64编码，只有后端为scf时才会生效。
+        # @type IsBase64Encoded: Boolean
+        # @param IsBase64Trigger: 是否开启Base64编码的header触发，只有后端为scf时才会生效。
+        # @type IsBase64Trigger: Boolean
+        # @param Base64EncodedTriggerRules: Header触发规则，总规则数不能超过10。
+        # @type Base64EncodedTriggerRules: Array
 
-        attr_accessor :ServiceId, :ServiceType, :RequestConfig, :ApiId, :ApiName, :ApiDesc, :ApiType, :AuthType, :AuthRequired, :ServiceTimeout, :Protocol, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :TagSpecifications, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes
+        attr_accessor :ServiceId, :ServiceType, :RequestConfig, :ApiId, :ApiName, :ApiDesc, :ApiType, :AuthType, :AuthRequired, :ServiceTimeout, :Protocol, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :TagSpecifications, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes, :IsBase64Encoded, :IsBase64Trigger, :Base64EncodedTriggerRules
         
-        def initialize(serviceid=nil, servicetype=nil, requestconfig=nil, apiid=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, authrequired=nil, servicetimeout=nil, protocol=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, tagspecifications=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil)
+        def initialize(serviceid=nil, servicetype=nil, requestconfig=nil, apiid=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, authrequired=nil, servicetimeout=nil, protocol=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, tagspecifications=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil, isbase64encoded=nil, isbase64trigger=nil, base64encodedtriggerrules=nil)
           @ServiceId = serviceid
           @ServiceType = servicetype
           @RequestConfig = requestconfig
@@ -3797,6 +3849,9 @@ module TencentCloud
           @ServiceParameters = serviceparameters
           @OauthConfig = oauthconfig
           @ResponseErrorCodes = responseerrorcodes
+          @IsBase64Encoded = isbase64encoded
+          @IsBase64Trigger = isbase64trigger
+          @Base64EncodedTriggerRules = base64encodedtriggerrules
         end
 
         def deserialize(params)
@@ -3859,6 +3914,9 @@ module TencentCloud
             @OauthConfig = OauthConfig.new.deserialize(params[OauthConfig])
           end
           @ResponseErrorCodes = params['ResponseErrorCodes']
+          @IsBase64Encoded = params['IsBase64Encoded']
+          @IsBase64Trigger = params['IsBase64Trigger']
+          @Base64EncodedTriggerRules = params['Base64EncodedTriggerRules']
         end
       end
 

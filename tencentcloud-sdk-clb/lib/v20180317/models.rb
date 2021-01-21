@@ -3038,13 +3038,16 @@ module TencentCloud
         # @param SessionType: 会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionType: String
-        # @param KeepaliveEnable: 是否开启长连接（本参数仅对于HTTP/HTTPS监听器有意义）
+        # @param KeepaliveEnable: 是否开启长连接，1开启，0关闭，（本参数仅对于HTTP/HTTPS监听器有意义）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepaliveEnable: Integer
+        # @param Toa: 仅支持Nat64 CLB TCP监听器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Toa: Boolean
 
-        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable
+        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa
         
-        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil)
+        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil)
           @ListenerId = listenerid
           @Protocol = protocol
           @Port = port
@@ -3061,6 +3064,7 @@ module TencentCloud
           @TargetGroup = targetgroup
           @SessionType = sessiontype
           @KeepaliveEnable = keepaliveenable
+          @Toa = toa
         end
 
         def deserialize(params)
@@ -3086,6 +3090,7 @@ module TencentCloud
           end
           @SessionType = params['SessionType']
           @KeepaliveEnable = params['KeepaliveEnable']
+          @Toa = params['Toa']
         end
       end
 
