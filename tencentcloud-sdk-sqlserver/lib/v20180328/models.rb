@@ -473,10 +473,12 @@ module TencentCloud
         # @type StartTime: String
         # @param Span: 可维护时间窗配置，持续时间，单位：小时
         # @type Span: Integer
+        # @param ResourceTags: 新建实例绑定的标签集合
+        # @type ResourceTags: Array
 
-        attr_accessor :Zone, :Cpu, :Memory, :Storage, :SubnetId, :VpcId, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :Period, :SecurityGroupList, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :Weekly, :StartTime, :Span
+        attr_accessor :Zone, :Cpu, :Memory, :Storage, :SubnetId, :VpcId, :MachineType, :InstanceChargeType, :ProjectId, :GoodsNum, :DBVersion, :Period, :SecurityGroupList, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :Weekly, :StartTime, :Span, :ResourceTags
         
-        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, subnetid=nil, vpcid=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, weekly=nil, starttime=nil, span=nil)
+        def initialize(zone=nil, cpu=nil, memory=nil, storage=nil, subnetid=nil, vpcid=nil, machinetype=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, dbversion=nil, period=nil, securitygrouplist=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, weekly=nil, starttime=nil, span=nil, resourcetags=nil)
           @Zone = zone
           @Cpu = cpu
           @Memory = memory
@@ -496,6 +498,7 @@ module TencentCloud
           @Weekly = weekly
           @StartTime = starttime
           @Span = span
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -518,6 +521,7 @@ module TencentCloud
           @Weekly = params['Weekly']
           @StartTime = params['StartTime']
           @Span = params['Span']
+          @ResourceTags = params['ResourceTags']
         end
       end
 
@@ -581,10 +585,12 @@ module TencentCloud
         # @type HAType: String
         # @param MultiZones: 是否跨可用区部署，默认值为false
         # @type MultiZones: Boolean
+        # @param ResourceTags: 新建实例绑定的标签集合
+        # @type ResourceTags: Array
 
-        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :HAType, :MultiZones
+        attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :ProjectId, :GoodsNum, :SubnetId, :VpcId, :Period, :AutoVoucher, :VoucherIds, :DBVersion, :AutoRenewFlag, :SecurityGroupList, :Weekly, :StartTime, :Span, :HAType, :MultiZones, :ResourceTags
         
-        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, hatype=nil, multizones=nil)
+        def initialize(zone=nil, memory=nil, storage=nil, instancechargetype=nil, projectid=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, autovoucher=nil, voucherids=nil, dbversion=nil, autorenewflag=nil, securitygrouplist=nil, weekly=nil, starttime=nil, span=nil, hatype=nil, multizones=nil, resourcetags=nil)
           @Zone = zone
           @Memory = memory
           @Storage = storage
@@ -604,6 +610,7 @@ module TencentCloud
           @Span = span
           @HAType = hatype
           @MultiZones = multizones
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -626,6 +633,7 @@ module TencentCloud
           @Span = params['Span']
           @HAType = params['HAType']
           @MultiZones = params['MultiZones']
+          @ResourceTags = params['ResourceTags']
         end
       end
 
@@ -845,10 +853,12 @@ module TencentCloud
         # @type AutoVoucher: Integer
         # @param VoucherIds: 代金券ID数组，目前单个订单只能使用一张
         # @type VoucherIds: Array
+        # @param ResourceTags: 新建实例绑定的标签集合
+        # @type ResourceTags: Array
 
-        attr_accessor :InstanceId, :Zone, :ReadOnlyGroupType, :Memory, :Storage, :ReadOnlyGroupForcedUpgrade, :ReadOnlyGroupId, :ReadOnlyGroupName, :ReadOnlyGroupIsOfflineDelay, :ReadOnlyGroupMaxDelayTime, :ReadOnlyGroupMinInGroup, :InstanceChargeType, :GoodsNum, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoVoucher, :VoucherIds
+        attr_accessor :InstanceId, :Zone, :ReadOnlyGroupType, :Memory, :Storage, :ReadOnlyGroupForcedUpgrade, :ReadOnlyGroupId, :ReadOnlyGroupName, :ReadOnlyGroupIsOfflineDelay, :ReadOnlyGroupMaxDelayTime, :ReadOnlyGroupMinInGroup, :InstanceChargeType, :GoodsNum, :SubnetId, :VpcId, :Period, :SecurityGroupList, :AutoVoucher, :VoucherIds, :ResourceTags
         
-        def initialize(instanceid=nil, zone=nil, readonlygrouptype=nil, memory=nil, storage=nil, readonlygroupforcedupgrade=nil, readonlygroupid=nil, readonlygroupname=nil, readonlygroupisofflinedelay=nil, readonlygroupmaxdelaytime=nil, readonlygroupminingroup=nil, instancechargetype=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autovoucher=nil, voucherids=nil)
+        def initialize(instanceid=nil, zone=nil, readonlygrouptype=nil, memory=nil, storage=nil, readonlygroupforcedupgrade=nil, readonlygroupid=nil, readonlygroupname=nil, readonlygroupisofflinedelay=nil, readonlygroupmaxdelaytime=nil, readonlygroupminingroup=nil, instancechargetype=nil, goodsnum=nil, subnetid=nil, vpcid=nil, period=nil, securitygrouplist=nil, autovoucher=nil, voucherids=nil, resourcetags=nil)
           @InstanceId = instanceid
           @Zone = zone
           @ReadOnlyGroupType = readonlygrouptype
@@ -868,6 +878,7 @@ module TencentCloud
           @SecurityGroupList = securitygrouplist
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -890,6 +901,7 @@ module TencentCloud
           @SecurityGroupList = params['SecurityGroupList']
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
+          @ResourceTags = params['ResourceTags']
         end
       end
 
@@ -1059,10 +1071,13 @@ module TencentCloud
         # @param HAFlag: 容灾类型，MIRROR-镜像，ALWAYSON-AlwaysOn, SINGLE-单例
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HAFlag: String
+        # @param ResourceTags: 实例绑定的标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
 
-        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag
+        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags
         
-        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil)
+        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil)
           @InstanceId = instanceid
           @Name = name
           @ProjectId = projectid
@@ -1099,6 +1114,7 @@ module TencentCloud
           @SubFlag = subflag
           @ROFlag = roflag
           @HAFlag = haflag
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -1138,6 +1154,7 @@ module TencentCloud
           @SubFlag = params['SubFlag']
           @ROFlag = params['ROFlag']
           @HAFlag = params['HAFlag']
+          @ResourceTags = params['ResourceTags']
         end
       end
 
@@ -1771,10 +1788,22 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 实例所属子网的唯一字符串ID，格式如： subnet-xxx，传空字符串(“”)则按照基础网络筛选。
         # @type SubnetId: String
+        # @param VipSet: 实例内网地址列表，格式如：172.1.0.12
+        # @type VipSet: Array
+        # @param InstanceNameSet: 实例名称列表，模糊查询
+        # @type InstanceNameSet: Array
+        # @param VersionSet: 实例版本代号列表，格式如：2008R2，2012SP3等
+        # @type VersionSet: Array
+        # @param Zone: 实例可用区，格式如：ap-guangzhou-2
+        # @type Zone: String
+        # @param TagKeys: 实例标签列表
+        # @type TagKeys: Array
+        # @param SearchKey: 模糊查询关键字，支持实例id、实例名、内网ip
+        # @type SearchKey: String
 
-        attr_accessor :ProjectId, :Status, :Offset, :Limit, :InstanceIdSet, :PayMode, :VpcId, :SubnetId
+        attr_accessor :ProjectId, :Status, :Offset, :Limit, :InstanceIdSet, :PayMode, :VpcId, :SubnetId, :VipSet, :InstanceNameSet, :VersionSet, :Zone, :TagKeys, :SearchKey
         
-        def initialize(projectid=nil, status=nil, offset=nil, limit=nil, instanceidset=nil, paymode=nil, vpcid=nil, subnetid=nil)
+        def initialize(projectid=nil, status=nil, offset=nil, limit=nil, instanceidset=nil, paymode=nil, vpcid=nil, subnetid=nil, vipset=nil, instancenameset=nil, versionset=nil, zone=nil, tagkeys=nil, searchkey=nil)
           @ProjectId = projectid
           @Status = status
           @Offset = offset
@@ -1783,6 +1812,12 @@ module TencentCloud
           @PayMode = paymode
           @VpcId = vpcid
           @SubnetId = subnetid
+          @VipSet = vipset
+          @InstanceNameSet = instancenameset
+          @VersionSet = versionset
+          @Zone = zone
+          @TagKeys = tagkeys
+          @SearchKey = searchkey
         end
 
         def deserialize(params)
@@ -1794,6 +1829,12 @@ module TencentCloud
           @PayMode = params['PayMode']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @VipSet = params['VipSet']
+          @InstanceNameSet = params['InstanceNameSet']
+          @VersionSet = params['VersionSet']
+          @Zone = params['Zone']
+          @TagKeys = params['TagKeys']
+          @SearchKey = params['SearchKey']
         end
       end
 
@@ -3385,6 +3426,54 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceNetwork请求参数结构体
+      class ModifyDBInstanceNetworkRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param NewVpcId: 新VPC网络Id
+        # @type NewVpcId: String
+        # @param NewSubnetId: 新子网Id
+        # @type NewSubnetId: String
+        # @param OldIpRetainTime: 原vip保留时长，单位小时，默认为0，代表立即回收，最大为168小时
+        # @type OldIpRetainTime: Integer
+
+        attr_accessor :InstanceId, :NewVpcId, :NewSubnetId, :OldIpRetainTime
+        
+        def initialize(instanceid=nil, newvpcid=nil, newsubnetid=nil, oldipretaintime=nil)
+          @InstanceId = instanceid
+          @NewVpcId = newvpcid
+          @NewSubnetId = newsubnetid
+          @OldIpRetainTime = oldipretaintime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NewVpcId = params['NewVpcId']
+          @NewSubnetId = params['NewSubnetId']
+          @OldIpRetainTime = params['OldIpRetainTime']
+        end
+      end
+
+      # ModifyDBInstanceNetwork返回参数结构体
+      class ModifyDBInstanceNetworkResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 实例转网流程id，可通过[DescribeFlowStatus](https://cloud.tencent.com/document/product/238/19967)接口查询流程状态
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceProject请求参数结构体
       class ModifyDBInstanceProjectRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIdSet: 实例ID数组，形如mssql-j8kv137v
@@ -4360,6 +4449,26 @@ module TencentCloud
         end
       end
 
+      # 实例绑定的标签信息
+      class ResourceTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签key
+        # @type TagKey: String
+        # @param TagValue: 标签value
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # RestartDBInstance请求参数结构体
       class RestartDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据库实例ID，形如mssql-njj2mtpl
@@ -4872,16 +4981,25 @@ module TencentCloud
         # @type VoucherIds: Array
         # @param Cpu: 实例升级后的CPU核心数
         # @type Cpu: Integer
+        # @param DBVersion: 升级sqlserver的版本，目前支持：2008R2（SQL Server 2008 Enterprise），2012SP3（SQL Server 2012 Enterprise）版本等。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息，版本不支持降级，不填则不修改版本
+        # @type DBVersion: String
+        # @param HAType: 升级sqlserver的高可用架构,从镜像容灾升级到always on集群容灾，仅支持2017及以上版本且支持always on高可用的实例，不支持降级到镜像方式容灾，CLUSTER-升级为always on容灾，不填则不修改高可用架构
+        # @type HAType: String
+        # @param MultiZones: 修改实例是否为跨可用区容灾，SameZones-修改为同可用区 MultiZones-修改为夸可用区
+        # @type MultiZones: String
 
-        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu
+        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu, :DBVersion, :HAType, :MultiZones
         
-        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil, dbversion=nil, hatype=nil, multizones=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
           @Cpu = cpu
+          @DBVersion = dbversion
+          @HAType = hatype
+          @MultiZones = multizones
         end
 
         def deserialize(params)
@@ -4891,6 +5009,9 @@ module TencentCloud
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
           @Cpu = params['Cpu']
+          @DBVersion = params['DBVersion']
+          @HAType = params['HAType']
+          @MultiZones = params['MultiZones']
         end
       end
 

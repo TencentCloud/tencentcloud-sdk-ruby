@@ -906,6 +906,38 @@ module TencentCloud
         end
       end
 
+      # 图像坐标信息。
+      class ImageRect < TencentCloud::Common::AbstractModel
+        # @param X: 左上角横坐标。
+        # @type X: Integer
+        # @param Y: 左上角纵坐标。
+        # @type Y: Integer
+        # @param Width: 人体宽度。
+        # @type Width: Integer
+        # @param Height: 人体高度。
+        # @type Height: Integer
+        # @param Label: 分割选项名称。
+        # @type Label: String
+
+        attr_accessor :X, :Y, :Width, :Height, :Label
+        
+        def initialize(x=nil, y=nil, width=nil, height=nil, label=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+          @Label = label
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+          @Label = params['Label']
+        end
+      end
+
       # 人体关键点信息
       class KeyPointInfo < TencentCloud::Common::AbstractModel
         # @param KeyPointType: 代表不同位置的人体关键点信息，返回值为以下集合中的一个 [头部,颈部,右肩,右肘,右腕,左肩,左肘,左腕,右髋,右膝,右踝,左髋,左膝,左踝]
@@ -1248,20 +1280,25 @@ module TencentCloud
         # @type PortraitImage: String
         # @param MaskImage: 指定标签处理后的Mask。一个通过 Base64 编码的文件，解码后文件由 Float 型浮点数组成。这些浮点数代表原图从左上角开始的每一行的每一个像素点，每一个浮点数的值是原图相应像素点位于人体轮廓内的置信度（0-1）转化的灰度值（0-255）
         # @type MaskImage: String
+        # @param ImageRects: 坐标信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageRects: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PortraitImage, :MaskImage, :RequestId
+        attr_accessor :PortraitImage, :MaskImage, :ImageRects, :RequestId
         
-        def initialize(portraitimage=nil, maskimage=nil, requestid=nil)
+        def initialize(portraitimage=nil, maskimage=nil, imagerects=nil, requestid=nil)
           @PortraitImage = portraitimage
           @MaskImage = maskimage
+          @ImageRects = imagerects
           @RequestId = requestid
         end
 
         def deserialize(params)
           @PortraitImage = params['PortraitImage']
           @MaskImage = params['MaskImage']
+          @ImageRects = params['ImageRects']
           @RequestId = params['RequestId']
         end
       end

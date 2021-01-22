@@ -1177,6 +1177,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDBInstanceNetwork）用于修改运行中实例的网络，仅支持从VPC网络到VPC网络的转换
+
+        # @param request: Request instance for ModifyDBInstanceNetwork.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDBInstanceNetworkRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyDBInstanceNetworkResponse`
+        def ModifyDBInstanceNetwork(request)
+          body = send_request('ModifyDBInstanceNetwork', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceNetworkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstanceProject）用于修改数据库实例所属项目。
 
         # @param request: Request instance for ModifyDBInstanceProject.

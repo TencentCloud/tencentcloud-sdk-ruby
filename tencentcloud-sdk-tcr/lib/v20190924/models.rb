@@ -318,7 +318,7 @@ module TencentCloud
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param RegistryName: 企业版实例名称
         # @type RegistryName: String
-        # @param RegistryType: 企业版实例类型
+        # @param RegistryType: 企业版实例类型（basic 基础版；standard 标准版；premium 高级版）
         # @type RegistryType: String
         # @param TagSpecification: 云标签描述
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`

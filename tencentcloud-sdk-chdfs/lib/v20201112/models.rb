@@ -171,6 +171,42 @@ module TencentCloud
         end
       end
 
+      # CreateAccessRules请求参数结构体
+      class CreateAccessRulesRequest < TencentCloud::Common::AbstractModel
+        # @param AccessRules: 多个权限规则，上限为10
+        # @type AccessRules: Array
+        # @param AccessGroupId: 权限组ID
+        # @type AccessGroupId: String
+
+        attr_accessor :AccessRules, :AccessGroupId
+        
+        def initialize(accessrules=nil, accessgroupid=nil)
+          @AccessRules = accessrules
+          @AccessGroupId = accessgroupid
+        end
+
+        def deserialize(params)
+          @AccessRules = params['AccessRules']
+          @AccessGroupId = params['AccessGroupId']
+        end
+      end
+
+      # CreateAccessRules返回参数结构体
+      class CreateAccessRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFileSystem请求参数结构体
       class CreateFileSystemRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemName: 文件系统名称
@@ -233,6 +269,42 @@ module TencentCloud
         end
       end
 
+      # CreateLifeCycleRules请求参数结构体
+      class CreateLifeCycleRulesRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param LifeCycleRules: 多个生命周期规则，上限为10
+        # @type LifeCycleRules: Array
+
+        attr_accessor :FileSystemId, :LifeCycleRules
+        
+        def initialize(filesystemid=nil, lifecyclerules=nil)
+          @FileSystemId = filesystemid
+          @LifeCycleRules = lifecyclerules
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @LifeCycleRules = params['LifeCycleRules']
+        end
+      end
+
+      # CreateLifeCycleRules返回参数结构体
+      class CreateLifeCycleRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMountPoint请求参数结构体
       class CreateMountPointRequest < TencentCloud::Common::AbstractModel
         # @param MountPointName: 挂载点名称
@@ -275,6 +347,202 @@ module TencentCloud
           unless params['MountPoint'].nil?
             @MountPoint = MountPoint.new.deserialize(params[MountPoint])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRestoreTasks请求参数结构体
+      class CreateRestoreTasksRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param RestoreTasks: 多个回热任务，上限为10
+        # @type RestoreTasks: Array
+
+        attr_accessor :FileSystemId, :RestoreTasks
+        
+        def initialize(filesystemid=nil, restoretasks=nil)
+          @FileSystemId = filesystemid
+          @RestoreTasks = restoretasks
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @RestoreTasks = params['RestoreTasks']
+        end
+      end
+
+      # CreateRestoreTasks返回参数结构体
+      class CreateRestoreTasksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAccessGroup请求参数结构体
+      class DeleteAccessGroupRequest < TencentCloud::Common::AbstractModel
+        # @param AccessGroupId: 权限组ID
+        # @type AccessGroupId: String
+
+        attr_accessor :AccessGroupId
+        
+        def initialize(accessgroupid=nil)
+          @AccessGroupId = accessgroupid
+        end
+
+        def deserialize(params)
+          @AccessGroupId = params['AccessGroupId']
+        end
+      end
+
+      # DeleteAccessGroup返回参数结构体
+      class DeleteAccessGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAccessRules请求参数结构体
+      class DeleteAccessRulesRequest < TencentCloud::Common::AbstractModel
+        # @param AccessRuleIds: 多个权限规则ID，上限为10
+        # @type AccessRuleIds: Array
+
+        attr_accessor :AccessRuleIds
+        
+        def initialize(accessruleids=nil)
+          @AccessRuleIds = accessruleids
+        end
+
+        def deserialize(params)
+          @AccessRuleIds = params['AccessRuleIds']
+        end
+      end
+
+      # DeleteAccessRules返回参数结构体
+      class DeleteAccessRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteFileSystem请求参数结构体
+      class DeleteFileSystemRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+        
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DeleteFileSystem返回参数结构体
+      class DeleteFileSystemResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLifeCycleRules请求参数结构体
+      class DeleteLifeCycleRulesRequest < TencentCloud::Common::AbstractModel
+        # @param LifeCycleRuleIds: 多个生命周期规则ID，上限为10
+        # @type LifeCycleRuleIds: Array
+
+        attr_accessor :LifeCycleRuleIds
+        
+        def initialize(lifecycleruleids=nil)
+          @LifeCycleRuleIds = lifecycleruleids
+        end
+
+        def deserialize(params)
+          @LifeCycleRuleIds = params['LifeCycleRuleIds']
+        end
+      end
+
+      # DeleteLifeCycleRules返回参数结构体
+      class DeleteLifeCycleRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMountPoint请求参数结构体
+      class DeleteMountPointRequest < TencentCloud::Common::AbstractModel
+        # @param MountPointId: 挂载点ID
+        # @type MountPointId: String
+
+        attr_accessor :MountPointId
+        
+        def initialize(mountpointid=nil)
+          @MountPointId = mountpointid
+        end
+
+        def deserialize(params)
+          @MountPointId = params['MountPointId']
+        end
+      end
+
+      # DeleteMountPoint返回参数结构体
+      class DeleteMountPointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -473,6 +741,42 @@ module TencentCloud
         end
       end
 
+      # DescribeLifeCycleRules请求参数结构体
+      class DescribeLifeCycleRulesRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+        
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DescribeLifeCycleRules返回参数结构体
+      class DescribeLifeCycleRulesResponse < TencentCloud::Common::AbstractModel
+        # @param LifeCycleRules: 生命周期规则列表
+        # @type LifeCycleRules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LifeCycleRules, :RequestId
+        
+        def initialize(lifecyclerules=nil, requestid=nil)
+          @LifeCycleRules = lifecyclerules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LifeCycleRules = params['LifeCycleRules']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMountPoint请求参数结构体
       class DescribeMountPointRequest < TencentCloud::Common::AbstractModel
         # @param MountPointId: 挂载点ID
@@ -552,6 +856,78 @@ module TencentCloud
 
         def deserialize(params)
           @MountPoints = params['MountPoints']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceTags请求参数结构体
+      class DescribeResourceTagsRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+        
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DescribeResourceTags返回参数结构体
+      class DescribeResourceTagsResponse < TencentCloud::Common::AbstractModel
+        # @param Tags: 资源标签列表
+        # @type Tags: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tags, :RequestId
+        
+        def initialize(tags=nil, requestid=nil)
+          @Tags = tags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Tags = params['Tags']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRestoreTasks请求参数结构体
+      class DescribeRestoreTasksRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+
+        attr_accessor :FileSystemId
+        
+        def initialize(filesystemid=nil)
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DescribeRestoreTasks返回参数结构体
+      class DescribeRestoreTasksResponse < TencentCloud::Common::AbstractModel
+        # @param RestoreTasks: 回热任务列表
+        # @type RestoreTasks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RestoreTasks, :RequestId
+        
+        def initialize(restoretasks=nil, requestid=nil)
+          @RestoreTasks = restoretasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RestoreTasks = params['RestoreTasks']
           @RequestId = params['RequestId']
         end
       end
@@ -648,6 +1024,42 @@ module TencentCloud
         end
       end
 
+      # 生命周期规则
+      class LifeCycleRule < TencentCloud::Common::AbstractModel
+        # @param LifeCycleRuleId: 生命周期规则ID
+        # @type LifeCycleRuleId: Integer
+        # @param LifeCycleRuleName: 生命周期规则名称
+        # @type LifeCycleRuleName: String
+        # @param Path: 生命周期规则路径（目录或文件）
+        # @type Path: String
+        # @param Transitions: 生命周期规则转换列表
+        # @type Transitions: Array
+        # @param Status: 生命周期规则状态（1：打开；2：关闭）
+        # @type Status: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :LifeCycleRuleId, :LifeCycleRuleName, :Path, :Transitions, :Status, :CreateTime
+        
+        def initialize(lifecycleruleid=nil, lifecyclerulename=nil, path=nil, transitions=nil, status=nil, createtime=nil)
+          @LifeCycleRuleId = lifecycleruleid
+          @LifeCycleRuleName = lifecyclerulename
+          @Path = path
+          @Transitions = transitions
+          @Status = status
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @LifeCycleRuleId = params['LifeCycleRuleId']
+          @LifeCycleRuleName = params['LifeCycleRuleName']
+          @Path = params['Path']
+          @Transitions = params['Transitions']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # ModifyAccessGroup请求参数结构体
       class ModifyAccessGroupRequest < TencentCloud::Common::AbstractModel
         # @param AccessGroupId: 权限组ID
@@ -674,6 +1086,38 @@ module TencentCloud
 
       # ModifyAccessGroup返回参数结构体
       class ModifyAccessGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAccessRules请求参数结构体
+      class ModifyAccessRulesRequest < TencentCloud::Common::AbstractModel
+        # @param AccessRules: 多个权限规则，上限为10
+        # @type AccessRules: Array
+
+        attr_accessor :AccessRules
+        
+        def initialize(accessrules=nil)
+          @AccessRules = accessrules
+        end
+
+        def deserialize(params)
+          @AccessRules = params['AccessRules']
+        end
+      end
+
+      # ModifyAccessRules返回参数结构体
+      class ModifyAccessRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -727,6 +1171,38 @@ module TencentCloud
 
       # ModifyFileSystem返回参数结构体
       class ModifyFileSystemResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLifeCycleRules请求参数结构体
+      class ModifyLifeCycleRulesRequest < TencentCloud::Common::AbstractModel
+        # @param LifeCycleRules: 多个生命周期规则，上限为10
+        # @type LifeCycleRules: Array
+
+        attr_accessor :LifeCycleRules
+        
+        def initialize(lifecyclerules=nil)
+          @LifeCycleRules = lifecyclerules
+        end
+
+        def deserialize(params)
+          @LifeCycleRules = params['LifeCycleRules']
+        end
+      end
+
+      # ModifyLifeCycleRules返回参数结构体
+      class ModifyLifeCycleRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -853,6 +1329,42 @@ module TencentCloud
         end
       end
 
+      # 回热任务
+      class RestoreTask < TencentCloud::Common::AbstractModel
+        # @param RestoreTaskId: 回热任务ID
+        # @type RestoreTaskId: Integer
+        # @param FilePath: 回热任务文件路径
+        # @type FilePath: String
+        # @param Type: 回热任务类型（1：标准；2：极速；3：批量）
+        # @type Type: Integer
+        # @param Days: 指定恢复出的临时副本的有效时长（单位天）
+        # @type Days: Integer
+        # @param Status: 回热任务状态（1：绑定文件中；2：绑定文件完成；3：文件回热中；4：文件回热完成）
+        # @type Status: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :RestoreTaskId, :FilePath, :Type, :Days, :Status, :CreateTime
+        
+        def initialize(restoretaskid=nil, filepath=nil, type=nil, days=nil, status=nil, createtime=nil)
+          @RestoreTaskId = restoretaskid
+          @FilePath = filepath
+          @Type = type
+          @Days = days
+          @Status = status
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @RestoreTaskId = params['RestoreTaskId']
+          @FilePath = params['FilePath']
+          @Type = params['Type']
+          @Days = params['Days']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 资源标签。
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
@@ -870,6 +1382,26 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 生命周期规则转换属性
+      class Transition < TencentCloud::Common::AbstractModel
+        # @param Days: 触发时间（单位天）
+        # @type Days: Integer
+        # @param Type: 转换类型（1：归档；2：删除）
+        # @type Type: Integer
+
+        attr_accessor :Days, :Type
+        
+        def initialize(days=nil, type=nil)
+          @Days = days
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Days = params['Days']
+          @Type = params['Type']
         end
       end
 

@@ -693,6 +693,26 @@ module TencentCloud
         end
       end
 
+      # 接入k8s 的认证信息
+      class ClusterCredential < TencentCloud::Common::AbstractModel
+        # @param CACert: CA 根证书
+        # @type CACert: String
+        # @param Token: 认证用的Token
+        # @type Token: String
+
+        attr_accessor :CACert, :Token
+        
+        def initialize(cacert=nil, token=nil)
+          @CACert = cacert
+          @Token = token
+        end
+
+        def deserialize(params)
+          @CACert = params['CACert']
+          @Token = params['Token']
+        end
+      end
+
       # 集群master自定义参数
       class ClusterExtraArgs < TencentCloud::Common::AbstractModel
         # @param KubeAPIServer: kube-apiserver自定义参数，参数格式为["k1=v1", "k1=v2"]， 例如["max-requests-inflight=500","feature-gates=PodShareProcessNamespace=true,DynamicKubeletConfig=true"]
@@ -717,6 +737,26 @@ module TencentCloud
           @KubeAPIServer = params['KubeAPIServer']
           @KubeControllerManager = params['KubeControllerManager']
           @KubeScheduler = params['KubeScheduler']
+        end
+      end
+
+      # 弹性容器集群内网访问LB信息
+      class ClusterInternalLB < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否开启内网访问LB
+        # @type Enabled: Boolean
+        # @param SubnetId: 内网访问LB关联的子网Id
+        # @type SubnetId: String
+
+        attr_accessor :Enabled, :SubnetId
+        
+        def initialize(enabled=nil, subnetid=nil)
+          @Enabled = enabled
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -757,6 +797,30 @@ module TencentCloud
           @Ipvs = params['Ipvs']
           @VpcId = params['VpcId']
           @Cni = params['Cni']
+        end
+      end
+
+      # 弹性容器集群公网访问负载均衡信息
+      class ClusterPublicLB < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否开启公网访问LB
+        # @type Enabled: Boolean
+        # @param AllowFromCidrs: 允许访问的来源CIDR列表
+        # @type AllowFromCidrs: Array
+        # @param SecurityPolicies: 安全策略放通单个IP或CIDR(例如: "192.168.1.0/24",默认为拒绝所有)
+        # @type SecurityPolicies: Array
+
+        attr_accessor :Enabled, :AllowFromCidrs, :SecurityPolicies
+        
+        def initialize(enabled=nil, allowfromcidrs=nil, securitypolicies=nil)
+          @Enabled = enabled
+          @AllowFromCidrs = allowfromcidrs
+          @SecurityPolicies = securitypolicies
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @AllowFromCidrs = params['AllowFromCidrs']
+          @SecurityPolicies = params['SecurityPolicies']
         end
       end
 
@@ -1234,6 +1298,74 @@ module TencentCloud
         end
       end
 
+      # CreateEKSCluster请求参数结构体
+      class CreateEKSClusterRequest < TencentCloud::Common::AbstractModel
+        # @param K8SVersion: k8s版本号。可为1.14.4, 1.12.8。
+        # @type K8SVersion: String
+        # @param VpcId: vpc 的Id
+        # @type VpcId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param SubnetIds: 子网Id 列表
+        # @type SubnetIds: Array
+        # @param ClusterDesc: 集群描述信息
+        # @type ClusterDesc: String
+        # @param ServiceSubnetId: Serivce 所在子网Id
+        # @type ServiceSubnetId: String
+        # @param DnsServers: 集群自定义的Dns服务器信息
+        # @type DnsServers: Array
+        # @param ExtraParam: 扩展参数。须是map[string]string 的json 格式。
+        # @type ExtraParam: String
+        # @param EnableVpcCoreDNS: 是否在用户集群内开启Dns。默认为true
+        # @type EnableVpcCoreDNS: Boolean
+
+        attr_accessor :K8SVersion, :VpcId, :ClusterName, :SubnetIds, :ClusterDesc, :ServiceSubnetId, :DnsServers, :ExtraParam, :EnableVpcCoreDNS
+        
+        def initialize(k8sversion=nil, vpcid=nil, clustername=nil, subnetids=nil, clusterdesc=nil, servicesubnetid=nil, dnsservers=nil, extraparam=nil, enablevpccoredns=nil)
+          @K8SVersion = k8sversion
+          @VpcId = vpcid
+          @ClusterName = clustername
+          @SubnetIds = subnetids
+          @ClusterDesc = clusterdesc
+          @ServiceSubnetId = servicesubnetid
+          @DnsServers = dnsservers
+          @ExtraParam = extraparam
+          @EnableVpcCoreDNS = enablevpccoredns
+        end
+
+        def deserialize(params)
+          @K8SVersion = params['K8SVersion']
+          @VpcId = params['VpcId']
+          @ClusterName = params['ClusterName']
+          @SubnetIds = params['SubnetIds']
+          @ClusterDesc = params['ClusterDesc']
+          @ServiceSubnetId = params['ServiceSubnetId']
+          @DnsServers = params['DnsServers']
+          @ExtraParam = params['ExtraParam']
+          @EnableVpcCoreDNS = params['EnableVpcCoreDNS']
+        end
+      end
+
+      # CreateEKSCluster返回参数结构体
+      class CreateEKSClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 弹性集群Id
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+        
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrometheusDashboard请求参数结构体
       class CreatePrometheusDashboardRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -1655,6 +1787,38 @@ module TencentCloud
 
       # DeleteClusterRouteTable返回参数结构体
       class DeleteClusterRouteTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteEKSCluster请求参数结构体
+      class DeleteEKSClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 弹性集群Id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteEKSCluster返回参数结构体
+      class DeleteEKSClusterResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2334,6 +2498,113 @@ module TencentCloud
         end
       end
 
+      # DescribeEKSClusterCredential请求参数结构体
+      class DescribeEKSClusterCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeEKSClusterCredential返回参数结构体
+      class DescribeEKSClusterCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param Addresses: 集群的接入地址信息
+        # @type Addresses: Array
+        # @param Credential: 集群的认证信息
+        # @type Credential: :class:`Tencentcloud::Tke.v20180525.models.ClusterCredential`
+        # @param PublicLB: 集群的公网访问信息
+        # @type PublicLB: :class:`Tencentcloud::Tke.v20180525.models.ClusterPublicLB`
+        # @param InternalLB: 集群的内网访问信息
+        # @type InternalLB: :class:`Tencentcloud::Tke.v20180525.models.ClusterInternalLB`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Addresses, :Credential, :PublicLB, :InternalLB, :RequestId
+        
+        def initialize(addresses=nil, credential=nil, publiclb=nil, internallb=nil, requestid=nil)
+          @Addresses = addresses
+          @Credential = credential
+          @PublicLB = publiclb
+          @InternalLB = internallb
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Addresses = params['Addresses']
+          unless params['Credential'].nil?
+            @Credential = ClusterCredential.new.deserialize(params[Credential])
+          end
+          unless params['PublicLB'].nil?
+            @PublicLB = ClusterPublicLB.new.deserialize(params[PublicLB])
+          end
+          unless params['InternalLB'].nil?
+            @InternalLB = ClusterInternalLB.new.deserialize(params[InternalLB])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEKSClusters请求参数结构体
+      class DescribeEKSClustersRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID列表(为空时，
+        # 表示获取账号下所有集群)
+        # @type ClusterIds: Array
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条数，默认20
+        # @type Limit: Integer
+        # @param Filters: 过滤条件,当前只支持按照单个条件ClusterName进行过滤
+        # @type Filters: Array
+
+        attr_accessor :ClusterIds, :Offset, :Limit, :Filters
+        
+        def initialize(clusterids=nil, offset=nil, limit=nil, filters=nil)
+          @ClusterIds = clusterids
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribeEKSClusters返回参数结构体
+      class DescribeEKSClustersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群总个数
+        # @type TotalCount: Integer
+        # @param Clusters: 集群信息列表
+        # @type Clusters: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Clusters, :RequestId
+        
+        def initialize(totalcount=nil, clusters=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Clusters = clusters
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Clusters = params['Clusters']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExistedInstances请求参数结构体
       class DescribeExistedInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID，请填写查询集群列表 接口中返回的 ClusterId 字段（仅通过ClusterId获取需要过滤条件中的VPCID。节点状态比较时会使用该地域下所有集群中的节点进行比较。参数不支持同时指定InstanceIds和ClusterId。
@@ -2846,6 +3117,86 @@ module TencentCloud
         end
       end
 
+      # Eks 自定义域名服务器 配置
+      class DnsServerConf < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名。空字符串表示所有域名。
+        # @type Domain: String
+        # @param DnsServers: dns 服务器地址列表。地址格式 ip:port
+        # @type DnsServers: Array
+
+        attr_accessor :Domain, :DnsServers
+        
+        def initialize(domain=nil, dnsservers=nil)
+          @Domain = domain
+          @DnsServers = dnsservers
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DnsServers = params['DnsServers']
+        end
+      end
+
+      # 弹性集群信息
+      class EksCluster < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param VpcId: Vpc Id
+        # @type VpcId: String
+        # @param SubnetIds: 子网列表
+        # @type SubnetIds: Array
+        # @param K8SVersion: k8s 版本号
+        # @type K8SVersion: String
+        # @param Status: 集群状态
+        # @type Status: String
+        # @param ClusterDesc: 集群描述信息
+        # @type ClusterDesc: String
+        # @param CreatedTime: 集群创建时间
+        # @type CreatedTime: String
+        # @param ServiceSubnetId: Service 子网Id
+        # @type ServiceSubnetId: String
+        # @param DnsServers: 集群的自定义dns 服务器信息
+        # @type DnsServers: Array
+        # @param NeedDeleteCbs: 将来删除集群时是否要删除cbs。默认为 FALSE
+        # @type NeedDeleteCbs: Boolean
+        # @param EnableVpcCoreDNS: 是否在用户集群内开启Dns。默认为TRUE
+        # @type EnableVpcCoreDNS: Boolean
+
+        attr_accessor :ClusterId, :ClusterName, :VpcId, :SubnetIds, :K8SVersion, :Status, :ClusterDesc, :CreatedTime, :ServiceSubnetId, :DnsServers, :NeedDeleteCbs, :EnableVpcCoreDNS
+        
+        def initialize(clusterid=nil, clustername=nil, vpcid=nil, subnetids=nil, k8sversion=nil, status=nil, clusterdesc=nil, createdtime=nil, servicesubnetid=nil, dnsservers=nil, needdeletecbs=nil, enablevpccoredns=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+          @K8SVersion = k8sversion
+          @Status = status
+          @ClusterDesc = clusterdesc
+          @CreatedTime = createdtime
+          @ServiceSubnetId = servicesubnetid
+          @DnsServers = dnsservers
+          @NeedDeleteCbs = needdeletecbs
+          @EnableVpcCoreDNS = enablevpccoredns
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+          @K8SVersion = params['K8SVersion']
+          @Status = params['Status']
+          @ClusterDesc = params['ClusterDesc']
+          @CreatedTime = params['CreatedTime']
+          @ServiceSubnetId = params['ServiceSubnetId']
+          @DnsServers = params['DnsServers']
+          @NeedDeleteCbs = params['NeedDeleteCbs']
+          @EnableVpcCoreDNS = params['EnableVpcCoreDNS']
+        end
+      end
+
       # 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent
       class EnhancedService < TencentCloud::Common::AbstractModel
         # @param SecurityService: 开启云安全服务。若不指定该参数，则默认开启云安全服务。
@@ -3138,6 +3489,30 @@ module TencentCloud
             @ClusterStatus = InstanceUpgradeClusterStatus.new.deserialize(params[ClusterStatus])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # IP 地址
+      class IPAddress < TencentCloud::Common::AbstractModel
+        # @param Type: Ip 地址的类型。可为 advertise, public 等
+        # @type Type: String
+        # @param Ip: Ip 地址
+        # @type Ip: String
+        # @param Port: 网络端口
+        # @type Port: Integer
+
+        attr_accessor :Type, :Ip, :Port
+        
+        def initialize(type=nil, ip=nil, port=nil)
+          @Type = type
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Ip = params['Ip']
+          @Port = params['Port']
         end
       end
 
@@ -4895,6 +5270,78 @@ module TencentCloud
 
       # UpdateClusterVersion返回参数结构体
       class UpdateClusterVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateEKSCluster请求参数结构体
+      class UpdateEKSClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 弹性集群Id
+        # @type ClusterId: String
+        # @param ClusterName: 弹性集群名称
+        # @type ClusterName: String
+        # @param ClusterDesc: 弹性集群描述信息
+        # @type ClusterDesc: String
+        # @param SubnetIds: 子网Id 列表
+        # @type SubnetIds: Array
+        # @param PublicLB: 弹性容器集群公网访问LB信息
+        # @type PublicLB: :class:`Tencentcloud::Tke.v20180525.models.ClusterPublicLB`
+        # @param InternalLB: 弹性容器集群内网访问LB信息
+        # @type InternalLB: :class:`Tencentcloud::Tke.v20180525.models.ClusterInternalLB`
+        # @param ServiceSubnetId: Service 子网Id
+        # @type ServiceSubnetId: String
+        # @param DnsServers: 集群自定义的dns 服务器信息
+        # @type DnsServers: Array
+        # @param ClearDnsServer: 是否清空自定义dns 服务器设置。为1 表示 是。其他表示 否。
+        # @type ClearDnsServer: String
+        # @param NeedDeleteCbs: 将来删除集群时是否要删除cbs。默认为 FALSE
+        # @type NeedDeleteCbs: Boolean
+
+        attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :SubnetIds, :PublicLB, :InternalLB, :ServiceSubnetId, :DnsServers, :ClearDnsServer, :NeedDeleteCbs
+        
+        def initialize(clusterid=nil, clustername=nil, clusterdesc=nil, subnetids=nil, publiclb=nil, internallb=nil, servicesubnetid=nil, dnsservers=nil, cleardnsserver=nil, needdeletecbs=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterDesc = clusterdesc
+          @SubnetIds = subnetids
+          @PublicLB = publiclb
+          @InternalLB = internallb
+          @ServiceSubnetId = servicesubnetid
+          @DnsServers = dnsservers
+          @ClearDnsServer = cleardnsserver
+          @NeedDeleteCbs = needdeletecbs
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterDesc = params['ClusterDesc']
+          @SubnetIds = params['SubnetIds']
+          unless params['PublicLB'].nil?
+            @PublicLB = ClusterPublicLB.new.deserialize(params[PublicLB])
+          end
+          unless params['InternalLB'].nil?
+            @InternalLB = ClusterInternalLB.new.deserialize(params[InternalLB])
+          end
+          @ServiceSubnetId = params['ServiceSubnetId']
+          @DnsServers = params['DnsServers']
+          @ClearDnsServer = params['ClearDnsServer']
+          @NeedDeleteCbs = params['NeedDeleteCbs']
+        end
+      end
+
+      # UpdateEKSCluster返回参数结构体
+      class UpdateEKSClusterResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -337,6 +337,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建弹性集群
+
+        # @param request: Request instance for CreateEKSCluster.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateEKSClusterRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateEKSClusterResponse`
+        def CreateEKSCluster(request)
+          body = send_request('CreateEKSCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEKSClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建grafana监控面板
 
         # @param request: Request instance for CreatePrometheusDashboard.
@@ -563,6 +587,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteClusterRouteTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除弹性集群(yunapiv3)
+
+        # @param request: Request instance for DeleteEKSCluster.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteEKSClusterRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteEKSClusterResponse`
+        def DeleteEKSCluster(request)
+          body = send_request('DeleteEKSCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEKSClusterResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -923,6 +971,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClustersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取弹性容器集群的接入认证信息
+
+        # @param request: Request instance for DescribeEKSClusterCredential.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEKSClusterCredentialRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEKSClusterCredentialResponse`
+        def DescribeEKSClusterCredential(request)
+          body = send_request('DescribeEKSClusterCredential', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEKSClusterCredentialResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询弹性集群列表
+
+        # @param request: Request instance for DescribeEKSClusters.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEKSClustersRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEKSClustersResponse`
+        def DescribeEKSClusters(request)
+          body = send_request('DescribeEKSClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEKSClustersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1451,6 +1547,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateClusterVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改弹性集群名称等属性
+
+        # @param request: Request instance for UpdateEKSCluster.
+        # @type request: :class:`Tencentcloud::tke::V20180525::UpdateEKSClusterRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::UpdateEKSClusterResponse`
+        def UpdateEKSCluster(request)
+          body = send_request('UpdateEKSCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateEKSClusterResponse.new
             model.deserialize(response['Response'])
             model
           else
