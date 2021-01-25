@@ -41,9 +41,8 @@ include TencentCloud::Cvm::V20170312
 
 begin
   cre = Credential.new('SecretId', 'SecretKey')
-  req = DescribeInstancesRequest.new(nil, nil, 0, 1)
-  
   cli = Client.new(cre, 'ap-guangzhou')
+  req = DescribeInstancesRequest.new(nil, nil, 0, 1)
   cli.DescribeInstances(req)
 rescue TencentCloudSDKException => e
   puts e.message  
