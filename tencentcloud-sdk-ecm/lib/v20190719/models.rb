@@ -904,7 +904,7 @@ module TencentCloud
 
       # CreateLoadBalancer请求参数结构体
       class CreateLoadBalancerRequest < TencentCloud::Common::AbstractModel
-        # @param EcmRegion: 区域。
+        # @param EcmRegion: ECM区域，形如ap-xian-ecm。
         # @type EcmRegion: String
         # @param LoadBalancerType: 负载均衡实例的网络类型。目前只支持传入OPEN，表示公网属性。
         # @type LoadBalancerType: String
@@ -921,10 +921,12 @@ module TencentCloud
         # @type InternetAccessible: :class:`Tencentcloud::Ecm.v20190719.models.LoadBalancerInternetAccessible`
         # @param Tags: 标签。
         # @type Tags: Array
+        # @param SecurityGroups: 安全组。
+        # @type SecurityGroups: Array
 
-        attr_accessor :EcmRegion, :LoadBalancerType, :VipIsp, :LoadBalancerName, :VpcId, :Number, :InternetAccessible, :Tags
+        attr_accessor :EcmRegion, :LoadBalancerType, :VipIsp, :LoadBalancerName, :VpcId, :Number, :InternetAccessible, :Tags, :SecurityGroups
         
-        def initialize(ecmregion=nil, loadbalancertype=nil, vipisp=nil, loadbalancername=nil, vpcid=nil, number=nil, internetaccessible=nil, tags=nil)
+        def initialize(ecmregion=nil, loadbalancertype=nil, vipisp=nil, loadbalancername=nil, vpcid=nil, number=nil, internetaccessible=nil, tags=nil, securitygroups=nil)
           @EcmRegion = ecmregion
           @LoadBalancerType = loadbalancertype
           @VipIsp = vipisp
@@ -933,6 +935,7 @@ module TencentCloud
           @Number = number
           @InternetAccessible = internetaccessible
           @Tags = tags
+          @SecurityGroups = securitygroups
         end
 
         def deserialize(params)
@@ -946,6 +949,7 @@ module TencentCloud
             @InternetAccessible = LoadBalancerInternetAccessible.new.deserialize(params[InternetAccessible])
           end
           @Tags = params['Tags']
+          @SecurityGroups = params['SecurityGroups']
         end
       end
 
@@ -2611,10 +2615,12 @@ module TencentCloud
         # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。详细的过滤条件如下：
         # tag-key - String - 是否必填：否 - （过滤条件）按照标签的键过滤。
         # @type Filters: Array
+        # @param SecurityGroup: 安全组。
+        # @type SecurityGroup: String
 
-        attr_accessor :EcmRegion, :LoadBalancerIds, :LoadBalancerName, :LoadBalancerVips, :BackendPrivateIps, :Offset, :Limit, :WithBackend, :VpcId, :Filters
+        attr_accessor :EcmRegion, :LoadBalancerIds, :LoadBalancerName, :LoadBalancerVips, :BackendPrivateIps, :Offset, :Limit, :WithBackend, :VpcId, :Filters, :SecurityGroup
         
-        def initialize(ecmregion=nil, loadbalancerids=nil, loadbalancername=nil, loadbalancervips=nil, backendprivateips=nil, offset=nil, limit=nil, withbackend=nil, vpcid=nil, filters=nil)
+        def initialize(ecmregion=nil, loadbalancerids=nil, loadbalancername=nil, loadbalancervips=nil, backendprivateips=nil, offset=nil, limit=nil, withbackend=nil, vpcid=nil, filters=nil, securitygroup=nil)
           @EcmRegion = ecmregion
           @LoadBalancerIds = loadbalancerids
           @LoadBalancerName = loadbalancername
@@ -2625,6 +2631,7 @@ module TencentCloud
           @WithBackend = withbackend
           @VpcId = vpcid
           @Filters = filters
+          @SecurityGroup = securitygroup
         end
 
         def deserialize(params)
@@ -2638,6 +2645,7 @@ module TencentCloud
           @WithBackend = params['WithBackend']
           @VpcId = params['VpcId']
           @Filters = params['Filters']
+          @SecurityGroup = params['SecurityGroup']
         end
       end
 
@@ -4842,10 +4850,16 @@ module TencentCloud
         # @param NetworkAttributes: 负载均衡实例的网络属性。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkAttributes: :class:`Tencentcloud::Ecm.v20190719.models.LoadBalancerInternetAccessible`
+        # @param SecureGroups: 安全组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecureGroups: Array
+        # @param LoadBalancerPassToTarget: 后端机器是否放通来自ELB的流量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerPassToTarget: Boolean
 
-        attr_accessor :Region, :Position, :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :VpcId, :Tags, :VipIsp, :NetworkAttributes
+        attr_accessor :Region, :Position, :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :VpcId, :Tags, :VipIsp, :NetworkAttributes, :SecureGroups, :LoadBalancerPassToTarget
         
-        def initialize(region=nil, position=nil, loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, vpcid=nil, tags=nil, vipisp=nil, networkattributes=nil)
+        def initialize(region=nil, position=nil, loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, vpcid=nil, tags=nil, vipisp=nil, networkattributes=nil, securegroups=nil, loadbalancerpasstotarget=nil)
           @Region = region
           @Position = position
           @LoadBalancerId = loadbalancerid
@@ -4859,6 +4873,8 @@ module TencentCloud
           @Tags = tags
           @VipIsp = vipisp
           @NetworkAttributes = networkattributes
+          @SecureGroups = securegroups
+          @LoadBalancerPassToTarget = loadbalancerpasstotarget
         end
 
         def deserialize(params)
@@ -4879,6 +4895,8 @@ module TencentCloud
           unless params['NetworkAttributes'].nil?
             @NetworkAttributes = LoadBalancerInternetAccessible.new.deserialize(params[NetworkAttributes])
           end
+          @SecureGroups = params['SecureGroups']
+          @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
         end
       end
 
@@ -5367,13 +5385,16 @@ module TencentCloud
         # @type LoadBalancerName: String
         # @param InternetChargeInfo: 网络计费及带宽相关参数
         # @type InternetChargeInfo: :class:`Tencentcloud::Ecm.v20190719.models.LoadBalancerInternetAccessible`
+        # @param LoadBalancerPassToTarget: Target是否放通来自ELB的流量。开启放通（true）：只验证ELB上的安全组；不开启放通（false）：需同时验证ELB和后端实例上的安全组。
+        # @type LoadBalancerPassToTarget: Boolean
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :InternetChargeInfo
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :InternetChargeInfo, :LoadBalancerPassToTarget
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, internetchargeinfo=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, internetchargeinfo=nil, loadbalancerpasstotarget=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @InternetChargeInfo = internetchargeinfo
+          @LoadBalancerPassToTarget = loadbalancerpasstotarget
         end
 
         def deserialize(params)
@@ -5382,6 +5403,7 @@ module TencentCloud
           unless params['InternetChargeInfo'].nil?
             @InternetChargeInfo = LoadBalancerInternetAccessible.new.deserialize(params[InternetChargeInfo])
           end
+          @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
         end
       end
 
@@ -7702,6 +7724,83 @@ module TencentCloud
         def deserialize(params)
           @ServiceId = params['ServiceId']
           @ServiceGroupId = params['ServiceGroupId']
+        end
+      end
+
+      # SetLoadBalancerSecurityGroups请求参数结构体
+      class SetLoadBalancerSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例 ID
+        # @type LoadBalancerId: String
+        # @param SecurityGroups: 安全组ID构成的数组，一个负载均衡实例最多可绑定5个安全组，如果要解绑所有安全组，可不传此参数，或传入空数组
+        # @type SecurityGroups: Array
+
+        attr_accessor :LoadBalancerId, :SecurityGroups
+        
+        def initialize(loadbalancerid=nil, securitygroups=nil)
+          @LoadBalancerId = loadbalancerid
+          @SecurityGroups = securitygroups
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @SecurityGroups = params['SecurityGroups']
+        end
+      end
+
+      # SetLoadBalancerSecurityGroups返回参数结构体
+      class SetLoadBalancerSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetSecurityGroupForLoadbalancers请求参数结构体
+      class SetSecurityGroupForLoadbalancersRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerIds: 负载均衡实例ID数组
+        # @type LoadBalancerIds: Array
+        # @param SecurityGroup: 安全组ID，如 esg-12345678
+        # @type SecurityGroup: String
+        # @param OperationType: ADD 绑定安全组；
+        # DEL 解绑安全组
+        # @type OperationType: String
+
+        attr_accessor :LoadBalancerIds, :SecurityGroup, :OperationType
+        
+        def initialize(loadbalancerids=nil, securitygroup=nil, operationtype=nil)
+          @LoadBalancerIds = loadbalancerids
+          @SecurityGroup = securitygroup
+          @OperationType = operationtype
+        end
+
+        def deserialize(params)
+          @LoadBalancerIds = params['LoadBalancerIds']
+          @SecurityGroup = params['SecurityGroup']
+          @OperationType = params['OperationType']
+        end
+      end
+
+      # SetSecurityGroupForLoadbalancers返回参数结构体
+      class SetSecurityGroupForLoadbalancersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

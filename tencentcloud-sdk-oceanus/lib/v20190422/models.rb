@@ -497,10 +497,13 @@ module TencentCloud
         # @param SchedulerType: 作业所在集群类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchedulerType: Integer
+        # @param ClusterStatus: 作业所在集群状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStatus: Integer
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus
         
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -527,6 +530,7 @@ module TencentCloud
           @ClusterId = clusterid
           @WebUIUrl = webuiurl
           @SchedulerType = schedulertype
+          @ClusterStatus = clusterstatus
         end
 
         def deserialize(params)
@@ -556,6 +560,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @WebUIUrl = params['WebUIUrl']
           @SchedulerType = params['SchedulerType']
+          @ClusterStatus = params['ClusterStatus']
         end
       end
 

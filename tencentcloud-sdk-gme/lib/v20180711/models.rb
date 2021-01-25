@@ -54,6 +54,70 @@ module TencentCloud
         end
       end
 
+      # 应用统计数据
+      class ApplicationDataStatistics < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID
+        # @type BizId: Integer
+        # @param DauDataNum: Dau统计项数目
+        # @type DauDataNum: Integer
+        # @param DauDataMainland: 大陆地区Dau统计数据，单位人
+        # @type DauDataMainland: Array
+        # @param DauDataOversea: 海外地区Dau统计数据，单位人
+        # @type DauDataOversea: Array
+        # @param DauDataSum: 大陆和海外地区Dau统计数据汇总，单位人
+        # @type DauDataSum: Array
+        # @param DurationDataNum: 实时语音时长统计项数目
+        # @type DurationDataNum: Integer
+        # @param DurationDataMainland: 大陆地区实时语音时长统计数据，单位分钟
+        # @type DurationDataMainland: Array
+        # @param DurationDataOversea: 海外地区实时语音时长统计数据，单位分钟
+        # @type DurationDataOversea: Array
+        # @param DurationDataSum: 大陆和海外地区实时语音时长统计数据汇总，单位分钟
+        # @type DurationDataSum: Array
+        # @param PcuDataNum: Pcu统计项数目
+        # @type PcuDataNum: Integer
+        # @param PcuDataMainland: 大陆地区Pcu统计数据，单位人
+        # @type PcuDataMainland: Array
+        # @param PcuDataOversea: 海外地区Pcu统计数据，单位人
+        # @type PcuDataOversea: Array
+        # @param PcuDataSum: 大陆和海外地区Pcu统计数据汇总，单位人
+        # @type PcuDataSum: Array
+
+        attr_accessor :BizId, :DauDataNum, :DauDataMainland, :DauDataOversea, :DauDataSum, :DurationDataNum, :DurationDataMainland, :DurationDataOversea, :DurationDataSum, :PcuDataNum, :PcuDataMainland, :PcuDataOversea, :PcuDataSum
+        
+        def initialize(bizid=nil, daudatanum=nil, daudatamainland=nil, daudataoversea=nil, daudatasum=nil, durationdatanum=nil, durationdatamainland=nil, durationdataoversea=nil, durationdatasum=nil, pcudatanum=nil, pcudatamainland=nil, pcudataoversea=nil, pcudatasum=nil)
+          @BizId = bizid
+          @DauDataNum = daudatanum
+          @DauDataMainland = daudatamainland
+          @DauDataOversea = daudataoversea
+          @DauDataSum = daudatasum
+          @DurationDataNum = durationdatanum
+          @DurationDataMainland = durationdatamainland
+          @DurationDataOversea = durationdataoversea
+          @DurationDataSum = durationdatasum
+          @PcuDataNum = pcudatanum
+          @PcuDataMainland = pcudatamainland
+          @PcuDataOversea = pcudataoversea
+          @PcuDataSum = pcudatasum
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @DauDataNum = params['DauDataNum']
+          @DauDataMainland = params['DauDataMainland']
+          @DauDataOversea = params['DauDataOversea']
+          @DauDataSum = params['DauDataSum']
+          @DurationDataNum = params['DurationDataNum']
+          @DurationDataMainland = params['DurationDataMainland']
+          @DurationDataOversea = params['DurationDataOversea']
+          @DurationDataSum = params['DurationDataSum']
+          @PcuDataNum = params['PcuDataNum']
+          @PcuDataMainland = params['PcuDataMainland']
+          @PcuDataOversea = params['PcuDataOversea']
+          @PcuDataSum = params['PcuDataSum']
+        end
+      end
+
       # CreateApp请求参数结构体
       class CreateAppRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称
@@ -195,6 +259,52 @@ module TencentCloud
 
         def deserialize(params)
           @AppStatistics = params['AppStatistics']
+        end
+      end
+
+      # DescribeApplicationData请求参数结构体
+      class DescribeApplicationDataRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用ID
+        # @type BizId: Integer
+        # @param StartDate: 数据开始时间，格式为 年-月-日，如: 2018-07-13
+        # @type StartDate: String
+        # @param EndDate: 数据结束时间，格式为 年-月-日，如: 2018-07-13
+        # @type EndDate: String
+
+        attr_accessor :BizId, :StartDate, :EndDate
+        
+        def initialize(bizid=nil, startdate=nil, enddate=nil)
+          @BizId = bizid
+          @StartDate = startdate
+          @EndDate = enddate
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+        end
+      end
+
+      # DescribeApplicationData返回参数结构体
+      class DescribeApplicationDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 应用统计数据
+        # @type Data: :class:`Tencentcloud::Gme.v20180711.models.ApplicationDataStatistics`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ApplicationDataStatistics.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -737,6 +847,26 @@ module TencentCloud
         def deserialize(params)
           @DataId = params['DataId']
           @TaskId = params['TaskId']
+        end
+      end
+
+      # 用量数据单元
+      class StatisticsItem < TencentCloud::Common::AbstractModel
+        # @param StatDate: 日期，格式为年-月-日，如2018-07-13
+        # @type StatDate: String
+        # @param Data: 统计值
+        # @type Data: Integer
+
+        attr_accessor :StatDate, :Data
+        
+        def initialize(statdate=nil, data=nil)
+          @StatDate = statdate
+          @Data = data
+        end
+
+        def deserialize(params)
+          @StatDate = params['StatDate']
+          @Data = params['Data']
         end
       end
 

@@ -6402,30 +6402,30 @@ module TencentCloud
 
       # DescribeNetworkAcls请求参数结构体
       class DescribeNetworkAclsRequest < TencentCloud::Common::AbstractModel
-        # @param NetworkAclIds: 网络ACL实例ID数组。形如：[acl-12345678]。每次请求的实例的上限为100。参数不支持同时指定NetworkAclIds和Filters。
-        # @type NetworkAclIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定NetworkAclIds和Filters。
         # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-12345678。</li>
         # <li>network-acl-id - String - （过滤条件）网络ACL实例ID，形如：acl-12345678。</li>
         # <li>network-acl-name - String - （过滤条件）网络ACL实例名称。</li>
         # @type Filters: Array
+        # @param NetworkAclIds: 网络ACL实例ID数组。形如：[acl-12345678]。每次请求的实例的上限为100。参数不支持同时指定NetworkAclIds和Filters。
+        # @type NetworkAclIds: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最小值为1，最大值为100。
         # @type Limit: Integer
 
-        attr_accessor :NetworkAclIds, :Filters, :Offset, :Limit
+        attr_accessor :Filters, :NetworkAclIds, :Offset, :Limit
         
-        def initialize(networkaclids=nil, filters=nil, offset=nil, limit=nil)
-          @NetworkAclIds = networkaclids
+        def initialize(filters=nil, networkaclids=nil, offset=nil, limit=nil)
           @Filters = filters
+          @NetworkAclIds = networkaclids
           @Offset = offset
           @Limit = limit
         end
 
         def deserialize(params)
-          @NetworkAclIds = params['NetworkAclIds']
           @Filters = params['Filters']
+          @NetworkAclIds = params['NetworkAclIds']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end

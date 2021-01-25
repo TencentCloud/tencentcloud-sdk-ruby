@@ -1297,7 +1297,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeDatabases)用于查询云数据库实例的数据库信息。
+        # 本接口(DescribeDatabases)用于查询云数据库实例的数据库信息，仅支持主实例和灾备实例，不支持只读实例。
 
         # @param request: Request instance for DescribeDatabases.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeDatabasesRequest`
@@ -1705,7 +1705,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeTables)用于查询云数据库实例的数据库表信息。
+        # 本接口(DescribeTables)用于查询云数据库实例的数据库表信息，仅支持主实例和灾备实例，不支持只读实例。
 
         # @param request: Request instance for DescribeTables.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeTablesRequest`

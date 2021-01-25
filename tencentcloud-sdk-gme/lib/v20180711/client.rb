@@ -73,6 +73,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
+
+        # @param request: Request instance for DescribeApplicationData.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeApplicationDataRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeApplicationDataResponse`
+        def DescribeApplicationData(request)
+          body = send_request('DescribeApplicationData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApplicationDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据应用ID和文件ID查询识别结果
 
         # @param request: Request instance for DescribeFilterResult.

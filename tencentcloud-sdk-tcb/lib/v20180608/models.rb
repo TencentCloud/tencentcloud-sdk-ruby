@@ -758,7 +758,7 @@ module TencentCloud
         # @type EnableUnion: Boolean
         # @param OperatorRemark: 操作备注
         # @type OperatorRemark: String
-        # @param ServerPath: 服务路劲
+        # @param ServerPath: 服务路径
         # @type ServerPath: String
         # @param ImageReuseKey: 镜像复用的key
         # @type ImageReuseKey: String
@@ -2166,6 +2166,43 @@ module TencentCloud
         end
       end
 
+      # DescribeSmsQuotas请求参数结构体
+      class DescribeSmsQuotasRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+        
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeSmsQuotas返回参数结构体
+      class DescribeSmsQuotasResponse < TencentCloud::Common::AbstractModel
+        # @param SmsFreeQuotaList: 短信免费量信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmsFreeQuotaList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SmsFreeQuotaList, :RequestId
+        
+        def initialize(smsfreequotalist=nil, requestid=nil)
+          @SmsFreeQuotaList = smsfreequotalist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SmsFreeQuotaList = params['SmsFreeQuotaList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DestroyEnv请求参数结构体
       class DestroyEnvRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境Id
@@ -3039,6 +3076,43 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 短信免费量
+      class SmsFreeQuota < TencentCloud::Common::AbstractModel
+        # @param FreeQuota: 免费量总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreeQuota: Integer
+        # @param TotalUsedQuota: 共计已使用总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalUsedQuota: Integer
+        # @param CycleStart: 免费周期起点，0000-00-00 00:00:00 形式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleStart: String
+        # @param CycleEnd: 免费周期终点，0000-00-00 00:00:00 形式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleEnd: String
+        # @param TodayUsedQuota: 今天已使用总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TodayUsedQuota: Integer
+
+        attr_accessor :FreeQuota, :TotalUsedQuota, :CycleStart, :CycleEnd, :TodayUsedQuota
+        
+        def initialize(freequota=nil, totalusedquota=nil, cyclestart=nil, cycleend=nil, todayusedquota=nil)
+          @FreeQuota = freequota
+          @TotalUsedQuota = totalusedquota
+          @CycleStart = cyclestart
+          @CycleEnd = cycleend
+          @TodayUsedQuota = todayusedquota
+        end
+
+        def deserialize(params)
+          @FreeQuota = params['FreeQuota']
+          @TotalUsedQuota = params['TotalUsedQuota']
+          @CycleStart = params['CycleStart']
+          @CycleEnd = params['CycleEnd']
+          @TodayUsedQuota = params['TodayUsedQuota']
         end
       end
 

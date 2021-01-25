@@ -2740,6 +2740,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置负载均衡实例的安全组。
+
+        # @param request: Request instance for SetLoadBalancerSecurityGroups.
+        # @type request: :class:`Tencentcloud::ecm::V20190719::SetLoadBalancerSecurityGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ecm::V20190719::SetLoadBalancerSecurityGroupsResponse`
+        def SetLoadBalancerSecurityGroups(request)
+          body = send_request('SetLoadBalancerSecurityGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetLoadBalancerSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 绑定或解绑一个安全组到多个负载均衡实例。
+
+        # @param request: Request instance for SetSecurityGroupForLoadbalancers.
+        # @type request: :class:`Tencentcloud::ecm::V20190719::SetSecurityGroupForLoadbalancersRequest`
+        # @rtype: :class:`Tencentcloud::ecm::V20190719::SetSecurityGroupForLoadbalancersResponse`
+        def SetSecurityGroupForLoadbalancers(request)
+          body = send_request('SetSecurityGroupForLoadbalancers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetSecurityGroupForLoadbalancersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
 
         # @param request: Request instance for StartInstances.

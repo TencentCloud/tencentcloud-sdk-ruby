@@ -962,7 +962,7 @@ module TencentCloud
       class EduPaperOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
@@ -973,12 +973,10 @@ module TencentCloud
         # @type ImageUrl: String
         # @param Config: 扩展配置信息。
         # 配置格式：{"option1":value1,"option2":value2}
-        # 可配置信息：
-        #       参数名称  是否必选   类型   可选值  默认值  描述
-        #       task_type  否  Int32  [0,1]  1  用于选择任务类型: 0: 关闭版式分析与处理 1: 开启版式分析处理
-        #       is_structuralization 否 Bool false\true true  用于选择是否结构化输出：false：返回包体返回通用输出 true：返回包体同时返回通用和结构化输出
-        #       if_readable_format 否 Bool false\true false 是否按照版式整合通用文本/公式输出结果
-        # 例子：
+        # 1. task_type：任务类型【0: 关闭版式分析与处理 1: 开启版式分析处理】可选参数，Int32类型，默认值为1
+        # 2. is_structuralization：是否结构化输出【true：返回包体同时返回通用和结构化输出  false：返回包体返回通用输出】 可选参数，Bool类型，默认值为true
+        # 3. if_readable_format：是否按照版式整合通用文本/公式输出结果 可选参数，Bool类型，默认值为false
+        # 示例：
         # {"task_type": 1,"is_structuralization": true,"if_readable_format": true}
         # @type Config: String
 
@@ -3511,15 +3509,21 @@ module TencentCloud
       class QuestionBlockObj < TencentCloud::Common::AbstractModel
         # @param QuestionArr: 数学试题识别结构化信息数组
         # @type QuestionArr: Array
+        # @param QuestionBboxCoord: 题目主体区域检测框在图片中的像素坐标
+        # @type QuestionBboxCoord: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
 
-        attr_accessor :QuestionArr
+        attr_accessor :QuestionArr, :QuestionBboxCoord
         
-        def initialize(questionarr=nil)
+        def initialize(questionarr=nil, questionbboxcoord=nil)
           @QuestionArr = questionarr
+          @QuestionBboxCoord = questionbboxcoord
         end
 
         def deserialize(params)
           @QuestionArr = params['QuestionArr']
+          unless params['QuestionBboxCoord'].nil?
+            @QuestionBboxCoord = Rect.new.deserialize(params[QuestionBboxCoord])
+          end
         end
       end
 
@@ -3538,15 +3542,18 @@ module TencentCloud
         # @type QuestionOptions: String
         # @param QuestionSubquestion: 所有子题的question属性
         # @type QuestionSubquestion: String
+        # @param QuestionImageCoords: 示意图检测框在的图片中的像素坐标
+        # @type QuestionImageCoords: Array
 
-        attr_accessor :QuestionTextNo, :QuestionTextType, :QuestionText, :QuestionOptions, :QuestionSubquestion
+        attr_accessor :QuestionTextNo, :QuestionTextType, :QuestionText, :QuestionOptions, :QuestionSubquestion, :QuestionImageCoords
         
-        def initialize(questiontextno=nil, questiontexttype=nil, questiontext=nil, questionoptions=nil, questionsubquestion=nil)
+        def initialize(questiontextno=nil, questiontexttype=nil, questiontext=nil, questionoptions=nil, questionsubquestion=nil, questionimagecoords=nil)
           @QuestionTextNo = questiontextno
           @QuestionTextType = questiontexttype
           @QuestionText = questiontext
           @QuestionOptions = questionoptions
           @QuestionSubquestion = questionsubquestion
+          @QuestionImageCoords = questionimagecoords
         end
 
         def deserialize(params)
@@ -3555,6 +3562,7 @@ module TencentCloud
           @QuestionText = params['QuestionText']
           @QuestionOptions = params['QuestionOptions']
           @QuestionSubquestion = params['QuestionSubquestion']
+          @QuestionImageCoords = params['QuestionImageCoords']
         end
       end
 
