@@ -2089,7 +2089,7 @@ module TencentCloud
         # @type Discount: Integer
         # @param StoreNo: 门店编码
         # @type StoreNo: String
-        # @param InvoiceChannel: 开票渠道。0：线上渠道，1：线下渠道。不填默认为线上渠道
+        # @param InvoiceChannel: 开票渠道。0：APP渠道，1：线下渠道，2：小程序渠道。不填默认为APP渠道
         # @type InvoiceChannel: Integer
 
         attr_accessor :InvoicePlatformId, :TitleType, :BuyerTitle, :OrderId, :AmountHasTax, :TaxAmount, :AmountWithoutTax, :SellerTaxpayerNum, :SellerName, :SellerAddress, :SellerPhone, :SellerBankName, :SellerBankAccount, :BuyerTaxpayerNum, :BuyerAddress, :BuyerBankName, :BuyerBankAccount, :BuyerPhone, :BuyerEmail, :TakerPhone, :InvoiceType, :CallbackUrl, :Drawer, :Payee, :Checker, :TerminalCode, :LevyMethod, :Deduction, :Remark, :Items, :Profile, :UndoPart, :OrderDate, :Discount, :StoreNo, :InvoiceChannel

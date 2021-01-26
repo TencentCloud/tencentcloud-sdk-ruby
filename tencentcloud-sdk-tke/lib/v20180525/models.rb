@@ -1090,10 +1090,14 @@ module TencentCloud
         # @type Labels: Array
         # @param Taints: Taints互斥
         # @type Taints: Array
+        # @param NodePoolOs: 节点池os
+        # @type NodePoolOs: String
+        # @param OsCustomizeType: 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
+        # @type OsCustomizeType: String
 
-        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints
+        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :NodePoolOs, :OsCustomizeType
         
-        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil)
+        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil, nodepoolos=nil, oscustomizetype=nil)
           @ClusterId = clusterid
           @AutoScalingGroupPara = autoscalinggrouppara
           @LaunchConfigurePara = launchconfigurepara
@@ -1102,6 +1106,8 @@ module TencentCloud
           @Name = name
           @Labels = labels
           @Taints = taints
+          @NodePoolOs = nodepoolos
+          @OsCustomizeType = oscustomizetype
         end
 
         def deserialize(params)
@@ -1115,6 +1121,8 @@ module TencentCloud
           @Name = params['Name']
           @Labels = params['Labels']
           @Taints = params['Taints']
+          @NodePoolOs = params['NodePoolOs']
+          @OsCustomizeType = params['OsCustomizeType']
         end
       end
 

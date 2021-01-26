@@ -1224,6 +1224,86 @@ module TencentCloud
         end
       end
 
+      # DisableRestProxy请求参数结构体
+      class DisableRestProxyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 对应appid
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DisableRestProxy返回参数结构体
+      class DisableRestProxyResponse < TencentCloud::Common::AbstractModel
+        # @param RestProxyStatus: RestProxy的状态，0为关闭，1为开启中，2为开启，3为关闭中
+        # @type RestProxyStatus: Integer
+        # @param TaskId: TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RestProxyStatus, :TaskId, :RequestId
+        
+        def initialize(restproxystatus=nil, taskid=nil, requestid=nil)
+          @RestProxyStatus = restproxystatus
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RestProxyStatus = params['RestProxyStatus']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableRestProxy请求参数结构体
+      class EnableRestProxyRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 对应于appid
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # EnableRestProxy返回参数结构体
+      class EnableRestProxyResponse < TencentCloud::Common::AbstractModel
+        # @param RestProxyStatus: RestProxy的状态，0为关闭，1为开启中，2为开启，3为关闭中
+        # @type RestProxyStatus: Integer
+        # @param TaskId: TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RestProxyStatus, :TaskId, :RequestId
+        
+        def initialize(restproxystatus=nil, taskid=nil, requestid=nil)
+          @RestProxyStatus = restproxystatus
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RestProxyStatus = params['RestProxyStatus']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述每个实例（应用，大区或表）处理过程中可能出现的错误详情。
       class ErrorInfo < TencentCloud::Common::AbstractModel
         # @param Code: 错误码

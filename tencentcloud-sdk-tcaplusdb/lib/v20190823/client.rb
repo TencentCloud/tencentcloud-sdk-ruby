@@ -577,6 +577,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 当restful api为关闭状态时，可以通过此接口关闭restful api
+
+        # @param request: Request instance for DisableRestProxy.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::DisableRestProxyRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::DisableRestProxyResponse`
+        def DisableRestProxy(request)
+          body = send_request('DisableRestProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableRestProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 当restful api为关闭状态时，可以通过此接口开启restful apu
+
+        # @param request: Request instance for EnableRestProxy.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::EnableRestProxyRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::EnableRestProxyResponse`
+        def EnableRestProxy(request)
+          body = send_request('EnableRestProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableRestProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改独占集群机器
 
         # @param request: Request instance for ModifyClusterMachine.

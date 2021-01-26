@@ -865,6 +865,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeExportMachines) 用于导出区域主机列表。
+
+        # @param request: Request instance for DescribeExportMachines.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeExportMachinesRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeExportMachinesResponse`
+        def DescribeExportMachines(request)
+          body = send_request('DescribeExportMachines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExportMachinesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
 
         # @param request: Request instance for DescribeHistoryAccounts.
@@ -961,6 +985,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeMachineList) 用于网页防篡改获取区域主机列表。
+
+        # @param request: Request instance for DescribeMachineList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeMachineListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeMachineListResponse`
+        def DescribeMachineList(request)
+          body = send_request('DescribeMachineList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMachineListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeMachines) 用于获取区域主机列表。
 
         # @param request: Request instance for DescribeMachines.
@@ -995,6 +1043,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMaliciousRequestsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看恶意文件详情
+
+        # @param request: Request instance for DescribeMalwareInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeMalwareInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeMalwareInfoResponse`
+        def DescribeMalwareInfo(request)
+          body = send_request('DescribeMalwareInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMalwareInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1331,6 +1403,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeReverseShellRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询木马扫描进度
+
+        # @param request: Request instance for DescribeScanMalwareSchedule.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeScanMalwareScheduleRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeScanMalwareScheduleResponse`
+        def DescribeScanMalwareSchedule(request)
+          body = send_request('DescribeScanMalwareSchedule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScanMalwareScheduleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1993,6 +2089,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于异步导出数据量大的日志文件
+
+        # @param request: Request instance for ExportTasks.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ExportTasksRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ExportTasksResponse`
+        def ExportTasks(request)
+          body = send_request('ExportTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
 
         # @param request: Request instance for IgnoreImpactedHosts.
@@ -2123,6 +2243,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLoginWhiteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 定时扫描设置
+
+        # @param request: Request instance for ModifyMalwareTimingScanSettings.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyMalwareTimingScanSettingsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyMalwareTimingScanSettingsResponse`
+        def ModifyMalwareTimingScanSettings(request)
+          body = send_request('ModifyMalwareTimingScanSettings', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMalwareTimingScanSettingsResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -360,16 +360,19 @@ module TencentCloud
         # @type ThumbUrl: String
         # @param Vendor: 图片供应商
         # @type Vendor: String
+        # @param Keywords: 图片关键词
+        # @type Keywords: String
 
-        attr_accessor :ImageId, :Title, :Description, :PreviewUrl, :ThumbUrl, :Vendor
+        attr_accessor :ImageId, :Title, :Description, :PreviewUrl, :ThumbUrl, :Vendor, :Keywords
         
-        def initialize(imageid=nil, title=nil, description=nil, previewurl=nil, thumburl=nil, vendor=nil)
+        def initialize(imageid=nil, title=nil, description=nil, previewurl=nil, thumburl=nil, vendor=nil, keywords=nil)
           @ImageId = imageid
           @Title = title
           @Description = description
           @PreviewUrl = previewurl
           @ThumbUrl = thumburl
           @Vendor = vendor
+          @Keywords = keywords
         end
 
         def deserialize(params)
@@ -379,6 +382,7 @@ module TencentCloud
           @PreviewUrl = params['PreviewUrl']
           @ThumbUrl = params['ThumbUrl']
           @Vendor = params['Vendor']
+          @Keywords = params['Keywords']
         end
       end
 

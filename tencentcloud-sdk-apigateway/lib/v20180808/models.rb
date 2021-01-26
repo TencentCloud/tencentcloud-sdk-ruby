@@ -2379,6 +2379,64 @@ module TencentCloud
         end
       end
 
+      # DescribePlugins请求参数结构体
+      class DescribePluginsRequest < TencentCloud::Common::AbstractModel
+        # @param PluginIds: 要查询的插件列表。
+        # @type PluginIds: Array
+        # @param PluginName: 要查询的插件名称。
+        # @type PluginName: String
+        # @param PluginType: 要查询的插件类型。
+        # @type PluginType: String
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。预留字段，目前不支持过滤。
+        # @type Filters: Array
+
+        attr_accessor :PluginIds, :PluginName, :PluginType, :Limit, :Offset, :Filters
+        
+        def initialize(pluginids=nil, pluginname=nil, plugintype=nil, limit=nil, offset=nil, filters=nil)
+          @PluginIds = pluginids
+          @PluginName = pluginname
+          @PluginType = plugintype
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @PluginIds = params['PluginIds']
+          @PluginName = params['PluginName']
+          @PluginType = params['PluginType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Filters = params['Filters']
+        end
+      end
+
+      # DescribePlugins返回参数结构体
+      class DescribePluginsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 插件详情。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.PluginSummary`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = PluginSummary.new.deserialize(params[Result])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeServiceEnvironmentList请求参数结构体
       class DescribeServiceEnvironmentListRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 待查询的服务唯一 ID。
@@ -4234,6 +4292,67 @@ module TencentCloud
         def deserialize(params)
           @Path = params['Path']
           @Environment = params['Environment']
+        end
+      end
+
+      # API网关插件详情。
+      class Plugin < TencentCloud::Common::AbstractModel
+        # @param PluginId: 插件ID。
+        # @type PluginId: String
+        # @param PluginName: 插件名称。
+        # @type PluginName: String
+        # @param PluginType: 插件类型。
+        # @type PluginType: String
+        # @param PluginData: 插件定义语句。
+        # @type PluginData: String
+        # @param Description: 插件描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreatedTime: 插件创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        # @type CreatedTime: String
+        # @param ModifiedTime: 插件修改时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        # @type ModifiedTime: String
+
+        attr_accessor :PluginId, :PluginName, :PluginType, :PluginData, :Description, :CreatedTime, :ModifiedTime
+        
+        def initialize(pluginid=nil, pluginname=nil, plugintype=nil, plugindata=nil, description=nil, createdtime=nil, modifiedtime=nil)
+          @PluginId = pluginid
+          @PluginName = pluginname
+          @PluginType = plugintype
+          @PluginData = plugindata
+          @Description = description
+          @CreatedTime = createdtime
+          @ModifiedTime = modifiedtime
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @PluginName = params['PluginName']
+          @PluginType = params['PluginType']
+          @PluginData = params['PluginData']
+          @Description = params['Description']
+          @CreatedTime = params['CreatedTime']
+          @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # 插件列表详情。
+      class PluginSummary < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 插件个数。
+        # @type TotalCount: Integer
+        # @param PluginSet: 插件详情。
+        # @type PluginSet: Array
+
+        attr_accessor :TotalCount, :PluginSet
+        
+        def initialize(totalcount=nil, pluginset=nil)
+          @TotalCount = totalcount
+          @PluginSet = pluginset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @PluginSet = params['PluginSet']
         end
       end
 

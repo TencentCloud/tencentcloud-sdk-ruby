@@ -109,6 +109,98 @@ module TencentCloud
         end
       end
 
+      # DescribePlayer请求参数结构体
+      class DescribePlayerRequest < TencentCloud::Common::AbstractModel
+        # @param GameId: 游戏资源Id。
+        # @type GameId: String
+        # @param OpenId: 玩家OpenId。
+        # @type OpenId: String
+        # @param PlayerId: 玩家PlayerId，由后台分配，当OpenId不传的时候，PlayerId必传，传入PlayerId可以查询当前PlayerId的玩家信息，当OpenId传入的时候，PlayerId可不传，按照OpenId查询玩家信息。
+        # @type PlayerId: String
+
+        attr_accessor :GameId, :OpenId, :PlayerId
+        
+        def initialize(gameid=nil, openid=nil, playerid=nil)
+          @GameId = gameid
+          @OpenId = openid
+          @PlayerId = playerid
+        end
+
+        def deserialize(params)
+          @GameId = params['GameId']
+          @OpenId = params['OpenId']
+          @PlayerId = params['PlayerId']
+        end
+      end
+
+      # DescribePlayer返回参数结构体
+      class DescribePlayerResponse < TencentCloud::Common::AbstractModel
+        # @param Player: 玩家信息。
+        # @type Player: :class:`Tencentcloud::Mgobe.v20201014.models.Player`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Player, :RequestId
+        
+        def initialize(player=nil, requestid=nil)
+          @Player = player
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Player'].nil?
+            @Player = Player.new.deserialize(params[Player])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoom请求参数结构体
+      class DescribeRoomRequest < TencentCloud::Common::AbstractModel
+        # @param GameId: 游戏资源Id。
+        # @type GameId: String
+        # @param PlayerId: 玩家Id。当房间Id不传的时候，玩家Id必传，传入玩家Id可以查询当前玩家所在的房间信息，当房间Id传入的时候，优先按照房间Id查询房间信息。
+        # @type PlayerId: String
+        # @param RoomId: 房间Id。
+        # @type RoomId: String
+
+        attr_accessor :GameId, :PlayerId, :RoomId
+        
+        def initialize(gameid=nil, playerid=nil, roomid=nil)
+          @GameId = gameid
+          @PlayerId = playerid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @GameId = params['GameId']
+          @PlayerId = params['PlayerId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeRoom返回参数结构体
+      class DescribeRoomResponse < TencentCloud::Common::AbstractModel
+        # @param Room: 房间信息。
+        # @type Room: :class:`Tencentcloud::Mgobe.v20201014.models.Room`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Room, :RequestId
+        
+        def initialize(room=nil, requestid=nil)
+          @Room = room
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Room'].nil?
+            @Room = Room.new.deserialize(params[Room])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DismissRoom请求参数结构体
       class DismissRoomRequest < TencentCloud::Common::AbstractModel
         # @param GameId: 表示游戏资源唯一 ID, 由后台自动分配, 无法修改。

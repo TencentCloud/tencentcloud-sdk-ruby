@@ -79,6 +79,42 @@ module TencentCloud
         end
       end
 
+      # 异步事件
+      class AsyncEvent < TencentCloud::Common::AbstractModel
+        # @param InvokeRequestId: 调用请求id
+        # @type InvokeRequestId: String
+        # @param InvokeType: 调用类型
+        # @type InvokeType: String
+        # @param Qualifier: 函数版本
+        # @type Qualifier: String
+        # @param Status: 事件状态
+        # @type Status: String
+        # @param StartTime: 调用开始时间，格式: "%Y-%m-%d %H:%M:%S.%f"
+        # @type StartTime: String
+        # @param EndTime: 调用结束时间，格式: "%Y-%m-%d %H:%M:%S.%f"
+        # @type EndTime: String
+
+        attr_accessor :InvokeRequestId, :InvokeType, :Qualifier, :Status, :StartTime, :EndTime
+        
+        def initialize(invokerequestid=nil, invoketype=nil, qualifier=nil, status=nil, starttime=nil, endtime=nil)
+          @InvokeRequestId = invokerequestid
+          @InvokeType = invoketype
+          @Qualifier = qualifier
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @InvokeRequestId = params['InvokeRequestId']
+          @InvokeType = params['InvokeType']
+          @Qualifier = params['Qualifier']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # 文件系统(cfs)配置描述
       class CfsConfig < TencentCloud::Common::AbstractModel
         # @param CfsInsList: 文件系统信息列表
@@ -1904,6 +1940,94 @@ module TencentCloud
         end
       end
 
+      # ListAsyncEvents请求参数结构体
+      class ListAsyncEventsRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Qualifier: 过滤条件，函数版本
+        # @type Qualifier: String
+        # @param InvokeType: 过滤条件，调用类型列表
+        # @type InvokeType: Array
+        # @param Status: 过滤条件，事件状态列表
+        # @type Status: Array
+        # @param StartTimeInterval: 过滤条件，开始执行时间左闭右开区间
+        # @type StartTimeInterval: :class:`Tencentcloud::Scf.v20180416.models.TimeInterval`
+        # @param EndTimeInterval: 过滤条件，结束执行时间左闭右开区间
+        # @type EndTimeInterval: :class:`Tencentcloud::Scf.v20180416.models.TimeInterval`
+        # @param Order: 可选值 ASC 和 DESC，默认 DESC
+        # @type Order: String
+        # @param Orderby: 可选值 StartTime 和 EndTime，默认值 StartTime
+        # @type Orderby: String
+        # @param Offset: 数据偏移量，默认值为 0
+        # @type Offset: Integer
+        # @param Limit: 返回数据长度，默认值为 20，最大值 100
+        # @type Limit: Integer
+        # @param InvokeRequestId: 过滤条件，事件调用请求id
+        # @type InvokeRequestId: String
+
+        attr_accessor :FunctionName, :Namespace, :Qualifier, :InvokeType, :Status, :StartTimeInterval, :EndTimeInterval, :Order, :Orderby, :Offset, :Limit, :InvokeRequestId
+        
+        def initialize(functionname=nil, namespace=nil, qualifier=nil, invoketype=nil, status=nil, starttimeinterval=nil, endtimeinterval=nil, order=nil, orderby=nil, offset=nil, limit=nil, invokerequestid=nil)
+          @FunctionName = functionname
+          @Namespace = namespace
+          @Qualifier = qualifier
+          @InvokeType = invoketype
+          @Status = status
+          @StartTimeInterval = starttimeinterval
+          @EndTimeInterval = endtimeinterval
+          @Order = order
+          @Orderby = orderby
+          @Offset = offset
+          @Limit = limit
+          @InvokeRequestId = invokerequestid
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Namespace = params['Namespace']
+          @Qualifier = params['Qualifier']
+          @InvokeType = params['InvokeType']
+          @Status = params['Status']
+          unless params['StartTimeInterval'].nil?
+            @StartTimeInterval = TimeInterval.new.deserialize(params[StartTimeInterval])
+          end
+          unless params['EndTimeInterval'].nil?
+            @EndTimeInterval = TimeInterval.new.deserialize(params[EndTimeInterval])
+          end
+          @Order = params['Order']
+          @Orderby = params['Orderby']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @InvokeRequestId = params['InvokeRequestId']
+        end
+      end
+
+      # ListAsyncEvents返回参数结构体
+      class ListAsyncEventsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 满足过滤条件的事件总数
+        # @type TotalCount: Integer
+        # @param EventList: 异步事件列表
+        # @type EventList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :EventList, :RequestId
+        
+        def initialize(totalcount=nil, eventlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @EventList = eventlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @EventList = params['EventList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListFunctions请求参数结构体
       class ListFunctionsRequest < TencentCloud::Common::AbstractModel
         # @param Order: 以升序还是降序的方式返回结果，可选值 ASC 和 DESC
@@ -2723,6 +2847,66 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # TerminateAsyncEvent请求参数结构体
+      class TerminateAsyncEventRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param InvokeRequestId: 终止的调用请求id
+        # @type InvokeRequestId: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+
+        attr_accessor :FunctionName, :InvokeRequestId, :Namespace
+        
+        def initialize(functionname=nil, invokerequestid=nil, namespace=nil)
+          @FunctionName = functionname
+          @InvokeRequestId = invokerequestid
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @InvokeRequestId = params['InvokeRequestId']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # TerminateAsyncEvent返回参数结构体
+      class TerminateAsyncEventResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 左闭右开时间区间，包括起始时间和结束时间，格式为"%Y-%m-%d %H:%M:%S"
+      class TimeInterval < TencentCloud::Common::AbstractModel
+        # @param Start: 起始时间（包括在内），格式"%Y-%m-%d %H:%M:%S"
+        # @type Start: String
+        # @param End: 结束时间（不包括在内），格式"%Y-%m-%d %H:%M:%S"
+        # @type End: String
+
+        attr_accessor :Start, :End
+        
+        def initialize(start=nil, end=nil)
+          @Start = start
+          @End = end
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
         end
       end
 
