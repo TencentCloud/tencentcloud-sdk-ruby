@@ -2016,10 +2016,13 @@ module TencentCloud
         # @type NativeAppCount: Integer
         # @param WebAppCount: WebApp数量
         # @type WebAppCount: Integer
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        attr_accessor :ProjectId, :ProjectName, :ProjectDesc, :CreateTime, :UpdateTime, :ProductCount, :NativeAppCount, :WebAppCount
+        attr_accessor :ProjectId, :ProjectName, :ProjectDesc, :CreateTime, :UpdateTime, :ProductCount, :NativeAppCount, :WebAppCount, :InstanceId
         
-        def initialize(projectid=nil, projectname=nil, projectdesc=nil, createtime=nil, updatetime=nil, productcount=nil, nativeappcount=nil, webappcount=nil)
+        def initialize(projectid=nil, projectname=nil, projectdesc=nil, createtime=nil, updatetime=nil, productcount=nil, nativeappcount=nil, webappcount=nil, instanceid=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @ProjectDesc = projectdesc
@@ -2028,6 +2031,7 @@ module TencentCloud
           @ProductCount = productcount
           @NativeAppCount = nativeappcount
           @WebAppCount = webappcount
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -2039,6 +2043,7 @@ module TencentCloud
           @ProductCount = params['ProductCount']
           @NativeAppCount = params['NativeAppCount']
           @WebAppCount = params['WebAppCount']
+          @InstanceId = params['InstanceId']
         end
       end
 

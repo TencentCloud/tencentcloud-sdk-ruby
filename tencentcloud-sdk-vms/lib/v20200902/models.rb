@@ -97,34 +97,34 @@ module TencentCloud
       class SendTtsVoiceRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板 ID，在控制台审核通过的模板 ID。
         # @type TemplateId: String
-        # @param TemplateParamSet: 模板参数，若模板没有参数，请提供为空数组。
-        # @type TemplateParamSet: Array
         # @param CalledNumber: 被叫手机号码，采用 e.164 标准，格式为+[国家或地区码][用户号码]。
         # 例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
         # @type CalledNumber: String
         # @param VoiceSdkAppid: 在[语音控制台](https://console.cloud.tencent.com/vms)添加应用后生成的实际SdkAppid，示例如1400006666。
         # @type VoiceSdkAppid: String
+        # @param TemplateParamSet: 模板参数，若模板没有参数，请提供为空数组。
+        # @type TemplateParamSet: Array
         # @param PlayTimes: 播放次数，可选，最多3次，默认2次。
         # @type PlayTimes: Integer
         # @param SessionContext: 用户的 session 内容，腾讯 server 回包中会原样返回。
         # @type SessionContext: String
 
-        attr_accessor :TemplateId, :TemplateParamSet, :CalledNumber, :VoiceSdkAppid, :PlayTimes, :SessionContext
+        attr_accessor :TemplateId, :CalledNumber, :VoiceSdkAppid, :TemplateParamSet, :PlayTimes, :SessionContext
         
-        def initialize(templateid=nil, templateparamset=nil, callednumber=nil, voicesdkappid=nil, playtimes=nil, sessioncontext=nil)
+        def initialize(templateid=nil, callednumber=nil, voicesdkappid=nil, templateparamset=nil, playtimes=nil, sessioncontext=nil)
           @TemplateId = templateid
-          @TemplateParamSet = templateparamset
           @CalledNumber = callednumber
           @VoiceSdkAppid = voicesdkappid
+          @TemplateParamSet = templateparamset
           @PlayTimes = playtimes
           @SessionContext = sessioncontext
         end
 
         def deserialize(params)
           @TemplateId = params['TemplateId']
-          @TemplateParamSet = params['TemplateParamSet']
           @CalledNumber = params['CalledNumber']
           @VoiceSdkAppid = params['VoiceSdkAppid']
+          @TemplateParamSet = params['TemplateParamSet']
           @PlayTimes = params['PlayTimes']
           @SessionContext = params['SessionContext']
         end

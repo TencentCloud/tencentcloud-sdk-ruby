@@ -341,17 +341,21 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页数量
         # @type Limit: Integer
+        # @param MatchCode: 搜索的字符串
+        # @type MatchCode: String
 
-        attr_accessor :Offset, :Limit
+        attr_accessor :Offset, :Limit, :MatchCode
         
-        def initialize(offset=nil, limit=nil)
+        def initialize(offset=nil, limit=nil, matchcode=nil)
           @Offset = offset
           @Limit = limit
+          @MatchCode = matchcode
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @MatchCode = params['MatchCode']
         end
       end
 
@@ -689,11 +693,11 @@ module TencentCloud
         end
       end
 
-      # matchCode和TicketId组合结构
+      # matchCode和匹配票据 ID组合结构
       class MTicket < TencentCloud::Common::AbstractModel
         # @param MatchCode: 匹配Code
         # @type MatchCode: String
-        # @param MatchTicketId: 请求TicketId
+        # @param MatchTicketId: 匹配票据 ID
         # @type MatchTicketId: String
 
         attr_accessor :MatchCode, :MatchTicketId
@@ -717,7 +721,7 @@ module TencentCloud
         # @type Type: Integer
         # @param NumberValue: 数字属性值 默认 0.0
         # @type NumberValue: Float
-        # @param StringValue: 字符串属性值 长度 1024 默认 ""
+        # @param StringValue: 字符串属性值 长度 128 默认 ""
         # @type StringValue: String
         # @param ListValue: list 属性值
         # @type ListValue: Array
@@ -891,9 +895,9 @@ module TencentCloud
         end
       end
 
-      # 匹配请求信息
+      # 匹配票据信息
       class MatchTicket < TencentCloud::Common::AbstractModel
-        # @param Id: MatchTicketId 长度 128 [a-zA-Z0-9-\.]*
+        # @param Id: 匹配票据 ID长度 128 [a-zA-Z0-9-\.]*
         # @type Id: String
         # @param MatchCode: 匹配 Code
         # @type MatchCode: String
