@@ -145,6 +145,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取坐席用户列表
+
+        # @param request: Request instance for DescribeSeatUserList.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeSeatUserListRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeSeatUserListResponse`
+        def DescribeSeatUserList(request)
+          body = send_request('DescribeSeatUserList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSeatUserListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 按实例获取电话消耗统计
 
         # @param request: Request instance for DescribeTelCallInfo.

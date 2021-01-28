@@ -273,6 +273,54 @@ module TencentCloud
         end
       end
 
+      # DescribeSeatUserList请求参数结构体
+      class DescribeSeatUserListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回数量
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSeatUserList返回参数结构体
+      class DescribeSeatUserListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 此实例的坐席用户总数
+        # @type TotalCount: Integer
+        # @param SeatUsers: 坐席用户信息列表
+        # @type SeatUsers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SeatUsers, :RequestId
+        
+        def initialize(totalcount=nil, seatusers=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SeatUsers = seatusers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @SeatUsers = params['SeatUsers']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTelCallInfo请求参数结构体
       class DescribeTelCallInfoRequest < TencentCloud::Common::AbstractModel
         # @param StartTimeStamp: 起始时间戳，Unix 时间戳
@@ -331,24 +379,30 @@ module TencentCloud
         # @type StartTimeStamp: Integer
         # @param EndTimeStamp: 结束时间戳，Unix 时间戳
         # @type EndTimeStamp: Integer
-        # @param Limit: 返回记录条数，上限 100
+        # @param Limit: 返回数据条数，上限（deprecated）
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移（deprecated）
         # @type Offset: Integer
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: 实例 ID（deprecated）
         # @type InstanceId: Integer
-        # @param SdkAppId: 应用ID。
+        # @param SdkAppId: 应用 ID
         # @type SdkAppId: Integer
+        # @param PageSize: 分页尺寸，上限 100
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码，从 0 开始
+        # @type PageNumber: Integer
 
-        attr_accessor :StartTimeStamp, :EndTimeStamp, :Limit, :Offset, :InstanceId, :SdkAppId
+        attr_accessor :StartTimeStamp, :EndTimeStamp, :Limit, :Offset, :InstanceId, :SdkAppId, :PageSize, :PageNumber
         
-        def initialize(starttimestamp=nil, endtimestamp=nil, limit=nil, offset=nil, instanceid=nil, sdkappid=nil)
+        def initialize(starttimestamp=nil, endtimestamp=nil, limit=nil, offset=nil, instanceid=nil, sdkappid=nil, pagesize=nil, pagenumber=nil)
           @StartTimeStamp = starttimestamp
           @EndTimeStamp = endtimestamp
           @Limit = limit
           @Offset = offset
           @InstanceId = instanceid
           @SdkAppId = sdkappid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
         end
 
         def deserialize(params)
@@ -358,6 +412,8 @@ module TencentCloud
           @Offset = params['Offset']
           @InstanceId = params['InstanceId']
           @SdkAppId = params['SdkAppId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
         end
       end
 
@@ -422,6 +478,28 @@ module TencentCloud
           @Type = params['Type']
           @StaffId = params['StaffId']
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # ivr 按键信息
+      class IVRKeyPressedElement < TencentCloud::Common::AbstractModel
+        # @param Key: 按键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Label: 按键关联的标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+
+        attr_accessor :Key, :Label
+        
+        def initialize(key=nil, label=nil)
+          @Key = key
+          @Label = label
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Label = params['Label']
         end
       end
 
@@ -531,7 +609,7 @@ module TencentCloud
         # @type Name: String
         # @param Mail: 坐席邮箱
         # @type Mail: String
-        # @param Phone: 坐席电话号码
+        # @param Phone: 坐席电话号码（带0086前缀）
         # @type Phone: String
         # @param Nick: 坐席昵称
         # @type Nick: String
@@ -567,6 +645,98 @@ module TencentCloud
         end
       end
 
+      # 参与者信息
+      class ServeParticipant < TencentCloud::Common::AbstractModel
+        # @param Mail: 坐席邮箱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mail: String
+        # @param Phone: 坐席电话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phone: String
+        # @param RingTimestamp: 振铃时间戳，Unix 秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RingTimestamp: Integer
+        # @param AcceptTimestamp: 接听时间戳，Unix 秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AcceptTimestamp: Integer
+        # @param EndedTimestamp: 结束时间戳，Unix 秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndedTimestamp: Integer
+        # @param RecordId: 录音 ID，能够索引到坐席侧的录音
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
+        # @param Type: 参与者类型，"staffSeat", "outboundSeat", "staffPhoneSeat"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param TransferFrom: 转接来源坐席信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferFrom: String
+        # @param TransferTo: 转接去向坐席信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferTo: String
+        # @param TransferToType: 转接去向参与者类型，取值与 Type 一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferToType: String
+        # @param SkillGroupId: 技能组 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkillGroupId: Integer
+        # @param EndStatusString: 结束状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndStatusString: String
+        # @param RecordURL: 录音 URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordURL: String
+        # @param Sequence: 参与者序号，从 0 开始
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sequence: Integer
+        # @param StartTimestamp: 开始时间戳，Unix 秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTimestamp: Integer
+        # @param SkillGroupName: 技能组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkillGroupName: String
+
+        attr_accessor :Mail, :Phone, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :RecordId, :Type, :TransferFrom, :TransferTo, :TransferToType, :SkillGroupId, :EndStatusString, :RecordURL, :Sequence, :StartTimestamp, :SkillGroupName
+        
+        def initialize(mail=nil, phone=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, recordid=nil, type=nil, transferfrom=nil, transferto=nil, transfertotype=nil, skillgroupid=nil, endstatusstring=nil, recordurl=nil, sequence=nil, starttimestamp=nil, skillgroupname=nil)
+          @Mail = mail
+          @Phone = phone
+          @RingTimestamp = ringtimestamp
+          @AcceptTimestamp = accepttimestamp
+          @EndedTimestamp = endedtimestamp
+          @RecordId = recordid
+          @Type = type
+          @TransferFrom = transferfrom
+          @TransferTo = transferto
+          @TransferToType = transfertotype
+          @SkillGroupId = skillgroupid
+          @EndStatusString = endstatusstring
+          @RecordURL = recordurl
+          @Sequence = sequence
+          @StartTimestamp = starttimestamp
+          @SkillGroupName = skillgroupname
+        end
+
+        def deserialize(params)
+          @Mail = params['Mail']
+          @Phone = params['Phone']
+          @RingTimestamp = params['RingTimestamp']
+          @AcceptTimestamp = params['AcceptTimestamp']
+          @EndedTimestamp = params['EndedTimestamp']
+          @RecordId = params['RecordId']
+          @Type = params['Type']
+          @TransferFrom = params['TransferFrom']
+          @TransferTo = params['TransferTo']
+          @TransferToType = params['TransferToType']
+          @SkillGroupId = params['SkillGroupId']
+          @EndStatusString = params['EndStatusString']
+          @RecordURL = params['RecordURL']
+          @Sequence = params['Sequence']
+          @StartTimestamp = params['StartTimestamp']
+          @SkillGroupName = params['SkillGroupName']
+        end
+      end
+
       # 电话话单信息
       class TelCdrInfo < TencentCloud::Common::AbstractModel
         # @param Caller: 主叫号码
@@ -585,14 +755,60 @@ module TencentCloud
         # @type SeatUser: :class:`Tencentcloud::Ccc.v20200210.models.SeatUserInfo`
         # @param EndStatus: 结束状态 0 未知 1 正常通话 2 未接通
         # @type EndStatus: Integer
-        # @param SkillGroup: 技能组
+        # @param SkillGroup: 技能组名称
         # @type SkillGroup: String
         # @param CallerLocation: 主叫归属地
         # @type CallerLocation: String
+        # @param IVRDuration: IVR 阶段耗时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IVRDuration: Integer
+        # @param RingTimestamp: 振铃时间戳，UNIX 秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RingTimestamp: Integer
+        # @param AcceptTimestamp: 接听时间戳，UNIX 秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AcceptTimestamp: Integer
+        # @param EndedTimestamp: 结束时间戳，UNIX 秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndedTimestamp: Integer
+        # @param IVRKeyPressed: IVR 按键信息 ，e.g. ["1","2","3"]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IVRKeyPressed: Array
+        # @param HungUpSide: 挂机方 seat 坐席 user 用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HungUpSide: String
+        # @param ServeParticipants: 服务参与者列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServeParticipants: Array
+        # @param SkillGroupId: 技能组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkillGroupId: Integer
+        # @param EndStatusString: ok 正常结束
+        # unconnected	未接通
+        # seatGiveUp	坐席未接
+        # seatForward	坐席转接
+        # ivrGiveUp	IVR期间用户放弃
+        # waitingGiveUp	会话排队期间用户放弃
+        # ringingGiveUp	会话振铃期间用户放弃
+        # error	系统错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndStatusString: String
+        # @param StartTimestamp: 会话开始时间戳，UNIX 秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTimestamp: Integer
+        # @param QueuedTimestamp: 进入排队时间，Unix 秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueuedTimestamp: Integer
+        # @param PostIVRKeyPressed: 后置IVR按键信息（e.g. [{"Key":"1","Label":"非常满意"}]）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostIVRKeyPressed: Array
+        # @param QueuedSkillGroupId: 排队技能组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueuedSkillGroupId: Integer
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation
+        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId
         
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -603,6 +819,19 @@ module TencentCloud
           @EndStatus = endstatus
           @SkillGroup = skillgroup
           @CallerLocation = callerlocation
+          @IVRDuration = ivrduration
+          @RingTimestamp = ringtimestamp
+          @AcceptTimestamp = accepttimestamp
+          @EndedTimestamp = endedtimestamp
+          @IVRKeyPressed = ivrkeypressed
+          @HungUpSide = hungupside
+          @ServeParticipants = serveparticipants
+          @SkillGroupId = skillgroupid
+          @EndStatusString = endstatusstring
+          @StartTimestamp = starttimestamp
+          @QueuedTimestamp = queuedtimestamp
+          @PostIVRKeyPressed = postivrkeypressed
+          @QueuedSkillGroupId = queuedskillgroupid
         end
 
         def deserialize(params)
@@ -618,6 +847,19 @@ module TencentCloud
           @EndStatus = params['EndStatus']
           @SkillGroup = params['SkillGroup']
           @CallerLocation = params['CallerLocation']
+          @IVRDuration = params['IVRDuration']
+          @RingTimestamp = params['RingTimestamp']
+          @AcceptTimestamp = params['AcceptTimestamp']
+          @EndedTimestamp = params['EndedTimestamp']
+          @IVRKeyPressed = params['IVRKeyPressed']
+          @HungUpSide = params['HungUpSide']
+          @ServeParticipants = params['ServeParticipants']
+          @SkillGroupId = params['SkillGroupId']
+          @EndStatusString = params['EndStatusString']
+          @StartTimestamp = params['StartTimestamp']
+          @QueuedTimestamp = params['QueuedTimestamp']
+          @PostIVRKeyPressed = params['PostIVRKeyPressed']
+          @QueuedSkillGroupId = params['QueuedSkillGroupId']
         end
       end
 

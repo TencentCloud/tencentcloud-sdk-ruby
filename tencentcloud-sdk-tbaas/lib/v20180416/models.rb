@@ -1085,7 +1085,7 @@ module TencentCloud
         # @type ChaincodeName: String
         # @param ChannelName: 业务所属通道名称，可在通道详情或列表中获取
         # @type ChannelName: String
-        # @param Peers: 对该笔交易进行背书的节点列表（包括节点名称和节点所属组织名称，详见数据结构一节），可以在通道详情中获取该通道上的节点名称极其所属组织名称
+        # @param Peers: 对该笔交易进行背书的节点列表（包括节点名称和节点所属组织名称，详见数据结构一节），可以在通道详情中获取该通道上的节点名称及其所属组织名称
         # @type Peers: Array
         # @param FuncName: 该笔交易需要调用的智能合约中的函数名称
         # @type FuncName: String
@@ -1181,7 +1181,7 @@ module TencentCloud
         # @type ChaincodeName: String
         # @param ChannelName: 业务所属通道名称，可在通道详情或列表中获取
         # @type ChannelName: String
-        # @param Peers: 执行该查询交易的节点列表（包括节点名称和节点所属组织名称，详见数据结构一节），可以在通道详情中获取该通道上的节点名称极其所属组织名称
+        # @param Peers: 执行该查询交易的节点列表（包括节点名称和节点所属组织名称，详见数据结构一节），可以在通道详情中获取该通道上的节点名称及其所属组织名称
         # @type Peers: Array
         # @param FuncName: 该笔交易查询需要调用的智能合约中的函数名称
         # @type FuncName: String

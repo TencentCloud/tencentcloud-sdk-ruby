@@ -2678,6 +2678,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
+
+        # @param request: Request instance for SwitchDrInstanceToMaster.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::SwitchDrInstanceToMasterRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::SwitchDrInstanceToMasterResponse`
+        def SwitchDrInstanceToMaster(request)
+          body = send_request('SwitchDrInstanceToMaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchDrInstanceToMasterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
 
         # @param request: Request instance for SwitchForUpgrade.

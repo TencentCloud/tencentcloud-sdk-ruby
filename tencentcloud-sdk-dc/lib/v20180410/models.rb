@@ -66,10 +66,16 @@ module TencentCloud
         # @param AvailablePortType: 接入点可用的端口类型列表。1000BASE-T代表千兆电口，1000BASE-LX代表千兆单模光口10km，1000BASE-ZX代表千兆单模光口80km,10GBASE-LR代表万兆单模光口10km,10GBASE-ZR代表万兆单模光口80km,10GBASE-LH代表万兆单模光口40km,100GBASE-LR4代表100G单模光口10km
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AvailablePortType: Array
+        # @param Coordinate: 接入点经纬度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Coordinate: :class:`Tencentcloud::Dc.v20180410.models.Coordinate`
+        # @param City: 接入点所在城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
 
-        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType
+        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City
         
-        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil)
+        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil)
           @AccessPointName = accesspointname
           @AccessPointId = accesspointid
           @State = state
@@ -77,6 +83,8 @@ module TencentCloud
           @LineOperator = lineoperator
           @RegionId = regionid
           @AvailablePortType = availableporttype
+          @Coordinate = coordinate
+          @City = city
         end
 
         def deserialize(params)
@@ -87,6 +95,10 @@ module TencentCloud
           @LineOperator = params['LineOperator']
           @RegionId = params['RegionId']
           @AvailablePortType = params['AvailablePortType']
+          unless params['Coordinate'].nil?
+            @Coordinate = Coordinate.new.deserialize(params[Coordinate])
+          end
+          @City = params['City']
         end
       end
 
@@ -196,6 +208,26 @@ module TencentCloud
         def deserialize(params)
           @Asn = params['Asn']
           @AuthKey = params['AuthKey']
+        end
+      end
+
+      # 坐标，经维度描述
+      class Coordinate < TencentCloud::Common::AbstractModel
+        # @param Lat: 纬度
+        # @type Lat: Float
+        # @param Lng: 经度
+        # @type Lng: Float
+
+        attr_accessor :Lat, :Lng
+        
+        def initialize(lat=nil, lng=nil)
+          @Lat = lat
+          @Lng = lng
+        end
+
+        def deserialize(params)
+          @Lat = params['Lat']
+          @Lng = params['Lng']
         end
       end
 

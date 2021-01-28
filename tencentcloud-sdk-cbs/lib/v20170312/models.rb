@@ -1874,22 +1874,26 @@ module TencentCloud
       # 预付费订单的费用。
       class PrepayPrice < TencentCloud::Common::AbstractModel
         # @param OriginalPrice: 预付费云盘或快照预支费用的原价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPrice: Float
         # @param DiscountPrice: 预付费云盘或快照预支费用的折扣价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPrice: Float
         # @param OriginalPriceHigh: 高精度预付费云盘或快照预支费用的原价，单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalPriceHigh: String
         # @param DiscountPriceHigh: 高精度预付费云盘或快照预支费用的折扣价，单位：元
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountPriceHigh: String
         # @param UnitPrice: 后付费云盘原单价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPrice: String
+        # @type UnitPrice: Float
         # @param ChargeUnit: 后付费云盘的计价单元，取值范围：<br><li>HOUR：表示后付费云盘的计价单元是按小时计算。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeUnit: String
         # @param UnitPriceDiscount: 后付费云盘折扣单价，单位：元。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UnitPriceDiscount: String
+        # @type UnitPriceDiscount: Float
         # @param UnitPriceHigh: 高精度后付费云盘原单价, 单位：元
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitPriceHigh: String

@@ -7729,6 +7729,42 @@ module TencentCloud
         end
       end
 
+      # SwitchDrInstanceToMaster请求参数结构体
+      class SwitchDrInstanceToMasterRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 灾备实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # SwitchDrInstanceToMaster返回参数结构体
+      class SwitchDrInstanceToMasterResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务的请求ID，可使用此ID查询异步任务的执行结果。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SwitchForUpgrade请求参数结构体
       class SwitchForUpgradeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。

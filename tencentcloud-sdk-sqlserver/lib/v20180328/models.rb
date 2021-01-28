@@ -273,6 +273,46 @@ module TencentCloud
         end
       end
 
+      # CloneDB请求参数结构体
+      class CloneDBRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如mssql-j8kv137v
+        # @type InstanceId: String
+        # @param RenameRestore: 按照ReNameRestoreDatabase中的库进行克隆，并重命名，新库名称必须指定
+        # @type RenameRestore: Array
+
+        attr_accessor :InstanceId, :RenameRestore
+        
+        def initialize(instanceid=nil, renamerestore=nil)
+          @InstanceId = instanceid
+          @RenameRestore = renamerestore
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RenameRestore = params['RenameRestore']
+        end
+      end
+
+      # CloneDB返回参数结构体
+      class CloneDBResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程任务ID，使用FlowId调用DescribeFlowStatus接口获取任务执行状态
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CompleteExpansion请求参数结构体
       class CompleteExpansionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-j8kv137v
@@ -4308,12 +4348,12 @@ module TencentCloud
         end
       end
 
-      # 用于RestoreInstance，RollbackInstance，CreateMigration 等接口；对恢复的库进行重命名，且支持选择要恢复的库。
+      # 用于RestoreInstance，RollbackInstance，CreateMigration、CloneDB 等接口；对恢复的库进行重命名，且支持选择要恢复的库。
       class RenameRestoreDatabase < TencentCloud::Common::AbstractModel
         # @param OldName: 库的名字，如果oldName不存在则返回失败。
         # 在用于离线迁移任务时可不填。
         # @type OldName: String
-        # @param NewName: 库的新名字，如果不填则按照系统默认方式命名恢复的库。在用于离线迁移任务时，不填则按照OldName命名，OldName和NewName不能同时不填。
+        # @param NewName: 库的新名字，在用于离线迁移时，不填则按照OldName命名，OldName和NewName不能同时不填。在用于克隆数据库时，OldName和NewName都必须填写，且不能重复
         # @type NewName: String
 
         attr_accessor :OldName, :NewName
