@@ -869,14 +869,14 @@ module TencentCloud
 
         attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :RequestId
         
-        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, requestid=nil)
+        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, klass=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, requestid=nil)
           @Name = name
           @Sex = sex
           @Nationality = nationality
           @Address = address
           @DateOfBirth = dateofbirth
           @DateOfFirstIssue = dateoffirstissue
-          @Class = class
+          @Class = klass
           @StartDate = startdate
           @EndDate = enddate
           @CardCode = cardcode
