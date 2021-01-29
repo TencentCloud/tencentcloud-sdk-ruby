@@ -73,6 +73,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建云开发项目
+
+        # @param request: Request instance for CreateAndDeployCloudBaseProject.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateAndDeployCloudBaseProjectRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateAndDeployCloudBaseProjectResponse`
+        def CreateAndDeployCloudBaseProject(request)
+          body = send_request('CreateAndDeployCloudBaseProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAndDeployCloudBaseProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 增加安全域名
 
         # @param request: Request instance for CreateAuthDomain.
@@ -299,6 +323,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudBaseBuildServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取云开发项目列表
+
+        # @param request: Request instance for DescribeCloudBaseProjectLatestVersionList.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseProjectLatestVersionListRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseProjectLatestVersionListResponse`
+        def DescribeCloudBaseProjectLatestVersionList(request)
+          body = send_request('DescribeCloudBaseProjectLatestVersionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudBaseProjectLatestVersionListResponse.new
             model.deserialize(response['Response'])
             model
           else

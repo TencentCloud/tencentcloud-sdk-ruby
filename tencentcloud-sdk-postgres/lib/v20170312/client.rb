@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'POSTGRES_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组
+
+        # @param request: Request instance for AddDBInstanceToReadOnlyGroup.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::AddDBInstanceToReadOnlyGroupRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::AddDBInstanceToReadOnlyGroupResponse`
+        def AddDBInstanceToReadOnlyGroup(request)
+          body = send_request('AddDBInstanceToReadOnlyGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddDBInstanceToReadOnlyGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CloseDBExtranetAccess）用于关闭实例外网链接。
 
         # @param request: Request instance for CloseDBExtranetAccess.
@@ -97,6 +121,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateReadOnlyDBInstance)用于创建只读实例
+
+        # @param request: Request instance for CreateReadOnlyDBInstance.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateReadOnlyDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateReadOnlyDBInstanceResponse`
+        def CreateReadOnlyDBInstance(request)
+          body = send_request('CreateReadOnlyDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReadOnlyDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateReadOnlyGroup）用于创建只读组
+
+        # @param request: Request instance for CreateReadOnlyGroup.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateReadOnlyGroupRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateReadOnlyGroupResponse`
+        def CreateReadOnlyGroup(request)
+          body = send_request('CreateReadOnlyGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReadOnlyGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
 
         # @param request: Request instance for CreateServerlessDBInstance.
@@ -107,6 +179,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateServerlessDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
+
+        # @param request: Request instance for DeleteReadOnlyGroup.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteReadOnlyGroupRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DeleteReadOnlyGroupResponse`
+        def DeleteReadOnlyGroup(request)
+          body = send_request('DeleteReadOnlyGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReadOnlyGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -385,6 +481,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+
+        # @param request: Request instance for DescribeReadOnlyGroups.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeReadOnlyGroupsRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeReadOnlyGroupsResponse`
+        def DescribeReadOnlyGroups(request)
+          body = send_request('DescribeReadOnlyGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReadOnlyGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeRegions) 用于查询售卖地域信息。
 
         # @param request: Request instance for DescribeRegions.
@@ -457,7 +577,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (DestroyDBInstance) 用于销毁指定DBInstanceId对应的实例。
+        # 本接口 (DestroyDBInstance) 用于销毁指定DBInstanceId对应的实例。当前仅适用于按量计费实例。
 
         # @param request: Request instance for DestroyDBInstance.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DestroyDBInstanceRequest`
@@ -625,6 +745,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDBInstanceReadOnlyGroup）用于修改实例所属的只读组
+
+        # @param request: Request instance for ModifyDBInstanceReadOnlyGroup.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceReadOnlyGroupRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceReadOnlyGroupResponse`
+        def ModifyDBInstanceReadOnlyGroup(request)
+          body = send_request('ModifyDBInstanceReadOnlyGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceReadOnlyGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstancesProject）用于将实例转至其他项目。
 
         # @param request: Request instance for ModifyDBInstancesProject.
@@ -635,6 +779,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDBInstancesProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
+
+        # @param request: Request instance for ModifyReadOnlyGroupConfig.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyReadOnlyGroupConfigRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyReadOnlyGroupConfigResponse`
+        def ModifyReadOnlyGroupConfig(request)
+          body = send_request('ModifyReadOnlyGroupConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReadOnlyGroupConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -683,6 +851,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenServerlessDBExtranetAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(RebalanceReadOnlyGroup)用于重新均衡 RO 组内实例的负载。注意，RO 组内 RO 实例会有一次数据库连接瞬断，请确保应用程序能重连数据库，谨慎操作。
+
+        # @param request: Request instance for RebalanceReadOnlyGroup.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::RebalanceReadOnlyGroupRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::RebalanceReadOnlyGroupResponse`
+        def RebalanceReadOnlyGroup(request)
+          body = send_request('RebalanceReadOnlyGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RebalanceReadOnlyGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（RemoveDBInstanceFromReadOnlyGroup）用户将只读实例从只读组中移除
+
+        # @param request: Request instance for RemoveDBInstanceFromReadOnlyGroup.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::RemoveDBInstanceFromReadOnlyGroupRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::RemoveDBInstanceFromReadOnlyGroupResponse`
+        def RemoveDBInstanceFromReadOnlyGroup(request)
+          body = send_request('RemoveDBInstanceFromReadOnlyGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveDBInstanceFromReadOnlyGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

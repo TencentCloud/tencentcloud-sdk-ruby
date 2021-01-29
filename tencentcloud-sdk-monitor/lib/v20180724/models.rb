@@ -292,10 +292,13 @@ module TencentCloud
         # @param OriginId: 用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginId: String
+        # @param TagInstances: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagInstances: Array
 
-        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances
         
-        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil)
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @Remark = remark
@@ -324,6 +327,7 @@ module TencentCloud
           @InstanceGroupName = instancegroupname
           @RuleType = ruletype
           @OriginId = originid
+          @TagInstances = taginstances
         end
 
         def deserialize(params)
@@ -361,6 +365,7 @@ module TencentCloud
           @InstanceGroupName = params['InstanceGroupName']
           @RuleType = params['RuleType']
           @OriginId = params['OriginId']
+          @TagInstances = params['TagInstances']
         end
       end
 
@@ -1733,10 +1738,12 @@ module TencentCloud
         # @type RuleTypes: Array
         # @param Enable: 启停，1：启用   0：停止
         # @type Enable: Array
+        # @param NotBindingNoticeRule: 是否未配置通知规则，1：未配置，0：配置
+        # @type NotBindingNoticeRule: Integer
 
-        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule
         
-        def initialize(module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil)
+        def initialize(module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil)
           @Module = module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -1753,6 +1760,7 @@ module TencentCloud
           @NoticeIds = noticeids
           @RuleTypes = ruletypes
           @Enable = enable
+          @NotBindingNoticeRule = notbindingnoticerule
         end
 
         def deserialize(params)
@@ -1772,6 +1780,7 @@ module TencentCloud
           @NoticeIds = params['NoticeIds']
           @RuleTypes = params['RuleTypes']
           @Enable = params['Enable']
+          @NotBindingNoticeRule = params['NotBindingNoticeRule']
         end
       end
 
@@ -3408,10 +3417,13 @@ module TencentCloud
         # @param GroupInfo: 策略信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupInfo: Array
+        # @param ViewName: 显示名称ViewName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ViewName: String
 
-        attr_accessor :EventId, :EventCName, :EventEName, :EventName, :ProductCName, :ProductEName, :ProductName, :InstanceId, :InstanceName, :ProjectId, :Region, :Status, :SupportAlarm, :Type, :StartTime, :UpdateTime, :Dimensions, :AdditionMsg, :IsAlarmConfig, :GroupInfo
+        attr_accessor :EventId, :EventCName, :EventEName, :EventName, :ProductCName, :ProductEName, :ProductName, :InstanceId, :InstanceName, :ProjectId, :Region, :Status, :SupportAlarm, :Type, :StartTime, :UpdateTime, :Dimensions, :AdditionMsg, :IsAlarmConfig, :GroupInfo, :ViewName
         
-        def initialize(eventid=nil, eventcname=nil, eventename=nil, eventname=nil, productcname=nil, productename=nil, productname=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, status=nil, supportalarm=nil, type=nil, starttime=nil, updatetime=nil, dimensions=nil, additionmsg=nil, isalarmconfig=nil, groupinfo=nil)
+        def initialize(eventid=nil, eventcname=nil, eventename=nil, eventname=nil, productcname=nil, productename=nil, productname=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, status=nil, supportalarm=nil, type=nil, starttime=nil, updatetime=nil, dimensions=nil, additionmsg=nil, isalarmconfig=nil, groupinfo=nil, viewname=nil)
           @EventId = eventid
           @EventCName = eventcname
           @EventEName = eventename
@@ -3432,6 +3444,7 @@ module TencentCloud
           @AdditionMsg = additionmsg
           @IsAlarmConfig = isalarmconfig
           @GroupInfo = groupinfo
+          @ViewName = viewname
         end
 
         def deserialize(params)
@@ -3455,6 +3468,7 @@ module TencentCloud
           @AdditionMsg = params['AdditionMsg']
           @IsAlarmConfig = params['IsAlarmConfig']
           @GroupInfo = params['GroupInfo']
+          @ViewName = params['ViewName']
         end
       end
 
@@ -4968,6 +4982,53 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 策略列表详情标签返回体
+      class TagInstance < TencentCloud::Common::AbstractModel
+        # @param Key: 标签Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 标签Value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param InstanceSum: 实例个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceSum: Integer
+        # @param ServiceType: 产品类型，如：cvm
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceType: String
+        # @param RegionId: 地域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: String
+        # @param BindingStatus: 绑定状态，2：绑定成功，1：绑定中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindingStatus: Integer
+        # @param TagStatus: 标签状态，2：标签存在，1：标签不存在
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagStatus: Integer
+
+        attr_accessor :Key, :Value, :InstanceSum, :ServiceType, :RegionId, :BindingStatus, :TagStatus
+        
+        def initialize(key=nil, value=nil, instancesum=nil, servicetype=nil, regionid=nil, bindingstatus=nil, tagstatus=nil)
+          @Key = key
+          @Value = value
+          @InstanceSum = instancesum
+          @ServiceType = servicetype
+          @RegionId = regionid
+          @BindingStatus = bindingstatus
+          @TagStatus = tagstatus
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @InstanceSum = params['InstanceSum']
+          @ServiceType = params['ServiceType']
+          @RegionId = params['RegionId']
+          @BindingStatus = params['BindingStatus']
+          @TagStatus = params['TagStatus']
         end
       end
 

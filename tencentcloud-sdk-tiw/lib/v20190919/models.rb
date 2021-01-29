@@ -1268,12 +1268,16 @@ module TencentCloud
 
         # 在`视频生成模式`下，默认会记录白板群组内的非白板信令消息，如果指定了`ChatGroupId`，则会记录指定群ID的聊天消息。
         # @type ChatGroupId: String
-        # @param ExtraData: 内部参数
+        # @param AutoStopTimeout: 自动停止录制超时时间，单位秒，取值范围[300, 86400], 默认值为300秒。
+
+        # 当超过设定时间房间内没有音视频上行且没有白板操作的时候，录制服务会自动停止当前录制任务。
+        # @type AutoStopTimeout: Integer
+        # @param ExtraData: 内部参数，可忽略
         # @type ExtraData: String
 
-        attr_accessor :SdkAppId, :RoomId, :RecordUserId, :RecordUserSig, :GroupId, :Concat, :Whiteboard, :MixStream, :Extras, :AudioFileNeeded, :RecordControl, :RecordMode, :ChatGroupId, :ExtraData
+        attr_accessor :SdkAppId, :RoomId, :RecordUserId, :RecordUserSig, :GroupId, :Concat, :Whiteboard, :MixStream, :Extras, :AudioFileNeeded, :RecordControl, :RecordMode, :ChatGroupId, :AutoStopTimeout, :ExtraData
         
-        def initialize(sdkappid=nil, roomid=nil, recorduserid=nil, recordusersig=nil, groupid=nil, concat=nil, whiteboard=nil, mixstream=nil, extras=nil, audiofileneeded=nil, recordcontrol=nil, recordmode=nil, chatgroupid=nil, extradata=nil)
+        def initialize(sdkappid=nil, roomid=nil, recorduserid=nil, recordusersig=nil, groupid=nil, concat=nil, whiteboard=nil, mixstream=nil, extras=nil, audiofileneeded=nil, recordcontrol=nil, recordmode=nil, chatgroupid=nil, autostoptimeout=nil, extradata=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @RecordUserId = recorduserid
@@ -1287,6 +1291,7 @@ module TencentCloud
           @RecordControl = recordcontrol
           @RecordMode = recordmode
           @ChatGroupId = chatgroupid
+          @AutoStopTimeout = autostoptimeout
           @ExtraData = extradata
         end
 
@@ -1312,6 +1317,7 @@ module TencentCloud
           end
           @RecordMode = params['RecordMode']
           @ChatGroupId = params['ChatGroupId']
+          @AutoStopTimeout = params['AutoStopTimeout']
           @ExtraData = params['ExtraData']
         end
       end

@@ -187,7 +187,7 @@ module TencentCloud
 
       # 函数代码
       class Code < TencentCloud::Common::AbstractModel
-        # @param CosBucketName: 对象存储桶名称
+        # @param CosBucketName: 对象存储桶名称（填写存储桶名称自定义部分，不包含-appid）
         # @type CosBucketName: String
         # @param CosObjectName: 对象存储对象路径
         # @type CosObjectName: String

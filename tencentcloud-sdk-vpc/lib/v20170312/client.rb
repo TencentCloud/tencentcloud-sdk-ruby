@@ -1039,6 +1039,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
+
+        # @param request: Request instance for CreateNatGatewaySourceIpTranslationNatRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateNatGatewaySourceIpTranslationNatRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateNatGatewaySourceIpTranslationNatRuleResponse`
+        def CreateNatGatewaySourceIpTranslationNatRule(request)
+          body = send_request('CreateNatGatewaySourceIpTranslationNatRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNatGatewaySourceIpTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateNetDetect)用于创建网络探测。
 
         # @param request: Request instance for CreateNetDetect.
@@ -1783,6 +1807,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteNatGatewayDestinationIpPortTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteNatGatewaySourceIpTranslationNatRule）用于删除NAT网关端口SNAT转发规则。
+
+        # @param request: Request instance for DeleteNatGatewaySourceIpTranslationNatRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteNatGatewaySourceIpTranslationNatRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteNatGatewaySourceIpTranslationNatRuleResponse`
+        def DeleteNatGatewaySourceIpTranslationNatRule(request)
+          body = send_request('DeleteNatGatewaySourceIpTranslationNatRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteNatGatewaySourceIpTranslationNatRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2877,6 +2925,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
+
+        # @param request: Request instance for DescribeNatGatewaySourceIpTranslationNatRules.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeNatGatewaySourceIpTranslationNatRulesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeNatGatewaySourceIpTranslationNatRulesResponse`
+        def DescribeNatGatewaySourceIpTranslationNatRules(request)
+          body = send_request('DescribeNatGatewaySourceIpTranslationNatRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNatGatewaySourceIpTranslationNatRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4712,6 +4784,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyNatGatewaySourceIpTranslationNatRule）用于修改NAT网关SNAT转发规则。
+
+        # @param request: Request instance for ModifyNatGatewaySourceIpTranslationNatRule.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyNatGatewaySourceIpTranslationNatRuleRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyNatGatewaySourceIpTranslationNatRuleResponse`
+        def ModifyNatGatewaySourceIpTranslationNatRule(request)
+          body = send_request('ModifyNatGatewaySourceIpTranslationNatRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNatGatewaySourceIpTranslationNatRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyNetDetect)用于修改网络探测参数。
 
         # @param request: Request instance for ModifyNetDetect.
@@ -5075,6 +5171,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyVpnGatewayCcnRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 路由表列表页操作增加“发布到云联网”，用于发布路由到云联网。
+
+        # @param request: Request instance for NotifyRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::NotifyRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::NotifyRoutesResponse`
+        def NotifyRoutes(request)
+          body = send_request('NotifyRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = NotifyRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5614,6 +5734,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnassignPrivateIpAddressesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 路由表列表页操作增加“从云联网撤销”，用于撤销已发布到云联网的路由。
+
+        # @param request: Request instance for WithdrawNotifyRoutes.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::WithdrawNotifyRoutesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::WithdrawNotifyRoutesResponse`
+        def WithdrawNotifyRoutes(request)
+          body = send_request('WithdrawNotifyRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = WithdrawNotifyRoutesResponse.new
             model.deserialize(response['Response'])
             model
           else

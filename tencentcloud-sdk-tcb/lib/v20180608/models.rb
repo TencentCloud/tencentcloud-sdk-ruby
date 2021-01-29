@@ -179,6 +179,124 @@ module TencentCloud
         end
       end
 
+      # 云开发项目版本
+      class CloudBaseProjectVersion < TencentCloud::Common::AbstractModel
+        # @param Name: 项目名
+        # @type Name: String
+        # @param Sam: SAM json
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sam: String
+        # @param Source: 来源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: :class:`Tencentcloud::Tcb.v20180608.models.CodeSource`
+        # @param CreateTime: 创建时间, unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间 ,unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param Status: 项目状态, 枚举值:
+        #         "creatingEnv"-创建环境中
+        # 	"createEnvFail"-创建环境失败
+        # 	"building"-构建中
+        # 	"buildFail"-构建失败
+        # 	"deploying"-部署中
+        # 	 "deployFail"-部署失败
+        # 	 "success"-部署成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Parameters: 环境变量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Parameters: Array
+        # @param Type: 项目类型, 枚举值:
+        # "framework-oneclick" 控制台一键部署
+        # "framework-local-oneclick" cli本地一键部署
+        # "qci-extension-cicd" 内网coding ci cd
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param CIId: ci的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CIId: String
+        # @param CDId: cd的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CDId: String
+        # @param EnvId: 环境id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvId: String
+        # @param VersionNum: 版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionNum: Integer
+        # @param FailReason: 错误原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param RcJson: rc.json内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RcJson: String
+        # @param AddonConfig: 插件配置内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddonConfig: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param NetworkConfig: 网络配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkConfig: String
+        # @param ExtensionId: 扩展id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtensionId: String
+        # @param FailType: 错误类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailType: String
+
+        attr_accessor :Name, :Sam, :Source, :CreateTime, :UpdateTime, :Status, :Parameters, :Type, :CIId, :CDId, :EnvId, :VersionNum, :FailReason, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :ExtensionId, :FailType
+        
+        def initialize(name=nil, sam=nil, source=nil, createtime=nil, updatetime=nil, status=nil, parameters=nil, type=nil, ciid=nil, cdid=nil, envid=nil, versionnum=nil, failreason=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, extensionid=nil, failtype=nil)
+          @Name = name
+          @Sam = sam
+          @Source = source
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+          @Parameters = parameters
+          @Type = type
+          @CIId = ciid
+          @CDId = cdid
+          @EnvId = envid
+          @VersionNum = versionnum
+          @FailReason = failreason
+          @RcJson = rcjson
+          @AddonConfig = addonconfig
+          @Tags = tags
+          @NetworkConfig = networkconfig
+          @ExtensionId = extensionid
+          @FailType = failtype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Sam = params['Sam']
+          unless params['Source'].nil?
+            @Source = CodeSource.new.deserialize(params[Source])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @Parameters = params['Parameters']
+          @Type = params['Type']
+          @CIId = params['CIId']
+          @CDId = params['CDId']
+          @EnvId = params['EnvId']
+          @VersionNum = params['VersionNum']
+          @FailReason = params['FailReason']
+          @RcJson = params['RcJson']
+          @AddonConfig = params['AddonConfig']
+          @Tags = params['Tags']
+          @NetworkConfig = params['NetworkConfig']
+          @ExtensionId = params['ExtensionId']
+          @FailType = params['FailType']
+        end
+      end
+
       # CloudBaseRun 镜像信息
       class CloudBaseRunImageInfo < TencentCloud::Common::AbstractModel
         # @param RepositoryName: 镜像仓库名称
@@ -573,6 +691,53 @@ module TencentCloud
         end
       end
 
+      # 云开发项目来源
+      class CodeSource < TencentCloud::Common::AbstractModel
+        # @param Type: 类型, 可能的枚举: "coding","package","package_url","github","gitlab","gitee","rawcode"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Url: 下载链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param WorkDir: 工作目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkDir: String
+        # @param CodingPackageName: code包名, type为coding的时候需要填写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodingPackageName: String
+        # @param CodingPackageVersion: coding版本名, type为coding的时候需要填写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CodingPackageVersion: String
+        # @param RawCode: 源码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawCode: String
+
+        attr_accessor :Type, :Url, :Name, :WorkDir, :CodingPackageName, :CodingPackageVersion, :RawCode
+        
+        def initialize(type=nil, url=nil, name=nil, workdir=nil, codingpackagename=nil, codingpackageversion=nil, rawcode=nil)
+          @Type = type
+          @Url = url
+          @Name = name
+          @WorkDir = workdir
+          @CodingPackageName = codingpackagename
+          @CodingPackageVersion = codingpackageversion
+          @RawCode = rawcode
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Url = params['Url']
+          @Name = params['Name']
+          @WorkDir = params['WorkDir']
+          @CodingPackageName = params['CodingPackageName']
+          @CodingPackageVersion = params['CodingPackageVersion']
+          @RawCode = params['RawCode']
+        end
+      end
+
       # CommonServiceAPI请求参数结构体
       class CommonServiceAPIRequest < TencentCloud::Common::AbstractModel
         # @param Service: Service名，需要转发访问的接口名
@@ -609,6 +774,85 @@ module TencentCloud
 
         def deserialize(params)
           @JSONResp = params['JSONResp']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAndDeployCloudBaseProject请求参数结构体
+      class CreateAndDeployCloudBaseProjectRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 项目名
+        # @type Name: String
+        # @param Source: 来源
+        # @type Source: :class:`Tencentcloud::Tcb.v20180608.models.CodeSource`
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param Type: 项目类型, 枚举值为: framework-oneclick,qci-extension-cicd
+        # @type Type: String
+        # @param Parameters: 环境变量
+        # @type Parameters: Array
+        # @param EnvAlias: 环境别名
+        # @type EnvAlias: String
+        # @param RcJson: rc.json的内容
+        # @type RcJson: String
+        # @param AddonConfig: 插件配置内容
+        # @type AddonConfig: String
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param NetworkConfig: 网络配置
+        # @type NetworkConfig: String
+        # @param FreeQuota: 免费额度的"basic", 不使用的用""
+        # @type FreeQuota: String
+
+        attr_accessor :Name, :Source, :EnvId, :Type, :Parameters, :EnvAlias, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :FreeQuota
+        
+        def initialize(name=nil, source=nil, envid=nil, type=nil, parameters=nil, envalias=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, freequota=nil)
+          @Name = name
+          @Source = source
+          @EnvId = envid
+          @Type = type
+          @Parameters = parameters
+          @EnvAlias = envalias
+          @RcJson = rcjson
+          @AddonConfig = addonconfig
+          @Tags = tags
+          @NetworkConfig = networkconfig
+          @FreeQuota = freequota
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Source'].nil?
+            @Source = CodeSource.new.deserialize(params[Source])
+          end
+          @EnvId = params['EnvId']
+          @Type = params['Type']
+          @Parameters = params['Parameters']
+          @EnvAlias = params['EnvAlias']
+          @RcJson = params['RcJson']
+          @AddonConfig = params['AddonConfig']
+          @Tags = params['Tags']
+          @NetworkConfig = params['NetworkConfig']
+          @FreeQuota = params['FreeQuota']
+        end
+      end
+
+      # CreateAndDeployCloudBaseProject返回参数结构体
+      class CreateAndDeployCloudBaseProjectResponse < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnvId, :RequestId
+        
+        def initialize(envid=nil, requestid=nil)
+          @EnvId = envid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
           @RequestId = params['RequestId']
         end
       end
@@ -1229,6 +1473,68 @@ module TencentCloud
           @UploadHeaders = params['UploadHeaders']
           @PackageName = params['PackageName']
           @PackageVersion = params['PackageVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseProjectLatestVersionList请求参数结构体
+      class DescribeCloudBaseProjectLatestVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param PageSize: 个数
+        # @type PageSize: Integer
+        # @param EnvId: 环境id, 非必填
+        # @type EnvId: String
+        # @param ProjectName: 项目名称, 非必填
+        # @type ProjectName: String
+        # @param ProjectType: 项目类型: framework-oneclick,qci-extension-cicd
+        # @type ProjectType: String
+        # @param Tags: 标签
+        # @type Tags: Array
+
+        attr_accessor :Offset, :PageSize, :EnvId, :ProjectName, :ProjectType, :Tags
+        
+        def initialize(offset=nil, pagesize=nil, envid=nil, projectname=nil, projecttype=nil, tags=nil)
+          @Offset = offset
+          @PageSize = pagesize
+          @EnvId = envid
+          @ProjectName = projectname
+          @ProjectType = projecttype
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @PageSize = params['PageSize']
+          @EnvId = params['EnvId']
+          @ProjectName = params['ProjectName']
+          @ProjectType = params['ProjectType']
+          @Tags = params['Tags']
+        end
+      end
+
+      # DescribeCloudBaseProjectLatestVersionList返回参数结构体
+      class DescribeCloudBaseProjectLatestVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param ProjectList: 项目列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectList: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProjectList, :TotalCount, :RequestId
+        
+        def initialize(projectlist=nil, totalcount=nil, requestid=nil)
+          @ProjectList = projectlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProjectList = params['ProjectList']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

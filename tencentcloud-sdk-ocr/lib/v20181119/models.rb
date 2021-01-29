@@ -103,17 +103,41 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param SupportHorizontalImage: 用于选择是否支持横屏拍摄。打开则支持横屏拍摄图片角度判断，角度信息在返回参数的angle中，默认值为true
+        # @type SupportHorizontalImage: Boolean
+        # @param RejectNonArithmeticPic: 是否拒绝非速算图，打开则拒绝非速算图(注：非速算图是指风景人物等明显不是速算图片的图片)，默认值为false
+        # @type RejectNonArithmeticPic: Boolean
+        # @param EnableDispRelatedVertical: 是否展开耦合算式中的竖式计算，默认值为false
+        # @type EnableDispRelatedVertical: Boolean
+        # @param EnableDispMidResult: 是否展示竖式算式的中间结果和格式控制字符，默认值为false
+        # @type EnableDispMidResult: Boolean
+        # @param EnablePdfRecognize: 是否开启pdf识别，默认值为true
+        # @type EnablePdfRecognize: Boolean
+        # @param PdfPageIndex: pdf页码，从0开始，默认为0
+        # @type PdfPageIndex: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :SupportHorizontalImage, :RejectNonArithmeticPic, :EnableDispRelatedVertical, :EnableDispMidResult, :EnablePdfRecognize, :PdfPageIndex
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, supporthorizontalimage=nil, rejectnonarithmeticpic=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @SupportHorizontalImage = supporthorizontalimage
+          @RejectNonArithmeticPic = rejectnonarithmeticpic
+          @EnableDispRelatedVertical = enabledisprelatedvertical
+          @EnableDispMidResult = enabledispmidresult
+          @EnablePdfRecognize = enablepdfrecognize
+          @PdfPageIndex = pdfpageindex
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @SupportHorizontalImage = params['SupportHorizontalImage']
+          @RejectNonArithmeticPic = params['RejectNonArithmeticPic']
+          @EnableDispRelatedVertical = params['EnableDispRelatedVertical']
+          @EnableDispMidResult = params['EnableDispMidResult']
+          @EnablePdfRecognize = params['EnablePdfRecognize']
+          @PdfPageIndex = params['PdfPageIndex']
         end
       end
 
@@ -121,18 +145,22 @@ module TencentCloud
       class ArithmeticOCRResponse < TencentCloud::Common::AbstractModel
         # @param TextDetections: 检测到的文本信息，具体内容请点击左侧链接。
         # @type TextDetections: Array
+        # @param Angle: 图片横屏的角度(90度或270度)
+        # @type Angle: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TextDetections, :RequestId
+        attr_accessor :TextDetections, :Angle, :RequestId
         
-        def initialize(textdetections=nil, requestid=nil)
+        def initialize(textdetections=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
+          @Angle = angle
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TextDetections = params['TextDetections']
+          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end
@@ -4425,7 +4453,7 @@ module TencentCloud
       class TextArithmetic < TencentCloud::Common::AbstractModel
         # @param DetectedText: 识别出的文本行内容
         # @type DetectedText: String
-        # @param Result: 算式运算结果
+        # @param Result: 算式运算结果，true-正确   false-错误或非法参数
         # @type Result: Boolean
         # @param Confidence: 保留字段，暂不支持
         # @type Confidence: Integer
@@ -4449,10 +4477,12 @@ module TencentCloud
         # ‘10’: 脱式计算
         # ‘11’: 解方程
         # @type ExpressionType: String
+        # @param Answer: 错题推荐答案，算式运算结果正确返回为""，算式运算结果错误返回推荐答案 (注：暂不支持多个关系运算符（如1<10<7）、无关系运算符（如frac(1,2)+frac(2,3)）、单位换算（如1元=100角）错题的推荐答案返回)
+        # @type Answer: String
 
-        attr_accessor :DetectedText, :Result, :Confidence, :Polygon, :AdvancedInfo, :ItemCoord, :ExpressionType
+        attr_accessor :DetectedText, :Result, :Confidence, :Polygon, :AdvancedInfo, :ItemCoord, :ExpressionType, :Answer
         
-        def initialize(detectedtext=nil, result=nil, confidence=nil, polygon=nil, advancedinfo=nil, itemcoord=nil, expressiontype=nil)
+        def initialize(detectedtext=nil, result=nil, confidence=nil, polygon=nil, advancedinfo=nil, itemcoord=nil, expressiontype=nil, answer=nil)
           @DetectedText = detectedtext
           @Result = result
           @Confidence = confidence
@@ -4460,6 +4490,7 @@ module TencentCloud
           @AdvancedInfo = advancedinfo
           @ItemCoord = itemcoord
           @ExpressionType = expressiontype
+          @Answer = answer
         end
 
         def deserialize(params)
@@ -4472,6 +4503,7 @@ module TencentCloud
             @ItemCoord = ItemCoord.new.deserialize(params[ItemCoord])
           end
           @ExpressionType = params['ExpressionType']
+          @Answer = params['Answer']
         end
       end
 

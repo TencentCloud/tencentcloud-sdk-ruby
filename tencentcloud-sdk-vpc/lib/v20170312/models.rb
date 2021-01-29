@@ -1631,6 +1631,28 @@ module TencentCloud
         end
       end
 
+      # 用于发布云联网的cidr信息
+      class CidrForCcn < TencentCloud::Common::AbstractModel
+        # @param Cidr: local cidr值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cidr: String
+        # @param PublishedToVbc: 是否发布到了云联网。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishedToVbc: Boolean
+
+        attr_accessor :Cidr, :PublishedToVbc
+        
+        def initialize(cidr=nil, publishedtovbc=nil)
+          @Cidr = cidr
+          @PublishedToVbc = publishedtovbc
+        end
+
+        def deserialize(params)
+          @Cidr = params['Cidr']
+          @PublishedToVbc = params['PublishedToVbc']
+        end
+      end
+
       # 私有网络和基础网络互通设备
       class ClassicLinkInstance < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID
@@ -2598,6 +2620,42 @@ module TencentCloud
         def deserialize(params)
           @NatGatewaySet = params['NatGatewaySet']
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNatGatewaySourceIpTranslationNatRule请求参数结构体
+      class CreateNatGatewaySourceIpTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: NAT网关的ID，形如："nat-df45454"
+        # @type NatGatewayId: String
+        # @param SourceIpTranslationNatRules: NAT网关的SNAT转换规则
+        # @type SourceIpTranslationNatRules: Array
+
+        attr_accessor :NatGatewayId, :SourceIpTranslationNatRules
+        
+        def initialize(natgatewayid=nil, sourceiptranslationnatrules=nil)
+          @NatGatewayId = natgatewayid
+          @SourceIpTranslationNatRules = sourceiptranslationnatrules
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @SourceIpTranslationNatRules = params['SourceIpTranslationNatRules']
+        end
+      end
+
+      # CreateNatGatewaySourceIpTranslationNatRule返回参数结构体
+      class CreateNatGatewaySourceIpTranslationNatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4102,6 +4160,42 @@ module TencentCloud
         end
       end
 
+      # DeleteNatGatewaySourceIpTranslationNatRule请求参数结构体
+      class DeleteNatGatewaySourceIpTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: NAT网关的ID，形如：`nat-df45454`。
+        # @type NatGatewayId: String
+        # @param NatGatewaySnatIds: NAT网关的SNAT ID列表，形如：`snat-df43254`。
+        # @type NatGatewaySnatIds: Array
+
+        attr_accessor :NatGatewayId, :NatGatewaySnatIds
+        
+        def initialize(natgatewayid=nil, natgatewaysnatids=nil)
+          @NatGatewayId = natgatewayid
+          @NatGatewaySnatIds = natgatewaysnatids
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @NatGatewaySnatIds = params['NatGatewaySnatIds']
+        end
+      end
+
+      # DeleteNatGatewaySourceIpTranslationNatRule返回参数结构体
+      class DeleteNatGatewaySourceIpTranslationNatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteNetDetect请求参数结构体
       class DeleteNetDetectRequest < TencentCloud::Common::AbstractModel
         # @param NetDetectId: 网络探测实例`ID`。形如：`netd-12345678`
@@ -4234,7 +4328,7 @@ module TencentCloud
       class DeleteRoutesRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表实例ID。
         # @type RouteTableId: String
-        # @param Routes: 路由策略对象。
+        # @param Routes: 路由策略对象，删除路由策略时，仅需使用Route的RouteId字段。
         # @type Routes: Array
 
         attr_accessor :RouteTableId, :Routes
@@ -4252,16 +4346,20 @@ module TencentCloud
 
       # DeleteRoutes返回参数结构体
       class DeleteRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param RouteSet: 已删除的路由策略详情。
+        # @type RouteSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RouteSet, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(routeset=nil, requestid=nil)
+          @RouteSet = routeset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RouteSet = params['RouteSet']
           @RequestId = params['RequestId']
         end
       end
@@ -6226,6 +6324,62 @@ module TencentCloud
 
         def deserialize(params)
           @NatGatewayDestinationIpPortTranslationNatRuleSet = params['NatGatewayDestinationIpPortTranslationNatRuleSet']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNatGatewaySourceIpTranslationNatRules请求参数结构体
+      class DescribeNatGatewaySourceIpTranslationNatRulesRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: NAT网关统一 ID，形如：`nat-123xx454`。
+        # @type NatGatewayId: String
+        # @param Filters: 过滤条件:
+        # <li> resource-id，Subnet的ID或者Cvm ID，如`subnet-0yi4hekt`</li>
+        # <li> public-ip-address，弹性IP，如`139.199.232.238`</li>
+        # <li>description，规则描述。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :NatGatewayId, :Filters, :Offset, :Limit
+        
+        def initialize(natgatewayid=nil, filters=nil, offset=nil, limit=nil)
+          @NatGatewayId = natgatewayid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @Filters = params['Filters']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeNatGatewaySourceIpTranslationNatRules返回参数结构体
+      class DescribeNatGatewaySourceIpTranslationNatRulesResponse < TencentCloud::Common::AbstractModel
+        # @param SourceIpTranslationNatRuleSet: NAT网关SNAT规则对象数组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceIpTranslationNatRuleSet: Array
+        # @param TotalCount: 符合条件的NAT网关端口转发规则对象数目。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SourceIpTranslationNatRuleSet, :TotalCount, :RequestId
+        
+        def initialize(sourceiptranslationnatruleset=nil, totalcount=nil, requestid=nil)
+          @SourceIpTranslationNatRuleSet = sourceiptranslationnatruleset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SourceIpTranslationNatRuleSet = params['SourceIpTranslationNatRuleSet']
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -10274,6 +10428,44 @@ module TencentCloud
         end
       end
 
+      # ModifyNatGatewaySourceIpTranslationNatRule请求参数结构体
+      class ModifyNatGatewaySourceIpTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: NAT网关的ID，形如：`nat-df453454`。
+        # @type NatGatewayId: String
+        # @param SourceIpTranslationNatRule: NAT网关的SNAT转换规则。
+        # @type SourceIpTranslationNatRule: :class:`Tencentcloud::Vpc.v20170312.models.SourceIpTranslationNatRule`
+
+        attr_accessor :NatGatewayId, :SourceIpTranslationNatRule
+        
+        def initialize(natgatewayid=nil, sourceiptranslationnatrule=nil)
+          @NatGatewayId = natgatewayid
+          @SourceIpTranslationNatRule = sourceiptranslationnatrule
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          unless params['SourceIpTranslationNatRule'].nil?
+            @SourceIpTranslationNatRule = SourceIpTranslationNatRule.new.deserialize(params[SourceIpTranslationNatRule])
+          end
+        end
+      end
+
+      # ModifyNatGatewaySourceIpTranslationNatRule返回参数结构体
+      class ModifyNatGatewaySourceIpTranslationNatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNetDetect请求参数结构体
       class ModifyNetDetectRequest < TencentCloud::Common::AbstractModel
         # @param NetDetectId: 网络探测实例`ID`。形如：`netd-12345678`
@@ -11414,6 +11606,42 @@ module TencentCloud
         end
       end
 
+      # NotifyRoutes请求参数结构体
+      class NotifyRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param RouteTableId: 路由表唯一ID。
+        # @type RouteTableId: String
+        # @param RouteItemIds: 路由策略唯一ID。
+        # @type RouteItemIds: Array
+
+        attr_accessor :RouteTableId, :RouteItemIds
+        
+        def initialize(routetableid=nil, routeitemids=nil)
+          @RouteTableId = routetableid
+          @RouteItemIds = routeitemids
+        end
+
+        def deserialize(params)
+          @RouteTableId = params['RouteTableId']
+          @RouteItemIds = params['RouteItemIds']
+        end
+      end
+
+      # NotifyRoutes返回参数结构体
+      class NotifyRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 价格
       class Price < TencentCloud::Common::AbstractModel
         # @param InstancePrice: 实例价格。
@@ -12402,10 +12630,13 @@ module TencentCloud
         # @type DestinationIpv6CidrBlock: String
         # @param RouteItemId: 路由唯一策略ID。
         # @type RouteItemId: String
+        # @param PublishedToVbc: 路由策略是否发布到云联网。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishedToVbc: Boolean
 
-        attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :RouteId, :RouteDescription, :Enabled, :RouteType, :RouteTableId, :DestinationIpv6CidrBlock, :RouteItemId
+        attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :RouteId, :RouteDescription, :Enabled, :RouteType, :RouteTableId, :DestinationIpv6CidrBlock, :RouteItemId, :PublishedToVbc
         
-        def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, routeid=nil, routedescription=nil, enabled=nil, routetype=nil, routetableid=nil, destinationipv6cidrblock=nil, routeitemid=nil)
+        def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, routeid=nil, routedescription=nil, enabled=nil, routetype=nil, routetableid=nil, destinationipv6cidrblock=nil, routeitemid=nil, publishedtovbc=nil)
           @DestinationCidrBlock = destinationcidrblock
           @GatewayType = gatewaytype
           @GatewayId = gatewayid
@@ -12416,6 +12647,7 @@ module TencentCloud
           @RouteTableId = routetableid
           @DestinationIpv6CidrBlock = destinationipv6cidrblock
           @RouteItemId = routeitemid
+          @PublishedToVbc = publishedtovbc
         end
 
         def deserialize(params)
@@ -12429,6 +12661,7 @@ module TencentCloud
           @RouteTableId = params['RouteTableId']
           @DestinationIpv6CidrBlock = params['DestinationIpv6CidrBlock']
           @RouteItemId = params['RouteItemId']
+          @PublishedToVbc = params['PublishedToVbc']
         end
       end
 
@@ -12474,10 +12707,13 @@ module TencentCloud
         # @type CreatedTime: String
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
+        # @param LocalCidrForCcn: local路由是否发布云联网。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalCidrForCcn: Array
 
-        attr_accessor :VpcId, :RouteTableId, :RouteTableName, :AssociationSet, :RouteSet, :Main, :CreatedTime, :TagSet
+        attr_accessor :VpcId, :RouteTableId, :RouteTableName, :AssociationSet, :RouteSet, :Main, :CreatedTime, :TagSet, :LocalCidrForCcn
         
-        def initialize(vpcid=nil, routetableid=nil, routetablename=nil, associationset=nil, routeset=nil, main=nil, createdtime=nil, tagset=nil)
+        def initialize(vpcid=nil, routetableid=nil, routetablename=nil, associationset=nil, routeset=nil, main=nil, createdtime=nil, tagset=nil, localcidrforccn=nil)
           @VpcId = vpcid
           @RouteTableId = routetableid
           @RouteTableName = routetablename
@@ -12486,6 +12722,7 @@ module TencentCloud
           @Main = main
           @CreatedTime = createdtime
           @TagSet = tagset
+          @LocalCidrForCcn = localcidrforccn
         end
 
         def deserialize(params)
@@ -12497,6 +12734,7 @@ module TencentCloud
           @Main = params['Main']
           @CreatedTime = params['CreatedTime']
           @TagSet = params['TagSet']
+          @LocalCidrForCcn = params['LocalCidrForCcn']
         end
       end
 
@@ -12853,6 +13091,58 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # NAT的SNAT规则
+      class SourceIpTranslationNatRule < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型，目前包含SUBNET、NETWORKINTERFACE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param PrivateIpAddress: 源IP/网段
+        # @type PrivateIpAddress: String
+        # @param PublicIpAddresses: 弹性IP地址池
+        # @type PublicIpAddresses: Array
+        # @param Description: 描述
+        # @type Description: String
+        # @param NatGatewaySnatId: Snat规则ID
+        # @type NatGatewaySnatId: String
+        # @param NatGatewayId: NAT网关的ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatGatewayId: String
+        # @param VpcId: 私有网络VPC的ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param CreatedTime: NAT网关SNAT规则创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+
+        attr_accessor :ResourceId, :ResourceType, :PrivateIpAddress, :PublicIpAddresses, :Description, :NatGatewaySnatId, :NatGatewayId, :VpcId, :CreatedTime
+        
+        def initialize(resourceid=nil, resourcetype=nil, privateipaddress=nil, publicipaddresses=nil, description=nil, natgatewaysnatid=nil, natgatewayid=nil, vpcid=nil, createdtime=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @PrivateIpAddress = privateipaddress
+          @PublicIpAddresses = publicipaddresses
+          @Description = description
+          @NatGatewaySnatId = natgatewaysnatid
+          @NatGatewayId = natgatewayid
+          @VpcId = vpcid
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @PrivateIpAddress = params['PrivateIpAddress']
+          @PublicIpAddresses = params['PublicIpAddresses']
+          @Description = params['Description']
+          @NatGatewaySnatId = params['NatGatewaySnatId']
+          @NatGatewayId = params['NatGatewayId']
+          @VpcId = params['VpcId']
+          @CreatedTime = params['CreatedTime']
         end
       end
 
@@ -13542,6 +13832,42 @@ module TencentCloud
         def deserialize(params)
           @RouteId = params['RouteId']
           @Status = params['Status']
+        end
+      end
+
+      # WithdrawNotifyRoutes请求参数结构体
+      class WithdrawNotifyRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param RouteTableId: 路由表唯一ID。
+        # @type RouteTableId: String
+        # @param RouteItemIds: 路由策略唯一ID。
+        # @type RouteItemIds: Array
+
+        attr_accessor :RouteTableId, :RouteItemIds
+        
+        def initialize(routetableid=nil, routeitemids=nil)
+          @RouteTableId = routetableid
+          @RouteItemIds = routeitemids
+        end
+
+        def deserialize(params)
+          @RouteTableId = params['RouteTableId']
+          @RouteItemIds = params['RouteItemIds']
+        end
+      end
+
+      # WithdrawNotifyRoutes返回参数结构体
+      class WithdrawNotifyRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

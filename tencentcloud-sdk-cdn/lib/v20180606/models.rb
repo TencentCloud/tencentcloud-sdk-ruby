@@ -4258,7 +4258,7 @@ module TencentCloud
 
       # DisableCaches请求参数结构体
       class DisableCachesRequest < TencentCloud::Common::AbstractModel
-        # @param Urls: 需要禁用的 URL 列表
+        # @param Urls: 禁用的 URL 列表（分协议生效，必须包含http://或https://）
         # 每次最多可提交 100 条，每日最多可提交 3000 条
         # @type Urls: Array
 
