@@ -3161,7 +3161,7 @@ module TencentCloud
         # @type SubnetIds: Array
         # @param K8SVersion: k8s 版本号
         # @type K8SVersion: String
-        # @param Status: 集群状态
+        # @param Status: 集群状态(running运行中，initializing 初始化中，failed异常)
         # @type Status: String
         # @param ClusterDesc: 集群描述信息
         # @type ClusterDesc: String

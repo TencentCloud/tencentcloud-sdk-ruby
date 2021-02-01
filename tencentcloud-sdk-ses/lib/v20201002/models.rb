@@ -17,7 +17,7 @@
 module TencentCloud
   module Ses
     module V20201002
-      # 附件结构，包含附件名和base之后的附件内容。
+      # 附件结构，包含附件名和base64之后的附件内容。
       class Attachment < TencentCloud::Common::AbstractModel
         # @param FileName: 附件名称，最大支持255个字符长度，不支持部分附件类型，详情请参考[附件类型](https://cloud.tencent.com/document/product/1288/51951)。
         # @type FileName: String

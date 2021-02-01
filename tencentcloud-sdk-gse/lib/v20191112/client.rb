@@ -1530,6 +1530,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（UpdateBucketAccelerateOpt）用于开启cos全球加速。
+
+        # @param request: Request instance for UpdateBucketAccelerateOpt.
+        # @type request: :class:`Tencentcloud::gse::V20191112::UpdateBucketAccelerateOptRequest`
+        # @rtype: :class:`Tencentcloud::gse::V20191112::UpdateBucketAccelerateOptResponse`
+        def UpdateBucketAccelerateOpt(request)
+          body = send_request('UpdateBucketAccelerateOpt', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateBucketAccelerateOptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
+
+        # @param request: Request instance for UpdateBucketCORSOpt.
+        # @type request: :class:`Tencentcloud::gse::V20191112::UpdateBucketCORSOptRequest`
+        # @rtype: :class:`Tencentcloud::gse::V20191112::UpdateBucketCORSOptResponse`
+        def UpdateBucketCORSOpt(request)
+          body = send_request('UpdateBucketCORSOpt', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateBucketCORSOptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
 
         # @param request: Request instance for UpdateFleetAttributes.

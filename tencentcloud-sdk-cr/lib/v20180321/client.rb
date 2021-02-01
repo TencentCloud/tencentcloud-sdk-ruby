@@ -49,6 +49,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提交机器人黑名单申请
+
+        # @param request: Request instance for ApplyBlackListData.
+        # @type request: :class:`Tencentcloud::cr::V20180321::ApplyBlackListDataRequest`
+        # @rtype: :class:`Tencentcloud::cr::V20180321::ApplyBlackListDataResponse`
+        def ApplyBlackListData(request)
+          body = send_request('ApplyBlackListData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyBlackListDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提交信审外呼申请，返回当次请求日期。
 
         # @param request: Request instance for ApplyCreditAudit.
@@ -59,6 +83,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ApplyCreditAuditResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新机器人任务作业状态
+
+        # @param request: Request instance for ChangeBotCallStatus.
+        # @type request: :class:`Tencentcloud::cr::V20180321::ChangeBotCallStatusRequest`
+        # @rtype: :class:`Tencentcloud::cr::V20180321::ChangeBotCallStatusResponse`
+        def ChangeBotCallStatus(request)
+          body = send_request('ChangeBotCallStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeBotCallStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新机器人任务状态
+
+        # @param request: Request instance for ChangeBotTaskStatus.
+        # @type request: :class:`Tencentcloud::cr::V20180321::ChangeBotTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::cr::V20180321::ChangeBotTaskStatusResponse`
+        def ChangeBotTaskStatus(request)
+          body = send_request('ChangeBotTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeBotTaskStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -362,6 +434,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 机器人任务查询
+
+        # @param request: Request instance for QueryCallList.
+        # @type request: :class:`Tencentcloud::cr::V20180321::QueryCallListRequest`
+        # @rtype: :class:`Tencentcloud::cr::V20180321::QueryCallListResponse`
+        def QueryCallList(request)
+          body = send_request('QueryCallList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryCallListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 实时数据查询
 
         # @param request: Request instance for QueryInstantData.
@@ -420,6 +516,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryRecordListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新机器人任务
+
+        # @param request: Request instance for UpdateBotTask.
+        # @type request: :class:`Tencentcloud::cr::V20180321::UpdateBotTaskRequest`
+        # @rtype: :class:`Tencentcloud::cr::V20180321::UpdateBotTaskResponse`
+        def UpdateBotTask(request)
+          body = send_request('UpdateBotTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateBotTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

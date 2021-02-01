@@ -88,6 +88,29 @@ module TencentCloud
         end
       end
 
+      # cloudrun安全特性能力
+
+      class CloudBaseCapabilities < TencentCloud::Common::AbstractModel
+        # @param Add: 启用安全能力项列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Add: Array
+        # @param Drop: 禁用安全能力向列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Drop: Array
+
+        attr_accessor :Add, :Drop
+        
+        def initialize(add=nil, drop=nil)
+          @Add = add
+          @Drop = drop
+        end
+
+        def deserialize(params)
+          @Add = params['Add']
+          @Drop = params['Drop']
+        end
+      end
+
       # 代码仓库里 Repo的信息描述
       class CloudBaseCodeRepoDetail < TencentCloud::Common::AbstractModel
         # @param Name: repo的名字
@@ -365,19 +388,27 @@ module TencentCloud
         # @type Path: String
         # @param ReadOnly: 是否只读
         # @type ReadOnly: Boolean
+        # @param SecretName: secret名称
+        # @type SecretName: String
+        # @param EnableEmptyDirVolume: 临时目录
+        # @type EnableEmptyDirVolume: Boolean
 
-        attr_accessor :Server, :Path, :ReadOnly
+        attr_accessor :Server, :Path, :ReadOnly, :SecretName, :EnableEmptyDirVolume
         
-        def initialize(server=nil, path=nil, readonly=nil)
+        def initialize(server=nil, path=nil, readonly=nil, secretname=nil, enableemptydirvolume=nil)
           @Server = server
           @Path = path
           @ReadOnly = readonly
+          @SecretName = secretname
+          @EnableEmptyDirVolume = enableemptydirvolume
         end
 
         def deserialize(params)
           @Server = params['Server']
           @Path = params['Path']
           @ReadOnly = params['ReadOnly']
+          @SecretName = params['SecretName']
+          @EnableEmptyDirVolume = params['EnableEmptyDirVolume']
         end
       end
 
@@ -404,10 +435,13 @@ module TencentCloud
         # @param Mem: 内存大小（单位：M）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mem: Integer
+        # @param Security: 安全特性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Security: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseSecurityContext`
 
-        attr_accessor :ContainerImage, :ContainerPort, :ContainerName, :EnvVar, :InitialDelaySeconds, :Cpu, :Mem
+        attr_accessor :ContainerImage, :ContainerPort, :ContainerName, :EnvVar, :InitialDelaySeconds, :Cpu, :Mem, :Security
         
-        def initialize(containerimage=nil, containerport=nil, containername=nil, envvar=nil, initialdelayseconds=nil, cpu=nil, mem=nil)
+        def initialize(containerimage=nil, containerport=nil, containername=nil, envvar=nil, initialdelayseconds=nil, cpu=nil, mem=nil, security=nil)
           @ContainerImage = containerimage
           @ContainerPort = containerport
           @ContainerName = containername
@@ -415,6 +449,7 @@ module TencentCloud
           @InitialDelaySeconds = initialdelayseconds
           @Cpu = cpu
           @Mem = mem
+          @Security = security
         end
 
         def deserialize(params)
@@ -425,6 +460,9 @@ module TencentCloud
           @InitialDelaySeconds = params['InitialDelaySeconds']
           @Cpu = params['Cpu']
           @Mem = params['Mem']
+          unless params['Security'].nil?
+            @Security = CloudBaseSecurityContext.new.deserialize(params[Security])
+          end
         end
       end
 
@@ -527,6 +565,26 @@ module TencentCloud
           @Target = params['Target']
           @Region = params['Region']
           @Name = params['Name']
+        end
+      end
+
+      # cloudrun安全特性
+
+      class CloudBaseSecurityContext < TencentCloud::Common::AbstractModel
+        # @param Capabilities: 安全特性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Capabilities: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseCapabilities`
+
+        attr_accessor :Capabilities
+        
+        def initialize(capabilities=nil)
+          @Capabilities = capabilities
+        end
+
+        def deserialize(params)
+          unless params['Capabilities'].nil?
+            @Capabilities = CloudBaseCapabilities.new.deserialize(params[Capabilities])
+          end
         end
       end
 
@@ -1008,10 +1066,12 @@ module TencentCloud
         # @type ImageReuseKey: String
         # @param SidecarSpecs: 容器的描述文件
         # @type SidecarSpecs: Array
+        # @param Security: 安全特性
+        # @type Security: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseSecurityContext`
 
-        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs
+        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security
         
-        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil)
+        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil)
           @EnvId = envid
           @UploadType = uploadtype
           @FlowRatio = flowratio
@@ -1046,6 +1106,7 @@ module TencentCloud
           @ServerPath = serverpath
           @ImageReuseKey = imagereusekey
           @SidecarSpecs = sidecarspecs
+          @Security = security
         end
 
         def deserialize(params)
@@ -1091,6 +1152,9 @@ module TencentCloud
           @ServerPath = params['ServerPath']
           @ImageReuseKey = params['ImageReuseKey']
           @SidecarSpecs = params['SidecarSpecs']
+          unless params['Security'].nil?
+            @Security = CloudBaseSecurityContext.new.deserialize(params[Security])
+          end
         end
       end
 
@@ -1429,19 +1493,23 @@ module TencentCloud
         # @type ServiceName: String
         # @param CIBusiness: build类型,枚举值有: cloudbaserun, framework-ci
         # @type CIBusiness: String
+        # @param ServiceVersion: 服务版本
+        # @type ServiceVersion: String
 
-        attr_accessor :EnvId, :ServiceName, :CIBusiness
+        attr_accessor :EnvId, :ServiceName, :CIBusiness, :ServiceVersion
         
-        def initialize(envid=nil, servicename=nil, cibusiness=nil)
+        def initialize(envid=nil, servicename=nil, cibusiness=nil, serviceversion=nil)
           @EnvId = envid
           @ServiceName = servicename
           @CIBusiness = cibusiness
+          @ServiceVersion = serviceversion
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
           @ServiceName = params['ServiceName']
           @CIBusiness = params['CIBusiness']
+          @ServiceVersion = params['ServiceVersion']
         end
       end
 
@@ -1449,22 +1517,30 @@ module TencentCloud
       class DescribeCloudBaseBuildServiceResponse < TencentCloud::Common::AbstractModel
         # @param UploadUrl: 上传url
         # @type UploadUrl: String
-        # @param UploadHeaders: heder
+        # @param UploadHeaders: 上传heder
         # @type UploadHeaders: Array
         # @param PackageName: 包名
         # @type PackageName: String
         # @param PackageVersion: 包版本
         # @type PackageVersion: String
+        # @param DownloadUrl: 下载链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadUrl: String
+        # @param DownloadHeaders: 下载Httpheader
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadHeaders: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UploadUrl, :UploadHeaders, :PackageName, :PackageVersion, :RequestId
+        attr_accessor :UploadUrl, :UploadHeaders, :PackageName, :PackageVersion, :DownloadUrl, :DownloadHeaders, :RequestId
         
-        def initialize(uploadurl=nil, uploadheaders=nil, packagename=nil, packageversion=nil, requestid=nil)
+        def initialize(uploadurl=nil, uploadheaders=nil, packagename=nil, packageversion=nil, downloadurl=nil, downloadheaders=nil, requestid=nil)
           @UploadUrl = uploadurl
           @UploadHeaders = uploadheaders
           @PackageName = packagename
           @PackageVersion = packageversion
+          @DownloadUrl = downloadurl
+          @DownloadHeaders = downloadheaders
           @RequestId = requestid
         end
 
@@ -1473,6 +1549,8 @@ module TencentCloud
           @UploadHeaders = params['UploadHeaders']
           @PackageName = params['PackageName']
           @PackageVersion = params['PackageVersion']
+          @DownloadUrl = params['DownloadUrl']
+          @DownloadHeaders = params['DownloadHeaders']
           @RequestId = params['RequestId']
         end
       end

@@ -156,6 +156,98 @@ module TencentCloud
         end
       end
 
+      # CreateSecurityAuditLogExportTask请求参数结构体
+      class CreateSecurityAuditLogExportTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SecAuditGroupId: 安全审计组Id。
+        # @type SecAuditGroupId: String
+        # @param StartTime: 导出日志开始时间，例如2020-12-28 00:00:00。
+        # @type StartTime: String
+        # @param EndTime: 导出日志结束时间，例如2020-12-28 01:00:00。
+        # @type EndTime: String
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL。
+        # @type Product: String
+        # @param DangerLevels: 日志风险等级列表，支持值包括：0 无风险；1 低风险；2 中风险；3 高风险。
+        # @type DangerLevels: Array
+
+        attr_accessor :SecAuditGroupId, :StartTime, :EndTime, :Product, :DangerLevels
+        
+        def initialize(secauditgroupid=nil, starttime=nil, endtime=nil, product=nil, dangerlevels=nil)
+          @SecAuditGroupId = secauditgroupid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Product = product
+          @DangerLevels = dangerlevels
+        end
+
+        def deserialize(params)
+          @SecAuditGroupId = params['SecAuditGroupId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Product = params['Product']
+          @DangerLevels = params['DangerLevels']
+        end
+      end
+
+      # CreateSecurityAuditLogExportTask返回参数结构体
+      class CreateSecurityAuditLogExportTaskResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 日志导出任务Id。
+        # @type AsyncRequestId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSecurityAuditLogExportTasks请求参数结构体
+      class DeleteSecurityAuditLogExportTasksRequest < TencentCloud::Common::AbstractModel
+        # @param SecAuditGroupId: 安全审计组Id。
+        # @type SecAuditGroupId: String
+        # @param AsyncRequestIds: 日志导出任务Id列表，接口会忽略不存在或已删除的任务Id。
+        # @type AsyncRequestIds: Array
+        # @param Product: 服务产品类型，支持值： "mysql" - 云数据库 MySQL。
+        # @type Product: String
+
+        attr_accessor :SecAuditGroupId, :AsyncRequestIds, :Product
+        
+        def initialize(secauditgroupid=nil, asyncrequestids=nil, product=nil)
+          @SecAuditGroupId = secauditgroupid
+          @AsyncRequestIds = asyncrequestids
+          @Product = product
+        end
+
+        def deserialize(params)
+          @SecAuditGroupId = params['SecAuditGroupId']
+          @AsyncRequestIds = params['AsyncRequestIds']
+          @Product = params['Product']
+        end
+      end
+
+      # DeleteSecurityAuditLogExportTasks返回参数结构体
+      class DeleteSecurityAuditLogExportTasksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAllUserContact请求参数结构体
       class DescribeAllUserContactRequest < TencentCloud::Common::AbstractModel
         # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL。
@@ -431,6 +523,106 @@ module TencentCloud
           @Remain = params['Remain']
           @Total = params['Total']
           @AvailableDays = params['AvailableDays']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityAuditLogDownloadUrls请求参数结构体
+      class DescribeSecurityAuditLogDownloadUrlsRequest < TencentCloud::Common::AbstractModel
+        # @param SecAuditGroupId: 安全审计组Id。
+        # @type SecAuditGroupId: String
+        # @param AsyncRequestId: 异步任务Id。
+        # @type AsyncRequestId: Integer
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL。
+        # @type Product: String
+
+        attr_accessor :SecAuditGroupId, :AsyncRequestId, :Product
+        
+        def initialize(secauditgroupid=nil, asyncrequestid=nil, product=nil)
+          @SecAuditGroupId = secauditgroupid
+          @AsyncRequestId = asyncrequestid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @SecAuditGroupId = params['SecAuditGroupId']
+          @AsyncRequestId = params['AsyncRequestId']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeSecurityAuditLogDownloadUrls返回参数结构体
+      class DescribeSecurityAuditLogDownloadUrlsResponse < TencentCloud::Common::AbstractModel
+        # @param Urls: 导出结果的COS链接列表。当结果集很大时，可能会切分为多个url下载。
+        # @type Urls: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Urls, :RequestId
+        
+        def initialize(urls=nil, requestid=nil)
+          @Urls = urls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Urls = params['Urls']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityAuditLogExportTasks请求参数结构体
+      class DescribeSecurityAuditLogExportTasksRequest < TencentCloud::Common::AbstractModel
+        # @param SecAuditGroupId: 安全审计组Id。
+        # @type SecAuditGroupId: String
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL。
+        # @type Product: String
+        # @param AsyncRequestIds: 日志导出任务Id列表。
+        # @type AsyncRequestIds: Array
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认20。
+        # @type Limit: Integer
+
+        attr_accessor :SecAuditGroupId, :Product, :AsyncRequestIds, :Offset, :Limit
+        
+        def initialize(secauditgroupid=nil, product=nil, asyncrequestids=nil, offset=nil, limit=nil)
+          @SecAuditGroupId = secauditgroupid
+          @Product = product
+          @AsyncRequestIds = asyncrequestids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SecAuditGroupId = params['SecAuditGroupId']
+          @Product = params['Product']
+          @AsyncRequestIds = params['AsyncRequestIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSecurityAuditLogExportTasks返回参数结构体
+      class DescribeSecurityAuditLogExportTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 安全审计日志导出任务列表。
+        # @type Tasks: Array
+        # @param TotalCount: 安全审计日志导出任务总数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :TotalCount, :RequestId
+        
+        def initialize(tasks=nil, totalcount=nil, requestid=nil)
+          @Tasks = tasks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Tasks = params['Tasks']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -971,6 +1163,64 @@ module TencentCloud
 
         def deserialize(params)
           @Schema = params['Schema']
+        end
+      end
+
+      # 安全审计日志导出任务信息
+      class SecLogExportTaskInfo < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务Id。
+        # @type AsyncRequestId: Integer
+        # @param StartTime: 任务开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param CreateTime: 任务创建时间。
+        # @type CreateTime: String
+        # @param Status: 任务状态。
+        # @type Status: String
+        # @param Progress: 任务执行进度。
+        # @type Progress: Integer
+        # @param LogStartTime: 导出日志开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogStartTime: String
+        # @param LogEndTime: 导出日志结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogEndTime: String
+        # @param TotalSize: 日志文件总大小，单位KB。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalSize: Integer
+        # @param DangerLevels: 风险等级列表。0 无风险；1 低风险；2 中风险；3 高风险。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DangerLevels: Array
+
+        attr_accessor :AsyncRequestId, :StartTime, :EndTime, :CreateTime, :Status, :Progress, :LogStartTime, :LogEndTime, :TotalSize, :DangerLevels
+        
+        def initialize(asyncrequestid=nil, starttime=nil, endtime=nil, createtime=nil, status=nil, progress=nil, logstarttime=nil, logendtime=nil, totalsize=nil, dangerlevels=nil)
+          @AsyncRequestId = asyncrequestid
+          @StartTime = starttime
+          @EndTime = endtime
+          @CreateTime = createtime
+          @Status = status
+          @Progress = progress
+          @LogStartTime = logstarttime
+          @LogEndTime = logendtime
+          @TotalSize = totalsize
+          @DangerLevels = dangerlevels
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @LogStartTime = params['LogStartTime']
+          @LogEndTime = params['LogEndTime']
+          @TotalSize = params['TotalSize']
+          @DangerLevels = params['DangerLevels']
         end
       end
 

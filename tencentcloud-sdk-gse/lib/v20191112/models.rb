@@ -4506,6 +4506,86 @@ module TencentCloud
         end
       end
 
+      # UpdateBucketAccelerateOpt请求参数结构体
+      class UpdateBucketAccelerateOptRequest < TencentCloud::Common::AbstractModel
+        # @param Allowed: true为开启全球加速，false为关闭
+        # @type Allowed: Boolean
+
+        attr_accessor :Allowed
+        
+        def initialize(allowed=nil)
+          @Allowed = allowed
+        end
+
+        def deserialize(params)
+          @Allowed = params['Allowed']
+        end
+      end
+
+      # UpdateBucketAccelerateOpt返回参数结构体
+      class UpdateBucketAccelerateOptResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateBucketCORSOpt请求参数结构体
+      class UpdateBucketCORSOptRequest < TencentCloud::Common::AbstractModel
+        # @param AllowedOrigins: 允许的访问来源;具体参见 [cos文档](https://cloud.tencent.com/document/product/436/8279)
+        # @type AllowedOrigins: Array
+        # @param AllowedMethods: 允许的 HTTP 操作方法;可以配置多个:PUT、GET、POST、HEAD。[cos文档](https://cloud.tencent.com/document/product/436/8279)
+        # @type AllowedMethods: Array
+        # @param AllowedHeaders: 用于指定允许浏览器发送 CORS 请求时携带的自定义 HTTP 请求头部;可以配置*，代表允许所有头部，为了避免遗漏，推荐配置为*。[cos文档](https://cloud.tencent.com/document/product/436/8279)
+        # @type AllowedHeaders: Array
+        # @param MaxAgeSeconds: 跨域资源共享配置的有效时间，单位为秒。[cos文档](https://cloud.tencent.com/document/product/436/8279)
+        # @type MaxAgeSeconds: Integer
+        # @param ExposeHeaders: 允许浏览器获取的 CORS 请求响应中的头部，不区分大小写；默认情况下浏览器只能访问简单响应头部：Cache-Control、Content-Type、Expires、Last-Modified，如果需要访问其他响应头部，需要添加 ExposeHeader 配置。[cos文档](https://cloud.tencent.com/document/product/436/8279)
+        # @type ExposeHeaders: Array
+
+        attr_accessor :AllowedOrigins, :AllowedMethods, :AllowedHeaders, :MaxAgeSeconds, :ExposeHeaders
+        
+        def initialize(allowedorigins=nil, allowedmethods=nil, allowedheaders=nil, maxageseconds=nil, exposeheaders=nil)
+          @AllowedOrigins = allowedorigins
+          @AllowedMethods = allowedmethods
+          @AllowedHeaders = allowedheaders
+          @MaxAgeSeconds = maxageseconds
+          @ExposeHeaders = exposeheaders
+        end
+
+        def deserialize(params)
+          @AllowedOrigins = params['AllowedOrigins']
+          @AllowedMethods = params['AllowedMethods']
+          @AllowedHeaders = params['AllowedHeaders']
+          @MaxAgeSeconds = params['MaxAgeSeconds']
+          @ExposeHeaders = params['ExposeHeaders']
+        end
+      end
+
+      # UpdateBucketCORSOpt返回参数结构体
+      class UpdateBucketCORSOptResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateFleetAttributes请求参数结构体
       class UpdateFleetAttributesRequest < TencentCloud::Common::AbstractModel
         # @param FleetId: 服务器舰队 Id
