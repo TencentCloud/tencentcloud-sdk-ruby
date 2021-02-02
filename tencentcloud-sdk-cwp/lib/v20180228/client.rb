@@ -25,7 +25,7 @@ module TencentCloud
         @@sdk_version = 'CWP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
-        # 本接口（AddLoginWhiteList）用于添加白名单规则
+        # 本接口用于新增异地登录白名单规则。
 
         # @param request: Request instance for AddLoginWhiteList.
         # @type request: :class:`Tencentcloud::cwp::V20180228::AddLoginWhiteListRequest`
@@ -289,7 +289,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除白名单规则
+        # 本接口用于删除异地登录白名单规则。
 
         # @param request: Request instance for DeleteLoginWhiteList.
         # @type request: :class:`Tencentcloud::cwp::V20180228::DeleteLoginWhiteListRequest`
@@ -2233,7 +2233,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 编辑白名单规则
+        # 本接口用于编辑异地登录白名单规则。
 
         # @param request: Request instance for ModifyLoginWhiteList.
         # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyLoginWhiteListRequest`

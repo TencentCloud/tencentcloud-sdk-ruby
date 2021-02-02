@@ -193,6 +193,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除管理人
+
+        # @param request: Request instance for DeleteManager.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DeleteManagerRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DeleteManagerResponse`
+        def DeleteManager(request)
+          body = send_request('DeleteManager', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteManagerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeCertificate）用于获取证书信息。
 
         # @param request: Request instance for DescribeCertificate.
@@ -275,6 +299,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCertificatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询管理人详情
+
+        # @param request: Request instance for DescribeManagerDetail.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeManagerDetailRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeManagerDetailResponse`
+        def DescribeManagerDetail(request)
+          body = send_request('DescribeManagerDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeManagerDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询管理人列表
+
+        # @param request: Request instance for DescribeManagers.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeManagersRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeManagersResponse`
+        def DescribeManagers(request)
+          body = send_request('DescribeManagers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeManagersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -409,6 +481,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重新提交审核管理人
+
+        # @param request: Request instance for SubmitAuditManager.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::SubmitAuditManagerRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::SubmitAuditManagerResponse`
+        def SubmitAuditManager(request)
+          body = send_request('SubmitAuditManager', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitAuditManagerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提交证书资料。输入参数信息可以分多次提交，但提交的证书资料应最低限度保持完整。
 
         # @param request: Request instance for SubmitCertificateInformation.
@@ -491,6 +587,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UploadRevokeLetterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重新核验管理人
+
+        # @param request: Request instance for VerifyManager.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::VerifyManagerRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::VerifyManagerResponse`
+        def VerifyManager(request)
+          body = send_request('VerifyManager', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyManagerResponse.new
             model.deserialize(response['Response'])
             model
           else

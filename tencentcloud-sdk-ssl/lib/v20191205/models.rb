@@ -420,6 +420,46 @@ module TencentCloud
         end
       end
 
+      # 公司信息
+      class CompanyInfo < TencentCloud::Common::AbstractModel
+        # @param CompanyName: 公司名称
+        # @type CompanyName: String
+        # @param CompanyId: 公司ID
+        # @type CompanyId: Integer
+        # @param CompanyCountry: 公司所在国家
+        # @type CompanyCountry: String
+        # @param CompanyProvince: 公司所在省份
+        # @type CompanyProvince: String
+        # @param CompanyCity: 公司所在城市
+        # @type CompanyCity: String
+        # @param CompanyAddress: 公司所在详细地址
+        # @type CompanyAddress: String
+        # @param CompanyPhone: 公司电话
+        # @type CompanyPhone: String
+
+        attr_accessor :CompanyName, :CompanyId, :CompanyCountry, :CompanyProvince, :CompanyCity, :CompanyAddress, :CompanyPhone
+        
+        def initialize(companyname=nil, companyid=nil, companycountry=nil, companyprovince=nil, companycity=nil, companyaddress=nil, companyphone=nil)
+          @CompanyName = companyname
+          @CompanyId = companyid
+          @CompanyCountry = companycountry
+          @CompanyProvince = companyprovince
+          @CompanyCity = companycity
+          @CompanyAddress = companyaddress
+          @CompanyPhone = companyphone
+        end
+
+        def deserialize(params)
+          @CompanyName = params['CompanyName']
+          @CompanyId = params['CompanyId']
+          @CompanyCountry = params['CompanyCountry']
+          @CompanyProvince = params['CompanyProvince']
+          @CompanyCity = params['CompanyCity']
+          @CompanyAddress = params['CompanyAddress']
+          @CompanyPhone = params['CompanyPhone']
+        end
+      end
+
       # CompleteCertificate请求参数结构体
       class CompleteCertificateRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书ID
@@ -536,6 +576,42 @@ module TencentCloud
 
         def deserialize(params)
           @DeleteResult = params['DeleteResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteManager请求参数结构体
+      class DeleteManagerRequest < TencentCloud::Common::AbstractModel
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: Integer
+
+        attr_accessor :ManagerId
+        
+        def initialize(managerid=nil)
+          @ManagerId = managerid
+        end
+
+        def deserialize(params)
+          @ManagerId = params['ManagerId']
+        end
+      end
+
+      # DeleteManager返回参数结构体
+      class DeleteManagerResponse < TencentCloud::Common::AbstractModel
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ManagerId, :RequestId
+        
+        def initialize(managerid=nil, requestid=nil)
+          @ManagerId = managerid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ManagerId = params['ManagerId']
           @RequestId = params['RequestId']
         end
       end
@@ -1073,6 +1149,189 @@ module TencentCloud
         end
       end
 
+      # DescribeManagerDetail请求参数结构体
+      class DescribeManagerDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: Integer
+        # @param Limit: 分页每页数量
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+
+        attr_accessor :ManagerId, :Limit, :Offset
+        
+        def initialize(managerid=nil, limit=nil, offset=nil)
+          @ManagerId = managerid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ManagerId = params['ManagerId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeManagerDetail返回参数结构体
+      class DescribeManagerDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态: audit: 审核中 ok: 审核通过 invalid: 失效 expiring: 即将过期 expired: 已过期
+        # @type Status: String
+        # @param ManagerFirstName: 管理人姓名
+        # @type ManagerFirstName: String
+        # @param ManagerMail: 管理人邮箱
+        # @type ManagerMail: String
+        # @param ContactFirstName: 联系人姓名
+        # @type ContactFirstName: String
+        # @param ManagerLastName: 管理人姓名
+        # @type ManagerLastName: String
+        # @param ContactPosition: 联系人职位
+        # @type ContactPosition: String
+        # @param ManagerPosition: 管理人职位
+        # @type ManagerPosition: String
+        # @param VerifyTime: 核验通过时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyTime: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ExpireTime: 核验过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param ContactLastName: 联系人姓名
+        # @type ContactLastName: String
+        # @param ManagerPhone: 管理人电话
+        # @type ManagerPhone: String
+        # @param ContactPhone: 联系人电话
+        # @type ContactPhone: String
+        # @param ContactMail: 联系人邮箱
+        # @type ContactMail: String
+        # @param ManagerDepartment: 管理人所属部门
+        # @type ManagerDepartment: String
+        # @param CompanyInfo: 管理人所属公司信息
+        # @type CompanyInfo: :class:`Tencentcloud::Ssl.v20191205.models.CompanyInfo`
+        # @param CompanyId: 管理人公司ID
+        # @type CompanyId: Integer
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :RequestId
+        
+        def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, requestid=nil)
+          @Status = status
+          @ManagerFirstName = managerfirstname
+          @ManagerMail = managermail
+          @ContactFirstName = contactfirstname
+          @ManagerLastName = managerlastname
+          @ContactPosition = contactposition
+          @ManagerPosition = managerposition
+          @VerifyTime = verifytime
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @ContactLastName = contactlastname
+          @ManagerPhone = managerphone
+          @ContactPhone = contactphone
+          @ContactMail = contactmail
+          @ManagerDepartment = managerdepartment
+          @CompanyInfo = companyinfo
+          @CompanyId = companyid
+          @ManagerId = managerid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ManagerFirstName = params['ManagerFirstName']
+          @ManagerMail = params['ManagerMail']
+          @ContactFirstName = params['ContactFirstName']
+          @ManagerLastName = params['ManagerLastName']
+          @ContactPosition = params['ContactPosition']
+          @ManagerPosition = params['ManagerPosition']
+          @VerifyTime = params['VerifyTime']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @ContactLastName = params['ContactLastName']
+          @ManagerPhone = params['ManagerPhone']
+          @ContactPhone = params['ContactPhone']
+          @ContactMail = params['ContactMail']
+          @ManagerDepartment = params['ManagerDepartment']
+          unless params['CompanyInfo'].nil?
+            @CompanyInfo = CompanyInfo.new.deserialize(params[CompanyInfo])
+          end
+          @CompanyId = params['CompanyId']
+          @ManagerId = params['ManagerId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeManagers请求参数结构体
+      class DescribeManagersRequest < TencentCloud::Common::AbstractModel
+        # @param CompanyId: 公司ID
+        # @type CompanyId: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页每页数量
+        # @type Limit: Integer
+        # @param ManagerName: 管理人姓名
+        # @type ManagerName: String
+        # @param ManagerMail: 模糊查询管理人邮箱
+        # @type ManagerMail: String
+        # @param Status: 根据管理人状态进行筛选，取值有
+        # 'none' 未提交审核
+        # 'audit', 亚信审核中
+        # 'CAaudit' CA审核中
+        # 'ok' 已审核
+        # 'invalid'  审核失败
+        # 'expiring'  即将过期
+        # 'expired' 已过期
+        # @type Status: String
+
+        attr_accessor :CompanyId, :Offset, :Limit, :ManagerName, :ManagerMail, :Status
+        
+        def initialize(companyid=nil, offset=nil, limit=nil, managername=nil, managermail=nil, status=nil)
+          @CompanyId = companyid
+          @Offset = offset
+          @Limit = limit
+          @ManagerName = managername
+          @ManagerMail = managermail
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CompanyId = params['CompanyId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ManagerName = params['ManagerName']
+          @ManagerMail = params['ManagerMail']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeManagers返回参数结构体
+      class DescribeManagersResponse < TencentCloud::Common::AbstractModel
+        # @param Managers: 公司管理人列表
+        # @type Managers: Array
+        # @param TotalCount: 公司管理人总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Managers, :TotalCount, :RequestId
+        
+        def initialize(managers=nil, totalcount=nil, requestid=nil)
+          @Managers = managers
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Managers = params['Managers']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DownloadCertificate请求参数结构体
       class DownloadCertificateRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
@@ -1196,6 +1455,78 @@ module TencentCloud
           @DvAuthPath = params['DvAuthPath']
           @DvAuthSubDomain = params['DvAuthSubDomain']
           @DvAuthVerifyType = params['DvAuthVerifyType']
+        end
+      end
+
+      # 管理人信息
+      class ManagerInfo < TencentCloud::Common::AbstractModel
+        # @param Status: 状态: audit: 审核中 ok: 审核通过 invalid: 失效 expiring: 即将过期 expired: 已过期
+        # @type Status: String
+        # @param ManagerFirstName: 管理人姓名
+        # @type ManagerFirstName: String
+        # @param ManagerLastName: 管理人姓名
+        # @type ManagerLastName: String
+        # @param ManagerPosition: 管理人职位
+        # @type ManagerPosition: String
+        # @param ManagerPhone: 管理人电话
+        # @type ManagerPhone: String
+        # @param ManagerMail: 管理人邮箱
+        # @type ManagerMail: String
+        # @param ManagerDepartment: 管理人所属部门
+        # @type ManagerDepartment: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param DomainCount: 管理人域名数量
+        # @type DomainCount: Integer
+        # @param CertCount: 管理人证书数量
+        # @type CertCount: Integer
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: Integer
+        # @param ExpireTime: 审核有效到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param SubmitAuditTime: 最近一次提交审核时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubmitAuditTime: String
+        # @param VerifyTime: 审核通过时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyTime: String
+
+        attr_accessor :Status, :ManagerFirstName, :ManagerLastName, :ManagerPosition, :ManagerPhone, :ManagerMail, :ManagerDepartment, :CreateTime, :DomainCount, :CertCount, :ManagerId, :ExpireTime, :SubmitAuditTime, :VerifyTime
+        
+        def initialize(status=nil, managerfirstname=nil, managerlastname=nil, managerposition=nil, managerphone=nil, managermail=nil, managerdepartment=nil, createtime=nil, domaincount=nil, certcount=nil, managerid=nil, expiretime=nil, submitaudittime=nil, verifytime=nil)
+          @Status = status
+          @ManagerFirstName = managerfirstname
+          @ManagerLastName = managerlastname
+          @ManagerPosition = managerposition
+          @ManagerPhone = managerphone
+          @ManagerMail = managermail
+          @ManagerDepartment = managerdepartment
+          @CreateTime = createtime
+          @DomainCount = domaincount
+          @CertCount = certcount
+          @ManagerId = managerid
+          @ExpireTime = expiretime
+          @SubmitAuditTime = submitaudittime
+          @VerifyTime = verifytime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ManagerFirstName = params['ManagerFirstName']
+          @ManagerLastName = params['ManagerLastName']
+          @ManagerPosition = params['ManagerPosition']
+          @ManagerPhone = params['ManagerPhone']
+          @ManagerMail = params['ManagerMail']
+          @ManagerDepartment = params['ManagerDepartment']
+          @CreateTime = params['CreateTime']
+          @DomainCount = params['DomainCount']
+          @CertCount = params['CertCount']
+          @ManagerId = params['ManagerId']
+          @ExpireTime = params['ExpireTime']
+          @SubmitAuditTime = params['SubmitAuditTime']
+          @VerifyTime = params['VerifyTime']
         end
       end
 
@@ -1473,6 +1804,42 @@ module TencentCloud
           @DomainValidateAuthKey = params['DomainValidateAuthKey']
           @DomainValidateAuthValue = params['DomainValidateAuthValue']
           @DomainValidateAuthDomain = params['DomainValidateAuthDomain']
+        end
+      end
+
+      # SubmitAuditManager请求参数结构体
+      class SubmitAuditManagerRequest < TencentCloud::Common::AbstractModel
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: Integer
+
+        attr_accessor :ManagerId
+        
+        def initialize(managerid=nil)
+          @ManagerId = managerid
+        end
+
+        def deserialize(params)
+          @ManagerId = params['ManagerId']
+        end
+      end
+
+      # SubmitAuditManager返回参数结构体
+      class SubmitAuditManagerResponse < TencentCloud::Common::AbstractModel
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ManagerId, :RequestId
+        
+        def initialize(managerid=nil, requestid=nil)
+          @ManagerId = managerid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ManagerId = params['ManagerId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1781,15 +2148,18 @@ module TencentCloud
         # @type Alias: String
         # @param ProjectId: 项目 ID。
         # @type ProjectId: Integer
+        # @param CertificateUse: 证书用途/证书来源。“CLB，CDN，WAF，LIVE，DDOS”
+        # @type CertificateUse: String
 
-        attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId
+        attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse
         
-        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, alias=nil, projectid=nil)
+        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, alias=nil, projectid=nil, certificateuse=nil)
           @CertificatePublicKey = certificatepublickey
           @CertificatePrivateKey = certificateprivatekey
           @CertificateType = certificatetype
           @Alias = alias
           @ProjectId = projectid
+          @CertificateUse = certificateuse
         end
 
         def deserialize(params)
@@ -1798,6 +2168,7 @@ module TencentCloud
           @CertificateType = params['CertificateType']
           @Alias = params['Alias']
           @ProjectId = params['ProjectId']
+          @CertificateUse = params['CertificateUse']
         end
       end
 
@@ -1905,6 +2276,42 @@ module TencentCloud
         def deserialize(params)
           @CertificateId = params['CertificateId']
           @IsSuccess = params['IsSuccess']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyManager请求参数结构体
+      class VerifyManagerRequest < TencentCloud::Common::AbstractModel
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: Integer
+
+        attr_accessor :ManagerId
+        
+        def initialize(managerid=nil)
+          @ManagerId = managerid
+        end
+
+        def deserialize(params)
+          @ManagerId = params['ManagerId']
+        end
+      end
+
+      # VerifyManager返回参数结构体
+      class VerifyManagerResponse < TencentCloud::Common::AbstractModel
+        # @param ManagerId: 管理人ID
+        # @type ManagerId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ManagerId, :RequestId
+        
+        def initialize(managerid=nil, requestid=nil)
+          @ManagerId = managerid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ManagerId = params['ManagerId']
           @RequestId = params['RequestId']
         end
       end

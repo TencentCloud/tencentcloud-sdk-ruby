@@ -3088,10 +3088,22 @@ module TencentCloud
         # @param MonitorVersion: 监控版本: 1m-分钟粒度监控，5s-5秒粒度监控
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorVersion: String
+        # @param ClientLimitMin: 客户端最大连接数可设置的最小值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientLimitMin: Integer
+        # @param ClientLimitMax: 客户端最大连接数可设置的最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientLimitMax: Integer
+        # @param NodeSet: 实例的节点详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeSet: Array
+        # @param Region: 实例所在的地域信息，比如ap-guangzhou
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
 
-        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :ReadOnly, :Vip6, :RemainBandwidthDuration, :DiskSize, :MonitorVersion
+        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :ReadOnly, :Vip6, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region
         
-        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, readonly=nil, vip6=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil)
+        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, readonly=nil, vip6=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil)
           @InstanceName = instancename
           @InstanceId = instanceid
           @Appid = appid
@@ -3137,6 +3149,10 @@ module TencentCloud
           @RemainBandwidthDuration = remainbandwidthduration
           @DiskSize = disksize
           @MonitorVersion = monitorversion
+          @ClientLimitMin = clientlimitmin
+          @ClientLimitMax = clientlimitmax
+          @NodeSet = nodeset
+          @Region = region
         end
 
         def deserialize(params)
@@ -3185,6 +3201,10 @@ module TencentCloud
           @RemainBandwidthDuration = params['RemainBandwidthDuration']
           @DiskSize = params['DiskSize']
           @MonitorVersion = params['MonitorVersion']
+          @ClientLimitMin = params['ClientLimitMin']
+          @ClientLimitMax = params['ClientLimitMax']
+          @NodeSet = params['NodeSet']
+          @Region = params['Region']
         end
       end
 

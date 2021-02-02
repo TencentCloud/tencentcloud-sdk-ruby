@@ -295,10 +295,16 @@ module TencentCloud
         # @type SelectedCcnType: String
         # @param Tags: 标签列表，最大长度50组
         # @type Tags: Array
+        # @param SystemDiskInfo: 系统盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-500GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，50-500GB；容量以1为单位
+        # @type SystemDiskInfo: :class:`Tencentcloud::Gse.v20191112.models.DiskInfo`
+        # @param DataDiskInfo: 数据盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-32000GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，10-32000GB；容量以10为单位
+        # @type DataDiskInfo: Array
+        # @param SelectedTimerType: 是否选择复制定时器策略：TIMER_SELECTED 或者 TIMER_UNSELECTED；默认是 TIMER_UNSELECTED
+        # @type SelectedTimerType: String
 
-        attr_accessor :FleetId, :CopyNumber, :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :GameServerSessionProtectionTimeLimit, :SelectedScalingType, :SelectedCcnType, :Tags
+        attr_accessor :FleetId, :CopyNumber, :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :GameServerSessionProtectionTimeLimit, :SelectedScalingType, :SelectedCcnType, :Tags, :SystemDiskInfo, :DataDiskInfo, :SelectedTimerType
         
-        def initialize(fleetid=nil, copynumber=nil, assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, gameserversessionprotectiontimelimit=nil, selectedscalingtype=nil, selectedccntype=nil, tags=nil)
+        def initialize(fleetid=nil, copynumber=nil, assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, gameserversessionprotectiontimelimit=nil, selectedscalingtype=nil, selectedccntype=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, selectedtimertype=nil)
           @FleetId = fleetid
           @CopyNumber = copynumber
           @AssetId = assetid
@@ -314,6 +320,9 @@ module TencentCloud
           @SelectedScalingType = selectedscalingtype
           @SelectedCcnType = selectedccntype
           @Tags = tags
+          @SystemDiskInfo = systemdiskinfo
+          @DataDiskInfo = datadiskinfo
+          @SelectedTimerType = selectedtimertype
         end
 
         def deserialize(params)
@@ -336,6 +345,11 @@ module TencentCloud
           @SelectedScalingType = params['SelectedScalingType']
           @SelectedCcnType = params['SelectedCcnType']
           @Tags = params['Tags']
+          unless params['SystemDiskInfo'].nil?
+            @SystemDiskInfo = DiskInfo.new.deserialize(params[SystemDiskInfo])
+          end
+          @DataDiskInfo = params['DataDiskInfo']
+          @SelectedTimerType = params['SelectedTimerType']
         end
       end
 
@@ -580,10 +594,14 @@ module TencentCloud
         # @type GameServerSessionProtectionTimeLimit: Integer
         # @param Tags: 标签列表，最大长度50组
         # @type Tags: Array
+        # @param SystemDiskInfo: 系统盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-500GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，50-500GB；容量以1为单位
+        # @type SystemDiskInfo: :class:`Tencentcloud::Gse.v20191112.models.DiskInfo`
+        # @param DataDiskInfo: 数据盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-32000GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，10-32000GB；容量以10为单位
+        # @type DataDiskInfo: Array
 
-        attr_accessor :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :PeerVpcId, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :SubNetId, :GameServerSessionProtectionTimeLimit, :Tags
+        attr_accessor :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :PeerVpcId, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :SubNetId, :GameServerSessionProtectionTimeLimit, :Tags, :SystemDiskInfo, :DataDiskInfo
         
-        def initialize(assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, peervpcid=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, subnetid=nil, gameserversessionprotectiontimelimit=nil, tags=nil)
+        def initialize(assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, peervpcid=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, subnetid=nil, gameserversessionprotectiontimelimit=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil)
           @AssetId = assetid
           @Description = description
           @InboundPermissions = inboundpermissions
@@ -597,6 +615,8 @@ module TencentCloud
           @SubNetId = subnetid
           @GameServerSessionProtectionTimeLimit = gameserversessionprotectiontimelimit
           @Tags = tags
+          @SystemDiskInfo = systemdiskinfo
+          @DataDiskInfo = datadiskinfo
         end
 
         def deserialize(params)
@@ -617,6 +637,10 @@ module TencentCloud
           @SubNetId = params['SubNetId']
           @GameServerSessionProtectionTimeLimit = params['GameServerSessionProtectionTimeLimit']
           @Tags = params['Tags']
+          unless params['SystemDiskInfo'].nil?
+            @SystemDiskInfo = DiskInfo.new.deserialize(params[SystemDiskInfo])
+          end
+          @DataDiskInfo = params['DataDiskInfo']
         end
       end
 
@@ -938,6 +962,46 @@ module TencentCloud
 
       # DeleteScalingPolicy返回参数结构体
       class DeleteScalingPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTimerScalingPolicy请求参数结构体
+      class DeleteTimerScalingPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param TimerId: 定时器ID, 进行encode
+        # @type TimerId: String
+        # @param FleetId: 扩缩容配置服务器舰队ID
+        # @type FleetId: String
+        # @param TimerName: 定时器名称
+        # @type TimerName: String
+
+        attr_accessor :TimerId, :FleetId, :TimerName
+        
+        def initialize(timerid=nil, fleetid=nil, timername=nil)
+          @TimerId = timerid
+          @FleetId = fleetid
+          @TimerName = timername
+        end
+
+        def deserialize(params)
+          @TimerId = params['TimerId']
+          @FleetId = params['FleetId']
+          @TimerName = params['TimerName']
+        end
+      end
+
+      # DeleteTimerScalingPolicy返回参数结构体
+      class DeleteTimerScalingPolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2112,6 +2176,68 @@ module TencentCloud
         end
       end
 
+      # DescribeTimerScalingPolicies请求参数结构体
+      class DescribeTimerScalingPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param FleetId: 扩缩容配置服务器舰队ID
+        # @type FleetId: String
+        # @param TimerName: 定时器名称
+        # @type TimerName: String
+        # @param BeginTime: 定时器开始时间
+        # @type BeginTime: String
+        # @param EndTime: 定时器结束时间
+        # @type EndTime: String
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 页大小
+        # @type Limit: Integer
+
+        attr_accessor :FleetId, :TimerName, :BeginTime, :EndTime, :Offset, :Limit
+        
+        def initialize(fleetid=nil, timername=nil, begintime=nil, endtime=nil, offset=nil, limit=nil)
+          @FleetId = fleetid
+          @TimerName = timername
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @FleetId = params['FleetId']
+          @TimerName = params['TimerName']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTimerScalingPolicies返回参数结构体
+      class DescribeTimerScalingPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param TimerScalingPolicies: 定时器扩缩容策略配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimerScalingPolicies: Array
+        # @param TotalCount: 定时器总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TimerScalingPolicies, :TotalCount, :RequestId
+        
+        def initialize(timerscalingpolicies=nil, totalcount=nil, requestid=nil)
+          @TimerScalingPolicies = timerscalingpolicies
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TimerScalingPolicies = params['TimerScalingPolicies']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserQuota请求参数结构体
       class DescribeUserQuotaRequest < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型
@@ -2236,6 +2362,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 磁盘存储信息
+      class DiskInfo < TencentCloud::Common::AbstractModel
+        # @param DiskType: 磁盘类型，支持：高性能云硬盘（CLOUD_PREMIUM）、SSD云硬盘（CLOUD_SSD）
+        # @type DiskType: String
+        # @param DiskSize: 系统盘：可选硬盘容量，50-500GB，数字以1为单位，数据盘：可选硬盘容量：10-32000GB，数字以10为单位；当磁盘类型为SSD云硬盘（CLOUD_SSD）最小大小为 100GB
+        # @type DiskSize: Integer
+
+        attr_accessor :DiskType, :DiskSize
+        
+        def initialize(disktype=nil, disksize=nil)
+          @DiskType = disktype
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
         end
       end
 
@@ -2391,10 +2537,16 @@ module TencentCloud
         # @param Tags: 标签列表，最大长度50组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param DataDiskInfo: 数据盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-32000GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，10-32000GB；容量以10为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataDiskInfo: Array
+        # @param SystemDiskInfo: 系统盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-500GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，50-500GB；容量以1为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemDiskInfo: :class:`Tencentcloud::Gse.v20191112.models.DiskInfo`
 
-        attr_accessor :AssetId, :CreationTime, :Description, :FleetArn, :FleetId, :FleetType, :InstanceType, :Name, :NewGameServerSessionProtectionPolicy, :OperatingSystem, :ResourceCreationLimitPolicy, :Status, :StoppedActions, :TerminationTime, :GameServerSessionProtectionTimeLimit, :BillingStatus, :Tags
+        attr_accessor :AssetId, :CreationTime, :Description, :FleetArn, :FleetId, :FleetType, :InstanceType, :Name, :NewGameServerSessionProtectionPolicy, :OperatingSystem, :ResourceCreationLimitPolicy, :Status, :StoppedActions, :TerminationTime, :GameServerSessionProtectionTimeLimit, :BillingStatus, :Tags, :DataDiskInfo, :SystemDiskInfo
         
-        def initialize(assetid=nil, creationtime=nil, description=nil, fleetarn=nil, fleetid=nil, fleettype=nil, instancetype=nil, name=nil, newgameserversessionprotectionpolicy=nil, operatingsystem=nil, resourcecreationlimitpolicy=nil, status=nil, stoppedactions=nil, terminationtime=nil, gameserversessionprotectiontimelimit=nil, billingstatus=nil, tags=nil)
+        def initialize(assetid=nil, creationtime=nil, description=nil, fleetarn=nil, fleetid=nil, fleettype=nil, instancetype=nil, name=nil, newgameserversessionprotectionpolicy=nil, operatingsystem=nil, resourcecreationlimitpolicy=nil, status=nil, stoppedactions=nil, terminationtime=nil, gameserversessionprotectiontimelimit=nil, billingstatus=nil, tags=nil, datadiskinfo=nil, systemdiskinfo=nil)
           @AssetId = assetid
           @CreationTime = creationtime
           @Description = description
@@ -2412,6 +2564,8 @@ module TencentCloud
           @GameServerSessionProtectionTimeLimit = gameserversessionprotectiontimelimit
           @BillingStatus = billingstatus
           @Tags = tags
+          @DataDiskInfo = datadiskinfo
+          @SystemDiskInfo = systemdiskinfo
         end
 
         def deserialize(params)
@@ -2434,6 +2588,10 @@ module TencentCloud
           @GameServerSessionProtectionTimeLimit = params['GameServerSessionProtectionTimeLimit']
           @BillingStatus = params['BillingStatus']
           @Tags = params['Tags']
+          @DataDiskInfo = params['DataDiskInfo']
+          unless params['SystemDiskInfo'].nil?
+            @SystemDiskInfo = DiskInfo.new.deserialize(params[SystemDiskInfo])
+          end
         end
       end
 
@@ -3183,10 +3341,16 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param Weight: 实例权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
+        # @param ReserveValue: 实例是否保留, 1-保留，0-不保留,默认
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReserveValue: Integer
 
-        attr_accessor :FleetId, :InstanceId, :IpAddress, :DnsName, :OperatingSystem, :Status, :Type, :CreateTime
+        attr_accessor :FleetId, :InstanceId, :IpAddress, :DnsName, :OperatingSystem, :Status, :Type, :CreateTime, :Weight, :ReserveValue
         
-        def initialize(fleetid=nil, instanceid=nil, ipaddress=nil, dnsname=nil, operatingsystem=nil, status=nil, type=nil, createtime=nil)
+        def initialize(fleetid=nil, instanceid=nil, ipaddress=nil, dnsname=nil, operatingsystem=nil, status=nil, type=nil, createtime=nil, weight=nil, reservevalue=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
           @IpAddress = ipaddress
@@ -3195,6 +3359,8 @@ module TencentCloud
           @Status = status
           @Type = type
           @CreateTime = createtime
+          @Weight = weight
+          @ReserveValue = reservevalue
         end
 
         def deserialize(params)
@@ -3206,6 +3372,8 @@ module TencentCloud
           @Status = params['Status']
           @Type = params['Type']
           @CreateTime = params['CreateTime']
+          @Weight = params['Weight']
+          @ReserveValue = params['ReserveValue']
         end
       end
 
@@ -3814,6 +3982,40 @@ module TencentCloud
         end
       end
 
+      # PutTimerScalingPolicy请求参数结构体
+      class PutTimerScalingPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param TimerScalingPolicy: 定时器策略消息
+        # @type TimerScalingPolicy: :class:`Tencentcloud::Gse.v20191112.models.TimerScalingPolicy`
+
+        attr_accessor :TimerScalingPolicy
+        
+        def initialize(timerscalingpolicy=nil)
+          @TimerScalingPolicy = timerscalingpolicy
+        end
+
+        def deserialize(params)
+          unless params['TimerScalingPolicy'].nil?
+            @TimerScalingPolicy = TimerScalingPolicy.new.deserialize(params[TimerScalingPolicy])
+          end
+        end
+      end
+
+      # PutTimerScalingPolicy返回参数结构体
+      class PutTimerScalingPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 配额资源
       class QuotaResource < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型，1生成包、2服务部署、3别名、4游戏服务器队列、5实例
@@ -4150,6 +4352,46 @@ module TencentCloud
         end
       end
 
+      # SetServerReserved请求参数结构体
+      class SetServerReservedRequest < TencentCloud::Common::AbstractModel
+        # @param FleetId: 扩缩容配置服务器舰队ID
+        # @type FleetId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ReserveValue: 实例是否保留, 1-保留，0-不保留,默认
+        # @type ReserveValue: Integer
+
+        attr_accessor :FleetId, :InstanceId, :ReserveValue
+        
+        def initialize(fleetid=nil, instanceid=nil, reservevalue=nil)
+          @FleetId = fleetid
+          @InstanceId = instanceid
+          @ReserveValue = reservevalue
+        end
+
+        def deserialize(params)
+          @FleetId = params['FleetId']
+          @InstanceId = params['InstanceId']
+          @ReserveValue = params['ReserveValue']
+        end
+      end
+
+      # SetServerReserved返回参数结构体
+      class SetServerReservedResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SetServerWeight请求参数结构体
       class SetServerWeightRequest < TencentCloud::Common::AbstractModel
         # @param FleetId: 服务器舰队ID
@@ -4410,6 +4652,162 @@ module TencentCloud
 
         def deserialize(params)
           @TargetValue = params['TargetValue']
+        end
+      end
+
+      # 重复周期配置
+      class TimerConfiguration < TencentCloud::Common::AbstractModel
+        # @param TimerType: 定时器重复周期类型（未定义0，单次1、按天2、按月3、按周4）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimerType: Integer
+        # @param TimerValue: 定时器取值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimerValue: :class:`Tencentcloud::Gse.v20191112.models.TimerValue`
+        # @param BeginTime: 定时器开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: 定时器结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :TimerType, :TimerValue, :BeginTime, :EndTime
+        
+        def initialize(timertype=nil, timervalue=nil, begintime=nil, endtime=nil)
+          @TimerType = timertype
+          @TimerValue = timervalue
+          @BeginTime = begintime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @TimerType = params['TimerType']
+          unless params['TimerValue'].nil?
+            @TimerValue = TimerValue.new.deserialize(params[TimerValue])
+          end
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 定时器弹性伸缩策略
+      class TimerFleetCapacity < TencentCloud::Common::AbstractModel
+        # @param FleetId: 扩缩容配置服务器舰队ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FleetId: String
+        # @param DesiredInstances: 期望实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DesiredInstances: Integer
+        # @param MinSize: 最小实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinSize: Integer
+        # @param MaxSize: 最大实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxSize: Integer
+        # @param ScalingInterval: 伸缩容间隔，单位：分钟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScalingInterval: Integer
+        # @param ScalingType: 扩缩容类型（手动1，自动2、未定义0）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScalingType: Integer
+        # @param TargetConfiguration: 基于目标的扩展策略的设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetConfiguration: :class:`Tencentcloud::Gse.v20191112.models.TargetConfiguration`
+
+        attr_accessor :FleetId, :DesiredInstances, :MinSize, :MaxSize, :ScalingInterval, :ScalingType, :TargetConfiguration
+        
+        def initialize(fleetid=nil, desiredinstances=nil, minsize=nil, maxsize=nil, scalinginterval=nil, scalingtype=nil, targetconfiguration=nil)
+          @FleetId = fleetid
+          @DesiredInstances = desiredinstances
+          @MinSize = minsize
+          @MaxSize = maxsize
+          @ScalingInterval = scalinginterval
+          @ScalingType = scalingtype
+          @TargetConfiguration = targetconfiguration
+        end
+
+        def deserialize(params)
+          @FleetId = params['FleetId']
+          @DesiredInstances = params['DesiredInstances']
+          @MinSize = params['MinSize']
+          @MaxSize = params['MaxSize']
+          @ScalingInterval = params['ScalingInterval']
+          @ScalingType = params['ScalingType']
+          unless params['TargetConfiguration'].nil?
+            @TargetConfiguration = TargetConfiguration.new.deserialize(params[TargetConfiguration])
+          end
+        end
+      end
+
+      # 定时器策略消息
+      class TimerScalingPolicy < TencentCloud::Common::AbstractModel
+        # @param TimerId: 定时器ID，进行encode，填写时更新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimerId: String
+        # @param TimerName: 定时器名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimerName: String
+        # @param TimerStatus: 定时器状态(未定义0、未生效1、生效中2、已停止3、已过期4)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimerStatus: Integer
+        # @param TimerFleetCapacity: 定时器弹性伸缩策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimerFleetCapacity: :class:`Tencentcloud::Gse.v20191112.models.TimerFleetCapacity`
+        # @param TimerConfiguration: 重复周期配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimerConfiguration: :class:`Tencentcloud::Gse.v20191112.models.TimerConfiguration`
+
+        attr_accessor :TimerId, :TimerName, :TimerStatus, :TimerFleetCapacity, :TimerConfiguration
+        
+        def initialize(timerid=nil, timername=nil, timerstatus=nil, timerfleetcapacity=nil, timerconfiguration=nil)
+          @TimerId = timerid
+          @TimerName = timername
+          @TimerStatus = timerstatus
+          @TimerFleetCapacity = timerfleetcapacity
+          @TimerConfiguration = timerconfiguration
+        end
+
+        def deserialize(params)
+          @TimerId = params['TimerId']
+          @TimerName = params['TimerName']
+          @TimerStatus = params['TimerStatus']
+          unless params['TimerFleetCapacity'].nil?
+            @TimerFleetCapacity = TimerFleetCapacity.new.deserialize(params[TimerFleetCapacity])
+          end
+          unless params['TimerConfiguration'].nil?
+            @TimerConfiguration = TimerConfiguration.new.deserialize(params[TimerConfiguration])
+          end
+        end
+      end
+
+      # 定时器取值配置
+      class TimerValue < TencentCloud::Common::AbstractModel
+        # @param Day: 每X天，执行一次(重复周期-按天/单次)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Day: Integer
+        # @param FromDay: 每月从第x天，执行一次(重复周期-按月)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FromDay: Integer
+        # @param ToDay: 每月到第x天，执行一次(重复周期-按月)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ToDay: Integer
+        # @param WeekDays: 重复周期-按周，周几（多个值,取值周一(1,2,3,4,5,6,7)周日）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeekDays: Array
+
+        attr_accessor :Day, :FromDay, :ToDay, :WeekDays
+        
+        def initialize(day=nil, fromday=nil, today=nil, weekdays=nil)
+          @Day = day
+          @FromDay = fromday
+          @ToDay = today
+          @WeekDays = weekdays
+        end
+
+        def deserialize(params)
+          @Day = params['Day']
+          @FromDay = params['FromDay']
+          @ToDay = params['ToDay']
+          @WeekDays = params['WeekDays']
         end
       end
 

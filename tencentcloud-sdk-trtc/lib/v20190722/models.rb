@@ -988,10 +988,12 @@ module TencentCloud
         # @type PresetLayoutConfig: Array
         # @param PlaceHolderMode: 自定义模板中有效，设置为1时代表启用占位图功能，0时代表不启用占位图功能，默认为0。启用占位图功能时，在预设位置的用户没有上行视频时可显示对应的占位图。
         # @type PlaceHolderMode: Integer
+        # @param PureAudioHoldPlaceMode: 悬浮模板、九宫格、屏幕分享模板生效，用于控制纯音频上行是否占用画面布局位置。设置为0是代表后台默认处理方式，悬浮小画面占布局位置，九宫格画面占布局位置、屏幕分享小画面不占布局位置；设置为1时代表纯音频上行占布局位置；设置为2时代表纯音频上行不占布局位置。默认为0。
+        # @type PureAudioHoldPlaceMode: Integer
 
-        attr_accessor :Template, :MainVideoUserId, :MainVideoStreamType, :SmallVideoLayoutParams, :MainVideoRightAlign, :MixVideoUids, :PresetLayoutConfig, :PlaceHolderMode
+        attr_accessor :Template, :MainVideoUserId, :MainVideoStreamType, :SmallVideoLayoutParams, :MainVideoRightAlign, :MixVideoUids, :PresetLayoutConfig, :PlaceHolderMode, :PureAudioHoldPlaceMode
         
-        def initialize(template=nil, mainvideouserid=nil, mainvideostreamtype=nil, smallvideolayoutparams=nil, mainvideorightalign=nil, mixvideouids=nil, presetlayoutconfig=nil, placeholdermode=nil)
+        def initialize(template=nil, mainvideouserid=nil, mainvideostreamtype=nil, smallvideolayoutparams=nil, mainvideorightalign=nil, mixvideouids=nil, presetlayoutconfig=nil, placeholdermode=nil, pureaudioholdplacemode=nil)
           @Template = template
           @MainVideoUserId = mainvideouserid
           @MainVideoStreamType = mainvideostreamtype
@@ -1000,6 +1002,7 @@ module TencentCloud
           @MixVideoUids = mixvideouids
           @PresetLayoutConfig = presetlayoutconfig
           @PlaceHolderMode = placeholdermode
+          @PureAudioHoldPlaceMode = pureaudioholdplacemode
         end
 
         def deserialize(params)
@@ -1013,6 +1016,7 @@ module TencentCloud
           @MixVideoUids = params['MixVideoUids']
           @PresetLayoutConfig = params['PresetLayoutConfig']
           @PlaceHolderMode = params['PlaceHolderMode']
+          @PureAudioHoldPlaceMode = params['PureAudioHoldPlaceMode']
         end
       end
 

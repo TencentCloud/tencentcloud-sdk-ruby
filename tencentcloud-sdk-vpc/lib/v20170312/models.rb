@@ -11534,10 +11534,13 @@ module TencentCloud
         # @type TagSet: Array
         # @param EniType: 网卡类型。0 - 弹性网卡；1 - evm弹性网卡。
         # @type EniType: Integer
+        # @param Business: 网卡绑定的子机类型：cvm，eks。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Business: String
 
-        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType
+        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType, :Business
         
-        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil)
+        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil, business=nil)
           @NetworkInterfaceId = networkinterfaceid
           @NetworkInterfaceName = networkinterfacename
           @NetworkInterfaceDescription = networkinterfacedescription
@@ -11554,6 +11557,7 @@ module TencentCloud
           @Ipv6AddressSet = ipv6addressset
           @TagSet = tagset
           @EniType = enitype
+          @Business = business
         end
 
         def deserialize(params)
@@ -11575,6 +11579,7 @@ module TencentCloud
           @Ipv6AddressSet = params['Ipv6AddressSet']
           @TagSet = params['TagSet']
           @EniType = params['EniType']
+          @Business = params['Business']
         end
       end
 

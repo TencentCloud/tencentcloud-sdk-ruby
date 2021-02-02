@@ -3304,15 +3304,35 @@ module TencentCloud
         # 1：转码包。
         # 2: 连麦包。
         # @type PackageType: Integer
+        # @param OrderBy: 排序规则:
+        # 1. BuyTimeDesc： 最新购买的排在最前面
+        # 2. BuyTimeAsc： 最老购买的排在最前面
+        # 3. ExpireTimeDesc： 最后过期的排在最前面
+        # 4. ExpireTimeAsc：最先过期的排在最前面
 
-        attr_accessor :PackageType
+        # 注意：
+        # 1. PackageType 为 2（连麦包） 的时候，不支持 3、4 排序
+        # @type OrderBy: String
+        # @param PageNum: 取得第几页的数据，和 PageSize 同时传递才会生效。
+        # @type PageNum: Integer
+        # @param PageSize: 分页大小，和 PageNum 同时传递才会生效。
+        # 取值：10 ～ 100 之间的任意整数
+        # @type PageSize: Integer
+
+        attr_accessor :PackageType, :OrderBy, :PageNum, :PageSize
         
-        def initialize(packagetype=nil)
+        def initialize(packagetype=nil, orderby=nil, pagenum=nil, pagesize=nil)
           @PackageType = packagetype
+          @OrderBy = orderby
+          @PageNum = pagenum
+          @PageSize = pagesize
         end
 
         def deserialize(params)
           @PackageType = params['PackageType']
+          @OrderBy = params['OrderBy']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
         end
       end
 
@@ -3333,20 +3353,40 @@ module TencentCloud
         # 304: 日结流量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageBillMode: Integer
+        # @param TotalPage: 总页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPage: Integer
+        # @param TotalNum: 数据总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalNum: Integer
+        # @param PageNum: 当前页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNum: Integer
+        # @param PageSize: 当前每页数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LivePackageInfoList, :PackageBillMode, :RequestId
+        attr_accessor :LivePackageInfoList, :PackageBillMode, :TotalPage, :TotalNum, :PageNum, :PageSize, :RequestId
         
-        def initialize(livepackageinfolist=nil, packagebillmode=nil, requestid=nil)
+        def initialize(livepackageinfolist=nil, packagebillmode=nil, totalpage=nil, totalnum=nil, pagenum=nil, pagesize=nil, requestid=nil)
           @LivePackageInfoList = livepackageinfolist
           @PackageBillMode = packagebillmode
+          @TotalPage = totalpage
+          @TotalNum = totalnum
+          @PageNum = pagenum
+          @PageSize = pagesize
           @RequestId = requestid
         end
 
         def deserialize(params)
           @LivePackageInfoList = params['LivePackageInfoList']
           @PackageBillMode = params['PackageBillMode']
+          @TotalPage = params['TotalPage']
+          @TotalNum = params['TotalNum']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
           @RequestId = params['RequestId']
         end
       end
@@ -4813,14 +4853,23 @@ module TencentCloud
         # @type PageNum: Integer
         # @param PageSize: 每页个数，范围[100,1000]，默认值是1000。
         # @type PageSize: Integer
+        # @param MainlandOrOversea: 可选值：
+        # Mainland：查询国内数据，
+        # Oversea：则查询国外数据，
+        # 默认：查询国内+国外的数据。
+        # @type MainlandOrOversea: String
+        # @param ServiceName: 服务名称，可选值包括LVB(标准直播)，LEB(快直播)，不填则查LVB+LEB总值。
+        # @type ServiceName: String
 
-        attr_accessor :DayTime, :PlayDomain, :PageNum, :PageSize
+        attr_accessor :DayTime, :PlayDomain, :PageNum, :PageSize, :MainlandOrOversea, :ServiceName
         
-        def initialize(daytime=nil, playdomain=nil, pagenum=nil, pagesize=nil)
+        def initialize(daytime=nil, playdomain=nil, pagenum=nil, pagesize=nil, mainlandoroversea=nil, servicename=nil)
           @DayTime = daytime
           @PlayDomain = playdomain
           @PageNum = pagenum
           @PageSize = pagesize
+          @MainlandOrOversea = mainlandoroversea
+          @ServiceName = servicename
         end
 
         def deserialize(params)
@@ -4828,6 +4877,8 @@ module TencentCloud
           @PlayDomain = params['PlayDomain']
           @PageNum = params['PageNum']
           @PageSize = params['PageSize']
+          @MainlandOrOversea = params['MainlandOrOversea']
+          @ServiceName = params['ServiceName']
         end
       end
 
@@ -4884,15 +4935,18 @@ module TencentCloud
         # 若不填，则为查询总体播放数据。
         # 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
         # @type AppName: String
+        # @param ServiceName: 服务名称，可选值包括LVB(标准直播)，LEB(快直播)，不填则查LVB+LEB总值。
+        # @type ServiceName: String
 
-        attr_accessor :StartTime, :EndTime, :PlayDomain, :StreamName, :AppName
+        attr_accessor :StartTime, :EndTime, :PlayDomain, :StreamName, :AppName, :ServiceName
         
-        def initialize(starttime=nil, endtime=nil, playdomain=nil, streamname=nil, appname=nil)
+        def initialize(starttime=nil, endtime=nil, playdomain=nil, streamname=nil, appname=nil, servicename=nil)
           @StartTime = starttime
           @EndTime = endtime
           @PlayDomain = playdomain
           @StreamName = streamname
           @AppName = appname
+          @ServiceName = servicename
         end
 
         def deserialize(params)
@@ -4901,6 +4955,7 @@ module TencentCloud
           @PlayDomain = params['PlayDomain']
           @StreamName = params['StreamName']
           @AppName = params['AppName']
+          @ServiceName = params['ServiceName']
         end
       end
 

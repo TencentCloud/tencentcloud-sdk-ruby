@@ -352,6 +352,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
+
+        # @param request: Request instance for DeleteTimerScalingPolicy.
+        # @type request: :class:`Tencentcloud::gse::V20191112::DeleteTimerScalingPolicyRequest`
+        # @rtype: :class:`Tencentcloud::gse::V20191112::DeleteTimerScalingPolicyResponse`
+        def DeleteTimerScalingPolicy(request)
+          body = send_request('DeleteTimerScalingPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTimerScalingPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeAlias）用于获取别名详情。
 
         # @param request: Request instance for DescribeAlias.
@@ -928,6 +952,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeTimerScalingPolicies）用于查询fleet下的定时器列表。可以通过fleetid，定时器名称分页查询。
+
+        # @param request: Request instance for DescribeTimerScalingPolicies.
+        # @type request: :class:`Tencentcloud::gse::V20191112::DescribeTimerScalingPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::gse::V20191112::DescribeTimerScalingPoliciesResponse`
+        def DescribeTimerScalingPolicies(request)
+          body = send_request('DescribeTimerScalingPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimerScalingPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeUserQuota）获取用户单个模块配额。
 
         # @param request: Request instance for DescribeUserQuota.
@@ -1314,6 +1362,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
+
+        # 填写字段timer_id，表示更新；不填字段timer_id表示新增。
+
+        # @param request: Request instance for PutTimerScalingPolicy.
+        # @type request: :class:`Tencentcloud::gse::V20191112::PutTimerScalingPolicyRequest`
+        # @rtype: :class:`Tencentcloud::gse::V20191112::PutTimerScalingPolicyResponse`
+        def PutTimerScalingPolicy(request)
+          body = send_request('PutTimerScalingPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PutTimerScalingPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
 
         # @param request: Request instance for ResolveAlias.
@@ -1348,6 +1422,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchGameServerSessionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（SetServerReserved）用于将异常的实例标记为保留，用于问题排查。
+
+        # 字段ReserveValue：0默认值，不保留；1 保留
+
+        # @param request: Request instance for SetServerReserved.
+        # @type request: :class:`Tencentcloud::gse::V20191112::SetServerReservedRequest`
+        # @rtype: :class:`Tencentcloud::gse::V20191112::SetServerReservedResponse`
+        def SetServerReserved(request)
+          body = send_request('SetServerReserved', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetServerReservedResponse.new
             model.deserialize(response['Response'])
             model
           else

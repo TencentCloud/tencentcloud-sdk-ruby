@@ -1146,15 +1146,18 @@ module TencentCloud
         # @type FirmwareVersion: String
         # @param DeviceName: 需要过滤的设备名称
         # @type DeviceName: String
+        # @param EnableState: 设备是否启用，0禁用状态1启用状态，默认不区分
+        # @type EnableState: Integer
 
-        attr_accessor :ProductId, :Offset, :Limit, :FirmwareVersion, :DeviceName
+        attr_accessor :ProductId, :Offset, :Limit, :FirmwareVersion, :DeviceName, :EnableState
         
-        def initialize(productid=nil, offset=nil, limit=nil, firmwareversion=nil, devicename=nil)
+        def initialize(productid=nil, offset=nil, limit=nil, firmwareversion=nil, devicename=nil, enablestate=nil)
           @ProductId = productid
           @Offset = offset
           @Limit = limit
           @FirmwareVersion = firmwareversion
           @DeviceName = devicename
+          @EnableState = enablestate
         end
 
         def deserialize(params)
@@ -1163,6 +1166,7 @@ module TencentCloud
           @Limit = params['Limit']
           @FirmwareVersion = params['FirmwareVersion']
           @DeviceName = params['DeviceName']
+          @EnableState = params['EnableState']
         end
       end
 
