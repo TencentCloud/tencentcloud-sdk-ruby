@@ -825,10 +825,12 @@ module TencentCloud
         # @type OrderDirection: String
         # @param TagFilters: 标签过滤条件
         # @type TagFilters: Array
+        # @param SubscribeVersion: 订阅实例版本;txdts-旧版数据订阅，kafka-kafka版本数据订阅
+        # @type SubscribeVersion: String
 
-        attr_accessor :SubscribeId, :SubscribeName, :InstanceId, :ChannelId, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters
+        attr_accessor :SubscribeId, :SubscribeName, :InstanceId, :ChannelId, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters, :SubscribeVersion
         
-        def initialize(subscribeid=nil, subscribename=nil, instanceid=nil, channelid=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil, tagfilters=nil)
+        def initialize(subscribeid=nil, subscribename=nil, instanceid=nil, channelid=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil, tagfilters=nil, subscribeversion=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @InstanceId = instanceid
@@ -841,6 +843,7 @@ module TencentCloud
           @Limit = limit
           @OrderDirection = orderdirection
           @TagFilters = tagfilters
+          @SubscribeVersion = subscribeversion
         end
 
         def deserialize(params)
@@ -856,6 +859,7 @@ module TencentCloud
           @Limit = params['Limit']
           @OrderDirection = params['OrderDirection']
           @TagFilters = params['TagFilters']
+          @SubscribeVersion = params['SubscribeVersion']
         end
       end
 
@@ -1909,10 +1913,13 @@ module TencentCloud
         # @param AutoRenewFlag: 自动续费标识。0-不自动续费，1-自动续费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
+        # @param SubscribeVersion: 订阅实例版本；txdts-旧版数据订阅,kafka-kafka版本数据订阅
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscribeVersion: String
 
-        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :Region, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :Status, :SdkConsumedTime, :Tags, :AutoRenewFlag
+        attr_accessor :SubscribeId, :SubscribeName, :ChannelId, :Product, :InstanceId, :InstanceStatus, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :ConsumeStartTime, :Region, :PayType, :Vip, :Vport, :UniqVpcId, :UniqSubnetId, :Status, :SdkConsumedTime, :Tags, :AutoRenewFlag, :SubscribeVersion
         
-        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, region=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, status=nil, sdkconsumedtime=nil, tags=nil, autorenewflag=nil)
+        def initialize(subscribeid=nil, subscribename=nil, channelid=nil, product=nil, instanceid=nil, instancestatus=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, consumestarttime=nil, region=nil, paytype=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil, status=nil, sdkconsumedtime=nil, tags=nil, autorenewflag=nil, subscribeversion=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @ChannelId = channelid
@@ -1936,6 +1943,7 @@ module TencentCloud
           @SdkConsumedTime = sdkconsumedtime
           @Tags = tags
           @AutoRenewFlag = autorenewflag
+          @SubscribeVersion = subscribeversion
         end
 
         def deserialize(params)
@@ -1962,6 +1970,7 @@ module TencentCloud
           @SdkConsumedTime = params['SdkConsumedTime']
           @Tags = params['Tags']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @SubscribeVersion = params['SubscribeVersion']
         end
       end
 

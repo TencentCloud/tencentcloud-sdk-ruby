@@ -121,6 +121,47 @@ module TencentCloud
         end
       end
 
+      # CreateOrderAndDownloads请求参数结构体
+      class CreateOrderAndDownloadsRequest < TencentCloud::Common::AbstractModel
+        # @param ImageInfos: ImageId必填，单张购买，所有必填，会员身份可以省略部分参数
+        # @type ImageInfos: Array
+
+        attr_accessor :ImageInfos
+        
+        def initialize(imageinfos=nil)
+          @ImageInfos = imageinfos
+        end
+
+        def deserialize(params)
+          @ImageInfos = params['ImageInfos']
+        end
+      end
+
+      # CreateOrderAndDownloads返回参数结构体
+      class CreateOrderAndDownloadsResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadInfos: 成功核销后可以获取图片基本信息和原图地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadInfos: Array
+        # @param TotalCount: 可下载图片数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadInfos, :TotalCount, :RequestId
+        
+        def initialize(downloadinfos=nil, totalcount=nil, requestid=nil)
+          @DownloadInfos = downloadinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadInfos = params['DownloadInfos']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrderAndPay请求参数结构体
       class CreateOrderAndPayRequest < TencentCloud::Common::AbstractModel
         # @param ImageId: 图片ID
@@ -214,6 +255,63 @@ module TencentCloud
         end
       end
 
+      # DescribeDownloadInfos请求参数结构体
+      class DescribeDownloadInfosRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 默认10
+        # @type Limit: Integer
+        # @param Offset: 默认0
+        # @type Offset: Integer
+        # @param BeginTime: 开始时间晚于指定时间
+        # @type BeginTime: String
+        # @param EndTime: 结束时间早于指定时间
+        # @type EndTime: String
+        # @param ImageIds: 无效值，过滤结果为空
+        # @type ImageIds: Array
+
+        attr_accessor :Limit, :Offset, :BeginTime, :EndTime, :ImageIds
+        
+        def initialize(limit=nil, offset=nil, begintime=nil, endtime=nil, imageids=nil)
+          @Limit = limit
+          @Offset = offset
+          @BeginTime = begintime
+          @EndTime = endtime
+          @ImageIds = imageids
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @ImageIds = params['ImageIds']
+        end
+      end
+
+      # DescribeDownloadInfos返回参数结构体
+      class DescribeDownloadInfosResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadInfos: 核销下载记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadInfos: Array
+        # @param TotalCount: 总记录数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadInfos, :TotalCount, :RequestId
+        
+        def initialize(downloadinfos=nil, totalcount=nil, requestid=nil)
+          @DownloadInfos = downloadinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadInfos = params['DownloadInfos']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeImage请求参数结构体
       class DescribeImageRequest < TencentCloud::Common::AbstractModel
         # @param ImageId: 图片ID
@@ -246,12 +344,26 @@ module TencentCloud
         # @type Vendor: String
         # @param Marshals: 图片售卖组合信息
         # @type Marshals: Array
+        # @param Width: 宽
+        # @type Width: Integer
+        # @param Height: 高
+        # @type Height: Integer
+        # @param ImageFormat: 图片格式 jpg/eps/psd/...
+        # @type ImageFormat: String
+        # @param ImageSenseType: 图片类型 摄影图片、插画、漫画、图表、矢量、psd、全景、gif、模板
+        # @type ImageSenseType: String
+        # @param Keywords: 关键词，多关键词用空格分隔
+        # @type Keywords: String
+        # @param LayeredGalleryId: 分层图库id
+        # @type LayeredGalleryId: Integer
+        # @param Orientation: 构图方式：horizontal:横图、vertical:竖图、square:方图
+        # @type Orientation: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageId, :Title, :Description, :PreviewUrl, :ThumbUrl, :Vendor, :Marshals, :RequestId
+        attr_accessor :ImageId, :Title, :Description, :PreviewUrl, :ThumbUrl, :Vendor, :Marshals, :Width, :Height, :ImageFormat, :ImageSenseType, :Keywords, :LayeredGalleryId, :Orientation, :RequestId
         
-        def initialize(imageid=nil, title=nil, description=nil, previewurl=nil, thumburl=nil, vendor=nil, marshals=nil, requestid=nil)
+        def initialize(imageid=nil, title=nil, description=nil, previewurl=nil, thumburl=nil, vendor=nil, marshals=nil, width=nil, height=nil, imageformat=nil, imagesensetype=nil, keywords=nil, layeredgalleryid=nil, orientation=nil, requestid=nil)
           @ImageId = imageid
           @Title = title
           @Description = description
@@ -259,6 +371,13 @@ module TencentCloud
           @ThumbUrl = thumburl
           @Vendor = vendor
           @Marshals = marshals
+          @Width = width
+          @Height = height
+          @ImageFormat = imageformat
+          @ImageSenseType = imagesensetype
+          @Keywords = keywords
+          @LayeredGalleryId = layeredgalleryid
+          @Orientation = orientation
           @RequestId = requestid
         end
 
@@ -270,6 +389,13 @@ module TencentCloud
           @ThumbUrl = params['ThumbUrl']
           @Vendor = params['Vendor']
           @Marshals = params['Marshals']
+          @Width = params['Width']
+          @Height = params['Height']
+          @ImageFormat = params['ImageFormat']
+          @ImageSenseType = params['ImageSenseType']
+          @Keywords = params['Keywords']
+          @LayeredGalleryId = params['LayeredGalleryId']
+          @Orientation = params['Orientation']
           @RequestId = params['RequestId']
         end
       end
@@ -346,6 +472,80 @@ module TencentCloud
         end
       end
 
+      # 图片下载信息
+      class DownloadInfo < TencentCloud::Common::AbstractModel
+        # @param ImageInfo: 图片基础信息
+        # @type ImageInfo: :class:`Tencentcloud::Ape.v20200513.models.ImageInfo`
+        # @param ImageUrl: 图片原图URL
+        # @type ImageUrl: String
+        # @param ImageThumbUrl: 图片缩略图URL
+        # @type ImageThumbUrl: String
+        # @param OrderId: 订单Id
+        # @type OrderId: String
+        # @param OrderCreateTime: 订单创建时间
+        # @type OrderCreateTime: String
+        # @param DownloadId: 下载Id
+        # @type DownloadId: String
+        # @param DownloadTime: 下载时间
+        # @type DownloadTime: String
+        # @param ConsumeType: 图片购买类型，单张/会员
+        # @type ConsumeType: Integer
+        # @param FirstDownload: 是否首次下载
+        # @type FirstDownload: Boolean
+
+        attr_accessor :ImageInfo, :ImageUrl, :ImageThumbUrl, :OrderId, :OrderCreateTime, :DownloadId, :DownloadTime, :ConsumeType, :FirstDownload
+        
+        def initialize(imageinfo=nil, imageurl=nil, imagethumburl=nil, orderid=nil, ordercreatetime=nil, downloadid=nil, downloadtime=nil, consumetype=nil, firstdownload=nil)
+          @ImageInfo = imageinfo
+          @ImageUrl = imageurl
+          @ImageThumbUrl = imagethumburl
+          @OrderId = orderid
+          @OrderCreateTime = ordercreatetime
+          @DownloadId = downloadid
+          @DownloadTime = downloadtime
+          @ConsumeType = consumetype
+          @FirstDownload = firstdownload
+        end
+
+        def deserialize(params)
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new.deserialize(params[ImageInfo])
+          end
+          @ImageUrl = params['ImageUrl']
+          @ImageThumbUrl = params['ImageThumbUrl']
+          @OrderId = params['OrderId']
+          @OrderCreateTime = params['OrderCreateTime']
+          @DownloadId = params['DownloadId']
+          @DownloadTime = params['DownloadTime']
+          @ConsumeType = params['ConsumeType']
+          @FirstDownload = params['FirstDownload']
+        end
+      end
+
+      # 图片基础信息
+      class ImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageId: 图片Id
+        # @type ImageId: Integer
+        # @param LicenseScopeId: 授权场景Id
+        # @type LicenseScopeId: Integer
+        # @param DimensionsNameId: 尺寸名称Id
+        # @type DimensionsNameId: Integer
+
+        attr_accessor :ImageId, :LicenseScopeId, :DimensionsNameId
+        
+        def initialize(imageid=nil, licensescopeid=nil, dimensionsnameid=nil)
+          @ImageId = imageid
+          @LicenseScopeId = licensescopeid
+          @DimensionsNameId = dimensionsnameid
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @LicenseScopeId = params['LicenseScopeId']
+          @DimensionsNameId = params['DimensionsNameId']
+        end
+      end
+
       # 图片信息条目
       class ImageItem < TencentCloud::Common::AbstractModel
         # @param ImageId: 图片ID
@@ -362,10 +562,14 @@ module TencentCloud
         # @type Vendor: String
         # @param Keywords: 图片关键词
         # @type Keywords: String
+        # @param Width: 宽
+        # @type Width: Integer
+        # @param Height: 高
+        # @type Height: Integer
 
-        attr_accessor :ImageId, :Title, :Description, :PreviewUrl, :ThumbUrl, :Vendor, :Keywords
+        attr_accessor :ImageId, :Title, :Description, :PreviewUrl, :ThumbUrl, :Vendor, :Keywords, :Width, :Height
         
-        def initialize(imageid=nil, title=nil, description=nil, previewurl=nil, thumburl=nil, vendor=nil, keywords=nil)
+        def initialize(imageid=nil, title=nil, description=nil, previewurl=nil, thumburl=nil, vendor=nil, keywords=nil, width=nil, height=nil)
           @ImageId = imageid
           @Title = title
           @Description = description
@@ -373,6 +577,8 @@ module TencentCloud
           @ThumbUrl = thumburl
           @Vendor = vendor
           @Keywords = keywords
+          @Width = width
+          @Height = height
         end
 
         def deserialize(params)
@@ -383,6 +589,8 @@ module TencentCloud
           @ThumbUrl = params['ThumbUrl']
           @Vendor = params['Vendor']
           @Keywords = params['Keywords']
+          @Width = params['Width']
+          @Height = params['Height']
         end
       end
 
@@ -404,10 +612,16 @@ module TencentCloud
         # @type LicenseScope: String
         # @param IsVip: 是否支持VIP购买
         # @type IsVip: Boolean
+        # @param LicenseScopeId: 授权范围id
+        # @type LicenseScopeId: Integer
+        # @param DimensionsName: 尺寸
+        # @type DimensionsName: String
+        # @param DimensionsNameId: 尺寸id
+        # @type DimensionsNameId: Integer
 
-        attr_accessor :MarshalId, :Height, :Width, :Size, :Format, :Price, :LicenseScope, :IsVip
+        attr_accessor :MarshalId, :Height, :Width, :Size, :Format, :Price, :LicenseScope, :IsVip, :LicenseScopeId, :DimensionsName, :DimensionsNameId
         
-        def initialize(marshalid=nil, height=nil, width=nil, size=nil, format=nil, price=nil, licensescope=nil, isvip=nil)
+        def initialize(marshalid=nil, height=nil, width=nil, size=nil, format=nil, price=nil, licensescope=nil, isvip=nil, licensescopeid=nil, dimensionsname=nil, dimensionsnameid=nil)
           @MarshalId = marshalid
           @Height = height
           @Width = width
@@ -416,6 +630,9 @@ module TencentCloud
           @Price = price
           @LicenseScope = licensescope
           @IsVip = isvip
+          @LicenseScopeId = licensescopeid
+          @DimensionsName = dimensionsname
+          @DimensionsNameId = dimensionsnameid
         end
 
         def deserialize(params)
@@ -427,6 +644,9 @@ module TencentCloud
           @Price = params['Price']
           @LicenseScope = params['LicenseScope']
           @IsVip = params['IsVip']
+          @LicenseScopeId = params['LicenseScopeId']
+          @DimensionsName = params['DimensionsName']
+          @DimensionsNameId = params['DimensionsNameId']
         end
       end
 

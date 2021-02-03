@@ -656,6 +656,52 @@ module TencentCloud
         end
       end
 
+      # 插件绑定的API信息
+      class AttachedApiInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceId: API所在服务ID。
+        # @type ServiceId: String
+        # @param ServiceName: API所在服务名称。
+        # @type ServiceName: String
+        # @param ServiceDesc: API所在服务描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceDesc: String
+        # @param ApiId: API ID。
+        # @type ApiId: String
+        # @param ApiName: API名称。
+        # @type ApiName: String
+        # @param ApiDesc: API描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiDesc: String
+        # @param Environment: 插件绑定API的环境。
+        # @type Environment: String
+        # @param AttachedTime: 插件和API绑定时间。
+        # @type AttachedTime: String
+
+        attr_accessor :ServiceId, :ServiceName, :ServiceDesc, :ApiId, :ApiName, :ApiDesc, :Environment, :AttachedTime
+        
+        def initialize(serviceid=nil, servicename=nil, servicedesc=nil, apiid=nil, apiname=nil, apidesc=nil, environment=nil, attachedtime=nil)
+          @ServiceId = serviceid
+          @ServiceName = servicename
+          @ServiceDesc = servicedesc
+          @ApiId = apiid
+          @ApiName = apiname
+          @ApiDesc = apidesc
+          @Environment = environment
+          @AttachedTime = attachedtime
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ServiceName = params['ServiceName']
+          @ServiceDesc = params['ServiceDesc']
+          @ApiId = params['ApiId']
+          @ApiName = params['ApiName']
+          @ApiDesc = params['ApiDesc']
+          @Environment = params['Environment']
+          @AttachedTime = params['AttachedTime']
+        end
+      end
+
       # Base64编码的header触发规则
       class Base64EncodedTriggerRule < TencentCloud::Common::AbstractModel
         # @param Name: 进行编码触发的header，可选值 "Accept"和"Content_Type" 对应实际数据流请求header中的Accept和 Content-Type。
@@ -4312,10 +4358,16 @@ module TencentCloud
         # @type CreatedTime: String
         # @param ModifiedTime: 插件修改时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type ModifiedTime: String
+        # @param AttachedApiTotalCount: 插件绑定的API总数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachedApiTotalCount: Integer
+        # @param AttachedApis: 插件绑定的API信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachedApis: Array
 
-        attr_accessor :PluginId, :PluginName, :PluginType, :PluginData, :Description, :CreatedTime, :ModifiedTime
+        attr_accessor :PluginId, :PluginName, :PluginType, :PluginData, :Description, :CreatedTime, :ModifiedTime, :AttachedApiTotalCount, :AttachedApis
         
-        def initialize(pluginid=nil, pluginname=nil, plugintype=nil, plugindata=nil, description=nil, createdtime=nil, modifiedtime=nil)
+        def initialize(pluginid=nil, pluginname=nil, plugintype=nil, plugindata=nil, description=nil, createdtime=nil, modifiedtime=nil, attachedapitotalcount=nil, attachedapis=nil)
           @PluginId = pluginid
           @PluginName = pluginname
           @PluginType = plugintype
@@ -4323,6 +4375,8 @@ module TencentCloud
           @Description = description
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
+          @AttachedApiTotalCount = attachedapitotalcount
+          @AttachedApis = attachedapis
         end
 
         def deserialize(params)
@@ -4333,6 +4387,8 @@ module TencentCloud
           @Description = params['Description']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
+          @AttachedApiTotalCount = params['AttachedApiTotalCount']
+          @AttachedApis = params['AttachedApis']
         end
       end
 

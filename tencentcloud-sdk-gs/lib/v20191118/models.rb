@@ -125,6 +125,50 @@ module TencentCloud
         end
       end
 
+      # DescribeInstancesCount请求参数结构体
+      class DescribeInstancesCountRequest < TencentCloud::Common::AbstractModel
+        # @param GameId: 游戏ID
+        # @type GameId: String
+        # @param GroupId: 实例分组ID
+        # @type GroupId: String
+
+        attr_accessor :GameId, :GroupId
+        
+        def initialize(gameid=nil, groupid=nil)
+          @GameId = gameid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GameId = params['GameId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeInstancesCount返回参数结构体
+      class DescribeInstancesCountResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 客户的实例总数
+        # @type Total: Integer
+        # @param Running: 客户的实例运行数
+        # @type Running: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Running, :RequestId
+        
+        def initialize(total=nil, running=nil, requestid=nil)
+          @Total = total
+          @Running = running
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Running = params['Running']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SaveGameArchive请求参数结构体
       class SaveGameArchiveRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 游戏用户ID

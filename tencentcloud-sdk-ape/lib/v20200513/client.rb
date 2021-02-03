@@ -73,6 +73,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 核销图片，获取原图URL地址
+
+        # @param request: Request instance for CreateOrderAndDownloads.
+        # @type request: :class:`Tencentcloud::ape::V20200513::CreateOrderAndDownloadsRequest`
+        # @rtype: :class:`Tencentcloud::ape::V20200513::CreateOrderAndDownloadsResponse`
+        def CreateOrderAndDownloads(request)
+          body = send_request('CreateOrderAndDownloads', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrderAndDownloadsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 购买一张图片并且支付
 
         # @param request: Request instance for CreateOrderAndPay.
@@ -107,6 +131,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuthUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户图片下载记录
+
+        # @param request: Request instance for DescribeDownloadInfos.
+        # @type request: :class:`Tencentcloud::ape::V20200513::DescribeDownloadInfosRequest`
+        # @rtype: :class:`Tencentcloud::ape::V20200513::DescribeDownloadInfosResponse`
+        def DescribeDownloadInfos(request)
+          body = send_request('DescribeDownloadInfos', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDownloadInfosResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -49,6 +49,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实例总数和运行数
+
+        # @param request: Request instance for DescribeInstancesCount.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeInstancesCountRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeInstancesCountResponse`
+        def DescribeInstancesCount(request)
+          body = send_request('DescribeInstancesCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancesCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 保存游戏存档
 
         # @param request: Request instance for SaveGameArchive.

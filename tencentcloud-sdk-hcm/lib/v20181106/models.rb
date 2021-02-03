@@ -43,10 +43,12 @@ module TencentCloud
         # @type PdfPageIndex: Integer
         # @param LaTex: 是否返回LaTex，默认为0返回普通格式，设置成1返回LaTex格式
         # @type LaTex: Integer
+        # @param RejectVagueArithmetic: 用于选择是否拒绝模糊题 目。打开则丢弃模糊题目， 不进行后续的判题返回结 果。
+        # @type RejectVagueArithmetic: Boolean
 
-        attr_accessor :SessionId, :Image, :HcmAppid, :Url, :SupportHorizontalImage, :RejectNonArithmeticImage, :IsAsync, :EnableDispRelatedVertical, :EnableDispMidresult, :EnablePdfRecognize, :PdfPageIndex, :LaTex
+        attr_accessor :SessionId, :Image, :HcmAppid, :Url, :SupportHorizontalImage, :RejectNonArithmeticImage, :IsAsync, :EnableDispRelatedVertical, :EnableDispMidresult, :EnablePdfRecognize, :PdfPageIndex, :LaTex, :RejectVagueArithmetic
         
-        def initialize(sessionid=nil, image=nil, hcmappid=nil, url=nil, supporthorizontalimage=nil, rejectnonarithmeticimage=nil, isasync=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil, latex=nil)
+        def initialize(sessionid=nil, image=nil, hcmappid=nil, url=nil, supporthorizontalimage=nil, rejectnonarithmeticimage=nil, isasync=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil, latex=nil, rejectvaguearithmetic=nil)
           @SessionId = sessionid
           @Image = image
           @HcmAppid = hcmappid
@@ -59,6 +61,7 @@ module TencentCloud
           @EnablePdfRecognize = enablepdfrecognize
           @PdfPageIndex = pdfpageindex
           @LaTex = latex
+          @RejectVagueArithmetic = rejectvaguearithmetic
         end
 
         def deserialize(params)
@@ -74,6 +77,7 @@ module TencentCloud
           @EnablePdfRecognize = params['EnablePdfRecognize']
           @PdfPageIndex = params['PdfPageIndex']
           @LaTex = params['LaTex']
+          @RejectVagueArithmetic = params['RejectVagueArithmetic']
         end
       end
 
@@ -108,13 +112,13 @@ module TencentCloud
 
       # 识别出的算术式信息及评估结果
       class Item < TencentCloud::Common::AbstractModel
-        # @param Item: 识别的算式是否正确
+        # @param Item: 识别的算式是否正确，算式运算结果: ‘YES’:正确 ‘NO’: 错误 ‘NA’: 非法参数
         # @type Item: String
-        # @param ItemString: 识别的算式
+        # @param ItemString: 识别出的算式，识别出的文本行字符串
         # @type ItemString: String
-        # @param ItemCoord: 识别的算式在图片上的位置信息
+        # @param ItemCoord: 识别的算式在图片上的位置信息，文本行在旋转纠正之后的图像中的像素坐 标，表示为(左上角 x, 左上角 y，宽 width， 高 height)
         # @type ItemCoord: :class:`Tencentcloud::Hcm.v20181106.models.ItemCoord`
-        # @param Answer: 推荐的答案，暂不支持多个关系运算符、无关系运算符、单位换算错题的推荐答案返回。
+        # @param Answer: 错题推荐答案，算式运算结果正确返回为 ""，算式运算结果错误返回推荐答案 (注:暂不支持多个关系运算符(如 1<10<7)、 无关系运算符(如 frac(1,2)+frac(2,3))、单 位换算(如 1 元=100 角)错题的推荐答案 返回)
         # @type Answer: String
         # @param ExpressionType: 算式题型编号，如加减乘除四则题型，具体题型及编号如下：1 加减乘除四则 2 加减乘除已知结果求运算因子3 判断大小 4 约等于估算 5 带余数除法 6 分数四则运算 7 单位换算 8 竖式加减法 9 竖式乘除法 10 脱式计算 11 解方程
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -122,16 +126,20 @@ module TencentCloud
         # @param ItemConf: 文本行置信度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemConf: Float
+        # @param QuestionId: 用于标识题目 id，如果有若干算式属于同一 题，则其对应的 id 相同。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuestionId: String
 
-        attr_accessor :Item, :ItemString, :ItemCoord, :Answer, :ExpressionType, :ItemConf
+        attr_accessor :Item, :ItemString, :ItemCoord, :Answer, :ExpressionType, :ItemConf, :QuestionId
         
-        def initialize(item=nil, itemstring=nil, itemcoord=nil, answer=nil, expressiontype=nil, itemconf=nil)
+        def initialize(item=nil, itemstring=nil, itemcoord=nil, answer=nil, expressiontype=nil, itemconf=nil, questionid=nil)
           @Item = item
           @ItemString = itemstring
           @ItemCoord = itemcoord
           @Answer = answer
           @ExpressionType = expressiontype
           @ItemConf = itemconf
+          @QuestionId = questionid
         end
 
         def deserialize(params)
@@ -143,6 +151,7 @@ module TencentCloud
           @Answer = params['Answer']
           @ExpressionType = params['ExpressionType']
           @ItemConf = params['ItemConf']
+          @QuestionId = params['QuestionId']
         end
       end
 

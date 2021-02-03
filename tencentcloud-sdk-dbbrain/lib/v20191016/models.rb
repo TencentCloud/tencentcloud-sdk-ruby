@@ -17,6 +17,50 @@
 module TencentCloud
   module Dbbrain
     module V20191016
+      # AddUserContact请求参数结构体
+      class AddUserContactRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 联系人姓名，大小写字母+数字+下划线，最小 2 位最大 60 位的长度， 不能以"_"开头，且联系人名保持唯一。
+        # @type Name: String
+        # @param ContactInfo: 邮箱地址，大小写字母、数字及下划线组成， 不能以"_"开头。
+        # @type ContactInfo: String
+        # @param Product: 服务产品类型，固定值："mysql"。
+        # @type Product: String
+
+        attr_accessor :Name, :ContactInfo, :Product
+        
+        def initialize(name=nil, contactinfo=nil, product=nil)
+          @Name = name
+          @ContactInfo = contactinfo
+          @Product = product
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ContactInfo = params['ContactInfo']
+          @Product = params['Product']
+        end
+      end
+
+      # AddUserContact返回参数结构体
+      class AddUserContactResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 添加成功的联系人id。
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+        
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 联系人contact描述。
       class ContactItem < TencentCloud::Common::AbstractModel
         # @param Id: 联系人id。
@@ -114,7 +158,7 @@ module TencentCloud
         # @type ProfileType: String
         # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL。
         # @type Product: String
-        # @param BindInstanceIds: 配置绑定的实例ID，当配置级别为"Instance"时需要传入。
+        # @param BindInstanceIds: 配置绑定的实例ID，当配置级别为"Instance"时需要传入，只能为一个实例。
         # @type BindInstanceIds: Array
 
         attr_accessor :ProfileInfo, :ProfileLevel, :ProfileName, :ProfileType, :Product, :BindInstanceIds
@@ -142,6 +186,56 @@ module TencentCloud
 
       # CreateMailProfile返回参数结构体
       class CreateMailProfileResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSchedulerMailProfile请求参数结构体
+      class CreateSchedulerMailProfileRequest < TencentCloud::Common::AbstractModel
+        # @param WeekConfiguration: 取值范围1-7，分别代表周一至周日。
+        # @type WeekConfiguration: Array
+        # @param ProfileInfo: 邮件配置内容。
+        # @type ProfileInfo: :class:`Tencentcloud::Dbbrain.v20191016.models.ProfileInfo`
+        # @param ProfileName: 配置名称，需要保持唯一性，定期生成邮件配置命名格式："scheduler_" + {instanceId}，如"schduler_cdb-test"。
+        # @type ProfileName: String
+        # @param BindInstanceId: 配置订阅的实例ID。
+        # @type BindInstanceId: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :WeekConfiguration, :ProfileInfo, :ProfileName, :BindInstanceId, :Product
+        
+        def initialize(weekconfiguration=nil, profileinfo=nil, profilename=nil, bindinstanceid=nil, product=nil)
+          @WeekConfiguration = weekconfiguration
+          @ProfileInfo = profileinfo
+          @ProfileName = profilename
+          @BindInstanceId = bindinstanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @WeekConfiguration = params['WeekConfiguration']
+          unless params['ProfileInfo'].nil?
+            @ProfileInfo = ProfileInfo.new.deserialize(params[ProfileInfo])
+          end
+          @ProfileName = params['ProfileName']
+          @BindInstanceId = params['BindInstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # CreateSchedulerMailProfile返回参数结构体
+      class CreateSchedulerMailProfileResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -523,6 +617,178 @@ module TencentCloud
           @Remain = params['Remain']
           @Total = params['Total']
           @AvailableDays = params['AvailableDays']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDiagDBInstances请求参数结构体
+      class DescribeDiagDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param IsSupported: 是否是DBbrain支持的实例，固定传 true。
+        # @type IsSupported: Boolean
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+        # @param Offset: 分页参数，偏移量。
+        # @type Offset: Integer
+        # @param Limit: 分页参数，分页值。
+        # @type Limit: Integer
+        # @param InstanceNames: 根据实例名称条件查询。
+        # @type InstanceNames: Array
+        # @param InstanceIds: 根据实例ID条件查询。
+        # @type InstanceIds: Array
+        # @param Regions: 根据地域条件查询。
+        # @type Regions: Array
+
+        attr_accessor :IsSupported, :Product, :Offset, :Limit, :InstanceNames, :InstanceIds, :Regions
+        
+        def initialize(issupported=nil, product=nil, offset=nil, limit=nil, instancenames=nil, instanceids=nil, regions=nil)
+          @IsSupported = issupported
+          @Product = product
+          @Offset = offset
+          @Limit = limit
+          @InstanceNames = instancenames
+          @InstanceIds = instanceids
+          @Regions = regions
+        end
+
+        def deserialize(params)
+          @IsSupported = params['IsSupported']
+          @Product = params['Product']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @InstanceNames = params['InstanceNames']
+          @InstanceIds = params['InstanceIds']
+          @Regions = params['Regions']
+        end
+      end
+
+      # DescribeDiagDBInstances返回参数结构体
+      class DescribeDiagDBInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例总数。
+        # @type TotalCount: Integer
+        # @param DbScanStatus: 全实例巡检状态：0：开启全实例巡检；1：未开启全实例巡检。
+        # @type DbScanStatus: Integer
+        # @param Items: 实例相关信息。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DbScanStatus, :Items, :RequestId
+        
+        def initialize(totalcount=nil, dbscanstatus=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DbScanStatus = dbscanstatus
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @DbScanStatus = params['DbScanStatus']
+          @Items = params['Items']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHealthScore请求参数结构体
+      class DescribeHealthScoreRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 需要获取健康得分的实例ID。
+        # @type InstanceId: String
+        # @param Time: 获取健康得分的时间。
+        # @type Time: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :Time, :Product
+        
+        def initialize(instanceid=nil, time=nil, product=nil)
+          @InstanceId = instanceid
+          @Time = time
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Time = params['Time']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeHealthScore返回参数结构体
+      class DescribeHealthScoreResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 健康得分以及异常扣分项。
+        # @type Data: :class:`Tencentcloud::Dbbrain.v20191016.models.HealthScoreInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = HealthScoreInfo.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMailProfile请求参数结构体
+      class DescribeMailProfileRequest < TencentCloud::Common::AbstractModel
+        # @param ProfileType: 配置类型，支持值包括："dbScan_mail_configuration" - 数据库巡检邮件配置，"scheduler_mail_configuration" - 定期生成邮件配置。
+        # @type ProfileType: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+        # @param Offset: 分页偏移量。
+        # @type Offset: Integer
+        # @param Limit: 分页单位，最大支持50。
+        # @type Limit: Integer
+        # @param ProfileName: 根据邮件配置名称查询，定期发送的邮件配置名称遵循："scheduler_"+{instanceId}的规则。
+        # @type ProfileName: String
+
+        attr_accessor :ProfileType, :Product, :Offset, :Limit, :ProfileName
+        
+        def initialize(profiletype=nil, product=nil, offset=nil, limit=nil, profilename=nil)
+          @ProfileType = profiletype
+          @Product = product
+          @Offset = offset
+          @Limit = limit
+          @ProfileName = profilename
+        end
+
+        def deserialize(params)
+          @ProfileType = params['ProfileType']
+          @Product = params['Product']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ProfileName = params['ProfileName']
+        end
+      end
+
+      # DescribeMailProfile返回参数结构体
+      class DescribeMailProfileResponse < TencentCloud::Common::AbstractModel
+        # @param ProfileList: 邮件配置详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProfileList: Array
+        # @param TotalCount: 邮件模版总数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProfileList, :TotalCount, :RequestId
+        
+        def initialize(profilelist=nil, totalcount=nil, requestid=nil)
+          @ProfileList = profilelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProfileList = params['ProfileList']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -920,6 +1186,54 @@ module TencentCloud
         end
       end
 
+      # 异常事件信息。
+      class EventInfo < TencentCloud::Common::AbstractModel
+        # @param EventId: 事件 ID 。
+        # @type EventId: Integer
+        # @param DiagType: 诊断类型。
+        # @type DiagType: String
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param Outline: 概要。
+        # @type Outline: String
+        # @param Severity: 严重程度。严重程度分为5级，按影响程度从高至低分别为：1：致命，2：严重，3：告警，4：提示，5：健康。
+        # @type Severity: Integer
+        # @param ScoreLost: 扣分。
+        # @type ScoreLost: Integer
+        # @param Metric: 保留字段。
+        # @type Metric: String
+        # @param Count: 告警数目。
+        # @type Count: Integer
+
+        attr_accessor :EventId, :DiagType, :StartTime, :EndTime, :Outline, :Severity, :ScoreLost, :Metric, :Count
+        
+        def initialize(eventid=nil, diagtype=nil, starttime=nil, endtime=nil, outline=nil, severity=nil, scorelost=nil, metric=nil, count=nil)
+          @EventId = eventid
+          @DiagType = diagtype
+          @StartTime = starttime
+          @EndTime = endtime
+          @Outline = outline
+          @Severity = severity
+          @ScoreLost = scorelost
+          @Metric = metric
+          @Count = count
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @DiagType = params['DiagType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Outline = params['Outline']
+          @Severity = params['Severity']
+          @ScoreLost = params['ScoreLost']
+          @Metric = params['Metric']
+          @Count = params['Count']
+        end
+      end
+
       # 描述组信息。
       class GroupItem < TencentCloud::Common::AbstractModel
         # @param Id: 组id。
@@ -944,19 +1258,201 @@ module TencentCloud
         end
       end
 
+      # 获取健康得分返回的详情。
+      class HealthScoreInfo < TencentCloud::Common::AbstractModel
+        # @param IssueTypes: 异常详情。
+        # @type IssueTypes: Array
+        # @param EventsTotalCount: 异常事件总数。
+        # @type EventsTotalCount: Integer
+        # @param HealthScore: 健康得分。
+        # @type HealthScore: Integer
+        # @param HealthLevel: 健康等级, 如："HEALTH", "SUB_HEALTH", "RISK", "HIGH_RISK"。
+        # @type HealthLevel: String
+
+        attr_accessor :IssueTypes, :EventsTotalCount, :HealthScore, :HealthLevel
+        
+        def initialize(issuetypes=nil, eventstotalcount=nil, healthscore=nil, healthlevel=nil)
+          @IssueTypes = issuetypes
+          @EventsTotalCount = eventstotalcount
+          @HealthScore = healthscore
+          @HealthLevel = healthlevel
+        end
+
+        def deserialize(params)
+          @IssueTypes = params['IssueTypes']
+          @EventsTotalCount = params['EventsTotalCount']
+          @HealthScore = params['HealthScore']
+          @HealthLevel = params['HealthLevel']
+        end
+      end
+
       # 实例配置。
       class InstanceConfs < TencentCloud::Common::AbstractModel
         # @param DailyInspection: 数据库巡检开关, Yes/No。
         # @type DailyInspection: String
+        # @param OverviewDisplay: 实例概览开关，Yes/No。
+        # @type OverviewDisplay: String
 
-        attr_accessor :DailyInspection
+        attr_accessor :DailyInspection, :OverviewDisplay
         
-        def initialize(dailyinspection=nil)
+        def initialize(dailyinspection=nil, overviewdisplay=nil)
           @DailyInspection = dailyinspection
+          @OverviewDisplay = overviewdisplay
         end
 
         def deserialize(params)
           @DailyInspection = params['DailyInspection']
+          @OverviewDisplay = params['OverviewDisplay']
+        end
+      end
+
+      # 查询实例列表，返回实例的相关信息的对象。
+      class InstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param Region: 实例所属地域。
+        # @type Region: String
+        # @param HealthScore: 健康得分。
+        # @type HealthScore: Integer
+        # @param Product: 所属产品。
+        # @type Product: String
+        # @param EventCount: 异常事件数量。
+        # @type EventCount: Integer
+        # @param InstanceType: 实例类型：1:MASTER；2:DR，3：RO，4:SDR。
+        # @type InstanceType: Integer
+        # @param Cpu: 核心数。
+        # @type Cpu: Integer
+        # @param Memory: 内存，单位MB。
+        # @type Memory: Integer
+        # @param Volume: 硬盘存储，单位GB。
+        # @type Volume: Integer
+        # @param EngineVersion: 数据库版本。
+        # @type EngineVersion: String
+        # @param Vip: 内网地址。
+        # @type Vip: String
+        # @param Vport: 内网端口。
+        # @type Vport: Integer
+        # @param Source: 接入来源。
+        # @type Source: String
+        # @param GroupId: 分组ID。
+        # @type GroupId: String
+        # @param GroupName: 分组组名。
+        # @type GroupName: String
+        # @param Status: 实例状态：0：发货中；1：运行正常；4：销毁中；5：隔离中。
+        # @type Status: Integer
+        # @param UniqSubnetId: 子网统一ID。
+        # @type UniqSubnetId: String
+        # @param DeployMode: cdb类型。
+        # @type DeployMode: String
+        # @param InitFlag: cdb实例初始化标志：0：未初始化；1：已初始化。
+        # @type InitFlag: Integer
+        # @param TaskStatus: 任务状态。
+        # @type TaskStatus: Integer
+        # @param UniqVpcId: 私有网络统一ID。
+        # @type UniqVpcId: String
+        # @param InstanceConf: 实例巡检/概览的状态。
+        # @type InstanceConf: :class:`Tencentcloud::Dbbrain.v20191016.models.InstanceConfs`
+        # @param DeadlineTime: 资源到期时间。
+        # @type DeadlineTime: String
+        # @param IsSupported: 是否是DBbrain支持的实例。
+        # @type IsSupported: Boolean
+        # @param SecAuditStatus: 实例安全审计日志开启状态：ON： 安全审计开启；OFF： 未开启安全审计。
+        # @type SecAuditStatus: String
+        # @param AuditPolicyStatus: 实例审计日志开启状态，ALL_AUDIT： 开启全审计；RULE_AUDIT： 开启规则审计；UNBOUND： 未开启审计。
+        # @type AuditPolicyStatus: String
+        # @param AuditRunningStatus: 实例审计日志运行状态：normal： 运行中； paused： 欠费暂停。
+        # @type AuditRunningStatus: String
+
+        attr_accessor :InstanceId, :InstanceName, :Region, :HealthScore, :Product, :EventCount, :InstanceType, :Cpu, :Memory, :Volume, :EngineVersion, :Vip, :Vport, :Source, :GroupId, :GroupName, :Status, :UniqSubnetId, :DeployMode, :InitFlag, :TaskStatus, :UniqVpcId, :InstanceConf, :DeadlineTime, :IsSupported, :SecAuditStatus, :AuditPolicyStatus, :AuditRunningStatus
+        
+        def initialize(instanceid=nil, instancename=nil, region=nil, healthscore=nil, product=nil, eventcount=nil, instancetype=nil, cpu=nil, memory=nil, volume=nil, engineversion=nil, vip=nil, vport=nil, source=nil, groupid=nil, groupname=nil, status=nil, uniqsubnetid=nil, deploymode=nil, initflag=nil, taskstatus=nil, uniqvpcid=nil, instanceconf=nil, deadlinetime=nil, issupported=nil, secauditstatus=nil, auditpolicystatus=nil, auditrunningstatus=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Region = region
+          @HealthScore = healthscore
+          @Product = product
+          @EventCount = eventcount
+          @InstanceType = instancetype
+          @Cpu = cpu
+          @Memory = memory
+          @Volume = volume
+          @EngineVersion = engineversion
+          @Vip = vip
+          @Vport = vport
+          @Source = source
+          @GroupId = groupid
+          @GroupName = groupname
+          @Status = status
+          @UniqSubnetId = uniqsubnetid
+          @DeployMode = deploymode
+          @InitFlag = initflag
+          @TaskStatus = taskstatus
+          @UniqVpcId = uniqvpcid
+          @InstanceConf = instanceconf
+          @DeadlineTime = deadlinetime
+          @IsSupported = issupported
+          @SecAuditStatus = secauditstatus
+          @AuditPolicyStatus = auditpolicystatus
+          @AuditRunningStatus = auditrunningstatus
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Region = params['Region']
+          @HealthScore = params['HealthScore']
+          @Product = params['Product']
+          @EventCount = params['EventCount']
+          @InstanceType = params['InstanceType']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Volume = params['Volume']
+          @EngineVersion = params['EngineVersion']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @Source = params['Source']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @Status = params['Status']
+          @UniqSubnetId = params['UniqSubnetId']
+          @DeployMode = params['DeployMode']
+          @InitFlag = params['InitFlag']
+          @TaskStatus = params['TaskStatus']
+          @UniqVpcId = params['UniqVpcId']
+          unless params['InstanceConf'].nil?
+            @InstanceConf = InstanceConfs.new.deserialize(params[InstanceConf])
+          end
+          @DeadlineTime = params['DeadlineTime']
+          @IsSupported = params['IsSupported']
+          @SecAuditStatus = params['SecAuditStatus']
+          @AuditPolicyStatus = params['AuditPolicyStatus']
+          @AuditRunningStatus = params['AuditRunningStatus']
+        end
+      end
+
+      # 指标信息。
+      class IssueTypeInfo < TencentCloud::Common::AbstractModel
+        # @param IssueType: 指标分类：AVAILABILITY：可用性，MAINTAINABILITY：可维护性，PERFORMANCE，性能，RELIABILITY可靠性。
+        # @type IssueType: String
+        # @param Events: 异常事件。
+        # @type Events: Array
+        # @param TotalCount: 异常事件总数。
+        # @type TotalCount: Integer
+
+        attr_accessor :IssueType, :Events, :TotalCount
+        
+        def initialize(issuetype=nil, events=nil, totalcount=nil)
+          @IssueType = issuetype
+          @Events = events
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @IssueType = params['IssueType']
+          @Events = params['Events']
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -964,7 +1460,7 @@ module TencentCloud
       class MailConfiguration < TencentCloud::Common::AbstractModel
         # @param SendMail: 是否开启邮件发送: 0, 否; 1, 是。
         # @type SendMail: Integer
-        # @param Region: 地域配置, 如["ap-guangzhou", "ap-shanghai"]。
+        # @param Region: 地域配置, 如["ap-guangzhou", "ap-shanghai"]。巡检的邮件发送模版，配置需要发送巡检邮件的地域；订阅的邮件发送模版，配置当前订阅实例的所属地域。
         # @type Region: Array
         # @param HealthStatus: 发送指定的健康等级的报告, 如["HEALTH", "SUB_HEALTH", "RISK", "HIGH_RISK"]。
         # @type HealthStatus: Array
@@ -1415,6 +1911,44 @@ module TencentCloud
         def deserialize(params)
           @Count = params['Count']
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 用户配置的相关信息，包括邮件配置。
+      class UserProfile < TencentCloud::Common::AbstractModel
+        # @param ProfileId: 配置的id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProfileId: String
+        # @param ProfileType: 配置类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProfileType: String
+        # @param ProfileLevel: 配置级别，"User"或"Instance"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProfileLevel: String
+        # @param ProfileName: 配置名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProfileName: String
+        # @param ProfileInfo: 配置详情。
+        # @type ProfileInfo: :class:`Tencentcloud::Dbbrain.v20191016.models.ProfileInfo`
+
+        attr_accessor :ProfileId, :ProfileType, :ProfileLevel, :ProfileName, :ProfileInfo
+        
+        def initialize(profileid=nil, profiletype=nil, profilelevel=nil, profilename=nil, profileinfo=nil)
+          @ProfileId = profileid
+          @ProfileType = profiletype
+          @ProfileLevel = profilelevel
+          @ProfileName = profilename
+          @ProfileInfo = profileinfo
+        end
+
+        def deserialize(params)
+          @ProfileId = params['ProfileId']
+          @ProfileType = params['ProfileType']
+          @ProfileLevel = params['ProfileLevel']
+          @ProfileName = params['ProfileName']
+          unless params['ProfileInfo'].nil?
+            @ProfileInfo = ProfileInfo.new.deserialize(params[ProfileInfo])
+          end
         end
       end
 

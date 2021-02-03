@@ -692,19 +692,19 @@ module TencentCloud
       class DetectBodyRequest < TencentCloud::Common::AbstractModel
         # @param Image: 人体图片 Base64 数据。
         # 图片 base64 编码后大小不可超过5M。
-        # 图片分辨率不得超过 2048*2048。
+        # 图片分辨率不得超过 1920 * 1080 。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Image: String
+        # @param MaxBodyNum: 最多检测的人体数目，默认值为1（仅检测图片中面积最大的那个人体）； 最大值10 ，检测图片中面积最大的10个人体。
+        # @type MaxBodyNum: Integer
         # @param Url: 人体图片 Url 。
         # Url、Image必须提供一个，如果都提供，只使用 Url。
         # 图片 base64 编码后大小不可超过5M。
-        # 图片分辨率不得超过 2048*2048。
+        # 图片分辨率不得超过 1920 * 1080 。
         # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
-        # @param MaxBodyNum: 最多检测的人体数目，默认值为1（仅检测图片中面积最大的那个人体）； 最大值10 ，检测图片中面积最大的10个人体。
-        # @type MaxBodyNum: Integer
         # @param AttributesOptions: 是否返回年龄、性别、朝向等属性。
         # 可选项有 Age、Bag、Gender、UpperBodyCloth、LowerBodyCloth、Orientation。
         # 如果此参数为空则为不需要返回。
@@ -713,19 +713,19 @@ module TencentCloud
         # 最多返回面积最大的 5 个人体属性信息，超过 5 个人体（第 6 个及以后的人体）的 BodyAttributesInfo 不具备参考意义。
         # @type AttributesOptions: :class:`Tencentcloud::Bda.v20200324.models.AttributesOptions`
 
-        attr_accessor :Image, :Url, :MaxBodyNum, :AttributesOptions
+        attr_accessor :Image, :MaxBodyNum, :Url, :AttributesOptions
         
-        def initialize(image=nil, url=nil, maxbodynum=nil, attributesoptions=nil)
+        def initialize(image=nil, maxbodynum=nil, url=nil, attributesoptions=nil)
           @Image = image
-          @Url = url
           @MaxBodyNum = maxbodynum
+          @Url = url
           @AttributesOptions = attributesoptions
         end
 
         def deserialize(params)
           @Image = params['Image']
-          @Url = params['Url']
           @MaxBodyNum = params['MaxBodyNum']
+          @Url = params['Url']
           unless params['AttributesOptions'].nil?
             @AttributesOptions = AttributesOptions.new.deserialize(params[AttributesOptions])
           end

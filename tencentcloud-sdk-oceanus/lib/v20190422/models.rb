@@ -37,10 +37,12 @@ module TencentCloud
         # @type AutoDelete: Integer
         # @param COSBucket: 作业使用的 COS 存储桶名
         # @type COSBucket: String
+        # @param LogCollect: 是否采集作业日志
+        # @type LogCollect: Boolean
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -50,6 +52,7 @@ module TencentCloud
           @Properties = properties
           @AutoDelete = autodelete
           @COSBucket = cosbucket
+          @LogCollect = logcollect
         end
 
         def deserialize(params)
@@ -62,6 +65,7 @@ module TencentCloud
           @Properties = params['Properties']
           @AutoDelete = params['AutoDelete']
           @COSBucket = params['COSBucket']
+          @LogCollect = params['LogCollect']
         end
       end
 
