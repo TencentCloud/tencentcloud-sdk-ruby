@@ -438,10 +438,13 @@ module TencentCloud
         # @param Security: 安全特性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Security: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseSecurityContext`
+        # @param VolumeMountInfos: 挂载信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeMountInfos: Array
 
-        attr_accessor :ContainerImage, :ContainerPort, :ContainerName, :EnvVar, :InitialDelaySeconds, :Cpu, :Mem, :Security
+        attr_accessor :ContainerImage, :ContainerPort, :ContainerName, :EnvVar, :InitialDelaySeconds, :Cpu, :Mem, :Security, :VolumeMountInfos
         
-        def initialize(containerimage=nil, containerport=nil, containername=nil, envvar=nil, initialdelayseconds=nil, cpu=nil, mem=nil, security=nil)
+        def initialize(containerimage=nil, containerport=nil, containername=nil, envvar=nil, initialdelayseconds=nil, cpu=nil, mem=nil, security=nil, volumemountinfos=nil)
           @ContainerImage = containerimage
           @ContainerPort = containerport
           @ContainerName = containername
@@ -450,6 +453,7 @@ module TencentCloud
           @Cpu = cpu
           @Mem = mem
           @Security = security
+          @VolumeMountInfos = volumemountinfos
         end
 
         def deserialize(params)
@@ -463,6 +467,7 @@ module TencentCloud
           unless params['Security'].nil?
             @Security = CloudBaseSecurityContext.new.deserialize(params[Security])
           end
+          @VolumeMountInfos = params['VolumeMountInfos']
         end
       end
 
@@ -746,6 +751,40 @@ module TencentCloud
             @CodeDetail = CloudBaseCodeRepoDetail.new.deserialize(params[CodeDetail])
           end
           @Status = params['Status']
+        end
+      end
+
+      # 服务的volume
+      class CloudRunServiceVolume < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param NFS: NFS的挂载方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NFS: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunNfsVolumeSource`
+        # @param SecretName: secret名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretName: String
+        # @param EnableEmptyDirVolume: 是否开启临时目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableEmptyDirVolume: Boolean
+
+        attr_accessor :Name, :NFS, :SecretName, :EnableEmptyDirVolume
+        
+        def initialize(name=nil, nfs=nil, secretname=nil, enableemptydirvolume=nil)
+          @Name = name
+          @NFS = nfs
+          @SecretName = secretname
+          @EnableEmptyDirVolume = enableemptydirvolume
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['NFS'].nil?
+            @NFS = CloudBaseRunNfsVolumeSource.new.deserialize(params[NFS])
+          end
+          @SecretName = params['SecretName']
+          @EnableEmptyDirVolume = params['EnableEmptyDirVolume']
         end
       end
 
@@ -1068,10 +1107,12 @@ module TencentCloud
         # @type SidecarSpecs: Array
         # @param Security: 安全特性
         # @type Security: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseSecurityContext`
+        # @param ServiceVolumes: 服务磁盘挂载
+        # @type ServiceVolumes: Array
 
-        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security
+        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security, :ServiceVolumes
         
-        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil)
+        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil, servicevolumes=nil)
           @EnvId = envid
           @UploadType = uploadtype
           @FlowRatio = flowratio
@@ -1107,6 +1148,7 @@ module TencentCloud
           @ImageReuseKey = imagereusekey
           @SidecarSpecs = sidecarspecs
           @Security = security
+          @ServiceVolumes = servicevolumes
         end
 
         def deserialize(params)
@@ -1155,6 +1197,7 @@ module TencentCloud
           unless params['Security'].nil?
             @Security = CloudBaseSecurityContext.new.deserialize(params[Security])
           end
+          @ServiceVolumes = params['ServiceVolumes']
         end
       end
 

@@ -4583,10 +4583,16 @@ module TencentCloud
         # @param ExtInfo: 机型额外信息 是一个json字符串，如果存在则表示特殊机型，格式如下：{"dataDiskSize":3200,"systemDiskSize":60, "systemDiskSizeShow":"系统盘默认60G","dataDiskSizeShow":"本地NVMe SSD 硬盘3200 GB"}
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtInfo: String
+        # @param Vgpu: GPU卡数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vgpu: Float
+        # @param GpuModelName: GPU型号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuModelName: String
 
-        attr_accessor :InstanceFamilyConfig, :InstanceType, :Vcpu, :Memory, :Frequency, :CpuModelName, :InstanceFamilyTypeConfig, :ExtInfo
+        attr_accessor :InstanceFamilyConfig, :InstanceType, :Vcpu, :Memory, :Frequency, :CpuModelName, :InstanceFamilyTypeConfig, :ExtInfo, :Vgpu, :GpuModelName
         
-        def initialize(instancefamilyconfig=nil, instancetype=nil, vcpu=nil, memory=nil, frequency=nil, cpumodelname=nil, instancefamilytypeconfig=nil, extinfo=nil)
+        def initialize(instancefamilyconfig=nil, instancetype=nil, vcpu=nil, memory=nil, frequency=nil, cpumodelname=nil, instancefamilytypeconfig=nil, extinfo=nil, vgpu=nil, gpumodelname=nil)
           @InstanceFamilyConfig = instancefamilyconfig
           @InstanceType = instancetype
           @Vcpu = vcpu
@@ -4595,6 +4601,8 @@ module TencentCloud
           @CpuModelName = cpumodelname
           @InstanceFamilyTypeConfig = instancefamilytypeconfig
           @ExtInfo = extinfo
+          @Vgpu = vgpu
+          @GpuModelName = gpumodelname
         end
 
         def deserialize(params)
@@ -4610,6 +4618,8 @@ module TencentCloud
             @InstanceFamilyTypeConfig = InstanceFamilyTypeConfig.new.deserialize(params[InstanceFamilyTypeConfig])
           end
           @ExtInfo = params['ExtInfo']
+          @Vgpu = params['Vgpu']
+          @GpuModelName = params['GpuModelName']
         end
       end
 

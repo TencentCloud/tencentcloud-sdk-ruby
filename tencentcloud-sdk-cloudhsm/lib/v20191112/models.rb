@@ -312,7 +312,7 @@ module TencentCloud
         # @type ResourceId: String
         # @param ResourceName: 资源名称
         # @type ResourceName: String
-        # @param Status: 资源状态
+        # @param Status: 资源状态，1表示资源为正常，2表示资源处于隔离状态
         # @type Status: Integer
         # @param Vip: 资源IP
         # @type Vip: String
@@ -322,11 +322,11 @@ module TencentCloud
         # @type SubnetId: String
         # @param Model: 资源所属HSM的规格
         # @type Model: String
-        # @param VsmType: 资源类型
+        # @param VsmType: 资源类型，17表示EVSM，33表示GVSM，49表示SVSM
         # @type VsmType: Integer
-        # @param RegionId: 地域Id
+        # @param RegionId: 地域Id，返回腾讯云地域代码，如广州为1，北京为8
         # @type RegionId: Integer
-        # @param ZoneId: 区域Id
+        # @param ZoneId: 区域Id，返回腾讯云每个地域的可用区代码
         # @type ZoneId: Integer
         # @param ExpireTime: 过期时间
         # @type ExpireTime: Integer
@@ -482,7 +482,7 @@ module TencentCloud
         # @type PayMode: Integer
         # @param TimeSpan: 商品的时间大小
         # @type TimeSpan: String
-        # @param TimeUnit: 商品的时间单位
+        # @param TimeUnit: 商品的时间单位，m表示月，y表示年
         # @type TimeUnit: String
         # @param Currency: 货币类型，默认为CNY
         # @type Currency: String
@@ -512,7 +512,7 @@ module TencentCloud
 
       # InquiryPriceBuyVsm返回参数结构体
       class InquiryPriceBuyVsmResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCost: 总金额
+        # @param TotalCost: 原始总金额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCost: Float
         # @param GoodsNum: 购买的实例数量
@@ -524,7 +524,7 @@ module TencentCloud
         # @param TimeUnit: 商品的时间单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
-        # @param OriginalCost: 原始总金额
+        # @param OriginalCost: 应付总金额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalCost: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

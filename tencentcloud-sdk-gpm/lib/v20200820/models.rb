@@ -41,7 +41,7 @@ module TencentCloud
       class CancelMatchingRequest < TencentCloud::Common::AbstractModel
         # @param MatchCode: 匹配 Code
         # @type MatchCode: String
-        # @param MatchTicketId: 要取消的匹配请求 Id
+        # @param MatchTicketId: 要取消的匹配匹配票据 ID
         # @type MatchTicketId: String
 
         attr_accessor :MatchCode, :MatchTicketId
@@ -499,7 +499,7 @@ module TencentCloud
 
       # DescribeMatchingProgress请求参数结构体
       class DescribeMatchingProgressRequest < TencentCloud::Common::AbstractModel
-        # @param MatchTicketIds: 请求 id 列表, 列表长度 128。
+        # @param MatchTicketIds: 匹配票据 ID列表, 列表长度 12。
         # @type MatchTicketIds: Array
 
         attr_accessor :MatchTicketIds
@@ -515,7 +515,7 @@ module TencentCloud
 
       # DescribeMatchingProgress返回参数结构体
       class DescribeMatchingProgressResponse < TencentCloud::Common::AbstractModel
-        # @param MatchTickets: 请求结果列表
+        # @param MatchTickets: 匹配票据列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchTickets: Array
         # @param ErrCode: 错误码
@@ -1381,7 +1381,7 @@ module TencentCloud
         # @type MatchCode: String
         # @param Players: 玩家信息 最多 200 条。
         # @type Players: Array
-        # @param MatchTicketId: 请求 Id 默认空字符串，为空则由 GPM 自动生成 长度 128，只能包含数字、字母、. 和 -
+        # @param MatchTicketId: 匹配票据 ID 默认空字符串，为空则由 GPM 自动生成 长度 128，只能包含数字、字母、. 和 -
         # @type MatchTicketId: String
 
         attr_accessor :MatchCode, :Players, :MatchTicketId
@@ -1403,7 +1403,7 @@ module TencentCloud
       class StartMatchingResponse < TencentCloud::Common::AbstractModel
         # @param ErrCode: 错误码。
         # @type ErrCode: Integer
-        # @param MatchTicketId: 请求 id 长度 128。
+        # @param MatchTicketId: 匹配票据 ID长度 128。
         # @type MatchTicketId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
