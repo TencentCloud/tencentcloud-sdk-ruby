@@ -250,6 +250,72 @@ module TencentCloud
         end
       end
 
+      # CreateLoRaFrequency请求参数结构体
+      class CreateLoRaFrequencyRequest < TencentCloud::Common::AbstractModel
+        # @param FreqName: 频点配置名称
+        # @type FreqName: String
+        # @param ChannelsDataUp: 数据上行信道
+        # @type ChannelsDataUp: Array
+        # @param ChannelsDataRX1: 数据下行RX1信道
+        # @type ChannelsDataRX1: Array
+        # @param ChannelsDataRX2: 数据下行RX2信道
+        # @type ChannelsDataRX2: Array
+        # @param ChannelsJoinUp: 入网上行信道
+        # @type ChannelsJoinUp: Array
+        # @param ChannelsJoinRX1: 入网下行RX1信道
+        # @type ChannelsJoinRX1: Array
+        # @param ChannelsJoinRX2: 入网下行RX2信道
+        # @type ChannelsJoinRX2: Array
+        # @param Description: 频点配置描述
+        # @type Description: String
+
+        attr_accessor :FreqName, :ChannelsDataUp, :ChannelsDataRX1, :ChannelsDataRX2, :ChannelsJoinUp, :ChannelsJoinRX1, :ChannelsJoinRX2, :Description
+        
+        def initialize(freqname=nil, channelsdataup=nil, channelsdatarx1=nil, channelsdatarx2=nil, channelsjoinup=nil, channelsjoinrx1=nil, channelsjoinrx2=nil, description=nil)
+          @FreqName = freqname
+          @ChannelsDataUp = channelsdataup
+          @ChannelsDataRX1 = channelsdatarx1
+          @ChannelsDataRX2 = channelsdatarx2
+          @ChannelsJoinUp = channelsjoinup
+          @ChannelsJoinRX1 = channelsjoinrx1
+          @ChannelsJoinRX2 = channelsjoinrx2
+          @Description = description
+        end
+
+        def deserialize(params)
+          @FreqName = params['FreqName']
+          @ChannelsDataUp = params['ChannelsDataUp']
+          @ChannelsDataRX1 = params['ChannelsDataRX1']
+          @ChannelsDataRX2 = params['ChannelsDataRX2']
+          @ChannelsJoinUp = params['ChannelsJoinUp']
+          @ChannelsJoinRX1 = params['ChannelsJoinRX1']
+          @ChannelsJoinRX2 = params['ChannelsJoinRX2']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateLoRaFrequency返回参数结构体
+      class CreateLoRaFrequencyResponse < TencentCloud::Common::AbstractModel
+        # @param Data: LoRa频点信息
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.LoRaFrequencyEntry`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = LoRaFrequencyEntry.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLoRaGateway请求参数结构体
       class CreateLoRaGatewayRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: LoRa 网关Id
@@ -510,6 +576,38 @@ module TencentCloud
         def deserialize(params)
           @ResultCode = params['ResultCode']
           @ResultMessage = params['ResultMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLoRaFrequency请求参数结构体
+      class DeleteLoRaFrequencyRequest < TencentCloud::Common::AbstractModel
+        # @param FreqId: 频点唯一ID
+        # @type FreqId: String
+
+        attr_accessor :FreqId
+        
+        def initialize(freqid=nil)
+          @FreqId = freqid
+        end
+
+        def deserialize(params)
+          @FreqId = params['FreqId']
+        end
+      end
+
+      # DeleteLoRaFrequency返回参数结构体
+      class DeleteLoRaFrequencyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -803,6 +901,45 @@ module TencentCloud
         def deserialize(params)
           unless params['Device'].nil?
             @Device = DeviceInfo.new.deserialize(params[Device])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLoRaFrequency请求参数结构体
+      class DescribeLoRaFrequencyRequest < TencentCloud::Common::AbstractModel
+        # @param FreqId: 频点唯一ID
+        # @type FreqId: String
+
+        attr_accessor :FreqId
+        
+        def initialize(freqid=nil)
+          @FreqId = freqid
+        end
+
+        def deserialize(params)
+          @FreqId = params['FreqId']
+        end
+      end
+
+      # DescribeLoRaFrequency返回参数结构体
+      class DescribeLoRaFrequencyResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回详情项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.LoRaFrequencyEntry`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = LoRaFrequencyEntry.new.deserialize(params[Data])
           end
           @RequestId = params['RequestId']
         end
@@ -1532,6 +1669,58 @@ module TencentCloud
         end
       end
 
+      # LoRa自定义频点信息
+      class LoRaFrequencyEntry < TencentCloud::Common::AbstractModel
+        # @param FreqId: 频点唯一ID
+        # @type FreqId: String
+        # @param FreqName: 频点名称
+        # @type FreqName: String
+        # @param Description: 频点描述
+        # @type Description: String
+        # @param ChannelsDataUp: 数据上行信道
+        # @type ChannelsDataUp: Array
+        # @param ChannelsDataRX1: 数据下行信道RX1
+        # @type ChannelsDataRX1: Array
+        # @param ChannelsDataRX2: 数据下行信道RX2
+        # @type ChannelsDataRX2: Array
+        # @param ChannelsJoinUp: 入网上行信道
+        # @type ChannelsJoinUp: Array
+        # @param ChannelsJoinRX1: 入网下行RX1信道
+        # @type ChannelsJoinRX1: Array
+        # @param ChannelsJoinRX2: 入网下行RX2信道
+        # @type ChannelsJoinRX2: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+
+        attr_accessor :FreqId, :FreqName, :Description, :ChannelsDataUp, :ChannelsDataRX1, :ChannelsDataRX2, :ChannelsJoinUp, :ChannelsJoinRX1, :ChannelsJoinRX2, :CreateTime
+        
+        def initialize(freqid=nil, freqname=nil, description=nil, channelsdataup=nil, channelsdatarx1=nil, channelsdatarx2=nil, channelsjoinup=nil, channelsjoinrx1=nil, channelsjoinrx2=nil, createtime=nil)
+          @FreqId = freqid
+          @FreqName = freqname
+          @Description = description
+          @ChannelsDataUp = channelsdataup
+          @ChannelsDataRX1 = channelsdatarx1
+          @ChannelsDataRX2 = channelsdatarx2
+          @ChannelsJoinUp = channelsjoinup
+          @ChannelsJoinRX1 = channelsjoinrx1
+          @ChannelsJoinRX2 = channelsjoinrx2
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @FreqId = params['FreqId']
+          @FreqName = params['FreqName']
+          @Description = params['Description']
+          @ChannelsDataUp = params['ChannelsDataUp']
+          @ChannelsDataRX1 = params['ChannelsDataRX1']
+          @ChannelsDataRX2 = params['ChannelsDataRX2']
+          @ChannelsJoinUp = params['ChannelsJoinUp']
+          @ChannelsJoinRX1 = params['ChannelsJoinRX1']
+          @ChannelsJoinRX2 = params['ChannelsJoinRX2']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # LoRa 网关信息
       class LoRaGatewayItem < TencentCloud::Common::AbstractModel
         # @param GatewayId: LoRa 网关Id
@@ -1615,6 +1804,76 @@ module TencentCloud
           @Altitude = params['Altitude']
           @Latitude = params['Latitude']
           @Longitude = params['Longitude']
+        end
+      end
+
+      # ModifyLoRaFrequency请求参数结构体
+      class ModifyLoRaFrequencyRequest < TencentCloud::Common::AbstractModel
+        # @param FreqId: 频点唯一ID
+        # @type FreqId: String
+        # @param FreqName: 频点名称
+        # @type FreqName: String
+        # @param Description: 频点描述
+        # @type Description: String
+        # @param ChannelsDataUp: 数据上行信道
+        # @type ChannelsDataUp: Array
+        # @param ChannelsDataRX1: 数据下行信道RX1
+        # @type ChannelsDataRX1: Array
+        # @param ChannelsDataRX2: 数据下行信道RX2
+        # @type ChannelsDataRX2: Array
+        # @param ChannelsJoinUp: 入网上行信道
+        # @type ChannelsJoinUp: Array
+        # @param ChannelsJoinRX1: 入网下行信道RX1
+        # @type ChannelsJoinRX1: Array
+        # @param ChannelsJoinRX2: 入网下行信道RX2
+        # @type ChannelsJoinRX2: Array
+
+        attr_accessor :FreqId, :FreqName, :Description, :ChannelsDataUp, :ChannelsDataRX1, :ChannelsDataRX2, :ChannelsJoinUp, :ChannelsJoinRX1, :ChannelsJoinRX2
+        
+        def initialize(freqid=nil, freqname=nil, description=nil, channelsdataup=nil, channelsdatarx1=nil, channelsdatarx2=nil, channelsjoinup=nil, channelsjoinrx1=nil, channelsjoinrx2=nil)
+          @FreqId = freqid
+          @FreqName = freqname
+          @Description = description
+          @ChannelsDataUp = channelsdataup
+          @ChannelsDataRX1 = channelsdatarx1
+          @ChannelsDataRX2 = channelsdatarx2
+          @ChannelsJoinUp = channelsjoinup
+          @ChannelsJoinRX1 = channelsjoinrx1
+          @ChannelsJoinRX2 = channelsjoinrx2
+        end
+
+        def deserialize(params)
+          @FreqId = params['FreqId']
+          @FreqName = params['FreqName']
+          @Description = params['Description']
+          @ChannelsDataUp = params['ChannelsDataUp']
+          @ChannelsDataRX1 = params['ChannelsDataRX1']
+          @ChannelsDataRX2 = params['ChannelsDataRX2']
+          @ChannelsJoinUp = params['ChannelsJoinUp']
+          @ChannelsJoinRX1 = params['ChannelsJoinRX1']
+          @ChannelsJoinRX2 = params['ChannelsJoinRX2']
+        end
+      end
+
+      # ModifyLoRaFrequency返回参数结构体
+      class ModifyLoRaFrequencyResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 频点信息
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.LoRaFrequencyEntry`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = LoRaFrequencyEntry.new.deserialize(params[Data])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

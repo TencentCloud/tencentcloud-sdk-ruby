@@ -121,6 +121,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建 LoRa 自定义频点
+
+        # @param request: Request instance for CreateLoRaFrequency.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateLoRaFrequencyRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateLoRaFrequencyResponse`
+        def CreateLoRaFrequency(request)
+          body = send_request('CreateLoRaFrequency', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLoRaFrequencyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建新 LoRa 网关设备接口
 
         # @param request: Request instance for CreateLoRaGateway.
@@ -227,6 +251,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提供删除LoRa自定义频点的能力
+
+        # @param request: Request instance for DeleteLoRaFrequency.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteLoRaFrequencyRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteLoRaFrequencyResponse`
+        def DeleteLoRaFrequency(request)
+          body = send_request('DeleteLoRaFrequency', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLoRaFrequencyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -395,6 +443,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceDataHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提供查询LoRa自定义频点详情的能力
+
+        # @param request: Request instance for DescribeLoRaFrequency.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeLoRaFrequencyRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeLoRaFrequencyResponse`
+        def DescribeLoRaFrequency(request)
+          body = send_request('DescribeLoRaFrequency', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLoRaFrequencyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -683,6 +755,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListEventHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改LoRa自定义频点
+
+        # @param request: Request instance for ModifyLoRaFrequency.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyLoRaFrequencyRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyLoRaFrequencyResponse`
+        def ModifyLoRaFrequency(request)
+          body = send_request('ModifyLoRaFrequency', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLoRaFrequencyResponse.new
             model.deserialize(response['Response'])
             model
           else

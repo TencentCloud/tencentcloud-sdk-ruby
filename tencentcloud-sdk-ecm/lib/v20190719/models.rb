@@ -166,15 +166,24 @@ module TencentCloud
         # @type InternetMaxBandwidthOut: Integer
         # @param Tags: 需要关联的标签列表。
         # @type Tags: Array
+        # @param InstanceId: 要绑定的实例 ID。
+        # @type InstanceId: String
+        # @param NetworkInterfaceId: 要绑定的弹性网卡 ID。 弹性网卡 ID 形如：eni-11112222。NetworkInterfaceId 与 InstanceId 不可同时指定。弹性网卡 ID 可通过DescribeNetworkInterfaces接口返回值中的networkInterfaceId获取。
+        # @type NetworkInterfaceId: String
+        # @param PrivateIpAddress: 要绑定的内网 IP。如果指定了 NetworkInterfaceId 则也必须指定 PrivateIpAddress ，表示将 EIP 绑定到指定弹性网卡的指定内网 IP 上。同时要确保指定的 PrivateIpAddress 是指定的 NetworkInterfaceId 上的一个内网 IP。指定弹性网卡的内网 IP 可通过DescribeNetworkInterfaces接口返回值中的privateIpAddress获取。
+        # @type PrivateIpAddress: String
 
-        attr_accessor :EcmRegion, :AddressCount, :InternetServiceProvider, :InternetMaxBandwidthOut, :Tags
+        attr_accessor :EcmRegion, :AddressCount, :InternetServiceProvider, :InternetMaxBandwidthOut, :Tags, :InstanceId, :NetworkInterfaceId, :PrivateIpAddress
         
-        def initialize(ecmregion=nil, addresscount=nil, internetserviceprovider=nil, internetmaxbandwidthout=nil, tags=nil)
+        def initialize(ecmregion=nil, addresscount=nil, internetserviceprovider=nil, internetmaxbandwidthout=nil, tags=nil, instanceid=nil, networkinterfaceid=nil, privateipaddress=nil)
           @EcmRegion = ecmregion
           @AddressCount = addresscount
           @InternetServiceProvider = internetserviceprovider
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @Tags = tags
+          @InstanceId = instanceid
+          @NetworkInterfaceId = networkinterfaceid
+          @PrivateIpAddress = privateipaddress
         end
 
         def deserialize(params)
@@ -183,6 +192,9 @@ module TencentCloud
           @InternetServiceProvider = params['InternetServiceProvider']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @Tags = params['Tags']
+          @InstanceId = params['InstanceId']
+          @NetworkInterfaceId = params['NetworkInterfaceId']
+          @PrivateIpAddress = params['PrivateIpAddress']
         end
       end
 
@@ -452,7 +464,7 @@ module TencentCloud
         # @type NetworkInterfaceId: String
         # @param InstanceId: 实例ID。形如：ein-r8hr2upy。
         # @type InstanceId: String
-        # @param EcmRegion: ECM 地域
+        # @param EcmRegion: ECM 地域，形如ap-xian-ecm。
         # @type EcmRegion: String
 
         attr_accessor :NetworkInterfaceId, :InstanceId, :EcmRegion
@@ -1060,7 +1072,7 @@ module TencentCloud
         # @type NetworkInterfaceName: String
         # @param SubnetId: 弹性网卡所在的子网实例ID，例如：subnet-0ap8nwca。
         # @type SubnetId: String
-        # @param EcmRegion: ECM 地域
+        # @param EcmRegion: ECM 地域，形如ap-xian-ecm。
         # @type EcmRegion: String
         # @param NetworkInterfaceDescription: 弹性网卡描述，可任意命名，但不得超过60个字符。
         # @type NetworkInterfaceDescription: String
@@ -2810,7 +2822,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param EcmRegion: ECM 地域
+        # @param EcmRegion: ECM 地域，形如ap-xian-ecm。
         # @type EcmRegion: String
 
         attr_accessor :NetworkInterfaceIds, :Filters, :Offset, :Limit, :EcmRegion
@@ -3564,7 +3576,7 @@ module TencentCloud
         # @type NetworkInterfaceId: String
         # @param InstanceId: 实例ID。形如：ein-hcs7jkg4
         # @type InstanceId: String
-        # @param EcmRegion: ECM 地域
+        # @param EcmRegion: ECM 地域，形如ap-xian-ecm。
         # @type EcmRegion: String
 
         attr_accessor :NetworkInterfaceId, :InstanceId, :EcmRegion
@@ -5477,7 +5489,7 @@ module TencentCloud
       class ModifyModuleDisableWanIpRequest < TencentCloud::Common::AbstractModel
         # @param ModuleId: 模块ID
         # @type ModuleId: String
-        # @param DisableWanIp: 是否禁止分配外网ip
+        # @param DisableWanIp: 是否禁止分配外网ip,true：统一分配外网ip，false：禁止分配外网ip.
         # @type DisableWanIp: Boolean
 
         attr_accessor :ModuleId, :DisableWanIp
@@ -5681,6 +5693,46 @@ module TencentCloud
 
       # ModifyModuleSecurityGroups返回参数结构体
       class ModifyModuleSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPrivateIpAddressesAttribute请求参数结构体
+      class ModifyPrivateIpAddressesAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
+        # @type NetworkInterfaceId: String
+        # @param PrivateIpAddresses: 指定的内网IP信息。
+        # @type PrivateIpAddresses: Array
+        # @param EcmRegion: ECM 节点Region信息，形如ap-xian-ecm。
+        # @type EcmRegion: String
+
+        attr_accessor :NetworkInterfaceId, :PrivateIpAddresses, :EcmRegion
+        
+        def initialize(networkinterfaceid=nil, privateipaddresses=nil, ecmregion=nil)
+          @NetworkInterfaceId = networkinterfaceid
+          @PrivateIpAddresses = privateipaddresses
+          @EcmRegion = ecmregion
+        end
+
+        def deserialize(params)
+          @NetworkInterfaceId = params['NetworkInterfaceId']
+          @PrivateIpAddresses = params['PrivateIpAddresses']
+          @EcmRegion = params['EcmRegion']
+        end
+      end
+
+      # ModifyPrivateIpAddressesAttribute返回参数结构体
+      class ModifyPrivateIpAddressesAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8278,19 +8330,25 @@ module TencentCloud
         # @type TerminateDelay: Boolean
         # @param TerminateTime: 定时销毁的时间，格式形如："2019-08-05 12:01:30"，若非定时销毁，则此参数被忽略。
         # @type TerminateTime: String
+        # @param AssociatedResourceDestroy: 是否关联删除已绑定的弹性网卡和弹性IP，默认为true。
+        # 当为true时，一并删除弹性网卡和弹性IP；
+        # 当为false时，只销毁主机，保留弹性网卡和弹性IP。
+        # @type AssociatedResourceDestroy: Boolean
 
-        attr_accessor :InstanceIdSet, :TerminateDelay, :TerminateTime
+        attr_accessor :InstanceIdSet, :TerminateDelay, :TerminateTime, :AssociatedResourceDestroy
         
-        def initialize(instanceidset=nil, terminatedelay=nil, terminatetime=nil)
+        def initialize(instanceidset=nil, terminatedelay=nil, terminatetime=nil, associatedresourcedestroy=nil)
           @InstanceIdSet = instanceidset
           @TerminateDelay = terminatedelay
           @TerminateTime = terminatetime
+          @AssociatedResourceDestroy = associatedresourcedestroy
         end
 
         def deserialize(params)
           @InstanceIdSet = params['InstanceIdSet']
           @TerminateDelay = params['TerminateDelay']
           @TerminateTime = params['TerminateTime']
+          @AssociatedResourceDestroy = params['AssociatedResourceDestroy']
         end
       end
 
