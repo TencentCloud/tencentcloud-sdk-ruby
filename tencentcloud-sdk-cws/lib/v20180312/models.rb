@@ -108,7 +108,12 @@ module TencentCloud
 
         def deserialize(params)
           @Number = params['Number']
-          @Sites = params['Sites']
+          unless params['Sites'].nil?
+            @Sites = []
+            params['Sites'].each do |i|
+              @Sites << MiniSite.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -362,7 +367,12 @@ module TencentCloud
 
         def deserialize(params)
           @MonitorIds = params['MonitorIds']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -386,7 +396,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Monitors = params['Monitors']
+          unless params['Monitors'].nil?
+            @Monitors = []
+            params['Monitors'].each do |i|
+              @Monitors << MonitorsDetail.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -453,7 +468,12 @@ module TencentCloud
 
         def deserialize(params)
           @SiteIds = params['SiteIds']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -478,7 +498,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Sites = params['Sites']
+          unless params['Sites'].nil?
+            @Sites = []
+            params['Sites'].each do |i|
+              @Sites << Site.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -518,7 +543,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @SitesVerification = params['SitesVerification']
+          unless params['SitesVerification'].nil?
+            @SitesVerification = []
+            params['SitesVerification'].each do |i|
+              @SitesVerification << SitesVerification.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -580,8 +610,18 @@ module TencentCloud
           @VulsLowNumber = params['VulsLowNumber']
           @VulsNoticeNumber = params['VulsNoticeNumber']
           @PageCount = params['PageCount']
-          @Sites = params['Sites']
-          @ImpactSites = params['ImpactSites']
+          unless params['Sites'].nil?
+            @Sites = []
+            params['Sites'].each do |i|
+              @Sites << MonitorMiniSite.new.deserialize(i)
+            end
+          end
+          unless params['ImpactSites'].nil?
+            @ImpactSites = []
+            params['ImpactSites'].each do |i|
+              @ImpactSites << MonitorMiniSite.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -616,7 +656,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @VulsTimeline = params['VulsTimeline']
+          unless params['VulsTimeline'].nil?
+            @VulsTimeline = []
+            params['VulsTimeline'].each do |i|
+              @VulsTimeline << VulsTimeline.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -647,7 +692,12 @@ module TencentCloud
         def deserialize(params)
           @SiteId = params['SiteId']
           @MonitorId = params['MonitorId']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -672,7 +722,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Vuls = params['Vuls']
+          unless params['Vuls'].nil?
+            @Vuls = []
+            params['Vuls'].each do |i|
+              @Vuls << Vul.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1006,11 +1061,21 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Basic'].nil?
-            @Basic = Monitor.new.deserialize(params[Basic])
+            @Basic = Monitor.new.deserialize(params['Basic'])
           end
-          @Sites = params['Sites']
+          unless params['Sites'].nil?
+            @Sites = []
+            params['Sites'].each do |i|
+              @Sites << MonitorMiniSite.new.deserialize(i)
+            end
+          end
           @SiteNumber = params['SiteNumber']
-          @ImpactSites = params['ImpactSites']
+          unless params['ImpactSites'].nil?
+            @ImpactSites = []
+            params['ImpactSites'].each do |i|
+              @ImpactSites << MonitorMiniSite.new.deserialize(i)
+            end
+          end
           @ImpactSiteNumber = params['ImpactSiteNumber']
           @VulsHighNumber = params['VulsHighNumber']
           @VulsMiddleNumber = params['VulsMiddleNumber']

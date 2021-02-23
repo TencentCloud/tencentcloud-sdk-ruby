@@ -60,9 +60,19 @@ module TencentCloud
           @EntrypointClass = params['EntrypointClass']
           @ProgramArgs = params['ProgramArgs']
           @Remark = params['Remark']
-          @ResourceRefs = params['ResourceRefs']
+          unless params['ResourceRefs'].nil?
+            @ResourceRefs = []
+            params['ResourceRefs'].each do |i|
+              @ResourceRefs << ResourceRef.new.deserialize(i)
+            end
+          end
           @DefaultParallelism = params['DefaultParallelism']
-          @Properties = params['Properties']
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              @Properties << Property.new.deserialize(i)
+            end
+          end
           @AutoDelete = params['AutoDelete']
           @COSBucket = params['COSBucket']
           @LogCollect = params['LogCollect']
@@ -168,7 +178,7 @@ module TencentCloud
         def deserialize(params)
           @ResourceId = params['ResourceId']
           unless params['ResourceLoc'].nil?
-            @ResourceLoc = ResourceLoc.new.deserialize(params[ResourceLoc])
+            @ResourceLoc = ResourceLoc.new.deserialize(params['ResourceLoc'])
           end
           @Remark = params['Remark']
           @AutoDelete = params['AutoDelete']
@@ -220,7 +230,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ResourceLoc'].nil?
-            @ResourceLoc = ResourceLoc.new.deserialize(params[ResourceLoc])
+            @ResourceLoc = ResourceLoc.new.deserialize(params['ResourceLoc'])
           end
           @Name = params['Name']
           @ResourceType = params['ResourceType']
@@ -293,6 +303,76 @@ module TencentCloud
         end
       end
 
+      # DescribeJobConfigs请求参数结构体
+      class DescribeJobConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业Id
+        # @type JobId: String
+        # @param JobConfigVersions: 作业配置版本
+        # @type JobConfigVersions: Array
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+        # @param Limit: 分页大小，默认20，最大100
+        # @type Limit: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param OnlyDraft: true 表示只展示草稿
+        # @type OnlyDraft: Boolean
+
+        attr_accessor :JobId, :JobConfigVersions, :Offset, :Limit, :Filters, :OnlyDraft
+        
+        def initialize(jobid=nil, jobconfigversions=nil, offset=nil, limit=nil, filters=nil, onlydraft=nil)
+          @JobId = jobid
+          @JobConfigVersions = jobconfigversions
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @OnlyDraft = onlydraft
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @JobConfigVersions = params['JobConfigVersions']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+          @OnlyDraft = params['OnlyDraft']
+        end
+      end
+
+      # DescribeJobConfigs返回参数结构体
+      class DescribeJobConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总的配置版本数量
+        # @type TotalCount: Integer
+        # @param JobConfigSet: 作业配置列表
+        # @type JobConfigSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :JobConfigSet, :RequestId
+        
+        def initialize(totalcount=nil, jobconfigset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @JobConfigSet = jobconfigset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['JobConfigSet'].nil?
+            @JobConfigSet = []
+            params['JobConfigSet'].each do |i|
+              @JobConfigSet << JobConfig.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeJobs请求参数结构体
       class DescribeJobsRequest < TencentCloud::Common::AbstractModel
         # @param JobIds: 按照一个或者多个作业ID查询。作业ID形如：cql-11112222，每次请求的作业上限为100。参数不支持同时指定JobIds和Filters。
@@ -315,7 +395,12 @@ module TencentCloud
 
         def deserialize(params)
           @JobIds = params['JobIds']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -340,7 +425,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @JobSet = params['JobSet']
+          unless params['JobSet'].nil?
+            @JobSet = []
+            params['JobSet'].each do |i|
+              @JobSet << JobV1.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -372,7 +462,12 @@ module TencentCloud
           @ResourceIds = params['ResourceIds']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @ClusterId = params['ClusterId']
         end
       end
@@ -395,7 +490,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ResourceSet = params['ResourceSet']
+          unless params['ResourceSet'].nil?
+            @ResourceSet = []
+            params['ResourceSet'].each do |i|
+              @ResourceSet << SystemResourceItem.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -418,6 +518,90 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 作业配置详情
+      class JobConfig < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业Id
+        # @type JobId: String
+        # @param EntrypointClass: 主类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntrypointClass: String
+        # @param ProgramArgs: 主类入参
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgramArgs: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param CreateTime: 作业配置创建时间
+        # @type CreateTime: String
+        # @param Version: 作业配置的版本号
+        # @type Version: Integer
+        # @param DefaultParallelism: 作业默认并行度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultParallelism: Integer
+        # @param Properties: 系统参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Properties: Array
+        # @param ResourceRefDetails: 引用资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRefDetails: Array
+        # @param CreatorUin: 创建者uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorUin: String
+        # @param UpdateTime: 作业配置上次启动时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param COSBucket: 作业绑定的存储桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type COSBucket: String
+        # @param LogCollect: 是否启用日志收集，0-未启用，1-已启用，2-历史集群未设置日志集，3-历史集群已开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogCollect: Integer
+
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect
+        
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil)
+          @JobId = jobid
+          @EntrypointClass = entrypointclass
+          @ProgramArgs = programargs
+          @Remark = remark
+          @CreateTime = createtime
+          @Version = version
+          @DefaultParallelism = defaultparallelism
+          @Properties = properties
+          @ResourceRefDetails = resourcerefdetails
+          @CreatorUin = creatoruin
+          @UpdateTime = updatetime
+          @COSBucket = cosbucket
+          @LogCollect = logcollect
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @EntrypointClass = params['EntrypointClass']
+          @ProgramArgs = params['ProgramArgs']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @Version = params['Version']
+          @DefaultParallelism = params['DefaultParallelism']
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              @Properties << Property.new.deserialize(i)
+            end
+          end
+          unless params['ResourceRefDetails'].nil?
+            @ResourceRefDetails = []
+            params['ResourceRefDetails'].each do |i|
+              @ResourceRefDetails << ResourceRefDetail.new.deserialize(i)
+            end
+          end
+          @CreatorUin = params['CreatorUin']
+          @UpdateTime = params['UpdateTime']
+          @COSBucket = params['COSBucket']
+          @LogCollect = params['LogCollect']
         end
       end
 
@@ -605,7 +789,7 @@ module TencentCloud
         def deserialize(params)
           @StorageType = params['StorageType']
           unless params['Param'].nil?
-            @Param = ResourceLocParam.new.deserialize(params[Param])
+            @Param = ResourceLocParam.new.deserialize(params['Param'])
           end
         end
       end
@@ -659,6 +843,38 @@ module TencentCloud
         end
       end
 
+      # JobConfig引用资源信息
+      class ResourceRefDetail < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param Version: 资源版本，-1表示使用最新版本
+        # @type Version: Integer
+        # @param Name: 资源名称
+        # @type Name: String
+        # @param Type: 1: 主资源
+        # @type Type: Integer
+        # @param SystemProvide: 1: 系统内置资源
+        # @type SystemProvide: Integer
+
+        attr_accessor :ResourceId, :Version, :Name, :Type, :SystemProvide
+        
+        def initialize(resourceid=nil, version=nil, name=nil, type=nil, systemprovide=nil)
+          @ResourceId = resourceid
+          @Version = version
+          @Name = name
+          @Type = type
+          @SystemProvide = systemprovide
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Version = params['Version']
+          @Name = params['Name']
+          @Type = params['Type']
+          @SystemProvide = params['SystemProvide']
+        end
+      end
+
       # 作业启动详情
       class RunJobDescription < TencentCloud::Common::AbstractModel
         # @param JobId: 作业Id
@@ -699,7 +915,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RunJobDescriptions = params['RunJobDescriptions']
+          unless params['RunJobDescriptions'].nil?
+            @RunJobDescriptions = []
+            params['RunJobDescriptions'].each do |i|
+              @RunJobDescriptions << RunJobDescription.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -751,7 +972,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @StopJobDescriptions = params['StopJobDescriptions']
+          unless params['StopJobDescriptions'].nil?
+            @StopJobDescriptions = []
+            params['StopJobDescriptions'].each do |i|
+              @StopJobDescriptions << StopJobDescription.new.deserialize(i)
+            end
+          end
         end
       end
 

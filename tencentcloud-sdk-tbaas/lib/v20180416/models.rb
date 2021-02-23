@@ -40,8 +40,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :UserIdentity, :Applicant, :IdentityNum, :CsrData, :Notes
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, useridentity=nil, applicant=nil, identitynum=nil, csrdata=nil, notes=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, useridentity=nil, applicant=nil, identitynum=nil, csrdata=nil, notes=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -218,8 +218,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :GroupPk, :BlockNumber
         
-        def initialize(module=nil, operation=nil, grouppk=nil, blocknumber=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, grouppk=nil, blocknumber=nil)
+          @Module = _module
           @Operation = operation
           @GroupPk = grouppk
           @BlockNumber = blocknumber
@@ -269,7 +269,12 @@ module TencentCloud
 
         def deserialize(params)
           @ChannelName = params['ChannelName']
-          @PeerList = params['PeerList']
+          unless params['PeerList'].nil?
+            @PeerList = []
+            params['PeerList'].each do |i|
+              @PeerList << PeerDetailForUser.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -292,7 +297,12 @@ module TencentCloud
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
-          @GroupList = params['GroupList']
+          unless params['GroupList'].nil?
+            @GroupList = []
+            params['GroupList'].each do |i|
+              @GroupList << GroupDetailForUser.new.deserialize(i)
+            end
+          end
           @ClusterName = params['ClusterName']
         end
       end
@@ -324,8 +334,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :PeerName, :ChaincodeName, :ChaincodeVersion, :ChaincodeFileType, :Chaincode
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, peername=nil, chaincodename=nil, chaincodeversion=nil, chaincodefiletype=nil, chaincode=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, peername=nil, chaincodename=nil, chaincodeversion=nil, chaincodefiletype=nil, chaincode=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -384,8 +394,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :GroupPk, :ContractName, :AbiInfo, :ByteCodeBin, :ConstructorParams
         
-        def initialize(module=nil, operation=nil, grouppk=nil, contractname=nil, abiinfo=nil, bytecodebin=nil, constructorparams=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, grouppk=nil, contractname=nil, abiinfo=nil, bytecodebin=nil, constructorparams=nil)
+          @Module = _module
           @Operation = operation
           @GroupPk = grouppk
           @ContractName = contractname
@@ -442,8 +452,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :CertId, :CertDn, :ClusterId, :GroupName
         
-        def initialize(module=nil, operation=nil, certid=nil, certdn=nil, clusterid=nil, groupname=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, certid=nil, certdn=nil, clusterid=nil, groupname=nil)
+          @Module = _module
           @Operation = operation
           @CertId = certid
           @CertDn = certdn
@@ -522,8 +532,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Offset, :Limit, :GroupPk, :BlockHash
         
-        def initialize(module=nil, operation=nil, offset=nil, limit=nil, grouppk=nil, blockhash=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, offset=nil, limit=nil, grouppk=nil, blockhash=nil)
+          @Module = _module
           @Operation = operation
           @Offset = offset
           @Limit = limit
@@ -564,7 +574,12 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @GroupPk = params['GroupPk']
-          @List = params['List']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              @List << BcosBlockObj.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -592,8 +607,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ChannelId, :GroupId, :ChannelName, :GroupName, :ClusterId, :Offset, :Limit
         
-        def initialize(module=nil, operation=nil, channelid=nil, groupid=nil, channelname=nil, groupname=nil, clusterid=nil, offset=nil, limit=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, channelid=nil, groupid=nil, channelname=nil, groupname=nil, clusterid=nil, offset=nil, limit=nil)
+          @Module = _module
           @Operation = operation
           @ChannelId = channelid
           @GroupId = groupid
@@ -636,7 +651,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @BlockList = params['BlockList']
+          unless params['BlockList'].nil?
+            @BlockList = []
+            params['BlockList'].each do |i|
+              @BlockList << Block.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -662,8 +682,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :ChannelName, :BlockId, :Offset, :Limit
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, channelname=nil, blockid=nil, offset=nil, limit=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, channelname=nil, blockid=nil, offset=nil, limit=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -704,7 +724,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TransactionList = params['TransactionList']
+          unless params['TransactionList'].nil?
+            @TransactionList = []
+            params['TransactionList'].each do |i|
+              @TransactionList << TransactionItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -732,8 +757,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :ChaincodeName, :ChaincodeVersion, :PeerName, :Limit, :Offset
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, chaincodename=nil, chaincodeversion=nil, peername=nil, limit=nil, offset=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, chaincodename=nil, chaincodeversion=nil, peername=nil, limit=nil, offset=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -776,7 +801,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @CompileLogList = params['CompileLogList']
+          unless params['CompileLogList'].nil?
+            @CompileLogList = []
+            params['CompileLogList'].each do |i|
+              @CompileLogList << LogDetailForUser.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -802,8 +832,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :ChannelName, :ChaincodeName, :ChaincodeVersion, :TaskId
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, channelname=nil, chaincodename=nil, chaincodeversion=nil, taskid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, channelname=nil, chaincodename=nil, chaincodeversion=nil, taskid=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -872,8 +902,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :ChaincodeName, :ChaincodeVersion, :PeerName, :BeginTime, :RowNum
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, chaincodename=nil, chaincodeversion=nil, peername=nil, begintime=nil, rownum=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, chaincodename=nil, chaincodeversion=nil, peername=nil, begintime=nil, rownum=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -916,7 +946,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @ChaincodeLogList = params['ChaincodeLogList']
+          unless params['ChaincodeLogList'].nil?
+            @ChaincodeLogList = []
+            params['ChaincodeLogList'].each do |i|
+              @ChaincodeLogList << LogDetailForUser.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -938,8 +973,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :Limit, :Offset
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, limit=nil, offset=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, limit=nil, offset=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -976,7 +1011,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @ChannelList = params['ChannelList']
+          unless params['ChannelList'].nil?
+            @ChannelList = []
+            params['ChannelList'].each do |i|
+              @ChannelList << ChannelDetailForUser.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -994,8 +1034,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Limit, :Offset
         
-        def initialize(module=nil, operation=nil, limit=nil, offset=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, limit=nil, offset=nil)
+          @Module = _module
           @Operation = operation
           @Limit = limit
           @Offset = offset
@@ -1028,7 +1068,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @ClusterList = params['ClusterList']
+          unless params['ClusterList'].nil?
+            @ClusterList = []
+            params['ClusterList'].each do |i|
+              @ClusterList << ClusterDetailForUser.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1048,8 +1093,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupId, :GroupName
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupid=nil, groupname=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupid=nil, groupname=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupId = groupid
@@ -1162,8 +1207,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :ChannelName, :PeerName, :PeerGroup, :TxId, :GroupName
         
-        def initialize(module=nil, operation=nil, clusterid=nil, channelname=nil, peername=nil, peergroup=nil, txid=nil, groupname=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, channelname=nil, peername=nil, peergroup=nil, txid=nil, groupname=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @ChannelName = channelname
@@ -1238,8 +1283,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :GroupId, :ChannelId, :LatestBlockNumber, :GroupName, :ChannelName, :ClusterId, :Offset, :Limit
         
-        def initialize(module=nil, operation=nil, groupid=nil, channelid=nil, latestblocknumber=nil, groupname=nil, channelname=nil, clusterid=nil, offset=nil, limit=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, groupid=nil, channelid=nil, latestblocknumber=nil, groupname=nil, channelname=nil, clusterid=nil, offset=nil, limit=nil)
+          @Module = _module
           @Operation = operation
           @GroupId = groupid
           @ChannelId = channelid
@@ -1284,7 +1329,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TransactionList = params['TransactionList']
+          unless params['TransactionList'].nil?
+            @TransactionList = []
+            params['TransactionList'].each do |i|
+              @TransactionList << TransactionItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1308,8 +1358,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :PeerName, :BeginTime, :RowNum
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, peername=nil, begintime=nil, rownum=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, peername=nil, begintime=nil, rownum=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -1348,7 +1398,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @PeerLogList = params['PeerLogList']
+          unless params['PeerLogList'].nil?
+            @PeerLogList = []
+            params['PeerLogList'].each do |i|
+              @PeerLogList << LogDetailForUser.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1366,8 +1421,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :GroupPk, :TransHash
         
-        def initialize(module=nil, operation=nil, grouppk=nil, transhash=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, grouppk=nil, transhash=nil)
+          @Module = _module
           @Operation = operation
           @GroupPk = grouppk
           @TransHash = transhash
@@ -1418,8 +1473,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Offset, :Limit, :GroupPk, :TransHash
         
-        def initialize(module=nil, operation=nil, offset=nil, limit=nil, grouppk=nil, transhash=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, offset=nil, limit=nil, grouppk=nil, transhash=nil)
+          @Module = _module
           @Operation = operation
           @Offset = offset
           @Limit = limit
@@ -1460,7 +1515,12 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @GroupPk = params['GroupPk']
-          @List = params['List']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              @List << BcosTransInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1484,8 +1544,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :ChannelName, :BlockId, :TransactionId
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, channelname=nil, blockid=nil, transactionid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, channelname=nil, blockid=nil, transactionid=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -1568,7 +1628,12 @@ module TencentCloud
           @BlockHeight = params['BlockHeight']
           @ChannelName = params['ChannelName']
           @ContractName = params['ContractName']
-          @EndorserOrgList = params['EndorserOrgList']
+          unless params['EndorserOrgList'].nil?
+            @EndorserOrgList = []
+            params['EndorserOrgList'].each do |i|
+              @EndorserOrgList << EndorserGroup.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1616,8 +1681,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :GroupName, :ChaincodeName, :ChaincodeVersion, :ChannelName, :PeerName, :Args
         
-        def initialize(module=nil, operation=nil, clusterid=nil, groupname=nil, chaincodename=nil, chaincodeversion=nil, channelname=nil, peername=nil, args=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, groupname=nil, chaincodename=nil, chaincodeversion=nil, channelname=nil, peername=nil, args=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @GroupName = groupname
@@ -1686,8 +1751,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :ChaincodeName, :ChannelName, :Peers, :FuncName, :GroupName, :Args, :AsyncFlag
         
-        def initialize(module=nil, operation=nil, clusterid=nil, chaincodename=nil, channelname=nil, peers=nil, funcname=nil, groupname=nil, args=nil, asyncflag=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, chaincodename=nil, channelname=nil, peers=nil, funcname=nil, groupname=nil, args=nil, asyncflag=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @ChaincodeName = chaincodename
@@ -1705,7 +1770,12 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @ChaincodeName = params['ChaincodeName']
           @ChannelName = params['ChannelName']
-          @Peers = params['Peers']
+          unless params['Peers'].nil?
+            @Peers = []
+            params['Peers'].each do |i|
+              @Peers << PeerSet.new.deserialize(i)
+            end
+          end
           @FuncName = params['FuncName']
           @GroupName = params['GroupName']
           @Args = params['Args']
@@ -1816,8 +1886,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ClusterId, :ChaincodeName, :ChannelName, :Peers, :FuncName, :GroupName, :Args
         
-        def initialize(module=nil, operation=nil, clusterid=nil, chaincodename=nil, channelname=nil, peers=nil, funcname=nil, groupname=nil, args=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, clusterid=nil, chaincodename=nil, channelname=nil, peers=nil, funcname=nil, groupname=nil, args=nil)
+          @Module = _module
           @Operation = operation
           @ClusterId = clusterid
           @ChaincodeName = chaincodename
@@ -1834,7 +1904,12 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @ChaincodeName = params['ChaincodeName']
           @ChannelName = params['ChannelName']
-          @Peers = params['Peers']
+          unless params['Peers'].nil?
+            @Peers = []
+            params['Peers'].each do |i|
+              @Peers << PeerSet.new.deserialize(i)
+            end
+          end
           @FuncName = params['FuncName']
           @GroupName = params['GroupName']
           @Args = params['Args']
@@ -1878,8 +1953,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :GroupPk, :ContractId, :FuncName, :FuncParam
         
-        def initialize(module=nil, operation=nil, grouppk=nil, contractid=nil, funcname=nil, funcparam=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, grouppk=nil, contractid=nil, funcname=nil, funcparam=nil)
+          @Module = _module
           @Operation = operation
           @GroupPk = grouppk
           @ContractId = contractid
@@ -1990,8 +2065,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :GroupPk, :ContractAddress, :ContractName, :AbiInfo, :FuncName, :FuncParam
         
-        def initialize(module=nil, operation=nil, grouppk=nil, contractaddress=nil, contractname=nil, abiinfo=nil, funcname=nil, funcparam=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, grouppk=nil, contractaddress=nil, contractname=nil, abiinfo=nil, funcname=nil, funcparam=nil)
+          @Module = _module
           @Operation = operation
           @GroupPk = grouppk
           @ContractAddress = contractaddress

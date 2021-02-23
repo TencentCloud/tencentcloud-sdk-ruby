@@ -155,7 +155,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DataInfoList = params['DataInfoList']
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              @DataInfoList << DayStreamPlayInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -192,7 +197,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RegionDetail = params['RegionDetail']
+          unless params['RegionDetail'].nil?
+            @RegionDetail = []
+            params['RegionDetail'].each do |i|
+              @RegionDetail << WorkerRegionInfo.new.deserialize(i)
+            end
+          end
           @Idle = params['Idle']
           @RegionNum = params['RegionNum']
           @RequestId = params['RequestId']

@@ -81,7 +81,12 @@ module TencentCloud
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
-          @Staffs = params['Staffs']
+          unless params['Staffs'].nil?
+            @Staffs = []
+            params['Staffs'].each do |i|
+              @Staffs << SeatUserInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -156,7 +161,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Messages = params['Messages']
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              @Messages << MessageBody.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -220,7 +230,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @IMCdrs = params['IMCdrs']
+          unless params['IMCdrs'].nil?
+            @IMCdrs = []
+            params['IMCdrs'].each do |i|
+              @IMCdrs << IMCdrInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -268,7 +283,12 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
-          @Sessions = params['Sessions']
+          unless params['Sessions'].nil?
+            @Sessions = []
+            params['Sessions'].each do |i|
+              @Sessions << PSTNSessionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -316,7 +336,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @SeatUsers = params['SeatUsers']
+          unless params['SeatUsers'].nil?
+            @SeatUsers = []
+            params['SeatUsers'].each do |i|
+              @SeatUsers << SeatUserInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -436,7 +461,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TelCdrs = params['TelCdrs']
+          unless params['TelCdrs'].nil?
+            @TelCdrs = []
+            params['TelCdrs'].each do |i|
+              @TelCdrs << TelCdrInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -543,7 +573,12 @@ module TencentCloud
         def deserialize(params)
           @Timestamp = params['Timestamp']
           @From = params['From']
-          @Messages = params['Messages']
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              @Messages << Message.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -842,7 +877,7 @@ module TencentCloud
           @Duration = params['Duration']
           @RecordURL = params['RecordURL']
           unless params['SeatUser'].nil?
-            @SeatUser = SeatUserInfo.new.deserialize(params[SeatUser])
+            @SeatUser = SeatUserInfo.new.deserialize(params['SeatUser'])
           end
           @EndStatus = params['EndStatus']
           @SkillGroup = params['SkillGroup']
@@ -853,12 +888,22 @@ module TencentCloud
           @EndedTimestamp = params['EndedTimestamp']
           @IVRKeyPressed = params['IVRKeyPressed']
           @HungUpSide = params['HungUpSide']
-          @ServeParticipants = params['ServeParticipants']
+          unless params['ServeParticipants'].nil?
+            @ServeParticipants = []
+            params['ServeParticipants'].each do |i|
+              @ServeParticipants << ServeParticipant.new.deserialize(i)
+            end
+          end
           @SkillGroupId = params['SkillGroupId']
           @EndStatusString = params['EndStatusString']
           @StartTimestamp = params['StartTimestamp']
           @QueuedTimestamp = params['QueuedTimestamp']
-          @PostIVRKeyPressed = params['PostIVRKeyPressed']
+          unless params['PostIVRKeyPressed'].nil?
+            @PostIVRKeyPressed = []
+            params['PostIVRKeyPressed'].each do |i|
+              @PostIVRKeyPressed << IVRKeyPressedElement.new.deserialize(i)
+            end
+          end
           @QueuedSkillGroupId = params['QueuedSkillGroupId']
         end
       end

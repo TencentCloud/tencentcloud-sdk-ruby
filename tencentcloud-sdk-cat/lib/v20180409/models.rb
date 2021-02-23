@@ -48,7 +48,12 @@ module TencentCloud
           @GroupName = params['GroupName']
           @IsDefault = params['IsDefault']
           @TaskNum = params['TaskNum']
-          @GroupDetail = params['GroupDetail']
+          unless params['GroupDetail'].nil?
+            @GroupDetail = []
+            params['GroupDetail'].each do |i|
+              @GroupDetail << CatAgent.new.deserialize(i)
+            end
+          end
           @MaxGroupNum = params['MaxGroupNum']
         end
       end
@@ -527,7 +532,12 @@ module TencentCloud
         def deserialize(params)
           @GroupName = params['GroupName']
           @IsDefault = params['IsDefault']
-          @Agents = params['Agents']
+          unless params['Agents'].nil?
+            @Agents = []
+            params['Agents'].each do |i|
+              @Agents << CatAgent.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -739,7 +749,12 @@ module TencentCloud
 
         def deserialize(params)
           @MetricName = params['MetricName']
-          @Points = params['Points']
+          unless params['Points'].nil?
+            @Points = []
+            params['Points'].each do |i|
+              @Points << DataPoint.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -837,9 +852,14 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SysDefaultGroup'].nil?
-            @SysDefaultGroup = AgentGroup.new.deserialize(params[SysDefaultGroup])
+            @SysDefaultGroup = AgentGroup.new.deserialize(params['SysDefaultGroup'])
           end
-          @CustomGroups = params['CustomGroups']
+          unless params['CustomGroups'].nil?
+            @CustomGroups = []
+            params['CustomGroups'].each do |i|
+              @CustomGroups << AgentGroup.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -870,7 +890,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Agents = params['Agents']
+          unless params['Agents'].nil?
+            @Agents = []
+            params['Agents'].each do |i|
+              @Agents << CatAgent.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -910,7 +935,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Topics = params['Topics']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              @Topics << AlarmTopic.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -984,7 +1014,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @AlarmInfos = params['AlarmInfos']
+          unless params['AlarmInfos'].nil?
+            @AlarmInfos = []
+            params['AlarmInfos'].each do |i|
+              @AlarmInfos << AlarmInfo.new.deserialize(i)
+            end
+          end
           @FaultRatio = params['FaultRatio']
           @FaultTimeSpec = params['FaultTimeSpec']
           @RequestId = params['RequestId']
@@ -1054,7 +1089,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @AlarmInfos = params['AlarmInfos']
+          unless params['AlarmInfos'].nil?
+            @AlarmInfos = []
+            params['AlarmInfos'].each do |i|
+              @AlarmInfos << AlarmInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1114,7 +1154,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @CatLogs = params['CatLogs']
+          unless params['CatLogs'].nil?
+            @CatLogs = []
+            params['CatLogs'].each do |i|
+              @CatLogs << CatLog.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1150,7 +1195,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Tasks = params['Tasks']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              @Tasks << CatTaskDetail.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1198,7 +1248,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Tasks = params['Tasks']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              @Tasks << TaskAlarm.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1338,14 +1393,24 @@ module TencentCloud
           @LowestAvailRatio = params['LowestAvailRatio']
           @LowestProvince = params['LowestProvince']
           @LowestIsp = params['LowestIsp']
-          @ProvinceData = params['ProvinceData']
+          unless params['ProvinceData'].nil?
+            @ProvinceData = []
+            params['ProvinceData'].each do |i|
+              @ProvinceData << ProvinceDetail.new.deserialize(i)
+            end
+          end
           @AvgTime = params['AvgTime']
           @AvgAvailRatio2 = params['AvgAvailRatio2']
           @AvgTime2 = params['AvgTime2']
           @LowestAvailRatio2 = params['LowestAvailRatio2']
           @LowestProvince2 = params['LowestProvince2']
           @LowestIsp2 = params['LowestIsp2']
-          @ProvinceData2 = params['ProvinceData2']
+          unless params['ProvinceData2'].nil?
+            @ProvinceData2 = []
+            params['ProvinceData2'].each do |i|
+              @ProvinceData2 << ProvinceDetail.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1411,13 +1476,23 @@ module TencentCloud
           @AvgAvailRatio = params['AvgAvailRatio']
           @LowestAvailRatio = params['LowestAvailRatio']
           @LowestProvince = params['LowestProvince']
-          @ProvinceData = params['ProvinceData']
+          unless params['ProvinceData'].nil?
+            @ProvinceData = []
+            params['ProvinceData'].each do |i|
+              @ProvinceData << ProvinceDetail.new.deserialize(i)
+            end
+          end
           @AvgTime = params['AvgTime']
           @AvgAvailRatio2 = params['AvgAvailRatio2']
           @AvgTime2 = params['AvgTime2']
           @LowestAvailRatio2 = params['LowestAvailRatio2']
           @LowestProvince2 = params['LowestProvince2']
-          @ProvinceData2 = params['ProvinceData2']
+          unless params['ProvinceData2'].nil?
+            @ProvinceData2 = []
+            params['ProvinceData2'].each do |i|
+              @ProvinceData2 << ProvinceDetail.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1490,14 +1565,24 @@ module TencentCloud
           @LowestAvailRatio = params['LowestAvailRatio']
           @LowestProvince = params['LowestProvince']
           @LowestIsp = params['LowestIsp']
-          @ProvinceData = params['ProvinceData']
+          unless params['ProvinceData'].nil?
+            @ProvinceData = []
+            params['ProvinceData'].each do |i|
+              @ProvinceData << ProvinceDetail.new.deserialize(i)
+            end
+          end
           @AvgTime = params['AvgTime']
           @AvgAvailRatio2 = params['AvgAvailRatio2']
           @AvgTime2 = params['AvgTime2']
           @LowestAvailRatio2 = params['LowestAvailRatio2']
           @LowestProvince2 = params['LowestProvince2']
           @LowestIsp2 = params['LowestIsp2']
-          @ProvinceData2 = params['ProvinceData2']
+          unless params['ProvinceData2'].nil?
+            @ProvinceData2 = []
+            params['ProvinceData2'].each do |i|
+              @ProvinceData2 << ProvinceDetail.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1530,7 +1615,7 @@ module TencentCloud
           @Date = params['Date']
           @Period = params['Period']
           unless params['Dimensions'].nil?
-            @Dimensions = DimensionsDetail.new.deserialize(params[Dimensions])
+            @Dimensions = DimensionsDetail.new.deserialize(params['Dimensions'])
           end
           @MetricName = params['MetricName']
         end
@@ -1551,7 +1636,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DataPoints = params['DataPoints']
+          unless params['DataPoints'].nil?
+            @DataPoints = []
+            params['DataPoints'].each do |i|
+              @DataPoints << DataPointMetric.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1590,8 +1680,18 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RealData = params['RealData']
-          @DayData = params['DayData']
+          unless params['RealData'].nil?
+            @RealData = []
+            params['RealData'].each do |i|
+              @RealData << ResultSummary.new.deserialize(i)
+            end
+          end
+          unless params['DayData'].nil?
+            @DayData = []
+            params['DayData'].each do |i|
+              @DayData << ResultSummary.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1648,8 +1748,18 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Details = params['Details']
-          @Summary = params['Summary']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              @Details << CatReturnDetail.new.deserialize(i)
+            end
+          end
+          unless params['Summary'].nil?
+            @Summary = []
+            params['Summary'].each do |i|
+              @Summary << CatReturnSummary.new.deserialize(i)
+            end
+          end
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @RequestId = params['RequestId']
@@ -1708,8 +1818,18 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Details = params['Details']
-          @Summary = params['Summary']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              @Details << CatReturnDetail.new.deserialize(i)
+            end
+          end
+          unless params['Summary'].nil?
+            @Summary = []
+            params['Summary'].each do |i|
+              @Summary << CatReturnSummary.new.deserialize(i)
+            end
+          end
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @RequestId = params['RequestId']
@@ -1796,7 +1916,12 @@ module TencentCloud
           @GroupId = params['GroupId']
           @GroupName = params['GroupName']
           @IsDefault = params['IsDefault']
-          @Agents = params['Agents']
+          unless params['Agents'].nil?
+            @Agents = []
+            params['Agents'].each do |i|
+              @Agents << CatAgent.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2026,7 +2151,12 @@ module TencentCloud
           @ProvinceName = params['ProvinceName']
           @Mapkey = params['Mapkey']
           @TimeStamp = params['TimeStamp']
-          @IspDetail = params['IspDetail']
+          unless params['IspDetail'].nil?
+            @IspDetail = []
+            params['IspDetail'].each do |i|
+              @IspDetail << IspDetail.new.deserialize(i)
+            end
+          end
           @AvgTime = params['AvgTime']
           @Province = params['Province']
         end

@@ -105,7 +105,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Credentials'].nil?
-            @Credentials = Credentials.new.deserialize(params[Credentials])
+            @Credentials = Credentials.new.deserialize(params['Credentials'])
           end
           @ExpiredTime = params['ExpiredTime']
           @Expiration = params['Expiration']
@@ -167,7 +167,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Credentials'].nil?
-            @Credentials = Credentials.new.deserialize(params[Credentials])
+            @Credentials = Credentials.new.deserialize(params['Credentials'])
           end
           @ExpiredTime = params['ExpiredTime']
           @Expiration = params['Expiration']
@@ -250,7 +250,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Credentials'].nil?
-            @Credentials = Credentials.new.deserialize(params[Credentials])
+            @Credentials = Credentials.new.deserialize(params['Credentials'])
           end
           @ExpiredTime = params['ExpiredTime']
           @Expiration = params['Expiration']
@@ -289,7 +289,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @IdKeys = params['IdKeys']
+          unless params['IdKeys'].nil?
+            @IdKeys = []
+            params['IdKeys'].each do |i|
+              @IdKeys << ApiKey.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

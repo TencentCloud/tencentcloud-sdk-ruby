@@ -57,11 +57,16 @@ module TencentCloud
           @Name = params['Name']
           @Description = params['Description']
           unless params['RoutingStrategy'].nil?
-            @RoutingStrategy = RoutingStrategy.new.deserialize(params[RoutingStrategy])
+            @RoutingStrategy = RoutingStrategy.new.deserialize(params['RoutingStrategy'])
           end
           @CreationTime = params['CreationTime']
           @LastUpdatedTime = params['LastUpdatedTime']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -130,7 +135,12 @@ module TencentCloud
           @OsType = params['OsType']
           @ResourceType = params['ResourceType']
           @SharingStatus = params['SharingStatus']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -330,25 +340,40 @@ module TencentCloud
           @CopyNumber = params['CopyNumber']
           @AssetId = params['AssetId']
           @Description = params['Description']
-          @InboundPermissions = params['InboundPermissions']
+          unless params['InboundPermissions'].nil?
+            @InboundPermissions = []
+            params['InboundPermissions'].each do |i|
+              @InboundPermissions << InboundPermission.new.deserialize(i)
+            end
+          end
           @InstanceType = params['InstanceType']
           @FleetType = params['FleetType']
           @Name = params['Name']
           @NewGameServerSessionProtectionPolicy = params['NewGameServerSessionProtectionPolicy']
           unless params['ResourceCreationLimitPolicy'].nil?
-            @ResourceCreationLimitPolicy = ResourceCreationLimitPolicy.new.deserialize(params[ResourceCreationLimitPolicy])
+            @ResourceCreationLimitPolicy = ResourceCreationLimitPolicy.new.deserialize(params['ResourceCreationLimitPolicy'])
           end
           unless params['RuntimeConfiguration'].nil?
-            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params[RuntimeConfiguration])
+            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params['RuntimeConfiguration'])
           end
           @GameServerSessionProtectionTimeLimit = params['GameServerSessionProtectionTimeLimit']
           @SelectedScalingType = params['SelectedScalingType']
           @SelectedCcnType = params['SelectedCcnType']
-          @Tags = params['Tags']
-          unless params['SystemDiskInfo'].nil?
-            @SystemDiskInfo = DiskInfo.new.deserialize(params[SystemDiskInfo])
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
           end
-          @DataDiskInfo = params['DataDiskInfo']
+          unless params['SystemDiskInfo'].nil?
+            @SystemDiskInfo = DiskInfo.new.deserialize(params['SystemDiskInfo'])
+          end
+          unless params['DataDiskInfo'].nil?
+            @DataDiskInfo = []
+            params['DataDiskInfo'].each do |i|
+              @DataDiskInfo << DiskInfo.new.deserialize(i)
+            end
+          end
           @SelectedTimerType = params['SelectedTimerType']
         end
       end
@@ -372,7 +397,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FleetAttributes = params['FleetAttributes']
+          unless params['FleetAttributes'].nil?
+            @FleetAttributes = []
+            params['FleetAttributes'].each do |i|
+              @FleetAttributes << FleetAttributes.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -401,10 +431,15 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           unless params['RoutingStrategy'].nil?
-            @RoutingStrategy = RoutingStrategy.new.deserialize(params[RoutingStrategy])
+            @RoutingStrategy = RoutingStrategy.new.deserialize(params['RoutingStrategy'])
           end
           @Description = params['Description']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -417,14 +452,14 @@ module TencentCloud
 
         attr_accessor :Alias, :RequestId
         
-        def initialize(alias=nil, requestid=nil)
-          @Alias = alias
+        def initialize(_alias=nil, requestid=nil)
+          @Alias = _alias
           @RequestId = requestid
         end
 
         def deserialize(params)
           unless params['Alias'].nil?
-            @Alias = Alias.new.deserialize(params[Alias])
+            @Alias = Alias.new.deserialize(params['Alias'])
           end
           @RequestId = params['RequestId']
         end
@@ -466,7 +501,12 @@ module TencentCloud
           @AssetRegion = params['AssetRegion']
           @OperateSystem = params['OperateSystem']
           @ImageId = params['ImageId']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -622,25 +662,40 @@ module TencentCloud
         def deserialize(params)
           @AssetId = params['AssetId']
           @Description = params['Description']
-          @InboundPermissions = params['InboundPermissions']
+          unless params['InboundPermissions'].nil?
+            @InboundPermissions = []
+            params['InboundPermissions'].each do |i|
+              @InboundPermissions << InboundPermission.new.deserialize(i)
+            end
+          end
           @InstanceType = params['InstanceType']
           @FleetType = params['FleetType']
           @Name = params['Name']
           @NewGameServerSessionProtectionPolicy = params['NewGameServerSessionProtectionPolicy']
           @PeerVpcId = params['PeerVpcId']
           unless params['ResourceCreationLimitPolicy'].nil?
-            @ResourceCreationLimitPolicy = ResourceCreationLimitPolicy.new.deserialize(params[ResourceCreationLimitPolicy])
+            @ResourceCreationLimitPolicy = ResourceCreationLimitPolicy.new.deserialize(params['ResourceCreationLimitPolicy'])
           end
           unless params['RuntimeConfiguration'].nil?
-            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params[RuntimeConfiguration])
+            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params['RuntimeConfiguration'])
           end
           @SubNetId = params['SubNetId']
           @GameServerSessionProtectionTimeLimit = params['GameServerSessionProtectionTimeLimit']
-          @Tags = params['Tags']
-          unless params['SystemDiskInfo'].nil?
-            @SystemDiskInfo = DiskInfo.new.deserialize(params[SystemDiskInfo])
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
           end
-          @DataDiskInfo = params['DataDiskInfo']
+          unless params['SystemDiskInfo'].nil?
+            @SystemDiskInfo = DiskInfo.new.deserialize(params['SystemDiskInfo'])
+          end
+          unless params['DataDiskInfo'].nil?
+            @DataDiskInfo = []
+            params['DataDiskInfo'].each do |i|
+              @DataDiskInfo << DiskInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -661,7 +716,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['FleetAttributes'].nil?
-            @FleetAttributes = FleetAttributes.new.deserialize(params[FleetAttributes])
+            @FleetAttributes = FleetAttributes.new.deserialize(params['FleetAttributes'])
           end
           @RequestId = params['RequestId']
         end
@@ -692,10 +747,25 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
-          @Destinations = params['Destinations']
-          @PlayerLatencyPolicies = params['PlayerLatencyPolicies']
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              @Destinations << GameServerSessionQueueDestination.new.deserialize(i)
+            end
+          end
+          unless params['PlayerLatencyPolicies'].nil?
+            @PlayerLatencyPolicies = []
+            params['PlayerLatencyPolicies'].each do |i|
+              @PlayerLatencyPolicies << PlayerLatencyPolicy.new.deserialize(i)
+            end
+          end
           @TimeoutInSeconds = params['TimeoutInSeconds']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -715,7 +785,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GameServerSessionQueue'].nil?
-            @GameServerSessionQueue = GameServerSessionQueue.new.deserialize(params[GameServerSessionQueue])
+            @GameServerSessionQueue = GameServerSessionQueue.new.deserialize(params['GameServerSessionQueue'])
           end
           @RequestId = params['RequestId']
         end
@@ -761,7 +831,12 @@ module TencentCloud
           @AliasId = params['AliasId']
           @CreatorId = params['CreatorId']
           @FleetId = params['FleetId']
-          @GameProperties = params['GameProperties']
+          unless params['GameProperties'].nil?
+            @GameProperties = []
+            params['GameProperties'].each do |i|
+              @GameProperties << GameProperty.new.deserialize(i)
+            end
+          end
           @GameServerSessionData = params['GameServerSessionData']
           @GameServerSessionId = params['GameServerSessionId']
           @IdempotencyToken = params['IdempotencyToken']
@@ -786,7 +861,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GameServerSession'].nil?
-            @GameServerSession = GameServerSession.new.deserialize(params[GameServerSession])
+            @GameServerSession = GameServerSession.new.deserialize(params['GameServerSession'])
           end
           @RequestId = params['RequestId']
         end
@@ -1042,14 +1117,14 @@ module TencentCloud
 
         attr_accessor :Alias, :RequestId
         
-        def initialize(alias=nil, requestid=nil)
-          @Alias = alias
+        def initialize(_alias=nil, requestid=nil)
+          @Alias = _alias
           @RequestId = requestid
         end
 
         def deserialize(params)
           unless params['Alias'].nil?
-            @Alias = Alias.new.deserialize(params[Alias])
+            @Alias = Alias.new.deserialize(params['Alias'])
           end
           @RequestId = params['RequestId']
         end
@@ -1087,7 +1162,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Asset'].nil?
-            @Asset = Asset.new.deserialize(params[Asset])
+            @Asset = Asset.new.deserialize(params['Asset'])
           end
           @RequestId = params['RequestId']
         end
@@ -1128,7 +1203,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @AssetSupportSys = params['AssetSupportSys']
+          unless params['AssetSupportSys'].nil?
+            @AssetSupportSys = []
+            params['AssetSupportSys'].each do |i|
+              @AssetSupportSys << AssetSupportSys.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1161,7 +1241,12 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Filter = params['Filter']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1184,7 +1269,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Assets = params['Assets']
+          unless params['Assets'].nil?
+            @Assets = []
+            params['Assets'].each do |i|
+              @Assets << Asset.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1224,7 +1314,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CcnInstanceSets = params['CcnInstanceSets']
+          unless params['CcnInstanceSets'].nil?
+            @CcnInstanceSets = []
+            params['CcnInstanceSets'].each do |i|
+              @CcnInstanceSets << CcnInstanceSets.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1273,7 +1368,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FleetAttributes = params['FleetAttributes']
+          unless params['FleetAttributes'].nil?
+            @FleetAttributes = []
+            params['FleetAttributes'].each do |i|
+              @FleetAttributes << FleetAttributes.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1323,7 +1423,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FleetCapacity = params['FleetCapacity']
+          unless params['FleetCapacity'].nil?
+            @FleetCapacity = []
+            params['FleetCapacity'].each do |i|
+              @FleetCapacity << FleetCapacity.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1371,7 +1476,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Events = params['Events']
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              @Events << Event.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1409,7 +1519,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InboundPermissions = params['InboundPermissions']
+          unless params['InboundPermissions'].nil?
+            @InboundPermissions = []
+            params['InboundPermissions'].each do |i|
+              @InboundPermissions << InboundPermission.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1470,7 +1585,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DetailList = params['DetailList']
+          unless params['DetailList'].nil?
+            @DetailList = []
+            params['DetailList'].each do |i|
+              @DetailList << FleetStatisticDetail.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @TimeType = params['TimeType']
           @RequestId = params['RequestId']
@@ -1537,8 +1657,18 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @UsedFlowList = params['UsedFlowList']
-          @UsedTimeList = params['UsedTimeList']
+          unless params['UsedFlowList'].nil?
+            @UsedFlowList = []
+            params['UsedFlowList'].each do |i|
+              @UsedFlowList << FleetStatisticFlows.new.deserialize(i)
+            end
+          end
+          unless params['UsedTimeList'].nil?
+            @UsedTimeList = []
+            params['UsedTimeList'].each do |i|
+              @UsedTimeList << FleetStatisticTimes.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @TimeType = params['TimeType']
           @RequestId = params['RequestId']
@@ -1630,7 +1760,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FleetUtilization = params['FleetUtilization']
+          unless params['FleetUtilization'].nil?
+            @FleetUtilization = []
+            params['FleetUtilization'].each do |i|
+              @FleetUtilization << FleetUtilization.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1692,7 +1827,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @GameServerSessionDetails = params['GameServerSessionDetails']
+          unless params['GameServerSessionDetails'].nil?
+            @GameServerSessionDetails = []
+            params['GameServerSessionDetails'].each do |i|
+              @GameServerSessionDetails << GameServerSessionDetail.new.deserialize(i)
+            end
+          end
           @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
@@ -1730,7 +1870,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GameServerSessionPlacement'].nil?
-            @GameServerSessionPlacement = GameServerSessionPlacement.new.deserialize(params[GameServerSessionPlacement])
+            @GameServerSessionPlacement = GameServerSessionPlacement.new.deserialize(params['GameServerSessionPlacement'])
           end
           @RequestId = params['RequestId']
         end
@@ -1760,7 +1900,12 @@ module TencentCloud
           @Names = params['Names']
           @Limit = params['Limit']
           @Offset = params['Offset']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1783,7 +1928,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @GameServerSessionQueues = params['GameServerSessionQueues']
+          unless params['GameServerSessionQueues'].nil?
+            @GameServerSessionQueues = []
+            params['GameServerSessionQueues'].each do |i|
+              @GameServerSessionQueues << GameServerSessionQueue.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1845,7 +1995,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @GameServerSessions = params['GameServerSessions']
+          unless params['GameServerSessions'].nil?
+            @GameServerSessions = []
+            params['GameServerSessions'].each do |i|
+              @GameServerSessions << GameServerSession.new.deserialize(i)
+            end
+          end
           @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
@@ -1881,7 +2036,12 @@ module TencentCloud
 
         def deserialize(params)
           @Limit = params['Limit']
-          @ExtraInfos = params['ExtraInfos']
+          unless params['ExtraInfos'].nil?
+            @ExtraInfos = []
+            params['ExtraInfos'].each do |i|
+              @ExtraInfos << ExtraInfos.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1912,7 +2072,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InstanceTypeList = params['InstanceTypeList']
+          unless params['InstanceTypeList'].nil?
+            @InstanceTypeList = []
+            params['InstanceTypeList'].each do |i|
+              @InstanceTypeList << InstanceTypeInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1961,7 +2126,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Instances = params['Instances']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              @Instances << InstanceExtend.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -2015,7 +2185,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Instances = params['Instances']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              @Instances << Instance.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -2077,7 +2252,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @PlayerSessions = params['PlayerSessions']
+          unless params['PlayerSessions'].nil?
+            @PlayerSessions = []
+            params['PlayerSessions'].each do |i|
+              @PlayerSessions << PlayerSession.new.deserialize(i)
+            end
+          end
           @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
@@ -2116,7 +2296,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RuntimeConfiguration'].nil?
-            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params[RuntimeConfiguration])
+            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params['RuntimeConfiguration'])
           end
           @RequestId = params['RequestId']
         end
@@ -2170,7 +2350,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ScalingPolicies = params['ScalingPolicies']
+          unless params['ScalingPolicies'].nil?
+            @ScalingPolicies = []
+            params['ScalingPolicies'].each do |i|
+              @ScalingPolicies << ScalingPolicy.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -2232,7 +2417,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TimerScalingPolicies = params['TimerScalingPolicies']
+          unless params['TimerScalingPolicies'].nil?
+            @TimerScalingPolicies = []
+            params['TimerScalingPolicies'].each do |i|
+              @TimerScalingPolicies << TimerScalingPolicy.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -2271,7 +2461,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['QuotaResource'].nil?
-            @QuotaResource = QuotaResource.new.deserialize(params[QuotaResource])
+            @QuotaResource = QuotaResource.new.deserialize(params['QuotaResource'])
           end
           @RequestId = params['RequestId']
         end
@@ -2307,7 +2497,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @QuotaResource = params['QuotaResource']
+          unless params['QuotaResource'].nil?
+            @QuotaResource = []
+            params['QuotaResource'].each do |i|
+              @QuotaResource << QuotaResource.new.deserialize(i)
+            end
+          end
           @Total = params['Total']
           @RequestId = params['RequestId']
         end
@@ -2580,17 +2775,27 @@ module TencentCloud
           @NewGameServerSessionProtectionPolicy = params['NewGameServerSessionProtectionPolicy']
           @OperatingSystem = params['OperatingSystem']
           unless params['ResourceCreationLimitPolicy'].nil?
-            @ResourceCreationLimitPolicy = ResourceCreationLimitPolicy.new.deserialize(params[ResourceCreationLimitPolicy])
+            @ResourceCreationLimitPolicy = ResourceCreationLimitPolicy.new.deserialize(params['ResourceCreationLimitPolicy'])
           end
           @Status = params['Status']
           @StoppedActions = params['StoppedActions']
           @TerminationTime = params['TerminationTime']
           @GameServerSessionProtectionTimeLimit = params['GameServerSessionProtectionTimeLimit']
           @BillingStatus = params['BillingStatus']
-          @Tags = params['Tags']
-          @DataDiskInfo = params['DataDiskInfo']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
+          unless params['DataDiskInfo'].nil?
+            @DataDiskInfo = []
+            params['DataDiskInfo'].each do |i|
+              @DataDiskInfo << DiskInfo.new.deserialize(i)
+            end
+          end
           unless params['SystemDiskInfo'].nil?
-            @SystemDiskInfo = DiskInfo.new.deserialize(params[SystemDiskInfo])
+            @SystemDiskInfo = DiskInfo.new.deserialize(params['SystemDiskInfo'])
           end
         end
       end
@@ -2623,7 +2828,7 @@ module TencentCloud
           @FleetId = params['FleetId']
           @InstanceType = params['InstanceType']
           unless params['InstanceCounts'].nil?
-            @InstanceCounts = InstanceCounts.new.deserialize(params[InstanceCounts])
+            @InstanceCounts = InstanceCounts.new.deserialize(params['InstanceCounts'])
           end
           @ScalingInterval = params['ScalingInterval']
         end
@@ -2871,7 +3076,12 @@ module TencentCloud
           @CurrentPlayerSessionCount = params['CurrentPlayerSessionCount']
           @DnsName = params['DnsName']
           @FleetId = params['FleetId']
-          @GameProperties = params['GameProperties']
+          unless params['GameProperties'].nil?
+            @GameProperties = []
+            params['GameProperties'].each do |i|
+              @GameProperties << GameProperty.new.deserialize(i)
+            end
+          end
           @GameServerSessionData = params['GameServerSessionData']
           @GameServerSessionId = params['GameServerSessionId']
           @IpAddress = params['IpAddress']
@@ -2908,7 +3118,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GameServerSession'].nil?
-            @GameServerSession = GameServerSession.new.deserialize(params[GameServerSession])
+            @GameServerSession = GameServerSession.new.deserialize(params['GameServerSession'])
           end
           @ProtectionPolicy = params['ProtectionPolicy']
         end
@@ -2988,19 +3198,34 @@ module TencentCloud
         def deserialize(params)
           @PlacementId = params['PlacementId']
           @GameServerSessionQueueName = params['GameServerSessionQueueName']
-          @PlayerLatencies = params['PlayerLatencies']
+          unless params['PlayerLatencies'].nil?
+            @PlayerLatencies = []
+            params['PlayerLatencies'].each do |i|
+              @PlayerLatencies << PlayerLatency.new.deserialize(i)
+            end
+          end
           @Status = params['Status']
           @DnsName = params['DnsName']
           @GameServerSessionId = params['GameServerSessionId']
           @GameServerSessionName = params['GameServerSessionName']
           @GameServerSessionRegion = params['GameServerSessionRegion']
-          @GameProperties = params['GameProperties']
+          unless params['GameProperties'].nil?
+            @GameProperties = []
+            params['GameProperties'].each do |i|
+              @GameProperties << GameProperty.new.deserialize(i)
+            end
+          end
           @MaximumPlayerSessionCount = params['MaximumPlayerSessionCount']
           @GameServerSessionData = params['GameServerSessionData']
           @IpAddress = params['IpAddress']
           @Port = params['Port']
           @MatchmakerData = params['MatchmakerData']
-          @PlacedPlayerSessions = params['PlacedPlayerSessions']
+          unless params['PlacedPlayerSessions'].nil?
+            @PlacedPlayerSessions = []
+            params['PlacedPlayerSessions'].each do |i|
+              @PlacedPlayerSessions << PlacedPlayerSession.new.deserialize(i)
+            end
+          end
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
         end
@@ -3038,10 +3263,25 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @GameServerSessionQueueArn = params['GameServerSessionQueueArn']
-          @Destinations = params['Destinations']
-          @PlayerLatencyPolicies = params['PlayerLatencyPolicies']
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              @Destinations << GameServerSessionQueueDestination.new.deserialize(i)
+            end
+          end
+          unless params['PlayerLatencyPolicies'].nil?
+            @PlayerLatencyPolicies = []
+            params['PlayerLatencyPolicies'].each do |i|
+              @PlayerLatencyPolicies << PlayerLatencyPolicy.new.deserialize(i)
+            end
+          end
           @TimeoutInSeconds = params['TimeoutInSeconds']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3140,7 +3380,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['InstanceAccess'].nil?
-            @InstanceAccess = InstanceAccess.new.deserialize(params[InstanceAccess])
+            @InstanceAccess = InstanceAccess.new.deserialize(params['InstanceAccess'])
           end
           @RequestId = params['RequestId']
         end
@@ -3225,7 +3465,7 @@ module TencentCloud
         def deserialize(params)
           @ExpiredTime = params['ExpiredTime']
           unless params['AssetCredentials'].nil?
-            @AssetCredentials = AssetCredentials.new.deserialize(params[AssetCredentials])
+            @AssetCredentials = AssetCredentials.new.deserialize(params['AssetCredentials'])
           end
           @RequestId = params['RequestId']
         end
@@ -3402,7 +3642,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Credentials'].nil?
-            @Credentials = Credentials.new.deserialize(params[Credentials])
+            @Credentials = Credentials.new.deserialize(params['Credentials'])
           end
           @FleetId = params['FleetId']
           @InstanceId = params['InstanceId']
@@ -3500,7 +3740,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Instance'].nil?
-            @Instance = Instance.new.deserialize(params[Instance])
+            @Instance = Instance.new.deserialize(params['Instance'])
           end
           @State = params['State']
           @HealthyProcessCnt = params['HealthyProcessCnt']
@@ -3565,7 +3805,7 @@ module TencentCloud
           @GameServerSessionId = params['GameServerSessionId']
           @PlayerIds = params['PlayerIds']
           unless params['PlayerDataMap'].nil?
-            @PlayerDataMap = PlayerDataMap.new.deserialize(params[PlayerDataMap])
+            @PlayerDataMap = PlayerDataMap.new.deserialize(params['PlayerDataMap'])
           end
         end
       end
@@ -3586,7 +3826,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @PlayerSessions = params['PlayerSessions']
+          unless params['PlayerSessions'].nil?
+            @PlayerSessions = []
+            params['PlayerSessions'].each do |i|
+              @PlayerSessions << PlayerSession.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3632,7 +3877,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['PlayerSession'].nil?
-            @PlayerSession = PlayerSession.new.deserialize(params[PlayerSession])
+            @PlayerSession = PlayerSession.new.deserialize(params['PlayerSession'])
           end
           @RequestId = params['RequestId']
         end
@@ -3674,7 +3919,12 @@ module TencentCloud
           @Offset = params['Offset']
           @OrderBy = params['OrderBy']
           @OrderWay = params['OrderWay']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3697,7 +3947,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Aliases = params['Aliases']
+          unless params['Aliases'].nil?
+            @Aliases = []
+            params['Aliases'].each do |i|
+              @Aliases << Alias.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -3727,7 +3982,12 @@ module TencentCloud
           @AssetId = params['AssetId']
           @Limit = params['Limit']
           @Offset = params['Offset']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3956,7 +4216,7 @@ module TencentCloud
           @MetricName = params['MetricName']
           @PolicyType = params['PolicyType']
           unless params['TargetConfiguration'].nil?
-            @TargetConfiguration = TargetConfiguration.new.deserialize(params[TargetConfiguration])
+            @TargetConfiguration = TargetConfiguration.new.deserialize(params['TargetConfiguration'])
           end
         end
       end
@@ -3995,7 +4255,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TimerScalingPolicy'].nil?
-            @TimerScalingPolicy = TimerScalingPolicy.new.deserialize(params[TimerScalingPolicy])
+            @TimerScalingPolicy = TimerScalingPolicy.new.deserialize(params['TimerScalingPolicy'])
           end
         end
       end
@@ -4151,7 +4411,12 @@ module TencentCloud
         def deserialize(params)
           @GameServerSessionActivationTimeoutSeconds = params['GameServerSessionActivationTimeoutSeconds']
           @MaxConcurrentGameServerSessionActivations = params['MaxConcurrentGameServerSessionActivations']
-          @ServerProcesses = params['ServerProcesses']
+          unless params['ServerProcesses'].nil?
+            @ServerProcesses = []
+            params['ServerProcesses'].each do |i|
+              @ServerProcesses << ServerProcesse.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -4219,7 +4484,7 @@ module TencentCloud
           @MetricName = params['MetricName']
           @PolicyType = params['PolicyType']
           unless params['TargetConfiguration'].nil?
-            @TargetConfiguration = TargetConfiguration.new.deserialize(params[TargetConfiguration])
+            @TargetConfiguration = TargetConfiguration.new.deserialize(params['TargetConfiguration'])
           end
         end
       end
@@ -4322,7 +4587,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @GameServerSessions = params['GameServerSessions']
+          unless params['GameServerSessions'].nil?
+            @GameServerSessions = []
+            params['GameServerSessions'].each do |i|
+              @GameServerSessions << GameServerSession.new.deserialize(i)
+            end
+          end
           @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
@@ -4509,11 +4779,26 @@ module TencentCloud
           @PlacementId = params['PlacementId']
           @GameServerSessionQueueName = params['GameServerSessionQueueName']
           @MaximumPlayerSessionCount = params['MaximumPlayerSessionCount']
-          @DesiredPlayerSessions = params['DesiredPlayerSessions']
-          @GameProperties = params['GameProperties']
+          unless params['DesiredPlayerSessions'].nil?
+            @DesiredPlayerSessions = []
+            params['DesiredPlayerSessions'].each do |i|
+              @DesiredPlayerSessions << DesiredPlayerSession.new.deserialize(i)
+            end
+          end
+          unless params['GameProperties'].nil?
+            @GameProperties = []
+            params['GameProperties'].each do |i|
+              @GameProperties << GameProperty.new.deserialize(i)
+            end
+          end
           @GameServerSessionData = params['GameServerSessionData']
           @GameServerSessionName = params['GameServerSessionName']
-          @PlayerLatencies = params['PlayerLatencies']
+          unless params['PlayerLatencies'].nil?
+            @PlayerLatencies = []
+            params['PlayerLatencies'].each do |i|
+              @PlayerLatencies << PlayerLatency.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -4533,7 +4818,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GameServerSessionPlacement'].nil?
-            @GameServerSessionPlacement = GameServerSessionPlacement.new.deserialize(params[GameServerSessionPlacement])
+            @GameServerSessionPlacement = GameServerSessionPlacement.new.deserialize(params['GameServerSessionPlacement'])
           end
           @RequestId = params['RequestId']
         end
@@ -4612,7 +4897,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GameServerSessionPlacement'].nil?
-            @GameServerSessionPlacement = GameServerSessionPlacement.new.deserialize(params[GameServerSessionPlacement])
+            @GameServerSessionPlacement = GameServerSessionPlacement.new.deserialize(params['GameServerSessionPlacement'])
           end
           @RequestId = params['RequestId']
         end
@@ -4682,7 +4967,7 @@ module TencentCloud
         def deserialize(params)
           @TimerType = params['TimerType']
           unless params['TimerValue'].nil?
-            @TimerValue = TimerValue.new.deserialize(params[TimerValue])
+            @TimerValue = TimerValue.new.deserialize(params['TimerValue'])
           end
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
@@ -4733,7 +5018,7 @@ module TencentCloud
           @ScalingInterval = params['ScalingInterval']
           @ScalingType = params['ScalingType']
           unless params['TargetConfiguration'].nil?
-            @TargetConfiguration = TargetConfiguration.new.deserialize(params[TargetConfiguration])
+            @TargetConfiguration = TargetConfiguration.new.deserialize(params['TargetConfiguration'])
           end
         end
       end
@@ -4771,10 +5056,10 @@ module TencentCloud
           @TimerName = params['TimerName']
           @TimerStatus = params['TimerStatus']
           unless params['TimerFleetCapacity'].nil?
-            @TimerFleetCapacity = TimerFleetCapacity.new.deserialize(params[TimerFleetCapacity])
+            @TimerFleetCapacity = TimerFleetCapacity.new.deserialize(params['TimerFleetCapacity'])
           end
           unless params['TimerConfiguration'].nil?
-            @TimerConfiguration = TimerConfiguration.new.deserialize(params[TimerConfiguration])
+            @TimerConfiguration = TimerConfiguration.new.deserialize(params['TimerConfiguration'])
           end
         end
       end
@@ -4836,7 +5121,7 @@ module TencentCloud
           @Name = params['Name']
           @Description = params['Description']
           unless params['RoutingStrategy'].nil?
-            @RoutingStrategy = RoutingStrategy.new.deserialize(params[RoutingStrategy])
+            @RoutingStrategy = RoutingStrategy.new.deserialize(params['RoutingStrategy'])
           end
         end
       end
@@ -4851,14 +5136,14 @@ module TencentCloud
 
         attr_accessor :Alias, :RequestId
         
-        def initialize(alias=nil, requestid=nil)
-          @Alias = alias
+        def initialize(_alias=nil, requestid=nil)
+          @Alias = _alias
           @RequestId = requestid
         end
 
         def deserialize(params)
           unless params['Alias'].nil?
-            @Alias = Alias.new.deserialize(params[Alias])
+            @Alias = Alias.new.deserialize(params['Alias'])
           end
           @RequestId = params['RequestId']
         end
@@ -5016,7 +5301,7 @@ module TencentCloud
           @Name = params['Name']
           @NewGameSessionProtectionPolicy = params['NewGameSessionProtectionPolicy']
           unless params['ResourceCreationLimitPolicy'].nil?
-            @ResourceCreationLimitPolicy = ResourceCreationLimitPolicy.new.deserialize(params[ResourceCreationLimitPolicy])
+            @ResourceCreationLimitPolicy = ResourceCreationLimitPolicy.new.deserialize(params['ResourceCreationLimitPolicy'])
           end
           @GameServerSessionProtectionTimeLimit = params['GameServerSessionProtectionTimeLimit']
         end
@@ -5151,8 +5436,18 @@ module TencentCloud
 
         def deserialize(params)
           @FleetId = params['FleetId']
-          @InboundPermissionAuthorizations = params['InboundPermissionAuthorizations']
-          @InboundPermissionRevocations = params['InboundPermissionRevocations']
+          unless params['InboundPermissionAuthorizations'].nil?
+            @InboundPermissionAuthorizations = []
+            params['InboundPermissionAuthorizations'].each do |i|
+              @InboundPermissionAuthorizations << InboundPermissionAuthorization.new.deserialize(i)
+            end
+          end
+          unless params['InboundPermissionRevocations'].nil?
+            @InboundPermissionRevocations = []
+            params['InboundPermissionRevocations'].each do |i|
+              @InboundPermissionRevocations << InboundPermissionRevocations.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -5199,8 +5494,18 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
-          @Destinations = params['Destinations']
-          @PlayerLatencyPolicies = params['PlayerLatencyPolicies']
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              @Destinations << GameServerSessionQueueDestination.new.deserialize(i)
+            end
+          end
+          unless params['PlayerLatencyPolicies'].nil?
+            @PlayerLatencyPolicies = []
+            params['PlayerLatencyPolicies'].each do |i|
+              @PlayerLatencyPolicies << PlayerLatencyPolicy.new.deserialize(i)
+            end
+          end
           @TimeoutInSeconds = params['TimeoutInSeconds']
         end
       end
@@ -5221,7 +5526,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GameServerSessionQueue'].nil?
-            @GameServerSessionQueue = GameServerSessionQueue.new.deserialize(params[GameServerSessionQueue])
+            @GameServerSessionQueue = GameServerSessionQueue.new.deserialize(params['GameServerSessionQueue'])
           end
           @RequestId = params['RequestId']
         end
@@ -5275,7 +5580,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GameServerSession'].nil?
-            @GameServerSession = GameServerSession.new.deserialize(params[GameServerSession])
+            @GameServerSession = GameServerSession.new.deserialize(params['GameServerSession'])
           end
           @RequestId = params['RequestId']
         end
@@ -5298,7 +5603,7 @@ module TencentCloud
         def deserialize(params)
           @FleetId = params['FleetId']
           unless params['RuntimeConfiguration'].nil?
-            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params[RuntimeConfiguration])
+            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params['RuntimeConfiguration'])
           end
         end
       end
@@ -5320,7 +5625,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RuntimeConfiguration'].nil?
-            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params[RuntimeConfiguration])
+            @RuntimeConfiguration = RuntimeConfiguration.new.deserialize(params['RuntimeConfiguration'])
           end
           @RequestId = params['RequestId']
         end

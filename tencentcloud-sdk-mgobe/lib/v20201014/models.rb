@@ -57,7 +57,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params[Room])
+            @Room = Room.new.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -103,7 +103,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params[Room])
+            @Room = Room.new.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -149,7 +149,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Player'].nil?
-            @Player = Player.new.deserialize(params[Player])
+            @Player = Player.new.deserialize(params['Player'])
           end
           @RequestId = params['RequestId']
         end
@@ -195,7 +195,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params[Room])
+            @Room = Room.new.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -309,7 +309,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params[Room])
+            @Room = Room.new.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -391,7 +391,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params[Room])
+            @Room = Room.new.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -461,8 +461,18 @@ module TencentCloud
           @MaxPlayers = params['MaxPlayers']
           @OwnerOpenId = params['OwnerOpenId']
           @IsPrivate = params['IsPrivate']
-          @Players = params['Players']
-          @Teams = params['Teams']
+          unless params['Players'].nil?
+            @Players = []
+            params['Players'].each do |i|
+              @Players << Player.new.deserialize(i)
+            end
+          end
+          unless params['Teams'].nil?
+            @Teams = []
+            params['Teams'].each do |i|
+              @Teams << Team.new.deserialize(i)
+            end
+          end
           @Id = params['Id']
           @Type = params['Type']
           @CreateType = params['CreateType']

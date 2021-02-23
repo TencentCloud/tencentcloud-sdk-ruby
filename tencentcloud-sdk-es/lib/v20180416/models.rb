@@ -160,10 +160,25 @@ module TencentCloud
           @MasterNodeDiskSize = params['MasterNodeDiskSize']
           @ClusterNameInConf = params['ClusterNameInConf']
           @DeployMode = params['DeployMode']
-          @MultiZoneInfo = params['MultiZoneInfo']
+          unless params['MultiZoneInfo'].nil?
+            @MultiZoneInfo = []
+            params['MultiZoneInfo'].each do |i|
+              @MultiZoneInfo << ZoneDetail.new.deserialize(i)
+            end
+          end
           @LicenseType = params['LicenseType']
-          @NodeInfoList = params['NodeInfoList']
-          @TagList = params['TagList']
+          unless params['NodeInfoList'].nil?
+            @NodeInfoList = []
+            params['NodeInfoList'].each do |i|
+              @NodeInfoList << NodeInfo.new.deserialize(i)
+            end
+          end
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              @TagList << TagInfo.new.deserialize(i)
+            end
+          end
           @BasicSecurityType = params['BasicSecurityType']
           @SceneType = params['SceneType']
         end
@@ -290,7 +305,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @InstanceLogList = params['InstanceLogList']
+          unless params['InstanceLogList'].nil?
+            @InstanceLogList = []
+            params['InstanceLogList'].each do |i|
+              @InstanceLogList << InstanceLog.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -346,7 +366,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Operations = params['Operations']
+          unless params['Operations'].nil?
+            @Operations = []
+            params['Operations'].each do |i|
+              @Operations << Operation.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -394,7 +419,12 @@ module TencentCloud
           @Limit = params['Limit']
           @OrderByKey = params['OrderByKey']
           @OrderByType = params['OrderByType']
-          @TagList = params['TagList']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              @TagList << TagInfo.new.deserialize(i)
+            end
+          end
           @IpList = params['IpList']
         end
       end
@@ -418,7 +448,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @InstanceList = params['InstanceList']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              @InstanceList << InstanceInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -491,10 +526,30 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @MainDict = params['MainDict']
-          @Stopwords = params['Stopwords']
-          @QQDict = params['QQDict']
-          @Synonym = params['Synonym']
+          unless params['MainDict'].nil?
+            @MainDict = []
+            params['MainDict'].each do |i|
+              @MainDict << DictInfo.new.deserialize(i)
+            end
+          end
+          unless params['Stopwords'].nil?
+            @Stopwords = []
+            params['Stopwords'].each do |i|
+              @Stopwords << DictInfo.new.deserialize(i)
+            end
+          end
+          unless params['QQDict'].nil?
+            @QQDict = []
+            params['QQDict'].each do |i|
+              @QQDict << DictInfo.new.deserialize(i)
+            end
+          end
+          unless params['Synonym'].nil?
+            @Synonym = []
+            params['Synonym'].each do |i|
+              @Synonym << DictInfo.new.deserialize(i)
+            end
+          end
           @UpdateType = params['UpdateType']
         end
       end
@@ -769,23 +824,28 @@ module TencentCloud
           @EsVersion = params['EsVersion']
           @EsConfig = params['EsConfig']
           unless params['EsAcl'].nil?
-            @EsAcl = EsAcl.new.deserialize(params[EsAcl])
+            @EsAcl = EsAcl.new.deserialize(params['EsAcl'])
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @Deadline = params['Deadline']
           @InstanceType = params['InstanceType']
           unless params['IkConfig'].nil?
-            @IkConfig = EsDictionaryInfo.new.deserialize(params[IkConfig])
+            @IkConfig = EsDictionaryInfo.new.deserialize(params['IkConfig'])
           end
           unless params['MasterNodeInfo'].nil?
-            @MasterNodeInfo = MasterNodeInfo.new.deserialize(params[MasterNodeInfo])
+            @MasterNodeInfo = MasterNodeInfo.new.deserialize(params['MasterNodeInfo'])
           end
           unless params['CosBackup'].nil?
-            @CosBackup = CosBackup.new.deserialize(params[CosBackup])
+            @CosBackup = CosBackup.new.deserialize(params['CosBackup'])
           end
           @AllowCosBackup = params['AllowCosBackup']
-          @TagList = params['TagList']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              @TagList << TagInfo.new.deserialize(i)
+            end
+          end
           @LicenseType = params['LicenseType']
           @EnableHotWarmMode = params['EnableHotWarmMode']
           @WarmNodeType = params['WarmNodeType']
@@ -794,13 +854,23 @@ module TencentCloud
           @WarmMemSize = params['WarmMemSize']
           @WarmDiskType = params['WarmDiskType']
           @WarmDiskSize = params['WarmDiskSize']
-          @NodeInfoList = params['NodeInfoList']
+          unless params['NodeInfoList'].nil?
+            @NodeInfoList = []
+            params['NodeInfoList'].each do |i|
+              @NodeInfoList << NodeInfo.new.deserialize(i)
+            end
+          end
           @EsPublicUrl = params['EsPublicUrl']
-          @MultiZoneInfo = params['MultiZoneInfo']
+          unless params['MultiZoneInfo'].nil?
+            @MultiZoneInfo = []
+            params['MultiZoneInfo'].each do |i|
+              @MultiZoneInfo << ZoneDetail.new.deserialize(i)
+            end
+          end
           @DeployMode = params['DeployMode']
           @PublicAccess = params['PublicAccess']
           unless params['EsPublicAcl'].nil?
-            @EsPublicAcl = EsAcl.new.deserialize(params[EsPublicAcl])
+            @EsPublicAcl = EsAcl.new.deserialize(params['EsPublicAcl'])
           end
           @KibanaPrivateUrl = params['KibanaPrivateUrl']
           @KibanaPublicAccess = params['KibanaPublicAccess']
@@ -966,7 +1036,7 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           unless params['LocalDiskInfo'].nil?
-            @LocalDiskInfo = LocalDiskInfo.new.deserialize(params[LocalDiskInfo])
+            @LocalDiskInfo = LocalDiskInfo.new.deserialize(params['LocalDiskInfo'])
           end
           @DiskCount = params['DiskCount']
           @DiskEncrypt = params['DiskEncrypt']
@@ -1007,10 +1077,15 @@ module TencentCloud
           @StartTime = params['StartTime']
           @Type = params['Type']
           unless params['Detail'].nil?
-            @Detail = OperationDetail.new.deserialize(params[Detail])
+            @Detail = OperationDetail.new.deserialize(params['Detail'])
           end
           @Result = params['Result']
-          @Tasks = params['Tasks']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              @Tasks << TaskDetail.new.deserialize(i)
+            end
+          end
           @Progress = params['Progress']
         end
       end
@@ -1030,8 +1105,18 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @OldInfo = params['OldInfo']
-          @NewInfo = params['NewInfo']
+          unless params['OldInfo'].nil?
+            @OldInfo = []
+            params['OldInfo'].each do |i|
+              @OldInfo << KeyValue.new.deserialize(i)
+            end
+          end
+          unless params['NewInfo'].nil?
+            @NewInfo = []
+            params['NewInfo'].each do |i|
+              @NewInfo << KeyValue.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1231,7 +1316,12 @@ module TencentCloud
           @Name = params['Name']
           @Progress = params['Progress']
           @FinishTime = params['FinishTime']
-          @SubTasks = params['SubTasks']
+          unless params['SubTasks'].nil?
+            @SubTasks = []
+            params['SubTasks'].each do |i|
+              @SubTasks << SubTaskDetail.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1328,7 +1418,7 @@ module TencentCloud
           @EsConfig = params['EsConfig']
           @Password = params['Password']
           unless params['EsAcl'].nil?
-            @EsAcl = EsAcl.new.deserialize(params[EsAcl])
+            @EsAcl = EsAcl.new.deserialize(params['EsAcl'])
           end
           @DiskSize = params['DiskSize']
           @NodeType = params['NodeType']
@@ -1337,19 +1427,29 @@ module TencentCloud
           @MasterNodeDiskSize = params['MasterNodeDiskSize']
           @ForceRestart = params['ForceRestart']
           unless params['CosBackup'].nil?
-            @CosBackup = CosBackup.new.deserialize(params[CosBackup])
+            @CosBackup = CosBackup.new.deserialize(params['CosBackup'])
           end
-          @NodeInfoList = params['NodeInfoList']
+          unless params['NodeInfoList'].nil?
+            @NodeInfoList = []
+            params['NodeInfoList'].each do |i|
+              @NodeInfoList << NodeInfo.new.deserialize(i)
+            end
+          end
           @PublicAccess = params['PublicAccess']
           unless params['EsPublicAcl'].nil?
-            @EsPublicAcl = EsPublicAcl.new.deserialize(params[EsPublicAcl])
+            @EsPublicAcl = EsPublicAcl.new.deserialize(params['EsPublicAcl'])
           end
           @KibanaPublicAccess = params['KibanaPublicAccess']
           @KibanaPrivateAccess = params['KibanaPrivateAccess']
           @BasicSecurityType = params['BasicSecurityType']
           @KibanaPrivatePort = params['KibanaPrivatePort']
           @ScaleType = params['ScaleType']
-          @MultiZoneInfo = params['MultiZoneInfo']
+          unless params['MultiZoneInfo'].nil?
+            @MultiZoneInfo = []
+            params['MultiZoneInfo'].each do |i|
+              @MultiZoneInfo << ZoneDetail.new.deserialize(i)
+            end
+          end
           @SceneType = params['SceneType']
           @KibanaConfig = params['KibanaConfig']
         end

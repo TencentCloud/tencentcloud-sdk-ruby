@@ -66,7 +66,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SendStatus'].nil?
-            @SendStatus = SendStatus.new.deserialize(params[SendStatus])
+            @SendStatus = SendStatus.new.deserialize(params['SendStatus'])
           end
           @RequestId = params['RequestId']
         end
@@ -146,7 +146,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SendStatus'].nil?
-            @SendStatus = SendStatus.new.deserialize(params[SendStatus])
+            @SendStatus = SendStatus.new.deserialize(params['SendStatus'])
           end
           @RequestId = params['RequestId']
         end

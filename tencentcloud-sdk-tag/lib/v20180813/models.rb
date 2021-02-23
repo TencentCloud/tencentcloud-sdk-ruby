@@ -280,7 +280,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << TagResource.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -348,7 +353,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << TagResource.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -420,7 +430,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Rows = params['Rows']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              @Rows << ResourceIdTag.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -497,7 +512,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Rows = params['Rows']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              @Rows << TagResource.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -535,7 +555,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TagFilters = params['TagFilters']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              @TagFilters << TagFilter.new.deserialize(i)
+            end
+          end
           @CreateUin = params['CreateUin']
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -574,7 +599,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Rows = params['Rows']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              @Rows << ResourceTag.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -612,7 +642,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TagFilters = params['TagFilters']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              @TagFilters << TagFilter.new.deserialize(i)
+            end
+          end
           @CreateUin = params['CreateUin']
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -650,7 +685,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Rows = params['Rows']
+          unless params['Rows'].nil?
+            @Rows = []
+            params['Rows'].each do |i|
+              @Rows << ResourceTag.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -770,7 +810,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -830,7 +875,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -902,7 +952,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << TagWithDelete.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -974,7 +1029,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << TagWithDelete.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1046,8 +1106,18 @@ module TencentCloud
 
         def deserialize(params)
           @Resource = params['Resource']
-          @ReplaceTags = params['ReplaceTags']
-          @DeleteTags = params['DeleteTags']
+          unless params['ReplaceTags'].nil?
+            @ReplaceTags = []
+            params['ReplaceTags'].each do |i|
+              @ReplaceTags << Tag.new.deserialize(i)
+            end
+          end
+          unless params['DeleteTags'].nil?
+            @DeleteTags = []
+            params['DeleteTags'].each do |i|
+              @DeleteTags << TagKeyObject.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1137,7 +1207,12 @@ module TencentCloud
 
         def deserialize(params)
           @ResourceId = params['ResourceId']
-          @TagKeyValues = params['TagKeyValues']
+          unless params['TagKeyValues'].nil?
+            @TagKeyValues = []
+            params['TagKeyValues'].each do |i|
+              @TagKeyValues << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1174,7 +1249,12 @@ module TencentCloud
           @ServiceType = params['ServiceType']
           @ResourcePrefix = params['ResourcePrefix']
           @ResourceId = params['ResourceId']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 

@@ -135,9 +135,19 @@ module TencentCloud
           @ServerQueue = params['ServerQueue']
           @CustomPushData = params['CustomPushData']
           @ServerSessionData = params['ServerSessionData']
-          @GameProperties = params['GameProperties']
+          unless params['GameProperties'].nil?
+            @GameProperties = []
+            params['GameProperties'].each do |i|
+              @GameProperties << StringKV.new.deserialize(i)
+            end
+          end
           @LogSwitch = params['LogSwitch']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << StringKV.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -157,7 +167,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MatchInfo'].nil?
-            @MatchInfo = MatchInfo.new.deserialize(params[MatchInfo])
+            @MatchInfo = MatchInfo.new.deserialize(params['MatchInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -187,7 +197,12 @@ module TencentCloud
           @RuleName = params['RuleName']
           @RuleScript = params['RuleScript']
           @RuleDesc = params['RuleDesc']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << StringKV.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -207,7 +222,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RuleInfo'].nil?
-            @RuleInfo = RuleInfo.new.deserialize(params[RuleInfo])
+            @RuleInfo = RuleInfo.new.deserialize(params['RuleInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -326,10 +341,10 @@ module TencentCloud
 
         def deserialize(params)
           unless params['OverviewData'].nil?
-            @OverviewData = ReportOverviewData.new.deserialize(params[OverviewData])
+            @OverviewData = ReportOverviewData.new.deserialize(params['OverviewData'])
           end
           unless params['TrendData'].nil?
-            @TrendData = ReportTrendData.new.deserialize(params[TrendData])
+            @TrendData = ReportTrendData.new.deserialize(params['TrendData'])
           end
           @RequestId = params['RequestId']
         end
@@ -379,7 +394,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @MatchCodes = params['MatchCodes']
+          unless params['MatchCodes'].nil?
+            @MatchCodes = []
+            params['MatchCodes'].each do |i|
+              @MatchCodes << MatchCodeAttr.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -418,7 +438,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MatchInfo'].nil?
-            @MatchInfo = MatchInfo.new.deserialize(params[MatchInfo])
+            @MatchInfo = MatchInfo.new.deserialize(params['MatchInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -452,7 +472,12 @@ module TencentCloud
           @PageSize = params['PageSize']
           @SearchType = params['SearchType']
           @Keyword = params['Keyword']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -487,7 +512,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @MatchInfoList = params['MatchInfoList']
+          unless params['MatchInfoList'].nil?
+            @MatchInfoList = []
+            params['MatchInfoList'].each do |i|
+              @MatchInfoList << MatchInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
@@ -509,7 +539,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @MatchTicketIds = params['MatchTicketIds']
+          unless params['MatchTicketIds'].nil?
+            @MatchTicketIds = []
+            params['MatchTicketIds'].each do |i|
+              @MatchTicketIds << MTicket.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -533,7 +568,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @MatchTickets = params['MatchTickets']
+          unless params['MatchTickets'].nil?
+            @MatchTickets = []
+            params['MatchTickets'].each do |i|
+              @MatchTickets << MatchTicket.new.deserialize(i)
+            end
+          end
           @ErrCode = params['ErrCode']
           @RequestId = params['RequestId']
         end
@@ -572,7 +612,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RuleInfo'].nil?
-            @RuleInfo = RuleInfo.new.deserialize(params[RuleInfo])
+            @RuleInfo = RuleInfo.new.deserialize(params['RuleInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -606,7 +646,12 @@ module TencentCloud
           @PageSize = params['PageSize']
           @SearchType = params['SearchType']
           @Keyword = params['Keyword']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -641,7 +686,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RuleInfoList = params['RuleInfoList']
+          unless params['RuleInfoList'].nil?
+            @RuleInfoList = []
+            params['RuleInfoList'].each do |i|
+              @RuleInfoList << RuleBriefInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
@@ -745,7 +795,12 @@ module TencentCloud
           @NumberValue = params['NumberValue']
           @StringValue = params['StringValue']
           @ListValue = params['ListValue']
-          @MapValue = params['MapValue']
+          unless params['MapValue'].nil?
+            @MapValue = []
+            params['MapValue'].each do |i|
+              @MapValue << AttributeMap.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -879,13 +934,23 @@ module TencentCloud
           @ServerQueue = params['ServerQueue']
           @CustomPushData = params['CustomPushData']
           @ServerSessionData = params['ServerSessionData']
-          @GameProperties = params['GameProperties']
+          unless params['GameProperties'].nil?
+            @GameProperties = []
+            params['GameProperties'].each do |i|
+              @GameProperties << StringKV.new.deserialize(i)
+            end
+          end
           @LogSwitch = params['LogSwitch']
           @LogsetId = params['LogsetId']
           @LogsetName = params['LogsetName']
           @LogTopicId = params['LogTopicId']
           @LogTopicName = params['LogTopicName']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << StringKV.new.deserialize(i)
+            end
+          end
           @Region = params['Region']
           @AppId = params['AppId']
           @Uin = params['Uin']
@@ -943,7 +1008,12 @@ module TencentCloud
           @MatchCode = params['MatchCode']
           @MatchResult = params['MatchResult']
           @MatchType = params['MatchType']
-          @Players = params['Players']
+          unless params['Players'].nil?
+            @Players = []
+            params['Players'].each do |i|
+              @Players << Player.new.deserialize(i)
+            end
+          end
           @Status = params['Status']
           @StatusMessage = params['StatusMessage']
           @StatusReason = params['StatusReason']
@@ -1014,9 +1084,19 @@ module TencentCloud
           @ServerQueue = params['ServerQueue']
           @CustomPushData = params['CustomPushData']
           @ServerSessionData = params['ServerSessionData']
-          @GameProperties = params['GameProperties']
+          unless params['GameProperties'].nil?
+            @GameProperties = []
+            params['GameProperties'].each do |i|
+              @GameProperties << StringKV.new.deserialize(i)
+            end
+          end
           @LogSwitch = params['LogSwitch']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << StringKV.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1036,7 +1116,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MatchInfo'].nil?
-            @MatchInfo = MatchInfo.new.deserialize(params[MatchInfo])
+            @MatchInfo = MatchInfo.new.deserialize(params['MatchInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1066,7 +1146,12 @@ module TencentCloud
           @RuleCode = params['RuleCode']
           @RuleName = params['RuleName']
           @RuleDesc = params['RuleDesc']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << StringKV.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1086,7 +1171,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RuleInfo'].nil?
-            @RuleInfo = RuleInfo.new.deserialize(params[RuleInfo])
+            @RuleInfo = RuleInfo.new.deserialize(params['RuleInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1173,11 +1258,21 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @Name = params['Name']
-          @MatchAttributes = params['MatchAttributes']
+          unless params['MatchAttributes'].nil?
+            @MatchAttributes = []
+            params['MatchAttributes'].each do |i|
+              @MatchAttributes << MatchAttribute.new.deserialize(i)
+            end
+          end
           @Team = params['Team']
           @CustomPlayerStatus = params['CustomPlayerStatus']
           @CustomProfile = params['CustomProfile']
-          @RegionLatencies = params['RegionLatencies']
+          unless params['RegionLatencies'].nil?
+            @RegionLatencies = []
+            params['RegionLatencies'].each do |i|
+              @RegionLatencies << RegionLatency.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1306,7 +1401,12 @@ module TencentCloud
 
         def deserialize(params)
           @RuleName = params['RuleName']
-          @MatchCodeList = params['MatchCodeList']
+          unless params['MatchCodeList'].nil?
+            @MatchCodeList = []
+            params['MatchCodeList'].each do |i|
+              @MatchCodeList << StringKV.new.deserialize(i)
+            end
+          end
           @CreateTime = params['CreateTime']
           @RuleCode = params['RuleCode']
         end
@@ -1365,8 +1465,18 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @RuleDesc = params['RuleDesc']
           @RuleScript = params['RuleScript']
-          @Tags = params['Tags']
-          @MatchCodeList = params['MatchCodeList']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << StringKV.new.deserialize(i)
+            end
+          end
+          unless params['MatchCodeList'].nil?
+            @MatchCodeList = []
+            params['MatchCodeList'].each do |i|
+              @MatchCodeList << StringKV.new.deserialize(i)
+            end
+          end
           @RuleCode = params['RuleCode']
           @Region = params['Region']
           @AppId = params['AppId']
@@ -1394,7 +1504,12 @@ module TencentCloud
 
         def deserialize(params)
           @MatchCode = params['MatchCode']
-          @Players = params['Players']
+          unless params['Players'].nil?
+            @Players = []
+            params['Players'].each do |i|
+              @Players << Player.new.deserialize(i)
+            end
+          end
           @MatchTicketId = params['MatchTicketId']
         end
       end

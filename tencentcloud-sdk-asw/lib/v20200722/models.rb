@@ -287,7 +287,12 @@ module TencentCloud
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -309,7 +314,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FlowServiceSet = params['FlowServiceSet']
+          unless params['FlowServiceSet'].nil?
+            @FlowServiceSet = []
+            params['FlowServiceSet'].each do |i|
+              @FlowServiceSet << StateMachine.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end

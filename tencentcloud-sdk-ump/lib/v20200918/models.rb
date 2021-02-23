@@ -118,7 +118,7 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @ZoneType = params['ZoneType']
           unless params['Config'].nil?
-            @Config = Config.new.deserialize(params[Config])
+            @Config = Config.new.deserialize(params['Config'])
           end
           @Width = params['Width']
           @Height = params['Height']
@@ -167,7 +167,12 @@ module TencentCloud
           @CameraFeature = params['CameraFeature']
           @CameraIp = params['CameraIp']
           @CameraState = params['CameraState']
-          @Zones = params['Zones']
+          unless params['Zones'].nil?
+            @Zones = []
+            params['Zones'].each do |i|
+              @Zones << BunkZone.new.deserialize(i)
+            end
+          end
           @Pixel = params['Pixel']
         end
       end
@@ -225,10 +230,30 @@ module TencentCloud
           @DecodeFps = params['DecodeFps']
           @PassengerFlow = params['PassengerFlow']
           @FaceExpose = params['FaceExpose']
-          @MallArea = params['MallArea']
-          @ShopArea = params['ShopArea']
-          @TrackAreas = params['TrackAreas']
-          @Zones = params['Zones']
+          unless params['MallArea'].nil?
+            @MallArea = []
+            params['MallArea'].each do |i|
+              @MallArea << Point.new.deserialize(i)
+            end
+          end
+          unless params['ShopArea'].nil?
+            @ShopArea = []
+            params['ShopArea'].each do |i|
+              @ShopArea << Point.new.deserialize(i)
+            end
+          end
+          unless params['TrackAreas'].nil?
+            @TrackAreas = []
+            params['TrackAreas'].each do |i|
+              @TrackAreas << Polygon.new.deserialize(i)
+            end
+          end
+          unless params['Zones'].nil?
+            @Zones = []
+            params['Zones'].each do |i|
+              @Zones << ZoneArea.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -268,10 +293,10 @@ module TencentCloud
           @CaptureTime = params['CaptureTime']
           @Image = params['Image']
           unless params['MoveAlert'].nil?
-            @MoveAlert = CreateCameraAlertsMoveAlert.new.deserialize(params[MoveAlert])
+            @MoveAlert = CreateCameraAlertsMoveAlert.new.deserialize(params['MoveAlert'])
           end
           unless params['CoverAlert'].nil?
-            @CoverAlert = CreateCameraAlertsCoverAlert.new.deserialize(params[CoverAlert])
+            @CoverAlert = CreateCameraAlertsCoverAlert.new.deserialize(params['CoverAlert'])
           end
         end
       end
@@ -328,7 +353,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Alerts = params['Alerts']
+          unless params['Alerts'].nil?
+            @Alerts = []
+            params['Alerts'].each do |i|
+              @Alerts << CreateCameraAlertAlert.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -463,7 +493,12 @@ module TencentCloud
 
         def deserialize(params)
           @GroupCode = params['GroupCode']
-          @ProgramStateItems = params['ProgramStateItems']
+          unless params['ProgramStateItems'].nil?
+            @ProgramStateItems = []
+            params['ProgramStateItems'].each do |i|
+              @ProgramStateItems << ProgramStateItem.new.deserialize(i)
+            end
+          end
           @MallId = params['MallId']
         end
       end
@@ -506,7 +541,12 @@ module TencentCloud
 
         def deserialize(params)
           @GroupCode = params['GroupCode']
-          @ServerStateItems = params['ServerStateItems']
+          unless params['ServerStateItems'].nil?
+            @ServerStateItems = []
+            params['ServerStateItems'].each do |i|
+              @ServerStateItems << ServerStateItem.new.deserialize(i)
+            end
+          end
           @MallId = params['MallId']
           @ReportTime = params['ReportTime']
         end
@@ -658,7 +698,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Cameras = params['Cameras']
+          unless params['Cameras'].nil?
+            @Cameras = []
+            params['Cameras'].each do |i|
+              @Cameras << CameraZones.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -726,7 +771,12 @@ module TencentCloud
         def deserialize(params)
           @SessionId = params['SessionId']
           @Version = params['Version']
-          @Cameras = params['Cameras']
+          unless params['Cameras'].nil?
+            @Cameras = []
+            params['Cameras'].each do |i|
+              @Cameras << CameraConfig.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -863,7 +913,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Tasks = params['Tasks']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              @Tasks << Task.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -903,7 +958,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Zones = params['Zones']
+          unless params['Zones'].nil?
+            @Zones = []
+            params['Zones'].each do |i|
+              @Zones << ZoneConfig.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -960,7 +1020,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Points = params['Points']
+          unless params['Points'].nil?
+            @Points = []
+            params['Points'].each do |i|
+              @Points << Point.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1046,7 +1111,12 @@ module TencentCloud
 
         def deserialize(params)
           @FaceId = params['FaceId']
-          @Results = params['Results']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              @Results << SearchResult.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1098,7 +1168,12 @@ module TencentCloud
         def deserialize(params)
           @ServerState = params['ServerState']
           @ServerIp = params['ServerIp']
-          @DiskInfos = params['DiskInfos']
+          unless params['DiskInfos'].nil?
+            @DiskInfos = []
+            params['DiskInfos'].each do |i|
+              @DiskInfos << DiskInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1131,7 +1206,7 @@ module TencentCloud
           @GroupCode = params['GroupCode']
           @MallId = params['MallId']
           unless params['TaskContent'].nil?
-            @TaskContent = TaskContent.new.deserialize(params[TaskContent])
+            @TaskContent = TaskContent.new.deserialize(params['TaskContent'])
           end
           @TaskType = params['TaskType']
         end
@@ -1177,7 +1252,12 @@ module TencentCloud
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
-          @ShopArea = params['ShopArea']
+          unless params['ShopArea'].nil?
+            @ShopArea = []
+            params['ShopArea'].each do |i|
+              @ShopArea << Point.new.deserialize(i)
+            end
+          end
         end
       end
 

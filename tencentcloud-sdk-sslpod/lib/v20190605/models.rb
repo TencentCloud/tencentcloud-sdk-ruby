@@ -90,7 +90,12 @@ module TencentCloud
 
         def deserialize(params)
           @Name = params['Name']
-          @Children = params['Children']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              @Children << ChartNameValue.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -193,12 +198,42 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SecurityLevelPie = params['SecurityLevelPie']
-          @CertBrandsPie = params['CertBrandsPie']
-          @CertValidTimePie = params['CertValidTimePie']
-          @CertTypePie = params['CertTypePie']
-          @SSLBugsLoopholeHistogram = params['SSLBugsLoopholeHistogram']
-          @ComplianceHistogram = params['ComplianceHistogram']
+          unless params['SecurityLevelPie'].nil?
+            @SecurityLevelPie = []
+            params['SecurityLevelPie'].each do |i|
+              @SecurityLevelPie << ChartNameValue.new.deserialize(i)
+            end
+          end
+          unless params['CertBrandsPie'].nil?
+            @CertBrandsPie = []
+            params['CertBrandsPie'].each do |i|
+              @CertBrandsPie << ChartNameValue.new.deserialize(i)
+            end
+          end
+          unless params['CertValidTimePie'].nil?
+            @CertValidTimePie = []
+            params['CertValidTimePie'].each do |i|
+              @CertValidTimePie << ChartNameValue.new.deserialize(i)
+            end
+          end
+          unless params['CertTypePie'].nil?
+            @CertTypePie = []
+            params['CertTypePie'].each do |i|
+              @CertTypePie << ChartNameValue.new.deserialize(i)
+            end
+          end
+          unless params['SSLBugsLoopholeHistogram'].nil?
+            @SSLBugsLoopholeHistogram = []
+            params['SSLBugsLoopholeHistogram'].each do |i|
+              @SSLBugsLoopholeHistogram << ChartHistogram.new.deserialize(i)
+            end
+          end
+          unless params['ComplianceHistogram'].nil?
+            @ComplianceHistogram = []
+            params['ComplianceHistogram'].each do |i|
+              @ComplianceHistogram << ChartHistogram.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -262,7 +297,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DashboardResult.new.deserialize(params[Data])
+            @Data = DashboardResult.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -299,7 +334,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << CertInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -363,7 +403,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Result = params['Result']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << DomainSiteInfo.new.deserialize(i)
+            end
+          end
           @SearchTotal = params['SearchTotal']
           @Total = params['Total']
           @AllowMonitoringCount = params['AllowMonitoringCount']
@@ -440,7 +485,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DescribeDomains.new.deserialize(params[Data])
+            @Data = DescribeDomains.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -473,7 +518,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = NoticeInfoResult.new.deserialize(params[Data])
+            @Data = NoticeInfoResult.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -624,7 +669,12 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @NoticeType = params['NoticeType']
-          @LimitInfos = params['LimitInfos']
+          unless params['LimitInfos'].nil?
+            @LimitInfos = []
+            params['LimitInfos'].each do |i|
+              @LimitInfos << LimitInfo.new.deserialize(i)
+            end
+          end
         end
       end
 

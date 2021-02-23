@@ -162,7 +162,12 @@ module TencentCloud
           @Found = params['Found']
           @IdFound = params['IdFound']
           @RiskScore = params['RiskScore']
-          @RiskInfo = params['RiskInfo']
+          unless params['RiskInfo'].nil?
+            @RiskInfo = []
+            params['RiskInfo'].each do |i|
+              @RiskInfo << RiskDetail.new.deserialize(i)
+            end
+          end
           @CodeDesc = params['CodeDesc']
           @RequestId = params['RequestId']
         end

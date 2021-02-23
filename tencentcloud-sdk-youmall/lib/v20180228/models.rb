@@ -86,7 +86,7 @@ module TencentCloud
           @FacePic = params['FacePic']
           @Time = params['Time']
           unless params['PersonInfo'].nil?
-            @PersonInfo = PersonInfo.new.deserialize(params[PersonInfo])
+            @PersonInfo = PersonInfo.new.deserialize(params['PersonInfo'])
           end
         end
       end
@@ -219,7 +219,12 @@ module TencentCloud
 
         def deserialize(params)
           @TraceDate = params['TraceDate']
-          @TracePointSet = params['TracePointSet']
+          unless params['TracePointSet'].nil?
+            @TracePointSet = []
+            params['TracePointSet'].each do |i|
+              @TracePointSet << PersonTracePoint.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -338,7 +343,12 @@ module TencentCloud
           @ShopId = params['ShopId']
           @CameraId = params['CameraId']
           @PosId = params['PosId']
-          @Infos = params['Infos']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              @Infos << CameraPersonInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -398,7 +408,12 @@ module TencentCloud
           @MallId = params['MallId']
           @MallCode = params['MallCode']
           @PersonId = params['PersonId']
-          @ArrivedMallSet = params['ArrivedMallSet']
+          unless params['ArrivedMallSet'].nil?
+            @ArrivedMallSet = []
+            params['ArrivedMallSet'].each do |i|
+              @ArrivedMallSet << ArrivedMallInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -458,7 +473,12 @@ module TencentCloud
           @MallId = params['MallId']
           @MallCode = params['MallCode']
           @PersonId = params['PersonId']
-          @TracePointSet = params['TracePointSet']
+          unless params['TracePointSet'].nil?
+            @TracePointSet = []
+            params['TracePointSet'].each do |i|
+              @TracePointSet << DailyTracePoint.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -539,7 +559,7 @@ module TencentCloud
           @TempId = params['TempId']
           @FaceId = params['FaceId']
           unless params['PersonInfo'].nil?
-            @PersonInfo = PersonInfo.new.deserialize(params[PersonInfo])
+            @PersonInfo = PersonInfo.new.deserialize(params['PersonInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -601,7 +621,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['InstanceSet'].nil?
-            @InstanceSet = NetworkHistoryInfo.new.deserialize(params[InstanceSet])
+            @InstanceSet = NetworkHistoryInfo.new.deserialize(params['InstanceSet'])
           end
           @RequestId = params['RequestId']
         end
@@ -647,7 +667,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['InstanceSet'].nil?
-            @InstanceSet = NetworkLastInfo.new.deserialize(params[InstanceSet])
+            @InstanceSet = NetworkLastInfo.new.deserialize(params['InstanceSet'])
           end
           @RequestId = params['RequestId']
         end
@@ -708,7 +728,12 @@ module TencentCloud
           @MallId = params['MallId']
           @MallCode = params['MallCode']
           @PersonId = params['PersonId']
-          @ArrivedMallSet = params['ArrivedMallSet']
+          unless params['ArrivedMallSet'].nil?
+            @ArrivedMallSet = []
+            params['ArrivedMallSet'].each do |i|
+              @ArrivedMallSet << ArrivedMallInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -848,7 +873,12 @@ module TencentCloud
           @CompanyId = params['CompanyId']
           @ShopId = params['ShopId']
           @TotalCount = params['TotalCount']
-          @PersonInfoSet = params['PersonInfoSet']
+          unless params['PersonInfoSet'].nil?
+            @PersonInfoSet = []
+            params['PersonInfoSet'].each do |i|
+              @PersonInfoSet << PersonInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -896,7 +926,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @PersonSet = params['PersonSet']
+          unless params['PersonSet'].nil?
+            @PersonSet = []
+            params['PersonSet'].each do |i|
+              @PersonSet << PersonProfile.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -952,7 +987,12 @@ module TencentCloud
           @MallId = params['MallId']
           @PersonId = params['PersonId']
           @TraceId = params['TraceId']
-          @CoordinateSet = params['CoordinateSet']
+          unless params['CoordinateSet'].nil?
+            @CoordinateSet = []
+            params['CoordinateSet'].each do |i|
+              @CoordinateSet << PersonCoordinate.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1012,7 +1052,12 @@ module TencentCloud
           @MallId = params['MallId']
           @MallCode = params['MallCode']
           @PersonId = params['PersonId']
-          @TraceRouteSet = params['TraceRouteSet']
+          unless params['TraceRouteSet'].nil?
+            @TraceRouteSet = []
+            params['TraceRouteSet'].each do |i|
+              @TraceRouteSet << PersonTraceRoute.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1092,7 +1137,12 @@ module TencentCloud
           @CompanyId = params['CompanyId']
           @ShopId = params['ShopId']
           @TotalCount = params['TotalCount']
-          @PersonVisitInfoSet = params['PersonVisitInfoSet']
+          unless params['PersonVisitInfoSet'].nil?
+            @PersonVisitInfoSet = []
+            params['PersonVisitInfoSet'].each do |i|
+              @PersonVisitInfoSet << PersonVisitInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1160,7 +1210,12 @@ module TencentCloud
           @CompanyId = params['CompanyId']
           @ShopId = params['ShopId']
           @TotalCount = params['TotalCount']
-          @ShopHourTrafficInfoSet = params['ShopHourTrafficInfoSet']
+          unless params['ShopHourTrafficInfoSet'].nil?
+            @ShopHourTrafficInfoSet = []
+            params['ShopHourTrafficInfoSet'].each do |i|
+              @ShopHourTrafficInfoSet << ShopHourTrafficInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1204,7 +1259,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @ShopInfoSet = params['ShopInfoSet']
+          unless params['ShopInfoSet'].nil?
+            @ShopInfoSet = []
+            params['ShopInfoSet'].each do |i|
+              @ShopInfoSet << ShopInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1272,7 +1332,12 @@ module TencentCloud
           @CompanyId = params['CompanyId']
           @ShopId = params['ShopId']
           @TotalCount = params['TotalCount']
-          @ShopDayTrafficInfoSet = params['ShopDayTrafficInfoSet']
+          unless params['ShopDayTrafficInfoSet'].nil?
+            @ShopDayTrafficInfoSet = []
+            params['ShopDayTrafficInfoSet'].each do |i|
+              @ShopDayTrafficInfoSet << ShopDayTrafficInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1352,7 +1417,12 @@ module TencentCloud
           @TotalTrajectory = params['TotalTrajectory']
           @Person = params['Person']
           @Trajectory = params['Trajectory']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << TrajectorySunData.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1476,7 +1546,12 @@ module TencentCloud
         def deserialize(params)
           @CompanyId = params['CompanyId']
           @ShopId = params['ShopId']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << ZoneFlowAndAvrStayTime.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1544,7 +1619,12 @@ module TencentCloud
           @ShopId = params['ShopId']
           @ZoneId = params['ZoneId']
           @ZoneName = params['ZoneName']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << ZoneDayFlow.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1612,7 +1692,12 @@ module TencentCloud
           @ShopId = params['ShopId']
           @ZoneId = params['ZoneId']
           @ZoneName = params['ZoneName']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << ZoneAgeGroupAvrStayTime.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1752,7 +1837,12 @@ module TencentCloud
           @ShopId = params['ShopId']
           @ZoneId = params['ZoneId']
           @ZoneName = params['ZoneName']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << ZoneHourFlow.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1820,7 +1910,12 @@ module TencentCloud
           @CompanyId = params['CompanyId']
           @ShopId = params['ShopId']
           @TotalCount = params['TotalCount']
-          @ZoneTrafficInfoSet = params['ZoneTrafficInfoSet']
+          unless params['ZoneTrafficInfoSet'].nil?
+            @ZoneTrafficInfoSet = []
+            params['ZoneTrafficInfoSet'].each do |i|
+              @ZoneTrafficInfoSet << ZoneTrafficInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1965,7 +2060,12 @@ module TencentCloud
         def deserialize(params)
           @CompanyId = params['CompanyId']
           @ShopId = params['ShopId']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << PersonTagInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2140,7 +2240,12 @@ module TencentCloud
           @Province = params['Province']
           @City = params['City']
           @ShopName = params['ShopName']
-          @Infos = params['Infos']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              @Infos << NetworkInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2208,7 +2313,12 @@ module TencentCloud
 
         def deserialize(params)
           @Count = params['Count']
-          @Infos = params['Infos']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              @Infos << NetworkAndShopInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2431,7 +2541,12 @@ module TencentCloud
 
         def deserialize(params)
           @TraceId = params['TraceId']
-          @TracePointSet = params['TracePointSet']
+          unless params['TracePointSet'].nil?
+            @TracePointSet = []
+            params['TracePointSet'].each do |i|
+              @TracePointSet << PersonTracePoint.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2480,7 +2595,7 @@ module TencentCloud
           @HairType = params['HairType']
           @CapturedPictureUrl = params['CapturedPictureUrl']
           unless params['SceneInfo'].nil?
-            @SceneInfo = SceneInfo.new.deserialize(params[SceneInfo])
+            @SceneInfo = SceneInfo.new.deserialize(params['SceneInfo'])
           end
         end
       end
@@ -2581,7 +2696,12 @@ module TencentCloud
         def deserialize(params)
           @Date = params['Date']
           @DayTrafficTotalCount = params['DayTrafficTotalCount']
-          @GenderAgeTrafficDetailSet = params['GenderAgeTrafficDetailSet']
+          unless params['GenderAgeTrafficDetailSet'].nil?
+            @GenderAgeTrafficDetailSet = []
+            params['GenderAgeTrafficDetailSet'].each do |i|
+              @GenderAgeTrafficDetailSet << GenderAgeTrafficDetail.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2601,7 +2721,12 @@ module TencentCloud
 
         def deserialize(params)
           @Date = params['Date']
-          @HourTrafficInfoDetailSet = params['HourTrafficInfoDetailSet']
+          unless params['HourTrafficInfoDetailSet'].nil?
+            @HourTrafficInfoDetailSet = []
+            params['HourTrafficInfoDetailSet'].each do |i|
+              @HourTrafficInfoDetailSet << HourTrafficInfoDetail.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2773,7 +2898,12 @@ module TencentCloud
 
         def deserialize(params)
           @Date = params['Date']
-          @ZoneTrafficInfoDetailSet = params['ZoneTrafficInfoDetailSet']
+          unless params['ZoneTrafficInfoDetailSet'].nil?
+            @ZoneTrafficInfoDetailSet = []
+            params['ZoneTrafficInfoDetailSet'].each do |i|
+              @ZoneTrafficInfoDetailSet << ZoneTrafficInfoDetail.new.deserialize(i)
+            end
+          end
         end
       end
 

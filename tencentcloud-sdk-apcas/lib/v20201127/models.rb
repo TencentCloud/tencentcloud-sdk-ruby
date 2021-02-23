@@ -57,7 +57,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @CallDetailSet = params['CallDetailSet']
+          unless params['CallDetailSet'].nil?
+            @CallDetailSet = []
+            params['CallDetailSet'].each do |i|
+              @CallDetailSet << CallDetailItem.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -140,7 +145,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TaskDetailDataList = params['TaskDetailDataList']
+          unless params['TaskDetailDataList'].nil?
+            @TaskDetailDataList = []
+            params['TaskDetailDataList'].each do |i|
+              @TaskDetailDataList << TaskDetailData.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -197,7 +207,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TaskListData'].nil?
-            @TaskListData = TaskListData.new.deserialize(params[TaskListData])
+            @TaskListData = TaskListData.new.deserialize(params['TaskListData'])
           end
           @RequestId = params['RequestId']
         end
@@ -219,7 +229,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Value'].nil?
-            @Value = LabelValue.new.deserialize(params[Value])
+            @Value = LabelValue.new.deserialize(params['Value'])
           end
           @Label = params['Label']
         end
@@ -321,7 +331,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RatingData'].nil?
-            @RatingData = RatingData.new.deserialize(params[RatingData])
+            @RatingData = RatingData.new.deserialize(params['RatingData'])
           end
           @RequestId = params['RequestId']
         end
@@ -375,7 +385,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['CallDetails'].nil?
-            @CallDetails = CallDetails.new.deserialize(params[CallDetails])
+            @CallDetails = CallDetails.new.deserialize(params['CallDetails'])
           end
           @RequestId = params['RequestId']
         end
@@ -420,7 +430,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CallSet = params['CallSet']
+          unless params['CallSet'].nil?
+            @CallSet = []
+            params['CallSet'].each do |i|
+              @CallSet << CallStatItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -457,7 +472,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GeneralStat'].nil?
-            @GeneralStat = GeneralStat.new.deserialize(params[GeneralStat])
+            @GeneralStat = GeneralStat.new.deserialize(params['GeneralStat'])
           end
           @RequestId = params['RequestId']
         end
@@ -515,7 +530,12 @@ module TencentCloud
         def deserialize(params)
           @TagId = params['TagId']
           @TagDesc = params['TagDesc']
-          @LabelDetailDataList = params['LabelDetailDataList']
+          unless params['LabelDetailDataList'].nil?
+            @LabelDetailDataList = []
+            params['LabelDetailDataList'].each do |i|
+              @LabelDetailDataList << LabelDetailData.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -543,7 +563,12 @@ module TencentCloud
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
           @TotalCount = params['TotalCount']
-          @TaskList = params['TaskList']
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              @TaskList << ListModel.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -587,7 +612,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TaskData'].nil?
-            @TaskData = TaskData.new.deserialize(params[TaskData])
+            @TaskData = TaskData.new.deserialize(params['TaskData'])
           end
           @RequestId = params['RequestId']
         end

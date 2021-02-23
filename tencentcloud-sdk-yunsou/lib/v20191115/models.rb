@@ -61,7 +61,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DataManipulationResult.new.deserialize(params[Data])
+            @Data = DataManipulationResult.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -96,7 +96,12 @@ module TencentCloud
           @AppId = params['AppId']
           @Seq = params['Seq']
           @TotalResult = params['TotalResult']
-          @Result = params['Result']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << DataManipulationResultItem.new.deserialize(i)
+            end
+          end
           @ErrorResult = params['ErrorResult']
         end
       end
@@ -245,7 +250,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SearchResult.new.deserialize(params[Data])
+            @Data = SearchResult.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -288,8 +293,18 @@ module TencentCloud
           @Echo = params['Echo']
           @EResultNum = params['EResultNum']
           @ResultNum = params['ResultNum']
-          @ResultList = params['ResultList']
-          @SegList = params['SegList']
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              @ResultList << SearchResultItem.new.deserialize(i)
+            end
+          end
+          unless params['SegList'].nil?
+            @SegList = []
+            params['SegList'].each do |i|
+              @SegList << SearchResultSeg.new.deserialize(i)
+            end
+          end
         end
       end
 

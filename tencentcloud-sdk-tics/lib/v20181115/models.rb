@@ -90,8 +90,18 @@ module TencentCloud
           @Result = params['Result']
           @Confidence = params['Confidence']
           @ThreatTypes = params['ThreatTypes']
-          @Tags = params['Tags']
-          @Intelligences = params['Intelligences']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << TagType.new.deserialize(i)
+            end
+          end
+          unless params['Intelligences'].nil?
+            @Intelligences = []
+            params['Intelligences'].each do |i|
+              @Intelligences << IntelligenceType.new.deserialize(i)
+            end
+          end
           @Context = params['Context']
           @RequestId = params['RequestId']
         end
@@ -155,9 +165,24 @@ module TencentCloud
           @ReturnCode = params['ReturnCode']
           @Result = params['Result']
           @Confidence = params['Confidence']
-          @FileInfo = params['FileInfo']
-          @Tags = params['Tags']
-          @Intelligences = params['Intelligences']
+          unless params['FileInfo'].nil?
+            @FileInfo = []
+            params['FileInfo'].each do |i|
+              @FileInfo << FileInfoType.new.deserialize(i)
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << TagType.new.deserialize(i)
+            end
+          end
+          unless params['Intelligences'].nil?
+            @Intelligences = []
+            params['Intelligences'].each do |i|
+              @Intelligences << IntelligenceType.new.deserialize(i)
+            end
+          end
           @Context = params['Context']
           @RequestId = params['RequestId']
         end
@@ -236,8 +261,18 @@ module TencentCloud
           @Result = params['Result']
           @Confidence = params['Confidence']
           @ThreatTypes = params['ThreatTypes']
-          @Tags = params['Tags']
-          @Intelligences = params['Intelligences']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << TagType.new.deserialize(i)
+            end
+          end
+          unless params['Intelligences'].nil?
+            @Intelligences = []
+            params['Intelligences'].each do |i|
+              @Intelligences << IntelligenceType.new.deserialize(i)
+            end
+          end
           @Context = params['Context']
           @RequestId = params['RequestId']
         end

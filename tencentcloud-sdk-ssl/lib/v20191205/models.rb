@@ -46,7 +46,7 @@ module TencentCloud
 
         attr_accessor :DvAuthMethod, :DomainName, :ProjectId, :PackageType, :ContactEmail, :ContactPhone, :ValidityPeriod, :CsrEncryptAlgo, :CsrKeyParameter, :CsrKeyPassword, :Alias, :OldCertificateId
         
-        def initialize(dvauthmethod=nil, domainname=nil, projectid=nil, packagetype=nil, contactemail=nil, contactphone=nil, validityperiod=nil, csrencryptalgo=nil, csrkeyparameter=nil, csrkeypassword=nil, alias=nil, oldcertificateid=nil)
+        def initialize(dvauthmethod=nil, domainname=nil, projectid=nil, packagetype=nil, contactemail=nil, contactphone=nil, validityperiod=nil, csrencryptalgo=nil, csrkeyparameter=nil, csrkeypassword=nil, _alias=nil, oldcertificateid=nil)
           @DvAuthMethod = dvauthmethod
           @DomainName = domainname
           @ProjectId = projectid
@@ -57,7 +57,7 @@ module TencentCloud
           @CsrEncryptAlgo = csrencryptalgo
           @CsrKeyParameter = csrkeyparameter
           @CsrKeyPassword = csrkeypassword
-          @Alias = alias
+          @Alias = _alias
           @OldCertificateId = oldcertificateid
         end
 
@@ -265,7 +265,7 @@ module TencentCloud
 
         attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -273,7 +273,7 @@ module TencentCloud
           @CertificateType = certificatetype
           @ProductZhName = productzhname
           @Domain = domain
-          @Alias = alias
+          @Alias = _alias
           @Status = status
           @CertificateExtra = certificateextra
           @VulnerabilityStatus = vulnerabilitystatus
@@ -309,7 +309,7 @@ module TencentCloud
           @Alias = params['Alias']
           @Status = params['Status']
           unless params['CertificateExtra'].nil?
-            @CertificateExtra = CertificateExtra.new.deserialize(params[CertificateExtra])
+            @CertificateExtra = CertificateExtra.new.deserialize(params['CertificateExtra'])
           end
           @VulnerabilityStatus = params['VulnerabilityStatus']
           @StatusMsg = params['StatusMsg']
@@ -328,11 +328,16 @@ module TencentCloud
           @IsVulnerability = params['IsVulnerability']
           @RenewAble = params['RenewAble']
           unless params['ProjectInfo'].nil?
-            @ProjectInfo = ProjectInfo.new.deserialize(params[ProjectInfo])
+            @ProjectInfo = ProjectInfo.new.deserialize(params['ProjectInfo'])
           end
           @BoundResource = params['BoundResource']
           @Deployable = params['Deployable']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tags.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -741,7 +746,7 @@ module TencentCloud
 
         attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RequestId
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -749,7 +754,7 @@ module TencentCloud
           @PackageType = packagetype
           @ProductZhName = productzhname
           @Domain = domain
-          @Alias = alias
+          @Alias = _alias
           @Status = status
           @StatusMsg = statusmsg
           @VerifyType = verifytype
@@ -798,12 +803,12 @@ module TencentCloud
           @InsertTime = params['InsertTime']
           @OrderId = params['OrderId']
           unless params['CertificateExtra'].nil?
-            @CertificateExtra = CertificateExtra.new.deserialize(params[CertificateExtra])
+            @CertificateExtra = CertificateExtra.new.deserialize(params['CertificateExtra'])
           end
           @CertificatePrivateKey = params['CertificatePrivateKey']
           @CertificatePublicKey = params['CertificatePublicKey']
           unless params['DvAuthDetail'].nil?
-            @DvAuthDetail = DvAuthDetail.new.deserialize(params[DvAuthDetail])
+            @DvAuthDetail = DvAuthDetail.new.deserialize(params['DvAuthDetail'])
           end
           @VulnerabilityReport = params['VulnerabilityReport']
           @CertificateId = params['CertificateId']
@@ -815,11 +820,16 @@ module TencentCloud
           @IsDv = params['IsDv']
           @IsVulnerability = params['IsVulnerability']
           unless params['SubmittedData'].nil?
-            @SubmittedData = SubmittedData.new.deserialize(params[SubmittedData])
+            @SubmittedData = SubmittedData.new.deserialize(params['SubmittedData'])
           end
           @RenewAble = params['RenewAble']
           @Deployable = params['Deployable']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tags.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -876,7 +886,12 @@ module TencentCloud
         def deserialize(params)
           @AllTotal = params['AllTotal']
           @TotalCount = params['TotalCount']
-          @OperateLogs = params['OperateLogs']
+          unless params['OperateLogs'].nil?
+            @OperateLogs = []
+            params['OperateLogs'].each do |i|
+              @OperateLogs << OperationLog.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1000,7 +1015,7 @@ module TencentCloud
 
         attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :PackageTypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :RenewAble, :SubmittedData, :Deployable, :Tags, :RequestId
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, packagetypename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, renewable=nil, submitteddata=nil, deployable=nil, tags=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, packagetypename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, renewable=nil, submitteddata=nil, deployable=nil, tags=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -1008,7 +1023,7 @@ module TencentCloud
           @PackageType = packagetype
           @ProductZhName = productzhname
           @Domain = domain
-          @Alias = alias
+          @Alias = _alias
           @Status = status
           @StatusMsg = statusmsg
           @VerifyType = verifytype
@@ -1055,10 +1070,10 @@ module TencentCloud
           @InsertTime = params['InsertTime']
           @OrderId = params['OrderId']
           unless params['CertificateExtra'].nil?
-            @CertificateExtra = CertificateExtra.new.deserialize(params[CertificateExtra])
+            @CertificateExtra = CertificateExtra.new.deserialize(params['CertificateExtra'])
           end
           unless params['DvAuthDetail'].nil?
-            @DvAuthDetail = DvAuthDetail.new.deserialize(params[DvAuthDetail])
+            @DvAuthDetail = DvAuthDetail.new.deserialize(params['DvAuthDetail'])
           end
           @VulnerabilityReport = params['VulnerabilityReport']
           @CertificateId = params['CertificateId']
@@ -1071,10 +1086,15 @@ module TencentCloud
           @IsVulnerability = params['IsVulnerability']
           @RenewAble = params['RenewAble']
           unless params['SubmittedData'].nil?
-            @SubmittedData = SubmittedData.new.deserialize(params[SubmittedData])
+            @SubmittedData = SubmittedData.new.deserialize(params['SubmittedData'])
           end
           @Deployable = params['Deployable']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tags.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1144,7 +1164,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Certificates = params['Certificates']
+          unless params['Certificates'].nil?
+            @Certificates = []
+            params['Certificates'].each do |i|
+              @Certificates << Certificates.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1257,7 +1282,7 @@ module TencentCloud
           @ContactMail = params['ContactMail']
           @ManagerDepartment = params['ManagerDepartment']
           unless params['CompanyInfo'].nil?
-            @CompanyInfo = CompanyInfo.new.deserialize(params[CompanyInfo])
+            @CompanyInfo = CompanyInfo.new.deserialize(params['CompanyInfo'])
           end
           @CompanyId = params['CompanyId']
           @ManagerId = params['ManagerId']
@@ -1326,7 +1351,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Managers = params['Managers']
+          unless params['Managers'].nil?
+            @Managers = []
+            params['Managers'].each do |i|
+              @Managers << ManagerInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1412,7 +1442,12 @@ module TencentCloud
           @DvAuthDomain = params['DvAuthDomain']
           @DvAuthPath = params['DvAuthPath']
           @DvAuthKeySubDomain = params['DvAuthKeySubDomain']
-          @DvAuths = params['DvAuths']
+          unless params['DvAuths'].nil?
+            @DvAuths = []
+            params['DvAuths'].each do |i|
+              @DvAuths << DvAuths.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1539,9 +1574,9 @@ module TencentCloud
 
         attr_accessor :CertificateId, :Alias
         
-        def initialize(certificateid=nil, alias=nil)
+        def initialize(certificateid=nil, _alias=nil)
           @CertificateId = certificateid
-          @Alias = alias
+          @Alias = _alias
         end
 
         def deserialize(params)
@@ -1770,7 +1805,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RevokeDomainValidateAuths = params['RevokeDomainValidateAuths']
+          unless params['RevokeDomainValidateAuths'].nil?
+            @RevokeDomainValidateAuths = []
+            params['RevokeDomainValidateAuths'].each do |i|
+              @RevokeDomainValidateAuths << RevokeDomainValidateAuths.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2153,11 +2193,11 @@ module TencentCloud
 
         attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse
         
-        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, alias=nil, projectid=nil, certificateuse=nil)
+        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, _alias=nil, projectid=nil, certificateuse=nil)
           @CertificatePublicKey = certificatepublickey
           @CertificatePrivateKey = certificateprivatekey
           @CertificateType = certificatetype
-          @Alias = alias
+          @Alias = _alias
           @ProjectId = projectid
           @CertificateUse = certificateuse
         end

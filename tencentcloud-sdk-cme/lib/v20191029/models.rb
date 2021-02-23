@@ -66,7 +66,12 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           @TeamId = params['TeamId']
-          @TeamMembers = params['TeamMembers']
+          unless params['TeamMembers'].nil?
+            @TeamMembers = []
+            params['TeamMembers'].each do |i|
+              @TeamMembers << AddMemberInfo.new.deserialize(i)
+            end
+          end
           @Operator = params['Operator']
         end
       end
@@ -116,12 +121,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MetaData'].nil?
-            @MetaData = MediaMetaData.new.deserialize(params[MetaData])
+            @MetaData = MediaMetaData.new.deserialize(params['MetaData'])
           end
           @MaterialUrl = params['MaterialUrl']
           @CoverUrl = params['CoverUrl']
           unless params['MaterialStatus'].nil?
-            @MaterialStatus = MaterialStatus.new.deserialize(params[MaterialStatus])
+            @MaterialStatus = MaterialStatus.new.deserialize(params['MaterialStatus'])
           end
           @OriginalUrl = params['OriginalUrl']
           @VodFileId = params['VodFileId']
@@ -210,7 +215,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Authorizee'].nil?
-            @Authorizee = Entity.new.deserialize(params[Authorizee])
+            @Authorizee = Entity.new.deserialize(params['Authorizee'])
           end
           @PermissionSet = params['PermissionSet']
         end
@@ -266,13 +271,18 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @Name = params['Name']
           @Description = params['Description']
           @ClassPath = params['ClassPath']
           @TagSet = params['TagSet']
-          @ThirdPartyPublishInfos = params['ThirdPartyPublishInfos']
+          unless params['ThirdPartyPublishInfos'].nil?
+            @ThirdPartyPublishInfos = []
+            params['ThirdPartyPublishInfos'].each do |i|
+              @ThirdPartyPublishInfos << ThirdPartyPublishInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -292,7 +302,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @ClassPath = params['ClassPath']
         end
@@ -321,7 +331,7 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @ClassPath = params['ClassPath']
           @Operator = params['Operator']
@@ -385,11 +395,11 @@ module TencentCloud
           @Type = params['Type']
           @Name = params['Name']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @DestinationId = params['DestinationId']
           unless params['DestinationOwner'].nil?
-            @DestinationOwner = Entity.new.deserialize(params[DestinationOwner])
+            @DestinationOwner = Entity.new.deserialize(params['DestinationOwner'])
           end
           @ClassPath = params['ClassPath']
           @Operator = params['Operator']
@@ -465,21 +475,21 @@ module TencentCloud
           @Category = params['Category']
           @Name = params['Name']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @AspectRatio = params['AspectRatio']
           @Description = params['Description']
           unless params['SwitcherProjectInput'].nil?
-            @SwitcherProjectInput = SwitcherProjectInput.new.deserialize(params[SwitcherProjectInput])
+            @SwitcherProjectInput = SwitcherProjectInput.new.deserialize(params['SwitcherProjectInput'])
           end
           unless params['LiveStreamClipProjectInput'].nil?
-            @LiveStreamClipProjectInput = LiveStreamClipProjectInput.new.deserialize(params[LiveStreamClipProjectInput])
+            @LiveStreamClipProjectInput = LiveStreamClipProjectInput.new.deserialize(params['LiveStreamClipProjectInput'])
           end
           unless params['VideoEditProjectInput'].nil?
-            @VideoEditProjectInput = VideoEditProjectInput.new.deserialize(params[VideoEditProjectInput])
+            @VideoEditProjectInput = VideoEditProjectInput.new.deserialize(params['VideoEditProjectInput'])
           end
           unless params['VideoSegmentationProjectInput'].nil?
-            @VideoSegmentationProjectInput = VideoSegmentationProjectInput.new.deserialize(params[VideoSegmentationProjectInput])
+            @VideoSegmentationProjectInput = VideoSegmentationProjectInput.new.deserialize(params['VideoSegmentationProjectInput'])
           end
         end
       end
@@ -579,7 +589,7 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @ClassPath = params['ClassPath']
           @Operator = params['Operator']
@@ -818,7 +828,7 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @Operator = params['Operator']
         end
@@ -839,7 +849,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ClassInfoSet = params['ClassInfoSet']
+          unless params['ClassInfoSet'].nil?
+            @ClassInfoSet = []
+            params['ClassInfoSet'].each do |i|
+              @ClassInfoSet << ClassInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -891,7 +906,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TeamSet = params['TeamSet']
+          unless params['TeamSet'].nil?
+            @TeamSet = []
+            params['TeamSet'].each do |i|
+              @TeamSet << JoinTeamInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -931,7 +951,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @LoginStatusInfoSet = params['LoginStatusInfoSet']
+          unless params['LoginStatusInfoSet'].nil?
+            @LoginStatusInfoSet = []
+            params['LoginStatusInfoSet'].each do |i|
+              @LoginStatusInfoSet << LoginStatusInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -962,7 +987,7 @@ module TencentCloud
           @Platform = params['Platform']
           @MaterialIds = params['MaterialIds']
           unless params['Sort'].nil?
-            @Sort = SortBy.new.deserialize(params[Sort])
+            @Sort = SortBy.new.deserialize(params['Sort'])
           end
           @Operator = params['Operator']
         end
@@ -983,7 +1008,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @MaterialInfoSet = params['MaterialInfoSet']
+          unless params['MaterialInfoSet'].nil?
+            @MaterialInfoSet = []
+            params['MaterialInfoSet'].each do |i|
+              @MaterialInfoSet << MaterialInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1035,7 +1065,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @PlatformInfoSet = params['PlatformInfoSet']
+          unless params['PlatformInfoSet'].nil?
+            @PlatformInfoSet = []
+            params['PlatformInfoSet'].each do |i|
+              @PlatformInfoSet << PlatformInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1080,10 +1115,10 @@ module TencentCloud
           @AspectRatioSet = params['AspectRatioSet']
           @CategorySet = params['CategorySet']
           unless params['Sort'].nil?
-            @Sort = SortBy.new.deserialize(params[Sort])
+            @Sort = SortBy.new.deserialize(params['Sort'])
           end
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -1109,7 +1144,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @ProjectInfoSet = params['ProjectInfoSet']
+          unless params['ProjectInfoSet'].nil?
+            @ProjectInfoSet = []
+            params['ProjectInfoSet'].each do |i|
+              @ProjectInfoSet << ProjectInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1137,10 +1177,10 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           unless params['Resource'].nil?
-            @Resource = Resource.new.deserialize(params[Resource])
+            @Resource = Resource.new.deserialize(params['Resource'])
           end
           @Operator = params['Operator']
         end
@@ -1166,7 +1206,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @AuthorizationInfoSet = params['AuthorizationInfoSet']
+          unless params['AuthorizationInfoSet'].nil?
+            @AuthorizationInfoSet = []
+            params['AuthorizationInfoSet'].each do |i|
+              @AuthorizationInfoSet << AuthorizationInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1191,7 +1236,7 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           unless params['Authorizee'].nil?
-            @Authorizee = Entity.new.deserialize(params[Authorizee])
+            @Authorizee = Entity.new.deserialize(params['Authorizee'])
           end
           @Operator = params['Operator']
         end
@@ -1217,7 +1262,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @AuthorizerSet = params['AuthorizerSet']
+          unless params['AuthorizerSet'].nil?
+            @AuthorizerSet = []
+            params['AuthorizerSet'].each do |i|
+              @AuthorizerSet << Authorizer.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1288,7 +1338,7 @@ module TencentCloud
           @ErrMsg = params['ErrMsg']
           @TaskType = params['TaskType']
           unless params['VideoEditProjectOutput'].nil?
-            @VideoEditProjectOutput = VideoEditProjectOutput.new.deserialize(params[VideoEditProjectOutput])
+            @VideoEditProjectOutput = VideoEditProjectOutput.new.deserialize(params['VideoEditProjectOutput'])
           end
           @CreateTime = params['CreateTime']
           @RequestId = params['RequestId']
@@ -1354,7 +1404,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TaskBaseInfoSet = params['TaskBaseInfoSet']
+          unless params['TaskBaseInfoSet'].nil?
+            @TaskBaseInfoSet = []
+            params['TaskBaseInfoSet'].each do |i|
+              @TaskBaseInfoSet << TaskBaseInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1414,7 +1469,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @MemberSet = params['MemberSet']
+          unless params['MemberSet'].nil?
+            @MemberSet = []
+            params['MemberSet'].each do |i|
+              @MemberSet << TeamMemberInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1466,7 +1526,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TeamSet = params['TeamSet']
+          unless params['TeamSet'].nil?
+            @TeamSet = []
+            params['TeamSet'].each do |i|
+              @TeamSet << TeamInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1549,10 +1614,10 @@ module TencentCloud
           @ExportDestination = params['ExportDestination']
           @TrackData = params['TrackData']
           unless params['CMEExportInfo'].nil?
-            @CMEExportInfo = CMEExportInfo.new.deserialize(params[CMEExportInfo])
+            @CMEExportInfo = CMEExportInfo.new.deserialize(params['CMEExportInfo'])
           end
           unless params['VODExportInfo'].nil?
-            @VODExportInfo = VODExportInfo.new.deserialize(params[VODExportInfo])
+            @VODExportInfo = VODExportInfo.new.deserialize(params['VODExportInfo'])
           end
           @Operator = params['Operator']
         end
@@ -1626,10 +1691,10 @@ module TencentCloud
           @Definition = params['Definition']
           @ExportDestination = params['ExportDestination']
           unless params['CMEExportInfo'].nil?
-            @CMEExportInfo = CMEExportInfo.new.deserialize(params[CMEExportInfo])
+            @CMEExportInfo = CMEExportInfo.new.deserialize(params['CMEExportInfo'])
           end
           unless params['VODExportInfo'].nil?
-            @VODExportInfo = VODExportInfo.new.deserialize(params[VODExportInfo])
+            @VODExportInfo = VODExportInfo.new.deserialize(params['VODExportInfo'])
           end
           @Operator = params['Operator']
         end
@@ -1695,10 +1760,10 @@ module TencentCloud
           @Definition = params['Definition']
           @ExportDestination = params['ExportDestination']
           unless params['CMEExportInfo'].nil?
-            @CMEExportInfo = CMEExportInfo.new.deserialize(params[CMEExportInfo])
+            @CMEExportInfo = CMEExportInfo.new.deserialize(params['CMEExportInfo'])
           end
           unless params['VODExportInfo'].nil?
-            @VODExportInfo = VODExportInfo.new.deserialize(params[VODExportInfo])
+            @VODExportInfo = VODExportInfo.new.deserialize(params['VODExportInfo'])
           end
           @Operator = params['Operator']
         end
@@ -1774,7 +1839,7 @@ module TencentCloud
           @Platform = params['Platform']
           @ClassPath = params['ClassPath']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -1801,7 +1866,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @MaterialInfoSet = params['MaterialInfoSet']
+          unless params['MaterialInfoSet'].nil?
+            @MaterialInfoSet = []
+            params['MaterialInfoSet'].each do |i|
+              @MaterialInfoSet << MaterialInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1883,10 +1953,20 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
-          @Resources = params['Resources']
-          @Authorizees = params['Authorizees']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              @Resources << Resource.new.deserialize(i)
+            end
+          end
+          unless params['Authorizees'].nil?
+            @Authorizees = []
+            params['Authorizees'].each do |i|
+              @Authorizees << Entity.new.deserialize(i)
+            end
+          end
           @Permissions = params['Permissions']
           @Operator = params['Operator']
         end
@@ -1986,13 +2066,13 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @Name = params['Name']
           @SourceType = params['SourceType']
           @VodFileId = params['VodFileId']
           unless params['ExternalMediaInfo'].nil?
-            @ExternalMediaInfo = ExternalMediaInfo.new.deserialize(params[ExternalMediaInfo])
+            @ExternalMediaInfo = ExternalMediaInfo.new.deserialize(params['ExternalMediaInfo'])
           end
           @ClassPath = params['ClassPath']
           @PreProcessDefinition = params['PreProcessDefinition']
@@ -2067,7 +2147,7 @@ module TencentCloud
           @SourceType = params['SourceType']
           @VodFileId = params['VodFileId']
           unless params['ExternalMediaInfo'].nil?
-            @ExternalMediaInfo = ExternalMediaInfo.new.deserialize(params[ExternalMediaInfo])
+            @ExternalMediaInfo = ExternalMediaInfo.new.deserialize(params['ExternalMediaInfo'])
           end
           @Name = params['Name']
           @PreProcessDefinition = params['PreProcessDefinition']
@@ -2196,10 +2276,10 @@ module TencentCloud
           @LinkType = params['LinkType']
           @LinkStatus = params['LinkStatus']
           unless params['LinkMaterialInfo'].nil?
-            @LinkMaterialInfo = LinkMaterialInfo.new.deserialize(params[LinkMaterialInfo])
+            @LinkMaterialInfo = LinkMaterialInfo.new.deserialize(params['LinkMaterialInfo'])
           end
           unless params['LinkClassInfo'].nil?
-            @LinkClassInfo = ClassInfo.new.deserialize(params[LinkClassInfo])
+            @LinkClassInfo = ClassInfo.new.deserialize(params['LinkClassInfo'])
           end
         end
       end
@@ -2229,16 +2309,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BasicInfo'].nil?
-            @BasicInfo = MaterialBasicInfo.new.deserialize(params[BasicInfo])
+            @BasicInfo = MaterialBasicInfo.new.deserialize(params['BasicInfo'])
           end
           unless params['VideoMaterial'].nil?
-            @VideoMaterial = VideoMaterial.new.deserialize(params[VideoMaterial])
+            @VideoMaterial = VideoMaterial.new.deserialize(params['VideoMaterial'])
           end
           unless params['AudioMaterial'].nil?
-            @AudioMaterial = AudioMaterial.new.deserialize(params[AudioMaterial])
+            @AudioMaterial = AudioMaterial.new.deserialize(params['AudioMaterial'])
           end
           unless params['ImageMaterial'].nil?
-            @ImageMaterial = ImageMaterial.new.deserialize(params[ImageMaterial])
+            @ImageMaterial = ImageMaterial.new.deserialize(params['ImageMaterial'])
           end
         end
       end
@@ -2273,7 +2353,7 @@ module TencentCloud
           @Platform = params['Platform']
           @ClassPath = params['ClassPath']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -2303,8 +2383,18 @@ module TencentCloud
 
         def deserialize(params)
           @MaterialTotalCount = params['MaterialTotalCount']
-          @MaterialInfoSet = params['MaterialInfoSet']
-          @ClassInfoSet = params['ClassInfoSet']
+          unless params['MaterialInfoSet'].nil?
+            @MaterialInfoSet = []
+            params['MaterialInfoSet'].each do |i|
+              @MaterialInfoSet << MaterialInfo.new.deserialize(i)
+            end
+          end
+          unless params['ClassInfoSet'].nil?
+            @ClassInfoSet = []
+            params['ClassInfoSet'].each do |i|
+              @ClassInfoSet << ClassInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2391,13 +2481,18 @@ module TencentCloud
           @MaterialId = params['MaterialId']
           @MaterialType = params['MaterialType']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @Name = params['Name']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @ClassPath = params['ClassPath']
-          @TagInfoSet = params['TagInfoSet']
+          unless params['TagInfoSet'].nil?
+            @TagInfoSet = []
+            params['TagInfoSet'].each do |i|
+              @TagInfoSet << MaterialTagInfo.new.deserialize(i)
+            end
+          end
           @PreviewUrl = params['PreviewUrl']
         end
       end
@@ -2431,19 +2526,19 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BasicInfo'].nil?
-            @BasicInfo = MaterialBasicInfo.new.deserialize(params[BasicInfo])
+            @BasicInfo = MaterialBasicInfo.new.deserialize(params['BasicInfo'])
           end
           unless params['VideoMaterial'].nil?
-            @VideoMaterial = VideoMaterial.new.deserialize(params[VideoMaterial])
+            @VideoMaterial = VideoMaterial.new.deserialize(params['VideoMaterial'])
           end
           unless params['AudioMaterial'].nil?
-            @AudioMaterial = AudioMaterial.new.deserialize(params[AudioMaterial])
+            @AudioMaterial = AudioMaterial.new.deserialize(params['AudioMaterial'])
           end
           unless params['ImageMaterial'].nil?
-            @ImageMaterial = ImageMaterial.new.deserialize(params[ImageMaterial])
+            @ImageMaterial = ImageMaterial.new.deserialize(params['ImageMaterial'])
           end
           unless params['LinkMaterial'].nil?
-            @LinkMaterial = LinkMaterial.new.deserialize(params[LinkMaterial])
+            @LinkMaterial = LinkMaterial.new.deserialize(params['LinkMaterial'])
           end
         end
       end
@@ -2567,8 +2662,18 @@ module TencentCloud
           @Width = params['Width']
           @Duration = params['Duration']
           @Rotate = params['Rotate']
-          @VideoStreamInfoSet = params['VideoStreamInfoSet']
-          @AudioStreamInfoSet = params['AudioStreamInfoSet']
+          unless params['VideoStreamInfoSet'].nil?
+            @VideoStreamInfoSet = []
+            params['VideoStreamInfoSet'].each do |i|
+              @VideoStreamInfoSet << VideoStreamInfo.new.deserialize(i)
+            end
+          end
+          unless params['AudioStreamInfoSet'].nil?
+            @AudioStreamInfoSet = []
+            params['AudioStreamInfoSet'].each do |i|
+              @AudioStreamInfoSet << AudioStreamInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2592,7 +2697,12 @@ module TencentCloud
 
         def deserialize(params)
           @Type = params['Type']
-          @TrackItems = params['TrackItems']
+          unless params['TrackItems'].nil?
+            @TrackItems = []
+            params['TrackItems'].each do |i|
+              @TrackItems << MediaTrackItem.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2623,13 +2733,13 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           unless params['VideoItem'].nil?
-            @VideoItem = VideoTrackItem.new.deserialize(params[VideoItem])
+            @VideoItem = VideoTrackItem.new.deserialize(params['VideoItem'])
           end
           unless params['AudioItem'].nil?
-            @AudioItem = AudioTrackItem.new.deserialize(params[AudioItem])
+            @AudioItem = AudioTrackItem.new.deserialize(params['AudioItem'])
           end
           unless params['EmptyItem'].nil?
-            @EmptyItem = EmptyTrackItem.new.deserialize(params[EmptyItem])
+            @EmptyItem = EmptyTrackItem.new.deserialize(params['EmptyItem'])
           end
         end
       end
@@ -2664,7 +2774,7 @@ module TencentCloud
           @Platform = params['Platform']
           @MaterialId = params['MaterialId']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @Name = params['Name']
           @ClassPath = params['ClassPath']
@@ -2719,7 +2829,7 @@ module TencentCloud
           @Name = params['Name']
           @AspectRatio = params['AspectRatio']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
         end
       end
@@ -2864,7 +2974,7 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @SourceClassPath = params['SourceClassPath']
           @DestinationClassPath = params['DestinationClassPath']
@@ -2990,7 +3100,7 @@ module TencentCloud
           @AspectRatio = params['AspectRatio']
           @Category = params['Category']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @CoverUrl = params['CoverUrl']
           @CreateTime = params['CreateTime']
@@ -3053,10 +3163,20 @@ module TencentCloud
         def deserialize(params)
           @Platform = params['Platform']
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
-          @Resources = params['Resources']
-          @Authorizees = params['Authorizees']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              @Resources << Resource.new.deserialize(i)
+            end
+          end
+          unless params['Authorizees'].nil?
+            @Authorizees = []
+            params['Authorizees'].each do |i|
+              @Authorizees << Entity.new.deserialize(i)
+            end
+          end
           @Permissions = params['Permissions']
           @Operator = params['Operator']
         end
@@ -3127,19 +3247,24 @@ module TencentCloud
 
         def deserialize(params)
           @Platform = params['Platform']
-          @SearchScopes = params['SearchScopes']
+          unless params['SearchScopes'].nil?
+            @SearchScopes = []
+            params['SearchScopes'].each do |i|
+              @SearchScopes << SearchScope.new.deserialize(i)
+            end
+          end
           @MaterialTypes = params['MaterialTypes']
           @Text = params['Text']
           @Resolution = params['Resolution']
           unless params['DurationRange'].nil?
-            @DurationRange = IntegerRange.new.deserialize(params[DurationRange])
+            @DurationRange = IntegerRange.new.deserialize(params['DurationRange'])
           end
           unless params['CreateTimeRange'].nil?
-            @CreateTimeRange = TimeRange.new.deserialize(params[CreateTimeRange])
+            @CreateTimeRange = TimeRange.new.deserialize(params['CreateTimeRange'])
           end
           @Tags = params['Tags']
           unless params['Sort'].nil?
-            @Sort = SortBy.new.deserialize(params[Sort])
+            @Sort = SortBy.new.deserialize(params['Sort'])
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
@@ -3166,7 +3291,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @MaterialInfoSet = params['MaterialInfoSet']
+          unless params['MaterialInfoSet'].nil?
+            @MaterialInfoSet = []
+            params['MaterialInfoSet'].each do |i|
+              @MaterialInfoSet << MaterialInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3187,7 +3317,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Owner'].nil?
-            @Owner = Entity.new.deserialize(params[Owner])
+            @Owner = Entity.new.deserialize(params['Owner'])
           end
           @ClassPath = params['ClassPath']
         end
@@ -3265,7 +3395,7 @@ module TencentCloud
         def deserialize(params)
           @StopTime = params['StopTime']
           unless params['PgmOutputConfig'].nil?
-            @PgmOutputConfig = SwitcherPgmOutputConfig.new.deserialize(params[PgmOutputConfig])
+            @PgmOutputConfig = SwitcherPgmOutputConfig.new.deserialize(params['PgmOutputConfig'])
           end
         end
       end
@@ -3398,13 +3528,13 @@ module TencentCloud
         def deserialize(params)
           @ChannelMaterialId = params['ChannelMaterialId']
           unless params['PenguinMediaPlatformPublishInfo'].nil?
-            @PenguinMediaPlatformPublishInfo = PenguinMediaPlatformPublishInfo.new.deserialize(params[PenguinMediaPlatformPublishInfo])
+            @PenguinMediaPlatformPublishInfo = PenguinMediaPlatformPublishInfo.new.deserialize(params['PenguinMediaPlatformPublishInfo'])
           end
           unless params['WeiboPublishInfo'].nil?
-            @WeiboPublishInfo = WeiboPublishInfo.new.deserialize(params[WeiboPublishInfo])
+            @WeiboPublishInfo = WeiboPublishInfo.new.deserialize(params['WeiboPublishInfo'])
           end
           unless params['KuaishouPublishInfo'].nil?
-            @KuaishouPublishInfo = KuaishouPublishInfo.new.deserialize(params[KuaishouPublishInfo])
+            @KuaishouPublishInfo = KuaishouPublishInfo.new.deserialize(params['KuaishouPublishInfo'])
           end
         end
       end
@@ -3449,7 +3579,12 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @ClassId = params['ClassId']
-          @ThirdPartyPublishInfos = params['ThirdPartyPublishInfos']
+          unless params['ThirdPartyPublishInfos'].nil?
+            @ThirdPartyPublishInfos = []
+            params['ThirdPartyPublishInfos'].each do |i|
+              @ThirdPartyPublishInfos << ThirdPartyPublishInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3470,7 +3605,12 @@ module TencentCloud
 
         def deserialize(params)
           @VideoEditTemplateId = params['VideoEditTemplateId']
-          @InitTracks = params['InitTracks']
+          unless params['InitTracks'].nil?
+            @InitTracks = []
+            params['InitTracks'].each do |i|
+              @InitTracks << MediaTrack.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3500,7 +3640,7 @@ module TencentCloud
           @VodFileId = params['VodFileId']
           @URL = params['URL']
           unless params['MetaData'].nil?
-            @MetaData = MediaMetaData.new.deserialize(params[MetaData])
+            @MetaData = MediaMetaData.new.deserialize(params['MetaData'])
           end
         end
       end
@@ -3540,16 +3680,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MetaData'].nil?
-            @MetaData = MediaMetaData.new.deserialize(params[MetaData])
+            @MetaData = MediaMetaData.new.deserialize(params['MetaData'])
           end
           unless params['ImageSpriteInfo'].nil?
-            @ImageSpriteInfo = MediaImageSpriteInfo.new.deserialize(params[ImageSpriteInfo])
+            @ImageSpriteInfo = MediaImageSpriteInfo.new.deserialize(params['ImageSpriteInfo'])
           end
           @MaterialUrl = params['MaterialUrl']
           @CoverUrl = params['CoverUrl']
           @Resolution = params['Resolution']
           unless params['MaterialStatus'].nil?
-            @MaterialStatus = MaterialStatus.new.deserialize(params[MaterialStatus])
+            @MaterialStatus = MaterialStatus.new.deserialize(params['MaterialStatus'])
           end
           @OriginalUrl = params['OriginalUrl']
           @VodFileId = params['VodFileId']

@@ -133,7 +133,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ImageInfos = params['ImageInfos']
+          unless params['ImageInfos'].nil?
+            @ImageInfos = []
+            params['ImageInfos'].each do |i|
+              @ImageInfos << ImageInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -156,7 +161,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DownloadInfos = params['DownloadInfos']
+          unless params['DownloadInfos'].nil?
+            @DownloadInfos = []
+            params['DownloadInfos'].each do |i|
+              @DownloadInfos << DownloadInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -248,7 +258,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Users = params['Users']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              @Users << AuthInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @OldUser = params['OldUser']
           @RequestId = params['RequestId']
@@ -306,7 +321,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DownloadInfos = params['DownloadInfos']
+          unless params['DownloadInfos'].nil?
+            @DownloadInfos = []
+            params['DownloadInfos'].each do |i|
+              @DownloadInfos << DownloadInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -388,7 +408,12 @@ module TencentCloud
           @PreviewUrl = params['PreviewUrl']
           @ThumbUrl = params['ThumbUrl']
           @Vendor = params['Vendor']
-          @Marshals = params['Marshals']
+          unless params['Marshals'].nil?
+            @Marshals = []
+            params['Marshals'].each do |i|
+              @Marshals << ImageMarshal.new.deserialize(i)
+            end
+          end
           @Width = params['Width']
           @Height = params['Height']
           @ImageFormat = params['ImageFormat']
@@ -467,7 +492,12 @@ module TencentCloud
           @Limit = params['Limit']
           @Total = params['Total']
           @HaveMore = params['HaveMore']
-          @Items = params['Items']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << ImageItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -509,7 +539,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ImageInfo'].nil?
-            @ImageInfo = ImageInfo.new.deserialize(params[ImageInfo])
+            @ImageInfo = ImageInfo.new.deserialize(params['ImageInfo'])
           end
           @ImageUrl = params['ImageUrl']
           @ImageThumbUrl = params['ImageThumbUrl']

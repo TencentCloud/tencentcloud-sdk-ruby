@@ -94,10 +94,30 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @OperDataLoadTimeUnitArray = params['OperDataLoadTimeUnitArray']
-          @OperDataInterceptUnitArray = params['OperDataInterceptUnitArray']
-          @OperDataTryTimesUnitArray = params['OperDataTryTimesUnitArray']
-          @OperDataTryTimesDistributeUnitArray = params['OperDataTryTimesDistributeUnitArray']
+          unless params['OperDataLoadTimeUnitArray'].nil?
+            @OperDataLoadTimeUnitArray = []
+            params['OperDataLoadTimeUnitArray'].each do |i|
+              @OperDataLoadTimeUnitArray << CaptchaOperDataLoadTimeUnit.new.deserialize(i)
+            end
+          end
+          unless params['OperDataInterceptUnitArray'].nil?
+            @OperDataInterceptUnitArray = []
+            params['OperDataInterceptUnitArray'].each do |i|
+              @OperDataInterceptUnitArray << CaptchaOperDataInterceptUnit.new.deserialize(i)
+            end
+          end
+          unless params['OperDataTryTimesUnitArray'].nil?
+            @OperDataTryTimesUnitArray = []
+            params['OperDataTryTimesUnitArray'].each do |i|
+              @OperDataTryTimesUnitArray << CaptchaOperDataTryTimesUnit.new.deserialize(i)
+            end
+          end
+          unless params['OperDataTryTimesDistributeUnitArray'].nil?
+            @OperDataTryTimesDistributeUnitArray = []
+            params['OperDataTryTimesDistributeUnitArray'].each do |i|
+              @OperDataTryTimesDistributeUnitArray << CaptchaOperDataTryTimesDistributeUnit.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -183,9 +203,24 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TicketAmountArray = params['TicketAmountArray']
-          @TicketThroughArray = params['TicketThroughArray']
-          @TicketInterceptArray = params['TicketInterceptArray']
+          unless params['TicketAmountArray'].nil?
+            @TicketAmountArray = []
+            params['TicketAmountArray'].each do |i|
+              @TicketAmountArray << TicketAmountUnit.new.deserialize(i)
+            end
+          end
+          unless params['TicketThroughArray'].nil?
+            @TicketThroughArray = []
+            params['TicketThroughArray'].each do |i|
+              @TicketThroughArray << TicketThroughUnit.new.deserialize(i)
+            end
+          end
+          unless params['TicketInterceptArray'].nil?
+            @TicketInterceptArray = []
+            params['TicketInterceptArray'].each do |i|
+              @TicketInterceptArray << TicketInterceptUnit.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -324,10 +359,10 @@ module TencentCloud
 
         attr_accessor :CaptchaAppId, :Start, :End, :Type
         
-        def initialize(captchaappid=nil, start=nil, end=nil, type=nil)
+        def initialize(captchaappid=nil, start=nil, _end=nil, type=nil)
           @CaptchaAppId = captchaappid
           @Start = start
-          @End = end
+          @End = _end
           @Type = type
         end
 
@@ -363,7 +398,12 @@ module TencentCloud
 
         def deserialize(params)
           @CaptchaCode = params['CaptchaCode']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << CaptchaQueryData.new.deserialize(i)
+            end
+          end
           @CaptchaMsg = params['CaptchaMsg']
           @RequestId = params['RequestId']
         end
@@ -380,10 +420,10 @@ module TencentCloud
 
         attr_accessor :CaptchaAppId, :Start, :End
         
-        def initialize(captchaappid=nil, start=nil, end=nil)
+        def initialize(captchaappid=nil, start=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
-          @End = end
+          @End = _end
         end
 
         def deserialize(params)
@@ -451,10 +491,10 @@ module TencentCloud
 
         attr_accessor :CaptchaAppId, :Start, :End, :Type
         
-        def initialize(captchaappid=nil, start=nil, end=nil, type=nil)
+        def initialize(captchaappid=nil, start=nil, _end=nil, type=nil)
           @CaptchaAppId = captchaappid
           @Start = start
-          @End = end
+          @End = _end
           @Type = type
         end
 
@@ -490,7 +530,12 @@ module TencentCloud
 
         def deserialize(params)
           @CaptchaCode = params['CaptchaCode']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << CaptchaQueryData.new.deserialize(i)
+            end
+          end
           @CaptchaMsg = params['CaptchaMsg']
           @RequestId = params['RequestId']
         end
@@ -507,10 +552,10 @@ module TencentCloud
 
         attr_accessor :CaptchaAppId, :Start, :End
         
-        def initialize(captchaappid=nil, start=nil, end=nil)
+        def initialize(captchaappid=nil, start=nil, _end=nil)
           @CaptchaAppId = captchaappid
           @Start = start
-          @End = end
+          @End = _end
         end
 
         def deserialize(params)
@@ -631,7 +676,7 @@ module TencentCloud
           @CaptchaCode = params['CaptchaCode']
           @CaptchaMsg = params['CaptchaMsg']
           unless params['Data'].nil?
-            @Data = CaptchaOperDataRes.new.deserialize(params[Data])
+            @Data = CaptchaOperDataRes.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -811,7 +856,7 @@ module TencentCloud
           @CaptchaCode = params['CaptchaCode']
           @CaptchaMsg = params['CaptchaMsg']
           unless params['ManageMarketingRiskValue'].nil?
-            @ManageMarketingRiskValue = OutputManageMarketingRiskValue.new.deserialize(params[ManageMarketingRiskValue])
+            @ManageMarketingRiskValue = OutputManageMarketingRiskValue.new.deserialize(params['ManageMarketingRiskValue'])
           end
           @RequestId = params['RequestId']
         end
@@ -867,7 +912,7 @@ module TencentCloud
           @CaptchaCode = params['CaptchaCode']
           @CaptchaMsg = params['CaptchaMsg']
           unless params['Data'].nil?
-            @Data = CaptchaOperDataRes.new.deserialize(params[Data])
+            @Data = CaptchaOperDataRes.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1031,7 +1076,7 @@ module TencentCloud
           @CaptchaCode = params['CaptchaCode']
           @CaptchaMsg = params['CaptchaMsg']
           unless params['Data'].nil?
-            @Data = CaptchaTicketDataRes.new.deserialize(params[Data])
+            @Data = CaptchaTicketDataRes.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1071,7 +1116,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << CaptchaUserAllAppId.new.deserialize(i)
+            end
+          end
           @CaptchaCode = params['CaptchaCode']
           @CaptchaMsg = params['CaptchaMsg']
           @RequestId = params['RequestId']

@@ -146,7 +146,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RequestData'].nil?
-            @RequestData = BRIRequest.new.deserialize(params[RequestData])
+            @RequestData = BRIRequest.new.deserialize(params['RequestData'])
           end
           @ResourceId = params['ResourceId']
         end
@@ -168,7 +168,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ResponseData'].nil?
-            @ResponseData = BRIResponse.new.deserialize(params[ResponseData])
+            @ResponseData = BRIResponse.new.deserialize(params['ResponseData'])
           end
           @RequestId = params['RequestId']
         end

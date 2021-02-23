@@ -321,7 +321,12 @@ module TencentCloud
 
         def deserialize(params)
           @EventIds = params['EventIds']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -346,7 +351,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Events = params['Events']
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              @Events << EventInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -385,7 +395,12 @@ module TencentCloud
           @VersionIds = params['VersionIds']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -408,7 +423,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Versions = params['Versions']
+          unless params['Versions'].nil?
+            @Versions = []
+            params['Versions'].each do |i|
+              @Versions << VersionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -456,7 +476,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Stacks = params['Stacks']
+          unless params['Stacks'].nil?
+            @Stacks = []
+            params['Stacks'].each do |i|
+              @Stacks << StackInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

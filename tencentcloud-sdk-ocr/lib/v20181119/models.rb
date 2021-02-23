@@ -56,7 +56,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TextDetections = params['TextDetections']
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              @TextDetections << AdvertiseTextDetection.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -85,7 +90,12 @@ module TencentCloud
         def deserialize(params)
           @DetectedText = params['DetectedText']
           @Confidence = params['Confidence']
-          @Polygon = params['Polygon']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              @Polygon << Coord.new.deserialize(i)
+            end
+          end
           @AdvancedInfo = params['AdvancedInfo']
         end
       end
@@ -159,7 +169,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TextDetections = params['TextDetections']
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              @TextDetections << TextArithmetic.new.deserialize(i)
+            end
+          end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
@@ -410,7 +425,7 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
         end
       end
@@ -460,7 +475,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @BusInvoiceInfos = params['BusInvoiceInfos']
+          unless params['BusInvoiceInfos'].nil?
+            @BusInvoiceInfos = []
+            params['BusInvoiceInfos'].each do |i|
+              @BusInvoiceInfos << BusInvoiceInfo.new.deserialize(i)
+            end
+          end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
@@ -488,7 +508,7 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           unless params['ItemCoord'].nil?
-            @ItemCoord = ItemCoord.new.deserialize(params[ItemCoord])
+            @ItemCoord = ItemCoord.new.deserialize(params['ItemCoord'])
           end
         end
       end
@@ -553,7 +573,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @BusinessCardInfos = params['BusinessCardInfos']
+          unless params['BusinessCardInfos'].nil?
+            @BusinessCardInfos = []
+            params['BusinessCardInfos'].each do |i|
+              @BusinessCardInfos << BusinessCardInfo.new.deserialize(i)
+            end
+          end
           @RetImageBase64 = params['RetImageBase64']
           @Angle = params['Angle']
           @RequestId = params['RequestId']
@@ -572,7 +597,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CandWords = params['CandWords']
+          unless params['CandWords'].nil?
+            @CandWords = []
+            params['CandWords'].each do |i|
+              @CandWords << Words.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -603,10 +633,10 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
           unless params['Polygon'].nil?
-            @Polygon = Polygon.new.deserialize(params[Polygon])
+            @Polygon = Polygon.new.deserialize(params['Polygon'])
           end
         end
       end
@@ -653,7 +683,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CarInvoiceInfos = params['CarInvoiceInfos']
+          unless params['CarInvoiceInfos'].nil?
+            @CarInvoiceInfos = []
+            params['CarInvoiceInfos'].each do |i|
+              @CarInvoiceInfos << CarInvoiceInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -702,7 +737,7 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
         end
       end
@@ -771,7 +806,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ClassifyDetectInfos = params['ClassifyDetectInfos']
+          unless params['ClassifyDetectInfos'].nil?
+            @ClassifyDetectInfos = []
+            params['ClassifyDetectInfos'].each do |i|
+              @ClassifyDetectInfos << ClassifyDetectInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -869,14 +909,14 @@ module TencentCloud
 
         attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :RequestId
         
-        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, requestid=nil)
+        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, _class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, requestid=nil)
           @Name = name
           @Sex = sex
           @Nationality = nationality
           @Address = address
           @DateOfBirth = dateofbirth
           @DateOfFirstIssue = dateoffirstissue
-          @Class = class
+          @Class = _class
           @StartDate = startdate
           @EndDate = enddate
           @CardCode = cardcode
@@ -930,7 +970,7 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
         end
       end
@@ -980,7 +1020,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DutyPaidProofInfos = params['DutyPaidProofInfos']
+          unless params['DutyPaidProofInfos'].nil?
+            @DutyPaidProofInfos = []
+            params['DutyPaidProofInfos'].each do |i|
+              @DutyPaidProofInfos << DutyPaidProofInfo.new.deserialize(i)
+            end
+          end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
@@ -1044,9 +1089,19 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @EduPaperInfos = params['EduPaperInfos']
+          unless params['EduPaperInfos'].nil?
+            @EduPaperInfos = []
+            params['EduPaperInfos'].each do |i|
+              @EduPaperInfos << TextEduPaper.new.deserialize(i)
+            end
+          end
           @Angle = params['Angle']
-          @QuestionBlockInfos = params['QuestionBlockInfos']
+          unless params['QuestionBlockInfos'].nil?
+            @QuestionBlockInfos = []
+            params['QuestionBlockInfos'].each do |i|
+              @QuestionBlockInfos << QuestionBlockObj.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1106,7 +1161,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TextDetections = params['TextDetections']
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              @TextDetections << TextDetectionEn.new.deserialize(i)
+            end
+          end
           @Angel = params['Angel']
           @RequestId = params['RequestId']
         end
@@ -1178,7 +1238,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @EnterpriseLicenseInfos = params['EnterpriseLicenseInfos']
+          unless params['EnterpriseLicenseInfos'].nil?
+            @EnterpriseLicenseInfos = []
+            params['EnterpriseLicenseInfos'].each do |i|
+              @EnterpriseLicenseInfos << EnterpriseLicenseInfo.new.deserialize(i)
+            end
+          end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
@@ -1343,7 +1408,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FinanBillInfos = params['FinanBillInfos']
+          unless params['FinanBillInfos'].nil?
+            @FinanBillInfos = []
+            params['FinanBillInfos'].each do |i|
+              @FinanBillInfos << FinanBillInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1411,7 +1481,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FinanBillSliceInfos = params['FinanBillSliceInfos']
+          unless params['FinanBillSliceInfos'].nil?
+            @FinanBillSliceInfos = []
+            params['FinanBillSliceInfos'].each do |i|
+              @FinanBillSliceInfos << FinanBillSliceInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1479,7 +1554,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FlightInvoiceInfos = params['FlightInvoiceInfos']
+          unless params['FlightInvoiceInfos'].nil?
+            @FlightInvoiceInfos = []
+            params['FlightInvoiceInfos'].each do |i|
+              @FlightInvoiceInfos << FlightInvoiceInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1530,7 +1610,12 @@ module TencentCloud
 
         def deserialize(params)
           @Angle = params['Angle']
-          @FormulaInfos = params['FormulaInfos']
+          unless params['FormulaInfos'].nil?
+            @FormulaInfos = []
+            params['FormulaInfos'].each do |i|
+              @FormulaInfos << TextFormula.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1577,7 +1662,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TextDetections = params['TextDetections']
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              @TextDetections << TextDetection.new.deserialize(i)
+            end
+          end
           @Angel = params['Angel']
           @RequestId = params['RequestId']
         end
@@ -1661,7 +1751,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TextDetections = params['TextDetections']
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              @TextDetections << TextDetection.new.deserialize(i)
+            end
+          end
           @Language = params['Language']
           @Angel = params['Angel']
           @PdfPageSize = params['PdfPageSize']
@@ -1711,7 +1806,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TextDetections = params['TextDetections']
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              @TextDetections << TextDetection.new.deserialize(i)
+            end
+          end
           @Angel = params['Angel']
           @RequestId = params['RequestId']
         end
@@ -1766,7 +1866,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TextDetections = params['TextDetections']
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              @TextDetections << TextDetection.new.deserialize(i)
+            end
+          end
           @Language = params['Language']
           @Angel = params['Angel']
           @RequestId = params['RequestId']
@@ -1827,7 +1932,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TextDetections = params['TextDetections']
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              @TextDetections << TextGeneralHandwriting.new.deserialize(i)
+            end
+          end
           @Angel = params['Angel']
           @RequestId = params['RequestId']
         end
@@ -2277,7 +2387,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InsuranceBillInfos = params['InsuranceBillInfos']
+          unless params['InsuranceBillInfos'].nil?
+            @InsuranceBillInfos = []
+            params['InsuranceBillInfos'].each do |i|
+              @InsuranceBillInfos << InsuranceBillInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2323,7 +2438,7 @@ module TencentCloud
           @Angle = params['Angle']
           @Type = params['Type']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
           @Image = params['Image']
         end
@@ -2351,7 +2466,7 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
         end
       end
@@ -2401,7 +2516,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InvoiceGeneralInfos = params['InvoiceGeneralInfos']
+          unless params['InvoiceGeneralInfos'].nil?
+            @InvoiceGeneralInfos = []
+            params['InvoiceGeneralInfos'].each do |i|
+              @InvoiceGeneralInfos << InvoiceGeneralInfo.new.deserialize(i)
+            end
+          end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
@@ -2486,7 +2606,7 @@ module TencentCloud
           @Number = params['Number']
           @Confidence = params['Confidence']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
           @RequestId = params['RequestId']
         end
@@ -2815,7 +2935,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InvoiceDetectInfos = params['InvoiceDetectInfos']
+          unless params['InvoiceDetectInfos'].nil?
+            @InvoiceDetectInfos = []
+            params['InvoiceDetectInfos'].each do |i|
+              @InvoiceDetectInfos << InvoiceDetectInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2862,10 +2987,15 @@ module TencentCloud
           @Code = params['Code']
           @Type = params['Type']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
           @Angle = params['Angle']
-          @SingleInvoiceInfos = params['SingleInvoiceInfos']
+          unless params['SingleInvoiceInfos'].nil?
+            @SingleInvoiceInfos = []
+            params['SingleInvoiceInfos'].each do |i|
+              @SingleInvoiceInfos << SingleInvoiceInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2926,7 +3056,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @MixedInvoiceItems = params['MixedInvoiceItems']
+          unless params['MixedInvoiceItems'].nil?
+            @MixedInvoiceItems = []
+            params['MixedInvoiceItems'].each do |i|
+              @MixedInvoiceItems << MixedInvoiceItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3191,16 +3326,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['LeftTop'].nil?
-            @LeftTop = Coord.new.deserialize(params[LeftTop])
+            @LeftTop = Coord.new.deserialize(params['LeftTop'])
           end
           unless params['RightTop'].nil?
-            @RightTop = Coord.new.deserialize(params[RightTop])
+            @RightTop = Coord.new.deserialize(params['RightTop'])
           end
           unless params['RightBottom'].nil?
-            @RightBottom = Coord.new.deserialize(params[RightBottom])
+            @RightBottom = Coord.new.deserialize(params['RightBottom'])
           end
           unless params['LeftBottom'].nil?
-            @LeftBottom = Coord.new.deserialize(params[LeftBottom])
+            @LeftBottom = Coord.new.deserialize(params['LeftBottom'])
           end
         end
       end
@@ -3423,9 +3558,14 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CodeResults = params['CodeResults']
+          unless params['CodeResults'].nil?
+            @CodeResults = []
+            params['CodeResults'].each do |i|
+              @CodeResults << QrcodeResultsInfo.new.deserialize(i)
+            end
+          end
           unless params['ImgSize'].nil?
-            @ImgSize = QrcodeImgSize.new.deserialize(params[ImgSize])
+            @ImgSize = QrcodeImgSize.new.deserialize(params['ImgSize'])
           end
           @RequestId = params['RequestId']
         end
@@ -3453,16 +3593,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['LeftTop'].nil?
-            @LeftTop = Coord.new.deserialize(params[LeftTop])
+            @LeftTop = Coord.new.deserialize(params['LeftTop'])
           end
           unless params['RightTop'].nil?
-            @RightTop = Coord.new.deserialize(params[RightTop])
+            @RightTop = Coord.new.deserialize(params['RightTop'])
           end
           unless params['RightBottom'].nil?
-            @RightBottom = Coord.new.deserialize(params[RightBottom])
+            @RightBottom = Coord.new.deserialize(params['RightBottom'])
           end
           unless params['LeftBottom'].nil?
-            @LeftBottom = Coord.new.deserialize(params[LeftBottom])
+            @LeftBottom = Coord.new.deserialize(params['LeftBottom'])
           end
         end
       end
@@ -3488,7 +3628,7 @@ module TencentCloud
           @TypeName = params['TypeName']
           @Url = params['Url']
           unless params['Position'].nil?
-            @Position = QrcodePositionObj.new.deserialize(params[Position])
+            @Position = QrcodePositionObj.new.deserialize(params['Position'])
           end
         end
       end
@@ -3528,7 +3668,12 @@ module TencentCloud
 
         def deserialize(params)
           @BarCode = params['BarCode']
-          @ProductDataRecords = params['ProductDataRecords']
+          unless params['ProductDataRecords'].nil?
+            @ProductDataRecords = []
+            params['ProductDataRecords'].each do |i|
+              @ProductDataRecords << ProductDataRecord.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3548,9 +3693,14 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @QuestionArr = params['QuestionArr']
+          unless params['QuestionArr'].nil?
+            @QuestionArr = []
+            params['QuestionArr'].each do |i|
+              @QuestionArr << QuestionObj.new.deserialize(i)
+            end
+          end
           unless params['QuestionBboxCoord'].nil?
-            @QuestionBboxCoord = Rect.new.deserialize(params[QuestionBboxCoord])
+            @QuestionBboxCoord = Rect.new.deserialize(params['QuestionBboxCoord'])
           end
         end
       end
@@ -3590,7 +3740,12 @@ module TencentCloud
           @QuestionText = params['QuestionText']
           @QuestionOptions = params['QuestionOptions']
           @QuestionSubquestion = params['QuestionSubquestion']
-          @QuestionImageCoords = params['QuestionImageCoords']
+          unless params['QuestionImageCoords'].nil?
+            @QuestionImageCoords = []
+            params['QuestionImageCoords'].each do |i|
+              @QuestionImageCoords << Rect.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3733,7 +3888,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TableDetections = params['TableDetections']
+          unless params['TableDetections'].nil?
+            @TableDetections = []
+            params['TableDetections'].each do |i|
+              @TableDetections << TableDetectInfo.new.deserialize(i)
+            end
+          end
           @Data = params['Data']
           @PdfPageSize = params['PdfPageSize']
           @Angle = params['Angle']
@@ -4095,7 +4255,7 @@ module TencentCloud
         def deserialize(params)
           @SealBody = params['SealBody']
           unless params['Location'].nil?
-            @Location = Rect.new.deserialize(params[Location])
+            @Location = Rect.new.deserialize(params['Location'])
           end
           @OtherTexts = params['OtherTexts']
           @RequestId = params['RequestId']
@@ -4124,7 +4284,7 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
         end
       end
@@ -4174,7 +4334,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ShipInvoiceInfos = params['ShipInvoiceInfos']
+          unless params['ShipInvoiceInfos'].nil?
+            @ShipInvoiceInfos = []
+            params['ShipInvoiceInfos'].each do |i|
+              @ShipInvoiceInfos << ShipInvoiceInfo.new.deserialize(i)
+            end
+          end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
@@ -4247,9 +4412,19 @@ module TencentCloud
           @Text = params['Text']
           @Type = params['Type']
           @Confidence = params['Confidence']
-          @Polygon = params['Polygon']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              @Polygon << Coord.new.deserialize(i)
+            end
+          end
           @AdvancedInfo = params['AdvancedInfo']
-          @Contents = params['Contents']
+          unless params['Contents'].nil?
+            @Contents = []
+            params['Contents'].each do |i|
+              @Contents << CellContent.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -4281,10 +4456,25 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Cells = params['Cells']
-          @Titles = params['Titles']
+          unless params['Cells'].nil?
+            @Cells = []
+            params['Cells'].each do |i|
+              @Cells << TableCell.new.deserialize(i)
+            end
+          end
+          unless params['Titles'].nil?
+            @Titles = []
+            params['Titles'].each do |i|
+              @Titles << TableTitle.new.deserialize(i)
+            end
+          end
           @Type = params['Type']
-          @TableCoordPoint = params['TableCoordPoint']
+          unless params['TableCoordPoint'].nil?
+            @TableCoordPoint = []
+            params['TableCoordPoint'].each do |i|
+              @TableCoordPoint << Coord.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -4333,7 +4523,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TextDetections = params['TextDetections']
+          unless params['TextDetections'].nil?
+            @TextDetections = []
+            params['TextDetections'].each do |i|
+              @TextDetections << TextTable.new.deserialize(i)
+            end
+          end
           @Data = params['Data']
           @RequestId = params['RequestId']
         end
@@ -4497,10 +4692,15 @@ module TencentCloud
           @DetectedText = params['DetectedText']
           @Result = params['Result']
           @Confidence = params['Confidence']
-          @Polygon = params['Polygon']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              @Polygon << Coord.new.deserialize(i)
+            end
+          end
           @AdvancedInfo = params['AdvancedInfo']
           unless params['ItemCoord'].nil?
-            @ItemCoord = ItemCoord.new.deserialize(params[ItemCoord])
+            @ItemCoord = ItemCoord.new.deserialize(params['ItemCoord'])
           end
           @ExpressionType = params['ExpressionType']
           @Answer = params['Answer']
@@ -4582,10 +4782,15 @@ module TencentCloud
         def deserialize(params)
           @DetectedText = params['DetectedText']
           @Confidence = params['Confidence']
-          @Polygon = params['Polygon']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              @Polygon << Coord.new.deserialize(i)
+            end
+          end
           @AdvancedInfo = params['AdvancedInfo']
           unless params['ItemPolygon'].nil?
-            @ItemPolygon = ItemCoord.new.deserialize(params[ItemPolygon])
+            @ItemPolygon = ItemCoord.new.deserialize(params['ItemPolygon'])
           end
         end
       end
@@ -4623,11 +4828,31 @@ module TencentCloud
         def deserialize(params)
           @DetectedText = params['DetectedText']
           @Confidence = params['Confidence']
-          @Polygon = params['Polygon']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              @Polygon << Coord.new.deserialize(i)
+            end
+          end
           @AdvancedInfo = params['AdvancedInfo']
-          @WordCoordPoint = params['WordCoordPoint']
-          @CandWord = params['CandWord']
-          @Words = params['Words']
+          unless params['WordCoordPoint'].nil?
+            @WordCoordPoint = []
+            params['WordCoordPoint'].each do |i|
+              @WordCoordPoint << WordCoordPoint.new.deserialize(i)
+            end
+          end
+          unless params['CandWord'].nil?
+            @CandWord = []
+            params['CandWord'].each do |i|
+              @CandWord << CandWord.new.deserialize(i)
+            end
+          end
+          unless params['Words'].nil?
+            @Words = []
+            params['Words'].each do |i|
+              @Words << Words.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -4652,7 +4877,7 @@ module TencentCloud
           @Item = params['Item']
           @DetectedText = params['DetectedText']
           unless params['Itemcoord'].nil?
-            @Itemcoord = ItemCoord.new.deserialize(params[Itemcoord])
+            @Itemcoord = ItemCoord.new.deserialize(params['Itemcoord'])
           end
         end
       end
@@ -4702,9 +4927,19 @@ module TencentCloud
         def deserialize(params)
           @DetectedText = params['DetectedText']
           @Confidence = params['Confidence']
-          @Polygon = params['Polygon']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              @Polygon << Coord.new.deserialize(i)
+            end
+          end
           @AdvancedInfo = params['AdvancedInfo']
-          @WordPolygon = params['WordPolygon']
+          unless params['WordPolygon'].nil?
+            @WordPolygon = []
+            params['WordPolygon'].each do |i|
+              @WordPolygon << Polygon.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -4751,7 +4986,12 @@ module TencentCloud
           @Text = params['Text']
           @Type = params['Type']
           @Confidence = params['Confidence']
-          @Polygon = params['Polygon']
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              @Polygon << Coord.new.deserialize(i)
+            end
+          end
           @AdvancedInfo = params['AdvancedInfo']
         end
       end
@@ -4780,7 +5020,7 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           unless params['Polygon'].nil?
-            @Polygon = Polygon.new.deserialize(params[Polygon])
+            @Polygon = Polygon.new.deserialize(params['Polygon'])
           end
         end
       end
@@ -4945,25 +5185,25 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RecName'].nil?
-            @RecName = WaybillObj.new.deserialize(params[RecName])
+            @RecName = WaybillObj.new.deserialize(params['RecName'])
           end
           unless params['RecNum'].nil?
-            @RecNum = WaybillObj.new.deserialize(params[RecNum])
+            @RecNum = WaybillObj.new.deserialize(params['RecNum'])
           end
           unless params['RecAddr'].nil?
-            @RecAddr = WaybillObj.new.deserialize(params[RecAddr])
+            @RecAddr = WaybillObj.new.deserialize(params['RecAddr'])
           end
           unless params['SenderName'].nil?
-            @SenderName = WaybillObj.new.deserialize(params[SenderName])
+            @SenderName = WaybillObj.new.deserialize(params['SenderName'])
           end
           unless params['SenderNum'].nil?
-            @SenderNum = WaybillObj.new.deserialize(params[SenderNum])
+            @SenderNum = WaybillObj.new.deserialize(params['SenderNum'])
           end
           unless params['SenderAddr'].nil?
-            @SenderAddr = WaybillObj.new.deserialize(params[SenderAddr])
+            @SenderAddr = WaybillObj.new.deserialize(params['SenderAddr'])
           end
           unless params['WaybillNum'].nil?
-            @WaybillNum = WaybillObj.new.deserialize(params[WaybillNum])
+            @WaybillNum = WaybillObj.new.deserialize(params['WaybillNum'])
           end
         end
       end
@@ -4990,7 +5230,7 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
         end
       end
@@ -5040,7 +5280,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TollInvoiceInfos = params['TollInvoiceInfos']
+          unless params['TollInvoiceInfos'].nil?
+            @TollInvoiceInfos = []
+            params['TollInvoiceInfos'].each do |i|
+              @TollInvoiceInfos << TollInvoiceInfo.new.deserialize(i)
+            end
+          end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
@@ -5248,7 +5493,12 @@ module TencentCloud
           @AmountWithoutTax = params['AmountWithoutTax']
           @TaxAmount = params['TaxAmount']
           @AmountWithTax = params['AmountWithTax']
-          @Items = params['Items']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << VatInvoiceItem.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -5403,8 +5653,18 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @VatInvoiceInfos = params['VatInvoiceInfos']
-          @Items = params['Items']
+          unless params['VatInvoiceInfos'].nil?
+            @VatInvoiceInfos = []
+            params['VatInvoiceInfos'].each do |i|
+              @VatInvoiceInfos << TextVatInvoice.new.deserialize(i)
+            end
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << VatInvoiceItem.new.deserialize(i)
+            end
+          end
           @PdfPageSize = params['PdfPageSize']
           @Angle = params['Angle']
           @RequestId = params['RequestId']
@@ -5488,7 +5748,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Invoice'].nil?
-            @Invoice = VatInvoice.new.deserialize(params[Invoice])
+            @Invoice = VatInvoice.new.deserialize(params['Invoice'])
           end
           @RequestId = params['RequestId']
         end
@@ -5516,7 +5776,7 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           unless params['Rect'].nil?
-            @Rect = Rect.new.deserialize(params[Rect])
+            @Rect = Rect.new.deserialize(params['Rect'])
           end
         end
       end
@@ -5566,7 +5826,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @VatRollInvoiceInfos = params['VatRollInvoiceInfos']
+          unless params['VatRollInvoiceInfos'].nil?
+            @VatRollInvoiceInfos = []
+            params['VatRollInvoiceInfos'].each do |i|
+              @VatRollInvoiceInfos << VatRollInvoiceInfo.new.deserialize(i)
+            end
+          end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
@@ -5635,10 +5900,10 @@ module TencentCloud
 
         def deserialize(params)
           unless params['FrontInfo'].nil?
-            @FrontInfo = TextVehicleFront.new.deserialize(params[FrontInfo])
+            @FrontInfo = TextVehicleFront.new.deserialize(params['FrontInfo'])
           end
           unless params['BackInfo'].nil?
-            @BackInfo = TextVehicleBack.new.deserialize(params[BackInfo])
+            @BackInfo = TextVehicleBack.new.deserialize(params['BackInfo'])
           end
           @RecognizeWarnCode = params['RecognizeWarnCode']
           @RecognizeWarnMsg = params['RecognizeWarnMsg']
@@ -5719,7 +5984,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @VehicleRegCertInfos = params['VehicleRegCertInfos']
+          unless params['VehicleRegCertInfos'].nil?
+            @VehicleRegCertInfos = []
+            params['VehicleRegCertInfos'].each do |i|
+              @VehicleRegCertInfos << VehicleRegCertInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5853,7 +6123,7 @@ module TencentCloud
           @VerifyDom = params['VerifyDom']
           @Dom = params['Dom']
           unless params['RegNumResult'].nil?
-            @RegNumResult = BizLicenseVerifyResult.new.deserialize(params[RegNumResult])
+            @RegNumResult = BizLicenseVerifyResult.new.deserialize(params['RegNumResult'])
           end
           @RegCapital = params['RegCapital']
           @RequestId = params['RequestId']
@@ -6054,7 +6324,7 @@ module TencentCloud
           @VerifyAddress = params['VerifyAddress']
           @Address = params['Address']
           unless params['RegNumResult'].nil?
-            @RegNumResult = BizLicenseVerifyResult.new.deserialize(params[RegNumResult])
+            @RegNumResult = BizLicenseVerifyResult.new.deserialize(params['RegNumResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -6154,10 +6424,10 @@ module TencentCloud
           @MachineNumber = params['MachineNumber']
           @TaxControlCode = params['TaxControlCode']
           unless params['Buyer'].nil?
-            @Buyer = VatInvoiceUserInfo.new.deserialize(params[Buyer])
+            @Buyer = VatInvoiceUserInfo.new.deserialize(params['Buyer'])
           end
           unless params['Seller'].nil?
-            @Seller = VatInvoiceUserInfo.new.deserialize(params[Seller])
+            @Seller = VatInvoiceUserInfo.new.deserialize(params['Seller'])
           end
           @TaxInclusiveTotalAmount = params['TaxInclusiveTotalAmount']
           @InvoiceClerk = params['InvoiceClerk']
@@ -6166,7 +6436,12 @@ module TencentCloud
           @TaxTotalAmount = params['TaxTotalAmount']
           @TaxExclusiveTotalAmount = params['TaxExclusiveTotalAmount']
           @Note = params['Note']
-          @GoodsInfos = params['GoodsInfos']
+          unless params['GoodsInfos'].nil?
+            @GoodsInfos = []
+            params['GoodsInfos'].each do |i|
+              @GoodsInfos << VatInvoiceGoodsInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6265,7 +6540,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TextDetections'].nil?
-            @TextDetections = TextWaybill.new.deserialize(params[TextDetections])
+            @TextDetections = TextWaybill.new.deserialize(params['TextDetections'])
           end
           @RequestId = params['RequestId']
         end
@@ -6299,7 +6574,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @WordCoordinate = params['WordCoordinate']
+          unless params['WordCoordinate'].nil?
+            @WordCoordinate = []
+            params['WordCoordinate'].each do |i|
+              @WordCoordinate << Coord.new.deserialize(i)
+            end
+          end
         end
       end
 

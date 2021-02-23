@@ -779,7 +779,12 @@ module TencentCloud
           @Sim = params['Sim']
           @Location = params['Location']
           @Extra = params['Extra']
-          @LivenessDetail = params['LivenessDetail']
+          unless params['LivenessDetail'].nil?
+            @LivenessDetail = []
+            params['LivenessDetail'].each do |i|
+              @LivenessDetail << DetectDetail.new.deserialize(i)
+            end
+          end
           @Mobile = params['Mobile']
           @CompareLibType = params['CompareLibType']
         end
@@ -905,16 +910,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Text'].nil?
-            @Text = DetectInfoText.new.deserialize(params[Text])
+            @Text = DetectInfoText.new.deserialize(params['Text'])
           end
           unless params['IdCardData'].nil?
-            @IdCardData = DetectInfoIdCardData.new.deserialize(params[IdCardData])
+            @IdCardData = DetectInfoIdCardData.new.deserialize(params['IdCardData'])
           end
           unless params['BestFrame'].nil?
-            @BestFrame = DetectInfoBestFrame.new.deserialize(params[BestFrame])
+            @BestFrame = DetectInfoBestFrame.new.deserialize(params['BestFrame'])
           end
           unless params['VideoData'].nil?
-            @VideoData = DetectInfoVideoData.new.deserialize(params[VideoData])
+            @VideoData = DetectInfoVideoData.new.deserialize(params['VideoData'])
           end
           @RequestId = params['RequestId']
         end

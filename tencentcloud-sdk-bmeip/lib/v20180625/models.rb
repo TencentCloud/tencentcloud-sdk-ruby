@@ -29,7 +29,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @EipIdAclIdList = params['EipIdAclIdList']
+          unless params['EipIdAclIdList'].nil?
+            @EipIdAclIdList = []
+            params['EipIdAclIdList'].each do |i|
+              @EipIdAclIdList << EipAclMap.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -428,7 +433,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @EipAclList = params['EipAclList']
+          unless params['EipAclList'].nil?
+            @EipAclList = []
+            params['EipAclList'].each do |i|
+              @EipAclList << EipAcl.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -606,7 +616,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @EipSet = params['EipSet']
+          unless params['EipSet'].nil?
+            @EipSet = []
+            params['EipSet'].each do |i|
+              @EipSet << EipInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -647,8 +662,18 @@ module TencentCloud
           @Status = params['Status']
           @CreatedAt = params['CreatedAt']
           @EipNum = params['EipNum']
-          @OutRules = params['OutRules']
-          @InRules = params['InRules']
+          unless params['OutRules'].nil?
+            @OutRules = []
+            params['OutRules'].each do |i|
+              @OutRules << EipAclRule.new.deserialize(i)
+            end
+          end
+          unless params['InRules'].nil?
+            @InRules = []
+            params['InRules'].each do |i|
+              @InRules << EipAclRule.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -876,7 +901,12 @@ module TencentCloud
           @AclName = params['AclName']
           @Status = params['Status']
           @Type = params['Type']
-          @Rules = params['Rules']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              @Rules << EipAclRule.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -988,7 +1018,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @EipIdAclIdList = params['EipIdAclIdList']
+          unless params['EipIdAclIdList'].nil?
+            @EipIdAclIdList = []
+            params['EipIdAclIdList'].each do |i|
+              @EipIdAclIdList << EipAclMap.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1064,7 +1099,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @EipRsList = params['EipRsList']
+          unless params['EipRsList'].nil?
+            @EipRsList = []
+            params['EipRsList'].each do |i|
+              @EipRsList << EipRsMap.new.deserialize(i)
+            end
+          end
         end
       end
 

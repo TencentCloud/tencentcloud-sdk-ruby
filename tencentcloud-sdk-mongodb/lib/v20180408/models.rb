@@ -293,7 +293,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Clients = params['Clients']
+          unless params['Clients'].nil?
+            @Clients = []
+            params['Clients'].each do |i|
+              @Clients << ClientConnection.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -373,7 +378,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @InstanceDetails = params['InstanceDetails']
+          unless params['InstanceDetails'].nil?
+            @InstanceDetails = []
+            params['InstanceDetails'].each do |i|
+              @InstanceDetails << MongoDBInstanceDetail.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -469,7 +479,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SpecInfoList = params['SpecInfoList']
+          unless params['SpecInfoList'].nil?
+            @SpecInfoList = []
+            params['SpecInfoList'].each do |i|
+              @SpecInfoList << SpecificationInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -648,14 +663,39 @@ module TencentCloud
           @UsedVolume = params['UsedVolume']
           @MaintenanceStart = params['MaintenanceStart']
           @MaintenanceEnd = params['MaintenanceEnd']
-          @ReplicaSets = params['ReplicaSets']
-          @ReadonlyInstances = params['ReadonlyInstances']
-          @StandbyInstances = params['StandbyInstances']
-          @CloneInstances = params['CloneInstances']
-          unless params['RelatedInstance'].nil?
-            @RelatedInstance = MongoDBInstance.new.deserialize(params[RelatedInstance])
+          unless params['ReplicaSets'].nil?
+            @ReplicaSets = []
+            params['ReplicaSets'].each do |i|
+              @ReplicaSets << MongodbShardInfo.new.deserialize(i)
+            end
           end
-          @Tags = params['Tags']
+          unless params['ReadonlyInstances'].nil?
+            @ReadonlyInstances = []
+            params['ReadonlyInstances'].each do |i|
+              @ReadonlyInstances << MongoDBInstance.new.deserialize(i)
+            end
+          end
+          unless params['StandbyInstances'].nil?
+            @StandbyInstances = []
+            params['StandbyInstances'].each do |i|
+              @StandbyInstances << MongoDBInstance.new.deserialize(i)
+            end
+          end
+          unless params['CloneInstances'].nil?
+            @CloneInstances = []
+            params['CloneInstances'].each do |i|
+              @CloneInstances << MongoDBInstance.new.deserialize(i)
+            end
+          end
+          unless params['RelatedInstance'].nil?
+            @RelatedInstance = MongoDBInstance.new.deserialize(params['RelatedInstance'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << TagInfo.new.deserialize(i)
+            end
+          end
           @InstanceVer = params['InstanceVer']
           @ClusterVer = params['ClusterVer']
           @Protocol = params['Protocol']
@@ -941,7 +981,12 @@ module TencentCloud
         def deserialize(params)
           @Region = params['Region']
           @Zone = params['Zone']
-          @SpecItems = params['SpecItems']
+          unless params['SpecItems'].nil?
+            @SpecItems = []
+            params['SpecItems'].each do |i|
+              @SpecItems << SpecItem.new.deserialize(i)
+            end
+          end
         end
       end
 

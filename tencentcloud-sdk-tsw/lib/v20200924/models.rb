@@ -97,7 +97,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = AgentShell.new.deserialize(params[Result])
+            @Result = AgentShell.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end

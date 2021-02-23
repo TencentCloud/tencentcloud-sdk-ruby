@@ -284,8 +284,8 @@ module TencentCloud
 
         attr_accessor :Alias, :Description, :KeyUsage, :Type, :Tags
         
-        def initialize(alias=nil, description=nil, keyusage=nil, type=nil, tags=nil)
-          @Alias = alias
+        def initialize(_alias=nil, description=nil, keyusage=nil, type=nil, tags=nil)
+          @Alias = _alias
           @Description = description
           @KeyUsage = keyusage
           @Type = type
@@ -297,7 +297,12 @@ module TencentCloud
           @Description = params['Description']
           @KeyUsage = params['KeyUsage']
           @Type = params['Type']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -327,9 +332,9 @@ module TencentCloud
 
         attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :TagCode, :TagMsg, :RequestId
         
-        def initialize(keyid=nil, alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, tagcode=nil, tagmsg=nil, requestid=nil)
+        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, tagcode=nil, tagmsg=nil, requestid=nil)
           @KeyId = keyid
-          @Alias = alias
+          @Alias = _alias
           @CreateTime = createtime
           @Description = description
           @KeyState = keystate
@@ -365,8 +370,8 @@ module TencentCloud
 
         attr_accessor :Alias, :Algorithm, :Description, :Tags
         
-        def initialize(alias=nil, algorithm=nil, description=nil, tags=nil)
-          @Alias = alias
+        def initialize(_alias=nil, algorithm=nil, description=nil, tags=nil)
+          @Alias = _alias
           @Algorithm = algorithm
           @Description = description
           @Tags = tags
@@ -376,7 +381,12 @@ module TencentCloud
           @Alias = params['Alias']
           @Algorithm = params['Algorithm']
           @Description = params['Description']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -559,7 +569,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['KeyMetadata'].nil?
-            @KeyMetadata = KeyMetadata.new.deserialize(params[KeyMetadata])
+            @KeyMetadata = KeyMetadata.new.deserialize(params['KeyMetadata'])
           end
           @RequestId = params['RequestId']
         end
@@ -597,7 +607,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @KeyMetadatas = params['KeyMetadatas']
+          unless params['KeyMetadatas'].nil?
+            @KeyMetadatas = []
+            params['KeyMetadatas'].each do |i|
+              @KeyMetadatas << KeyMetadata.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -669,7 +684,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DeviceFingerprints = params['DeviceFingerprints']
+          unless params['DeviceFingerprints'].nil?
+            @DeviceFingerprints = []
+            params['DeviceFingerprints'].each do |i|
+              @DeviceFingerprints << DeviceFingerprint.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -698,7 +718,12 @@ module TencentCloud
           @KeyStatus = params['KeyStatus']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @TagFilters = params['TagFilters']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              @TagFilters << TagFilter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -721,7 +746,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @KeyInfos = params['KeyInfos']
+          unless params['KeyInfos'].nil?
+            @KeyInfos = []
+            params['KeyInfos'].each do |i|
+              @KeyInfos << WhiteboxKeyInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -759,7 +789,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['KeyInfo'].nil?
-            @KeyInfo = WhiteboxKeyInfo.new.deserialize(params[KeyInfo])
+            @KeyInfo = WhiteboxKeyInfo.new.deserialize(params['KeyInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1646,9 +1676,9 @@ module TencentCloud
 
         attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :Type, :CreatorUin, :KeyRotationEnabled, :Owner, :NextRotateTime, :DeletionDate, :Origin, :ValidTo, :ResourceId
         
-        def initialize(keyid=nil, alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil)
+        def initialize(keyid=nil, _alias=nil, createtime=nil, description=nil, keystate=nil, keyusage=nil, type=nil, creatoruin=nil, keyrotationenabled=nil, owner=nil, nextrotatetime=nil, deletiondate=nil, origin=nil, validto=nil, resourceid=nil)
           @KeyId = keyid
-          @Alias = alias
+          @Alias = _alias
           @CreateTime = createtime
           @Description = description
           @KeyState = keystate
@@ -1715,9 +1745,24 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SymmetricAlgorithms = params['SymmetricAlgorithms']
-          @AsymmetricAlgorithms = params['AsymmetricAlgorithms']
-          @AsymmetricSignVerifyAlgorithms = params['AsymmetricSignVerifyAlgorithms']
+          unless params['SymmetricAlgorithms'].nil?
+            @SymmetricAlgorithms = []
+            params['SymmetricAlgorithms'].each do |i|
+              @SymmetricAlgorithms << AlgorithmInfo.new.deserialize(i)
+            end
+          end
+          unless params['AsymmetricAlgorithms'].nil?
+            @AsymmetricAlgorithms = []
+            params['AsymmetricAlgorithms'].each do |i|
+              @AsymmetricAlgorithms << AlgorithmInfo.new.deserialize(i)
+            end
+          end
+          unless params['AsymmetricSignVerifyAlgorithms'].nil?
+            @AsymmetricSignVerifyAlgorithms = []
+            params['AsymmetricSignVerifyAlgorithms'].each do |i|
+              @AsymmetricSignVerifyAlgorithms << AlgorithmInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1766,7 +1811,12 @@ module TencentCloud
           @SearchKeyAlias = params['SearchKeyAlias']
           @Origin = params['Origin']
           @KeyUsage = params['KeyUsage']
-          @TagFilters = params['TagFilters']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              @TagFilters << TagFilter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1790,7 +1840,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @KeyMetadatas = params['KeyMetadatas']
+          unless params['KeyMetadatas'].nil?
+            @KeyMetadatas = []
+            params['KeyMetadatas'].each do |i|
+              @KeyMetadatas << KeyMetadata.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1838,7 +1893,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Keys = params['Keys']
+          unless params['Keys'].nil?
+            @Keys = []
+            params['Keys'].each do |i|
+              @Keys << Key.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1860,7 +1920,12 @@ module TencentCloud
 
         def deserialize(params)
           @KeyId = params['KeyId']
-          @DeviceFingerprints = params['DeviceFingerprints']
+          unless params['DeviceFingerprints'].nil?
+            @DeviceFingerprints = []
+            params['DeviceFingerprints'].each do |i|
+              @DeviceFingerprints << DeviceFingerprint.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2121,8 +2186,8 @@ module TencentCloud
 
         attr_accessor :Alias, :KeyId
         
-        def initialize(alias=nil, keyid=nil)
-          @Alias = alias
+        def initialize(_alias=nil, keyid=nil)
+          @Alias = _alias
           @KeyId = keyid
         end
 
@@ -2266,9 +2331,9 @@ module TencentCloud
 
         attr_accessor :KeyId, :Alias, :CreatorUin, :Description, :CreateTime, :Status, :OwnerUin, :Algorithm, :EncryptKey, :DecryptKey, :ResourceId, :DeviceFingerprintBind
         
-        def initialize(keyid=nil, alias=nil, creatoruin=nil, description=nil, createtime=nil, status=nil, owneruin=nil, algorithm=nil, encryptkey=nil, decryptkey=nil, resourceid=nil, devicefingerprintbind=nil)
+        def initialize(keyid=nil, _alias=nil, creatoruin=nil, description=nil, createtime=nil, status=nil, owneruin=nil, algorithm=nil, encryptkey=nil, decryptkey=nil, resourceid=nil, devicefingerprintbind=nil)
           @KeyId = keyid
-          @Alias = alias
+          @Alias = _alias
           @CreatorUin = creatoruin
           @Description = description
           @CreateTime = createtime

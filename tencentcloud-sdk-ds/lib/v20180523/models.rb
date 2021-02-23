@@ -32,8 +32,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :AccountResId, :ContractResId, :VerifyCode
         
-        def initialize(module=nil, operation=nil, accountresid=nil, contractresid=nil, verifycode=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, accountresid=nil, contractresid=nil, verifycode=nil)
+          @Module = _module
           @Operation = operation
           @AccountResId = accountresid
           @ContractResId = contractresid
@@ -86,8 +86,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :SignInfos, :ContractFile, :ContractName, :Remarks, :Initiator, :ExpireTime
         
-        def initialize(module=nil, operation=nil, signinfos=nil, contractfile=nil, contractname=nil, remarks=nil, initiator=nil, expiretime=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, signinfos=nil, contractfile=nil, contractname=nil, remarks=nil, initiator=nil, expiretime=nil)
+          @Module = _module
           @Operation = operation
           @SignInfos = signinfos
           @ContractFile = contractfile
@@ -100,7 +100,12 @@ module TencentCloud
         def deserialize(params)
           @Module = params['Module']
           @Operation = params['Operation']
-          @SignInfos = params['SignInfos']
+          unless params['SignInfos'].nil?
+            @SignInfos = []
+            params['SignInfos'].each do |i|
+              @SignInfos << SignInfo.new.deserialize(i)
+            end
+          end
           @ContractFile = params['ContractFile']
           @ContractName = params['ContractName']
           @Remarks = params['Remarks']
@@ -156,8 +161,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Name, :IdentType, :IdentNo, :MobilePhone, :TransactorName, :TransactorIdentType, :TransactorIdentNo, :TransactorPhone, :Email
         
-        def initialize(module=nil, operation=nil, name=nil, identtype=nil, identno=nil, mobilephone=nil, transactorname=nil, transactoridenttype=nil, transactoridentno=nil, transactorphone=nil, email=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, name=nil, identtype=nil, identno=nil, mobilephone=nil, transactorname=nil, transactoridenttype=nil, transactoridentno=nil, transactorphone=nil, email=nil)
+          @Module = _module
           @Operation = operation
           @Name = name
           @IdentType = identtype
@@ -222,8 +227,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Name, :IdentType, :IdentNo, :MobilePhone
         
-        def initialize(module=nil, operation=nil, name=nil, identtype=nil, identno=nil, mobilephone=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, name=nil, identtype=nil, identno=nil, mobilephone=nil)
+          @Module = _module
           @Operation = operation
           @Name = name
           @IdentType = identtype
@@ -276,8 +281,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :AccountResId, :ImgUrl, :ImgData
         
-        def initialize(module=nil, operation=nil, accountresid=nil, imgurl=nil, imgdata=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, accountresid=nil, imgurl=nil, imgdata=nil)
+          @Module = _module
           @Operation = operation
           @AccountResId = accountresid
           @ImgUrl = imgurl
@@ -324,8 +329,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :AccountList
         
-        def initialize(module=nil, operation=nil, accountlist=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, accountlist=nil)
+          @Module = _module
           @Operation = operation
           @AccountList = accountlist
         end
@@ -374,8 +379,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :AccountResId, :SealResId
         
-        def initialize(module=nil, operation=nil, accountresid=nil, sealresid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, accountresid=nil, sealresid=nil)
+          @Module = _module
           @Operation = operation
           @AccountResId = accountresid
           @SealResId = sealresid
@@ -420,8 +425,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :TaskId
         
-        def initialize(module=nil, operation=nil, taskid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, taskid=nil)
+          @Module = _module
           @Operation = operation
           @TaskId = taskid
         end
@@ -468,8 +473,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ContractResId
         
-        def initialize(module=nil, operation=nil, contractresid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, contractresid=nil)
+          @Module = _module
           @Operation = operation
           @ContractResId = contractresid
         end
@@ -514,8 +519,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ContractResId, :AccountResId
         
-        def initialize(module=nil, operation=nil, contractresid=nil, accountresid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, contractresid=nil, accountresid=nil)
+          @Module = _module
           @Operation = operation
           @ContractResId = contractresid
           @AccountResId = accountresid
@@ -570,8 +575,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ContractResId, :AccountResId, :SignLocations, :AuthorizationTime, :Position, :SealResId, :CertType, :ImageData
         
-        def initialize(module=nil, operation=nil, contractresid=nil, accountresid=nil, signlocations=nil, authorizationtime=nil, position=nil, sealresid=nil, certtype=nil, imagedata=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, contractresid=nil, accountresid=nil, signlocations=nil, authorizationtime=nil, position=nil, sealresid=nil, certtype=nil, imagedata=nil)
+          @Module = _module
           @Operation = operation
           @ContractResId = contractresid
           @AccountResId = accountresid
@@ -588,7 +593,12 @@ module TencentCloud
           @Operation = params['Operation']
           @ContractResId = params['ContractResId']
           @AccountResId = params['AccountResId']
-          @SignLocations = params['SignLocations']
+          unless params['SignLocations'].nil?
+            @SignLocations = []
+            params['SignLocations'].each do |i|
+              @SignLocations << SignLocation.new.deserialize(i)
+            end
+          end
           @AuthorizationTime = params['AuthorizationTime']
           @Position = params['Position']
           @SealResId = params['SealResId']
@@ -638,8 +648,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ContractResId, :AccountResId, :SignKeyword, :AuthorizationTime, :Position, :SealResId, :CertType, :ImageData
         
-        def initialize(module=nil, operation=nil, contractresid=nil, accountresid=nil, signkeyword=nil, authorizationtime=nil, position=nil, sealresid=nil, certtype=nil, imagedata=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, contractresid=nil, accountresid=nil, signkeyword=nil, authorizationtime=nil, position=nil, sealresid=nil, certtype=nil, imagedata=nil)
+          @Module = _module
           @Operation = operation
           @ContractResId = contractresid
           @AccountResId = accountresid
@@ -657,7 +667,7 @@ module TencentCloud
           @ContractResId = params['ContractResId']
           @AccountResId = params['AccountResId']
           unless params['SignKeyword'].nil?
-            @SignKeyword = SignKeyword.new.deserialize(params[SignKeyword])
+            @SignKeyword = SignKeyword.new.deserialize(params['SignKeyword'])
           end
           @AuthorizationTime = params['AuthorizationTime']
           @Position = params['Position']

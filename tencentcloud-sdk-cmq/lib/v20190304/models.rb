@@ -476,7 +476,12 @@ module TencentCloud
           @DeadLetterQueueName = params['DeadLetterQueueName']
           @Limit = params['Limit']
           @Offset = params['Offset']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -499,7 +504,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @QueueSet = params['QueueSet']
+          unless params['QueueSet'].nil?
+            @QueueSet = []
+            params['QueueSet'].each do |i|
+              @QueueSet << DeadLetterSource.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -530,7 +540,12 @@ module TencentCloud
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @TagKey = params['TagKey']
           @QueueName = params['QueueName']
         end
@@ -555,7 +570,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @QueueSet = params['QueueSet']
+          unless params['QueueSet'].nil?
+            @QueueSet = []
+            params['QueueSet'].each do |i|
+              @QueueSet << QueueSet.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -584,7 +604,12 @@ module TencentCloud
           @TopicName = params['TopicName']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -608,7 +633,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @SubscriptionSet = params['SubscriptionSet']
+          unless params['SubscriptionSet'].nil?
+            @SubscriptionSet = []
+            params['SubscriptionSet'].each do |i|
+              @SubscriptionSet << Subscription.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -639,7 +669,12 @@ module TencentCloud
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @TagKey = params['TagKey']
           @TopicName = params['TopicName']
         end
@@ -664,7 +699,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TopicSet = params['TopicSet']
+          unless params['TopicSet'].nil?
+            @TopicSet = []
+            params['TopicSet'].each do |i|
+              @TopicSet << TopicSet.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -997,15 +1037,25 @@ module TencentCloud
           @RewindMsgNum = params['RewindMsgNum']
           @MinMsgTime = params['MinMsgTime']
           @Transaction = params['Transaction']
-          @DeadLetterSource = params['DeadLetterSource']
+          unless params['DeadLetterSource'].nil?
+            @DeadLetterSource = []
+            params['DeadLetterSource'].each do |i|
+              @DeadLetterSource << DeadLetterSource.new.deserialize(i)
+            end
+          end
           unless params['DeadLetterPolicy'].nil?
-            @DeadLetterPolicy = DeadLetterPolicy.new.deserialize(params[DeadLetterPolicy])
+            @DeadLetterPolicy = DeadLetterPolicy.new.deserialize(params['DeadLetterPolicy'])
           end
           unless params['TransactionPolicy'].nil?
-            @TransactionPolicy = TransactionPolicy.new.deserialize(params[TransactionPolicy])
+            @TransactionPolicy = TransactionPolicy.new.deserialize(params['TransactionPolicy'])
           end
           @CreateUin = params['CreateUin']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @Trace = params['Trace']
         end
       end
@@ -1213,7 +1263,12 @@ module TencentCloud
           @LastModifyTime = params['LastModifyTime']
           @MsgCount = params['MsgCount']
           @CreateUin = params['CreateUin']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @Trace = params['Trace']
         end
       end

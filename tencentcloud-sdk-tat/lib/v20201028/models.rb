@@ -237,7 +237,12 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceIds = params['InstanceIds']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @Limit = params['Limit']
           @Offset = params['Offset']
         end
@@ -261,7 +266,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @AutomationAgentSet = params['AutomationAgentSet']
+          unless params['AutomationAgentSet'].nil?
+            @AutomationAgentSet = []
+            params['AutomationAgentSet'].each do |i|
+              @AutomationAgentSet << AutomationAgentInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -289,7 +299,12 @@ module TencentCloud
 
         def deserialize(params)
           @CommandIds = params['CommandIds']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @Limit = params['Limit']
           @Offset = params['Offset']
         end
@@ -314,7 +329,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @CommandSet = params['CommandSet']
+          unless params['CommandSet'].nil?
+            @CommandSet = []
+            params['CommandSet'].each do |i|
+              @CommandSet << Command.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -344,7 +364,12 @@ module TencentCloud
 
         def deserialize(params)
           @InvocationTaskIds = params['InvocationTaskIds']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @Limit = params['Limit']
           @Offset = params['Offset']
           @HideOutput = params['HideOutput']
@@ -370,7 +395,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @InvocationTaskSet = params['InvocationTaskSet']
+          unless params['InvocationTaskSet'].nil?
+            @InvocationTaskSet = []
+            params['InvocationTaskSet'].each do |i|
+              @InvocationTaskSet << InvocationTask.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -397,7 +427,12 @@ module TencentCloud
 
         def deserialize(params)
           @InvocationIds = params['InvocationIds']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @Limit = params['Limit']
           @Offset = params['Offset']
         end
@@ -422,7 +457,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @InvocationSet = params['InvocationSet']
+          unless params['InvocationSet'].nil?
+            @InvocationSet = []
+            params['InvocationSet'].each do |i|
+              @InvocationSet << Invocation.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -457,7 +497,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @RegionSet = params['RegionSet']
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              @RegionSet << RegionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -532,7 +577,12 @@ module TencentCloud
           @InvocationId = params['InvocationId']
           @CommandId = params['CommandId']
           @InvocationStatus = params['InvocationStatus']
-          @InvocationTaskBasicInfoSet = params['InvocationTaskBasicInfoSet']
+          unless params['InvocationTaskBasicInfoSet'].nil?
+            @InvocationTaskBasicInfoSet = []
+            params['InvocationTaskBasicInfoSet'].each do |i|
+              @InvocationTaskBasicInfoSet << InvocationTaskBasicInfo.new.deserialize(i)
+            end
+          end
           @Description = params['Description']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
@@ -598,14 +648,14 @@ module TencentCloud
           @TaskStatus = params['TaskStatus']
           @InstanceId = params['InstanceId']
           unless params['TaskResult'].nil?
-            @TaskResult = TaskResult.new.deserialize(params[TaskResult])
+            @TaskResult = TaskResult.new.deserialize(params['TaskResult'])
           end
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @CreatedTime = params['CreatedTime']
           @UpdatedTime = params['UpdatedTime']
           unless params['CommandDocument'].nil?
-            @CommandDocument = CommandDocument.new.deserialize(params[CommandDocument])
+            @CommandDocument = CommandDocument.new.deserialize(params['CommandDocument'])
           end
         end
       end

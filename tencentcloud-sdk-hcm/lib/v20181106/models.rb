@@ -104,7 +104,12 @@ module TencentCloud
 
         def deserialize(params)
           @SessionId = params['SessionId']
-          @Items = params['Items']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << Item.new.deserialize(i)
+            end
+          end
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
@@ -146,7 +151,7 @@ module TencentCloud
           @Item = params['Item']
           @ItemString = params['ItemString']
           unless params['ItemCoord'].nil?
-            @ItemCoord = ItemCoord.new.deserialize(params[ItemCoord])
+            @ItemCoord = ItemCoord.new.deserialize(params['ItemCoord'])
           end
           @Answer = params['Answer']
           @ExpressionType = params['ExpressionType']

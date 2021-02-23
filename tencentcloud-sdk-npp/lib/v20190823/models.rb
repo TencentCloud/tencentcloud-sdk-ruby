@@ -185,7 +185,7 @@ module TencentCloud
           @BizId = params['BizId']
           @LastCallId = params['LastCallId']
           unless params['PreCallerHandle'].nil?
-            @PreCallerHandle = RreCallerHandle.new.deserialize(params[PreCallerHandle])
+            @PreCallerHandle = RreCallerHandle.new.deserialize(params['PreCallerHandle'])
           end
           @OrderId = params['OrderId']
         end
@@ -404,7 +404,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Cdr = params['Cdr']
+          unless params['Cdr'].nil?
+            @Cdr = []
+            params['Cdr'].each do |i|
+              @Cdr << CallBackCdr.new.deserialize(i)
+            end
+          end
           @Offset = params['Offset']
           @ErrorCode = params['ErrorCode']
           @Msg = params['Msg']
@@ -532,7 +537,12 @@ module TencentCloud
 
         def deserialize(params)
           @AppId = params['AppId']
-          @CodeList = params['CodeList']
+          unless params['CodeList'].nil?
+            @CodeList = []
+            params['CodeList'].each do |i|
+              @CodeList << CallBackPhoneCode.new.deserialize(i)
+            end
+          end
           @ErrorCode = params['ErrorCode']
           @Msg = params['Msg']
           @RequestId = params['RequestId']
@@ -601,7 +611,12 @@ module TencentCloud
           @ErrorCode = params['ErrorCode']
           @Msg = params['Msg']
           @Offset = params['Offset']
-          @Cdr = params['Cdr']
+          unless params['Cdr'].nil?
+            @Cdr = []
+            params['Cdr'].each do |i|
+              @Cdr << VirturalNumCdr.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -775,7 +790,12 @@ module TencentCloud
         def deserialize(params)
           @ReadPrompt = params['ReadPrompt']
           @InterruptPrompt = params['InterruptPrompt']
-          @KeyList = params['KeyList']
+          unless params['KeyList'].nil?
+            @KeyList = []
+            params['KeyList'].each do |i|
+              @KeyList << KeyList.new.deserialize(i)
+            end
+          end
           @RepeatTimes = params['RepeatTimes']
           @KeyPressUrl = params['KeyPressUrl']
           @PromptGender = params['PromptGender']

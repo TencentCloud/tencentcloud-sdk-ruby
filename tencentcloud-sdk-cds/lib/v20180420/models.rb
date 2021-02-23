@@ -198,7 +198,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DbauditTypesSet = params['DbauditTypesSet']
+          unless params['DbauditTypesSet'].nil?
+            @DbauditTypesSet = []
+            params['DbauditTypesSet'].each do |i|
+              @DbauditTypesSet << DbauditTypesInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -246,7 +251,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @CdsAuditInstanceSet = params['CdsAuditInstanceSet']
+          unless params['CdsAuditInstanceSet'].nil?
+            @CdsAuditInstanceSet = []
+            params['CdsAuditInstanceSet'].each do |i|
+              @CdsAuditInstanceSet << CdsAuditInstance.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -277,7 +287,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RegionSet = params['RegionSet']
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              @RegionSet << RegionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

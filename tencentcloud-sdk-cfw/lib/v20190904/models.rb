@@ -161,7 +161,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << RuleInfoData.new.deserialize(i)
+            end
+          end
           @Type = params['Type']
           @EdgeId = params['EdgeId']
           @Enable = params['Enable']
@@ -218,7 +223,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << SecurityGroupApiRuleData.new.deserialize(i)
+            end
+          end
           @Direction = params['Direction']
           @Type = params['Type']
           @Area = params['Area']
@@ -247,13 +257,13 @@ module TencentCloud
 
       # DeleteAcRule请求参数结构体
       class DeleteAcRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 删除规则对应的id值 669872
+        # @param Id: 删除规则对应的id值, 对应获取规则列表接口的Id 值
         # @type Id: Integer
         # @param Direction: 方向，0：出站，1：入站
         # @type Direction: Integer
         # @param EdgeId: EdgeId值两个vpc间的边id
         # @type EdgeId: String
-        # @param Area: NAT地域
+        # @param Area: NAT地域， 如ap-shanghai/ap-guangzhou/ap-chongqing等
         # @type Area: String
 
         attr_accessor :Id, :Direction, :EdgeId, :Area
@@ -523,7 +533,12 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << AcListsData.new.deserialize(i)
+            end
+          end
           @AllTotal = params['AllTotal']
           @Enable = params['Enable']
           @RequestId = params['RequestId']
@@ -595,7 +610,12 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << AssociatedInstanceInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -806,7 +826,12 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << SecurityGroupListData.new.deserialize(i)
+            end
+          end
           @AllTotal = params['AllTotal']
           @Enable = params['Enable']
           @RequestId = params['RequestId']
@@ -887,7 +912,12 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << SwitchListsData.new.deserialize(i)
+            end
+          end
           @AreaLists = params['AreaLists']
           @OnNum = params['OnNum']
           @OffNum = params['OffNum']
@@ -1043,7 +1073,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << RuleInfoData.new.deserialize(i)
+            end
+          end
           @EdgeId = params['EdgeId']
           @Enable = params['Enable']
           @Area = params['Area']
@@ -1291,7 +1326,12 @@ module TencentCloud
 
         def deserialize(params)
           @EdgeId = params['EdgeId']
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << SequenceData.new.deserialize(i)
+            end
+          end
           @Area = params['Area']
           @Direction = params['Direction']
         end

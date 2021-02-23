@@ -69,7 +69,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsAddCrowdPackInfoResponse.new.deserialize(params[Data])
+            @Data = SmsAddCrowdPackInfoResponse.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -148,7 +148,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = PaasCreateSignResp.new.deserialize(params[Data])
+            @Data = PaasCreateSignResp.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -240,7 +240,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AddSmsTemplateDataStruct.new.deserialize(params[Data])
+            @Data = AddSmsTemplateDataStruct.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -298,7 +298,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CancelActivityData.new.deserialize(params[Data])
+            @Data = CancelActivityData.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -337,7 +337,12 @@ module TencentCloud
           @License = params['License']
           @SendTime = params['SendTime']
           @Name = params['Name']
-          @Strategies = params['Strategies']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              @Strategies << PaasStrategy.new.deserialize(i)
+            end
+          end
           @TemplateId = params['TemplateId']
           @CrowdID = params['CrowdID']
           @SmsType = params['SmsType']
@@ -360,7 +365,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsCreateCampaignResponse.new.deserialize(params[Data])
+            @Data = SmsCreateCampaignResponse.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -426,7 +431,12 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @Title = params['Title']
           @Sign = params['Sign']
-          @Contents = params['Contents']
+          unless params['Contents'].nil?
+            @Contents = []
+            params['Contents'].each do |i|
+              @Contents << CreateMmsInstanceItem.new.deserialize(i)
+            end
+          end
           @Urls = params['Urls']
           @PhoneType = params['PhoneType']
           @CommonParams = params['CommonParams']
@@ -474,7 +484,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CreateMmsInstanceResp.new.deserialize(params[Data])
+            @Data = CreateMmsInstanceResp.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -516,7 +526,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsSuccessResponse.new.deserialize(params[Data])
+            @Data = SmsSuccessResponse.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -574,7 +584,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsSuccessResponse.new.deserialize(params[Data])
+            @Data = SmsSuccessResponse.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -616,7 +626,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DelMmsInstanceData.new.deserialize(params[Data])
+            @Data = DelMmsInstanceData.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -658,7 +668,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = MmsInstanceInfo.new.deserialize(params[Data])
+            @Data = MmsInstanceInfo.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -712,7 +722,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = MmsInstanceInfoList.new.deserialize(params[Data])
+            @Data = MmsInstanceInfoList.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -754,7 +764,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsCampaignStatisticsData.new.deserialize(params[Data])
+            @Data = SmsCampaignStatisticsData.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -841,7 +851,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << DescribeSmsSignListDataStruct.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -927,7 +942,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << DescribeSmsTemplateListDataStruct.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -980,7 +1000,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsGetCrowdPackListResponse.new.deserialize(params[Data])
+            @Data = SmsGetCrowdPackListResponse.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1022,7 +1042,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsGetCrowdUploadInfoResponse.new.deserialize(params[Data])
+            @Data = SmsGetCrowdUploadInfoResponse.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1060,7 +1080,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsAmountDataStruct.new.deserialize(params[Data])
+            @Data = SmsAmountDataStruct.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1102,7 +1122,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = PaasSmsCampaignStatusResp.new.deserialize(params[Data])
+            @Data = PaasSmsCampaignStatusResp.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1173,7 +1193,12 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
           @Status = params['Status']
-          @StatusInfo = params['StatusInfo']
+          unless params['StatusInfo'].nil?
+            @StatusInfo = []
+            params['StatusInfo'].each do |i|
+              @StatusInfo << MmsInstanceStateInfo.new.deserialize(i)
+            end
+          end
           @AppSubId = params['AppSubId']
           @Title = params['Title']
           @Sign = params['Sign']
@@ -1202,7 +1227,12 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
-          @List = params['List']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              @List << MmsInstanceInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1317,7 +1347,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = ModifySmsTemplateDataStruct.new.deserialize(params[Data])
+            @Data = ModifySmsTemplateDataStruct.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1371,7 +1401,12 @@ module TencentCloud
 
         def deserialize(params)
           @CrowdID = params['CrowdID']
-          @Items = params['Items']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << PaasStrategyItem.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1471,7 +1506,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = PushMmsContentResp.new.deserialize(params[Data])
+            @Data = PushMmsContentResp.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1574,7 +1609,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << SendSmsPaasDataStruct.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1663,7 +1703,12 @@ module TencentCloud
           @CrowdId = params['CrowdId']
           @CrowdName = params['CrowdName']
           @CrowdCount = params['CrowdCount']
-          @TemplateList = params['TemplateList']
+          unless params['TemplateList'].nil?
+            @TemplateList = []
+            params['TemplateList'].each do |i|
+              @TemplateList << SmsCampaignStatisticsTemplateData.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1683,7 +1728,12 @@ module TencentCloud
 
         def deserialize(params)
           @CampaignId = params['CampaignId']
-          @Statistics = params['Statistics']
+          unless params['Statistics'].nil?
+            @Statistics = []
+            params['Statistics'].each do |i|
+              @Statistics << SmsCampaignStatisticsCrowdData.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1796,7 +1846,12 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
-          @List = params['List']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              @List << SmsGetCrowdPackList.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1829,7 +1884,7 @@ module TencentCloud
           @TmpSecretId = params['TmpSecretId']
           @TmpSecretKey = params['TmpSecretKey']
           unless params['CosInfo'].nil?
-            @CosInfo = UploadFansInfoCosInfo.new.deserialize(params[CosInfo])
+            @CosInfo = UploadFansInfoCosInfo.new.deserialize(params['CosInfo'])
           end
         end
       end

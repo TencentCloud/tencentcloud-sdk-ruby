@@ -380,7 +380,12 @@ module TencentCloud
           @SecurityGroupIds = params['SecurityGroupIds']
           @AutoRenewFlag = params['AutoRenewFlag']
           @Ipv6Flag = params['Ipv6Flag']
-          @ResourceTags = params['ResourceTags']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              @ResourceTags << ResourceTag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -961,7 +966,12 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @Users = params['Users']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              @Users << DBAccount.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1002,7 +1012,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Items = params['Items']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << DBBackupTimeConfig.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1033,7 +1048,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Specs = params['Specs']
+          unless params['Specs'].nil?
+            @Specs = []
+            params['Specs'].each do |i|
+              @Specs << InstanceSpec.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1137,7 +1157,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Instances = params['Instances']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              @Instances << DBInstance.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1195,7 +1220,12 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Type = params['Type']
           @Total = params['Total']
-          @Files = params['Files']
+          unless params['Files'].nil?
+            @Files = []
+            params['Files'].each do |i|
+              @Files << LogFileInfo.new.deserialize(i)
+            end
+          end
           @VpcPrefix = params['VpcPrefix']
           @NormalPrefix = params['NormalPrefix']
           @RequestId = params['RequestId']
@@ -1237,7 +1267,12 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @Params = params['Params']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              @Params << ParamDesc.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1294,13 +1329,13 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Master'].nil?
-            @Master = PerformanceMonitorSet.new.deserialize(params[Master])
+            @Master = PerformanceMonitorSet.new.deserialize(params['Master'])
           end
           unless params['Slave1'].nil?
-            @Slave1 = PerformanceMonitorSet.new.deserialize(params[Slave1])
+            @Slave1 = PerformanceMonitorSet.new.deserialize(params['Slave1'])
           end
           unless params['Slave2'].nil?
-            @Slave2 = PerformanceMonitorSet.new.deserialize(params[Slave2])
+            @Slave2 = PerformanceMonitorSet.new.deserialize(params['Slave2'])
           end
           @RequestId = params['RequestId']
         end
@@ -1377,34 +1412,34 @@ module TencentCloud
 
         def deserialize(params)
           unless params['LongQuery'].nil?
-            @LongQuery = MonitorData.new.deserialize(params[LongQuery])
+            @LongQuery = MonitorData.new.deserialize(params['LongQuery'])
           end
           unless params['SelectTotal'].nil?
-            @SelectTotal = MonitorData.new.deserialize(params[SelectTotal])
+            @SelectTotal = MonitorData.new.deserialize(params['SelectTotal'])
           end
           unless params['UpdateTotal'].nil?
-            @UpdateTotal = MonitorData.new.deserialize(params[UpdateTotal])
+            @UpdateTotal = MonitorData.new.deserialize(params['UpdateTotal'])
           end
           unless params['InsertTotal'].nil?
-            @InsertTotal = MonitorData.new.deserialize(params[InsertTotal])
+            @InsertTotal = MonitorData.new.deserialize(params['InsertTotal'])
           end
           unless params['DeleteTotal'].nil?
-            @DeleteTotal = MonitorData.new.deserialize(params[DeleteTotal])
+            @DeleteTotal = MonitorData.new.deserialize(params['DeleteTotal'])
           end
           unless params['MemHitRate'].nil?
-            @MemHitRate = MonitorData.new.deserialize(params[MemHitRate])
+            @MemHitRate = MonitorData.new.deserialize(params['MemHitRate'])
           end
           unless params['DiskIops'].nil?
-            @DiskIops = MonitorData.new.deserialize(params[DiskIops])
+            @DiskIops = MonitorData.new.deserialize(params['DiskIops'])
           end
           unless params['ConnActive'].nil?
-            @ConnActive = MonitorData.new.deserialize(params[ConnActive])
+            @ConnActive = MonitorData.new.deserialize(params['ConnActive'])
           end
           unless params['IsMasterSwitched'].nil?
-            @IsMasterSwitched = MonitorData.new.deserialize(params[IsMasterSwitched])
+            @IsMasterSwitched = MonitorData.new.deserialize(params['IsMasterSwitched'])
           end
           unless params['SlaveDelay'].nil?
-            @SlaveDelay = MonitorData.new.deserialize(params[SlaveDelay])
+            @SlaveDelay = MonitorData.new.deserialize(params['SlaveDelay'])
           end
           @RequestId = params['RequestId']
         end
@@ -1462,13 +1497,13 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Master'].nil?
-            @Master = ResourceUsageMonitorSet.new.deserialize(params[Master])
+            @Master = ResourceUsageMonitorSet.new.deserialize(params['Master'])
           end
           unless params['Slave1'].nil?
-            @Slave1 = ResourceUsageMonitorSet.new.deserialize(params[Slave1])
+            @Slave1 = ResourceUsageMonitorSet.new.deserialize(params['Slave1'])
           end
           unless params['Slave2'].nil?
-            @Slave2 = ResourceUsageMonitorSet.new.deserialize(params[Slave2])
+            @Slave2 = ResourceUsageMonitorSet.new.deserialize(params['Slave2'])
           end
           @RequestId = params['RequestId']
         end
@@ -1527,16 +1562,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BinlogDiskAvailable'].nil?
-            @BinlogDiskAvailable = MonitorData.new.deserialize(params[BinlogDiskAvailable])
+            @BinlogDiskAvailable = MonitorData.new.deserialize(params['BinlogDiskAvailable'])
           end
           unless params['DataDiskAvailable'].nil?
-            @DataDiskAvailable = MonitorData.new.deserialize(params[DataDiskAvailable])
+            @DataDiskAvailable = MonitorData.new.deserialize(params['DataDiskAvailable'])
           end
           unless params['CpuUsageRate'].nil?
-            @CpuUsageRate = MonitorData.new.deserialize(params[CpuUsageRate])
+            @CpuUsageRate = MonitorData.new.deserialize(params['CpuUsageRate'])
           end
           unless params['MemAvailable'].nil?
-            @MemAvailable = MonitorData.new.deserialize(params[MemAvailable])
+            @MemAvailable = MonitorData.new.deserialize(params['MemAvailable'])
           end
           @RequestId = params['RequestId']
         end
@@ -1577,7 +1612,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Groups = params['Groups']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              @Groups << SecurityGroup.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1657,7 +1697,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << SlowLogData.new.deserialize(i)
+            end
+          end
           @LockTimeSum = params['LockTimeSum']
           @QueryCount = params['QueryCount']
           @Total = params['Total']
@@ -1700,7 +1745,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Databases = params['Databases']
+          unless params['Databases'].nil?
+            @Databases = []
+            params['Databases'].each do |i|
+              @Databases << Database.new.deserialize(i)
+            end
+          end
           @InstanceId = params['InstanceId']
           @RequestId = params['RequestId']
         end
@@ -1817,7 +1867,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Deals = params['Deals']
+          unless params['Deals'].nil?
+            @Deals = []
+            params['Deals'].each do |i|
+              @Deals << Deal.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1924,7 +1979,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Groups = params['Groups']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              @Groups << SecurityGroup.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1999,7 +2059,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RegionList = params['RegionList']
+          unless params['RegionList'].nil?
+            @RegionList = []
+            params['RegionList'].each do |i|
+              @RegionList << RegionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2063,7 +2128,12 @@ module TencentCloud
           @EndOffset = params['EndOffset']
           @Offset = params['Offset']
           @Count = params['Count']
-          @SqlItems = params['SqlItems']
+          unless params['SqlItems'].nil?
+            @SqlItems = []
+            params['SqlItems'].each do |i|
+              @SqlItems << SqlLogItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2270,7 +2340,12 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceIds = params['InstanceIds']
-          @Params = params['Params']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              @Params << DBParamValue.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2314,7 +2389,12 @@ module TencentCloud
 
         def deserialize(params)
           @Machine = params['Machine']
-          @SpecInfos = params['SpecInfos']
+          unless params['SpecInfos'].nil?
+            @SpecInfos = []
+            params['SpecInfos'].each do |i|
+              @SpecInfos << SpecConfigInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2566,7 +2646,12 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @Params = params['Params']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              @Params << DBParamValue.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2589,7 +2674,12 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @Result = params['Result']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << ParamModifyResult.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2723,7 +2813,7 @@ module TencentCloud
           @Type = params['Type']
           @Enum = params['Enum']
           unless params['Range'].nil?
-            @Range = ConstraintRange.new.deserialize(params[Range])
+            @Range = ConstraintRange.new.deserialize(params['Range'])
           end
           @String = params['String']
         end
@@ -2762,7 +2852,7 @@ module TencentCloud
           @SetValue = params['SetValue']
           @Default = params['Default']
           unless params['Constraint'].nil?
-            @Constraint = ParamConstraint.new.deserialize(params[Constraint])
+            @Constraint = ParamConstraint.new.deserialize(params['Constraint'])
           end
           @HaveSetValue = params['HaveSetValue']
         end
@@ -2828,34 +2918,34 @@ module TencentCloud
 
         def deserialize(params)
           unless params['UpdateTotal'].nil?
-            @UpdateTotal = MonitorData.new.deserialize(params[UpdateTotal])
+            @UpdateTotal = MonitorData.new.deserialize(params['UpdateTotal'])
           end
           unless params['DiskIops'].nil?
-            @DiskIops = MonitorData.new.deserialize(params[DiskIops])
+            @DiskIops = MonitorData.new.deserialize(params['DiskIops'])
           end
           unless params['ConnActive'].nil?
-            @ConnActive = MonitorData.new.deserialize(params[ConnActive])
+            @ConnActive = MonitorData.new.deserialize(params['ConnActive'])
           end
           unless params['MemHitRate'].nil?
-            @MemHitRate = MonitorData.new.deserialize(params[MemHitRate])
+            @MemHitRate = MonitorData.new.deserialize(params['MemHitRate'])
           end
           unless params['SlaveDelay'].nil?
-            @SlaveDelay = MonitorData.new.deserialize(params[SlaveDelay])
+            @SlaveDelay = MonitorData.new.deserialize(params['SlaveDelay'])
           end
           unless params['SelectTotal'].nil?
-            @SelectTotal = MonitorData.new.deserialize(params[SelectTotal])
+            @SelectTotal = MonitorData.new.deserialize(params['SelectTotal'])
           end
           unless params['LongQuery'].nil?
-            @LongQuery = MonitorData.new.deserialize(params[LongQuery])
+            @LongQuery = MonitorData.new.deserialize(params['LongQuery'])
           end
           unless params['DeleteTotal'].nil?
-            @DeleteTotal = MonitorData.new.deserialize(params[DeleteTotal])
+            @DeleteTotal = MonitorData.new.deserialize(params['DeleteTotal'])
           end
           unless params['InsertTotal'].nil?
-            @InsertTotal = MonitorData.new.deserialize(params[InsertTotal])
+            @InsertTotal = MonitorData.new.deserialize(params['InsertTotal'])
           end
           unless params['IsMasterSwitched'].nil?
-            @IsMasterSwitched = MonitorData.new.deserialize(params[IsMasterSwitched])
+            @IsMasterSwitched = MonitorData.new.deserialize(params['IsMasterSwitched'])
           end
         end
       end
@@ -2887,8 +2977,18 @@ module TencentCloud
           @Region = params['Region']
           @RegionId = params['RegionId']
           @RegionName = params['RegionName']
-          @ZoneList = params['ZoneList']
-          @AvailableChoice = params['AvailableChoice']
+          unless params['ZoneList'].nil?
+            @ZoneList = []
+            params['ZoneList'].each do |i|
+              @ZoneList << ZonesInfo.new.deserialize(i)
+            end
+          end
+          unless params['AvailableChoice'].nil?
+            @AvailableChoice = []
+            params['AvailableChoice'].each do |i|
+              @AvailableChoice << ZoneChooseInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3027,16 +3127,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BinlogDiskAvailable'].nil?
-            @BinlogDiskAvailable = MonitorData.new.deserialize(params[BinlogDiskAvailable])
+            @BinlogDiskAvailable = MonitorData.new.deserialize(params['BinlogDiskAvailable'])
           end
           unless params['CpuUsageRate'].nil?
-            @CpuUsageRate = MonitorData.new.deserialize(params[CpuUsageRate])
+            @CpuUsageRate = MonitorData.new.deserialize(params['CpuUsageRate'])
           end
           unless params['MemAvailable'].nil?
-            @MemAvailable = MonitorData.new.deserialize(params[MemAvailable])
+            @MemAvailable = MonitorData.new.deserialize(params['MemAvailable'])
           end
           unless params['DataDiskAvailable'].nil?
-            @DataDiskAvailable = MonitorData.new.deserialize(params[DataDiskAvailable])
+            @DataDiskAvailable = MonitorData.new.deserialize(params['DataDiskAvailable'])
           end
         end
       end
@@ -3112,8 +3212,18 @@ module TencentCloud
           @SecurityGroupId = params['SecurityGroupId']
           @SecurityGroupName = params['SecurityGroupName']
           @SecurityGroupRemark = params['SecurityGroupRemark']
-          @Inbound = params['Inbound']
-          @Outbound = params['Outbound']
+          unless params['Inbound'].nil?
+            @Inbound = []
+            params['Inbound'].each do |i|
+              @Inbound << SecurityGroupBound.new.deserialize(i)
+            end
+          end
+          unless params['Outbound'].nil?
+            @Outbound = []
+            params['Outbound'].each do |i|
+              @Outbound << SecurityGroupBound.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3401,9 +3511,14 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MasterZone'].nil?
-            @MasterZone = ZonesInfo.new.deserialize(params[MasterZone])
+            @MasterZone = ZonesInfo.new.deserialize(params['MasterZone'])
           end
-          @SlaveZones = params['SlaveZones']
+          unless params['SlaveZones'].nil?
+            @SlaveZones = []
+            params['SlaveZones'].each do |i|
+              @SlaveZones << ZonesInfo.new.deserialize(i)
+            end
+          end
         end
       end
 

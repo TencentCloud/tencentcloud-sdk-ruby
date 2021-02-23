@@ -49,7 +49,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @PortraitSet = params['PortraitSet']
+          unless params['PortraitSet'].nil?
+            @PortraitSet = []
+            params['PortraitSet'].each do |i|
+              @PortraitSet << AgePortrait.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -204,7 +209,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CommentSet = params['CommentSet']
+          unless params['CommentSet'].nil?
+            @CommentSet = []
+            params['CommentSet'].each do |i|
+              @CommentSet << Comment.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -252,7 +262,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @DateCountSet = params['DateCountSet']
+          unless params['DateCountSet'].nil?
+            @DateCountSet = []
+            params['DateCountSet'].each do |i|
+              @DateCountSet << DateCount.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -300,7 +315,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @DateCountSet = params['DateCountSet']
+          unless params['DateCountSet'].nil?
+            @DateCountSet = []
+            params['DateCountSet'].each do |i|
+              @DateCountSet << DateCount.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -355,7 +375,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @BrandCommentSet = params['BrandCommentSet']
+          unless params['BrandCommentSet'].nil?
+            @BrandCommentSet = []
+            params['BrandCommentSet'].each do |i|
+              @BrandCommentSet << CommentInfo.new.deserialize(i)
+            end
+          end
           @TotalComments = params['TotalComments']
           @RequestId = params['RequestId']
         end
@@ -411,7 +436,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @BrandCommentSet = params['BrandCommentSet']
+          unless params['BrandCommentSet'].nil?
+            @BrandCommentSet = []
+            params['BrandCommentSet'].each do |i|
+              @BrandCommentSet << CommentInfo.new.deserialize(i)
+            end
+          end
           @TotalComments = params['TotalComments']
           @RequestId = params['RequestId']
         end
@@ -480,7 +510,12 @@ module TencentCloud
           @ArticleCount = params['ArticleCount']
           @FromCount = params['FromCount']
           @AdverseCount = params['AdverseCount']
-          @ArticleSet = params['ArticleSet']
+          unless params['ArticleSet'].nil?
+            @ArticleSet = []
+            params['ArticleSet'].each do |i|
+              @ArticleSet << BrandReportArticle.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -528,7 +563,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @DateCountSet = params['DateCountSet']
+          unless params['DateCountSet'].nil?
+            @DateCountSet = []
+            params['DateCountSet'].each do |i|
+              @DateCountSet << DateCount.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -599,8 +639,18 @@ module TencentCloud
           @NewsCount = params['NewsCount']
           @FromCount = params['FromCount']
           @AdverseCount = params['AdverseCount']
-          @NewsSet = params['NewsSet']
-          @DateCountSet = params['DateCountSet']
+          unless params['NewsSet'].nil?
+            @NewsSet = []
+            params['NewsSet'].each do |i|
+              @NewsSet << IndustryNews.new.deserialize(i)
+            end
+          end
+          unless params['DateCountSet'].nil?
+            @DateCountSet = []
+            params['DateCountSet'].each do |i|
+              @DateCountSet << DateCount.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -649,19 +699,19 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Age'].nil?
-            @Age = AgePortraitInfo.new.deserialize(params[Age])
+            @Age = AgePortraitInfo.new.deserialize(params['Age'])
           end
           unless params['Gender'].nil?
-            @Gender = GenderPortraitInfo.new.deserialize(params[Gender])
+            @Gender = GenderPortraitInfo.new.deserialize(params['Gender'])
           end
           unless params['Province'].nil?
-            @Province = ProvincePortraitInfo.new.deserialize(params[Province])
+            @Province = ProvincePortraitInfo.new.deserialize(params['Province'])
           end
           unless params['Movie'].nil?
-            @Movie = MoviePortraitInfo.new.deserialize(params[Movie])
+            @Movie = MoviePortraitInfo.new.deserialize(params['Movie'])
           end
           unless params['Star'].nil?
-            @Star = StarPortraitInfo.new.deserialize(params[Star])
+            @Star = StarPortraitInfo.new.deserialize(params['Star'])
           end
           @RequestId = params['RequestId']
         end
@@ -699,7 +749,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @PortraitSet = params['PortraitSet']
+          unless params['PortraitSet'].nil?
+            @PortraitSet = []
+            params['PortraitSet'].each do |i|
+              @PortraitSet << GenderPortrait.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -783,7 +838,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @PortraitSet = params['PortraitSet']
+          unless params['PortraitSet'].nil?
+            @PortraitSet = []
+            params['PortraitSet'].each do |i|
+              @PortraitSet << MoviePortrait.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -819,7 +879,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @PortraitSet = params['PortraitSet']
+          unless params['PortraitSet'].nil?
+            @PortraitSet = []
+            params['PortraitSet'].each do |i|
+              @PortraitSet << ProvincePortrait.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -855,7 +920,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @PortraitSet = params['PortraitSet']
+          unless params['PortraitSet'].nil?
+            @PortraitSet = []
+            params['PortraitSet'].each do |i|
+              @PortraitSet << StarPortrait.new.deserialize(i)
+            end
+          end
         end
       end
 

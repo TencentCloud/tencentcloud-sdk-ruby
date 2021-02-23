@@ -28,8 +28,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :BlackList
         
-        def initialize(module=nil, operation=nil, blacklist=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, blacklist=nil)
+          @Module = _module
           @Operation = operation
           @BlackList = blacklist
         end
@@ -37,7 +37,12 @@ module TencentCloud
         def deserialize(params)
           @Module = params['Module']
           @Operation = params['Operation']
-          @BlackList = params['BlackList']
+          unless params['BlackList'].nil?
+            @BlackList = []
+            params['BlackList'].each do |i|
+              @BlackList << BlackListData.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -70,8 +75,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :BlackList, :InstId
         
-        def initialize(module=nil, operation=nil, blacklist=nil, instid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, blacklist=nil, instid=nil)
+          @Module = _module
           @Operation = operation
           @BlackList = blacklist
           @InstId = instid
@@ -80,7 +85,12 @@ module TencentCloud
         def deserialize(params)
           @Module = params['Module']
           @Operation = params['Operation']
-          @BlackList = params['BlackList']
+          unless params['BlackList'].nil?
+            @BlackList = []
+            params['BlackList'].each do |i|
+              @BlackList << SingleBlackApply.new.deserialize(i)
+            end
+          end
           @InstId = params['InstId']
         end
       end
@@ -120,8 +130,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :InstId, :ProductId, :CaseId, :CallbackUrl, :Data
         
-        def initialize(module=nil, operation=nil, instid=nil, productid=nil, caseid=nil, callbackurl=nil, data=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, instid=nil, productid=nil, caseid=nil, callbackurl=nil, data=nil)
+          @Module = _module
           @Operation = operation
           @InstId = instid
           @ProductId = productid
@@ -245,7 +255,12 @@ module TencentCloud
         def deserialize(params)
           @BotFlowId = params['BotFlowId']
           @BotFlowName = params['BotFlowName']
-          @PhonePoolList = params['PhonePoolList']
+          unless params['PhonePoolList'].nil?
+            @PhonePoolList = []
+            params['PhonePoolList'].each do |i|
+              @PhonePoolList << PhonePool.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -341,25 +356,25 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Monday'].nil?
-            @Monday = CallTimeInfo.new.deserialize(params[Monday])
+            @Monday = CallTimeInfo.new.deserialize(params['Monday'])
           end
           unless params['Tuesday'].nil?
-            @Tuesday = CallTimeInfo.new.deserialize(params[Tuesday])
+            @Tuesday = CallTimeInfo.new.deserialize(params['Tuesday'])
           end
           unless params['Wednesday'].nil?
-            @Wednesday = CallTimeInfo.new.deserialize(params[Wednesday])
+            @Wednesday = CallTimeInfo.new.deserialize(params['Wednesday'])
           end
           unless params['Thursday'].nil?
-            @Thursday = CallTimeInfo.new.deserialize(params[Thursday])
+            @Thursday = CallTimeInfo.new.deserialize(params['Thursday'])
           end
           unless params['Friday'].nil?
-            @Friday = CallTimeInfo.new.deserialize(params[Friday])
+            @Friday = CallTimeInfo.new.deserialize(params['Friday'])
           end
           unless params['Saturday'].nil?
-            @Saturday = CallTimeInfo.new.deserialize(params[Saturday])
+            @Saturday = CallTimeInfo.new.deserialize(params['Saturday'])
           end
           unless params['Sunday'].nil?
-            @Sunday = CallTimeInfo.new.deserialize(params[Sunday])
+            @Sunday = CallTimeInfo.new.deserialize(params['Sunday'])
           end
         end
       end
@@ -404,8 +419,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Status, :CallId, :BizDate, :BotId, :BotName
         
-        def initialize(module=nil, operation=nil, status=nil, callid=nil, bizdate=nil, botid=nil, botname=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, status=nil, callid=nil, bizdate=nil, botid=nil, botname=nil)
+          @Module = _module
           @Operation = operation
           @Status = status
           @CallId = callid
@@ -457,8 +472,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Status, :BotId, :BotName
         
-        def initialize(module=nil, operation=nil, status=nil, botid=nil, botname=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, status=nil, botid=nil, botname=nil)
+          @Module = _module
           @Operation = operation
           @Status = status
           @BotId = botid
@@ -531,8 +546,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :BotName, :FlowId, :BanCall, :PhoneCollection, :CallTimeCollection, :StartTimeBan, :EndTimeBan, :CodeType, :CodeCollection, :CallCount, :CallInterval, :SmsSignId, :SmsTemplateId, :CallType, :CallStartDate, :CallEndDate
         
-        def initialize(module=nil, operation=nil, botname=nil, flowid=nil, bancall=nil, phonecollection=nil, calltimecollection=nil, starttimeban=nil, endtimeban=nil, codetype=nil, codecollection=nil, callcount=nil, callinterval=nil, smssignid=nil, smstemplateid=nil, calltype=nil, callstartdate=nil, callenddate=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, botname=nil, flowid=nil, bancall=nil, phonecollection=nil, calltimecollection=nil, starttimeban=nil, endtimeban=nil, codetype=nil, codecollection=nil, callcount=nil, callinterval=nil, smssignid=nil, smstemplateid=nil, calltype=nil, callstartdate=nil, callenddate=nil)
+          @Module = _module
           @Operation = operation
           @BotName = botname
           @FlowId = flowid
@@ -560,7 +575,7 @@ module TencentCloud
           @BanCall = params['BanCall']
           @PhoneCollection = params['PhoneCollection']
           unless params['CallTimeCollection'].nil?
-            @CallTimeCollection = CallTimeDict.new.deserialize(params[CallTimeCollection])
+            @CallTimeCollection = CallTimeDict.new.deserialize(params['CallTimeCollection'])
           end
           @StartTimeBan = params['StartTimeBan']
           @EndTimeBan = params['EndTimeBan']
@@ -605,8 +620,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation
         
-        def initialize(module=nil, operation=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil)
+          @Module = _module
           @Operation = operation
         end
 
@@ -640,9 +655,24 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @BotFlowList = params['BotFlowList']
-          @SmsSignList = params['SmsSignList']
-          @SmsTemplateList = params['SmsTemplateList']
+          unless params['BotFlowList'].nil?
+            @BotFlowList = []
+            params['BotFlowList'].each do |i|
+              @BotFlowList << BotFlow.new.deserialize(i)
+            end
+          end
+          unless params['SmsSignList'].nil?
+            @SmsSignList = []
+            params['SmsSignList'].each do |i|
+              @SmsSignList << SmsSign.new.deserialize(i)
+            end
+          end
+          unless params['SmsTemplateList'].nil?
+            @SmsTemplateList = []
+            params['SmsTemplateList'].each do |i|
+              @SmsTemplateList << SmsTemplate.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -664,8 +694,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :InstId, :ProductId, :CaseId, :RequestDate
         
-        def initialize(module=nil, operation=nil, instid=nil, productid=nil, caseid=nil, requestdate=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, instid=nil, productid=nil, caseid=nil, requestdate=nil)
+          @Module = _module
           @Operation = operation
           @InstId = instid
           @ProductId = productid
@@ -741,8 +771,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :FileType, :BotId, :BotName
         
-        def initialize(module=nil, operation=nil, filetype=nil, botid=nil, botname=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, filetype=nil, botid=nil, botname=nil)
+          @Module = _module
           @Operation = operation
           @FileType = filetype
           @BotId = botid
@@ -803,8 +833,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ProductId, :AccountNum, :CalledPhone, :StartBizDate, :EndBizDate, :Offset, :Limit, :InstId
         
-        def initialize(module=nil, operation=nil, productid=nil, accountnum=nil, calledphone=nil, startbizdate=nil, endbizdate=nil, offset=nil, limit=nil, instid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, productid=nil, accountnum=nil, calledphone=nil, startbizdate=nil, endbizdate=nil, offset=nil, limit=nil, instid=nil)
+          @Module = _module
           @Operation = operation
           @ProductId = productid
           @AccountNum = accountnum
@@ -849,7 +879,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RecordList = params['RecordList']
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              @RecordList << SingleRecord.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -868,8 +903,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :TaskId, :InstId
         
-        def initialize(module=nil, operation=nil, taskid=nil, instid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, taskid=nil, instid=nil)
+          @Module = _module
           @Operation = operation
           @TaskId = taskid
           @InstId = instid
@@ -923,8 +958,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :BizDate
         
-        def initialize(module=nil, operation=nil, bizdate=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, bizdate=nil)
+          @Module = _module
           @Operation = operation
           @BizDate = bizdate
         end
@@ -973,8 +1008,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ReportDate, :InstId
         
-        def initialize(module=nil, operation=nil, reportdate=nil, instid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, reportdate=nil, instid=nil)
+          @Module = _module
           @Operation = operation
           @ReportDate = reportdate
           @InstId = instid
@@ -1021,8 +1056,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :BizDate, :InstId
         
-        def initialize(module=nil, operation=nil, bizdate=nil, instid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, bizdate=nil, instid=nil)
+          @Module = _module
           @Operation = operation
           @BizDate = bizdate
           @InstId = instid
@@ -1069,8 +1104,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ReportDate, :InstId
         
-        def initialize(module=nil, operation=nil, reportdate=nil, instid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, reportdate=nil, instid=nil)
+          @Module = _module
           @Operation = operation
           @ReportDate = reportdate
           @InstId = instid
@@ -1145,8 +1180,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :BizDate, :BotId, :BotName
         
-        def initialize(module=nil, operation=nil, bizdate=nil, botid=nil, botname=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, bizdate=nil, botid=nil, botname=nil)
+          @Module = _module
           @Operation = operation
           @BizDate = bizdate
           @BotId = botid
@@ -1177,7 +1212,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << BotFileData.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1246,8 +1286,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation
         
-        def initialize(module=nil, operation=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil)
+          @Module = _module
           @Operation = operation
         end
 
@@ -1272,7 +1312,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @BotList = params['BotList']
+          unless params['BotList'].nil?
+            @BotList = []
+            params['BotList'].each do |i|
+              @BotList << BotInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1294,8 +1339,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :BizDate, :BotId, :BotName, :FileName
         
-        def initialize(module=nil, operation=nil, bizdate=nil, botid=nil, botname=nil, filename=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, bizdate=nil, botid=nil, botname=nil, filename=nil)
+          @Module = _module
           @Operation = operation
           @BizDate = bizdate
           @BotId = botid
@@ -1329,7 +1374,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CallList = params['CallList']
+          unless params['CallList'].nil?
+            @CallList = []
+            params['CallList'].each do |i|
+              @CallList << CallInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1351,8 +1401,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :ProductId, :InstanceId, :QueryModel, :Data
         
-        def initialize(module=nil, operation=nil, productid=nil, instanceid=nil, querymodel=nil, data=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, productid=nil, instanceid=nil, querymodel=nil, data=nil)
+          @Module = _module
           @Operation = operation
           @ProductId = productid
           @InstanceId = instanceid
@@ -1407,8 +1457,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :InstanceId
         
-        def initialize(module=nil, operation=nil, instanceid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, instanceid=nil)
+          @Module = _module
           @Operation = operation
           @InstanceId = instanceid
         end
@@ -1435,7 +1485,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ProductList = params['ProductList']
+          unless params['ProductList'].nil?
+            @ProductList = []
+            params['ProductList'].each do |i|
+              @ProductList << ProductQueryInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1463,8 +1518,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Offset, :Limit, :BotId, :BotName, :CalledPhone, :StartBizDate, :EndBizDate
         
-        def initialize(module=nil, operation=nil, offset=nil, limit=nil, botid=nil, botname=nil, calledphone=nil, startbizdate=nil, endbizdate=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, offset=nil, limit=nil, botid=nil, botname=nil, calledphone=nil, startbizdate=nil, endbizdate=nil)
+          @Module = _module
           @Operation = operation
           @Offset = offset
           @Limit = limit
@@ -1506,7 +1561,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RecordList = params['RecordList']
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              @RecordList << RecordInfo.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1713,8 +1773,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :BotName, :BotId, :CallTimeCollection, :BanCall, :StartTimeBan, :EndTimeBan, :PhoneCollection, :CodeType, :CodeCollection, :CallCount, :CallInterval, :SmsSignId, :SmsTemplateId
         
-        def initialize(module=nil, operation=nil, botname=nil, botid=nil, calltimecollection=nil, bancall=nil, starttimeban=nil, endtimeban=nil, phonecollection=nil, codetype=nil, codecollection=nil, callcount=nil, callinterval=nil, smssignid=nil, smstemplateid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, botname=nil, botid=nil, calltimecollection=nil, bancall=nil, starttimeban=nil, endtimeban=nil, phonecollection=nil, codetype=nil, codecollection=nil, callcount=nil, callinterval=nil, smssignid=nil, smstemplateid=nil)
+          @Module = _module
           @Operation = operation
           @BotName = botname
           @BotId = botid
@@ -1737,7 +1797,7 @@ module TencentCloud
           @BotName = params['BotName']
           @BotId = params['BotId']
           unless params['CallTimeCollection'].nil?
-            @CallTimeCollection = CallTimeDict.new.deserialize(params[CallTimeCollection])
+            @CallTimeCollection = CallTimeDict.new.deserialize(params['CallTimeCollection'])
           end
           @BanCall = params['BanCall']
           @StartTimeBan = params['StartTimeBan']
@@ -1783,8 +1843,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Data, :BotId, :BotName
         
-        def initialize(module=nil, operation=nil, data=nil, botid=nil, botname=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, data=nil, botid=nil, botname=nil)
+          @Module = _module
           @Operation = operation
           @Data = data
           @BotId = botid
@@ -1835,8 +1895,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :FileType, :FileUrl, :FileName, :BotId, :BotName
         
-        def initialize(module=nil, operation=nil, filetype=nil, fileurl=nil, filename=nil, botid=nil, botname=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, filetype=nil, fileurl=nil, filename=nil, botid=nil, botname=nil)
+          @Module = _module
           @Operation = operation
           @FileType = filetype
           @FileUrl = fileurl
@@ -1891,8 +1951,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :FileName, :UploadModel, :File, :FileUrl, :InstId
         
-        def initialize(module=nil, operation=nil, filename=nil, uploadmodel=nil, file=nil, fileurl=nil, instid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, filename=nil, uploadmodel=nil, file=nil, fileurl=nil, instid=nil)
+          @Module = _module
           @Operation = operation
           @FileName = filename
           @UploadModel = uploadmodel
@@ -1947,8 +2007,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :Data, :UploadModel, :InstanceId
         
-        def initialize(module=nil, operation=nil, data=nil, uploadmodel=nil, instanceid=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, data=nil, uploadmodel=nil, instanceid=nil)
+          @Module = _module
           @Operation = operation
           @Data = data
           @UploadModel = uploadmodel
@@ -2000,8 +2060,8 @@ module TencentCloud
 
         attr_accessor :Module, :Operation, :FileUrl, :FileName, :FileDate
         
-        def initialize(module=nil, operation=nil, fileurl=nil, filename=nil, filedate=nil)
-          @Module = module
+        def initialize(_module=nil, operation=nil, fileurl=nil, filename=nil, filedate=nil)
+          @Module = _module
           @Operation = operation
           @FileUrl = fileurl
           @FileName = filename

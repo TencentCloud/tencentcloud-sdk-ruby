@@ -186,7 +186,7 @@ module TencentCloud
           @MachineResult = params['MachineResult']
           @ManualResult = params['ManualResult']
           unless params['Metrics'].nil?
-            @Metrics = CompareMetricsData.new.deserialize(params[Metrics])
+            @Metrics = CompareMetricsData.new.deserialize(params['Metrics'])
           end
           @NewItems = params['NewItems']
           @ModifyItems = params['ModifyItems']
@@ -233,7 +233,12 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
-          @Results = params['Results']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              @Results << ResultObject.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

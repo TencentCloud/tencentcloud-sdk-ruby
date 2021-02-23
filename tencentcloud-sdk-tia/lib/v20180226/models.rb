@@ -101,7 +101,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Job'].nil?
-            @Job = Job.new.deserialize(params[Job])
+            @Job = Job.new.deserialize(params['Job'])
           end
           @RequestId = params['RequestId']
         end
@@ -171,7 +171,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Model'].nil?
-            @Model = Model.new.deserialize(params[Model])
+            @Model = Model.new.deserialize(params['Model'])
           end
           @RequestId = params['RequestId']
         end
@@ -289,7 +289,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Job'].nil?
-            @Job = Job.new.deserialize(params[Job])
+            @Job = Job.new.deserialize(params['Job'])
           end
           @RequestId = params['RequestId']
         end
@@ -335,7 +335,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Model'].nil?
-            @Model = Model.new.deserialize(params[Model])
+            @Model = Model.new.deserialize(params['Model'])
           end
           @RequestId = params['RequestId']
         end
@@ -528,7 +528,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Jobs = params['Jobs']
+          unless params['Jobs'].nil?
+            @Jobs = []
+            params['Jobs'].each do |i|
+              @Jobs << Job.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -576,7 +581,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Models = params['Models']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              @Models << Model.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -764,7 +774,12 @@ module TencentCloud
 
         def deserialize(params)
           @Context = params['Context']
-          @Logs = params['Logs']
+          unless params['Logs'].nil?
+            @Logs = []
+            params['Logs'].each do |i|
+              @Logs << Log.new.deserialize(i)
+            end
+          end
           @Listover = params['Listover']
           @RequestId = params['RequestId']
         end

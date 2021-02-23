@@ -140,7 +140,12 @@ module TencentCloud
           @BotName = params['BotName']
           @IntentName = params['IntentName']
           @ResponseText = params['ResponseText']
-          @SlotInfoList = params['SlotInfoList']
+          unless params['SlotInfoList'].nil?
+            @SlotInfoList = []
+            params['SlotInfoList'].each do |i|
+              @SlotInfoList << SlotInfo.new.deserialize(i)
+            end
+          end
           @SessionAttributes = params['SessionAttributes']
           @Question = params['Question']
           @WaveUrl = params['WaveUrl']
@@ -246,7 +251,12 @@ module TencentCloud
           @DialogStatus = params['DialogStatus']
           @BotName = params['BotName']
           @IntentName = params['IntentName']
-          @SlotInfoList = params['SlotInfoList']
+          unless params['SlotInfoList'].nil?
+            @SlotInfoList = []
+            params['SlotInfoList'].each do |i|
+              @SlotInfoList << SlotInfo.new.deserialize(i)
+            end
+          end
           @InputText = params['InputText']
           @SessionAttributes = params['SessionAttributes']
           @ResponseText = params['ResponseText']
@@ -321,7 +331,12 @@ module TencentCloud
           @DialogStatus = params['DialogStatus']
           @BotName = params['BotName']
           @IntentName = params['IntentName']
-          @SlotInfoList = params['SlotInfoList']
+          unless params['SlotInfoList'].nil?
+            @SlotInfoList = []
+            params['SlotInfoList'].each do |i|
+              @SlotInfoList << SlotInfo.new.deserialize(i)
+            end
+          end
           @InputText = params['InputText']
           @SessionAttributes = params['SessionAttributes']
           @ResponseText = params['ResponseText']

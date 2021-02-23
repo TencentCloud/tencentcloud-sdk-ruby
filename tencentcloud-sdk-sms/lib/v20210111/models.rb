@@ -54,7 +54,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DescribeTemplateStatusSet = params['DescribeTemplateStatusSet']
+          unless params['DescribeTemplateStatusSet'].nil?
+            @DescribeTemplateStatusSet = []
+            params['DescribeTemplateStatusSet'].each do |i|
+              @DescribeTemplateStatusSet << DescribeTemplateListStatus.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

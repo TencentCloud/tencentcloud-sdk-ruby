@@ -124,7 +124,7 @@ module TencentCloud
           @LastModifiedTime = params['LastModifiedTime']
           @CodeRepositoryName = params['CodeRepositoryName']
           unless params['GitConfig'].nil?
-            @GitConfig = GitConfig.new.deserialize(params[GitConfig])
+            @GitConfig = GitConfig.new.deserialize(params['GitConfig'])
           end
           @NoSecret = params['NoSecret']
         end
@@ -182,10 +182,10 @@ module TencentCloud
         def deserialize(params)
           @CodeRepositoryName = params['CodeRepositoryName']
           unless params['GitConfig'].nil?
-            @GitConfig = GitConfig.new.deserialize(params[GitConfig])
+            @GitConfig = GitConfig.new.deserialize(params['GitConfig'])
           end
           unless params['GitSecret'].nil?
-            @GitSecret = GitSecret.new.deserialize(params[GitSecret])
+            @GitSecret = GitSecret.new.deserialize(params['GitSecret'])
           end
         end
       end
@@ -285,11 +285,11 @@ module TencentCloud
           @AdditionalCodeRepositories = params['AdditionalCodeRepositories']
           @ClsAccess = params['ClsAccess']
           unless params['StoppingCondition'].nil?
-            @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
+            @StoppingCondition = StoppingCondition.new.deserialize(params['StoppingCondition'])
           end
           @AutoStopping = params['AutoStopping']
           unless params['ClsConfig'].nil?
-            @ClsConfig = ClsConfig.new.deserialize(params[ClsConfig])
+            @ClsConfig = ClsConfig.new.deserialize(params['ClsConfig'])
           end
         end
       end
@@ -445,24 +445,34 @@ module TencentCloud
 
         def deserialize(params)
           unless params['AlgorithmSpecification'].nil?
-            @AlgorithmSpecification = AlgorithmSpecification.new.deserialize(params[AlgorithmSpecification])
+            @AlgorithmSpecification = AlgorithmSpecification.new.deserialize(params['AlgorithmSpecification'])
           end
           unless params['OutputDataConfig'].nil?
-            @OutputDataConfig = OutputDataConfig.new.deserialize(params[OutputDataConfig])
+            @OutputDataConfig = OutputDataConfig.new.deserialize(params['OutputDataConfig'])
           end
           unless params['ResourceConfig'].nil?
-            @ResourceConfig = ResourceConfig.new.deserialize(params[ResourceConfig])
+            @ResourceConfig = ResourceConfig.new.deserialize(params['ResourceConfig'])
           end
           @TrainingJobName = params['TrainingJobName']
-          @InputDataConfig = params['InputDataConfig']
+          unless params['InputDataConfig'].nil?
+            @InputDataConfig = []
+            params['InputDataConfig'].each do |i|
+              @InputDataConfig << InputDataConfig.new.deserialize(i)
+            end
+          end
           unless params['StoppingCondition'].nil?
-            @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
+            @StoppingCondition = StoppingCondition.new.deserialize(params['StoppingCondition'])
           end
           unless params['VpcConfig'].nil?
-            @VpcConfig = VpcConfig.new.deserialize(params[VpcConfig])
+            @VpcConfig = VpcConfig.new.deserialize(params['VpcConfig'])
           end
           @HyperParameters = params['HyperParameters']
-          @EnvConfig = params['EnvConfig']
+          unless params['EnvConfig'].nil?
+            @EnvConfig = []
+            params['EnvConfig'].each do |i|
+              @EnvConfig << EnvConfig.new.deserialize(i)
+            end
+          end
           @RoleName = params['RoleName']
           @RetryWhenResourceInsufficient = params['RetryWhenResourceInsufficient']
         end
@@ -506,10 +516,10 @@ module TencentCloud
 
         def deserialize(params)
           unless params['CosDataSource'].nil?
-            @CosDataSource = CosDataSource.new.deserialize(params[CosDataSource])
+            @CosDataSource = CosDataSource.new.deserialize(params['CosDataSource'])
           end
           unless params['FileSystemDataSource'].nil?
-            @FileSystemDataSource = FileSystemDataSource.new.deserialize(params[FileSystemDataSource])
+            @FileSystemDataSource = FileSystemDataSource.new.deserialize(params['FileSystemDataSource'])
           end
         end
       end
@@ -645,7 +655,12 @@ module TencentCloud
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @SortOrder = params['SortOrder']
         end
       end
@@ -670,7 +685,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @CodeRepoSet = params['CodeRepoSet']
+          unless params['CodeRepoSet'].nil?
+            @CodeRepoSet = []
+            params['CodeRepoSet'].each do |i|
+              @CodeRepoSet << CodeRepoSummary.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -722,7 +742,7 @@ module TencentCloud
           @LastModifiedTime = params['LastModifiedTime']
           @CodeRepositoryName = params['CodeRepositoryName']
           unless params['GitConfig'].nil?
-            @GitConfig = GitConfig.new.deserialize(params[GitConfig])
+            @GitConfig = GitConfig.new.deserialize(params['GitConfig'])
           end
           @NoSecret = params['NoSecret']
           @RequestId = params['RequestId']
@@ -869,10 +889,10 @@ module TencentCloud
           @Prepay = params['Prepay']
           @Deadline = params['Deadline']
           unless params['StoppingCondition'].nil?
-            @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
+            @StoppingCondition = StoppingCondition.new.deserialize(params['StoppingCondition'])
           end
           unless params['ClsConfig'].nil?
-            @ClsConfig = ClsConfig.new.deserialize(params[ClsConfig])
+            @ClsConfig = ClsConfig.new.deserialize(params['ClsConfig'])
           end
           @RequestId = params['RequestId']
         end
@@ -915,7 +935,12 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SortOrder = params['SortOrder']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @SortBy = params['SortBy']
         end
       end
@@ -938,7 +963,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @NotebookInstanceSet = params['NotebookInstanceSet']
+          unless params['NotebookInstanceSet'].nil?
+            @NotebookInstanceSet = []
+            params['NotebookInstanceSet'].each do |i|
+              @NotebookInstanceSet << NotebookInstanceSummary.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1025,7 +1055,12 @@ module TencentCloud
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
           @SortOrder = params['SortOrder']
         end
       end
@@ -1048,7 +1083,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @NotebookLifecycleScriptsSet = params['NotebookLifecycleScriptsSet']
+          unless params['NotebookLifecycleScriptsSet'].nil?
+            @NotebookLifecycleScriptsSet = []
+            params['NotebookLifecycleScriptsSet'].each do |i|
+              @NotebookLifecycleScriptsSet << NotebookLifecycleScriptsSummary.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1207,32 +1247,42 @@ module TencentCloud
 
         def deserialize(params)
           unless params['AlgorithmSpecification'].nil?
-            @AlgorithmSpecification = AlgorithmSpecification.new.deserialize(params[AlgorithmSpecification])
+            @AlgorithmSpecification = AlgorithmSpecification.new.deserialize(params['AlgorithmSpecification'])
           end
           @TrainingJobName = params['TrainingJobName']
           @HyperParameters = params['HyperParameters']
-          @InputDataConfig = params['InputDataConfig']
+          unless params['InputDataConfig'].nil?
+            @InputDataConfig = []
+            params['InputDataConfig'].each do |i|
+              @InputDataConfig << InputDataConfig.new.deserialize(i)
+            end
+          end
           unless params['OutputDataConfig'].nil?
-            @OutputDataConfig = OutputDataConfig.new.deserialize(params[OutputDataConfig])
+            @OutputDataConfig = OutputDataConfig.new.deserialize(params['OutputDataConfig'])
           end
           unless params['StoppingCondition'].nil?
-            @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
+            @StoppingCondition = StoppingCondition.new.deserialize(params['StoppingCondition'])
           end
           unless params['ResourceConfig'].nil?
-            @ResourceConfig = ResourceConfig.new.deserialize(params[ResourceConfig])
+            @ResourceConfig = ResourceConfig.new.deserialize(params['ResourceConfig'])
           end
           unless params['VpcConfig'].nil?
-            @VpcConfig = VpcConfig.new.deserialize(params[VpcConfig])
+            @VpcConfig = VpcConfig.new.deserialize(params['VpcConfig'])
           end
           @FailureReason = params['FailureReason']
           @LastModifiedTime = params['LastModifiedTime']
           @TrainingStartTime = params['TrainingStartTime']
           @TrainingEndTime = params['TrainingEndTime']
           unless params['ModelArtifacts'].nil?
-            @ModelArtifacts = ModelArtifacts.new.deserialize(params[ModelArtifacts])
+            @ModelArtifacts = ModelArtifacts.new.deserialize(params['ModelArtifacts'])
           end
           @SecondaryStatus = params['SecondaryStatus']
-          @SecondaryStatusTransitions = params['SecondaryStatusTransitions']
+          unless params['SecondaryStatusTransitions'].nil?
+            @SecondaryStatusTransitions = []
+            params['SecondaryStatusTransitions'].each do |i|
+              @SecondaryStatusTransitions << SecondaryStatusTransition.new.deserialize(i)
+            end
+          end
           @RoleName = params['RoleName']
           @TrainingJobStatus = params['TrainingJobStatus']
           @LogUrl = params['LogUrl']
@@ -1279,7 +1329,12 @@ module TencentCloud
           @CreationTimeBefore = params['CreationTimeBefore']
           @NameContains = params['NameContains']
           @StatusEquals = params['StatusEquals']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1301,7 +1356,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TrainingJobSet = params['TrainingJobSet']
+          unless params['TrainingJobSet'].nil?
+            @TrainingJobSet = []
+            params['TrainingJobSet'].each do |i|
+              @TrainingJobSet << TrainingJobSummary.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1449,7 +1509,7 @@ module TencentCloud
         def deserialize(params)
           @ChannelName = params['ChannelName']
           unless params['DataSource'].nil?
-            @DataSource = DataSource.new.deserialize(params[DataSource])
+            @DataSource = DataSource.new.deserialize(params['DataSource'])
           end
           @InputMode = params['InputMode']
           @ContentType = params['ContentType']
@@ -1548,11 +1608,11 @@ module TencentCloud
           @StartupTime = params['StartupTime']
           @Deadline = params['Deadline']
           unless params['StoppingCondition'].nil?
-            @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
+            @StoppingCondition = StoppingCondition.new.deserialize(params['StoppingCondition'])
           end
           @Prepay = params['Prepay']
           unless params['BillingLabel'].nil?
-            @BillingLabel = BillingLabel.new.deserialize(params[BillingLabel])
+            @BillingLabel = BillingLabel.new.deserialize(params['BillingLabel'])
           end
           @RuntimeInSeconds = params['RuntimeInSeconds']
           @RemainTimeInSeconds = params['RemainTimeInSeconds']
@@ -1607,7 +1667,7 @@ module TencentCloud
           @CosOutputBucket = params['CosOutputBucket']
           @CosOutputKeyPrefix = params['CosOutputKeyPrefix']
           unless params['FileSystemDataSource'].nil?
-            @FileSystemDataSource = FileSystemDataSource.new.deserialize(params[FileSystemDataSource])
+            @FileSystemDataSource = FileSystemDataSource.new.deserialize(params['FileSystemDataSource'])
           end
         end
       end
@@ -1694,7 +1754,7 @@ module TencentCloud
           @NotebookInstanceName = params['NotebookInstanceName']
           @AutoStopping = params['AutoStopping']
           unless params['StoppingCondition'].nil?
-            @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
+            @StoppingCondition = StoppingCondition.new.deserialize(params['StoppingCondition'])
           end
         end
       end
@@ -1850,7 +1910,7 @@ module TencentCloud
           @TrainingEndTime = params['TrainingEndTime']
           @InstanceId = params['InstanceId']
           unless params['ResourceConfig'].nil?
-            @ResourceConfig = ResourceConfig.new.deserialize(params[ResourceConfig])
+            @ResourceConfig = ResourceConfig.new.deserialize(params['ResourceConfig'])
           end
         end
       end
@@ -1872,7 +1932,7 @@ module TencentCloud
         def deserialize(params)
           @CodeRepositoryName = params['CodeRepositoryName']
           unless params['GitSecret'].nil?
-            @GitSecret = GitSecret.new.deserialize(params[GitSecret])
+            @GitSecret = GitSecret.new.deserialize(params['GitSecret'])
           end
         end
       end
@@ -1973,10 +2033,10 @@ module TencentCloud
           @ClsAccess = params['ClsAccess']
           @AutoStopping = params['AutoStopping']
           unless params['StoppingCondition'].nil?
-            @StoppingCondition = StoppingCondition.new.deserialize(params[StoppingCondition])
+            @StoppingCondition = StoppingCondition.new.deserialize(params['StoppingCondition'])
           end
           unless params['ClsConfig'].nil?
-            @ClsConfig = ClsConfig.new.deserialize(params[ClsConfig])
+            @ClsConfig = ClsConfig.new.deserialize(params['ClsConfig'])
           end
         end
       end

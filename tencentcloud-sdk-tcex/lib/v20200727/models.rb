@@ -109,7 +109,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Results = params['Results']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              @Results << AlgorithmResult.new.deserialize(i)
+            end
+          end
           @Status = params['Status']
           @RequestId = params['RequestId']
         end

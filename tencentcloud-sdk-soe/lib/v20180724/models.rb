@@ -171,7 +171,12 @@ module TencentCloud
           @VoiceEncodeType = params['VoiceEncodeType']
           @UserVoiceData = params['UserVoiceData']
           @SessionId = params['SessionId']
-          @Keywords = params['Keywords']
+          unless params['Keywords'].nil?
+            @Keywords = []
+            params['Keywords'].each do |i|
+              @Keywords << Keyword.new.deserialize(i)
+            end
+          end
           @SoeAppId = params['SoeAppId']
           @IsQuery = params['IsQuery']
         end
@@ -195,7 +200,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @KeywordScores = params['KeywordScores']
+          unless params['KeywordScores'].nil?
+            @KeywordScores = []
+            params['KeywordScores'].each do |i|
+              @KeywordScores << KeywordScore.new.deserialize(i)
+            end
+          end
           @SessionId = params['SessionId']
           @RequestId = params['RequestId']
         end
@@ -233,7 +243,12 @@ module TencentCloud
           @PronAccuracy = params['PronAccuracy']
           @PronFluency = params['PronFluency']
           @PronCompletion = params['PronCompletion']
-          @Words = params['Words']
+          unless params['Words'].nil?
+            @Words = []
+            params['Words'].each do |i|
+              @Words << WordRsp.new.deserialize(i)
+            end
+          end
           @SuggestedScore = params['SuggestedScore']
         end
       end
@@ -310,7 +325,12 @@ module TencentCloud
 
         def deserialize(params)
           @SentenceId = params['SentenceId']
-          @Words = params['Words']
+          unless params['Words'].nil?
+            @Words = []
+            params['Words'].each do |i|
+              @Words << WordRsp.new.deserialize(i)
+            end
+          end
           @PronAccuracy = params['PronAccuracy']
           @PronFluency = params['PronFluency']
           @PronCompletion = params['PronCompletion']
@@ -408,10 +428,20 @@ module TencentCloud
           @PronAccuracy = params['PronAccuracy']
           @PronFluency = params['PronFluency']
           @PronCompletion = params['PronCompletion']
-          @Words = params['Words']
+          unless params['Words'].nil?
+            @Words = []
+            params['Words'].each do |i|
+              @Words << WordRsp.new.deserialize(i)
+            end
+          end
           @SessionId = params['SessionId']
           @AudioUrl = params['AudioUrl']
-          @SentenceInfoSet = params['SentenceInfoSet']
+          unless params['SentenceInfoSet'].nil?
+            @SentenceInfoSet = []
+            params['SentenceInfoSet'].each do |i|
+              @SentenceInfoSet << SentenceInfo.new.deserialize(i)
+            end
+          end
           @Status = params['Status']
           @SuggestedScore = params['SuggestedScore']
           @RequestId = params['RequestId']
@@ -540,10 +570,20 @@ module TencentCloud
           @PronAccuracy = params['PronAccuracy']
           @PronFluency = params['PronFluency']
           @PronCompletion = params['PronCompletion']
-          @Words = params['Words']
+          unless params['Words'].nil?
+            @Words = []
+            params['Words'].each do |i|
+              @Words << WordRsp.new.deserialize(i)
+            end
+          end
           @SessionId = params['SessionId']
           @AudioUrl = params['AudioUrl']
-          @SentenceInfoSet = params['SentenceInfoSet']
+          unless params['SentenceInfoSet'].nil?
+            @SentenceInfoSet = []
+            params['SentenceInfoSet'].each do |i|
+              @SentenceInfoSet << SentenceInfo.new.deserialize(i)
+            end
+          end
           @Status = params['Status']
           @SuggestedScore = params['SuggestedScore']
           @RequestId = params['RequestId']
@@ -589,7 +629,12 @@ module TencentCloud
           @PronFluency = params['PronFluency']
           @Word = params['Word']
           @MatchTag = params['MatchTag']
-          @PhoneInfos = params['PhoneInfos']
+          unless params['PhoneInfos'].nil?
+            @PhoneInfos = []
+            params['PhoneInfos'].each do |i|
+              @PhoneInfos << PhoneInfo.new.deserialize(i)
+            end
+          end
           @ReferenceWord = params['ReferenceWord']
         end
       end

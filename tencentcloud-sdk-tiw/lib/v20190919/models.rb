@@ -33,7 +33,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['LayoutParams'].nil?
-            @LayoutParams = LayoutParams.new.deserialize(params[LayoutParams])
+            @LayoutParams = LayoutParams.new.deserialize(params['LayoutParams'])
           end
           @BackgroundColor = params['BackgroundColor']
         end
@@ -167,16 +167,16 @@ module TencentCloud
           @OnlineRecordTaskId = params['OnlineRecordTaskId']
           @SdkAppId = params['SdkAppId']
           unless params['Whiteboard'].nil?
-            @Whiteboard = Whiteboard.new.deserialize(params[Whiteboard])
+            @Whiteboard = Whiteboard.new.deserialize(params['Whiteboard'])
           end
           unless params['Concat'].nil?
-            @Concat = Concat.new.deserialize(params[Concat])
+            @Concat = Concat.new.deserialize(params['Concat'])
           end
           unless params['MixStream'].nil?
-            @MixStream = MixStream.new.deserialize(params[MixStream])
+            @MixStream = MixStream.new.deserialize(params['MixStream'])
           end
           unless params['RecordControl'].nil?
-            @RecordControl = RecordControl.new.deserialize(params[RecordControl])
+            @RecordControl = RecordControl.new.deserialize(params['RecordControl'])
           end
           @ExtraData = params['ExtraData']
         end
@@ -218,9 +218,14 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Canvas'].nil?
-            @Canvas = Canvas.new.deserialize(params[Canvas])
+            @Canvas = Canvas.new.deserialize(params['Canvas'])
           end
-          @InputStreamList = params['InputStreamList']
+          unless params['InputStreamList'].nil?
+            @InputStreamList = []
+            params['InputStreamList'].each do |i|
+              @InputStreamList << StreamLayout.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -354,8 +359,18 @@ module TencentCloud
           @RecordStopTime = params['RecordStopTime']
           @TotalTime = params['TotalTime']
           @ExceptionCnt = params['ExceptionCnt']
-          @OmittedDurations = params['OmittedDurations']
-          @VideoInfos = params['VideoInfos']
+          unless params['OmittedDurations'].nil?
+            @OmittedDurations = []
+            params['OmittedDurations'].each do |i|
+              @OmittedDurations << OmittedDuration.new.deserialize(i)
+            end
+          end
+          unless params['VideoInfos'].nil?
+            @VideoInfos = []
+            params['VideoInfos'].each do |i|
+              @VideoInfos << VideoInfo.new.deserialize(i)
+            end
+          end
           @ReplayUrl = params['ReplayUrl']
           @RequestId = params['RequestId']
         end
@@ -592,9 +607,14 @@ module TencentCloud
           @Status = params['Status']
           @TotalTime = params['TotalTime']
           unless params['VideoInfos'].nil?
-            @VideoInfos = VideoInfo.new.deserialize(params[VideoInfos])
+            @VideoInfos = VideoInfo.new.deserialize(params['VideoInfos'])
           end
-          @VideoInfoList = params['VideoInfoList']
+          unless params['VideoInfoList'].nil?
+            @VideoInfoList = []
+            params['VideoInfoList'].each do |i|
+              @VideoInfoList << VideoInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -792,7 +812,7 @@ module TencentCloud
           @ModelId = params['ModelId']
           @TeacherId = params['TeacherId']
           unless params['Custom'].nil?
-            @Custom = CustomLayout.new.deserialize(params[Custom])
+            @Custom = CustomLayout.new.deserialize(params['Custom'])
           end
         end
       end
@@ -900,7 +920,12 @@ module TencentCloud
           @DisableRecord = params['DisableRecord']
           @DisableAudio = params['DisableAudio']
           @PullSmallVideo = params['PullSmallVideo']
-          @StreamControls = params['StreamControls']
+          unless params['StreamControls'].nil?
+            @StreamControls = []
+            params['StreamControls'].each do |i|
+              @StreamControls << StreamControl.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1302,18 +1327,18 @@ module TencentCloud
           @RecordUserSig = params['RecordUserSig']
           @GroupId = params['GroupId']
           unless params['Concat'].nil?
-            @Concat = Concat.new.deserialize(params[Concat])
+            @Concat = Concat.new.deserialize(params['Concat'])
           end
           unless params['Whiteboard'].nil?
-            @Whiteboard = Whiteboard.new.deserialize(params[Whiteboard])
+            @Whiteboard = Whiteboard.new.deserialize(params['Whiteboard'])
           end
           unless params['MixStream'].nil?
-            @MixStream = MixStream.new.deserialize(params[MixStream])
+            @MixStream = MixStream.new.deserialize(params['MixStream'])
           end
           @Extras = params['Extras']
           @AudioFileNeeded = params['AudioFileNeeded']
           unless params['RecordControl'].nil?
-            @RecordControl = RecordControl.new.deserialize(params[RecordControl])
+            @RecordControl = RecordControl.new.deserialize(params['RecordControl'])
           end
           @RecordMode = params['RecordMode']
           @ChatGroupId = params['ChatGroupId']
@@ -1394,12 +1419,12 @@ module TencentCloud
           @PushUserId = params['PushUserId']
           @PushUserSig = params['PushUserSig']
           unless params['Whiteboard'].nil?
-            @Whiteboard = Whiteboard.new.deserialize(params[Whiteboard])
+            @Whiteboard = Whiteboard.new.deserialize(params['Whiteboard'])
           end
           @AutoStopTimeout = params['AutoStopTimeout']
           @AutoManageBackup = params['AutoManageBackup']
           unless params['Backup'].nil?
-            @Backup = WhiteboardPushBackupParam.new.deserialize(params[Backup])
+            @Backup = WhiteboardPushBackupParam.new.deserialize(params['Backup'])
           end
           @AutoRecord = params['AutoRecord']
           @ExtraData = params['ExtraData']
@@ -1587,7 +1612,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['LayoutParams'].nil?
-            @LayoutParams = LayoutParams.new.deserialize(params[LayoutParams])
+            @LayoutParams = LayoutParams.new.deserialize(params['LayoutParams'])
           end
           @InputStreamId = params['InputStreamId']
           @BackgroundColor = params['BackgroundColor']

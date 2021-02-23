@@ -217,7 +217,12 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
-          @List = params['List']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              @List << CardInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -254,7 +259,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AppInfo.new.deserialize(params[Data])
+            @Data = AppInfo.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -297,7 +302,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CardInfo.new.deserialize(params[Data])
+            @Data = CardInfo.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -343,7 +348,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CardList.new.deserialize(params[Data])
+            @Data = CardList.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -390,7 +395,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = ResRenew.new.deserialize(params[Data])
+            @Data = ResRenew.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -453,7 +458,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Data = params['Data']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << SmsRet.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -499,7 +509,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsSid.new.deserialize(params[Data])
+            @Data = SmsSid.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end

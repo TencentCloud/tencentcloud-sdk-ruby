@@ -41,7 +41,12 @@ module TencentCloud
         def deserialize(params)
           @OpenId = params['OpenId']
           @RiskScore = params['RiskScore']
-          @RiskInfo = params['RiskInfo']
+          unless params['RiskInfo'].nil?
+            @RiskInfo = []
+            params['RiskInfo'].each do |i|
+              @RiskInfo << RiskDetail.new.deserialize(i)
+            end
+          end
           @Probability = params['Probability']
         end
       end
@@ -99,7 +104,12 @@ module TencentCloud
 
         def deserialize(params)
           @OpenId = params['OpenId']
-          @RiskInfo = params['RiskInfo']
+          unless params['RiskInfo'].nil?
+            @RiskInfo = []
+            params['RiskInfo'].each do |i|
+              @RiskInfo << RiskInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -297,7 +307,12 @@ module TencentCloud
         def deserialize(params)
           @Found = params['Found']
           @AllCnt = params['AllCnt']
-          @Matches = params['Matches']
+          unless params['Matches'].nil?
+            @Matches = []
+            params['Matches'].each do |i|
+              @Matches << DevInfoQ.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

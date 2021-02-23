@@ -53,7 +53,12 @@ module TencentCloud
           @KmsKeyId = params['KmsKeyId']
           @SecretBinary = params['SecretBinary']
           @SecretString = params['SecretString']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -465,7 +470,12 @@ module TencentCloud
 
         def deserialize(params)
           @SecretName = params['SecretName']
-          @Versions = params['Versions']
+          unless params['Versions'].nil?
+            @Versions = []
+            params['Versions'].each do |i|
+              @Versions << VersionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -502,7 +512,12 @@ module TencentCloud
           @OrderType = params['OrderType']
           @State = params['State']
           @SearchSecretName = params['SearchSecretName']
-          @TagFilters = params['TagFilters']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              @TagFilters << TagFilter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -525,7 +540,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @SecretMetadatas = params['SecretMetadatas']
+          unless params['SecretMetadatas'].nil?
+            @SecretMetadatas = []
+            params['SecretMetadatas'].each do |i|
+              @SecretMetadatas << SecretMetadata.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

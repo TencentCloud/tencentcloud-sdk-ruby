@@ -379,7 +379,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Resources'].nil?
-            @Resources = Resource.new.deserialize(params[Resources])
+            @Resources = Resource.new.deserialize(params['Resources'])
           end
           @AccountID = params['AccountID']
           @CloudAuditEvent = params['CloudAuditEvent']
@@ -430,7 +430,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @AttributeKeyDetails = params['AttributeKeyDetails']
+          unless params['AttributeKeyDetails'].nil?
+            @AttributeKeyDetails = []
+            params['AttributeKeyDetails'].each do |i|
+              @AttributeKeyDetails << AttributeKeyDetail.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -475,8 +480,8 @@ module TencentCloud
 
         attr_accessor :Alias, :KeyId
         
-        def initialize(alias=nil, keyid=nil)
-          @Alias = alias
+        def initialize(_alias=nil, keyid=nil)
+          @Alias = _alias
           @KeyId = keyid
         end
 
@@ -512,7 +517,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @AuditSummarys = params['AuditSummarys']
+          unless params['AuditSummarys'].nil?
+            @AuditSummarys = []
+            params['AuditSummarys'].each do |i|
+              @AuditSummarys << AuditSummary.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -548,7 +558,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @EnableRegions = params['EnableRegions']
+          unless params['EnableRegions'].nil?
+            @EnableRegions = []
+            params['EnableRegions'].each do |i|
+              @EnableRegions << CmqRegionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -584,7 +599,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @EnableRegions = params['EnableRegions']
+          unless params['EnableRegions'].nil?
+            @EnableRegions = []
+            params['EnableRegions'].each do |i|
+              @EnableRegions << CosRegionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -631,7 +651,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @KeyMetadatas = params['KeyMetadatas']
+          unless params['KeyMetadatas'].nil?
+            @KeyMetadatas = []
+            params['KeyMetadatas'].each do |i|
+              @KeyMetadatas << KeyMetadata.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -666,7 +691,12 @@ module TencentCloud
         def deserialize(params)
           @EndTime = params['EndTime']
           @StartTime = params['StartTime']
-          @LookupAttributes = params['LookupAttributes']
+          unless params['LookupAttributes'].nil?
+            @LookupAttributes = []
+            params['LookupAttributes'].each do |i|
+              @LookupAttributes << LookupAttribute.new.deserialize(i)
+            end
+          end
           @MaxResults = params['MaxResults']
           @Mode = params['Mode']
           @NextToken = params['NextToken']
@@ -694,7 +724,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Events = params['Events']
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              @Events << Event.new.deserialize(i)
+            end
+          end
           @ListOver = params['ListOver']
           @NextToken = params['NextToken']
           @RequestId = params['RequestId']

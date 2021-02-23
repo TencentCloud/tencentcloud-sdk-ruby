@@ -241,7 +241,12 @@ module TencentCloud
           @ClusterName = params['ClusterName']
           @BindClusterId = params['BindClusterId']
           @Remark = params['Remark']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -564,7 +569,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SubscriptionTopicSets = params['SubscriptionTopicSets']
+          unless params['SubscriptionTopicSets'].nil?
+            @SubscriptionTopicSets = []
+            params['SubscriptionTopicSets'].each do |i|
+              @SubscriptionTopicSets << SubscriptionTopic.new.deserialize(i)
+            end
+          end
           @ClusterId = params['ClusterId']
           @EnvironmentId = params['EnvironmentId']
         end
@@ -585,7 +595,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SubscriptionTopicSets = params['SubscriptionTopicSets']
+          unless params['SubscriptionTopicSets'].nil?
+            @SubscriptionTopicSets = []
+            params['SubscriptionTopicSets'].each do |i|
+              @SubscriptionTopicSets << SubscriptionTopic.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -608,7 +623,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TopicSets = params['TopicSets']
+          unless params['TopicSets'].nil?
+            @TopicSets = []
+            params['TopicSets'].each do |i|
+              @TopicSets << TopicRecord.new.deserialize(i)
+            end
+          end
           @ClusterId = params['ClusterId']
           @EnvironmentId = params['EnvironmentId']
         end
@@ -629,7 +649,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TopicSets = params['TopicSets']
+          unless params['TopicSets'].nil?
+            @TopicSets = []
+            params['TopicSets'].each do |i|
+              @TopicSets << TopicRecord.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -664,7 +689,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @ClusterSet = params['ClusterSet']
+          unless params['ClusterSet'].nil?
+            @ClusterSet = []
+            params['ClusterSet'].each do |i|
+              @ClusterSet << BindCluster.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -712,7 +742,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @VpcSets = params['VpcSets']
+          unless params['VpcSets'].nil?
+            @VpcSets = []
+            params['VpcSets'].each do |i|
+              @VpcSets << VpcBindRecord.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -749,7 +784,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ClusterSet'].nil?
-            @ClusterSet = Cluster.new.deserialize(params[ClusterSet])
+            @ClusterSet = Cluster.new.deserialize(params['ClusterSet'])
           end
           @RequestId = params['RequestId']
         end
@@ -794,7 +829,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @ClusterSet = params['ClusterSet']
+          unless params['ClusterSet'].nil?
+            @ClusterSet = []
+            params['ClusterSet'].each do |i|
+              @ClusterSet << Cluster.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -918,7 +958,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @EnvironmentRoleSets = params['EnvironmentRoleSets']
+          unless params['EnvironmentRoleSets'].nil?
+            @EnvironmentRoleSets = []
+            params['EnvironmentRoleSets'].each do |i|
+              @EnvironmentRoleSets << EnvironmentRole.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -970,7 +1015,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @EnvironmentSet = params['EnvironmentSet']
+          unless params['EnvironmentSet'].nil?
+            @EnvironmentSet = []
+            params['EnvironmentSet'].each do |i|
+              @EnvironmentSet << Environment.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1029,7 +1079,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ProducerSets = params['ProducerSets']
+          unless params['ProducerSets'].nil?
+            @ProducerSets = []
+            params['ProducerSets'].each do |i|
+              @ProducerSets << Producer.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1070,7 +1125,12 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SubscriptionName = params['SubscriptionName']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << FilterSubscription.new.deserialize(i)
+            end
+          end
           @ClusterId = params['ClusterId']
         end
       end
@@ -1093,7 +1153,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SubscriptionSets = params['SubscriptionSets']
+          unless params['SubscriptionSets'].nil?
+            @SubscriptionSets = []
+            params['SubscriptionSets'].each do |i|
+              @SubscriptionSets << Subscription.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1159,7 +1224,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TopicSets = params['TopicSets']
+          unless params['TopicSets'].nil?
+            @TopicSets = []
+            params['TopicSets'].each do |i|
+              @TopicSets << Topic.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1530,7 +1600,12 @@ module TencentCloud
           @EnvironmentId = params['EnvironmentId']
           @TopicName = params['TopicName']
           @CountConnect = params['CountConnect']
-          @ConnectionSets = params['ConnectionSets']
+          unless params['ConnectionSets'].nil?
+            @ConnectionSets = []
+            params['ConnectionSets'].each do |i|
+              @ConnectionSets << Connection.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1673,9 +1748,19 @@ module TencentCloud
           @MsgRateOut = params['MsgRateOut']
           @MsgThroughputOut = params['MsgThroughputOut']
           @SubscriptionName = params['SubscriptionName']
-          @ConsumerSets = params['ConsumerSets']
+          unless params['ConsumerSets'].nil?
+            @ConsumerSets = []
+            params['ConsumerSets'].each do |i|
+              @ConsumerSets << Consumer.new.deserialize(i)
+            end
+          end
           @IsOnline = params['IsOnline']
-          @ConsumersScheduleSets = params['ConsumersScheduleSets']
+          unless params['ConsumersScheduleSets'].nil?
+            @ConsumersScheduleSets = []
+            params['ConsumersScheduleSets'].each do |i|
+              @ConsumersScheduleSets << ConsumersSchedule.new.deserialize(i)
+            end
+          end
           @Remark = params['Remark']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
@@ -1829,7 +1914,12 @@ module TencentCloud
           @Partitions = params['Partitions']
           @ProducerCount = params['ProducerCount']
           @TotalSize = params['TotalSize']
-          @SubTopicSets = params['SubTopicSets']
+          unless params['SubTopicSets'].nil?
+            @SubTopicSets = []
+            params['SubTopicSets'].each do |i|
+              @SubTopicSets << PartitionsTopic.new.deserialize(i)
+            end
+          end
           @TopicType = params['TopicType']
           @EnvironmentId = params['EnvironmentId']
           @TopicName = params['TopicName']

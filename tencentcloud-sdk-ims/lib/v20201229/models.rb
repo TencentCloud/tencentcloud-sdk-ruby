@@ -101,10 +101,10 @@ module TencentCloud
           @Interval = params['Interval']
           @MaxFrames = params['MaxFrames']
           unless params['User'].nil?
-            @User = User.new.deserialize(params[User])
+            @User = User.new.deserialize(params['User'])
           end
           unless params['Device'].nil?
-            @Device = Device.new.deserialize(params[Device])
+            @Device = Device.new.deserialize(params['Device'])
           end
         end
       end
@@ -171,10 +171,30 @@ module TencentCloud
           @Label = params['Label']
           @SubLabel = params['SubLabel']
           @Score = params['Score']
-          @LabelResults = params['LabelResults']
-          @ObjectResults = params['ObjectResults']
-          @OcrResults = params['OcrResults']
-          @LibResults = params['LibResults']
+          unless params['LabelResults'].nil?
+            @LabelResults = []
+            params['LabelResults'].each do |i|
+              @LabelResults << LabelResult.new.deserialize(i)
+            end
+          end
+          unless params['ObjectResults'].nil?
+            @ObjectResults = []
+            params['ObjectResults'].each do |i|
+              @ObjectResults << ObjectResult.new.deserialize(i)
+            end
+          end
+          unless params['OcrResults'].nil?
+            @OcrResults = []
+            params['OcrResults'].each do |i|
+              @OcrResults << OcrResult.new.deserialize(i)
+            end
+          end
+          unless params['LibResults'].nil?
+            @LibResults = []
+            params['LibResults'].each do |i|
+              @LibResults << LibResult.new.deserialize(i)
+            end
+          end
           @DataId = params['DataId']
           @BizType = params['BizType']
           @Extra = params['Extra']
@@ -240,10 +260,10 @@ module TencentCloud
           @Interval = params['Interval']
           @MaxFrames = params['MaxFrames']
           unless params['User'].nil?
-            @User = User.new.deserialize(params[User])
+            @User = User.new.deserialize(params['User'])
           end
           unless params['Device'].nil?
-            @Device = Device.new.deserialize(params[Device])
+            @Device = Device.new.deserialize(params['Device'])
           end
           @CustomUin = params['CustomUin']
           @CustomSubAccountUin = params['CustomSubAccountUin']
@@ -313,10 +333,30 @@ module TencentCloud
           @Label = params['Label']
           @SubLabel = params['SubLabel']
           @Score = params['Score']
-          @LabelResults = params['LabelResults']
-          @ObjectResults = params['ObjectResults']
-          @OcrResults = params['OcrResults']
-          @LibResults = params['LibResults']
+          unless params['LabelResults'].nil?
+            @LabelResults = []
+            params['LabelResults'].each do |i|
+              @LabelResults << LabelResult.new.deserialize(i)
+            end
+          end
+          unless params['ObjectResults'].nil?
+            @ObjectResults = []
+            params['ObjectResults'].each do |i|
+              @ObjectResults << ObjectResult.new.deserialize(i)
+            end
+          end
+          unless params['OcrResults'].nil?
+            @OcrResults = []
+            params['OcrResults'].each do |i|
+              @OcrResults << OcrResult.new.deserialize(i)
+            end
+          end
+          unless params['LibResults'].nil?
+            @LibResults = []
+            params['LibResults'].each do |i|
+              @LibResults << LibResult.new.deserialize(i)
+            end
+          end
           @DataId = params['DataId']
           @BizType = params['BizType']
           @Extra = params['Extra']
@@ -387,7 +427,12 @@ module TencentCloud
           @Label = params['Label']
           @SubLabel = params['SubLabel']
           @Score = params['Score']
-          @Details = params['Details']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              @Details << LabelDetailItem.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -470,7 +515,12 @@ module TencentCloud
           @Label = params['Label']
           @SubLabel = params['SubLabel']
           @Score = params['Score']
-          @Details = params['Details']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              @Details << LibDetail.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -536,7 +586,7 @@ module TencentCloud
           @Value = params['Value']
           @Score = params['Score']
           unless params['Location'].nil?
-            @Location = Location.new.deserialize(params[Location])
+            @Location = Location.new.deserialize(params['Location'])
           end
         end
       end
@@ -581,7 +631,12 @@ module TencentCloud
           @SubLabel = params['SubLabel']
           @Score = params['Score']
           @Names = params['Names']
-          @Details = params['Details']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              @Details << ObjectDetail.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -623,7 +678,12 @@ module TencentCloud
           @Label = params['Label']
           @SubLabel = params['SubLabel']
           @Score = params['Score']
-          @Details = params['Details']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              @Details << OcrTextDetail.new.deserialize(i)
+            end
+          end
           @Text = params['Text']
         end
       end
@@ -669,7 +729,7 @@ module TencentCloud
           @Keywords = params['Keywords']
           @Score = params['Score']
           unless params['Location'].nil?
-            @Location = Location.new.deserialize(params[Location])
+            @Location = Location.new.deserialize(params['Location'])
           end
           @Rate = params['Rate']
         end

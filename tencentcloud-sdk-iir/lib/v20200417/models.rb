@@ -85,7 +85,7 @@ module TencentCloud
         def deserialize(params)
           @FindSKU = params['FindSKU']
           unless params['Location'].nil?
-            @Location = Location.new.deserialize(params[Location])
+            @Location = Location.new.deserialize(params['Location'])
           end
           @Name = params['Name']
           @Brand = params['Brand']
@@ -140,9 +140,14 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RegionDetected = params['RegionDetected']
+          unless params['RegionDetected'].nil?
+            @RegionDetected = []
+            params['RegionDetected'].each do |i|
+              @RegionDetected << RegionDetected.new.deserialize(i)
+            end
+          end
           unless params['ProductInfo'].nil?
-            @ProductInfo = ProductInfo.new.deserialize(params[ProductInfo])
+            @ProductInfo = ProductInfo.new.deserialize(params['ProductInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -172,7 +177,7 @@ module TencentCloud
           @Category = params['Category']
           @CategoryScore = params['CategoryScore']
           unless params['Location'].nil?
-            @Location = Location.new.deserialize(params[Location])
+            @Location = Location.new.deserialize(params['Location'])
           end
         end
       end

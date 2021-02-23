@@ -244,7 +244,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DeviceData.new.deserialize(params[Data])
+            @Data = DeviceData.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -310,7 +310,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = LoRaFrequencyEntry.new.deserialize(params[Data])
+            @Data = LoRaFrequencyEntry.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -353,7 +353,7 @@ module TencentCloud
           @Name = params['Name']
           @Description = params['Description']
           unless params['Location'].nil?
-            @Location = LoRaGatewayLocation.new.deserialize(params[Location])
+            @Location = LoRaGatewayLocation.new.deserialize(params['Location'])
           end
           @Position = params['Position']
           @PositionDetails = params['PositionDetails']
@@ -378,7 +378,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Gateway'].nil?
-            @Gateway = LoRaGatewayItem.new.deserialize(params[Gateway])
+            @Gateway = LoRaGatewayItem.new.deserialize(params['Gateway'])
           end
           @RequestId = params['RequestId']
         end
@@ -424,7 +424,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Project'].nil?
-            @Project = ProjectEntry.new.deserialize(params[Project])
+            @Project = ProjectEntry.new.deserialize(params['Project'])
           end
           @RequestId = params['RequestId']
         end
@@ -490,7 +490,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Product'].nil?
-            @Product = ProductEntry.new.deserialize(params[Product])
+            @Product = ProductEntry.new.deserialize(params['Product'])
           end
           @RequestId = params['RequestId']
         end
@@ -513,7 +513,7 @@ module TencentCloud
         def deserialize(params)
           @RuleName = params['RuleName']
           unless params['TopicRulePayload'].nil?
-            @TopicRulePayload = TopicRulePayload.new.deserialize(params[TopicRulePayload])
+            @TopicRulePayload = TopicRulePayload.new.deserialize(params['TopicRulePayload'])
           end
         end
       end
@@ -811,7 +811,12 @@ module TencentCloud
           @FieldName = params['FieldName']
           @Listover = params['Listover']
           @Context = params['Context']
-          @Results = params['Results']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              @Results << DeviceDataHistoryItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -900,7 +905,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Device'].nil?
-            @Device = DeviceInfo.new.deserialize(params[Device])
+            @Device = DeviceInfo.new.deserialize(params['Device'])
           end
           @RequestId = params['RequestId']
         end
@@ -939,7 +944,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = LoRaFrequencyEntry.new.deserialize(params[Data])
+            @Data = LoRaFrequencyEntry.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -977,7 +982,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Model'].nil?
-            @Model = ProductModelDefinition.new.deserialize(params[Model])
+            @Model = ProductModelDefinition.new.deserialize(params['Model'])
           end
           @RequestId = params['RequestId']
         end
@@ -1015,7 +1020,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Project'].nil?
-            @Project = ProjectEntryEx.new.deserialize(params[Project])
+            @Project = ProjectEntryEx.new.deserialize(params['Project'])
           end
           @RequestId = params['RequestId']
         end
@@ -1053,7 +1058,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Product'].nil?
-            @Product = ProductEntry.new.deserialize(params[Product])
+            @Product = ProductEntry.new.deserialize(params['Product'])
           end
           @RequestId = params['RequestId']
         end
@@ -1092,7 +1097,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Rule'].nil?
-            @Rule = TopicRule.new.deserialize(params[Rule])
+            @Rule = TopicRule.new.deserialize(params['Rule'])
           end
           @RequestId = params['RequestId']
         end
@@ -1388,7 +1393,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Devices = params['Devices']
+          unless params['Devices'].nil?
+            @Devices = []
+            params['Devices'].each do |i|
+              @Devices << DeviceInfo.new.deserialize(i)
+            end
+          end
           @Total = params['Total']
           @RequestId = params['RequestId']
         end
@@ -1438,7 +1448,12 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
-          @Gateways = params['Gateways']
+          unless params['Gateways'].nil?
+            @Gateways = []
+            params['Gateways'].each do |i|
+              @Gateways << LoRaGatewayItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1487,7 +1502,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Projects = params['Projects']
+          unless params['Projects'].nil?
+            @Projects = []
+            params['Projects'].each do |i|
+              @Projects << ProjectEntryEx.new.deserialize(i)
+            end
+          end
           @Total = params['Total']
           @RequestId = params['RequestId']
         end
@@ -1539,7 +1559,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Products = params['Products']
+          unless params['Products'].nil?
+            @Products = []
+            params['Products'].each do |i|
+              @Products << ProductEntry.new.deserialize(i)
+            end
+          end
           @Total = params['Total']
           @RequestId = params['RequestId']
         end
@@ -1584,7 +1609,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCnt = params['TotalCnt']
-          @Rules = params['Rules']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              @Rules << TopicRuleInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1664,7 +1694,12 @@ module TencentCloud
           @Context = params['Context']
           @Total = params['Total']
           @Listover = params['Listover']
-          @EventHistory = params['EventHistory']
+          unless params['EventHistory'].nil?
+            @EventHistory = []
+            params['EventHistory'].each do |i|
+              @EventHistory << EventHistoryItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1770,7 +1805,7 @@ module TencentCloud
           @Position = params['Position']
           @PositionDetails = params['PositionDetails']
           unless params['Location'].nil?
-            @Location = LoRaGatewayLocation.new.deserialize(params[Location])
+            @Location = LoRaGatewayLocation.new.deserialize(params['Location'])
           end
           @UpdatedAt = params['UpdatedAt']
           @CreatedAt = params['CreatedAt']
@@ -1871,7 +1906,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = LoRaFrequencyEntry.new.deserialize(params[Data])
+            @Data = LoRaFrequencyEntry.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1913,7 +1948,7 @@ module TencentCloud
           @Description = params['Description']
           @GatewayId = params['GatewayId']
           unless params['Location'].nil?
-            @Location = LoRaGatewayLocation.new.deserialize(params[Location])
+            @Location = LoRaGatewayLocation.new.deserialize(params['Location'])
           end
           @Name = params['Name']
           @IsPublic = params['IsPublic']
@@ -1939,7 +1974,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Gateway'].nil?
-            @Gateway = LoRaGatewayItem.new.deserialize(params[Gateway])
+            @Gateway = LoRaGatewayItem.new.deserialize(params['Gateway'])
           end
           @RequestId = params['RequestId']
         end
@@ -2021,7 +2056,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Project'].nil?
-            @Project = ProjectEntry.new.deserialize(params[Project])
+            @Project = ProjectEntry.new.deserialize(params['Project'])
           end
           @RequestId = params['RequestId']
         end
@@ -2075,7 +2110,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Product'].nil?
-            @Product = ProductEntry.new.deserialize(params[Product])
+            @Product = ProductEntry.new.deserialize(params['Product'])
           end
           @RequestId = params['RequestId']
         end
@@ -2098,7 +2133,7 @@ module TencentCloud
         def deserialize(params)
           @RuleName = params['RuleName']
           unless params['TopicRulePayload'].nil?
-            @TopicRulePayload = TopicRulePayload.new.deserialize(params[TopicRulePayload])
+            @TopicRulePayload = TopicRulePayload.new.deserialize(params['TopicRulePayload'])
           end
         end
       end
@@ -2444,7 +2479,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Products = params['Products']
+          unless params['Products'].nil?
+            @Products = []
+            params['Products'].each do |i|
+              @Products << ProductEntry.new.deserialize(i)
+            end
+          end
           @Total = params['Total']
           @RequestId = params['RequestId']
         end
@@ -2485,7 +2525,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCnt = params['TotalCnt']
-          @Rules = params['Rules']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              @Rules << TopicRuleInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

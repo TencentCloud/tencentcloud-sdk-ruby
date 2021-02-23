@@ -145,7 +145,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @SubnetList = params['SubnetList']
+          unless params['SubnetList'].nil?
+            @SubnetList = []
+            params['SubnetList'].each do |i|
+              @SubnetList << Subnet.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -193,7 +198,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SgList = params['SgList']
+          unless params['SgList'].nil?
+            @SgList = []
+            params['SgList'].each do |i|
+              @SgList << SgUnit.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -235,7 +245,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SgRules = params['SgRules']
+          unless params['SgRules'].nil?
+            @SgRules = []
+            params['SgRules'].each do |i|
+              @SgRules << UsgRuleDetail.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -285,7 +300,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @VpcList = params['VpcList']
+          unless params['VpcList'].nil?
+            @VpcList = []
+            params['VpcList'].each do |i|
+              @VpcList << Vpc.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -406,7 +426,12 @@ module TencentCloud
           @RegionId = params['RegionId']
           @ZoneId = params['ZoneId']
           @ExpireTime = params['ExpireTime']
-          @SgList = params['SgList']
+          unless params['SgList'].nil?
+            @SgList = []
+            params['SgList'].each do |i|
+              @SgList << UsgRuleDetail.new.deserialize(i)
+            end
+          end
           @SubnetName = params['SubnetName']
           @RegionName = params['RegionName']
           @ZoneName = params['ZoneName']
@@ -415,7 +440,12 @@ module TencentCloud
           @VpcName = params['VpcName']
           @VpcCidrBlock = params['VpcCidrBlock']
           @SubnetCidrBlock = params['SubnetCidrBlock']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @RenewFlag = params['RenewFlag']
           @RequestId = params['RequestId']
         end
@@ -445,7 +475,12 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SearchWord = params['SearchWord']
-          @TagFilters = params['TagFilters']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              @TagFilters << TagFilter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -469,7 +504,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @VsmList = params['VsmList']
+          unless params['VsmList'].nil?
+            @VsmList = []
+            params['VsmList'].each do |i|
+              @VsmList << ResourceInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -712,14 +752,24 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @RegionName = params['RegionName']
           @ZoneName = params['ZoneName']
-          @SgList = params['SgList']
+          unless params['SgList'].nil?
+            @SgList = []
+            params['SgList'].each do |i|
+              @SgList << SgUnit.new.deserialize(i)
+            end
+          end
           @SubnetName = params['SubnetName']
           @Expired = params['Expired']
           @RemainSeconds = params['RemainSeconds']
           @VpcName = params['VpcName']
           @CreateUin = params['CreateUin']
           @RenewFlag = params['RenewFlag']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -941,8 +991,18 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InBound = params['InBound']
-          @OutBound = params['OutBound']
+          unless params['InBound'].nil?
+            @InBound = []
+            params['InBound'].each do |i|
+              @InBound << UsgPolicy.new.deserialize(i)
+            end
+          end
+          unless params['OutBound'].nil?
+            @OutBound = []
+            params['OutBound'].each do |i|
+              @OutBound << UsgPolicy.new.deserialize(i)
+            end
+          end
           @SgId = params['SgId']
           @SgName = params['SgName']
           @SgRemark = params['SgRemark']

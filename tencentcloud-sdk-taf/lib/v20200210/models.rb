@@ -30,7 +30,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BspData'].nil?
-            @BspData = InputKolBspData.new.deserialize(params[BspData])
+            @BspData = InputKolBspData.new.deserialize(params['BspData'])
           end
         end
       end
@@ -52,7 +52,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = OutputKolData.new.deserialize(params[Data])
+            @Data = OutputKolData.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -71,7 +71,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BspData'].nil?
-            @BspData = InputTaBspData.new.deserialize(params[BspData])
+            @BspData = InputTaBspData.new.deserialize(params['BspData'])
           end
         end
       end
@@ -93,7 +93,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = OutputTaData.new.deserialize(params[Data])
+            @Data = OutputTaData.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -111,7 +111,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DataList = params['DataList']
+          unless params['DataList'].nil?
+            @DataList = []
+            params['DataList'].each do |i|
+              @DataList << InputKolDataList.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -477,7 +482,12 @@ module TencentCloud
         def deserialize(params)
           @Code = params['Code']
           @Message = params['Message']
-          @Value = params['Value']
+          unless params['Value'].nil?
+            @Value = []
+            params['Value'].each do |i|
+              @Value << OutputKolValue.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -537,7 +547,7 @@ module TencentCloud
           @Code = params['Code']
           @Message = params['Message']
           unless params['Value'].nil?
-            @Value = OutputRecognizeEffectiveFlowValue.new.deserialize(params[Value])
+            @Value = OutputRecognizeEffectiveFlowValue.new.deserialize(params['Value'])
           end
         end
       end
@@ -586,7 +596,12 @@ module TencentCloud
         def deserialize(params)
           @Code = params['Code']
           @Message = params['Message']
-          @Value = params['Value']
+          unless params['Value'].nil?
+            @Value = []
+            params['Value'].each do |i|
+              @Value << OutputRecognizeTargetAudienceValue.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -666,7 +681,7 @@ module TencentCloud
           @Code = params['Code']
           @Message = params['Message']
           unless params['Value'].nil?
-            @Value = OutputTaValue.new.deserialize(params[Value])
+            @Value = OutputTaValue.new.deserialize(params['Value'])
           end
         end
       end
@@ -706,7 +721,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BspData'].nil?
-            @BspData = InputRecognizeTargetAudience.new.deserialize(params[BspData])
+            @BspData = InputRecognizeTargetAudience.new.deserialize(params['BspData'])
           end
         end
       end
@@ -728,7 +743,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = OutputRecognizeTargetAudience.new.deserialize(params[Data])
+            @Data = OutputRecognizeTargetAudience.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -747,7 +762,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BusinessSecurityData'].nil?
-            @BusinessSecurityData = InputRecognizeEffectiveFlow.new.deserialize(params[BusinessSecurityData])
+            @BusinessSecurityData = InputRecognizeEffectiveFlow.new.deserialize(params['BusinessSecurityData'])
           end
         end
       end
@@ -768,7 +783,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = OutputRecognizeEffectiveFlow.new.deserialize(params[Data])
+            @Data = OutputRecognizeEffectiveFlow.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -787,7 +802,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BspData'].nil?
-            @BspData = InputRecognizeTargetAudience.new.deserialize(params[BspData])
+            @BspData = InputRecognizeTargetAudience.new.deserialize(params['BspData'])
           end
         end
       end
@@ -809,7 +824,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = OutputRecognizeTargetAudience.new.deserialize(params[Data])
+            @Data = OutputRecognizeTargetAudience.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -828,7 +843,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BspData'].nil?
-            @BspData = InputRecognizeTargetAudience.new.deserialize(params[BspData])
+            @BspData = InputRecognizeTargetAudience.new.deserialize(params['BspData'])
           end
         end
       end
@@ -850,7 +865,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = OutputRecognizeTargetAudience.new.deserialize(params[Data])
+            @Data = OutputRecognizeTargetAudience.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -869,7 +884,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BspData'].nil?
-            @BspData = InputSendTrafficSecuritySmsMsg.new.deserialize(params[BspData])
+            @BspData = InputSendTrafficSecuritySmsMsg.new.deserialize(params['BspData'])
           end
         end
       end
@@ -891,7 +906,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = OutputSendTrafficSecuritySmsMsg.new.deserialize(params[Data])
+            @Data = OutputSendTrafficSecuritySmsMsg.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end

@@ -35,7 +35,7 @@ module TencentCloud
         def deserialize(params)
           @Age = params['Age']
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params[FaceRect])
+            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
           end
         end
       end
@@ -99,7 +99,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @AgeInfos = params['AgeInfos']
+          unless params['AgeInfos'].nil?
+            @AgeInfos = []
+            params['AgeInfos'].each do |i|
+              @AgeInfos << AgeInfo.new.deserialize(i)
+            end
+          end
           @Image = params['Image']
           @Url = params['Url']
           @RspImgType = params['RspImgType']
@@ -260,7 +265,7 @@ module TencentCloud
         def deserialize(params)
           @Gender = params['Gender']
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params[FaceRect])
+            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
           end
         end
       end
@@ -326,7 +331,12 @@ module TencentCloud
         def deserialize(params)
           @Images = params['Images']
           @Urls = params['Urls']
-          @GradientInfos = params['GradientInfos']
+          unless params['GradientInfos'].nil?
+            @GradientInfos = []
+            params['GradientInfos'].each do |i|
+              @GradientInfos << GradientInfo.new.deserialize(i)
+            end
+          end
           @Fps = params['Fps']
           @OutputType = params['OutputType']
           @OutputWidth = params['OutputWidth']
@@ -395,7 +405,7 @@ module TencentCloud
         def deserialize(params)
           @JobStatus = params['JobStatus']
           unless params['FaceMorphOutput'].nil?
-            @FaceMorphOutput = FaceMorphOutput.new.deserialize(params[FaceMorphOutput])
+            @FaceMorphOutput = FaceMorphOutput.new.deserialize(params['FaceMorphOutput'])
           end
           @RequestId = params['RequestId']
         end
@@ -428,7 +438,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @GenderInfos = params['GenderInfos']
+          unless params['GenderInfos'].nil?
+            @GenderInfos = []
+            params['GenderInfos'].each do |i|
+              @GenderInfos << GenderInfo.new.deserialize(i)
+            end
+          end
           @Image = params['Image']
           @Url = params['Url']
           @RspImgType = params['RspImgType']

@@ -72,7 +72,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @AclList = params['AclList']
+          unless params['AclList'].nil?
+            @AclList = []
+            params['AclList'].each do |i|
+              @AclList << Acl.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -114,7 +119,12 @@ module TencentCloud
 
         def deserialize(params)
           @Version = params['Version']
-          @Topics = params['Topics']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              @Topics << GroupInfoTopics.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -182,7 +192,12 @@ module TencentCloud
 
         def deserialize(params)
           @ConsumerGroupName = params['ConsumerGroupName']
-          @SubscribedInfo = params['SubscribedInfo']
+          unless params['SubscribedInfo'].nil?
+            @SubscribedInfo = []
+            params['SubscribedInfo'].each do |i|
+              @SubscribedInfo << SubscribedInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -227,13 +242,38 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TopicList = params['TopicList']
-          @GroupList = params['GroupList']
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              @TopicList << ConsumerGroupTopic.new.deserialize(i)
+            end
+          end
+          unless params['GroupList'].nil?
+            @GroupList = []
+            params['GroupList'].each do |i|
+              @GroupList << ConsumerGroup.new.deserialize(i)
+            end
+          end
           @TotalPartition = params['TotalPartition']
-          @PartitionListForMonitor = params['PartitionListForMonitor']
+          unless params['PartitionListForMonitor'].nil?
+            @PartitionListForMonitor = []
+            params['PartitionListForMonitor'].each do |i|
+              @PartitionListForMonitor << Partition.new.deserialize(i)
+            end
+          end
           @TotalTopic = params['TotalTopic']
-          @TopicListForMonitor = params['TopicListForMonitor']
-          @GroupListForMonitor = params['GroupListForMonitor']
+          unless params['TopicListForMonitor'].nil?
+            @TopicListForMonitor = []
+            params['TopicListForMonitor'].each do |i|
+              @TopicListForMonitor << ConsumerGroupTopic.new.deserialize(i)
+            end
+          end
+          unless params['GroupListForMonitor'].nil?
+            @GroupListForMonitor = []
+            params['GroupListForMonitor'].each do |i|
+              @GroupListForMonitor << Group.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -313,7 +353,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -411,7 +451,7 @@ module TencentCloud
           @ReturnCode = params['ReturnCode']
           @ReturnMessage = params['ReturnMessage']
           unless params['Data'].nil?
-            @Data = CreateInstancePreData.new.deserialize(params[Data])
+            @Data = CreateInstancePreData.new.deserialize(params['Data'])
           end
         end
       end
@@ -456,7 +496,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -502,7 +542,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -600,7 +640,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = CreateTopicResp.new.deserialize(params[Result])
+            @Result = CreateTopicResp.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -646,7 +686,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -708,7 +748,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -754,7 +794,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -796,7 +836,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -838,7 +878,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -896,7 +936,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = AclResponse.new.deserialize(params[Result])
+            @Result = AclResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -938,7 +978,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = AppIdResponse.new.deserialize(params[Result])
+            @Result = AppIdResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -992,7 +1032,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = ConsumerGroupResponse.new.deserialize(params[Result])
+            @Result = ConsumerGroupResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1054,7 +1094,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Result = params['Result']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << GroupInfoResponse.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1111,7 +1156,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = GroupOffsetResponse.new.deserialize(params[Result])
+            @Result = GroupOffsetResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1161,7 +1206,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = GroupResponse.new.deserialize(params[Result])
+            @Result = GroupResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1199,7 +1244,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = InstanceAttributesResponse.new.deserialize(params[Result])
+            @Result = InstanceAttributesResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1241,7 +1286,12 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @TagKey = params['TagKey']
-          @Filters = params['Filters']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1261,7 +1311,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = InstanceDetailResponse.new.deserialize(params[Result])
+            @Result = InstanceDetailResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1319,7 +1369,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = InstanceResponse.new.deserialize(params[Result])
+            @Result = InstanceResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1357,7 +1407,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = RouteResponse.new.deserialize(params[Result])
+            @Result = RouteResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1399,7 +1449,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = TopicAttributesResponse.new.deserialize(params[Result])
+            @Result = TopicAttributesResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1449,7 +1499,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = TopicDetailResponse.new.deserialize(params[Result])
+            @Result = TopicDetailResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1500,7 +1550,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = TopicResult.new.deserialize(params[Result])
+            @Result = TopicResult.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1550,9 +1600,41 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = UserResponse.new.deserialize(params[Result])
+            @Result = UserResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 动态消息保留时间配置
+      class DynamicRetentionTime < TencentCloud::Common::AbstractModel
+        # @param Enable: 动态消息保留时间配置开关（0: 关闭，1: 开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Integer
+        # @param DiskQuotaPercentage: 磁盘配额百分比触发条件，即消息达到此值触发消息保留时间变更事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskQuotaPercentage: Integer
+        # @param StepForwardPercentage: 每次向前调整消息保留时间百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepForwardPercentage: Integer
+        # @param BottomRetention: 保底时长，单位分钟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BottomRetention: Integer
+
+        attr_accessor :Enable, :DiskQuotaPercentage, :StepForwardPercentage, :BottomRetention
+        
+        def initialize(enable=nil, diskquotapercentage=nil, stepforwardpercentage=nil, bottomretention=nil)
+          @Enable = enable
+          @DiskQuotaPercentage = diskquotapercentage
+          @StepForwardPercentage = stepforwardpercentage
+          @BottomRetention = bottomretention
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @DiskQuotaPercentage = params['DiskQuotaPercentage']
+          @StepForwardPercentage = params['StepForwardPercentage']
+          @BottomRetention = params['BottomRetention']
         end
       end
 
@@ -1621,7 +1703,7 @@ module TencentCloud
           @ClientId = params['ClientId']
           @ClientHost = params['ClientHost']
           unless params['Assignment'].nil?
-            @Assignment = Assignment.new.deserialize(params[Assignment])
+            @Assignment = Assignment.new.deserialize(params['Assignment'])
           end
         end
       end
@@ -1662,7 +1744,12 @@ module TencentCloud
           @State = params['State']
           @ProtocolType = params['ProtocolType']
           @Protocol = params['Protocol']
-          @Members = params['Members']
+          unless params['Members'].nil?
+            @Members = []
+            params['Members'].each do |i|
+              @Members << GroupInfoMember.new.deserialize(i)
+            end
+          end
           @Group = params['Group']
         end
       end
@@ -1742,7 +1829,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TopicList = params['TopicList']
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              @TopicList << GroupOffsetTopic.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1763,7 +1855,12 @@ module TencentCloud
 
         def deserialize(params)
           @Topic = params['Topic']
-          @Partitions = params['Partitions']
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              @Partitions << GroupOffsetPartition.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1785,7 +1882,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @GroupList = params['GroupList']
+          unless params['GroupList'].nil?
+            @GroupList = []
+            params['GroupList'].each do |i|
+              @GroupList << DescribeGroup.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1875,7 +1977,7 @@ module TencentCloud
         # @param MaxGroupNum: 最大分组数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxGroupNum: Integer
-        # @param Cvm: 售卖类型
+        # @param Cvm: 售卖类型,0:标准版,1:专业版
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cvm: Integer
         # @param InstanceType: 类型
@@ -1884,10 +1986,13 @@ module TencentCloud
         # @param Features: 表示该实例支持的特性。FEATURE_SUBNET_ACL:表示acl策略支持设置子网。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Features: Array
+        # @param RetentionTimeConfig: 动态消息保留策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionTimeConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig
         
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -1916,12 +2021,18 @@ module TencentCloud
           @Cvm = cvm
           @InstanceType = instancetype
           @Features = features
+          @RetentionTimeConfig = retentiontimeconfig
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
-          @VipList = params['VipList']
+          unless params['VipList'].nil?
+            @VipList = []
+            params['VipList'].each do |i|
+              @VipList << VipEntity.new.deserialize(i)
+            end
+          end
           @Vip = params['Vip']
           @Vport = params['Vport']
           @Status = params['Status']
@@ -1935,13 +2046,18 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @MsgRetentionTime = params['MsgRetentionTime']
           unless params['Config'].nil?
-            @Config = InstanceConfigDO.new.deserialize(params[Config])
+            @Config = InstanceConfigDO.new.deserialize(params['Config'])
           end
           @RemainderPartitions = params['RemainderPartitions']
           @RemainderTopics = params['RemainderTopics']
           @CreatedPartitions = params['CreatedPartitions']
           @CreatedTopics = params['CreatedTopics']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @ExpireTime = params['ExpireTime']
           @ZoneIds = params['ZoneIds']
           @Version = params['Version']
@@ -1949,6 +2065,9 @@ module TencentCloud
           @Cvm = params['Cvm']
           @InstanceType = params['InstanceType']
           @Features = params['Features']
+          unless params['RetentionTimeConfig'].nil?
+            @RetentionTimeConfig = DynamicRetentionTime.new.deserialize(params['RetentionTimeConfig'])
+          end
         end
       end
 
@@ -2025,10 +2144,25 @@ module TencentCloud
         # @param Cvm: ckafka售卖类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cvm: Integer
+        # @param InstanceType: ckafka实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param DiskType: 磁盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param MaxTopicNumber: 当前规格最大Topic数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxTopicNumber: Integer
+        # @param MaxPartitionNumber: 当前规格最大Partition数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxPartitionNumber: Integer
+        # @param RebalanceTime: 计划升级配置时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RebalanceTime: String
 
-        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm
+        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime
         
-        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil)
+        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil, instancetype=nil, disktype=nil, maxtopicnumber=nil, maxpartitionnumber=nil, rebalancetime=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Vip = vip
@@ -2051,6 +2185,11 @@ module TencentCloud
           @Version = version
           @ZoneIds = zoneids
           @Cvm = cvm
+          @InstanceType = instancetype
+          @DiskType = disktype
+          @MaxTopicNumber = maxtopicnumber
+          @MaxPartitionNumber = maxpartitionnumber
+          @RebalanceTime = rebalancetime
         end
 
         def deserialize(params)
@@ -2058,7 +2197,12 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @Vip = params['Vip']
           @Vport = params['Vport']
-          @VipList = params['VipList']
+          unless params['VipList'].nil?
+            @VipList = []
+            params['VipList'].each do |i|
+              @VipList << VipEntity.new.deserialize(i)
+            end
+          end
           @Status = params['Status']
           @Bandwidth = params['Bandwidth']
           @DiskSize = params['DiskSize']
@@ -2072,10 +2216,20 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @IsInternal = params['IsInternal']
           @TopicNum = params['TopicNum']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @Version = params['Version']
           @ZoneIds = params['ZoneIds']
           @Cvm = params['Cvm']
+          @InstanceType = params['InstanceType']
+          @DiskType = params['DiskType']
+          @MaxTopicNumber = params['MaxTopicNumber']
+          @MaxPartitionNumber = params['MaxPartitionNumber']
+          @RebalanceTime = params['RebalanceTime']
         end
       end
 
@@ -2095,7 +2249,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @InstanceList = params['InstanceList']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              @InstanceList << InstanceDetail.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2116,7 +2275,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InstanceList = params['InstanceList']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              @InstanceList << Instance.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
         end
       end
@@ -2143,7 +2307,7 @@ module TencentCloud
           @ReturnCode = params['ReturnCode']
           @ReturnMessage = params['ReturnMessage']
           unless params['Data'].nil?
-            @Data = OperateResponseData.new.deserialize(params[Data])
+            @Data = OperateResponseData.new.deserialize(params['Data'])
           end
         end
       end
@@ -2208,7 +2372,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -2248,14 +2412,20 @@ module TencentCloud
         # @type InstanceName: String
         # @param Config: 实例配置
         # @type Config: :class:`Tencentcloud::Ckafka.v20190819.models.ModifyInstanceAttributesConfig`
+        # @param DynamicRetentionConfig: 动态消息保留策略配置
+        # @type DynamicRetentionConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
+        # @param RebalanceTime: 修改升配置rebalance时间
+        # @type RebalanceTime: Integer
 
-        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config
+        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime
         
-        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil)
+        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil)
           @InstanceId = instanceid
           @MsgRetentionTime = msgretentiontime
           @InstanceName = instancename
           @Config = config
+          @DynamicRetentionConfig = dynamicretentionconfig
+          @RebalanceTime = rebalancetime
         end
 
         def deserialize(params)
@@ -2263,8 +2433,12 @@ module TencentCloud
           @MsgRetentionTime = params['MsgRetentionTime']
           @InstanceName = params['InstanceName']
           unless params['Config'].nil?
-            @Config = ModifyInstanceAttributesConfig.new.deserialize(params[Config])
+            @Config = ModifyInstanceAttributesConfig.new.deserialize(params['Config'])
           end
+          unless params['DynamicRetentionConfig'].nil?
+            @DynamicRetentionConfig = DynamicRetentionTime.new.deserialize(params['DynamicRetentionConfig'])
+          end
+          @RebalanceTime = params['RebalanceTime']
         end
       end
 
@@ -2284,7 +2458,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -2334,7 +2508,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -2408,7 +2582,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = JgwOperateResponse.new.deserialize(params[Result])
+            @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -2505,7 +2679,12 @@ module TencentCloud
           @AccessType = params['AccessType']
           @RouteId = params['RouteId']
           @VipType = params['VipType']
-          @VipList = params['VipList']
+          unless params['VipList'].nil?
+            @VipList = []
+            params['VipList'].each do |i|
+              @VipList << VipEntity.new.deserialize(i)
+            end
+          end
           @Domain = params['Domain']
           @DomainPort = params['DomainPort']
         end
@@ -2524,7 +2703,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Routers = params['Routers']
+          unless params['Routers'].nil?
+            @Routers = []
+            params['Routers'].each do |i|
+              @Routers << Route.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2554,7 +2738,12 @@ module TencentCloud
         def deserialize(params)
           @TopicName = params['TopicName']
           @Partition = params['Partition']
-          @PartitionOffset = params['PartitionOffset']
+          unless params['PartitionOffset'].nil?
+            @PartitionOffset = []
+            params['PartitionOffset'].each do |i|
+              @PartitionOffset << PartitionOffset.new.deserialize(i)
+            end
+          end
           @TopicId = params['TopicId']
         end
       end
@@ -2645,9 +2834,14 @@ module TencentCloud
           @EnableWhiteList = params['EnableWhiteList']
           @IpWhiteList = params['IpWhiteList']
           unless params['Config'].nil?
-            @Config = Config.new.deserialize(params[Config])
+            @Config = Config.new.deserialize(params['Config'])
           end
-          @Partitions = params['Partitions']
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              @Partitions << TopicPartitionDO.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2680,10 +2874,13 @@ module TencentCloud
         # @param Config: 高级配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Config: :class:`Tencentcloud::Ckafka.v20190819.models.Config`
+        # @param RetentionTimeConfig: 消息保留时间配置(用于动态配置变更记录)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionTimeConfig: :class:`Tencentcloud::Ckafka.v20190819.models.TopicRetentionTimeConfigRsp`
 
-        attr_accessor :TopicName, :TopicId, :PartitionNum, :ReplicaNum, :Note, :CreateTime, :EnableWhiteList, :IpWhiteListCount, :ForwardCosBucket, :ForwardStatus, :ForwardInterval, :Config
+        attr_accessor :TopicName, :TopicId, :PartitionNum, :ReplicaNum, :Note, :CreateTime, :EnableWhiteList, :IpWhiteListCount, :ForwardCosBucket, :ForwardStatus, :ForwardInterval, :Config, :RetentionTimeConfig
         
-        def initialize(topicname=nil, topicid=nil, partitionnum=nil, replicanum=nil, note=nil, createtime=nil, enablewhitelist=nil, ipwhitelistcount=nil, forwardcosbucket=nil, forwardstatus=nil, forwardinterval=nil, config=nil)
+        def initialize(topicname=nil, topicid=nil, partitionnum=nil, replicanum=nil, note=nil, createtime=nil, enablewhitelist=nil, ipwhitelistcount=nil, forwardcosbucket=nil, forwardstatus=nil, forwardinterval=nil, config=nil, retentiontimeconfig=nil)
           @TopicName = topicname
           @TopicId = topicid
           @PartitionNum = partitionnum
@@ -2696,6 +2893,7 @@ module TencentCloud
           @ForwardStatus = forwardstatus
           @ForwardInterval = forwardinterval
           @Config = config
+          @RetentionTimeConfig = retentiontimeconfig
         end
 
         def deserialize(params)
@@ -2711,7 +2909,10 @@ module TencentCloud
           @ForwardStatus = params['ForwardStatus']
           @ForwardInterval = params['ForwardInterval']
           unless params['Config'].nil?
-            @Config = Config.new.deserialize(params[Config])
+            @Config = Config.new.deserialize(params['Config'])
+          end
+          unless params['RetentionTimeConfig'].nil?
+            @RetentionTimeConfig = TopicRetentionTimeConfigRsp.new.deserialize(params['RetentionTimeConfig'])
           end
         end
       end
@@ -2732,7 +2933,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TopicList = params['TopicList']
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              @TopicList << TopicDetail.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
         end
       end
@@ -2782,8 +2988,40 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TopicList = params['TopicList']
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              @TopicList << Topic.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
+        end
+      end
+
+      # Topic消息保留时间配置返回信息
+      class TopicRetentionTimeConfigRsp < TencentCloud::Common::AbstractModel
+        # @param Expect: 期望值，即用户配置的Topic消息保留时间(单位分钟)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expect: Integer
+        # @param Current: 当前值，即当前生效值(可能存在动态调整，单位分钟)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Current: Integer
+        # @param ModTimeStamp: 最近变更时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModTimeStamp: Integer
+
+        attr_accessor :Expect, :Current, :ModTimeStamp
+        
+        def initialize(expect=nil, current=nil, modtimestamp=nil)
+          @Expect = expect
+          @Current = current
+          @ModTimeStamp = modtimestamp
+        end
+
+        def deserialize(params)
+          @Expect = params['Expect']
+          @Current = params['Current']
+          @ModTimeStamp = params['ModTimeStamp']
         end
       end
 
@@ -2831,7 +3069,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Users = params['Users']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              @Users << User.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
         end
       end

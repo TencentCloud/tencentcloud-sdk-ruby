@@ -258,7 +258,12 @@ module TencentCloud
           @SystemDiskCount = params['SystemDiskCount']
           @DataDiskTypeId = params['DataDiskTypeId']
           @DataDiskCount = params['DataDiskCount']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @FileSystem = params['FileSystem']
           @BuySession = params['BuySession']
           @SgId = params['SgId']
@@ -489,8 +494,8 @@ module TencentCloud
 
         attr_accessor :Alias, :OsType, :Content
         
-        def initialize(alias=nil, ostype=nil, content=nil)
-          @Alias = alias
+        def initialize(_alias=nil, ostype=nil, content=nil)
+          @Alias = _alias
           @OsType = ostype
           @Content = content
         end
@@ -575,7 +580,12 @@ module TencentCloud
           @OsBit = params['OsBit']
           @ImageSize = params['ImageSize']
           @CreateTime = params['CreateTime']
-          @PartitionInfoSet = params['PartitionInfoSet']
+          unless params['PartitionInfoSet'].nil?
+            @PartitionInfoSet = []
+            params['PartitionInfoSet'].each do |i|
+              @PartitionInfoSet << PartitionInfo.new.deserialize(i)
+            end
+          end
           @DeviceClassCode = params['DeviceClassCode']
           @ImageDescription = params['ImageDescription']
           @OsTypeId = params['OsTypeId']
@@ -737,7 +747,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CustomImageProcessSet = params['CustomImageProcessSet']
+          unless params['CustomImageProcessSet'].nil?
+            @CustomImageProcessSet = []
+            params['CustomImageProcessSet'].each do |i|
+              @CustomImageProcessSet << CustomImageProcess.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -807,7 +822,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @CustomImageSet = params['CustomImageSet']
+          unless params['CustomImageSet'].nil?
+            @CustomImageSet = []
+            params['CustomImageSet'].each do |i|
+              @CustomImageSet << CustomImage.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -875,7 +895,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DeviceClassPartitionInfoSet = params['DeviceClassPartitionInfoSet']
+          unless params['DeviceClassPartitionInfoSet'].nil?
+            @DeviceClassPartitionInfoSet = []
+            params['DeviceClassPartitionInfoSet'].each do |i|
+              @DeviceClassPartitionInfoSet << DeviceClassPartitionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -915,7 +940,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DeviceClassSet = params['DeviceClassSet']
+          unless params['DeviceClassSet'].nil?
+            @DeviceClassSet = []
+            params['DeviceClassSet'].each do |i|
+              @DeviceClassSet << DeviceClass.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -951,7 +981,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DeviceHardwareInfoSet = params['DeviceHardwareInfoSet']
+          unless params['DeviceHardwareInfoSet'].nil?
+            @DeviceHardwareInfoSet = []
+            params['DeviceHardwareInfoSet'].each do |i|
+              @DeviceHardwareInfoSet << DeviceHardwareInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1082,7 +1117,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DeviceOperationLogSet = params['DeviceOperationLogSet']
+          unless params['DeviceOperationLogSet'].nil?
+            @DeviceOperationLogSet = []
+            params['DeviceOperationLogSet'].each do |i|
+              @DeviceOperationLogSet << DeviceOperationLog.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1120,7 +1160,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DevicePartition'].nil?
-            @DevicePartition = DevicePartition.new.deserialize(params[DevicePartition])
+            @DevicePartition = DevicePartition.new.deserialize(params['DevicePartition'])
           end
           @RequestId = params['RequestId']
         end
@@ -1143,13 +1183,13 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :VpcId, :SubnetId, :InstanceIds, :Alias
         
-        def initialize(offset=nil, limit=nil, vpcid=nil, subnetid=nil, instanceids=nil, alias=nil)
+        def initialize(offset=nil, limit=nil, vpcid=nil, subnetid=nil, instanceids=nil, _alias=nil)
           @Offset = offset
           @Limit = limit
           @VpcId = vpcid
           @SubnetId = subnetid
           @InstanceIds = instanceids
-          @Alias = alias
+          @Alias = _alias
         end
 
         def deserialize(params)
@@ -1181,7 +1221,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @DevicePositionInfoSet = params['DevicePositionInfoSet']
+          unless params['DevicePositionInfoSet'].nil?
+            @DevicePositionInfoSet = []
+            params['DevicePositionInfoSet'].each do |i|
+              @DevicePositionInfoSet << DevicePositionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1225,7 +1270,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DevicePriceInfoSet = params['DevicePriceInfoSet']
+          unless params['DevicePriceInfoSet'].nil?
+            @DevicePriceInfoSet = []
+            params['DevicePriceInfoSet'].each do |i|
+              @DevicePriceInfoSet << DevicePriceInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1271,14 +1321,14 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :DeviceClassCode, :InstanceIds, :WanIps, :LanIps, :Alias, :VagueIp, :DeadlineStartTime, :DeadlineEndTime, :AutoRenewFlag, :VpcId, :SubnetId, :Tags, :DeviceType, :IsLuckyDevice, :OrderField, :Order
         
-        def initialize(offset=nil, limit=nil, deviceclasscode=nil, instanceids=nil, wanips=nil, lanips=nil, alias=nil, vagueip=nil, deadlinestarttime=nil, deadlineendtime=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, tags=nil, devicetype=nil, isluckydevice=nil, orderfield=nil, order=nil)
+        def initialize(offset=nil, limit=nil, deviceclasscode=nil, instanceids=nil, wanips=nil, lanips=nil, _alias=nil, vagueip=nil, deadlinestarttime=nil, deadlineendtime=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, tags=nil, devicetype=nil, isluckydevice=nil, orderfield=nil, order=nil)
           @Offset = offset
           @Limit = limit
           @DeviceClassCode = deviceclasscode
           @InstanceIds = instanceids
           @WanIps = wanips
           @LanIps = lanips
-          @Alias = alias
+          @Alias = _alias
           @VagueIp = vagueip
           @DeadlineStartTime = deadlinestarttime
           @DeadlineEndTime = deadlineendtime
@@ -1306,7 +1356,12 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @DeviceType = params['DeviceType']
           @IsLuckyDevice = params['IsLuckyDevice']
           @OrderField = params['OrderField']
@@ -1333,7 +1388,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @DeviceInfoSet = params['DeviceInfoSet']
+          unless params['DeviceInfoSet'].nil?
+            @DeviceInfoSet = []
+            params['DeviceInfoSet'].each do |i|
+              @DeviceInfoSet << DeviceInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1370,9 +1430,19 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @CpuInfoSet = params['CpuInfoSet']
+          unless params['CpuInfoSet'].nil?
+            @CpuInfoSet = []
+            params['CpuInfoSet'].each do |i|
+              @CpuInfoSet << CpuInfo.new.deserialize(i)
+            end
+          end
           @MemSet = params['MemSet']
-          @DiskInfoSet = params['DiskInfoSet']
+          unless params['DiskInfoSet'].nil?
+            @DiskInfoSet = []
+            params['DiskInfoSet'].each do |i|
+              @DiskInfoSet << DiskInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1412,7 +1482,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @HostedDeviceOutBandInfoSet = params['HostedDeviceOutBandInfoSet']
+          unless params['HostedDeviceOutBandInfoSet'].nil?
+            @HostedDeviceOutBandInfoSet = []
+            params['HostedDeviceOutBandInfoSet'].each do |i|
+              @HostedDeviceOutBandInfoSet << HostedDeviceOutBandInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1459,7 +1534,12 @@ module TencentCloud
 
         def deserialize(params)
           @TaskStatus = params['TaskStatus']
-          @SubtaskStatusSet = params['SubtaskStatusSet']
+          unless params['SubtaskStatusSet'].nil?
+            @SubtaskStatusSet = []
+            params['SubtaskStatusSet'].each do |i|
+              @SubtaskStatusSet << SubtaskStatus.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1495,7 +1575,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @OsInfoSet = params['OsInfoSet']
+          unless params['OsInfoSet'].nil?
+            @OsInfoSet = []
+            params['OsInfoSet'].each do |i|
+              @OsInfoSet << OsInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1534,7 +1619,12 @@ module TencentCloud
           @Offset = params['Offset']
           @PsaIds = params['PsaIds']
           @PsaNames = params['PsaNames']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @OrderField = params['OrderField']
           @Order = params['Order']
         end
@@ -1559,7 +1649,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @PsaRegulations = params['PsaRegulations']
+          unless params['PsaRegulations'].nil?
+            @PsaRegulations = []
+            params['PsaRegulations'].each do |i|
+              @PsaRegulations << PsaRegulation.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1595,7 +1690,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RegionInfoSet = params['RegionInfoSet']
+          unless params['RegionInfoSet'].nil?
+            @RegionInfoSet = []
+            params['RegionInfoSet'].each do |i|
+              @RegionInfoSet << RegionInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1626,7 +1726,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TaskTypeSet = params['TaskTypeSet']
+          unless params['TaskTypeSet'].nil?
+            @TaskTypeSet = []
+            params['TaskTypeSet'].each do |i|
+              @TaskTypeSet << TaskType.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1706,7 +1811,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @TaskInfoSet = params['TaskInfoSet']
+          unless params['TaskInfoSet'].nil?
+            @TaskInfoSet = []
+            params['TaskInfoSet'].each do |i|
+              @TaskInfoSet << TaskInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1753,7 +1863,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @TaskOperationLogSet = params['TaskOperationLogSet']
+          unless params['TaskOperationLogSet'].nil?
+            @TaskOperationLogSet = []
+            params['TaskOperationLogSet'].each do |i|
+              @TaskOperationLogSet << TaskOperationLog.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -1814,7 +1929,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @UserCmdTaskInfoSet = params['UserCmdTaskInfoSet']
+          unless params['UserCmdTaskInfoSet'].nil?
+            @UserCmdTaskInfoSet = []
+            params['UserCmdTaskInfoSet'].each do |i|
+              @UserCmdTaskInfoSet << UserCmdTaskInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1866,7 +1986,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @UserCmdTasks = params['UserCmdTasks']
+          unless params['UserCmdTasks'].nil?
+            @UserCmdTasks = []
+            params['UserCmdTasks'].each do |i|
+              @UserCmdTasks << UserCmdTask.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1926,7 +2051,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @UserCmds = params['UserCmds']
+          unless params['UserCmds'].nil?
+            @UserCmds = []
+            params['UserCmds'].each do |i|
+              @UserCmds << UserCmd.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1972,9 +2102,9 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Alias
         
-        def initialize(instanceid=nil, alias=nil)
+        def initialize(instanceid=nil, _alias=nil)
           @InstanceId = instanceid
-          @Alias = alias
+          @Alias = _alias
         end
 
         def deserialize(params)
@@ -2111,7 +2241,12 @@ module TencentCloud
           @SysDataSpace = params['SysDataSpace']
           @SysIsUefiType = params['SysIsUefiType']
           @DataDiskSize = params['DataDiskSize']
-          @DeviceDiskSizeInfoSet = params['DeviceDiskSizeInfoSet']
+          unless params['DeviceDiskSizeInfoSet'].nil?
+            @DeviceDiskSizeInfoSet = []
+            params['DeviceDiskSizeInfoSet'].each do |i|
+              @DeviceDiskSizeInfoSet << DeviceDiskSizeInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2269,7 +2404,7 @@ module TencentCloud
 
         attr_accessor :InstanceId, :VpcId, :SubnetId, :DeviceStatus, :OperateStatus, :OsTypeId, :RaidId, :Alias, :AppId, :Zone, :WanIp, :LanIp, :DeliverTime, :Deadline, :AutoRenewFlag, :DeviceClassCode, :Tags, :CpmPayMode, :DhcpIp, :VpcName, :SubnetName, :VpcCidrBlock, :SubnetCidrBlock, :IsLuckyDevice
         
-        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, devicestatus=nil, operatestatus=nil, ostypeid=nil, raidid=nil, alias=nil, appid=nil, zone=nil, wanip=nil, lanip=nil, delivertime=nil, deadline=nil, autorenewflag=nil, deviceclasscode=nil, tags=nil, cpmpaymode=nil, dhcpip=nil, vpcname=nil, subnetname=nil, vpccidrblock=nil, subnetcidrblock=nil, isluckydevice=nil)
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, devicestatus=nil, operatestatus=nil, ostypeid=nil, raidid=nil, _alias=nil, appid=nil, zone=nil, wanip=nil, lanip=nil, delivertime=nil, deadline=nil, autorenewflag=nil, deviceclasscode=nil, tags=nil, cpmpaymode=nil, dhcpip=nil, vpcname=nil, subnetname=nil, vpccidrblock=nil, subnetcidrblock=nil, isluckydevice=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2277,7 +2412,7 @@ module TencentCloud
           @OperateStatus = operatestatus
           @OsTypeId = ostypeid
           @RaidId = raidid
-          @Alias = alias
+          @Alias = _alias
           @AppId = appid
           @Zone = zone
           @WanIp = wanip
@@ -2313,7 +2448,12 @@ module TencentCloud
           @Deadline = params['Deadline']
           @AutoRenewFlag = params['AutoRenewFlag']
           @DeviceClassCode = params['DeviceClassCode']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @CpmPayMode = params['CpmPayMode']
           @DhcpIp = params['DhcpIp']
           @VpcName = params['VpcName']
@@ -2416,7 +2556,12 @@ module TencentCloud
           @SysSwaporuefiSpace = params['SysSwaporuefiSpace']
           @SysUsrlocalSpace = params['SysUsrlocalSpace']
           @SysDataSpace = params['SysDataSpace']
-          @DeviceDiskSizeInfoSet = params['DeviceDiskSizeInfoSet']
+          unless params['DeviceDiskSizeInfoSet'].nil?
+            @DeviceDiskSizeInfoSet = []
+            params['DeviceDiskSizeInfoSet'].each do |i|
+              @DeviceDiskSizeInfoSet << DeviceDiskSizeInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2447,13 +2592,13 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Zone, :VpcId, :SubnetId, :LanIp, :Alias, :RckName, :PosCode, :SwitchName, :DeliverTime, :Deadline
         
-        def initialize(instanceid=nil, zone=nil, vpcid=nil, subnetid=nil, lanip=nil, alias=nil, rckname=nil, poscode=nil, switchname=nil, delivertime=nil, deadline=nil)
+        def initialize(instanceid=nil, zone=nil, vpcid=nil, subnetid=nil, lanip=nil, _alias=nil, rckname=nil, poscode=nil, switchname=nil, delivertime=nil, deadline=nil)
           @InstanceId = instanceid
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
           @LanIp = lanip
-          @Alias = alias
+          @Alias = _alias
           @RckName = rckname
           @PosCode = poscode
           @SwitchName = switchname
@@ -2680,7 +2825,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DeviceAliases = params['DeviceAliases']
+          unless params['DeviceAliases'].nil?
+            @DeviceAliases = []
+            params['DeviceAliases'].each do |i|
+              @DeviceAliases << DeviceAlias.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2881,9 +3031,9 @@ module TencentCloud
 
         attr_accessor :CmdId, :Alias, :OsType, :Content
         
-        def initialize(cmdid=nil, alias=nil, ostype=nil, content=nil)
+        def initialize(cmdid=nil, _alias=nil, ostype=nil, content=nil)
           @CmdId = cmdid
-          @Alias = alias
+          @Alias = _alias
           @OsType = ostype
           @Content = content
         end
@@ -3065,7 +3215,12 @@ module TencentCloud
           @RepairLimit = params['RepairLimit']
           @CreateTime = params['CreateTime']
           @PsaDescription = params['PsaDescription']
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
           @TaskTypeIds = params['TaskTypeIds']
         end
       end
@@ -3166,7 +3321,12 @@ module TencentCloud
           @Region = params['Region']
           @RegionId = params['RegionId']
           @RegionDescription = params['RegionDescription']
-          @ZoneInfoSet = params['ZoneInfoSet']
+          unless params['ZoneInfoSet'].nil?
+            @ZoneInfoSet = []
+            params['ZoneInfoSet'].each do |i|
+              @ZoneInfoSet << ZoneInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3449,8 +3609,18 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @SuccessTaskInfoSet = params['SuccessTaskInfoSet']
-          @FailedTaskInfoSet = params['FailedTaskInfoSet']
+          unless params['SuccessTaskInfoSet'].nil?
+            @SuccessTaskInfoSet = []
+            params['SuccessTaskInfoSet'].each do |i|
+              @SuccessTaskInfoSet << SuccessTaskInfo.new.deserialize(i)
+            end
+          end
+          unless params['FailedTaskInfoSet'].nil?
+            @FailedTaskInfoSet = []
+            params['FailedTaskInfoSet'].each do |i|
+              @FailedTaskInfoSet << FailedTaskInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3689,10 +3859,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :InstanceId, :Alias, :TaskTypeId, :TaskStatus, :CreateTime, :AuthTime, :EndTime, :TaskDetail, :DeviceStatus, :OperateStatus, :Zone, :Region, :VpcId, :SubnetId, :SubnetName, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :WanIp, :LanIp, :MgtIp, :TaskTypeName, :TaskSubType
         
-        def initialize(taskid=nil, instanceid=nil, alias=nil, tasktypeid=nil, taskstatus=nil, createtime=nil, authtime=nil, endtime=nil, taskdetail=nil, devicestatus=nil, operatestatus=nil, zone=nil, region=nil, vpcid=nil, subnetid=nil, subnetname=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, wanip=nil, lanip=nil, mgtip=nil, tasktypename=nil, tasksubtype=nil)
+        def initialize(taskid=nil, instanceid=nil, _alias=nil, tasktypeid=nil, taskstatus=nil, createtime=nil, authtime=nil, endtime=nil, taskdetail=nil, devicestatus=nil, operatestatus=nil, zone=nil, region=nil, vpcid=nil, subnetid=nil, subnetname=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, wanip=nil, lanip=nil, mgtip=nil, tasktypename=nil, tasksubtype=nil)
           @TaskId = taskid
           @InstanceId = instanceid
-          @Alias = alias
+          @Alias = _alias
           @TaskTypeId = tasktypeid
           @TaskStatus = taskstatus
           @CreateTime = createtime
@@ -3857,8 +4027,8 @@ module TencentCloud
 
         attr_accessor :Alias, :AppId, :AutoId, :CmdId, :Content, :CreateTime, :ModifyTime, :OsType
         
-        def initialize(alias=nil, appid=nil, autoid=nil, cmdid=nil, content=nil, createtime=nil, modifytime=nil, ostype=nil)
-          @Alias = alias
+        def initialize(_alias=nil, appid=nil, autoid=nil, cmdid=nil, content=nil, createtime=nil, modifytime=nil, ostype=nil)
+          @Alias = _alias
           @AppId = appid
           @AutoId = autoid
           @CmdId = cmdid
@@ -3903,10 +4073,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Status, :Alias, :CmdId, :InstanceCount, :SuccessCount, :FailureCount, :RunBeginTime, :RunEndTime
         
-        def initialize(taskid=nil, status=nil, alias=nil, cmdid=nil, instancecount=nil, successcount=nil, failurecount=nil, runbegintime=nil, runendtime=nil)
+        def initialize(taskid=nil, status=nil, _alias=nil, cmdid=nil, instancecount=nil, successcount=nil, failurecount=nil, runbegintime=nil, runendtime=nil)
           @TaskId = taskid
           @Status = status
-          @Alias = alias
+          @Alias = _alias
           @CmdId = cmdid
           @InstanceCount = instancecount
           @SuccessCount = successcount

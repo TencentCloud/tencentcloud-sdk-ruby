@@ -91,7 +91,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InstanceList = params['InstanceList']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              @InstanceList << InstanceListInfo.new.deserialize(i)
+            end
+          end
           @TotalNum = params['TotalNum']
           @RequestId = params['RequestId']
         end
@@ -178,7 +183,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Tags = params['Tags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << TagInfo.new.deserialize(i)
+            end
+          end
           @AddTimeStamp = params['AddTimeStamp']
           @AppId = params['AppId']
           @AutoRenewFlag = params['AutoRenewFlag']

@@ -481,7 +481,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Invitations = params['Invitations']
+          unless params['Invitations'].nil?
+            @Invitations = []
+            params['Invitations'].each do |i|
+              @Invitations << OrgInvitation.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -525,7 +530,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Members = params['Members']
+          unless params['Members'].nil?
+            @Members = []
+            params['Members'].each do |i|
+              @Members << OrgMember.new.deserialize(i)
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -574,7 +584,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @Members = params['Members']
+          unless params['Members'].nil?
+            @Members = []
+            params['Members'].each do |i|
+              @Members << OrgMember.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -605,7 +620,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Nodes = params['Nodes']
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              @Nodes << OrgNode.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

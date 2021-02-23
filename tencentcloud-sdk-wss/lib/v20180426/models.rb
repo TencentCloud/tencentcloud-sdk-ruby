@@ -116,7 +116,12 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          @CertificateSet = params['CertificateSet']
+          unless params['CertificateSet'].nil?
+            @CertificateSet = []
+            params['CertificateSet'].each do |i|
+              @CertificateSet << SSLCertificate.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -204,7 +209,7 @@ module TencentCloud
 
         attr_accessor :OwnerUin, :ProjectId, :From, :Type, :CertType, :ProductZhName, :Domain, :Alias, :Status, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :ProjectInfo, :Id, :SubjectAltName, :TypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :Cert
         
-        def initialize(owneruin=nil, projectid=nil, from=nil, type=nil, certtype=nil, productzhname=nil, domain=nil, alias=nil, status=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, projectinfo=nil, id=nil, subjectaltname=nil, typename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, cert=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, type=nil, certtype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, projectinfo=nil, id=nil, subjectaltname=nil, typename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, cert=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -212,7 +217,7 @@ module TencentCloud
           @CertType = certtype
           @ProductZhName = productzhname
           @Domain = domain
-          @Alias = alias
+          @Alias = _alias
           @Status = status
           @VulnerabilityStatus = vulnerabilitystatus
           @StatusMsg = statusmsg
@@ -251,7 +256,7 @@ module TencentCloud
           @ValidityPeriod = params['ValidityPeriod']
           @InsertTime = params['InsertTime']
           unless params['ProjectInfo'].nil?
-            @ProjectInfo = SSLProjectInfo.new.deserialize(params[ProjectInfo])
+            @ProjectInfo = SSLProjectInfo.new.deserialize(params['ProjectInfo'])
           end
           @Id = params['Id']
           @SubjectAltName = params['SubjectAltName']
@@ -324,13 +329,13 @@ module TencentCloud
 
         attr_accessor :Cert, :CertType, :ProjectId, :ModuleType, :Key, :Alias
         
-        def initialize(cert=nil, certtype=nil, projectid=nil, moduletype=nil, key=nil, alias=nil)
+        def initialize(cert=nil, certtype=nil, projectid=nil, moduletype=nil, key=nil, _alias=nil)
           @Cert = cert
           @CertType = certtype
           @ProjectId = projectid
           @ModuleType = moduletype
           @Key = key
-          @Alias = alias
+          @Alias = _alias
         end
 
         def deserialize(params)
