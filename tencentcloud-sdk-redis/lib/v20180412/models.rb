@@ -2958,10 +2958,13 @@ module TencentCloud
         # @type Max: String
         # @param Status: 参数状态, 1: 修改中， 2：修改完成
         # @type Status: Integer
+        # @param Unit: 参数单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
 
-        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :Min, :Max, :Status
+        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :Min, :Max, :Status, :Unit
         
-        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, min=nil, max=nil, status=nil)
+        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, min=nil, max=nil, status=nil, unit=nil)
           @ParamName = paramname
           @ValueType = valuetype
           @NeedRestart = needrestart
@@ -2971,6 +2974,7 @@ module TencentCloud
           @Min = min
           @Max = max
           @Status = status
+          @Unit = unit
         end
 
         def deserialize(params)
@@ -2983,6 +2987,7 @@ module TencentCloud
           @Min = params['Min']
           @Max = params['Max']
           @Status = params['Status']
+          @Unit = params['Unit']
         end
       end
 
@@ -3415,15 +3420,18 @@ module TencentCloud
         # @type CommandLine: String
         # @param ExecuteTime: 执行时间
         # @type ExecuteTime: String
+        # @param Node: 节点ID
+        # @type Node: String
 
-        attr_accessor :Duration, :Client, :Command, :CommandLine, :ExecuteTime
+        attr_accessor :Duration, :Client, :Command, :CommandLine, :ExecuteTime, :Node
         
-        def initialize(duration=nil, client=nil, command=nil, commandline=nil, executetime=nil)
+        def initialize(duration=nil, client=nil, command=nil, commandline=nil, executetime=nil, node=nil)
           @Duration = duration
           @Client = client
           @Command = command
           @CommandLine = commandline
           @ExecuteTime = executetime
+          @Node = node
         end
 
         def deserialize(params)
@@ -3432,6 +3440,7 @@ module TencentCloud
           @Command = params['Command']
           @CommandLine = params['CommandLine']
           @ExecuteTime = params['ExecuteTime']
+          @Node = params['Node']
         end
       end
 

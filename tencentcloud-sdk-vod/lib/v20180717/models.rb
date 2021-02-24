@@ -3934,16 +3934,20 @@ module TencentCloud
         # @param Output: 制作媒体文件任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.ComposeMediaTaskOutput`
+        # @param MetaData: 原始视频的元信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Input, :Output
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Input, :Output, :MetaData
         
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, input=nil, output=nil, metadata=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @MetaData = metadata
         end
 
         def deserialize(params)
@@ -3956,6 +3960,9 @@ module TencentCloud
           end
           unless params['Output'].nil?
             @Output = ComposeMediaTaskOutput.new.deserialize(params['Output'])
+          end
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new.deserialize(params['MetaData'])
           end
         end
       end
@@ -8421,10 +8428,12 @@ module TencentCloud
         # @type SessionContext: String
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
+        # @param MetaData: 原始视频的元信息。
+        # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Input, :Output, :ProcedureTaskId, :SessionContext, :SessionId
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Input, :Output, :ProcedureTaskId, :SessionContext, :SessionId, :MetaData
         
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, input=nil, output=nil, proceduretaskid=nil, sessioncontext=nil, sessionid=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, input=nil, output=nil, proceduretaskid=nil, sessioncontext=nil, sessionid=nil, metadata=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
@@ -8434,6 +8443,7 @@ module TencentCloud
           @ProcedureTaskId = proceduretaskid
           @SessionContext = sessioncontext
           @SessionId = sessionid
+          @MetaData = metadata
         end
 
         def deserialize(params)
@@ -8450,6 +8460,9 @@ module TencentCloud
           @ProcedureTaskId = params['ProcedureTaskId']
           @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new.deserialize(params['MetaData'])
+          end
         end
       end
 
@@ -14234,6 +14247,8 @@ module TencentCloud
         # @param MediaBasicInfo: 转拉完成后生成的媒体文件基础信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaBasicInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaBasicInfo`
+        # @param MetaData: 原始视频的元信息。
+        # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
         # @param FileUrl: 转拉上传完成后生成的播放地址。
         # @type FileUrl: String
         # @param ProcedureTaskId: 若转拉上传时指定了视频处理流程，则该参数为流程任务 ID。
@@ -14243,15 +14258,16 @@ module TencentCloud
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :MediaBasicInfo, :FileUrl, :ProcedureTaskId, :SessionContext, :SessionId
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :MediaBasicInfo, :MetaData, :FileUrl, :ProcedureTaskId, :SessionContext, :SessionId
         
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, mediabasicinfo=nil, fileurl=nil, proceduretaskid=nil, sessioncontext=nil, sessionid=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, mediabasicinfo=nil, metadata=nil, fileurl=nil, proceduretaskid=nil, sessioncontext=nil, sessionid=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
           @Message = message
           @FileId = fileid
           @MediaBasicInfo = mediabasicinfo
+          @MetaData = metadata
           @FileUrl = fileurl
           @ProcedureTaskId = proceduretaskid
           @SessionContext = sessioncontext
@@ -14266,6 +14282,9 @@ module TencentCloud
           @FileId = params['FileId']
           unless params['MediaBasicInfo'].nil?
             @MediaBasicInfo = MediaBasicInfo.new.deserialize(params['MediaBasicInfo'])
+          end
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new.deserialize(params['MetaData'])
           end
           @FileUrl = params['FileUrl']
           @ProcedureTaskId = params['ProcedureTaskId']

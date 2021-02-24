@@ -7607,6 +7607,7 @@ module TencentCloud
       # DescribeSecurityGroups返回参数结构体
       class DescribeSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param SecurityGroupSet: 安全组对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupSet: Array
         # @param TotalCount: 符合条件的实例数量。
         # @type TotalCount: Integer

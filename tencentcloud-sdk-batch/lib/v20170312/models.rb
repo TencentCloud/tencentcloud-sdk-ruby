@@ -704,10 +704,13 @@ module TencentCloud
         # @param ThroughputPerformance: 云硬盘性能，单位：MB/s
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThroughputPerformance: Integer
+        # @param CdcId: 所属的独享集群ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
 
-        attr_accessor :DiskSize, :DiskType, :DiskId, :DeleteWithInstance, :SnapshotId, :Encrypt, :KmsKeyId, :ThroughputPerformance
+        attr_accessor :DiskSize, :DiskType, :DiskId, :DeleteWithInstance, :SnapshotId, :Encrypt, :KmsKeyId, :ThroughputPerformance, :CdcId
         
-        def initialize(disksize=nil, disktype=nil, diskid=nil, deletewithinstance=nil, snapshotid=nil, encrypt=nil, kmskeyid=nil, throughputperformance=nil)
+        def initialize(disksize=nil, disktype=nil, diskid=nil, deletewithinstance=nil, snapshotid=nil, encrypt=nil, kmskeyid=nil, throughputperformance=nil, cdcid=nil)
           @DiskSize = disksize
           @DiskType = disktype
           @DiskId = diskid
@@ -716,6 +719,7 @@ module TencentCloud
           @Encrypt = encrypt
           @KmsKeyId = kmskeyid
           @ThroughputPerformance = throughputperformance
+          @CdcId = cdcid
         end
 
         def deserialize(params)
@@ -727,6 +731,7 @@ module TencentCloud
           @Encrypt = params['Encrypt']
           @KmsKeyId = params['KmsKeyId']
           @ThroughputPerformance = params['ThroughputPerformance']
+          @CdcId = params['CdcId']
         end
       end
 
@@ -3531,19 +3536,23 @@ module TencentCloud
         # @type DiskId: String
         # @param DiskSize: 系统盘大小，单位：GB。默认值为 50
         # @type DiskSize: Integer
+        # @param CdcId: 所属的独享集群ID。
+        # @type CdcId: String
 
-        attr_accessor :DiskType, :DiskId, :DiskSize
+        attr_accessor :DiskType, :DiskId, :DiskSize, :CdcId
         
-        def initialize(disktype=nil, diskid=nil, disksize=nil)
+        def initialize(disktype=nil, diskid=nil, disksize=nil, cdcid=nil)
           @DiskType = disktype
           @DiskId = diskid
           @DiskSize = disksize
+          @CdcId = cdcid
         end
 
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskId = params['DiskId']
           @DiskSize = params['DiskSize']
+          @CdcId = params['CdcId']
         end
       end
 

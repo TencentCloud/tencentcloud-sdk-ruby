@@ -410,6 +410,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看黑名单数据列表
+
+        # @param request: Request instance for QueryBlackListData.
+        # @type request: :class:`Tencentcloud::cr::V20180321::QueryBlackListDataRequest`
+        # @rtype: :class:`Tencentcloud::cr::V20180321::QueryBlackListDataResponse`
+        def QueryBlackListData(request)
+          body = send_request('QueryBlackListData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryBlackListDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询机器人任务状态列表
 
         # @param request: Request instance for QueryBotList.

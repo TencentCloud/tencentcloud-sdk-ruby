@@ -1612,18 +1612,22 @@ module TencentCloud
         # @param DownloadHeaders: 下载Httpheader
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadHeaders: Array
+        # @param OutDate: 下载链接是否过期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutDate: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UploadUrl, :UploadHeaders, :PackageName, :PackageVersion, :DownloadUrl, :DownloadHeaders, :RequestId
+        attr_accessor :UploadUrl, :UploadHeaders, :PackageName, :PackageVersion, :DownloadUrl, :DownloadHeaders, :OutDate, :RequestId
         
-        def initialize(uploadurl=nil, uploadheaders=nil, packagename=nil, packageversion=nil, downloadurl=nil, downloadheaders=nil, requestid=nil)
+        def initialize(uploadurl=nil, uploadheaders=nil, packagename=nil, packageversion=nil, downloadurl=nil, downloadheaders=nil, outdate=nil, requestid=nil)
           @UploadUrl = uploadurl
           @UploadHeaders = uploadheaders
           @PackageName = packagename
           @PackageVersion = packageversion
           @DownloadUrl = downloadurl
           @DownloadHeaders = downloadheaders
+          @OutDate = outdate
           @RequestId = requestid
         end
 
@@ -1644,6 +1648,7 @@ module TencentCloud
               @DownloadHeaders << KVPair.new.deserialize(i)
             end
           end
+          @OutDate = params['OutDate']
           @RequestId = params['RequestId']
         end
       end

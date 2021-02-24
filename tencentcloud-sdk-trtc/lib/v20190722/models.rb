@@ -934,7 +934,7 @@ module TencentCloud
 
       # MCU混流输出流编码参数
       class EncodeParams < TencentCloud::Common::AbstractModel
-        # @param AudioSampleRate: 混流-输出流音频采样率。取值为[48000, 44100, 32000,24000,, 16000, 12000, 8000]，单位是Hz。
+        # @param AudioSampleRate: 混流-输出流音频采样率。取值为[48000, 44100, 32000, 24000, 16000, 8000]，单位是Hz。
         # @type AudioSampleRate: Integer
         # @param AudioBitrate: 混流-输出流音频码率。取值范围[8,500]，单位为Kbps。
         # @type AudioBitrate: Integer

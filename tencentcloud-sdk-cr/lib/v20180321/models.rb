@@ -1277,6 +1277,76 @@ module TencentCloud
         end
       end
 
+      # QueryBlackListData请求参数结构体
+      class QueryBlackListDataRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块:AiApi
+        # @type Module: String
+        # @param Operation: 操作:QueryBlackListData
+        # @type Operation: String
+        # @param Offset: 页码
+        # @type Offset: Integer
+        # @param Limit: 每页数量
+        # @type Limit: Integer
+        # @param StartBizDate: 开始日期
+        # @type StartBizDate: String
+        # @param EndBizDate: 结束日期
+        # @type EndBizDate: String
+        # @param BlackValue: 电话号码、手机
+        # @type BlackValue: String
+
+        attr_accessor :Module, :Operation, :Offset, :Limit, :StartBizDate, :EndBizDate, :BlackValue
+        
+        def initialize(_module=nil, operation=nil, offset=nil, limit=nil, startbizdate=nil, endbizdate=nil, blackvalue=nil)
+          @Module = _module
+          @Operation = operation
+          @Offset = offset
+          @Limit = limit
+          @StartBizDate = startbizdate
+          @EndBizDate = endbizdate
+          @BlackValue = blackvalue
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @Operation = params['Operation']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @StartBizDate = params['StartBizDate']
+          @EndBizDate = params['EndBizDate']
+          @BlackValue = params['BlackValue']
+        end
+      end
+
+      # QueryBlackListData返回参数结构体
+      class QueryBlackListDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数。
+        # @type TotalCount: Integer
+        # @param Data: 黑名单列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+        
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << BlackListData.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryBotList请求参数结构体
       class QueryBotListRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名：AiApi
