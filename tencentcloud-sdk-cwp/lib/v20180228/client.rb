@@ -889,6 +889,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取主机安全相关统计
+
+        # @param request: Request instance for DescribeGeneralStat.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeGeneralStatRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeGeneralStatResponse`
+        def DescribeGeneralStat(request)
+          body = send_request('DescribeGeneralStat', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGeneralStatResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
 
         # @param request: Request instance for DescribeHistoryAccounts.

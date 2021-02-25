@@ -443,10 +443,14 @@ module TencentCloud
         # @type VpcCniType: String
         # @param RuntimeVersion: 运行时版本
         # @type RuntimeVersion: String
+        # @param EnableCustomizedPodCIDR: 是否开节点podCIDR大小的自定义模式
+        # @type EnableCustomizedPodCIDR: Boolean
+        # @param BasePodNumber: 自定义模式下的基础pod数量
+        # @type BasePodNumber: Integer
 
-        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion
+        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion, :EnableCustomizedPodCIDR, :BasePodNumber
         
-        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil)
+        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil, enablecustomizedpodcidr=nil, basepodnumber=nil)
           @IPVS = ipvs
           @AsEnabled = asenabled
           @ContainerRuntime = containerruntime
@@ -461,6 +465,8 @@ module TencentCloud
           @AuditLogTopicId = auditlogtopicid
           @VpcCniType = vpccnitype
           @RuntimeVersion = runtimeversion
+          @EnableCustomizedPodCIDR = enablecustomizedpodcidr
+          @BasePodNumber = basepodnumber
         end
 
         def deserialize(params)
@@ -480,6 +486,8 @@ module TencentCloud
           @AuditLogTopicId = params['AuditLogTopicId']
           @VpcCniType = params['VpcCniType']
           @RuntimeVersion = params['RuntimeVersion']
+          @EnableCustomizedPodCIDR = params['EnableCustomizedPodCIDR']
+          @BasePodNumber = params['BasePodNumber']
         end
       end
 

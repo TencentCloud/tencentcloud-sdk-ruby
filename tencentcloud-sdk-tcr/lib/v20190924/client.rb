@@ -193,6 +193,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建tcr内网私有域名解析
+
+        # @param request: Request instance for CreateInternalEndpointDns.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::CreateInternalEndpointDnsRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::CreateInternalEndpointDnsResponse`
+        def CreateInternalEndpointDns(request)
+          body = send_request('CreateInternalEndpointDns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInternalEndpointDnsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于在企业版中创建命名空间
 
         # @param request: Request instance for CreateNamespace.
@@ -491,6 +515,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteInstanceTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除tcr内网私有域名解析
+
+        # @param request: Request instance for DeleteInternalEndpointDns.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DeleteInternalEndpointDnsRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DeleteInternalEndpointDnsResponse`
+        def DeleteInternalEndpointDns(request)
+          body = send_request('DeleteInternalEndpointDns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInternalEndpointDnsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -899,6 +947,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量查询vpc是否已经添加私有域名解析
+
+        # @param request: Request instance for DescribeInternalEndpointDnsStatus.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeInternalEndpointDnsStatusRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeInternalEndpointDnsStatusResponse`
+        def DescribeInternalEndpointDnsStatus(request)
+          body = send_request('DescribeInternalEndpointDnsStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInternalEndpointDnsStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

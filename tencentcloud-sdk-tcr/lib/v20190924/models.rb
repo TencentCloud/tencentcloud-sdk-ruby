@@ -427,6 +427,51 @@ module TencentCloud
         end
       end
 
+      # CreateInternalEndpointDns请求参数结构体
+      class CreateInternalEndpointDnsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tcr实例id
+        # @type InstanceId: String
+        # @param VpcId: 私有网络id
+        # @type VpcId: String
+        # @param EniLBIp: tcr内网访问链路ip
+        # @type EniLBIp: String
+        # @param UsePublicDomain: true：use instance name as subdomain
+        # false: use instancename+"-vpc" as subdomain
+        # @type UsePublicDomain: Boolean
+
+        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain
+        
+        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil)
+          @InstanceId = instanceid
+          @VpcId = vpcid
+          @EniLBIp = enilbip
+          @UsePublicDomain = usepublicdomain
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @EniLBIp = params['EniLBIp']
+          @UsePublicDomain = params['UsePublicDomain']
+        end
+      end
+
+      # CreateInternalEndpointDns返回参数结构体
+      class CreateInternalEndpointDnsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNamespacePersonal请求参数结构体
       class CreateNamespacePersonalRequest < TencentCloud::Common::AbstractModel
         # @param Namespace: 命名空间名称
@@ -896,6 +941,51 @@ module TencentCloud
 
       # DeleteInstanceToken返回参数结构体
       class DeleteInstanceTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInternalEndpointDns请求参数结构体
+      class DeleteInternalEndpointDnsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tcr实例id
+        # @type InstanceId: String
+        # @param VpcId: 私有网络id
+        # @type VpcId: String
+        # @param EniLBIp: tcr内网访问链路ip
+        # @type EniLBIp: String
+        # @param UsePublicDomain: true：use instance name as subdomain
+        # false: use instancename+"-vpc" as subdomain
+        # @type UsePublicDomain: Boolean
+
+        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain
+        
+        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil)
+          @InstanceId = instanceid
+          @VpcId = vpcid
+          @EniLBIp = enilbip
+          @UsePublicDomain = usepublicdomain
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @EniLBIp = params['EniLBIp']
+          @UsePublicDomain = params['UsePublicDomain']
+        end
+      end
+
+      # DeleteInternalEndpointDns返回参数结构体
+      class DeleteInternalEndpointDnsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1728,6 +1818,53 @@ module TencentCloud
             @Registries = []
             params['Registries'].each do |i|
               @Registries << Registry.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInternalEndpointDnsStatus请求参数结构体
+      class DescribeInternalEndpointDnsStatusRequest < TencentCloud::Common::AbstractModel
+        # @param VpcSet: vpc列表
+        # @type VpcSet: Array
+
+        attr_accessor :VpcSet
+        
+        def initialize(vpcset=nil)
+          @VpcSet = vpcset
+        end
+
+        def deserialize(params)
+          unless params['VpcSet'].nil?
+            @VpcSet = []
+            params['VpcSet'].each do |i|
+              @VpcSet << VpcAndDomainInfo.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeInternalEndpointDnsStatus返回参数结构体
+      class DescribeInternalEndpointDnsStatusResponse < TencentCloud::Common::AbstractModel
+        # @param VpcSet: vpc私有域名解析状态列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VpcSet, :RequestId
+        
+        def initialize(vpcset=nil, requestid=nil)
+          @VpcSet = vpcset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VpcSet'].nil?
+            @VpcSet = []
+            params['VpcSet'].each do |i|
+              @VpcSet << VpcPrivateDomainStatus.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
@@ -4102,6 +4239,62 @@ module TencentCloud
             @Data = RepoIsExistResp.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # vpc和domain信息
+      class VpcAndDomainInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tcr实例id
+        # @type InstanceId: String
+        # @param VpcId: 私有网络id
+        # @type VpcId: String
+        # @param EniLBIp: tcr内网访问链路ip
+        # @type EniLBIp: String
+        # @param UsePublicDomain: true：use instance name as subdomain
+        # false: use instancename+"-vpc" as subdomain
+        # @type UsePublicDomain: Boolean
+
+        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain
+        
+        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil)
+          @InstanceId = instanceid
+          @VpcId = vpcid
+          @EniLBIp = enilbip
+          @UsePublicDomain = usepublicdomain
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @EniLBIp = params['EniLBIp']
+          @UsePublicDomain = params['UsePublicDomain']
+        end
+      end
+
+      # vpc私有域名解析状态
+      class VpcPrivateDomainStatus < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param VpcId: unique vpc id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param Status: ENABLE代表已经开启，DISABLE代表未开启，ERROR代表查询出错
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Region, :VpcId, :Status
+        
+        def initialize(region=nil, vpcid=nil, status=nil)
+          @Region = region
+          @VpcId = vpcid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @Status = params['Status']
         end
       end
 

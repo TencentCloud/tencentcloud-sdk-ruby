@@ -125,6 +125,33 @@ module TencentCloud
         end
       end
 
+      # 用于场内上报当前相机的状态
+      class CameraState < TencentCloud::Common::AbstractModel
+        # @param CameraId: 相机ID
+        # @type CameraId: Integer
+        # @param State: 相机状态:
+        # 10: 初始化
+        # 11: 未知状态
+        # 12: 网络异常
+        # 13: 未授权
+        # 14: 相机App异常
+        # 15: 相机取流异常
+        # 16: 状态正常
+        # @type State: Integer
+
+        attr_accessor :CameraId, :State
+        
+        def initialize(cameraid=nil, state=nil)
+          @CameraId = cameraid
+          @State = state
+        end
+
+        def deserialize(params)
+          @CameraId = params['CameraId']
+          @State = params['State']
+        end
+      end
+
       # 摄像头包含简单的点位信息
       class CameraZones < TencentCloud::Common::AbstractModel
         # @param CameraId: 摄像头ID
@@ -138,8 +165,15 @@ module TencentCloud
         # @param CameraIp: 摄像头IP
         # @type CameraIp: String
         # @param CameraState: 摄像头状态:
-        # 0: 异常
-        # 1: 正常
+        # 0: 异常 (不再使用)
+        # 1: 正常 (不再使用)
+        # 10: 初始化
+        # 11: 未知状态 (因服务内部错误产生)
+        # 12: 网络异常
+        # 13: 未授权
+        # 14: 相机App异常
+        # 15: 相机取流异常
+        # 16: 正常
         # @type CameraState: Integer
         # @param Zones: 点位列表
         # @type Zones: Array
@@ -148,10 +182,13 @@ module TencentCloud
         # 200W(1920*1080)
         # 400W(2560*1440)
         # @type Pixel: String
+        # @param RTSP: 相机Rtsp地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RTSP: String
 
-        attr_accessor :CameraId, :CameraName, :CameraFeature, :CameraIp, :CameraState, :Zones, :Pixel
+        attr_accessor :CameraId, :CameraName, :CameraFeature, :CameraIp, :CameraState, :Zones, :Pixel, :RTSP
         
-        def initialize(cameraid=nil, cameraname=nil, camerafeature=nil, cameraip=nil, camerastate=nil, zones=nil, pixel=nil)
+        def initialize(cameraid=nil, cameraname=nil, camerafeature=nil, cameraip=nil, camerastate=nil, zones=nil, pixel=nil, rtsp=nil)
           @CameraId = cameraid
           @CameraName = cameraname
           @CameraFeature = camerafeature
@@ -159,6 +196,7 @@ module TencentCloud
           @CameraState = camerastate
           @Zones = zones
           @Pixel = pixel
+          @RTSP = rtsp
         end
 
         def deserialize(params)
@@ -174,6 +212,7 @@ module TencentCloud
             end
           end
           @Pixel = params['Pixel']
+          @RTSP = params['RTSP']
         end
       end
 
@@ -378,6 +417,51 @@ module TencentCloud
         end
       end
 
+      # CreateCameraState请求参数结构体
+      class CreateCameraStateRequest < TencentCloud::Common::AbstractModel
+        # @param GroupCode: 集团编码
+        # @type GroupCode: String
+        # @param MallId: 广场ID
+        # @type MallId: Integer
+        # @param CameraStates: 场内所有相机的状态值
+        # @type CameraStates: Array
+
+        attr_accessor :GroupCode, :MallId, :CameraStates
+        
+        def initialize(groupcode=nil, mallid=nil, camerastates=nil)
+          @GroupCode = groupcode
+          @MallId = mallid
+          @CameraStates = camerastates
+        end
+
+        def deserialize(params)
+          @GroupCode = params['GroupCode']
+          @MallId = params['MallId']
+          unless params['CameraStates'].nil?
+            @CameraStates = []
+            params['CameraStates'].each do |i|
+              @CameraStates << CameraState.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # CreateCameraState返回参数结构体
+      class CreateCameraStateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCapture请求参数结构体
       class CreateCaptureRequest < TencentCloud::Common::AbstractModel
         # @param Data: 原始抓拍报文
@@ -434,10 +518,12 @@ module TencentCloud
         # @type State: Integer
         # @param Image: 图片base64字符串
         # @type Image: String
+        # @param Warnings: 告警列表
+        # @type Warnings: Array
 
-        attr_accessor :GroupCode, :MallId, :ZoneId, :CameraId, :CaptureTime, :State, :Image
+        attr_accessor :GroupCode, :MallId, :ZoneId, :CameraId, :CaptureTime, :State, :Image, :Warnings
         
-        def initialize(groupcode=nil, mallid=nil, zoneid=nil, cameraid=nil, capturetime=nil, state=nil, image=nil)
+        def initialize(groupcode=nil, mallid=nil, zoneid=nil, cameraid=nil, capturetime=nil, state=nil, image=nil, warnings=nil)
           @GroupCode = groupcode
           @MallId = mallid
           @ZoneId = zoneid
@@ -445,6 +531,7 @@ module TencentCloud
           @CaptureTime = capturetime
           @State = state
           @Image = image
+          @Warnings = warnings
         end
 
         def deserialize(params)
@@ -455,6 +542,12 @@ module TencentCloud
           @CaptureTime = params['CaptureTime']
           @State = params['State']
           @Image = params['Image']
+          unless params['Warnings'].nil?
+            @Warnings = []
+            params['Warnings'].each do |i|
+              @Warnings << MultiBizWarning.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -988,6 +1081,131 @@ module TencentCloud
         end
       end
 
+      # ModifyMultiBizConfig请求参数结构体
+      class ModifyMultiBizConfigRequest < TencentCloud::Common::AbstractModel
+        # @param GroupCode: 集团编码
+        # @type GroupCode: String
+        # @param MallId: 广场ID
+        # @type MallId: Integer
+        # @param ZoneId: 点位ID
+        # @type ZoneId: Integer
+        # @param CameraId: 摄像头ID
+        # @type CameraId: Integer
+        # @param MonitoringAreas: 监控区域
+        # @type MonitoringAreas: Array
+
+        attr_accessor :GroupCode, :MallId, :ZoneId, :CameraId, :MonitoringAreas
+        
+        def initialize(groupcode=nil, mallid=nil, zoneid=nil, cameraid=nil, monitoringareas=nil)
+          @GroupCode = groupcode
+          @MallId = mallid
+          @ZoneId = zoneid
+          @CameraId = cameraid
+          @MonitoringAreas = monitoringareas
+        end
+
+        def deserialize(params)
+          @GroupCode = params['GroupCode']
+          @MallId = params['MallId']
+          @ZoneId = params['ZoneId']
+          @CameraId = params['CameraId']
+          unless params['MonitoringAreas'].nil?
+            @MonitoringAreas = []
+            params['MonitoringAreas'].each do |i|
+              @MonitoringAreas << Polygon.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # ModifyMultiBizConfig返回参数结构体
+      class ModifyMultiBizConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 多经点位告警
+      class MultiBizWarning < TencentCloud::Common::AbstractModel
+        # @param Id: 编号
+        # @type Id: Integer
+        # @param MonitoringArea: 监控区域
+        # @type MonitoringArea: Array
+        # @param WarningInfos: 告警列表
+        # @type WarningInfos: Array
+
+        attr_accessor :Id, :MonitoringArea, :WarningInfos
+        
+        def initialize(id=nil, monitoringarea=nil, warninginfos=nil)
+          @Id = id
+          @MonitoringArea = monitoringarea
+          @WarningInfos = warninginfos
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['MonitoringArea'].nil?
+            @MonitoringArea = []
+            params['MonitoringArea'].each do |i|
+              @MonitoringArea << Point.new.deserialize(i)
+            end
+          end
+          unless params['WarningInfos'].nil?
+            @WarningInfos = []
+            params['WarningInfos'].each do |i|
+              @WarningInfos << MultiBizWarningInfo.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 多经点位告警信息
+      class MultiBizWarningInfo < TencentCloud::Common::AbstractModel
+        # @param WarningType: 告警类型：
+        # 0: 无变化
+        # 1: 侵占
+        # 2: 消失
+        # @type WarningType: Integer
+        # @param WarningAreaSize: 告警侵占或消失面积
+        # @type WarningAreaSize: Float
+        # @param WarningLocation: 告警侵占或消失坐标
+        # @type WarningLocation: :class:`Tencentcloud::Ump.v20200918.models.Point`
+        # @param WarningAreaContour: 告警侵占或消失轮廓
+        # @type WarningAreaContour: Array
+
+        attr_accessor :WarningType, :WarningAreaSize, :WarningLocation, :WarningAreaContour
+        
+        def initialize(warningtype=nil, warningareasize=nil, warninglocation=nil, warningareacontour=nil)
+          @WarningType = warningtype
+          @WarningAreaSize = warningareasize
+          @WarningLocation = warninglocation
+          @WarningAreaContour = warningareacontour
+        end
+
+        def deserialize(params)
+          @WarningType = params['WarningType']
+          @WarningAreaSize = params['WarningAreaSize']
+          unless params['WarningLocation'].nil?
+            @WarningLocation = Point.new.deserialize(params['WarningLocation'])
+          end
+          unless params['WarningAreaContour'].nil?
+            @WarningAreaContour = []
+            params['WarningAreaContour'].each do |i|
+              @WarningAreaContour << Point.new.deserialize(i)
+            end
+          end
+        end
+      end
+
       # 点
       class Point < TencentCloud::Common::AbstractModel
         # @param X: X坐标
@@ -1061,6 +1279,63 @@ module TencentCloud
           @OnlineCount = params['OnlineCount']
           @OfflineCount = params['OfflineCount']
           @State = params['State']
+        end
+      end
+
+      # ReportServiceRegister请求参数结构体
+      class ReportServiceRegisterRequest < TencentCloud::Common::AbstractModel
+        # @param GroupCode: 集团编码
+        # @type GroupCode: String
+        # @param MallId: 广场ID
+        # @type MallId: Integer
+        # @param ServiceRegisterInfos: 服务上报当前的服务能力信息
+        # @type ServiceRegisterInfos: Array
+        # @param ServerIp: 服务内网Ip
+        # @type ServerIp: String
+        # @param ServerNodeId: 上报服务所在服务器的唯一ID
+        # @type ServerNodeId: String
+        # @param ReportTime: 上报时间戳, 单位毫秒
+        # @type ReportTime: Integer
+
+        attr_accessor :GroupCode, :MallId, :ServiceRegisterInfos, :ServerIp, :ServerNodeId, :ReportTime
+        
+        def initialize(groupcode=nil, mallid=nil, serviceregisterinfos=nil, serverip=nil, servernodeid=nil, reporttime=nil)
+          @GroupCode = groupcode
+          @MallId = mallid
+          @ServiceRegisterInfos = serviceregisterinfos
+          @ServerIp = serverip
+          @ServerNodeId = servernodeid
+          @ReportTime = reporttime
+        end
+
+        def deserialize(params)
+          @GroupCode = params['GroupCode']
+          @MallId = params['MallId']
+          unless params['ServiceRegisterInfos'].nil?
+            @ServiceRegisterInfos = []
+            params['ServiceRegisterInfos'].each do |i|
+              @ServiceRegisterInfos << ServiceRegisterInfo.new.deserialize(i)
+            end
+          end
+          @ServerIp = params['ServerIp']
+          @ServerNodeId = params['ServerNodeId']
+          @ReportTime = params['ReportTime']
+        end
+      end
+
+      # ReportServiceRegister返回参数结构体
+      class ReportServiceRegisterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1174,6 +1449,29 @@ module TencentCloud
               @DiskInfos << DiskInfo.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # 用于服务注册时表示当前服务的具体信息
+      class ServiceRegisterInfo < TencentCloud::Common::AbstractModel
+        # @param CgiUrl: 当前服务的回调地址
+        # @type CgiUrl: String
+        # @param ServiceType: 当前服务类型:
+        # 1: 多经服务
+        # 2: 相机误报警确认
+        # 3: 底图更新
+        # @type ServiceType: Integer
+
+        attr_accessor :CgiUrl, :ServiceType
+        
+        def initialize(cgiurl=nil, servicetype=nil)
+          @CgiUrl = cgiurl
+          @ServiceType = servicetype
+        end
+
+        def deserialize(params)
+          @CgiUrl = params['CgiUrl']
+          @ServiceType = params['ServiceType']
         end
       end
 

@@ -2185,6 +2185,80 @@ module TencentCloud
         end
       end
 
+      # DescribeGeneralStat请求参数结构体
+      class DescribeGeneralStatRequest < TencentCloud::Common::AbstractModel
+        # @param MachineType: 云主机类型。
+        # <li>CVM：表示虚拟主机</li>
+        # <li>BM:  表示黑石物理机</li>
+        # @type MachineType: String
+        # @param MachineRegion: 机器所属地域。如：ap-guangzhou，ap-shanghai
+        # @type MachineRegion: String
+
+        attr_accessor :MachineType, :MachineRegion
+        
+        def initialize(machinetype=nil, machineregion=nil)
+          @MachineType = machinetype
+          @MachineRegion = machineregion
+        end
+
+        def deserialize(params)
+          @MachineType = params['MachineType']
+          @MachineRegion = params['MachineRegion']
+        end
+      end
+
+      # DescribeGeneralStat返回参数结构体
+      class DescribeGeneralStatResponse < TencentCloud::Common::AbstractModel
+        # @param MachinesAll: 云主机总数
+        # @type MachinesAll: Integer
+        # @param MachinesUninstalled: 云主机没有安装主机安全客户端的总数
+        # @type MachinesUninstalled: Integer
+        # @param AgentsAll: 主机安全客户端总数的总数
+        # @type AgentsAll: Integer
+        # @param AgentsOnline: 主机安全客户端在线的总数
+        # @type AgentsOnline: Integer
+        # @param AgentsOffline: 主机安全客户端离线的总数
+        # @type AgentsOffline: Integer
+        # @param AgentsPro: 主机安全客户端专业版的总数
+        # @type AgentsPro: Integer
+        # @param AgentsBasic: 主机安全客户端基础版的总数
+        # @type AgentsBasic: Integer
+        # @param AgentsProExpireWithInSevenDays: 7天内到期的预付费专业版总数
+        # @type AgentsProExpireWithInSevenDays: Integer
+        # @param RiskMachine: 风险主机总数
+        # @type RiskMachine: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MachinesAll, :MachinesUninstalled, :AgentsAll, :AgentsOnline, :AgentsOffline, :AgentsPro, :AgentsBasic, :AgentsProExpireWithInSevenDays, :RiskMachine, :RequestId
+        
+        def initialize(machinesall=nil, machinesuninstalled=nil, agentsall=nil, agentsonline=nil, agentsoffline=nil, agentspro=nil, agentsbasic=nil, agentsproexpirewithinsevendays=nil, riskmachine=nil, requestid=nil)
+          @MachinesAll = machinesall
+          @MachinesUninstalled = machinesuninstalled
+          @AgentsAll = agentsall
+          @AgentsOnline = agentsonline
+          @AgentsOffline = agentsoffline
+          @AgentsPro = agentspro
+          @AgentsBasic = agentsbasic
+          @AgentsProExpireWithInSevenDays = agentsproexpirewithinsevendays
+          @RiskMachine = riskmachine
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MachinesAll = params['MachinesAll']
+          @MachinesUninstalled = params['MachinesUninstalled']
+          @AgentsAll = params['AgentsAll']
+          @AgentsOnline = params['AgentsOnline']
+          @AgentsOffline = params['AgentsOffline']
+          @AgentsPro = params['AgentsPro']
+          @AgentsBasic = params['AgentsBasic']
+          @AgentsProExpireWithInSevenDays = params['AgentsProExpireWithInSevenDays']
+          @RiskMachine = params['RiskMachine']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHistoryAccounts请求参数结构体
       class DescribeHistoryAccountsRequest < TencentCloud::Common::AbstractModel
         # @param Uuid: 云镜客户端唯一Uuid。

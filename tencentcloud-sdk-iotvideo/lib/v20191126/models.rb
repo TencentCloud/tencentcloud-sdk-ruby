@@ -860,6 +860,43 @@ module TencentCloud
         end
       end
 
+      # 接口DescribeStream输出参数
+      class Data < TencentCloud::Common::AbstractModel
+        # @param Protocol: 直播协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param URI: 流媒体播放地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type URI: String
+        # @param ExpireTime: 流媒体地址过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+        # @param VideoCodec: 视频编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoCodec: String
+        # @param AudioCodec: 音频编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioCodec: String
+
+        attr_accessor :Protocol, :URI, :ExpireTime, :VideoCodec, :AudioCodec
+        
+        def initialize(protocol=nil, uri=nil, expiretime=nil, videocodec=nil, audiocodec=nil)
+          @Protocol = protocol
+          @URI = uri
+          @ExpireTime = expiretime
+          @VideoCodec = videocodec
+          @AudioCodec = audiocodec
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @URI = params['URI']
+          @ExpireTime = params['ExpireTime']
+          @VideoCodec = params['VideoCodec']
+          @AudioCodec = params['AudioCodec']
+        end
+      end
+
       # DeleteAppUsr请求参数结构体
       class DeleteAppUsrRequest < TencentCloud::Common::AbstractModel
         # @param AccessId: 客户的终端用户在IoT Video上的唯一标识ID
@@ -2220,6 +2257,61 @@ module TencentCloud
             params['Data'].each do |i|
               @Data << StorageOrder.new.deserialize(i)
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStream请求参数结构体
+      class DescribeStreamRequest < TencentCloud::Common::AbstractModel
+        # @param Tid: 设备TID
+        # @type Tid: String
+        # @param AccessId: 终端用户ID
+        # @type AccessId: String
+        # @param Protocol: 直播协议, 可选值：RTSP、RTMP、HLS、HLS-fmp4
+        # @type Protocol: String
+        # @param Address: 音视频流地址
+        # @type Address: String
+        # @param AccessToken: 设备访问token，访问用户未绑定的设备时，需提供该参数
+        # @type AccessToken: String
+
+        attr_accessor :Tid, :AccessId, :Protocol, :Address, :AccessToken
+        
+        def initialize(tid=nil, accessid=nil, protocol=nil, address=nil, accesstoken=nil)
+          @Tid = tid
+          @AccessId = accessid
+          @Protocol = protocol
+          @Address = address
+          @AccessToken = accesstoken
+        end
+
+        def deserialize(params)
+          @Tid = params['Tid']
+          @AccessId = params['AccessId']
+          @Protocol = params['Protocol']
+          @Address = params['Address']
+          @AccessToken = params['AccessToken']
+        end
+      end
+
+      # DescribeStream返回参数结构体
+      class DescribeStreamResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回参数结构
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Iotvideo.v20191126.models.Data`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = Data.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end

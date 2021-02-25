@@ -1397,10 +1397,12 @@ module TencentCloud
         # @type AutoRecord: Boolean
         # @param ExtraData: 内部参数，不需要关注此参数
         # @type ExtraData: String
+        # @param PrivateMapKey: TRTC高级权限控制参数，如果在实时音视频开启了高级权限控制功能，必须提供PrivateMapKey才能保证正常推流。
+        # @type PrivateMapKey: String
 
-        attr_accessor :SdkAppId, :RoomId, :PushUserId, :PushUserSig, :Whiteboard, :AutoStopTimeout, :AutoManageBackup, :Backup, :AutoRecord, :ExtraData
+        attr_accessor :SdkAppId, :RoomId, :PushUserId, :PushUserSig, :Whiteboard, :AutoStopTimeout, :AutoManageBackup, :Backup, :AutoRecord, :ExtraData, :PrivateMapKey
         
-        def initialize(sdkappid=nil, roomid=nil, pushuserid=nil, pushusersig=nil, whiteboard=nil, autostoptimeout=nil, automanagebackup=nil, backup=nil, autorecord=nil, extradata=nil)
+        def initialize(sdkappid=nil, roomid=nil, pushuserid=nil, pushusersig=nil, whiteboard=nil, autostoptimeout=nil, automanagebackup=nil, backup=nil, autorecord=nil, extradata=nil, privatemapkey=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @PushUserId = pushuserid
@@ -1411,6 +1413,7 @@ module TencentCloud
           @Backup = backup
           @AutoRecord = autorecord
           @ExtraData = extradata
+          @PrivateMapKey = privatemapkey
         end
 
         def deserialize(params)
@@ -1428,6 +1431,7 @@ module TencentCloud
           end
           @AutoRecord = params['AutoRecord']
           @ExtraData = params['ExtraData']
+          @PrivateMapKey = params['PrivateMapKey']
         end
       end
 
