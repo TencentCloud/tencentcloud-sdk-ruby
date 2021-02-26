@@ -2973,6 +2973,75 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusAlertHistory请求参数结构体
+      class DescribePrometheusAlertHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param RuleName: 告警名称
+        # @type RuleName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Labels: label集合
+        # @type Labels: String
+        # @param Offset: 分片
+        # @type Offset: Integer
+        # @param Limit: 分片
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :RuleName, :StartTime, :EndTime, :Labels, :Offset, :Limit
+        
+        def initialize(instanceid=nil, rulename=nil, starttime=nil, endtime=nil, labels=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @RuleName = rulename
+          @StartTime = starttime
+          @EndTime = endtime
+          @Labels = labels
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RuleName = params['RuleName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Labels = params['Labels']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePrometheusAlertHistory返回参数结构体
+      class DescribePrometheusAlertHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 告警历史
+        # @type Items: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :Total, :RequestId
+        
+        def initialize(items=nil, total=nil, requestid=nil)
+          @Items = items
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << PrometheusAlertHistoryItem.new.deserialize(i)
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusAlertRule请求参数结构体
       class DescribePrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -4678,6 +4747,30 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Status = params['Status']
           @ClusterName = params['ClusterName']
+        end
+      end
+
+      # prometheus告警历史
+      class PrometheusAlertHistoryItem < TencentCloud::Common::AbstractModel
+        # @param RuleName: 告警名称
+        # @type RuleName: String
+        # @param StartTime: 告警开始时间
+        # @type StartTime: String
+        # @param Content: 告警内容
+        # @type Content: String
+
+        attr_accessor :RuleName, :StartTime, :Content
+        
+        def initialize(rulename=nil, starttime=nil, content=nil)
+          @RuleName = rulename
+          @StartTime = starttime
+          @Content = content
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @StartTime = params['StartTime']
+          @Content = params['Content']
         end
       end
 

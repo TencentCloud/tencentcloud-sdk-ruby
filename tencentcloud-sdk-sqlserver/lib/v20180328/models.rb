@@ -405,6 +405,26 @@ module TencentCloud
         end
       end
 
+      # 查询已经上传的备份文件大小。
+      class CosUploadBackupFile < TencentCloud::Common::AbstractModel
+        # @param FileName: 备份名称
+        # @type FileName: String
+        # @param Size: 备份大小
+        # @type Size: Integer
+
+        attr_accessor :FileName, :Size
+        
+        def initialize(filename=nil, size=nil)
+          @FileName = filename
+          @Size = size
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @Size = params['Size']
+        end
+      end
+
       # CreateAccount请求参数结构体
       class CreateAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据库实例ID，形如mssql-njj2mtpl
@@ -446,6 +466,58 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBackupMigration请求参数结构体
+      class CreateBackupMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param RecoveryType: 迁移任务恢复类型，FULL-全量备份恢复，FULL_LOG-全量备份+事务日志恢复，FULL_DIFF-全量备份+差异备份恢复
+        # @type RecoveryType: String
+        # @param UploadType: 备份上传类型，COS_URL-备份放在用户的对象存储上，提供URL。COS_UPLOAD-备份放在业务的对象存储上，需要用户上传。
+        # @type UploadType: String
+        # @param MigrationName: 任务名称
+        # @type MigrationName: String
+        # @param BackupFiles: UploadType是COS_URL时这里填URL，COS_UPLOAD这里填备份文件的名字。只支持1个备份文件，但1个备份文件内可包含多个库
+        # @type BackupFiles: Array
+
+        attr_accessor :InstanceId, :RecoveryType, :UploadType, :MigrationName, :BackupFiles
+        
+        def initialize(instanceid=nil, recoverytype=nil, uploadtype=nil, migrationname=nil, backupfiles=nil)
+          @InstanceId = instanceid
+          @RecoveryType = recoverytype
+          @UploadType = uploadtype
+          @MigrationName = migrationname
+          @BackupFiles = backupfiles
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RecoveryType = params['RecoveryType']
+          @UploadType = params['UploadType']
+          @MigrationName = params['MigrationName']
+          @BackupFiles = params['BackupFiles']
+        end
+      end
+
+      # CreateBackupMigration返回参数结构体
+      class CreateBackupMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param BackupMigrationId: 备份导入任务ID
+        # @type BackupMigrationId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupMigrationId, :RequestId
+        
+        def initialize(backupmigrationid=nil, requestid=nil)
+          @BackupMigrationId = backupmigrationid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BackupMigrationId = params['BackupMigrationId']
           @RequestId = params['RequestId']
         end
       end
@@ -777,6 +849,54 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateIncrementalMigration请求参数结构体
+      class CreateIncrementalMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+        # @param BackupFiles: 增量备份文件，全量备份任务UploadType是COS_URL时这里填URL，是COS_UPLOAD这里填备份文件的名字；只支持1个备份文件，但1个备份文件内可包含多个库
+        # @type BackupFiles: Array
+        # @param IsRecovery: 是否需要恢复，NO-不需要，YES-需要，默认不需要
+        # @type IsRecovery: String
+
+        attr_accessor :InstanceId, :BackupMigrationId, :BackupFiles, :IsRecovery
+        
+        def initialize(instanceid=nil, backupmigrationid=nil, backupfiles=nil, isrecovery=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+          @BackupFiles = backupfiles
+          @IsRecovery = isrecovery
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+          @BackupFiles = params['BackupFiles']
+          @IsRecovery = params['IsRecovery']
+        end
+      end
+
+      # CreateIncrementalMigration返回参数结构体
+      class CreateIncrementalMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param IncrementalMigrationId: 增量备份导入任务ID
+        # @type IncrementalMigrationId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IncrementalMigrationId, :RequestId
+        
+        def initialize(incrementalmigrationid=nil, requestid=nil)
+          @IncrementalMigrationId = incrementalmigrationid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IncrementalMigrationId = params['IncrementalMigrationId']
           @RequestId = params['RequestId']
         end
       end
@@ -1481,6 +1601,42 @@ module TencentCloud
         end
       end
 
+      # DeleteBackupMigration请求参数结构体
+      class DeleteBackupMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 目标实例ID，由DescribeBackupMigration接口返回
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由DescribeBackupMigration接口返回
+        # @type BackupMigrationId: String
+
+        attr_accessor :InstanceId, :BackupMigrationId
+        
+        def initialize(instanceid=nil, backupmigrationid=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+        end
+      end
+
+      # DeleteBackupMigration返回参数结构体
+      class DeleteBackupMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDBInstance请求参数结构体
       class DeleteDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：mssql-3l3fgqn7 或 mssqlro-3l3fgqn7
@@ -1549,6 +1705,46 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteIncrementalMigration请求参数结构体
+      class DeleteIncrementalMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID
+        # @type BackupMigrationId: String
+        # @param IncrementalMigrationId: 增量备份导入任务ID
+        # @type IncrementalMigrationId: String
+
+        attr_accessor :InstanceId, :BackupMigrationId, :IncrementalMigrationId
+        
+        def initialize(instanceid=nil, backupmigrationid=nil, incrementalmigrationid=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+          @IncrementalMigrationId = incrementalmigrationid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+          @IncrementalMigrationId = params['IncrementalMigrationId']
+        end
+      end
+
+      # DeleteIncrementalMigration返回参数结构体
+      class DeleteIncrementalMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1763,6 +1959,188 @@ module TencentCloud
           @DBs = params['DBs']
           @InternalAddr = params['InternalAddr']
           @ExternalAddr = params['ExternalAddr']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupCommand请求参数结构体
+      class DescribeBackupCommandRequest < TencentCloud::Common::AbstractModel
+        # @param BackupFileType: 备份文件类型，FULL-全量备份，FULL_LOG-全量备份需要日志增量，FULL_DIFF-全量备份需要差异增量，LOG-日志备份，DIFF-差异备份
+        # @type BackupFileType: String
+        # @param DataBaseName: 数据库名称
+        # @type DataBaseName: String
+        # @param IsRecovery: 是否需要恢复，NO-不需要，YES-需要
+        # @type IsRecovery: String
+        # @param LocalPath: 备份文件保存的路径；如果不填则默认在D:\\
+        # @type LocalPath: String
+
+        attr_accessor :BackupFileType, :DataBaseName, :IsRecovery, :LocalPath
+        
+        def initialize(backupfiletype=nil, databasename=nil, isrecovery=nil, localpath=nil)
+          @BackupFileType = backupfiletype
+          @DataBaseName = databasename
+          @IsRecovery = isrecovery
+          @LocalPath = localpath
+        end
+
+        def deserialize(params)
+          @BackupFileType = params['BackupFileType']
+          @DataBaseName = params['DataBaseName']
+          @IsRecovery = params['IsRecovery']
+          @LocalPath = params['LocalPath']
+        end
+      end
+
+      # DescribeBackupCommand返回参数结构体
+      class DescribeBackupCommandResponse < TencentCloud::Common::AbstractModel
+        # @param Command: 创建备份命令
+        # @type Command: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Command, :RequestId
+        
+        def initialize(command=nil, requestid=nil)
+          @Command = command
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupMigration请求参数结构体
+      class DescribeBackupMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+        # @param MigrationName: 导入任务名称
+        # @type MigrationName: String
+        # @param BackupFileName: 备份文件名称
+        # @type BackupFileName: String
+        # @param StatusSet: 导入任务状态集合
+        # @type StatusSet: Array
+        # @param RecoveryType: 导入任务恢复类型，FULL,FULL_LOG,FULL_DIFF
+        # @type RecoveryType: String
+        # @param UploadType: COS_URL-备份放在用户的对象存储上，提供URL。COS_UPLOAD-备份放在业务的对象存储上，用户上传
+        # @type UploadType: String
+        # @param Limit: 分页，页大小
+        # @type Limit: Integer
+        # @param Offset: 分页，页数
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，name,createTime,startTime,endTime
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，desc,asc
+        # @type OrderByType: String
+
+        attr_accessor :InstanceId, :BackupMigrationId, :MigrationName, :BackupFileName, :StatusSet, :RecoveryType, :UploadType, :Limit, :Offset, :OrderBy, :OrderByType
+        
+        def initialize(instanceid=nil, backupmigrationid=nil, migrationname=nil, backupfilename=nil, statusset=nil, recoverytype=nil, uploadtype=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+          @MigrationName = migrationname
+          @BackupFileName = backupfilename
+          @StatusSet = statusset
+          @RecoveryType = recoverytype
+          @UploadType = uploadtype
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+          @MigrationName = params['MigrationName']
+          @BackupFileName = params['BackupFileName']
+          @StatusSet = params['StatusSet']
+          @RecoveryType = params['RecoveryType']
+          @UploadType = params['UploadType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeBackupMigration返回参数结构体
+      class DescribeBackupMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 迁移任务总数
+        # @type TotalCount: Integer
+        # @param BackupMigrationSet: 迁移任务集合
+        # @type BackupMigrationSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BackupMigrationSet, :RequestId
+        
+        def initialize(totalcount=nil, backupmigrationset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BackupMigrationSet = backupmigrationset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BackupMigrationSet'].nil?
+            @BackupMigrationSet = []
+            params['BackupMigrationSet'].each do |i|
+              @BackupMigrationSet << Migration.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupUploadSize请求参数结构体
+      class DescribeBackupUploadSizeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+        # @param IncrementalMigrationId: 增量导入任务ID
+        # @type IncrementalMigrationId: String
+
+        attr_accessor :InstanceId, :BackupMigrationId, :IncrementalMigrationId
+        
+        def initialize(instanceid=nil, backupmigrationid=nil, incrementalmigrationid=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+          @IncrementalMigrationId = incrementalmigrationid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+          @IncrementalMigrationId = params['IncrementalMigrationId']
+        end
+      end
+
+      # DescribeBackupUploadSize返回参数结构体
+      class DescribeBackupUploadSizeResponse < TencentCloud::Common::AbstractModel
+        # @param CosUploadBackupFileSet: 已上传的备份的信息
+        # @type CosUploadBackupFileSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosUploadBackupFileSet, :RequestId
+        
+        def initialize(cosuploadbackupfileset=nil, requestid=nil)
+          @CosUploadBackupFileSet = cosuploadbackupfileset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CosUploadBackupFileSet'].nil?
+            @CosUploadBackupFileSet = []
+            params['CosUploadBackupFileSet'].each do |i|
+              @CosUploadBackupFileSet << CosUploadBackupFile.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2123,6 +2501,83 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIncrementalMigration请求参数结构体
+      class DescribeIncrementalMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupFileName: 备份文件名称
+        # @type BackupFileName: String
+        # @param StatusSet: 导入任务状态集合
+        # @type StatusSet: Array
+        # @param Limit: 分页，页大小
+        # @type Limit: Integer
+        # @param Offset: 分页，页数
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，name,createTime,startTime,endTime
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，desc,asc
+        # @type OrderByType: String
+        # @param IncrementalMigrationId: 增量备份导入任务ID
+        # @type IncrementalMigrationId: String
+
+        attr_accessor :BackupMigrationId, :InstanceId, :BackupFileName, :StatusSet, :Limit, :Offset, :OrderBy, :OrderByType, :IncrementalMigrationId
+        
+        def initialize(backupmigrationid=nil, instanceid=nil, backupfilename=nil, statusset=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil, incrementalmigrationid=nil)
+          @BackupMigrationId = backupmigrationid
+          @InstanceId = instanceid
+          @BackupFileName = backupfilename
+          @StatusSet = statusset
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @IncrementalMigrationId = incrementalmigrationid
+        end
+
+        def deserialize(params)
+          @BackupMigrationId = params['BackupMigrationId']
+          @InstanceId = params['InstanceId']
+          @BackupFileName = params['BackupFileName']
+          @StatusSet = params['StatusSet']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @IncrementalMigrationId = params['IncrementalMigrationId']
+        end
+      end
+
+      # DescribeIncrementalMigration返回参数结构体
+      class DescribeIncrementalMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 增量导入任务总数
+        # @type TotalCount: Integer
+        # @param IncrementalMigrationSet: 增量导入任务集合
+        # @type IncrementalMigrationSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :IncrementalMigrationSet, :RequestId
+        
+        def initialize(totalcount=nil, incrementalmigrationset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @IncrementalMigrationSet = incrementalmigrationset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['IncrementalMigrationSet'].nil?
+            @IncrementalMigrationSet = []
+            params['IncrementalMigrationSet'].each do |i|
+              @IncrementalMigrationSet << Migration.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2957,6 +3412,146 @@ module TencentCloud
         end
       end
 
+      # DescribeUploadBackupInfo请求参数结构体
+      class DescribeUploadBackupInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+
+        attr_accessor :InstanceId, :BackupMigrationId
+        
+        def initialize(instanceid=nil, backupmigrationid=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+        end
+      end
+
+      # DescribeUploadBackupInfo返回参数结构体
+      class DescribeUploadBackupInfoResponse < TencentCloud::Common::AbstractModel
+        # @param BucketName: 存储桶名称
+        # @type BucketName: String
+        # @param Region: 存储桶地域信息
+        # @type Region: String
+        # @param Path: 存储路径
+        # @type Path: String
+        # @param TmpSecretId: 临时密钥ID
+        # @type TmpSecretId: String
+        # @param TmpSecretKey: 临时密钥Key
+        # @type TmpSecretKey: String
+        # @param XCosSecurityToken: 临时密钥Token
+        # @type XCosSecurityToken: String
+        # @param StartTime: 临时密钥开始时间
+        # @type StartTime: String
+        # @param ExpiredTime: 临时密钥到期时间
+        # @type ExpiredTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :RequestId
+        
+        def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, requestid=nil)
+          @BucketName = bucketname
+          @Region = region
+          @Path = path
+          @TmpSecretId = tmpsecretid
+          @TmpSecretKey = tmpsecretkey
+          @XCosSecurityToken = xcossecuritytoken
+          @StartTime = starttime
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BucketName = params['BucketName']
+          @Region = params['Region']
+          @Path = params['Path']
+          @TmpSecretId = params['TmpSecretId']
+          @TmpSecretKey = params['TmpSecretKey']
+          @XCosSecurityToken = params['XCosSecurityToken']
+          @StartTime = params['StartTime']
+          @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUploadIncrementalInfo请求参数结构体
+      class DescribeUploadIncrementalInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+        # @param IncrementalMigrationId: 增量导入任务ID
+        # @type IncrementalMigrationId: String
+
+        attr_accessor :InstanceId, :BackupMigrationId, :IncrementalMigrationId
+        
+        def initialize(instanceid=nil, backupmigrationid=nil, incrementalmigrationid=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+          @IncrementalMigrationId = incrementalmigrationid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+          @IncrementalMigrationId = params['IncrementalMigrationId']
+        end
+      end
+
+      # DescribeUploadIncrementalInfo返回参数结构体
+      class DescribeUploadIncrementalInfoResponse < TencentCloud::Common::AbstractModel
+        # @param BucketName: 存储桶名称
+        # @type BucketName: String
+        # @param Region: 存储桶地域信息
+        # @type Region: String
+        # @param Path: 存储路径
+        # @type Path: String
+        # @param TmpSecretId: 临时密钥ID
+        # @type TmpSecretId: String
+        # @param TmpSecretKey: 临时密钥Key
+        # @type TmpSecretKey: String
+        # @param XCosSecurityToken: 临时密钥Token
+        # @type XCosSecurityToken: String
+        # @param StartTime: 临时密钥开始时间
+        # @type StartTime: String
+        # @param ExpiredTime: 临时密钥到期时间
+        # @type ExpiredTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :RequestId
+        
+        def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, requestid=nil)
+          @BucketName = bucketname
+          @Region = region
+          @Path = path
+          @TmpSecretId = tmpsecretid
+          @TmpSecretKey = tmpsecretkey
+          @XCosSecurityToken = xcossecuritytoken
+          @StartTime = starttime
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BucketName = params['BucketName']
+          @Region = params['Region']
+          @Path = params['Path']
+          @TmpSecretId = params['TmpSecretId']
+          @TmpSecretKey = params['TmpSecretKey']
+          @XCosSecurityToken = params['XCosSecurityToken']
+          @StartTime = params['StartTime']
+          @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZones请求参数结构体
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
 
@@ -3432,6 +4027,170 @@ module TencentCloud
         end
       end
 
+      # 冷备迁移导入
+      class Migration < TencentCloud::Common::AbstractModel
+        # @param MigrationId: 备份导入任务ID 或 增量导入任务ID
+        # @type MigrationId: String
+        # @param MigrationName: 备份导入名称，增量导入任务该字段为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrationName: String
+        # @param AppId: 应用ID
+        # @type AppId: Integer
+        # @param Region: 地域
+        # @type Region: String
+        # @param InstanceId: 迁移目标实例ID
+        # @type InstanceId: String
+        # @param RecoveryType: 迁移任务恢复类型
+        # @type RecoveryType: String
+        # @param UploadType: 备份用户上传类型，COS_URL-备份放在用户的对象存储上，提供URL。COS_UPLOAD-备份放在业务的对象存储上，用户上传
+        # @type UploadType: String
+        # @param BackupFiles: 备份文件列表，UploadType确定，COS_URL则保存URL，COS_UPLOAD则保存备份名称
+        # @type BackupFiles: Array
+        # @param Status: 迁移任务状态，
+        # @type Status: Integer
+        # @param CreateTime: 迁移任务创建时间
+        # @type CreateTime: String
+        # @param StartTime: 迁移任务开始时间
+        # @type StartTime: String
+        # @param EndTime: 迁移任务结束时间
+        # @type EndTime: String
+        # @param Message: 说明信息
+        # @type Message: String
+        # @param Detail: 迁移细节
+        # @type Detail: :class:`Tencentcloud::Sqlserver.v20180328.models.MigrationDetail`
+        # @param Action: 当前状态允许的操作
+        # @type Action: :class:`Tencentcloud::Sqlserver.v20180328.models.MigrationAction`
+        # @param IsRecovery: 是否是最终恢复，全量导入任务该字段为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRecovery: String
+
+        attr_accessor :MigrationId, :MigrationName, :AppId, :Region, :InstanceId, :RecoveryType, :UploadType, :BackupFiles, :Status, :CreateTime, :StartTime, :EndTime, :Message, :Detail, :Action, :IsRecovery
+        
+        def initialize(migrationid=nil, migrationname=nil, appid=nil, region=nil, instanceid=nil, recoverytype=nil, uploadtype=nil, backupfiles=nil, status=nil, createtime=nil, starttime=nil, endtime=nil, message=nil, detail=nil, action=nil, isrecovery=nil)
+          @MigrationId = migrationid
+          @MigrationName = migrationname
+          @AppId = appid
+          @Region = region
+          @InstanceId = instanceid
+          @RecoveryType = recoverytype
+          @UploadType = uploadtype
+          @BackupFiles = backupfiles
+          @Status = status
+          @CreateTime = createtime
+          @StartTime = starttime
+          @EndTime = endtime
+          @Message = message
+          @Detail = detail
+          @Action = action
+          @IsRecovery = isrecovery
+        end
+
+        def deserialize(params)
+          @MigrationId = params['MigrationId']
+          @MigrationName = params['MigrationName']
+          @AppId = params['AppId']
+          @Region = params['Region']
+          @InstanceId = params['InstanceId']
+          @RecoveryType = params['RecoveryType']
+          @UploadType = params['UploadType']
+          @BackupFiles = params['BackupFiles']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Message = params['Message']
+          unless params['Detail'].nil?
+            @Detail = MigrationDetail.new.deserialize(params['Detail'])
+          end
+          unless params['Action'].nil?
+            @Action = MigrationAction.new.deserialize(params['Action'])
+          end
+          @IsRecovery = params['IsRecovery']
+        end
+      end
+
+      # 冷备导入任务允许的操作
+      class MigrationAction < TencentCloud::Common::AbstractModel
+        # @param AllAction: 支持的所有操作，值包括：view(查看任务) ，modify(修改任务)， start(启动任务)，incremental(创建增量任务)，delete(删除任务)，upload(获取上传权限)。
+        # @type AllAction: Array
+        # @param AllowedAction: 当前状态允许的操作，AllAction的子集,为空表示禁止所有操作
+        # @type AllowedAction: Array
+
+        attr_accessor :AllAction, :AllowedAction
+        
+        def initialize(allaction=nil, allowedaction=nil)
+          @AllAction = allaction
+          @AllowedAction = allowedaction
+        end
+
+        def deserialize(params)
+          @AllAction = params['AllAction']
+          @AllowedAction = params['AllowedAction']
+        end
+      end
+
+      # 冷备导入任务迁移细节
+      class MigrationDetail < TencentCloud::Common::AbstractModel
+        # @param StepAll: 总步骤数
+        # @type StepAll: Integer
+        # @param StepNow: 当前步骤
+        # @type StepNow: Integer
+        # @param Progress: 总进度,如："30"表示30%
+        # @type Progress: Integer
+        # @param StepInfo: 步骤信息，null表示还未开始迁移
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepInfo: Array
+
+        attr_accessor :StepAll, :StepNow, :Progress, :StepInfo
+        
+        def initialize(stepall=nil, stepnow=nil, progress=nil, stepinfo=nil)
+          @StepAll = stepall
+          @StepNow = stepnow
+          @Progress = progress
+          @StepInfo = stepinfo
+        end
+
+        def deserialize(params)
+          @StepAll = params['StepAll']
+          @StepNow = params['StepNow']
+          @Progress = params['Progress']
+          unless params['StepInfo'].nil?
+            @StepInfo = []
+            params['StepInfo'].each do |i|
+              @StepInfo << MigrationStep.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 冷备导入任务迁移步骤细节
+      class MigrationStep < TencentCloud::Common::AbstractModel
+        # @param StepNo: 步骤序列
+        # @type StepNo: Integer
+        # @param StepName: 步骤展现名称
+        # @type StepName: String
+        # @param StepId: 英文ID标识
+        # @type StepId: String
+        # @param Status: 步骤状态:0-默认值,1-成功,2-失败,3-执行中,4-未执行
+        # @type Status: Integer
+
+        attr_accessor :StepNo, :StepName, :StepId, :Status
+        
+        def initialize(stepno=nil, stepname=nil, stepid=nil, status=nil)
+          @StepNo = stepno
+          @StepName = stepname
+          @StepId = stepid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @StepNo = params['StepNo']
+          @StepName = params['StepName']
+          @StepId = params['StepId']
+          @Status = params['Status']
+        end
+      end
+
       # ModifyAccountPrivilege请求参数结构体
       class ModifyAccountPrivilegeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据库实例ID，形如mssql-njj2mtpl
@@ -3514,6 +4273,62 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBackupMigration请求参数结构体
+      class ModifyBackupMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+        # @param MigrationName: 任务名称
+        # @type MigrationName: String
+        # @param RecoveryType: 迁移任务恢复类型，FULL,FULL_LOG,FULL_DIFF
+        # @type RecoveryType: String
+        # @param UploadType: COS_URL-备份放在用户的对象存储上，提供URL。COS_UPLOAD-备份放在业务的对象存储上，用户上传
+        # @type UploadType: String
+        # @param BackupFiles: UploadType是COS_URL时这里时URL，COS_UPLOAD这里填备份文件的名字；只支持1个备份文件，但1个备份文件内可包含多个库
+        # @type BackupFiles: Array
+
+        attr_accessor :InstanceId, :BackupMigrationId, :MigrationName, :RecoveryType, :UploadType, :BackupFiles
+        
+        def initialize(instanceid=nil, backupmigrationid=nil, migrationname=nil, recoverytype=nil, uploadtype=nil, backupfiles=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+          @MigrationName = migrationname
+          @RecoveryType = recoverytype
+          @UploadType = uploadtype
+          @BackupFiles = backupfiles
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+          @MigrationName = params['MigrationName']
+          @RecoveryType = params['RecoveryType']
+          @UploadType = params['UploadType']
+          @BackupFiles = params['BackupFiles']
+        end
+      end
+
+      # ModifyBackupMigration返回参数结构体
+      class ModifyBackupMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param BackupMigrationId: 备份导入任务ID
+        # @type BackupMigrationId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupMigrationId, :RequestId
+        
+        def initialize(backupmigrationid=nil, requestid=nil)
+          @BackupMigrationId = backupmigrationid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BackupMigrationId = params['BackupMigrationId']
           @RequestId = params['RequestId']
         end
       end
@@ -3892,6 +4707,58 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIncrementalMigration请求参数结构体
+      class ModifyIncrementalMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+        # @param IncrementalMigrationId: 增量导入任务ID
+        # @type IncrementalMigrationId: String
+        # @param IsRecovery: 是否需要恢复，NO-不需要，YES-需要
+        # @type IsRecovery: String
+        # @param BackupFiles: UploadType是COS_URL时这里时URL，COS_UPLOAD这里填备份文件的名字；只支持1个备份文件，但1个备份文件内可包含多个库
+        # @type BackupFiles: Array
+
+        attr_accessor :InstanceId, :BackupMigrationId, :IncrementalMigrationId, :IsRecovery, :BackupFiles
+        
+        def initialize(instanceid=nil, backupmigrationid=nil, incrementalmigrationid=nil, isrecovery=nil, backupfiles=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+          @IncrementalMigrationId = incrementalmigrationid
+          @IsRecovery = isrecovery
+          @BackupFiles = backupfiles
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+          @IncrementalMigrationId = params['IncrementalMigrationId']
+          @IsRecovery = params['IsRecovery']
+          @BackupFiles = params['BackupFiles']
+        end
+      end
+
+      # ModifyIncrementalMigration返回参数结构体
+      class ModifyIncrementalMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param IncrementalMigrationId: 增量备份导入任务ID
+        # @type IncrementalMigrationId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IncrementalMigrationId, :RequestId
+        
+        def initialize(incrementalmigrationid=nil, requestid=nil)
+          @IncrementalMigrationId = incrementalmigrationid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IncrementalMigrationId = params['IncrementalMigrationId']
           @RequestId = params['RequestId']
         end
       end
@@ -5116,6 +5983,90 @@ module TencentCloud
           @PayModeStatus = params['PayModeStatus']
           @InstanceType = params['InstanceType']
           @MultiZonesStatus = params['MultiZonesStatus']
+        end
+      end
+
+      # StartBackupMigration请求参数结构体
+      class StartBackupMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+
+        attr_accessor :InstanceId, :BackupMigrationId
+        
+        def initialize(instanceid=nil, backupmigrationid=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+        end
+      end
+
+      # StartBackupMigration返回参数结构体
+      class StartBackupMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StartIncrementalMigration请求参数结构体
+      class StartIncrementalMigrationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 导入目标实例ID
+        # @type InstanceId: String
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
+        # @type BackupMigrationId: String
+        # @param IncrementalMigrationId: 增量备份导入任务ID
+        # @type IncrementalMigrationId: String
+
+        attr_accessor :InstanceId, :BackupMigrationId, :IncrementalMigrationId
+        
+        def initialize(instanceid=nil, backupmigrationid=nil, incrementalmigrationid=nil)
+          @InstanceId = instanceid
+          @BackupMigrationId = backupmigrationid
+          @IncrementalMigrationId = incrementalmigrationid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupMigrationId = params['BackupMigrationId']
+          @IncrementalMigrationId = params['IncrementalMigrationId']
+        end
+      end
+
+      # StartIncrementalMigration返回参数结构体
+      class StartIncrementalMigrationResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 
