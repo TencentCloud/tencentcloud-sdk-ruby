@@ -14544,30 +14544,6 @@ module TencentCloud
 
       # SearchMedia请求参数结构体
       class SearchMediaRequest < TencentCloud::Common::AbstractModel
-        # @param Tags: 标签集合，匹配集合中任意元素。
-        # <li>单个标签长度限制：8个字符。</li>
-        # <li>数组长度限制：10。</li>
-        # @type Tags: Array
-        # @param ClassIds: 分类 ID 集合，匹配集合指定 ID 的分类及其所有子类。
-        # <li>数组长度限制：10。</li>
-        # @type ClassIds: Array
-        # @param StreamIds: 推流 [直播码](https://cloud.tencent.com/document/product/267/5959) 集合。匹配集合中的任意元素。
-        # <li>数组长度限制：10。</li>
-        # @type StreamIds: Array
-        # @param Vids: 直播录制文件的唯一标识。匹配集合中的任意元素。
-        # <li>数组长度限制：10。</li>
-        # @type Vids: Array
-        # @param SourceTypes: 媒体文件来源集合，来源取值参见 [SourceType](https://cloud.tencent.com/document/product/266/31773#MediaSourceData)。
-        # <li>数组长度限制：10。</li>
-        # @type SourceTypes: Array
-        # @param Categories: 文件类型。匹配集合中的任意元素：
-        # <li>Video: 视频文件</li>
-        # <li>Audio: 音频文件</li>
-        # <li>Image: 图片文件</li>
-        # @type Categories: Array
-        # @param CreateTime: 匹配创建时间在此时间段内的文件。
-        # <li>包含所指定的头尾时间点。</li>
-        # @type CreateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
         # @param FileIds: 文件 ID 集合，匹配集合中的任意元素。
         # <li>数组长度限制：10。</li>
         # <li>单个 ID 长度限制：40个字符。</li>
@@ -14580,10 +14556,34 @@ module TencentCloud
         # <li>单个文件名前缀长度限制：20个字符。</li>
         # <li>数组长度限制：10。</li>
         # @type NamePrefixes: Array
-        # @param Descriptions: 文件描述集合，匹配集合中的任意元素。
+        # @param Descriptions: 文件描述集合，模糊匹配媒体文件的描述，匹配度越高，排序越优先。
         # <li>单个描述长度限制：100个字符。</li>
         # <li>数组长度限制：10。</li>
         # @type Descriptions: Array
+        # @param ClassIds: 分类 ID 集合，匹配集合指定 ID 的分类及其所有子类。
+        # <li>数组长度限制：10。</li>
+        # @type ClassIds: Array
+        # @param Tags: 标签集合，匹配集合中任意元素。
+        # <li>单个标签长度限制：8个字符。</li>
+        # <li>数组长度限制：10。</li>
+        # @type Tags: Array
+        # @param Categories: 文件类型。匹配集合中的任意元素：
+        # <li>Video: 视频文件</li>
+        # <li>Audio: 音频文件</li>
+        # <li>Image: 图片文件</li>
+        # @type Categories: Array
+        # @param SourceTypes: 媒体文件来源集合，来源取值参见 [SourceType](https://cloud.tencent.com/document/product/266/31773#MediaSourceData)。
+        # <li>数组长度限制：10。</li>
+        # @type SourceTypes: Array
+        # @param StreamIds: 推流 [直播码](https://cloud.tencent.com/document/product/267/5959) 集合。匹配集合中的任意元素。
+        # <li>数组长度限制：10。</li>
+        # @type StreamIds: Array
+        # @param Vids: 直播录制文件的唯一标识。匹配集合中的任意元素。
+        # <li>数组长度限制：10。</li>
+        # @type Vids: Array
+        # @param CreateTime: 匹配创建时间在此时间段内的文件。
+        # <li>包含所指定的头尾时间点。</li>
+        # @type CreateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
         # @param Sort: 排序方式。
         # <li>Sort.Field 可选 CreateTime 。</li>
         # <li>当 Text、 Names 或 Descriptions 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
@@ -14608,15 +14608,18 @@ module TencentCloud
         # @type Filters: Array
         # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         # @type SubAppId: Integer
+        # @param Text: （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）
+        # 搜索文本，模糊匹配媒体文件名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：64个字符。
+        # @type Text: String
+        # @param SourceType: （不推荐：应使用 SourceTypes 替代）
+        # 媒体文件来源，来源取值参见 [SourceType](https://cloud.tencent.com/document/product/266/31773#MediaSourceData)。
+        # @type SourceType: String
         # @param StreamId: （不推荐：应使用 StreamIds 替代）
         # 推流 [直播码](https://cloud.tencent.com/document/product/267/5959)。
         # @type StreamId: String
         # @param Vid: （不推荐：应使用 Vids 替代）
         # 直播录制文件的唯一标识。
         # @type Vid: String
-        # @param Text: （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）
-        # 搜索文本，模糊匹配媒体文件名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：64个字符。
-        # @type Text: String
         # @param StartTime: （不推荐：应使用 CreateTime 替代）
         # 创建时间的开始时间。
         # <li>大于等于开始时间。</li>
@@ -14629,51 +14632,48 @@ module TencentCloud
         # <li>当 CreateTime.Before 也存在时，将优先使用 CreateTime.Before。</li>
         # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
         # @type EndTime: String
-        # @param SourceType: （不推荐：应使用 SourceTypes 替代）
-        # 媒体文件来源，来源取值参见 [SourceType](https://cloud.tencent.com/document/product/266/31773#MediaSourceData)。
-        # @type SourceType: String
 
-        attr_accessor :Tags, :ClassIds, :StreamIds, :Vids, :SourceTypes, :Categories, :CreateTime, :FileIds, :Names, :NamePrefixes, :Descriptions, :Sort, :Offset, :Limit, :Filters, :SubAppId, :StreamId, :Vid, :Text, :StartTime, :EndTime, :SourceType
+        attr_accessor :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :Sort, :Offset, :Limit, :Filters, :SubAppId, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
         
-        def initialize(tags=nil, classids=nil, streamids=nil, vids=nil, sourcetypes=nil, categories=nil, createtime=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, sort=nil, offset=nil, limit=nil, filters=nil, subappid=nil, streamid=nil, vid=nil, text=nil, starttime=nil, endtime=nil, sourcetype=nil)
-          @Tags = tags
-          @ClassIds = classids
-          @StreamIds = streamids
-          @Vids = vids
-          @SourceTypes = sourcetypes
-          @Categories = categories
-          @CreateTime = createtime
+        def initialize(fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, sort=nil, offset=nil, limit=nil, filters=nil, subappid=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
           @FileIds = fileids
           @Names = names
           @NamePrefixes = nameprefixes
           @Descriptions = descriptions
+          @ClassIds = classids
+          @Tags = tags
+          @Categories = categories
+          @SourceTypes = sourcetypes
+          @StreamIds = streamids
+          @Vids = vids
+          @CreateTime = createtime
           @Sort = sort
           @Offset = offset
           @Limit = limit
           @Filters = filters
           @SubAppId = subappid
+          @Text = text
+          @SourceType = sourcetype
           @StreamId = streamid
           @Vid = vid
-          @Text = text
           @StartTime = starttime
           @EndTime = endtime
-          @SourceType = sourcetype
         end
 
         def deserialize(params)
-          @Tags = params['Tags']
-          @ClassIds = params['ClassIds']
-          @StreamIds = params['StreamIds']
-          @Vids = params['Vids']
-          @SourceTypes = params['SourceTypes']
-          @Categories = params['Categories']
-          unless params['CreateTime'].nil?
-            @CreateTime = TimeRange.new.deserialize(params['CreateTime'])
-          end
           @FileIds = params['FileIds']
           @Names = params['Names']
           @NamePrefixes = params['NamePrefixes']
           @Descriptions = params['Descriptions']
+          @ClassIds = params['ClassIds']
+          @Tags = params['Tags']
+          @Categories = params['Categories']
+          @SourceTypes = params['SourceTypes']
+          @StreamIds = params['StreamIds']
+          @Vids = params['Vids']
+          unless params['CreateTime'].nil?
+            @CreateTime = TimeRange.new.deserialize(params['CreateTime'])
+          end
           unless params['Sort'].nil?
             @Sort = SortBy.new.deserialize(params['Sort'])
           end
@@ -14681,12 +14681,12 @@ module TencentCloud
           @Limit = params['Limit']
           @Filters = params['Filters']
           @SubAppId = params['SubAppId']
+          @Text = params['Text']
+          @SourceType = params['SourceType']
           @StreamId = params['StreamId']
           @Vid = params['Vid']
-          @Text = params['Text']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
-          @SourceType = params['SourceType']
         end
       end
 
@@ -14696,7 +14696,6 @@ module TencentCloud
         # <li>最大值：5000。当命中记录数超过5000时，该字段将返回 5000，而非实际命中总数。</li>
         # @type TotalCount: Integer
         # @param MediaInfoSet: 媒体文件信息列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MediaInfoSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

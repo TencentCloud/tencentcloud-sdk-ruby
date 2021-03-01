@@ -5437,10 +5437,13 @@ module TencentCloud
         # @param ZoneId: 可用区 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
+        # @param InstanceNodes: 节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNodes: Integer
 
-        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId
+        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes
         
-        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil)
+        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil)
           @WanStatus = wanstatus
           @Zone = zone
           @InitFlag = initflag
@@ -5482,6 +5485,7 @@ module TencentCloud
           @DeviceClass = deviceclass
           @DeployGroupId = deploygroupid
           @ZoneId = zoneid
+          @InstanceNodes = instancenodes
         end
 
         def deserialize(params)
@@ -5542,6 +5546,7 @@ module TencentCloud
           @DeviceClass = params['DeviceClass']
           @DeployGroupId = params['DeployGroupId']
           @ZoneId = params['ZoneId']
+          @InstanceNodes = params['InstanceNodes']
         end
       end
 

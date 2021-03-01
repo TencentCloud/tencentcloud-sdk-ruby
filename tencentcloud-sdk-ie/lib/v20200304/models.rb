@@ -1154,6 +1154,36 @@ module TencentCloud
         end
       end
 
+      # 数字水印
+      class HiddenMarkInfo < TencentCloud::Common::AbstractModel
+        # @param Path: 数字水印路径,，如果不从Cos拉取水印，则必填
+        # @type Path: String
+        # @param Frequency: 数字水印频率，可选值：[1,256]，默认值为30
+        # @type Frequency: Integer
+        # @param Strength: 数字水印强度，可选值：[32,128]，默认值为64
+        # @type Strength: Integer
+        # @param CosInfo: 数字水印的Cos 信息，从Cos上拉取图片水印时必填。
+        # @type CosInfo: :class:`Tencentcloud::Ie.v20200304.models.CosInfo`
+
+        attr_accessor :Path, :Frequency, :Strength, :CosInfo
+        
+        def initialize(path=nil, frequency=nil, strength=nil, cosinfo=nil)
+          @Path = path
+          @Frequency = frequency
+          @Strength = strength
+          @CosInfo = cosinfo
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Frequency = params['Frequency']
+          @Strength = params['Strength']
+          unless params['CosInfo'].nil?
+            @CosInfo = CosInfo.new.deserialize(params['CosInfo'])
+          end
+        end
+      end
+
       # 智能集锦任务参数信息
       class HighlightsEditingInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 是否开启智能集锦。0为关闭，1为开启。其他非0非1值默认为0。
@@ -2947,10 +2977,12 @@ module TencentCloud
         # @type Hdr: String
         # @param VideoEnhance: 画质增强参数信息。
         # @type VideoEnhance: :class:`Tencentcloud::Ie.v20200304.models.VideoEnhance`
+        # @param HiddenMarkInfo: 数字水印参数信息。
+        # @type HiddenMarkInfo: :class:`Tencentcloud::Ie.v20200304.models.HiddenMarkInfo`
 
-        attr_accessor :Fps, :Width, :Height, :LongSide, :ShortSide, :Bitrate, :Gop, :VideoCodec, :PicMarkInfo, :DarInfo, :Hdr, :VideoEnhance
+        attr_accessor :Fps, :Width, :Height, :LongSide, :ShortSide, :Bitrate, :Gop, :VideoCodec, :PicMarkInfo, :DarInfo, :Hdr, :VideoEnhance, :HiddenMarkInfo
         
-        def initialize(fps=nil, width=nil, height=nil, longside=nil, shortside=nil, bitrate=nil, gop=nil, videocodec=nil, picmarkinfo=nil, darinfo=nil, hdr=nil, videoenhance=nil)
+        def initialize(fps=nil, width=nil, height=nil, longside=nil, shortside=nil, bitrate=nil, gop=nil, videocodec=nil, picmarkinfo=nil, darinfo=nil, hdr=nil, videoenhance=nil, hiddenmarkinfo=nil)
           @Fps = fps
           @Width = width
           @Height = height
@@ -2963,6 +2995,7 @@ module TencentCloud
           @DarInfo = darinfo
           @Hdr = hdr
           @VideoEnhance = videoenhance
+          @HiddenMarkInfo = hiddenmarkinfo
         end
 
         def deserialize(params)
@@ -2986,6 +3019,9 @@ module TencentCloud
           @Hdr = params['Hdr']
           unless params['VideoEnhance'].nil?
             @VideoEnhance = VideoEnhance.new.deserialize(params['VideoEnhance'])
+          end
+          unless params['HiddenMarkInfo'].nil?
+            @HiddenMarkInfo = HiddenMarkInfo.new.deserialize(params['HiddenMarkInfo'])
           end
         end
       end

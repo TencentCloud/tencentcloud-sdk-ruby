@@ -757,19 +757,24 @@ module TencentCloud
         # @param KubeScheduler: kube-scheduler自定义参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KubeScheduler: Array
+        # @param Etcd: etcd自定义参数，只支持独立集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Etcd: Array
 
-        attr_accessor :KubeAPIServer, :KubeControllerManager, :KubeScheduler
+        attr_accessor :KubeAPIServer, :KubeControllerManager, :KubeScheduler, :Etcd
         
-        def initialize(kubeapiserver=nil, kubecontrollermanager=nil, kubescheduler=nil)
+        def initialize(kubeapiserver=nil, kubecontrollermanager=nil, kubescheduler=nil, etcd=nil)
           @KubeAPIServer = kubeapiserver
           @KubeControllerManager = kubecontrollermanager
           @KubeScheduler = kubescheduler
+          @Etcd = etcd
         end
 
         def deserialize(params)
           @KubeAPIServer = params['KubeAPIServer']
           @KubeControllerManager = params['KubeControllerManager']
           @KubeScheduler = params['KubeScheduler']
+          @Etcd = params['Etcd']
         end
       end
 

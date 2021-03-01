@@ -3558,8 +3558,14 @@ module TencentCloud
       # DescribeReportData请求参数结构体
       class DescribeReportDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询起始时间：yyyy-MM-dd
+        # 当报表类型为daily，起始时间和结束时间必须为同一天
+        # 当报表类型为weekly，起始时间须为周一，结束时间须为同一周的周日
+        # 当报表类型为monthly，起始时间须为自然月第一天，即1号，结束时间须为该自然月最后一天
         # @type StartTime: String
         # @param EndTime: 查询结束时间：yyyy-MM-dd
+        # 当报表类型为daily，起始时间和结束时间必须为同一天
+        # 当报表类型为weekly，起始时间须为周一，结束时间须为同一周的周日
+        # 当报表类型为monthly，起始时间须为自然月第一天，即1号，结束时间须为该自然月最后一天
         # @type EndTime: String
         # @param ReportType: 报表类型
         # daily：日报表

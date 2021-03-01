@@ -19,7 +19,7 @@ module TencentCloud
     module V20200324
       # 描述了镜像信息。
       class Blueprint < TencentCloud::Common::AbstractModel
-        # @param BlueprintId: 镜像 ID  ，是 blueprint 的唯一标识。
+        # @param BlueprintId: 镜像 ID  ，是 Blueprint 的唯一标识。
         # @type BlueprintId: String
         # @param DisplayTitle: 镜像对外展示标题。
         # @type DisplayTitle: String
@@ -33,7 +33,7 @@ module TencentCloud
         # @type Platform: String
         # @param PlatformType: 操作系统平台类型，如 LINUX_UNIX、WINDOWS。
         # @type PlatformType: String
-        # @param BlueprintType: 镜像类型，如 APP_OS、PURE_OS。
+        # @param BlueprintType: 镜像类型，如 APP_OS、PURE_OS、PRIVATE。
         # @type BlueprintType: String
         # @param ImageUrl: 镜像图片 URL。
         # @type ImageUrl: String
@@ -41,10 +41,18 @@ module TencentCloud
         # @type RequiredSystemDiskSize: Integer
         # @param BlueprintState: 镜像状态。
         # @type BlueprintState: String
+        # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param BlueprintName: 镜像名称。
+        # @type BlueprintName: String
+        # @param SupportAutomationTools: 镜像是否支持自动化助手。
+        # @type SupportAutomationTools: Boolean
 
-        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState
+        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools
         
-        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil)
+        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil)
           @BlueprintId = blueprintid
           @DisplayTitle = displaytitle
           @DisplayVersion = displayversion
@@ -56,6 +64,9 @@ module TencentCloud
           @ImageUrl = imageurl
           @RequiredSystemDiskSize = requiredsystemdisksize
           @BlueprintState = blueprintstate
+          @CreatedTime = createdtime
+          @BlueprintName = blueprintname
+          @SupportAutomationTools = supportautomationtools
         end
 
         def deserialize(params)
@@ -70,6 +81,9 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @RequiredSystemDiskSize = params['RequiredSystemDiskSize']
           @BlueprintState = params['BlueprintState']
+          @CreatedTime = params['CreatedTime']
+          @BlueprintName = params['BlueprintName']
+          @SupportAutomationTools = params['SupportAutomationTools']
         end
       end
 
@@ -245,7 +259,7 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # <li>blueprint-type</li>按照【镜像类型】进行过滤。
-        # 取值： APP_OS（预置应用的系统 ）；PURE_OS（纯净的 OS 系统）。
+        # 取值：APP_OS（预置应用的系统 ）；PURE_OS（纯净的 OS 系统）；PRIVATE（自定义镜像）。
         # 类型：String
         # 必选：否
         # <li>platform-type</li>按照【镜像平台类型】进行过滤。
