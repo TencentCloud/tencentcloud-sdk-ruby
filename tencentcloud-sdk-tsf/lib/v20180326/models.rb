@@ -2831,7 +2831,7 @@ module TencentCloud
         # @type ShardArguments: Array
         # @param SuccessOperator: 判断任务成功的操作符
         # @type SuccessOperator: String
-        # @param SuccessRatio: 判断任务成功率的阈值，如99.99
+        # @param SuccessRatio: 判断任务成功率的阈值，如100
         # @type SuccessRatio: String
         # @param AdvanceSettings: 高级设置
         # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`

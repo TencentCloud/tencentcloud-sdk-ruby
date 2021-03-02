@@ -139,17 +139,21 @@ module TencentCloud
         # @type SecurityGroupId: String
         # @param InstanceIds: 实例 ID 列表，一个或者多个实例 ID 组成的数组。
         # @type InstanceIds: Array
+        # @param ForReadonlyInstance: 当传入只读实例ID时，默认操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True
+        # @type ForReadonlyInstance: Boolean
 
-        attr_accessor :SecurityGroupId, :InstanceIds
+        attr_accessor :SecurityGroupId, :InstanceIds, :ForReadonlyInstance
         
-        def initialize(securitygroupid=nil, instanceids=nil)
+        def initialize(securitygroupid=nil, instanceids=nil, forreadonlyinstance=nil)
           @SecurityGroupId = securitygroupid
           @InstanceIds = instanceids
+          @ForReadonlyInstance = forreadonlyinstance
         end
 
         def deserialize(params)
           @SecurityGroupId = params['SecurityGroupId']
           @InstanceIds = params['InstanceIds']
+          @ForReadonlyInstance = params['ForReadonlyInstance']
         end
       end
 
@@ -1265,10 +1269,12 @@ module TencentCloud
         # @type InstanceNodes: Integer
         # @param Cpu: 实例cpu核数， 如果不传将根据memory指定的内存值自动填充对应的cpu值。
         # @type Cpu: Integer
+        # @param AutoSyncFlag: 是否自动发起灾备同步功能。该参数仅对购买灾备实例生效。 可选值为：0 - 不自动发起灾备同步；1 - 自动发起灾备同步。
+        # @type AutoSyncFlag: Integer
 
-        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu
+        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag
         
-        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil)
+        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
@@ -1299,6 +1305,7 @@ module TencentCloud
           @AlarmPolicyList = alarmpolicylist
           @InstanceNodes = instancenodes
           @Cpu = cpu
+          @AutoSyncFlag = autosyncflag
         end
 
         def deserialize(params)
@@ -1344,6 +1351,7 @@ module TencentCloud
           @AlarmPolicyList = params['AlarmPolicyList']
           @InstanceNodes = params['InstanceNodes']
           @Cpu = params['Cpu']
+          @AutoSyncFlag = params['AutoSyncFlag']
         end
       end
 
@@ -1435,10 +1443,12 @@ module TencentCloud
         # @type InstanceNodes: Integer
         # @param Cpu: 实例cpu核数， 如果不传将根据memory指定的内存值自动填充对应的cpu值。
         # @type Cpu: Integer
+        # @param AutoSyncFlag: 是否自动发起灾备同步功能。该参数仅对购买灾备实例生效。 可选值为：0 - 不自动发起灾备同步；1 - 自动发起灾备同步。
+        # @type AutoSyncFlag: Integer
 
-        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu
+        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag
         
-        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil)
+        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil)
           @Memory = memory
           @Volume = volume
           @Period = period
@@ -1470,6 +1480,7 @@ module TencentCloud
           @AlarmPolicyList = alarmpolicylist
           @InstanceNodes = instancenodes
           @Cpu = cpu
+          @AutoSyncFlag = autosyncflag
         end
 
         def deserialize(params)
@@ -1516,6 +1527,7 @@ module TencentCloud
           @AlarmPolicyList = params['AlarmPolicyList']
           @InstanceNodes = params['InstanceNodes']
           @Cpu = params['Cpu']
+          @AutoSyncFlag = params['AutoSyncFlag']
         end
       end
 
@@ -3499,15 +3511,19 @@ module TencentCloud
       class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv或者cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
         # @type InstanceId: String
+        # @param ForReadonlyInstance: 当传入只读实例ID时，默认操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True
+        # @type ForReadonlyInstance: Boolean
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :ForReadonlyInstance
         
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, forreadonlyinstance=nil)
           @InstanceId = instanceid
+          @ForReadonlyInstance = forreadonlyinstance
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @ForReadonlyInstance = params['ForReadonlyInstance']
         end
       end
 
@@ -5035,17 +5051,21 @@ module TencentCloud
         # @type SecurityGroupId: String
         # @param InstanceIds: 实例 ID 列表，一个或者多个实例 ID 组成的数组。
         # @type InstanceIds: Array
+        # @param ForReadonlyInstance: 当传入只读实例ID时，默认操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True
+        # @type ForReadonlyInstance: Boolean
 
-        attr_accessor :SecurityGroupId, :InstanceIds
+        attr_accessor :SecurityGroupId, :InstanceIds, :ForReadonlyInstance
         
-        def initialize(securitygroupid=nil, instanceids=nil)
+        def initialize(securitygroupid=nil, instanceids=nil, forreadonlyinstance=nil)
           @SecurityGroupId = securitygroupid
           @InstanceIds = instanceids
+          @ForReadonlyInstance = forreadonlyinstance
         end
 
         def deserialize(params)
           @SecurityGroupId = params['SecurityGroupId']
           @InstanceIds = params['InstanceIds']
+          @ForReadonlyInstance = params['ForReadonlyInstance']
         end
       end
 
@@ -5208,15 +5228,18 @@ module TencentCloud
         # @type IpProtocol: String
         # @param Dir: 规则限定的方向，进站规则为 INPUT
         # @type Dir: String
+        # @param Desc: 规则描述
+        # @type Desc: String
 
-        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir, :Desc
         
-        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil)
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil, desc=nil)
           @Action = action
           @CidrIp = cidrip
           @PortRange = portrange
           @IpProtocol = ipprotocol
           @Dir = dir
+          @Desc = desc
         end
 
         def deserialize(params)
@@ -5225,6 +5248,7 @@ module TencentCloud
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
           @Dir = params['Dir']
+          @Desc = params['Desc']
         end
       end
 
@@ -6170,17 +6194,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param SecurityGroupIds: 要修改的安全组 ID 列表，一个或者多个安全组 ID 组成的数组。
         # @type SecurityGroupIds: Array
+        # @param ForReadonlyInstance: 当传入只读实例ID时，默认操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True
+        # @type ForReadonlyInstance: Boolean
 
-        attr_accessor :InstanceId, :SecurityGroupIds
+        attr_accessor :InstanceId, :SecurityGroupIds, :ForReadonlyInstance
         
-        def initialize(instanceid=nil, securitygroupids=nil)
+        def initialize(instanceid=nil, securitygroupids=nil, forreadonlyinstance=nil)
           @InstanceId = instanceid
           @SecurityGroupIds = securitygroupids
+          @ForReadonlyInstance = forreadonlyinstance
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @ForReadonlyInstance = params['ForReadonlyInstance']
         end
       end
 
@@ -6736,15 +6764,18 @@ module TencentCloud
         # @type IpProtocol: String
         # @param Dir: 规则限定的方向，进站规则为 OUTPUT
         # @type Dir: String
+        # @param Desc: 规则描述
+        # @type Desc: String
 
-        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Dir, :Desc
         
-        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil)
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, dir=nil, desc=nil)
           @Action = action
           @CidrIp = cidrip
           @PortRange = portrange
           @IpProtocol = ipprotocol
           @Dir = dir
+          @Desc = desc
         end
 
         def deserialize(params)
@@ -6753,6 +6784,7 @@ module TencentCloud
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
           @Dir = params['Dir']
+          @Desc = params['Desc']
         end
       end
 

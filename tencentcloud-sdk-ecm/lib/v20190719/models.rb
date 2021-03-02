@@ -3190,13 +3190,16 @@ module TencentCloud
 
         # region和area只应填写一个。
         # @type Filters: Array
+        # @param Period: 统计周期，单位秒。取值60/300。
+        # @type Period: Integer
 
-        attr_accessor :StartTime, :EndTime, :Filters
+        attr_accessor :StartTime, :EndTime, :Filters, :Period
         
-        def initialize(starttime=nil, endtime=nil, filters=nil)
+        def initialize(starttime=nil, endtime=nil, filters=nil, period=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Filters = filters
+          @Period = period
         end
 
         def deserialize(params)
@@ -3208,6 +3211,7 @@ module TencentCloud
               @Filters << Filter.new.deserialize(i)
             end
           end
+          @Period = params['Period']
         end
       end
 
@@ -7019,19 +7023,23 @@ module TencentCloud
         # @type PeakInNetwork: String
         # @param PeakOutNetwork: 出带宽数据。
         # @type PeakOutNetwork: String
+        # @param ChargeNetwork: 计费带宽。单位bps
+        # @type ChargeNetwork: String
 
-        attr_accessor :RecordTime, :PeakInNetwork, :PeakOutNetwork
+        attr_accessor :RecordTime, :PeakInNetwork, :PeakOutNetwork, :ChargeNetwork
         
-        def initialize(recordtime=nil, peakinnetwork=nil, peakoutnetwork=nil)
+        def initialize(recordtime=nil, peakinnetwork=nil, peakoutnetwork=nil, chargenetwork=nil)
           @RecordTime = recordtime
           @PeakInNetwork = peakinnetwork
           @PeakOutNetwork = peakoutnetwork
+          @ChargeNetwork = chargenetwork
         end
 
         def deserialize(params)
           @RecordTime = params['RecordTime']
           @PeakInNetwork = params['PeakInNetwork']
           @PeakOutNetwork = params['PeakOutNetwork']
+          @ChargeNetwork = params['ChargeNetwork']
         end
       end
 

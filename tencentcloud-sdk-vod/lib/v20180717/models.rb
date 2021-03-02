@@ -5631,6 +5631,34 @@ module TencentCloud
         end
       end
 
+      # 播放统计信息。
+      class DailyPlayStatInfo < TencentCloud::Common::AbstractModel
+        # @param Date: 播放媒体文件的日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type Date: String
+        # @param FileId: 媒体文件ID。
+        # @type FileId: String
+        # @param PlayTimes: 播放次数。
+        # @type PlayTimes: Integer
+        # @param Traffic: 播放流量，单位：字节。
+        # @type Traffic: Integer
+
+        attr_accessor :Date, :FileId, :PlayTimes, :Traffic
+        
+        def initialize(date=nil, fileid=nil, playtimes=nil, traffic=nil)
+          @Date = date
+          @FileId = fileid
+          @PlayTimes = playtimes
+          @Traffic = traffic
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @FileId = params['FileId']
+          @PlayTimes = params['PlayTimes']
+          @Traffic = params['Traffic']
+        end
+      end
+
       # DeleteAIAnalysisTemplate请求参数结构体
       class DeleteAIAnalysisTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 视频内容分析模板唯一标识。
@@ -6855,6 +6883,114 @@ module TencentCloud
             @ContentReviewTemplateSet = []
             params['ContentReviewTemplateSet'].each do |i|
               @ContentReviewTemplateSet << ContentReviewTemplateItem.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDailyMediaPlayStat请求参数结构体
+      class DescribeDailyMediaPlayStatRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID 。
+        # @type FileId: String
+        # @param StartDate: 起始日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。该参数仅日期部分有效。
+        # @type StartDate: String
+        # @param EndDate: 结束日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。该参数仅日期部分有效。
+        # @type EndDate: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :FileId, :StartDate, :EndDate, :SubAppId
+        
+        def initialize(fileid=nil, startdate=nil, enddate=nil, subappid=nil)
+          @FileId = fileid
+          @StartDate = startdate
+          @EndDate = enddate
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeDailyMediaPlayStat返回参数结构体
+      class DescribeDailyMediaPlayStatResponse < TencentCloud::Common::AbstractModel
+        # @param DailyPlayStatInfoSet: 播放统计数据。
+        # @type DailyPlayStatInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DailyPlayStatInfoSet, :RequestId
+        
+        def initialize(dailyplaystatinfoset=nil, requestid=nil)
+          @DailyPlayStatInfoSet = dailyplaystatinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DailyPlayStatInfoSet'].nil?
+            @DailyPlayStatInfoSet = []
+            params['DailyPlayStatInfoSet'].each do |i|
+              @DailyPlayStatInfoSet << DailyPlayStatInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDailyMostPlayedStat请求参数结构体
+      class DescribeDailyMostPlayedStatRequest < TencentCloud::Common::AbstractModel
+        # @param Date: 查询日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。该参数仅日期部分有效。
+        # @type Date: String
+        # @param DomainName: 域名。查询该域名播放 Top100 的媒体文件的统计数据。默认查询所有域名的播放统计数据。
+        # @type DomainName: String
+        # @param Metric: Top 数据的统计指标，取值有：
+        # <li>Traffic：播放流量，按播放流量统计 Top100 的数据。</li>
+        # <li>PlayTimes：播放次数，按播放次数统计播放 Top100 的数据。</li>
+        # @type Metric: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Date, :DomainName, :Metric, :SubAppId
+        
+        def initialize(date=nil, domainname=nil, metric=nil, subappid=nil)
+          @Date = date
+          @DomainName = domainname
+          @Metric = metric
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @DomainName = params['DomainName']
+          @Metric = params['Metric']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeDailyMostPlayedStat返回参数结构体
+      class DescribeDailyMostPlayedStatResponse < TencentCloud::Common::AbstractModel
+        # @param DailyPlayStatInfoSet: 媒体文件播放统计信息。
+        # @type DailyPlayStatInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DailyPlayStatInfoSet, :RequestId
+        
+        def initialize(dailyplaystatinfoset=nil, requestid=nil)
+          @DailyPlayStatInfoSet = dailyplaystatinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DailyPlayStatInfoSet'].nil?
+            @DailyPlayStatInfoSet = []
+            params['DailyPlayStatInfoSet'].each do |i|
+              @DailyPlayStatInfoSet << DailyPlayStatInfo.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']

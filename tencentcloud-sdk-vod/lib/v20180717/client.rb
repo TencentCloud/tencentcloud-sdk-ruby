@@ -1181,6 +1181,60 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于查询指定日期范围内每天的播放统计数据。
+        # * 可以查询最近30天的播放统计数据。
+
+        # @param request: Request instance for DescribeDailyMediaPlayStat.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeDailyMediaPlayStatRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeDailyMediaPlayStatResponse`
+        def DescribeDailyMediaPlayStat(request)
+          body = send_request('DescribeDailyMediaPlayStat', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDailyMediaPlayStatResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于查询每日播放Top100 的媒体文件的播放统计数据。
+        # * 可以查询最近30天的播放统计数据。
+        # * 可以按播放次数或者播放流量查询。
+        # * 播放次数统计说明：
+        #     1. HLS 文件：访问 M3U8 文件时统计播放次数；访问 TS 文件不统计播放次数。
+        #     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
+
+        # @param request: Request instance for DescribeDailyMostPlayedStat.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeDailyMostPlayedStatRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeDailyMostPlayedStatResponse`
+        def DescribeDailyMostPlayedStat(request)
+          body = send_request('DescribeDailyMostPlayedStat', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDailyMostPlayedStatResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于查询播放统计文件的下载地址。
         # * 可以查询最近30天的播放统计文件下载地址。
         # * 云点播每天对前一天的 CDN 请求日志进行分析处理，生成播放统计文件。

@@ -169,6 +169,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取技能组信息列表
+
+        # @param request: Request instance for DescribeSkillGroupInfoList.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeSkillGroupInfoListRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeSkillGroupInfoListResponse`
+        def DescribeSkillGroupInfoList(request)
+          body = send_request('DescribeSkillGroupInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSkillGroupInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取坐席信息列表
+
+        # @param request: Request instance for DescribeStaffInfoList.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeStaffInfoListRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeStaffInfoListResponse`
+        def DescribeStaffInfoList(request)
+          body = send_request('DescribeStaffInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStaffInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 按实例获取电话消耗统计
 
         # @param request: Request instance for DescribeTelCallInfo.

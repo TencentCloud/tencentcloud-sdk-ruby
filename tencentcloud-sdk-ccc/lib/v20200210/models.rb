@@ -346,6 +346,128 @@ module TencentCloud
         end
       end
 
+      # DescribeSkillGroupInfoList请求参数结构体
+      class DescribeSkillGroupInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用ID
+        # @type SdkAppId: Integer
+        # @param PageSize: 分页尺寸，上限 100
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码，从 0 开始
+        # @type PageNumber: Integer
+        # @param SkillGroupId: 技能组ID，查询单个技能组时使用
+        # @type SkillGroupId: Integer
+        # @param ModifiedTime: 查询修改时间大于等于ModifiedTime的技能组时使用
+        # @type ModifiedTime: Integer
+
+        attr_accessor :SdkAppId, :PageSize, :PageNumber, :SkillGroupId, :ModifiedTime
+        
+        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, skillgroupid=nil, modifiedtime=nil)
+          @SdkAppId = sdkappid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @SkillGroupId = skillgroupid
+          @ModifiedTime = modifiedtime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @SkillGroupId = params['SkillGroupId']
+          @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # DescribeSkillGroupInfoList返回参数结构体
+      class DescribeSkillGroupInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 技能组总数
+        # @type TotalCount: Integer
+        # @param SkillGroupList: 技能组信息列表
+        # @type SkillGroupList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SkillGroupList, :RequestId
+        
+        def initialize(totalcount=nil, skillgrouplist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SkillGroupList = skillgrouplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SkillGroupList'].nil?
+            @SkillGroupList = []
+            params['SkillGroupList'].each do |i|
+              @SkillGroupList << SkillGroupInfoItem.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStaffInfoList请求参数结构体
+      class DescribeStaffInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用ID
+        # @type SdkAppId: Integer
+        # @param PageSize: 分页尺寸，上限 100
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码，从 0 开始
+        # @type PageNumber: Integer
+        # @param StaffMail: 坐席账号，查询单个坐席时使用
+        # @type StaffMail: String
+        # @param ModifiedTime: 查询修改时间大于等于ModifiedTime的坐席时使用
+        # @type ModifiedTime: Integer
+
+        attr_accessor :SdkAppId, :PageSize, :PageNumber, :StaffMail, :ModifiedTime
+        
+        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, staffmail=nil, modifiedtime=nil)
+          @SdkAppId = sdkappid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @StaffMail = staffmail
+          @ModifiedTime = modifiedtime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @StaffMail = params['StaffMail']
+          @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # DescribeStaffInfoList返回参数结构体
+      class DescribeStaffInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 坐席用户总数
+        # @type TotalCount: Integer
+        # @param StaffList: 坐席用户信息列表
+        # @type StaffList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :StaffList, :RequestId
+        
+        def initialize(totalcount=nil, stafflist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @StaffList = stafflist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['StaffList'].nil?
+            @StaffList = []
+            params['StaffList'].each do |i|
+              @StaffList << StaffInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTelCallInfo请求参数结构体
       class DescribeTelCallInfoRequest < TencentCloud::Common::AbstractModel
         # @param StartTimeStamp: 起始时间戳，Unix 时间戳
@@ -769,6 +891,129 @@ module TencentCloud
           @Sequence = params['Sequence']
           @StartTimestamp = params['StartTimestamp']
           @SkillGroupName = params['SkillGroupName']
+        end
+      end
+
+      # 技能组信息
+      class SkillGroupInfoItem < TencentCloud::Common::AbstractModel
+        # @param SkillGroupId: 技能组ID
+        # @type SkillGroupId: Integer
+        # @param SkillGroupName: 技能组名称
+        # @type SkillGroupName: String
+        # @param Type: 类型：IM、TEL、ALL（全媒体）
+        # @type Type: String
+        # @param RoutePolicy: 会话分配策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutePolicy: String
+        # @param UsingLastSeat: 会话分配是否优先上次服务坐席
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsingLastSeat: Integer
+        # @param MaxConcurrency: 单客服最大并发数（电话类型默认1）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConcurrency: Integer
+        # @param LastModifyTimestamp: 最后修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastModifyTimestamp: Integer
+
+        attr_accessor :SkillGroupId, :SkillGroupName, :Type, :RoutePolicy, :UsingLastSeat, :MaxConcurrency, :LastModifyTimestamp
+        
+        def initialize(skillgroupid=nil, skillgroupname=nil, type=nil, routepolicy=nil, usinglastseat=nil, maxconcurrency=nil, lastmodifytimestamp=nil)
+          @SkillGroupId = skillgroupid
+          @SkillGroupName = skillgroupname
+          @Type = type
+          @RoutePolicy = routepolicy
+          @UsingLastSeat = usinglastseat
+          @MaxConcurrency = maxconcurrency
+          @LastModifyTimestamp = lastmodifytimestamp
+        end
+
+        def deserialize(params)
+          @SkillGroupId = params['SkillGroupId']
+          @SkillGroupName = params['SkillGroupName']
+          @Type = params['Type']
+          @RoutePolicy = params['RoutePolicy']
+          @UsingLastSeat = params['UsingLastSeat']
+          @MaxConcurrency = params['MaxConcurrency']
+          @LastModifyTimestamp = params['LastModifyTimestamp']
+        end
+      end
+
+      # 技能组信息
+      class SkillGroupItem < TencentCloud::Common::AbstractModel
+        # @param SkillGroupId: 技能组ID
+        # @type SkillGroupId: Integer
+        # @param SkillGroupName: 技能组名称
+        # @type SkillGroupName: String
+        # @param Priority: 优先级
+        # @type Priority: Integer
+        # @param Type: 类型：IM、TEL、ALL（全媒体）
+        # @type Type: String
+
+        attr_accessor :SkillGroupId, :SkillGroupName, :Priority, :Type
+        
+        def initialize(skillgroupid=nil, skillgroupname=nil, priority=nil, type=nil)
+          @SkillGroupId = skillgroupid
+          @SkillGroupName = skillgroupname
+          @Priority = priority
+          @Type = type
+        end
+
+        def deserialize(params)
+          @SkillGroupId = params['SkillGroupId']
+          @SkillGroupName = params['SkillGroupName']
+          @Priority = params['Priority']
+          @Type = params['Type']
+        end
+      end
+
+      # 带有技能组优先级的坐席信息
+      class StaffInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 坐席名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Mail: 坐席邮箱
+        # @type Mail: String
+        # @param Phone: 坐席电话号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phone: String
+        # @param Nick: 坐席昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nick: String
+        # @param StaffNumber: 坐席工号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StaffNumber: String
+        # @param SkillGroupList: 所属技能组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkillGroupList: Array
+        # @param LastModifyTimestamp: 最后修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastModifyTimestamp: Integer
+
+        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :SkillGroupList, :LastModifyTimestamp
+        
+        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, skillgrouplist=nil, lastmodifytimestamp=nil)
+          @Name = name
+          @Mail = mail
+          @Phone = phone
+          @Nick = nick
+          @StaffNumber = staffnumber
+          @SkillGroupList = skillgrouplist
+          @LastModifyTimestamp = lastmodifytimestamp
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Mail = params['Mail']
+          @Phone = params['Phone']
+          @Nick = params['Nick']
+          @StaffNumber = params['StaffNumber']
+          unless params['SkillGroupList'].nil?
+            @SkillGroupList = []
+            params['SkillGroupList'].each do |i|
+              @SkillGroupList << SkillGroupItem.new.deserialize(i)
+            end
+          end
+          @LastModifyTimestamp = params['LastModifyTimestamp']
         end
       end
 
