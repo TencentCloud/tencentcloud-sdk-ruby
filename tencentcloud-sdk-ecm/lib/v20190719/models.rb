@@ -2181,15 +2181,19 @@ module TencentCloud
         # @param InstanceNetworkLimitConfigs: 网络限额信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNetworkLimitConfigs: Array
+        # @param ImageLimits: 镜像限额信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageLimits: :class:`Tencentcloud::Ecm.v20190719.models.ImageLimitConfig`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NetworkStorageRange, :ImageWhiteSet, :InstanceNetworkLimitConfigs, :RequestId
+        attr_accessor :NetworkStorageRange, :ImageWhiteSet, :InstanceNetworkLimitConfigs, :ImageLimits, :RequestId
         
-        def initialize(networkstoragerange=nil, imagewhiteset=nil, instancenetworklimitconfigs=nil, requestid=nil)
+        def initialize(networkstoragerange=nil, imagewhiteset=nil, instancenetworklimitconfigs=nil, imagelimits=nil, requestid=nil)
           @NetworkStorageRange = networkstoragerange
           @ImageWhiteSet = imagewhiteset
           @InstanceNetworkLimitConfigs = instancenetworklimitconfigs
+          @ImageLimits = imagelimits
           @RequestId = requestid
         end
 
@@ -2203,6 +2207,9 @@ module TencentCloud
             params['InstanceNetworkLimitConfigs'].each do |i|
               @InstanceNetworkLimitConfigs << InstanceNetworkLimitConfig.new.deserialize(i)
             end
+          end
+          unless params['ImageLimits'].nil?
+            @ImageLimits = ImageLimitConfig.new.deserialize(params['ImageLimits'])
           end
           @RequestId = params['RequestId']
         end
@@ -4427,6 +4434,22 @@ module TencentCloud
           end
           @ImageSource = params['ImageSource']
           @TaskId = params['TaskId']
+        end
+      end
+
+      # 镜像限制配置
+      class ImageLimitConfig < TencentCloud::Common::AbstractModel
+        # @param MaxImageSize: 支持的最大镜像大小，包括可导入的自定义镜像大小，中心云镜像大小，单位为GB。
+        # @type MaxImageSize: Integer
+
+        attr_accessor :MaxImageSize
+        
+        def initialize(maximagesize=nil)
+          @MaxImageSize = maximagesize
+        end
+
+        def deserialize(params)
+          @MaxImageSize = params['MaxImageSize']
         end
       end
 

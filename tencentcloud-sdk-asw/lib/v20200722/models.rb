@@ -81,6 +81,47 @@ module TencentCloud
         end
       end
 
+      # DescribeExecutionHistory请求参数结构体
+      class DescribeExecutionHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param ExecutionResourceName: 执行资源名
+        # @type ExecutionResourceName: String
+
+        attr_accessor :ExecutionResourceName
+        
+        def initialize(executionresourcename=nil)
+          @ExecutionResourceName = executionresourcename
+        end
+
+        def deserialize(params)
+          @ExecutionResourceName = params['ExecutionResourceName']
+        end
+      end
+
+      # DescribeExecutionHistory返回参数结构体
+      class DescribeExecutionHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param Events: 执行的事件列表
+        # @type Events: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :RequestId
+        
+        def initialize(events=nil, requestid=nil)
+          @Events = events
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              @Events << ExecutionEvent.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExecution请求参数结构体
       class DescribeExecutionRequest < TencentCloud::Common::AbstractModel
         # @param ExecutionResourceName: 执行资源名
@@ -322,6 +363,51 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 执行的事件历史
+      class ExecutionEvent < TencentCloud::Common::AbstractModel
+        # @param ExecutionResourceName: 执行资源名
+        # @type ExecutionResourceName: String
+        # @param EventId: 自增序号
+        # @type EventId: Integer
+        # @param EventCategory: 事件类型
+        # @type EventCategory: String
+        # @param StepName: 步骤节点名称
+        # @type StepName: String
+        # @param ResourceName: 该步骤引用的资源名
+        # @type ResourceName: String
+        # @param Timestamp: 该事件发生时间，毫秒
+        # @type Timestamp: String
+        # @param Content: 事件内容
+        # @type Content: String
+        # @param Exception: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exception: String
+
+        attr_accessor :ExecutionResourceName, :EventId, :EventCategory, :StepName, :ResourceName, :Timestamp, :Content, :Exception
+        
+        def initialize(executionresourcename=nil, eventid=nil, eventcategory=nil, stepname=nil, resourcename=nil, timestamp=nil, content=nil, exception=nil)
+          @ExecutionResourceName = executionresourcename
+          @EventId = eventid
+          @EventCategory = eventcategory
+          @StepName = stepname
+          @ResourceName = resourcename
+          @Timestamp = timestamp
+          @Content = content
+          @Exception = exception
+        end
+
+        def deserialize(params)
+          @ExecutionResourceName = params['ExecutionResourceName']
+          @EventId = params['EventId']
+          @EventCategory = params['EventCategory']
+          @StepName = params['StepName']
+          @ResourceName = params['ResourceName']
+          @Timestamp = params['Timestamp']
+          @Content = params['Content']
+          @Exception = params['Exception']
         end
       end
 

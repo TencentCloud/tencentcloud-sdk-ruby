@@ -2266,6 +2266,42 @@ module TencentCloud
         end
       end
 
+      # DescribeDBCharsets请求参数结构体
+      class DescribeDBCharsetsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如mssql-j8kv137v
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBCharsets返回参数结构体
+      class DescribeDBCharsetsResponse < TencentCloud::Common::AbstractModel
+        # @param DatabaseCharsets: 数据库字符集列表
+        # @type DatabaseCharsets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DatabaseCharsets, :RequestId
+        
+        def initialize(databasecharsets=nil, requestid=nil)
+          @DatabaseCharsets = databasecharsets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DatabaseCharsets = params['DatabaseCharsets']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID

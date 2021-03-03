@@ -1386,7 +1386,7 @@ module TencentCloud
         # @type StrategyName: String
         # @param StrategyType: 策略类型。支持WHITE（白名单）和BLACK（黑名单）。
         # @type StrategyType: String
-        # @param StrategyData: 策略详情。
+        # @param StrategyData: 策略详情，多个ip 使用\n 分隔符分开。
         # @type StrategyData: String
 
         attr_accessor :ServiceId, :StrategyName, :StrategyType, :StrategyData

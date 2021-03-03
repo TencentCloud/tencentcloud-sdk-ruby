@@ -1689,8 +1689,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Filters: 过滤条件。
         # <li>HttpMethod - String - 是否必填：否 - 攻击方法(POST|GET)</li>
-        # <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
         # <li>DateRange - String - 是否必填：否 - 时间范围(存储最近3个月的数据)，如最近一个月["2019-11-17", "2019-12-17"]</li>
+        # <li>VulType - String 威胁类型 - 是否必填: 否</li>
+        # <li>SrcIp - String 攻击源IP - 是否必填: 否</li>
+        # <li>DstIp - String 攻击目标IP - 是否必填: 否</li>
+        # <li>SrcPort - String 攻击源端口 - 是否必填: 否</li>
+        # <li>DstPort - String 攻击目标端口 - 是否必填: 否</li>
         # @type Filters: Array
         # @param Uuid: 主机安全客户端ID
         # @type Uuid: String
@@ -1747,6 +1751,37 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAttackVulTypeList请求参数结构体
+      class DescribeAttackVulTypeListRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAttackVulTypeList返回参数结构体
+      class DescribeAttackVulTypeListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 威胁类型列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @List = params['List']
           @RequestId = params['RequestId']
         end
       end
@@ -4780,13 +4815,26 @@ module TencentCloud
 
       # ExportAttackLogs请求参数结构体
       class ExportAttackLogsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤参数
+        # @param Filters: 过滤条件。
+        # <li>HttpMethod - String - 是否必填：否 - 攻击方法(POST|GET)</li>
+        # <li>DateRange - String - 是否必填：否 - 时间范围(存储最近3个月的数据)，如最近一个月["2019-11-17", "2019-12-17"]</li>
+        # <li>VulType - String 威胁类型 - 是否必填: 否</li>
+        # <li>SrcIp - String 攻击源IP - 是否必填: 否</li>
+        # <li>DstIp - String 攻击目标IP - 是否必填: 否</li>
+        # <li>SrcPort - String 攻击源端口 - 是否必填: 否</li>
+        # <li>DstPort - String 攻击目标端口 - 是否必填: 否</li>
         # @type Filters: Array
+        # @param Uuid: 主机安全客户端ID
+        # @type Uuid: String
+        # @param Quuid: 云主机机器ID
+        # @type Quuid: String
 
-        attr_accessor :Filters
+        attr_accessor :Filters, :Uuid, :Quuid
         
-        def initialize(filters=nil)
+        def initialize(filters=nil, uuid=nil, quuid=nil)
           @Filters = filters
+          @Uuid = uuid
+          @Quuid = quuid
         end
 
         def deserialize(params)
@@ -4796,6 +4844,8 @@ module TencentCloud
               @Filters << Filters.new.deserialize(i)
             end
           end
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
         end
       end
 

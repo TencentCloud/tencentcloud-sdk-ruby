@@ -807,6 +807,30 @@ module TencentCloud
         end
       end
 
+      # 敏感数据加密
+      class Encryption < TencentCloud::Common::AbstractModel
+        # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅<a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
+        # @type CiphertextBlob: String
+        # @param EncryptList: 在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的一个或多个字段
+        # @type EncryptList: Array
+        # @param Iv: 有加密需求的用户，传入CBC加密的初始向量
+        # @type Iv: String
+
+        attr_accessor :CiphertextBlob, :EncryptList, :Iv
+        
+        def initialize(ciphertextblob=nil, encryptlist=nil, iv=nil)
+          @CiphertextBlob = ciphertextblob
+          @EncryptList = encryptlist
+          @Iv = iv
+        end
+
+        def deserialize(params)
+          @CiphertextBlob = params['CiphertextBlob']
+          @EncryptList = params['EncryptList']
+          @Iv = params['Iv']
+        end
+      end
+
       # GetActionSequence请求参数结构体
       class GetActionSequenceRequest < TencentCloud::Common::AbstractModel
         # @param ActionType: 默认不需要使用
@@ -1723,14 +1747,17 @@ module TencentCloud
         # @type IdCard: String
         # @param Name: 姓名。
         # @type Name: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :Type, :Mobile, :IdCard, :Name
+        attr_accessor :Type, :Mobile, :IdCard, :Name, :Encryption
         
-        def initialize(type=nil, mobile=nil, idcard=nil, name=nil)
+        def initialize(type=nil, mobile=nil, idcard=nil, name=nil, encryption=nil)
           @Type = type
           @Mobile = mobile
           @IdCard = idcard
           @Name = name
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -1738,6 +1765,9 @@ module TencentCloud
           @Mobile = params['Mobile']
           @IdCard = params['IdCard']
           @Name = params['Name']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new.deserialize(params['Encryption'])
+          end
         end
       end
 

@@ -697,6 +697,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
+
+        # @param request: Request instance for DescribeDBCharsets.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBCharsetsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBCharsetsResponse`
+        def DescribeDBCharsets(request)
+          body = send_request('DescribeDBCharsets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBCharsetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBInstances)用于查询实例列表。
 
         # @param request: Request instance for DescribeDBInstances.

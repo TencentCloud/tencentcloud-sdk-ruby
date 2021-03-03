@@ -965,16 +965,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页大小，最小值为1，最大值为100，默认值为20。
         # @type Limit: Integer
+        # @param Format: 慢日志返回格式，可设置为json，不传默认返回原生慢日志格式。
+        # @type Format: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :SlowMS, :Offset, :Limit
+        attr_accessor :InstanceId, :StartTime, :EndTime, :SlowMS, :Offset, :Limit, :Format
         
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, slowms=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, slowms=nil, offset=nil, limit=nil, format=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @SlowMS = slowms
           @Offset = offset
           @Limit = limit
+          @Format = format
         end
 
         def deserialize(params)
@@ -984,6 +987,7 @@ module TencentCloud
           @SlowMS = params['SlowMS']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Format = params['Format']
         end
       end
 
@@ -1030,16 +1034,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页大小，最小值为1，最大值为100，默认值为20。
         # @type Limit: Integer
+        # @param Format: 慢日志返回格式，可设置为json，不传默认返回原生慢日志格式。
+        # @type Format: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :SlowMS, :Offset, :Limit
+        attr_accessor :InstanceId, :StartTime, :EndTime, :SlowMS, :Offset, :Limit, :Format
         
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, slowms=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, slowms=nil, offset=nil, limit=nil, format=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @SlowMS = slowms
           @Offset = offset
           @Limit = limit
+          @Format = format
         end
 
         def deserialize(params)
@@ -1049,6 +1056,7 @@ module TencentCloud
           @SlowMS = params['SlowMS']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Format = params['Format']
         end
       end
 

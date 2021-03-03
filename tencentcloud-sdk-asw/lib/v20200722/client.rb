@@ -73,6 +73,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 一次执行会有很多步骤，经过很多节点，这个接口描述某一次执行的事件的历史
+
+        # @param request: Request instance for DescribeExecutionHistory.
+        # @type request: :class:`Tencentcloud::asw::V20200722::DescribeExecutionHistoryRequest`
+        # @rtype: :class:`Tencentcloud::asw::V20200722::DescribeExecutionHistoryResponse`
+        def DescribeExecutionHistory(request)
+          body = send_request('DescribeExecutionHistory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExecutionHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对状态机的执行历史进行描述.
 
         # @param request: Request instance for DescribeExecutions.
