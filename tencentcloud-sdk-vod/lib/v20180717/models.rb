@@ -9574,6 +9574,26 @@ module TencentCloud
         end
       end
 
+      # 即时剪辑后媒资的片段信息。
+      class LiveRealTimeClipMediaSegmentInfo < TencentCloud::Common::AbstractModel
+        # @param StartTime: 片段的起始时间。格式参照 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type StartTime: String
+        # @param EndTime: 片段的结束时间。格式参照 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+        
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # LiveRealTimeClip请求参数结构体
       class LiveRealTimeClipRequest < TencentCloud::Common::AbstractModel
         # @param StreamId: 推流[直播码](https://cloud.tencent.com/document/product/267/5959)。
@@ -9590,7 +9610,7 @@ module TencentCloud
         # @type Procedure: String
         # @param MetaDataRequired: 是否需要返回剪辑后的视频元信息。0 不需要，1 需要。默认不需要。
         # @type MetaDataRequired: Integer
-        # @param Host: 即时剪辑使用的域名，必须在直播侧开通时移。
+        # @param Host: 云点播中添加的用于时移播放的域名，必须在云直播已经[关联录制模板和开通时移服务](https://cloud.tencent.com/document/product/266/52220#.E6.AD.A5.E9.AA.A43.EF.BC.9A.E5.85.B3.E8.81.94.E5.BD.95.E5.88.B6.E6.A8.A1.E6.9D.BF.3Ca-id.3D.22step3.22.3E.3C.2Fa.3E)。**如果本接口的首次调用时间在 2021-01-01T00:00:00Z 之后，则此字段为必选字段。**
         # @type Host: String
         # @param ExtInfo: 系统保留字段，请勿填写。
         # @type ExtInfo: String
@@ -9637,16 +9657,19 @@ module TencentCloud
         # @param MetaData: 剪辑后的视频元信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+        # @param SegmentSet: <span id="p_segmentset">剪辑后的视频片段信息。</span>
+        # @type SegmentSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Url, :FileId, :VodTaskId, :MetaData, :RequestId
+        attr_accessor :Url, :FileId, :VodTaskId, :MetaData, :SegmentSet, :RequestId
         
-        def initialize(url=nil, fileid=nil, vodtaskid=nil, metadata=nil, requestid=nil)
+        def initialize(url=nil, fileid=nil, vodtaskid=nil, metadata=nil, segmentset=nil, requestid=nil)
           @Url = url
           @FileId = fileid
           @VodTaskId = vodtaskid
           @MetaData = metadata
+          @SegmentSet = segmentset
           @RequestId = requestid
         end
 
@@ -9656,6 +9679,12 @@ module TencentCloud
           @VodTaskId = params['VodTaskId']
           unless params['MetaData'].nil?
             @MetaData = MediaMetaData.new.deserialize(params['MetaData'])
+          end
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              @SegmentSet << LiveRealTimeClipMediaSegmentInfo.new.deserialize(i)
+            end
           end
           @RequestId = params['RequestId']
         end

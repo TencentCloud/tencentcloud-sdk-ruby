@@ -6550,6 +6550,48 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskDetail请求参数结构体
+      class DescribeTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TaskLogId: 任务历史ID
+        # @type TaskLogId: String
+
+        attr_accessor :TaskId, :TaskLogId
+        
+        def initialize(taskid=nil, tasklogid=nil)
+          @TaskId = taskid
+          @TaskLogId = tasklogid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskLogId = params['TaskLogId']
+        end
+      end
+
+      # DescribeTaskDetail返回参数结构体
+      class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 任务详情
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskRecord`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TaskRecord.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskLastStatus请求参数结构体
       class DescribeTaskLastStatusRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -8545,7 +8587,7 @@ module TencentCloud
         # @param ShardCount: 分片数量
         # @type ShardCount: Integer
         # @param ShardArguments: 分片参数
-        # @type ShardArguments: :class:`Tencentcloud::Tsf.v20180326.models.ShardArgument`
+        # @type ShardArguments: Array
         # @param AdvanceSettings: 高级设置
         # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`
         # @param SuccessOperator: 判断任务成功的操作符 GT/GTE
@@ -8593,7 +8635,10 @@ module TencentCloud
           @GroupId = params['GroupId']
           @ShardCount = params['ShardCount']
           unless params['ShardArguments'].nil?
-            @ShardArguments = ShardArgument.new.deserialize(params['ShardArguments'])
+            @ShardArguments = []
+            params['ShardArguments'].each do |i|
+              @ShardArguments << ShardArgument.new.deserialize(i)
+            end
           end
           unless params['AdvanceSettings'].nil?
             @AdvanceSettings = AdvanceSettings.new.deserialize(params['AdvanceSettings'])
@@ -10081,7 +10126,7 @@ module TencentCloud
 
       # 分片参数
       class ShardArgument < TencentCloud::Common::AbstractModel
-        # @param ShardKey: 分片参数 KEY，整形
+        # @param ShardKey: 分片参数 KEY，整形, 范围 [1,1000]
         # @type ShardKey: Integer
         # @param ShardValue: 分片参数 VALUE
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10701,6 +10746,118 @@ module TencentCloud
           @BatchId = params['BatchId']
           @State = params['State']
           @BatchLogId = params['BatchLogId']
+        end
+      end
+
+      # 任务定义
+      class TaskRecord < TencentCloud::Common::AbstractModel
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param TaskType: 任务类型
+        # @type TaskType: String
+        # @param ExecuteType: 执行类型
+        # @type ExecuteType: String
+        # @param TaskContent: 任务内容，长度限制65535字节
+        # @type TaskContent: String
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+        # @param TimeOut: 超时时间
+        # @type TimeOut: Integer
+        # @param RetryCount: 重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryCount: Integer
+        # @param RetryInterval: 重试间隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryInterval: Integer
+        # @param TaskRule: 触发规则
+        # @type TaskRule: :class:`Tencentcloud::Tsf.v20180326.models.TaskRule`
+        # @param TaskState: 是否启用任务,ENABLED/DISABLED
+        # @type TaskState: String
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param SuccessOperator: 判断任务成功的操作符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessOperator: String
+        # @param SuccessRatio: 判断任务成功的阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessRatio: Integer
+        # @param ShardCount: 分片数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShardCount: Integer
+        # @param AdvanceSettings: 高级设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`
+        # @param ShardArguments: 分片参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShardArguments: Array
+        # @param BelongFlowIds: 所属工作流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BelongFlowIds: Array
+        # @param TaskLogId: 任务历史ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskLogId: String
+        # @param TriggerType: 触发类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerType: String
+        # @param TaskArgument: 任务参数，长度限制10000个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskArgument: String
+
+        attr_accessor :TaskName, :TaskType, :ExecuteType, :TaskContent, :GroupId, :TimeOut, :RetryCount, :RetryInterval, :TaskRule, :TaskState, :TaskId, :SuccessOperator, :SuccessRatio, :ShardCount, :AdvanceSettings, :ShardArguments, :BelongFlowIds, :TaskLogId, :TriggerType, :TaskArgument
+        
+        def initialize(taskname=nil, tasktype=nil, executetype=nil, taskcontent=nil, groupid=nil, timeout=nil, retrycount=nil, retryinterval=nil, taskrule=nil, taskstate=nil, taskid=nil, successoperator=nil, successratio=nil, shardcount=nil, advancesettings=nil, shardarguments=nil, belongflowids=nil, tasklogid=nil, triggertype=nil, taskargument=nil)
+          @TaskName = taskname
+          @TaskType = tasktype
+          @ExecuteType = executetype
+          @TaskContent = taskcontent
+          @GroupId = groupid
+          @TimeOut = timeout
+          @RetryCount = retrycount
+          @RetryInterval = retryinterval
+          @TaskRule = taskrule
+          @TaskState = taskstate
+          @TaskId = taskid
+          @SuccessOperator = successoperator
+          @SuccessRatio = successratio
+          @ShardCount = shardcount
+          @AdvanceSettings = advancesettings
+          @ShardArguments = shardarguments
+          @BelongFlowIds = belongflowids
+          @TaskLogId = tasklogid
+          @TriggerType = triggertype
+          @TaskArgument = taskargument
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @TaskType = params['TaskType']
+          @ExecuteType = params['ExecuteType']
+          @TaskContent = params['TaskContent']
+          @GroupId = params['GroupId']
+          @TimeOut = params['TimeOut']
+          @RetryCount = params['RetryCount']
+          @RetryInterval = params['RetryInterval']
+          unless params['TaskRule'].nil?
+            @TaskRule = TaskRule.new.deserialize(params['TaskRule'])
+          end
+          @TaskState = params['TaskState']
+          @TaskId = params['TaskId']
+          @SuccessOperator = params['SuccessOperator']
+          @SuccessRatio = params['SuccessRatio']
+          @ShardCount = params['ShardCount']
+          unless params['AdvanceSettings'].nil?
+            @AdvanceSettings = AdvanceSettings.new.deserialize(params['AdvanceSettings'])
+          end
+          unless params['ShardArguments'].nil?
+            @ShardArguments = []
+            params['ShardArguments'].each do |i|
+              @ShardArguments << ShardArgument.new.deserialize(i)
+            end
+          end
+          @BelongFlowIds = params['BelongFlowIds']
+          @TaskLogId = params['TaskLogId']
+          @TriggerType = params['TriggerType']
+          @TaskArgument = params['TaskArgument']
         end
       end
 

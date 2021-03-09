@@ -2035,6 +2035,189 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudBaseRunVersion请求参数结构体
+      class DescribeCloudBaseRunVersionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerName: 服务名称
+        # @type ServerName: String
+        # @param VersionName: 版本名称
+        # @type VersionName: String
+
+        attr_accessor :EnvId, :ServerName, :VersionName
+        
+        def initialize(envid=nil, servername=nil, versionname=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @VersionName = versionname
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @VersionName = params['VersionName']
+        end
+      end
+
+      # DescribeCloudBaseRunVersion返回参数结构体
+      class DescribeCloudBaseRunVersionResponse < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本名称
+        # @type VersionName: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param DockerfilePath: Dockefile的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DockerfilePath: String
+        # @param BuildDir: DockerBuild的目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildDir: String
+        # @param MinNum: 副本最小值
+        # @type MinNum: Integer
+        # @param MaxNum: 副本最大值
+        # @type MaxNum: Integer
+        # @param PolicyType: 策略类型
+        # @type PolicyType: String
+        # @param PolicyThreshold: 策略阈值
+        # @type PolicyThreshold: Float
+        # @param EnvParams: 环境变量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvParams: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param UpdatedTime: 更新时间
+        # @type UpdatedTime: String
+        # @param VersionIP: 版本的IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionIP: String
+        # @param VersionPort: 版本的端口号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionPort: Integer
+        # @param Status: 版本状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param PackageName: 代码包的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageName: String
+        # @param PackageVersion: 代码版本的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageVersion: String
+        # @param UploadType: 枚举（package/repository/image)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadType: String
+        # @param RepoType: Repo的类型(coding/gitlab/github/coding)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoType: String
+        # @param Repo: 地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Repo: String
+        # @param Branch: 分支
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Branch: String
+        # @param ServerName: 服务名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerName: String
+        # @param IsPublic: 是否对于外网开放
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPublic: Boolean
+        # @param VpcId: vpc id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetIds: 子网实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetIds: Array
+        # @param CustomLogs: 日志采集路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomLogs: String
+        # @param ContainerPort: 监听端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerPort: Integer
+        # @param InitialDelaySeconds: 延迟多长时间开始健康检查（单位s）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InitialDelaySeconds: Integer
+        # @param ImageUrl: 镜像地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
+        # @param CpuSize: CPU 大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuSize: Float
+        # @param MemSize: MEM 大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemSize: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :RequestId
+        
+        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, requestid=nil)
+          @VersionName = versionname
+          @Remark = remark
+          @DockerfilePath = dockerfilepath
+          @BuildDir = builddir
+          @MinNum = minnum
+          @MaxNum = maxnum
+          @PolicyType = policytype
+          @PolicyThreshold = policythreshold
+          @EnvParams = envparams
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+          @VersionIP = versionip
+          @VersionPort = versionport
+          @Status = status
+          @PackageName = packagename
+          @PackageVersion = packageversion
+          @UploadType = uploadtype
+          @RepoType = repotype
+          @Repo = repo
+          @Branch = branch
+          @ServerName = servername
+          @IsPublic = ispublic
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+          @CustomLogs = customlogs
+          @ContainerPort = containerport
+          @InitialDelaySeconds = initialdelayseconds
+          @ImageUrl = imageurl
+          @CpuSize = cpusize
+          @MemSize = memsize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @Remark = params['Remark']
+          @DockerfilePath = params['DockerfilePath']
+          @BuildDir = params['BuildDir']
+          @MinNum = params['MinNum']
+          @MaxNum = params['MaxNum']
+          @PolicyType = params['PolicyType']
+          @PolicyThreshold = params['PolicyThreshold']
+          @EnvParams = params['EnvParams']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+          @VersionIP = params['VersionIP']
+          @VersionPort = params['VersionPort']
+          @Status = params['Status']
+          @PackageName = params['PackageName']
+          @PackageVersion = params['PackageVersion']
+          @UploadType = params['UploadType']
+          @RepoType = params['RepoType']
+          @Repo = params['Repo']
+          @Branch = params['Branch']
+          @ServerName = params['ServerName']
+          @IsPublic = params['IsPublic']
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+          @CustomLogs = params['CustomLogs']
+          @ContainerPort = params['ContainerPort']
+          @InitialDelaySeconds = params['InitialDelaySeconds']
+          @ImageUrl = params['ImageUrl']
+          @CpuSize = params['CpuSize']
+          @MemSize = params['MemSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudBaseRunVersionSnapshot请求参数结构体
       class DescribeCloudBaseRunVersionSnapshotRequest < TencentCloud::Common::AbstractModel
         # @param ServerName: 服务名

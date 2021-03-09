@@ -1188,6 +1188,45 @@ module TencentCloud
         end
       end
 
+      # GetAccount请求参数结构体
+      class GetAccountRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetAccount返回参数结构体
+      class GetAccountResponse < TencentCloud::Common::AbstractModel
+        # @param AccountUsage: 命名空间已使用的信息
+        # @type AccountUsage: :class:`Tencentcloud::Scf.v20180416.models.UsageInfo`
+        # @param AccountLimit: 命名空间限制的信息
+        # @type AccountLimit: :class:`Tencentcloud::Scf.v20180416.models.LimitsInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccountUsage, :AccountLimit, :RequestId
+        
+        def initialize(accountusage=nil, accountlimit=nil, requestid=nil)
+          @AccountUsage = accountusage
+          @AccountLimit = accountlimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AccountUsage'].nil?
+            @AccountUsage = UsageInfo.new.deserialize(params['AccountUsage'])
+          end
+          unless params['AccountLimit'].nil?
+            @AccountLimit = LimitsInfo.new.deserialize(params['AccountLimit'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetAlias请求参数结构体
       class GetAliasRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 函数名称
@@ -1945,6 +1984,31 @@ module TencentCloud
         end
       end
 
+      # 限制信息
+      class LimitsInfo < TencentCloud::Common::AbstractModel
+        # @param NamespacesCount: 命名空间个数限制
+        # @type NamespacesCount: Integer
+        # @param Namespace: 命名空间限制信息
+        # @type Namespace: Array
+
+        attr_accessor :NamespacesCount, :Namespace
+        
+        def initialize(namespacescount=nil, namespace=nil)
+          @NamespacesCount = namespacescount
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @NamespacesCount = params['NamespacesCount']
+          unless params['Namespace'].nil?
+            @Namespace = []
+            params['Namespace'].each do |i|
+              @Namespace << NamespaceLimit.new.deserialize(i)
+            end
+          end
+        end
+      end
+
       # ListAliases请求参数结构体
       class ListAliasesRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 函数名称
@@ -2568,6 +2632,85 @@ module TencentCloud
         end
       end
 
+      # 命名空间限制
+      class NamespaceLimit < TencentCloud::Common::AbstractModel
+        # @param FunctionsCount: 函数总数
+        # @type FunctionsCount: Integer
+        # @param Trigger: Trigger信息
+        # @type Trigger: :class:`Tencentcloud::Scf.v20180416.models.TriggerCount`
+        # @param Namespace: Namespace名称
+        # @type Namespace: String
+        # @param ConcurrentExecutions: 并发量
+        # @type ConcurrentExecutions: Integer
+        # @param TimeoutLimit: Timeout限制
+        # @type TimeoutLimit: Integer
+        # @param TestModelLimit: 测试事件限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TestModelLimit: Integer
+        # @param InitTimeoutLimit: 初始化超时限制
+        # @type InitTimeoutLimit: Integer
+        # @param RetryNumLimit: 异步重试次数限制
+        # @type RetryNumLimit: Integer
+        # @param MinMsgTTL: 异步重试消息保留时间下限
+        # @type MinMsgTTL: Integer
+        # @param MaxMsgTTL: 异步重试消息保留时间上限
+        # @type MaxMsgTTL: Integer
+
+        attr_accessor :FunctionsCount, :Trigger, :Namespace, :ConcurrentExecutions, :TimeoutLimit, :TestModelLimit, :InitTimeoutLimit, :RetryNumLimit, :MinMsgTTL, :MaxMsgTTL
+        
+        def initialize(functionscount=nil, trigger=nil, namespace=nil, concurrentexecutions=nil, timeoutlimit=nil, testmodellimit=nil, inittimeoutlimit=nil, retrynumlimit=nil, minmsgttl=nil, maxmsgttl=nil)
+          @FunctionsCount = functionscount
+          @Trigger = trigger
+          @Namespace = namespace
+          @ConcurrentExecutions = concurrentexecutions
+          @TimeoutLimit = timeoutlimit
+          @TestModelLimit = testmodellimit
+          @InitTimeoutLimit = inittimeoutlimit
+          @RetryNumLimit = retrynumlimit
+          @MinMsgTTL = minmsgttl
+          @MaxMsgTTL = maxmsgttl
+        end
+
+        def deserialize(params)
+          @FunctionsCount = params['FunctionsCount']
+          unless params['Trigger'].nil?
+            @Trigger = TriggerCount.new.deserialize(params['Trigger'])
+          end
+          @Namespace = params['Namespace']
+          @ConcurrentExecutions = params['ConcurrentExecutions']
+          @TimeoutLimit = params['TimeoutLimit']
+          @TestModelLimit = params['TestModelLimit']
+          @InitTimeoutLimit = params['InitTimeoutLimit']
+          @RetryNumLimit = params['RetryNumLimit']
+          @MinMsgTTL = params['MinMsgTTL']
+          @MaxMsgTTL = params['MaxMsgTTL']
+        end
+      end
+
+      # 名称空间已使用信息
+      class NamespaceUsage < TencentCloud::Common::AbstractModel
+        # @param Functions: 函数数组
+        # @type Functions: Array
+        # @param Namespace: 命名空间名称
+        # @type Namespace: String
+        # @param FunctionsCount: 命名空间函数个数
+        # @type FunctionsCount: Integer
+
+        attr_accessor :Functions, :Namespace, :FunctionsCount
+        
+        def initialize(functions=nil, namespace=nil, functionscount=nil)
+          @Functions = functions
+          @Namespace = namespace
+          @FunctionsCount = functionscount
+        end
+
+        def deserialize(params)
+          @Functions = params['Functions']
+          @Namespace = params['Namespace']
+          @FunctionsCount = params['FunctionsCount']
+        end
+      end
+
       # 公网访问配置
       class PublicNetConfigIn < TencentCloud::Common::AbstractModel
         # @param PublicNetStatus: 是否开启公网访问能力取值['DISABLE','ENABLE']
@@ -3092,6 +3235,62 @@ module TencentCloud
         end
       end
 
+      # TriggerCount描述不同类型触发器的数量
+      class TriggerCount < TencentCloud::Common::AbstractModel
+        # @param Cos: Cos触发器数量
+        # @type Cos: Integer
+        # @param Timer: Timer触发器数量
+        # @type Timer: Integer
+        # @param Cmq: Cmq触发器数量
+        # @type Cmq: Integer
+        # @param Total: 触发器总数
+        # @type Total: Integer
+        # @param Ckafka: Ckafka触发器数量
+        # @type Ckafka: Integer
+        # @param Apigw: Apigw触发器数量
+        # @type Apigw: Integer
+        # @param Cls: Cls触发器数量
+        # @type Cls: Integer
+        # @param Clb: Clb触发器数量
+        # @type Clb: Integer
+        # @param Mps: Mps触发器数量
+        # @type Mps: Integer
+        # @param Cm: Cm触发器数量
+        # @type Cm: Integer
+        # @param Vod: Vod触发器数量
+        # @type Vod: Integer
+
+        attr_accessor :Cos, :Timer, :Cmq, :Total, :Ckafka, :Apigw, :Cls, :Clb, :Mps, :Cm, :Vod
+        
+        def initialize(cos=nil, timer=nil, cmq=nil, total=nil, ckafka=nil, apigw=nil, cls=nil, clb=nil, mps=nil, cm=nil, vod=nil)
+          @Cos = cos
+          @Timer = timer
+          @Cmq = cmq
+          @Total = total
+          @Ckafka = ckafka
+          @Apigw = apigw
+          @Cls = cls
+          @Clb = clb
+          @Mps = mps
+          @Cm = cm
+          @Vod = vod
+        end
+
+        def deserialize(params)
+          @Cos = params['Cos']
+          @Timer = params['Timer']
+          @Cmq = params['Cmq']
+          @Total = params['Total']
+          @Ckafka = params['Ckafka']
+          @Apigw = params['Apigw']
+          @Cls = params['Cls']
+          @Clb = params['Clb']
+          @Mps = params['Mps']
+          @Cm = params['Cm']
+          @Vod = params['Vod']
+        end
+      end
+
       # 触发器信息
       class TriggerInfo < TencentCloud::Common::AbstractModel
         # @param Enable: 使能开关
@@ -3429,6 +3628,43 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 已使用的信息
+      class UsageInfo < TencentCloud::Common::AbstractModel
+        # @param NamespacesCount: 命名空间个数
+        # @type NamespacesCount: Integer
+        # @param Namespace: 命名空间详情
+        # @type Namespace: Array
+        # @param TotalConcurrencyMem: 当前地域用户并发内存配额上限
+        # @type TotalConcurrencyMem: Integer
+        # @param TotalAllocatedConcurrencyMem: 当前地域用户已配置并发内存额度
+        # @type TotalAllocatedConcurrencyMem: Integer
+        # @param UserConcurrencyMemLimit: 用户实际配置的账号并发配额
+        # @type UserConcurrencyMemLimit: Integer
+
+        attr_accessor :NamespacesCount, :Namespace, :TotalConcurrencyMem, :TotalAllocatedConcurrencyMem, :UserConcurrencyMemLimit
+        
+        def initialize(namespacescount=nil, namespace=nil, totalconcurrencymem=nil, totalallocatedconcurrencymem=nil, userconcurrencymemlimit=nil)
+          @NamespacesCount = namespacescount
+          @Namespace = namespace
+          @TotalConcurrencyMem = totalconcurrencymem
+          @TotalAllocatedConcurrencyMem = totalallocatedconcurrencymem
+          @UserConcurrencyMemLimit = userconcurrencymemlimit
+        end
+
+        def deserialize(params)
+          @NamespacesCount = params['NamespacesCount']
+          unless params['Namespace'].nil?
+            @Namespace = []
+            params['Namespace'].each do |i|
+              @Namespace << NamespaceUsage.new.deserialize(i)
+            end
+          end
+          @TotalConcurrencyMem = params['TotalConcurrencyMem']
+          @TotalAllocatedConcurrencyMem = params['TotalAllocatedConcurrencyMem']
+          @UserConcurrencyMemLimit = params['UserConcurrencyMemLimit']
         end
       end
 

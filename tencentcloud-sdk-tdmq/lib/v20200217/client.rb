@@ -553,6 +553,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量发送消息
+
+        # @param request: Request instance for SendBatchMessages.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::SendBatchMessagesRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::SendBatchMessagesResponse`
+        def SendBatchMessages(request)
+          body = send_request('SendBatchMessages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SendBatchMessagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 发送单条消息
+
+        # @param request: Request instance for SendMessages.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::SendMessagesRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::SendMessagesResponse`
+        def SendMessages(request)
+          body = send_request('SendMessages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SendMessagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

@@ -320,6 +320,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取账户信息
+
+        # @param request: Request instance for GetAccount.
+        # @type request: :class:`Tencentcloud::scf::V20180416::GetAccountRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::GetAccountResponse`
+        def GetAccount(request)
+          body = send_request('GetAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取别名的详细信息，包括名称、描述、版本、路由信息等。
 
         # @param request: Request instance for GetAlias.

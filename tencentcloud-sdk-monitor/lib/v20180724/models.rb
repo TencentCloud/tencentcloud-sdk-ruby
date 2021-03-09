@@ -584,7 +584,9 @@ module TencentCloud
         # @type Region: String
         # @param RegionId: 地域ID
         # @type RegionId: Integer
-        # @param Dimensions: 维度信息
+        # @param Dimensions: 实例的维度信息，格式为
+        # {"unInstanceId":"ins-00jvv9mo"}。不同云产品的维度信息不同，详见
+        # [产品策略类型和命名空间](https://cloud.tencent.com/document/product/248/50397)
         # @type Dimensions: String
         # @param EventDimensions: 事件维度信息
         # @type EventDimensions: String
@@ -3776,11 +3778,11 @@ module TencentCloud
         # @type ProductName: Array
         # @param EventName: 事件名称过滤，比如"guest_reboot"表示机器重启
         # @type EventName: Array
-        # @param InstanceId: 影响对象，比如ins-19708ino
+        # @param InstanceId: 影响对象，比如"ins-19708ino"
         # @type InstanceId: Array
         # @param Dimensions: 维度过滤，比如外网IP:10.0.0.1
         # @type Dimensions: Array
-        # @param RegionList: 地域过滤，比如gz
+        # @param RegionList: 产品事件地域过滤参数，比如gz，各地域缩写可参见[地域列表](https://cloud.tencent.com/document/product/248/50863)
         # @type RegionList: Array
         # @param Type: 事件类型过滤，取值范围["status_change","abnormal"]，分别表示状态变更、异常事件
         # @type Type: Array

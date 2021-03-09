@@ -777,10 +777,12 @@ module TencentCloud
         # @type Score: Integer
         # @param Location: OCR位置
         # @type Location: :class:`Tencentcloud::Ims.v20200713.models.Location`
+        # @param Rate: OCR文本识别置信度
+        # @type Rate: Integer
 
-        attr_accessor :Text, :Label, :LibId, :LibName, :Keywords, :Score, :Location
+        attr_accessor :Text, :Label, :LibId, :LibName, :Keywords, :Score, :Location, :Rate
         
-        def initialize(text=nil, label=nil, libid=nil, libname=nil, keywords=nil, score=nil, location=nil)
+        def initialize(text=nil, label=nil, libid=nil, libname=nil, keywords=nil, score=nil, location=nil, rate=nil)
           @Text = text
           @Label = label
           @LibId = libid
@@ -788,6 +790,7 @@ module TencentCloud
           @Keywords = keywords
           @Score = score
           @Location = location
+          @Rate = rate
         end
 
         def deserialize(params)
@@ -800,6 +803,7 @@ module TencentCloud
           unless params['Location'].nil?
             @Location = Location.new.deserialize(params['Location'])
           end
+          @Rate = params['Rate']
         end
       end
 

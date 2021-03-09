@@ -1481,14 +1481,17 @@ module TencentCloud
         # @type RemovePluginList: Array
         # @param ForceRestart: 是否强制重启
         # @type ForceRestart: Boolean
+        # @param ForceUpdate: 是否重新安装
+        # @type ForceUpdate: Boolean
 
-        attr_accessor :InstanceId, :InstallPluginList, :RemovePluginList, :ForceRestart
+        attr_accessor :InstanceId, :InstallPluginList, :RemovePluginList, :ForceRestart, :ForceUpdate
         
-        def initialize(instanceid=nil, installpluginlist=nil, removepluginlist=nil, forcerestart=nil)
+        def initialize(instanceid=nil, installpluginlist=nil, removepluginlist=nil, forcerestart=nil, forceupdate=nil)
           @InstanceId = instanceid
           @InstallPluginList = installpluginlist
           @RemovePluginList = removepluginlist
           @ForceRestart = forcerestart
+          @ForceUpdate = forceupdate
         end
 
         def deserialize(params)
@@ -1496,6 +1499,7 @@ module TencentCloud
           @InstallPluginList = params['InstallPluginList']
           @RemovePluginList = params['RemovePluginList']
           @ForceRestart = params['ForceRestart']
+          @ForceUpdate = params['ForceUpdate']
         end
       end
 

@@ -1662,6 +1662,142 @@ module TencentCloud
         end
       end
 
+      # SendBatchMessages请求参数结构体
+      class SendBatchMessagesRequest < TencentCloud::Common::AbstractModel
+        # @param Topic: Topic name
+        # @type Topic: String
+        # @param Payload: 需要发送消息的内容
+        # @type Payload: String
+        # @param StringToken: String 类型的 token，用来校验客户端和服务端之间的连接
+        # @type StringToken: String
+        # @param ProducerName: producer 的名字，要求全局是唯一的，如果不设置，系统会自动生成
+        # @type ProducerName: String
+        # @param SendTimeout: 单位：s。消息发送的超时时间。默认值为：30s
+        # @type SendTimeout: Integer
+        # @param MaxPendingMessages: 内存中允许缓存的生产消息的最大数量，默认值：1000条
+        # @type MaxPendingMessages: Integer
+        # @param BatchingMaxMessages: 每一个batch中消息的最大数量，默认值：1000条/batch
+        # @type BatchingMaxMessages: Integer
+        # @param BatchingMaxPublishDelay: 每一个batch最大等待的时间，超过这个时间，不管是否达到指定的batch中消息的数量和大小，都会将该batch发送出去，默认：10ms
+        # @type BatchingMaxPublishDelay: Integer
+        # @param BatchingMaxBytes: 每一个batch中最大允许的消息的大小，默认：128KB
+        # @type BatchingMaxBytes: Integer
+
+        attr_accessor :Topic, :Payload, :StringToken, :ProducerName, :SendTimeout, :MaxPendingMessages, :BatchingMaxMessages, :BatchingMaxPublishDelay, :BatchingMaxBytes
+        
+        def initialize(topic=nil, payload=nil, stringtoken=nil, producername=nil, sendtimeout=nil, maxpendingmessages=nil, batchingmaxmessages=nil, batchingmaxpublishdelay=nil, batchingmaxbytes=nil)
+          @Topic = topic
+          @Payload = payload
+          @StringToken = stringtoken
+          @ProducerName = producername
+          @SendTimeout = sendtimeout
+          @MaxPendingMessages = maxpendingmessages
+          @BatchingMaxMessages = batchingmaxmessages
+          @BatchingMaxPublishDelay = batchingmaxpublishdelay
+          @BatchingMaxBytes = batchingmaxbytes
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @Payload = params['Payload']
+          @StringToken = params['StringToken']
+          @ProducerName = params['ProducerName']
+          @SendTimeout = params['SendTimeout']
+          @MaxPendingMessages = params['MaxPendingMessages']
+          @BatchingMaxMessages = params['BatchingMaxMessages']
+          @BatchingMaxPublishDelay = params['BatchingMaxPublishDelay']
+          @BatchingMaxBytes = params['BatchingMaxBytes']
+        end
+      end
+
+      # SendBatchMessages返回参数结构体
+      class SendBatchMessagesResponse < TencentCloud::Common::AbstractModel
+        # @param MessageId: 消息的唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageId: String
+        # @param ErrorMsg: 错误消息，返回为 ""，代表没有错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MessageId, :ErrorMsg, :RequestId
+        
+        def initialize(messageid=nil, errormsg=nil, requestid=nil)
+          @MessageId = messageid
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MessageId = params['MessageId']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SendMessages请求参数结构体
+      class SendMessagesRequest < TencentCloud::Common::AbstractModel
+        # @param StringToken: Token 是用来做鉴权使用的
+        # @type StringToken: String
+        # @param Topic: 消息要发送的topic的名字
+        # @type Topic: String
+        # @param Payload: 要发送的消息的内容
+        # @type Payload: String
+        # @param ProducerName: 设置 producer 的名字，要求全局唯一，用户不配置，系统会随机生成
+        # @type ProducerName: String
+        # @param SendTimeout: 设置消息发送的超时时间，默认为30s
+        # @type SendTimeout: Integer
+        # @param MaxPendingMessages: 内存中缓存的最大的生产消息的数量，默认为1000条
+        # @type MaxPendingMessages: Integer
+
+        attr_accessor :StringToken, :Topic, :Payload, :ProducerName, :SendTimeout, :MaxPendingMessages
+        
+        def initialize(stringtoken=nil, topic=nil, payload=nil, producername=nil, sendtimeout=nil, maxpendingmessages=nil)
+          @StringToken = stringtoken
+          @Topic = topic
+          @Payload = payload
+          @ProducerName = producername
+          @SendTimeout = sendtimeout
+          @MaxPendingMessages = maxpendingmessages
+        end
+
+        def deserialize(params)
+          @StringToken = params['StringToken']
+          @Topic = params['Topic']
+          @Payload = params['Payload']
+          @ProducerName = params['ProducerName']
+          @SendTimeout = params['SendTimeout']
+          @MaxPendingMessages = params['MaxPendingMessages']
+        end
+      end
+
+      # SendMessages返回参数结构体
+      class SendMessagesResponse < TencentCloud::Common::AbstractModel
+        # @param MessageId: 消息的messageID, 是全局唯一的，用来标识消息的元数据信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageId: String
+        # @param ErrorMsg: 返回的错误消息，如果返回为 “”，说明没有错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MessageId, :ErrorMsg, :RequestId
+        
+        def initialize(messageid=nil, errormsg=nil, requestid=nil)
+          @MessageId = messageid
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MessageId = params['MessageId']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 订阅者
       class Subscription < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名称。
