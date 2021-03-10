@@ -121,6 +121,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CreateScdnFailedLogTask 用于重试创建失败的事件日志任务
+
+        # @param request: Request instance for CreateScdnFailedLogTask.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::CreateScdnFailedLogTaskRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::CreateScdnFailedLogTaskResponse`
+        def CreateScdnFailedLogTask(request)
+          body = send_request('CreateScdnFailedLogTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateScdnFailedLogTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # CreateScdnLogTask 用于创建事件日志任务
 
         # @param request: Request instance for CreateScdnLogTask.

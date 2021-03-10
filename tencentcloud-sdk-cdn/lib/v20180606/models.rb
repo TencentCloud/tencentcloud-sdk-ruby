@@ -1926,6 +1926,47 @@ module TencentCloud
         end
       end
 
+      # CreateScdnFailedLogTask请求参数结构体
+      class CreateScdnFailedLogTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 重试失败任务的taskID
+        # @type TaskId: String
+        # @param Area: 地域：mainland或overseas
+        # @type Area: String
+
+        attr_accessor :TaskId, :Area
+        
+        def initialize(taskid=nil, area=nil)
+          @TaskId = taskid
+          @Area = area
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Area = params['Area']
+        end
+      end
+
+      # CreateScdnFailedLogTask返回参数结构体
+      class CreateScdnFailedLogTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建结果,
+        # "0" -> 创建成功
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateScdnLogTask请求参数结构体
       class CreateScdnLogTaskRequest < TencentCloud::Common::AbstractModel
         # @param Mode: 防护类型
@@ -1975,10 +2016,14 @@ module TencentCloud
         # @type AttackTypes: Array
         # @param Conditions: 查询条件
         # @type Conditions: Array
+        # @param Source: 来源产品 cdn ecdn
+        # @type Source: String
+        # @param Area: 地域：mainland 或 overseas
+        # @type Area: String
 
-        attr_accessor :Mode, :StartTime, :EndTime, :Domain, :AttackType, :DefenceMode, :Ip, :Domains, :AttackTypes, :Conditions
+        attr_accessor :Mode, :StartTime, :EndTime, :Domain, :AttackType, :DefenceMode, :Ip, :Domains, :AttackTypes, :Conditions, :Source, :Area
         
-        def initialize(mode=nil, starttime=nil, endtime=nil, domain=nil, attacktype=nil, defencemode=nil, ip=nil, domains=nil, attacktypes=nil, conditions=nil)
+        def initialize(mode=nil, starttime=nil, endtime=nil, domain=nil, attacktype=nil, defencemode=nil, ip=nil, domains=nil, attacktypes=nil, conditions=nil, source=nil, area=nil)
           @Mode = mode
           @StartTime = starttime
           @EndTime = endtime
@@ -1989,6 +2034,8 @@ module TencentCloud
           @Domains = domains
           @AttackTypes = attacktypes
           @Conditions = conditions
+          @Source = source
+          @Area = area
         end
 
         def deserialize(params)
@@ -2007,6 +2054,8 @@ module TencentCloud
               @Conditions << ScdnEventLogConditions.new.deserialize(i)
             end
           end
+          @Source = params['Source']
+          @Area = params['Area']
         end
       end
 
@@ -5768,12 +5817,21 @@ module TencentCloud
 
       # ListScdnLogTasks请求参数结构体
       class ListScdnLogTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Source: 产品来源 cdn/ecdn
+        # @type Source: String
+        # @param Area: 地域：mainland 或 overseas 为空表示查询所有地域
+        # @type Area: String
 
+        attr_accessor :Source, :Area
         
-        def initialize()
+        def initialize(source=nil, area=nil)
+          @Source = source
+          @Area = area
         end
 
         def deserialize(params)
+          @Source = params['Source']
+          @Area = params['Area']
         end
       end
 
@@ -7818,10 +7876,13 @@ module TencentCloud
         # @type AclRuleNumbers: Integer
         # @param Bot: Bot 状态默认为‘/’，取值 close | open
         # @type Bot: String
+        # @param Area: 域名加速区域，取值global | mainland |  overseas
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Area: String
 
-        attr_accessor :Domain, :Status, :Waf, :Acl, :CC, :Ddos, :ProjectId, :AclRuleNumbers, :Bot
+        attr_accessor :Domain, :Status, :Waf, :Acl, :CC, :Ddos, :ProjectId, :AclRuleNumbers, :Bot, :Area
         
-        def initialize(domain=nil, status=nil, waf=nil, acl=nil, cc=nil, ddos=nil, projectid=nil, aclrulenumbers=nil, bot=nil)
+        def initialize(domain=nil, status=nil, waf=nil, acl=nil, cc=nil, ddos=nil, projectid=nil, aclrulenumbers=nil, bot=nil, area=nil)
           @Domain = domain
           @Status = status
           @Waf = waf
@@ -7831,6 +7892,7 @@ module TencentCloud
           @ProjectId = projectid
           @AclRuleNumbers = aclrulenumbers
           @Bot = bot
+          @Area = area
         end
 
         def deserialize(params)
@@ -7843,6 +7905,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @AclRuleNumbers = params['AclRuleNumbers']
           @Bot = params['Bot']
+          @Area = params['Area']
         end
       end
 
@@ -7944,10 +8007,13 @@ module TencentCloud
         # @param Conditions: 查询条件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Conditions: Array
+        # @param Area: mainland或overseas
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Area: String
 
-        attr_accessor :Domain, :Mode, :StartTime, :EndTime, :CreateTime, :DownloadUrl, :Status, :TaskID, :AttackType, :DefenceMode, :Conditions
+        attr_accessor :Domain, :Mode, :StartTime, :EndTime, :CreateTime, :DownloadUrl, :Status, :TaskID, :AttackType, :DefenceMode, :Conditions, :Area
         
-        def initialize(domain=nil, mode=nil, starttime=nil, endtime=nil, createtime=nil, downloadurl=nil, status=nil, taskid=nil, attacktype=nil, defencemode=nil, conditions=nil)
+        def initialize(domain=nil, mode=nil, starttime=nil, endtime=nil, createtime=nil, downloadurl=nil, status=nil, taskid=nil, attacktype=nil, defencemode=nil, conditions=nil, area=nil)
           @Domain = domain
           @Mode = mode
           @StartTime = starttime
@@ -7959,6 +8025,7 @@ module TencentCloud
           @AttackType = attacktype
           @DefenceMode = defencemode
           @Conditions = conditions
+          @Area = area
         end
 
         def deserialize(params)
@@ -7978,6 +8045,7 @@ module TencentCloud
               @Conditions << ScdnEventLogConditions.new.deserialize(i)
             end
           end
+          @Area = params['Area']
         end
       end
 
@@ -8078,15 +8146,23 @@ module TencentCloud
         # @param Rules: 类型拦截规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rules: Array
+        # @param Level: waf规则等级，可取100|200|300
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param SubRuleSwitch: waf子规则开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubRuleSwitch: Array
 
-        attr_accessor :Switch, :Mode, :ErrorPage, :WebShellSwitch, :Rules
+        attr_accessor :Switch, :Mode, :ErrorPage, :WebShellSwitch, :Rules, :Level, :SubRuleSwitch
         
-        def initialize(switch=nil, mode=nil, errorpage=nil, webshellswitch=nil, rules=nil)
+        def initialize(switch=nil, mode=nil, errorpage=nil, webshellswitch=nil, rules=nil, level=nil, subruleswitch=nil)
           @Switch = switch
           @Mode = mode
           @ErrorPage = errorpage
           @WebShellSwitch = webshellswitch
           @Rules = rules
+          @Level = level
+          @SubRuleSwitch = subruleswitch
         end
 
         def deserialize(params)
@@ -8100,6 +8176,13 @@ module TencentCloud
             @Rules = []
             params['Rules'].each do |i|
               @Rules << ScdnWafRule.new.deserialize(i)
+            end
+          end
+          @Level = params['Level']
+          unless params['SubRuleSwitch'].nil?
+            @SubRuleSwitch = []
+            params['SubRuleSwitch'].each do |i|
+              @SubRuleSwitch << WafSubRuleStatus.new.deserialize(i)
             end
           end
         end
@@ -9537,6 +9620,26 @@ module TencentCloud
           @UrlStatus = params['UrlStatus']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 门神子规则开关状态
+      class WafSubRuleStatus < TencentCloud::Common::AbstractModel
+        # @param Switch: 子规则状态，on|off
+        # @type Switch: String
+        # @param SubIds: 规则id列表
+        # @type SubIds: Array
+
+        attr_accessor :Switch, :SubIds
+        
+        def initialize(switch=nil, subids=nil)
+          @Switch = switch
+          @SubIds = subids
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @SubIds = params['SubIds']
         end
       end
 

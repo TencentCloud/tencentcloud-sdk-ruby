@@ -586,7 +586,7 @@ module TencentCloud
         # @type RegionId: Integer
         # @param Dimensions: 实例的维度信息，格式为
         # {"unInstanceId":"ins-00jvv9mo"}。不同云产品的维度信息不同，详见
-        # [产品策略类型和命名空间](https://cloud.tencent.com/document/product/248/50397)
+        # [指标维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)
         # @type Dimensions: String
         # @param EventDimensions: 事件维度信息
         # @type EventDimensions: String
@@ -1828,27 +1828,40 @@ module TencentCloud
         # @type PolicyName: String
         # @param MonitorTypes: 根据监控类型过滤 不选默认查所有类型 "MT_QCE"=云产品监控
         # @type MonitorTypes: Array
-        # @param Namespaces: 根据命名空间过滤
+        # @param Namespaces: 根据命名空间过滤，不同策略类型的值详见
+        # [策略类型列表](https://cloud.tencent.com/document/product/248/50397)
         # @type Namespaces: Array
-        # @param Dimensions: 告警对象列表
+        # @param Dimensions: 告警对象列表，外层数组，对应多个实例
+        # 内层数组，每个数组对应一个实例，里面的object对应的是这个实例的维度信息。格式为
+        # [
+        # 	[{"name":"unInstanceId","value":"ins-qr888845g"}],
+        # 	[{"name":"unInstanceId","value":"ins-qr8d555g"}]
+        # 	...
+        # ]
+        # 不同云产品参数示例详见
+        # [维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)
         # @type Dimensions: String
-        # @param ReceiverUids: 根据接收人搜索
+        # @param ReceiverUids: 根据接收人的uid搜索，需要调用访问管理的api查询。详见
+        # [拉取子用户](https://cloud.tencent.com/document/product/598/34587)
         # @type ReceiverUids: Array
-        # @param ReceiverGroups: 根据接收组搜索
+        # @param ReceiverGroups: 根据接收组的uid搜索，需要调用访问管理的api查询，详见
+        # [查询用户组列表](https://cloud.tencent.com/document/product/598/34589)
         # @type ReceiverGroups: Array
         # @param PolicyType: 根据默认策略筛选 不传展示全部策略 DEFAULT=展示默认策略 NOT_DEFAULT=展示非默认策略
         # @type PolicyType: Array
-        # @param Field: 排序字段
+        # @param Field: 排序字段，例如按照最后修改时间排序，Field: "UpdateTime"
         # @type Field: String
         # @param Order: 排序顺序：升序：ASC  降序：DESC
         # @type Order: String
-        # @param ProjectIds: 项目id数组
+        # @param ProjectIds: 策略所属项目的id数组，可在此页面查看
+        # [项目管理](https://console.cloud.tencent.com/project)
         # @type ProjectIds: Array
-        # @param NoticeIds: 告警通知id列表
+        # @param NoticeIds: 通知模版的id列表，可查询通知模版列表获取。
+        # [查询通知模板列表](https://cloud.tencent.com/document/product/248/51280)
         # @type NoticeIds: Array
         # @param RuleTypes: 根据触发条件筛选 不传展示全部策略 STATIC=展示静态阈值策略 DYNAMIC=展示动态阈值策略
         # @type RuleTypes: Array
-        # @param Enable: 启停，1：启用   0：停止
+        # @param Enable: 告警启停筛选，[1]：启用   [0]：停止，全部[0, 1]
         # @type Enable: Array
         # @param NotBindingNoticeRule: 是否未配置通知规则，1：未配置，0：配置
         # @type NotBindingNoticeRule: Integer

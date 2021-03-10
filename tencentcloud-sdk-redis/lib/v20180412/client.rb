@@ -217,7 +217,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询Redis实例列表信息
+        # 查询Redis实例列表信息。该接口已废弃。
 
         # @param request: Request instance for DescribeCommonDBInstances.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeCommonDBInstancesRequest`

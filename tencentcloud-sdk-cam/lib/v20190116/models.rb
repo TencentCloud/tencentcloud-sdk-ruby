@@ -1186,6 +1186,47 @@ module TencentCloud
         end
       end
 
+      # DescribeSubAccounts请求参数结构体
+      class DescribeSubAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param FilterSubAccountUin: 子用户UIN列表，最多支持50个UIN
+        # @type FilterSubAccountUin: Array
+
+        attr_accessor :FilterSubAccountUin
+        
+        def initialize(filtersubaccountuin=nil)
+          @FilterSubAccountUin = filtersubaccountuin
+        end
+
+        def deserialize(params)
+          @FilterSubAccountUin = params['FilterSubAccountUin']
+        end
+      end
+
+      # DescribeSubAccounts返回参数结构体
+      class DescribeSubAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param SubAccounts: 子用户列表
+        # @type SubAccounts: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubAccounts, :RequestId
+        
+        def initialize(subaccounts=nil, requestid=nil)
+          @SubAccounts = subaccounts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SubAccounts'].nil?
+            @SubAccounts = []
+            params['SubAccounts'].each do |i|
+              @SubAccounts << SubAccountUser.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetachGroupPolicy请求参数结构体
       class DetachGroupPolicyRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 策略 id
@@ -3080,6 +3121,43 @@ module TencentCloud
           @CountryCode = params['CountryCode']
           @Email = params['Email']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 子用户信息
+      class SubAccountUser < TencentCloud::Common::AbstractModel
+        # @param Uin: 子用户用户 ID
+        # @type Uin: Integer
+        # @param Name: 子用户用户名
+        # @type Name: String
+        # @param Uid: 子用户 UID
+        # @type Uid: Integer
+        # @param Remark: 子用户备注
+        # @type Remark: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UserType: 用户类型(1:主账号;2:子用户;3:企业微信子用户;4:协作者;5:消息接收人)
+        # @type UserType: Integer
+
+        attr_accessor :Uin, :Name, :Uid, :Remark, :CreateTime, :UserType
+        
+        def initialize(uin=nil, name=nil, uid=nil, remark=nil, createtime=nil, usertype=nil)
+          @Uin = uin
+          @Name = name
+          @Uid = uid
+          @Remark = remark
+          @CreateTime = createtime
+          @UserType = usertype
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @Name = params['Name']
+          @Uid = params['Uid']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @UserType = params['UserType']
         end
       end
 
