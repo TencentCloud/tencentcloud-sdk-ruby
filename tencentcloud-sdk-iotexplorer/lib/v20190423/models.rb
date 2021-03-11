@@ -2240,15 +2240,19 @@ module TencentCloud
         # @param CategoryModel: 产品所属分类的模型快照（产品创建时刻的）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryModel: String
+        # @param NetTypeModel: 产品的连接类型的模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetTypeModel: String
 
-        attr_accessor :ProductId, :ModelDefine, :UpdateTime, :CreateTime, :CategoryModel
+        attr_accessor :ProductId, :ModelDefine, :UpdateTime, :CreateTime, :CategoryModel, :NetTypeModel
         
-        def initialize(productid=nil, modeldefine=nil, updatetime=nil, createtime=nil, categorymodel=nil)
+        def initialize(productid=nil, modeldefine=nil, updatetime=nil, createtime=nil, categorymodel=nil, nettypemodel=nil)
           @ProductId = productid
           @ModelDefine = modeldefine
           @UpdateTime = updatetime
           @CreateTime = createtime
           @CategoryModel = categorymodel
+          @NetTypeModel = nettypemodel
         end
 
         def deserialize(params)
@@ -2257,6 +2261,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @CreateTime = params['CreateTime']
           @CategoryModel = params['CategoryModel']
+          @NetTypeModel = params['NetTypeModel']
         end
       end
 
