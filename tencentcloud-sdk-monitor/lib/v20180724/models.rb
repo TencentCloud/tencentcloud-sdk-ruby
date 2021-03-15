@@ -87,10 +87,13 @@ module TencentCloud
         # @type Region: String
         # @param PolicyExists: 策略是否存在 0=不存在 1=存在
         # @type PolicyExists: Integer
+        # @param MetricsInfo: 指标信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricsInfo: Array
 
-        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists
+        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists, :MetricsInfo
         
-        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil)
+        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil, metricsinfo=nil)
           @AlarmId = alarmid
           @MonitorType = monitortype
           @Namespace = namespace
@@ -113,6 +116,7 @@ module TencentCloud
           @EventId = eventid
           @Region = region
           @PolicyExists = policyexists
+          @MetricsInfo = metricsinfo
         end
 
         def deserialize(params)
@@ -143,6 +147,44 @@ module TencentCloud
           @EventId = params['EventId']
           @Region = params['Region']
           @PolicyExists = params['PolicyExists']
+          unless params['MetricsInfo'].nil?
+            @MetricsInfo = []
+            params['MetricsInfo'].each do |i|
+              @MetricsInfo << AlarmHistoryMetric.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 告警历史的指标信息
+      class AlarmHistoryMetric < TencentCloud::Common::AbstractModel
+        # @param QceNamespace: 云产品监控类型查询数据使用的命名空间
+        # @type QceNamespace: String
+        # @param MetricName: 指标名
+        # @type MetricName: String
+        # @param Period: 统计周期
+        # @type Period: Integer
+        # @param Value: 触发告警的数值
+        # @type Value: String
+        # @param Description: 指标的展示名
+        # @type Description: String
+
+        attr_accessor :QceNamespace, :MetricName, :Period, :Value, :Description
+        
+        def initialize(qcenamespace=nil, metricname=nil, period=nil, value=nil, description=nil)
+          @QceNamespace = qcenamespace
+          @MetricName = metricname
+          @Period = period
+          @Value = value
+          @Description = description
+        end
+
+        def deserialize(params)
+          @QceNamespace = params['QceNamespace']
+          @MetricName = params['MetricName']
+          @Period = params['Period']
+          @Value = params['Value']
+          @Description = params['Description']
         end
       end
 

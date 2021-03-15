@@ -2398,6 +2398,46 @@ module TencentCloud
         end
       end
 
+      # KillSession请求参数结构体
+      class KillSessionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SessionId: 会话ID列表
+        # @type SessionId: Array
+
+        attr_accessor :InstanceId, :SessionId
+        
+        def initialize(instanceid=nil, sessionid=nil)
+          @InstanceId = instanceid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # KillSession返回参数结构体
+      class KillSessionResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 拉取的日志信息
       class LogFileInfo < TencentCloud::Common::AbstractModel
         # @param Mtime: Log最后修改时间

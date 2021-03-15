@@ -1297,6 +1297,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 管理实例公网访问
+
+        # @param request: Request instance for ManageExternalEndpoint.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::ManageExternalEndpointRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::ManageExternalEndpointResponse`
+        def ManageExternalEndpoint(request)
+          body = send_request('ManageExternalEndpoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ManageExternalEndpointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于设置个人版全局镜像版本自动清理策略
 
         # @param request: Request instance for ManageImageLifecycleGlobalPersonal.

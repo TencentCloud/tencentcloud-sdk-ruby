@@ -2683,6 +2683,46 @@ module TencentCloud
         end
       end
 
+      # ManageExternalEndpoint请求参数结构体
+      class ManageExternalEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param Operation: 操作（Create/Delete）
+        # @type Operation: String
+
+        attr_accessor :RegistryId, :Operation
+        
+        def initialize(registryid=nil, operation=nil)
+          @RegistryId = registryid
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Operation = params['Operation']
+        end
+      end
+
+      # ManageExternalEndpoint返回参数结构体
+      class ManageExternalEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegistryId, :RequestId
+        
+        def initialize(registryid=nil, requestid=nil)
+          @RegistryId = registryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ManageImageLifecycleGlobalPersonal请求参数结构体
       class ManageImageLifecycleGlobalPersonalRequest < TencentCloud::Common::AbstractModel
         # @param Type: global_keep_last_days:全局保留最近几天的数据;global_keep_last_nums:全局保留最近多少个
