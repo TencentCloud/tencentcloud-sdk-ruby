@@ -2786,10 +2786,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Limit: Integer
+        # @param IpAddresses: 根据多个实例IP进行过滤
+        # @type IpAddresses: Array
 
-        attr_accessor :ClusterId, :InstanceIds, :Filters, :VagueIpAddress, :VagueInstanceName, :Offset, :Limit
+        attr_accessor :ClusterId, :InstanceIds, :Filters, :VagueIpAddress, :VagueInstanceName, :Offset, :Limit, :IpAddresses
         
-        def initialize(clusterid=nil, instanceids=nil, filters=nil, vagueipaddress=nil, vagueinstancename=nil, offset=nil, limit=nil)
+        def initialize(clusterid=nil, instanceids=nil, filters=nil, vagueipaddress=nil, vagueinstancename=nil, offset=nil, limit=nil, ipaddresses=nil)
           @ClusterId = clusterid
           @InstanceIds = instanceids
           @Filters = filters
@@ -2797,6 +2799,7 @@ module TencentCloud
           @VagueInstanceName = vagueinstancename
           @Offset = offset
           @Limit = limit
+          @IpAddresses = ipaddresses
         end
 
         def deserialize(params)
@@ -2812,6 +2815,7 @@ module TencentCloud
           @VagueInstanceName = params['VagueInstanceName']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @IpAddresses = params['IpAddresses']
         end
       end
 
@@ -4763,19 +4767,39 @@ module TencentCloud
         # @type StartTime: String
         # @param Content: 告警内容
         # @type Content: String
+        # @param State: 告警状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param RuleItem: 触发的规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleItem: String
+        # @param TopicId: 告警渠道的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param TopicName: 告警渠道的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
 
-        attr_accessor :RuleName, :StartTime, :Content
+        attr_accessor :RuleName, :StartTime, :Content, :State, :RuleItem, :TopicId, :TopicName
         
-        def initialize(rulename=nil, starttime=nil, content=nil)
+        def initialize(rulename=nil, starttime=nil, content=nil, state=nil, ruleitem=nil, topicid=nil, topicname=nil)
           @RuleName = rulename
           @StartTime = starttime
           @Content = content
+          @State = state
+          @RuleItem = ruleitem
+          @TopicId = topicid
+          @TopicName = topicname
         end
 
         def deserialize(params)
           @RuleName = params['RuleName']
           @StartTime = params['StartTime']
           @Content = params['Content']
+          @State = params['State']
+          @RuleItem = params['RuleItem']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
         end
       end
 

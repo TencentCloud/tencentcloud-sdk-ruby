@@ -1244,20 +1244,25 @@ module TencentCloud
         # @param VersionName: 版本名称（只有Result为succ的时候，才会返回VersionName)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionName: String
+        # @param RunId: 操作记录id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :VersionName, :RequestId
+        attr_accessor :Result, :VersionName, :RunId, :RequestId
         
-        def initialize(result=nil, versionname=nil, requestid=nil)
+        def initialize(result=nil, versionname=nil, runid=nil, requestid=nil)
           @Result = result
           @VersionName = versionname
+          @RunId = runid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Result = params['Result']
           @VersionName = params['VersionName']
+          @RunId = params['RunId']
           @RequestId = params['RequestId']
         end
       end

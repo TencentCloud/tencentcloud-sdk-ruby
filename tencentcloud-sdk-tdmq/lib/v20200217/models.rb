@@ -395,7 +395,7 @@ module TencentCloud
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称。
         # @type EnvironmentId: String
-        # @param TopicName: 主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过32个字符。
+        # @param TopicName: 主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
         # @type TopicName: String
         # @param Partitions: 0：非分区topic，无分区；非0：具体分区topic的分区数，最大不允许超过128。
         # @type Partitions: Integer

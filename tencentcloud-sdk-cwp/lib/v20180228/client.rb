@@ -1465,6 +1465,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 入侵检测，获取恶意请求列表
+
+        # @param request: Request instance for DescribeRiskDnsList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeRiskDnsListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeRiskDnsListResponse`
+        def DescribeRiskDnsList(request)
+          body = send_request('DescribeRiskDnsList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRiskDnsListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询木马扫描进度
 
         # @param request: Request instance for DescribeScanMalwareSchedule.
@@ -2627,6 +2651,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UntrustMalwaresResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据基线策略id更新策略信息
+
+        # @param request: Request instance for UpdateBaselineStrategy.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::UpdateBaselineStrategyRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::UpdateBaselineStrategyResponse`
+        def UpdateBaselineStrategy(request)
+          body = send_request('UpdateBaselineStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateBaselineStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else

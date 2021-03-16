@@ -1335,6 +1335,47 @@ module TencentCloud
         end
       end
 
+      # DescribeExternalEndpointStatus请求参数结构体
+      class DescribeExternalEndpointStatusRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+
+        attr_accessor :RegistryId
+        
+        def initialize(registryid=nil)
+          @RegistryId = registryid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+        end
+      end
+
+      # DescribeExternalEndpointStatus返回参数结构体
+      class DescribeExternalEndpointStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 开启公网访问状态，包括开启中，开启成功以及关闭和更新失败等
+        # @type Status: String
+        # @param Reason: 原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Reason, :RequestId
+        
+        def initialize(status=nil, reason=nil, requestid=nil)
+          @Status = status
+          @Reason = reason
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Reason = params['Reason']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFavorRepositoryPersonal请求参数结构体
       class DescribeFavorRepositoryPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 仓库名称

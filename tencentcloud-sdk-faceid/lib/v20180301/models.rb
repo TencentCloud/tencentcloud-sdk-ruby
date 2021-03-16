@@ -93,15 +93,18 @@ module TencentCloud
         # @param CertType: 证件类型，请确认该证件为开户时使用的证件类型，未用于开户的证件信息不支持验证。
         # 目前默认为0：身份证，其他证件类型暂不支持。
         # @type CertType: Integer
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号、手机号、银行卡号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :Name, :BankCard, :Phone, :IdCard, :CertType
+        attr_accessor :Name, :BankCard, :Phone, :IdCard, :CertType, :Encryption
         
-        def initialize(name=nil, bankcard=nil, phone=nil, idcard=nil, certtype=nil)
+        def initialize(name=nil, bankcard=nil, phone=nil, idcard=nil, certtype=nil, encryption=nil)
           @Name = name
           @BankCard = bankcard
           @Phone = phone
           @IdCard = idcard
           @CertType = certtype
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -110,6 +113,9 @@ module TencentCloud
           @Phone = params['Phone']
           @IdCard = params['IdCard']
           @CertType = params['CertType']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new.deserialize(params['Encryption'])
+          end
         end
       end
 
@@ -169,14 +175,17 @@ module TencentCloud
         # @param CertType: 证件类型，请确认该证件为开户时使用的证件类型，未用于开户的证件信息不支持验证。
         # 目前默认：0 身份证，其他证件类型需求可以联系小助手faceid001确认。
         # @type CertType: Integer
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号、银行卡号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :IdCard, :Name, :BankCard, :CertType
+        attr_accessor :IdCard, :Name, :BankCard, :CertType, :Encryption
         
-        def initialize(idcard=nil, name=nil, bankcard=nil, certtype=nil)
+        def initialize(idcard=nil, name=nil, bankcard=nil, certtype=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
           @BankCard = bankcard
           @CertType = certtype
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -184,6 +193,9 @@ module TencentCloud
           @Name = params['Name']
           @BankCard = params['BankCard']
           @CertType = params['CertType']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new.deserialize(params['Encryption'])
+          end
         end
       end
 
@@ -470,10 +482,12 @@ module TencentCloud
         # @param ImageBase64: 用于人脸比对的照片，图片的Base64值；
         # Base64编码后的图片数据大小不超过3M，仅支持jpg、png格式。请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
         # @type ImageBase64: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64
+        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption
         
-        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil)
+        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil)
           @RuleId = ruleid
           @TerminalType = terminaltype
           @IdCard = idcard
@@ -481,6 +495,7 @@ module TencentCloud
           @RedirectUrl = redirecturl
           @Extra = extra
           @ImageBase64 = imagebase64
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -491,6 +506,9 @@ module TencentCloud
           @RedirectUrl = params['RedirectUrl']
           @Extra = params['Extra']
           @ImageBase64 = params['ImageBase64']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new.deserialize(params['Encryption'])
+          end
         end
       end
 

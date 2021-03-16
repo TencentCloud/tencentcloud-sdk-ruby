@@ -115,6 +115,31 @@ module TencentCloud
         end
       end
 
+      # 函数的异步重试配置详情
+      class AsyncTriggerConfig < TencentCloud::Common::AbstractModel
+        # @param RetryConfig: 用户错误的异步重试重试配置
+        # @type RetryConfig: Array
+        # @param MsgTTL: 消息保留时间
+        # @type MsgTTL: Integer
+
+        attr_accessor :RetryConfig, :MsgTTL
+        
+        def initialize(retryconfig=nil, msgttl=nil)
+          @RetryConfig = retryconfig
+          @MsgTTL = msgttl
+        end
+
+        def deserialize(params)
+          unless params['RetryConfig'].nil?
+            @RetryConfig = []
+            params['RetryConfig'].each do |i|
+              @RetryConfig << RetryConfig.new.deserialize(i)
+            end
+          end
+          @MsgTTL = params['MsgTTL']
+        end
+      end
+
       # 文件系统(cfs)配置描述
       class CfsConfig < TencentCloud::Common::AbstractModel
         # @param CfsInsList: 文件系统信息列表
@@ -1340,6 +1365,52 @@ module TencentCloud
         def deserialize(params)
           @Url = params['Url']
           @CodeSha256 = params['CodeSha256']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetFunctionEventInvokeConfig请求参数结构体
+      class GetFunctionEventInvokeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param Namespace: 函数所属命名空间，默认为default
+        # @type Namespace: String
+        # @param Qualifier: 函数版本，默认为$LATEST
+        # @type Qualifier: String
+
+        attr_accessor :FunctionName, :Namespace, :Qualifier
+        
+        def initialize(functionname=nil, namespace=nil, qualifier=nil)
+          @FunctionName = functionname
+          @Namespace = namespace
+          @Qualifier = qualifier
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Namespace = params['Namespace']
+          @Qualifier = params['Qualifier']
+        end
+      end
+
+      # GetFunctionEventInvokeConfig返回参数结构体
+      class GetFunctionEventInvokeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncTriggerConfig: 异步重试配置信息
+        # @type AsyncTriggerConfig: :class:`Tencentcloud::Scf.v20180416.models.AsyncTriggerConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncTriggerConfig, :RequestId
+        
+        def initialize(asynctriggerconfig=nil, requestid=nil)
+          @AsyncTriggerConfig = asynctriggerconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AsyncTriggerConfig'].nil?
+            @AsyncTriggerConfig = AsyncTriggerConfig.new.deserialize(params['AsyncTriggerConfig'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3045,6 +3116,22 @@ module TencentCloud
         end
       end
 
+      # 异步重试配置
+      class RetryConfig < TencentCloud::Common::AbstractModel
+        # @param RetryNum: 重试次数
+        # @type RetryNum: Integer
+
+        attr_accessor :RetryNum
+        
+        def initialize(retrynum=nil)
+          @RetryNum = retrynum
+        end
+
+        def deserialize(params)
+          @RetryNum = params['RetryNum']
+        end
+      end
+
       # 别名的版本路由配置
       class RoutingConfig < TencentCloud::Common::AbstractModel
         # @param AdditionalVersionWeights: 随机权重路由附加版本
@@ -3581,6 +3668,48 @@ module TencentCloud
 
       # UpdateFunctionConfiguration返回参数结构体
       class UpdateFunctionConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateFunctionEventInvokeConfig请求参数结构体
+      class UpdateFunctionEventInvokeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param AsyncTriggerConfig: 异步重试配置信息
+        # @type AsyncTriggerConfig: :class:`Tencentcloud::Scf.v20180416.models.AsyncTriggerConfig`
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param Namespace: 函数所属命名空间，默认为default
+        # @type Namespace: String
+
+        attr_accessor :AsyncTriggerConfig, :FunctionName, :Namespace
+        
+        def initialize(asynctriggerconfig=nil, functionname=nil, namespace=nil)
+          @AsyncTriggerConfig = asynctriggerconfig
+          @FunctionName = functionname
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          unless params['AsyncTriggerConfig'].nil?
+            @AsyncTriggerConfig = AsyncTriggerConfig.new.deserialize(params['AsyncTriggerConfig'])
+          end
+          @FunctionName = params['FunctionName']
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # UpdateFunctionEventInvokeConfig返回参数结构体
+      class UpdateFunctionEventInvokeConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

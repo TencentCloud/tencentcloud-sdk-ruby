@@ -721,6 +721,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例公网访问入口状态
+
+        # @param request: Request instance for DescribeExternalEndpointStatus.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeExternalEndpointStatusRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeExternalEndpointStatusResponse`
+        def DescribeExternalEndpointStatus(request)
+          body = send_request('DescribeExternalEndpointStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExternalEndpointStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询个人收藏仓库
 
         # @param request: Request instance for DescribeFavorRepositoryPersonal.

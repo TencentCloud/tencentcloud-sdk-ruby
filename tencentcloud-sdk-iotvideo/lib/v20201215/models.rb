@@ -127,6 +127,79 @@ module TencentCloud
         end
       end
 
+      # 云存事件
+      class CloudStorageEvent < TencentCloud::Common::AbstractModel
+        # @param StartTime: 事件起始时间（Unix 时间戳，秒级
+        # @type StartTime: Integer
+        # @param EndTime: 事件结束时间（Unix 时间戳，秒级
+        # @type EndTime: Integer
+        # @param Thumbnail: 事件缩略图
+        # @type Thumbnail: String
+        # @param EventId: 事件ID
+        # @type EventId: String
+
+        attr_accessor :StartTime, :EndTime, :Thumbnail, :EventId
+        
+        def initialize(starttime=nil, endtime=nil, thumbnail=nil, eventid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Thumbnail = thumbnail
+          @EventId = eventid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Thumbnail = params['Thumbnail']
+          @EventId = params['EventId']
+        end
+      end
+
+      # 云存时间轴接口返回数据
+      class CloudStorageTimeData < TencentCloud::Common::AbstractModel
+        # @param TimeList: 云存时间轴信息列表
+        # @type TimeList: Array
+        # @param VideoURL: 播放地址
+        # @type VideoURL: String
+
+        attr_accessor :TimeList, :VideoURL
+        
+        def initialize(timelist=nil, videourl=nil)
+          @TimeList = timelist
+          @VideoURL = videourl
+        end
+
+        def deserialize(params)
+          unless params['TimeList'].nil?
+            @TimeList = []
+            params['TimeList'].each do |i|
+              @TimeList << CloudStorageTimeInfo.new.deserialize(i)
+            end
+          end
+          @VideoURL = params['VideoURL']
+        end
+      end
+
+      # 云存时间轴信息
+      class CloudStorageTimeInfo < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+
+        attr_accessor :StartTime, :EndTime
+        
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # CreateBatch请求参数结构体
       class CreateBatchRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -167,6 +240,46 @@ module TencentCloud
 
         def deserialize(params)
           @BatchId = params['BatchId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudStorage请求参数结构体
+      class CreateCloudStorageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param PackageId: 云存套餐ID
+        # @type PackageId: String
+
+        attr_accessor :ProductId, :DeviceName, :PackageId
+        
+        def initialize(productid=nil, devicename=nil, packageid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @PackageId = packageid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @PackageId = params['PackageId']
+        end
+      end
+
+      # CreateCloudStorage返回参数结构体
+      class CreateCloudStorageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -613,6 +726,265 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = ProductTemplate.new.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudStorageDate请求参数结构体
+      class DescribeCloudStorageDateRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+        
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeCloudStorageDate返回参数结构体
+      class DescribeCloudStorageDateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 云存日期数组，["2021-01-05","2021-01-06"]
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudStorageEvents请求参数结构体
+      class DescribeCloudStorageEventsRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param StartTime: 起始时间（Unix 时间戳，秒级）, 为0 表示 当前时间 - 24h
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间（Unix 时间戳，秒级）, 为0 表示当前时间
+        # @type EndTime: Integer
+        # @param Context: 请求上下文, 用作查询游标
+        # @type Context: String
+        # @param Size: 单次获取的历史数据项目的最大数量, 缺省10
+        # @type Size: Integer
+        # @param EventId: 事件标识符，可以用来指定查询特定的事件，如果不指定，则查询所有事件。
+        # @type EventId: String
+
+        attr_accessor :ProductId, :DeviceName, :StartTime, :EndTime, :Context, :Size, :EventId
+        
+        def initialize(productid=nil, devicename=nil, starttime=nil, endtime=nil, context=nil, size=nil, eventid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @StartTime = starttime
+          @EndTime = endtime
+          @Context = context
+          @Size = size
+          @EventId = eventid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Context = params['Context']
+          @Size = params['Size']
+          @EventId = params['EventId']
+        end
+      end
+
+      # DescribeCloudStorageEvents返回参数结构体
+      class DescribeCloudStorageEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Events: 云存事件列表
+        # @type Events: Array
+        # @param Context: 请求上下文, 用作查询游标
+        # @type Context: String
+        # @param Listover: 拉取结果是否已经结束
+        # @type Listover: Boolean
+        # @param Total: 拉取结果数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :Context, :Listover, :Total, :RequestId
+        
+        def initialize(events=nil, context=nil, listover=nil, total=nil, requestid=nil)
+          @Events = events
+          @Context = context
+          @Listover = listover
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              @Events << CloudStorageEvent.new.deserialize(i)
+            end
+          end
+          @Context = params['Context']
+          @Listover = params['Listover']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudStorage请求参数结构体
+      class DescribeCloudStorageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+        
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeCloudStorage返回参数结构体
+      class DescribeCloudStorageResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 云存开启状态，1为开启，0为未开启或已过期
+        # @type Status: Integer
+        # @param Type: 云存类型，1为全时云存，2为事件云存
+        # @type Type: Integer
+        # @param ExpireTime: 云存套餐过期时间
+        # @type ExpireTime: Integer
+        # @param ShiftDuration: 云存回看时长
+        # @type ShiftDuration: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Type, :ExpireTime, :ShiftDuration, :RequestId
+        
+        def initialize(status=nil, type=nil, expiretime=nil, shiftduration=nil, requestid=nil)
+          @Status = status
+          @Type = type
+          @ExpireTime = expiretime
+          @ShiftDuration = shiftduration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Type = params['Type']
+          @ExpireTime = params['ExpireTime']
+          @ShiftDuration = params['ShiftDuration']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudStorageThumbnail请求参数结构体
+      class DescribeCloudStorageThumbnailRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Thumbnail: 缩略图文件名
+        # @type Thumbnail: String
+
+        attr_accessor :ProductId, :DeviceName, :Thumbnail
+        
+        def initialize(productid=nil, devicename=nil, thumbnail=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Thumbnail = thumbnail
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Thumbnail = params['Thumbnail']
+        end
+      end
+
+      # DescribeCloudStorageThumbnail返回参数结构体
+      class DescribeCloudStorageThumbnailResponse < TencentCloud::Common::AbstractModel
+        # @param ThumbnailURL: 缩略图访问地址
+        # @type ThumbnailURL: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ThumbnailURL, :RequestId
+        
+        def initialize(thumbnailurl=nil, requestid=nil)
+          @ThumbnailURL = thumbnailurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ThumbnailURL = params['ThumbnailURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudStorageTime请求参数结构体
+      class DescribeCloudStorageTimeRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Date: 云存日期，例如"2020-01-05"
+        # @type Date: String
+
+        attr_accessor :ProductId, :DeviceName, :Date
+        
+        def initialize(productid=nil, devicename=nil, date=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Date = date
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Date = params['Date']
+        end
+      end
+
+      # DescribeCloudStorageTime返回参数结构体
+      class DescribeCloudStorageTimeResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 接口返回数据
+        # @type Data: :class:`Tencentcloud::Iotvideo.v20201215.models.CloudStorageTimeData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CloudStorageTimeData.new.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end

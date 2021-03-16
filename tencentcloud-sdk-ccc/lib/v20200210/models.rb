@@ -1121,10 +1121,13 @@ module TencentCloud
         # @param QueuedSkillGroupId: 排队技能组Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueuedSkillGroupId: Integer
+        # @param SessionId: 会话 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId
+        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId
         
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -1148,6 +1151,7 @@ module TencentCloud
           @QueuedTimestamp = queuedtimestamp
           @PostIVRKeyPressed = postivrkeypressed
           @QueuedSkillGroupId = queuedskillgroupid
+          @SessionId = sessionid
         end
 
         def deserialize(params)
@@ -1186,6 +1190,7 @@ module TencentCloud
             end
           end
           @QueuedSkillGroupId = params['QueuedSkillGroupId']
+          @SessionId = params['SessionId']
         end
       end
 

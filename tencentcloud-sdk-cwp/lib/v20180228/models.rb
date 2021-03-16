@@ -3636,6 +3636,64 @@ module TencentCloud
         end
       end
 
+      # DescribeRiskDnsList请求参数结构体
+      class DescribeRiskDnsListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Url - String - 是否必填：否 - Url筛选</li>
+        # <li>Status - String - 是否必填：否 - 状态筛选0:待处理；2:信任；3:不信任</li>
+        # <li>MergeBeginTime - String - 是否必填：否 - 最近访问开始时间</li>
+        # <li>MergeEndTime - String - 是否必填：否 - 最近访问结束时间</li>
+        # @type Filters: Array
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeRiskDnsList返回参数结构体
+      class DescribeRiskDnsListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeScanMalwareSchedule请求参数结构体
       class DescribeScanMalwareScheduleRequest < TencentCloud::Common::AbstractModel
 
@@ -4002,17 +4060,32 @@ module TencentCloud
         # @type MachineType: String
         # @param MachineRegion: 机器所属地域。如：ap-guangzhou，ap-shanghai
         # @type MachineRegion: String
+        # @param Filters: 过滤条件。
+        # <li>Keywords - String - 是否必填：否 - 查询关键字(机器名称/机器IP </li>
+        # <li>Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线 | ONLINE: 在线 | UNINSTALLED：未安装 | SHUTDOWN 已关机）</li>
+        # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版）</li>
+        # <li>Risk - String 是否必填: 否 - 风险主机( yes ) </li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
+        # @type Filters: Array
 
-        attr_accessor :MachineType, :MachineRegion
+        attr_accessor :MachineType, :MachineRegion, :Filters
         
-        def initialize(machinetype=nil, machineregion=nil)
+        def initialize(machinetype=nil, machineregion=nil, filters=nil)
           @MachineType = machinetype
           @MachineRegion = machineregion
+          @Filters = filters
         end
 
         def deserialize(params)
           @MachineType = params['MachineType']
           @MachineRegion = params['MachineRegion']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filters.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -4619,9 +4692,9 @@ module TencentCloud
         # @type Rule: String
         # @param Id: 规则ID(新增时不填)
         # @type Id: Integer
-        # @param Uuid: 客户端ID(IsGlobal为1时，Uuid或Hostip必填一个)
+        # @param Uuid: 客户端ID(IsGlobal为0时，Uuid或Hostip必填一个)
         # @type Uuid: String
-        # @param Hostip: 主机IP(IsGlobal为1时，Uuid或Hostip必填一个)
+        # @param Hostip: 主机IP(IsGlobal为0时，Uuid或Hostip必填一个)
         # @type Hostip: String
         # @param IsGlobal: 是否全局规则(默认否)
         # @type IsGlobal: Integer
@@ -7322,6 +7395,70 @@ module TencentCloud
 
       # UntrustMalwares返回参数结构体
       class UntrustMalwaresResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateBaselineStrategy请求参数结构体
+      class UpdateBaselineStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param StrategyId: 策略id
+        # @type StrategyId: Integer
+        # @param StrategyName: 策略名称
+        # @type StrategyName: String
+        # @param ScanCycle: 检测周期
+        # @type ScanCycle: Integer
+        # @param ScanAt: 定期检测时间，该时间下发扫描
+        # @type ScanAt: String
+        # @param CategoryIds: 该策略下选择的基线id数组
+        # @type CategoryIds: Array
+        # @param IsGlobal: 扫描范围是否全部服务器, 1:是  0:否, 为1则为全部专业版主机
+        # @type IsGlobal: Integer
+        # @param MachineType: 云主机类型：cvm：虚拟主机，bms：裸金属，ecm：边缘计算主机
+        # @type MachineType: String
+        # @param RegionCode: 主机地域
+        # @type RegionCode: String
+        # @param Quuids: 主机id数组
+        # @type Quuids: Array
+
+        attr_accessor :StrategyId, :StrategyName, :ScanCycle, :ScanAt, :CategoryIds, :IsGlobal, :MachineType, :RegionCode, :Quuids
+        
+        def initialize(strategyid=nil, strategyname=nil, scancycle=nil, scanat=nil, categoryids=nil, isglobal=nil, machinetype=nil, regioncode=nil, quuids=nil)
+          @StrategyId = strategyid
+          @StrategyName = strategyname
+          @ScanCycle = scancycle
+          @ScanAt = scanat
+          @CategoryIds = categoryids
+          @IsGlobal = isglobal
+          @MachineType = machinetype
+          @RegionCode = regioncode
+          @Quuids = quuids
+        end
+
+        def deserialize(params)
+          @StrategyId = params['StrategyId']
+          @StrategyName = params['StrategyName']
+          @ScanCycle = params['ScanCycle']
+          @ScanAt = params['ScanAt']
+          @CategoryIds = params['CategoryIds']
+          @IsGlobal = params['IsGlobal']
+          @MachineType = params['MachineType']
+          @RegionCode = params['RegionCode']
+          @Quuids = params['Quuids']
+        end
+      end
+
+      # UpdateBaselineStrategy返回参数结构体
+      class UpdateBaselineStrategyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
