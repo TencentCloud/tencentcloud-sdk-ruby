@@ -1353,7 +1353,7 @@ module TencentCloud
 
       # DescribeExternalEndpointStatus返回参数结构体
       class DescribeExternalEndpointStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 开启公网访问状态，包括开启中，开启成功以及关闭和更新失败等
+        # @param Status: 开启公网访问状态，开启中（Opening）、已开启（Opened）、关闭（Closed）
         # @type Status: String
         # @param Reason: 原因
         # 注意：此字段可能返回 null，表示取不到有效值。

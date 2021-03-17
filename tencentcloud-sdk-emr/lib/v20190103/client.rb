@@ -73,6 +73,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 预付费集群隔离后续费资源查询
+
+        # @param request: Request instance for DescribeInstanceRenewNodes.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeInstanceRenewNodesRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeInstanceRenewNodesResponse`
+        def DescribeInstanceRenewNodes(request)
+          body = send_request('DescribeInstanceRenewNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceRenewNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询EMR实例
 
         # @param request: Request instance for DescribeInstances.
@@ -107,6 +131,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeJobFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 集群续费询价。
+
+        # @param request: Request instance for InquirePriceRenewEmr.
+        # @type request: :class:`Tencentcloud::emr::V20190103::InquirePriceRenewEmrRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::InquirePriceRenewEmrResponse`
+        def InquirePriceRenewEmr(request)
+          body = send_request('InquirePriceRenewEmr', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceRenewEmrResponse.new
             model.deserialize(response['Response'])
             model
           else

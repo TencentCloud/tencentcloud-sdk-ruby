@@ -2879,6 +2879,7 @@ module TencentCloud
         # <li>militant：武装分子。</li>
         # <li>explosion：爆炸火灾。</li>
         # <li>terrorists：暴恐人物。</li>
+        # <li>scenario：暴恐画面。</li>
         # @type Label: String
         # @param SegmentSet: 有暴恐嫌疑的视频片段列表。
         # @type SegmentSet: Array
@@ -16034,7 +16035,8 @@ module TencentCloud
         # <li>banners：暴恐旗帜；</li>
         # <li>militant：武装分子；</li>
         # <li>explosion：爆炸火灾；</li>
-        # <li>terrorists：暴恐人物。</li>
+        # <li>terrorists：暴恐人物；</li>
+        # <li>scenario：暴恐画面。</li>
         # @type LabelSet: Array
         # @param BlockConfidence: 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
         # @type BlockConfidence: Integer
@@ -16072,7 +16074,8 @@ module TencentCloud
         # <li>banners：暴恐旗帜；</li>
         # <li>militant：武装分子；</li>
         # <li>explosion：爆炸火灾；</li>
-        # <li>terrorists：暴恐人物。</li>
+        # <li>terrorists：暴恐人物；</li>
+        # <li>scenario：暴恐画面。</li>
         # @type LabelSet: Array
         # @param BlockConfidence: 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
         # @type BlockConfidence: Integer

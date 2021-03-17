@@ -316,7 +316,7 @@ module TencentCloud
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param ClassPath: 分类路径。
         # @type ClassPath: String
-        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验分类创建权限。
         # @type Operator: String
 
         attr_accessor :Platform, :Owner, :ClassPath, :Operator
@@ -650,9 +650,9 @@ module TencentCloud
       class DeleteMaterialRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param MaterialId: 素材 Id。
+        # @param MaterialId: 媒体 Id。
         # @type MaterialId: String
-        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验媒体删除权限。
         # @type Operator: String
 
         attr_accessor :Platform, :MaterialId, :Operator
@@ -692,17 +692,21 @@ module TencentCloud
         # @type Platform: String
         # @param ProjectId: 项目 Id。
         # @type ProjectId: String
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验对项目删除操作权限。
+        # @type Operator: String
 
-        attr_accessor :Platform, :ProjectId
+        attr_accessor :Platform, :ProjectId, :Operator
         
-        def initialize(platform=nil, projectid=nil)
+        def initialize(platform=nil, projectid=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
+          @Operator = operator
         end
 
         def deserialize(params)
           @Platform = params['Platform']
           @ProjectId = params['ProjectId']
+          @Operator = params['Operator']
         end
       end
 
@@ -963,13 +967,13 @@ module TencentCloud
       class DescribeMaterialsRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param MaterialIds: 素材 ID 列表，N 从 0 开始取值，最大 19。
+        # @param MaterialIds: 媒体 ID 列表，N 从 0 开始取值，最大 19。
         # @type MaterialIds: Array
         # @param Sort: 列表排序，支持下列排序字段：
         # <li>CreateTime：创建时间；</li>
         # <li>UpdateTime：更新时间。</li>
         # @type Sort: :class:`Tencentcloud::Cme.v20191029.models.SortBy`
-        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验媒体的访问权限。
         # @type Operator: String
 
         attr_accessor :Platform, :MaterialIds, :Sort, :Operator
@@ -993,7 +997,7 @@ module TencentCloud
 
       # DescribeMaterials返回参数结构体
       class DescribeMaterialsResponse < TencentCloud::Common::AbstractModel
-        # @param MaterialInfoSet: 素材列表信息。
+        # @param MaterialInfoSet: 媒体列表信息。
         # @type MaterialInfoSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1081,7 +1085,10 @@ module TencentCloud
         # @type ProjectIds: Array
         # @param AspectRatioSet: 画布宽高比集合。
         # @type AspectRatioSet: Array
-        # @param CategorySet: 项目类别集合。
+        # @param CategorySet: 项目类别，取值有：
+        # <li>VIDEO_EDIT：视频编辑。</li>
+        # <li>SWITCHER：导播台。</li>
+        # <li>VIDEO_SEGMENTATION：视频拆条。</li>
         # @type CategorySet: Array
         # @param Sort: 列表排序，支持下列排序字段：
         # <li>CreateTime：创建时间；</li>
@@ -1093,10 +1100,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页返回的记录条数，默认值：10。
         # @type Limit: Integer
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验项目访问权限。
+        # @type Operator: String
 
-        attr_accessor :Platform, :ProjectIds, :AspectRatioSet, :CategorySet, :Sort, :Owner, :Offset, :Limit
+        attr_accessor :Platform, :ProjectIds, :AspectRatioSet, :CategorySet, :Sort, :Owner, :Offset, :Limit, :Operator
         
-        def initialize(platform=nil, projectids=nil, aspectratioset=nil, categoryset=nil, sort=nil, owner=nil, offset=nil, limit=nil)
+        def initialize(platform=nil, projectids=nil, aspectratioset=nil, categoryset=nil, sort=nil, owner=nil, offset=nil, limit=nil, operator=nil)
           @Platform = platform
           @ProjectIds = projectids
           @AspectRatioSet = aspectratioset
@@ -1105,6 +1114,7 @@ module TencentCloud
           @Owner = owner
           @Offset = offset
           @Limit = limit
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -1120,6 +1130,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Operator = params['Operator']
         end
       end
 
@@ -1218,7 +1229,7 @@ module TencentCloud
       class DescribeSharedSpaceRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param Authorizee: 被授权目标实体。
+        # @param Authorizee: 被授权目标,，个人或团队。
         # @type Authorizee: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
         # @type Operator: String
@@ -1276,17 +1287,21 @@ module TencentCloud
         # @type Platform: String
         # @param TaskId: 任务 Id。
         # @type TaskId: String
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验对任务的访问权限。
+        # @type Operator: String
 
-        attr_accessor :Platform, :TaskId
+        attr_accessor :Platform, :TaskId, :Operator
         
-        def initialize(platform=nil, taskid=nil)
+        def initialize(platform=nil, taskid=nil, operator=nil)
           @Platform = platform
           @TaskId = taskid
+          @Operator = operator
         end
 
         def deserialize(params)
           @Platform = params['Platform']
           @TaskId = params['TaskId']
+          @Operator = params['Operator']
         end
       end
 
@@ -1361,16 +1376,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页返回的记录条数，默认值：10。
         # @type Limit: Integer
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验对任务的访问权限。
+        # @type Operator: String
 
-        attr_accessor :Platform, :ProjectId, :TaskTypeSet, :StatusSet, :Offset, :Limit
+        attr_accessor :Platform, :ProjectId, :TaskTypeSet, :StatusSet, :Offset, :Limit, :Operator
         
-        def initialize(platform=nil, projectid=nil, tasktypeset=nil, statusset=nil, offset=nil, limit=nil)
+        def initialize(platform=nil, projectid=nil, tasktypeset=nil, statusset=nil, offset=nil, limit=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
           @TaskTypeSet = tasktypeset
           @StatusSet = statusset
           @Offset = offset
           @Limit = limit
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -1380,6 +1398,7 @@ module TencentCloud
           @StatusSet = params['StatusSet']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Operator = params['Operator']
         end
       end
 
@@ -1418,7 +1437,7 @@ module TencentCloud
         # @type Platform: String
         # @param TeamId: 团队 ID。
         # @type TeamId: String
-        # @param MemberIds: 成员 ID 列表，限指定30个指定成员。
+        # @param MemberIds: 成员 ID 列表，限指定30个指定成员。如不填，则返回指定团队下的所有成员。
         # @type MemberIds: Array
         # @param Offset: 分页偏移量，默认值：0
         # @type Offset: Integer
@@ -1481,7 +1500,7 @@ module TencentCloud
       class DescribeTeamsRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param TeamIds: 团队 ID 列表，限30个。
+        # @param TeamIds: 团队 ID 列表，限30个。若不填，则默认获取平台下所有团队。
         # @type TeamIds: Array
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
@@ -1811,15 +1830,15 @@ module TencentCloud
       class FlattenListMediaRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param ClassPath: 素材分类路径，例如填写"/a/b"，则代表平铺该分类路径下及其子分类路径下的素材信息。
+        # @param ClassPath: 媒体分类路径，例如填写"/a/b"，则代表平铺该分类路径下及其子分类路径下的媒体信息。
         # @type ClassPath: String
-        # @param Owner: 素材路径的归属者。
+        # @param Owner: 媒体分类的归属者。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：50。
         # @type Limit: Integer
-        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验媒体访问权限。
         # @type Operator: String
 
         attr_accessor :Platform, :ClassPath, :Owner, :Offset, :Limit, :Operator
@@ -1849,7 +1868,7 @@ module TencentCloud
       class FlattenListMediaResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的记录总数。
         # @type TotalCount: Integer
-        # @param MaterialInfoSet: 该分类路径下及其子分类下的所有素材。
+        # @param MaterialInfoSet: 该分类路径下及其子分类下的所有媒体基础信息列表。
         # @type MaterialInfoSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1922,14 +1941,14 @@ module TencentCloud
       class GrantResourceAuthorizationRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param Owner: 资源所属实体。
+        # @param Owner: 资源归属者，个人或者团队。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param Resources: 被授权资源。
         # @type Resources: Array
-        # @param Authorizees: 被授权目标实体。
+        # @param Authorizees: 被授权目标，个人或者团队。
         # @type Authorizees: Array
         # @param Permissions: 详细授权值。 取值有：
-        # <li>R：可读，可以浏览素材，但不能使用该素材（将其添加到 Project），或复制到自己的媒资库中</li>
+        # <li>R：可读，可以浏览媒体，但不能使用该媒体文件（将其添加到 Project），或复制到自己的媒资库中</li>
         # <li>X：可用，可以使用该素材（将其添加到 Project），但不能将其复制到自己的媒资库中，意味着被授权者无法将该资源进一步扩散给其他个人或团队。</li>
         # <li>C：可复制，既可以使用该素材（将其添加到 Project），也可以将其复制到自己的媒资库中。</li>
         # <li>W：可修改、删除媒资。</li>
@@ -2325,15 +2344,15 @@ module TencentCloud
       class ListMediaRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param ClassPath: 素材分类路径，例如填写"/a/b"，则代表浏览该分类路径下的素材和子分类信息。
+        # @param ClassPath: 媒体分类路径，例如填写"/a/b"，则代表浏览该分类路径下的媒体和子分类信息。
         # @type ClassPath: String
-        # @param Owner: 素材和分类的归属者。
+        # @param Owner: 媒体和分类的归属者。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：50。
         # @type Limit: Integer
-        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验对媒体的访问权限。
         # @type Operator: String
 
         attr_accessor :Platform, :ClassPath, :Owner, :Offset, :Limit, :Operator
@@ -2361,9 +2380,9 @@ module TencentCloud
 
       # ListMedia返回参数结构体
       class ListMediaResponse < TencentCloud::Common::AbstractModel
-        # @param MaterialTotalCount: 符合条件的素材记录总数。
+        # @param MaterialTotalCount: 符合条件的媒体记录总数。
         # @type MaterialTotalCount: Integer
-        # @param MaterialInfoSet: 浏览分类路径下的素材列表信息。
+        # @param MaterialInfoSet: 浏览分类路径下的媒体列表信息。
         # @type MaterialInfoSet: Array
         # @param ClassInfoSet: 浏览分类路径下的一级子类。
         # @type ClassInfoSet: Array
@@ -2439,31 +2458,41 @@ module TencentCloud
         end
       end
 
-      # 素材基本信息。
+      # 媒体基本信息。
       class MaterialBasicInfo < TencentCloud::Common::AbstractModel
-        # @param MaterialId: 素材 Id。
+        # @param MaterialId: 媒体 Id。
         # @type MaterialId: String
-        # @param MaterialType: 素材类型，取值为：音频（AUDIO）、视频（VIDEO）、图片（IMAGE）、链接（LINK）、字幕 （SUBTITLE）、转场（TRANSITION）、滤镜（FILTER）、文本文字（TEXT）、图文动效（TEXT_IMAGE）。
+        # @param MaterialType: 媒体类型，取值为：
+        # <li> AUDIO :音频;</li>
+        # <li> VIDEO :视频;</li>
+        # <li> IMAGE :图片;</li>
+        # <li> LINK  :链接.</li>
+        # <li> OTHER : 其他.</li>
         # @type MaterialType: String
-        # @param Owner: 素材归属实体。
+        # @param Owner: 媒体归属实体。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
-        # @param Name: 素材名称。
+        # @param Name: 媒体名称。
         # @type Name: String
-        # @param CreateTime: 素材文件的创建时间，使用 ISO 日期格式。
+        # @param CreateTime: 媒体文件的创建时间，使用 ISO 日期格式。
         # @type CreateTime: String
-        # @param UpdateTime: 素材文件的最近更新时间（如修改视频属性、发起视频处理等会触发更新媒体文件信息的操作），使用 ISO 日期格式。
+        # @param UpdateTime: 媒体文件的最近更新时间（如修改视频属性、发起视频处理等会触发更新媒体文件信息的操作），使用 ISO 日期格式。
         # @type UpdateTime: String
-        # @param ClassPath: 素材的分类目录路径。
+        # @param ClassPath: 媒体的分类路径。
         # @type ClassPath: String
-        # @param TagInfoSet: 素材绑定的标签信息列表 。
+        # @param PresetTagSet: 预置标签列表。
+        # @type PresetTagSet: Array
+        # @param TagSet: 人工标签列表。
+        # @type TagSet: Array
+        # @param PreviewUrl: 媒体文件的预览图。
+        # @type PreviewUrl: String
+        # @param TagInfoSet: 媒体绑定的标签信息列表 。
+        # 该字段已废弃。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagInfoSet: Array
-        # @param PreviewUrl: 素材媒体文件的预览图。
-        # @type PreviewUrl: String
 
-        attr_accessor :MaterialId, :MaterialType, :Owner, :Name, :CreateTime, :UpdateTime, :ClassPath, :TagInfoSet, :PreviewUrl
+        attr_accessor :MaterialId, :MaterialType, :Owner, :Name, :CreateTime, :UpdateTime, :ClassPath, :PresetTagSet, :TagSet, :PreviewUrl, :TagInfoSet
         
-        def initialize(materialid=nil, materialtype=nil, owner=nil, name=nil, createtime=nil, updatetime=nil, classpath=nil, taginfoset=nil, previewurl=nil)
+        def initialize(materialid=nil, materialtype=nil, owner=nil, name=nil, createtime=nil, updatetime=nil, classpath=nil, presettagset=nil, tagset=nil, previewurl=nil, taginfoset=nil)
           @MaterialId = materialid
           @MaterialType = materialtype
           @Owner = owner
@@ -2471,8 +2500,10 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @ClassPath = classpath
-          @TagInfoSet = taginfoset
+          @PresetTagSet = presettagset
+          @TagSet = tagset
           @PreviewUrl = previewurl
+          @TagInfoSet = taginfoset
         end
 
         def deserialize(params)
@@ -2485,41 +2516,52 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @ClassPath = params['ClassPath']
+          unless params['PresetTagSet'].nil?
+            @PresetTagSet = []
+            params['PresetTagSet'].each do |i|
+              @PresetTagSet << PresetTagInfo.new.deserialize(i)
+            end
+          end
+          @TagSet = params['TagSet']
+          @PreviewUrl = params['PreviewUrl']
           unless params['TagInfoSet'].nil?
             @TagInfoSet = []
             params['TagInfoSet'].each do |i|
               @TagInfoSet << MaterialTagInfo.new.deserialize(i)
             end
           end
-          @PreviewUrl = params['PreviewUrl']
         end
       end
 
-      # 素材详情信息
+      # 媒体详情信息
       class MaterialInfo < TencentCloud::Common::AbstractModel
-        # @param BasicInfo: 素材基本信息。
+        # @param BasicInfo: 媒体基本信息。
         # @type BasicInfo: :class:`Tencentcloud::Cme.v20191029.models.MaterialBasicInfo`
-        # @param VideoMaterial: 视频素材信息。
+        # @param VideoMaterial: 视频媒体信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoMaterial: :class:`Tencentcloud::Cme.v20191029.models.VideoMaterial`
-        # @param AudioMaterial: 音频素材信息。
+        # @param AudioMaterial: 音频媒体信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioMaterial: :class:`Tencentcloud::Cme.v20191029.models.AudioMaterial`
-        # @param ImageMaterial: 图片素材信息。
+        # @param ImageMaterial: 图片媒体信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageMaterial: :class:`Tencentcloud::Cme.v20191029.models.ImageMaterial`
-        # @param LinkMaterial: 链接素材信息。
+        # @param LinkMaterial: 链接媒体信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LinkMaterial: :class:`Tencentcloud::Cme.v20191029.models.LinkMaterial`
+        # @param OtherMaterial: 其他类型媒体信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherMaterial: :class:`Tencentcloud::Cme.v20191029.models.OtherMaterial`
 
-        attr_accessor :BasicInfo, :VideoMaterial, :AudioMaterial, :ImageMaterial, :LinkMaterial
+        attr_accessor :BasicInfo, :VideoMaterial, :AudioMaterial, :ImageMaterial, :LinkMaterial, :OtherMaterial
         
-        def initialize(basicinfo=nil, videomaterial=nil, audiomaterial=nil, imagematerial=nil, linkmaterial=nil)
+        def initialize(basicinfo=nil, videomaterial=nil, audiomaterial=nil, imagematerial=nil, linkmaterial=nil, othermaterial=nil)
           @BasicInfo = basicinfo
           @VideoMaterial = videomaterial
           @AudioMaterial = audiomaterial
           @ImageMaterial = imagematerial
           @LinkMaterial = linkmaterial
+          @OtherMaterial = othermaterial
         end
 
         def deserialize(params)
@@ -2537,6 +2579,9 @@ module TencentCloud
           end
           unless params['LinkMaterial'].nil?
             @LinkMaterial = LinkMaterial.new.deserialize(params['LinkMaterial'])
+          end
+          unless params['OtherMaterial'].nil?
+            @OtherMaterial = OtherMaterial.new.deserialize(params['OtherMaterial'])
           end
         end
       end
@@ -2746,13 +2791,13 @@ module TencentCloud
       class ModifyMaterialRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
-        # @param MaterialId: 素材 Id。
+        # @param MaterialId: 媒体 Id。
         # @type MaterialId: String
-        # @param Owner: 素材归属。
+        # @param Owner: 媒体或分类路径归属。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
-        # @param Name: 素材名称，不能超过30个字符。
+        # @param Name: 媒体名称，不能超过30个字符。
         # @type Name: String
-        # @param ClassPath: 素材分类路径，例如填写"/a/b"，则代表该素材存储的路径为"/a/b"。
+        # @param ClassPath: 媒体分类路径，例如填写"/a/b"，则代表该媒体存储的路径为"/a/b"。若修改分类路径，则 Owner 字段必填。
         # @type ClassPath: String
         # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
         # @type Operator: String
@@ -2808,7 +2853,7 @@ module TencentCloud
         # <li>16:9；</li>
         # <li>9:16。</li>
         # @type AspectRatio: String
-        # @param Owner: 归属者。
+        # @param Owner: 项目归属者。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
 
         attr_accessor :Platform, :ProjectId, :Name, :AspectRatio, :Owner
@@ -2996,6 +3041,74 @@ module TencentCloud
         end
       end
 
+      # MoveResource请求参数结构体
+      class MoveResourceRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param SourceResource: 待移动的原始资源信息，包含原始媒体或分类资源，以及资源归属。
+        # @type SourceResource: :class:`Tencentcloud::Cme.v20191029.models.ResourceInfo`
+        # @param DestinationResource: 目标信息，包含分类及归属，仅支持移动资源到分类。
+        # @type DestinationResource: :class:`Tencentcloud::Cme.v20191029.models.ResourceInfo`
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验资源访问以及写权限。
+        # @type Operator: String
+
+        attr_accessor :Platform, :SourceResource, :DestinationResource, :Operator
+        
+        def initialize(platform=nil, sourceresource=nil, destinationresource=nil, operator=nil)
+          @Platform = platform
+          @SourceResource = sourceresource
+          @DestinationResource = destinationresource
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          unless params['SourceResource'].nil?
+            @SourceResource = ResourceInfo.new.deserialize(params['SourceResource'])
+          end
+          unless params['DestinationResource'].nil?
+            @DestinationResource = ResourceInfo.new.deserialize(params['DestinationResource'])
+          end
+          @Operator = params['Operator']
+        end
+      end
+
+      # MoveResource返回参数结构体
+      class MoveResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 其他类型素材
+      class OtherMaterial < TencentCloud::Common::AbstractModel
+        # @param MaterialUrl: 素材媒体文件的播放 URL 地址。
+        # @type MaterialUrl: String
+        # @param VodFileId: 云点播媒资 FileId。
+        # @type VodFileId: String
+
+        attr_accessor :MaterialUrl, :VodFileId
+        
+        def initialize(materialurl=nil, vodfileid=nil)
+          @MaterialUrl = materialurl
+          @VodFileId = vodfileid
+        end
+
+        def deserialize(params)
+          @MaterialUrl = params['MaterialUrl']
+          @VodFileId = params['VodFileId']
+        end
+      end
+
       # 企鹅号发布信息。
       class PenguinMediaPlatformPublishInfo < TencentCloud::Common::AbstractModel
         # @param Title: 视频发布标题。
@@ -3057,6 +3170,30 @@ module TencentCloud
           @LicenseId = params['LicenseId']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 预置标签信息
+      class PresetTagInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 标签 Id 。
+        # @type Id: String
+        # @param Name: 标签名称。
+        # @type Name: String
+        # @param ParentTagId: 父级预设 Id。
+        # @type ParentTagId: String
+
+        attr_accessor :Id, :Name, :ParentTagId
+        
+        def initialize(id=nil, name=nil, parenttagid=nil)
+          @Id = id
+          @Name = name
+          @ParentTagId = parenttagid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @ParentTagId = params['ParentTagId']
         end
       end
 
@@ -3125,6 +3262,31 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           @Id = params['Id']
+        end
+      end
+
+      # 资源信息，包含资源以及归属信息
+      class ResourceInfo < TencentCloud::Common::AbstractModel
+        # @param Resource: 媒资和分类资源。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: :class:`Tencentcloud::Cme.v20191029.models.Resource`
+        # @param Owner: 资源归属，个人或团队。
+        # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+
+        attr_accessor :Resource, :Owner
+        
+        def initialize(resource=nil, owner=nil)
+          @Resource = resource
+          @Owner = owner
+        end
+
+        def deserialize(params)
+          unless params['Resource'].nil?
+            @Resource = Resource.new.deserialize(params['Resource'])
+          end
+          unless params['Owner'].nil?
+            @Owner = Entity.new.deserialize(params['Owner'])
+          end
         end
       end
 
@@ -3202,18 +3364,18 @@ module TencentCloud
         # @type Platform: String
         # @param SearchScopes: 指定搜索空间，数组长度不得超过5。
         # @type SearchScopes: Array
-        # @param MaterialTypes: 素材类型，取值：
+        # @param MaterialTypes: 媒体类型，取值：
         # <li>AUDIO：音频；</li>
         # <li>VIDEO：视频 ；</li>
         # <li>IMAGE：图片。</li>
         # @type MaterialTypes: Array
-        # @param Text: 搜索文本，模糊匹配素材名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：15个字符。
+        # @param Text: 搜索文本，模糊匹配媒体名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：15个字符。
         # @type Text: String
         # @param Resolution: 按画质检索，取值为：LD/SD/HD/FHD/2K/4K。
         # @type Resolution: String
-        # @param DurationRange: 按素材时长检索，单位s。
+        # @param DurationRange: 按媒体时长检索，单位s。
         # @type DurationRange: :class:`Tencentcloud::Cme.v20191029.models.IntegerRange`
-        # @param CreateTimeRange: 按照素材创建时间检索。
+        # @param CreateTimeRange: 按照媒体创建时间检索。
         # @type CreateTimeRange: :class:`Tencentcloud::Cme.v20191029.models.TimeRange`
         # @param Tags: 按标签检索，填入检索的标签名。
         # @type Tags: Array
@@ -3223,7 +3385,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：50。
         # @type Limit: Integer
-        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验媒体访问权限。
         # @type Operator: String
 
         attr_accessor :Platform, :SearchScopes, :MaterialTypes, :Text, :Resolution, :DurationRange, :CreateTimeRange, :Tags, :Sort, :Offset, :Limit, :Operator
@@ -3274,7 +3436,7 @@ module TencentCloud
       class SearchMaterialResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合记录总条数。
         # @type TotalCount: Integer
-        # @param MaterialInfoSet: 素材信息，仅返回基础信息。
+        # @param MaterialInfoSet: 媒体信息，仅返回基础信息。
         # @type MaterialInfoSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

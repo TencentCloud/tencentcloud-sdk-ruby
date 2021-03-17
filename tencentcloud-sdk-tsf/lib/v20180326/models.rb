@@ -773,10 +773,13 @@ module TencentCloud
         # @param ApplicationRemarkName: 应用备注名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationRemarkName: String
+        # @param ServiceConfigList: 服务配置信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceConfigList: Array
 
-        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationType, :MicroserviceType, :ProgLang, :CreateTime, :UpdateTime, :ApplicationResourceType, :ApplicationRuntimeType, :ApigatewayServiceId, :ApplicationRemarkName
+        attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationType, :MicroserviceType, :ProgLang, :CreateTime, :UpdateTime, :ApplicationResourceType, :ApplicationRuntimeType, :ApigatewayServiceId, :ApplicationRemarkName, :ServiceConfigList
         
-        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationtype=nil, microservicetype=nil, proglang=nil, createtime=nil, updatetime=nil, applicationresourcetype=nil, applicationruntimetype=nil, apigatewayserviceid=nil, applicationremarkname=nil)
+        def initialize(applicationid=nil, applicationname=nil, applicationdesc=nil, applicationtype=nil, microservicetype=nil, proglang=nil, createtime=nil, updatetime=nil, applicationresourcetype=nil, applicationruntimetype=nil, apigatewayserviceid=nil, applicationremarkname=nil, serviceconfiglist=nil)
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @ApplicationDesc = applicationdesc
@@ -789,6 +792,7 @@ module TencentCloud
           @ApplicationRuntimeType = applicationruntimetype
           @ApigatewayServiceId = apigatewayserviceid
           @ApplicationRemarkName = applicationremarkname
+          @ServiceConfigList = serviceconfiglist
         end
 
         def deserialize(params)
@@ -804,6 +808,12 @@ module TencentCloud
           @ApplicationRuntimeType = params['ApplicationRuntimeType']
           @ApigatewayServiceId = params['ApigatewayServiceId']
           @ApplicationRemarkName = params['ApplicationRemarkName']
+          unless params['ServiceConfigList'].nil?
+            @ServiceConfigList = []
+            params['ServiceConfigList'].each do |i|
+              @ServiceConfigList << ServiceConfig.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1907,10 +1917,12 @@ module TencentCloud
         # @type ApplicationRuntimeType: String
         # @param ProgramId: 需要绑定的数据集ID
         # @type ProgramId: String
+        # @param ServiceConfigList: 服务配置信息列表
+        # @type ServiceConfigList: Array
 
-        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId
+        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList
         
-        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil)
+        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil)
           @ApplicationName = applicationname
           @ApplicationType = applicationtype
           @MicroserviceType = microservicetype
@@ -1919,6 +1931,7 @@ module TencentCloud
           @ApplicationResourceType = applicationresourcetype
           @ApplicationRuntimeType = applicationruntimetype
           @ProgramId = programid
+          @ServiceConfigList = serviceconfiglist
         end
 
         def deserialize(params)
@@ -1930,6 +1943,12 @@ module TencentCloud
           @ApplicationResourceType = params['ApplicationResourceType']
           @ApplicationRuntimeType = params['ApplicationRuntimeType']
           @ProgramId = params['ProgramId']
+          unless params['ServiceConfigList'].nil?
+            @ServiceConfigList = []
+            params['ServiceConfigList'].each do |i|
+              @ServiceConfigList << ServiceConfig.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3686,10 +3705,14 @@ module TencentCloud
         # @type DeployExeMode: String
         # @param DeployWaitTime: 滚动发布每个批次的时间间隔
         # @type DeployWaitTime: Integer
+        # @param StartScript: 启动脚本 base64编码
+        # @type StartScript: String
+        # @param StopScript: 停止脚本 base64编码
+        # @type StopScript: String
 
-        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime
+        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :StartScript, :StopScript
         
-        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil)
+        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, startscript=nil, stopscript=nil)
           @GroupId = groupid
           @PkgId = pkgid
           @StartupParameters = startupparameters
@@ -3702,6 +3725,8 @@ module TencentCloud
           @DeployBatch = deploybatch
           @DeployExeMode = deployexemode
           @DeployWaitTime = deploywaittime
+          @StartScript = startscript
+          @StopScript = stopscript
         end
 
         def deserialize(params)
@@ -3719,6 +3744,8 @@ module TencentCloud
           @DeployBatch = params['DeployBatch']
           @DeployExeMode = params['DeployExeMode']
           @DeployWaitTime = params['DeployWaitTime']
+          @StartScript = params['StartScript']
+          @StopScript = params['StopScript']
         end
       end
 
@@ -5713,10 +5740,12 @@ module TencentCloud
         # @type RepositoryType: String
         # @param RepositoryId: 程序包仓库id
         # @type RepositoryId: String
+        # @param PackageTypeList: 程序包类型数组支持（fatjar jar war tar.gz zip）
+        # @type PackageTypeList: Array
 
-        attr_accessor :ApplicationId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :RepositoryType, :RepositoryId
+        attr_accessor :ApplicationId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :RepositoryType, :RepositoryId, :PackageTypeList
         
-        def initialize(applicationid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, repositorytype=nil, repositoryid=nil)
+        def initialize(applicationid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, repositorytype=nil, repositoryid=nil, packagetypelist=nil)
           @ApplicationId = applicationid
           @SearchWord = searchword
           @OrderBy = orderby
@@ -5725,6 +5754,7 @@ module TencentCloud
           @Limit = limit
           @RepositoryType = repositorytype
           @RepositoryId = repositoryid
+          @PackageTypeList = packagetypelist
         end
 
         def deserialize(params)
@@ -5736,6 +5766,7 @@ module TencentCloud
           @Limit = params['Limit']
           @RepositoryType = params['RepositoryType']
           @RepositoryId = params['RepositoryId']
+          @PackageTypeList = params['PackageTypeList']
         end
       end
 
@@ -6876,7 +6907,7 @@ module TencentCloud
       class Env < TencentCloud::Common::AbstractModel
         # @param Name: 环境变量名称
         # @type Name: String
-        # @param Value: 服务端口
+        # @param Value: 环境变量值
         # @type Value: String
 
         attr_accessor :Name, :Value
@@ -7401,6 +7432,23 @@ module TencentCloud
         end
       end
 
+      # 健康检查配置
+      class HealthCheckConfig < TencentCloud::Common::AbstractModel
+        # @param Path: 健康检查路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+
+        attr_accessor :Path
+        
+        def initialize(path=nil)
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+        end
+      end
+
       # 健康检查配置信息，若不指定该参数，则默认不设置健康检查。
       class HealthCheckSetting < TencentCloud::Common::AbstractModel
         # @param ActionType: 健康检查方法。HTTP：通过 HTTP 接口检查；CMD：通过执行命令检查；TCP：通过建立 TCP 连接检查。
@@ -7804,10 +7852,13 @@ module TencentCloud
         # @param Reason: 健康检查原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reason: String
+        # @param AgentVersion: agent版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentVersion: String
 
-        attr_accessor :InstanceId, :InstanceName, :LanIp, :WanIp, :InstanceDesc, :ClusterId, :ClusterName, :InstanceStatus, :InstanceAvailableStatus, :ServiceInstanceStatus, :CountInTsf, :GroupId, :ApplicationId, :ApplicationName, :InstanceCreatedTime, :InstanceExpiredTime, :InstanceChargeType, :InstanceTotalCpu, :InstanceTotalMem, :InstanceUsedCpu, :InstanceUsedMem, :InstanceLimitCpu, :InstanceLimitMem, :InstancePkgVersion, :ClusterType, :RestrictState, :UpdateTime, :OperationState, :NamespaceId, :InstanceZoneId, :InstanceImportMode, :ApplicationType, :ApplicationResourceType, :ServiceSidecarStatus, :GroupName, :NamespaceName, :Reason
+        attr_accessor :InstanceId, :InstanceName, :LanIp, :WanIp, :InstanceDesc, :ClusterId, :ClusterName, :InstanceStatus, :InstanceAvailableStatus, :ServiceInstanceStatus, :CountInTsf, :GroupId, :ApplicationId, :ApplicationName, :InstanceCreatedTime, :InstanceExpiredTime, :InstanceChargeType, :InstanceTotalCpu, :InstanceTotalMem, :InstanceUsedCpu, :InstanceUsedMem, :InstanceLimitCpu, :InstanceLimitMem, :InstancePkgVersion, :ClusterType, :RestrictState, :UpdateTime, :OperationState, :NamespaceId, :InstanceZoneId, :InstanceImportMode, :ApplicationType, :ApplicationResourceType, :ServiceSidecarStatus, :GroupName, :NamespaceName, :Reason, :AgentVersion
         
-        def initialize(instanceid=nil, instancename=nil, lanip=nil, wanip=nil, instancedesc=nil, clusterid=nil, clustername=nil, instancestatus=nil, instanceavailablestatus=nil, serviceinstancestatus=nil, countintsf=nil, groupid=nil, applicationid=nil, applicationname=nil, instancecreatedtime=nil, instanceexpiredtime=nil, instancechargetype=nil, instancetotalcpu=nil, instancetotalmem=nil, instanceusedcpu=nil, instanceusedmem=nil, instancelimitcpu=nil, instancelimitmem=nil, instancepkgversion=nil, clustertype=nil, restrictstate=nil, updatetime=nil, operationstate=nil, namespaceid=nil, instancezoneid=nil, instanceimportmode=nil, applicationtype=nil, applicationresourcetype=nil, servicesidecarstatus=nil, groupname=nil, namespacename=nil, reason=nil)
+        def initialize(instanceid=nil, instancename=nil, lanip=nil, wanip=nil, instancedesc=nil, clusterid=nil, clustername=nil, instancestatus=nil, instanceavailablestatus=nil, serviceinstancestatus=nil, countintsf=nil, groupid=nil, applicationid=nil, applicationname=nil, instancecreatedtime=nil, instanceexpiredtime=nil, instancechargetype=nil, instancetotalcpu=nil, instancetotalmem=nil, instanceusedcpu=nil, instanceusedmem=nil, instancelimitcpu=nil, instancelimitmem=nil, instancepkgversion=nil, clustertype=nil, restrictstate=nil, updatetime=nil, operationstate=nil, namespaceid=nil, instancezoneid=nil, instanceimportmode=nil, applicationtype=nil, applicationresourcetype=nil, servicesidecarstatus=nil, groupname=nil, namespacename=nil, reason=nil, agentversion=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @LanIp = lanip
@@ -7845,6 +7896,7 @@ module TencentCloud
           @GroupName = groupname
           @NamespaceName = namespacename
           @Reason = reason
+          @AgentVersion = agentversion
         end
 
         def deserialize(params)
@@ -7885,6 +7937,7 @@ module TencentCloud
           @GroupName = params['GroupName']
           @NamespaceName = params['NamespaceName']
           @Reason = params['Reason']
+          @AgentVersion = params['AgentVersion']
         end
       end
 
@@ -9338,6 +9391,26 @@ module TencentCloud
         end
       end
 
+      # 服务端口
+      class Ports < TencentCloud::Common::AbstractModel
+        # @param TargetPort: 服务端口
+        # @type TargetPort: Integer
+        # @param Protocol: 端口协议
+        # @type Protocol: String
+
+        attr_accessor :TargetPort, :Protocol
+        
+        def initialize(targetport=nil, protocol=nil)
+          @TargetPort = targetport
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @TargetPort = params['TargetPort']
+          @Protocol = params['Protocol']
+        end
+      end
+
       # 属性字段
       class PropertyField < TencentCloud::Common::AbstractModel
         # @param Name: 属性名称
@@ -10088,6 +10161,38 @@ module TencentCloud
             params['Content'].each do |i|
               @Content << ServerlessGroup.new.deserialize(i)
             end
+          end
+        end
+      end
+
+      # 服务配置
+      class ServiceConfig < TencentCloud::Common::AbstractModel
+        # @param Name: 服务名
+        # @type Name: String
+        # @param Ports: 端口信息列表
+        # @type Ports: Array
+        # @param HealthCheck: 健康检查配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheck: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckConfig`
+
+        attr_accessor :Name, :Ports, :HealthCheck
+        
+        def initialize(name=nil, ports=nil, healthcheck=nil)
+          @Name = name
+          @Ports = ports
+          @HealthCheck = healthcheck
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              @Ports << Ports.new.deserialize(i)
+            end
+          end
+          unless params['HealthCheck'].nil?
+            @HealthCheck = HealthCheckConfig.new.deserialize(params['HealthCheck'])
           end
         end
       end
@@ -11744,10 +11849,19 @@ module TencentCloud
         # @param HealthCheckSettings: 健康检查配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
+        # @param PackageType: 程序包类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageType: String
+        # @param StartScript: 启动脚本 base64编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartScript: String
+        # @param StopScript: 停止脚本 base64编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StopScript: String
 
-        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings
+        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript
         
-        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil)
+        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil)
           @GroupId = groupid
           @GroupName = groupname
           @GroupStatus = groupstatus
@@ -11779,6 +11893,9 @@ module TencentCloud
           @DeployWaitTime = deploywaittime
           @EnableHealthCheck = enablehealthcheck
           @HealthCheckSettings = healthchecksettings
+          @PackageType = packagetype
+          @StartScript = startscript
+          @StopScript = stopscript
         end
 
         def deserialize(params)
@@ -11815,6 +11932,9 @@ module TencentCloud
           unless params['HealthCheckSettings'].nil?
             @HealthCheckSettings = HealthCheckSettings.new.deserialize(params['HealthCheckSettings'])
           end
+          @PackageType = params['PackageType']
+          @StartScript = params['StartScript']
+          @StopScript = params['StopScript']
         end
       end
 

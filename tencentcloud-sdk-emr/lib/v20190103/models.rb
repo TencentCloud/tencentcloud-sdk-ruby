@@ -748,6 +748,57 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceRenewNodes请求参数结构体
+      class DescribeInstanceRenewNodesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID,实例ID形如: emr-xxxxxxxx
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceRenewNodes返回参数结构体
+      class DescribeInstanceRenewNodesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 查询到的节点总数
+        # @type TotalCnt: Integer
+        # @param NodeList: 节点详细信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeList: Array
+        # @param MetaInfo: 用户所有的标签键列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCnt, :NodeList, :MetaInfo, :RequestId
+        
+        def initialize(totalcnt=nil, nodelist=nil, metainfo=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @NodeList = nodelist
+          @MetaInfo = metainfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          unless params['NodeList'].nil?
+            @NodeList = []
+            params['NodeList'].each do |i|
+              @NodeList << RenewInstancesInfo.new.deserialize(i)
+            end
+          end
+          @MetaInfo = params['MetaInfo']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
         # @param DisplayStrategy: 集群筛选策略。取值范围：
@@ -1070,6 +1121,83 @@ module TencentCloud
 
         def deserialize(params)
           @VolumePath = params['VolumePath']
+        end
+      end
+
+      # InquirePriceRenewEmr请求参数结构体
+      class InquirePriceRenewEmrRequest < TencentCloud::Common::AbstractModel
+        # @param TimeSpan: 实例续费的时长。需要结合TimeUnit一起使用。1表示续费1一个月
+        # @type TimeSpan: Integer
+        # @param InstanceId: 待续费集群ID列表。
+        # @type InstanceId: String
+        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
+        # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
+        # @param PayMode: 实例计费模式。此处只支持取值为1，表示包年包月。
+        # @type PayMode: Integer
+        # @param TimeUnit: 实例续费的时间单位。取值范围：
+        # <li>m：表示月份。</li>
+        # @type TimeUnit: String
+        # @param Currency: 货币种类。取值范围：
+        # <li>CNY：表示人民币。</li>
+        # @type Currency: String
+
+        attr_accessor :TimeSpan, :InstanceId, :Placement, :PayMode, :TimeUnit, :Currency
+        
+        def initialize(timespan=nil, instanceid=nil, placement=nil, paymode=nil, timeunit=nil, currency=nil)
+          @TimeSpan = timespan
+          @InstanceId = instanceid
+          @Placement = placement
+          @PayMode = paymode
+          @TimeUnit = timeunit
+          @Currency = currency
+        end
+
+        def deserialize(params)
+          @TimeSpan = params['TimeSpan']
+          @InstanceId = params['InstanceId']
+          unless params['Placement'].nil?
+            @Placement = Placement.new.deserialize(params['Placement'])
+          end
+          @PayMode = params['PayMode']
+          @TimeUnit = params['TimeUnit']
+          @Currency = params['Currency']
+        end
+      end
+
+      # InquirePriceRenewEmr返回参数结构体
+      class InquirePriceRenewEmrResponse < TencentCloud::Common::AbstractModel
+        # @param OriginalCost: 原价，单位为元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalCost: Float
+        # @param DiscountCost: 折扣价，单位为元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountCost: Float
+        # @param TimeUnit: 实例续费的时间单位。取值范围：
+        # <li>m：表示月份。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeUnit: String
+        # @param TimeSpan: 实例续费的时长。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSpan: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginalCost, :DiscountCost, :TimeUnit, :TimeSpan, :RequestId
+        
+        def initialize(originalcost=nil, discountcost=nil, timeunit=nil, timespan=nil, requestid=nil)
+          @OriginalCost = originalcost
+          @DiscountCost = discountcost
+          @TimeUnit = timeunit
+          @TimeSpan = timespan
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriginalCost = params['OriginalCost']
+          @DiscountCost = params['DiscountCost']
+          @TimeUnit = params['TimeUnit']
+          @TimeSpan = params['TimeSpan']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2292,6 +2420,55 @@ module TencentCloud
           end
           @DiskNum = params['DiskNum']
           @LocalDiskNum = params['LocalDiskNum']
+        end
+      end
+
+      # 集群续费实例信息
+      class RenewInstancesInfo < TencentCloud::Common::AbstractModel
+        # @param EmrResourceId: 节点资源ID
+        # @type EmrResourceId: String
+        # @param Flag: 节点类型。0:common节点；1:master节点
+        # ；2:core节点；3:task节点
+        # @type Flag: Integer
+        # @param Ip: 内网IP
+        # @type Ip: String
+        # @param MemDesc: 节点内存描述
+        # @type MemDesc: String
+        # @param CpuNum: 节点核数
+        # @type CpuNum: Integer
+        # @param DiskSize: 硬盘大小
+        # @type DiskSize: String
+        # @param ExpireTime: 过期时间
+        # @type ExpireTime: String
+        # @param Spec: 节点规格
+        # @type Spec: String
+        # @param StorageType: 磁盘类型
+        # @type StorageType: Integer
+
+        attr_accessor :EmrResourceId, :Flag, :Ip, :MemDesc, :CpuNum, :DiskSize, :ExpireTime, :Spec, :StorageType
+        
+        def initialize(emrresourceid=nil, flag=nil, ip=nil, memdesc=nil, cpunum=nil, disksize=nil, expiretime=nil, spec=nil, storagetype=nil)
+          @EmrResourceId = emrresourceid
+          @Flag = flag
+          @Ip = ip
+          @MemDesc = memdesc
+          @CpuNum = cpunum
+          @DiskSize = disksize
+          @ExpireTime = expiretime
+          @Spec = spec
+          @StorageType = storagetype
+        end
+
+        def deserialize(params)
+          @EmrResourceId = params['EmrResourceId']
+          @Flag = params['Flag']
+          @Ip = params['Ip']
+          @MemDesc = params['MemDesc']
+          @CpuNum = params['CpuNum']
+          @DiskSize = params['DiskSize']
+          @ExpireTime = params['ExpireTime']
+          @Spec = params['Spec']
+          @StorageType = params['StorageType']
         end
       end
 

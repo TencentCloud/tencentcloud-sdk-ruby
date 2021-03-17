@@ -5606,6 +5606,33 @@ module TencentCloud
         end
       end
 
+      # SetNodePoolNodeProtection请求参数结构体
+      class SetNodePoolNodeProtectionRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SetNodePoolNodeProtection返回参数结构体
+      class SetNodePoolNodeProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SyncPrometheusTemplate请求参数结构体
       class SyncPrometheusTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 实例id

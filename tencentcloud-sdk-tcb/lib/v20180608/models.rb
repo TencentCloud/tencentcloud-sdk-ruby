@@ -2683,6 +2683,52 @@ module TencentCloud
         end
       end
 
+      # DescribeExtensionUploadInfo请求参数结构体
+      class DescribeExtensionUploadInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ExtensionFiles: 待上传的文件
+        # @type ExtensionFiles: Array
+
+        attr_accessor :ExtensionFiles
+        
+        def initialize(extensionfiles=nil)
+          @ExtensionFiles = extensionfiles
+        end
+
+        def deserialize(params)
+          unless params['ExtensionFiles'].nil?
+            @ExtensionFiles = []
+            params['ExtensionFiles'].each do |i|
+              @ExtensionFiles << ExtensionFile.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeExtensionUploadInfo返回参数结构体
+      class DescribeExtensionUploadInfoResponse < TencentCloud::Common::AbstractModel
+        # @param FilesData: 待上传文件的信息数组
+        # @type FilesData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FilesData, :RequestId
+        
+        def initialize(filesdata=nil, requestid=nil)
+          @FilesData = filesdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FilesData'].nil?
+            @FilesData = []
+            params['FilesData'].each do |i|
+              @FilesData << ExtensionFileInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExtraPkgBillingInfo请求参数结构体
       class DescribeExtraPkgBillingInfoRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 已购买增值包的环境ID
@@ -3359,6 +3405,57 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 扩展文件
+      class ExtensionFile < TencentCloud::Common::AbstractModel
+        # @param FileType: 文件类型。枚举值
+        # <li>FUNCTION：函数代码</li>
+        # <li>STATIC：静态托管代码</li>
+        # <li>SMS：短信文件</li>
+        # @type FileType: String
+        # @param FileName: 文件名，长度不超过24
+        # @type FileName: String
+
+        attr_accessor :FileType, :FileName
+        
+        def initialize(filetype=nil, filename=nil)
+          @FileType = filetype
+          @FileName = filename
+        end
+
+        def deserialize(params)
+          @FileType = params['FileType']
+          @FileName = params['FileName']
+        end
+      end
+
+      # 扩展文件信息
+      class ExtensionFileInfo < TencentCloud::Common::AbstractModel
+        # @param CodeUri: 模板里使用的地址
+        # @type CodeUri: String
+        # @param UploadUrl: 上传文件的临时地址，含签名
+        # @type UploadUrl: String
+        # @param CustomKey: 自定义密钥。如果为空，则表示不需要加密
+        # @type CustomKey: String
+        # @param MaxSize: 文件大小限制，单位M，客户端上传前需要主动检查文件大小，超过限制的文件会被删除。
+        # @type MaxSize: Integer
+
+        attr_accessor :CodeUri, :UploadUrl, :CustomKey, :MaxSize
+        
+        def initialize(codeuri=nil, uploadurl=nil, customkey=nil, maxsize=nil)
+          @CodeUri = codeuri
+          @UploadUrl = uploadurl
+          @CustomKey = customkey
+          @MaxSize = maxsize
+        end
+
+        def deserialize(params)
+          @CodeUri = params['CodeUri']
+          @UploadUrl = params['UploadUrl']
+          @CustomKey = params['CustomKey']
+          @MaxSize = params['MaxSize']
         end
       end
 

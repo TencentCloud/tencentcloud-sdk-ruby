@@ -3139,16 +3139,23 @@ module TencentCloud
         # @type CreateTime: String
         # @param UserType: 用户类型(1:主账号;2:子用户;3:企业微信子用户;4:协作者;5:消息接收人)
         # @type UserType: Integer
+        # @param LastLoginIp: 最近登录IP
+        # @type LastLoginIp: String
+        # @param LastLoginTime: 最近登录时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastLoginTime: String
 
-        attr_accessor :Uin, :Name, :Uid, :Remark, :CreateTime, :UserType
+        attr_accessor :Uin, :Name, :Uid, :Remark, :CreateTime, :UserType, :LastLoginIp, :LastLoginTime
         
-        def initialize(uin=nil, name=nil, uid=nil, remark=nil, createtime=nil, usertype=nil)
+        def initialize(uin=nil, name=nil, uid=nil, remark=nil, createtime=nil, usertype=nil, lastloginip=nil, lastlogintime=nil)
           @Uin = uin
           @Name = name
           @Uid = uid
           @Remark = remark
           @CreateTime = createtime
           @UserType = usertype
+          @LastLoginIp = lastloginip
+          @LastLoginTime = lastlogintime
         end
 
         def deserialize(params)
@@ -3158,6 +3165,8 @@ module TencentCloud
           @Remark = params['Remark']
           @CreateTime = params['CreateTime']
           @UserType = params['UserType']
+          @LastLoginIp = params['LastLoginIp']
+          @LastLoginTime = params['LastLoginTime']
         end
       end
 

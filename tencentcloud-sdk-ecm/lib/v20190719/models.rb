@@ -2184,16 +2184,19 @@ module TencentCloud
         # @param ImageLimits: 镜像限额信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageLimits: :class:`Tencentcloud::Ecm.v20190719.models.ImageLimitConfig`
+        # @param DefaultIPDirect: 默认是否IP直通，用于模块创建，虚机购买等具有直通参数场景时的默认参数。
+        # @type DefaultIPDirect: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NetworkStorageRange, :ImageWhiteSet, :InstanceNetworkLimitConfigs, :ImageLimits, :RequestId
+        attr_accessor :NetworkStorageRange, :ImageWhiteSet, :InstanceNetworkLimitConfigs, :ImageLimits, :DefaultIPDirect, :RequestId
         
-        def initialize(networkstoragerange=nil, imagewhiteset=nil, instancenetworklimitconfigs=nil, imagelimits=nil, requestid=nil)
+        def initialize(networkstoragerange=nil, imagewhiteset=nil, instancenetworklimitconfigs=nil, imagelimits=nil, defaultipdirect=nil, requestid=nil)
           @NetworkStorageRange = networkstoragerange
           @ImageWhiteSet = imagewhiteset
           @InstanceNetworkLimitConfigs = instancenetworklimitconfigs
           @ImageLimits = imagelimits
+          @DefaultIPDirect = defaultipdirect
           @RequestId = requestid
         end
 
@@ -2211,6 +2214,7 @@ module TencentCloud
           unless params['ImageLimits'].nil?
             @ImageLimits = ImageLimitConfig.new.deserialize(params['ImageLimits'])
           end
+          @DefaultIPDirect = params['DefaultIPDirect']
           @RequestId = params['RequestId']
         end
       end
