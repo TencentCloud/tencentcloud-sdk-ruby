@@ -4217,10 +4217,12 @@ module TencentCloud
         # @type MicroserviceType: String
         # @param ApplicationResourceTypeList: 应用资源类型数组
         # @type ApplicationResourceTypeList: Array
+        # @param ApplicationIdList: IdList
+        # @type ApplicationIdList: Array
 
-        attr_accessor :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :ApplicationType, :MicroserviceType, :ApplicationResourceTypeList
+        attr_accessor :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :ApplicationType, :MicroserviceType, :ApplicationResourceTypeList, :ApplicationIdList
         
-        def initialize(searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, applicationtype=nil, microservicetype=nil, applicationresourcetypelist=nil)
+        def initialize(searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, applicationtype=nil, microservicetype=nil, applicationresourcetypelist=nil, applicationidlist=nil)
           @SearchWord = searchword
           @OrderBy = orderby
           @OrderType = ordertype
@@ -4229,6 +4231,7 @@ module TencentCloud
           @ApplicationType = applicationtype
           @MicroserviceType = microservicetype
           @ApplicationResourceTypeList = applicationresourcetypelist
+          @ApplicationIdList = applicationidlist
         end
 
         def deserialize(params)
@@ -4240,6 +4243,7 @@ module TencentCloud
           @ApplicationType = params['ApplicationType']
           @MicroserviceType = params['MicroserviceType']
           @ApplicationResourceTypeList = params['ApplicationResourceTypeList']
+          @ApplicationIdList = params['ApplicationIdList']
         end
       end
 
@@ -5537,10 +5541,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param Status: 状态过滤，online、offline、single_online
         # @type Status: Array
+        # @param MicroserviceIdList: IdList
+        # @type MicroserviceIdList: Array
 
-        attr_accessor :NamespaceId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :Status
+        attr_accessor :NamespaceId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :Status, :MicroserviceIdList
         
-        def initialize(namespaceid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, status=nil)
+        def initialize(namespaceid=nil, searchword=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, status=nil, microserviceidlist=nil)
           @NamespaceId = namespaceid
           @SearchWord = searchword
           @OrderBy = orderby
@@ -5548,6 +5554,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @Status = status
+          @MicroserviceIdList = microserviceidlist
         end
 
         def deserialize(params)
@@ -5558,6 +5565,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Status = params['Status']
+          @MicroserviceIdList = params['MicroserviceIdList']
         end
       end
 
@@ -5800,19 +5808,23 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页个数，默认为20， 取值应为1~50
         # @type Limit: Integer
+        # @param PodNameList: 过滤字段
+        # @type PodNameList: Array
 
-        attr_accessor :GroupId, :Offset, :Limit
+        attr_accessor :GroupId, :Offset, :Limit, :PodNameList
         
-        def initialize(groupid=nil, offset=nil, limit=nil)
+        def initialize(groupid=nil, offset=nil, limit=nil, podnamelist=nil)
           @GroupId = groupid
           @Offset = offset
           @Limit = limit
+          @PodNameList = podnamelist
         end
 
         def deserialize(params)
           @GroupId = params['GroupId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @PodNameList = params['PodNameList']
         end
       end
 

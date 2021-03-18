@@ -19,7 +19,7 @@ module TencentCloud
     module V20180317
       # AssociateTargetGroups请求参数结构体
       class AssociateTargetGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Associations: 绑定的关系数组
+        # @param Associations: 绑定的关系数组。
         # @type Associations: Array
 
         attr_accessor :Associations
@@ -111,11 +111,11 @@ module TencentCloud
         # @type LoadBalancerId: String
         # @param ListenerId: HTTPS:443监听器的ID。
         # @type ListenerId: String
-        # @param Domains: HTTPS:443监听器下需要重定向的域名，若不填，对HTTPS:443监听器下的所有域名都设置重定向。
+        # @param Domains: HTTPS:443监听器下需要重定向的域名，若不填，则对HTTPS:443监听器下的所有域名都设置重定向。
         # @type Domains: Array
-        # @param RewriteCodes: 重定向状态码，可取值301,302,307
+        # @param RewriteCodes: 重定向状态码，可取值301,302,307。
         # @type RewriteCodes: Array
-        # @param TakeUrls: 重定向是否携带匹配的url
+        # @param TakeUrls: 重定向是否携带匹配的URL。
         # @type TakeUrls: Array
 
         attr_accessor :LoadBalancerId, :ListenerId, :Domains, :RewriteCodes, :TakeUrls
@@ -228,9 +228,9 @@ module TencentCloud
 
       # BatchDeregisterTargets请求参数结构体
       class BatchDeregisterTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡ID
+        # @param LoadBalancerId: 负载均衡ID。
         # @type LoadBalancerId: String
-        # @param Targets: 解绑目标
+        # @param Targets: 解绑目标。
         # @type Targets: Array
 
         attr_accessor :LoadBalancerId, :Targets
@@ -253,7 +253,7 @@ module TencentCloud
 
       # BatchDeregisterTargets返回参数结构体
       class BatchDeregisterTargetsResponse < TencentCloud::Common::AbstractModel
-        # @param FailListenerIdSet: 解绑失败的监听器ID
+        # @param FailListenerIdSet: 解绑失败的监听器ID。
         # @type FailListenerIdSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -273,9 +273,9 @@ module TencentCloud
 
       # BatchModifyTargetWeight请求参数结构体
       class BatchModifyTargetWeightRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例 ID。
         # @type LoadBalancerId: String
-        # @param ModifyList: 要批量修改权重的列表
+        # @param ModifyList: 要批量修改权重的列表。
         # @type ModifyList: Array
 
         attr_accessor :LoadBalancerId, :ModifyList
@@ -314,9 +314,9 @@ module TencentCloud
 
       # BatchRegisterTargets请求参数结构体
       class BatchRegisterTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡ID
+        # @param LoadBalancerId: 负载均衡ID。
         # @type LoadBalancerId: String
-        # @param Targets: 绑定目标
+        # @param Targets: 绑定目标。
         # @type Targets: Array
 
         attr_accessor :LoadBalancerId, :Targets
@@ -952,15 +952,15 @@ module TencentCloud
 
       # CreateListener请求参数结构体
       class CreateListenerRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例 ID。
         # @type LoadBalancerId: String
-        # @param Ports: 要将监听器创建到哪些端口，每个端口对应一个新的监听器
+        # @param Ports: 要将监听器创建到哪些端口，每个端口对应一个新的监听器。
         # @type Ports: Array
-        # @param Protocol: 监听器协议： TCP | UDP | HTTP | HTTPS | TCP_SSL（TCP_SSL 正在内测中，如需使用请通过工单申请）
+        # @param Protocol: 监听器协议： TCP | UDP | HTTP | HTTPS | TCP_SSL（TCP_SSL 正在内测中，如需使用请通过工单申请）。
         # @type Protocol: String
-        # @param ListenerNames: 要创建的监听器名称列表，名称与Ports数组按序一一对应，如不需立即命名，则无需提供此参数
+        # @param ListenerNames: 要创建的监听器名称列表，名称与Ports数组按序一一对应，如不需立即命名，则无需提供此参数。
         # @type ListenerNames: Array
-        # @param HealthCheck: 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL监听器
+        # @param HealthCheck: 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL监听器。
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
         # @param Certificate: 证书相关信息，此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
@@ -975,7 +975,7 @@ module TencentCloud
         # @type TargetType: String
         # @param SessionType: 会话保持类型。不传或传NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。
         # @type SessionType: String
-        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS监听器，0:关闭；1:开启， 默认关闭
+        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS监听器，0:关闭；1:开启， 默认关闭。
         # @type KeepaliveEnable: Integer
         # @param EndPort: 创建端口段监听器时必须传入此参数，用以标识结束端口。同时，入参Ports只允许传入一个成员，用以标识开始端口。【如果您需要体验端口段功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】。
         # @type EndPort: Integer
@@ -1021,7 +1021,7 @@ module TencentCloud
 
       # CreateListener返回参数结构体
       class CreateListenerResponse < TencentCloud::Common::AbstractModel
-        # @param ListenerIds: 创建的监听器的唯一标识数组
+        # @param ListenerIds: 创建的监听器的唯一标识数组。
         # @type ListenerIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1174,9 +1174,9 @@ module TencentCloud
 
       # CreateLoadBalancerSnatIps请求参数结构体
       class CreateLoadBalancerSnatIpsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡唯一性Id，如lb-12345678
+        # @param LoadBalancerId: 负载均衡唯一性ID，例如：lb-12345678。
         # @type LoadBalancerId: String
-        # @param SnatIps: 添加SnatIp信息，可指定Ip申请，或者指定子网自动申请
+        # @param SnatIps: 添加SnatIp信息，可指定IP申请，或者指定子网自动申请。
         # @type SnatIps: Array
 
         attr_accessor :LoadBalancerId, :SnatIps
@@ -1215,11 +1215,11 @@ module TencentCloud
 
       # CreateRule请求参数结构体
       class CreateRuleRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例 ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 监听器 ID
+        # @param ListenerId: 监听器 ID。
         # @type ListenerId: String
-        # @param Rules: 新建转发规则的信息
+        # @param Rules: 新建转发规则的信息。
         # @type Rules: Array
 
         attr_accessor :LoadBalancerId, :ListenerId, :Rules
@@ -1244,7 +1244,7 @@ module TencentCloud
 
       # CreateRule返回参数结构体
       class CreateRuleResponse < TencentCloud::Common::AbstractModel
-        # @param LocationIds: 创建的转发规则的唯一标识数组
+        # @param LocationIds: 创建的转发规则的唯一标识数组。
         # @type LocationIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1317,9 +1317,9 @@ module TencentCloud
 
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 日志主题的名字
+        # @param TopicName: 日志主题的名称。
         # @type TopicName: String
-        # @param PartitionCount: 主题分区 partition个数，不传参默认创建1个，最大创建允许10个，分裂/合并操作会改变分区数量，整体上限50个。
+        # @param PartitionCount: 主题分区Partition的数量，不传参默认创建1个，最大创建允许10个，分裂/合并操作会改变分区数量，整体上限50个。
         # @type PartitionCount: Integer
 
         attr_accessor :TopicName, :PartitionCount
@@ -1337,7 +1337,7 @@ module TencentCloud
 
       # CreateTopic返回参数结构体
       class CreateTopicResponse < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题的 ID
+        # @param TopicId: 日志主题的 ID。
         # @type TopicId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1357,9 +1357,9 @@ module TencentCloud
 
       # DeleteListener请求参数结构体
       class DeleteListenerRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 要删除的监听器 ID
+        # @param ListenerId: 要删除的监听器ID。
         # @type ListenerId: String
 
         attr_accessor :LoadBalancerId, :ListenerId
@@ -1393,9 +1393,9 @@ module TencentCloud
 
       # DeleteLoadBalancerListeners请求参数结构体
       class DeleteLoadBalancerListenersRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerIds: 指定删除的监听器ID数组，若不填则删除负载均衡的所有监听器
+        # @param ListenerIds: 指定删除的监听器ID数组，若不填则删除负载均衡的所有监听器。
         # @type ListenerIds: Array
 
         attr_accessor :LoadBalancerId, :ListenerIds
@@ -1429,7 +1429,7 @@ module TencentCloud
 
       # DeleteLoadBalancer请求参数结构体
       class DeleteLoadBalancerRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerIds: 要删除的负载均衡实例 ID数组，数组大小最大支持20
+        # @param LoadBalancerIds: 要删除的负载均衡实例 ID数组，数组大小最大支持20。
         # @type LoadBalancerIds: Array
 
         attr_accessor :LoadBalancerIds
@@ -1461,9 +1461,9 @@ module TencentCloud
 
       # DeleteLoadBalancerSnatIps请求参数结构体
       class DeleteLoadBalancerSnatIpsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡唯一Id，如lb-12345678
+        # @param LoadBalancerId: 负载均衡唯一ID，例如：lb-12345678。
         # @type LoadBalancerId: String
-        # @param Ips: 删除SnatIp地址数组
+        # @param Ips: 删除SnatIp地址数组。
         # @type Ips: Array
 
         attr_accessor :LoadBalancerId, :Ips
@@ -1497,13 +1497,13 @@ module TencentCloud
 
       # DeleteRewrite请求参数结构体
       class DeleteRewriteRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param SourceListenerId: 源监听器ID
+        # @param SourceListenerId: 源监听器ID。
         # @type SourceListenerId: String
-        # @param TargetListenerId: 目标监听器ID
+        # @param TargetListenerId: 目标监听器ID。
         # @type TargetListenerId: String
-        # @param RewriteInfos: 转发规则之间的重定向关系
+        # @param RewriteInfos: 转发规则之间的重定向关系。
         # @type RewriteInfos: Array
 
         attr_accessor :LoadBalancerId, :SourceListenerId, :TargetListenerId, :RewriteInfos
@@ -1546,15 +1546,15 @@ module TencentCloud
 
       # DeleteRule请求参数结构体
       class DeleteRuleRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器 ID
+        # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
-        # @param LocationIds: 要删除的转发规则的ID组成的数组
+        # @param LocationIds: 要删除的转发规则的ID组成的数组。
         # @type LocationIds: Array
-        # @param Domain: 要删除的转发规则的域名，已提供LocationIds参数时本参数不生效
+        # @param Domain: 要删除的转发规则的域名，已提供LocationIds参数时本参数不生效。
         # @type Domain: String
-        # @param Url: 要删除的转发规则的转发路径，已提供LocationIds参数时本参数不生效
+        # @param Url: 要删除的转发规则的转发路径，已提供LocationIds参数时本参数不生效。
         # @type Url: String
         # @param NewDefaultServerDomain: 监听器下必须配置一个默认域名，当需要删除默认域名时，可以指定另一个域名作为新的默认域名。
         # @type NewDefaultServerDomain: String
@@ -1598,7 +1598,7 @@ module TencentCloud
 
       # DeleteTargetGroups请求参数结构体
       class DeleteTargetGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupIds: 目标组的ID数组
+        # @param TargetGroupIds: 目标组的ID数组。
         # @type TargetGroupIds: Array
 
         attr_accessor :TargetGroupIds
@@ -1630,9 +1630,9 @@ module TencentCloud
 
       # DeregisterTargetGroupInstances请求参数结构体
       class DeregisterTargetGroupInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupId: 目标组ID
+        # @param TargetGroupId: 目标组ID。
         # @type TargetGroupId: String
-        # @param TargetGroupInstances: 待解绑的服务器信息
+        # @param TargetGroupInstances: 待解绑的服务器信息。
         # @type TargetGroupInstances: Array
 
         attr_accessor :TargetGroupId, :TargetGroupInstances
@@ -1671,9 +1671,9 @@ module TencentCloud
 
       # DeregisterTargetsFromClassicalLB请求参数结构体
       class DeregisterTargetsFromClassicalLBRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param InstanceIds: 后端服务的实例ID列表
+        # @param InstanceIds: 后端服务的实例ID列表。
         # @type InstanceIds: Array
 
         attr_accessor :LoadBalancerId, :InstanceIds
@@ -1707,17 +1707,17 @@ module TencentCloud
 
       # DeregisterTargets请求参数结构体
       class DeregisterTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID，格式如 lb-12345678
+        # @param LoadBalancerId: 负载均衡实例 ID，格式如 lb-12345678。
         # @type LoadBalancerId: String
-        # @param ListenerId: 监听器 ID，格式如 lbl-12345678
+        # @param ListenerId: 监听器 ID，格式如 lbl-12345678。
         # @type ListenerId: String
-        # @param Targets: 要解绑的后端服务列表，数组长度最大支持20
+        # @param Targets: 要解绑的后端服务列表，数组长度最大支持20。
         # @type Targets: Array
-        # @param LocationId: 转发规则的ID，格式如 loc-12345678，当从七层转发规则解绑机器时，必须提供此参数或Domain+Url两者之一
+        # @param LocationId: 转发规则的ID，格式如 loc-12345678，当从七层转发规则解绑机器时，必须提供此参数或Domain+URL两者之一。
         # @type LocationId: String
-        # @param Domain: 目标规则的域名，提供LocationId参数时本参数不生效
+        # @param Domain: 目标规则的域名，提供LocationId参数时本参数不生效。
         # @type Domain: String
-        # @param Url: 目标规则的URL，提供LocationId参数时本参数不生效
+        # @param Url: 目标规则的URL，提供LocationId参数时本参数不生效。
         # @type Url: String
 
         attr_accessor :LoadBalancerId, :ListenerId, :Targets, :LocationId, :Domain, :Url
@@ -1857,7 +1857,7 @@ module TencentCloud
 
       # DescribeClassicalLBByInstanceId请求参数结构体
       class DescribeClassicalLBByInstanceIdRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 后端实例ID列表
+        # @param InstanceIds: 后端实例ID列表。
         # @type InstanceIds: Array
 
         attr_accessor :InstanceIds
@@ -1873,7 +1873,7 @@ module TencentCloud
 
       # DescribeClassicalLBByInstanceId返回参数结构体
       class DescribeClassicalLBByInstanceIdResponse < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerInfoList: 负载均衡相关信息列表
+        # @param LoadBalancerInfoList: 负载均衡相关信息列表。
         # @type LoadBalancerInfoList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1898,9 +1898,9 @@ module TencentCloud
 
       # DescribeClassicalLBHealthStatus请求参数结构体
       class DescribeClassicalLBHealthStatusRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器ID
+        # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
 
         attr_accessor :LoadBalancerId, :ListenerId
@@ -1918,7 +1918,7 @@ module TencentCloud
 
       # DescribeClassicalLBHealthStatus返回参数结构体
       class DescribeClassicalLBHealthStatusResponse < TencentCloud::Common::AbstractModel
-        # @param HealthList: 后端健康状态列表
+        # @param HealthList: 后端健康状态列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -1944,15 +1944,15 @@ module TencentCloud
 
       # DescribeClassicalLBListeners请求参数结构体
       class DescribeClassicalLBListenersRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerIds: 负载均衡监听器ID列表
+        # @param ListenerIds: 负载均衡监听器ID列表。
         # @type ListenerIds: Array
-        # @param Protocol: 负载均衡监听的协议, 'TCP', 'UDP', 'HTTP', 'HTTPS'
+        # @param Protocol: 负载均衡监听的协议：'TCP', 'UDP', 'HTTP', 'HTTPS'。
         # @type Protocol: String
-        # @param ListenerPort: 负载均衡监听端口， 范围[1-65535]
+        # @param ListenerPort: 负载均衡监听端口，范围为[1-65535]。
         # @type ListenerPort: Integer
-        # @param Status: 监听器的状态，0 表示创建中，1 表示运行中
+        # @param Status: 监听器的状态，0：创建中，1：运行中。
         # @type Status: Integer
 
         attr_accessor :LoadBalancerId, :ListenerIds, :Protocol, :ListenerPort, :Status
@@ -1976,7 +1976,7 @@ module TencentCloud
 
       # DescribeClassicalLBListeners返回参数结构体
       class DescribeClassicalLBListenersResponse < TencentCloud::Common::AbstractModel
-        # @param Listeners: 监听器列表
+        # @param Listeners: 监听器列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Listeners: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2002,7 +2002,7 @@ module TencentCloud
 
       # DescribeClassicalLBTargets请求参数结构体
       class DescribeClassicalLBTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例 ID。
         # @type LoadBalancerId: String
 
         attr_accessor :LoadBalancerId
@@ -2018,7 +2018,7 @@ module TencentCloud
 
       # DescribeClassicalLBTargets返回参数结构体
       class DescribeClassicalLBTargetsResponse < TencentCloud::Common::AbstractModel
-        # @param Targets: 后端服务列表
+        # @param Targets: 后端服务列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Targets: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2075,9 +2075,9 @@ module TencentCloud
 
       # DescribeClusterResources请求参数结构体
       class DescribeClusterResourcesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回集群中资源列表数目，默认20，最大值100
+        # @param Limit: 返回集群中资源列表数目，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 返回集群中资源列表起始偏移量，默认0
+        # @param Offset: 返回集群中资源列表起始偏移量，默认为0。
         # @type Offset: Integer
         # @param Filters: 查询集群中资源列表条件，详细的过滤条件如下：
         # <li> cluster-id - String - 是否必填：否 - （过滤条件）按照 集群 的唯一ID过滤，如 ："tgw-12345678","stgw-12345678","vpcgw-12345678"。</li>
@@ -2108,9 +2108,9 @@ module TencentCloud
 
       # DescribeClusterResources返回参数结构体
       class DescribeClusterResourcesResponse < TencentCloud::Common::AbstractModel
-        # @param ClusterResourceSet: 集群中资源列表
+        # @param ClusterResourceSet: 集群中资源列表。
         # @type ClusterResourceSet: Array
-        # @param TotalCount: 集群中资源总数
+        # @param TotalCount: 集群中资源总数。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2137,9 +2137,9 @@ module TencentCloud
 
       # DescribeExclusiveClusters请求参数结构体
       class DescribeExclusiveClustersRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回集群列表数目，默认20，最大值100
+        # @param Limit: 返回集群列表数目，默认值为20，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 返回集群列表起始偏移量，默认0
+        # @param Offset: 返回集群列表起始偏移量，默认为0。
         # @type Offset: Integer
         # @param Filters: 查询集群列表条件，详细的过滤条件如下：
         # <li> cluster-type - String - 是否必填：否 - （过滤条件）按照 集群 的类型过滤，包括"TGW","STGW","VPCGW"。</li>
@@ -2175,9 +2175,9 @@ module TencentCloud
 
       # DescribeExclusiveClusters返回参数结构体
       class DescribeExclusiveClustersResponse < TencentCloud::Common::AbstractModel
-        # @param ClusterSet: 集群列表
+        # @param ClusterSet: 集群列表。
         # @type ClusterSet: Array
-        # @param TotalCount: 集群总数目
+        # @param TotalCount: 集群总数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2204,13 +2204,13 @@ module TencentCloud
 
       # DescribeListeners请求参数结构体
       class DescribeListenersRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerIds: 要查询的负载均衡监听器 ID数组
+        # @param ListenerIds: 要查询的负载均衡监听器ID数组。
         # @type ListenerIds: Array
-        # @param Protocol: 要查询的监听器协议类型，取值 TCP | UDP | HTTP | HTTPS | TCP_SSL
+        # @param Protocol: 要查询的监听器协议类型，取值 TCP | UDP | HTTP | HTTPS | TCP_SSL。
         # @type Protocol: String
-        # @param Port: 要查询的监听器的端口
+        # @param Port: 要查询的监听器的端口。
         # @type Port: Integer
 
         attr_accessor :LoadBalancerId, :ListenerIds, :Protocol, :Port
@@ -2232,9 +2232,9 @@ module TencentCloud
 
       # DescribeListeners返回参数结构体
       class DescribeListenersResponse < TencentCloud::Common::AbstractModel
-        # @param Listeners: 监听器列表
+        # @param Listeners: 监听器列表。
         # @type Listeners: Array
-        # @param TotalCount: 总的监听器个数
+        # @param TotalCount: 总的监听器个数（根据端口、协议、监听器ID过滤后）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2319,7 +2319,7 @@ module TencentCloud
 
       # DescribeLoadBalancerTraffic返回参数结构体
       class DescribeLoadBalancerTrafficResponse < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerTraffic: 按出带宽从高到低排序后的负载均衡信息
+        # @param LoadBalancerTraffic: 按出带宽从高到低排序后的负载均衡信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerTraffic: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2347,7 +2347,7 @@ module TencentCloud
       class DescribeLoadBalancersDetailRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回负载均衡列表数目，默认20，最大值100。
         # @type Limit: Integer
-        # @param Offset: 返回负载均衡列表起始偏移量，默认0
+        # @param Offset: 返回负载均衡列表起始偏移量，默认0。
         # @type Offset: Integer
         # @param Fields: 选择返回的Fields列表，默认添加LoadBalancerId和LoadBalancerName。
         # @type Fields: Array
@@ -2587,11 +2587,11 @@ module TencentCloud
 
       # DescribeRewrite请求参数结构体
       class DescribeRewriteRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param SourceListenerIds: 负载均衡监听器ID数组
+        # @param SourceListenerIds: 负载均衡监听器ID数组。
         # @type SourceListenerIds: Array
-        # @param SourceLocationIds: 负载均衡转发规则的ID数组
+        # @param SourceLocationIds: 负载均衡转发规则的ID数组。
         # @type SourceLocationIds: Array
 
         attr_accessor :LoadBalancerId, :SourceListenerIds, :SourceLocationIds
@@ -2611,7 +2611,7 @@ module TencentCloud
 
       # DescribeRewrite返回参数结构体
       class DescribeRewriteResponse < TencentCloud::Common::AbstractModel
-        # @param RewriteSet: 重定向转发规则构成的数组，若无重定向规则，则返回空数组
+        # @param RewriteSet: 重定向转发规则构成的数组，若无重定向规则，则返回空数组。
         # @type RewriteSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2698,13 +2698,13 @@ module TencentCloud
 
       # DescribeTargetGroupList请求参数结构体
       class DescribeTargetGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupIds: 目标组ID数组
+        # @param TargetGroupIds: 目标组ID数组。
         # @type TargetGroupIds: Array
-        # @param Filters: 过滤条件数组，支持TargetGroupVpcId和TargetGroupName。与TargetGroupIds互斥，优先使用目标组ID，
+        # @param Filters: 过滤条件数组，支持TargetGroupVpcId和TargetGroupName。与TargetGroupIds互斥，优先使用目标组ID。
         # @type Filters: Array
-        # @param Offset: 显示的偏移起始量
+        # @param Offset: 显示的偏移起始量。
         # @type Offset: Integer
-        # @param Limit: 显示条数限制，默认为20
+        # @param Limit: 显示条数限制，默认为20。
         # @type Limit: Integer
 
         attr_accessor :TargetGroupIds, :Filters, :Offset, :Limit
@@ -2731,9 +2731,9 @@ module TencentCloud
 
       # DescribeTargetGroupList返回参数结构体
       class DescribeTargetGroupListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 显示的结果数量
+        # @param TotalCount: 显示的结果数量。
         # @type TotalCount: Integer
-        # @param TargetGroupSet: 显示的目标组信息集合
+        # @param TargetGroupSet: 显示的目标组信息集合。
         # @type TargetGroupSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2760,13 +2760,13 @@ module TencentCloud
 
       # DescribeTargetGroups请求参数结构体
       class DescribeTargetGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupIds: 目标组ID，与Filters互斥
+        # @param TargetGroupIds: 目标组ID，与Filters互斥。
         # @type TargetGroupIds: Array
-        # @param Limit: 显示条数限制，默认为20
+        # @param Limit: 显示条数限制，默认为20。
         # @type Limit: Integer
-        # @param Offset: 显示的偏移起始量
+        # @param Offset: 显示的偏移起始量。
         # @type Offset: Integer
-        # @param Filters: 过滤条件数组，与TargetGroupIds互斥，支持TargetGroupVpcId和TargetGroupName
+        # @param Filters: 过滤条件数组，与TargetGroupIds互斥，支持TargetGroupVpcId和TargetGroupName。
         # @type Filters: Array
 
         attr_accessor :TargetGroupIds, :Limit, :Offset, :Filters
@@ -2793,9 +2793,9 @@ module TencentCloud
 
       # DescribeTargetGroups返回参数结构体
       class DescribeTargetGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 显示的结果数量
+        # @param TotalCount: 显示的结果数量。
         # @type TotalCount: Integer
-        # @param TargetGroupSet: 显示的目标组信息集合
+        # @param TargetGroupSet: 显示的目标组信息集合。
         # @type TargetGroupSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2822,7 +2822,7 @@ module TencentCloud
 
       # DescribeTargetHealth请求参数结构体
       class DescribeTargetHealthRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerIds: 要查询的负载均衡实例 ID列表
+        # @param LoadBalancerIds: 要查询的负载均衡实例ID列表。
         # @type LoadBalancerIds: Array
 
         attr_accessor :LoadBalancerIds
@@ -2838,7 +2838,7 @@ module TencentCloud
 
       # DescribeTargetHealth返回参数结构体
       class DescribeTargetHealthResponse < TencentCloud::Common::AbstractModel
-        # @param LoadBalancers: 负载均衡实例列表
+        # @param LoadBalancers: 负载均衡实例列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancers: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2864,13 +2864,13 @@ module TencentCloud
 
       # DescribeTargets请求参数结构体
       class DescribeTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerIds: 监听器 ID列表
+        # @param ListenerIds: 监听器ID列表。
         # @type ListenerIds: Array
-        # @param Protocol: 监听器协议类型
+        # @param Protocol: 监听器协议类型。
         # @type Protocol: String
-        # @param Port: 监听器端口
+        # @param Port: 监听器端口。
         # @type Port: Integer
 
         attr_accessor :LoadBalancerId, :ListenerIds, :Protocol, :Port
@@ -2892,7 +2892,7 @@ module TencentCloud
 
       # DescribeTargets返回参数结构体
       class DescribeTargetsResponse < TencentCloud::Common::AbstractModel
-        # @param Listeners: 监听器后端绑定的机器信息
+        # @param Listeners: 监听器后端绑定的机器信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Listeners: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2918,7 +2918,7 @@ module TencentCloud
 
       # DescribeTaskStatus请求参数结构体
       class DescribeTaskStatusRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 请求ID，即接口返回的 RequestId 参数
+        # @param TaskId: 请求ID，即接口返回的 RequestId 参数。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -2954,7 +2954,7 @@ module TencentCloud
 
       # DisassociateTargetGroups请求参数结构体
       class DisassociateTargetGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Associations: 待解绑的规则关系数组
+        # @param Associations: 待解绑的规则关系数组。
         # @type Associations: Array
 
         attr_accessor :Associations
@@ -3930,13 +3930,13 @@ module TencentCloud
 
       # ManualRewrite请求参数结构体
       class ManualRewriteRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例ID
+        # @param LoadBalancerId: 负载均衡实例 ID。
         # @type LoadBalancerId: String
-        # @param SourceListenerId: 源监听器ID
+        # @param SourceListenerId: 源监听器 ID。
         # @type SourceListenerId: String
-        # @param TargetListenerId: 目标监听器ID
+        # @param TargetListenerId: 目标监听器 ID。
         # @type TargetListenerId: String
-        # @param RewriteInfos: 转发规则之间的重定向关系
+        # @param RewriteInfos: 转发规则之间的重定向关系。
         # @type RewriteInfos: Array
 
         attr_accessor :LoadBalancerId, :SourceListenerId, :TargetListenerId, :RewriteInfos
@@ -4041,13 +4041,13 @@ module TencentCloud
 
       # ModifyDomainAttributes请求参数结构体
       class ModifyDomainAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器 ID
+        # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
-        # @param Domain: 域名（必须是已经创建的转发规则下的域名）
+        # @param Domain: 域名（必须是已经创建的转发规则下的域名）。
         # @type Domain: String
-        # @param NewDomain: 要修改的新域名
+        # @param NewDomain: 要修改的新域名。
         # @type NewDomain: String
         # @param Certificate: 域名相关的证书信息，注意，仅对启用SNI的监听器适用。
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
@@ -4147,24 +4147,24 @@ module TencentCloud
 
       # ModifyListener请求参数结构体
       class ModifyListenerRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器 ID
+        # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
-        # @param ListenerName: 新的监听器名称
+        # @param ListenerName: 新的监听器名称。
         # @type ListenerName: String
         # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。此参数仅适用于TCP/UDP监听器。
         # @type SessionExpireTime: Integer
-        # @param HealthCheck: 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL监听器
+        # @param HealthCheck: 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL监听器。
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
-        # @param Certificate: 证书相关信息，此参数仅适用于HTTPS/TCP_SSL监听器
+        # @param Certificate: 证书相关信息，此参数仅适用于HTTPS/TCP_SSL监听器。
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
         # @param Scheduler: 监听器转发的方式。可选值：WRR、LEAST_CONN
         # 分别表示按权重轮询、最小连接数， 默认为 WRR。
         # @type Scheduler: String
-        # @param SniSwitch: 是否开启SNI特性，此参数仅适用于HTTPS监听器。注意：未开启SNI的监听器可以开启SNI；已开启SNI的监听器不能关闭SNI
+        # @param SniSwitch: 是否开启SNI特性，此参数仅适用于HTTPS监听器。注意：未开启SNI的监听器可以开启SNI；已开启SNI的监听器不能关闭SNI。
         # @type SniSwitch: Integer
-        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS监听器
+        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS监听器。
         # @type KeepaliveEnable: Integer
 
         attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :KeepaliveEnable
@@ -4277,26 +4277,26 @@ module TencentCloud
 
       # ModifyRule请求参数结构体
       class ModifyRuleRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例 ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器 ID
+        # @param ListenerId: 负载均衡监听器 ID。
         # @type ListenerId: String
         # @param LocationId: 要修改的转发规则的 ID。
         # @type LocationId: String
-        # @param Url: 转发规则的新的转发路径，如不需修改Url，则不需提供此参数
+        # @param Url: 转发规则的新的转发路径，如不需修改Url，则不需提供此参数。
         # @type Url: String
-        # @param HealthCheck: 健康检查信息
+        # @param HealthCheck: 健康检查信息。
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
         # @param Scheduler: 规则的请求转发方式，可选值：WRR、LEAST_CONN、IP_HASH
         # 分别表示按权重轮询、最小连接数、按IP哈希， 默认为 WRR。
         # @type Scheduler: String
-        # @param SessionExpireTime: 会话保持时间
+        # @param SessionExpireTime: 会话保持时间。
         # @type SessionExpireTime: Integer
-        # @param ForwardType: 负载均衡实例与后端服务之间的转发协议，默认HTTP，可取值：HTTP、HTTPS、TRPC
+        # @param ForwardType: 负载均衡实例与后端服务之间的转发协议，默认HTTP，可取值：HTTP、HTTPS、TRPC。
         # @type ForwardType: String
-        # @param TrpcCallee: TRPC被调服务器路由，ForwardType为TRPC时必填
+        # @param TrpcCallee: TRPC被调服务器路由，ForwardType为TRPC时必填。
         # @type TrpcCallee: String
-        # @param TrpcFunc: TRPC调用服务接口，ForwardType为TRPC时必填
+        # @param TrpcFunc: TRPC调用服务接口，ForwardType为TRPC时必填。
         # @type TrpcFunc: String
 
         attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Url, :HealthCheck, :Scheduler, :SessionExpireTime, :ForwardType, :TrpcCallee, :TrpcFunc
@@ -4348,11 +4348,11 @@ module TencentCloud
 
       # ModifyTargetGroupAttribute请求参数结构体
       class ModifyTargetGroupAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupId: 目标组的ID
+        # @param TargetGroupId: 目标组的ID。
         # @type TargetGroupId: String
-        # @param TargetGroupName: 目标组的新名称
+        # @param TargetGroupName: 目标组的新名称。
         # @type TargetGroupName: String
-        # @param Port: 目标组的新默认端口
+        # @param Port: 目标组的新默认端口。
         # @type Port: Integer
 
         attr_accessor :TargetGroupId, :TargetGroupName, :Port
@@ -4388,9 +4388,9 @@ module TencentCloud
 
       # ModifyTargetGroupInstancesPort请求参数结构体
       class ModifyTargetGroupInstancesPortRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupId: 目标组ID
+        # @param TargetGroupId: 目标组ID。
         # @type TargetGroupId: String
-        # @param TargetGroupInstances: 待修改端口的服务器数组
+        # @param TargetGroupInstances: 待修改端口的服务器数组。
         # @type TargetGroupInstances: Array
 
         attr_accessor :TargetGroupId, :TargetGroupInstances
@@ -4429,9 +4429,9 @@ module TencentCloud
 
       # ModifyTargetGroupInstancesWeight请求参数结构体
       class ModifyTargetGroupInstancesWeightRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupId: 目标组ID
+        # @param TargetGroupId: 目标组ID。
         # @type TargetGroupId: String
-        # @param TargetGroupInstances: 待修改权重的服务器数组
+        # @param TargetGroupInstances: 待修改权重的服务器数组。
         # @type TargetGroupInstances: Array
 
         attr_accessor :TargetGroupId, :TargetGroupInstances
@@ -4470,19 +4470,19 @@ module TencentCloud
 
       # ModifyTargetPort请求参数结构体
       class ModifyTargetPortRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器 ID
+        # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
-        # @param Targets: 要修改端口的后端服务列表
+        # @param Targets: 要修改端口的后端服务列表。
         # @type Targets: Array
-        # @param NewPort: 后端服务绑定到监听器或转发规则的新端口
+        # @param NewPort: 后端服务绑定到监听器或转发规则的新端口。
         # @type NewPort: Integer
-        # @param LocationId: 转发规则的ID，当后端服务绑定到七层转发规则时，必须提供此参数或Domain+Url两者之一
+        # @param LocationId: 转发规则的ID，当后端服务绑定到七层转发规则时，必须提供此参数或Domain+Url两者之一。
         # @type LocationId: String
-        # @param Domain: 目标规则的域名，提供LocationId参数时本参数不生效
+        # @param Domain: 目标规则的域名，提供LocationId参数时本参数不生效。
         # @type Domain: String
-        # @param Url: 目标规则的URL，提供LocationId参数时本参数不生效
+        # @param Url: 目标规则的URL，提供LocationId参数时本参数不生效。
         # @type Url: String
 
         attr_accessor :LoadBalancerId, :ListenerId, :Targets, :NewPort, :LocationId, :Domain, :Url
@@ -4531,17 +4531,17 @@ module TencentCloud
 
       # ModifyTargetWeight请求参数结构体
       class ModifyTargetWeightRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器 ID
+        # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
-        # @param LocationId: 转发规则的ID，当绑定机器到七层转发规则时，必须提供此参数或Domain+Url两者之一
+        # @param LocationId: 转发规则的ID，当绑定机器到七层转发规则时，必须提供此参数或Domain+Url两者之一。
         # @type LocationId: String
-        # @param Domain: 目标规则的域名，提供LocationId参数时本参数不生效
+        # @param Domain: 目标规则的域名，提供LocationId参数时本参数不生效。
         # @type Domain: String
-        # @param Url: 目标规则的URL，提供LocationId参数时本参数不生效
+        # @param Url: 目标规则的URL，提供LocationId参数时本参数不生效。
         # @type Url: String
-        # @param Targets: 要修改权重的后端服务列表
+        # @param Targets: 要修改权重的后端服务列表。
         # @type Targets: Array
         # @param Weight: 后端服务新的转发权重，取值范围：0~100，默认值10。如果设置了 Targets.Weight 参数，则此参数不生效。
         # @type Weight: Integer
@@ -4663,17 +4663,17 @@ module TencentCloud
 
       # RegisterTargets请求参数结构体
       class RegisterTargetsRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器 ID
+        # @param ListenerId: 负载均衡监听器ID。
         # @type ListenerId: String
-        # @param Targets: 待绑定的后端服务列表，数组长度最大支持20
+        # @param Targets: 待绑定的后端服务列表，数组长度最大支持20。
         # @type Targets: Array
-        # @param LocationId: 转发规则的ID，当绑定后端服务到七层转发规则时，必须提供此参数或Domain+Url两者之一
+        # @param LocationId: 转发规则的ID，当绑定后端服务到七层转发规则时，必须提供此参数或Domain+Url两者之一。
         # @type LocationId: String
-        # @param Domain: 目标转发规则的域名，提供LocationId参数时本参数不生效
+        # @param Domain: 目标转发规则的域名，提供LocationId参数时本参数不生效。
         # @type Domain: String
-        # @param Url: 目标转发规则的URL，提供LocationId参数时本参数不生效
+        # @param Url: 目标转发规则的URL，提供LocationId参数时本参数不生效。
         # @type Url: String
 
         attr_accessor :LoadBalancerId, :ListenerId, :Targets, :LocationId, :Domain, :Url
@@ -4720,9 +4720,9 @@ module TencentCloud
 
       # RegisterTargetsWithClassicalLB请求参数结构体
       class RegisterTargetsWithClassicalLBRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例ID。
         # @type LoadBalancerId: String
-        # @param Targets: 后端服务信息
+        # @param Targets: 后端服务信息。
         # @type Targets: Array
 
         attr_accessor :LoadBalancerId, :Targets

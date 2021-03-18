@@ -445,16 +445,10 @@ module TencentCloud
         # @param EndTime: 查询结束时间，如：2019-12-13 23:59:59。
         # 起止时间不超过90天。
         # @type EndTime: String
-        # @param Metrics: 统计指标名称。flux：流量，单位为 byte
+        # @param Metrics: 统计指标名称:
+        # flux：流量，单位为 byte
         # bandwidth：带宽，单位为 bps
         # request：请求数，单位为 次
-        # delay：响应时间，单位为ms
-        # static_request ： 静态请求数，单位为 次
-        # static_flux：静态流量，单位为 byte
-        # static_bandwidth ： 静态带宽，单位为 bps
-        # dynamic_request：动态请求数，单位为 次
-        # dynamic_flux：动态流量，单位为 byte
-        # dynamic_bandwidth：动态带宽，单位为 bps
         # @type Metrics: Array
         # @param Domains: 指定查询域名列表
         # @type Domains: Array
@@ -465,10 +459,16 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 列表分页记录条数，默认1000，最大3000。
         # @type Limit: Integer
+        # @param Area: 统计区域:
+        # mainland: 境内
+        # oversea: 境外
+        # global: 全部
+        # 默认 global
+        # @type Area: String
 
-        attr_accessor :StartTime, :EndTime, :Metrics, :Domains, :Projects, :Offset, :Limit
+        attr_accessor :StartTime, :EndTime, :Metrics, :Domains, :Projects, :Offset, :Limit, :Area
         
-        def initialize(starttime=nil, endtime=nil, metrics=nil, domains=nil, projects=nil, offset=nil, limit=nil)
+        def initialize(starttime=nil, endtime=nil, metrics=nil, domains=nil, projects=nil, offset=nil, limit=nil, area=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Metrics = metrics
@@ -476,6 +476,7 @@ module TencentCloud
           @Projects = projects
           @Offset = offset
           @Limit = limit
+          @Area = area
         end
 
         def deserialize(params)
@@ -486,6 +487,7 @@ module TencentCloud
           @Projects = params['Projects']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Area = params['Area']
         end
       end
 
@@ -528,17 +530,10 @@ module TencentCloud
         # flux：流量，单位为 byte
         # bandwidth：带宽，单位为 bps
         # request：请求数，单位为 次
-        # delay：响应时间，单位为ms
         # 2xx：返回 2xx 状态码汇总或者 2 开头状态码数据，单位为 个
         # 3xx：返回 3xx 状态码汇总或者 3 开头状态码数据，单位为 个
         # 4xx：返回 4xx 状态码汇总或者 4 开头状态码数据，单位为 个
         # 5xx：返回 5xx 状态码汇总或者 5 开头状态码数据，单位为 个
-        # static_request ： 静态请求数，单位为 次
-        # static_flux：静态流量，单位为 byte
-        # static_bandwidth ： 静态带宽，单位为 bps
-        # dynamic_request：动态请求数，单位为 次
-        # dynamic_flux：动态流量，单位为 byte
-        # dynamic_bandwidth：动态带宽，单位为 bps
         # @type Metrics: Array
         # @param Interval: 时间粒度，支持以下几种模式：
         # 1 天	 1，5，15，30，60，120，240，1440
@@ -553,16 +548,23 @@ module TencentCloud
         # @param Projects: 指定要查询的项目 ID，[前往查看项目 ID](https://console.cloud.tencent.com/project)
         # 未填充域名情况下，指定项目查询，若填充了具体域名信息，以域名为主
         # @type Projects: Array
+        # @param Area: 统计区域:
+        # mainland: 境内
+        # oversea: 境外
+        # global: 全部
+        # 默认 global
+        # @type Area: String
 
-        attr_accessor :StartTime, :EndTime, :Metrics, :Interval, :Domains, :Projects
+        attr_accessor :StartTime, :EndTime, :Metrics, :Interval, :Domains, :Projects, :Area
         
-        def initialize(starttime=nil, endtime=nil, metrics=nil, interval=nil, domains=nil, projects=nil)
+        def initialize(starttime=nil, endtime=nil, metrics=nil, interval=nil, domains=nil, projects=nil, area=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Metrics = metrics
           @Interval = interval
           @Domains = domains
           @Projects = projects
+          @Area = area
         end
 
         def deserialize(params)
@@ -572,6 +574,7 @@ module TencentCloud
           @Interval = params['Interval']
           @Domains = params['Domains']
           @Projects = params['Projects']
+          @Area = params['Area']
         end
       end
 

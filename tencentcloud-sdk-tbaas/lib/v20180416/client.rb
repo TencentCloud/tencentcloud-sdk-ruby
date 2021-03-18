@@ -49,6 +49,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 版本升级
+
         # Bcos根据块高查询区块信息
 
         # @param request: Request instance for BlockByNumberHandler.
@@ -120,6 +122,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 版本升级
 
         # 动态部署合约
 
@@ -288,6 +292,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 版本升级
 
         # Bcos分页查询当前群组下的区块列表
 
@@ -553,6 +559,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 版本升级
+
         # Bcos根据交易哈希查看交易详细信息
 
         # @param request: Request instance for GetTransByHashHandler.
@@ -576,6 +584,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 版本升级
 
         # Bcos分页查询当前群组的交易信息列表
 
@@ -721,6 +731,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 版本升级
+
         # Bcos发送交易
 
         # @param request: Request instance for SendTransactionHandler.
@@ -768,6 +780,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 版本升级
 
         # 根据动态部署的合约发送交易
 
