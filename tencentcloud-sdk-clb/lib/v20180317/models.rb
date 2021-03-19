@@ -5581,19 +5581,29 @@ module TencentCloud
         # @param ZoneName: 可用区名称，如：广州一区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneName: String
+        # @param ZoneRegion: 可用区所属地域，如：ap-guangzhou
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneRegion: String
+        # @param LocalZone: 可用区是否是LocalZone可用区，如：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalZone: Boolean
 
-        attr_accessor :ZoneId, :Zone, :ZoneName
+        attr_accessor :ZoneId, :Zone, :ZoneName, :ZoneRegion, :LocalZone
         
-        def initialize(zoneid=nil, zone=nil, zonename=nil)
+        def initialize(zoneid=nil, zone=nil, zonename=nil, zoneregion=nil, localzone=nil)
           @ZoneId = zoneid
           @Zone = zone
           @ZoneName = zonename
+          @ZoneRegion = zoneregion
+          @LocalZone = localzone
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @Zone = params['Zone']
           @ZoneName = params['ZoneName']
+          @ZoneRegion = params['ZoneRegion']
+          @LocalZone = params['LocalZone']
         end
       end
 

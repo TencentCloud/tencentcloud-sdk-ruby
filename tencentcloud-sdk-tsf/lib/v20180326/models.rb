@@ -5486,19 +5486,23 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页个数
         # @type Limit: Integer
+        # @param GroupIds: 可选，根据部署组ID进行过滤
+        # @type GroupIds: Array
 
-        attr_accessor :MicroserviceId, :Offset, :Limit
+        attr_accessor :MicroserviceId, :Offset, :Limit, :GroupIds
         
-        def initialize(microserviceid=nil, offset=nil, limit=nil)
+        def initialize(microserviceid=nil, offset=nil, limit=nil, groupids=nil)
           @MicroserviceId = microserviceid
           @Offset = offset
           @Limit = limit
+          @GroupIds = groupids
         end
 
         def deserialize(params)
           @MicroserviceId = params['MicroserviceId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @GroupIds = params['GroupIds']
         end
       end
 

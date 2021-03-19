@@ -13456,10 +13456,12 @@ module TencentCloud
         # @param PublishedToVbc: 路由策略是否发布到云联网。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishedToVbc: Boolean
+        # @param CreatedTime: 路由策略创建时间
+        # @type CreatedTime: String
 
-        attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :RouteId, :RouteDescription, :Enabled, :RouteType, :RouteTableId, :DestinationIpv6CidrBlock, :RouteItemId, :PublishedToVbc
+        attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :RouteId, :RouteDescription, :Enabled, :RouteType, :RouteTableId, :DestinationIpv6CidrBlock, :RouteItemId, :PublishedToVbc, :CreatedTime
         
-        def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, routeid=nil, routedescription=nil, enabled=nil, routetype=nil, routetableid=nil, destinationipv6cidrblock=nil, routeitemid=nil, publishedtovbc=nil)
+        def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, routeid=nil, routedescription=nil, enabled=nil, routetype=nil, routetableid=nil, destinationipv6cidrblock=nil, routeitemid=nil, publishedtovbc=nil, createdtime=nil)
           @DestinationCidrBlock = destinationcidrblock
           @GatewayType = gatewaytype
           @GatewayId = gatewayid
@@ -13471,6 +13473,7 @@ module TencentCloud
           @DestinationIpv6CidrBlock = destinationipv6cidrblock
           @RouteItemId = routeitemid
           @PublishedToVbc = publishedtovbc
+          @CreatedTime = createdtime
         end
 
         def deserialize(params)
@@ -13485,6 +13488,7 @@ module TencentCloud
           @DestinationIpv6CidrBlock = params['DestinationIpv6CidrBlock']
           @RouteItemId = params['RouteItemId']
           @PublishedToVbc = params['PublishedToVbc']
+          @CreatedTime = params['CreatedTime']
         end
       end
 

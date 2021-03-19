@@ -9623,7 +9623,7 @@ module TencentCloud
         end
       end
 
-      # 门神子规则开关状态
+      # Waf子规则开关状态
       class WafSubRuleStatus < TencentCloud::Common::AbstractModel
         # @param Switch: 子规则状态，on|off
         # @type Switch: String

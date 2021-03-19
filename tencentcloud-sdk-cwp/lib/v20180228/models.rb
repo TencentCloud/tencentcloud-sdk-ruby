@@ -2663,6 +2663,42 @@ module TencentCloud
         end
       end
 
+      # DescribeMachineOsList请求参数结构体
+      class DescribeMachineOsListRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeMachineOsList返回参数结构体
+      class DescribeMachineOsListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 操作系统列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              @List << OsName.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMachines请求参数结构体
       class DescribeMachinesRequest < TencentCloud::Common::AbstractModel
         # @param MachineType: 云主机类型。
@@ -2677,8 +2713,10 @@ module TencentCloud
         # @type Offset: Integer
         # @param Filters: 过滤条件。
         # <li>Keywords - String - 是否必填：否 - 查询关键字 </li>
-        # <li>Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线 | ONLINE: 在线 | UNINSTALLED：未安装）</li>
+        # <li>Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线/关机 | ONLINE: 在线 | UNINSTALLED：未安装 | AGENT_OFFLINE 离线| AGENT_SHUTDOWN 已关机）</li>
         # <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版）</li>
+        # <li>Risk - String 是否必填: 否 - 风险主机( yes ) </li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         # 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         # @type Filters: Array
         # @param ProjectIds: 机器所属业务ID列表
@@ -5668,7 +5706,7 @@ module TencentCloud
         # @param MachineStatus: 主机状态。
         # <li>OFFLINE: 离线  </li>
         # <li>ONLINE: 在线</li>
-        # <li>MACHINE_STOPPED: 已关机</li>
+        # <li>SHUTDOWN: 已关机</li>
         # @type MachineStatus: String
         # @param Uuid: 云镜客户端唯一Uuid，若客户端长时间不在线将返回空字符。
         # @type Uuid: String
@@ -5711,10 +5749,12 @@ module TencentCloud
         # @type LicenseStatus: Integer
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
+        # @param HasAssetScan: 是否有资产扫描接口，0无，1有
+        # @type HasAssetScan: Integer
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan
         
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -5735,6 +5775,7 @@ module TencentCloud
           @InstanceState = instancestate
           @LicenseStatus = licensestatus
           @ProjectId = projectid
+          @HasAssetScan = hasassetscan
         end
 
         def deserialize(params)
@@ -5765,6 +5806,7 @@ module TencentCloud
           @InstanceState = params['InstanceState']
           @LicenseStatus = params['LicenseStatus']
           @ProjectId = params['ProjectId']
+          @HasAssetScan = params['HasAssetScan']
         end
       end
 
@@ -6471,6 +6513,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 操作系统名称
+      class OsName < TencentCloud::Common::AbstractModel
+        # @param Name: 系统名称
+        # @type Name: String
+        # @param MachineOSType: 操作系统类型枚举值
+        # @type MachineOSType: Integer
+
+        attr_accessor :Name, :MachineOSType
+        
+        def initialize(name=nil, machineostype=nil)
+          @Name = name
+          @MachineOSType = machineostype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @MachineOSType = params['MachineOSType']
         end
       end
 

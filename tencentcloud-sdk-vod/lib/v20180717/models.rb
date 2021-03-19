@@ -3627,19 +3627,27 @@ module TencentCloud
         # @type Name: String
         # @param Url: 日志下载链接，24小时内下载有效。
         # @type Url: String
+        # @param StartTime: 日志起始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @type StartTime: String
+        # @param EndTime: 日志结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @type EndTime: String
 
-        attr_accessor :Date, :Name, :Url
+        attr_accessor :Date, :Name, :Url, :StartTime, :EndTime
         
-        def initialize(date=nil, name=nil, url=nil)
+        def initialize(date=nil, name=nil, url=nil, starttime=nil, endtime=nil)
           @Date = date
           @Name = name
           @Url = url
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @Date = params['Date']
           @Name = params['Name']
           @Url = params['Url']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -6777,15 +6785,21 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间需大于起始时间；使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
         # @type EndTime: String
+        # @param Limit: 分页拉取的最大返回结果数。默认值：100；最大值：1000。
+        # @type Limit: Integer
+        # @param Offset: 分页拉取的起始偏移量。默认值：0。
+        # @type Offset: Integer
         # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         # @type SubAppId: Integer
 
-        attr_accessor :DomainName, :StartTime, :EndTime, :SubAppId
+        attr_accessor :DomainName, :StartTime, :EndTime, :Limit, :Offset, :SubAppId
         
-        def initialize(domainname=nil, starttime=nil, endtime=nil, subappid=nil)
+        def initialize(domainname=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, subappid=nil)
           @DomainName = domainname
           @StartTime = starttime
           @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
           @SubAppId = subappid
         end
 
@@ -6793,40 +6807,47 @@ module TencentCloud
           @DomainName = params['DomainName']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @SubAppId = params['SubAppId']
         end
       end
 
       # DescribeCdnLogs返回参数结构体
       class DescribeCdnLogsResponse < TencentCloud::Common::AbstractModel
-        # @param DomesticCdnLogs: 国内CDN节点的日志下载列表。
+        # @param TotalCount: 日志下载链接总数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DomesticCdnLogs: Array
+        # @type TotalCount: Integer
         # @param OverseaCdnLogs: 海外CDN节点的日志下载列表。如果域名没有开启海外加速，忽略该参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OverseaCdnLogs: Array
+        # @param DomesticCdnLogs: 国内CDN节点的日志下载列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomesticCdnLogs: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DomesticCdnLogs, :OverseaCdnLogs, :RequestId
+        attr_accessor :TotalCount, :OverseaCdnLogs, :DomesticCdnLogs, :RequestId
         
-        def initialize(domesticcdnlogs=nil, overseacdnlogs=nil, requestid=nil)
-          @DomesticCdnLogs = domesticcdnlogs
+        def initialize(totalcount=nil, overseacdnlogs=nil, domesticcdnlogs=nil, requestid=nil)
+          @TotalCount = totalcount
           @OverseaCdnLogs = overseacdnlogs
+          @DomesticCdnLogs = domesticcdnlogs
           @RequestId = requestid
         end
 
         def deserialize(params)
-          unless params['DomesticCdnLogs'].nil?
-            @DomesticCdnLogs = []
-            params['DomesticCdnLogs'].each do |i|
-              @DomesticCdnLogs << CdnLogInfo.new.deserialize(i)
-            end
-          end
+          @TotalCount = params['TotalCount']
           unless params['OverseaCdnLogs'].nil?
             @OverseaCdnLogs = []
             params['OverseaCdnLogs'].each do |i|
               @OverseaCdnLogs << CdnLogInfo.new.deserialize(i)
+            end
+          end
+          unless params['DomesticCdnLogs'].nil?
+            @DomesticCdnLogs = []
+            params['DomesticCdnLogs'].each do |i|
+              @DomesticCdnLogs << CdnLogInfo.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']

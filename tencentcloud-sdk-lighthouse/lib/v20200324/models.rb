@@ -49,10 +49,12 @@ module TencentCloud
         # @type BlueprintName: String
         # @param SupportAutomationTools: 镜像是否支持自动化助手。
         # @type SupportAutomationTools: Boolean
+        # @param RequiredMemorySize: 镜像所需内存大小, 单位: GB
+        # @type RequiredMemorySize: Integer
 
-        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools
+        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize
         
-        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil)
+        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil)
           @BlueprintId = blueprintid
           @DisplayTitle = displaytitle
           @DisplayVersion = displayversion
@@ -67,6 +69,7 @@ module TencentCloud
           @CreatedTime = createdtime
           @BlueprintName = blueprintname
           @SupportAutomationTools = supportautomationtools
+          @RequiredMemorySize = requiredmemorysize
         end
 
         def deserialize(params)
@@ -84,6 +87,7 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @BlueprintName = params['BlueprintName']
           @SupportAutomationTools = params['SupportAutomationTools']
+          @RequiredMemorySize = params['RequiredMemorySize']
         end
       end
 
@@ -170,12 +174,15 @@ module TencentCloud
         # @type InstanceId: String
         # @param FirewallRules: 防火墙规则列表。
         # @type FirewallRules: Array
+        # @param FirewallVersion: 防火墙当前版本。用户每次更新防火墙规则时版本会自动加1，防止规则已过期，不填不考虑冲突。
+        # @type FirewallVersion: Integer
 
-        attr_accessor :InstanceId, :FirewallRules
+        attr_accessor :InstanceId, :FirewallRules, :FirewallVersion
         
-        def initialize(instanceid=nil, firewallrules=nil)
+        def initialize(instanceid=nil, firewallrules=nil, firewallversion=nil)
           @InstanceId = instanceid
           @FirewallRules = firewallrules
+          @FirewallVersion = firewallversion
         end
 
         def deserialize(params)
@@ -186,6 +193,7 @@ module TencentCloud
               @FirewallRules << FirewallRule.new.deserialize(i)
             end
           end
+          @FirewallVersion = params['FirewallVersion']
         end
       end
 
@@ -211,12 +219,15 @@ module TencentCloud
         # @type InstanceId: String
         # @param FirewallRules: 防火墙规则列表。
         # @type FirewallRules: Array
+        # @param FirewallVersion: 防火墙当前版本。用户每次更新防火墙规则时版本会自动加1，防止规则已过期，不填不考虑冲突。
+        # @type FirewallVersion: Integer
 
-        attr_accessor :InstanceId, :FirewallRules
+        attr_accessor :InstanceId, :FirewallRules, :FirewallVersion
         
-        def initialize(instanceid=nil, firewallrules=nil)
+        def initialize(instanceid=nil, firewallrules=nil, firewallversion=nil)
           @InstanceId = instanceid
           @FirewallRules = firewallrules
+          @FirewallVersion = firewallversion
         end
 
         def deserialize(params)
@@ -227,6 +238,7 @@ module TencentCloud
               @FirewallRules << FirewallRule.new.deserialize(i)
             end
           end
+          @FirewallVersion = params['FirewallVersion']
         end
       end
 
@@ -420,14 +432,17 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param FirewallRuleSet: 防火墙规则详细信息列表。
         # @type FirewallRuleSet: Array
+        # @param FirewallVersion: 防火墙版本号。
+        # @type FirewallVersion: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :FirewallRuleSet, :RequestId
+        attr_accessor :TotalCount, :FirewallRuleSet, :FirewallVersion, :RequestId
         
-        def initialize(totalcount=nil, firewallruleset=nil, requestid=nil)
+        def initialize(totalcount=nil, firewallruleset=nil, firewallversion=nil, requestid=nil)
           @TotalCount = totalcount
           @FirewallRuleSet = firewallruleset
+          @FirewallVersion = firewallversion
           @RequestId = requestid
         end
 
@@ -439,6 +454,7 @@ module TencentCloud
               @FirewallRuleSet << FirewallRuleInfo.new.deserialize(i)
             end
           end
+          @FirewallVersion = params['FirewallVersion']
           @RequestId = params['RequestId']
         end
       end
@@ -600,45 +616,69 @@ module TencentCloud
 
       # 描述防火墙规则信息。
       class FirewallRule < TencentCloud::Common::AbstractModel
-        # @param Protocol: 协议，取值：TCP，UDP，ALL。
+        # @param Protocol: 协议，取值：TCP，UDP，ICMP，ALL。
         # @type Protocol: String
         # @param Port: 端口，取值：ALL，单独的端口，逗号分隔的离散端口，减号分隔的端口范围。
         # @type Port: String
+        # @param CidrBlock: 网段或 IP (互斥)。默认为 0.0.0.0/0，表示所有来源。
+        # @type CidrBlock: String
+        # @param Action: 取值：ACCEPT，DROP。默认为 ACCEPT。
+        # @type Action: String
+        # @param FirewallRuleDescription: 防火墙规则描述。
+        # @type FirewallRuleDescription: String
 
-        attr_accessor :Protocol, :Port
+        attr_accessor :Protocol, :Port, :CidrBlock, :Action, :FirewallRuleDescription
         
-        def initialize(protocol=nil, port=nil)
+        def initialize(protocol=nil, port=nil, cidrblock=nil, action=nil, firewallruledescription=nil)
           @Protocol = protocol
           @Port = port
+          @CidrBlock = cidrblock
+          @Action = action
+          @FirewallRuleDescription = firewallruledescription
         end
 
         def deserialize(params)
           @Protocol = params['Protocol']
           @Port = params['Port']
+          @CidrBlock = params['CidrBlock']
+          @Action = params['Action']
+          @FirewallRuleDescription = params['FirewallRuleDescription']
         end
       end
 
       # 描述防火墙规则详细信息。
       class FirewallRuleInfo < TencentCloud::Common::AbstractModel
-        # @param AppType: 应用类型，取值：自定义，HTTP(80)，HTTPS(443)，Linux登录(22)，Windows登录(3389)，MySQL(3306)，SQL Server(1433)，全部TCP，全部UDP，ALL。
+        # @param AppType: 应用类型，取值：自定义，HTTP(80)，HTTPS(443)，Linux登录(22)，Windows登录(3389)，MySQL(3306)，SQL Server(1433)，全部TCP，全部UDP，Ping-ICMP，ALL。
         # @type AppType: String
-        # @param Protocol: 协议，取值：TCP，UDP，ALL。
+        # @param Protocol: 协议，取值：TCP，UDP，ICMP，ALL。
         # @type Protocol: String
         # @param Port: 端口，取值：ALL，单独的端口，逗号分隔的离散端口，减号分隔的端口范围。
         # @type Port: String
+        # @param CidrBlock: 网段或 IP (互斥)。默认为 0.0.0.0/0，表示所有来源。
+        # @type CidrBlock: String
+        # @param Action: 取值：ACCEPT，DROP。默认为 ACCEPT。
+        # @type Action: String
+        # @param FirewallRuleDescription: 防火墙规则描述。
+        # @type FirewallRuleDescription: String
 
-        attr_accessor :AppType, :Protocol, :Port
+        attr_accessor :AppType, :Protocol, :Port, :CidrBlock, :Action, :FirewallRuleDescription
         
-        def initialize(apptype=nil, protocol=nil, port=nil)
+        def initialize(apptype=nil, protocol=nil, port=nil, cidrblock=nil, action=nil, firewallruledescription=nil)
           @AppType = apptype
           @Protocol = protocol
           @Port = port
+          @CidrBlock = cidrblock
+          @Action = action
+          @FirewallRuleDescription = firewallruledescription
         end
 
         def deserialize(params)
           @AppType = params['AppType']
           @Protocol = params['Protocol']
           @Port = params['Port']
+          @CidrBlock = params['CidrBlock']
+          @Action = params['Action']
+          @FirewallRuleDescription = params['FirewallRuleDescription']
         end
       end
 

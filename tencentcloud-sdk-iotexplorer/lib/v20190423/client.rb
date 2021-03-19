@@ -457,6 +457,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询固件升级任务列表
+
+        # @param request: Request instance for DescribeFirmwareTask.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareTaskRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareTaskResponse`
+        def DescribeFirmwareTask(request)
+          body = send_request('DescribeFirmwareTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirmwareTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供查询LoRa自定义频点详情的能力
 
         # @param request: Request instance for DescribeLoRaFrequency.
@@ -769,6 +793,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ListFirmwares）用于获取固件列表
+
+        # @param request: Request instance for ListFirmwares.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ListFirmwaresRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ListFirmwaresResponse`
+        def ListFirmwares(request)
+          body = send_request('ListFirmwares', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListFirmwaresResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改LoRa自定义频点
 
         # @param request: Request instance for ModifyLoRaFrequency.
@@ -995,6 +1043,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpdateFirmware）用于对指定设备发起固件升级请求
+
+        # @param request: Request instance for UpdateFirmware.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UpdateFirmwareRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UpdateFirmwareResponse`
+        def UpdateFirmware(request)
+          body = send_request('UpdateFirmware', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateFirmwareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UploadFirmware）用于上传设备固件至平台
+
+        # @param request: Request instance for UploadFirmware.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UploadFirmwareRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UploadFirmwareResponse`
+        def UploadFirmware(request)
+          body = send_request('UploadFirmware', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadFirmwareResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1670,7 +1670,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param UniqSubnetId: 子网描述符，例如：subnet-1typ0s7d。
         # @type UniqSubnetId: String
-        # @param UniqVpcId: vpc描述符，例如：vpc-xxx,如果传了该字段则UniqSubnetId必传
+        # @param UniqVpcId: vpc描述符，例如：vpc-a23yt67j,如果传了该字段则UniqSubnetId必传
         # @type UniqVpcId: String
 
         attr_accessor :InstanceId, :UniqSubnetId, :UniqVpcId
