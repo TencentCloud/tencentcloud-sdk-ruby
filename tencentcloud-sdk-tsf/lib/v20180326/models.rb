@@ -1814,15 +1814,18 @@ module TencentCloud
         # @type Description: String
         # @param GroupType: 分组类型,默认ms。 ms： 微服务分组； external:外部Api分组
         # @type GroupType: String
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
 
-        attr_accessor :GroupName, :GroupContext, :AuthType, :Description, :GroupType
+        attr_accessor :GroupName, :GroupContext, :AuthType, :Description, :GroupType, :GatewayInstanceId
         
-        def initialize(groupname=nil, groupcontext=nil, authtype=nil, description=nil, grouptype=nil)
+        def initialize(groupname=nil, groupcontext=nil, authtype=nil, description=nil, grouptype=nil, gatewayinstanceid=nil)
           @GroupName = groupname
           @GroupContext = groupcontext
           @AuthType = authtype
           @Description = description
           @GroupType = grouptype
+          @GatewayInstanceId = gatewayinstanceid
         end
 
         def deserialize(params)
@@ -1831,6 +1834,7 @@ module TencentCloud
           @AuthType = params['AuthType']
           @Description = params['Description']
           @GroupType = params['GroupType']
+          @GatewayInstanceId = params['GatewayInstanceId']
         end
       end
 
@@ -2925,6 +2929,60 @@ module TencentCloud
         end
       end
 
+      # CreateUnitRule请求参数结构体
+      class CreateUnitRuleRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param UnitRuleItemList: 规则项列表
+        # @type UnitRuleItemList: Array
+
+        attr_accessor :GatewayInstanceId, :Name, :Description, :UnitRuleItemList
+        
+        def initialize(gatewayinstanceid=nil, name=nil, description=nil, unitruleitemlist=nil)
+          @GatewayInstanceId = gatewayinstanceid
+          @Name = name
+          @Description = description
+          @UnitRuleItemList = unitruleitemlist
+        end
+
+        def deserialize(params)
+          @GatewayInstanceId = params['GatewayInstanceId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['UnitRuleItemList'].nil?
+            @UnitRuleItemList = []
+            params['UnitRuleItemList'].each do |i|
+              @UnitRuleItemList << UnitRuleItem.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # CreateUnitRule返回参数结构体
+      class CreateUnitRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteApiGroup请求参数结构体
       class DeleteApiGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: API 分组ID
@@ -3518,6 +3576,84 @@ module TencentCloud
         end
       end
 
+      # DeleteUnitNamespaces请求参数结构体
+      class DeleteUnitNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
+        # @param UnitNamespaceList: 单元化命名空间ID数组
+        # @type UnitNamespaceList: Array
+
+        attr_accessor :GatewayInstanceId, :UnitNamespaceList
+        
+        def initialize(gatewayinstanceid=nil, unitnamespacelist=nil)
+          @GatewayInstanceId = gatewayinstanceid
+          @UnitNamespaceList = unitnamespacelist
+        end
+
+        def deserialize(params)
+          @GatewayInstanceId = params['GatewayInstanceId']
+          @UnitNamespaceList = params['UnitNamespaceList']
+        end
+      end
+
+      # DeleteUnitNamespaces返回参数结构体
+      class DeleteUnitNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUnitRule请求参数结构体
+      class DeleteUnitRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID
+        # @type Id: String
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteUnitRule返回参数结构体
+      class DeleteUnitRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeployContainerGroup请求参数结构体
       class DeployContainerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID，分组唯一标识
@@ -3934,10 +4070,12 @@ module TencentCloud
         # @type OrderBy: String
         # @param OrderType: 排序类型：0(ASC)或1(DESC)
         # @type OrderType: Integer
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
 
-        attr_accessor :SearchWord, :Offset, :Limit, :GroupType, :AuthType, :Status, :OrderBy, :OrderType
+        attr_accessor :SearchWord, :Offset, :Limit, :GroupType, :AuthType, :Status, :OrderBy, :OrderType, :GatewayInstanceId
         
-        def initialize(searchword=nil, offset=nil, limit=nil, grouptype=nil, authtype=nil, status=nil, orderby=nil, ordertype=nil)
+        def initialize(searchword=nil, offset=nil, limit=nil, grouptype=nil, authtype=nil, status=nil, orderby=nil, ordertype=nil, gatewayinstanceid=nil)
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
@@ -3946,6 +4084,7 @@ module TencentCloud
           @Status = status
           @OrderBy = orderby
           @OrderType = ordertype
+          @GatewayInstanceId = gatewayinstanceid
         end
 
         def deserialize(params)
@@ -3957,6 +4096,7 @@ module TencentCloud
           @Status = params['Status']
           @OrderBy = params['OrderBy']
           @OrderType = params['OrderType']
+          @GatewayInstanceId = params['GatewayInstanceId']
         end
       end
 
@@ -4830,6 +4970,45 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = CosDownloadInfo.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEnabledUnitRule请求参数结构体
+      class DescribeEnabledUnitRuleRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
+
+        attr_accessor :GatewayInstanceId
+        
+        def initialize(gatewayinstanceid=nil)
+          @GatewayInstanceId = gatewayinstanceid
+        end
+
+        def deserialize(params)
+          @GatewayInstanceId = params['GatewayInstanceId']
+        end
+      end
+
+      # DescribeEnabledUnitRule返回参数结构体
+      class DescribeEnabledUnitRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 单元化规则对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.UnitRule`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = UnitRule.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -6677,6 +6856,154 @@ module TencentCloud
         end
       end
 
+      # DescribeUnitNamespaces请求参数结构体
+      class DescribeUnitNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
+        # @param SearchWord: 根据命名空间名或ID模糊查询
+        # @type SearchWord: String
+        # @param Offset: 翻页查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 翻页查询每页记录数
+        # @type Limit: Integer
+
+        attr_accessor :GatewayInstanceId, :SearchWord, :Offset, :Limit
+        
+        def initialize(gatewayinstanceid=nil, searchword=nil, offset=nil, limit=nil)
+          @GatewayInstanceId = gatewayinstanceid
+          @SearchWord = searchword
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GatewayInstanceId = params['GatewayInstanceId']
+          @SearchWord = params['SearchWord']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUnitNamespaces返回参数结构体
+      class DescribeUnitNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 单元化命名空间对象列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageUnitNamespace`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageUnitNamespace.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUnitRule请求参数结构体
+      class DescribeUnitRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 单元化规则ID
+        # @type Id: String
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeUnitRule返回参数结构体
+      class DescribeUnitRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 单元化规则对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.UnitRule`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = UnitRule.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUnitRules请求参数结构体
+      class DescribeUnitRulesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
+        # @param SearchWord: 根据规则名或备注内容模糊查询
+        # @type SearchWord: String
+        # @param Status: 启用状态, disabled: 未发布， enabled: 发布
+        # @type Status: String
+        # @param Offset: 翻页查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 翻页查询每页记录数
+        # @type Limit: Integer
+
+        attr_accessor :GatewayInstanceId, :SearchWord, :Status, :Offset, :Limit
+        
+        def initialize(gatewayinstanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil)
+          @GatewayInstanceId = gatewayinstanceid
+          @SearchWord = searchword
+          @Status = status
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GatewayInstanceId = params['GatewayInstanceId']
+          @SearchWord = params['SearchWord']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUnitRules返回参数结构体
+      class DescribeUnitRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 分页列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << TsfPageUnitRule.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUploadInfo请求参数结构体
       class DescribeUploadInfoRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID
@@ -6739,6 +7066,53 @@ module TencentCloud
         end
       end
 
+      # DescribeUsableUnitNamespaces请求参数结构体
+      class DescribeUsableUnitNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param SearchWord: 根据命名空间名或ID模糊查询
+        # @type SearchWord: String
+        # @param Offset: 翻页查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 翻页查询每页记录数
+        # @type Limit: Integer
+
+        attr_accessor :SearchWord, :Offset, :Limit
+        
+        def initialize(searchword=nil, offset=nil, limit=nil)
+          @SearchWord = searchword
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SearchWord = params['SearchWord']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUsableUnitNamespaces返回参数结构体
+      class DescribeUsableUnitNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 单元化命名空间对象列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageUnitNamespace`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageUnitNamespace.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableTaskFlow请求参数结构体
       class DisableTaskFlowRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 工作流 ID
@@ -6794,6 +7168,80 @@ module TencentCloud
       # DisableTask返回参数结构体
       class DisableTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 操作成功 or 失败
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableUnitRoute请求参数结构体
+      class DisableUnitRouteRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 网关实体ID
+        # @type Id: String
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DisableUnitRoute返回参数结构体
+      class DisableUnitRouteResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果，成功失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableUnitRule请求参数结构体
+      class DisableUnitRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID
+        # @type Id: String
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DisableUnitRule返回参数结构体
+      class DisableUnitRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6902,6 +7350,80 @@ module TencentCloud
       # EnableTask返回参数结构体
       class EnableTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 操作成功or失败
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableUnitRoute请求参数结构体
+      class EnableUnitRouteRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 网关实体ID
+        # @type Id: String
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # EnableUnitRoute返回参数结构体
+      class EnableUnitRouteResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果，成功失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableUnitRule请求参数结构体
+      class EnableUnitRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID
+        # @type Id: String
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # EnableUnitRule返回参数结构体
+      class EnableUnitRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11416,6 +11938,56 @@ module TencentCloud
         end
       end
 
+      # 单元化命名空间翻页对象
+      class TsfPageUnitNamespace < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+        # @param Content: 记录实体列表
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              @Content << UnitNamespace.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 单元化规则翻页对象
+      class TsfPageUnitRule < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+        # @param Content: 记录实体列表
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              @Content << UnitRule.new.deserialize(i)
+            end
+          end
+        end
+      end
+
       # 列表中部署组分页信息
       class TsfPageVmGroup < TencentCloud::Common::AbstractModel
         # @param TotalCount: 虚拟机部署组总数目
@@ -11481,6 +12053,173 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 微服务网关单元化命名空间
+      class UnitNamespace < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: 命名空间ID
+        # @type NamespaceId: String
+        # @param NamespaceName: 命名空间Name
+        # @type NamespaceName: String
+        # @param Id: 单元化命名空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+
+        attr_accessor :NamespaceId, :NamespaceName, :Id
+        
+        def initialize(namespaceid=nil, namespacename=nil, id=nil)
+          @NamespaceId = namespaceid
+          @NamespaceName = namespacename
+          @Id = id
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @NamespaceName = params['NamespaceName']
+          @Id = params['Id']
+        end
+      end
+
+      # 微服务网关单元化规则
+      class UnitRule < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Id: 规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param GatewayInstanceId: 网关实体ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayInstanceId: String
+        # @param Description: 规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Status: 使用状态：enabled/disabled
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param UnitRuleItemList: 规则项列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitRuleItemList: Array
+
+        attr_accessor :Name, :Id, :GatewayInstanceId, :Description, :Status, :UnitRuleItemList
+        
+        def initialize(name=nil, id=nil, gatewayinstanceid=nil, description=nil, status=nil, unitruleitemlist=nil)
+          @Name = name
+          @Id = id
+          @GatewayInstanceId = gatewayinstanceid
+          @Description = description
+          @Status = status
+          @UnitRuleItemList = unitruleitemlist
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Id = params['Id']
+          @GatewayInstanceId = params['GatewayInstanceId']
+          @Description = params['Description']
+          @Status = params['Status']
+          unless params['UnitRuleItemList'].nil?
+            @UnitRuleItemList = []
+            params['UnitRuleItemList'].each do |i|
+              @UnitRuleItemList << UnitRuleItem.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 微服务网关单元化规则项
+      class UnitRuleItem < TencentCloud::Common::AbstractModel
+        # @param Relationship: 逻辑关系：AND/OR
+        # @type Relationship: String
+        # @param DestNamespaceId: 目的地命名空间ID
+        # @type DestNamespaceId: String
+        # @param DestNamespaceName: 目的地命名空间名称
+        # @type DestNamespaceName: String
+        # @param Name: 规则项名称
+        # @type Name: String
+        # @param Id: 规则项ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param UnitRuleId: 单元化规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitRuleId: String
+        # @param Priority: 规则顺序，越小优先级越高：默认为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param Description: 规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param UnitRuleTagList: 规则标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitRuleTagList: Array
+
+        attr_accessor :Relationship, :DestNamespaceId, :DestNamespaceName, :Name, :Id, :UnitRuleId, :Priority, :Description, :UnitRuleTagList
+        
+        def initialize(relationship=nil, destnamespaceid=nil, destnamespacename=nil, name=nil, id=nil, unitruleid=nil, priority=nil, description=nil, unitruletaglist=nil)
+          @Relationship = relationship
+          @DestNamespaceId = destnamespaceid
+          @DestNamespaceName = destnamespacename
+          @Name = name
+          @Id = id
+          @UnitRuleId = unitruleid
+          @Priority = priority
+          @Description = description
+          @UnitRuleTagList = unitruletaglist
+        end
+
+        def deserialize(params)
+          @Relationship = params['Relationship']
+          @DestNamespaceId = params['DestNamespaceId']
+          @DestNamespaceName = params['DestNamespaceName']
+          @Name = params['Name']
+          @Id = params['Id']
+          @UnitRuleId = params['UnitRuleId']
+          @Priority = params['Priority']
+          @Description = params['Description']
+          unless params['UnitRuleTagList'].nil?
+            @UnitRuleTagList = []
+            params['UnitRuleTagList'].each do |i|
+              @UnitRuleTagList << UnitRuleTag.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 微服务网关单元化规则标签
+      class UnitRuleTag < TencentCloud::Common::AbstractModel
+        # @param TagType: 标签类型 : U(用户标签)
+        # @type TagType: String
+        # @param TagField: 标签名
+        # @type TagField: String
+        # @param TagOperator: 操作符:IN/NOT_IN/EQUAL/NOT_EQUAL/REGEX
+        # @type TagOperator: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+        # @param UnitRuleItemId: 单元化规则项ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitRuleItemId: String
+        # @param Id: 规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+
+        attr_accessor :TagType, :TagField, :TagOperator, :TagValue, :UnitRuleItemId, :Id
+        
+        def initialize(tagtype=nil, tagfield=nil, tagoperator=nil, tagvalue=nil, unitruleitemid=nil, id=nil)
+          @TagType = tagtype
+          @TagField = tagfield
+          @TagOperator = tagoperator
+          @TagValue = tagvalue
+          @UnitRuleItemId = unitruleitemid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @TagType = params['TagType']
+          @TagField = params['TagField']
+          @TagOperator = params['TagOperator']
+          @TagValue = params['TagValue']
+          @UnitRuleItemId = params['UnitRuleItemId']
+          @Id = params['Id']
         end
       end
 
@@ -11606,6 +12345,50 @@ module TencentCloud
 
       # UpdateApiRateLimitRules返回参数结构体
       class UpdateApiRateLimitRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateApiTimeouts请求参数结构体
+      class UpdateApiTimeoutsRequest < TencentCloud::Common::AbstractModel
+        # @param ApiIds: API ID 列表
+        # @type ApiIds: Array
+        # @param UsableStatus: 开启/禁用，enabled/disabled
+        # @type UsableStatus: String
+        # @param Timeout: 超时时间，单位毫秒，开启API超时时，必填
+        # @type Timeout: Integer
+
+        attr_accessor :ApiIds, :UsableStatus, :Timeout
+        
+        def initialize(apiids=nil, usablestatus=nil, timeout=nil)
+          @ApiIds = apiids
+          @UsableStatus = usablestatus
+          @Timeout = timeout
+        end
+
+        def deserialize(params)
+          @ApiIds = params['ApiIds']
+          @UsableStatus = params['UsableStatus']
+          @Timeout = params['Timeout']
+        end
+      end
+
+      # UpdateApiTimeouts返回参数结构体
+      class UpdateApiTimeoutsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否成功
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -11752,6 +12535,60 @@ module TencentCloud
       # UpdateRepository返回参数结构体
       class UpdateRepositoryResponse < TencentCloud::Common::AbstractModel
         # @param Result: 更新仓库是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUnitRule请求参数结构体
+      class UpdateUnitRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID
+        # @type Id: String
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param UnitRuleItemList: 规则项列表
+        # @type UnitRuleItemList: Array
+
+        attr_accessor :Id, :Name, :Description, :UnitRuleItemList
+        
+        def initialize(id=nil, name=nil, description=nil, unitruleitemlist=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @UnitRuleItemList = unitruleitemlist
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['UnitRuleItemList'].nil?
+            @UnitRuleItemList = []
+            params['UnitRuleItemList'].each do |i|
+              @UnitRuleItemList << UnitRuleItem.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # UpdateUnitRule返回参数结构体
+      class UpdateUnitRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

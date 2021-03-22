@@ -7352,8 +7352,6 @@ module TencentCloud
 
       # DescribeRouteTables请求参数结构体
       class DescribeRouteTablesRequest < TencentCloud::Common::AbstractModel
-        # @param RouteTableIds: 路由表实例ID，例如：rtb-azd4dt1c。
-        # @type RouteTableIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定RouteTableIds和Filters。
         # <li>route-table-id - String - （过滤条件）路由表实例ID。</li>
         # <li>route-table-name - String - （过滤条件）路由表名称。</li>
@@ -7361,29 +7359,32 @@ module TencentCloud
         # <li>association.main - String - （过滤条件）是否主路由表。</li>
         # <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。</li>
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。</li>
+        # <li>is-need-router-info - String - （过滤条件）是否需要获取路由策略信息，默认不获取，减少耗时，当控制台需要拉取路由策略信息时，改为true，返回具体的路由策略，。</li>
         # @type Filters: Array
+        # @param RouteTableIds: 路由表实例ID，例如：rtb-azd4dt1c。
+        # @type RouteTableIds: Array
         # @param Offset: 偏移量。
         # @type Offset: String
         # @param Limit: 请求对象个数。
         # @type Limit: String
 
-        attr_accessor :RouteTableIds, :Filters, :Offset, :Limit
+        attr_accessor :Filters, :RouteTableIds, :Offset, :Limit
         
-        def initialize(routetableids=nil, filters=nil, offset=nil, limit=nil)
-          @RouteTableIds = routetableids
+        def initialize(filters=nil, routetableids=nil, offset=nil, limit=nil)
           @Filters = filters
+          @RouteTableIds = routetableids
           @Offset = offset
           @Limit = limit
         end
 
         def deserialize(params)
-          @RouteTableIds = params['RouteTableIds']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
               @Filters << Filter.new.deserialize(i)
             end
           end
+          @RouteTableIds = params['RouteTableIds']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end

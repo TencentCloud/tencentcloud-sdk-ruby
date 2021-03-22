@@ -1660,6 +1660,84 @@ module TencentCloud
         end
       end
 
+      # ExportVideoByTemplate请求参数结构体
+      class ExportVideoByTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param TemplateId: 视频编辑模板  Id。
+        # @type TemplateId: String
+        # @param Definition: 导出模板 Id，目前不支持自定义创建，只支持下面的预置模板 Id。
+        # <li>10：分辨率为 480P，输出视频格式为 MP4；</li>
+        # <li>11：分辨率为 720P，输出视频格式为 MP4；</li>
+        # <li>12：分辨率为 1080P，输出视频格式为 MP4。</li>
+        # @type Definition: Integer
+        # @param ExportDestination: 导出目标，可取值为：
+        # <li>CME：云剪，即导出为云剪媒体；</li>
+        # <li>VOD：云点播，即导出为云点播媒资。</li>
+        # @type ExportDestination: String
+        # @param SlotReplacements: 需要替换的素材信息。
+        # @type SlotReplacements: Array
+        # @param CMEExportInfo: 导出的云剪媒体信息。指定 ExportDestination = CME 时有效。
+        # @type CMEExportInfo: :class:`Tencentcloud::Cme.v20191029.models.CMEExportInfo`
+        # @param VODExportInfo: 导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
+        # @type VODExportInfo: :class:`Tencentcloud::Cme.v20191029.models.VODExportInfo`
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验项目导出权限。
+        # @type Operator: String
+
+        attr_accessor :Platform, :TemplateId, :Definition, :ExportDestination, :SlotReplacements, :CMEExportInfo, :VODExportInfo, :Operator
+        
+        def initialize(platform=nil, templateid=nil, definition=nil, exportdestination=nil, slotreplacements=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
+          @Platform = platform
+          @TemplateId = templateid
+          @Definition = definition
+          @ExportDestination = exportdestination
+          @SlotReplacements = slotreplacements
+          @CMEExportInfo = cmeexportinfo
+          @VODExportInfo = vodexportinfo
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @TemplateId = params['TemplateId']
+          @Definition = params['Definition']
+          @ExportDestination = params['ExportDestination']
+          unless params['SlotReplacements'].nil?
+            @SlotReplacements = []
+            params['SlotReplacements'].each do |i|
+              @SlotReplacements << SlotReplacementInfo.new.deserialize(i)
+            end
+          end
+          unless params['CMEExportInfo'].nil?
+            @CMEExportInfo = CMEExportInfo.new.deserialize(params['CMEExportInfo'])
+          end
+          unless params['VODExportInfo'].nil?
+            @VODExportInfo = VODExportInfo.new.deserialize(params['VODExportInfo'])
+          end
+          @Operator = params['Operator']
+        end
+      end
+
+      # ExportVideoByTemplate返回参数结构体
+      class ExportVideoByTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 导出任务 Id。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ExportVideoByVideoSegmentationData请求参数结构体
       class ExportVideoByVideoSegmentationDataRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
@@ -2720,6 +2798,26 @@ module TencentCloud
         end
       end
 
+      # 媒体替换信息。
+      class MediaReplacementInfo < TencentCloud::Common::AbstractModel
+        # @param MaterialId: 素材 ID。
+        # @type MaterialId: String
+        # @param StartTimeOffset: 替换媒体选取的开始时间，单位为秒，默认为 0。
+        # @type StartTimeOffset: Float
+
+        attr_accessor :MaterialId, :StartTimeOffset
+        
+        def initialize(materialid=nil, starttimeoffset=nil)
+          @MaterialId = materialid
+          @StartTimeOffset = starttimeoffset
+        end
+
+        def deserialize(params)
+          @MaterialId = params['MaterialId']
+          @StartTimeOffset = params['StartTimeOffset']
+        end
+      end
+
       # 轨道信息
       class MediaTrack < TencentCloud::Common::AbstractModel
         # @param Type: 轨道类型，取值有：
@@ -3480,6 +3578,36 @@ module TencentCloud
             @Owner = Entity.new.deserialize(params['Owner'])
           end
           @ClassPath = params['ClassPath']
+        end
+      end
+
+      # 卡槽替换信息。
+      class SlotReplacementInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 卡槽 Id。
+        # @type Id: Integer
+        # @param ReplacementType: 替换类型，可取值有：
+        # <li> AUDIO :音频;</li>
+        # <li> VIDEO :视频;</li>
+        # <li> IMAGE :图片。</li>
+        # 注意：这里必须保证替换的素材类型与模板轨道数据的素材类型一致。
+        # @type ReplacementType: String
+        # @param MediaReplacementInfo: 媒体替换信息，仅当要替换的媒体类型为音频、视频、图片时有效。
+        # @type MediaReplacementInfo: :class:`Tencentcloud::Cme.v20191029.models.MediaReplacementInfo`
+
+        attr_accessor :Id, :ReplacementType, :MediaReplacementInfo
+        
+        def initialize(id=nil, replacementtype=nil, mediareplacementinfo=nil)
+          @Id = id
+          @ReplacementType = replacementtype
+          @MediaReplacementInfo = mediareplacementinfo
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ReplacementType = params['ReplacementType']
+          unless params['MediaReplacementInfo'].nil?
+            @MediaReplacementInfo = MediaReplacementInfo.new.deserialize(params['MediaReplacementInfo'])
+          end
         end
       end
 

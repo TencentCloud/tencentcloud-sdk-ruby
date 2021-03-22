@@ -633,10 +633,14 @@ module TencentCloud
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
+        # @param DiskTypePolicy: 云盘类型选择策略，默认取值 ORIGINAL，取值范围：
+        # <br><li>ORIGINAL：使用设置的云盘类型
+        # <br><li>AUTOMATIC：自动选择当前可用的云盘类型
+        # @type DiskTypePolicy: String
 
-        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTypesCheckPolicy, :InstanceTags, :CamRoleName, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid
+        attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTypesCheckPolicy, :InstanceTags, :CamRoleName, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy
         
-        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetypescheckpolicy=nil, instancetags=nil, camrolename=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil)
+        def initialize(launchconfigurationname=nil, imageid=nil, projectid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, userdata=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetypescheckpolicy=nil, instancetags=nil, camrolename=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil)
           @LaunchConfigurationName = launchconfigurationname
           @ImageId = imageid
           @ProjectId = projectid
@@ -657,6 +661,7 @@ module TencentCloud
           @HostNameSettings = hostnamesettings
           @InstanceNameSettings = instancenamesettings
           @InstanceChargePrepaid = instancechargeprepaid
+          @DiskTypePolicy = disktypepolicy
         end
 
         def deserialize(params)
@@ -706,6 +711,7 @@ module TencentCloud
           unless params['InstanceChargePrepaid'].nil?
             @InstanceChargePrepaid = InstanceChargePrepaid.new.deserialize(params['InstanceChargePrepaid'])
           end
+          @DiskTypePolicy = params['DiskTypePolicy']
         end
       end
 
@@ -2935,10 +2941,14 @@ module TencentCloud
         # 若修改实例的付费模式为竞价付费，则该参数必传；从竞价付费修改为其他付费模式时，本字段原信息会自动丢弃。
         # 本字段属复杂类型，修改时采取整字段全覆盖模式。即只修改复杂类型内部一个子字段时，也请提供全部所需子字段。
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
+        # @param DiskTypePolicy: 云盘类型选择策略，取值范围：
+        # <br><li>ORIGINAL：使用设置的云盘类型。
+        # <br><li>AUTOMATIC：自动选择当前可用的云盘类型。
+        # @type DiskTypePolicy: String
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -2950,6 +2960,7 @@ module TencentCloud
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceMarketOptions = instancemarketoptions
+          @DiskTypePolicy = disktypepolicy
         end
 
         def deserialize(params)
@@ -2970,6 +2981,7 @@ module TencentCloud
           unless params['InstanceMarketOptions'].nil?
             @InstanceMarketOptions = InstanceMarketOptionsRequest.new.deserialize(params['InstanceMarketOptions'])
           end
+          @DiskTypePolicy = params['DiskTypePolicy']
         end
       end
 
@@ -3755,10 +3767,14 @@ module TencentCloud
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
+        # @param DiskTypePolicy: 云盘类型选择策略，取值范围：
+        # <br><li>ORIGINAL：使用设置的云盘类型
+        # <br><li>AUTOMATIC：自动选择当前可用的云盘类型
+        # @type DiskTypePolicy: String
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :LaunchConfigurationName, :DataDisks, :EnhancedService, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypesCheckPolicy, :InternetAccessible, :LoginSettings, :ProjectId, :SecurityGroupIds, :SystemDisk, :UserData, :InstanceTags, :CamRoleName, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :LaunchConfigurationName, :DataDisks, :EnhancedService, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypesCheckPolicy, :InternetAccessible, :LoginSettings, :ProjectId, :SecurityGroupIds, :SystemDisk, :UserData, :InstanceTags, :CamRoleName, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, launchconfigurationname=nil, datadisks=nil, enhancedservice=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypescheckpolicy=nil, internetaccessible=nil, loginsettings=nil, projectid=nil, securitygroupids=nil, systemdisk=nil, userdata=nil, instancetags=nil, camrolename=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, launchconfigurationname=nil, datadisks=nil, enhancedservice=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypescheckpolicy=nil, internetaccessible=nil, loginsettings=nil, projectid=nil, securitygroupids=nil, systemdisk=nil, userdata=nil, instancetags=nil, camrolename=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -3779,6 +3795,7 @@ module TencentCloud
           @HostNameSettings = hostnamesettings
           @InstanceNameSettings = instancenamesettings
           @InstanceChargePrepaid = instancechargeprepaid
+          @DiskTypePolicy = disktypepolicy
         end
 
         def deserialize(params)
@@ -3828,6 +3845,7 @@ module TencentCloud
           unless params['InstanceChargePrepaid'].nil?
             @InstanceChargePrepaid = InstanceChargePrepaid.new.deserialize(params['InstanceChargePrepaid'])
           end
+          @DiskTypePolicy = params['DiskTypePolicy']
         end
       end
 

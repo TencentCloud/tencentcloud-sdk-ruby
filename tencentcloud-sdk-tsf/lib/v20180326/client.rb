@@ -601,6 +601,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建单元化规则
+
+        # @param request: Request instance for CreateUnitRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreateUnitRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreateUnitRuleResponse`
+        def CreateUnitRule(request)
+          body = send_request('CreateUnitRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUnitRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除Api分组
 
         # @param request: Request instance for DeleteApiGroup.
@@ -948,6 +972,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除单元化命名空间
+
+        # @param request: Request instance for DeleteUnitNamespaces.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DeleteUnitNamespacesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DeleteUnitNamespacesResponse`
+        def DeleteUnitNamespaces(request)
+          body = send_request('DeleteUnitNamespaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUnitNamespacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除单元化规则
+
+        # @param request: Request instance for DeleteUnitRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DeleteUnitRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DeleteUnitRuleResponse`
+        def DeleteUnitRule(request)
+          body = send_request('DeleteUnitRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUnitRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1501,6 +1573,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDownloadInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询生效的单元化规则
+
+        # @param request: Request instance for DescribeEnabledUnitRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeEnabledUnitRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeEnabledUnitRuleResponse`
+        def DescribeEnabledUnitRule(request)
+          body = send_request('DescribeEnabledUnitRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnabledUnitRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2379,6 +2475,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询单元化命名空间列表
+
+        # @param request: Request instance for DescribeUnitNamespaces.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeUnitNamespacesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeUnitNamespacesResponse`
+        def DescribeUnitNamespaces(request)
+          body = send_request('DescribeUnitNamespaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnitNamespacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询单元化规则详情
+
+        # @param request: Request instance for DescribeUnitRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeUnitRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeUnitRuleResponse`
+        def DescribeUnitRule(request)
+          body = send_request('DescribeUnitRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnitRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询单元化规则列表
+
+        # @param request: Request instance for DescribeUnitRules.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeUnitRulesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeUnitRulesResponse`
+        def DescribeUnitRules(request)
+          body = send_request('DescribeUnitRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnitRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # TSF会将软件包上传到腾讯云对象存储（COS）。调用此接口获取上传信息，如目标地域，桶，包Id，存储路径，鉴权信息等，之后请使用COS API（或SDK）进行上传。
         # COS相关文档请查阅：https://cloud.tencent.com/document/product/436
 
@@ -2390,6 +2558,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUploadInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询可用于被导入的命名空间列表
+
+        # @param request: Request instance for DescribeUsableUnitNamespaces.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeUsableUnitNamespacesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeUsableUnitNamespacesResponse`
+        def DescribeUsableUnitNamespaces(request)
+          body = send_request('DescribeUsableUnitNamespaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUsableUnitNamespacesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2438,6 +2630,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisableTaskFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 禁用单元化路由
+
+        # @param request: Request instance for DisableUnitRoute.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DisableUnitRouteRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DisableUnitRouteResponse`
+        def DisableUnitRoute(request)
+          body = send_request('DisableUnitRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableUnitRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 禁用单元化规则
+
+        # @param request: Request instance for DisableUnitRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DisableUnitRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DisableUnitRuleResponse`
+        def DisableUnitRule(request)
+          body = send_request('DisableUnitRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableUnitRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2510,6 +2750,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableTaskFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用单元化路由
+
+        # @param request: Request instance for EnableUnitRoute.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::EnableUnitRouteRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::EnableUnitRouteResponse`
+        def EnableUnitRoute(request)
+          body = send_request('EnableUnitRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableUnitRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用单元化规则
+
+        # @param request: Request instance for EnableUnitRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::EnableUnitRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::EnableUnitRuleResponse`
+        def EnableUnitRule(request)
+          body = send_request('EnableUnitRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableUnitRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3365,6 +3653,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量更新API超时
+
+        # @param request: Request instance for UpdateApiTimeouts.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::UpdateApiTimeoutsRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::UpdateApiTimeoutsResponse`
+        def UpdateApiTimeouts(request)
+          body = send_request('UpdateApiTimeouts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateApiTimeoutsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新API
 
         # @param request: Request instance for UpdateGatewayApi.
@@ -3423,6 +3735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateRepositoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新单元化规则
+
+        # @param request: Request instance for UpdateUnitRule.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::UpdateUnitRuleRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::UpdateUnitRuleResponse`
+        def UpdateUnitRule(request)
+          body = send_request('UpdateUnitRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUnitRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

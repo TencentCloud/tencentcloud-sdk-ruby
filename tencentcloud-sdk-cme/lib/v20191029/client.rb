@@ -611,6 +611,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用视频编辑模板直接导出视频。
+
+        # @param request: Request instance for ExportVideoByTemplate.
+        # @type request: :class:`Tencentcloud::cme::V20191029::ExportVideoByTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::ExportVideoByTemplateResponse`
+        def ExportVideoByTemplate(request)
+          body = send_request('ExportVideoByTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportVideoByTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频。
 
         # @param request: Request instance for ExportVideoByVideoSegmentationData.

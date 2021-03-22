@@ -158,7 +158,7 @@ module TencentCloud
         # @type ProfileType: String
         # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL。
         # @type Product: String
-        # @param BindInstanceIds: 配置绑定的实例ID，当配置级别为"Instance"时需要传入，只能为一个实例。
+        # @param BindInstanceIds: 配置绑定的实例ID，当配置级别为"Instance"时需要传入且只能为一个实例；当配置级别为“User”时，此参数不填。
         # @type BindInstanceIds: Array
 
         attr_accessor :ProfileInfo, :ProfileLevel, :ProfileName, :ProfileType, :Product, :BindInstanceIds

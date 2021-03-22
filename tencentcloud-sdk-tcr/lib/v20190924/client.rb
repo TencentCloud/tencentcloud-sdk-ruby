@@ -313,6 +313,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建实例公网访问白名单策略
+
+        # @param request: Request instance for CreateSecurityPolicy.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::CreateSecurityPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::CreateSecurityPolicyResponse`
+        def CreateSecurityPolicy(request)
+          body = send_request('CreateSecurityPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSecurityPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建个人用户
 
         # @param request: Request instance for CreateUserPersonal.
@@ -635,6 +659,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteRepositoryPersonalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除实例公网访问白名单策略
+
+        # @param request: Request instance for DeleteSecurityPolicy.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DeleteSecurityPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DeleteSecurityPolicyResponse`
+        def DeleteSecurityPolicy(request)
+          body = send_request('DeleteSecurityPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSecurityPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1225,6 +1273,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例公网访问白名单策略
+
+        # @param request: Request instance for DescribeSecurityPolicies.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeSecurityPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeSecurityPoliciesResponse`
+        def DescribeSecurityPolicies(request)
+          body = send_request('DescribeSecurityPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecurityPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询个人用户配额
 
         # @param request: Request instance for DescribeUserQuotaPersonal.
@@ -1523,6 +1595,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyRepositoryInfoPersonalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新实例公网访问白名单
+
+        # @param request: Request instance for ModifySecurityPolicy.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::ModifySecurityPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::ModifySecurityPolicyResponse`
+        def ModifySecurityPolicy(request)
+          body = send_request('ModifySecurityPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySecurityPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

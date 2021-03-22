@@ -2090,19 +2090,23 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 结果返回最大数量，最小值0，最大值100
         # @type Limit: Integer
+        # @param IpAddress: CVM实例公网IP
+        # @type IpAddress: String
 
-        attr_accessor :FleetId, :Offset, :Limit
+        attr_accessor :FleetId, :Offset, :Limit, :IpAddress
         
-        def initialize(fleetid=nil, offset=nil, limit=nil)
+        def initialize(fleetid=nil, offset=nil, limit=nil, ipaddress=nil)
           @FleetId = fleetid
           @Offset = offset
           @Limit = limit
+          @IpAddress = ipaddress
         end
 
         def deserialize(params)
           @FleetId = params['FleetId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @IpAddress = params['IpAddress']
         end
       end
 
@@ -2147,14 +2151,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回结果偏移，最小值0
         # @type Limit: Integer
+        # @param IpAddress: CVM实例公网IP
+        # @type IpAddress: String
 
-        attr_accessor :FleetId, :InstanceId, :Offset, :Limit
+        attr_accessor :FleetId, :InstanceId, :Offset, :Limit, :IpAddress
         
-        def initialize(fleetid=nil, instanceid=nil, offset=nil, limit=nil)
+        def initialize(fleetid=nil, instanceid=nil, offset=nil, limit=nil, ipaddress=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
           @Offset = offset
           @Limit = limit
+          @IpAddress = ipaddress
         end
 
         def deserialize(params)
@@ -2162,6 +2169,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @IpAddress = params['IpAddress']
         end
       end
 
