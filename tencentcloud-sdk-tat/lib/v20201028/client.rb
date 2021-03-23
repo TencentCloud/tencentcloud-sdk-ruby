@@ -247,6 +247,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
+
+        # @param request: Request instance for PreviewReplacedCommandContent.
+        # @type request: :class:`Tencentcloud::tat::V20201028::PreviewReplacedCommandContentRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::PreviewReplacedCommandContentResponse`
+        def PreviewReplacedCommandContent(request)
+          body = send_request('PreviewReplacedCommandContent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PreviewReplacedCommandContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 执行命令，调用成功返回执行活动ID（inv-xxxxxxxx），每个执行活动内部有一个或多个执行任务（invt-xxxxxxxx），每个执行任务代表命令在一台 CVM 或一台 Lighthouse 上的执行记录。
 
         # * 如果指定实例未安装 agent，或 agent 不在线，返回失败

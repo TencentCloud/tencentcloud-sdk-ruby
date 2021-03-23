@@ -1084,12 +1084,15 @@ module TencentCloud
         # @type SnatIps: Array
         # @param ClusterTag: Stgw独占集群的标签。
         # @type ClusterTag: String
+        # @param SlaveZoneId: 仅适用于公网负载均衡。设置跨可用区容灾时的备可用区ID，例如 100001 或 ap-guangzhou-1
+        # 注：备可用区是主可用区故障后，需要承载流量的可用区。可通过 DescribeMasterZones 接口查询一个地域的主/备可用区的列表。
+        # @type SlaveZoneId: String
         # @param EipAddressId: EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
         # @type EipAddressId: String
 
-        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :EipAddressId
+        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId
         
-        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, eipaddressid=nil)
+        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil)
           @LoadBalancerType = loadbalancertype
           @Forward = forward
           @LoadBalancerName = loadbalancername
@@ -1110,6 +1113,7 @@ module TencentCloud
           @SnatPro = snatpro
           @SnatIps = snatips
           @ClusterTag = clustertag
+          @SlaveZoneId = slavezoneid
           @EipAddressId = eipaddressid
         end
 
@@ -1148,6 +1152,7 @@ module TencentCloud
             end
           end
           @ClusterTag = params['ClusterTag']
+          @SlaveZoneId = params['SlaveZoneId']
           @EipAddressId = params['EipAddressId']
         end
       end
@@ -5413,10 +5418,13 @@ module TencentCloud
         # @param EniId: 弹性网卡唯一ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EniId: String
+        # @param ZoneId: 后端服务的可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: Integer
 
-        attr_accessor :TargetGroupId, :Type, :InstanceId, :Port, :Weight, :PublicIpAddresses, :PrivateIpAddresses, :InstanceName, :RegisteredTime, :EniId
+        attr_accessor :TargetGroupId, :Type, :InstanceId, :Port, :Weight, :PublicIpAddresses, :PrivateIpAddresses, :InstanceName, :RegisteredTime, :EniId, :ZoneId
         
-        def initialize(targetgroupid=nil, type=nil, instanceid=nil, port=nil, weight=nil, publicipaddresses=nil, privateipaddresses=nil, instancename=nil, registeredtime=nil, eniid=nil)
+        def initialize(targetgroupid=nil, type=nil, instanceid=nil, port=nil, weight=nil, publicipaddresses=nil, privateipaddresses=nil, instancename=nil, registeredtime=nil, eniid=nil, zoneid=nil)
           @TargetGroupId = targetgroupid
           @Type = type
           @InstanceId = instanceid
@@ -5427,6 +5435,7 @@ module TencentCloud
           @InstanceName = instancename
           @RegisteredTime = registeredtime
           @EniId = eniid
+          @ZoneId = zoneid
         end
 
         def deserialize(params)
@@ -5440,6 +5449,7 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @RegisteredTime = params['RegisteredTime']
           @EniId = params['EniId']
+          @ZoneId = params['ZoneId']
         end
       end
 

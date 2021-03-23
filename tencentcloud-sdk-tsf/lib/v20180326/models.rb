@@ -858,6 +858,47 @@ module TencentCloud
         end
       end
 
+      # BindPlugin请求参数结构体
+      class BindPluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginInstanceList: 分组/API绑定插件列表
+        # @type PluginInstanceList: Array
+
+        attr_accessor :PluginInstanceList
+        
+        def initialize(plugininstancelist=nil)
+          @PluginInstanceList = plugininstancelist
+        end
+
+        def deserialize(params)
+          unless params['PluginInstanceList'].nil?
+            @PluginInstanceList = []
+            params['PluginInstanceList'].each do |i|
+              @PluginInstanceList << GatewayPluginBoundParam.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # BindPlugin返回参数结构体
+      class BindPluginResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果，成功失败
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChangeApiUsableStatus请求参数结构体
       class ChangeApiUsableStatusRequest < TencentCloud::Common::AbstractModel
         # @param ApiId: API ID
@@ -5459,6 +5500,64 @@ module TencentCloud
         end
       end
 
+      # DescribeGroupsWithPlugin请求参数结构体
+      class DescribeGroupsWithPluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: 插件ID
+        # @type PluginId: String
+        # @param Bound: 绑定/未绑定: true / false
+        # @type Bound: Boolean
+        # @param Offset: 翻页偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页记录数量
+        # @type Limit: Integer
+        # @param SearchWord: 搜索关键字
+        # @type SearchWord: String
+        # @param GatewayInstanceId: 网关实体ID
+        # @type GatewayInstanceId: String
+
+        attr_accessor :PluginId, :Bound, :Offset, :Limit, :SearchWord, :GatewayInstanceId
+        
+        def initialize(pluginid=nil, bound=nil, offset=nil, limit=nil, searchword=nil, gatewayinstanceid=nil)
+          @PluginId = pluginid
+          @Bound = bound
+          @Offset = offset
+          @Limit = limit
+          @SearchWord = searchword
+          @GatewayInstanceId = gatewayinstanceid
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @Bound = params['Bound']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchWord = params['SearchWord']
+          @GatewayInstanceId = params['GatewayInstanceId']
+        end
+      end
+
+      # DescribeGroupsWithPlugin返回参数结构体
+      class DescribeGroupsWithPluginResponse < TencentCloud::Common::AbstractModel
+        # @param Result: API分组信息列表
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageApiGroupInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageApiGroupInfo.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeImageRepository请求参数结构体
       class DescribeImageRepositoryRequest < TencentCloud::Common::AbstractModel
         # @param SearchWord: 仓库名，搜索关键字,不带命名空间的
@@ -5978,6 +6077,64 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = PkgList.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePluginInstances请求参数结构体
+      class DescribePluginInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ScopeValue: 分组或者API的ID
+        # @type ScopeValue: String
+        # @param Bound: 绑定: true; 未绑定: false
+        # @type Bound: Boolean
+        # @param Offset: 翻页偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页展示的条数
+        # @type Limit: Integer
+        # @param Type: 插件类型
+        # @type Type: String
+        # @param SearchWord: 搜索关键字
+        # @type SearchWord: String
+
+        attr_accessor :ScopeValue, :Bound, :Offset, :Limit, :Type, :SearchWord
+        
+        def initialize(scopevalue=nil, bound=nil, offset=nil, limit=nil, type=nil, searchword=nil)
+          @ScopeValue = scopevalue
+          @Bound = bound
+          @Offset = offset
+          @Limit = limit
+          @Type = type
+          @SearchWord = searchword
+        end
+
+        def deserialize(params)
+          @ScopeValue = params['ScopeValue']
+          @Bound = params['Bound']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Type = params['Type']
+          @SearchWord = params['SearchWord']
+        end
+      end
+
+      # DescribePluginInstances返回参数结构体
+      class DescribePluginInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 插件信息列表
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageGatewayPlugin`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageGatewayPlugin.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -7711,6 +7868,77 @@ module TencentCloud
         def deserialize(params)
           @GatewayDeployGroupId = params['GatewayDeployGroupId']
           @GroupId = params['GroupId']
+        end
+      end
+
+      # 微服务网关插件实例对象
+      class GatewayPlugin < TencentCloud::Common::AbstractModel
+        # @param Id: 网关插件id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 插件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 插件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Description: 插件描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param UpdatedTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
+        # @param Status: 发布状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Id, :Name, :Type, :Description, :CreatedTime, :UpdatedTime, :Status
+        
+        def initialize(id=nil, name=nil, type=nil, description=nil, createdtime=nil, updatedtime=nil, status=nil)
+          @Id = id
+          @Name = name
+          @Type = type
+          @Description = description
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Description = params['Description']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+          @Status = params['Status']
+        end
+      end
+
+      # 微服务网关插件绑定对象
+      class GatewayPluginBoundParam < TencentCloud::Common::AbstractModel
+        # @param PluginId: 插件id
+        # @type PluginId: String
+        # @param ScopeType: 插件绑定到的对象类型:group/api
+        # @type ScopeType: String
+        # @param ScopeValue: 插件绑定到的对象主键值，例如分组的ID/API的ID
+        # @type ScopeValue: String
+
+        attr_accessor :PluginId, :ScopeType, :ScopeValue
+        
+        def initialize(pluginid=nil, scopetype=nil, scopevalue=nil)
+          @PluginId = pluginid
+          @ScopeType = scopetype
+          @ScopeValue = scopevalue
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @ScopeType = params['ScopeType']
+          @ScopeValue = params['ScopeValue']
         end
       end
 
@@ -11771,6 +11999,33 @@ module TencentCloud
             @Content = []
             params['Content'].each do |i|
               @Content << GatewayDeployGroup.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # GatewayPlugin 翻页对象
+      class TsfPageGatewayPlugin < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 记录实体列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              @Content << GatewayPlugin.new.deserialize(i)
             end
           end
         end

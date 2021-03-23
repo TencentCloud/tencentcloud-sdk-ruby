@@ -267,20 +267,24 @@ module TencentCloud
         # @type Name: String
         # @param TimeTemplateId: 时间模板ID
         # @type TimeTemplateId: String
+        # @param EventId: 触发录制的事件类别 1:全部
+        # @type EventId: Integer
         # @param Devices: 该录制计划绑定的设备列表
         # @type Devices: Array
 
-        attr_accessor :Name, :TimeTemplateId, :Devices
+        attr_accessor :Name, :TimeTemplateId, :EventId, :Devices
         
-        def initialize(name=nil, timetemplateid=nil, devices=nil)
+        def initialize(name=nil, timetemplateid=nil, eventid=nil, devices=nil)
           @Name = name
           @TimeTemplateId = timetemplateid
+          @EventId = eventid
           @Devices = devices
         end
 
         def deserialize(params)
           @Name = params['Name']
           @TimeTemplateId = params['TimeTemplateId']
+          @EventId = params['EventId']
           unless params['Devices'].nil?
             @Devices = []
             params['Devices'].each do |i|
@@ -1957,28 +1961,38 @@ module TencentCloud
         # @type Name: String
         # @param TimeTemplateId: 时间模板ID
         # @type TimeTemplateId: String
+        # @param EventId: 触发录制的事件 1：全部
+        # @type EventId: Integer
         # @param Devices: 录制设备列表
         # @type Devices: Array
+        # @param IsModifyDevices: 是否更新绑定此录制计划的设备列表
+        # 0 - 不更新
+        # 1 - 更新，如果Devices参数为空则清空设备列表，Devices不为空则全量更新设备列表
+        # @type IsModifyDevices: Integer
 
-        attr_accessor :PlanId, :Name, :TimeTemplateId, :Devices
+        attr_accessor :PlanId, :Name, :TimeTemplateId, :EventId, :Devices, :IsModifyDevices
         
-        def initialize(planid=nil, name=nil, timetemplateid=nil, devices=nil)
+        def initialize(planid=nil, name=nil, timetemplateid=nil, eventid=nil, devices=nil, ismodifydevices=nil)
           @PlanId = planid
           @Name = name
           @TimeTemplateId = timetemplateid
+          @EventId = eventid
           @Devices = devices
+          @IsModifyDevices = ismodifydevices
         end
 
         def deserialize(params)
           @PlanId = params['PlanId']
           @Name = params['Name']
           @TimeTemplateId = params['TimeTemplateId']
+          @EventId = params['EventId']
           unless params['Devices'].nil?
             @Devices = []
             params['Devices'].each do |i|
               @Devices << DeviceItem.new.deserialize(i)
             end
           end
+          @IsModifyDevices = params['IsModifyDevices']
         end
       end
 

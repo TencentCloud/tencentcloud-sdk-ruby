@@ -97,6 +97,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 插件与网关分组/API批量绑定
+
+        # @param request: Request instance for BindPlugin.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::BindPluginRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::BindPluginResponse`
+        def BindPlugin(request)
+          body = send_request('BindPlugin', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindPluginResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 启用或禁用API
 
         # @param request: Request instance for ChangeApiUsableStatus.
@@ -1827,6 +1851,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询某个插件下绑定或未绑定的API分组
+
+        # @param request: Request instance for DescribeGroupsWithPlugin.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeGroupsWithPluginRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeGroupsWithPluginResponse`
+        def DescribeGroupsWithPlugin(request)
+          body = send_request('DescribeGroupsWithPlugin', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGroupsWithPluginResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 镜像仓库列表
 
         # @param request: Request instance for DescribeImageRepository.
@@ -2053,6 +2101,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePkgsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分页查询网关分组/API绑定（或未绑定）的插件列表
+
+        # @param request: Request instance for DescribePluginInstances.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribePluginInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribePluginInstancesResponse`
+        def DescribePluginInstances(request)
+          body = send_request('DescribePluginInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePluginInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -71,10 +71,14 @@ module TencentCloud
         # @type CreatedTime: String
         # @param UpdatedTime: 命令更新时间。
         # @type UpdatedTime: String
+        # @param EnableParameter: 是否启用自定义参数功能。
+        # @type EnableParameter: Boolean
+        # @param DefaultParameters: 自定义参数的默认取值。
+        # @type DefaultParameters: String
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters
         
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -84,6 +88,8 @@ module TencentCloud
           @Timeout = timeout
           @CreatedTime = createdtime
           @UpdatedTime = updatedtime
+          @EnableParameter = enableparameter
+          @DefaultParameters = defaultparameters
         end
 
         def deserialize(params)
@@ -96,6 +102,8 @@ module TencentCloud
           @Timeout = params['Timeout']
           @CreatedTime = params['CreatedTime']
           @UpdatedTime = params['UpdatedTime']
+          @EnableParameter = params['EnableParameter']
+          @DefaultParameters = params['DefaultParameters']
         end
       end
 
@@ -141,16 +149,28 @@ module TencentCloud
         # @type WorkingDirectory: String
         # @param Timeout: 命令超时时间，默认60秒。取值范围[1, 86400]。
         # @type Timeout: Integer
+        # @param EnableParameter: 是否启用自定义参数功能。
+        # 一旦创建，此值不提供修改。
+        # 默认值：false。
+        # @type EnableParameter: Boolean
+        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
+        # 如果InvokeCommand时未提供参数取值，将使用这里的默认值进行替换。
+        # 自定义参数最多20个。
+        # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
+        # @type DefaultParameters: String
 
-        attr_accessor :CommandName, :Content, :Description, :CommandType, :WorkingDirectory, :Timeout
+        attr_accessor :CommandName, :Content, :Description, :CommandType, :WorkingDirectory, :Timeout, :EnableParameter, :DefaultParameters
         
-        def initialize(commandname=nil, content=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil)
+        def initialize(commandname=nil, content=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, enableparameter=nil, defaultparameters=nil)
           @CommandName = commandname
           @Content = content
           @Description = description
           @CommandType = commandtype
           @WorkingDirectory = workingdirectory
           @Timeout = timeout
+          @EnableParameter = enableparameter
+          @DefaultParameters = defaultparameters
         end
 
         def deserialize(params)
@@ -160,6 +180,8 @@ module TencentCloud
           @CommandType = params['CommandType']
           @WorkingDirectory = params['WorkingDirectory']
           @Timeout = params['Timeout']
+          @EnableParameter = params['EnableParameter']
+          @DefaultParameters = params['DefaultParameters']
         end
       end
 
@@ -564,10 +586,14 @@ module TencentCloud
         # @type CreatedTime: String
         # @param UpdatedTime: 执行活动更新时间。
         # @type UpdatedTime: String
+        # @param Parameters: 自定义参数取值。
+        # @type Parameters: String
+        # @param DefaultParameters: 自定义参数的默认取值。
+        # @type DefaultParameters: String
 
-        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime
+        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters
         
-        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil)
+        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil)
           @InvocationId = invocationid
           @CommandId = commandid
           @InvocationStatus = invocationstatus
@@ -577,6 +603,8 @@ module TencentCloud
           @EndTime = endtime
           @CreatedTime = createdtime
           @UpdatedTime = updatedtime
+          @Parameters = parameters
+          @DefaultParameters = defaultparameters
         end
 
         def deserialize(params)
@@ -594,6 +622,8 @@ module TencentCloud
           @EndTime = params['EndTime']
           @CreatedTime = params['CreatedTime']
           @UpdatedTime = params['UpdatedTime']
+          @Parameters = params['Parameters']
+          @DefaultParameters = params['DefaultParameters']
         end
       end
 
@@ -705,17 +735,25 @@ module TencentCloud
         # @type CommandId: String
         # @param InstanceIds: 待执行命令的实例ID列表。
         # @type InstanceIds: Array
+        # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
+        # 如果未提供该参数取值，将使用 Command 的 DefaultParameters 进行替换。
+        # 自定义参数最多20个。
+        # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
+        # @type Parameters: String
 
-        attr_accessor :CommandId, :InstanceIds
+        attr_accessor :CommandId, :InstanceIds, :Parameters
         
-        def initialize(commandid=nil, instanceids=nil)
+        def initialize(commandid=nil, instanceids=nil, parameters=nil)
           @CommandId = commandid
           @InstanceIds = instanceids
+          @Parameters = parameters
         end
 
         def deserialize(params)
           @CommandId = params['CommandId']
           @InstanceIds = params['InstanceIds']
+          @Parameters = params['Parameters']
         end
       end
 
@@ -755,10 +793,17 @@ module TencentCloud
         # @type WorkingDirectory: String
         # @param Timeout: 命令超时时间，默认60秒。取值范围[1, 86400]。
         # @type Timeout: Integer
+        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # 采取整体全覆盖式修改，即修改时必须提供所有新默认值。
+        # 必须 Command 的 EnableParameter 为 true 时，才允许修改这个值。
+        # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
+        # 自定义参数最多20个。
+        # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
+        # @type DefaultParameters: String
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :DefaultParameters
         
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, defaultparameters=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -766,6 +811,7 @@ module TencentCloud
           @CommandType = commandtype
           @WorkingDirectory = workingdirectory
           @Timeout = timeout
+          @DefaultParameters = defaultparameters
         end
 
         def deserialize(params)
@@ -776,6 +822,7 @@ module TencentCloud
           @CommandType = params['CommandType']
           @WorkingDirectory = params['WorkingDirectory']
           @Timeout = params['Timeout']
+          @DefaultParameters = params['DefaultParameters']
         end
       end
 
@@ -791,6 +838,56 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PreviewReplacedCommandContent请求参数结构体
+      class PreviewReplacedCommandContentRequest < TencentCloud::Common::AbstractModel
+        # @param Parameters: 本次预览采用的自定义参数。字段类型为 json encoded string，如：{\"varA\": \"222\"}。
+        # key 为自定义参数名称，value 为该参数的取值。kv 均为字符串型。
+        # 自定义参数最多 20 个。
+        # 自定义参数名称需符合以下规范：字符数目上限 64，可选范围【a-zA-Z0-9-_】。
+        # 如果将预览的 CommandId 设置过 DefaultParameters，本参数可以为空。
+        # @type Parameters: String
+        # @param CommandId: 要进行替换预览的命令，如果有设置过 DefaultParameters，会与 Parameters 进行叠加，后者覆盖前者。
+        # CommandId 与 Content，必须且只能提供一个。
+        # @type CommandId: String
+        # @param Content: 要预览的命令内容，经 Base64 编码，长度不可超过 64KB。
+        # CommandId 与 Content，必须且只能提供一个。
+        # @type Content: String
+
+        attr_accessor :Parameters, :CommandId, :Content
+        
+        def initialize(parameters=nil, commandid=nil, content=nil)
+          @Parameters = parameters
+          @CommandId = commandid
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Parameters = params['Parameters']
+          @CommandId = params['CommandId']
+          @Content = params['Content']
+        end
+      end
+
+      # PreviewReplacedCommandContent返回参数结构体
+      class PreviewReplacedCommandContentResponse < TencentCloud::Common::AbstractModel
+        # @param ReplacedContent: 自定义参数替换后的，经Base64编码的命令内容。
+        # @type ReplacedContent: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReplacedContent, :RequestId
+        
+        def initialize(replacedcontent=nil, requestid=nil)
+          @ReplacedContent = replacedcontent
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReplacedContent = params['ReplacedContent']
           @RequestId = params['RequestId']
         end
       end
@@ -842,10 +939,26 @@ module TencentCloud
         # <li> False：不保存
         # 默认为 False。
         # @type SaveCommand: Boolean
+        # @param EnableParameter: 是否启用自定义参数功能。
+        # 一旦创建，此值不提供修改。
+        # 默认值：false。
+        # @type EnableParameter: Boolean
+        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
+        # 如果 Parameters 未提供，将使用这里的默认值进行替换。
+        # 自定义参数最多20个。
+        # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
+        # @type DefaultParameters: String
+        # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{\"varA\": \"222\"}。
+        # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
+        # 如果未提供该参数取值，将使用 DefaultParameters 进行替换。
+        # 自定义参数最多20个。
+        # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
+        # @type Parameters: String
 
-        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand
+        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :Parameters
         
-        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil)
+        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, parameters=nil)
           @Content = content
           @InstanceIds = instanceids
           @CommandName = commandname
@@ -854,6 +967,9 @@ module TencentCloud
           @WorkingDirectory = workingdirectory
           @Timeout = timeout
           @SaveCommand = savecommand
+          @EnableParameter = enableparameter
+          @DefaultParameters = defaultparameters
+          @Parameters = parameters
         end
 
         def deserialize(params)
@@ -865,6 +981,9 @@ module TencentCloud
           @WorkingDirectory = params['WorkingDirectory']
           @Timeout = params['Timeout']
           @SaveCommand = params['SaveCommand']
+          @EnableParameter = params['EnableParameter']
+          @DefaultParameters = params['DefaultParameters']
+          @Parameters = params['Parameters']
         end
       end
 

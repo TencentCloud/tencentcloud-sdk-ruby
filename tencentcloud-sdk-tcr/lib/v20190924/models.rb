@@ -327,7 +327,7 @@ module TencentCloud
         # @type RegistryType: String
         # @param TagSpecification: 云标签描述
         # @type TagSpecification: :class:`Tencentcloud::Tcr.v20190924.models.TagSpecification`
-        # @param RegistryChargeType: 实例计费类型，0表示按量计费，1表示预付费，当前版本只支持后付费，默认为按量计费
+        # @param RegistryChargeType: 实例计费类型，0表示按量计费，1表示预付费，默认为按量计费
         # @type RegistryChargeType: Integer
 
         attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType

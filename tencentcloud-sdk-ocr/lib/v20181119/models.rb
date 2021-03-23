@@ -1494,21 +1494,25 @@ module TencentCloud
       # 机票行程单识别结果
       class FlightInvoiceInfo < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称(关键字)，支持以下字段：
-        # 票价、合计金额、填开日期、有效身份证件号码、电子客票号码、验证码、旅客姓名、填开单位、其他税费、燃油附加费、民航发展基金、保险费、销售单位代号、始发地、目的地、航班号、时间、日期、座位等级、承运人、发票消费类型、国内国际标签、印刷序号。
+        # 票价、合计金额、填开日期、有效身份证件号码、电子客票号码、验证码、旅客姓名、填开单位、其他税费、燃油附加费、民航发展基金、保险费、销售单位代号、始发地、目的地、航班号、时间、日期、座位等级、承运人、发票消费类型、国内国际标签、印刷序号、客票级别/类别、客票生效日期、有效期截止日期、免费行李。
         # @type Name: String
         # @param Value: 识别出的字段名称对应的值，也就是字段 Name 对应的字符串结果。
         # @type Value: String
+        # @param Row: 多个行程的字段所在行号，下标从0开始，非行字段或未能识别行号的该值返回-1。
+        # @type Row: Integer
 
-        attr_accessor :Name, :Value
+        attr_accessor :Name, :Value, :Row
         
-        def initialize(name=nil, value=nil)
+        def initialize(name=nil, value=nil, row=nil)
           @Name = name
           @Value = value
+          @Row = row
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+          @Row = params['Row']
         end
       end
 
@@ -1516,12 +1520,12 @@ module TencentCloud
       class FlightInvoiceOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
@@ -1821,26 +1825,34 @@ module TencentCloud
       class GeneralFastOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 
@@ -1853,15 +1865,18 @@ module TencentCloud
         # @type Language: String
         # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负
         # @type Angel: Float
+        # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
+        # @type PdfPageSize: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TextDetections, :Language, :Angel, :RequestId
+        attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :RequestId
         
-        def initialize(textdetections=nil, language=nil, angel=nil, requestid=nil)
+        def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, requestid=nil)
           @TextDetections = textdetections
           @Language = language
           @Angel = angel
+          @PdfPageSize = pdfpagesize
           @RequestId = requestid
         end
 
@@ -1874,6 +1889,7 @@ module TencentCloud
           end
           @Language = params['Language']
           @Angel = params['Angel']
+          @PdfPageSize = params['PdfPageSize']
           @RequestId = params['RequestId']
         end
       end
@@ -4555,12 +4571,12 @@ module TencentCloud
       class TaxiInvoiceOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
@@ -5295,12 +5311,12 @@ module TencentCloud
       class TrainTicketOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
@@ -6497,12 +6513,12 @@ module TencentCloud
       class WaybillOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
