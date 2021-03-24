@@ -1257,13 +1257,21 @@ module TencentCloud
       class DescribeDBSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Groups: 安全组详情。
         # @type Groups: Array
+        # @param VIP: 实例VIP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VIP: String
+        # @param VPort: 实例端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VPort: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Groups, :RequestId
+        attr_accessor :Groups, :VIP, :VPort, :RequestId
         
-        def initialize(groups=nil, requestid=nil)
+        def initialize(groups=nil, vip=nil, vport=nil, requestid=nil)
           @Groups = groups
+          @VIP = vip
+          @VPort = vport
           @RequestId = requestid
         end
 
@@ -1274,6 +1282,8 @@ module TencentCloud
               @Groups << SecurityGroup.new.deserialize(i)
             end
           end
+          @VIP = params['VIP']
+          @VPort = params['VPort']
           @RequestId = params['RequestId']
         end
       end
@@ -1300,20 +1310,24 @@ module TencentCloud
         # @type SyncMode: Integer
         # @param IsModifying: 是否有修改流程在执行中：1 是， 0 否。
         # @type IsModifying: Integer
+        # @param CurrentSyncMode: 当前复制方式，0 异步，1 同步
+        # @type CurrentSyncMode: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SyncMode, :IsModifying, :RequestId
+        attr_accessor :SyncMode, :IsModifying, :CurrentSyncMode, :RequestId
         
-        def initialize(syncmode=nil, ismodifying=nil, requestid=nil)
+        def initialize(syncmode=nil, ismodifying=nil, currentsyncmode=nil, requestid=nil)
           @SyncMode = syncmode
           @IsModifying = ismodifying
+          @CurrentSyncMode = currentsyncmode
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SyncMode = params['SyncMode']
           @IsModifying = params['IsModifying']
+          @CurrentSyncMode = params['CurrentSyncMode']
           @RequestId = params['RequestId']
         end
       end

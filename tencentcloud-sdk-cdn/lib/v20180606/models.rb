@@ -1224,9 +1224,9 @@ module TencentCloud
         # 默认为关闭状态，开启后，源站返回的 no-store、no-cache 资源，也将按照 CacheRules 规则进行缓存
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreCacheControl: String
-        # @param IgnoreSetCookie: 忽略源站的 Set-Cookie 头部
-        # on：开启
-        # off：关闭
+        # @param IgnoreSetCookie: 当源站返回Set-Cookie头部时，节点是否缓存该头部及body
+        # on：开启，不缓存该头部及body
+        # off：关闭，遵循用户自定义的节点缓存规则
         # 默认为关闭状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreSetCookie: String
@@ -7539,7 +7539,6 @@ module TencentCloud
         # directory 时填充路径，如 /xxx/test
         # path 时填充绝对路径，如 /xxx/test.html
         # index 时填充 /
-        # default 时填充 "no max-age"
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RulePaths: Array
         # @param RuleType: 规则类型：
@@ -7548,7 +7547,6 @@ module TencentCloud
         # directory：指定路径生效
         # path：指定绝对路径生效
         # index：首页
-        # default: 源站无max-age时生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
         # @param CacheConfig: 缓存配置。

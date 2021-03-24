@@ -208,7 +208,7 @@ module TencentCloud
         # @type Data: Array
         # @param Direction: 方向，0：出站，1：入站
         # @type Direction: Integer
-        # @param Type: 0：后插，1：前插，2：中插
+        # @param Type: 插入类型，0：后插，1：前插，2：中插
         # @type Type: Integer
         # @param Area: 腾讯云地域的英文简写
         # @type Area: String
@@ -432,7 +432,7 @@ module TencentCloud
 
       # DeleteSecurityGroupRule返回参数结构体
       class DeleteSecurityGroupRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 状态值
+        # @param Status: 状态值，0：成功，非0：失败
         # @type Status: Integer
         # @param Info: 返回多余的信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -768,11 +768,11 @@ module TencentCloud
         # @type Area: String
         # @param SearchValue: 搜索值
         # @type SearchValue: String
-        # @param Limit: 每页条数
+        # @param Limit: 每页条数，默认为10
         # @type Limit: Integer
-        # @param Offset: 偏移值
+        # @param Offset: 偏移值，默认为0
         # @type Offset: Integer
-        # @param Status: '': 全部，'0'：筛选停用规则，'1'：筛选启用规则
+        # @param Status: 状态，'': 全部，'0'：筛选停用规则，'1'：筛选启用规则
         # @type Status: String
         # @param Filter: 0: 不过滤，1：过滤掉正常规则，保留下发异常规则
         # @type Filter: Integer
@@ -1263,7 +1263,7 @@ module TencentCloud
         # @type Direction: Integer
         # @param EdgeId: Edge ID值
         # @type EdgeId: String
-        # @param Area: NAT地域
+        # @param Area: NAT地域, 腾讯云地域的英文简写
         # @type Area: String
 
         attr_accessor :Status, :Direction, :EdgeId, :Area

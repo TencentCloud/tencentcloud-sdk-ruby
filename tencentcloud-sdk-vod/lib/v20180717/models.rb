@@ -3946,10 +3946,14 @@ module TencentCloud
         # @param MetaData: 原始视频的元信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Input, :Output, :MetaData
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Input, :Output, :MetaData, :SessionContext, :SessionId
         
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, input=nil, output=nil, metadata=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, input=nil, output=nil, metadata=nil, sessioncontext=nil, sessionid=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
@@ -3957,6 +3961,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @MetaData = metadata
+          @SessionContext = sessioncontext
+          @SessionId = sessionid
         end
 
         def deserialize(params)
@@ -3973,6 +3979,8 @@ module TencentCloud
           unless params['MetaData'].nil?
             @MetaData = MediaMetaData.new.deserialize(params['MetaData'])
           end
+          @SessionContext = params['SessionContext']
+          @SessionId = params['SessionId']
         end
       end
 

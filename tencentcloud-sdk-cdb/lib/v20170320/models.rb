@@ -7621,11 +7621,11 @@ module TencentCloud
 
       # 售卖配置详情
       class SellConfig < TencentCloud::Common::AbstractModel
-        # @param Device: 设备类型
+        # @param Device: 设备类型（废弃）
         # @type Device: String
-        # @param Type: 售卖规格描述
+        # @param Type: 售卖规格描述（废弃）
         # @type Type: String
-        # @param CdbType: 实例类型
+        # @param CdbType: 实例类型（废弃）
         # @type CdbType: String
         # @param Memory: 内存大小，单位为MB
         # @type Memory: Integer
@@ -7645,14 +7645,20 @@ module TencentCloud
         # @type Iops: Integer
         # @param Info: 应用场景描述
         # @type Info: String
-        # @param Status: 状态值
+        # @param Status: 状态值，0 表示该规格对外售卖
         # @type Status: Integer
-        # @param Tag: 标签值
+        # @param Tag: 标签值（废弃）
         # @type Tag: Integer
+        # @param DeviceType: 实例类型，可能的取值范围有：UNIVERSAL (通用型), EXCLUSIVE (独享型), BASIC (基础型)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceType: String
+        # @param DeviceTypeName: 实例类型描述，可能的取值范围有：通用型， 独享型， 基础型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceTypeName: String
 
-        attr_accessor :Device, :Type, :CdbType, :Memory, :Cpu, :VolumeMin, :VolumeMax, :VolumeStep, :Connection, :Qps, :Iops, :Info, :Status, :Tag
+        attr_accessor :Device, :Type, :CdbType, :Memory, :Cpu, :VolumeMin, :VolumeMax, :VolumeStep, :Connection, :Qps, :Iops, :Info, :Status, :Tag, :DeviceType, :DeviceTypeName
         
-        def initialize(device=nil, type=nil, cdbtype=nil, memory=nil, cpu=nil, volumemin=nil, volumemax=nil, volumestep=nil, connection=nil, qps=nil, iops=nil, info=nil, status=nil, tag=nil)
+        def initialize(device=nil, type=nil, cdbtype=nil, memory=nil, cpu=nil, volumemin=nil, volumemax=nil, volumestep=nil, connection=nil, qps=nil, iops=nil, info=nil, status=nil, tag=nil, devicetype=nil, devicetypename=nil)
           @Device = device
           @Type = type
           @CdbType = cdbtype
@@ -7667,6 +7673,8 @@ module TencentCloud
           @Info = info
           @Status = status
           @Tag = tag
+          @DeviceType = devicetype
+          @DeviceTypeName = devicetypename
         end
 
         def deserialize(params)
@@ -7684,6 +7692,8 @@ module TencentCloud
           @Info = params['Info']
           @Status = params['Status']
           @Tag = params['Tag']
+          @DeviceType = params['DeviceType']
+          @DeviceTypeName = params['DeviceTypeName']
         end
       end
 

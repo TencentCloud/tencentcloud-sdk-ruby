@@ -2417,15 +2417,19 @@ module TencentCloud
       class DescribeAllStreamPlayInfoListRequest < TencentCloud::Common::AbstractModel
         # @param QueryTime: 查询时间点，精确到分钟粒度，支持最近1个月的数据查询，数据延迟为5分钟左右，如果要查询实时的数据，建议传递5分钟前的时间点，格式为yyyy-mm-dd HH:MM:00。（只精确至分钟，秒数填00）。
         # @type QueryTime: String
+        # @param PlayDomains: 播放域名列表，若不填，表示总体数据。
+        # @type PlayDomains: Array
 
-        attr_accessor :QueryTime
+        attr_accessor :QueryTime, :PlayDomains
         
-        def initialize(querytime=nil)
+        def initialize(querytime=nil, playdomains=nil)
           @QueryTime = querytime
+          @PlayDomains = playdomains
         end
 
         def deserialize(params)
           @QueryTime = params['QueryTime']
+          @PlayDomains = params['PlayDomains']
         end
       end
 

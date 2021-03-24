@@ -3004,6 +3004,42 @@ module TencentCloud
         end
       end
 
+      # ResetCloudStorage请求参数结构体
+      class ResetCloudStorageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+        
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # ResetCloudStorage返回参数结构体
+      class ResetCloudStorageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RetryDeviceFirmwareTask请求参数结构体
       class RetryDeviceFirmwareTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProductID: 产品ID
@@ -3147,6 +3183,46 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @Total = params['Total']
+        end
+      end
+
+      # TransferCloudStorage请求参数结构体
+      class TransferCloudStorageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 已开通云存的设备名称
+        # @type DeviceName: String
+        # @param ToDeviceName: 未开通云存的设备名称
+        # @type ToDeviceName: String
+
+        attr_accessor :ProductId, :DeviceName, :ToDeviceName
+        
+        def initialize(productid=nil, devicename=nil, todevicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ToDeviceName = todevicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ToDeviceName = params['ToDeviceName']
+        end
+      end
+
+      # TransferCloudStorage返回参数结构体
+      class TransferCloudStorageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

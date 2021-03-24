@@ -1837,15 +1837,21 @@ module TencentCloud
       class MobileNetworkTimeVerificationRequest < TencentCloud::Common::AbstractModel
         # @param Mobile: 手机号码
         # @type Mobile: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :Mobile
+        attr_accessor :Mobile, :Encryption
         
-        def initialize(mobile=nil)
+        def initialize(mobile=nil, encryption=nil)
           @Mobile = mobile
+          @Encryption = encryption
         end
 
         def deserialize(params)
           @Mobile = params['Mobile']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new.deserialize(params['Encryption'])
+          end
         end
       end
 
@@ -1889,15 +1895,21 @@ module TencentCloud
       class MobileStatusRequest < TencentCloud::Common::AbstractModel
         # @param Mobile: 手机号码
         # @type Mobile: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :Mobile
+        attr_accessor :Mobile, :Encryption
         
-        def initialize(mobile=nil)
+        def initialize(mobile=nil, encryption=nil)
           @Mobile = mobile
+          @Encryption = encryption
         end
 
         def deserialize(params)
           @Mobile = params['Mobile']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new.deserialize(params['Encryption'])
+          end
         end
       end
 

@@ -1338,10 +1338,12 @@ module TencentCloud
         # @type RealServerPorts: Array
         # @param ClientIPMethod: 监听器获取客户端 IP 的方式，0表示 TOA, 1表示Proxy Protocol
         # @type ClientIPMethod: Integer
+        # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
+        # @type FailoverSwitch: Integer
 
-        attr_accessor :ListenerName, :Ports, :Scheduler, :HealthCheck, :RealServerType, :ProxyId, :GroupId, :DelayLoop, :ConnectTimeout, :RealServerPorts, :ClientIPMethod
+        attr_accessor :ListenerName, :Ports, :Scheduler, :HealthCheck, :RealServerType, :ProxyId, :GroupId, :DelayLoop, :ConnectTimeout, :RealServerPorts, :ClientIPMethod, :FailoverSwitch
         
-        def initialize(listenername=nil, ports=nil, scheduler=nil, healthcheck=nil, realservertype=nil, proxyid=nil, groupid=nil, delayloop=nil, connecttimeout=nil, realserverports=nil, clientipmethod=nil)
+        def initialize(listenername=nil, ports=nil, scheduler=nil, healthcheck=nil, realservertype=nil, proxyid=nil, groupid=nil, delayloop=nil, connecttimeout=nil, realserverports=nil, clientipmethod=nil, failoverswitch=nil)
           @ListenerName = listenername
           @Ports = ports
           @Scheduler = scheduler
@@ -1353,6 +1355,7 @@ module TencentCloud
           @ConnectTimeout = connecttimeout
           @RealServerPorts = realserverports
           @ClientIPMethod = clientipmethod
+          @FailoverSwitch = failoverswitch
         end
 
         def deserialize(params)
@@ -1367,6 +1370,7 @@ module TencentCloud
           @ConnectTimeout = params['ConnectTimeout']
           @RealServerPorts = params['RealServerPorts']
           @ClientIPMethod = params['ClientIPMethod']
+          @FailoverSwitch = params['FailoverSwitch']
         end
       end
 
@@ -4926,10 +4930,12 @@ module TencentCloud
         # @type ConnectTimeout: Integer
         # @param HealthCheck: 是否开启健康检查，1开启，0关闭。
         # @type HealthCheck: Integer
+        # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
+        # @type FailoverSwitch: Integer
 
-        attr_accessor :ListenerId, :GroupId, :ProxyId, :ListenerName, :Scheduler, :DelayLoop, :ConnectTimeout, :HealthCheck
+        attr_accessor :ListenerId, :GroupId, :ProxyId, :ListenerName, :Scheduler, :DelayLoop, :ConnectTimeout, :HealthCheck, :FailoverSwitch
         
-        def initialize(listenerid=nil, groupid=nil, proxyid=nil, listenername=nil, scheduler=nil, delayloop=nil, connecttimeout=nil, healthcheck=nil)
+        def initialize(listenerid=nil, groupid=nil, proxyid=nil, listenername=nil, scheduler=nil, delayloop=nil, connecttimeout=nil, healthcheck=nil, failoverswitch=nil)
           @ListenerId = listenerid
           @GroupId = groupid
           @ProxyId = proxyid
@@ -4938,6 +4944,7 @@ module TencentCloud
           @DelayLoop = delayloop
           @ConnectTimeout = connecttimeout
           @HealthCheck = healthcheck
+          @FailoverSwitch = failoverswitch
         end
 
         def deserialize(params)
@@ -4949,6 +4956,7 @@ module TencentCloud
           @DelayLoop = params['DelayLoop']
           @ConnectTimeout = params['ConnectTimeout']
           @HealthCheck = params['HealthCheck']
+          @FailoverSwitch = params['FailoverSwitch']
         end
       end
 
@@ -5603,7 +5611,7 @@ module TencentCloud
         end
       end
 
-      # RealServerBindSetReq
+      # 绑定的源站信息
       class RealServerBindSetReq < TencentCloud::Common::AbstractModel
         # @param RealServerId: 源站id
         # @type RealServerId: String
@@ -5613,14 +5621,17 @@ module TencentCloud
         # @type RealServerIP: String
         # @param RealServerWeight: 源站权重
         # @type RealServerWeight: Integer
+        # @param RealServerFailoverRole: 源站主备角色：master主，slave备，该参数必须在监听器打开了源站主备模式，且监听器类型为TCP监听器
+        # @type RealServerFailoverRole: String
 
-        attr_accessor :RealServerId, :RealServerPort, :RealServerIP, :RealServerWeight
+        attr_accessor :RealServerId, :RealServerPort, :RealServerIP, :RealServerWeight, :RealServerFailoverRole
         
-        def initialize(realserverid=nil, realserverport=nil, realserverip=nil, realserverweight=nil)
+        def initialize(realserverid=nil, realserverport=nil, realserverip=nil, realserverweight=nil, realserverfailoverrole=nil)
           @RealServerId = realserverid
           @RealServerPort = realserverport
           @RealServerIP = realserverip
           @RealServerWeight = realserverweight
+          @RealServerFailoverRole = realserverfailoverrole
         end
 
         def deserialize(params)
@@ -5628,6 +5639,7 @@ module TencentCloud
           @RealServerPort = params['RealServerPort']
           @RealServerIP = params['RealServerIP']
           @RealServerWeight = params['RealServerWeight']
+          @RealServerFailoverRole = params['RealServerFailoverRole']
         end
       end
 

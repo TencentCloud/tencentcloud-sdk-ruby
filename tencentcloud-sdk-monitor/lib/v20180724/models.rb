@@ -1540,9 +1540,9 @@ module TencentCloud
         # @type PageSize: Integer
         # @param Order: 默认按首次出现时间倒序排列 "ASC"=正序 "DESC"=逆序
         # @type Order: String
-        # @param StartTime: 起始时间，默认一天前的时间戳
+        # @param StartTime: 起始时间，默认一天前的时间戳。对应 FirstOccurTime，告警首次出现时间。
         # @type StartTime: Integer
-        # @param EndTime: 结束时间，默认当前时间戳
+        # @param EndTime: 结束时间，默认当前时间戳。对应 FirstOccurTime，告警首次出现时间。
         # @type EndTime: Integer
         # @param MonitorTypes: 根据监控类型过滤 不选默认查所有类型 "MT_QCE"=云产品监控 "
         # @type MonitorTypes: Array
@@ -1905,7 +1905,7 @@ module TencentCloud
         # @type RuleTypes: Array
         # @param Enable: 告警启停筛选，[1]：启用   [0]：停止，全部[0, 1]
         # @type Enable: Array
-        # @param NotBindingNoticeRule: 是否未配置通知规则，1：未配置，0：配置
+        # @param NotBindingNoticeRule: 传 1 查询未配置通知规则的告警策略；不传或传其他数值，查询所有策略。
         # @type NotBindingNoticeRule: Integer
 
         attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule

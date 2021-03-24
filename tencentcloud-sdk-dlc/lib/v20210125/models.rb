@@ -487,7 +487,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param SortBy: 按字段爱旭，支持如下字段类型，update-time
+        # @param SortBy: 按字段排序，支持如下字段类型，update-time
         # @type SortBy: String
         # @param Sorting: 排序方式，desc表示正序，asc表示反序
         # @type Sorting: String

@@ -1129,6 +1129,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重置云存服务
+
+        # @param request: Request instance for ResetCloudStorage.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::ResetCloudStorageRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::ResetCloudStorageResponse`
+        def ResetCloudStorage(request)
+          body = send_request('ResetCloudStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetCloudStorageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于重试设备升级任务
 
         # @param request: Request instance for RetryDeviceFirmwareTask.
@@ -1163,6 +1187,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetForwardAuthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 转移云存服务
+
+        # @param request: Request instance for TransferCloudStorage.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::TransferCloudStorageRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::TransferCloudStorageResponse`
+        def TransferCloudStorage(request)
+          body = send_request('TransferCloudStorage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TransferCloudStorageResponse.new
             model.deserialize(response['Response'])
             model
           else

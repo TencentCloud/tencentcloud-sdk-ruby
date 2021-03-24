@@ -1581,7 +1581,7 @@ module TencentCloud
       class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称，本接口取值：mariadb。
         # @type Product: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
 
         attr_accessor :Product, :InstanceId
@@ -1601,13 +1601,21 @@ module TencentCloud
       class DescribeDBSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Groups: 安全组详情。
         # @type Groups: Array
+        # @param VIP: 实例VIP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VIP: String
+        # @param VPort: 实例端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VPort: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Groups, :RequestId
+        attr_accessor :Groups, :VIP, :VPort, :RequestId
         
-        def initialize(groups=nil, requestid=nil)
+        def initialize(groups=nil, vip=nil, vport=nil, requestid=nil)
           @Groups = groups
+          @VIP = vip
+          @VPort = vport
           @RequestId = requestid
         end
 
@@ -1618,6 +1626,8 @@ module TencentCloud
               @Groups << SecurityGroup.new.deserialize(i)
             end
           end
+          @VIP = params['VIP']
+          @VPort = params['VPort']
           @RequestId = params['RequestId']
         end
       end
