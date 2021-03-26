@@ -592,6 +592,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
+
+        # @param request: Request instance for DescribeFleetRelatedResources.
+        # @type request: :class:`Tencentcloud::gse::V20191112::DescribeFleetRelatedResourcesRequest`
+        # @rtype: :class:`Tencentcloud::gse::V20191112::DescribeFleetRelatedResourcesResponse`
+        def DescribeFleetRelatedResources(request)
+          body = send_request('DescribeFleetRelatedResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFleetRelatedResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeFleetStatisticDetails）用于查询服务部署统计详情。
 
         # @param request: Request instance for DescribeFleetStatisticDetails.
@@ -1034,6 +1058,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DetachCcnInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取游戏服务器实例的日志URL。
+
+        # @param request: Request instance for GetGameServerInstanceLogUrl.
+        # @type request: :class:`Tencentcloud::gse::V20191112::GetGameServerInstanceLogUrlRequest`
+        # @rtype: :class:`Tencentcloud::gse::V20191112::GetGameServerInstanceLogUrlResponse`
+        def GetGameServerInstanceLogUrl(request)
+          body = send_request('GetGameServerInstanceLogUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetGameServerInstanceLogUrlResponse.new
             model.deserialize(response['Response'])
             model
           else

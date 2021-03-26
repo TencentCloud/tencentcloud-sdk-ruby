@@ -1734,7 +1734,7 @@ module TencentCloud
         # @type NamespaceName: String
         # @param RepositoryName: 镜像仓库名称
         # @type RepositoryName: String
-        # @param ImageVersion: 指定镜像版本(Tag)，不填默认返回仓库内全部容器镜像
+        # @param ImageVersion: 指定镜像版本进行查找，当前为模糊搜索
         # @type ImageVersion: String
         # @param Limit: 每页个数，用于分页，默认20
         # @type Limit: Integer
@@ -2983,6 +2983,52 @@ module TencentCloud
         end
       end
 
+      # ManageReplication请求参数结构体
+      class ManageReplicationRequest < TencentCloud::Common::AbstractModel
+        # @param SourceRegistryId: 复制源实例ID
+        # @type SourceRegistryId: String
+        # @param DestinationRegistryId: 复制目标实例ID
+        # @type DestinationRegistryId: String
+        # @param Rule: 同步规则
+        # @type Rule: :class:`Tencentcloud::Tcr.v20190924.models.ReplicationRule`
+        # @param Description: 规则描述
+        # @type Description: String
+
+        attr_accessor :SourceRegistryId, :DestinationRegistryId, :Rule, :Description
+        
+        def initialize(sourceregistryid=nil, destinationregistryid=nil, rule=nil, description=nil)
+          @SourceRegistryId = sourceregistryid
+          @DestinationRegistryId = destinationregistryid
+          @Rule = rule
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SourceRegistryId = params['SourceRegistryId']
+          @DestinationRegistryId = params['DestinationRegistryId']
+          unless params['Rule'].nil?
+            @Rule = ReplicationRule.new.deserialize(params['Rule'])
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # ManageReplication返回参数结构体
+      class ManageReplicationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyApplicationTriggerPersonal请求参数结构体
       class ModifyApplicationTriggerPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 触发器关联的镜像仓库，library/test格式
@@ -3645,6 +3691,26 @@ module TencentCloud
         end
       end
 
+      # 同步规则过滤器
+      class ReplicationFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 类型（name、tag和resource）
+        # @type Type: String
+        # @param Value: 默认为空
+        # @type Value: String
+
+        attr_accessor :Type, :Value
+        
+        def initialize(type=nil, value=nil)
+          @Type = type
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
+        end
+      end
+
       # 企业版复制实例
       class ReplicationRegistry < TencentCloud::Common::AbstractModel
         # @param RegistryId: 主实例ID
@@ -3678,6 +3744,39 @@ module TencentCloud
           @ReplicationRegionName = params['ReplicationRegionName']
           @Status = params['Status']
           @CreatedAt = params['CreatedAt']
+        end
+      end
+
+      # 同步规则
+      class ReplicationRule < TencentCloud::Common::AbstractModel
+        # @param Name: 同步规则名称
+        # @type Name: String
+        # @param DestNamespace: 目标命名空间
+        # @type DestNamespace: String
+        # @param Override: 是否覆盖
+        # @type Override: Boolean
+        # @param Filters: 同步过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Name, :DestNamespace, :Override, :Filters
+        
+        def initialize(name=nil, destnamespace=nil, override=nil, filters=nil)
+          @Name = name
+          @DestNamespace = destnamespace
+          @Override = override
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DestNamespace = params['DestNamespace']
+          @Override = params['Override']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << ReplicationFilter.new.deserialize(i)
+            end
+          end
         end
       end
 

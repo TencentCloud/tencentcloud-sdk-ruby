@@ -1422,6 +1422,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口可以查询用户已经购买的预付费商品的信息，包括：
+        #     1. 商品的类型、生效和失效日期。
+        #     2. 商品中每种资源的额度和剩余额度。
+
+        # @param request: Request instance for DescribePrepaidProducts.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribePrepaidProductsRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribePrepaidProductsResponse`
+        def DescribePrepaidProducts(request)
+          body = send_request('DescribePrepaidProducts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrepaidProductsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据任务流模板名字，获取任务流模板详情列表。
 
         # @param request: Request instance for DescribeProcedureTemplates.

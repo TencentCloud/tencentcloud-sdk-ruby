@@ -145,7 +145,7 @@ module TencentCloud
         # @type ScriptName: String
         # @param SQLStatement: base64编码后的sql语句
         # @type SQLStatement: String
-        # @param ScriptDesc: 脚本描述,
+        # @param ScriptDesc: 脚本描述， 不能超过50个字符
         # @type ScriptDesc: String
         # @param DatabaseName: 数据库名称
         # @type DatabaseName: String
@@ -669,11 +669,11 @@ module TencentCloud
         # @type Filters: Array
         # @param SortBy: 排序字段，支持如下字段类型，create-time
         # @type SortBy: String
-        # @param Sorting: 排序方式，desc表示正序，asc表示反序
+        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc。
         # @type Sorting: String
-        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。默认为45天前的当前时刻
         # @type StartTime: String
-        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。
+        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻
         # @type EndTime: String
 
         attr_accessor :Limit, :Offset, :Filters, :SortBy, :Sorting, :StartTime, :EndTime

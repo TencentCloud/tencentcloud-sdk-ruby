@@ -825,6 +825,26 @@ module TencentCloud
         end
       end
 
+      # Eid出参
+      class EidInfo < TencentCloud::Common::AbstractModel
+        # @param EidCode: 商户方 appeIDcode 的数字证书
+        # @type EidCode: String
+        # @param EidSign: eID 中心针对商户方EidCode的电子签名
+        # @type EidSign: String
+
+        attr_accessor :EidCode, :EidSign
+        
+        def initialize(eidcode=nil, eidsign=nil)
+          @EidCode = eidcode
+          @EidSign = eidsign
+        end
+
+        def deserialize(params)
+          @EidCode = params['EidCode']
+          @EidSign = params['EidSign']
+        end
+      end
+
       # 敏感数据加密
       class Encryption < TencentCloud::Common::AbstractModel
         # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅<a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
@@ -1057,6 +1077,154 @@ module TencentCloud
 
         def deserialize(params)
           @DetectInfo = params['DetectInfo']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetEidResult请求参数结构体
+      class GetEidResultRequest < TencentCloud::Common::AbstractModel
+        # @param EidToken: 人脸核身流程的标识，调用DetectAuth接口时生成。
+        # @type EidToken: String
+        # @param InfoType: 指定拉取的结果信息，取值（0：全部；1：文本类；2：身份证信息；3：最佳截图信息）。
+        # 如 13表示拉取文本类、最佳截图信息。
+        # 默认值：0
+        # @type InfoType: String
+        # @param BestFramesCount: 从活体视频中截取一定张数的最佳帧。默认为0，最大为3，超出3的最多只给3张。（InfoType需要包含3）
+        # @type BestFramesCount: Integer
+
+        attr_accessor :EidToken, :InfoType, :BestFramesCount
+        
+        def initialize(eidtoken=nil, infotype=nil, bestframescount=nil)
+          @EidToken = eidtoken
+          @InfoType = infotype
+          @BestFramesCount = bestframescount
+        end
+
+        def deserialize(params)
+          @EidToken = params['EidToken']
+          @InfoType = params['InfoType']
+          @BestFramesCount = params['BestFramesCount']
+        end
+      end
+
+      # GetEidResult返回参数结构体
+      class GetEidResultResponse < TencentCloud::Common::AbstractModel
+        # @param Text: 文本类信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Faceid.v20180301.models.DetectInfoText`
+        # @param IdCardData: 身份证照片信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdCardData: :class:`Tencentcloud::Faceid.v20180301.models.DetectInfoIdCardData`
+        # @param BestFrame: 最佳帧信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BestFrame: :class:`Tencentcloud::Faceid.v20180301.models.DetectInfoBestFrame`
+        # @param EidInfo: Eid信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EidInfo: :class:`Tencentcloud::Faceid.v20180301.models.EidInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :RequestId
+        
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, requestid=nil)
+          @Text = text
+          @IdCardData = idcarddata
+          @BestFrame = bestframe
+          @EidInfo = eidinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = DetectInfoText.new.deserialize(params['Text'])
+          end
+          unless params['IdCardData'].nil?
+            @IdCardData = DetectInfoIdCardData.new.deserialize(params['IdCardData'])
+          end
+          unless params['BestFrame'].nil?
+            @BestFrame = DetectInfoBestFrame.new.deserialize(params['BestFrame'])
+          end
+          unless params['EidInfo'].nil?
+            @EidInfo = EidInfo.new.deserialize(params['EidInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取token时的的配置
+      class GetEidTokenConfig < TencentCloud::Common::AbstractModel
+        # @param InputType: 姓名身份证输入方式。
+        # 1：传身份证正反面OCR
+        # 2：传身份证正面OCR
+        # 3：用户手动输入
+        # 4：客户后台传入
+        # 默认1
+        # 注：使用OCR时仅支持用户修改结果中的姓名
+        # @type InputType: String
+
+        attr_accessor :InputType
+        
+        def initialize(inputtype=nil)
+          @InputType = inputtype
+        end
+
+        def deserialize(params)
+          @InputType = params['InputType']
+        end
+      end
+
+      # GetEidToken请求参数结构体
+      class GetEidTokenRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: EID商户id
+        # @type MerchantId: String
+        # @param IdCard: 身份标识（未使用OCR服务时，必须传入）。
+        # 规则：a-zA-Z0-9组合。最长长度32位。
+        # @type IdCard: String
+        # @param Name: 姓名。（未使用OCR服务时，必须传入）最长长度32位。中文请使用UTF-8编码。
+        # @type Name: String
+        # @param Extra: 透传字段，在获取验证结果时返回。
+        # @type Extra: String
+        # @param Config: 小程序模式配置，包括如何传入姓名身份证的配置。
+        # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.GetEidTokenConfig`
+
+        attr_accessor :MerchantId, :IdCard, :Name, :Extra, :Config
+        
+        def initialize(merchantid=nil, idcard=nil, name=nil, extra=nil, config=nil)
+          @MerchantId = merchantid
+          @IdCard = idcard
+          @Name = name
+          @Extra = extra
+          @Config = config
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @IdCard = params['IdCard']
+          @Name = params['Name']
+          @Extra = params['Extra']
+          unless params['Config'].nil?
+            @Config = GetEidTokenConfig.new.deserialize(params['Config'])
+          end
+        end
+      end
+
+      # GetEidToken返回参数结构体
+      class GetEidTokenResponse < TencentCloud::Common::AbstractModel
+        # @param EidToken: 一次核身流程的标识，有效时间为7,200秒；
+        # 完成核身后，可用该标识获取验证结果信息。
+        # @type EidToken: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EidToken, :RequestId
+        
+        def initialize(eidtoken=nil, requestid=nil)
+          @EidToken = eidtoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EidToken = params['EidToken']
           @RequestId = params['RequestId']
         end
       end

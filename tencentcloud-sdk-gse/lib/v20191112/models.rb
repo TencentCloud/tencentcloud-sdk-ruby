@@ -236,6 +236,26 @@ module TencentCloud
         end
       end
 
+      # 云联网相关信息
+      class CcnInfo < TencentCloud::Common::AbstractModel
+        # @param AccountId: 云联网所属账号
+        # @type AccountId: String
+        # @param CcnId: 云联网id
+        # @type CcnId: String
+
+        attr_accessor :AccountId, :CcnId
+        
+        def initialize(accountid=nil, ccnid=nil)
+          @AccountId = accountid
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @AccountId = params['AccountId']
+          @CcnId = params['CcnId']
+        end
+      end
+
       # 云联网实例信息
       class CcnInstanceSets < TencentCloud::Common::AbstractModel
         # @param AccountId: 云联网账号 Uin
@@ -301,7 +321,7 @@ module TencentCloud
         # @type GameServerSessionProtectionTimeLimit: Integer
         # @param SelectedScalingType: 是否选择扩缩容：SCALING_SELECTED 或者 SCALING_UNSELECTED；默认是 SCALING_UNSELECTED
         # @type SelectedScalingType: String
-        # @param SelectedCcnType: 是否选择云联网：CCN_SELECTED 或者 CCN_UNSELECTED；默认是 CCN_UNSELECTED
+        # @param SelectedCcnType: 是否选择云联网：CCN_SELECTED_BEFORE_CREATE（创建前关联）， CCN_SELECTED_AFTER_CREATE（创建后关联）或者 CCN_UNSELECTED（不关联）；默认是 CCN_UNSELECTED
         # @type SelectedCcnType: String
         # @param Tags: 标签列表，最大长度50组
         # @type Tags: Array
@@ -311,10 +331,12 @@ module TencentCloud
         # @type DataDiskInfo: Array
         # @param SelectedTimerType: 是否选择复制定时器策略：TIMER_SELECTED 或者 TIMER_UNSELECTED；默认是 TIMER_UNSELECTED
         # @type SelectedTimerType: String
+        # @param CcnInfos: 云联网信息，包含对应的账号信息及所属id
+        # @type CcnInfos: Array
 
-        attr_accessor :FleetId, :CopyNumber, :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :GameServerSessionProtectionTimeLimit, :SelectedScalingType, :SelectedCcnType, :Tags, :SystemDiskInfo, :DataDiskInfo, :SelectedTimerType
+        attr_accessor :FleetId, :CopyNumber, :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :GameServerSessionProtectionTimeLimit, :SelectedScalingType, :SelectedCcnType, :Tags, :SystemDiskInfo, :DataDiskInfo, :SelectedTimerType, :CcnInfos
         
-        def initialize(fleetid=nil, copynumber=nil, assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, gameserversessionprotectiontimelimit=nil, selectedscalingtype=nil, selectedccntype=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, selectedtimertype=nil)
+        def initialize(fleetid=nil, copynumber=nil, assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, gameserversessionprotectiontimelimit=nil, selectedscalingtype=nil, selectedccntype=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, selectedtimertype=nil, ccninfos=nil)
           @FleetId = fleetid
           @CopyNumber = copynumber
           @AssetId = assetid
@@ -333,6 +355,7 @@ module TencentCloud
           @SystemDiskInfo = systemdiskinfo
           @DataDiskInfo = datadiskinfo
           @SelectedTimerType = selectedtimertype
+          @CcnInfos = ccninfos
         end
 
         def deserialize(params)
@@ -375,6 +398,12 @@ module TencentCloud
             end
           end
           @SelectedTimerType = params['SelectedTimerType']
+          unless params['CcnInfos'].nil?
+            @CcnInfos = []
+            params['CcnInfos'].each do |i|
+              @CcnInfos << CcnInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -638,10 +667,12 @@ module TencentCloud
         # @type SystemDiskInfo: :class:`Tencentcloud::Gse.v20191112.models.DiskInfo`
         # @param DataDiskInfo: 数据盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-32000GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，10-32000GB；容量以10为单位
         # @type DataDiskInfo: Array
+        # @param CcnInfos: 云联网信息，包含对应的账号信息及所属id
+        # @type CcnInfos: Array
 
-        attr_accessor :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :PeerVpcId, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :SubNetId, :GameServerSessionProtectionTimeLimit, :Tags, :SystemDiskInfo, :DataDiskInfo
+        attr_accessor :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :PeerVpcId, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :SubNetId, :GameServerSessionProtectionTimeLimit, :Tags, :SystemDiskInfo, :DataDiskInfo, :CcnInfos
         
-        def initialize(assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, peervpcid=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, subnetid=nil, gameserversessionprotectiontimelimit=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil)
+        def initialize(assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, peervpcid=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, subnetid=nil, gameserversessionprotectiontimelimit=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, ccninfos=nil)
           @AssetId = assetid
           @Description = description
           @InboundPermissions = inboundpermissions
@@ -657,6 +688,7 @@ module TencentCloud
           @Tags = tags
           @SystemDiskInfo = systemdiskinfo
           @DataDiskInfo = datadiskinfo
+          @CcnInfos = ccninfos
         end
 
         def deserialize(params)
@@ -694,6 +726,12 @@ module TencentCloud
             @DataDiskInfo = []
             params['DataDiskInfo'].each do |i|
               @DataDiskInfo << DiskInfo.new.deserialize(i)
+            end
+          end
+          unless params['CcnInfos'].nil?
+            @CcnInfos = []
+            params['CcnInfos'].each do |i|
+              @CcnInfos << CcnInfo.new.deserialize(i)
             end
           end
         end
@@ -1523,6 +1561,48 @@ module TencentCloud
             @InboundPermissions = []
             params['InboundPermissions'].each do |i|
               @InboundPermissions << InboundPermission.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFleetRelatedResources请求参数结构体
+      class DescribeFleetRelatedResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param FleetId: 服务器舰队 Id
+        # @type FleetId: String
+
+        attr_accessor :FleetId
+        
+        def initialize(fleetid=nil)
+          @FleetId = fleetid
+        end
+
+        def deserialize(params)
+          @FleetId = params['FleetId']
+        end
+      end
+
+      # DescribeFleetRelatedResources返回参数结构体
+      class DescribeFleetRelatedResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Resources: 与服务器舰队关联的资源信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resources: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Resources, :RequestId
+        
+        def initialize(resources=nil, requestid=nil)
+          @Resources = resources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              @Resources << FleetRelatedResource.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
@@ -2746,10 +2826,13 @@ module TencentCloud
         # @param SystemDiskInfo: 系统盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-500GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，50-500GB；容量以1为单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SystemDiskInfo: :class:`Tencentcloud::Gse.v20191112.models.DiskInfo`
+        # @param RelatedCcnInfos: 云联网相关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelatedCcnInfos: Array
 
-        attr_accessor :AssetId, :CreationTime, :Description, :FleetArn, :FleetId, :FleetType, :InstanceType, :Name, :NewGameServerSessionProtectionPolicy, :OperatingSystem, :ResourceCreationLimitPolicy, :Status, :StoppedActions, :TerminationTime, :GameServerSessionProtectionTimeLimit, :BillingStatus, :Tags, :DataDiskInfo, :SystemDiskInfo
+        attr_accessor :AssetId, :CreationTime, :Description, :FleetArn, :FleetId, :FleetType, :InstanceType, :Name, :NewGameServerSessionProtectionPolicy, :OperatingSystem, :ResourceCreationLimitPolicy, :Status, :StoppedActions, :TerminationTime, :GameServerSessionProtectionTimeLimit, :BillingStatus, :Tags, :DataDiskInfo, :SystemDiskInfo, :RelatedCcnInfos
         
-        def initialize(assetid=nil, creationtime=nil, description=nil, fleetarn=nil, fleetid=nil, fleettype=nil, instancetype=nil, name=nil, newgameserversessionprotectionpolicy=nil, operatingsystem=nil, resourcecreationlimitpolicy=nil, status=nil, stoppedactions=nil, terminationtime=nil, gameserversessionprotectiontimelimit=nil, billingstatus=nil, tags=nil, datadiskinfo=nil, systemdiskinfo=nil)
+        def initialize(assetid=nil, creationtime=nil, description=nil, fleetarn=nil, fleetid=nil, fleettype=nil, instancetype=nil, name=nil, newgameserversessionprotectionpolicy=nil, operatingsystem=nil, resourcecreationlimitpolicy=nil, status=nil, stoppedactions=nil, terminationtime=nil, gameserversessionprotectiontimelimit=nil, billingstatus=nil, tags=nil, datadiskinfo=nil, systemdiskinfo=nil, relatedccninfos=nil)
           @AssetId = assetid
           @CreationTime = creationtime
           @Description = description
@@ -2769,6 +2852,7 @@ module TencentCloud
           @Tags = tags
           @DataDiskInfo = datadiskinfo
           @SystemDiskInfo = systemdiskinfo
+          @RelatedCcnInfos = relatedccninfos
         end
 
         def deserialize(params)
@@ -2805,6 +2889,12 @@ module TencentCloud
           unless params['SystemDiskInfo'].nil?
             @SystemDiskInfo = DiskInfo.new.deserialize(params['SystemDiskInfo'])
           end
+          unless params['RelatedCcnInfos'].nil?
+            @RelatedCcnInfos = []
+            params['RelatedCcnInfos'].each do |i|
+              @RelatedCcnInfos << RelatedCcnInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -2839,6 +2929,35 @@ module TencentCloud
             @InstanceCounts = InstanceCounts.new.deserialize(params['InstanceCounts'])
           end
           @ScalingInterval = params['ScalingInterval']
+        end
+      end
+
+      # 与服务器舰队关联的资源，如别名和队列
+      class FleetRelatedResource < TencentCloud::Common::AbstractModel
+        # @param Type: 资源类型。
+        # - ALIAS：别名
+        # - QUEUE：队列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param ResourceId: 资源ID，目前仅支持别名ID和队列名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceRegion: 资源所在区域，如ap-shanghai、na-siliconvalley等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRegion: String
+
+        attr_accessor :Type, :ResourceId, :ResourceRegion
+        
+        def initialize(type=nil, resourceid=nil, resourceregion=nil)
+          @Type = type
+          @ResourceId = resourceid
+          @ResourceRegion = resourceregion
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @ResourceId = params['ResourceId']
+          @ResourceRegion = params['ResourceRegion']
         end
       end
 
@@ -3312,6 +3431,67 @@ module TencentCloud
         def deserialize(params)
           @DestinationArn = params['DestinationArn']
           @FleetStatus = params['FleetStatus']
+        end
+      end
+
+      # GetGameServerInstanceLogUrl请求参数结构体
+      class GetGameServerInstanceLogUrlRequest < TencentCloud::Common::AbstractModel
+        # @param FleetId: 游戏舰队ID
+        # @type FleetId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ServerIp: 实例IP
+        # @type ServerIp: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Size: 每次条数
+        # @type Size: Integer
+
+        attr_accessor :FleetId, :InstanceId, :ServerIp, :Offset, :Size
+        
+        def initialize(fleetid=nil, instanceid=nil, serverip=nil, offset=nil, size=nil)
+          @FleetId = fleetid
+          @InstanceId = instanceid
+          @ServerIp = serverip
+          @Offset = offset
+          @Size = size
+        end
+
+        def deserialize(params)
+          @FleetId = params['FleetId']
+          @InstanceId = params['InstanceId']
+          @ServerIp = params['ServerIp']
+          @Offset = params['Offset']
+          @Size = params['Size']
+        end
+      end
+
+      # GetGameServerInstanceLogUrl返回参数结构体
+      class GetGameServerInstanceLogUrlResponse < TencentCloud::Common::AbstractModel
+        # @param PresignedUrls: 日志下载URL的数组，最小长度不小于1个ASCII字符，最大长度不超过1024个ASCII字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PresignedUrls: Array
+        # @param Total: 总条数
+        # @type Total: Integer
+        # @param HasNext: 是否还有没拉取完的
+        # @type HasNext: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PresignedUrls, :Total, :HasNext, :RequestId
+        
+        def initialize(presignedurls=nil, total=nil, hasnext=nil, requestid=nil)
+          @PresignedUrls = presignedurls
+          @Total = total
+          @HasNext = hasnext
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PresignedUrls = params['PresignedUrls']
+          @Total = params['Total']
+          @HasNext = params['HasNext']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4313,6 +4493,30 @@ module TencentCloud
           @HardLimit = params['HardLimit']
           @Remaining = params['Remaining']
           @ExtraInfo = params['ExtraInfo']
+        end
+      end
+
+      # 云联网相关信息描述
+      class RelatedCcnInfo < TencentCloud::Common::AbstractModel
+        # @param AccountId: 云联网所属账号
+        # @type AccountId: String
+        # @param CcnId: 云联网 ID
+        # @type CcnId: String
+        # @param AttachType: 关联云联网状态
+        # @type AttachType: String
+
+        attr_accessor :AccountId, :CcnId, :AttachType
+        
+        def initialize(accountid=nil, ccnid=nil, attachtype=nil)
+          @AccountId = accountid
+          @CcnId = ccnid
+          @AttachType = attachtype
+        end
+
+        def deserialize(params)
+          @AccountId = params['AccountId']
+          @CcnId = params['CcnId']
+          @AttachType = params['AttachType']
         end
       end
 
