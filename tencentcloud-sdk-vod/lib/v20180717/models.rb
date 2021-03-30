@@ -175,6 +175,34 @@ module TencentCloud
         end
       end
 
+      # 域名的地区加速信息
+      class AccelerateAreaInfo < TencentCloud::Common::AbstractModel
+        # @param Area: 加速地区，可选值：
+        # <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
+        # <li>Outside Chinese Mainland：中国境外。</li>
+        # @type Area: String
+        # @param TencentDisableReason: 腾讯禁用原因，可选值：
+        # <li>ForLegalReasons：因法律原因导致关闭加速；</li>
+        # <li>ForOverdueBills：因欠费停服导致关闭加速。</li>
+        # @type TencentDisableReason: String
+        # @param TencentEdgeDomain: 加速域名对应的 CNAME 域名。
+        # @type TencentEdgeDomain: String
+
+        attr_accessor :Area, :TencentDisableReason, :TencentEdgeDomain
+        
+        def initialize(area=nil, tencentdisablereason=nil, tencentedgedomain=nil)
+          @Area = area
+          @TencentDisableReason = tencentdisablereason
+          @TencentEdgeDomain = tencentedgedomain
+        end
+
+        def deserialize(params)
+          @Area = params['Area']
+          @TencentDisableReason = params['TencentDisableReason']
+          @TencentEdgeDomain = params['TencentEdgeDomain']
+        end
+      end
+
       # 转自适应码流信息
       class AdaptiveDynamicStreamingInfoItem < TencentCloud::Common::AbstractModel
         # @param Definition: 转自适应码流规格。
@@ -209,12 +237,15 @@ module TencentCloud
         # @type Definition: Integer
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
+        # @param SubtitleSet: 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持10个。
+        # @type SubtitleSet: Array
 
-        attr_accessor :Definition, :WatermarkSet
+        attr_accessor :Definition, :WatermarkSet, :SubtitleSet
         
-        def initialize(definition=nil, watermarkset=nil)
+        def initialize(definition=nil, watermarkset=nil, subtitleset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
+          @SubtitleSet = subtitleset
         end
 
         def deserialize(params)
@@ -225,6 +256,7 @@ module TencentCloud
               @WatermarkSet << WatermarkInput.new.deserialize(i)
             end
           end
+          @SubtitleSet = params['SubtitleSet']
         end
       end
 
@@ -7076,6 +7108,47 @@ module TencentCloud
         end
       end
 
+      # DescribeDrmDataKey请求参数结构体
+      class DescribeDrmDataKeyRequest < TencentCloud::Common::AbstractModel
+        # @param EdkList: 加密后的数据密钥列表，最大支持10个。
+        # @type EdkList: Array
+
+        attr_accessor :EdkList
+        
+        def initialize(edklist=nil)
+          @EdkList = edklist
+        end
+
+        def deserialize(params)
+          @EdkList = params['EdkList']
+        end
+      end
+
+      # DescribeDrmDataKey返回参数结构体
+      class DescribeDrmDataKeyResponse < TencentCloud::Common::AbstractModel
+        # @param KeyList: 密钥列表，包含加密的数据密钥。
+        # @type KeyList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyList, :RequestId
+        
+        def initialize(keylist=nil, requestid=nil)
+          @KeyList = keylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KeyList'].nil?
+            @KeyList = []
+            params['KeyList'].each do |i|
+              @KeyList << SimpleAesEdkPair.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEventsState请求参数结构体
       class DescribeEventsStateRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
@@ -8264,6 +8337,64 @@ module TencentCloud
         end
       end
 
+      # DescribeVodDomains请求参数结构体
+      class DescribeVodDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 域名列表。当该字段不填时，则默认列出所有域名信息。本字段字段限制如下：
+        # <li>域名个数度最大为 20。</li>
+        # @type Domains: Array
+        # @param Limit: 分页拉取的最大返回结果数。默认值：20。
+        # @type Limit: Integer
+        # @param Offset: 分页拉取的起始偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Domains, :Limit, :Offset, :SubAppId
+        
+        def initialize(domains=nil, limit=nil, offset=nil, subappid=nil)
+          @Domains = domains
+          @Limit = limit
+          @Offset = offset
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeVodDomains返回参数结构体
+      class DescribeVodDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 域名总数量。
+        # @type TotalCount: Integer
+        # @param DomainSet: 域名信息列表。
+        # @type DomainSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DomainSet, :RequestId
+        
+        def initialize(totalcount=nil, domainset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DomainSet = domainset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DomainSet'].nil?
+            @DomainSet = []
+            params['DomainSet'].each do |i|
+              @DomainSet << DomainDetailInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWatermarkTemplates请求参数结构体
       class DescribeWatermarkTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Definitions: 水印模板唯一标识过滤条件，数组长度限制：100。
@@ -8401,6 +8532,82 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 域名信息
+      class DomainDetailInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名名称。
+        # @type Domain: String
+        # @param AccelerateAreaInfos: 加速地区信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccelerateAreaInfos: Array
+        # @param DeployStatus: 部署状态，取值有：
+        # <li>Online：上线；</li>
+        # <li>Deploying：部署中；</li>
+        # <li>Locked: 锁定中，出现该状态时，无法对该域名进行部署变更。</li>
+        # @type DeployStatus: String
+        # @param HTTPSConfig: HTTPS 配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HTTPSConfig: :class:`Tencentcloud::Vod.v20180717.models.DomainHTTPSConfig`
+        # @param UrlSignatureAuthPolicy: [Key 防盗链](https://cloud.tencent.com/document/product/266/14047)配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UrlSignatureAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.UrlSignatureAuthPolicy`
+        # @param RefererAuthPolicy: [Referer 防盗链](https://cloud.tencent.com/document/product/266/14046)配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefererAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.RefererAuthPolicy`
+        # @param CreateTime: 域名添加到腾讯云点播系统中的时间。
+        # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
+        # @type CreateTime: String
+
+        attr_accessor :Domain, :AccelerateAreaInfos, :DeployStatus, :HTTPSConfig, :UrlSignatureAuthPolicy, :RefererAuthPolicy, :CreateTime
+        
+        def initialize(domain=nil, accelerateareainfos=nil, deploystatus=nil, httpsconfig=nil, urlsignatureauthpolicy=nil, refererauthpolicy=nil, createtime=nil)
+          @Domain = domain
+          @AccelerateAreaInfos = accelerateareainfos
+          @DeployStatus = deploystatus
+          @HTTPSConfig = httpsconfig
+          @UrlSignatureAuthPolicy = urlsignatureauthpolicy
+          @RefererAuthPolicy = refererauthpolicy
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['AccelerateAreaInfos'].nil?
+            @AccelerateAreaInfos = []
+            params['AccelerateAreaInfos'].each do |i|
+              @AccelerateAreaInfos << AccelerateAreaInfo.new.deserialize(i)
+            end
+          end
+          @DeployStatus = params['DeployStatus']
+          unless params['HTTPSConfig'].nil?
+            @HTTPSConfig = DomainHTTPSConfig.new.deserialize(params['HTTPSConfig'])
+          end
+          unless params['UrlSignatureAuthPolicy'].nil?
+            @UrlSignatureAuthPolicy = UrlSignatureAuthPolicy.new.deserialize(params['UrlSignatureAuthPolicy'])
+          end
+          unless params['RefererAuthPolicy'].nil?
+            @RefererAuthPolicy = RefererAuthPolicy.new.deserialize(params['RefererAuthPolicy'])
+          end
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 域名 HTTPS 配置信息
+      class DomainHTTPSConfig < TencentCloud::Common::AbstractModel
+        # @param CertExpireTime: 证书过期时间。
+        # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
+        # @type CertExpireTime: String
+
+        attr_accessor :CertExpireTime
+        
+        def initialize(certexpiretime=nil)
+          @CertExpireTime = certexpiretime
+        end
+
+        def deserialize(params)
+          @CertExpireTime = params['CertExpireTime']
         end
       end
 
@@ -10093,7 +10300,7 @@ module TencentCloud
         # @param SourceInfo: 该媒体文件的来源信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaSourceData`
-        # @param StorageRegion: 媒体文件存储地区，如 ap-guangzhou，参见[地域列表](https://cloud.tencent.com/document/api/213/15692#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
+        # @param StorageRegion: 媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
         # @type StorageRegion: String
         # @param TagSet: 媒体文件的标签信息。
         # @type TagSet: Array
@@ -10508,12 +10715,15 @@ module TencentCloud
         # @param MiniProgramReviewInfo: 小程序审核信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniProgramReviewInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaMiniProgramReviewInfo`
+        # @param SubtitleInfo: 字幕信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitleInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaSubtitleInfo`
         # @param FileId: 媒体文件唯一标识 ID。
         # @type FileId: String
 
-        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :FileId
+        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :SubtitleInfo, :FileId
         
-        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, fileid=nil)
+        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, subtitleinfo=nil, fileid=nil)
           @BasicInfo = basicinfo
           @MetaData = metadata
           @TranscodeInfo = transcodeinfo
@@ -10524,6 +10734,7 @@ module TencentCloud
           @KeyFrameDescInfo = keyframedescinfo
           @AdaptiveDynamicStreamingInfo = adaptivedynamicstreaminginfo
           @MiniProgramReviewInfo = miniprogramreviewinfo
+          @SubtitleInfo = subtitleinfo
           @FileId = fileid
         end
 
@@ -10557,6 +10768,9 @@ module TencentCloud
           end
           unless params['MiniProgramReviewInfo'].nil?
             @MiniProgramReviewInfo = MediaMiniProgramReviewInfo.new.deserialize(params['MiniProgramReviewInfo'])
+          end
+          unless params['SubtitleInfo'].nil?
+            @SubtitleInfo = MediaSubtitleInfo.new.deserialize(params['SubtitleInfo'])
           end
           @FileId = params['FileId']
         end
@@ -11397,6 +11611,64 @@ module TencentCloud
         def deserialize(params)
           @SourceType = params['SourceType']
           @SourceContext = params['SourceContext']
+        end
+      end
+
+      # 字幕信息。
+      class MediaSubtitleInfo < TencentCloud::Common::AbstractModel
+        # @param SubtitleSet: 字幕信息列表。
+        # @type SubtitleSet: Array
+
+        attr_accessor :SubtitleSet
+        
+        def initialize(subtitleset=nil)
+          @SubtitleSet = subtitleset
+        end
+
+        def deserialize(params)
+          unless params['SubtitleSet'].nil?
+            @SubtitleSet = []
+            params['SubtitleSet'].each do |i|
+              @SubtitleSet << MediaSubtitleItem.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 字幕信息。
+      class MediaSubtitleItem < TencentCloud::Common::AbstractModel
+        # @param Id: 字幕的唯一标识。
+        # @type Id: String
+        # @param Name: 字幕名字。
+        # @type Name: String
+        # @param Language: 字幕语言。常见的取值如下：
+        # <li>cn：中文</li>
+        # <li>ja：日文</li>
+        # <li>en-US：英文</li>
+        # 其他取值参考 [RFC5646](https://tools.ietf.org/html/rfc5646)
+        # @type Language: String
+        # @param Format: 字幕格式。取值范围如下：
+        # <li>vtt</li>
+        # @type Format: String
+        # @param Url: 字幕 URL。
+        # @type Url: String
+
+        attr_accessor :Id, :Name, :Language, :Format, :Url
+        
+        def initialize(id=nil, name=nil, language=nil, format=nil, url=nil)
+          @Id = id
+          @Name = name
+          @Language = language
+          @Format = format
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Language = params['Language']
+          @Format = params['Format']
+          @Url = params['Url']
         end
       end
 
@@ -14661,6 +14933,40 @@ module TencentCloud
         end
       end
 
+      # Referer 防盗链配置
+      class RefererAuthPolicy < TencentCloud::Common::AbstractModel
+        # @param Status: [Referer 防盗链](https://cloud.tencent.com/document/product/266/14046)设置状态，可选值：
+        # <li>Enabled: 启用；</li>
+        # <li>Disabled: 禁用。</li>
+        # @type Status: String
+        # @param AuthType: Referer 校验类型，可选值：
+        # <li>Black: 黑名单方式校验；</li>
+        # <li>White:白名单方式校验。</li>
+        # @type AuthType: String
+        # @param Referers: 用于校验的 Referer 名单。
+        # @type Referers: Array
+        # @param BlankRefererAllowed: 是否允许空 Referer 访问本域名，可选值：
+        # <li>Yes: 是；</li>
+        # <li>No: 否。</li>
+        # @type BlankRefererAllowed: String
+
+        attr_accessor :Status, :AuthType, :Referers, :BlankRefererAllowed
+        
+        def initialize(status=nil, authtype=nil, referers=nil, blankrefererallowed=nil)
+          @Status = status
+          @AuthType = authtype
+          @Referers = referers
+          @BlankRefererAllowed = blankrefererallowed
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @AuthType = params['AuthType']
+          @Referers = params['Referers']
+          @BlankRefererAllowed = params['BlankRefererAllowed']
+        end
+      end
+
       # ResetProcedureTemplate请求参数结构体
       class ResetProcedureTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 任务流名字
@@ -15085,6 +15391,26 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 简单加密加解密秘钥对。
+      class SimpleAesEdkPair < TencentCloud::Common::AbstractModel
+        # @param Edk: 加密后的数据密钥。
+        # @type Edk: String
+        # @param Dk: 数据密钥。返回的数据密钥 DK 为 Base64 编码字符串。
+        # @type Dk: String
+
+        attr_accessor :Edk, :Dk
+        
+        def initialize(edk=nil, dk=nil)
+          @Edk = edk
+          @Dk = dk
+        end
+
+        def deserialize(params)
+          @Edk = params['Edk']
+          @Dk = params['Dk']
         end
       end
 
@@ -16675,6 +17001,28 @@ module TencentCloud
 
         def deserialize(params)
           @Type = params['Type']
+        end
+      end
+
+      # 基于签名的 Key 防盗链信息
+      class UrlSignatureAuthPolicy < TencentCloud::Common::AbstractModel
+        # @param Status: [Key 防盗链](https://cloud.tencent.com/document/product/266/14047)设置状态，可选值：
+        # <li>Enabled: 启用；</li>
+        # <li>Disabled: 禁用。</li>
+        # @type Status: String
+        # @param EncryptedKey: [Key 防盗链](https://cloud.tencent.com/document/product/266/14047)中用于生成签名的密钥。
+        # @type EncryptedKey: String
+
+        attr_accessor :Status, :EncryptedKey
+        
+        def initialize(status=nil, encryptedkey=nil)
+          @Status = status
+          @EncryptedKey = encryptedkey
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @EncryptedKey = params['EncryptedKey']
         end
       end
 

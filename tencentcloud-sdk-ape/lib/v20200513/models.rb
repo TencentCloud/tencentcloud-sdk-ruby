@@ -560,19 +560,23 @@ module TencentCloud
         # @type LicenseScopeId: Integer
         # @param DimensionsNameId: 尺寸名称Id
         # @type DimensionsNameId: Integer
+        # @param UserId: 平台用户标识
+        # @type UserId: String
 
-        attr_accessor :ImageId, :LicenseScopeId, :DimensionsNameId
+        attr_accessor :ImageId, :LicenseScopeId, :DimensionsNameId, :UserId
         
-        def initialize(imageid=nil, licensescopeid=nil, dimensionsnameid=nil)
+        def initialize(imageid=nil, licensescopeid=nil, dimensionsnameid=nil, userid=nil)
           @ImageId = imageid
           @LicenseScopeId = licensescopeid
           @DimensionsNameId = dimensionsnameid
+          @UserId = userid
         end
 
         def deserialize(params)
           @ImageId = params['ImageId']
           @LicenseScopeId = params['LicenseScopeId']
           @DimensionsNameId = params['DimensionsNameId']
+          @UserId = params['UserId']
         end
       end
 

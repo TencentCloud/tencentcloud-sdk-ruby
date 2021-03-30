@@ -73,6 +73,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用来创建某个备份文件的下载任务
+
+        # @param request: Request instance for CreateBackupDownloadTask.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateBackupDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::CreateBackupDownloadTaskResponse`
+        def CreateBackupDownloadTask(request)
+          body = send_request('CreateBackupDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBackupDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
 
         # @param request: Request instance for CreateDBInstance.
@@ -155,6 +179,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBackupAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询备份下载任务信息
+
+        # @param request: Request instance for DescribeBackupDownloadTask.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeBackupDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeBackupDownloadTaskResponse`
+        def DescribeBackupDownloadTask(request)
+          body = send_request('DescribeBackupDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupDownloadTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -57,6 +57,70 @@ module TencentCloud
         end
       end
 
+      # 备份下载任务
+      class BackupDownloadTask < TencentCloud::Common::AbstractModel
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param BackupName: 备份文件名
+        # @type BackupName: String
+        # @param ReplicaSetId: 分片名称
+        # @type ReplicaSetId: String
+        # @param BackupSize: 备份数据大小，单位为字节
+        # @type BackupSize: Integer
+        # @param Status: 任务状态。0-等待执行，1-正在下载，2-下载完成，3-下载失败，4-等待重试
+        # @type Status: Integer
+        # @param Percent: 任务进度百分比
+        # @type Percent: Integer
+        # @param TimeSpend: 耗时，单位为秒
+        # @type TimeSpend: Integer
+        # @param Url: 备份数据下载链接
+        # @type Url: String
+
+        attr_accessor :CreateTime, :BackupName, :ReplicaSetId, :BackupSize, :Status, :Percent, :TimeSpend, :Url
+        
+        def initialize(createtime=nil, backupname=nil, replicasetid=nil, backupsize=nil, status=nil, percent=nil, timespend=nil, url=nil)
+          @CreateTime = createtime
+          @BackupName = backupname
+          @ReplicaSetId = replicasetid
+          @BackupSize = backupsize
+          @Status = status
+          @Percent = percent
+          @TimeSpend = timespend
+          @Url = url
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @BackupName = params['BackupName']
+          @ReplicaSetId = params['ReplicaSetId']
+          @BackupSize = params['BackupSize']
+          @Status = params['Status']
+          @Percent = params['Percent']
+          @TimeSpend = params['TimeSpend']
+          @Url = params['Url']
+        end
+      end
+
+      # 创建备份下载任务结果
+      class BackupDownloadTaskStatus < TencentCloud::Common::AbstractModel
+        # @param ReplicaSetId: 分片名
+        # @type ReplicaSetId: String
+        # @param Status: 任务当前状态。0-等待执行，1-正在下载，2-下载完成，3-下载失败，4-等待重试
+        # @type Status: Integer
+
+        attr_accessor :ReplicaSetId, :Status
+        
+        def initialize(replicasetid=nil, status=nil)
+          @ReplicaSetId = replicasetid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ReplicaSetId = params['ReplicaSetId']
+          @Status = params['Status']
+        end
+      end
+
       # 备份文件存储信息
       class BackupFile < TencentCloud::Common::AbstractModel
         # @param ReplicateSetId: 备份文件所属的副本集/分片ID
@@ -189,6 +253,60 @@ module TencentCloud
 
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBackupDownloadTask请求参数结构体
+      class CreateBackupDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @type InstanceId: String
+        # @param BackupName: 要下载的备份文件名，可通过DescribeDBBackups接口获取
+        # @type BackupName: String
+        # @param BackupSets: 下载备份的分片列表
+        # @type BackupSets: Array
+
+        attr_accessor :InstanceId, :BackupName, :BackupSets
+        
+        def initialize(instanceid=nil, backupname=nil, backupsets=nil)
+          @InstanceId = instanceid
+          @BackupName = backupname
+          @BackupSets = backupsets
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupName = params['BackupName']
+          unless params['BackupSets'].nil?
+            @BackupSets = []
+            params['BackupSets'].each do |i|
+              @BackupSets << ReplicaSetInfo.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # CreateBackupDownloadTask返回参数结构体
+      class CreateBackupDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 下载任务状态
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :RequestId
+        
+        def initialize(tasks=nil, requestid=nil)
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              @Tasks << BackupDownloadTaskStatus.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -606,6 +724,83 @@ module TencentCloud
             @Files = []
             params['Files'].each do |i|
               @Files << BackupFile.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupDownloadTask请求参数结构体
+      class DescribeBackupDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @type InstanceId: String
+        # @param BackupName: 备份文件名，用来过滤指定文件的下载任务
+        # @type BackupName: String
+        # @param StartTime: 指定要查询任务的时间范围，StartTime指定开始时间
+        # @type StartTime: String
+        # @param EndTime: 指定要查询任务的时间范围，StartTime指定结束时间
+        # @type EndTime: String
+        # @param Limit: 此次查询返回的条数，取值范围为1-100，默认为20
+        # @type Limit: Integer
+        # @param Offset: 指定此次查询返回的页数，默认为0
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段，取值为createTime，finishTime两种，默认为createTime
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，取值为asc，desc两种，默认desc
+        # @type OrderByType: String
+        # @param Status: 根据任务状态过滤。0-等待执行，1-正在下载，2-下载完成，3-下载失败，4-等待重试
+        # @type Status: Array
+
+        attr_accessor :InstanceId, :BackupName, :StartTime, :EndTime, :Limit, :Offset, :OrderBy, :OrderByType, :Status
+        
+        def initialize(instanceid=nil, backupname=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil, status=nil)
+          @InstanceId = instanceid
+          @BackupName = backupname
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackupName = params['BackupName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeBackupDownloadTask返回参数结构体
+      class DescribeBackupDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 满足查询条件的所有条数
+        # @type TotalCount: Integer
+        # @param Tasks: 下载任务列表
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tasks, :RequestId
+        
+        def initialize(totalcount=nil, tasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              @Tasks << BackupDownloadTask.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
@@ -1796,6 +1991,22 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 分片信息
+      class ReplicaSetInfo < TencentCloud::Common::AbstractModel
+        # @param ReplicaSetId: 分片名称
+        # @type ReplicaSetId: String
+
+        attr_accessor :ReplicaSetId
+        
+        def initialize(replicasetid=nil)
+          @ReplicaSetId = replicasetid
+        end
+
+        def deserialize(params)
+          @ReplicaSetId = params['ReplicaSetId']
         end
       end
 

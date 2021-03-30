@@ -224,7 +224,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口根据传入的参数创建命名空间。
+        # 该接口根据传入的参数删除命名空间。
 
         # @param request: Request instance for DeleteNamespace.
         # @type request: :class:`Tencentcloud::scf::V20180416::DeleteNamespaceRequest`

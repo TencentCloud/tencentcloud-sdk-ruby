@@ -545,6 +545,46 @@ module TencentCloud
         end
       end
 
+      # CreateReplicationInstance请求参数结构体
+      class CreateReplicationInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例iD
+        # @type RegistryId: String
+        # @param ReplicationRegionId: 复制实例地域ID
+        # @type ReplicationRegionId: Integer
+
+        attr_accessor :RegistryId, :ReplicationRegionId
+        
+        def initialize(registryid=nil, replicationregionid=nil)
+          @RegistryId = registryid
+          @ReplicationRegionId = replicationregionid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @ReplicationRegionId = params['ReplicationRegionId']
+        end
+      end
+
+      # CreateReplicationInstance返回参数结构体
+      class CreateReplicationInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param ReplicationRegistryId: 企业版复制实例Id
+        # @type ReplicationRegistryId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReplicationRegistryId, :RequestId
+        
+        def initialize(replicationregistryid=nil, requestid=nil)
+          @ReplicationRegistryId = replicationregistryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReplicationRegistryId = params['ReplicationRegistryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRepositoryPersonal请求参数结构体
       class CreateRepositoryPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 仓库名称
@@ -2993,14 +3033,17 @@ module TencentCloud
         # @type Rule: :class:`Tencentcloud::Tcr.v20190924.models.ReplicationRule`
         # @param Description: 规则描述
         # @type Description: String
+        # @param DestinationRegionId: 目标实例的地域ID，如广州是1
+        # @type DestinationRegionId: Integer
 
-        attr_accessor :SourceRegistryId, :DestinationRegistryId, :Rule, :Description
+        attr_accessor :SourceRegistryId, :DestinationRegistryId, :Rule, :Description, :DestinationRegionId
         
-        def initialize(sourceregistryid=nil, destinationregistryid=nil, rule=nil, description=nil)
+        def initialize(sourceregistryid=nil, destinationregistryid=nil, rule=nil, description=nil, destinationregionid=nil)
           @SourceRegistryId = sourceregistryid
           @DestinationRegistryId = destinationregistryid
           @Rule = rule
           @Description = description
+          @DestinationRegionId = destinationregionid
         end
 
         def deserialize(params)
@@ -3010,6 +3053,7 @@ module TencentCloud
             @Rule = ReplicationRule.new.deserialize(params['Rule'])
           end
           @Description = params['Description']
+          @DestinationRegionId = params['DestinationRegionId']
         end
       end
 

@@ -265,6 +265,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建从实例
+
+        # @param request: Request instance for CreateReplicationInstance.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::CreateReplicationInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::CreateReplicationInstanceResponse`
+        def CreateReplicationInstance(request)
+          body = send_request('CreateReplicationInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReplicationInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于企业版创建镜像仓库
 
         # @param request: Request instance for CreateRepository.

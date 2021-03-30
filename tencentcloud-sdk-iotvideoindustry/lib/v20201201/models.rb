@@ -22,10 +22,10 @@ module TencentCloud
         # @param DeviceId: 设备唯一标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
-        # @param DeviceType: 设备类型
+        # @param DeviceType: 设备类型；2：IPC
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceType: Integer
-        # @param Status: 设备状态
+        # @param Status: 设备状态；0：设备不在线；1：设备在线；2：设备隔离中；3：设备未注册
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateTime: 创建时间
@@ -43,7 +43,7 @@ module TencentCloud
         # @param DeviceCode: 设备编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceCode: String
-        # @param IsRecord: 是否存在录像
+        # @param IsRecord: 是否存在录像,，0:不存在；1：存在
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRecord: Integer
 
@@ -187,7 +187,7 @@ module TencentCloud
 
       # CreateDeviceGroup返回参数结构体
       class CreateDeviceGroupResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 响应结果
+        # @param Status: 响应结果，“OK”为成功，其他为失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param GroupId: 分组ID
@@ -318,7 +318,7 @@ module TencentCloud
       class CreateTimeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 时间模板名称
         # @type Name: String
-        # @param IsAllWeek: 是否为每周全时录制，即7*24h录制
+        # @param IsAllWeek: 是否为每周全时录制（即7*24h录制），0：非全时录制，1；全时录制，默认0
         # @type IsAllWeek: Integer
         # @param TimeTemplateSpecs: 当IsAllWeek为0时必选，用于描述模板的各个时间片段
         # @type TimeTemplateSpecs: Array
@@ -455,7 +455,7 @@ module TencentCloud
 
       # DeleteRecordPlan返回参数结构体
       class DeleteRecordPlanResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 操作结果
+        # @param Status: 操作结果，OK：成功，其他：失败
         # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -491,7 +491,7 @@ module TencentCloud
 
       # DeleteTimeTemplate返回参数结构体
       class DeleteTimeTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 操作结果
+        # @param Status: 操作结果，OK：成功，其他：失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -512,7 +512,7 @@ module TencentCloud
 
       # DescribeAllDeviceList请求参数结构体
       class DescribeAllDeviceListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认0
         # @type Offset: Integer
         # @param Limit: 限制，默认200
         # @type Limit: Integer
@@ -758,7 +758,7 @@ module TencentCloud
 
       # DescribeGroupByPath请求参数结构体
       class DescribeGroupByPathRequest < TencentCloud::Common::AbstractModel
-        # @param GroupPath: 分组路径
+        # @param GroupPath: 分组路径，格式为/aaa(/bbb/ccc)
         # @type GroupPath: String
 
         attr_accessor :GroupPath
@@ -799,7 +799,7 @@ module TencentCloud
       class DescribeGroupDevicesRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 分组ID
         # @type GroupId: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认0
         # @type Offset: Integer
         # @param Limit: 限制值，默认200
         # @type Limit: Integer
@@ -1041,7 +1041,7 @@ module TencentCloud
         # @type GroupId: String
         # @param GroupName: 分组名称，根据名称模糊匹配子分组时为必填
         # @type GroupName: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认0
         # @type Offset: Integer
         # @param Limit: 限制数，默认200
         # @type Limit: Integer
@@ -1151,9 +1151,9 @@ module TencentCloud
       class GetRecordDatesByDevRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一标识
         # @type DeviceId: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认0
         # @type Offset: Integer
-        # @param Limit: 限制量
+        # @param Limit: 限制量，默认200
         # @type Limit: Integer
 
         attr_accessor :DeviceId, :Offset, :Limit
@@ -1396,11 +1396,11 @@ module TencentCloud
       class GetVideoListByConRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一标识
         # @type DeviceId: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认0
         # @type Offset: Integer
-        # @param Limit: 限制量
+        # @param Limit: 限制量，默认200
         # @type Limit: Integer
-        # @param LatestDay: 0：查询指定日期的录像；1：查询最近一天的录像
+        # @param LatestDay: 0：查询指定日期的录像；1：查询最近一天的录像；默认0
         # @type LatestDay: Integer
         # @param Date: 指定某天。取值【YYYY-MM-DD】
         # 当LatestDay为空或为0时，本参数不允许为空。
@@ -1636,7 +1636,7 @@ module TencentCloud
 
       # ModifyDeviceData返回参数结构体
       class ModifyDeviceDataResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 操作结果
+        # @param Status: 操作结果,“OK”表示成功，其他表示失败。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -1934,7 +1934,7 @@ module TencentCloud
 
       # UpdateDevicePassWord返回参数结构体
       class UpdateDevicePassWordResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 操作结果
+        # @param Status: 操作结果，“OK”表示成功，其他表示失败。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2022,7 +2022,8 @@ module TencentCloud
         # @type TemplateId: String
         # @param Name: 时间模板名称
         # @type Name: String
-        # @param IsAllWeek: 是否全时录制，即7*24小时录制
+        # @param IsAllWeek: 是否全时录制，即7*24小时录制。
+        # 0：非全时录制；1：全时录制。默认1
         # @type IsAllWeek: Integer
         # @param TimeTemplateSpecs: 录制时间片段
         # @type TimeTemplateSpecs: Array
@@ -2051,7 +2052,7 @@ module TencentCloud
 
       # UpdateTimeTemplate返回参数结构体
       class UpdateTimeTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 操作结果
+        # @param Status: 操作结果，“OK”表示成功，其他表示失败。
         # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -1776,6 +1776,26 @@ module TencentCloud
         end
       end
 
+      # 数据库名以及字符集
+      class DatabasesWithCharacterLists < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名
+        # @type DatabaseName: String
+        # @param CharacterSet: 字符集类型
+        # @type CharacterSet: String
+
+        attr_accessor :DatabaseName, :CharacterSet
+        
+        def initialize(databasename=nil, characterset=nil)
+          @DatabaseName = databasename
+          @CharacterSet = characterset
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @CharacterSet = params['CharacterSet']
+        end
+      end
+
       # DeleteAccounts请求参数结构体
       class DeleteAccountsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -2297,20 +2317,24 @@ module TencentCloud
         # @type LogExpireDay: Integer
         # @param LogType: 审计日志存储类型。目前支持的值包括："storage" - 存储型。
         # @type LogType: String
+        # @param IsClosing: 是否正在关闭审计。目前支持的值包括："false"-否，"true"-是
+        # @type IsClosing: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LogExpireDay, :LogType, :RequestId
+        attr_accessor :LogExpireDay, :LogType, :IsClosing, :RequestId
         
-        def initialize(logexpireday=nil, logtype=nil, requestid=nil)
+        def initialize(logexpireday=nil, logtype=nil, isclosing=nil, requestid=nil)
           @LogExpireDay = logexpireday
           @LogType = logtype
+          @IsClosing = isclosing
           @RequestId = requestid
         end
 
         def deserialize(params)
           @LogExpireDay = params['LogExpireDay']
           @LogType = params['LogType']
+          @IsClosing = params['IsClosing']
           @RequestId = params['RequestId']
         end
       end
@@ -3111,20 +3135,25 @@ module TencentCloud
         # @param Zone: 实例可用区信息，格式如 "ap-shanghai-1"。
         # @type Zone: String
         # @param SlaveConfig: 备库的配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaveConfig: :class:`Tencentcloud::Cdb.v20170320.models.SlaveConfig`
         # @param BackupConfig: 强同步实例第二备库的配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupConfig: :class:`Tencentcloud::Cdb.v20170320.models.BackupConfig`
+        # @param Switched: 是否切换备库。
+        # @type Switched: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProtectMode, :DeployMode, :Zone, :SlaveConfig, :BackupConfig, :RequestId
+        attr_accessor :ProtectMode, :DeployMode, :Zone, :SlaveConfig, :BackupConfig, :Switched, :RequestId
         
-        def initialize(protectmode=nil, deploymode=nil, zone=nil, slaveconfig=nil, backupconfig=nil, requestid=nil)
+        def initialize(protectmode=nil, deploymode=nil, zone=nil, slaveconfig=nil, backupconfig=nil, switched=nil, requestid=nil)
           @ProtectMode = protectmode
           @DeployMode = deploymode
           @Zone = zone
           @SlaveConfig = slaveconfig
           @BackupConfig = backupconfig
+          @Switched = switched
           @RequestId = requestid
         end
 
@@ -3138,6 +3167,7 @@ module TencentCloud
           unless params['BackupConfig'].nil?
             @BackupConfig = BackupConfig.new.deserialize(params['BackupConfig'])
           end
+          @Switched = params['Switched']
           @RequestId = params['RequestId']
         end
       end
@@ -3735,20 +3765,29 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Items: 返回的实例信息。
         # @type Items: Array
+        # @param DatabaseList: 数据库名以及字符集
+        # @type DatabaseList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Items, :RequestId
+        attr_accessor :TotalCount, :Items, :DatabaseList, :RequestId
         
-        def initialize(totalcount=nil, items=nil, requestid=nil)
+        def initialize(totalcount=nil, items=nil, databaselist=nil, requestid=nil)
           @TotalCount = totalcount
           @Items = items
+          @DatabaseList = databaselist
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @Items = params['Items']
+          unless params['DatabaseList'].nil?
+            @DatabaseList = []
+            params['DatabaseList'].each do |i|
+              @DatabaseList << DatabasesWithCharacterLists.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4106,23 +4145,26 @@ module TencentCloud
         # @type TemplateId: Integer
         # @param Name: 参数模板名称。
         # @type Name: String
-        # @param EngineVersion: 参数模板描述
+        # @param EngineVersion: 参数模板对应实例版本
         # @type EngineVersion: String
         # @param TotalCount: 参数模板中的参数数量
         # @type TotalCount: Integer
         # @param Items: 参数详情
         # @type Items: Array
+        # @param Description: 参数模板描述
+        # @type Description: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TemplateId, :Name, :EngineVersion, :TotalCount, :Items, :RequestId
+        attr_accessor :TemplateId, :Name, :EngineVersion, :TotalCount, :Items, :Description, :RequestId
         
-        def initialize(templateid=nil, name=nil, engineversion=nil, totalcount=nil, items=nil, requestid=nil)
+        def initialize(templateid=nil, name=nil, engineversion=nil, totalcount=nil, items=nil, description=nil, requestid=nil)
           @TemplateId = templateid
           @Name = name
           @EngineVersion = engineversion
           @TotalCount = totalcount
           @Items = items
+          @Description = description
           @RequestId = requestid
         end
 
@@ -4137,6 +4179,7 @@ module TencentCloud
               @Items << ParameterDetail.new.deserialize(i)
             end
           end
+          @Description = params['Description']
           @RequestId = params['RequestId']
         end
       end
@@ -4201,13 +4244,16 @@ module TencentCloud
       class DescribeProjectSecurityGroupsResponse < TencentCloud::Common::AbstractModel
         # @param Groups: 安全组详情。
         # @type Groups: Array
+        # @param TotalCount: 安全组规则数量。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Groups, :RequestId
+        attr_accessor :Groups, :TotalCount, :RequestId
         
-        def initialize(groups=nil, requestid=nil)
+        def initialize(groups=nil, totalcount=nil, requestid=nil)
           @Groups = groups
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -4218,6 +4264,7 @@ module TencentCloud
               @Groups << SecurityGroup.new.deserialize(i)
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

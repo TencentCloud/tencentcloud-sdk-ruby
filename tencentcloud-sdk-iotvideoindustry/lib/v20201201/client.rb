@@ -554,7 +554,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口()用于查询设备含有录像文件的日期列表。
+        # 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
 
         # @param request: Request instance for GetRecordDatesByDev.
         # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::GetRecordDatesByDevRequest`
