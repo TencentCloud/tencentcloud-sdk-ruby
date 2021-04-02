@@ -946,7 +946,7 @@ module TencentCloud
 
       # DescribeMachine请求参数结构体
       class DescribeMachineRequest < TencentCloud::Common::AbstractModel
-        # @param Ipv6Enable: 是否按ipv6过滤
+        # @param Ipv6Enable: 不为0，表示查询支持ipv6的机器
         # @type Ipv6Enable: Integer
 
         attr_accessor :Ipv6Enable

@@ -25,31 +25,31 @@ module TencentCloud
         # @type UserId: String
         # @param GameId: 游戏ID
         # @type GameId: String
-        # @param GameRegion: 游戏区域，ap-guangzhou、ap-shanghai、ap-beijing、ap-chengdu、ap-chongqing、ap-nanjing等
+        # @param GameRegion: 【已废弃】只在TrylockWorker时生效
         # @type GameRegion: String
         # @param GameParas: 游戏参数
         # @type GameParas: String
-        # @param Resolution: 分辨率,，可设置为1080p或720p
+        # @param Resolution: 分辨率,，可设置为1080p或720p或1920x1080格式
         # @type Resolution: String
         # @param ImageUrl: 背景图url，格式为png或jpeg，宽高1920*1080
         # @type ImageUrl: String
-        # @param SetNo: 【废弃】资源池编号
+        # @param SetNo: 【已废弃】
         # @type SetNo: Integer
-        # @param Bitrate: 单位Mbps，固定码率，后端不动态调整(MaxBitrate和MinBitrate将无效)
+        # @param Bitrate: 单位Mbps，固定码率，有一定浮动范围，后端不动态调整(MaxBitrate和MinBitrate将无效)
         # @type Bitrate: Integer
-        # @param MaxBitrate: 单位Mbps，动态调整最大码率
+        # @param MaxBitrate: 单位Mbps，动态调整最大码率，有一定浮动范围
         # @type MaxBitrate: Integer
-        # @param MinBitrate: 单位Mbps，动态调整最小码率
+        # @param MinBitrate: 单位Mbps，动态调整最小码率，有一定浮动范围
         # @type MinBitrate: Integer
         # @param Fps: 帧率，可设置为30、45、60、90、120、144
         # @type Fps: Integer
-        # @param UserIp: 游戏用户IP，用于就近调度，例如125.127.178.228
+        # @param UserIp: 【已废弃】只在TrylockWorker时生效
         # @type UserIp: String
-        # @param Optimization: 优化项，便于客户灰度开启新的优化项，默认为0
+        # @param Optimization: 【已废弃】优化项，便于客户灰度开启新的优化项，默认为0
         # @type Optimization: Integer
-        # @param HostUserId: 【多人云游】游戏主机用户ID
+        # @param HostUserId: 【互动云游】游戏主机用户ID
         # @type HostUserId: String
-        # @param Role: 【多人云游】角色；Player表示玩家；Viewer表示观察者
+        # @param Role: 【互动云游】角色；Player表示玩家；Viewer表示观察者
         # @type Role: String
         # @param GameContext: 游戏相关参数
         # @type GameContext: String
@@ -101,9 +101,9 @@ module TencentCloud
       class CreateSessionResponse < TencentCloud::Common::AbstractModel
         # @param ServerSession: 服务端session信息，返回给JSSDK
         # @type ServerSession: String
-        # @param RoleNumber: 【多人游戏】角色编号；比如1、2、3、4
+        # @param RoleNumber: 【已废弃】
         # @type RoleNumber: String
-        # @param Role: 【多人云游】角色；Player表示玩家；Viewer表示观察者
+        # @param Role: 【互动云游】角色；Player表示玩家；Viewer表示观察者
         # @type Role: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

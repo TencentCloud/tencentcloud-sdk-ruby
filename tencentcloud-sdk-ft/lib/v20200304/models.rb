@@ -219,29 +219,29 @@ module TencentCloud
         end
       end
 
-      # 人脸框位置
+      # 人脸框信息
       class FaceRect < TencentCloud::Common::AbstractModel
-        # @param X: 人脸框左上角横坐标。
-        # @type X: Integer
         # @param Y: 人脸框左上角纵坐标。
         # @type Y: Integer
+        # @param X: 人脸框左上角横坐标。
+        # @type X: Integer
         # @param Width: 人脸框宽度。
         # @type Width: Integer
         # @param Height: 人脸框高度。
         # @type Height: Integer
 
-        attr_accessor :X, :Y, :Width, :Height
+        attr_accessor :Y, :X, :Width, :Height
         
-        def initialize(x=nil, y=nil, width=nil, height=nil)
-          @X = x
+        def initialize(y=nil, x=nil, width=nil, height=nil)
           @Y = y
+          @X = x
           @Width = width
           @Height = height
         end
 
         def deserialize(params)
-          @X = params['X']
           @Y = params['Y']
+          @X = params['X']
           @Width = params['Width']
           @Height = params['Height']
         end

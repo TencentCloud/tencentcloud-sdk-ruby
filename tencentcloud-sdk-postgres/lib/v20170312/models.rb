@@ -205,10 +205,12 @@ module TencentCloud
         # @type NeedSupportIpv6: Integer
         # @param TagList: 实例需要绑定的Tag信息，默认为空
         # @type TagList: Array
+        # @param SecurityGroupIds: 安全组id
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :Zone, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList
+        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :Zone, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds
         
-        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, zone=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil)
+        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, zone=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil)
           @SpecCode = speccode
           @DBVersion = dbversion
           @Storage = storage
@@ -226,6 +228,7 @@ module TencentCloud
           @Name = name
           @NeedSupportIpv6 = needsupportipv6
           @TagList = taglist
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -251,6 +254,7 @@ module TencentCloud
               @TagList << Tag.new.deserialize(i)
             end
           end
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -322,10 +326,12 @@ module TencentCloud
         # @type ReadOnlyGroupId: String
         # @param TagList: 实例需要绑定的Tag信息，默认为空
         # @type TagList: :class:`Tencentcloud::Postgres.v20170312.models.Tag`
+        # @param SecurityGroupIds: 安全组id
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :MasterDBInstanceId, :Zone, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :VpcId, :SubnetId, :ActivityId, :Name, :NeedSupportIpv6, :ReadOnlyGroupId, :TagList
+        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :MasterDBInstanceId, :Zone, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :VpcId, :SubnetId, :ActivityId, :Name, :NeedSupportIpv6, :ReadOnlyGroupId, :TagList, :SecurityGroupIds
         
-        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, masterdbinstanceid=nil, zone=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, activityid=nil, name=nil, needsupportipv6=nil, readonlygroupid=nil, taglist=nil)
+        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, masterdbinstanceid=nil, zone=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, activityid=nil, name=nil, needsupportipv6=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil)
           @SpecCode = speccode
           @DBVersion = dbversion
           @Storage = storage
@@ -345,6 +351,7 @@ module TencentCloud
           @NeedSupportIpv6 = needsupportipv6
           @ReadOnlyGroupId = readonlygroupid
           @TagList = taglist
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -369,6 +376,7 @@ module TencentCloud
           unless params['TagList'].nil?
             @TagList = Tag.new.deserialize(params['TagList'])
           end
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -422,10 +430,12 @@ module TencentCloud
         # @type MaxReplayLatency: Integer
         # @param MinDelayEliminateReserve: 延迟剔除最小保留实例数
         # @type MinDelayEliminateReserve: Integer
+        # @param SecurityGroupIds: 安全组id
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :MasterDBInstanceId, :Name, :ProjectId, :VpcId, :SubnetId, :ReplayLagEliminate, :ReplayLatencyEliminate, :MaxReplayLag, :MaxReplayLatency, :MinDelayEliminateReserve
+        attr_accessor :MasterDBInstanceId, :Name, :ProjectId, :VpcId, :SubnetId, :ReplayLagEliminate, :ReplayLatencyEliminate, :MaxReplayLag, :MaxReplayLatency, :MinDelayEliminateReserve, :SecurityGroupIds
         
-        def initialize(masterdbinstanceid=nil, name=nil, projectid=nil, vpcid=nil, subnetid=nil, replaylageliminate=nil, replaylatencyeliminate=nil, maxreplaylag=nil, maxreplaylatency=nil, mindelayeliminatereserve=nil)
+        def initialize(masterdbinstanceid=nil, name=nil, projectid=nil, vpcid=nil, subnetid=nil, replaylageliminate=nil, replaylatencyeliminate=nil, maxreplaylag=nil, maxreplaylatency=nil, mindelayeliminatereserve=nil, securitygroupids=nil)
           @MasterDBInstanceId = masterdbinstanceid
           @Name = name
           @ProjectId = projectid
@@ -436,6 +446,7 @@ module TencentCloud
           @MaxReplayLag = maxreplaylag
           @MaxReplayLatency = maxreplaylatency
           @MinDelayEliminateReserve = mindelayeliminatereserve
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -449,6 +460,7 @@ module TencentCloud
           @MaxReplayLag = params['MaxReplayLag']
           @MaxReplayLatency = params['MaxReplayLatency']
           @MinDelayEliminateReserve = params['MinDelayEliminateReserve']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -670,10 +682,13 @@ module TencentCloud
         # @param StatusInReadonlyGroup: 只读实例在只读组中的状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusInReadonlyGroup: String
+        # @param OfflineTime: 下线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineTime: String
 
-        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup
+        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime
         
-        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil)
+        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil)
           @Region = region
           @Zone = zone
           @ProjectId = projectid
@@ -705,6 +720,7 @@ module TencentCloud
           @MasterDBInstanceId = masterdbinstanceid
           @ReadOnlyInstanceNum = readonlyinstancenum
           @StatusInReadonlyGroup = statusinreadonlygroup
+          @OfflineTime = offlinetime
         end
 
         def deserialize(params)
@@ -749,6 +765,7 @@ module TencentCloud
           @MasterDBInstanceId = params['MasterDBInstanceId']
           @ReadOnlyInstanceNum = params['ReadOnlyInstanceNum']
           @StatusInReadonlyGroup = params['StatusInReadonlyGroup']
+          @OfflineTime = params['OfflineTime']
         end
       end
 

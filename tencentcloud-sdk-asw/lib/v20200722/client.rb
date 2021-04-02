@@ -217,6 +217,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 终止某个状态机
+
+        # @param request: Request instance for StopExecution.
+        # @type request: :class:`Tencentcloud::asw::V20200722::StopExecutionRequest`
+        # @rtype: :class:`Tencentcloud::asw::V20200722::StopExecutionResponse`
+        def StopExecution(request)
+          body = send_request('StopExecution', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopExecutionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

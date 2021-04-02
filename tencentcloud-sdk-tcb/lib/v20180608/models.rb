@@ -270,10 +270,16 @@ module TencentCloud
         # @param FailType: 错误类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailType: String
+        # @param RepoUrl: 私有仓库地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoUrl: String
+        # @param AutoDeployOnCodeChange: 是否私有仓库代码变更触发自动部署
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoDeployOnCodeChange: Boolean
 
-        attr_accessor :Name, :Sam, :Source, :CreateTime, :UpdateTime, :Status, :Parameters, :Type, :CIId, :CDId, :EnvId, :VersionNum, :FailReason, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :ExtensionId, :FailType
+        attr_accessor :Name, :Sam, :Source, :CreateTime, :UpdateTime, :Status, :Parameters, :Type, :CIId, :CDId, :EnvId, :VersionNum, :FailReason, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :ExtensionId, :FailType, :RepoUrl, :AutoDeployOnCodeChange
         
-        def initialize(name=nil, sam=nil, source=nil, createtime=nil, updatetime=nil, status=nil, parameters=nil, type=nil, ciid=nil, cdid=nil, envid=nil, versionnum=nil, failreason=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, extensionid=nil, failtype=nil)
+        def initialize(name=nil, sam=nil, source=nil, createtime=nil, updatetime=nil, status=nil, parameters=nil, type=nil, ciid=nil, cdid=nil, envid=nil, versionnum=nil, failreason=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, extensionid=nil, failtype=nil, repourl=nil, autodeployoncodechange=nil)
           @Name = name
           @Sam = sam
           @Source = source
@@ -293,6 +299,8 @@ module TencentCloud
           @NetworkConfig = networkconfig
           @ExtensionId = extensionid
           @FailType = failtype
+          @RepoUrl = repourl
+          @AutoDeployOnCodeChange = autodeployoncodechange
         end
 
         def deserialize(params)
@@ -322,6 +330,8 @@ module TencentCloud
           @NetworkConfig = params['NetworkConfig']
           @ExtensionId = params['ExtensionId']
           @FailType = params['FailType']
+          @RepoUrl = params['RepoUrl']
+          @AutoDeployOnCodeChange = params['AutoDeployOnCodeChange']
         end
       end
 
@@ -826,10 +836,13 @@ module TencentCloud
         # @param RawCode: 源码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RawCode: String
+        # @param Branch: 代码分支
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Branch: String
 
-        attr_accessor :Type, :Url, :Name, :WorkDir, :CodingPackageName, :CodingPackageVersion, :RawCode
+        attr_accessor :Type, :Url, :Name, :WorkDir, :CodingPackageName, :CodingPackageVersion, :RawCode, :Branch
         
-        def initialize(type=nil, url=nil, name=nil, workdir=nil, codingpackagename=nil, codingpackageversion=nil, rawcode=nil)
+        def initialize(type=nil, url=nil, name=nil, workdir=nil, codingpackagename=nil, codingpackageversion=nil, rawcode=nil, branch=nil)
           @Type = type
           @Url = url
           @Name = name
@@ -837,6 +850,7 @@ module TencentCloud
           @CodingPackageName = codingpackagename
           @CodingPackageVersion = codingpackageversion
           @RawCode = rawcode
+          @Branch = branch
         end
 
         def deserialize(params)
@@ -847,6 +861,7 @@ module TencentCloud
           @CodingPackageName = params['CodingPackageName']
           @CodingPackageVersion = params['CodingPackageVersion']
           @RawCode = params['RawCode']
+          @Branch = params['Branch']
         end
       end
 
@@ -914,10 +929,14 @@ module TencentCloud
         # @type NetworkConfig: String
         # @param FreeQuota: 免费额度的"basic", 不使用的用""
         # @type FreeQuota: String
+        # @param AutoDeployOnCodeChange: 是否代码变更触发自动部署
+        # @type AutoDeployOnCodeChange: Boolean
+        # @param RepoUrl: 私有仓库地址
+        # @type RepoUrl: String
 
-        attr_accessor :Name, :Source, :EnvId, :Type, :Parameters, :EnvAlias, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :FreeQuota
+        attr_accessor :Name, :Source, :EnvId, :Type, :Parameters, :EnvAlias, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :FreeQuota, :AutoDeployOnCodeChange, :RepoUrl
         
-        def initialize(name=nil, source=nil, envid=nil, type=nil, parameters=nil, envalias=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, freequota=nil)
+        def initialize(name=nil, source=nil, envid=nil, type=nil, parameters=nil, envalias=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, freequota=nil, autodeployoncodechange=nil, repourl=nil)
           @Name = name
           @Source = source
           @EnvId = envid
@@ -929,6 +948,8 @@ module TencentCloud
           @Tags = tags
           @NetworkConfig = networkconfig
           @FreeQuota = freequota
+          @AutoDeployOnCodeChange = autodeployoncodechange
+          @RepoUrl = repourl
         end
 
         def deserialize(params)
@@ -950,6 +971,8 @@ module TencentCloud
           @Tags = params['Tags']
           @NetworkConfig = params['NetworkConfig']
           @FreeQuota = params['FreeQuota']
+          @AutoDeployOnCodeChange = params['AutoDeployOnCodeChange']
+          @RepoUrl = params['RepoUrl']
         end
       end
 
@@ -1718,6 +1741,73 @@ module TencentCloud
             @ProjectList = []
             params['ProjectList'].each do |i|
               @ProjectList << CloudBaseProjectVersion.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseProjectVersionList请求参数结构体
+      class DescribeCloudBaseProjectVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param ProjectName: 项目名称
+        # @type ProjectName: String
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+        # @param PageNum: 第几页,从0开始
+        # @type PageNum: Integer
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 终止时间
+        # @type EndTime: String
+
+        attr_accessor :EnvId, :ProjectName, :PageSize, :PageNum, :StartTime, :EndTime
+        
+        def initialize(envid=nil, projectname=nil, pagesize=nil, pagenum=nil, starttime=nil, endtime=nil)
+          @EnvId = envid
+          @ProjectName = projectname
+          @PageSize = pagesize
+          @PageNum = pagenum
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ProjectName = params['ProjectName']
+          @PageSize = params['PageSize']
+          @PageNum = params['PageNum']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeCloudBaseProjectVersionList返回参数结构体
+      class DescribeCloudBaseProjectVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param ProjectVersions: 版本列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectVersions: Array
+        # @param TotalCount: 总个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProjectVersions, :TotalCount, :RequestId
+        
+        def initialize(projectversions=nil, totalcount=nil, requestid=nil)
+          @ProjectVersions = projectversions
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProjectVersions'].nil?
+            @ProjectVersions = []
+            params['ProjectVersions'].each do |i|
+              @ProjectVersions << CloudBaseProjectVersion.new.deserialize(i)
             end
           end
           @TotalCount = params['TotalCount']

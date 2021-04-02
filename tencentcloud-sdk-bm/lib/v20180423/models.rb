@@ -347,18 +347,22 @@ module TencentCloud
       class CreateCustomImageResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 黑石异步任务ID
         # @type TaskId: Integer
+        # @param ImageId: 镜像ID
+        # @type ImageId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :ImageId, :RequestId
         
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, imageid=nil, requestid=nil)
           @TaskId = taskid
+          @ImageId = imageid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @ImageId = params['ImageId']
           @RequestId = params['RequestId']
         end
       end

@@ -7258,10 +7258,12 @@ module TencentCloud
         # @type MetaAudioRate: Integer
         # @param MateFps: metadata 中的帧率。
         # @type MateFps: Integer
+        # @param StreamParam: 推流参数
+        # @type StreamParam: String
 
-        attr_accessor :Time, :PushDomain, :AppName, :ClientIp, :BeginPushTime, :Resolution, :VCodec, :ACodec, :Sequence, :VideoFps, :VideoRate, :AudioFps, :AudioRate, :LocalTs, :VideoTs, :AudioTs, :MetaVideoRate, :MetaAudioRate, :MateFps
+        attr_accessor :Time, :PushDomain, :AppName, :ClientIp, :BeginPushTime, :Resolution, :VCodec, :ACodec, :Sequence, :VideoFps, :VideoRate, :AudioFps, :AudioRate, :LocalTs, :VideoTs, :AudioTs, :MetaVideoRate, :MetaAudioRate, :MateFps, :StreamParam
         
-        def initialize(time=nil, pushdomain=nil, appname=nil, clientip=nil, beginpushtime=nil, resolution=nil, vcodec=nil, acodec=nil, sequence=nil, videofps=nil, videorate=nil, audiofps=nil, audiorate=nil, localts=nil, videots=nil, audiots=nil, metavideorate=nil, metaaudiorate=nil, matefps=nil)
+        def initialize(time=nil, pushdomain=nil, appname=nil, clientip=nil, beginpushtime=nil, resolution=nil, vcodec=nil, acodec=nil, sequence=nil, videofps=nil, videorate=nil, audiofps=nil, audiorate=nil, localts=nil, videots=nil, audiots=nil, metavideorate=nil, metaaudiorate=nil, matefps=nil, streamparam=nil)
           @Time = time
           @PushDomain = pushdomain
           @AppName = appname
@@ -7281,6 +7283,7 @@ module TencentCloud
           @MetaVideoRate = metavideorate
           @MetaAudioRate = metaaudiorate
           @MateFps = matefps
+          @StreamParam = streamparam
         end
 
         def deserialize(params)
@@ -7303,6 +7306,7 @@ module TencentCloud
           @MetaVideoRate = params['MetaVideoRate']
           @MetaAudioRate = params['MetaAudioRate']
           @MateFps = params['MateFps']
+          @StreamParam = params['StreamParam']
         end
       end
 

@@ -342,6 +342,43 @@ module TencentCloud
         end
       end
 
+      # ClearLaunchConfigurationAttributes请求参数结构体
+      class ClearLaunchConfigurationAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param LaunchConfigurationId: 启动配置ID。
+        # @type LaunchConfigurationId: String
+        # @param ClearDataDisks: 是否清空数据盘信息，非必填，默认为 false。
+        # 填 true 代表清空“数据盘”信息，清空后基于此新创建的云主机将不含有任何数据盘。
+        # @type ClearDataDisks: Boolean
+
+        attr_accessor :LaunchConfigurationId, :ClearDataDisks
+        
+        def initialize(launchconfigurationid=nil, cleardatadisks=nil)
+          @LaunchConfigurationId = launchconfigurationid
+          @ClearDataDisks = cleardatadisks
+        end
+
+        def deserialize(params)
+          @LaunchConfigurationId = params['LaunchConfigurationId']
+          @ClearDataDisks = params['ClearDataDisks']
+        end
+      end
+
+      # ClearLaunchConfigurationAttributes返回参数结构体
+      class ClearLaunchConfigurationAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CompleteLifecycleAction请求参数结构体
       class CompleteLifecycleActionRequest < TencentCloud::Common::AbstractModel
         # @param LifecycleHookId: 生命周期挂钩ID
@@ -2945,10 +2982,14 @@ module TencentCloud
         # <br><li>ORIGINAL：使用设置的云盘类型。
         # <br><li>AUTOMATIC：自动选择当前可用的云盘类型。
         # @type DiskTypePolicy: String
+        # @param SystemDisk: 实例系统盘配置信息。
+        # @type SystemDisk: :class:`Tencentcloud::As.v20180419.models.SystemDisk`
+        # @param DataDisks: 实例数据盘配置信息。最多支持指定11块数据盘。采取整体修改，因此请提供修改后的全部值。
+        # @type DataDisks: Array
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -2961,6 +3002,8 @@ module TencentCloud
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceMarketOptions = instancemarketoptions
           @DiskTypePolicy = disktypepolicy
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
         end
 
         def deserialize(params)
@@ -2982,6 +3025,15 @@ module TencentCloud
             @InstanceMarketOptions = InstanceMarketOptionsRequest.new.deserialize(params['InstanceMarketOptions'])
           end
           @DiskTypePolicy = params['DiskTypePolicy']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              @DataDisks << DataDisk.new.deserialize(i)
+            end
+          end
         end
       end
 

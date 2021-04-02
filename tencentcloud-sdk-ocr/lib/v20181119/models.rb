@@ -2125,12 +2125,16 @@ module TencentCloud
         # @type ValidDate: String
         # @param Authority: 签发机关
         # @type Authority: String
+        # @param VisaNum: 签发次数
+        # @type VisaNum: String
+        # @param PassNo: 通行证号码
+        # @type PassNo: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Sex, :Birth, :Address, :IdCardNo, :CardType, :ValidDate, :Authority, :RequestId
+        attr_accessor :Name, :Sex, :Birth, :Address, :IdCardNo, :CardType, :ValidDate, :Authority, :VisaNum, :PassNo, :RequestId
         
-        def initialize(name=nil, sex=nil, birth=nil, address=nil, idcardno=nil, cardtype=nil, validdate=nil, authority=nil, requestid=nil)
+        def initialize(name=nil, sex=nil, birth=nil, address=nil, idcardno=nil, cardtype=nil, validdate=nil, authority=nil, visanum=nil, passno=nil, requestid=nil)
           @Name = name
           @Sex = sex
           @Birth = birth
@@ -2139,6 +2143,8 @@ module TencentCloud
           @CardType = cardtype
           @ValidDate = validdate
           @Authority = authority
+          @VisaNum = visanum
+          @PassNo = passno
           @RequestId = requestid
         end
 
@@ -2151,6 +2157,8 @@ module TencentCloud
           @CardType = params['CardType']
           @ValidDate = params['ValidDate']
           @Authority = params['Authority']
+          @VisaNum = params['VisaNum']
+          @PassNo = params['PassNo']
           @RequestId = params['RequestId']
         end
       end

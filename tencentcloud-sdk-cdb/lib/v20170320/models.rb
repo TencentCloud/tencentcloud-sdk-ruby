@@ -5509,7 +5509,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param InstanceNodes: 节点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNodes: Integer
 
         attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes

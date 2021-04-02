@@ -128,6 +128,42 @@ module TencentCloud
         end
       end
 
+      # NAT防火墙Dnat规则
+      class CfwNatDnatRule < TencentCloud::Common::AbstractModel
+        # @param IpProtocol: 网络协议，可选值：TCP、UDP。
+        # @type IpProtocol: String
+        # @param PublicIpAddress: 弹性IP。
+        # @type PublicIpAddress: String
+        # @param PublicPort: 公网端口。
+        # @type PublicPort: Integer
+        # @param PrivateIpAddress: 内网地址。
+        # @type PrivateIpAddress: String
+        # @param PrivatePort: 内网端口。
+        # @type PrivatePort: Integer
+        # @param Description: NAT防火墙转发规则描述。
+        # @type Description: String
+
+        attr_accessor :IpProtocol, :PublicIpAddress, :PublicPort, :PrivateIpAddress, :PrivatePort, :Description
+        
+        def initialize(ipprotocol=nil, publicipaddress=nil, publicport=nil, privateipaddress=nil, privateport=nil, description=nil)
+          @IpProtocol = ipprotocol
+          @PublicIpAddress = publicipaddress
+          @PublicPort = publicport
+          @PrivateIpAddress = privateipaddress
+          @PrivatePort = privateport
+          @Description = description
+        end
+
+        def deserialize(params)
+          @IpProtocol = params['IpProtocol']
+          @PublicIpAddress = params['PublicIpAddress']
+          @PublicPort = params['PublicPort']
+          @PrivateIpAddress = params['PrivateIpAddress']
+          @PrivatePort = params['PrivatePort']
+          @Description = params['Description']
+        end
+      end
+
       # CreateAcRules请求参数结构体
       class CreateAcRulesRequest < TencentCloud::Common::AbstractModel
         # @param Data: 创建规则数据
@@ -620,6 +656,55 @@ module TencentCloud
         end
       end
 
+      # DescribeCfwEips请求参数结构体
+      class DescribeCfwEipsRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 0：cfw新增模式，1：cfw接入模式
+        # @type Mode: Integer
+        # @param NatGatewayId: ALL：查询所有弹性公网ip; nat-xxxxx：接入模式场景指定网关的弹性公网ip
+        # @type NatGatewayId: String
+        # @param CfwInstance: 防火墙实例id
+        # @type CfwInstance: String
+
+        attr_accessor :Mode, :NatGatewayId, :CfwInstance
+        
+        def initialize(mode=nil, natgatewayid=nil, cfwinstance=nil)
+          @Mode = mode
+          @NatGatewayId = natgatewayid
+          @CfwInstance = cfwinstance
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @NatGatewayId = params['NatGatewayId']
+          @CfwInstance = params['CfwInstance']
+        end
+      end
+
+      # DescribeCfwEips返回参数结构体
+      class DescribeCfwEipsResponse < TencentCloud::Common::AbstractModel
+        # @param NatFwEipList: 返回值信息
+        # @type NatFwEipList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NatFwEipList, :RequestId
+        
+        def initialize(natfweiplist=nil, requestid=nil)
+          @NatFwEipList = natfweiplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NatFwEipList'].nil?
+            @NatFwEipList = []
+            params['NatFwEipList'].each do |i|
+              @NatFwEipList << NatFwEipsInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNatRuleOverview请求参数结构体
       class DescribeNatRuleOverviewRequest < TencentCloud::Common::AbstractModel
         # @param Direction: 方向，0：出站，1：入站 默认值：0
@@ -1052,6 +1137,46 @@ module TencentCloud
         end
       end
 
+      # ExpandCfwVertical请求参数结构体
+      class ExpandCfwVerticalRequest < TencentCloud::Common::AbstractModel
+        # @param FwType: nat：nat防火墙，ew：东西向防火墙
+        # @type FwType: String
+        # @param Width: 带宽值
+        # @type Width: Integer
+        # @param CfwInstance: 防火墙实例id
+        # @type CfwInstance: String
+
+        attr_accessor :FwType, :Width, :CfwInstance
+        
+        def initialize(fwtype=nil, width=nil, cfwinstance=nil)
+          @FwType = fwtype
+          @Width = width
+          @CfwInstance = cfwinstance
+        end
+
+        def deserialize(params)
+          @FwType = params['FwType']
+          @Width = params['Width']
+          @CfwInstance = params['CfwInstance']
+        end
+      end
+
+      # ExpandCfwVertical返回参数结构体
+      class ExpandCfwVerticalResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAcRule请求参数结构体
       class ModifyAcRuleRequest < TencentCloud::Common::AbstractModel
         # @param Data: 规则数组
@@ -1407,6 +1532,32 @@ module TencentCloud
         end
       end
 
+      # Nat防火墙弹性公网ip列表
+      class NatFwEipsInfo < TencentCloud::Common::AbstractModel
+        # @param Eip: 弹性公网ip
+        # @type Eip: String
+        # @param NatGatewayId: 所属的Nat网关Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatGatewayId: String
+        # @param NatGatewayName: Nat网关名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatGatewayName: String
+
+        attr_accessor :Eip, :NatGatewayId, :NatGatewayName
+        
+        def initialize(eip=nil, natgatewayid=nil, natgatewayname=nil)
+          @Eip = eip
+          @NatGatewayId = natgatewayid
+          @NatGatewayName = natgatewayname
+        end
+
+        def deserialize(params)
+          @Eip = params['Eip']
+          @NatGatewayId = params['NatGatewayId']
+          @NatGatewayName = params['NatGatewayName']
+        end
+      end
+
       # 规则输入对象
       class RuleInfoData < TencentCloud::Common::AbstractModel
         # @param OrderIndex: 执行顺序
@@ -1690,6 +1841,67 @@ module TencentCloud
           @Id = params['Id']
           @OrderIndex = params['OrderIndex']
           @NewOrderIndex = params['NewOrderIndex']
+        end
+      end
+
+      # SetNatFwDnatRule请求参数结构体
+      class SetNatFwDnatRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 0：cfw新增模式，1：cfw接入模式。
+        # @type Mode: Integer
+        # @param OperationType: 操作类型，可选值：add，del，modify。
+        # @type OperationType: String
+        # @param CfwInstance: 防火墙实例id。
+        # @type CfwInstance: String
+        # @param AddOrDelDnatRules: 添加或删除操作的Dnat规则列表。
+        # @type AddOrDelDnatRules: Array
+        # @param OriginDnat: 修改操作的原始Dnat规则
+        # @type OriginDnat: :class:`Tencentcloud::Cfw.v20190904.models.CfwNatDnatRule`
+        # @param NewDnat: 修改操作的新的Dnat规则
+        # @type NewDnat: :class:`Tencentcloud::Cfw.v20190904.models.CfwNatDnatRule`
+
+        attr_accessor :Mode, :OperationType, :CfwInstance, :AddOrDelDnatRules, :OriginDnat, :NewDnat
+        
+        def initialize(mode=nil, operationtype=nil, cfwinstance=nil, addordeldnatrules=nil, origindnat=nil, newdnat=nil)
+          @Mode = mode
+          @OperationType = operationtype
+          @CfwInstance = cfwinstance
+          @AddOrDelDnatRules = addordeldnatrules
+          @OriginDnat = origindnat
+          @NewDnat = newdnat
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @OperationType = params['OperationType']
+          @CfwInstance = params['CfwInstance']
+          unless params['AddOrDelDnatRules'].nil?
+            @AddOrDelDnatRules = []
+            params['AddOrDelDnatRules'].each do |i|
+              @AddOrDelDnatRules << CfwNatDnatRule.new.deserialize(i)
+            end
+          end
+          unless params['OriginDnat'].nil?
+            @OriginDnat = CfwNatDnatRule.new.deserialize(params['OriginDnat'])
+          end
+          unless params['NewDnat'].nil?
+            @NewDnat = CfwNatDnatRule.new.deserialize(params['NewDnat'])
+          end
+        end
+      end
+
+      # SetNatFwDnatRule返回参数结构体
+      class SetNatFwDnatRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

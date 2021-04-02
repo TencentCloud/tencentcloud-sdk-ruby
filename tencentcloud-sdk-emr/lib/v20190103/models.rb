@@ -984,6 +984,34 @@ module TencentCloud
         end
       end
 
+      # POD浮动规格
+      class DynamicPodSpec < TencentCloud::Common::AbstractModel
+        # @param RequestCpu: 需求最小cpu核数
+        # @type RequestCpu: Float
+        # @param LimitCpu: 需求最大cpu核数
+        # @type LimitCpu: Float
+        # @param RequestMemory: 需求最小memory，单位MB
+        # @type RequestMemory: Float
+        # @param LimitMemory: 需求最大memory，单位MB
+        # @type LimitMemory: Float
+
+        attr_accessor :RequestCpu, :LimitCpu, :RequestMemory, :LimitMemory
+        
+        def initialize(requestcpu=nil, limitcpu=nil, requestmemory=nil, limitmemory=nil)
+          @RequestCpu = requestcpu
+          @LimitCpu = limitcpu
+          @RequestMemory = requestmemory
+          @LimitMemory = limitmemory
+        end
+
+        def deserialize(params)
+          @RequestCpu = params['RequestCpu']
+          @LimitCpu = params['LimitCpu']
+          @RequestMemory = params['RequestMemory']
+          @LimitMemory = params['LimitMemory']
+        end
+      end
+
       # EMR产品配置
       class EmrProductConfigOutter < TencentCloud::Common::AbstractModel
         # @param SoftInfo: 软件信息
@@ -1996,10 +2024,16 @@ module TencentCloud
         # @param HardwareResourceType: 资源类型, host/pod
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HardwareResourceType: String
+        # @param IsDynamicSpec: 是否浮动规格，1是，0否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDynamicSpec: Integer
+        # @param DynamicPodSpec: 浮动规格值json字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DynamicPodSpec: String
 
-        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType
+        attr_accessor :AppId, :SerialNo, :OrderNo, :WanIp, :Flag, :Spec, :CpuNum, :MemSize, :MemDesc, :RegionId, :ZoneId, :ApplyTime, :FreeTime, :DiskSize, :NameTag, :Services, :StorageType, :RootSize, :ChargeType, :CdbIp, :CdbPort, :HwDiskSize, :HwDiskSizeDesc, :HwMemSize, :HwMemSizeDesc, :ExpireTime, :EmrResourceId, :IsAutoRenew, :DeviceClass, :Mutable, :MCMultiDisk, :CdbNodeInfo, :Ip, :Destroyable, :Tags, :AutoFlag, :HardwareResourceType, :IsDynamicSpec, :DynamicPodSpec
         
-        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil)
+        def initialize(appid=nil, serialno=nil, orderno=nil, wanip=nil, flag=nil, spec=nil, cpunum=nil, memsize=nil, memdesc=nil, regionid=nil, zoneid=nil, applytime=nil, freetime=nil, disksize=nil, nametag=nil, services=nil, storagetype=nil, rootsize=nil, chargetype=nil, cdbip=nil, cdbport=nil, hwdisksize=nil, hwdisksizedesc=nil, hwmemsize=nil, hwmemsizedesc=nil, expiretime=nil, emrresourceid=nil, isautorenew=nil, deviceclass=nil, mutable=nil, mcmultidisk=nil, cdbnodeinfo=nil, ip=nil, destroyable=nil, tags=nil, autoflag=nil, hardwareresourcetype=nil, isdynamicspec=nil, dynamicpodspec=nil)
           @AppId = appid
           @SerialNo = serialno
           @OrderNo = orderno
@@ -2037,6 +2071,8 @@ module TencentCloud
           @Tags = tags
           @AutoFlag = autoflag
           @HardwareResourceType = hardwareresourcetype
+          @IsDynamicSpec = isdynamicspec
+          @DynamicPodSpec = dynamicpodspec
         end
 
         def deserialize(params)
@@ -2089,6 +2125,8 @@ module TencentCloud
           end
           @AutoFlag = params['AutoFlag']
           @HardwareResourceType = params['HardwareResourceType']
+          @IsDynamicSpec = params['IsDynamicSpec']
+          @DynamicPodSpec = params['DynamicPodSpec']
         end
       end
 
@@ -2196,6 +2234,30 @@ module TencentCloud
         end
       end
 
+      # POD自定义权限和自定义参数
+      class PodParameter < TencentCloud::Common::AbstractModel
+        # @param ClusterId: TKE或EKS集群ID
+        # @type ClusterId: String
+        # @param Config: 自定义权限
+        # @type Config: String
+        # @param Parameter: 自定义参数
+        # @type Parameter: String
+
+        attr_accessor :ClusterId, :Config, :Parameter
+        
+        def initialize(clusterid=nil, config=nil, parameter=nil)
+          @ClusterId = clusterid
+          @Config = config
+          @Parameter = parameter
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Config = params['Config']
+          @Parameter = params['Parameter']
+        end
+      end
+
       # 扩容容器资源时的资源描述
       class PodSpec < TencentCloud::Common::AbstractModel
         # @param ResourceProviderIdentifier: 外部资源提供者的标识符，例如"cls-a1cd23fa"。
@@ -2214,10 +2276,15 @@ module TencentCloud
         # @type CpuType: String
         # @param PodVolumes: Pod节点数据目录挂载信息。
         # @type PodVolumes: Array
+        # @param IsDynamicSpec: 是否浮动规格，1是，0否
+        # @type IsDynamicSpec: Integer
+        # @param DynamicPodSpec: 浮动规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DynamicPodSpec: :class:`Tencentcloud::Emr.v20190103.models.DynamicPodSpec`
 
-        attr_accessor :ResourceProviderIdentifier, :ResourceProviderType, :NodeType, :Cpu, :Memory, :DataVolumes, :CpuType, :PodVolumes
+        attr_accessor :ResourceProviderIdentifier, :ResourceProviderType, :NodeType, :Cpu, :Memory, :DataVolumes, :CpuType, :PodVolumes, :IsDynamicSpec, :DynamicPodSpec
         
-        def initialize(resourceprovideridentifier=nil, resourceprovidertype=nil, nodetype=nil, cpu=nil, memory=nil, datavolumes=nil, cputype=nil, podvolumes=nil)
+        def initialize(resourceprovideridentifier=nil, resourceprovidertype=nil, nodetype=nil, cpu=nil, memory=nil, datavolumes=nil, cputype=nil, podvolumes=nil, isdynamicspec=nil, dynamicpodspec=nil)
           @ResourceProviderIdentifier = resourceprovideridentifier
           @ResourceProviderType = resourceprovidertype
           @NodeType = nodetype
@@ -2226,6 +2293,8 @@ module TencentCloud
           @DataVolumes = datavolumes
           @CpuType = cputype
           @PodVolumes = podvolumes
+          @IsDynamicSpec = isdynamicspec
+          @DynamicPodSpec = dynamicpodspec
         end
 
         def deserialize(params)
@@ -2241,6 +2310,10 @@ module TencentCloud
             params['PodVolumes'].each do |i|
               @PodVolumes << PodVolume.new.deserialize(i)
             end
+          end
+          @IsDynamicSpec = params['IsDynamicSpec']
+          unless params['DynamicPodSpec'].nil?
+            @DynamicPodSpec = DynamicPodSpec.new.deserialize(params['DynamicPodSpec'])
           end
         end
       end
@@ -2713,10 +2786,14 @@ module TencentCloud
         # @type ClickHouseClusterType: String
         # @param YarnNodeLabel: 规则扩容指定 yarn node label
         # @type YarnNodeLabel: String
+        # @param PodParameter: POD自定义权限和自定义参数
+        # @type PodParameter: :class:`Tencentcloud::Emr.v20190103.models.PodParameter`
+        # @param MasterCount: 扩容的Master节点的数量。
+        # @type MasterCount: Integer
 
-        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel
+        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount
         
-        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil)
+        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @InstanceId = instanceid
@@ -2736,6 +2813,8 @@ module TencentCloud
           @ClickHouseClusterName = clickhouseclustername
           @ClickHouseClusterType = clickhouseclustertype
           @YarnNodeLabel = yarnnodelabel
+          @PodParameter = podparameter
+          @MasterCount = mastercount
         end
 
         def deserialize(params)
@@ -2770,6 +2849,10 @@ module TencentCloud
           @ClickHouseClusterName = params['ClickHouseClusterName']
           @ClickHouseClusterType = params['ClickHouseClusterType']
           @YarnNodeLabel = params['YarnNodeLabel']
+          unless params['PodParameter'].nil?
+            @PodParameter = PodParameter.new.deserialize(params['PodParameter'])
+          end
+          @MasterCount = params['MasterCount']
         end
       end
 

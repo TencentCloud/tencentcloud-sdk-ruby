@@ -921,16 +921,19 @@ module TencentCloud
         # @type IsCutIdCardImage: Boolean
         # @param IsNeedIdCardAvatar: 是否需要从身份证中抠出头像。默认为false。（InfoType需要包含2）
         # @type IsNeedIdCardAvatar: Boolean
+        # @param IsEncrypt: 是否需要对返回中的敏感信息进行加密。其中敏感信息包括：Response.Text.IdCard、Response.Text.Name、Response.Text.OcrIdCard、Response.Text.OcrName
+        # @type IsEncrypt: Boolean
 
-        attr_accessor :BizToken, :RuleId, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar
+        attr_accessor :BizToken, :RuleId, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar, :IsEncrypt
         
-        def initialize(biztoken=nil, ruleid=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil)
+        def initialize(biztoken=nil, ruleid=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil, isencrypt=nil)
           @BizToken = biztoken
           @RuleId = ruleid
           @InfoType = infotype
           @BestFramesCount = bestframescount
           @IsCutIdCardImage = iscutidcardimage
           @IsNeedIdCardAvatar = isneedidcardavatar
+          @IsEncrypt = isencrypt
         end
 
         def deserialize(params)
@@ -940,6 +943,7 @@ module TencentCloud
           @BestFramesCount = params['BestFramesCount']
           @IsCutIdCardImage = params['IsCutIdCardImage']
           @IsNeedIdCardAvatar = params['IsNeedIdCardAvatar']
+          @IsEncrypt = params['IsEncrypt']
         end
       end
 
@@ -957,16 +961,20 @@ module TencentCloud
         # @param VideoData: 视频信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoData: :class:`Tencentcloud::Faceid.v20180301.models.DetectInfoVideoData`
+        # @param Encryption: 敏感数据加密信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :RequestId
         
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
           @VideoData = videodata
+          @Encryption = encryption
           @RequestId = requestid
         end
 
@@ -982,6 +990,9 @@ module TencentCloud
           end
           unless params['VideoData'].nil?
             @VideoData = DetectInfoVideoData.new.deserialize(params['VideoData'])
+          end
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new.deserialize(params['Encryption'])
           end
           @RequestId = params['RequestId']
         end
@@ -1501,14 +1512,17 @@ module TencentCloud
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :IdCard, :Name, :ImageBase64, :ImageUrl
+        attr_accessor :IdCard, :Name, :ImageBase64, :ImageUrl, :Encryption
         
-        def initialize(idcard=nil, name=nil, imagebase64=nil, imageurl=nil)
+        def initialize(idcard=nil, name=nil, imagebase64=nil, imageurl=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -1516,6 +1530,9 @@ module TencentCloud
           @Name = params['Name']
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new.deserialize(params['Encryption'])
+          end
         end
       end
 

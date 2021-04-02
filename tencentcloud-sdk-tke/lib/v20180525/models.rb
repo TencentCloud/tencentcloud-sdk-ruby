@@ -4231,7 +4231,7 @@ module TencentCloud
 
       # 手动加入的节点
       class ManuallyAdded < TencentCloud::Common::AbstractModel
-        # @param Joining: 加入中节的点数量
+        # @param Joining: 加入中的节点数量
         # @type Joining: Integer
         # @param Initializing: 初始化中的节点数量
         # @type Initializing: Integer

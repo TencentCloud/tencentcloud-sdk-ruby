@@ -2537,6 +2537,77 @@ module TencentCloud
         end
       end
 
+      # DescribeBizHttpStatus请求参数结构体
+      class DescribeBizHttpStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @type Business: String
+        # @param Id: 资源Id
+        # @type Id: String
+        # @param Period: 统计周期，可取值300，1800，3600， 21600，86400，单位秒
+        # @type Period: Integer
+        # @param StartTime: 统计开始时间
+        # @type StartTime: String
+        # @param EndTime: 统计结束时间
+        # @type EndTime: String
+        # @param Statistics: 统计方式，仅支持sum
+        # @type Statistics: String
+        # @param ProtoInfo: 协议及端口列表，协议可取值TCP, UDP, HTTP, HTTPS，仅统计纬度为连接数时有效
+        # @type ProtoInfo: Array
+        # @param Domain: 特定域名查询
+        # @type Domain: String
+
+        attr_accessor :Business, :Id, :Period, :StartTime, :EndTime, :Statistics, :ProtoInfo, :Domain
+        
+        def initialize(business=nil, id=nil, period=nil, starttime=nil, endtime=nil, statistics=nil, protoinfo=nil, domain=nil)
+          @Business = business
+          @Id = id
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @Statistics = statistics
+          @ProtoInfo = protoinfo
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Id = params['Id']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Statistics = params['Statistics']
+          unless params['ProtoInfo'].nil?
+            @ProtoInfo = []
+            params['ProtoInfo'].each do |i|
+              @ProtoInfo << ProtocolPort.new.deserialize(i)
+            end
+          end
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeBizHttpStatus返回参数结构体
+      class DescribeBizHttpStatusResponse < TencentCloud::Common::AbstractModel
+        # @param HttpStatusMap: 业务流量http状态码统计数据
+        # @type HttpStatusMap: :class:`Tencentcloud::Dayu.v20180709.models.HttpStatusMap`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HttpStatusMap, :RequestId
+        
+        def initialize(httpstatusmap=nil, requestid=nil)
+          @HttpStatusMap = httpstatusmap
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HttpStatusMap'].nil?
+            @HttpStatusMap = HttpStatusMap.new.deserialize(params['HttpStatusMap'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBizTrend请求参数结构体
       class DescribeBizTrendRequest < TencentCloud::Common::AbstractModel
         # @param Business: 大禹子产品代号（bgpip表示高防IP）
@@ -5830,6 +5901,58 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务流量的http状态码聚合数据
+      class HttpStatusMap < TencentCloud::Common::AbstractModel
+        # @param Http2xx: http2xx状态码
+        # @type Http2xx: Array
+        # @param Http3xx: http3xx状态码
+        # @type Http3xx: Array
+        # @param Http404: http404状态码
+        # @type Http404: Array
+        # @param Http4xx: http4xx状态码
+        # @type Http4xx: Array
+        # @param Http5xx: http5xx状态码
+        # @type Http5xx: Array
+        # @param SourceHttp2xx: http2xx回源状态码
+        # @type SourceHttp2xx: Array
+        # @param SourceHttp3xx: http3xx回源状态码
+        # @type SourceHttp3xx: Array
+        # @param SourceHttp404: http404回源状态码
+        # @type SourceHttp404: Array
+        # @param SourceHttp4xx: http4xx回源状态码
+        # @type SourceHttp4xx: Array
+        # @param SourceHttp5xx: http5xx回源状态码
+        # @type SourceHttp5xx: Array
+
+        attr_accessor :Http2xx, :Http3xx, :Http404, :Http4xx, :Http5xx, :SourceHttp2xx, :SourceHttp3xx, :SourceHttp404, :SourceHttp4xx, :SourceHttp5xx
+        
+        def initialize(http2xx=nil, http3xx=nil, http404=nil, http4xx=nil, http5xx=nil, sourcehttp2xx=nil, sourcehttp3xx=nil, sourcehttp404=nil, sourcehttp4xx=nil, sourcehttp5xx=nil)
+          @Http2xx = http2xx
+          @Http3xx = http3xx
+          @Http404 = http404
+          @Http4xx = http4xx
+          @Http5xx = http5xx
+          @SourceHttp2xx = sourcehttp2xx
+          @SourceHttp3xx = sourcehttp3xx
+          @SourceHttp404 = sourcehttp404
+          @SourceHttp4xx = sourcehttp4xx
+          @SourceHttp5xx = sourcehttp5xx
+        end
+
+        def deserialize(params)
+          @Http2xx = params['Http2xx']
+          @Http3xx = params['Http3xx']
+          @Http404 = params['Http404']
+          @Http4xx = params['Http4xx']
+          @Http5xx = params['Http5xx']
+          @SourceHttp2xx = params['SourceHttp2xx']
+          @SourceHttp3xx = params['SourceHttp3xx']
+          @SourceHttp404 = params['SourceHttp404']
+          @SourceHttp4xx = params['SourceHttp4xx']
+          @SourceHttp5xx = params['SourceHttp5xx']
         end
       end
 

@@ -33,10 +33,14 @@ module TencentCloud
         # @type RoleResource: String
         # @param Description: 备注
         # @type Description: String
+        # @param EnableCLS: 是否开启CLS日志投递功能
+        # @type EnableCLS: Boolean
+        # @param Input: 该状态机的默认输入
+        # @type Input: String
 
-        attr_accessor :Definition, :FlowServiceName, :IsNewRole, :Type, :FlowServiceChineseName, :RoleResource, :Description
+        attr_accessor :Definition, :FlowServiceName, :IsNewRole, :Type, :FlowServiceChineseName, :RoleResource, :Description, :EnableCLS, :Input
         
-        def initialize(definition=nil, flowservicename=nil, isnewrole=nil, type=nil, flowservicechinesename=nil, roleresource=nil, description=nil)
+        def initialize(definition=nil, flowservicename=nil, isnewrole=nil, type=nil, flowservicechinesename=nil, roleresource=nil, description=nil, enablecls=nil, input=nil)
           @Definition = definition
           @FlowServiceName = flowservicename
           @IsNewRole = isnewrole
@@ -44,6 +48,8 @@ module TencentCloud
           @FlowServiceChineseName = flowservicechinesename
           @RoleResource = roleresource
           @Description = description
+          @EnableCLS = enablecls
+          @Input = input
         end
 
         def deserialize(params)
@@ -54,6 +60,8 @@ module TencentCloud
           @FlowServiceChineseName = params['FlowServiceChineseName']
           @RoleResource = params['RoleResource']
           @Description = params['Description']
+          @EnableCLS = params['EnableCLS']
+          @Input = params['Input']
         end
       end
 
@@ -278,12 +286,21 @@ module TencentCloud
         # @param FlowServiceChineseName: 状态机所属服务中文名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowServiceChineseName: String
+        # @param EnableCLS: 是否开启日志CLS服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableCLS: Boolean
+        # @param CLSUrl: CLS日志查看地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLSUrl: String
+        # @param FlowInput: 工作流提示输入
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowInput: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowServiceName, :Status, :Definition, :RoleResource, :Type, :CreateDate, :Description, :FlowServiceChineseName, :RequestId
+        attr_accessor :FlowServiceName, :Status, :Definition, :RoleResource, :Type, :CreateDate, :Description, :FlowServiceChineseName, :EnableCLS, :CLSUrl, :FlowInput, :RequestId
         
-        def initialize(flowservicename=nil, status=nil, definition=nil, roleresource=nil, type=nil, createdate=nil, description=nil, flowservicechinesename=nil, requestid=nil)
+        def initialize(flowservicename=nil, status=nil, definition=nil, roleresource=nil, type=nil, createdate=nil, description=nil, flowservicechinesename=nil, enablecls=nil, clsurl=nil, flowinput=nil, requestid=nil)
           @FlowServiceName = flowservicename
           @Status = status
           @Definition = definition
@@ -292,6 +309,9 @@ module TencentCloud
           @CreateDate = createdate
           @Description = description
           @FlowServiceChineseName = flowservicechinesename
+          @EnableCLS = enablecls
+          @CLSUrl = clsurl
+          @FlowInput = flowinput
           @RequestId = requestid
         end
 
@@ -304,6 +324,9 @@ module TencentCloud
           @CreateDate = params['CreateDate']
           @Description = params['Description']
           @FlowServiceChineseName = params['FlowServiceChineseName']
+          @EnableCLS = params['EnableCLS']
+          @CLSUrl = params['CLSUrl']
+          @FlowInput = params['FlowInput']
           @RequestId = params['RequestId']
         end
       end
@@ -449,10 +472,12 @@ module TencentCloud
         # @type RoleResource: String
         # @param Description: 状态机备注
         # @type Description: String
+        # @param EnableCLS: 是否允许日志投递
+        # @type EnableCLS: Boolean
 
-        attr_accessor :FlowServiceResource, :Definition, :FlowServiceName, :FlowServiceChineseName, :IsNewRole, :Type, :RoleResource, :Description
+        attr_accessor :FlowServiceResource, :Definition, :FlowServiceName, :FlowServiceChineseName, :IsNewRole, :Type, :RoleResource, :Description, :EnableCLS
         
-        def initialize(flowserviceresource=nil, definition=nil, flowservicename=nil, flowservicechinesename=nil, isnewrole=nil, type=nil, roleresource=nil, description=nil)
+        def initialize(flowserviceresource=nil, definition=nil, flowservicename=nil, flowservicechinesename=nil, isnewrole=nil, type=nil, roleresource=nil, description=nil, enablecls=nil)
           @FlowServiceResource = flowserviceresource
           @Definition = definition
           @FlowServiceName = flowservicename
@@ -461,6 +486,7 @@ module TencentCloud
           @Type = type
           @RoleResource = roleresource
           @Description = description
+          @EnableCLS = enablecls
         end
 
         def deserialize(params)
@@ -472,6 +498,7 @@ module TencentCloud
           @Type = params['Type']
           @RoleResource = params['RoleResource']
           @Description = params['Description']
+          @EnableCLS = params['EnableCLS']
         end
       end
 
@@ -606,6 +633,38 @@ module TencentCloud
           @FlowServiceId = params['FlowServiceId']
           @TemplateId = params['TemplateId']
           @Description = params['Description']
+        end
+      end
+
+      # StopExecution请求参数结构体
+      class StopExecutionRequest < TencentCloud::Common::AbstractModel
+        # @param ExecutionQrn: 执行名称
+        # @type ExecutionQrn: String
+
+        attr_accessor :ExecutionQrn
+        
+        def initialize(executionqrn=nil)
+          @ExecutionQrn = executionqrn
+        end
+
+        def deserialize(params)
+          @ExecutionQrn = params['ExecutionQrn']
+        end
+      end
+
+      # StopExecution返回参数结构体
+      class StopExecutionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

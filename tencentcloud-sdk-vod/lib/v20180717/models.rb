@@ -3430,6 +3430,52 @@ module TencentCloud
         end
       end
 
+      # AttachMediaSubtitles请求参数结构体
+      class AttachMediaSubtitlesRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件唯一标识。
+        # @type FileId: String
+        # @param Operation: 操作。取值如下：
+        # <li>Attach：关联字幕。</li>
+        # <li>Detach：解除关联字幕。</li>
+        # @type Operation: String
+        # @param AdaptiveDynamicStreamingDefinition: [转自适应码流模板号](https://cloud.tencent.com/document/product/266/34071#zsy)。
+        # @type AdaptiveDynamicStreamingDefinition: Integer
+        # @param SubtitleIds: 字幕的唯一标识。
+        # @type SubtitleIds: Array
+
+        attr_accessor :FileId, :Operation, :AdaptiveDynamicStreamingDefinition, :SubtitleIds
+        
+        def initialize(fileid=nil, operation=nil, adaptivedynamicstreamingdefinition=nil, subtitleids=nil)
+          @FileId = fileid
+          @Operation = operation
+          @AdaptiveDynamicStreamingDefinition = adaptivedynamicstreamingdefinition
+          @SubtitleIds = subtitleids
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Operation = params['Operation']
+          @AdaptiveDynamicStreamingDefinition = params['AdaptiveDynamicStreamingDefinition']
+          @SubtitleIds = params['SubtitleIds']
+        end
+      end
+
+      # AttachMediaSubtitles返回参数结构体
+      class AttachMediaSubtitlesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 音频流配置参数
       class AudioTemplateInfo < TencentCloud::Common::AbstractModel
         # @param Codec: 音频流的编码格式。
@@ -11635,6 +11681,43 @@ module TencentCloud
         end
       end
 
+      # 字幕信息输入参数。
+      class MediaSubtitleInput < TencentCloud::Common::AbstractModel
+        # @param Name: 字幕名字，长度限制：64 个字符。
+        # @type Name: String
+        # @param Language: 字幕语言。常见的取值如下：
+        # <li>cn：中文</li>
+        # <li>ja：日文</li>
+        # <li>en-US：英文</li>
+        # 其他取值参考 [RFC5646](https://tools.ietf.org/html/rfc5646)
+        # @type Language: String
+        # @param Format: 字幕格式。取值范围如下：
+        # <li>vtt</li>
+        # @type Format: String
+        # @param Content: 字幕内容，进行 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串。
+        # @type Content: String
+        # @param Id: 字幕的唯一标识。长度不能超过16个字符，可以使用大小写字母、数字、下划线（_）或横杠（-）。不能与媒资文件中现有字幕的唯一标识重复。
+        # @type Id: String
+
+        attr_accessor :Name, :Language, :Format, :Content, :Id
+        
+        def initialize(name=nil, language=nil, format=nil, content=nil, id=nil)
+          @Name = name
+          @Language = language
+          @Format = format
+          @Content = content
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Language = params['Language']
+          @Format = params['Format']
+          @Content = params['Content']
+          @Id = params['Id']
+        end
+      end
+
       # 字幕信息。
       class MediaSubtitleItem < TencentCloud::Common::AbstractModel
         # @param Id: 字幕的唯一标识。
@@ -12465,12 +12548,19 @@ module TencentCloud
         # @param ClearTags: 取值 1 表示清空媒体文件所有标签，其他值无意义。
         # 同一个请求里，ClearTags 与 AddTags 不能同时出现。
         # @type ClearTags: Integer
+        # @param AddSubtitles: 新增一组字幕。单个媒体文件最多 16 个字幕。同一个请求中，AddSubtitles 中指定的字幕 Id 必须与 DeleteSubtitleIds 都不相同。
+        # @type AddSubtitles: Array
+        # @param DeleteSubtitleIds: 待删除字幕的唯一标识。同一个请求中，AddSubtitles 中指定的字幕 Id 必须与 DeleteSubtitleIds 都不相同。
+        # @type DeleteSubtitleIds: Array
+        # @param ClearSubtitles: 取值 1 表示清空媒体文件所有的字幕信息，其他值无意义。
+        # 同一个请求里，ClearSubtitles 与 AddSubtitles不能同时出现。
+        # @type ClearSubtitles: Integer
         # @param SubAppId: 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         # @type SubAppId: Integer
 
-        attr_accessor :FileId, :Name, :Description, :ClassId, :ExpireTime, :CoverData, :AddKeyFrameDescs, :DeleteKeyFrameDescs, :ClearKeyFrameDescs, :AddTags, :DeleteTags, :ClearTags, :SubAppId
+        attr_accessor :FileId, :Name, :Description, :ClassId, :ExpireTime, :CoverData, :AddKeyFrameDescs, :DeleteKeyFrameDescs, :ClearKeyFrameDescs, :AddTags, :DeleteTags, :ClearTags, :AddSubtitles, :DeleteSubtitleIds, :ClearSubtitles, :SubAppId
         
-        def initialize(fileid=nil, name=nil, description=nil, classid=nil, expiretime=nil, coverdata=nil, addkeyframedescs=nil, deletekeyframedescs=nil, clearkeyframedescs=nil, addtags=nil, deletetags=nil, cleartags=nil, subappid=nil)
+        def initialize(fileid=nil, name=nil, description=nil, classid=nil, expiretime=nil, coverdata=nil, addkeyframedescs=nil, deletekeyframedescs=nil, clearkeyframedescs=nil, addtags=nil, deletetags=nil, cleartags=nil, addsubtitles=nil, deletesubtitleids=nil, clearsubtitles=nil, subappid=nil)
           @FileId = fileid
           @Name = name
           @Description = description
@@ -12483,6 +12573,9 @@ module TencentCloud
           @AddTags = addtags
           @DeleteTags = deletetags
           @ClearTags = cleartags
+          @AddSubtitles = addsubtitles
+          @DeleteSubtitleIds = deletesubtitleids
+          @ClearSubtitles = clearsubtitles
           @SubAppId = subappid
         end
 
@@ -12504,6 +12597,14 @@ module TencentCloud
           @AddTags = params['AddTags']
           @DeleteTags = params['DeleteTags']
           @ClearTags = params['ClearTags']
+          unless params['AddSubtitles'].nil?
+            @AddSubtitles = []
+            params['AddSubtitles'].each do |i|
+              @AddSubtitles << MediaSubtitleInput.new.deserialize(i)
+            end
+          end
+          @DeleteSubtitleIds = params['DeleteSubtitleIds']
+          @ClearSubtitles = params['ClearSubtitles']
           @SubAppId = params['SubAppId']
         end
       end
@@ -12513,18 +12614,27 @@ module TencentCloud
         # @param CoverUrl: 新的视频封面 URL。
         # * 注意：仅当请求携带 CoverData 时此返回值有效。 *
         # @type CoverUrl: String
+        # @param AddedSubtitleSet: 新增的字幕信息。
+        # @type AddedSubtitleSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CoverUrl, :RequestId
+        attr_accessor :CoverUrl, :AddedSubtitleSet, :RequestId
         
-        def initialize(coverurl=nil, requestid=nil)
+        def initialize(coverurl=nil, addedsubtitleset=nil, requestid=nil)
           @CoverUrl = coverurl
+          @AddedSubtitleSet = addedsubtitleset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @CoverUrl = params['CoverUrl']
+          unless params['AddedSubtitleSet'].nil?
+            @AddedSubtitleSet = []
+            params['AddedSubtitleSet'].each do |i|
+              @AddedSubtitleSet << MediaSubtitleItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -15244,6 +15354,10 @@ module TencentCloud
         # <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
         # <li>miniProgramReviewInfo（小程序审核信息）。</li>
         # @type Filters: Array
+        # @param StorageRegions: 媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
+        # <li>单个存储地区长度限制：20个字符。</li>
+        # <li>数组长度限制：20。</li>
+        # @type StorageRegions: Array
         # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         # @type SubAppId: Integer
         # @param Text: （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）
@@ -15271,9 +15385,9 @@ module TencentCloud
         # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
         # @type EndTime: String
 
-        attr_accessor :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :Sort, :Offset, :Limit, :Filters, :SubAppId, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
+        attr_accessor :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :SubAppId, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
         
-        def initialize(fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, sort=nil, offset=nil, limit=nil, filters=nil, subappid=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
+        def initialize(fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, subappid=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
           @FileIds = fileids
           @Names = names
           @NamePrefixes = nameprefixes
@@ -15289,6 +15403,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @StorageRegions = storageregions
           @SubAppId = subappid
           @Text = text
           @SourceType = sourcetype
@@ -15318,6 +15433,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Filters = params['Filters']
+          @StorageRegions = params['StorageRegions']
           @SubAppId = params['SubAppId']
           @Text = params['Text']
           @SourceType = params['SourceType']

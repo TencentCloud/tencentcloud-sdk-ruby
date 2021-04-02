@@ -58,15 +58,21 @@ module TencentCloud
         # @type SampleRate: Integer
         # @param Denoise: 音频降噪信息
         # @type Denoise: :class:`Tencentcloud::Ie.v20200304.models.Denoise`
+        # @param EnableMuteAudio: 开启添加静音，可选项：
+        # 0：不开启，
+        # 1：开启，
+        # 默认不开启
+        # @type EnableMuteAudio: Integer
 
-        attr_accessor :Bitrate, :Codec, :Channel, :SampleRate, :Denoise
+        attr_accessor :Bitrate, :Codec, :Channel, :SampleRate, :Denoise, :EnableMuteAudio
         
-        def initialize(bitrate=nil, codec=nil, channel=nil, samplerate=nil, denoise=nil)
+        def initialize(bitrate=nil, codec=nil, channel=nil, samplerate=nil, denoise=nil, enablemuteaudio=nil)
           @Bitrate = bitrate
           @Codec = codec
           @Channel = channel
           @SampleRate = samplerate
           @Denoise = denoise
+          @EnableMuteAudio = enablemuteaudio
         end
 
         def deserialize(params)
@@ -77,6 +83,7 @@ module TencentCloud
           unless params['Denoise'].nil?
             @Denoise = Denoise.new.deserialize(params['Denoise'])
           end
+          @EnableMuteAudio = params['EnableMuteAudio']
         end
       end
 
@@ -1785,15 +1792,19 @@ module TencentCloud
       class MuxInfo < TencentCloud::Common::AbstractModel
         # @param DeleteStream: 删除流，可选项：video,audio。
         # @type DeleteStream: String
+        # @param FlvFlags: Flv 参数，目前支持add_keyframe_index
+        # @type FlvFlags: String
 
-        attr_accessor :DeleteStream
+        attr_accessor :DeleteStream, :FlvFlags
         
-        def initialize(deletestream=nil)
+        def initialize(deletestream=nil, flvflags=nil)
           @DeleteStream = deletestream
+          @FlvFlags = flvflags
         end
 
         def deserialize(params)
           @DeleteStream = params['DeleteStream']
+          @FlvFlags = params['FlvFlags']
         end
       end
 

@@ -49,6 +49,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
+
+        # @param request: Request instance for ClearLaunchConfigurationAttributes.
+        # @type request: :class:`Tencentcloud::as::V20180419::ClearLaunchConfigurationAttributesRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::ClearLaunchConfigurationAttributesResponse`
+        def ClearLaunchConfigurationAttributes(request)
+          body = send_request('ClearLaunchConfigurationAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ClearLaunchConfigurationAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CompleteLifecycleAction）用于完成生命周期动作。
 
         # * 用户通过调用本接口，指定一个具体的生命周期挂钩的结果（“CONITNUE”或者“ABANDON”）。如果一直不调用本接口，则生命周期挂钩会在超时后按照“DefaultResult”进行处理。
