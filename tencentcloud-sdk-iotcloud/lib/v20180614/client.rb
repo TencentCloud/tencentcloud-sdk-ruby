@@ -481,6 +481,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDeviceResource）用于查询设备资源详情。
+
+        # @param request: Request instance for DescribeDeviceResource.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::DescribeDeviceResourceRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::DescribeDeviceResourceResponse`
+        def DescribeDeviceResource(request)
+          body = send_request('DescribeDeviceResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDeviceResources）用于查询设备资源列表。
+
+        # @param request: Request instance for DescribeDeviceResources.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::DescribeDeviceResourcesRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::DescribeDeviceResourcesResponse`
+        def DescribeDeviceResources(request)
+          body = send_request('DescribeDeviceResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
 
         # @param request: Request instance for DescribeDeviceShadow.
@@ -745,6 +793,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeProductResource）用于查询产品资源详情。
+
+        # @param request: Request instance for DescribeProductResource.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::DescribeProductResourceRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::DescribeProductResourceResponse`
+        def DescribeProductResource(request)
+          body = send_request('DescribeProductResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProductResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeProductResources）用于查询产品资源列表。
+
+        # @param request: Request instance for DescribeProductResources.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::DescribeProductResourcesRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::DescribeProductResourcesResponse`
+        def DescribeProductResources(request)
+          body = send_request('DescribeProductResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProductResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeProductTask）用于查看产品级别的任务信息
 
         # @param request: Request instance for DescribeProductTask.
@@ -803,6 +899,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeProductsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询推送资源任务统计信息
+
+        # @param request: Request instance for DescribePushResourceTaskStatistics.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::DescribePushResourceTaskStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::DescribePushResourceTaskStatisticsResponse`
+        def DescribePushResourceTaskStatistics(request)
+          body = send_request('DescribePushResourceTaskStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePushResourceTaskStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资源推送任务列表
+
+        # @param request: Request instance for DescribeResourceTasks.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::DescribeResourceTasksRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::DescribeResourceTasksResponse`
+        def DescribeResourceTasks(request)
+          body = send_request('DescribeResourceTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -923,6 +1067,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
+
+        # @param request: Request instance for GetUserResourceInfo.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::GetUserResourceInfoRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::GetUserResourceInfoResponse`
+        def GetUserResourceInfo(request)
+          body = send_request('GetUserResourceInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetUserResourceInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

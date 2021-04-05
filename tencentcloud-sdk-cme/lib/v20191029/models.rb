@@ -434,6 +434,7 @@ module TencentCloud
         # <li>VIDEO_EDIT：视频编辑。</li>
         # <li>SWITCHER：导播台。</li>
         # <li>VIDEO_SEGMENTATION：视频拆条。</li>
+        # <li>STREAM_CONNECT：云转推。</li>
         # @type Category: String
         # @param Name: 项目名称，不可超过30个字符。
         # @type Name: String
@@ -452,10 +453,12 @@ module TencentCloud
         # @type VideoEditProjectInput: :class:`Tencentcloud::Cme.v20191029.models.VideoEditProjectInput`
         # @param VideoSegmentationProjectInput: 视频拆条信息，仅当项目类型为 VIDEO_SEGMENTATION  时必填。
         # @type VideoSegmentationProjectInput: :class:`Tencentcloud::Cme.v20191029.models.VideoSegmentationProjectInput`
+        # @param StreamConnectProjectInput: 云转推项目信息，仅当项目类型为 STREAM_CONNECT 时必填。
+        # @type StreamConnectProjectInput: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectProjectInput`
 
-        attr_accessor :Platform, :Category, :Name, :Owner, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput
+        attr_accessor :Platform, :Category, :Name, :Owner, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput
         
-        def initialize(platform=nil, category=nil, name=nil, owner=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil)
+        def initialize(platform=nil, category=nil, name=nil, owner=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil)
           @Platform = platform
           @Category = category
           @Name = name
@@ -466,6 +469,7 @@ module TencentCloud
           @LiveStreamClipProjectInput = livestreamclipprojectinput
           @VideoEditProjectInput = videoeditprojectinput
           @VideoSegmentationProjectInput = videosegmentationprojectinput
+          @StreamConnectProjectInput = streamconnectprojectinput
         end
 
         def deserialize(params)
@@ -488,6 +492,9 @@ module TencentCloud
           end
           unless params['VideoSegmentationProjectInput'].nil?
             @VideoSegmentationProjectInput = VideoSegmentationProjectInput.new.deserialize(params['VideoSegmentationProjectInput'])
+          end
+          unless params['StreamConnectProjectInput'].nil?
+            @StreamConnectProjectInput = StreamConnectProjectInput.new.deserialize(params['StreamConnectProjectInput'])
           end
         end
       end
@@ -1089,6 +1096,7 @@ module TencentCloud
         # <li>VIDEO_EDIT：视频编辑。</li>
         # <li>SWITCHER：导播台。</li>
         # <li>VIDEO_SEGMENTATION：视频拆条。</li>
+        # <li>STREAM_CONNECT：云转推。</li>
         # @type CategorySet: Array
         # @param Sort: 列表排序，支持下列排序字段：
         # <li>CreateTime：创建时间；</li>
@@ -2494,6 +2502,22 @@ module TencentCloud
         end
       end
 
+      # 直播拉流信息
+      class LivePullInputInfo < TencentCloud::Common::AbstractModel
+        # @param InputUrl: 直播拉流地址。
+        # @type InputUrl: String
+
+        attr_accessor :InputUrl
+        
+        def initialize(inputurl=nil)
+          @InputUrl = inputurl
+        end
+
+        def deserialize(params)
+          @InputUrl = params['InputUrl']
+        end
+      end
+
       # 直播剪辑项目输入参数。
       class LiveStreamClipProjectInput < TencentCloud::Common::AbstractModel
         # @param Url: 直播流播放地址，目前仅支持 HLS 和 FLV 格式。
@@ -2822,7 +2846,7 @@ module TencentCloud
       class MediaTrack < TencentCloud::Common::AbstractModel
         # @param Type: 轨道类型，取值有：
         # <ul>
-        # <li>Video ：视频轨道。视频轨道由以下 Item 组成：<ul><li>VideoTrackItem</li><li>EmptyTrackItem</li></ul> </li>
+        # <li>Video ：视频轨道。视频轨道由以下 Item 组成：<ul><li>VideoTrackItem</li><li>EmptyTrackItem</li><li>MediaTransitionItem</li></ul> </li>
         # <li>Audio ：音频轨道。音频轨道由以下 Item 组成：<ul><li>AudioTrackItem</li><li>EmptyTrackItem</li></ul> </li>
         # </ul>
         # @type Type: String
@@ -2850,9 +2874,10 @@ module TencentCloud
       # 媒体轨道的片段信息
       class MediaTrackItem < TencentCloud::Common::AbstractModel
         # @param Type: 片段类型。取值有：
-        # <li>Video：视频片段。</li>
-        # <li>Audio：音频片段。</li>
-        # <li>Empty：空白片段。</li>
+        # <li>Video：视频片段；</li>
+        # <li>Audio：音频片段；</li>
+        # <li>Empty：空白片段；</li>
+        # <li>Transition：转场。</li>
         # @type Type: String
         # @param VideoItem: 视频片段，当 Type = Video 时有效。
         # @type VideoItem: :class:`Tencentcloud::Cme.v20191029.models.VideoTrackItem`
@@ -2861,14 +2886,17 @@ module TencentCloud
         # @param EmptyItem: 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。<li>如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。</li>
         # <li>使用 EmptyTrackItem 进行占位，来定位某个Item。</li>
         # @type EmptyItem: :class:`Tencentcloud::Cme.v20191029.models.EmptyTrackItem`
+        # @param TransitionItem: 转场，当 Type = Transition 时有效。
+        # @type TransitionItem: :class:`Tencentcloud::Cme.v20191029.models.MediaTransitionItem`
 
-        attr_accessor :Type, :VideoItem, :AudioItem, :EmptyItem
+        attr_accessor :Type, :VideoItem, :AudioItem, :EmptyItem, :TransitionItem
         
-        def initialize(type=nil, videoitem=nil, audioitem=nil, emptyitem=nil)
+        def initialize(type=nil, videoitem=nil, audioitem=nil, emptyitem=nil, transitionitem=nil)
           @Type = type
           @VideoItem = videoitem
           @AudioItem = audioitem
           @EmptyItem = emptyitem
+          @TransitionItem = transitionitem
         end
 
         def deserialize(params)
@@ -2882,6 +2910,29 @@ module TencentCloud
           unless params['EmptyItem'].nil?
             @EmptyItem = EmptyTrackItem.new.deserialize(params['EmptyItem'])
           end
+          unless params['TransitionItem'].nil?
+            @TransitionItem = MediaTransitionItem.new.deserialize(params['TransitionItem'])
+          end
+        end
+      end
+
+      # 转场信息
+      class MediaTransitionItem < TencentCloud::Common::AbstractModel
+        # @param TransitionId: 转场 Id 。暂只支持一个转场。
+        # @type TransitionId: String
+        # @param Duration: 转场持续时间，单位为秒，默认为2秒。进行转场处理的两个媒体片段，第二个片段在轨道上的起始时间会自动进行调整，设置为前面一个片段的结束时间减去转场的持续时间。
+        # @type Duration: Float
+
+        attr_accessor :TransitionId, :Duration
+        
+        def initialize(transitionid=nil, duration=nil)
+          @TransitionId = transitionid
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @TransitionId = params['TransitionId']
+          @Duration = params['Duration']
         end
       end
 
@@ -3303,7 +3354,12 @@ module TencentCloud
         # @type Name: String
         # @param AspectRatio: 画布宽高比。
         # @type AspectRatio: String
-        # @param Category: 项目类别。
+        # @param Category: 项目类别，取值：
+        # 项目类别，取值有：
+        # <li>VIDEO_EDIT：视频编辑。</li>
+        # <li>SWITCHER：导播台。</li>
+        # <li>VIDEO_SEGMENTATION：视频拆条。</li>
+        # <li>STREAM_CONNECT：云转推。</li>
         # @type Category: String
         # @param Owner: 归属者。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
@@ -3453,6 +3509,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 直播推流信息，包括推流地址有效时长，云剪后端生成直播推流地址。
+      class RtmpPushInputInfo < TencentCloud::Common::AbstractModel
+        # @param ExpiredSecond: 直播推流地址有效期，单位：秒 。
+        # @type ExpiredSecond: Integer
+        # @param PushUrl: 直播推流地址，入参不填默认由云剪生成。
+        # @type PushUrl: String
+
+        attr_accessor :ExpiredSecond, :PushUrl
+        
+        def initialize(expiredsecond=nil, pushurl=nil)
+          @ExpiredSecond = expiredsecond
+          @PushUrl = pushurl
+        end
+
+        def deserialize(params)
+          @ExpiredSecond = params['ExpiredSecond']
+          @PushUrl = params['PushUrl']
         end
       end
 
@@ -3628,6 +3704,109 @@ module TencentCloud
         def deserialize(params)
           @Field = params['Field']
           @Order = params['Order']
+        end
+      end
+
+      # 云转推输出源。
+      class StreamConnectOutput < TencentCloud::Common::AbstractModel
+        # @param Id: 云转推输出源标识，转推项目级别唯一。若不填则由后端生成。
+        # @type Id: String
+        # @param Name: 云转推输出源名称。
+        # @type Name: String
+        # @param Type: 云转推输出源类型，取值：
+        # <li>URL ：URL类型</li>
+        # 不填默认为URL类型。
+        # @type Type: String
+        # @param PushUrl: 云转推推流地址。
+        # @type PushUrl: String
+
+        attr_accessor :Id, :Name, :Type, :PushUrl
+        
+        def initialize(id=nil, name=nil, type=nil, pushurl=nil)
+          @Id = id
+          @Name = name
+          @Type = type
+          @PushUrl = pushurl
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Type = params['Type']
+          @PushUrl = params['PushUrl']
+        end
+      end
+
+      # 云转推项目输入信息。
+      class StreamConnectProjectInput < TencentCloud::Common::AbstractModel
+        # @param MainInput: 云转推主输入源信息。
+        # @type MainInput: :class:`Tencentcloud::Cme.v20191029.models.StreamInputInfo`
+        # @param BackupInput: 云转推备输入源信息。
+        # @type BackupInput: :class:`Tencentcloud::Cme.v20191029.models.StreamInputInfo`
+        # @param Outputs: 云转推输出源信息。
+        # @type Outputs: Array
+
+        attr_accessor :MainInput, :BackupInput, :Outputs
+        
+        def initialize(maininput=nil, backupinput=nil, outputs=nil)
+          @MainInput = maininput
+          @BackupInput = backupinput
+          @Outputs = outputs
+        end
+
+        def deserialize(params)
+          unless params['MainInput'].nil?
+            @MainInput = StreamInputInfo.new.deserialize(params['MainInput'])
+          end
+          unless params['BackupInput'].nil?
+            @BackupInput = StreamInputInfo.new.deserialize(params['BackupInput'])
+          end
+          unless params['Outputs'].nil?
+            @Outputs = []
+            params['Outputs'].each do |i|
+              @Outputs << StreamConnectOutput.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 输入流信息。
+      class StreamInputInfo < TencentCloud::Common::AbstractModel
+        # @param InputType: 流输入类型，取值：
+        # <li>VodPull ： 点播拉流；</li>
+        # <li>LivePull ：直播拉流；</li>
+        # <li>RtmpPush ： 直播推流。</li>
+        # @type InputType: String
+        # @param VodPullInputInfo: 点播拉流信息，当 InputType = VodPull 时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VodPullInputInfo: :class:`Tencentcloud::Cme.v20191029.models.VodPullInputInfo`
+        # @param LivePullInputInfo: 直播拉流信息，当 InputType = LivePull  时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LivePullInputInfo: :class:`Tencentcloud::Cme.v20191029.models.LivePullInputInfo`
+        # @param RtmpPushInputInfo: 直播推流信息，当 InputType = RtmpPush 时必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RtmpPushInputInfo: :class:`Tencentcloud::Cme.v20191029.models.RtmpPushInputInfo`
+
+        attr_accessor :InputType, :VodPullInputInfo, :LivePullInputInfo, :RtmpPushInputInfo
+        
+        def initialize(inputtype=nil, vodpullinputinfo=nil, livepullinputinfo=nil, rtmppushinputinfo=nil)
+          @InputType = inputtype
+          @VodPullInputInfo = vodpullinputinfo
+          @LivePullInputInfo = livepullinputinfo
+          @RtmpPushInputInfo = rtmppushinputinfo
+        end
+
+        def deserialize(params)
+          @InputType = params['InputType']
+          unless params['VodPullInputInfo'].nil?
+            @VodPullInputInfo = VodPullInputInfo.new.deserialize(params['VodPullInputInfo'])
+          end
+          unless params['LivePullInputInfo'].nil?
+            @LivePullInputInfo = LivePullInputInfo.new.deserialize(params['LivePullInputInfo'])
+          end
+          unless params['RtmpPushInputInfo'].nil?
+            @RtmpPushInputInfo = RtmpPushInputInfo.new.deserialize(params['RtmpPushInputInfo'])
+          end
         end
       end
 
@@ -4127,6 +4306,30 @@ module TencentCloud
           @CoordinateOrigin = params['CoordinateOrigin']
           @Height = params['Height']
           @Width = params['Width']
+        end
+      end
+
+      # 点播拉流信息，包括输入拉流地址和播放次数。
+      class VodPullInputInfo < TencentCloud::Common::AbstractModel
+        # @param InputUrls: 点播输入拉流 URL 。
+        # @type InputUrls: Array
+        # @param LoopTimes: 播放次数，取值有：
+        # <li>-1 : 循环播放，直到转推结束；</li>
+        # <li>0 : 不循环；</li>
+        # <li>大于0 : 具体循环次数，次数和时间以先结束的为准。</li>
+        # 默认不循环。
+        # @type LoopTimes: Integer
+
+        attr_accessor :InputUrls, :LoopTimes
+        
+        def initialize(inputurls=nil, looptimes=nil)
+          @InputUrls = inputurls
+          @LoopTimes = looptimes
+        end
+
+        def deserialize(params)
+          @InputUrls = params['InputUrls']
+          @LoopTimes = params['LoopTimes']
         end
       end
 

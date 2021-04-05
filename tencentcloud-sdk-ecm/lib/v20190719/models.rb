@@ -2325,9 +2325,9 @@ module TencentCloud
         # vpc-id - String - HAVIP所在私有网络ID。
         # subnet-id - String - HAVIP所在子网ID。
         # @type Filters: Array
-        # @param Offset: 偏移量。
+        # @param Offset: 偏移量，默认值是0。
         # @type Offset: Integer
-        # @param Limit: 返回数量。
+        # @param Limit: 返回数量，默认值是20，最大是100。
         # @type Limit: Integer
         # @param EcmRegion: Ecm 区域，不填代表全部区域。
         # @type EcmRegion: String

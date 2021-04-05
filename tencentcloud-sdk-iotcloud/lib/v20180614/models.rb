@@ -983,6 +983,118 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceResource请求参数结构体
+      class DescribeDeviceResourceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param Name: 具体的设备资源名称
+        # @type Name: String
+
+        attr_accessor :DeviceName, :ProductID, :Name
+        
+        def initialize(devicename=nil, productid=nil, name=nil)
+          @DeviceName = devicename
+          @ProductID = productid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @ProductID = params['ProductID']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeDeviceResource返回参数结构体
+      class DescribeDeviceResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 设备资源详情
+        # @type Result: :class:`Tencentcloud::Iotcloud.v20180614.models.DeviceResourceInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DeviceResourceInfo.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceResources请求参数结构体
+      class DescribeDeviceResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，Offset从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页的大小，数值范围 10-250
+        # @type Limit: Integer
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param DeviceName: 需要过滤的设备名称
+        # @type DeviceName: String
+        # @param StartTime: 资源搜索开始时间
+        # @type StartTime: String
+        # @param EndTime: 资源搜索结束时间
+        # @type EndTime: String
+
+        attr_accessor :Offset, :Limit, :ProductID, :DeviceName, :StartTime, :EndTime
+        
+        def initialize(offset=nil, limit=nil, productid=nil, devicename=nil, starttime=nil, endtime=nil)
+          @Offset = offset
+          @Limit = limit
+          @ProductID = productid
+          @DeviceName = devicename
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ProductID = params['ProductID']
+          @DeviceName = params['DeviceName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeDeviceResources返回参数结构体
+      class DescribeDeviceResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 资源总数
+        # @type TotalCount: Integer
+        # @param Result: 资源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Result, :RequestId
+        
+        def initialize(totalcount=nil, result=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << DeviceResourceInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDevice返回参数结构体
       class DescribeDeviceResponse < TencentCloud::Common::AbstractModel
         # @param DeviceName: 设备名
@@ -1763,6 +1875,107 @@ module TencentCloud
         end
       end
 
+      # DescribeProductResource请求参数结构体
+      class DescribeProductResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 需要查看资源列表的产品 ID
+        # @type ProductID: String
+        # @param Name: 需要过滤的资源名称
+        # @type Name: String
+
+        attr_accessor :ProductID, :Name
+        
+        def initialize(productid=nil, name=nil)
+          @ProductID = productid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeProductResource返回参数结构体
+      class DescribeProductResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Iotcloud.v20180614.models.ProductResourceInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ProductResourceInfo.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProductResources请求参数结构体
+      class DescribeProductResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，Offset从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页的大小，数值范围 10-250
+        # @type Limit: Integer
+        # @param ProductID: 需要查看资源列表的产品 ID
+        # @type ProductID: String
+        # @param Name: 需要过滤的资源名称
+        # @type Name: String
+
+        attr_accessor :Offset, :Limit, :ProductID, :Name
+        
+        def initialize(offset=nil, limit=nil, productid=nil, name=nil)
+          @Offset = offset
+          @Limit = limit
+          @ProductID = productid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ProductID = params['ProductID']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeProductResources返回参数结构体
+      class DescribeProductResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 资源总数
+        # @type TotalCount: Integer
+        # @param Result: 资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Result, :RequestId
+        
+        def initialize(totalcount=nil, result=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << ProductResourceInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProductTask请求参数结构体
       class DescribeProductTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -1903,6 +2116,125 @@ module TencentCloud
               @Products << ProductInfo.new.deserialize(i)
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePushResourceTaskStatistics请求参数结构体
+      class DescribePushResourceTaskStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param Name: 资源名称
+        # @type Name: String
+
+        attr_accessor :ProductID, :Name
+        
+        def initialize(productid=nil, name=nil)
+          @ProductID = productid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribePushResourceTaskStatistics返回参数结构体
+      class DescribePushResourceTaskStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessTotal: 推送成功的设备总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessTotal: Integer
+        # @param FailureTotal: 推送失败的设备总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailureTotal: Integer
+        # @param UpgradingTotal: 正在推送的设备总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpgradingTotal: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessTotal, :FailureTotal, :UpgradingTotal, :RequestId
+        
+        def initialize(successtotal=nil, failuretotal=nil, upgradingtotal=nil, requestid=nil)
+          @SuccessTotal = successtotal
+          @FailureTotal = failuretotal
+          @UpgradingTotal = upgradingtotal
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessTotal = params['SuccessTotal']
+          @FailureTotal = params['FailureTotal']
+          @UpgradingTotal = params['UpgradingTotal']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceTasks请求参数结构体
+      class DescribeResourceTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param Name: 资源名称
+        # @type Name: String
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回查询结果条数
+        # @type Limit: Integer
+        # @param Filters: 搜索过滤条件
+        # @type Filters: Array
+
+        attr_accessor :ProductID, :Name, :Offset, :Limit, :Filters
+        
+        def initialize(productid=nil, name=nil, offset=nil, limit=nil, filters=nil)
+          @ProductID = productid
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << SearchKeyword.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeResourceTasks返回参数结构体
+      class DescribeResourceTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TaskInfos: 资源任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskInfos: Array
+        # @param Total: 资源任务总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskInfos, :Total, :RequestId
+        
+        def initialize(taskinfos=nil, total=nil, requestid=nil)
+          @TaskInfos = taskinfos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskInfos'].nil?
+            @TaskInfos = []
+            params['TaskInfos'].each do |i|
+              @TaskInfos << FirmwareTaskInfo.new.deserialize(i)
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -2219,6 +2551,54 @@ module TencentCloud
         end
       end
 
+      # 设备资源详细信息
+      class DeviceResourceInfo < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param ProductName: 产品名
+        # @type ProductName: String
+        # @param Name: 资源名称
+        # @type Name: String
+        # @param Md5: 资源文件md5
+        # @type Md5: String
+        # @param Size: 资源文件大小
+        # @type Size: Integer
+        # @param UpdateTime: 资源更新时间
+        # @type UpdateTime: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Status: 设备资源上传状态
+        # @type Status: Integer
+        # @param Percent: 设备资源上传百分比
+        # @type Percent: Integer
+
+        attr_accessor :ProductID, :ProductName, :Name, :Md5, :Size, :UpdateTime, :DeviceName, :Status, :Percent
+        
+        def initialize(productid=nil, productname=nil, name=nil, md5=nil, size=nil, updatetime=nil, devicename=nil, status=nil, percent=nil)
+          @ProductID = productid
+          @ProductName = productname
+          @Name = name
+          @Md5 = md5
+          @Size = size
+          @UpdateTime = updatetime
+          @DeviceName = devicename
+          @Status = status
+          @Percent = percent
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @ProductName = params['ProductName']
+          @Name = params['Name']
+          @Md5 = params['Md5']
+          @Size = params['Size']
+          @UpdateTime = params['UpdateTime']
+          @DeviceName = params['DeviceName']
+          @Status = params['Status']
+          @Percent = params['Percent']
+        end
+      end
+
       # 设备属性
       class DeviceTag < TencentCloud::Common::AbstractModel
         # @param Tag: 属性名称
@@ -2439,6 +2819,41 @@ module TencentCloud
         end
       end
 
+      # GetUserResourceInfo请求参数结构体
+      class GetUserResourceInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetUserResourceInfo返回参数结构体
+      class GetUserResourceInfoResponse < TencentCloud::Common::AbstractModel
+        # @param UsedSize: 已使用的资源字节数
+        # @type UsedSize: Integer
+        # @param Limit: 可以使用资源的总大小
+        # @type Limit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsedSize, :Limit, :RequestId
+        
+        def initialize(usedsize=nil, limit=nil, requestid=nil)
+          @UsedSize = usedsize
+          @Limit = limit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsedSize = params['UsedSize']
+          @Limit = params['Limit']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建设备时返回的设备信息
       class MultiDevicesInfo < TencentCloud::Common::AbstractModel
         # @param DeviceName: 设备名
@@ -2585,6 +3000,47 @@ module TencentCloud
           @RegisterType = params['RegisterType']
           @ProductSecret = params['ProductSecret']
           @RegisterLimit = params['RegisterLimit']
+        end
+      end
+
+      # 产品资源详细信息
+      class ProductResourceInfo < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param ProductName: 产品名
+        # @type ProductName: String
+        # @param Name: 资源名称
+        # @type Name: String
+        # @param Md5: 资源文件md5
+        # @type Md5: String
+        # @param Size: 资源文件大小
+        # @type Size: Integer
+        # @param Description: 资源文件描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 资源创建时间
+        # @type CreateTime: String
+
+        attr_accessor :ProductID, :ProductName, :Name, :Md5, :Size, :Description, :CreateTime
+        
+        def initialize(productid=nil, productname=nil, name=nil, md5=nil, size=nil, description=nil, createtime=nil)
+          @ProductID = productid
+          @ProductName = productname
+          @Name = name
+          @Md5 = md5
+          @Size = size
+          @Description = description
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @ProductName = params['ProductName']
+          @Name = params['Name']
+          @Md5 = params['Md5']
+          @Size = params['Size']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
         end
       end
 
