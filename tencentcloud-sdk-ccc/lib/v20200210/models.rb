@@ -593,6 +593,48 @@ module TencentCloud
         end
       end
 
+      # DescribeTelSession请求参数结构体
+      class DescribeTelSessionRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用ID
+        # @type SdkAppId: Integer
+        # @param SessionId: 会话ID
+        # @type SessionId: String
+
+        attr_accessor :SdkAppId, :SessionId
+        
+        def initialize(sdkappid=nil, sessionid=nil)
+          @SdkAppId = sdkappid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DescribeTelSession返回参数结构体
+      class DescribeTelSessionResponse < TencentCloud::Common::AbstractModel
+        # @param Session: 会话信息
+        # @type Session: :class:`Tencentcloud::Ccc.v20200210.models.PSTNSession`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Session, :RequestId
+        
+        def initialize(session=nil, requestid=nil)
+          @Session = session
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Session'].nil?
+            @Session = PSTNSession.new.deserialize(params['Session'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 全媒体服务记录信息
       class IMCdrInfo < TencentCloud::Common::AbstractModel
         # @param Id: 服务记录ID
@@ -701,6 +743,74 @@ module TencentCloud
               @Messages << Message.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # PSTN 会话类型。
+      class PSTNSession < TencentCloud::Common::AbstractModel
+        # @param SessionID: 会话 ID
+        # @type SessionID: String
+        # @param RoomID: 会话临时房间 ID
+        # @type RoomID: String
+        # @param Caller: 主叫
+        # @type Caller: String
+        # @param Callee: 被叫
+        # @type Callee: String
+        # @param StartTimestamp: 开始时间，Unix 时间戳
+        # @type StartTimestamp: Integer
+        # @param RingTimestamp: 振铃时间，Unix 时间戳
+        # @type RingTimestamp: Integer
+        # @param AcceptTimestamp: 接听时间，Unix 时间戳
+        # @type AcceptTimestamp: Integer
+        # @param StaffEmail: 坐席邮箱
+        # @type StaffEmail: String
+        # @param StaffNumber: 坐席工号
+        # @type StaffNumber: String
+        # @param SessionStatus: 会话状态
+        # ringing 振铃中
+        # seatJoining  等待坐席接听
+        # inProgress 进行中
+        # finished 已完成
+        # @type SessionStatus: String
+        # @param Direction: 会话呼叫方向， 0 呼入 | 1 - 呼出
+        # @type Direction: Integer
+        # @param OutBoundCaller: 转外线使用的号码（转外线主叫）
+        # @type OutBoundCaller: String
+        # @param OutBoundCallee: 转外线被叫
+        # @type OutBoundCallee: String
+
+        attr_accessor :SessionID, :RoomID, :Caller, :Callee, :StartTimestamp, :RingTimestamp, :AcceptTimestamp, :StaffEmail, :StaffNumber, :SessionStatus, :Direction, :OutBoundCaller, :OutBoundCallee
+        
+        def initialize(sessionid=nil, roomid=nil, caller=nil, callee=nil, starttimestamp=nil, ringtimestamp=nil, accepttimestamp=nil, staffemail=nil, staffnumber=nil, sessionstatus=nil, direction=nil, outboundcaller=nil, outboundcallee=nil)
+          @SessionID = sessionid
+          @RoomID = roomid
+          @Caller = caller
+          @Callee = callee
+          @StartTimestamp = starttimestamp
+          @RingTimestamp = ringtimestamp
+          @AcceptTimestamp = accepttimestamp
+          @StaffEmail = staffemail
+          @StaffNumber = staffnumber
+          @SessionStatus = sessionstatus
+          @Direction = direction
+          @OutBoundCaller = outboundcaller
+          @OutBoundCallee = outboundcallee
+        end
+
+        def deserialize(params)
+          @SessionID = params['SessionID']
+          @RoomID = params['RoomID']
+          @Caller = params['Caller']
+          @Callee = params['Callee']
+          @StartTimestamp = params['StartTimestamp']
+          @RingTimestamp = params['RingTimestamp']
+          @AcceptTimestamp = params['AcceptTimestamp']
+          @StaffEmail = params['StaffEmail']
+          @StaffNumber = params['StaffNumber']
+          @SessionStatus = params['SessionStatus']
+          @Direction = params['Direction']
+          @OutBoundCaller = params['OutBoundCaller']
+          @OutBoundCallee = params['OutBoundCallee']
         end
       end
 

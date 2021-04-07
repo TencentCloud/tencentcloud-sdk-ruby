@@ -1721,10 +1721,12 @@ module TencentCloud
         # @type FaultReportContactNumber: String
         # @param SignLaw: 物理专线申请者补签用户使用协议
         # @type SignLaw: Boolean
+        # @param Bandwidth: 物理专线带宽
+        # @type Bandwidth: Integer
 
-        attr_accessor :DirectConnectId, :DirectConnectName, :CircuitCode, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw
+        attr_accessor :DirectConnectId, :DirectConnectName, :CircuitCode, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw, :Bandwidth
         
-        def initialize(directconnectid=nil, directconnectname=nil, circuitcode=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil)
+        def initialize(directconnectid=nil, directconnectname=nil, circuitcode=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil, bandwidth=nil)
           @DirectConnectId = directconnectid
           @DirectConnectName = directconnectname
           @CircuitCode = circuitcode
@@ -1737,6 +1739,7 @@ module TencentCloud
           @FaultReportContactPerson = faultreportcontactperson
           @FaultReportContactNumber = faultreportcontactnumber
           @SignLaw = signlaw
+          @Bandwidth = bandwidth
         end
 
         def deserialize(params)
@@ -1752,6 +1755,7 @@ module TencentCloud
           @FaultReportContactPerson = params['FaultReportContactPerson']
           @FaultReportContactNumber = params['FaultReportContactNumber']
           @SignLaw = params['SignLaw']
+          @Bandwidth = params['Bandwidth']
         end
       end
 

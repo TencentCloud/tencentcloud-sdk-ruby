@@ -407,6 +407,60 @@ module TencentCloud
         end
       end
 
+      # CreateSnapshots请求参数结构体
+      class CreateSnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 表格所属集群id
+        # @type ClusterId: String
+        # @param SelectedTables: 快照列表
+        # @type SelectedTables: Array
+
+        attr_accessor :ClusterId, :SelectedTables
+        
+        def initialize(clusterid=nil, selectedtables=nil)
+          @ClusterId = clusterid
+          @SelectedTables = selectedtables
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['SelectedTables'].nil?
+            @SelectedTables = []
+            params['SelectedTables'].each do |i|
+              @SelectedTables << SnapshotInfo.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # CreateSnapshots返回参数结构体
+      class CreateSnapshotsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 批量创建的快照数量
+        # @type TotalCount: Integer
+        # @param TableResults: 批量创建的快照结果列表
+        # @type TableResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TableResults, :RequestId
+        
+        def initialize(totalcount=nil, tableresults=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TableResults = tableresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TableResults'].nil?
+            @TableResults = []
+            params['TableResults'].each do |i|
+              @TableResults << SnapshotResult.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTableGroup请求参数结构体
       class CreateTableGroupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 表格组所属集群ID
@@ -616,6 +670,60 @@ module TencentCloud
             @IdlFileInfos = []
             params['IdlFileInfos'].each do |i|
               @IdlFileInfos << IdlFileInfoWithoutContent.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSnapshots请求参数结构体
+      class DeleteSnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 表格所属集群id
+        # @type ClusterId: String
+        # @param SelectedTables: 删除的快照列表
+        # @type SelectedTables: Array
+
+        attr_accessor :ClusterId, :SelectedTables
+        
+        def initialize(clusterid=nil, selectedtables=nil)
+          @ClusterId = clusterid
+          @SelectedTables = selectedtables
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['SelectedTables'].nil?
+            @SelectedTables = []
+            params['SelectedTables'].each do |i|
+              @SelectedTables << SnapshotInfoNew.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DeleteSnapshots返回参数结构体
+      class DeleteSnapshotsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 批量删除的快照数量
+        # @type TotalCount: Integer
+        # @param TableResults: 批量删除的快照结果
+        # @type TableResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TableResults, :RequestId
+        
+        def initialize(totalcount=nil, tableresults=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TableResults = tableresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TableResults'].nil?
+            @TableResults = []
+            params['TableResults'].each do |i|
+              @TableResults << SnapshotResult.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
@@ -1019,6 +1127,63 @@ module TencentCloud
             @RegionInfos = []
             params['RegionInfos'].each do |i|
               @RegionInfos << RegionInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshots请求参数结构体
+      class DescribeSnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 表格所属集群id
+        # @type ClusterId: String
+        # @param TableGroupId: 所属表格组ID
+        # @type TableGroupId: String
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param SnapshotName: 快照名称
+        # @type SnapshotName: String
+
+        attr_accessor :ClusterId, :TableGroupId, :TableName, :SnapshotName
+        
+        def initialize(clusterid=nil, tablegroupid=nil, tablename=nil, snapshotname=nil)
+          @ClusterId = clusterid
+          @TableGroupId = tablegroupid
+          @TableName = tablename
+          @SnapshotName = snapshotname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @TableGroupId = params['TableGroupId']
+          @TableName = params['TableName']
+          @SnapshotName = params['SnapshotName']
+        end
+      end
+
+      # DescribeSnapshots返回参数结构体
+      class DescribeSnapshotsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 快照数量
+        # @type TotalCount: Integer
+        # @param TableResults: 快照结果列表
+        # @type TableResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TableResults, :RequestId
+        
+        def initialize(totalcount=nil, tableresults=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TableResults = tableresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TableResults'].nil?
+            @TableResults = []
+            params['TableResults'].each do |i|
+              @TableResults << SnapshotResult.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
@@ -1664,6 +1829,99 @@ module TencentCloud
         end
       end
 
+      # ImportSnapshots请求参数结构体
+      class ImportSnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 表格所属的集群id
+        # @type ClusterId: String
+        # @param Snapshots: 用于导入的快照信息
+        # @type Snapshots: :class:`Tencentcloud::Tcaplusdb.v20190823.models.SnapshotInfo`
+        # @param ImportSpecialKey: 是否导入部分记录，TRUE表示导入部分记录，FALSE表示全表导入
+        # @type ImportSpecialKey: String
+        # @param ImportOriginTable: 是否导入到当前表，TRUE表示导入到当前表，FALSE表示导入到新表
+        # @type ImportOriginTable: String
+        # @param KeyFile: 部分记录的key文件
+        # @type KeyFile: :class:`Tencentcloud::Tcaplusdb.v20190823.models.KeyFile`
+        # @param NewTableGroupId: 如果导入到新表，此为新表所属的表格组id
+        # @type NewTableGroupId: String
+        # @param NewTableName: 如果导入到新表，此为新表的表名，系统会以该名称自动创建一张结构相同的空表
+        # @type NewTableName: String
+
+        attr_accessor :ClusterId, :Snapshots, :ImportSpecialKey, :ImportOriginTable, :KeyFile, :NewTableGroupId, :NewTableName
+        
+        def initialize(clusterid=nil, snapshots=nil, importspecialkey=nil, importorigintable=nil, keyfile=nil, newtablegroupid=nil, newtablename=nil)
+          @ClusterId = clusterid
+          @Snapshots = snapshots
+          @ImportSpecialKey = importspecialkey
+          @ImportOriginTable = importorigintable
+          @KeyFile = keyfile
+          @NewTableGroupId = newtablegroupid
+          @NewTableName = newtablename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Snapshots'].nil?
+            @Snapshots = SnapshotInfo.new.deserialize(params['Snapshots'])
+          end
+          @ImportSpecialKey = params['ImportSpecialKey']
+          @ImportOriginTable = params['ImportOriginTable']
+          unless params['KeyFile'].nil?
+            @KeyFile = KeyFile.new.deserialize(params['KeyFile'])
+          end
+          @NewTableGroupId = params['NewTableGroupId']
+          @NewTableName = params['NewTableName']
+        end
+      end
+
+      # ImportSnapshots返回参数结构体
+      class ImportSnapshotsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 部分key导入快照数据时所需要的key文件
+      class KeyFile < TencentCloud::Common::AbstractModel
+        # @param FileName: key文件名称
+        # @type FileName: String
+        # @param FileExtType: key文件扩展名
+        # @type FileExtType: String
+        # @param FileContent: key文件内容
+        # @type FileContent: String
+        # @param FileSize: key文件大小
+        # @type FileSize: Integer
+
+        attr_accessor :FileName, :FileExtType, :FileContent, :FileSize
+        
+        def initialize(filename=nil, fileexttype=nil, filecontent=nil, filesize=nil)
+          @FileName = filename
+          @FileExtType = fileexttype
+          @FileContent = filecontent
+          @FileSize = filesize
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileExtType = params['FileExtType']
+          @FileContent = params['FileContent']
+          @FileSize = params['FileSize']
+        end
+      end
+
       # 机器类型和数量
       class MachineInfo < TencentCloud::Common::AbstractModel
         # @param MachineType: 机器类型
@@ -1877,6 +2135,60 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySnapshots请求参数结构体
+      class ModifySnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 表格所属集群id
+        # @type ClusterId: String
+        # @param SelectedTables: 快照列表
+        # @type SelectedTables: Array
+
+        attr_accessor :ClusterId, :SelectedTables
+        
+        def initialize(clusterid=nil, selectedtables=nil)
+          @ClusterId = clusterid
+          @SelectedTables = selectedtables
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['SelectedTables'].nil?
+            @SelectedTables = []
+            params['SelectedTables'].each do |i|
+              @SelectedTables << SnapshotInfoNew.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # ModifySnapshots返回参数结构体
+      class ModifySnapshotsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 批量创建的快照数量
+        # @type TotalCount: Integer
+        # @param TableResults: 批量创建的快照结果列表
+        # @type TableResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TableResults, :RequestId
+        
+        def initialize(totalcount=nil, tableresults=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TableResults = tableresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TableResults'].nil?
+            @TableResults = []
+            params['TableResults'].each do |i|
+              @TableResults << SnapshotResult.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2785,6 +3097,130 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 快照列表
+      class SnapshotInfo < TencentCloud::Common::AbstractModel
+        # @param TableGroupId: 所属表格组ID
+        # @type TableGroupId: String
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param SnapshotName: 快照名称
+        # @type SnapshotName: String
+        # @param SnapshotTime: 快照时间点
+        # @type SnapshotTime: String
+        # @param SnapshotDeadTime: 快照过期时间点
+        # @type SnapshotDeadTime: String
+
+        attr_accessor :TableGroupId, :TableName, :SnapshotName, :SnapshotTime, :SnapshotDeadTime
+        
+        def initialize(tablegroupid=nil, tablename=nil, snapshotname=nil, snapshottime=nil, snapshotdeadtime=nil)
+          @TableGroupId = tablegroupid
+          @TableName = tablename
+          @SnapshotName = snapshotname
+          @SnapshotTime = snapshottime
+          @SnapshotDeadTime = snapshotdeadtime
+        end
+
+        def deserialize(params)
+          @TableGroupId = params['TableGroupId']
+          @TableName = params['TableName']
+          @SnapshotName = params['SnapshotName']
+          @SnapshotTime = params['SnapshotTime']
+          @SnapshotDeadTime = params['SnapshotDeadTime']
+        end
+      end
+
+      # 新的快照过期时间
+      class SnapshotInfoNew < TencentCloud::Common::AbstractModel
+        # @param TableGroupId: 所属表格组ID
+        # @type TableGroupId: String
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param SnapshotName: 快照名称
+        # @type SnapshotName: String
+        # @param SnapshotDeadTime: 快照过期时间点
+        # @type SnapshotDeadTime: String
+
+        attr_accessor :TableGroupId, :TableName, :SnapshotName, :SnapshotDeadTime
+        
+        def initialize(tablegroupid=nil, tablename=nil, snapshotname=nil, snapshotdeadtime=nil)
+          @TableGroupId = tablegroupid
+          @TableName = tablename
+          @SnapshotName = snapshotname
+          @SnapshotDeadTime = snapshotdeadtime
+        end
+
+        def deserialize(params)
+          @TableGroupId = params['TableGroupId']
+          @TableName = params['TableName']
+          @SnapshotName = params['SnapshotName']
+          @SnapshotDeadTime = params['SnapshotDeadTime']
+        end
+      end
+
+      # 创建快照结果
+      class SnapshotResult < TencentCloud::Common::AbstractModel
+        # @param TableGroupId: 表格所属表格组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableGroupId: String
+        # @param TableName: 表格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param TaskId: 任务ID，对于创建单任务的接口有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param Error: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
+        # @param SnapshotName: 快照名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotName: String
+        # @param SnapshotTime: 快照的时间点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotTime: String
+        # @param SnapshotDeadTime: 快照的过期时间点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotDeadTime: String
+        # @param SnapshotCreateTime: 快照创建时间点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotCreateTime: String
+        # @param SnapshotSize: 快照大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotSize: Integer
+        # @param SnapshotStatus: 快照状态，0 生成中 1 正常 2 删除中 3 已失效 4 回档使用中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotStatus: Integer
+
+        attr_accessor :TableGroupId, :TableName, :TaskId, :Error, :SnapshotName, :SnapshotTime, :SnapshotDeadTime, :SnapshotCreateTime, :SnapshotSize, :SnapshotStatus
+        
+        def initialize(tablegroupid=nil, tablename=nil, taskid=nil, error=nil, snapshotname=nil, snapshottime=nil, snapshotdeadtime=nil, snapshotcreatetime=nil, snapshotsize=nil, snapshotstatus=nil)
+          @TableGroupId = tablegroupid
+          @TableName = tablename
+          @TaskId = taskid
+          @Error = error
+          @SnapshotName = snapshotname
+          @SnapshotTime = snapshottime
+          @SnapshotDeadTime = snapshotdeadtime
+          @SnapshotCreateTime = snapshotcreatetime
+          @SnapshotSize = snapshotsize
+          @SnapshotStatus = snapshotstatus
+        end
+
+        def deserialize(params)
+          @TableGroupId = params['TableGroupId']
+          @TableName = params['TableName']
+          @TaskId = params['TaskId']
+          unless params['Error'].nil?
+            @Error = ErrorInfo.new.deserialize(params['Error'])
+          end
+          @SnapshotName = params['SnapshotName']
+          @SnapshotTime = params['SnapshotTime']
+          @SnapshotDeadTime = params['SnapshotDeadTime']
+          @SnapshotCreateTime = params['SnapshotCreateTime']
+          @SnapshotSize = params['SnapshotSize']
+          @SnapshotStatus = params['SnapshotStatus']
         end
       end
 

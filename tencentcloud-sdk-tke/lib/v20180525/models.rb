@@ -4651,10 +4651,16 @@ module TencentCloud
         # @param ImageId: 镜像id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageId: String
+        # @param DesiredPodNum: 集群属于节点podCIDR大小自定义模式时，节点池需要带上pod数量属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DesiredPodNum: Integer
+        # @param UserScript: 用户自定义脚本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserScript: String
 
-        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId
+        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript
         
-        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil)
+        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil)
           @NodePoolId = nodepoolid
           @Name = name
           @ClusterInstanceId = clusterinstanceid
@@ -4671,6 +4677,8 @@ module TencentCloud
           @NodePoolOs = nodepoolos
           @OsCustomizeType = oscustomizetype
           @ImageId = imageid
+          @DesiredPodNum = desiredpodnum
+          @UserScript = userscript
         end
 
         def deserialize(params)
@@ -4702,6 +4710,8 @@ module TencentCloud
           @NodePoolOs = params['NodePoolOs']
           @OsCustomizeType = params['OsCustomizeType']
           @ImageId = params['ImageId']
+          @DesiredPodNum = params['DesiredPodNum']
+          @UserScript = params['UserScript']
         end
       end
 

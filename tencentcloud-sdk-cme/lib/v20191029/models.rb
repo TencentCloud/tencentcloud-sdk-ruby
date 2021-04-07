@@ -2651,18 +2651,22 @@ module TencentCloud
         # @param LinkMaterial: 链接媒体信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LinkMaterial: :class:`Tencentcloud::Cme.v20191029.models.LinkMaterial`
+        # @param VideoEditTemplateMaterial: 模板媒体信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoEditTemplateMaterial: :class:`Tencentcloud::Cme.v20191029.models.VideoEditTemplateMaterial`
         # @param OtherMaterial: 其他类型媒体信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherMaterial: :class:`Tencentcloud::Cme.v20191029.models.OtherMaterial`
 
-        attr_accessor :BasicInfo, :VideoMaterial, :AudioMaterial, :ImageMaterial, :LinkMaterial, :OtherMaterial
+        attr_accessor :BasicInfo, :VideoMaterial, :AudioMaterial, :ImageMaterial, :LinkMaterial, :VideoEditTemplateMaterial, :OtherMaterial
         
-        def initialize(basicinfo=nil, videomaterial=nil, audiomaterial=nil, imagematerial=nil, linkmaterial=nil, othermaterial=nil)
+        def initialize(basicinfo=nil, videomaterial=nil, audiomaterial=nil, imagematerial=nil, linkmaterial=nil, videoedittemplatematerial=nil, othermaterial=nil)
           @BasicInfo = basicinfo
           @VideoMaterial = videomaterial
           @AudioMaterial = audiomaterial
           @ImageMaterial = imagematerial
           @LinkMaterial = linkmaterial
+          @VideoEditTemplateMaterial = videoedittemplatematerial
           @OtherMaterial = othermaterial
         end
 
@@ -2681,6 +2685,9 @@ module TencentCloud
           end
           unless params['LinkMaterial'].nil?
             @LinkMaterial = LinkMaterial.new.deserialize(params['LinkMaterial'])
+          end
+          unless params['VideoEditTemplateMaterial'].nil?
+            @VideoEditTemplateMaterial = VideoEditTemplateMaterial.new.deserialize(params['VideoEditTemplateMaterial'])
           end
           unless params['OtherMaterial'].nil?
             @OtherMaterial = OtherMaterial.new.deserialize(params['OtherMaterial'])
@@ -3657,6 +3664,37 @@ module TencentCloud
         end
       end
 
+      # 卡槽信息。
+      class SlotInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 卡槽 Id。
+        # @type Id: Integer
+        # @param Type: 素材类型，同素材素材，可取值有：
+        # <li> AUDIO :音频;</li>
+        # <li> VIDEO :视频;</li>
+        # <li> IMAGE :图片。</li>
+        # @type Type: String
+        # @param DefaultMaterialId: 默认素材 Id。
+        # @type DefaultMaterialId: String
+        # @param Duration: 素材时长，单位秒。
+        # @type Duration: Float
+
+        attr_accessor :Id, :Type, :DefaultMaterialId, :Duration
+        
+        def initialize(id=nil, type=nil, defaultmaterialid=nil, duration=nil)
+          @Id = id
+          @Type = type
+          @DefaultMaterialId = defaultmaterialid
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          @DefaultMaterialId = params['DefaultMaterialId']
+          @Duration = params['Duration']
+        end
+      end
+
       # 卡槽替换信息。
       class SlotReplacementInfo < TencentCloud::Common::AbstractModel
         # @param Id: 卡槽 Id。
@@ -4116,6 +4154,31 @@ module TencentCloud
           @URL = params['URL']
           unless params['MetaData'].nil?
             @MetaData = MediaMetaData.new.deserialize(params['MetaData'])
+          end
+        end
+      end
+
+      # 视频编辑模板素材信息。
+      class VideoEditTemplateMaterial < TencentCloud::Common::AbstractModel
+        # @param AspectRatio: 视频编辑模板宽高比。
+        # @type AspectRatio: String
+        # @param SlotSet: 卡槽信息。
+        # @type SlotSet: Array
+
+        attr_accessor :AspectRatio, :SlotSet
+        
+        def initialize(aspectratio=nil, slotset=nil)
+          @AspectRatio = aspectratio
+          @SlotSet = slotset
+        end
+
+        def deserialize(params)
+          @AspectRatio = params['AspectRatio']
+          unless params['SlotSet'].nil?
+            @SlotSet = []
+            params['SlotSet'].each do |i|
+              @SlotSet << SlotInfo.new.deserialize(i)
+            end
           end
         end
       end

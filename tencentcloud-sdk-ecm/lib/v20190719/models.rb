@@ -5380,7 +5380,7 @@ module TencentCloud
 
       # 负载均衡的带宽限制等信息。
       class LoadBalancerInternetAccessible < TencentCloud::Common::AbstractModel
-        # @param InternetMaxBandwidthOut: 最大出带宽，单位Mbps。
+        # @param InternetMaxBandwidthOut: 最大出带宽，单位Mbps。默认值10
         # @type InternetMaxBandwidthOut: Integer
 
         attr_accessor :InternetMaxBandwidthOut

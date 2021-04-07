@@ -121,6 +121,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 构造表格过去时间点的快照
+
+        # @param request: Request instance for CreateSnapshots.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::CreateSnapshotsRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::CreateSnapshotsResponse`
+        def CreateSnapshots(request)
+          body = send_request('CreateSnapshots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSnapshotsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在TcaplusDB集群下创建表格组
 
         # @param request: Request instance for CreateTableGroup.
@@ -203,6 +227,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteIdlFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除表格的快照
+
+        # @param request: Request instance for DeleteSnapshots.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::DeleteSnapshotsRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::DeleteSnapshotsResponse`
+        def DeleteSnapshots(request)
+          body = send_request('DeleteSnapshots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSnapshotsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -395,6 +443,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询快照列表
+
+        # @param request: Request instance for DescribeSnapshots.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::DescribeSnapshotsRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::DescribeSnapshotsResponse`
+        def DescribeSnapshots(request)
+          body = send_request('DescribeSnapshots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -625,6 +697,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 将快照数据导入到新表或当前表
+
+        # @param request: Request instance for ImportSnapshots.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::ImportSnapshotsRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::ImportSnapshotsResponse`
+        def ImportSnapshots(request)
+          body = send_request('ImportSnapshots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportSnapshotsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改独占集群机器
 
         # @param request: Request instance for ModifyClusterMachine.
@@ -707,6 +803,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterTagsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改表格快照的过期时间
+
+        # @param request: Request instance for ModifySnapshots.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::ModifySnapshotsRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::ModifySnapshotsResponse`
+        def ModifySnapshots(request)
+          body = send_request('ModifySnapshots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySnapshotsResponse.new
             model.deserialize(response['Response'])
             model
           else
