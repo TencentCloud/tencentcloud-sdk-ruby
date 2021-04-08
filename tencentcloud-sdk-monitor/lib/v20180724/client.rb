@@ -485,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取基础指标详情
+        # 获取基础指标属性
 
         # @param request: Request instance for DescribeBaseMetrics.
         # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeBaseMetricsRequest`

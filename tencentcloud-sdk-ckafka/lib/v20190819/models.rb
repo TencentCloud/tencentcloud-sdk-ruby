@@ -303,25 +303,25 @@ module TencentCloud
         # @type InstanceId: String
         # @param ResourceType: Acl资源类型，(0:UNKNOWN，1:ANY，2:TOPIC，3:GROUP，4:CLUSTER，5:TRANSACTIONAL_ID)，当前只有TOPIC，其它字段用于后续兼容开源kafka的acl时使用
         # @type ResourceType: Integer
-        # @param ResourceName: 资源名称，和resourceType相关，如当resourceType为TOPIC时，则该字段表示topic名称，当resourceType为GROUP时，该字段表示group名称
-        # @type ResourceName: String
         # @param Operation: Acl操作方式，(0:UNKNOWN，1:ANY，2:ALL，3:READ，4:WRITE，5:CREATE，6:DELETE，7:ALTER，8:DESCRIBE，9:CLUSTER_ACTION，10:DESCRIBE_CONFIGS，11:ALTER_CONFIGS)
         # @type Operation: Integer
         # @param PermissionType: 权限类型，(0:UNKNOWN，1:ANY，2:DENY，3:ALLOW)，当前ckakfa支持ALLOW(相当于白名单)，其它用于后续兼容开源kafka的acl时使用
         # @type PermissionType: Integer
+        # @param ResourceName: 资源名称，和resourceType相关，如当resourceType为TOPIC时，则该字段表示topic名称，当resourceType为GROUP时，该字段表示group名称
+        # @type ResourceName: String
         # @param Host: 默认为\*，表示任何host都可以访问，当前ckafka不支持host为\*，但是后面开源kafka的产品化会直接支持
         # @type Host: String
-        # @param Principal: 用户列表，默认为*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户
+        # @param Principal: 用户列表，默认为User:*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户。传入时需要加 User: 前缀,如用户A则传入User:A。
         # @type Principal: String
 
-        attr_accessor :InstanceId, :ResourceType, :ResourceName, :Operation, :PermissionType, :Host, :Principal
+        attr_accessor :InstanceId, :ResourceType, :Operation, :PermissionType, :ResourceName, :Host, :Principal
         
-        def initialize(instanceid=nil, resourcetype=nil, resourcename=nil, operation=nil, permissiontype=nil, host=nil, principal=nil)
+        def initialize(instanceid=nil, resourcetype=nil, operation=nil, permissiontype=nil, resourcename=nil, host=nil, principal=nil)
           @InstanceId = instanceid
           @ResourceType = resourcetype
-          @ResourceName = resourcename
           @Operation = operation
           @PermissionType = permissiontype
+          @ResourceName = resourcename
           @Host = host
           @Principal = principal
         end
@@ -329,9 +329,9 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ResourceType = params['ResourceType']
-          @ResourceName = params['ResourceName']
           @Operation = params['Operation']
           @PermissionType = params['PermissionType']
+          @ResourceName = params['ResourceName']
           @Host = params['Host']
           @Principal = params['Principal']
         end
@@ -750,6 +750,46 @@ module TencentCloud
           unless params['Result'].nil?
             @Result = JgwOperateResponse.new.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAclRule请求参数结构体
+      class DeleteAclRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id信息
+        # @type InstanceId: String
+        # @param RuleName: acl规则名称
+        # @type RuleName: String
+
+        attr_accessor :InstanceId, :RuleName
+        
+        def initialize(instanceid=nil, rulename=nil)
+          @InstanceId = instanceid
+          @RuleName = rulename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RuleName = params['RuleName']
+        end
+      end
+
+      # DeleteAclRule返回参数结构体
+      class DeleteAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回被删除的规则的ID
+        # @type Result: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end

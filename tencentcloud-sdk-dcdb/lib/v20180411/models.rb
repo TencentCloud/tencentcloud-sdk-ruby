@@ -2428,21 +2428,25 @@ module TencentCloud
         # @type InstanceId: String
         # @param SessionId: 会话ID列表
         # @type SessionId: Array
-        # @param ShardId: 分片ID
+        # @param ShardId: 分片ID，与ShardSerialId设置一个
         # @type ShardId: String
+        # @param ShardSerialId: 分片序列ID，与ShardId设置一个
+        # @type ShardSerialId: String
 
-        attr_accessor :InstanceId, :SessionId, :ShardId
+        attr_accessor :InstanceId, :SessionId, :ShardId, :ShardSerialId
         
-        def initialize(instanceid=nil, sessionid=nil, shardid=nil)
+        def initialize(instanceid=nil, sessionid=nil, shardid=nil, shardserialid=nil)
           @InstanceId = instanceid
           @SessionId = sessionid
           @ShardId = shardid
+          @ShardSerialId = shardserialid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SessionId = params['SessionId']
           @ShardId = params['ShardId']
+          @ShardSerialId = params['ShardSerialId']
         end
       end
 

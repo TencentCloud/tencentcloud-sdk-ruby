@@ -25,6 +25,57 @@ module TencentCloud
         @@sdk_version = 'LIGHTHOUSE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
+        # <li>仅支持回滚到原系统盘。</li>
+        # <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
+        # <li>回滚快照时，实例的状态必须为 STOPPED 或 RUNNING，可通过 DescribeInstances 接口查询实例状态。处于 RUNNING 状态的实例会强制关机，然后回滚快照。</li>
+
+        # @param request: Request instance for ApplyInstanceSnapshot.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ApplyInstanceSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ApplyInstanceSnapshotResponse`
+        def ApplyInstanceSnapshot(request)
+          body = send_request('ApplyInstanceSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyInstanceSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (CreateBlueprint) 用于创建镜像。
+
+        # @param request: Request instance for CreateBlueprint.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::CreateBlueprintRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::CreateBlueprintResponse`
+        def CreateBlueprint(request)
+          body = send_request('CreateBlueprint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBlueprintResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
 
 
@@ -59,6 +110,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
+
+        # @param request: Request instance for CreateInstanceSnapshot.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::CreateInstanceSnapshotRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::CreateInstanceSnapshotResponse`
+        def CreateInstanceSnapshot(request)
+          body = send_request('CreateInstanceSnapshot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInstanceSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DeleteBlueprints) 用于删除镜像。
+
+        # @param request: Request instance for DeleteBlueprints.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DeleteBlueprintsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DeleteBlueprintsResponse`
+        def DeleteBlueprints(request)
+          body = send_request('DeleteBlueprints', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBlueprintsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteFirewallRules）用于删除实例的防火墙规则。
 
         # * FirewallVersion 用于指定要操作的防火墙的版本。传入 FirewallVersion 版本号若不等于当前防火墙的最新版本，将返回失败；若不传 FirewallVersion 则直接删除指定的规则。
@@ -78,6 +177,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFirewallRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteSnapshots）用于删除快照。
+        # 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
+
+        # @param request: Request instance for DeleteSnapshots.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DeleteSnapshotsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DeleteSnapshotsResponse`
+        def DeleteSnapshots(request)
+          body = send_request('DeleteSnapshots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSnapshotsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -203,6 +327,79 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesTrafficPackagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeSnapshots）用于查询快照的详细信息。
+
+        # @param request: Request instance for DescribeSnapshots.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeSnapshotsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeSnapshotsResponse`
+        def DescribeSnapshots(request)
+          body = send_request('DescribeSnapshots', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
+
+        # @param request: Request instance for ModifyBlueprintAttribute.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifyBlueprintAttributeRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifyBlueprintAttributeResponse`
+        def ModifyBlueprintAttribute(request)
+          body = send_request('ModifyBlueprintAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBlueprintAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
+        # <li>“快照名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行快照管理操作的依据。</li>
+
+        # @param request: Request instance for ModifySnapshotAttribute.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifySnapshotAttributeRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifySnapshotAttributeResponse`
+        def ModifySnapshotAttribute(request)
+          body = send_request('ModifySnapshotAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySnapshotAttributeResponse.new
             model.deserialize(response['Response'])
             model
           else

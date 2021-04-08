@@ -1555,6 +1555,42 @@ module TencentCloud
         end
       end
 
+      # DeleteWxGatewayRoute请求参数结构体
+      class DeleteWxGatewayRouteRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param GatewayRouteName: 服务名称
+        # @type GatewayRouteName: String
+
+        attr_accessor :EnvId, :GatewayRouteName
+        
+        def initialize(envid=nil, gatewayroutename=nil)
+          @EnvId = envid
+          @GatewayRouteName = gatewayroutename
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GatewayRouteName = params['GatewayRouteName']
+        end
+      end
+
+      # DeleteWxGatewayRoute返回参数结构体
+      class DeleteWxGatewayRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAuthDomains请求参数结构体
       class DescribeAuthDomainsRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -3484,6 +3520,54 @@ module TencentCloud
 
       # EstablishCloudBaseRunServer返回参数结构体
       class EstablishCloudBaseRunServerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EstablishWxGatewayRoute请求参数结构体
+      class EstablishWxGatewayRouteRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关id
+        # @type GatewayId: String
+        # @param GatewayRouteName: 服务名称
+        # @type GatewayRouteName: String
+        # @param GatewayRouteAddr: 服务地址
+        # @type GatewayRouteAddr: String
+        # @param GatewayRouteProtocol: 协议类型 http/https
+        # @type GatewayRouteProtocol: String
+        # @param GatewayRouteDesc: 服务描述
+        # @type GatewayRouteDesc: String
+
+        attr_accessor :GatewayId, :GatewayRouteName, :GatewayRouteAddr, :GatewayRouteProtocol, :GatewayRouteDesc
+        
+        def initialize(gatewayid=nil, gatewayroutename=nil, gatewayrouteaddr=nil, gatewayrouteprotocol=nil, gatewayroutedesc=nil)
+          @GatewayId = gatewayid
+          @GatewayRouteName = gatewayroutename
+          @GatewayRouteAddr = gatewayrouteaddr
+          @GatewayRouteProtocol = gatewayrouteprotocol
+          @GatewayRouteDesc = gatewayroutedesc
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GatewayRouteName = params['GatewayRouteName']
+          @GatewayRouteAddr = params['GatewayRouteAddr']
+          @GatewayRouteProtocol = params['GatewayRouteProtocol']
+          @GatewayRouteDesc = params['GatewayRouteDesc']
+        end
+      end
+
+      # EstablishWxGatewayRoute返回参数结构体
+      class EstablishWxGatewayRouteResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

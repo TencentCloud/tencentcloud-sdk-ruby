@@ -17,6 +17,42 @@
 module TencentCloud
   module Lighthouse
     module V20200324
+      # ApplyInstanceSnapshot请求参数结构体
+      class ApplyInstanceSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param SnapshotId: 快照 ID。
+        # @type SnapshotId: String
+
+        attr_accessor :InstanceId, :SnapshotId
+        
+        def initialize(instanceid=nil, snapshotid=nil)
+          @InstanceId = instanceid
+          @SnapshotId = snapshotid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SnapshotId = params['SnapshotId']
+        end
+      end
+
+      # ApplyInstanceSnapshot返回参数结构体
+      class ApplyInstanceSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了镜像信息。
       class Blueprint < TencentCloud::Common::AbstractModel
         # @param BlueprintId: 镜像 ID  ，是 Blueprint 的唯一标识。
@@ -169,6 +205,50 @@ module TencentCloud
         end
       end
 
+      # CreateBlueprint请求参数结构体
+      class CreateBlueprintRequest < TencentCloud::Common::AbstractModel
+        # @param BlueprintName: 镜像名称。最大长度60。
+        # @type BlueprintName: String
+        # @param Description: 镜像描述。最大长度60。
+        # @type Description: String
+        # @param InstanceId: 需要制作镜像的实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :BlueprintName, :Description, :InstanceId
+        
+        def initialize(blueprintname=nil, description=nil, instanceid=nil)
+          @BlueprintName = blueprintname
+          @Description = description
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @BlueprintName = params['BlueprintName']
+          @Description = params['Description']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CreateBlueprint返回参数结构体
+      class CreateBlueprintResponse < TencentCloud::Common::AbstractModel
+        # @param BlueprintId: 自定义镜像ID。
+        # @type BlueprintId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BlueprintId, :RequestId
+        
+        def initialize(blueprintid=nil, requestid=nil)
+          @BlueprintId = blueprintid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BlueprintId = params['BlueprintId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFirewallRules请求参数结构体
       class CreateFirewallRulesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -214,6 +294,78 @@ module TencentCloud
         end
       end
 
+      # CreateInstanceSnapshot请求参数结构体
+      class CreateInstanceSnapshotRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 需要创建快照的实例 ID。
+        # @type InstanceId: String
+        # @param SnapshotName: 快照名称，最长为 60 个字符。
+        # @type SnapshotName: String
+
+        attr_accessor :InstanceId, :SnapshotName
+        
+        def initialize(instanceid=nil, snapshotname=nil)
+          @InstanceId = instanceid
+          @SnapshotName = snapshotname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SnapshotName = params['SnapshotName']
+        end
+      end
+
+      # CreateInstanceSnapshot返回参数结构体
+      class CreateInstanceSnapshotResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotId: 快照 ID。
+        # @type SnapshotId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotId, :RequestId
+        
+        def initialize(snapshotid=nil, requestid=nil)
+          @SnapshotId = snapshotid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SnapshotId = params['SnapshotId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteBlueprints请求参数结构体
+      class DeleteBlueprintsRequest < TencentCloud::Common::AbstractModel
+        # @param BlueprintIds: 镜像ID列表。镜像ID，可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
+        # @type BlueprintIds: Array
+
+        attr_accessor :BlueprintIds
+        
+        def initialize(blueprintids=nil)
+          @BlueprintIds = blueprintids
+        end
+
+        def deserialize(params)
+          @BlueprintIds = params['BlueprintIds']
+        end
+      end
+
+      # DeleteBlueprints返回参数结构体
+      class DeleteBlueprintsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteFirewallRules请求参数结构体
       class DeleteFirewallRulesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -245,6 +397,38 @@ module TencentCloud
 
       # DeleteFirewallRules返回参数结构体
       class DeleteFirewallRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSnapshots请求参数结构体
+      class DeleteSnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotIds: 要删除的快照 ID 列表，可通过 DescribeSnapshots 查询。
+        # @type SnapshotIds: Array
+
+        attr_accessor :SnapshotIds
+        
+        def initialize(snapshotids=nil)
+          @SnapshotIds = snapshotids
+        end
+
+        def deserialize(params)
+          @SnapshotIds = params['SnapshotIds']
+        end
+      end
+
+      # DeleteSnapshots返回参数结构体
+      class DeleteSnapshotsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -585,6 +769,82 @@ module TencentCloud
         end
       end
 
+      # DescribeSnapshots请求参数结构体
+      class DescribeSnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotIds: 要查询快照的 ID 列表。
+        # 参数不支持同时指定 SnapshotIds 和 Filters。
+        # @type SnapshotIds: Array
+        # @param Filters: 过滤器列表。
+        # <li>snapshot-id</li>按照【快照 ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>disk-id</li>按照【磁盘 ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>snapshot-name</li>按照【快照名称】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>instance-id</li>按照【实例 ID 】进行过滤。
+        # 类型：String
+        # 必选：否
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 SnapshotIds 和 Filters。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :SnapshotIds, :Filters, :Offset, :Limit
+        
+        def initialize(snapshotids=nil, filters=nil, offset=nil, limit=nil)
+          @SnapshotIds = snapshotids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SnapshotIds = params['SnapshotIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSnapshots返回参数结构体
+      class DescribeSnapshotsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 快照的数量。
+        # @type TotalCount: Integer
+        # @param SnapshotSet: 快照的详情列表。
+        # @type SnapshotSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SnapshotSet, :RequestId
+        
+        def initialize(totalcount=nil, snapshotset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SnapshotSet = snapshotset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SnapshotSet'].nil?
+            @SnapshotSet = []
+            params['SnapshotSet'].each do |i|
+              @SnapshotSet << Snapshot.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # >描述键值对过滤器，用于条件过滤查询。例如过滤名称等
       # > * 若存在多个`Filter`时，`Filter`间的关系为逻辑与（`AND`）关系。
       # > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
@@ -907,6 +1167,82 @@ module TencentCloud
         end
       end
 
+      # ModifyBlueprintAttribute请求参数结构体
+      class ModifyBlueprintAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param BlueprintId: 镜像 ID。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
+        # @type BlueprintId: String
+        # @param BlueprintName: 设置新的镜像名称。最大长度60。
+        # @type BlueprintName: String
+        # @param Description: 设置新的镜像描述。最大长度60。
+        # @type Description: String
+
+        attr_accessor :BlueprintId, :BlueprintName, :Description
+        
+        def initialize(blueprintid=nil, blueprintname=nil, description=nil)
+          @BlueprintId = blueprintid
+          @BlueprintName = blueprintname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @BlueprintId = params['BlueprintId']
+          @BlueprintName = params['BlueprintName']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyBlueprintAttribute返回参数结构体
+      class ModifyBlueprintAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySnapshotAttribute请求参数结构体
+      class ModifySnapshotAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotId: 快照 ID, 可通过 DescribeSnapshots 查询。
+        # @type SnapshotId: String
+        # @param SnapshotName: 新的快照名称，最长为 60 个字符。
+        # @type SnapshotName: String
+
+        attr_accessor :SnapshotId, :SnapshotName
+        
+        def initialize(snapshotid=nil, snapshotname=nil)
+          @SnapshotId = snapshotid
+          @SnapshotName = snapshotname
+        end
+
+        def deserialize(params)
+          @SnapshotId = params['SnapshotId']
+          @SnapshotName = params['SnapshotName']
+        end
+      end
+
+      # ModifySnapshotAttribute返回参数结构体
+      class ModifySnapshotAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 价格信息
       class Price < TencentCloud::Common::AbstractModel
         # @param InstancePrice: 实例价格。
@@ -990,6 +1326,73 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述了快照相关信息。
+      class Snapshot < TencentCloud::Common::AbstractModel
+        # @param SnapshotId: 快照 ID。
+        # @type SnapshotId: String
+        # @param DiskUsage: 创建此快照的磁盘类型。取值：<li>SYSTEM_DISK：系统盘</li>
+        # @type DiskUsage: String
+        # @param DiskId: 创建此快照的磁盘 ID。
+        # @type DiskId: String
+        # @param DiskSize: 创建此快照的磁盘大小，单位 GB。
+        # @type DiskSize: Integer
+        # @param SnapshotName: 快照名称，用户自定义的快照别名。
+        # @type SnapshotName: String
+        # @param SnapshotState: 快照的状态。取值范围：
+        # <li>NORMAL：正常 </li>
+        # <li>CREATING：创建中</li>
+        # <li>ROLLBACKING：回滚中。</li>
+        # @type SnapshotState: String
+        # @param Percent: 创建或回滚快照进度百分比，成功后此字段取值为 100。
+        # @type Percent: Integer
+        # @param LatestOperation: 快照的最新操作，只有创建、回滚快照时记录。
+        # 取值如 CreateInstanceSnapshot，RollbackInstanceSnapshot。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperation: String
+        # @param LatestOperationState: 快照的最新操作状态，只有创建、回滚快照时记录。
+        # 取值范围：
+        # <li>SUCCESS：表示操作成功</li>
+        # <li>OPERATING：表示操作执行中</li>
+        # <li>FAILED：表示操作失败</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperationState: String
+        # @param LatestOperationRequestId: 快照最新操作的唯一请求 ID，只有创建、回滚快照时记录。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperationRequestId: String
+        # @param CreatedTime: 快照的创建时间。
+        # @type CreatedTime: String
+
+        attr_accessor :SnapshotId, :DiskUsage, :DiskId, :DiskSize, :SnapshotName, :SnapshotState, :Percent, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime
+        
+        def initialize(snapshotid=nil, diskusage=nil, diskid=nil, disksize=nil, snapshotname=nil, snapshotstate=nil, percent=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil)
+          @SnapshotId = snapshotid
+          @DiskUsage = diskusage
+          @DiskId = diskid
+          @DiskSize = disksize
+          @SnapshotName = snapshotname
+          @SnapshotState = snapshotstate
+          @Percent = percent
+          @LatestOperation = latestoperation
+          @LatestOperationState = latestoperationstate
+          @LatestOperationRequestId = latestoperationrequestid
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @SnapshotId = params['SnapshotId']
+          @DiskUsage = params['DiskUsage']
+          @DiskId = params['DiskId']
+          @DiskSize = params['DiskSize']
+          @SnapshotName = params['SnapshotName']
+          @SnapshotState = params['SnapshotState']
+          @Percent = params['Percent']
+          @LatestOperation = params['LatestOperation']
+          @LatestOperationState = params['LatestOperationState']
+          @LatestOperationRequestId = params['LatestOperationRequestId']
+          @CreatedTime = params['CreatedTime']
         end
       end
 

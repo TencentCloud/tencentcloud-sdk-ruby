@@ -8010,10 +8010,16 @@ module TencentCloud
         # 1.如果未传该参数或者传的值为0，则使用对应模块的默认值。
         # 2.如果未传该参数或者传的值为0且未指定模块，则使用InternetMaxBandwidthOut
         # @type InternetMaxBandwidthIn: Integer
+        # @param InstanceChargeType: 实例计费类型。其中：
+        # 0，按资源维度后付费，计算当日用量峰值，例如CPU，内存，硬盘等，仅适用于非GNR系列机型；
+        # 1，按小时后付费，单价：xx元/实例/小时，仅适用于GNR机型，如需开通该计费方式请提工单申请；
+        # 2，按月后付费，单价：xx元/实例/月，仅适用于GNR机型；
+        # 该字段不填时，非GNR机型会默认选择0；GNR机型默认选择2。
+        # @type InstanceChargeType: Integer
 
-        attr_accessor :ZoneInstanceCountISPSet, :Password, :InternetMaxBandwidthOut, :ModuleId, :ImageId, :InstanceName, :HostName, :ClientToken, :EnhancedService, :TagSpecification, :UserData, :InstanceType, :DataDiskSize, :SecurityGroupIds, :SystemDiskSize, :InternetMaxBandwidthIn
+        attr_accessor :ZoneInstanceCountISPSet, :Password, :InternetMaxBandwidthOut, :ModuleId, :ImageId, :InstanceName, :HostName, :ClientToken, :EnhancedService, :TagSpecification, :UserData, :InstanceType, :DataDiskSize, :SecurityGroupIds, :SystemDiskSize, :InternetMaxBandwidthIn, :InstanceChargeType
         
-        def initialize(zoneinstancecountispset=nil, password=nil, internetmaxbandwidthout=nil, moduleid=nil, imageid=nil, instancename=nil, hostname=nil, clienttoken=nil, enhancedservice=nil, tagspecification=nil, userdata=nil, instancetype=nil, datadisksize=nil, securitygroupids=nil, systemdisksize=nil, internetmaxbandwidthin=nil)
+        def initialize(zoneinstancecountispset=nil, password=nil, internetmaxbandwidthout=nil, moduleid=nil, imageid=nil, instancename=nil, hostname=nil, clienttoken=nil, enhancedservice=nil, tagspecification=nil, userdata=nil, instancetype=nil, datadisksize=nil, securitygroupids=nil, systemdisksize=nil, internetmaxbandwidthin=nil, instancechargetype=nil)
           @ZoneInstanceCountISPSet = zoneinstancecountispset
           @Password = password
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -8030,6 +8036,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @SystemDiskSize = systemdisksize
           @InternetMaxBandwidthIn = internetmaxbandwidthin
+          @InstanceChargeType = instancechargetype
         end
 
         def deserialize(params)
@@ -8061,6 +8068,7 @@ module TencentCloud
           @SecurityGroupIds = params['SecurityGroupIds']
           @SystemDiskSize = params['SystemDiskSize']
           @InternetMaxBandwidthIn = params['InternetMaxBandwidthIn']
+          @InstanceChargeType = params['InstanceChargeType']
         end
       end
 
