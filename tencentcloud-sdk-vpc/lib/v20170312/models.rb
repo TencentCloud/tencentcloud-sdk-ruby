@@ -1355,10 +1355,12 @@ module TencentCloud
         # @type CcnUin: String
         # @param InstanceArea: 关联实例所属的大地域，如: CHINA_MAINLAND
         # @type InstanceArea: String
+        # @param Description: 备注
+        # @type Description: String
 
-        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :InstanceUin, :CidrBlock, :State, :AttachedTime, :CcnUin, :InstanceArea
+        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :InstanceUin, :CidrBlock, :State, :AttachedTime, :CcnUin, :InstanceArea, :Description
         
-        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, cidrblock=nil, state=nil, attachedtime=nil, ccnuin=nil, instancearea=nil)
+        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, cidrblock=nil, state=nil, attachedtime=nil, ccnuin=nil, instancearea=nil, description=nil)
           @CcnId = ccnid
           @InstanceType = instancetype
           @InstanceId = instanceid
@@ -1370,6 +1372,7 @@ module TencentCloud
           @AttachedTime = attachedtime
           @CcnUin = ccnuin
           @InstanceArea = instancearea
+          @Description = description
         end
 
         def deserialize(params)
@@ -1384,6 +1387,7 @@ module TencentCloud
           @AttachedTime = params['AttachedTime']
           @CcnUin = params['CcnUin']
           @InstanceArea = params['InstanceArea']
+          @Description = params['Description']
         end
       end
 
@@ -1443,19 +1447,23 @@ module TencentCloud
         # <li>`BMVPC`：黑石私有网络</li>
         # <li>`VPNGW`：VPNGW类型</li>
         # @type InstanceType: String
+        # @param Description: 备注
+        # @type Description: String
 
-        attr_accessor :InstanceId, :InstanceRegion, :InstanceType
+        attr_accessor :InstanceId, :InstanceRegion, :InstanceType, :Description
         
-        def initialize(instanceid=nil, instanceregion=nil, instancetype=nil)
+        def initialize(instanceid=nil, instanceregion=nil, instancetype=nil, description=nil)
           @InstanceId = instanceid
           @InstanceRegion = instanceregion
           @InstanceType = instancetype
+          @Description = description
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @InstanceRegion = params['InstanceRegion']
           @InstanceType = params['InstanceType']
+          @Description = params['Description']
         end
       end
 
@@ -2656,6 +2664,52 @@ module TencentCloud
         end
       end
 
+      # CreateLocalGateway请求参数结构体
+      class CreateLocalGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param LocalGatewayName: 本地网关名称
+        # @type LocalGatewayName: String
+        # @param VpcId: VPC实例ID
+        # @type VpcId: String
+        # @param CdcId: CDC实例ID
+        # @type CdcId: String
+
+        attr_accessor :LocalGatewayName, :VpcId, :CdcId
+        
+        def initialize(localgatewayname=nil, vpcid=nil, cdcid=nil)
+          @LocalGatewayName = localgatewayname
+          @VpcId = vpcid
+          @CdcId = cdcid
+        end
+
+        def deserialize(params)
+          @LocalGatewayName = params['LocalGatewayName']
+          @VpcId = params['VpcId']
+          @CdcId = params['CdcId']
+        end
+      end
+
+      # CreateLocalGateway返回参数结构体
+      class CreateLocalGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param LocalGateway: 本地网关信息
+        # @type LocalGateway: :class:`Tencentcloud::Vpc.v20170312.models.LocalGateway`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LocalGateway, :RequestId
+        
+        def initialize(localgateway=nil, requestid=nil)
+          @LocalGateway = localgateway
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LocalGateway'].nil?
+            @LocalGateway = LocalGateway.new.deserialize(params['LocalGateway'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNatGatewayDestinationIpPortTranslationNatRule请求参数结构体
       class CreateNatGatewayDestinationIpPortTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID，形如：`nat-df45454`。
@@ -3356,15 +3410,18 @@ module TencentCloud
         # @type Zone: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
+        # @param CdcId: CDC实例ID。
+        # @type CdcId: String
 
-        attr_accessor :VpcId, :SubnetName, :CidrBlock, :Zone, :Tags
+        attr_accessor :VpcId, :SubnetName, :CidrBlock, :Zone, :Tags, :CdcId
         
-        def initialize(vpcid=nil, subnetname=nil, cidrblock=nil, zone=nil, tags=nil)
+        def initialize(vpcid=nil, subnetname=nil, cidrblock=nil, zone=nil, tags=nil, cdcid=nil)
           @VpcId = vpcid
           @SubnetName = subnetname
           @CidrBlock = cidrblock
           @Zone = zone
           @Tags = tags
+          @CdcId = cdcid
         end
 
         def deserialize(params)
@@ -3378,6 +3435,7 @@ module TencentCloud
               @Tags << Tag.new.deserialize(i)
             end
           end
+          @CdcId = params['CdcId']
         end
       end
 
@@ -3411,13 +3469,16 @@ module TencentCloud
         # @type Subnets: Array
         # @param Tags: 指定绑定的标签列表，注意这里的标签集合为列表中所有子网对象所共享，不能为每个子网对象单独指定标签，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
+        # @param CdcId: 需要增加到的CDC实例ID。
+        # @type CdcId: String
 
-        attr_accessor :VpcId, :Subnets, :Tags
+        attr_accessor :VpcId, :Subnets, :Tags, :CdcId
         
-        def initialize(vpcid=nil, subnets=nil, tags=nil)
+        def initialize(vpcid=nil, subnets=nil, tags=nil, cdcid=nil)
           @VpcId = vpcid
           @Subnets = subnets
           @Tags = tags
+          @CdcId = cdcid
         end
 
         def deserialize(params)
@@ -3434,6 +3495,7 @@ module TencentCloud
               @Tags << Tag.new.deserialize(i)
             end
           end
+          @CdcId = params['CdcId']
         end
       end
 
@@ -4308,6 +4370,46 @@ module TencentCloud
 
       # DeleteIp6Translators返回参数结构体
       class DeleteIp6TranslatorsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLocalGateway请求参数结构体
+      class DeleteLocalGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param LocalGatewayId: 本地网关实例ID
+        # @type LocalGatewayId: String
+        # @param CdcId: CDC实例ID
+        # @type CdcId: String
+        # @param VpcId: VPC实例ID
+        # @type VpcId: String
+
+        attr_accessor :LocalGatewayId, :CdcId, :VpcId
+        
+        def initialize(localgatewayid=nil, cdcid=nil, vpcid=nil)
+          @LocalGatewayId = localgatewayid
+          @CdcId = cdcid
+          @VpcId = vpcid
+        end
+
+        def deserialize(params)
+          @LocalGatewayId = params['LocalGatewayId']
+          @CdcId = params['CdcId']
+          @VpcId = params['VpcId']
+        end
+      end
+
+      # DeleteLocalGateway返回参数结构体
+      class DeleteLocalGatewayResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6742,6 +6844,65 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLocalGateway请求参数结构体
+      class DescribeLocalGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 查询条件：
+        # vpc-id：按照VPCID过滤，local-gateway-name：按照本地网关名称过滤，名称支持模糊搜索，local-gateway-id：按照本地网关实例ID过滤，cdc-id：按照cdc实例ID过滤查询。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+        
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeLocalGateway返回参数结构体
+      class DescribeLocalGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param LocalGatewaySet: 本地网关信息集合
+        # @type LocalGatewaySet: Array
+        # @param TotalCount: 本地网关总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LocalGatewaySet, :TotalCount, :RequestId
+        
+        def initialize(localgatewayset=nil, totalcount=nil, requestid=nil)
+          @LocalGatewaySet = localgatewayset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LocalGatewaySet'].nil?
+            @LocalGatewaySet = []
+            params['LocalGatewaySet'].each do |i|
+              @LocalGatewaySet << LocalGateway.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -10191,6 +10352,42 @@ module TencentCloud
         end
       end
 
+      # 本地网关信息
+      class LocalGateway < TencentCloud::Common::AbstractModel
+        # @param CdcId: CDC实例ID
+        # @type CdcId: String
+        # @param VpcId: VPC实例ID
+        # @type VpcId: String
+        # @param UniqLocalGwId: 本地网关实例ID
+        # @type UniqLocalGwId: String
+        # @param LocalGatewayName: 本地网关名称
+        # @type LocalGatewayName: String
+        # @param LocalGwIp: 本地网关IP地址
+        # @type LocalGwIp: String
+        # @param CreateTime: 本地网关创建时间
+        # @type CreateTime: String
+
+        attr_accessor :CdcId, :VpcId, :UniqLocalGwId, :LocalGatewayName, :LocalGwIp, :CreateTime
+        
+        def initialize(cdcid=nil, vpcid=nil, uniqlocalgwid=nil, localgatewayname=nil, localgwip=nil, createtime=nil)
+          @CdcId = cdcid
+          @VpcId = vpcid
+          @UniqLocalGwId = uniqlocalgwid
+          @LocalGatewayName = localgatewayname
+          @LocalGwIp = localgwip
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @CdcId = params['CdcId']
+          @VpcId = params['VpcId']
+          @UniqLocalGwId = params['UniqLocalGwId']
+          @LocalGatewayName = params['LocalGatewayName']
+          @LocalGwIp = params['LocalGwIp']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # MigrateNetworkInterface请求参数结构体
       class MigrateNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -10561,6 +10758,47 @@ module TencentCloud
 
       # ModifyBandwidthPackageAttribute返回参数结构体
       class ModifyBandwidthPackageAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCcnAttachedInstancesAttribute请求参数结构体
+      class ModifyCcnAttachedInstancesAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
+        # @type CcnId: String
+        # @param Instances: 关联网络实例列表
+        # @type Instances: Array
+
+        attr_accessor :CcnId, :Instances
+        
+        def initialize(ccnid=nil, instances=nil)
+          @CcnId = ccnid
+          @Instances = instances
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              @Instances << CcnInstance.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # ModifyCcnAttachedInstancesAttribute返回参数结构体
+      class ModifyCcnAttachedInstancesAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11041,6 +11279,50 @@ module TencentCloud
 
       # ModifyIpv6AddressesAttribute返回参数结构体
       class ModifyIpv6AddressesAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLocalGateway请求参数结构体
+      class ModifyLocalGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param LocalGatewayName: 本地网关名称
+        # @type LocalGatewayName: String
+        # @param CdcId: CDC实例ID
+        # @type CdcId: String
+        # @param LocalGatewayId: 本地网关实例ID
+        # @type LocalGatewayId: String
+        # @param VpcId: VPC实例ID
+        # @type VpcId: String
+
+        attr_accessor :LocalGatewayName, :CdcId, :LocalGatewayId, :VpcId
+        
+        def initialize(localgatewayname=nil, cdcid=nil, localgatewayid=nil, vpcid=nil)
+          @LocalGatewayName = localgatewayname
+          @CdcId = cdcid
+          @LocalGatewayId = localgatewayid
+          @VpcId = vpcid
+        end
+
+        def deserialize(params)
+          @LocalGatewayName = params['LocalGatewayName']
+          @CdcId = params['CdcId']
+          @LocalGatewayId = params['LocalGatewayId']
+          @VpcId = params['VpcId']
+        end
+      end
+
+      # ModifyLocalGateway返回参数结构体
+      class ModifyLocalGatewayResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -12316,10 +12598,13 @@ module TencentCloud
         # @param Business: 网卡绑定的子机类型：cvm，eks。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Business: String
+        # @param CdcId: 网卡所关联的CDC实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
 
-        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType, :Business
+        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType, :Business, :CdcId
         
-        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil, business=nil)
+        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil, business=nil, cdcid=nil)
           @NetworkInterfaceId = networkinterfaceid
           @NetworkInterfaceName = networkinterfacename
           @NetworkInterfaceDescription = networkinterfacedescription
@@ -12337,6 +12622,7 @@ module TencentCloud
           @TagSet = tagset
           @EniType = enitype
           @Business = business
+          @CdcId = cdcid
         end
 
         def deserialize(params)
@@ -12374,6 +12660,7 @@ module TencentCloud
           end
           @EniType = params['EniType']
           @Business = params['Business']
+          @CdcId = params['CdcId']
         end
       end
 
@@ -12958,16 +13245,34 @@ module TencentCloud
 
       # ReplaceRoutes返回参数结构体
       class ReplaceRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param OldRouteSet: 原路由策略信息。
+        # @type OldRouteSet: Array
+        # @param NewRouteSet: 修改后的路由策略信息。
+        # @type NewRouteSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :OldRouteSet, :NewRouteSet, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(oldrouteset=nil, newrouteset=nil, requestid=nil)
+          @OldRouteSet = oldrouteset
+          @NewRouteSet = newrouteset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['OldRouteSet'].nil?
+            @OldRouteSet = []
+            params['OldRouteSet'].each do |i|
+              @OldRouteSet << Route.new.deserialize(i)
+            end
+          end
+          unless params['NewRouteSet'].nil?
+            @NewRouteSet = []
+            params['NewRouteSet'].each do |i|
+              @NewRouteSet << Route.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -13431,7 +13736,8 @@ module TencentCloud
         # NAT：NAT网关;
         # NORMAL_CVM：普通云服务器；
         # EIP：云服务器的公网IP；
-        # CCN：云联网。
+        # CCN：云联网；
+        # LOCAL_GATEWAY：本地网关。
         # @type GatewayType: String
         # @param GatewayId: 下一跳地址，这里只需要指定不同下一跳类型的网关ID，系统会自动匹配到下一跳地址。
         # 特别注意：当 GatewayType 为 EIP 时，GatewayId 固定值 '0'
@@ -14061,10 +14367,16 @@ module TencentCloud
         # @type TotalIpAddressCount: Integer
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
+        # @param CdcId: CDC实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
+        # @param IsCdcSubnet: 是否是CDC所属子网。0:否 1:是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCdcSubnet: Integer
 
-        attr_accessor :VpcId, :SubnetId, :SubnetName, :CidrBlock, :IsDefault, :EnableBroadcast, :Zone, :RouteTableId, :CreatedTime, :AvailableIpAddressCount, :Ipv6CidrBlock, :NetworkAclId, :IsRemoteVpcSnat, :TotalIpAddressCount, :TagSet
+        attr_accessor :VpcId, :SubnetId, :SubnetName, :CidrBlock, :IsDefault, :EnableBroadcast, :Zone, :RouteTableId, :CreatedTime, :AvailableIpAddressCount, :Ipv6CidrBlock, :NetworkAclId, :IsRemoteVpcSnat, :TotalIpAddressCount, :TagSet, :CdcId, :IsCdcSubnet
         
-        def initialize(vpcid=nil, subnetid=nil, subnetname=nil, cidrblock=nil, isdefault=nil, enablebroadcast=nil, zone=nil, routetableid=nil, createdtime=nil, availableipaddresscount=nil, ipv6cidrblock=nil, networkaclid=nil, isremotevpcsnat=nil, totalipaddresscount=nil, tagset=nil)
+        def initialize(vpcid=nil, subnetid=nil, subnetname=nil, cidrblock=nil, isdefault=nil, enablebroadcast=nil, zone=nil, routetableid=nil, createdtime=nil, availableipaddresscount=nil, ipv6cidrblock=nil, networkaclid=nil, isremotevpcsnat=nil, totalipaddresscount=nil, tagset=nil, cdcid=nil, iscdcsubnet=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @SubnetName = subnetname
@@ -14080,6 +14392,8 @@ module TencentCloud
           @IsRemoteVpcSnat = isremotevpcsnat
           @TotalIpAddressCount = totalipaddresscount
           @TagSet = tagset
+          @CdcId = cdcid
+          @IsCdcSubnet = iscdcsubnet
         end
 
         def deserialize(params)
@@ -14103,6 +14417,8 @@ module TencentCloud
               @TagSet << Tag.new.deserialize(i)
             end
           end
+          @CdcId = params['CdcId']
+          @IsCdcSubnet = params['IsCdcSubnet']
         end
       end
 

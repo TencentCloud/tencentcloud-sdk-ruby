@@ -335,7 +335,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 私有网络下的子网ID，如果设置了 VpcId，则 SubnetId必填
         # @type SubnetId: String
-        # @param Password: 实例密码，不设置该参数则需要在创建完成后通过设置密码接口初始化实例密码。密码必须是8-16位字符，且至少包含字母、数字和字符 !@#%^*() 中的两种
+        # @param Password: 实例密码，不设置该参数则默认密码规则为 实例ID+"@"+主账户uin。举例实例id为cmgo-higv73ed，uin为100000001，则默认密码为"cmgo-higv73ed@100000001"。密码必须是8-16位字符，且至少包含字母、数字和字符 !@#%^*() 中的两种
         # @type Password: String
         # @param ProjectId: 项目ID，不设置为默认项目
         # @type ProjectId: Integer
@@ -448,7 +448,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 私有网络下的子网 ID，如果设置了 UniqVpcId，则 UniqSubnetId 必填，请使用 查询子网列表
         # @type SubnetId: String
-        # @param Password: 实例密码，不设置该参数则需要在创建完成后通过设置密码接口初始化实例密码。密码必须是8-16位字符，且至少包含字母、数字和字符 !@#%^*() 中的两种
+        # @param Password: 实例密码，不设置该参数则默认密码规则为 实例ID+"@"+主账户uin。举例实例id为cmgo-higv73ed，uin为100000001，则默认密码为"cmgo-higv73ed@100000001"。密码必须是8-16位字符，且至少包含字母、数字和字符 !@#%^*() 中的两种
         # @type Password: String
         # @param Tags: 实例标签信息
         # @type Tags: Array
@@ -736,9 +736,9 @@ module TencentCloud
         # @type InstanceId: String
         # @param BackupName: 备份文件名，用来过滤指定文件的下载任务
         # @type BackupName: String
-        # @param StartTime: 指定要查询任务的时间范围，StartTime指定开始时间
+        # @param StartTime: 指定要查询任务的时间范围，StartTime指定开始时间，不填默认不限制开始时间
         # @type StartTime: String
-        # @param EndTime: 指定要查询任务的时间范围，StartTime指定结束时间
+        # @param EndTime: 指定要查询任务的时间范围，EndTime指定结束时间，不填默认不限制结束时间
         # @type EndTime: String
         # @param Limit: 此次查询返回的条数，取值范围为1-100，默认为20
         # @type Limit: Integer
@@ -748,7 +748,7 @@ module TencentCloud
         # @type OrderBy: String
         # @param OrderByType: 排序方式，取值为asc，desc两种，默认desc
         # @type OrderByType: String
-        # @param Status: 根据任务状态过滤。0-等待执行，1-正在下载，2-下载完成，3-下载失败，4-等待重试
+        # @param Status: 根据任务状态过滤。0-等待执行，1-正在下载，2-下载完成，3-下载失败，4-等待重试。不填默认返回所有类型
         # @type Status: Array
 
         attr_accessor :InstanceId, :BackupName, :StartTime, :EndTime, :Limit, :Offset, :OrderBy, :OrderByType, :Status
@@ -2132,7 +2132,7 @@ module TencentCloud
         # @type SpecCode: String
         # @param Status: 规格有效标志，取值：0-停止售卖，1-开放售卖
         # @type Status: Integer
-        # @param Cpu: 规格有效标志，取值：0-停止售卖，1-开放售卖
+        # @param Cpu: 计算资源规格，单位为CPU核心数
         # @type Cpu: Integer
         # @param Memory: 内存规格，单位为MB
         # @type Memory: Integer

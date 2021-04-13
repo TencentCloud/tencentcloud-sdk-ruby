@@ -5800,16 +5800,19 @@ module TencentCloud
         # @type ClusterId: String
         # @param DstVersion: 需要升级到的版本
         # @type DstVersion: String
+        # @param ExtraArgs: 集群自定义参数
+        # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.ClusterExtraArgs`
         # @param MaxNotReadyPercent: 可容忍的最大不可用pod数目
         # @type MaxNotReadyPercent: Float
         # @param SkipPreCheck: 是否跳过预检查阶段
         # @type SkipPreCheck: Boolean
 
-        attr_accessor :ClusterId, :DstVersion, :MaxNotReadyPercent, :SkipPreCheck
+        attr_accessor :ClusterId, :DstVersion, :ExtraArgs, :MaxNotReadyPercent, :SkipPreCheck
         
-        def initialize(clusterid=nil, dstversion=nil, maxnotreadypercent=nil, skipprecheck=nil)
+        def initialize(clusterid=nil, dstversion=nil, extraargs=nil, maxnotreadypercent=nil, skipprecheck=nil)
           @ClusterId = clusterid
           @DstVersion = dstversion
+          @ExtraArgs = extraargs
           @MaxNotReadyPercent = maxnotreadypercent
           @SkipPreCheck = skipprecheck
         end
@@ -5817,6 +5820,9 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @DstVersion = params['DstVersion']
+          unless params['ExtraArgs'].nil?
+            @ExtraArgs = ClusterExtraArgs.new.deserialize(params['ExtraArgs'])
+          end
           @MaxNotReadyPercent = params['MaxNotReadyPercent']
           @SkipPreCheck = params['SkipPreCheck']
         end

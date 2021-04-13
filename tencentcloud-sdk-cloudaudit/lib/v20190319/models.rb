@@ -19,81 +19,81 @@ module TencentCloud
     module V20190319
       # AttributeKey值详情
       class AttributeKeyDetail < TencentCloud::Common::AbstractModel
-        # @param Label: 中文标签
-        # @type Label: String
         # @param LabelType: 输入框类型
         # @type LabelType: String
-        # @param Order: 展示排序
-        # @type Order: Integer
         # @param Starter: 初始化展示
         # @type Starter: String
+        # @param Order: 展示排序
+        # @type Order: Integer
         # @param Value: AttributeKey值
         # @type Value: String
+        # @param Label: 中文标签
+        # @type Label: String
 
-        attr_accessor :Label, :LabelType, :Order, :Starter, :Value
+        attr_accessor :LabelType, :Starter, :Order, :Value, :Label
         
-        def initialize(label=nil, labeltype=nil, order=nil, starter=nil, value=nil)
-          @Label = label
+        def initialize(labeltype=nil, starter=nil, order=nil, value=nil, label=nil)
           @LabelType = labeltype
-          @Order = order
           @Starter = starter
+          @Order = order
           @Value = value
+          @Label = label
         end
 
         def deserialize(params)
-          @Label = params['Label']
           @LabelType = params['LabelType']
-          @Order = params['Order']
           @Starter = params['Starter']
+          @Order = params['Order']
           @Value = params['Value']
+          @Label = params['Label']
         end
       end
 
       # 跟踪集概览
       class AuditSummary < TencentCloud::Common::AbstractModel
-        # @param AuditName: 跟踪集名称
-        # @type AuditName: String
         # @param AuditStatus: 跟踪集状态，1：开启，0：关闭
         # @type AuditStatus: Integer
         # @param CosBucketName: COS存储桶名称
         # @type CosBucketName: String
+        # @param AuditName: 跟踪集名称
+        # @type AuditName: String
         # @param LogFilePrefix: 日志前缀
         # @type LogFilePrefix: String
 
-        attr_accessor :AuditName, :AuditStatus, :CosBucketName, :LogFilePrefix
+        attr_accessor :AuditStatus, :CosBucketName, :AuditName, :LogFilePrefix
         
-        def initialize(auditname=nil, auditstatus=nil, cosbucketname=nil, logfileprefix=nil)
-          @AuditName = auditname
+        def initialize(auditstatus=nil, cosbucketname=nil, auditname=nil, logfileprefix=nil)
           @AuditStatus = auditstatus
           @CosBucketName = cosbucketname
+          @AuditName = auditname
           @LogFilePrefix = logfileprefix
         end
 
         def deserialize(params)
-          @AuditName = params['AuditName']
           @AuditStatus = params['AuditStatus']
           @CosBucketName = params['CosBucketName']
+          @AuditName = params['AuditName']
           @LogFilePrefix = params['LogFilePrefix']
         end
       end
 
       # cmq地域信息
       class CmqRegionInfo < TencentCloud::Common::AbstractModel
-        # @param CmqRegion: cmq地域
-        # @type CmqRegion: String
         # @param CmqRegionName: 地域描述
         # @type CmqRegionName: String
+        # @param CmqRegion: cmq地域
+        # @type CmqRegion: String
 
-        attr_accessor :CmqRegion, :CmqRegionName
+        attr_accessor :CmqRegionName, :CmqRegion
         
-        def initialize(cmqregion=nil, cmqregionname=nil)
-          @CmqRegion = cmqregion
+        def initialize(cmqregionname=nil, cmqregion=nil)
           @CmqRegionName = cmqregionname
+          @CmqRegion = cmqregion
         end
 
         def deserialize(params)
-          @CmqRegion = params['CmqRegion']
           @CmqRegionName = params['CmqRegionName']
+          @CmqRegion = params['CmqRegion']
         end
       end
 
@@ -119,65 +119,65 @@ module TencentCloud
 
       # CreateAudit请求参数结构体
       class CreateAuditRequest < TencentCloud::Common::AbstractModel
-        # @param AuditName: 跟踪集名称。3-128字符，只能包含 ASCII 编码字母 a-z，A-Z，数字 0-9，下划线 _。
-        # @type AuditName: String
-        # @param CosBucketName: cos的存储桶名称。仅支持小写英文字母和数字即[a-z，0-9]、中划线“-”及其组合。用户自定义的字符串支持1 - 40个字符。存储桶命名不能以“-”开头或结尾。如果不是新创建的存储桶，云审计不会去校验该存储桶是否真的存在，请谨慎填写，避免日志投递不成功，导致您的数据丢失。
-        # @type CosBucketName: String
-        # @param CosRegion: cos地域。目前支持的地域可以使用ListCosEnableRegion来获取。
-        # @type CosRegion: String
-        # @param IsCreateNewBucket: 是否创建新的cos存储桶。1：是，0：否。
-        # @type IsCreateNewBucket: Integer
         # @param IsEnableCmqNotify: 是否开启cmq消息通知。1：是，0：否。目前仅支持cmq的队列服务。如果开启cmq消息通知服务，云审计会将您的日志内容实时投递到您指定地域的指定队列中。
         # @type IsEnableCmqNotify: Integer
         # @param ReadWriteAttribute: 管理事件的读写属性。1：只读，2：只写，3：全部。
         # @type ReadWriteAttribute: Integer
-        # @param CmqQueueName: 队列名称。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。如果IsEnableCmqNotify值是1的话，此值属于必填字段。如果不是新创建的队列，云审计不会去校验该队列是否真的存在，请谨慎填写，避免日志通知不成功，导致您的数据丢失。
-        # @type CmqQueueName: String
-        # @param CmqRegion: 队列所在的地域。可以通过ListCmqEnableRegion获取支持的cmq地域。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
-        # @type CmqRegion: String
-        # @param IsCreateNewQueue: 是否创建新的队列。1：是，0：否。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
-        # @type IsCreateNewQueue: Integer
-        # @param IsEnableKmsEncry: 是否开启kms加密。1：是，0：否。如果开启KMS加密，数据在投递到cos时，会将数据加密。
-        # @type IsEnableKmsEncry: Integer
+        # @param AuditName: 跟踪集名称。3-128字符，只能包含 ASCII 编码字母 a-z，A-Z，数字 0-9，下划线 _。
+        # @type AuditName: String
+        # @param CosRegion: cos地域。目前支持的地域可以使用ListCosEnableRegion来获取。
+        # @type CosRegion: String
+        # @param IsCreateNewBucket: 是否创建新的cos存储桶。1：是，0：否。
+        # @type IsCreateNewBucket: Integer
+        # @param CosBucketName: cos的存储桶名称。仅支持小写英文字母和数字即[a-z，0-9]、中划线“-”及其组合。用户自定义的字符串支持1 - 40个字符。存储桶命名不能以“-”开头或结尾。如果不是新创建的存储桶，云审计不会去校验该存储桶是否真的存在，请谨慎填写，避免日志投递不成功，导致您的数据丢失。
+        # @type CosBucketName: String
         # @param KeyId: CMK的全局唯一标识符，如果不是新创建的kms，该值是必填值。可以通过ListKeyAliasByRegion来获取。云审计不会校验KeyId的合法性，请您谨慎填写，避免给您的数据造成损失。
         # @type KeyId: String
+        # @param CmqQueueName: 队列名称。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。如果IsEnableCmqNotify值是1的话，此值属于必填字段。如果不是新创建的队列，云审计不会去校验该队列是否真的存在，请谨慎填写，避免日志通知不成功，导致您的数据丢失。
+        # @type CmqQueueName: String
         # @param KmsRegion: kms地域。目前支持的地域可以使用ListKmsEnableRegion来获取。必须要和cos的地域保持一致。
         # @type KmsRegion: String
+        # @param IsEnableKmsEncry: 是否开启kms加密。1：是，0：否。如果开启KMS加密，数据在投递到cos时，会将数据加密。
+        # @type IsEnableKmsEncry: Integer
+        # @param CmqRegion: 队列所在的地域。可以通过ListCmqEnableRegion获取支持的cmq地域。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
+        # @type CmqRegion: String
         # @param LogFilePrefix: 日志文件前缀。3-40个字符，只能包含 ASCII 编码字母 a-z，A-Z，数字 0-9。可以不填，默认以账号ID作为日志前缀。
         # @type LogFilePrefix: String
+        # @param IsCreateNewQueue: 是否创建新的队列。1：是，0：否。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
+        # @type IsCreateNewQueue: Integer
 
-        attr_accessor :AuditName, :CosBucketName, :CosRegion, :IsCreateNewBucket, :IsEnableCmqNotify, :ReadWriteAttribute, :CmqQueueName, :CmqRegion, :IsCreateNewQueue, :IsEnableKmsEncry, :KeyId, :KmsRegion, :LogFilePrefix
+        attr_accessor :IsEnableCmqNotify, :ReadWriteAttribute, :AuditName, :CosRegion, :IsCreateNewBucket, :CosBucketName, :KeyId, :CmqQueueName, :KmsRegion, :IsEnableKmsEncry, :CmqRegion, :LogFilePrefix, :IsCreateNewQueue
         
-        def initialize(auditname=nil, cosbucketname=nil, cosregion=nil, iscreatenewbucket=nil, isenablecmqnotify=nil, readwriteattribute=nil, cmqqueuename=nil, cmqregion=nil, iscreatenewqueue=nil, isenablekmsencry=nil, keyid=nil, kmsregion=nil, logfileprefix=nil)
-          @AuditName = auditname
-          @CosBucketName = cosbucketname
-          @CosRegion = cosregion
-          @IsCreateNewBucket = iscreatenewbucket
+        def initialize(isenablecmqnotify=nil, readwriteattribute=nil, auditname=nil, cosregion=nil, iscreatenewbucket=nil, cosbucketname=nil, keyid=nil, cmqqueuename=nil, kmsregion=nil, isenablekmsencry=nil, cmqregion=nil, logfileprefix=nil, iscreatenewqueue=nil)
           @IsEnableCmqNotify = isenablecmqnotify
           @ReadWriteAttribute = readwriteattribute
-          @CmqQueueName = cmqqueuename
-          @CmqRegion = cmqregion
-          @IsCreateNewQueue = iscreatenewqueue
-          @IsEnableKmsEncry = isenablekmsencry
+          @AuditName = auditname
+          @CosRegion = cosregion
+          @IsCreateNewBucket = iscreatenewbucket
+          @CosBucketName = cosbucketname
           @KeyId = keyid
+          @CmqQueueName = cmqqueuename
           @KmsRegion = kmsregion
+          @IsEnableKmsEncry = isenablekmsencry
+          @CmqRegion = cmqregion
           @LogFilePrefix = logfileprefix
+          @IsCreateNewQueue = iscreatenewqueue
         end
 
         def deserialize(params)
-          @AuditName = params['AuditName']
-          @CosBucketName = params['CosBucketName']
-          @CosRegion = params['CosRegion']
-          @IsCreateNewBucket = params['IsCreateNewBucket']
           @IsEnableCmqNotify = params['IsEnableCmqNotify']
           @ReadWriteAttribute = params['ReadWriteAttribute']
-          @CmqQueueName = params['CmqQueueName']
-          @CmqRegion = params['CmqRegion']
-          @IsCreateNewQueue = params['IsCreateNewQueue']
-          @IsEnableKmsEncry = params['IsEnableKmsEncry']
+          @AuditName = params['AuditName']
+          @CosRegion = params['CosRegion']
+          @IsCreateNewBucket = params['IsCreateNewBucket']
+          @CosBucketName = params['CosBucketName']
           @KeyId = params['KeyId']
+          @CmqQueueName = params['CmqQueueName']
           @KmsRegion = params['KmsRegion']
+          @IsEnableKmsEncry = params['IsEnableKmsEncry']
+          @CmqRegion = params['CmqRegion']
           @LogFilePrefix = params['LogFilePrefix']
+          @IsCreateNewQueue = params['IsCreateNewQueue']
         end
       end
 
@@ -255,147 +255,220 @@ module TencentCloud
 
       # DescribeAudit返回参数结构体
       class DescribeAuditResponse < TencentCloud::Common::AbstractModel
-        # @param AuditName: 跟踪集名称。
-        # @type AuditName: String
-        # @param AuditStatus: 跟踪集状态，1：开启，0：停止。
-        # @type AuditStatus: Integer
-        # @param CmqQueueName: 队列名称。
-        # @type CmqQueueName: String
-        # @param CmqRegion: 队列所在地域。
-        # @type CmqRegion: String
-        # @param CosBucketName: cos存储桶名称。
-        # @type CosBucketName: String
-        # @param CosRegion: cos存储桶所在地域。
-        # @type CosRegion: String
         # @param IsEnableCmqNotify: 是否开启cmq消息通知。1：是，0：否。
         # @type IsEnableCmqNotify: Integer
-        # @param IsEnableKmsEncry: 是否开启kms加密。1：是，0：否。如果开启KMS加密，数据在投递到cos时，会将数据加密。
-        # @type IsEnableKmsEncry: Integer
+        # @param ReadWriteAttribute: 管理事件读写属性，1：只读，2：只写，3：全部
+        # @type ReadWriteAttribute: Integer
         # @param KeyId: CMK的全局唯一标识符。
         # @type KeyId: String
+        # @param AuditStatus: 跟踪集状态，1：开启，0：停止。
+        # @type AuditStatus: Integer
+        # @param AuditName: 跟踪集名称。
+        # @type AuditName: String
+        # @param CosRegion: cos存储桶所在地域。
+        # @type CosRegion: String
+        # @param CmqQueueName: 队列名称。
+        # @type CmqQueueName: String
         # @param KmsAlias: CMK别名。
         # @type KmsAlias: String
         # @param KmsRegion: kms地域。
         # @type KmsRegion: String
+        # @param IsEnableKmsEncry: 是否开启kms加密。1：是，0：否。如果开启KMS加密，数据在投递到cos时，会将数据加密。
+        # @type IsEnableKmsEncry: Integer
+        # @param CosBucketName: cos存储桶名称。
+        # @type CosBucketName: String
+        # @param CmqRegion: 队列所在地域。
+        # @type CmqRegion: String
         # @param LogFilePrefix: 日志前缀。
         # @type LogFilePrefix: String
-        # @param ReadWriteAttribute: 管理事件读写属性，1：只读，2：只写，3：全部
-        # @type ReadWriteAttribute: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AuditName, :AuditStatus, :CmqQueueName, :CmqRegion, :CosBucketName, :CosRegion, :IsEnableCmqNotify, :IsEnableKmsEncry, :KeyId, :KmsAlias, :KmsRegion, :LogFilePrefix, :ReadWriteAttribute, :RequestId
+        attr_accessor :IsEnableCmqNotify, :ReadWriteAttribute, :KeyId, :AuditStatus, :AuditName, :CosRegion, :CmqQueueName, :KmsAlias, :KmsRegion, :IsEnableKmsEncry, :CosBucketName, :CmqRegion, :LogFilePrefix, :RequestId
         
-        def initialize(auditname=nil, auditstatus=nil, cmqqueuename=nil, cmqregion=nil, cosbucketname=nil, cosregion=nil, isenablecmqnotify=nil, isenablekmsencry=nil, keyid=nil, kmsalias=nil, kmsregion=nil, logfileprefix=nil, readwriteattribute=nil, requestid=nil)
-          @AuditName = auditname
-          @AuditStatus = auditstatus
-          @CmqQueueName = cmqqueuename
-          @CmqRegion = cmqregion
-          @CosBucketName = cosbucketname
-          @CosRegion = cosregion
+        def initialize(isenablecmqnotify=nil, readwriteattribute=nil, keyid=nil, auditstatus=nil, auditname=nil, cosregion=nil, cmqqueuename=nil, kmsalias=nil, kmsregion=nil, isenablekmsencry=nil, cosbucketname=nil, cmqregion=nil, logfileprefix=nil, requestid=nil)
           @IsEnableCmqNotify = isenablecmqnotify
-          @IsEnableKmsEncry = isenablekmsencry
+          @ReadWriteAttribute = readwriteattribute
           @KeyId = keyid
+          @AuditStatus = auditstatus
+          @AuditName = auditname
+          @CosRegion = cosregion
+          @CmqQueueName = cmqqueuename
           @KmsAlias = kmsalias
           @KmsRegion = kmsregion
+          @IsEnableKmsEncry = isenablekmsencry
+          @CosBucketName = cosbucketname
+          @CmqRegion = cmqregion
           @LogFilePrefix = logfileprefix
-          @ReadWriteAttribute = readwriteattribute
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @AuditName = params['AuditName']
-          @AuditStatus = params['AuditStatus']
-          @CmqQueueName = params['CmqQueueName']
-          @CmqRegion = params['CmqRegion']
-          @CosBucketName = params['CosBucketName']
-          @CosRegion = params['CosRegion']
           @IsEnableCmqNotify = params['IsEnableCmqNotify']
-          @IsEnableKmsEncry = params['IsEnableKmsEncry']
+          @ReadWriteAttribute = params['ReadWriteAttribute']
           @KeyId = params['KeyId']
+          @AuditStatus = params['AuditStatus']
+          @AuditName = params['AuditName']
+          @CosRegion = params['CosRegion']
+          @CmqQueueName = params['CmqQueueName']
           @KmsAlias = params['KmsAlias']
           @KmsRegion = params['KmsRegion']
+          @IsEnableKmsEncry = params['IsEnableKmsEncry']
+          @CosBucketName = params['CosBucketName']
+          @CmqRegion = params['CmqRegion']
           @LogFilePrefix = params['LogFilePrefix']
-          @ReadWriteAttribute = params['ReadWriteAttribute']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEvents请求参数结构体
+      class DescribeEventsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间戳（单位秒，不超过当前时间 90 天）
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间戳（单位秒，查询时间跨度小于 30 天）
+        # @type EndTime: Integer
+        # @param NextToken: 查看更多日志的凭证
+        # @type NextToken: Integer
+        # @param MaxResults: 返回日志的最大条数（最大 50 条）
+        # @type MaxResults: Integer
+        # @param LookupAttributes: 检索条件（目前支持 RequestId：请求 ID、EventName：事件名称、ActionType：操作类型（Write：写；Read：读）、PrincipalId：子账号、ResourceType：资源类型、ResourceName：资源名称、AccessKeyId：密钥 ID、SensitiveAction：是否敏感操作、ApiErrorCode：API 错误码、CamErrorCode：CAM 错误码）
+        # @type LookupAttributes: Array
+
+        attr_accessor :StartTime, :EndTime, :NextToken, :MaxResults, :LookupAttributes
+        
+        def initialize(starttime=nil, endtime=nil, nexttoken=nil, maxresults=nil, lookupattributes=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @NextToken = nexttoken
+          @MaxResults = maxresults
+          @LookupAttributes = lookupattributes
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @NextToken = params['NextToken']
+          @MaxResults = params['MaxResults']
+          unless params['LookupAttributes'].nil?
+            @LookupAttributes = []
+            params['LookupAttributes'].each do |i|
+              @LookupAttributes << LookupAttribute.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeEvents返回参数结构体
+      class DescribeEventsResponse < TencentCloud::Common::AbstractModel
+        # @param ListOver: 日志集合是否结束
+        # @type ListOver: Boolean
+        # @param NextToken: 查看更多日志的凭证
+        # @type NextToken: Integer
+        # @param Events: 日志集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Events: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ListOver, :NextToken, :Events, :RequestId
+        
+        def initialize(listover=nil, nexttoken=nil, events=nil, requestid=nil)
+          @ListOver = listover
+          @NextToken = nexttoken
+          @Events = events
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ListOver = params['ListOver']
+          @NextToken = params['NextToken']
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              @Events << Event.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
 
       # 日志详情
       class Event < TencentCloud::Common::AbstractModel
-        # @param Resources: 资源对
-        # @type Resources: :class:`Tencentcloud::Cloudaudit.v20190319.models.Resource`
-        # @param AccountID: 主账号ID
-        # @type AccountID: Integer
-        # @param CloudAuditEvent: 日志详情
-        # @type CloudAuditEvent: String
-        # @param ErrorCode: 鉴权错误码
-        # @type ErrorCode: Integer
         # @param EventId: 日志ID
         # @type EventId: String
-        # @param EventName: 事件名称
-        # @type EventName: String
-        # @param EventNameCn: 事件名称中文描述（此字段请按需使用，如果您是其他语言使用者，可以忽略该字段描述）
-        # @type EventNameCn: String
-        # @param EventRegion: 事件地域
-        # @type EventRegion: String
-        # @param EventSource: 请求来源
-        # @type EventSource: String
+        # @param Username: 用户名
+        # @type Username: String
         # @param EventTime: 事件时间
         # @type EventTime: String
+        # @param CloudAuditEvent: 日志详情
+        # @type CloudAuditEvent: String
+        # @param ResourceTypeCn: 资源类型中文描述（此字段请按需使用，如果您是其他语言使用者，可以忽略该字段描述）
+        # @type ResourceTypeCn: String
+        # @param ErrorCode: 鉴权错误码
+        # @type ErrorCode: Integer
+        # @param EventName: 事件名称
+        # @type EventName: String
+        # @param SecretId: 证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretId: String
+        # @param EventSource: 请求来源
+        # @type EventSource: String
         # @param RequestID: 请求ID
         # @type RequestID: String
         # @param ResourceRegion: 资源地域
         # @type ResourceRegion: String
-        # @param ResourceTypeCn: 资源类型中文描述（此字段请按需使用，如果您是其他语言使用者，可以忽略该字段描述）
-        # @type ResourceTypeCn: String
-        # @param SecretId: 证书ID
-        # @type SecretId: String
+        # @param AccountID: 主账号ID
+        # @type AccountID: Integer
         # @param SourceIPAddress: 源IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceIPAddress: String
-        # @param Username: 用户名
-        # @type Username: String
+        # @param EventNameCn: 事件名称中文描述（此字段请按需使用，如果您是其他语言使用者，可以忽略该字段描述）
+        # @type EventNameCn: String
+        # @param Resources: 资源对
+        # @type Resources: :class:`Tencentcloud::Cloudaudit.v20190319.models.Resource`
+        # @param EventRegion: 事件地域
+        # @type EventRegion: String
 
-        attr_accessor :Resources, :AccountID, :CloudAuditEvent, :ErrorCode, :EventId, :EventName, :EventNameCn, :EventRegion, :EventSource, :EventTime, :RequestID, :ResourceRegion, :ResourceTypeCn, :SecretId, :SourceIPAddress, :Username
+        attr_accessor :EventId, :Username, :EventTime, :CloudAuditEvent, :ResourceTypeCn, :ErrorCode, :EventName, :SecretId, :EventSource, :RequestID, :ResourceRegion, :AccountID, :SourceIPAddress, :EventNameCn, :Resources, :EventRegion
         
-        def initialize(resources=nil, accountid=nil, cloudauditevent=nil, errorcode=nil, eventid=nil, eventname=nil, eventnamecn=nil, eventregion=nil, eventsource=nil, eventtime=nil, requestid=nil, resourceregion=nil, resourcetypecn=nil, secretid=nil, sourceipaddress=nil, username=nil)
-          @Resources = resources
-          @AccountID = accountid
-          @CloudAuditEvent = cloudauditevent
-          @ErrorCode = errorcode
+        def initialize(eventid=nil, username=nil, eventtime=nil, cloudauditevent=nil, resourcetypecn=nil, errorcode=nil, eventname=nil, secretid=nil, eventsource=nil, requestid=nil, resourceregion=nil, accountid=nil, sourceipaddress=nil, eventnamecn=nil, resources=nil, eventregion=nil)
           @EventId = eventid
-          @EventName = eventname
-          @EventNameCn = eventnamecn
-          @EventRegion = eventregion
-          @EventSource = eventsource
+          @Username = username
           @EventTime = eventtime
+          @CloudAuditEvent = cloudauditevent
+          @ResourceTypeCn = resourcetypecn
+          @ErrorCode = errorcode
+          @EventName = eventname
+          @SecretId = secretid
+          @EventSource = eventsource
           @RequestID = requestid
           @ResourceRegion = resourceregion
-          @ResourceTypeCn = resourcetypecn
-          @SecretId = secretid
+          @AccountID = accountid
           @SourceIPAddress = sourceipaddress
-          @Username = username
+          @EventNameCn = eventnamecn
+          @Resources = resources
+          @EventRegion = eventregion
         end
 
         def deserialize(params)
+          @EventId = params['EventId']
+          @Username = params['Username']
+          @EventTime = params['EventTime']
+          @CloudAuditEvent = params['CloudAuditEvent']
+          @ResourceTypeCn = params['ResourceTypeCn']
+          @ErrorCode = params['ErrorCode']
+          @EventName = params['EventName']
+          @SecretId = params['SecretId']
+          @EventSource = params['EventSource']
+          @RequestID = params['RequestID']
+          @ResourceRegion = params['ResourceRegion']
+          @AccountID = params['AccountID']
+          @SourceIPAddress = params['SourceIPAddress']
+          @EventNameCn = params['EventNameCn']
           unless params['Resources'].nil?
             @Resources = Resource.new.deserialize(params['Resources'])
           end
-          @AccountID = params['AccountID']
-          @CloudAuditEvent = params['CloudAuditEvent']
-          @ErrorCode = params['ErrorCode']
-          @EventId = params['EventId']
-          @EventName = params['EventName']
-          @EventNameCn = params['EventNameCn']
           @EventRegion = params['EventRegion']
-          @EventSource = params['EventSource']
-          @EventTime = params['EventTime']
-          @RequestID = params['RequestID']
-          @ResourceRegion = params['ResourceRegion']
-          @ResourceTypeCn = params['ResourceTypeCn']
-          @SecretId = params['SecretId']
-          @SourceIPAddress = params['SourceIPAddress']
-          @Username = params['Username']
         end
       end
 
@@ -505,6 +578,7 @@ module TencentCloud
       # ListAudits返回参数结构体
       class ListAuditsResponse < TencentCloud::Common::AbstractModel
         # @param AuditSummarys: 查询跟踪集概要集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditSummarys: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -635,95 +709,99 @@ module TencentCloud
 
       # ListKeyAliasByRegion返回参数结构体
       class ListKeyAliasByRegionResponse < TencentCloud::Common::AbstractModel
-        # @param KeyMetadatas: 密钥别名
-        # @type KeyMetadatas: Array
         # @param TotalCount: CMK的总数量
         # @type TotalCount: Integer
+        # @param KeyMetadatas: 密钥别名
+        # @type KeyMetadatas: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KeyMetadatas, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :KeyMetadatas, :RequestId
         
-        def initialize(keymetadatas=nil, totalcount=nil, requestid=nil)
-          @KeyMetadatas = keymetadatas
+        def initialize(totalcount=nil, keymetadatas=nil, requestid=nil)
           @TotalCount = totalcount
+          @KeyMetadatas = keymetadatas
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['KeyMetadatas'].nil?
             @KeyMetadatas = []
             params['KeyMetadatas'].each do |i|
               @KeyMetadatas << KeyMetadata.new.deserialize(i)
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
       # LookUpEvents请求参数结构体
       class LookUpEventsRequest < TencentCloud::Common::AbstractModel
-        # @param EndTime: 结束时间
-        # @type EndTime: Integer
         # @param StartTime: 开始时间
         # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
         # @param LookupAttributes: 检索条件
         # @type LookupAttributes: Array
+        # @param NextToken: 查看更多日志的凭证
+        # @type NextToken: String
         # @param MaxResults: 返回日志的最大条数
         # @type MaxResults: Integer
         # @param Mode: 云审计模式，有效值：standard | quick，其中standard是标准模式，quick是极速模式。默认为标准模式
         # @type Mode: String
-        # @param NextToken: 查看更多日志的凭证
-        # @type NextToken: String
 
-        attr_accessor :EndTime, :StartTime, :LookupAttributes, :MaxResults, :Mode, :NextToken
+        attr_accessor :StartTime, :EndTime, :LookupAttributes, :NextToken, :MaxResults, :Mode
         
-        def initialize(endtime=nil, starttime=nil, lookupattributes=nil, maxresults=nil, mode=nil, nexttoken=nil)
-          @EndTime = endtime
+        def initialize(starttime=nil, endtime=nil, lookupattributes=nil, nexttoken=nil, maxresults=nil, mode=nil)
           @StartTime = starttime
+          @EndTime = endtime
           @LookupAttributes = lookupattributes
+          @NextToken = nexttoken
           @MaxResults = maxresults
           @Mode = mode
-          @NextToken = nexttoken
         end
 
         def deserialize(params)
-          @EndTime = params['EndTime']
           @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           unless params['LookupAttributes'].nil?
             @LookupAttributes = []
             params['LookupAttributes'].each do |i|
               @LookupAttributes << LookupAttribute.new.deserialize(i)
             end
           end
+          @NextToken = params['NextToken']
           @MaxResults = params['MaxResults']
           @Mode = params['Mode']
-          @NextToken = params['NextToken']
         end
       end
 
       # LookUpEvents返回参数结构体
       class LookUpEventsResponse < TencentCloud::Common::AbstractModel
+        # @param NextToken: 查看更多日志的凭证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextToken: String
         # @param Events: 日志集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
         # @param ListOver: 日志集合是否结束
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListOver: Boolean
-        # @param NextToken: 查看更多日志的凭证
-        # @type NextToken: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Events, :ListOver, :NextToken, :RequestId
+        attr_accessor :NextToken, :Events, :ListOver, :RequestId
         
-        def initialize(events=nil, listover=nil, nexttoken=nil, requestid=nil)
+        def initialize(nexttoken=nil, events=nil, listover=nil, requestid=nil)
+          @NextToken = nexttoken
           @Events = events
           @ListOver = listover
-          @NextToken = nexttoken
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @NextToken = params['NextToken']
           unless params['Events'].nil?
             @Events = []
             params['Events'].each do |i|
@@ -731,7 +809,6 @@ module TencentCloud
             end
           end
           @ListOver = params['ListOver']
-          @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
       end
@@ -739,8 +816,10 @@ module TencentCloud
       # 检索条件
       class LookupAttribute < TencentCloud::Common::AbstractModel
         # @param AttributeKey: AttributeKey的有效取值范围是:RequestId、EventName、ReadOnly、Username、ResourceType、ResourceName和AccessKeyId，EventId
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttributeKey: String
-        # @param AttributeValue: AttributeValue
+        # @param AttributeValue: AttributeValue的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttributeValue: String
 
         attr_accessor :AttributeKey, :AttributeValue
@@ -758,21 +837,22 @@ module TencentCloud
 
       # 资源类型
       class Resource < TencentCloud::Common::AbstractModel
-        # @param ResourceName: 资源名称
-        # @type ResourceName: String
         # @param ResourceType: 资源类型
         # @type ResourceType: String
+        # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
 
-        attr_accessor :ResourceName, :ResourceType
+        attr_accessor :ResourceType, :ResourceName
         
-        def initialize(resourcename=nil, resourcetype=nil)
-          @ResourceName = resourcename
+        def initialize(resourcetype=nil, resourcename=nil)
           @ResourceType = resourcetype
+          @ResourceName = resourcename
         end
 
         def deserialize(params)
-          @ResourceName = params['ResourceName']
           @ResourceType = params['ResourceType']
+          @ResourceName = params['ResourceName']
         end
       end
 
@@ -852,63 +932,63 @@ module TencentCloud
       class UpdateAuditRequest < TencentCloud::Common::AbstractModel
         # @param AuditName: 跟踪集名称
         # @type AuditName: String
-        # @param CmqQueueName: 队列名称。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。如果IsEnableCmqNotify值是1的话，此值属于必填字段。如果不是新创建的队列，云审计不会去校验该队列是否真的存在，请谨慎填写，避免日志通知不成功，导致您的数据丢失。
-        # @type CmqQueueName: String
-        # @param CmqRegion: 队列所在的地域。可以通过ListCmqEnableRegion获取支持的cmq地域。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
-        # @type CmqRegion: String
-        # @param CosBucketName: cos的存储桶名称。仅支持小写英文字母和数字即[a-z，0-9]、中划线“-”及其组合。用户自定义的字符串支持1 - 40个字符。存储桶命名不能以“-”开头或结尾。如果不是新创建的存储桶，云审计不会去校验该存储桶是否真的存在，请谨慎填写，避免日志投递不成功，导致您的数据丢失。
-        # @type CosBucketName: String
-        # @param CosRegion: cos地域。目前支持的地域可以使用ListCosEnableRegion来获取。
-        # @type CosRegion: String
-        # @param IsCreateNewBucket: 是否创建新的cos存储桶。1：是，0：否。
-        # @type IsCreateNewBucket: Integer
-        # @param IsCreateNewQueue: 是否创建新的队列。1：是，0：否。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
-        # @type IsCreateNewQueue: Integer
         # @param IsEnableCmqNotify: 是否开启cmq消息通知。1：是，0：否。目前仅支持cmq的队列服务。如果开启cmq消息通知服务，云审计会将您的日志内容实时投递到您指定地域的指定队列中。
         # @type IsEnableCmqNotify: Integer
-        # @param IsEnableKmsEncry: 是否开启kms加密。1：是，0：否。如果开启KMS加密，数据在投递到cos时，会将数据加密。
-        # @type IsEnableKmsEncry: Integer
-        # @param KeyId: CMK的全局唯一标识符，如果不是新创建的kms，该值是必填值。可以通过ListKeyAliasByRegion来获取。云审计不会校验KeyId的合法性，请您谨慎填写，避免给您的数据造成损失。
-        # @type KeyId: String
-        # @param KmsRegion: kms地域。目前支持的地域可以使用ListKmsEnableRegion来获取。必须要和cos的地域保持一致。
-        # @type KmsRegion: String
-        # @param LogFilePrefix: 日志文件前缀。3-40个字符，只能包含 ASCII 编码字母 a-z，A-Z，数字 0-9。
-        # @type LogFilePrefix: String
         # @param ReadWriteAttribute: 管理事件的读写属性。1：只读，2：只写，3：全部。
         # @type ReadWriteAttribute: Integer
+        # @param KeyId: CMK的全局唯一标识符，如果不是新创建的kms，该值是必填值。可以通过ListKeyAliasByRegion来获取。云审计不会校验KeyId的合法性，请您谨慎填写，避免给您的数据造成损失。
+        # @type KeyId: String
+        # @param CosRegion: cos地域。目前支持的地域可以使用ListCosEnableRegion来获取。
+        # @type CosRegion: String
+        # @param CmqQueueName: 队列名称。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。如果IsEnableCmqNotify值是1的话，此值属于必填字段。如果不是新创建的队列，云审计不会去校验该队列是否真的存在，请谨慎填写，避免日志通知不成功，导致您的数据丢失。
+        # @type CmqQueueName: String
+        # @param IsCreateNewBucket: 是否创建新的cos存储桶。1：是，0：否。
+        # @type IsCreateNewBucket: Integer
+        # @param KmsRegion: kms地域。目前支持的地域可以使用ListKmsEnableRegion来获取。必须要和cos的地域保持一致。
+        # @type KmsRegion: String
+        # @param IsEnableKmsEncry: 是否开启kms加密。1：是，0：否。如果开启KMS加密，数据在投递到cos时，会将数据加密。
+        # @type IsEnableKmsEncry: Integer
+        # @param CosBucketName: cos的存储桶名称。仅支持小写英文字母和数字即[a-z，0-9]、中划线“-”及其组合。用户自定义的字符串支持1 - 40个字符。存储桶命名不能以“-”开头或结尾。如果不是新创建的存储桶，云审计不会去校验该存储桶是否真的存在，请谨慎填写，避免日志投递不成功，导致您的数据丢失。
+        # @type CosBucketName: String
+        # @param CmqRegion: 队列所在的地域。可以通过ListCmqEnableRegion获取支持的cmq地域。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
+        # @type CmqRegion: String
+        # @param LogFilePrefix: 日志文件前缀。3-40个字符，只能包含 ASCII 编码字母 a-z，A-Z，数字 0-9。
+        # @type LogFilePrefix: String
+        # @param IsCreateNewQueue: 是否创建新的队列。1：是，0：否。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
+        # @type IsCreateNewQueue: Integer
 
-        attr_accessor :AuditName, :CmqQueueName, :CmqRegion, :CosBucketName, :CosRegion, :IsCreateNewBucket, :IsCreateNewQueue, :IsEnableCmqNotify, :IsEnableKmsEncry, :KeyId, :KmsRegion, :LogFilePrefix, :ReadWriteAttribute
+        attr_accessor :AuditName, :IsEnableCmqNotify, :ReadWriteAttribute, :KeyId, :CosRegion, :CmqQueueName, :IsCreateNewBucket, :KmsRegion, :IsEnableKmsEncry, :CosBucketName, :CmqRegion, :LogFilePrefix, :IsCreateNewQueue
         
-        def initialize(auditname=nil, cmqqueuename=nil, cmqregion=nil, cosbucketname=nil, cosregion=nil, iscreatenewbucket=nil, iscreatenewqueue=nil, isenablecmqnotify=nil, isenablekmsencry=nil, keyid=nil, kmsregion=nil, logfileprefix=nil, readwriteattribute=nil)
+        def initialize(auditname=nil, isenablecmqnotify=nil, readwriteattribute=nil, keyid=nil, cosregion=nil, cmqqueuename=nil, iscreatenewbucket=nil, kmsregion=nil, isenablekmsencry=nil, cosbucketname=nil, cmqregion=nil, logfileprefix=nil, iscreatenewqueue=nil)
           @AuditName = auditname
-          @CmqQueueName = cmqqueuename
-          @CmqRegion = cmqregion
-          @CosBucketName = cosbucketname
-          @CosRegion = cosregion
-          @IsCreateNewBucket = iscreatenewbucket
-          @IsCreateNewQueue = iscreatenewqueue
           @IsEnableCmqNotify = isenablecmqnotify
-          @IsEnableKmsEncry = isenablekmsencry
-          @KeyId = keyid
-          @KmsRegion = kmsregion
-          @LogFilePrefix = logfileprefix
           @ReadWriteAttribute = readwriteattribute
+          @KeyId = keyid
+          @CosRegion = cosregion
+          @CmqQueueName = cmqqueuename
+          @IsCreateNewBucket = iscreatenewbucket
+          @KmsRegion = kmsregion
+          @IsEnableKmsEncry = isenablekmsencry
+          @CosBucketName = cosbucketname
+          @CmqRegion = cmqregion
+          @LogFilePrefix = logfileprefix
+          @IsCreateNewQueue = iscreatenewqueue
         end
 
         def deserialize(params)
           @AuditName = params['AuditName']
-          @CmqQueueName = params['CmqQueueName']
-          @CmqRegion = params['CmqRegion']
-          @CosBucketName = params['CosBucketName']
-          @CosRegion = params['CosRegion']
-          @IsCreateNewBucket = params['IsCreateNewBucket']
-          @IsCreateNewQueue = params['IsCreateNewQueue']
           @IsEnableCmqNotify = params['IsEnableCmqNotify']
-          @IsEnableKmsEncry = params['IsEnableKmsEncry']
-          @KeyId = params['KeyId']
-          @KmsRegion = params['KmsRegion']
-          @LogFilePrefix = params['LogFilePrefix']
           @ReadWriteAttribute = params['ReadWriteAttribute']
+          @KeyId = params['KeyId']
+          @CosRegion = params['CosRegion']
+          @CmqQueueName = params['CmqQueueName']
+          @IsCreateNewBucket = params['IsCreateNewBucket']
+          @KmsRegion = params['KmsRegion']
+          @IsEnableKmsEncry = params['IsEnableKmsEncry']
+          @CosBucketName = params['CosBucketName']
+          @CmqRegion = params['CmqRegion']
+          @LogFilePrefix = params['LogFilePrefix']
+          @IsCreateNewQueue = params['IsCreateNewQueue']
         end
       end
 

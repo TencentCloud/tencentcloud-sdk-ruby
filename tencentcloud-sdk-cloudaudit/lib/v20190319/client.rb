@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询云审计日志
+
+        # @param request: Request instance for DescribeEvents.
+        # @type request: :class:`Tencentcloud::cloudaudit::V20190319::DescribeEventsRequest`
+        # @rtype: :class:`Tencentcloud::cloudaudit::V20190319::DescribeEventsResponse`
+        def DescribeEvents(request)
+          body = send_request('DescribeEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询AttributeKey的有效取值范围
 
         # @param request: Request instance for GetAttributeKey.

@@ -916,17 +916,21 @@ module TencentCloud
         # @type Period: Integer
         # @param LogsetName: 日志集的名字，不能和cls其他日志集重名。不填默认为clb_logset。
         # @type LogsetName: String
+        # @param LogsetType: 日志集类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。
+        # @type LogsetType: String
 
-        attr_accessor :Period, :LogsetName
+        attr_accessor :Period, :LogsetName, :LogsetType
         
-        def initialize(period=nil, logsetname=nil)
+        def initialize(period=nil, logsetname=nil, logsettype=nil)
           @Period = period
           @LogsetName = logsetname
+          @LogsetType = logsettype
         end
 
         def deserialize(params)
           @Period = params['Period']
           @LogsetName = params['LogsetName']
+          @LogsetType = params['LogsetType']
         end
       end
 
@@ -1326,17 +1330,21 @@ module TencentCloud
         # @type TopicName: String
         # @param PartitionCount: 主题分区Partition的数量，不传参默认创建1个，最大创建允许10个，分裂/合并操作会改变分区数量，整体上限50个。
         # @type PartitionCount: Integer
+        # @param TopicType: 日志类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。
+        # @type TopicType: String
 
-        attr_accessor :TopicName, :PartitionCount
+        attr_accessor :TopicName, :PartitionCount, :TopicType
         
-        def initialize(topicname=nil, partitioncount=nil)
+        def initialize(topicname=nil, partitioncount=nil, topictype=nil)
           @TopicName = topicname
           @PartitionCount = partitioncount
+          @TopicType = topictype
         end
 
         def deserialize(params)
           @TopicName = params['TopicName']
           @PartitionCount = params['PartitionCount']
+          @TopicType = params['TopicType']
         end
       end
 
@@ -2062,18 +2070,22 @@ module TencentCloud
       class DescribeClsLogSetResponse < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集的 ID。
         # @type LogsetId: String
+        # @param HealthLogsetId: 健康检查日志集的 ID。
+        # @type HealthLogsetId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LogsetId, :RequestId
+        attr_accessor :LogsetId, :HealthLogsetId, :RequestId
         
-        def initialize(logsetid=nil, requestid=nil)
+        def initialize(logsetid=nil, healthlogsetid=nil, requestid=nil)
           @LogsetId = logsetid
+          @HealthLogsetId = healthlogsetid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @LogsetId = params['LogsetId']
+          @HealthLogsetId = params['HealthLogsetId']
           @RequestId = params['RequestId']
         end
       end
@@ -3552,10 +3564,16 @@ module TencentCloud
         # @param NfvInfo: CLB是否为NFV，空：不是，l7nfv：七层是NFV。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NfvInfo: String
+        # @param HealthLogSetId: 负载均衡日志服务(CLS)的健康检查日志集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthLogSetId: String
+        # @param HealthLogTopicId: 负载均衡日志服务(CLS)的健康检查日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthLogTopicId: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -3605,6 +3623,8 @@ module TencentCloud
           @MixIpTarget = mixiptarget
           @Zones = zones
           @NfvInfo = nfvinfo
+          @HealthLogSetId = healthlogsetid
+          @HealthLogTopicId = healthlogtopicid
         end
 
         def deserialize(params)
@@ -3684,6 +3704,8 @@ module TencentCloud
           @MixIpTarget = params['MixIpTarget']
           @Zones = params['Zones']
           @NfvInfo = params['NfvInfo']
+          @HealthLogSetId = params['HealthLogSetId']
+          @HealthLogTopicId = params['HealthLogTopicId']
         end
       end
 
@@ -5169,25 +5191,29 @@ module TencentCloud
 
       # SetLoadBalancerClsLog请求参数结构体
       class SetLoadBalancerClsLogRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID
+        # @param LoadBalancerId: 负载均衡实例 ID。
         # @type LoadBalancerId: String
-        # @param LogSetId: 日志服务(CLS)的日志集ID
+        # @param LogSetId: 日志服务(CLS)的日志集ID。
         # @type LogSetId: String
-        # @param LogTopicId: 日志服务(CLS)的日志主题ID
+        # @param LogTopicId: 日志服务(CLS)的日志主题ID。
         # @type LogTopicId: String
+        # @param LogType: 日志类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。
+        # @type LogType: String
 
-        attr_accessor :LoadBalancerId, :LogSetId, :LogTopicId
+        attr_accessor :LoadBalancerId, :LogSetId, :LogTopicId, :LogType
         
-        def initialize(loadbalancerid=nil, logsetid=nil, logtopicid=nil)
+        def initialize(loadbalancerid=nil, logsetid=nil, logtopicid=nil, logtype=nil)
           @LoadBalancerId = loadbalancerid
           @LogSetId = logsetid
           @LogTopicId = logtopicid
+          @LogType = logtype
         end
 
         def deserialize(params)
           @LoadBalancerId = params['LoadBalancerId']
           @LogSetId = params['LogSetId']
           @LogTopicId = params['LogTopicId']
+          @LogType = params['LogType']
         end
       end
 

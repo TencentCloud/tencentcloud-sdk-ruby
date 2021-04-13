@@ -309,7 +309,7 @@ module TencentCloud
         # @type GradientInfos: Array
         # @param Fps: 视频帧率，取值[1,25]。默认10
         # @type Fps: Integer
-        # @param OutputType: 视频类型，取值[0,2]，其中0为MP4，1为GIF，2为MOV。目前仅支持MP4格式，默认为MP4格式
+        # @param OutputType: 视频类型，取值0。目前仅支持MP4格式，默认为MP4格式
         # @type OutputType: Integer
         # @param OutputWidth: 视频宽度，取值[128,1280]。默认值720
         # @type OutputWidth: Integer

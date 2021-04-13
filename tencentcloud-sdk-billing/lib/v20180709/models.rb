@@ -1304,18 +1304,66 @@ module TencentCloud
       class DescribeAccountBalanceResponse < TencentCloud::Common::AbstractModel
         # @param Balance: 云账户信息中的”展示可用余额”字段，单位为"分"
         # @type Balance: Integer
+        # @param Uin: 查询的用户Uin
+        # @type Uin: Integer
+        # @param RealBalance: 当前真实可用余额
+        # @type RealBalance: Float
+        # @param CashAccountBalance: 现金账户余额
+        # @type CashAccountBalance: Float
+        # @param IncomeIntoAccountBalance: 收益转入账户余额
+        # @type IncomeIntoAccountBalance: Float
+        # @param PresentAccountBalance: 赠送账户余额
+        # @type PresentAccountBalance: Float
+        # @param FreezeAmount: 冻结金额
+        # @type FreezeAmount: Float
+        # @param OweAmount: 欠费金额
+        # @type OweAmount: Float
+        # @param IsAllowArrears: 是否允许欠费消费
+        # @type IsAllowArrears: Boolean
+        # @param IsCreditLimited: 是否限制信用额度
+        # @type IsCreditLimited: Boolean
+        # @param CreditAmount: 信用额度
+        # @type CreditAmount: Float
+        # @param CreditBalance: 可用信用额度
+        # @type CreditBalance: Float
+        # @param RealCreditBalance: 真实可用信用额度
+        # @type RealCreditBalance: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Balance, :RequestId
+        attr_accessor :Balance, :Uin, :RealBalance, :CashAccountBalance, :IncomeIntoAccountBalance, :PresentAccountBalance, :FreezeAmount, :OweAmount, :IsAllowArrears, :IsCreditLimited, :CreditAmount, :CreditBalance, :RealCreditBalance, :RequestId
         
-        def initialize(balance=nil, requestid=nil)
+        def initialize(balance=nil, uin=nil, realbalance=nil, cashaccountbalance=nil, incomeintoaccountbalance=nil, presentaccountbalance=nil, freezeamount=nil, oweamount=nil, isallowarrears=nil, iscreditlimited=nil, creditamount=nil, creditbalance=nil, realcreditbalance=nil, requestid=nil)
           @Balance = balance
+          @Uin = uin
+          @RealBalance = realbalance
+          @CashAccountBalance = cashaccountbalance
+          @IncomeIntoAccountBalance = incomeintoaccountbalance
+          @PresentAccountBalance = presentaccountbalance
+          @FreezeAmount = freezeamount
+          @OweAmount = oweamount
+          @IsAllowArrears = isallowarrears
+          @IsCreditLimited = iscreditlimited
+          @CreditAmount = creditamount
+          @CreditBalance = creditbalance
+          @RealCreditBalance = realcreditbalance
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Balance = params['Balance']
+          @Uin = params['Uin']
+          @RealBalance = params['RealBalance']
+          @CashAccountBalance = params['CashAccountBalance']
+          @IncomeIntoAccountBalance = params['IncomeIntoAccountBalance']
+          @PresentAccountBalance = params['PresentAccountBalance']
+          @FreezeAmount = params['FreezeAmount']
+          @OweAmount = params['OweAmount']
+          @IsAllowArrears = params['IsAllowArrears']
+          @IsCreditLimited = params['IsCreditLimited']
+          @CreditAmount = params['CreditAmount']
+          @CreditBalance = params['CreditBalance']
+          @RealCreditBalance = params['RealCreditBalance']
           @RequestId = params['RequestId']
         end
       end

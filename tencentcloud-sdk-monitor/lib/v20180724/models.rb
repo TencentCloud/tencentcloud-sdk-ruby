@@ -77,7 +77,7 @@ module TencentCloud
         # @type ReceiverGroups: Array
         # @param NoticeWays: 告警渠道列表 SMS=短信 EMAIL=邮件 CALL=电话 WECHAT=微信
         # @type NoticeWays: Array
-        # @param OriginId: 兼容告警1.0策略组 Id
+        # @param OriginId: 可用于实例、实例组的绑定和解绑接口（[BindingPolicyObject](https://cloud.tencent.com/document/product/248/40421)、[UnBindingAllPolicyObject](https://cloud.tencent.com/document/product/248/40568)、[UnBindingPolicyObject](https://cloud.tencent.com/document/product/248/40567)）的策略 ID
         # @type OriginId: String
         # @param AlarmType: 告警类型
         # @type AlarmType: String
@@ -514,10 +514,10 @@ module TencentCloud
 
       # 告警策略触发条件
       class AlarmPolicyRule < TencentCloud::Common::AbstractModel
-        # @param MetricName: 指标名
+        # @param MetricName: 指标名或事件名，支持的指标可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询，支持的事件可以从 [DescribeAlarmEvents](https://cloud.tencent.com/document/product/248/51284) 查询 。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricName: String
-        # @param Period: 秒数 统计周期
+        # @param Period: 秒数 统计周期，支持的值可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: Integer
         # @param Operator: 英文运算符
@@ -538,12 +538,13 @@ module TencentCloud
         # cycle_decrease=环比下降
         # cycle_wave=环比波动
         # re=正则匹配
+        # 支持的值可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
-        # @param Value: 阈值
+        # @param Value: 阈值，支持的范围可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
-        # @param ContinuePeriod: 周期数 持续通知周期 1=持续1个周期 2=持续2个周期...
+        # @param ContinuePeriod: 周期数 持续通知周期 1=持续1个周期 2=持续2个周期...，支持的值可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContinuePeriod: Integer
         # @param NoticeFrequency: 秒数 告警间隔  0=不重复 300=每5分钟告警一次 600=每10分钟告警一次 900=每15分钟告警一次 1800=每30分钟告警一次 3600=每1小时告警一次 7200=每2小时告警一次 10800=每3小时告警一次 21600=每6小时告警一次 43200=每12小时告警一次 86400=每1天告警一次
@@ -561,7 +562,7 @@ module TencentCloud
         # @param Unit: 单位，用于出参
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
-        # @param RuleType: 触发条件类型 STATIC=静态阈值 DYNAMIC=动态阈值
+        # @param RuleType: 触发条件类型 STATIC=静态阈值 DYNAMIC=动态阈值。创建或编辑策略时，如不填则默认为 STATIC。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
 
@@ -652,7 +653,7 @@ module TencentCloud
 
       # BindingPolicyObject请求参数结构体
       class BindingPolicyObjectRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 策略组id，如传入PolicyId则该字段可传入任意值
+        # @param GroupId: 策略组id，如传入 PolicyId 则该字段会被忽略可传入任意值如 0
         # @type GroupId: Integer
         # @param Module: 必填。固定值"monitor"
         # @type Module: String
@@ -660,7 +661,7 @@ module TencentCloud
         # @type InstanceGroupId: Integer
         # @param Dimensions: 需要绑定的对象维度信息
         # @type Dimensions: Array
-        # @param PolicyId: 告警策略ID，使用此字段时GroupId可传入任意值
+        # @param PolicyId: 告警策略ID，使用此字段时 GroupId 会被忽略
         # @type PolicyId: String
 
         attr_accessor :GroupId, :Module, :InstanceGroupId, :Dimensions, :PolicyId
@@ -852,26 +853,28 @@ module TencentCloud
         # @type PolicyName: String
         # @param MonitorType: 监控类型 MT_QCE=云产品监控
         # @type MonitorType: String
-        # @param Namespace: 告警策略类型，由 DescribeAllNamespaces 获得，例如 cvm_device
+        # @param Namespace: 告警策略类型，由 [DescribeAllNamespaces](https://cloud.tencent.com/document/product/248/48683) 获得，例如 cvm_device
         # @type Namespace: String
         # @param Remark: 备注，不超过100字符，仅支持中英文、数字、下划线、-
         # @type Remark: String
         # @param Enable: 是否启用 0=停用 1=启用，可不传 默认为1
         # @type Enable: Integer
-        # @param ProjectId: 项目 Id -1=无项目 0=默认项目，可不传 默认为-1
+        # @param ProjectId: 项目 Id，对于区分项目的产品必须传入非 -1 的值。 -1=无项目 0=默认项目，如不传 默认为 -1。支持的项目 Id 可以在控制台 [账号中心-项目管理](https://console.cloud.tencent.com/project) 中查看。
         # @type ProjectId: Integer
-        # @param Condition: 指标触发条件
+        # @param ConditionTemplateId: 触发条件模板 Id ，可不传
+        # @type ConditionTemplateId: Integer
+        # @param Condition: 指标触发条件，支持的指标可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
         # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
-        # @param EventCondition: 事件触发条件
+        # @param EventCondition: 事件触发条件，支持的事件可以从 [DescribeAlarmEvents](https://cloud.tencent.com/document/product/248/51284) 查询。
         # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
-        # @param NoticeIds: 通知规则 Id 列表，由 DescribeAlarmNotices 获得
+        # @param NoticeIds: 通知规则 Id 列表，由 [DescribeAlarmNotices](https://cloud.tencent.com/document/product/248/51280) 获得
         # @type NoticeIds: Array
         # @param TriggerTasks: 触发任务列表
         # @type TriggerTasks: Array
 
-        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks
+        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks
         
-        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil)
+        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil)
           @Module = _module
           @PolicyName = policyname
           @MonitorType = monitortype
@@ -879,6 +882,7 @@ module TencentCloud
           @Remark = remark
           @Enable = enable
           @ProjectId = projectid
+          @ConditionTemplateId = conditiontemplateid
           @Condition = condition
           @EventCondition = eventcondition
           @NoticeIds = noticeids
@@ -893,6 +897,7 @@ module TencentCloud
           @Remark = params['Remark']
           @Enable = params['Enable']
           @ProjectId = params['ProjectId']
+          @ConditionTemplateId = params['ConditionTemplateId']
           unless params['Condition'].nil?
             @Condition = AlarmPolicyCondition.new.deserialize(params['Condition'])
           end
@@ -913,7 +918,7 @@ module TencentCloud
       class CreateAlarmPolicyResponse < TencentCloud::Common::AbstractModel
         # @param PolicyId: 告警策略 ID
         # @type PolicyId: String
-        # @param OriginId: 用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID
+        # @param OriginId: 可用于实例、实例组的绑定和解绑接口（[BindingPolicyObject](https://cloud.tencent.com/document/product/248/40421)、[UnBindingAllPolicyObject](https://cloud.tencent.com/document/product/248/40568)、[UnBindingPolicyObject](https://cloud.tencent.com/document/product/248/40567)）的策略 ID
         # @type OriginId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4634,16 +4639,19 @@ module TencentCloud
         # @type Module: String
         # @param PolicyId: 告警策略 ID
         # @type PolicyId: String
+        # @param ConditionTemplateId: 触发条件模板 Id，可不传
+        # @type ConditionTemplateId: Integer
         # @param Condition: 指标触发条件
         # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
         # @param EventCondition: 事件触发条件
         # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
 
-        attr_accessor :Module, :PolicyId, :Condition, :EventCondition
+        attr_accessor :Module, :PolicyId, :ConditionTemplateId, :Condition, :EventCondition
         
-        def initialize(_module=nil, policyid=nil, condition=nil, eventcondition=nil)
+        def initialize(_module=nil, policyid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil)
           @Module = _module
           @PolicyId = policyid
+          @ConditionTemplateId = conditiontemplateid
           @Condition = condition
           @EventCondition = eventcondition
         end
@@ -4651,6 +4659,7 @@ module TencentCloud
         def deserialize(params)
           @Module = params['Module']
           @PolicyId = params['PolicyId']
+          @ConditionTemplateId = params['ConditionTemplateId']
           unless params['Condition'].nil?
             @Condition = AlarmPolicyCondition.new.deserialize(params['Condition'])
           end
@@ -5440,9 +5449,9 @@ module TencentCloud
       class UnBindingAllPolicyObjectRequest < TencentCloud::Common::AbstractModel
         # @param Module: 固定值，为"monitor"
         # @type Module: String
-        # @param GroupId: 策略组id，如传入PolicyId则该字段可传入任意值
+        # @param GroupId: 策略组id，如传入 PolicyId 则该字段被忽略可传入任意值如 0
         # @type GroupId: Integer
-        # @param PolicyId: 告警策略ID，使用此字段时GroupId可传入任意值
+        # @param PolicyId: 告警策略ID，使用此字段时 GroupId 会被忽略
         # @type PolicyId: String
 
         attr_accessor :Module, :GroupId, :PolicyId
@@ -5480,13 +5489,13 @@ module TencentCloud
       class UnBindingPolicyObjectRequest < TencentCloud::Common::AbstractModel
         # @param Module: 固定值，为"monitor"
         # @type Module: String
-        # @param GroupId: 策略组id，如传入PolicyId则该字段可传入任意值
+        # @param GroupId: 策略组id，如传入 PolicyId 则该字段被忽略可传入任意值如 0
         # @type GroupId: Integer
         # @param UniqueId: 待删除对象实例的唯一id列表，UniqueId从调用[获取已绑定对象列表接口](https://cloud.tencent.com/document/api/248/40570)的出参的List中得到
         # @type UniqueId: Array
-        # @param InstanceGroupId: 实例分组id, 如果按实例分组删除的话UniqueId参数是无效的
+        # @param InstanceGroupId: 实例分组id，如果按实例分组删除的话UniqueId参数是无效的
         # @type InstanceGroupId: Integer
-        # @param PolicyId: 告警策略ID，使用此字段时GroupId可传入任意值
+        # @param PolicyId: 告警策略ID，使用此字段时 GroupId 会被忽略
         # @type PolicyId: String
 
         attr_accessor :Module, :GroupId, :UniqueId, :InstanceGroupId, :PolicyId

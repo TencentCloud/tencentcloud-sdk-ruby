@@ -2875,9 +2875,9 @@ module TencentCloud
         # @type TaskName: String
         # @param TaskContent: 任务内容，长度限制65536个字节
         # @type TaskContent: String
-        # @param ExecuteType: 执行类型，UNICAST/BROADCAST
+        # @param ExecuteType: 执行类型，unicast/broadcast
         # @type ExecuteType: String
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型,java
         # @type TaskType: String
         # @param TimeOut: 任务超时时间， 时间单位 ms
         # @type TimeOut: Integer

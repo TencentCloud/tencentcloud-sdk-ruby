@@ -3012,6 +3012,57 @@ module TencentCloud
         end
       end
 
+      # DescribeMonthPeakNetwork请求参数结构体
+      class DescribeMonthPeakNetworkRequest < TencentCloud::Common::AbstractModel
+        # @param Month: 月份时间(xxxx-xx) 如2021-03,默认取当前时间的上一个月份
+        # @type Month: String
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Month, :Filters
+        
+        def initialize(month=nil, filters=nil)
+          @Month = month
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Month = params['Month']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeMonthPeakNetwork返回参数结构体
+      class DescribeMonthPeakNetworkResponse < TencentCloud::Common::AbstractModel
+        # @param MonthNetWorkData: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonthNetWorkData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MonthNetWorkData, :RequestId
+        
+        def initialize(monthnetworkdata=nil, requestid=nil)
+          @MonthNetWorkData = monthnetworkdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MonthNetWorkData'].nil?
+            @MonthNetWorkData = []
+            params['MonthNetWorkData'].each do |i|
+              @MonthNetWorkData << MonthNetwork.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNetworkInterfaces请求参数结构体
       class DescribeNetworkInterfacesRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceIds: 弹性网卡实例ID查询。形如：eni-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定NetworkInterfaceIds和Filters。
@@ -6643,6 +6694,72 @@ module TencentCloud
           unless params['Module'].nil?
             @Module = Module.new.deserialize(params['Module'])
           end
+        end
+      end
+
+      # 客户对应月份的带宽信息
+      class MonthNetwork < TencentCloud::Common::AbstractModel
+        # @param ZoneInfo: 节点zone信息
+        # @type ZoneInfo: :class:`Tencentcloud::Ecm.v20190719.models.ZoneInfo`
+        # @param Month: 带宽月份 示例"202103"
+        # @type Month: String
+        # @param BandwidthPkgId: 带宽包id 格式如"bwp-xxxxxxxx"
+        # @type BandwidthPkgId: String
+        # @param Isp: 运营商简称 取值范围"CUCC;CTCC;CMCC"
+        # @type Isp: String
+        # @param TrafficMaxIn: 入网带宽包峰值,取值范围0.0-xxx.xxx
+        # @type TrafficMaxIn: Float
+        # @param TrafficMaxOut: 出网带宽包峰值,取值范围0.0-xxx.xxx
+        # @type TrafficMaxOut: Float
+        # @param FeeTraffic: 计费带宽,取值范围0.0-xxx.xxx
+        # @type FeeTraffic: Float
+        # @param StartTime: 月计费带宽起始时间 格式"yyyy-mm-dd HH:mm:ss"
+        # @type StartTime: String
+        # @param EndTime: 月计费带宽结束时间 格式"yyyy-mm-dd HH:mm:ss"
+        # @type EndTime: String
+        # @param EffectiveDays: 月计费带宽实际有效天数 整形必须大于等于0
+        # @type EffectiveDays: Integer
+        # @param MonthDays: 指定月份的实际天数 实例 30
+        # @type MonthDays: Integer
+        # @param EffectiveDaysRate: 有效天占比 保留小数点后四位0.2134
+        # @type EffectiveDaysRate: Float
+        # @param BandwidthPkgType: 计费带宽包类型 实例"Address","LoadBalance","AddressIpv6"
+        # @type BandwidthPkgType: String
+
+        attr_accessor :ZoneInfo, :Month, :BandwidthPkgId, :Isp, :TrafficMaxIn, :TrafficMaxOut, :FeeTraffic, :StartTime, :EndTime, :EffectiveDays, :MonthDays, :EffectiveDaysRate, :BandwidthPkgType
+        
+        def initialize(zoneinfo=nil, month=nil, bandwidthpkgid=nil, isp=nil, trafficmaxin=nil, trafficmaxout=nil, feetraffic=nil, starttime=nil, endtime=nil, effectivedays=nil, monthdays=nil, effectivedaysrate=nil, bandwidthpkgtype=nil)
+          @ZoneInfo = zoneinfo
+          @Month = month
+          @BandwidthPkgId = bandwidthpkgid
+          @Isp = isp
+          @TrafficMaxIn = trafficmaxin
+          @TrafficMaxOut = trafficmaxout
+          @FeeTraffic = feetraffic
+          @StartTime = starttime
+          @EndTime = endtime
+          @EffectiveDays = effectivedays
+          @MonthDays = monthdays
+          @EffectiveDaysRate = effectivedaysrate
+          @BandwidthPkgType = bandwidthpkgtype
+        end
+
+        def deserialize(params)
+          unless params['ZoneInfo'].nil?
+            @ZoneInfo = ZoneInfo.new.deserialize(params['ZoneInfo'])
+          end
+          @Month = params['Month']
+          @BandwidthPkgId = params['BandwidthPkgId']
+          @Isp = params['Isp']
+          @TrafficMaxIn = params['TrafficMaxIn']
+          @TrafficMaxOut = params['TrafficMaxOut']
+          @FeeTraffic = params['FeeTraffic']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @EffectiveDays = params['EffectiveDays']
+          @MonthDays = params['MonthDays']
+          @EffectiveDaysRate = params['EffectiveDaysRate']
+          @BandwidthPkgType = params['BandwidthPkgType']
         end
       end
 

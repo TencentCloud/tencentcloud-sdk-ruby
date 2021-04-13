@@ -2859,6 +2859,46 @@ module TencentCloud
         end
       end
 
+      # ModifyDevice请求参数结构体
+      class ModifyDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param Tid: 设备ID
+        # @type Tid: String
+        # @param AccessId: 用户ID
+        # @type AccessId: String
+        # @param Nick: 设备昵称
+        # @type Nick: String
+
+        attr_accessor :Tid, :AccessId, :Nick
+        
+        def initialize(tid=nil, accessid=nil, nick=nil)
+          @Tid = tid
+          @AccessId = accessid
+          @Nick = nick
+        end
+
+        def deserialize(params)
+          @Tid = params['Tid']
+          @AccessId = params['AccessId']
+          @Nick = params['Nick']
+        end
+      end
+
+      # ModifyDevice返回参数结构体
+      class ModifyDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyProduct请求参数结构体
       class ModifyProductRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID

@@ -46,10 +46,13 @@ module TencentCloud
         # @param IsRecord: 是否存在录像,，0:不存在；1：存在
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRecord: Integer
+        # @param Recordable: 该设备是否可录制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Recordable: Integer
 
-        attr_accessor :DeviceId, :DeviceType, :Status, :CreateTime, :ExtraInformation, :NickName, :GroupPath, :DeviceCode, :IsRecord
+        attr_accessor :DeviceId, :DeviceType, :Status, :CreateTime, :ExtraInformation, :NickName, :GroupPath, :DeviceCode, :IsRecord, :Recordable
         
-        def initialize(deviceid=nil, devicetype=nil, status=nil, createtime=nil, extrainformation=nil, nickname=nil, grouppath=nil, devicecode=nil, isrecord=nil)
+        def initialize(deviceid=nil, devicetype=nil, status=nil, createtime=nil, extrainformation=nil, nickname=nil, grouppath=nil, devicecode=nil, isrecord=nil, recordable=nil)
           @DeviceId = deviceid
           @DeviceType = devicetype
           @Status = status
@@ -59,6 +62,7 @@ module TencentCloud
           @GroupPath = grouppath
           @DeviceCode = devicecode
           @IsRecord = isrecord
+          @Recordable = recordable
         end
 
         def deserialize(params)
@@ -71,6 +75,7 @@ module TencentCloud
           @GroupPath = params['GroupPath']
           @DeviceCode = params['DeviceCode']
           @IsRecord = params['IsRecord']
+          @Recordable = params['Recordable']
         end
       end
 
@@ -243,20 +248,25 @@ module TencentCloud
         # @param DeviceId: 设备唯一标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
+        # @param VirtualGroupId: 设备虚拟组信息，仅在创建NVR/VMS时返回该值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualGroupId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeviceCode, :DeviceId, :RequestId
+        attr_accessor :DeviceCode, :DeviceId, :VirtualGroupId, :RequestId
         
-        def initialize(devicecode=nil, deviceid=nil, requestid=nil)
+        def initialize(devicecode=nil, deviceid=nil, virtualgroupid=nil, requestid=nil)
           @DeviceCode = devicecode
           @DeviceId = deviceid
+          @VirtualGroupId = virtualgroupid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DeviceCode = params['DeviceCode']
           @DeviceId = params['DeviceId']
+          @VirtualGroupId = params['VirtualGroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -805,14 +815,17 @@ module TencentCloud
         # @type Limit: Integer
         # @param NickName: 设备名称，根据设备名称模糊匹配时必填
         # @type NickName: String
+        # @param Recordable: 过滤不可录制设备
+        # @type Recordable: Integer
 
-        attr_accessor :GroupId, :Offset, :Limit, :NickName
+        attr_accessor :GroupId, :Offset, :Limit, :NickName, :Recordable
         
-        def initialize(groupid=nil, offset=nil, limit=nil, nickname=nil)
+        def initialize(groupid=nil, offset=nil, limit=nil, nickname=nil, recordable=nil)
           @GroupId = groupid
           @Offset = offset
           @Limit = limit
           @NickName = nickname
+          @Recordable = recordable
         end
 
         def deserialize(params)
@@ -820,6 +833,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @NickName = params['NickName']
+          @Recordable = params['Recordable']
         end
       end
 
@@ -1482,10 +1496,13 @@ module TencentCloud
         # @param IsRecord: 是否存在录像
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRecord: Integer
+        # @param Recordable: 该设备是否可录制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Recordable: Integer
 
-        attr_accessor :DeviceId, :NickName, :Status, :ExtraInformation, :DeviceType, :RTSPUrl, :DeviceCode, :IsRecord
+        attr_accessor :DeviceId, :NickName, :Status, :ExtraInformation, :DeviceType, :RTSPUrl, :DeviceCode, :IsRecord, :Recordable
         
-        def initialize(deviceid=nil, nickname=nil, status=nil, extrainformation=nil, devicetype=nil, rtspurl=nil, devicecode=nil, isrecord=nil)
+        def initialize(deviceid=nil, nickname=nil, status=nil, extrainformation=nil, devicetype=nil, rtspurl=nil, devicecode=nil, isrecord=nil, recordable=nil)
           @DeviceId = deviceid
           @NickName = nickname
           @Status = status
@@ -1494,6 +1511,7 @@ module TencentCloud
           @RTSPUrl = rtspurl
           @DeviceCode = devicecode
           @IsRecord = isrecord
+          @Recordable = recordable
         end
 
         def deserialize(params)
@@ -1505,6 +1523,7 @@ module TencentCloud
           @RTSPUrl = params['RTSPUrl']
           @DeviceCode = params['DeviceCode']
           @IsRecord = params['IsRecord']
+          @Recordable = params['Recordable']
         end
       end
 
@@ -1526,10 +1545,16 @@ module TencentCloud
         # @type ExtraInformation: String
         # @param CreateTime: 创建时间
         # @type CreateTime: Integer
+        # @param GroupStatus: 分组状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupStatus: Integer
+        # @param Error: 设备不存在时产生的错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
 
-        attr_accessor :GroupId, :GroupName, :GroupType, :GroupPath, :ParentId, :GroupDescribe, :ExtraInformation, :CreateTime
+        attr_accessor :GroupId, :GroupName, :GroupType, :GroupPath, :ParentId, :GroupDescribe, :ExtraInformation, :CreateTime, :GroupStatus, :Error
         
-        def initialize(groupid=nil, groupname=nil, grouptype=nil, grouppath=nil, parentid=nil, groupdescribe=nil, extrainformation=nil, createtime=nil)
+        def initialize(groupid=nil, groupname=nil, grouptype=nil, grouppath=nil, parentid=nil, groupdescribe=nil, extrainformation=nil, createtime=nil, groupstatus=nil, error=nil)
           @GroupId = groupid
           @GroupName = groupname
           @GroupType = grouptype
@@ -1538,6 +1563,8 @@ module TencentCloud
           @GroupDescribe = groupdescribe
           @ExtraInformation = extrainformation
           @CreateTime = createtime
+          @GroupStatus = groupstatus
+          @Error = error
         end
 
         def deserialize(params)
@@ -1549,6 +1576,8 @@ module TencentCloud
           @GroupDescribe = params['GroupDescribe']
           @ExtraInformation = params['ExtraInformation']
           @CreateTime = params['CreateTime']
+          @GroupStatus = params['GroupStatus']
+          @Error = params['Error']
         end
       end
 
@@ -1584,10 +1613,13 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
+        # @param GroupStatus: 分组状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupStatus: Integer
 
-        attr_accessor :GroupName, :ParentId, :GroupId, :GroupPath, :GroupDescribe, :DeviceNum, :SubGroupNum, :ExtraInformation, :GroupType, :CreateTime
+        attr_accessor :GroupName, :ParentId, :GroupId, :GroupPath, :GroupDescribe, :DeviceNum, :SubGroupNum, :ExtraInformation, :GroupType, :CreateTime, :GroupStatus
         
-        def initialize(groupname=nil, parentid=nil, groupid=nil, grouppath=nil, groupdescribe=nil, devicenum=nil, subgroupnum=nil, extrainformation=nil, grouptype=nil, createtime=nil)
+        def initialize(groupname=nil, parentid=nil, groupid=nil, grouppath=nil, groupdescribe=nil, devicenum=nil, subgroupnum=nil, extrainformation=nil, grouptype=nil, createtime=nil, groupstatus=nil)
           @GroupName = groupname
           @ParentId = parentid
           @GroupId = groupid
@@ -1598,6 +1630,7 @@ module TencentCloud
           @ExtraInformation = extrainformation
           @GroupType = grouptype
           @CreateTime = createtime
+          @GroupStatus = groupstatus
         end
 
         def deserialize(params)
@@ -1611,6 +1644,7 @@ module TencentCloud
           @ExtraInformation = params['ExtraInformation']
           @GroupType = params['GroupType']
           @CreateTime = params['CreateTime']
+          @GroupStatus = params['GroupStatus']
         end
       end
 

@@ -1723,11 +1723,49 @@ module TencentCloud
         end
       end
 
+      # 结果文件媒体信息
+      class MediaResultInfo < TencentCloud::Common::AbstractModel
+        # @param Duration: 媒体时长，单位：毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param ResultVideoInfoSet: 视频流信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultVideoInfoSet: Array
+        # @param ResultAudioInfoSet: 音频流信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultAudioInfoSet: Array
+
+        attr_accessor :Duration, :ResultVideoInfoSet, :ResultAudioInfoSet
+        
+        def initialize(duration=nil, resultvideoinfoset=nil, resultaudioinfoset=nil)
+          @Duration = duration
+          @ResultVideoInfoSet = resultvideoinfoset
+          @ResultAudioInfoSet = resultaudioinfoset
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+          unless params['ResultVideoInfoSet'].nil?
+            @ResultVideoInfoSet = []
+            params['ResultVideoInfoSet'].each do |i|
+              @ResultVideoInfoSet << ResultVideoInfo.new.deserialize(i)
+            end
+          end
+          unless params['ResultAudioInfoSet'].nil?
+            @ResultAudioInfoSet = []
+            params['ResultAudioInfoSet'].each do |i|
+              @ResultAudioInfoSet << ResultAudioInfo.new.deserialize(i)
+            end
+          end
+        end
+      end
+
       # 编辑处理的媒体源
       class MediaSourceInfo < TencentCloud::Common::AbstractModel
         # @param DownInfo: 媒体源资源下载信息。
         # @type DownInfo: :class:`Tencentcloud::Ie.v20200304.models.DownInfo`
         # @param Id: 媒体源ID标记，用于多个输入源时，请内媒体源的定位，对于多输入的任务，一般要求必选。
+        # ID只能包含字母、数字、下划线、中划线，长读不能超过128。
         # @type Id: String
         # @param Type: 媒体源类型，具体类型如下：
         # Video：视频
@@ -2210,6 +2248,65 @@ module TencentCloud
               @QualityControlItems << QualityControlItem.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # 结果媒体文件的视频流信息
+      class ResultAudioInfo < TencentCloud::Common::AbstractModel
+        # @param StreamId: 流在媒体文件中的流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamId: Integer
+        # @param Duration: 流的时长，单位：毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+
+        attr_accessor :StreamId, :Duration
+        
+        def initialize(streamid=nil, duration=nil)
+          @StreamId = streamid
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @StreamId = params['StreamId']
+          @Duration = params['Duration']
+        end
+      end
+
+      # 结果媒体文件的视频流信息
+      class ResultVideoInfo < TencentCloud::Common::AbstractModel
+        # @param StreamId: 流在媒体文件中的流ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamId: Integer
+        # @param Duration: 流的时长，单位：毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param Width: 画面宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 画面高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+        # @param Fps: 视频帧率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fps: Integer
+
+        attr_accessor :StreamId, :Duration, :Width, :Height, :Fps
+        
+        def initialize(streamid=nil, duration=nil, width=nil, height=nil, fps=nil)
+          @StreamId = streamid
+          @Duration = duration
+          @Width = width
+          @Height = height
+          @Fps = fps
+        end
+
+        def deserialize(params)
+          @StreamId = params['StreamId']
+          @Duration = params['Duration']
+          @Width = params['Width']
+          @Height = params['Height']
+          @Fps = params['Fps']
         end
       end
 
@@ -2828,15 +2925,27 @@ module TencentCloud
         # @param Url: 文件链接。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
+        # @param FileSize: 文件大小，部分任务支持，单位：字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
+        # @param MediaInfo: 媒体信息，对于媒体文件，部分任务支持返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MediaInfo: :class:`Tencentcloud::Ie.v20200304.models.MediaResultInfo`
 
-        attr_accessor :Url
+        attr_accessor :Url, :FileSize, :MediaInfo
         
-        def initialize(url=nil)
+        def initialize(url=nil, filesize=nil, mediainfo=nil)
           @Url = url
+          @FileSize = filesize
+          @MediaInfo = mediainfo
         end
 
         def deserialize(params)
           @Url = params['Url']
+          @FileSize = params['FileSize']
+          unless params['MediaInfo'].nil?
+            @MediaInfo = MediaResultInfo.new.deserialize(params['MediaInfo'])
+          end
         end
       end
 

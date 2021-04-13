@@ -801,7 +801,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 编辑告警策略触发条件
+        # 修改告警策略触发条件
 
         # @param request: Request instance for ModifyAlarmPolicyCondition.
         # @type request: :class:`Tencentcloud::monitor::V20180724::ModifyAlarmPolicyConditionRequest`

@@ -2256,6 +2256,220 @@ module TencentCloud
         end
       end
 
+      # 发票结果V2
+      class CreateInvoiceResultV2 < TencentCloud::Common::AbstractModel
+        # @param InvoiceId: 发票ID
+        # @type InvoiceId: String
+
+        attr_accessor :InvoiceId
+        
+        def initialize(invoiceid=nil)
+          @InvoiceId = invoiceid
+        end
+
+        def deserialize(params)
+          @InvoiceId = params['InvoiceId']
+        end
+      end
+
+      # CreateInvoiceV2请求参数结构体
+      class CreateInvoiceV2Request < TencentCloud::Common::AbstractModel
+        # @param InvoicePlatformId: 开票平台ID。0：高灯，1：票易通
+        # @type InvoicePlatformId: Integer
+        # @param TitleType: 抬头类型：1：个人/政府事业单位；2：企业
+        # @type TitleType: Integer
+        # @param BuyerTitle: 购方名称
+        # @type BuyerTitle: String
+        # @param OrderId: 业务开票号
+        # @type OrderId: String
+        # @param AmountHasTax: 含税总金额（单位为分）
+        # @type AmountHasTax: Integer
+        # @param TaxAmount: 总税额（单位为分）
+        # @type TaxAmount: Integer
+        # @param AmountWithoutTax: 不含税总金额（单位为分）。InvoicePlatformId 为1时，传默认值-1
+        # @type AmountWithoutTax: Integer
+        # @param SellerTaxpayerNum: 销方纳税人识别号
+        # @type SellerTaxpayerNum: String
+        # @param SellerName: 销方名称。（不填默认读取商户注册时输入的信息）
+        # @type SellerName: String
+        # @param SellerAddress: 销方地址。（不填默认读取商户注册时输入的信息）
+        # @type SellerAddress: String
+        # @param SellerPhone: 销方电话。（不填默认读取商户注册时输入的信息）
+        # @type SellerPhone: String
+        # @param SellerBankName: 销方银行名称。（不填默认读取商户注册时输入的信息）
+        # @type SellerBankName: String
+        # @param SellerBankAccount: 销方银行账号。（不填默认读取商户注册时输入的信息）
+        # @type SellerBankAccount: String
+        # @param BuyerTaxpayerNum: 购方纳税人识别号（购方票面信息）,若抬头类型为2时，必传
+        # @type BuyerTaxpayerNum: String
+        # @param BuyerAddress: 购方地址。开具专用发票时必填
+        # @type BuyerAddress: String
+        # @param BuyerBankName: 购方银行名称。开具专用发票时必填
+        # @type BuyerBankName: String
+        # @param BuyerBankAccount: 购方银行账号。开具专用发票时必填
+        # @type BuyerBankAccount: String
+        # @param BuyerPhone: 购方电话。开具专用发票时必填
+        # @type BuyerPhone: String
+        # @param BuyerEmail: 收票人邮箱。若填入，会收到发票推送邮件
+        # @type BuyerEmail: String
+        # @param TakerPhone: 收票人手机号。若填入，会收到发票推送短信
+        # @type TakerPhone: String
+        # @param InvoiceType: 开票类型：
+        # 1：增值税专用发票；
+        # 2：增值税普通发票；
+        # 3：增值税电子发票；
+        # 4：增值税卷式发票；
+        # 5：区块链电子发票。
+        # 若该字段不填，或值不为1-5，则认为开具”增值税电子发票”
+        # @type InvoiceType: Integer
+        # @param CallbackUrl: 发票结果回传地址
+        # @type CallbackUrl: String
+        # @param Drawer: 开票人姓名。（不填默认读取商户注册时输入的信息）
+        # @type Drawer: String
+        # @param Payee: 收款人姓名。（不填默认读取商户注册时输入的信息）
+        # @type Payee: String
+        # @param Checker: 复核人姓名。（不填默认读取商户注册时输入的信息）
+        # @type Checker: String
+        # @param TerminalCode: 税盘号
+        # @type TerminalCode: String
+        # @param LevyMethod: 征收方式。开具差额征税发票时必填2。开具普通征税发票时为空
+        # @type LevyMethod: String
+        # @param Deduction: 差额征税扣除额（单位为分）
+        # @type Deduction: Integer
+        # @param Remark: 备注（票面信息）
+        # @type Remark: String
+        # @param Items: 项目商品明细
+        # @type Items: Array
+        # @param Profile: 接入环境。沙箱环境填sandbox。
+        # @type Profile: String
+        # @param UndoPart: 撤销部分商品。0-不撤销，1-撤销
+        # @type UndoPart: Integer
+        # @param OrderDate: 订单下单时间（格式 YYYYMMDD）
+        # @type OrderDate: String
+        # @param Discount: 订单级别折扣（单位为分）
+        # @type Discount: Integer
+        # @param StoreNo: 门店编码
+        # @type StoreNo: String
+        # @param InvoiceChannel: 开票渠道。0：APP渠道，1：线下渠道，2：小程序渠道。不填默认为APP渠道
+        # @type InvoiceChannel: Integer
+
+        attr_accessor :InvoicePlatformId, :TitleType, :BuyerTitle, :OrderId, :AmountHasTax, :TaxAmount, :AmountWithoutTax, :SellerTaxpayerNum, :SellerName, :SellerAddress, :SellerPhone, :SellerBankName, :SellerBankAccount, :BuyerTaxpayerNum, :BuyerAddress, :BuyerBankName, :BuyerBankAccount, :BuyerPhone, :BuyerEmail, :TakerPhone, :InvoiceType, :CallbackUrl, :Drawer, :Payee, :Checker, :TerminalCode, :LevyMethod, :Deduction, :Remark, :Items, :Profile, :UndoPart, :OrderDate, :Discount, :StoreNo, :InvoiceChannel
+        
+        def initialize(invoiceplatformid=nil, titletype=nil, buyertitle=nil, orderid=nil, amounthastax=nil, taxamount=nil, amountwithouttax=nil, sellertaxpayernum=nil, sellername=nil, selleraddress=nil, sellerphone=nil, sellerbankname=nil, sellerbankaccount=nil, buyertaxpayernum=nil, buyeraddress=nil, buyerbankname=nil, buyerbankaccount=nil, buyerphone=nil, buyeremail=nil, takerphone=nil, invoicetype=nil, callbackurl=nil, drawer=nil, payee=nil, checker=nil, terminalcode=nil, levymethod=nil, deduction=nil, remark=nil, items=nil, profile=nil, undopart=nil, orderdate=nil, discount=nil, storeno=nil, invoicechannel=nil)
+          @InvoicePlatformId = invoiceplatformid
+          @TitleType = titletype
+          @BuyerTitle = buyertitle
+          @OrderId = orderid
+          @AmountHasTax = amounthastax
+          @TaxAmount = taxamount
+          @AmountWithoutTax = amountwithouttax
+          @SellerTaxpayerNum = sellertaxpayernum
+          @SellerName = sellername
+          @SellerAddress = selleraddress
+          @SellerPhone = sellerphone
+          @SellerBankName = sellerbankname
+          @SellerBankAccount = sellerbankaccount
+          @BuyerTaxpayerNum = buyertaxpayernum
+          @BuyerAddress = buyeraddress
+          @BuyerBankName = buyerbankname
+          @BuyerBankAccount = buyerbankaccount
+          @BuyerPhone = buyerphone
+          @BuyerEmail = buyeremail
+          @TakerPhone = takerphone
+          @InvoiceType = invoicetype
+          @CallbackUrl = callbackurl
+          @Drawer = drawer
+          @Payee = payee
+          @Checker = checker
+          @TerminalCode = terminalcode
+          @LevyMethod = levymethod
+          @Deduction = deduction
+          @Remark = remark
+          @Items = items
+          @Profile = profile
+          @UndoPart = undopart
+          @OrderDate = orderdate
+          @Discount = discount
+          @StoreNo = storeno
+          @InvoiceChannel = invoicechannel
+        end
+
+        def deserialize(params)
+          @InvoicePlatformId = params['InvoicePlatformId']
+          @TitleType = params['TitleType']
+          @BuyerTitle = params['BuyerTitle']
+          @OrderId = params['OrderId']
+          @AmountHasTax = params['AmountHasTax']
+          @TaxAmount = params['TaxAmount']
+          @AmountWithoutTax = params['AmountWithoutTax']
+          @SellerTaxpayerNum = params['SellerTaxpayerNum']
+          @SellerName = params['SellerName']
+          @SellerAddress = params['SellerAddress']
+          @SellerPhone = params['SellerPhone']
+          @SellerBankName = params['SellerBankName']
+          @SellerBankAccount = params['SellerBankAccount']
+          @BuyerTaxpayerNum = params['BuyerTaxpayerNum']
+          @BuyerAddress = params['BuyerAddress']
+          @BuyerBankName = params['BuyerBankName']
+          @BuyerBankAccount = params['BuyerBankAccount']
+          @BuyerPhone = params['BuyerPhone']
+          @BuyerEmail = params['BuyerEmail']
+          @TakerPhone = params['TakerPhone']
+          @InvoiceType = params['InvoiceType']
+          @CallbackUrl = params['CallbackUrl']
+          @Drawer = params['Drawer']
+          @Payee = params['Payee']
+          @Checker = params['Checker']
+          @TerminalCode = params['TerminalCode']
+          @LevyMethod = params['LevyMethod']
+          @Deduction = params['Deduction']
+          @Remark = params['Remark']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << CreateInvoiceItem.new.deserialize(i)
+            end
+          end
+          @Profile = params['Profile']
+          @UndoPart = params['UndoPart']
+          @OrderDate = params['OrderDate']
+          @Discount = params['Discount']
+          @StoreNo = params['StoreNo']
+          @InvoiceChannel = params['InvoiceChannel']
+        end
+      end
+
+      # CreateInvoiceV2返回参数结构体
+      class CreateInvoiceV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 发票开具结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateInvoiceResultV2`
+        # @param ErrCode: 错误码
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :ErrCode, :ErrMessage, :RequestId
+        
+        def initialize(result=nil, errcode=nil, errmessage=nil, requestid=nil)
+          @Result = result
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateInvoiceResultV2.new.deserialize(params['Result'])
+          end
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMerchant请求参数结构体
       class CreateMerchantRequest < TencentCloud::Common::AbstractModel
         # @param InvoicePlatformId: 开票平台ID
@@ -2571,6 +2785,81 @@ module TencentCloud
           @Message = params['Message']
           @InvoiceId = params['InvoiceId']
           @OrderSn = params['OrderSn']
+        end
+      end
+
+      # 红票结果V2
+      class CreateRedInvoiceResultV2 < TencentCloud::Common::AbstractModel
+        # @param InvoiceId: 红票ID
+        # @type InvoiceId: String
+
+        attr_accessor :InvoiceId
+        
+        def initialize(invoiceid=nil)
+          @InvoiceId = invoiceid
+        end
+
+        def deserialize(params)
+          @InvoiceId = params['InvoiceId']
+        end
+      end
+
+      # CreateRedInvoiceV2请求参数结构体
+      class CreateRedInvoiceV2Request < TencentCloud::Common::AbstractModel
+        # @param InvoicePlatformId: 开票平台ID
+        # @type InvoicePlatformId: Integer
+        # @param OrderId: 订单号
+        # @type OrderId: String
+        # @param Profile: 接入环境。沙箱环境填 sandbox。
+        # @type Profile: String
+        # @param InvoiceChannel: 开票渠道。0：线上渠道，1：线下渠道。不填默认为线上渠道
+        # @type InvoiceChannel: Integer
+
+        attr_accessor :InvoicePlatformId, :OrderId, :Profile, :InvoiceChannel
+        
+        def initialize(invoiceplatformid=nil, orderid=nil, profile=nil, invoicechannel=nil)
+          @InvoicePlatformId = invoiceplatformid
+          @OrderId = orderid
+          @Profile = profile
+          @InvoiceChannel = invoicechannel
+        end
+
+        def deserialize(params)
+          @InvoicePlatformId = params['InvoicePlatformId']
+          @OrderId = params['OrderId']
+          @Profile = params['Profile']
+          @InvoiceChannel = params['InvoiceChannel']
+        end
+      end
+
+      # CreateRedInvoiceV2返回参数结构体
+      class CreateRedInvoiceV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 红冲结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateRedInvoiceResultV2`
+        # @param ErrCode: 错误码
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :ErrCode, :ErrMessage, :RequestId
+        
+        def initialize(result=nil, errcode=nil, errmessage=nil, requestid=nil)
+          @Result = result
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateRedInvoiceResultV2.new.deserialize(params['Result'])
+          end
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5393,6 +5682,75 @@ module TencentCloud
           @TaxAmount = params['TaxAmount']
           @IsRedWashed = params['IsRedWashed']
           @PdfUrl = params['PdfUrl']
+        end
+      end
+
+      # QueryInvoiceV2请求参数结构体
+      class QueryInvoiceV2Request < TencentCloud::Common::AbstractModel
+        # @param InvoicePlatformId: 开票平台ID
+        # @type InvoicePlatformId: Integer
+        # @param OrderId: 订单号
+        # @type OrderId: String
+        # @param IsRed: 发票种类：
+        # 0：蓝票
+        # 1：红票【该字段默认为0， 如果需要查询红票信息，本字段必须传1，否则可能查询不到需要的发票信息】。
+        # @type IsRed: Integer
+        # @param Profile: 接入环境。沙箱环境填sandbox。
+        # @type Profile: String
+        # @param InvoiceChannel: 开票渠道。0：线上渠道，1：线下渠道。不填默认为线上渠道
+        # @type InvoiceChannel: Integer
+        # @param SellerTaxpayerNum: 当渠道为线下渠道时，必填
+        # @type SellerTaxpayerNum: String
+
+        attr_accessor :InvoicePlatformId, :OrderId, :IsRed, :Profile, :InvoiceChannel, :SellerTaxpayerNum
+        
+        def initialize(invoiceplatformid=nil, orderid=nil, isred=nil, profile=nil, invoicechannel=nil, sellertaxpayernum=nil)
+          @InvoicePlatformId = invoiceplatformid
+          @OrderId = orderid
+          @IsRed = isred
+          @Profile = profile
+          @InvoiceChannel = invoicechannel
+          @SellerTaxpayerNum = sellertaxpayernum
+        end
+
+        def deserialize(params)
+          @InvoicePlatformId = params['InvoicePlatformId']
+          @OrderId = params['OrderId']
+          @IsRed = params['IsRed']
+          @Profile = params['Profile']
+          @InvoiceChannel = params['InvoiceChannel']
+          @SellerTaxpayerNum = params['SellerTaxpayerNum']
+        end
+      end
+
+      # QueryInvoiceV2返回参数结构体
+      class QueryInvoiceV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 发票查询结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryInvoiceResultData`
+        # @param ErrCode: 错误码
+        # @type ErrCode: String
+        # @param ErrMessage: 错误消息
+        # @type ErrMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :ErrCode, :ErrMessage, :RequestId
+        
+        def initialize(result=nil, errcode=nil, errmessage=nil, requestid=nil)
+          @Result = result
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = QueryInvoiceResultData.new.deserialize(params['Result'])
+          end
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @RequestId = params['RequestId']
         end
       end
 
