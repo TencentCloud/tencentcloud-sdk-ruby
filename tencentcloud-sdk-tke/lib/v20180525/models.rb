@@ -4618,7 +4618,7 @@ module TencentCloud
         # @type Name: String
         # @param ClusterInstanceId: ClusterInstanceId 集群实例id
         # @type ClusterInstanceId: String
-        # @param LifeState: LifeState 状态
+        # @param LifeState: LifeState 状态，当前节点池生命周期状态包括：creating，normal，updating，deleting，deleted
         # @type LifeState: String
         # @param LaunchConfigurationId: LaunchConfigurationId 配置
         # @type LaunchConfigurationId: String

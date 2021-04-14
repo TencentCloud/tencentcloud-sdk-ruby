@@ -265,6 +265,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
+
+        # @param request: Request instance for ModifyMusicOnShelves.
+        # @type request: :class:`Tencentcloud::ame::V20190916::ModifyMusicOnShelvesRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::ModifyMusicOnShelvesResponse`
+        def ModifyMusicOnShelves(request)
+          body = send_request('ModifyMusicOnShelves', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMusicOnShelvesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
+
+        # @param request: Request instance for PutMusicOnTheShelves.
+        # @type request: :class:`Tencentcloud::ame::V20190916::PutMusicOnTheShelvesRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::PutMusicOnTheShelvesResponse`
+        def PutMusicOnTheShelves(request)
+          body = send_request('PutMusicOnTheShelves', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PutMusicOnTheShelvesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 客户上报用户数据功能，为了更好地为用户提供优质服务
 
         # @param request: Request instance for ReportData.
@@ -275,6 +323,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReportDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
+
+        # @param request: Request instance for TakeMusicOffShelves.
+        # @type request: :class:`Tencentcloud::ame::V20190916::TakeMusicOffShelvesRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::TakeMusicOffShelvesResponse`
+        def TakeMusicOffShelves(request)
+          body = send_request('TakeMusicOffShelves', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TakeMusicOffShelvesResponse.new
             model.deserialize(response['Response'])
             model
           else

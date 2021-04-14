@@ -3524,6 +3524,158 @@ module TencentCloud
         end
       end
 
+      # CreateVpcEndPoint请求参数结构体
+      class CreateVpcEndPointRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC实例ID。
+        # @type VpcId: String
+        # @param SubnetId: 子网实例ID。
+        # @type SubnetId: String
+        # @param EndPointName: 终端节点名称。
+        # @type EndPointName: String
+        # @param EndPointServiceId: 终端节点服务ID。
+        # @type EndPointServiceId: String
+        # @param EndPointVip: 终端节点VIP，可以指定IP申请。
+        # @type EndPointVip: String
+        # @param SecurityGroupId: 安全组ID。
+        # @type SecurityGroupId: String
+
+        attr_accessor :VpcId, :SubnetId, :EndPointName, :EndPointServiceId, :EndPointVip, :SecurityGroupId
+        
+        def initialize(vpcid=nil, subnetid=nil, endpointname=nil, endpointserviceid=nil, endpointvip=nil, securitygroupid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @EndPointName = endpointname
+          @EndPointServiceId = endpointserviceid
+          @EndPointVip = endpointvip
+          @SecurityGroupId = securitygroupid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @EndPointName = params['EndPointName']
+          @EndPointServiceId = params['EndPointServiceId']
+          @EndPointVip = params['EndPointVip']
+          @SecurityGroupId = params['SecurityGroupId']
+        end
+      end
+
+      # CreateVpcEndPoint返回参数结构体
+      class CreateVpcEndPointResponse < TencentCloud::Common::AbstractModel
+        # @param EndPoint: 终端节点对象详细信息。
+        # @type EndPoint: :class:`Tencentcloud::Vpc.v20170312.models.EndPoint`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndPoint, :RequestId
+        
+        def initialize(endpoint=nil, requestid=nil)
+          @EndPoint = endpoint
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EndPoint'].nil?
+            @EndPoint = EndPoint.new.deserialize(params['EndPoint'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVpcEndPointService请求参数结构体
+      class CreateVpcEndPointServiceRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC实例ID。
+        # @type VpcId: String
+        # @param EndPointServiceName: 终端节点服务名称。
+        # @type EndPointServiceName: String
+        # @param AutoAcceptFlag: 是否自动接受。
+        # @type AutoAcceptFlag: Boolean
+        # @param ServiceInstanceId: 后端服务ID，比如lb-xxx。
+        # @type ServiceInstanceId: String
+        # @param IsPassService: 是否是PassService类型。
+        # @type IsPassService: Boolean
+
+        attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService
+        
+        def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil)
+          @VpcId = vpcid
+          @EndPointServiceName = endpointservicename
+          @AutoAcceptFlag = autoacceptflag
+          @ServiceInstanceId = serviceinstanceid
+          @IsPassService = ispassservice
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @EndPointServiceName = params['EndPointServiceName']
+          @AutoAcceptFlag = params['AutoAcceptFlag']
+          @ServiceInstanceId = params['ServiceInstanceId']
+          @IsPassService = params['IsPassService']
+        end
+      end
+
+      # CreateVpcEndPointService返回参数结构体
+      class CreateVpcEndPointServiceResponse < TencentCloud::Common::AbstractModel
+        # @param EndPointService: 终端节点服务对象详细信息。
+        # @type EndPointService: :class:`Tencentcloud::Vpc.v20170312.models.EndPointService`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndPointService, :RequestId
+        
+        def initialize(endpointservice=nil, requestid=nil)
+          @EndPointService = endpointservice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EndPointService'].nil?
+            @EndPointService = EndPointService.new.deserialize(params['EndPointService'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateVpcEndPointServiceWhiteList请求参数结构体
+      class CreateVpcEndPointServiceWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param UserUin: UIN。
+        # @type UserUin: String
+        # @param EndPointServiceId: 终端节点服务ID。
+        # @type EndPointServiceId: String
+        # @param Description: 白名单描述。
+        # @type Description: String
+
+        attr_accessor :UserUin, :EndPointServiceId, :Description
+        
+        def initialize(useruin=nil, endpointserviceid=nil, description=nil)
+          @UserUin = useruin
+          @EndPointServiceId = endpointserviceid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @UserUin = params['UserUin']
+          @EndPointServiceId = params['EndPointServiceId']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateVpcEndPointServiceWhiteList返回参数结构体
+      class CreateVpcEndPointServiceWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateVpc请求参数结构体
       class CreateVpcRequest < TencentCloud::Common::AbstractModel
         # @param VpcName: vpc名称，最大长度不能超过60个字节。
@@ -4877,6 +5029,106 @@ module TencentCloud
         end
       end
 
+      # DeleteVpcEndPoint请求参数结构体
+      class DeleteVpcEndPointRequest < TencentCloud::Common::AbstractModel
+        # @param EndPointId: 终端节点ID。
+        # @type EndPointId: String
+
+        attr_accessor :EndPointId
+        
+        def initialize(endpointid=nil)
+          @EndPointId = endpointid
+        end
+
+        def deserialize(params)
+          @EndPointId = params['EndPointId']
+        end
+      end
+
+      # DeleteVpcEndPoint返回参数结构体
+      class DeleteVpcEndPointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVpcEndPointService请求参数结构体
+      class DeleteVpcEndPointServiceRequest < TencentCloud::Common::AbstractModel
+        # @param EndPointServiceId: 终端节点ID。
+        # @type EndPointServiceId: String
+
+        attr_accessor :EndPointServiceId
+        
+        def initialize(endpointserviceid=nil)
+          @EndPointServiceId = endpointserviceid
+        end
+
+        def deserialize(params)
+          @EndPointServiceId = params['EndPointServiceId']
+        end
+      end
+
+      # DeleteVpcEndPointService返回参数结构体
+      class DeleteVpcEndPointServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVpcEndPointServiceWhiteList请求参数结构体
+      class DeleteVpcEndPointServiceWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param UserUin: 用户UIN数组。
+        # @type UserUin: Array
+        # @param EndPointServiceId: 终端节点服务ID。
+        # @type EndPointServiceId: String
+
+        attr_accessor :UserUin, :EndPointServiceId
+        
+        def initialize(useruin=nil, endpointserviceid=nil)
+          @UserUin = useruin
+          @EndPointServiceId = endpointserviceid
+        end
+
+        def deserialize(params)
+          @UserUin = params['UserUin']
+          @EndPointServiceId = params['EndPointServiceId']
+        end
+      end
+
+      # DeleteVpcEndPointServiceWhiteList返回参数结构体
+      class DeleteVpcEndPointServiceWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteVpc请求参数结构体
       class DeleteVpcRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -5184,6 +5436,7 @@ module TencentCloud
         # <li> is-arrears - String - 是否必填：否 - （过滤条件）按照 EIP 是否欠费进行过滤。（TRUE：EIP 处于欠费状态|FALSE：EIP 费用状态正常）</li>
         # <li> address-type - String - 是否必填：否 - （过滤条件）按照 IP类型 进行过滤。可选值：'EIP'，'AnycastEIP'，'HighQualityEIP'</li>
         # <li> address-isp - String - 是否必填：否 - （过滤条件）按照 运营商类型 进行过滤。可选值：'BGP'，'CMCC'，'CUCC', 'CTCC'</li>
+        # <li> dedicated-cluster-id - String - 是否必填：否 - （过滤条件）按照 CDC 的唯一 ID 过滤。CDC 唯一 ID 形如：cluster-11112222。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         # @type Offset: Integer
@@ -8069,6 +8322,197 @@ module TencentCloud
         end
       end
 
+      # DescribeVpcEndPoint请求参数结构体
+      class DescribeVpcEndPointRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li> end-point-service-id- String - （过滤条件）终端节点服务ID。</li>
+        # <li>end-point-name - String - （过滤条件）终端节点实例名称。</li>
+        # <li> end-point-id- String - （过滤条件）终端节点实例ID。</li>
+        # <li> vpc-id- String - （过滤条件）VPC实例ID。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 单页返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param EndPointId: 终端节点ID列表。
+        # @type EndPointId: Array
+
+        attr_accessor :Filters, :Offset, :Limit, :EndPointId
+        
+        def initialize(filters=nil, offset=nil, limit=nil, endpointid=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @EndPointId = endpointid
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @EndPointId = params['EndPointId']
+        end
+      end
+
+      # DescribeVpcEndPoint返回参数结构体
+      class DescribeVpcEndPointResponse < TencentCloud::Common::AbstractModel
+        # @param EndPointSet: 终端节点对象。
+        # @type EndPointSet: Array
+        # @param TotalCount: 符合查询条件的终端节点个数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndPointSet, :TotalCount, :RequestId
+        
+        def initialize(endpointset=nil, totalcount=nil, requestid=nil)
+          @EndPointSet = endpointset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EndPointSet'].nil?
+            @EndPointSet = []
+            params['EndPointSet'].each do |i|
+              @EndPointSet << EndPoint.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVpcEndPointService请求参数结构体
+      class DescribeVpcEndPointServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li> service-id- String - （过滤条件）终端节点服务唯一ID。</li>
+        # <li>service-name - String - （过滤条件）终端节点实例名称。</li>
+        # <li>service-instance-id - String - （过滤条件）后端服务的唯一ID，比如lb-xxx。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 单页返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param EndPointServiceIds: 终端节点服务ID。
+        # @type EndPointServiceIds: Array
+
+        attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds
+        
+        def initialize(filters=nil, offset=nil, limit=nil, endpointserviceids=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @EndPointServiceIds = endpointserviceids
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @EndPointServiceIds = params['EndPointServiceIds']
+        end
+      end
+
+      # DescribeVpcEndPointService返回参数结构体
+      class DescribeVpcEndPointServiceResponse < TencentCloud::Common::AbstractModel
+        # @param EndPointServiceSet: 终端节点服务对象数组。
+        # @type EndPointServiceSet: Array
+        # @param TotalCount: 符合查询条件的个数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndPointServiceSet, :TotalCount, :RequestId
+        
+        def initialize(endpointserviceset=nil, totalcount=nil, requestid=nil)
+          @EndPointServiceSet = endpointserviceset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EndPointServiceSet'].nil?
+            @EndPointServiceSet = []
+            params['EndPointServiceSet'].each do |i|
+              @EndPointServiceSet << EndPointService.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVpcEndPointServiceWhiteList请求参数结构体
+      class DescribeVpcEndPointServiceWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 单页返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件。
+        # <li> user-uin String - （过滤条件）用户UIN。</li>
+        # <li> end-point-service-id String - （过滤条件）终端节点服务ID。</li>
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeVpcEndPointServiceWhiteList返回参数结构体
+      class DescribeVpcEndPointServiceWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param VpcEndpointServiceUserSet: 白名单对象数组。
+        # @type VpcEndpointServiceUserSet: Array
+        # @param TotalCount: 符合条件的白名单个数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VpcEndpointServiceUserSet, :TotalCount, :RequestId
+        
+        def initialize(vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
+          @VpcEndpointServiceUserSet = vpcendpointserviceuserset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VpcEndpointServiceUserSet'].nil?
+            @VpcEndpointServiceUserSet = []
+            params['VpcEndpointServiceUserSet'].each do |i|
+              @VpcEndpointServiceUserSet << VpcEndPointServiceUser.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVpcInstances请求参数结构体
       class DescribeVpcInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件，参数不支持同时指定RouteTableIds和Filters。
@@ -9213,6 +9657,42 @@ module TencentCloud
         end
       end
 
+      # DisassociateVpcEndPointSecurityGroups请求参数结构体
+      class DisassociateVpcEndPointSecurityGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupIds: 安全组ID数组。
+        # @type SecurityGroupIds: Array
+        # @param EndPointId: 终端节点ID。
+        # @type EndPointId: String
+
+        attr_accessor :SecurityGroupIds, :EndPointId
+        
+        def initialize(securitygroupids=nil, endpointid=nil)
+          @SecurityGroupIds = securitygroupids
+          @EndPointId = endpointid
+        end
+
+        def deserialize(params)
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @EndPointId = params['EndPointId']
+        end
+      end
+
+      # DisassociateVpcEndPointSecurityGroups返回参数结构体
+      class DisassociateVpcEndPointSecurityGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DownloadCustomerGatewayConfiguration请求参数结构体
       class DownloadCustomerGatewayConfigurationRequest < TencentCloud::Common::AbstractModel
         # @param VpnGatewayId: VPN网关实例ID。
@@ -9371,6 +9851,170 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableVpcEndPointConnect请求参数结构体
+      class EnableVpcEndPointConnectRequest < TencentCloud::Common::AbstractModel
+        # @param EndPointServiceId: 终端节点服务ID。
+        # @type EndPointServiceId: String
+        # @param EndPointId: 终端节点ID。
+        # @type EndPointId: Array
+        # @param AcceptFlag: 是否接受终端节点连接请求。
+        # @type AcceptFlag: Boolean
+
+        attr_accessor :EndPointServiceId, :EndPointId, :AcceptFlag
+        
+        def initialize(endpointserviceid=nil, endpointid=nil, acceptflag=nil)
+          @EndPointServiceId = endpointserviceid
+          @EndPointId = endpointid
+          @AcceptFlag = acceptflag
+        end
+
+        def deserialize(params)
+          @EndPointServiceId = params['EndPointServiceId']
+          @EndPointId = params['EndPointId']
+          @AcceptFlag = params['AcceptFlag']
+        end
+      end
+
+      # EnableVpcEndPointConnect返回参数结构体
+      class EnableVpcEndPointConnectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 终端节点详情。
+      class EndPoint < TencentCloud::Common::AbstractModel
+        # @param EndPointId: 终端节点ID。
+        # @type EndPointId: String
+        # @param VpcId: VPCID。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID。
+        # @type SubnetId: String
+        # @param EndPointOwner: APPID。
+        # @type EndPointOwner: String
+        # @param EndPointName: 终端节点名称。
+        # @type EndPointName: String
+        # @param ServiceVpcId: 终端节点服务的VPCID。
+        # @type ServiceVpcId: String
+        # @param ServiceVip: 终端节点服务的VIP。
+        # @type ServiceVip: String
+        # @param EndPointServiceId: 终端节点服务的ID。
+        # @type EndPointServiceId: String
+        # @param EndPointVip: 终端节点的VIP。
+        # @type EndPointVip: String
+        # @param State: 终端节点状态，ACTIVE：可用，PENDING：待接受，ACCEPTING：接受中，REJECTED：已拒绝，FAILED：失败。
+        # @type State: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param GroupSet: 终端节点绑定的安全组实例ID列表。
+        # @type GroupSet: Array
+        # @param ServiceName: 终端节点服务名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+
+        attr_accessor :EndPointId, :VpcId, :SubnetId, :EndPointOwner, :EndPointName, :ServiceVpcId, :ServiceVip, :EndPointServiceId, :EndPointVip, :State, :CreateTime, :GroupSet, :ServiceName
+        
+        def initialize(endpointid=nil, vpcid=nil, subnetid=nil, endpointowner=nil, endpointname=nil, servicevpcid=nil, servicevip=nil, endpointserviceid=nil, endpointvip=nil, state=nil, createtime=nil, groupset=nil, servicename=nil)
+          @EndPointId = endpointid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @EndPointOwner = endpointowner
+          @EndPointName = endpointname
+          @ServiceVpcId = servicevpcid
+          @ServiceVip = servicevip
+          @EndPointServiceId = endpointserviceid
+          @EndPointVip = endpointvip
+          @State = state
+          @CreateTime = createtime
+          @GroupSet = groupset
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @EndPointId = params['EndPointId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @EndPointOwner = params['EndPointOwner']
+          @EndPointName = params['EndPointName']
+          @ServiceVpcId = params['ServiceVpcId']
+          @ServiceVip = params['ServiceVip']
+          @EndPointServiceId = params['EndPointServiceId']
+          @EndPointVip = params['EndPointVip']
+          @State = params['State']
+          @CreateTime = params['CreateTime']
+          @GroupSet = params['GroupSet']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
+      # 终端节点服务对象。
+      class EndPointService < TencentCloud::Common::AbstractModel
+        # @param EndPointServiceId: 终端节点服务ID
+        # @type EndPointServiceId: String
+        # @param VpcId: VPCID。
+        # @type VpcId: String
+        # @param ServiceOwner: APPID。
+        # @type ServiceOwner: String
+        # @param ServiceName: 终端节点服务名称。
+        # @type ServiceName: String
+        # @param ServiceVip: 后端服务的VIP。
+        # @type ServiceVip: String
+        # @param ServiceInstanceId: 后端服务的ID，比如lb-xxx。
+        # @type ServiceInstanceId: String
+        # @param AutoAcceptFlag: 是否自动接受。
+        # @type AutoAcceptFlag: Boolean
+        # @param EndPointCount: 关联的终端节点个数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndPointCount: Integer
+        # @param EndPointSet: 终端节点对象数组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndPointSet: Array
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+
+        attr_accessor :EndPointServiceId, :VpcId, :ServiceOwner, :ServiceName, :ServiceVip, :ServiceInstanceId, :AutoAcceptFlag, :EndPointCount, :EndPointSet, :CreateTime
+        
+        def initialize(endpointserviceid=nil, vpcid=nil, serviceowner=nil, servicename=nil, servicevip=nil, serviceinstanceid=nil, autoacceptflag=nil, endpointcount=nil, endpointset=nil, createtime=nil)
+          @EndPointServiceId = endpointserviceid
+          @VpcId = vpcid
+          @ServiceOwner = serviceowner
+          @ServiceName = servicename
+          @ServiceVip = servicevip
+          @ServiceInstanceId = serviceinstanceid
+          @AutoAcceptFlag = autoacceptflag
+          @EndPointCount = endpointcount
+          @EndPointSet = endpointset
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @EndPointServiceId = params['EndPointServiceId']
+          @VpcId = params['VpcId']
+          @ServiceOwner = params['ServiceOwner']
+          @ServiceName = params['ServiceName']
+          @ServiceVip = params['ServiceVip']
+          @ServiceInstanceId = params['ServiceInstanceId']
+          @AutoAcceptFlag = params['AutoAcceptFlag']
+          @EndPointCount = params['EndPointCount']
+          unless params['EndPointSet'].nil?
+            @EndPointSet = []
+            params['EndPointSet'].each do |i|
+              @EndPointSet << EndPoint.new.deserialize(i)
+            end
+          end
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -11960,6 +12604,134 @@ module TencentCloud
 
       # ModifyVpcAttribute返回参数结构体
       class ModifyVpcAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVpcEndPointAttribute请求参数结构体
+      class ModifyVpcEndPointAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param EndPointId: 终端节点ID。
+        # @type EndPointId: String
+        # @param EndPointName: 终端节点名称。
+        # @type EndPointName: String
+        # @param SecurityGroupIds: 安全组ID列表。
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :EndPointId, :EndPointName, :SecurityGroupIds
+        
+        def initialize(endpointid=nil, endpointname=nil, securitygroupids=nil)
+          @EndPointId = endpointid
+          @EndPointName = endpointname
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @EndPointId = params['EndPointId']
+          @EndPointName = params['EndPointName']
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # ModifyVpcEndPointAttribute返回参数结构体
+      class ModifyVpcEndPointAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVpcEndPointServiceAttribute请求参数结构体
+      class ModifyVpcEndPointServiceAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param EndPointServiceId: 终端节点服务ID。
+        # @type EndPointServiceId: String
+        # @param VpcId: VPCID。
+        # @type VpcId: String
+        # @param EndPointServiceName: 终端节点服务名称。
+        # @type EndPointServiceName: String
+        # @param AutoAcceptFlag: 是否自动接受。
+        # @type AutoAcceptFlag: Boolean
+        # @param ServiceInstanceId: 后端服务的ID，比如lb-xxx。
+        # @type ServiceInstanceId: String
+
+        attr_accessor :EndPointServiceId, :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId
+        
+        def initialize(endpointserviceid=nil, vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil)
+          @EndPointServiceId = endpointserviceid
+          @VpcId = vpcid
+          @EndPointServiceName = endpointservicename
+          @AutoAcceptFlag = autoacceptflag
+          @ServiceInstanceId = serviceinstanceid
+        end
+
+        def deserialize(params)
+          @EndPointServiceId = params['EndPointServiceId']
+          @VpcId = params['VpcId']
+          @EndPointServiceName = params['EndPointServiceName']
+          @AutoAcceptFlag = params['AutoAcceptFlag']
+          @ServiceInstanceId = params['ServiceInstanceId']
+        end
+      end
+
+      # ModifyVpcEndPointServiceAttribute返回参数结构体
+      class ModifyVpcEndPointServiceAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVpcEndPointServiceWhiteList请求参数结构体
+      class ModifyVpcEndPointServiceWhiteListRequest < TencentCloud::Common::AbstractModel
+        # @param UserUin: 用户UIN。
+        # @type UserUin: String
+        # @param EndPointServiceId: 终端节点服务ID。
+        # @type EndPointServiceId: String
+        # @param Description: 白名单描述信息。
+        # @type Description: String
+
+        attr_accessor :UserUin, :EndPointServiceId, :Description
+        
+        def initialize(useruin=nil, endpointserviceid=nil, description=nil)
+          @UserUin = useruin
+          @EndPointServiceId = endpointserviceid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @UserUin = params['UserUin']
+          @EndPointServiceId = params['EndPointServiceId']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyVpcEndPointServiceWhiteList返回参数结构体
+      class ModifyVpcEndPointServiceWhiteListResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -14763,6 +15535,38 @@ module TencentCloud
               @AssistantCidrSet << AssistantCidr.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # 终端节点服务的服务白名单对象详情。
+      class VpcEndPointServiceUser < TencentCloud::Common::AbstractModel
+        # @param Owner: AppId。
+        # @type Owner: Integer
+        # @param UserUin: Uin。
+        # @type UserUin: String
+        # @param Description: 描述信息。
+        # @type Description: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param EndPointServiceId: 终端节点服务ID。
+        # @type EndPointServiceId: String
+
+        attr_accessor :Owner, :UserUin, :Description, :CreateTime, :EndPointServiceId
+        
+        def initialize(owner=nil, useruin=nil, description=nil, createtime=nil, endpointserviceid=nil)
+          @Owner = owner
+          @UserUin = useruin
+          @Description = description
+          @CreateTime = createtime
+          @EndPointServiceId = endpointserviceid
+        end
+
+        def deserialize(params)
+          @Owner = params['Owner']
+          @UserUin = params['UserUin']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @EndPointServiceId = params['EndPointServiceId']
         end
       end
 

@@ -289,7 +289,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 每次调用人脸核身小程序服务前，需先调用本接口获取EidToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
+        # 每次调用E证通小程序服务前，需先调用本接口获取EidToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
 
         # @param request: Request instance for GetEidToken.
         # @type request: :class:`Tencentcloud::faceid::V20180301::GetEidTokenRequest`

@@ -75,6 +75,66 @@ module TencentCloud
         end
       end
 
+      # CreatePicture请求参数结构体
+      class CreatePictureRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用id
+        # @type SdkAppId: Integer
+        # @param Content: 图片内容经base64编码后的string格式
+        # @type Content: String
+        # @param Suffix: 图片后缀名
+        # @type Suffix: String
+        # @param Height: 图片长度
+        # @type Height: Integer
+        # @param Width: 图片宽度
+        # @type Width: Integer
+        # @param XPosition: 显示位置x轴方向
+        # @type XPosition: Integer
+        # @param YPosition: 显示位置y轴方向
+        # @type YPosition: Integer
+
+        attr_accessor :SdkAppId, :Content, :Suffix, :Height, :Width, :XPosition, :YPosition
+        
+        def initialize(sdkappid=nil, content=nil, suffix=nil, height=nil, width=nil, xposition=nil, yposition=nil)
+          @SdkAppId = sdkappid
+          @Content = content
+          @Suffix = suffix
+          @Height = height
+          @Width = width
+          @XPosition = xposition
+          @YPosition = yposition
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Content = params['Content']
+          @Suffix = params['Suffix']
+          @Height = params['Height']
+          @Width = params['Width']
+          @XPosition = params['XPosition']
+          @YPosition = params['YPosition']
+        end
+      end
+
+      # CreatePicture返回参数结构体
+      class CreatePictureResponse < TencentCloud::Common::AbstractModel
+        # @param PictureId: 图片id
+        # @type PictureId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PictureId, :RequestId
+        
+        def initialize(pictureid=nil, requestid=nil)
+          @PictureId = pictureid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PictureId = params['PictureId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTroubleInfo请求参数结构体
       class CreateTroubleInfoRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用的ID
@@ -129,6 +189,42 @@ module TencentCloud
 
       # CreateTroubleInfo返回参数结构体
       class CreateTroubleInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePicture请求参数结构体
+      class DeletePictureRequest < TencentCloud::Common::AbstractModel
+        # @param PictureId: 图片id
+        # @type PictureId: Integer
+        # @param SdkAppId: 应用id
+        # @type SdkAppId: Integer
+
+        attr_accessor :PictureId, :SdkAppId
+        
+        def initialize(pictureid=nil, sdkappid=nil)
+          @PictureId = pictureid
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @PictureId = params['PictureId']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DeletePicture返回参数结构体
+      class DeletePictureResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -402,6 +498,63 @@ module TencentCloud
             @ScaleList = []
             params['ScaleList'].each do |i|
               @ScaleList << ScaleInfomation.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePicture请求参数结构体
+      class DescribePictureRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用id
+        # @type SdkAppId: Integer
+        # @param PictureId: 图片id,不传时返回该应用下所有图片
+        # @type PictureId: Integer
+        # @param PageSize: 每页数量
+        # @type PageSize: Integer
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+
+        attr_accessor :SdkAppId, :PictureId, :PageSize, :PageNo
+        
+        def initialize(sdkappid=nil, pictureid=nil, pagesize=nil, pageno=nil)
+          @SdkAppId = sdkappid
+          @PictureId = pictureid
+          @PageSize = pagesize
+          @PageNo = pageno
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PictureId = params['PictureId']
+          @PageSize = params['PageSize']
+          @PageNo = params['PageNo']
+        end
+      end
+
+      # DescribePicture返回参数结构体
+      class DescribePictureResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回的图片记录数
+        # @type Total: Integer
+        # @param PictureInfo: 图片信息列表
+        # @type PictureInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :PictureInfo, :RequestId
+        
+        def initialize(total=nil, pictureinfo=nil, requestid=nil)
+          @Total = total
+          @PictureInfo = pictureinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['PictureInfo'].nil?
+            @PictureInfo = []
+            params['PictureInfo'].each do |i|
+              @PictureInfo << PictureInfo.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
@@ -1111,6 +1264,58 @@ module TencentCloud
         end
       end
 
+      # ModifyPicture请求参数结构体
+      class ModifyPictureRequest < TencentCloud::Common::AbstractModel
+        # @param PictureId: 图片id
+        # @type PictureId: Integer
+        # @param SdkAppId: 应用id
+        # @type SdkAppId: Integer
+        # @param Height: 图片长度
+        # @type Height: Integer
+        # @param Width: 图片宽度
+        # @type Width: Integer
+        # @param XPosition: 显示位置x轴方向
+        # @type XPosition: Integer
+        # @param YPosition: 显示位置y轴方向
+        # @type YPosition: Integer
+
+        attr_accessor :PictureId, :SdkAppId, :Height, :Width, :XPosition, :YPosition
+        
+        def initialize(pictureid=nil, sdkappid=nil, height=nil, width=nil, xposition=nil, yposition=nil)
+          @PictureId = pictureid
+          @SdkAppId = sdkappid
+          @Height = height
+          @Width = width
+          @XPosition = xposition
+          @YPosition = yposition
+        end
+
+        def deserialize(params)
+          @PictureId = params['PictureId']
+          @SdkAppId = params['SdkAppId']
+          @Height = params['Height']
+          @Width = params['Width']
+          @XPosition = params['XPosition']
+          @YPosition = params['YPosition']
+        end
+      end
+
+      # ModifyPicture返回参数结构体
+      class ModifyPictureResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 旁路转码时长的查询结果
       class OneSdkAppIdTranscodeTimeUsagesInfo < TencentCloud::Common::AbstractModel
         # @param SdkAppIdTranscodeTimeUsages: 旁路转码时长查询结果数组
@@ -1194,6 +1399,42 @@ module TencentCloud
           @PureAudioStream = params['PureAudioStream']
           @RecordId = params['RecordId']
           @RecordAudioOnly = params['RecordAudioOnly']
+        end
+      end
+
+      # 图片列表信息
+      class PictureInfo < TencentCloud::Common::AbstractModel
+        # @param Height: 图片长度
+        # @type Height: Integer
+        # @param Width: 图片宽度
+        # @type Width: Integer
+        # @param XPosition: 显示位置x轴方向
+        # @type XPosition: Integer
+        # @param YPosition: 显示位置y轴方向
+        # @type YPosition: Integer
+        # @param SdkAppId: 应用id
+        # @type SdkAppId: Integer
+        # @param PictureId: 图片id
+        # @type PictureId: Integer
+
+        attr_accessor :Height, :Width, :XPosition, :YPosition, :SdkAppId, :PictureId
+        
+        def initialize(height=nil, width=nil, xposition=nil, yposition=nil, sdkappid=nil, pictureid=nil)
+          @Height = height
+          @Width = width
+          @XPosition = xposition
+          @YPosition = yposition
+          @SdkAppId = sdkappid
+          @PictureId = pictureid
+        end
+
+        def deserialize(params)
+          @Height = params['Height']
+          @Width = params['Width']
+          @XPosition = params['XPosition']
+          @YPosition = params['YPosition']
+          @SdkAppId = params['SdkAppId']
+          @PictureId = params['PictureId']
         end
       end
 

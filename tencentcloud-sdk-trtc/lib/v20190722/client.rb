@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'TRTC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 上传图片
+
+        # @param request: Request instance for CreatePicture.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::CreatePictureRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::CreatePictureResponse`
+        def CreatePicture(request)
+          body = send_request('CreatePicture', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePictureResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建异常信息
 
         # @param request: Request instance for CreateTroubleInfo.
@@ -35,6 +59,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTroubleInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除图片
+
+        # @param request: Request instance for DeletePicture.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DeletePictureRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DeletePictureResponse`
+        def DeletePicture(request)
+          body = send_request('DeletePicture', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePictureResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -132,6 +180,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeHistoryScaleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询某图片相关参数。
+
+        # @param request: Request instance for DescribePicture.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribePictureRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribePictureResponse`
+        def DescribePicture(request)
+          body = send_request('DescribePicture', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePictureResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -387,6 +459,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DismissRoomByStrRoomIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改图片相关参数。
+
+        # @param request: Request instance for ModifyPicture.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::ModifyPictureRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::ModifyPictureResponse`
+        def ModifyPicture(request)
+          body = send_request('ModifyPicture', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPictureResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -753,6 +753,40 @@ module TencentCloud
         end
       end
 
+      # ModifyMusicOnShelves请求参数结构体
+      class ModifyMusicOnShelvesRequest < TencentCloud::Common::AbstractModel
+        # @param MusicDetailInfos: 无
+        # @type MusicDetailInfos: :class:`Tencentcloud::Ame.v20190916.models.MusicDetailInfo`
+
+        attr_accessor :MusicDetailInfos
+        
+        def initialize(musicdetailinfos=nil)
+          @MusicDetailInfos = musicdetailinfos
+        end
+
+        def deserialize(params)
+          unless params['MusicDetailInfos'].nil?
+            @MusicDetailInfos = MusicDetailInfo.new.deserialize(params['MusicDetailInfos'])
+          end
+        end
+      end
+
+      # ModifyMusicOnShelves返回参数结构体
+      class ModifyMusicOnShelvesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 音乐详情
       class Music < TencentCloud::Common::AbstractModel
         # @param Url: 音乐播放链接相对路径，必须通过在正版曲库直通车控制台上登记的域名进行拼接。
@@ -789,6 +823,42 @@ module TencentCloud
           @AuditionBegin = params['AuditionBegin']
           @AuditionEnd = params['AuditionEnd']
           @FullUrl = params['FullUrl']
+        end
+      end
+
+      # 歌曲变更细节
+      class MusicDetailInfo < TencentCloud::Common::AbstractModel
+        # @param MusicId: 资源方音乐Id
+        # @type MusicId: String
+        # @param AmeId: 资源方识别信息
+        # @type AmeId: String
+        # @param Tags: 分类标签
+        # @type Tags: Array
+        # @param HitWords: 关键词
+        # @type HitWords: Array
+        # @param Bpm: 节奏信息
+        # @type Bpm: Integer
+        # @param Score: 商业化权益
+        # @type Score: Float
+
+        attr_accessor :MusicId, :AmeId, :Tags, :HitWords, :Bpm, :Score
+        
+        def initialize(musicid=nil, ameid=nil, tags=nil, hitwords=nil, bpm=nil, score=nil)
+          @MusicId = musicid
+          @AmeId = ameid
+          @Tags = tags
+          @HitWords = hitwords
+          @Bpm = bpm
+          @Score = score
+        end
+
+        def deserialize(params)
+          @MusicId = params['MusicId']
+          @AmeId = params['AmeId']
+          @Tags = params['Tags']
+          @HitWords = params['HitWords']
+          @Bpm = params['Bpm']
+          @Score = params['Score']
         end
       end
 
@@ -950,6 +1020,51 @@ module TencentCloud
         end
       end
 
+      # PutMusicOnTheShelves请求参数结构体
+      class PutMusicOnTheShelvesRequest < TencentCloud::Common::AbstractModel
+        # @param MusicIds: 资源方歌曲Id
+        # @type MusicIds: Array
+
+        attr_accessor :MusicIds
+        
+        def initialize(musicids=nil)
+          @MusicIds = musicids
+        end
+
+        def deserialize(params)
+          @MusicIds = params['MusicIds']
+        end
+      end
+
+      # PutMusicOnTheShelves返回参数结构体
+      class PutMusicOnTheShelvesResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessNum: 操作成功数量
+        # @type SuccessNum: Integer
+        # @param FailedNum: 操作失败数量
+        # @type FailedNum: Integer
+        # @param FailedMusicIds: 失败歌曲Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedMusicIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessNum, :FailedNum, :FailedMusicIds, :RequestId
+        
+        def initialize(successnum=nil, failednum=nil, failedmusicids=nil, requestid=nil)
+          @SuccessNum = successnum
+          @FailedNum = failednum
+          @FailedMusicIds = failedmusicids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessNum = params['SuccessNum']
+          @FailedNum = params['FailedNum']
+          @FailedMusicIds = params['FailedMusicIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReportData请求参数结构体
       class ReportDataRequest < TencentCloud::Common::AbstractModel
         # @param ReportData: 上报数据
@@ -1032,6 +1147,76 @@ module TencentCloud
               @ImagePathMap << ImagePath.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # 下架歌曲复合结构
+      class TakeMusicOffShelves < TencentCloud::Common::AbstractModel
+        # @param MusicIds: 资源方对应音乐Id
+        # @type MusicIds: String
+        # @param SaleStatus: 当曲目临时下架时：已订购客户无影响，无需消息通知。当曲目封杀下架后，推送消息至已订购老客户，枚举值，判断是否上/下架
+        # @type SaleStatus: String
+
+        attr_accessor :MusicIds, :SaleStatus
+        
+        def initialize(musicids=nil, salestatus=nil)
+          @MusicIds = musicids
+          @SaleStatus = salestatus
+        end
+
+        def deserialize(params)
+          @MusicIds = params['MusicIds']
+          @SaleStatus = params['SaleStatus']
+        end
+      end
+
+      # TakeMusicOffShelves请求参数结构体
+      class TakeMusicOffShelvesRequest < TencentCloud::Common::AbstractModel
+        # @param TakeMusicOffShelves: 资源方下架必传结构
+        # @type TakeMusicOffShelves: Array
+
+        attr_accessor :TakeMusicOffShelves
+        
+        def initialize(takemusicoffshelves=nil)
+          @TakeMusicOffShelves = takemusicoffshelves
+        end
+
+        def deserialize(params)
+          unless params['TakeMusicOffShelves'].nil?
+            @TakeMusicOffShelves = []
+            params['TakeMusicOffShelves'].each do |i|
+              @TakeMusicOffShelves << TakeMusicOffShelves.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # TakeMusicOffShelves返回参数结构体
+      class TakeMusicOffShelvesResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessNum: 返回成功数量
+        # @type SuccessNum: Integer
+        # @param FailedNum: 返回失败数量
+        # @type FailedNum: Integer
+        # @param FailedMusicIds: 返回失败歌曲musicId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedMusicIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessNum, :FailedNum, :FailedMusicIds, :RequestId
+        
+        def initialize(successnum=nil, failednum=nil, failedmusicids=nil, requestid=nil)
+          @SuccessNum = successnum
+          @FailedNum = failednum
+          @FailedMusicIds = failedmusicids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessNum = params['SuccessNum']
+          @FailedNum = params['FailedNum']
+          @FailedMusicIds = params['FailedMusicIds']
+          @RequestId = params['RequestId']
         end
       end
 

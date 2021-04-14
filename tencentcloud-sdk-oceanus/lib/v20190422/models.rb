@@ -263,6 +263,74 @@ module TencentCloud
         end
       end
 
+      # DeleteResourceConfigs请求参数结构体
+      class DeleteResourceConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceConfigVersions: 资源版本数组
+        # @type ResourceConfigVersions: Array
+
+        attr_accessor :ResourceId, :ResourceConfigVersions
+        
+        def initialize(resourceid=nil, resourceconfigversions=nil)
+          @ResourceId = resourceid
+          @ResourceConfigVersions = resourceconfigversions
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceConfigVersions = params['ResourceConfigVersions']
+        end
+      end
+
+      # DeleteResourceConfigs返回参数结构体
+      class DeleteResourceConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteResources请求参数结构体
+      class DeleteResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 待删除资源ID列表
+        # @type ResourceIds: Array
+
+        attr_accessor :ResourceIds
+        
+        def initialize(resourceids=nil)
+          @ResourceIds = resourceids
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+        end
+      end
+
+      # DeleteResources返回参数结构体
+      class DeleteResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTableConfig请求参数结构体
       class DeleteTableConfigRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业ID
@@ -431,6 +499,190 @@ module TencentCloud
               @JobSet << JobV1.new.deserialize(i)
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceConfigs请求参数结构体
+      class DescribeResourceConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回值大小
+        # @type Limit: Integer
+        # @param ResourceConfigVersions: 资源配置Versions集合
+        # @type ResourceConfigVersions: Array
+        # @param JobConfigVersion: 作业配置版本
+        # @type JobConfigVersion: Integer
+        # @param JobId: 作业ID
+        # @type JobId: String
+
+        attr_accessor :ResourceId, :Offset, :Limit, :ResourceConfigVersions, :JobConfigVersion, :JobId
+        
+        def initialize(resourceid=nil, offset=nil, limit=nil, resourceconfigversions=nil, jobconfigversion=nil, jobid=nil)
+          @ResourceId = resourceid
+          @Offset = offset
+          @Limit = limit
+          @ResourceConfigVersions = resourceconfigversions
+          @JobConfigVersion = jobconfigversion
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ResourceConfigVersions = params['ResourceConfigVersions']
+          @JobConfigVersion = params['JobConfigVersion']
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeResourceConfigs返回参数结构体
+      class DescribeResourceConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceConfigSet: 资源配置描述数组
+        # @type ResourceConfigSet: Array
+        # @param TotalCount: 资源配置数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceConfigSet, :TotalCount, :RequestId
+        
+        def initialize(resourceconfigset=nil, totalcount=nil, requestid=nil)
+          @ResourceConfigSet = resourceconfigset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResourceConfigSet'].nil?
+            @ResourceConfigSet = []
+            params['ResourceConfigSet'].each do |i|
+              @ResourceConfigSet << ResourceConfigItem.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceRelatedJobs请求参数结构体
+      class DescribeResourceRelatedJobsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param DESCByJobConfigCreateTime: 默认0;   1： 按照作业版本创建时间降序
+        # @type DESCByJobConfigCreateTime: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 分页大小，默认为20，最大值为100
+        # @type Limit: Integer
+
+        attr_accessor :ResourceId, :DESCByJobConfigCreateTime, :Offset, :Limit
+        
+        def initialize(resourceid=nil, descbyjobconfigcreatetime=nil, offset=nil, limit=nil)
+          @ResourceId = resourceid
+          @DESCByJobConfigCreateTime = descbyjobconfigcreatetime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @DESCByJobConfigCreateTime = params['DESCByJobConfigCreateTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeResourceRelatedJobs返回参数结构体
+      class DescribeResourceRelatedJobsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RefJobInfos: 关联作业信息
+        # @type RefJobInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RefJobInfos, :RequestId
+        
+        def initialize(totalcount=nil, refjobinfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RefJobInfos = refjobinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RefJobInfos'].nil?
+            @RefJobInfos = []
+            params['RefJobInfos'].each do |i|
+              @RefJobInfos << ResourceRefJobInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResources请求参数结构体
+      class DescribeResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 需要查询的资源ID数组
+        # @type ResourceIds: Array
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 条数限制
+        # @type Limit: Integer
+        # @param Filters: 查询资源配置列表， 如果不填写，返回该ResourceId下所有作业配置列表
+        # @type Filters: Array
+
+        attr_accessor :ResourceIds, :Offset, :Limit, :Filters
+        
+        def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil)
+          @ResourceIds = resourceids
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeResources返回参数结构体
+      class DescribeResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceSet: 资源详细信息集合
+        # @type ResourceSet: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceSet, :TotalCount, :RequestId
+        
+        def initialize(resourceset=nil, totalcount=nil, requestid=nil)
+          @ResourceSet = resourceset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResourceSet'].nil?
+            @ResourceSet = []
+            params['ResourceSet'].each do |i|
+              @ResourceSet << ResourceItem.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -772,6 +1024,143 @@ module TencentCloud
         end
       end
 
+      # 描述资源配置的返回参数
+      class ResourceConfigItem < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: Integer
+        # @param Region: 资源所属地域
+        # @type Region: String
+        # @param AppId: 资源所属AppId
+        # @type AppId: Integer
+        # @param OwnerUin: 主账号Uin
+        # @type OwnerUin: String
+        # @param CreatorUin: 子账号Uin
+        # @type CreatorUin: String
+        # @param ResourceLoc: 资源位置描述
+        # @type ResourceLoc: :class:`Tencentcloud::Oceanus.v20190422.models.ResourceLoc`
+        # @param CreateTime: 资源创建时间
+        # @type CreateTime: String
+        # @param Version: 资源版本
+        # @type Version: Integer
+        # @param Remark: 资源描述
+        # @type Remark: String
+        # @param Status: 资源状态：0: 资源同步中，1:资源已就绪
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param RefJobCount: 关联作业个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefJobCount: Integer
+
+        attr_accessor :ResourceId, :ResourceType, :Region, :AppId, :OwnerUin, :CreatorUin, :ResourceLoc, :CreateTime, :Version, :Remark, :Status, :RefJobCount
+        
+        def initialize(resourceid=nil, resourcetype=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, resourceloc=nil, createtime=nil, version=nil, remark=nil, status=nil, refjobcount=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @Region = region
+          @AppId = appid
+          @OwnerUin = owneruin
+          @CreatorUin = creatoruin
+          @ResourceLoc = resourceloc
+          @CreateTime = createtime
+          @Version = version
+          @Remark = remark
+          @Status = status
+          @RefJobCount = refjobcount
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @Region = params['Region']
+          @AppId = params['AppId']
+          @OwnerUin = params['OwnerUin']
+          @CreatorUin = params['CreatorUin']
+          unless params['ResourceLoc'].nil?
+            @ResourceLoc = ResourceLoc.new.deserialize(params['ResourceLoc'])
+          end
+          @CreateTime = params['CreateTime']
+          @Version = params['Version']
+          @Remark = params['Remark']
+          @Status = params['Status']
+          @RefJobCount = params['RefJobCount']
+        end
+      end
+
+      # 资源详细描述
+      class ResourceItem < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param Name: 资源名称
+        # @type Name: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: Integer
+        # @param ResourceLoc: 资源位置
+        # @type ResourceLoc: :class:`Tencentcloud::Oceanus.v20190422.models.ResourceLoc`
+        # @param Region: 资源地域
+        # @type Region: String
+        # @param AppId: 应用ID
+        # @type AppId: Integer
+        # @param OwnerUin: 主账号Uin
+        # @type OwnerUin: String
+        # @param CreatorUin: 子账号Uin
+        # @type CreatorUin: String
+        # @param CreateTime: 资源创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 资源最后更新时间
+        # @type UpdateTime: String
+        # @param LatestResourceConfigVersion: 资源的资源版本ID
+        # @type LatestResourceConfigVersion: Integer
+        # @param Remark: 资源备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param VersionCount: 版本个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionCount: Integer
+        # @param RefJobCount: 关联作业数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefJobCount: Integer
+
+        attr_accessor :ResourceId, :Name, :ResourceType, :ResourceLoc, :Region, :AppId, :OwnerUin, :CreatorUin, :CreateTime, :UpdateTime, :LatestResourceConfigVersion, :Remark, :VersionCount, :RefJobCount
+        
+        def initialize(resourceid=nil, name=nil, resourcetype=nil, resourceloc=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, createtime=nil, updatetime=nil, latestresourceconfigversion=nil, remark=nil, versioncount=nil, refjobcount=nil)
+          @ResourceId = resourceid
+          @Name = name
+          @ResourceType = resourcetype
+          @ResourceLoc = resourceloc
+          @Region = region
+          @AppId = appid
+          @OwnerUin = owneruin
+          @CreatorUin = creatoruin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @LatestResourceConfigVersion = latestresourceconfigversion
+          @Remark = remark
+          @VersionCount = versioncount
+          @RefJobCount = refjobcount
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Name = params['Name']
+          @ResourceType = params['ResourceType']
+          unless params['ResourceLoc'].nil?
+            @ResourceLoc = ResourceLoc.new.deserialize(params['ResourceLoc'])
+          end
+          @Region = params['Region']
+          @AppId = params['AppId']
+          @OwnerUin = params['OwnerUin']
+          @CreatorUin = params['CreatorUin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @LatestResourceConfigVersion = params['LatestResourceConfigVersion']
+          @Remark = params['Remark']
+          @VersionCount = params['VersionCount']
+          @RefJobCount = params['RefJobCount']
+        end
+      end
+
       # 资源位置描述
       class ResourceLoc < TencentCloud::Common::AbstractModel
         # @param StorageType: 资源位置的存储类型，目前只支持COS
@@ -872,6 +1261,30 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @SystemProvide = params['SystemProvide']
+        end
+      end
+
+      # 资源被Job 引用信息
+      class ResourceRefJobInfo < TencentCloud::Common::AbstractModel
+        # @param JobId: Job id
+        # @type JobId: String
+        # @param JobConfigVersion: Job配置版本
+        # @type JobConfigVersion: Integer
+        # @param ResourceVersion: 资源版本
+        # @type ResourceVersion: Integer
+
+        attr_accessor :JobId, :JobConfigVersion, :ResourceVersion
+        
+        def initialize(jobid=nil, jobconfigversion=nil, resourceversion=nil)
+          @JobId = jobid
+          @JobConfigVersion = jobconfigversion
+          @ResourceVersion = resourceversion
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @JobConfigVersion = params['JobConfigVersion']
+          @ResourceVersion = params['ResourceVersion']
         end
       end
 
