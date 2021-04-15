@@ -97,6 +97,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该服务已不再对外提供能力
+
         # 筛选敏感易骚扰人群
 
         # @param request: Request instance for RecognizeEffectiveFlow.

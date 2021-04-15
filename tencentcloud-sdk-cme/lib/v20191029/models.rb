@@ -435,6 +435,7 @@ module TencentCloud
         # <li>SWITCHER：导播台。</li>
         # <li>VIDEO_SEGMENTATION：视频拆条。</li>
         # <li>STREAM_CONNECT：云转推。</li>
+        # <li>RECORD_REPLAY：录制回放。</li>
         # @type Category: String
         # @param Name: 项目名称，不可超过30个字符。
         # @type Name: String
@@ -455,10 +456,12 @@ module TencentCloud
         # @type VideoSegmentationProjectInput: :class:`Tencentcloud::Cme.v20191029.models.VideoSegmentationProjectInput`
         # @param StreamConnectProjectInput: 云转推项目信息，仅当项目类型为 STREAM_CONNECT 时必填。
         # @type StreamConnectProjectInput: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectProjectInput`
+        # @param RecordReplayProjectInput: 录制回放项目信息，仅当项目类型为 RECORD_REPLAY 时必填。
+        # @type RecordReplayProjectInput: :class:`Tencentcloud::Cme.v20191029.models.RecordReplayProjectInput`
 
-        attr_accessor :Platform, :Category, :Name, :Owner, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput
+        attr_accessor :Platform, :Category, :Name, :Owner, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput
         
-        def initialize(platform=nil, category=nil, name=nil, owner=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil)
+        def initialize(platform=nil, category=nil, name=nil, owner=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil)
           @Platform = platform
           @Category = category
           @Name = name
@@ -470,6 +473,7 @@ module TencentCloud
           @VideoEditProjectInput = videoeditprojectinput
           @VideoSegmentationProjectInput = videosegmentationprojectinput
           @StreamConnectProjectInput = streamconnectprojectinput
+          @RecordReplayProjectInput = recordreplayprojectinput
         end
 
         def deserialize(params)
@@ -495,6 +499,9 @@ module TencentCloud
           end
           unless params['StreamConnectProjectInput'].nil?
             @StreamConnectProjectInput = StreamConnectProjectInput.new.deserialize(params['StreamConnectProjectInput'])
+          end
+          unless params['RecordReplayProjectInput'].nil?
+            @RecordReplayProjectInput = RecordReplayProjectInput.new.deserialize(params['RecordReplayProjectInput'])
           end
         end
       end
@@ -1097,6 +1104,7 @@ module TencentCloud
         # <li>SWITCHER：导播台。</li>
         # <li>VIDEO_SEGMENTATION：视频拆条。</li>
         # <li>STREAM_CONNECT：云转推。</li>
+        # <li>RECORD_REPLAY：录制回放。</li>
         # @type CategorySet: Array
         # @param Sort: 列表排序，支持下列排序字段：
         # <li>CreateTime：创建时间；</li>
@@ -1838,6 +1846,8 @@ module TencentCloud
         # <li>CME：云剪，即导出为云剪媒体；</li>
         # <li>VOD：云点播，即导出为云点播媒资。</li>
         # @type ExportDestination: String
+        # @param CoverData: 视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
+        # @type CoverData: String
         # @param CMEExportInfo: 导出的云剪媒体信息。指定 ExportDestination = CME 时有效。
         # @type CMEExportInfo: :class:`Tencentcloud::Cme.v20191029.models.CMEExportInfo`
         # @param VODExportInfo: 导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
@@ -1845,13 +1855,14 @@ module TencentCloud
         # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验项目导出权限。
         # @type Operator: String
 
-        attr_accessor :Platform, :ProjectId, :Definition, :ExportDestination, :CMEExportInfo, :VODExportInfo, :Operator
+        attr_accessor :Platform, :ProjectId, :Definition, :ExportDestination, :CoverData, :CMEExportInfo, :VODExportInfo, :Operator
         
-        def initialize(platform=nil, projectid=nil, definition=nil, exportdestination=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
+        def initialize(platform=nil, projectid=nil, definition=nil, exportdestination=nil, coverdata=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
           @Platform = platform
           @ProjectId = projectid
           @Definition = definition
           @ExportDestination = exportdestination
+          @CoverData = coverdata
           @CMEExportInfo = cmeexportinfo
           @VODExportInfo = vodexportinfo
           @Operator = operator
@@ -1862,6 +1873,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @Definition = params['Definition']
           @ExportDestination = params['ExportDestination']
+          @CoverData = params['CoverData']
           unless params['CMEExportInfo'].nil?
             @CMEExportInfo = CMEExportInfo.new.deserialize(params['CMEExportInfo'])
           end
@@ -3402,6 +3414,36 @@ module TencentCloud
           @CoverUrl = params['CoverUrl']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 录制回放项目输入信息。
+      class RecordReplayProjectInput < TencentCloud::Common::AbstractModel
+        # @param PullStreamUrl: 录制拉流地址。
+        # @type PullStreamUrl: String
+        # @param MaterialOwner: 录制文件归属者。
+        # @type MaterialOwner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param MaterialClassPath: 录制文件存储分类路径。
+        # @type MaterialClassPath: String
+        # @param PushStreamUrl: 回放推流地址。
+        # @type PushStreamUrl: String
+
+        attr_accessor :PullStreamUrl, :MaterialOwner, :MaterialClassPath, :PushStreamUrl
+        
+        def initialize(pullstreamurl=nil, materialowner=nil, materialclasspath=nil, pushstreamurl=nil)
+          @PullStreamUrl = pullstreamurl
+          @MaterialOwner = materialowner
+          @MaterialClassPath = materialclasspath
+          @PushStreamUrl = pushstreamurl
+        end
+
+        def deserialize(params)
+          @PullStreamUrl = params['PullStreamUrl']
+          unless params['MaterialOwner'].nil?
+            @MaterialOwner = Entity.new.deserialize(params['MaterialOwner'])
+          end
+          @MaterialClassPath = params['MaterialClassPath']
+          @PushStreamUrl = params['PushStreamUrl']
         end
       end
 

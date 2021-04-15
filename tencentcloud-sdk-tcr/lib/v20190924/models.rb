@@ -2689,6 +2689,82 @@ module TencentCloud
         end
       end
 
+      # DownloadHelmChart请求参数结构体
+      class DownloadHelmChartRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例ID
+        # @type RegistryId: String
+        # @param NamespaceName: 命名空间名称
+        # @type NamespaceName: String
+        # @param ChartName: Helm chart名称
+        # @type ChartName: String
+        # @param ChartVersion: Helm chart版本
+        # @type ChartVersion: String
+
+        attr_accessor :RegistryId, :NamespaceName, :ChartName, :ChartVersion
+        
+        def initialize(registryid=nil, namespacename=nil, chartname=nil, chartversion=nil)
+          @RegistryId = registryid
+          @NamespaceName = namespacename
+          @ChartName = chartname
+          @ChartVersion = chartversion
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceName = params['NamespaceName']
+          @ChartName = params['ChartName']
+          @ChartVersion = params['ChartVersion']
+        end
+      end
+
+      # DownloadHelmChart返回参数结构体
+      class DownloadHelmChartResponse < TencentCloud::Common::AbstractModel
+        # @param TmpToken: 临时token
+        # @type TmpToken: String
+        # @param TmpSecretId: 临时的secretId
+        # @type TmpSecretId: String
+        # @param TmpSecretKey: 临时的secretKey
+        # @type TmpSecretKey: String
+        # @param Bucket: 存储桶信息
+        # @type Bucket: String
+        # @param Region: 实例ID
+        # @type Region: String
+        # @param Path: chart信息
+        # @type Path: String
+        # @param StartTime: 开始时间时间戳
+        # @type StartTime: Integer
+        # @param ExpiredTime: token过期时间时间戳
+        # @type ExpiredTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TmpToken, :TmpSecretId, :TmpSecretKey, :Bucket, :Region, :Path, :StartTime, :ExpiredTime, :RequestId
+        
+        def initialize(tmptoken=nil, tmpsecretid=nil, tmpsecretkey=nil, bucket=nil, region=nil, path=nil, starttime=nil, expiredtime=nil, requestid=nil)
+          @TmpToken = tmptoken
+          @TmpSecretId = tmpsecretid
+          @TmpSecretKey = tmpsecretkey
+          @Bucket = bucket
+          @Region = region
+          @Path = path
+          @StartTime = starttime
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TmpToken = params['TmpToken']
+          @TmpSecretId = params['TmpSecretId']
+          @TmpSecretKey = params['TmpSecretKey']
+          @Bucket = params['Bucket']
+          @Region = params['Region']
+          @Path = params['Path']
+          @StartTime = params['StartTime']
+          @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 复制镜像tag返回值
       class DupImageTagResp < TencentCloud::Common::AbstractModel
         # @param Digest: 镜像Digest值

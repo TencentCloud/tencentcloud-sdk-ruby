@@ -811,10 +811,13 @@ module TencentCloud
         # @param LogCollect: 是否启用日志收集，0-未启用，1-已启用，2-历史集群未设置日志集，3-历史集群已开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogCollect: Integer
+        # @param MaxParallelism: 作业的最大并行度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxParallelism: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -828,6 +831,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @COSBucket = cosbucket
           @LogCollect = logcollect
+          @MaxParallelism = maxparallelism
         end
 
         def deserialize(params)
@@ -854,6 +858,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @COSBucket = params['COSBucket']
           @LogCollect = params['LogCollect']
+          @MaxParallelism = params['MaxParallelism']
         end
       end
 
