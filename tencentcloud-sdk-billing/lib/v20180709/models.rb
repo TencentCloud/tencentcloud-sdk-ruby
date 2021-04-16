@@ -1302,21 +1302,21 @@ module TencentCloud
 
       # DescribeAccountBalance返回参数结构体
       class DescribeAccountBalanceResponse < TencentCloud::Common::AbstractModel
-        # @param Balance: 云账户信息中的”展示可用余额”字段，单位为"分"
+        # @param Balance: 接口做过变更,为兼容老接口,本字段与RealBalance相同,为当前真实可用余额,单位 分
         # @type Balance: Integer
         # @param Uin: 查询的用户Uin
         # @type Uin: Integer
-        # @param RealBalance: 当前真实可用余额
+        # @param RealBalance: 当前真实可用余额,单位 分
         # @type RealBalance: Float
-        # @param CashAccountBalance: 现金账户余额
+        # @param CashAccountBalance: 现金账户余额,单位 分
         # @type CashAccountBalance: Float
-        # @param IncomeIntoAccountBalance: 收益转入账户余额
+        # @param IncomeIntoAccountBalance: 收益转入账户余额,单位 分
         # @type IncomeIntoAccountBalance: Float
-        # @param PresentAccountBalance: 赠送账户余额
+        # @param PresentAccountBalance: 赠送账户余额,单位 分
         # @type PresentAccountBalance: Float
-        # @param FreezeAmount: 冻结金额
+        # @param FreezeAmount: 冻结金额,单位 分
         # @type FreezeAmount: Float
-        # @param OweAmount: 欠费金额
+        # @param OweAmount: 欠费金额,单位 分
         # @type OweAmount: Float
         # @param IsAllowArrears: 是否允许欠费消费
         # @type IsAllowArrears: Boolean

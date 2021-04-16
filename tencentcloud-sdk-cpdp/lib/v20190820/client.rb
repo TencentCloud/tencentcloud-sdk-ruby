@@ -1954,6 +1954,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 直播平台-上传代理商完税列表
+
+        # @param request: Request instance for UploadTaxList.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::UploadTaxListRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::UploadTaxListResponse`
+        def UploadTaxList(request)
+          body = send_request('UploadTaxList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadTaxListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 直播平台-上传代理商完税证明
+
+        # @param request: Request instance for UploadTaxPayment.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::UploadTaxPaymentRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::UploadTaxPaymentResponse`
+        def UploadTaxPayment(request)
+          body = send_request('UploadTaxPayment', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadTaxPaymentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 会员提现-不验证。此接口受理会员发起的提现申请。会员子账户的可提现余额、可用余额会减少，市场的资金汇总账户(监管账户)会减少相应的发生金额，提现到会员申请的收款账户。
 
         # @param request: Request instance for WithdrawCashMembership.

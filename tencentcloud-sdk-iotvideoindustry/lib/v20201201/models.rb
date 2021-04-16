@@ -910,6 +910,92 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordStreamData 复杂类型
+      class DescribeRecordStreamData < TencentCloud::Common::AbstractModel
+        # @param RtspAddr: Rtsp地址
+        # @type RtspAddr: String
+        # @param RtmpAddr: Rtmp地址
+        # @type RtmpAddr: String
+        # @param HlsAddr: Hls地址
+        # @type HlsAddr: String
+        # @param FlvAddr: Flv地址
+        # @type FlvAddr: String
+        # @param StreamId: 流Id
+        # @type StreamId: String
+
+        attr_accessor :RtspAddr, :RtmpAddr, :HlsAddr, :FlvAddr, :StreamId
+        
+        def initialize(rtspaddr=nil, rtmpaddr=nil, hlsaddr=nil, flvaddr=nil, streamid=nil)
+          @RtspAddr = rtspaddr
+          @RtmpAddr = rtmpaddr
+          @HlsAddr = hlsaddr
+          @FlvAddr = flvaddr
+          @StreamId = streamid
+        end
+
+        def deserialize(params)
+          @RtspAddr = params['RtspAddr']
+          @RtmpAddr = params['RtmpAddr']
+          @HlsAddr = params['HlsAddr']
+          @FlvAddr = params['FlvAddr']
+          @StreamId = params['StreamId']
+        end
+      end
+
+      # DescribeRecordStream请求参数结构体
+      class DescribeRecordStreamRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备Id
+        # @type DeviceId: String
+        # @param ExpireTime: 流失效时间
+        # @type ExpireTime: Integer
+        # @param RecordId: 录像文件Id
+        # @type RecordId: String
+        # @param StartTime: 录像流开始时间，当录像文件Id为空时有效
+        # @type StartTime: Integer
+        # @param EndTime: 录像流结束时间，当录像文件Id为空时有效
+        # @type EndTime: Integer
+
+        attr_accessor :DeviceId, :ExpireTime, :RecordId, :StartTime, :EndTime
+        
+        def initialize(deviceid=nil, expiretime=nil, recordid=nil, starttime=nil, endtime=nil)
+          @DeviceId = deviceid
+          @ExpireTime = expiretime
+          @RecordId = recordid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @ExpireTime = params['ExpireTime']
+          @RecordId = params['RecordId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeRecordStream返回参数结构体
+      class DescribeRecordStreamResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 结果
+        # @type Data: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.DescribeRecordStreamData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeRecordStreamData.new.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSIPServer请求参数结构体
       class DescribeSIPServerRequest < TencentCloud::Common::AbstractModel
 
@@ -1108,6 +1194,60 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVideoList请求参数结构体
+      class DescribeVideoListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间戳，秒级
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间戳，秒级
+        # @type EndTime: Integer
+        # @param Offset: 偏移
+        # @type Offset: Integer
+        # @param Limit: 限制
+        # @type Limit: Integer
+
+        attr_accessor :StartTime, :EndTime, :Offset, :Limit
+        
+        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeVideoList返回参数结构体
+      class DescribeVideoListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param VideoList: 录像详情列表
+        # @type VideoList: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.RecordTaskItem`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VideoList, :RequestId
+        
+        def initialize(totalcount=nil, videolist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VideoList = videolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VideoList'].nil?
+            @VideoList = RecordTaskItem.new.deserialize(params['VideoList'])
+          end
           @RequestId = params['RequestId']
         end
       end

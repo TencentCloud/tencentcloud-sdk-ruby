@@ -9576,6 +9576,94 @@ module TencentCloud
         end
       end
 
+      # UploadTaxList请求参数结构体
+      class UploadTaxListRequest < TencentCloud::Common::AbstractModel
+        # @param Channel: 平台渠道
+        # @type Channel: Integer
+        # @param BeginMonth: 起始月份，YYYY-MM
+        # @type BeginMonth: String
+        # @param EndMonth: 结束月份。如果只上传一个月，结束月份等于起始月份
+        # @type EndMonth: String
+        # @param FileUrl: 完税列表下载地址
+        # @type FileUrl: String
+
+        attr_accessor :Channel, :BeginMonth, :EndMonth, :FileUrl
+        
+        def initialize(channel=nil, beginmonth=nil, endmonth=nil, fileurl=nil)
+          @Channel = channel
+          @BeginMonth = beginmonth
+          @EndMonth = endmonth
+          @FileUrl = fileurl
+        end
+
+        def deserialize(params)
+          @Channel = params['Channel']
+          @BeginMonth = params['BeginMonth']
+          @EndMonth = params['EndMonth']
+          @FileUrl = params['FileUrl']
+        end
+      end
+
+      # UploadTaxList返回参数结构体
+      class UploadTaxListResponse < TencentCloud::Common::AbstractModel
+        # @param TaxId: 完税ID
+        # @type TaxId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaxId, :RequestId
+        
+        def initialize(taxid=nil, requestid=nil)
+          @TaxId = taxid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaxId = params['TaxId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadTaxPayment请求参数结构体
+      class UploadTaxPaymentRequest < TencentCloud::Common::AbstractModel
+        # @param Channel: 平台渠道
+        # @type Channel: Integer
+        # @param TaxId: 完税ID
+        # @type TaxId: String
+        # @param FileUrl: 完税列表下载地址
+        # @type FileUrl: String
+
+        attr_accessor :Channel, :TaxId, :FileUrl
+        
+        def initialize(channel=nil, taxid=nil, fileurl=nil)
+          @Channel = channel
+          @TaxId = taxid
+          @FileUrl = fileurl
+        end
+
+        def deserialize(params)
+          @Channel = params['Channel']
+          @TaxId = params['TaxId']
+          @FileUrl = params['FileUrl']
+        end
+      end
+
+      # UploadTaxPayment返回参数结构体
+      class UploadTaxPaymentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 聚鑫提现订单内容
       class WithdrawBill < TencentCloud::Common::AbstractModel
         # @param WithdrawOrderId: 业务提现订单号
