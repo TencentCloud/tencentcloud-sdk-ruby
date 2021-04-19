@@ -469,6 +469,57 @@ module TencentCloud
         end
       end
 
+      # DescribeRoomInfo请求参数结构体
+      class DescribeRoomInfoRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
+        # @type SdkAppId: Integer
+        # @param RoomIds: 房间号列表，最大不能超过10个
+        # @type RoomIds: Array
+
+        attr_accessor :SdkAppId, :RoomIds
+        
+        def initialize(sdkappid=nil, roomids=nil)
+          @SdkAppId = sdkappid
+          @RoomIds = roomids
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomIds = params['RoomIds']
+        end
+      end
+
+      # DescribeRoomInfo返回参数结构体
+      class DescribeRoomInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作结果, 0成功, 非0失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Integer
+        # @param RoomUsers: 房间用户信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoomUsers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RoomUsers, :RequestId
+        
+        def initialize(result=nil, roomusers=nil, requestid=nil)
+          @Result = result
+          @RoomUsers = roomusers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          unless params['RoomUsers'].nil?
+            @RoomUsers = []
+            params['RoomUsers'].each do |i|
+              @RoomUsers << RoomUser.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 语音检测结果返回
       class DescribeScanResult < TencentCloud::Common::AbstractModel
         # @param Code: 业务返回码
@@ -807,6 +858,27 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @Quality = params['Quality']
+        end
+      end
+
+      # 房间内用户信息
+      class RoomUser < TencentCloud::Common::AbstractModel
+        # @param RoomId: 房间id
+        # @type RoomId: Integer
+        # @param Uins: 房间里用户uin列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uins: Array
+
+        attr_accessor :RoomId, :Uins
+        
+        def initialize(roomid=nil, uins=nil)
+          @RoomId = roomid
+          @Uins = uins
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @Uins = params['Uins']
         end
       end
 

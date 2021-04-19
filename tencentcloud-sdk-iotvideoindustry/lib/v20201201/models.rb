@@ -1208,14 +1208,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制
         # @type Limit: Integer
+        # @param DeviceId: 设备Id
+        # @type DeviceId: String
 
-        attr_accessor :StartTime, :EndTime, :Offset, :Limit
+        attr_accessor :StartTime, :EndTime, :Offset, :Limit, :DeviceId
         
-        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil)
+        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil, deviceid=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Offset = offset
           @Limit = limit
+          @DeviceId = deviceid
         end
 
         def deserialize(params)
@@ -1223,6 +1226,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @DeviceId = params['DeviceId']
         end
       end
 

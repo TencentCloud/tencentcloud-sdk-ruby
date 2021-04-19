@@ -577,7 +577,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (DestroyDBInstance) 用于销毁指定DBInstanceId对应的实例。当前仅适用于按量计费实例。
+        # 本接口 (DestroyDBInstance) 用于彻底下线指定DBInstanceId对应的实例，下线后实例数据将彻底删除，无法找回，只能下线隔离中的实例。
 
         # @param request: Request instance for DestroyDBInstance.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DestroyDBInstanceRequest`
@@ -587,6 +587,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DestroyDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DisIsolateDBInstances）用于解隔离实例
+
+        # @param request: Request instance for DisIsolateDBInstances.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DisIsolateDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DisIsolateDBInstancesResponse`
+        def DisIsolateDBInstances(request)
+          body = send_request('DisIsolateDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisIsolateDBInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -683,6 +707,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquiryPriceUpgradeDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（IsolateDBInstances）用于隔离实例
+
+        # @param request: Request instance for IsolateDBInstances.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::IsolateDBInstancesRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::IsolateDBInstancesResponse`
+        def IsolateDBInstances(request)
+          body = send_request('IsolateDBInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IsolateDBInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

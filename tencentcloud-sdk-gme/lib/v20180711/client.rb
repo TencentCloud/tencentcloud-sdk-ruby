@@ -145,6 +145,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取房间内用户信息
+
+        # @param request: Request instance for DescribeRoomInfo.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeRoomInfoRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeRoomInfoResponse`
+        def DescribeRoomInfo(request)
+          body = send_request('DescribeRoomInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRoomInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeScanResultList)用于查询语音检测结果，查询任务列表最多支持100个。
         # <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
 

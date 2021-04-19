@@ -1637,7 +1637,7 @@ module TencentCloud
 
       # DestroyDBInstance请求参数结构体
       class DestroyDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 待删除实例标识符
+        # @param DBInstanceId: 待下线实例ID
         # @type DBInstanceId: String
 
         attr_accessor :DBInstanceId
@@ -1653,6 +1653,50 @@ module TencentCloud
 
       # DestroyDBInstance返回参数结构体
       class DestroyDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisIsolateDBInstances请求参数结构体
+      class DisIsolateDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceIdSet: 资源ID列表
+        # @type DBInstanceIdSet: Array
+        # @param Period: 包年包月实例解隔离时购买时常 以月为单位
+        # @type Period: Integer
+        # @param AutoVoucher: 是否使用代金券
+        # @type AutoVoucher: Boolean
+        # @param VoucherIds: 代金券id列表
+        # @type VoucherIds: Array
+
+        attr_accessor :DBInstanceIdSet, :Period, :AutoVoucher, :VoucherIds
+        
+        def initialize(dbinstanceidset=nil, period=nil, autovoucher=nil, voucherids=nil)
+          @DBInstanceIdSet = dbinstanceidset
+          @Period = period
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
+        end
+
+        def deserialize(params)
+          @DBInstanceIdSet = params['DBInstanceIdSet']
+          @Period = params['Period']
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
+        end
+      end
+
+      # DisIsolateDBInstances返回参数结构体
+      class DisIsolateDBInstancesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1921,6 +1965,38 @@ module TencentCloud
         def deserialize(params)
           @OriginalPrice = params['OriginalPrice']
           @Price = params['Price']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # IsolateDBInstances请求参数结构体
+      class IsolateDBInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceIdSet: 实例ID集合
+        # @type DBInstanceIdSet: Array
+
+        attr_accessor :DBInstanceIdSet
+        
+        def initialize(dbinstanceidset=nil)
+          @DBInstanceIdSet = dbinstanceidset
+        end
+
+        def deserialize(params)
+          @DBInstanceIdSet = params['DBInstanceIdSet']
+        end
+      end
+
+      # IsolateDBInstances返回参数结构体
+      class IsolateDBInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
