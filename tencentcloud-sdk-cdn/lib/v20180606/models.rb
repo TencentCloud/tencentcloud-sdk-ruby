@@ -1888,25 +1888,25 @@ module TencentCloud
         # @type CosBucket: String
         # @param CosUriFrom: apk 源文件的存储路径, 如 /apk/xxxx.apk
         # @type CosUriFrom: String
-        # @param CosUriTo: 拓展之后的 apk 目标存储路径,如 /out/xxxx.apk
-        # @type CosUriTo: String
         # @param BlockID: BlockID 的值, WALLE为1903654775(0x71777777)，VasDolly为2282837503(0x881155ff),传0或不传时默认为 WALLE 方案
         # @type BlockID: Integer
+        # @param CosUriTo: 拓展之后的 apk 目标存储路径,如 /out/xxxx.apk
+        # @type CosUriTo: String
 
-        attr_accessor :CosBucket, :CosUriFrom, :CosUriTo, :BlockID
+        attr_accessor :CosBucket, :CosUriFrom, :BlockID, :CosUriTo
         
-        def initialize(cosbucket=nil, cosurifrom=nil, cosurito=nil, blockid=nil)
+        def initialize(cosbucket=nil, cosurifrom=nil, blockid=nil, cosurito=nil)
           @CosBucket = cosbucket
           @CosUriFrom = cosurifrom
-          @CosUriTo = cosurito
           @BlockID = blockid
+          @CosUriTo = cosurito
         end
 
         def deserialize(params)
           @CosBucket = params['CosBucket']
           @CosUriFrom = params['CosUriFrom']
-          @CosUriTo = params['CosUriTo']
           @BlockID = params['BlockID']
+          @CosUriTo = params['CosUriTo']
         end
       end
 

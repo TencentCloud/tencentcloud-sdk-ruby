@@ -562,14 +562,24 @@ module TencentCloud
         # @type DimensionsNameId: Integer
         # @param UserId: 平台用户标识
         # @type UserId: String
+        # @param DownloadPrice: 平台用户下载图片购买的价格(单位:分)
+        # @type DownloadPrice: Integer
+        # @param DownloadType: 下载类型。匹配集合中的任意元素：
+        # <li>Single: 单张购买下载</li>
+        # <li>BasicEnterpriseMember: 企业基础会员下载</li>
+        # <li>AdvancedEnterpriseMember: 企业高级会员下载</li>
+        # <li>DistinguishedEnterpriseMember: 企业尊享会员下载</li>
+        # @type DownloadType: String
 
-        attr_accessor :ImageId, :LicenseScopeId, :DimensionsNameId, :UserId
+        attr_accessor :ImageId, :LicenseScopeId, :DimensionsNameId, :UserId, :DownloadPrice, :DownloadType
         
-        def initialize(imageid=nil, licensescopeid=nil, dimensionsnameid=nil, userid=nil)
+        def initialize(imageid=nil, licensescopeid=nil, dimensionsnameid=nil, userid=nil, downloadprice=nil, downloadtype=nil)
           @ImageId = imageid
           @LicenseScopeId = licensescopeid
           @DimensionsNameId = dimensionsnameid
           @UserId = userid
+          @DownloadPrice = downloadprice
+          @DownloadType = downloadtype
         end
 
         def deserialize(params)
@@ -577,6 +587,8 @@ module TencentCloud
           @LicenseScopeId = params['LicenseScopeId']
           @DimensionsNameId = params['DimensionsNameId']
           @UserId = params['UserId']
+          @DownloadPrice = params['DownloadPrice']
+          @DownloadType = params['DownloadType']
         end
       end
 

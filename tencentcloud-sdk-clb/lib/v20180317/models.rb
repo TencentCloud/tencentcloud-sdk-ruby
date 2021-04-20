@@ -774,10 +774,13 @@ module TencentCloud
         # @param ClustersZone: 集群所在的可用区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClustersZone: :class:`Tencentcloud::Clb.v20180317.models.ClustersZone`
+        # @param ClustersVersion: 集群版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClustersVersion: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterType, :ClusterTag, :Zone, :Network, :MaxConn, :MaxInFlow, :MaxInPkg, :MaxOutFlow, :MaxOutPkg, :MaxNewConn, :HTTPMaxNewConn, :HTTPSMaxNewConn, :HTTPQps, :HTTPSQps, :ResourceCount, :IdleResourceCount, :LoadBalanceDirectorCount, :Isp, :ClustersZone
+        attr_accessor :ClusterId, :ClusterName, :ClusterType, :ClusterTag, :Zone, :Network, :MaxConn, :MaxInFlow, :MaxInPkg, :MaxOutFlow, :MaxOutPkg, :MaxNewConn, :HTTPMaxNewConn, :HTTPSMaxNewConn, :HTTPQps, :HTTPSQps, :ResourceCount, :IdleResourceCount, :LoadBalanceDirectorCount, :Isp, :ClustersZone, :ClustersVersion
         
-        def initialize(clusterid=nil, clustername=nil, clustertype=nil, clustertag=nil, zone=nil, network=nil, maxconn=nil, maxinflow=nil, maxinpkg=nil, maxoutflow=nil, maxoutpkg=nil, maxnewconn=nil, httpmaxnewconn=nil, httpsmaxnewconn=nil, httpqps=nil, httpsqps=nil, resourcecount=nil, idleresourcecount=nil, loadbalancedirectorcount=nil, isp=nil, clusterszone=nil)
+        def initialize(clusterid=nil, clustername=nil, clustertype=nil, clustertag=nil, zone=nil, network=nil, maxconn=nil, maxinflow=nil, maxinpkg=nil, maxoutflow=nil, maxoutpkg=nil, maxnewconn=nil, httpmaxnewconn=nil, httpsmaxnewconn=nil, httpqps=nil, httpsqps=nil, resourcecount=nil, idleresourcecount=nil, loadbalancedirectorcount=nil, isp=nil, clusterszone=nil, clustersversion=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterType = clustertype
@@ -799,6 +802,7 @@ module TencentCloud
           @LoadBalanceDirectorCount = loadbalancedirectorcount
           @Isp = isp
           @ClustersZone = clusterszone
+          @ClustersVersion = clustersversion
         end
 
         def deserialize(params)
@@ -825,6 +829,7 @@ module TencentCloud
           unless params['ClustersZone'].nil?
             @ClustersZone = ClustersZone.new.deserialize(params['ClustersZone'])
           end
+          @ClustersVersion = params['ClustersVersion']
         end
       end
 

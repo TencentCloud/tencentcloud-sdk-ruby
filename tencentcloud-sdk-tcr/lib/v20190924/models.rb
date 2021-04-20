@@ -717,6 +717,96 @@ module TencentCloud
         end
       end
 
+      # CreateTagRetentionExecution请求参数结构体
+      class CreateTagRetentionExecutionRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例iD
+        # @type RegistryId: String
+        # @param RetentionId: 版本保留规则Id
+        # @type RetentionId: Integer
+        # @param DryRun: 是否模拟执行
+        # @type DryRun: Boolean
+
+        attr_accessor :RegistryId, :RetentionId, :DryRun
+        
+        def initialize(registryid=nil, retentionid=nil, dryrun=nil)
+          @RegistryId = registryid
+          @RetentionId = retentionid
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RetentionId = params['RetentionId']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # CreateTagRetentionExecution返回参数结构体
+      class CreateTagRetentionExecutionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTagRetentionRule请求参数结构体
+      class CreateTagRetentionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例iD
+        # @type RegistryId: String
+        # @param NamespaceId: 命名空间的Id
+        # @type NamespaceId: Integer
+        # @param RetentionRule: 保留策略
+        # @type RetentionRule: :class:`Tencentcloud::Tcr.v20190924.models.RetentionRule`
+        # @param CronSetting: 执行周期，当前只能选择： manual;daily;weekly;monthly
+        # @type CronSetting: String
+        # @param Disabled: 是否禁用规则
+        # @type Disabled: Boolean
+
+        attr_accessor :RegistryId, :NamespaceId, :RetentionRule, :CronSetting, :Disabled
+        
+        def initialize(registryid=nil, namespaceid=nil, retentionrule=nil, cronsetting=nil, disabled=nil)
+          @RegistryId = registryid
+          @NamespaceId = namespaceid
+          @RetentionRule = retentionrule
+          @CronSetting = cronsetting
+          @Disabled = disabled
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceId = params['NamespaceId']
+          unless params['RetentionRule'].nil?
+            @RetentionRule = RetentionRule.new.deserialize(params['RetentionRule'])
+          end
+          @CronSetting = params['CronSetting']
+          @Disabled = params['Disabled']
+        end
+      end
+
+      # CreateTagRetentionRule返回参数结构体
+      class CreateTagRetentionRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUserPersonal请求参数结构体
       class CreateUserPersonalRequest < TencentCloud::Common::AbstractModel
         # @param Password: 用户密码
@@ -1265,6 +1355,42 @@ module TencentCloud
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTagRetentionRule请求参数结构体
+      class DeleteTagRetentionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例iD
+        # @type RegistryId: String
+        # @param RetentionId: 版本保留规则的Id
+        # @type RetentionId: Integer
+
+        attr_accessor :RegistryId, :RetentionId
+        
+        def initialize(registryid=nil, retentionid=nil)
+          @RegistryId = registryid
+          @RetentionId = retentionid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RetentionId = params['RetentionId']
+        end
+      end
+
+      # DeleteTagRetentionRule返回参数结构体
+      class DeleteTagRetentionRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2538,6 +2664,181 @@ module TencentCloud
         end
       end
 
+      # DescribeTagRetentionExecution请求参数结构体
+      class DescribeTagRetentionExecutionRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例iD
+        # @type RegistryId: String
+        # @param RetentionId: 规则Id
+        # @type RetentionId: Integer
+        # @param Limit: 分页PageSize
+        # @type Limit: Integer
+        # @param Offset: 分页Page
+        # @type Offset: Integer
+
+        attr_accessor :RegistryId, :RetentionId, :Limit, :Offset
+        
+        def initialize(registryid=nil, retentionid=nil, limit=nil, offset=nil)
+          @RegistryId = registryid
+          @RetentionId = retentionid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RetentionId = params['RetentionId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeTagRetentionExecution返回参数结构体
+      class DescribeTagRetentionExecutionResponse < TencentCloud::Common::AbstractModel
+        # @param RetentionExecutionList: 版本保留执行记录列表
+        # @type RetentionExecutionList: Array
+        # @param TotalCount: 版本保留执行记录总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RetentionExecutionList, :TotalCount, :RequestId
+        
+        def initialize(retentionexecutionlist=nil, totalcount=nil, requestid=nil)
+          @RetentionExecutionList = retentionexecutionlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RetentionExecutionList'].nil?
+            @RetentionExecutionList = []
+            params['RetentionExecutionList'].each do |i|
+              @RetentionExecutionList << RetentionExecution.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTagRetentionExecutionTask请求参数结构体
+      class DescribeTagRetentionExecutionTaskRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例iD
+        # @type RegistryId: String
+        # @param RetentionId: 规则Id
+        # @type RetentionId: Integer
+        # @param ExecutionId: 规则执行Id
+        # @type ExecutionId: Integer
+        # @param Offset: 分页Page
+        # @type Offset: Integer
+        # @param Limit: 分页PageSize
+        # @type Limit: Integer
+
+        attr_accessor :RegistryId, :RetentionId, :ExecutionId, :Offset, :Limit
+        
+        def initialize(registryid=nil, retentionid=nil, executionid=nil, offset=nil, limit=nil)
+          @RegistryId = registryid
+          @RetentionId = retentionid
+          @ExecutionId = executionid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RetentionId = params['RetentionId']
+          @ExecutionId = params['ExecutionId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTagRetentionExecutionTask返回参数结构体
+      class DescribeTagRetentionExecutionTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RetentionTaskList: 版本保留执行任务列表
+        # @type RetentionTaskList: Array
+        # @param TotalCount: 版本保留执行任务总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RetentionTaskList, :TotalCount, :RequestId
+        
+        def initialize(retentiontasklist=nil, totalcount=nil, requestid=nil)
+          @RetentionTaskList = retentiontasklist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RetentionTaskList'].nil?
+            @RetentionTaskList = []
+            params['RetentionTaskList'].each do |i|
+              @RetentionTaskList << RetentionTask.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTagRetentionRules请求参数结构体
+      class DescribeTagRetentionRulesRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例iD
+        # @type RegistryId: String
+        # @param NamespaceName: 命名空间的名称
+        # @type NamespaceName: String
+        # @param Limit: 分页PageSize
+        # @type Limit: Integer
+        # @param Offset: 分页Page
+        # @type Offset: Integer
+
+        attr_accessor :RegistryId, :NamespaceName, :Limit, :Offset
+        
+        def initialize(registryid=nil, namespacename=nil, limit=nil, offset=nil)
+          @RegistryId = registryid
+          @NamespaceName = namespacename
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceName = params['NamespaceName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeTagRetentionRules返回参数结构体
+      class DescribeTagRetentionRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RetentionPolicyList: 版本保留策略列表
+        # @type RetentionPolicyList: Array
+        # @param TotalCount: 版本保留策略总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RetentionPolicyList, :TotalCount, :RequestId
+        
+        def initialize(retentionpolicylist=nil, totalcount=nil, requestid=nil)
+          @RetentionPolicyList = retentionpolicylist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RetentionPolicyList'].nil?
+            @RetentionPolicyList = []
+            params['RetentionPolicyList'].each do |i|
+              @RetentionPolicyList << RetentionPolicy.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserQuotaPersonal请求参数结构体
       class DescribeUserQuotaPersonalRequest < TencentCloud::Common::AbstractModel
 
@@ -3469,6 +3770,60 @@ module TencentCloud
         end
       end
 
+      # ModifyTagRetentionRule请求参数结构体
+      class ModifyTagRetentionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例iD
+        # @type RegistryId: String
+        # @param NamespaceId: 命名空间的Id，必须填写原有的命名空间id
+        # @type NamespaceId: Integer
+        # @param RetentionRule: 保留策略
+        # @type RetentionRule: :class:`Tencentcloud::Tcr.v20190924.models.RetentionRule`
+        # @param CronSetting: 执行周期，必须填写为原来的设置
+        # @type CronSetting: String
+        # @param RetentionId: 规则Id
+        # @type RetentionId: Integer
+        # @param Disabled: 是否禁用规则
+        # @type Disabled: Boolean
+
+        attr_accessor :RegistryId, :NamespaceId, :RetentionRule, :CronSetting, :RetentionId, :Disabled
+        
+        def initialize(registryid=nil, namespaceid=nil, retentionrule=nil, cronsetting=nil, retentionid=nil, disabled=nil)
+          @RegistryId = registryid
+          @NamespaceId = namespaceid
+          @RetentionRule = retentionrule
+          @CronSetting = cronsetting
+          @RetentionId = retentionid
+          @Disabled = disabled
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceId = params['NamespaceId']
+          unless params['RetentionRule'].nil?
+            @RetentionRule = RetentionRule.new.deserialize(params['RetentionRule'])
+          end
+          @CronSetting = params['CronSetting']
+          @RetentionId = params['RetentionId']
+          @Disabled = params['Disabled']
+        end
+      end
+
+      # ModifyTagRetentionRule返回参数结构体
+      class ModifyTagRetentionRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUserPasswordPersonal请求参数结构体
       class ModifyUserPasswordPersonalRequest < TencentCloud::Common::AbstractModel
         # @param Password: 更新后的密码
@@ -4072,6 +4427,143 @@ module TencentCloud
               @LimitInfo << Limit.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # 版本保留规则执行
+      class RetentionExecution < TencentCloud::Common::AbstractModel
+        # @param ExecutionId: 执行Id
+        # @type ExecutionId: Integer
+        # @param RetentionId: 所属规则id
+        # @type RetentionId: Integer
+        # @param StartTime: 执行的开始时间
+        # @type StartTime: String
+        # @param EndTime: 执行的结束时间
+        # @type EndTime: String
+        # @param Status: 执行的状态，Failed, Succeed, Stopped, InProgress
+        # @type Status: String
+
+        attr_accessor :ExecutionId, :RetentionId, :StartTime, :EndTime, :Status
+        
+        def initialize(executionid=nil, retentionid=nil, starttime=nil, endtime=nil, status=nil)
+          @ExecutionId = executionid
+          @RetentionId = retentionid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ExecutionId = params['ExecutionId']
+          @RetentionId = params['RetentionId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+        end
+      end
+
+      # 版本保留策略
+      class RetentionPolicy < TencentCloud::Common::AbstractModel
+        # @param RetentionId: 版本保留策略Id
+        # @type RetentionId: Integer
+        # @param NamespaceName: 命名空间的名称
+        # @type NamespaceName: String
+        # @param RetentionRuleList: 规则列表
+        # @type RetentionRuleList: Array
+        # @param CronSetting: 定期执行方式
+        # @type CronSetting: String
+        # @param Disabled: 是否启用规则
+        # @type Disabled: Boolean
+        # @param NextExecutionTime: 基于当前时间根据cronSetting后下一次任务要执行的时间，仅做参考使用
+        # @type NextExecutionTime: String
+
+        attr_accessor :RetentionId, :NamespaceName, :RetentionRuleList, :CronSetting, :Disabled, :NextExecutionTime
+        
+        def initialize(retentionid=nil, namespacename=nil, retentionrulelist=nil, cronsetting=nil, disabled=nil, nextexecutiontime=nil)
+          @RetentionId = retentionid
+          @NamespaceName = namespacename
+          @RetentionRuleList = retentionrulelist
+          @CronSetting = cronsetting
+          @Disabled = disabled
+          @NextExecutionTime = nextexecutiontime
+        end
+
+        def deserialize(params)
+          @RetentionId = params['RetentionId']
+          @NamespaceName = params['NamespaceName']
+          unless params['RetentionRuleList'].nil?
+            @RetentionRuleList = []
+            params['RetentionRuleList'].each do |i|
+              @RetentionRuleList << RetentionRule.new.deserialize(i)
+            end
+          end
+          @CronSetting = params['CronSetting']
+          @Disabled = params['Disabled']
+          @NextExecutionTime = params['NextExecutionTime']
+        end
+      end
+
+      # 版本保留规则
+      class RetentionRule < TencentCloud::Common::AbstractModel
+        # @param Key: 支持的策略，可选值为latestPushedK（保留最新推送多少个版本）nDaysSinceLastPush（保留近天内推送）
+        # @type Key: String
+        # @param Value: 规则设置下的对应值
+        # @type Value: Integer
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 版本保留执行的规则
+      class RetentionTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
+        # @param ExecutionId: 所属的规则执行Id
+        # @type ExecutionId: Integer
+        # @param StartTime: 任务开始时间
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间
+        # @type EndTime: String
+        # @param Status: 任务的执行状态，Failed, Succeed, Stopped, InProgress
+        # @type Status: String
+        # @param Total: 总tag数
+        # @type Total: Integer
+        # @param Retained: 保留tag数
+        # @type Retained: Integer
+        # @param Repository: 应用的仓库
+        # @type Repository: String
+
+        attr_accessor :TaskId, :ExecutionId, :StartTime, :EndTime, :Status, :Total, :Retained, :Repository
+        
+        def initialize(taskid=nil, executionid=nil, starttime=nil, endtime=nil, status=nil, total=nil, retained=nil, repository=nil)
+          @TaskId = taskid
+          @ExecutionId = executionid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Total = total
+          @Retained = retained
+          @Repository = repository
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ExecutionId = params['ExecutionId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Total = params['Total']
+          @Retained = params['Retained']
+          @Repository = params['Repository']
         end
       end
 

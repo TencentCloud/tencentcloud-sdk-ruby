@@ -361,6 +361,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 手动执行版本保留
+
+        # @param request: Request instance for CreateTagRetentionExecution.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::CreateTagRetentionExecutionRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::CreateTagRetentionExecutionResponse`
+        def CreateTagRetentionExecution(request)
+          body = send_request('CreateTagRetentionExecution', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTagRetentionExecutionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建版本保留规则
+
+        # @param request: Request instance for CreateTagRetentionRule.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::CreateTagRetentionRuleRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::CreateTagRetentionRuleResponse`
+        def CreateTagRetentionRule(request)
+          body = send_request('CreateTagRetentionRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTagRetentionRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建个人用户
 
         # @param request: Request instance for CreateUserPersonal.
@@ -707,6 +755,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSecurityPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除版本保留规则
+
+        # @param request: Request instance for DeleteTagRetentionRule.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DeleteTagRetentionRuleRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DeleteTagRetentionRuleResponse`
+        def DeleteTagRetentionRule(request)
+          body = send_request('DeleteTagRetentionRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTagRetentionRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1321,6 +1393,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询版本保留执行记录
+
+        # @param request: Request instance for DescribeTagRetentionExecution.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeTagRetentionExecutionRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeTagRetentionExecutionResponse`
+        def DescribeTagRetentionExecution(request)
+          body = send_request('DescribeTagRetentionExecution', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTagRetentionExecutionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询版本保留执行任务
+
+        # @param request: Request instance for DescribeTagRetentionExecutionTask.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeTagRetentionExecutionTaskRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeTagRetentionExecutionTaskResponse`
+        def DescribeTagRetentionExecutionTask(request)
+          body = send_request('DescribeTagRetentionExecutionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTagRetentionExecutionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询版本保留规则
+
+        # @param request: Request instance for DescribeTagRetentionRules.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeTagRetentionRulesRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeTagRetentionRulesResponse`
+        def DescribeTagRetentionRules(request)
+          body = send_request('DescribeTagRetentionRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTagRetentionRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询个人用户配额
 
         # @param request: Request instance for DescribeUserQuotaPersonal.
@@ -1691,6 +1835,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySecurityPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新版本保留规则
+
+        # @param request: Request instance for ModifyTagRetentionRule.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::ModifyTagRetentionRuleRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::ModifyTagRetentionRuleResponse`
+        def ModifyTagRetentionRule(request)
+          body = send_request('ModifyTagRetentionRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTagRetentionRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1042,10 +1042,22 @@ module TencentCloud
         # @param SignLaw: 物理专线是否已签署用户协议
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignLaw: Boolean
+        # @param LocalZone: 物理专线是否为LocalZone
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalZone: Boolean
+        # @param VlanZeroDirectConnectTunnelCount: 该物理专线下vlan 0的专线通道数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VlanZeroDirectConnectTunnelCount: Integer
+        # @param OtherVlanDirectConnectTunnelCount: 该物理专线下非vlan 0的专线通道数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherVlanDirectConnectTunnelCount: Integer
+        # @param MinBandwidth: 物理专线最小带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinBandwidth: Integer
 
-        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw
+        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth
         
-        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil)
+        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil)
           @DirectConnectId = directconnectid
           @DirectConnectName = directconnectname
           @AccessPointId = accesspointid
@@ -1074,6 +1086,10 @@ module TencentCloud
           @ChargeState = chargestate
           @StartTime = starttime
           @SignLaw = signlaw
+          @LocalZone = localzone
+          @VlanZeroDirectConnectTunnelCount = vlanzerodirectconnecttunnelcount
+          @OtherVlanDirectConnectTunnelCount = othervlandirectconnecttunnelcount
+          @MinBandwidth = minbandwidth
         end
 
         def deserialize(params)
@@ -1110,6 +1126,10 @@ module TencentCloud
           @ChargeState = params['ChargeState']
           @StartTime = params['StartTime']
           @SignLaw = params['SignLaw']
+          @LocalZone = params['LocalZone']
+          @VlanZeroDirectConnectTunnelCount = params['VlanZeroDirectConnectTunnelCount']
+          @OtherVlanDirectConnectTunnelCount = params['OtherVlanDirectConnectTunnelCount']
+          @MinBandwidth = params['MinBandwidth']
         end
       end
 
