@@ -1895,10 +1895,14 @@ module TencentCloud
         # @type IPv6Enable: Integer
         # @param CustomerIDCRoutes: 去往用户侧的路由信息
         # @type CustomerIDCRoutes: Array
+        # @param JumboEnable: 是否开启巨帧
+        # 1：开启
+        # 0：不开启
+        # @type JumboEnable: Integer
 
-        attr_accessor :DirectConnectTunnelId, :Vlan, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :Bandwidth, :EnableBGPCommunity, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :IPv6Enable, :CustomerIDCRoutes
+        attr_accessor :DirectConnectTunnelId, :Vlan, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :Bandwidth, :EnableBGPCommunity, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :IPv6Enable, :CustomerIDCRoutes, :JumboEnable
         
-        def initialize(directconnecttunnelid=nil, vlan=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, bandwidth=nil, enablebgpcommunity=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, ipv6enable=nil, customeridcroutes=nil)
+        def initialize(directconnecttunnelid=nil, vlan=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, bandwidth=nil, enablebgpcommunity=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, ipv6enable=nil, customeridcroutes=nil, jumboenable=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @Vlan = vlan
           @BgpPeer = bgppeer
@@ -1914,6 +1918,7 @@ module TencentCloud
           @NqaInfo = nqainfo
           @IPv6Enable = ipv6enable
           @CustomerIDCRoutes = customeridcroutes
+          @JumboEnable = jumboenable
         end
 
         def deserialize(params)
@@ -1945,6 +1950,7 @@ module TencentCloud
               @CustomerIDCRoutes << RouteFilterPrefix.new.deserialize(i)
             end
           end
+          @JumboEnable = params['JumboEnable']
         end
       end
 

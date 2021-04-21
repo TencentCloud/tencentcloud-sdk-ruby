@@ -73,6 +73,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建健康报告的浏览地址。
+
+        # @param request: Request instance for CreateDBDiagReportUrl.
+        # @type request: :class:`Tencentcloud::dbbrain::V20191016::CreateDBDiagReportUrlRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20191016::CreateDBDiagReportUrlResponse`
+        def CreateDBDiagReportUrl(request)
+          body = send_request('CreateDBDiagReportUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDBDiagReportUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
 
         # @param request: Request instance for CreateMailProfile.
@@ -265,6 +289,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询健康报告生成任务列表。
+
+        # @param request: Request instance for DescribeDBDiagReportTasks.
+        # @type request: :class:`Tencentcloud::dbbrain::V20191016::DescribeDBDiagReportTasksRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20191016::DescribeDBDiagReportTasksResponse`
+        def DescribeDBDiagReportTasks(request)
+          body = send_request('DescribeDBDiagReportTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBDiagReportTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
 
         # @param request: Request instance for DescribeDBSpaceStatus.
@@ -443,6 +491,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSlowLogTopSqlsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取慢日志来源地址统计分布图。
+
+        # @param request: Request instance for DescribeSlowLogUserHostStats.
+        # @type request: :class:`Tencentcloud::dbbrain::V20191016::DescribeSlowLogUserHostStatsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20191016::DescribeSlowLogUserHostStatsResponse`
+        def DescribeSlowLogUserHostStats(request)
+          body = send_request('DescribeSlowLogUserHostStats', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSlowLogUserHostStatsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取实例占用空间最大的前几个库在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
+
+        # @param request: Request instance for DescribeTopSpaceSchemaTimeSeries.
+        # @type request: :class:`Tencentcloud::dbbrain::V20191016::DescribeTopSpaceSchemaTimeSeriesRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20191016::DescribeTopSpaceSchemaTimeSeriesResponse`
+        def DescribeTopSpaceSchemaTimeSeries(request)
+          body = send_request('DescribeTopSpaceSchemaTimeSeries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopSpaceSchemaTimeSeriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取实例Top库的实时空间统计信息，默认返回按大小排序。
+
+        # @param request: Request instance for DescribeTopSpaceSchemas.
+        # @type request: :class:`Tencentcloud::dbbrain::V20191016::DescribeTopSpaceSchemasRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20191016::DescribeTopSpaceSchemasResponse`
+        def DescribeTopSpaceSchemas(request)
+          body = send_request('DescribeTopSpaceSchemas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopSpaceSchemasResponse.new
             model.deserialize(response['Response'])
             model
           else

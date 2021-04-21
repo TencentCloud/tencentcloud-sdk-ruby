@@ -3442,14 +3442,17 @@ module TencentCloud
         # @type AdaptiveDynamicStreamingDefinition: Integer
         # @param SubtitleIds: 字幕的唯一标识。
         # @type SubtitleIds: Array
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
 
-        attr_accessor :FileId, :Operation, :AdaptiveDynamicStreamingDefinition, :SubtitleIds
+        attr_accessor :FileId, :Operation, :AdaptiveDynamicStreamingDefinition, :SubtitleIds, :SubAppId
         
-        def initialize(fileid=nil, operation=nil, adaptivedynamicstreamingdefinition=nil, subtitleids=nil)
+        def initialize(fileid=nil, operation=nil, adaptivedynamicstreamingdefinition=nil, subtitleids=nil, subappid=nil)
           @FileId = fileid
           @Operation = operation
           @AdaptiveDynamicStreamingDefinition = adaptivedynamicstreamingdefinition
           @SubtitleIds = subtitleids
+          @SubAppId = subappid
         end
 
         def deserialize(params)
@@ -3457,6 +3460,7 @@ module TencentCloud
           @Operation = params['Operation']
           @AdaptiveDynamicStreamingDefinition = params['AdaptiveDynamicStreamingDefinition']
           @SubtitleIds = params['SubtitleIds']
+          @SubAppId = params['SubAppId']
         end
       end
 

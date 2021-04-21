@@ -1234,16 +1234,19 @@ module TencentCloud
       class DescribeVideoListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
         # @type TotalCount: Integer
-        # @param VideoList: 录像详情列表
+        # @param VideoList: 已废弃
         # @type VideoList: :class:`Tencentcloud::Iotvideoindustry.v20201201.models.RecordTaskItem`
+        # @param RecordList: 录像详情列表
+        # @type RecordList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :VideoList, :RequestId
+        attr_accessor :TotalCount, :VideoList, :RecordList, :RequestId
         
-        def initialize(totalcount=nil, videolist=nil, requestid=nil)
+        def initialize(totalcount=nil, videolist=nil, recordlist=nil, requestid=nil)
           @TotalCount = totalcount
           @VideoList = videolist
+          @RecordList = recordlist
           @RequestId = requestid
         end
 
@@ -1251,6 +1254,12 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           unless params['VideoList'].nil?
             @VideoList = RecordTaskItem.new.deserialize(params['VideoList'])
+          end
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              @RecordList << RecordTaskItem.new.deserialize(i)
+            end
           end
           @RequestId = params['RequestId']
         end

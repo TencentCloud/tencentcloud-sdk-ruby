@@ -146,6 +146,54 @@ module TencentCloud
         end
       end
 
+      # CreateDBDiagReportUrl请求参数结构体
+      class CreateDBDiagReportUrlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param AsyncRequestId: 健康报告相应的任务ID，可通过DescribeDBDiagReportTasks查询。
+        # @type AsyncRequestId: Integer
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :AsyncRequestId, :Product
+        
+        def initialize(instanceid=nil, asyncrequestid=nil, product=nil)
+          @InstanceId = instanceid
+          @AsyncRequestId = asyncrequestid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AsyncRequestId = params['AsyncRequestId']
+          @Product = params['Product']
+        end
+      end
+
+      # CreateDBDiagReportUrl返回参数结构体
+      class CreateDBDiagReportUrlResponse < TencentCloud::Common::AbstractModel
+        # @param ReportUrl: 健康报告浏览地址。
+        # @type ReportUrl: String
+        # @param ExpireTime: 健康报告浏览地址到期时间戳（秒）。
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReportUrl, :ExpireTime, :RequestId
+        
+        def initialize(reporturl=nil, expiretime=nil, requestid=nil)
+          @ReportUrl = reporturl
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReportUrl = params['ReportUrl']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMailProfile请求参数结构体
       class CreateMailProfileRequest < TencentCloud::Common::AbstractModel
         # @param ProfileInfo: 邮件配置内容。
@@ -574,6 +622,83 @@ module TencentCloud
             @Events = []
             params['Events'].each do |i|
               @Events << DiagHistoryEventItem.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBDiagReportTasks请求参数结构体
+      class DescribeDBDiagReportTasksRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 第一个任务的开始时间，用于范围查询，时间格式如：2019-09-10 12:13:14。
+        # @type StartTime: String
+        # @param EndTime: 最后一个任务的开始时间，用于范围查询，时间格式如：2019-09-10 12:13:14。
+        # @type EndTime: String
+        # @param InstanceIds: 实例ID数组，用于筛选指定实例的任务列表。
+        # @type InstanceIds: Array
+        # @param Sources: 任务的触发来源，支持的取值包括："DAILY_INSPECTION" - 实例巡检；"SCHEDULED" - 定时生成；"MANUAL" - 手动触发。
+        # @type Sources: Array
+        # @param HealthLevels: 报告的健康等级，支持的取值包括："HEALTH" - 健康；"SUB_HEALTH" - 亚健康；"RISK" - 危险；"HIGH_RISK" - 高危。
+        # @type HealthLevels: String
+        # @param TaskStatuses: 任务的状态，支持的取值包括："created" - 新建；"chosen" - 待执行； "running" - 执行中；"failed" - 失败；"finished" - 已完成。
+        # @type TaskStatuses: String
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认20。
+        # @type Limit: Integer
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :StartTime, :EndTime, :InstanceIds, :Sources, :HealthLevels, :TaskStatuses, :Offset, :Limit, :Product
+        
+        def initialize(starttime=nil, endtime=nil, instanceids=nil, sources=nil, healthlevels=nil, taskstatuses=nil, offset=nil, limit=nil, product=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @InstanceIds = instanceids
+          @Sources = sources
+          @HealthLevels = healthlevels
+          @TaskStatuses = taskstatuses
+          @Offset = offset
+          @Limit = limit
+          @Product = product
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @InstanceIds = params['InstanceIds']
+          @Sources = params['Sources']
+          @HealthLevels = params['HealthLevels']
+          @TaskStatuses = params['TaskStatuses']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeDBDiagReportTasks返回参数结构体
+      class DescribeDBDiagReportTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 任务总数目。
+        # @type TotalCount: Integer
+        # @param Tasks: 任务列表。
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tasks, :RequestId
+        
+        def initialize(totalcount=nil, tasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              @Tasks << HealthReportTask.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
@@ -1068,11 +1193,186 @@ module TencentCloud
         end
       end
 
+      # DescribeSlowLogUserHostStats请求参数结构体
+      class DescribeSlowLogUserHostStatsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param StartTime: 查询范围的开始时间，时间格式如：2019-09-10 12:13:14。
+        # @type StartTime: String
+        # @param EndTime: 查询范围的结束时间，时间格式如：2019-09-10 12:13:14。
+        # @type EndTime: String
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product
+        
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeSlowLogUserHostStats返回参数结构体
+      class DescribeSlowLogUserHostStatsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 来源地址数目。
+        # @type TotalCount: Integer
+        # @param Items: 各来源地址的慢日志占比详情列表。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << SlowLogHost.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopSpaceSchemaTimeSeries请求参数结构体
+      class DescribeTopSpaceSchemaTimeSeriesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Limit: 返回的Top库数量，最大值为100，默认为20。
+        # @type Limit: Integer
+        # @param SortBy: 筛选Top库所用的排序字段，可选字段包含DataLength、IndexLength、TotalLength、DataFree、FragRatio、TableRows、PhysicalFileSize（仅云数据库 MySQL实例支持），云数据库 MySQL实例默认为 PhysicalFileSize，其他产品实例默认为TotalLength。
+        # @type SortBy: String
+        # @param StartDate: 开始日期，最早为当日的前第29天，默认为截止日期的前第6天。
+        # @type StartDate: String
+        # @param EndDate: 截止日期，最早为当日的前第29天，默认为当日。
+        # @type EndDate: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :Limit, :SortBy, :StartDate, :EndDate, :Product
+        
+        def initialize(instanceid=nil, limit=nil, sortby=nil, startdate=nil, enddate=nil, product=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @SortBy = sortby
+          @StartDate = startdate
+          @EndDate = enddate
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @SortBy = params['SortBy']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeTopSpaceSchemaTimeSeries返回参数结构体
+      class DescribeTopSpaceSchemaTimeSeriesResponse < TencentCloud::Common::AbstractModel
+        # @param TopSpaceSchemaTimeSeries: 返回的Top库空间统计信息的时序数据列表。
+        # @type TopSpaceSchemaTimeSeries: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopSpaceSchemaTimeSeries, :RequestId
+        
+        def initialize(topspaceschematimeseries=nil, requestid=nil)
+          @TopSpaceSchemaTimeSeries = topspaceschematimeseries
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TopSpaceSchemaTimeSeries'].nil?
+            @TopSpaceSchemaTimeSeries = []
+            params['TopSpaceSchemaTimeSeries'].each do |i|
+              @TopSpaceSchemaTimeSeries << SchemaSpaceTimeSeries.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopSpaceSchemas请求参数结构体
+      class DescribeTopSpaceSchemasRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param Limit: 返回的Top库数量，最大值为100，默认为20。
+        # @type Limit: Integer
+        # @param SortBy: 筛选Top库所用的排序字段，可选字段包含DataLength、IndexLength、TotalLength、DataFree、FragRatio、TableRows、PhysicalFileSize（仅云数据库 MySQL实例支持），云数据库 MySQL实例默认为 PhysicalFileSize，其他产品实例默认为TotalLength。
+        # @type SortBy: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :Limit, :SortBy, :Product
+        
+        def initialize(instanceid=nil, limit=nil, sortby=nil, product=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @SortBy = sortby
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @SortBy = params['SortBy']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeTopSpaceSchemas返回参数结构体
+      class DescribeTopSpaceSchemasResponse < TencentCloud::Common::AbstractModel
+        # @param TopSpaceSchemas: 返回的Top库空间统计信息列表。
+        # @type TopSpaceSchemas: Array
+        # @param Timestamp: 采集库空间数据的时间戳（秒）。
+        # @type Timestamp: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopSpaceSchemas, :Timestamp, :RequestId
+        
+        def initialize(topspaceschemas=nil, timestamp=nil, requestid=nil)
+          @TopSpaceSchemas = topspaceschemas
+          @Timestamp = timestamp
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TopSpaceSchemas'].nil?
+            @TopSpaceSchemas = []
+            params['TopSpaceSchemas'].each do |i|
+              @TopSpaceSchemas << SchemaSpaceData.new.deserialize(i)
+            end
+          end
+          @Timestamp = params['Timestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopSpaceTableTimeSeries请求参数结构体
       class DescribeTopSpaceTableTimeSeriesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String
-        # @param Limit: 返回的Top表数量，最大值为20，默认为最大值。
+        # @param Limit: 返回的Top表数量，最大值为100，默认为20。
         # @type Limit: Integer
         # @param SortBy: 筛选Top表所用的排序字段，可选字段包含DataLength、IndexLength、TotalLength、DataFree、FragRatio、TableRows、PhysicalFileSize，默认为 PhysicalFileSize。
         # @type SortBy: String
@@ -1133,9 +1433,9 @@ module TencentCloud
       class DescribeTopSpaceTablesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID 。
         # @type InstanceId: String
-        # @param Limit: 返回的Top表数量，最大值为20，默认为最大值。
+        # @param Limit: 返回的Top表数量，最大值为100，默认为20。
         # @type Limit: Integer
-        # @param SortBy: 筛选Top表所用的排序字段，可选字段包含DataLength、IndexLength、TotalLength、DataFree、FragRatio、TableRows、PhysicalFileSize，默认为 PhysicalFileSize。
+        # @param SortBy: 筛选Top表所用的排序字段，可选字段包含DataLength、IndexLength、TotalLength、DataFree、FragRatio、TableRows、PhysicalFileSize（仅云数据库 MySQL实例支持），云数据库 MySQL实例默认为 PhysicalFileSize，其他产品实例默认为TotalLength。
         # @type SortBy: String
         # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         # @type Product: String
@@ -1313,6 +1613,54 @@ module TencentCloud
         end
       end
 
+      # 健康报告任务详情。
+      class HealthReportTask < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务请求 ID。
+        # @type AsyncRequestId: Integer
+        # @param Source: 任务的触发来源，支持的取值包括："DAILY_INSPECTION" - 实例巡检；"SCHEDULED" - 定时生成；"MANUAL" - 手动触发。
+        # @type Source: String
+        # @param Progress: 任务完成进度，单位%。
+        # @type Progress: Integer
+        # @param CreateTime: 任务创建时间。
+        # @type CreateTime: String
+        # @param StartTime: 任务开始执行时间。
+        # @type StartTime: String
+        # @param EndTime: 任务完成执行时间。
+        # @type EndTime: String
+        # @param InstanceInfo: 任务所属实例的基础信息。
+        # @type InstanceInfo: :class:`Tencentcloud::Dbbrain.v20191016.models.InstanceBasicInfo`
+        # @param HealthStatus: 健康报告中的健康信息。
+        # @type HealthStatus: :class:`Tencentcloud::Dbbrain.v20191016.models.HealthStatus`
+
+        attr_accessor :AsyncRequestId, :Source, :Progress, :CreateTime, :StartTime, :EndTime, :InstanceInfo, :HealthStatus
+        
+        def initialize(asyncrequestid=nil, source=nil, progress=nil, createtime=nil, starttime=nil, endtime=nil, instanceinfo=nil, healthstatus=nil)
+          @AsyncRequestId = asyncrequestid
+          @Source = source
+          @Progress = progress
+          @CreateTime = createtime
+          @StartTime = starttime
+          @EndTime = endtime
+          @InstanceInfo = instanceinfo
+          @HealthStatus = healthstatus
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @Source = params['Source']
+          @Progress = params['Progress']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceBasicInfo.new.deserialize(params['InstanceInfo'])
+          end
+          unless params['HealthStatus'].nil?
+            @HealthStatus = HealthStatus.new.deserialize(params['HealthStatus'])
+          end
+        end
+      end
+
       # 获取健康得分返回的详情。
       class HealthScoreInfo < TencentCloud::Common::AbstractModel
         # @param IssueTypes: 异常详情。
@@ -1343,6 +1691,76 @@ module TencentCloud
           @EventsTotalCount = params['EventsTotalCount']
           @HealthScore = params['HealthScore']
           @HealthLevel = params['HealthLevel']
+        end
+      end
+
+      # 实例健康详情。
+      class HealthStatus < TencentCloud::Common::AbstractModel
+        # @param HealthScore: 健康分数，满分100。
+        # @type HealthScore: Integer
+        # @param HealthLevel: 健康等级，取值包括："HEALTH" - 健康；"SUB_HEALTH" - 亚健康；"RISK"- 危险；"HIGH_RISK" - 高危。
+        # @type HealthLevel: String
+        # @param ScoreLost: 总扣分分数。
+        # @type ScoreLost: Integer
+        # @param ScoreDetails: 扣分详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScoreDetails: Array
+
+        attr_accessor :HealthScore, :HealthLevel, :ScoreLost, :ScoreDetails
+        
+        def initialize(healthscore=nil, healthlevel=nil, scorelost=nil, scoredetails=nil)
+          @HealthScore = healthscore
+          @HealthLevel = healthlevel
+          @ScoreLost = scorelost
+          @ScoreDetails = scoredetails
+        end
+
+        def deserialize(params)
+          @HealthScore = params['HealthScore']
+          @HealthLevel = params['HealthLevel']
+          @ScoreLost = params['ScoreLost']
+          unless params['ScoreDetails'].nil?
+            @ScoreDetails = []
+            params['ScoreDetails'].each do |i|
+              @ScoreDetails << ScoreDetail.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 实例基础信息。
+      class InstanceBasicInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param Vip: 实例内网IP。
+        # @type Vip: String
+        # @param Vport: 实例内网Port。
+        # @type Vport: Integer
+        # @param Product: 实例产品。
+        # @type Product: String
+        # @param EngineVersion: 实例引擎版本。
+        # @type EngineVersion: String
+
+        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :Product, :EngineVersion
+        
+        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, product=nil, engineversion=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Vip = vip
+          @Vport = vport
+          @Product = product
+          @EngineVersion = engineversion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @Product = params['Product']
+          @EngineVersion = params['EngineVersion']
         end
       end
 
@@ -1737,6 +2155,139 @@ module TencentCloud
         end
       end
 
+      # 库空间统计数据。
+      class SchemaSpaceData < TencentCloud::Common::AbstractModel
+        # @param TableSchema: 库名。
+        # @type TableSchema: String
+        # @param DataLength: 数据空间（MB）。
+        # @type DataLength: Float
+        # @param IndexLength: 索引空间（MB）。
+        # @type IndexLength: Float
+        # @param DataFree: 碎片空间（MB）。
+        # @type DataFree: Float
+        # @param TotalLength: 总使用空间（MB）。
+        # @type TotalLength: Float
+        # @param FragRatio: 碎片率（%）。
+        # @type FragRatio: Float
+        # @param TableRows: 行数。
+        # @type TableRows: Integer
+        # @param PhysicalFileSize: 库中所有表对应的独立物理文件大小加和（MB）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalFileSize: Float
+
+        attr_accessor :TableSchema, :DataLength, :IndexLength, :DataFree, :TotalLength, :FragRatio, :TableRows, :PhysicalFileSize
+        
+        def initialize(tableschema=nil, datalength=nil, indexlength=nil, datafree=nil, totallength=nil, fragratio=nil, tablerows=nil, physicalfilesize=nil)
+          @TableSchema = tableschema
+          @DataLength = datalength
+          @IndexLength = indexlength
+          @DataFree = datafree
+          @TotalLength = totallength
+          @FragRatio = fragratio
+          @TableRows = tablerows
+          @PhysicalFileSize = physicalfilesize
+        end
+
+        def deserialize(params)
+          @TableSchema = params['TableSchema']
+          @DataLength = params['DataLength']
+          @IndexLength = params['IndexLength']
+          @DataFree = params['DataFree']
+          @TotalLength = params['TotalLength']
+          @FragRatio = params['FragRatio']
+          @TableRows = params['TableRows']
+          @PhysicalFileSize = params['PhysicalFileSize']
+        end
+      end
+
+      # 库空间时序数据
+      class SchemaSpaceTimeSeries < TencentCloud::Common::AbstractModel
+        # @param TableSchema: 库名
+        # @type TableSchema: String
+        # @param SeriesData: 单位时间间隔内的空间指标数据。
+        # @type SeriesData: :class:`Tencentcloud::Dbbrain.v20191016.models.MonitorMetricSeriesData`
+
+        attr_accessor :TableSchema, :SeriesData
+        
+        def initialize(tableschema=nil, seriesdata=nil)
+          @TableSchema = tableschema
+          @SeriesData = seriesdata
+        end
+
+        def deserialize(params)
+          @TableSchema = params['TableSchema']
+          unless params['SeriesData'].nil?
+            @SeriesData = MonitorMetricSeriesData.new.deserialize(params['SeriesData'])
+          end
+        end
+      end
+
+      # 扣分详情。
+      class ScoreDetail < TencentCloud::Common::AbstractModel
+        # @param IssueType: 扣分项分类，取值包括：可用性、可维护性、性能及可靠性。
+        # @type IssueType: String
+        # @param ScoreLost: 扣分总分。
+        # @type ScoreLost: Integer
+        # @param ScoreLostMax: 扣分总分上限。
+        # @type ScoreLostMax: Integer
+        # @param Items: 扣分项列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :IssueType, :ScoreLost, :ScoreLostMax, :Items
+        
+        def initialize(issuetype=nil, scorelost=nil, scorelostmax=nil, items=nil)
+          @IssueType = issuetype
+          @ScoreLost = scorelost
+          @ScoreLostMax = scorelostmax
+          @Items = items
+        end
+
+        def deserialize(params)
+          @IssueType = params['IssueType']
+          @ScoreLost = params['ScoreLost']
+          @ScoreLostMax = params['ScoreLostMax']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              @Items << ScoreItem.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 诊断扣分项。
+      class ScoreItem < TencentCloud::Common::AbstractModel
+        # @param DiagItem: 异常诊断项名称。
+        # @type DiagItem: String
+        # @param IssueType: 诊断项分类，取值包括：可用性、可维护性、性能及可靠性。
+        # @type IssueType: String
+        # @param TopSeverity: 健康等级，取值包括：信息、提示、告警、严重、致命。
+        # @type TopSeverity: String
+        # @param Count: 该异常诊断项出现次数。
+        # @type Count: Integer
+        # @param ScoreLost: 扣分分数。
+        # @type ScoreLost: Integer
+
+        attr_accessor :DiagItem, :IssueType, :TopSeverity, :Count, :ScoreLost
+        
+        def initialize(diagitem=nil, issuetype=nil, topseverity=nil, count=nil, scorelost=nil)
+          @DiagItem = diagitem
+          @IssueType = issuetype
+          @TopSeverity = topseverity
+          @Count = count
+          @ScoreLost = scorelost
+        end
+
+        def deserialize(params)
+          @DiagItem = params['DiagItem']
+          @IssueType = params['IssueType']
+          @TopSeverity = params['TopSeverity']
+          @Count = params['Count']
+          @ScoreLost = params['ScoreLost']
+        end
+      end
+
       # 安全审计日志导出任务信息
       class SecLogExportTaskInfo < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 异步任务Id。
@@ -1795,6 +2346,30 @@ module TencentCloud
         end
       end
 
+      # 慢日志来源地址详情。
+      class SlowLogHost < TencentCloud::Common::AbstractModel
+        # @param UserHost: 来源地址。
+        # @type UserHost: String
+        # @param Ratio: 该来源地址的慢日志数目占总数目的比例，单位%。
+        # @type Ratio: Float
+        # @param Count: 该来源地址的慢日志数目。
+        # @type Count: Integer
+
+        attr_accessor :UserHost, :Ratio, :Count
+        
+        def initialize(userhost=nil, ratio=nil, count=nil)
+          @UserHost = userhost
+          @Ratio = ratio
+          @Count = count
+        end
+
+        def deserialize(params)
+          @UserHost = params['UserHost']
+          @Ratio = params['Ratio']
+          @Count = params['Count']
+        end
+      end
+
       # 慢日志TopSql
       class SlowLogTopSqlItem < TencentCloud::Common::AbstractModel
         # @param LockTime: sql总锁等待时间
@@ -1837,10 +2412,18 @@ module TencentCloud
         # @type RowsExaminedRatio: Float
         # @param RowsSentRatio: 总返回行数占比
         # @type RowsSentRatio: Float
+        # @param QueryTimeAvg: 平均执行时间
+        # @type QueryTimeAvg: Float
+        # @param RowsSentAvg: 平均返回行数
+        # @type RowsSentAvg: Float
+        # @param LockTimeAvg: 平均锁等待时间
+        # @type LockTimeAvg: Float
+        # @param RowsExaminedAvg: 平均扫描行数
+        # @type RowsExaminedAvg: Float
 
-        attr_accessor :LockTime, :LockTimeMax, :LockTimeMin, :RowsExamined, :RowsExaminedMax, :RowsExaminedMin, :QueryTime, :QueryTimeMax, :QueryTimeMin, :RowsSent, :RowsSentMax, :RowsSentMin, :ExecTimes, :SqlTemplate, :SqlText, :Schema, :QueryTimeRatio, :LockTimeRatio, :RowsExaminedRatio, :RowsSentRatio
+        attr_accessor :LockTime, :LockTimeMax, :LockTimeMin, :RowsExamined, :RowsExaminedMax, :RowsExaminedMin, :QueryTime, :QueryTimeMax, :QueryTimeMin, :RowsSent, :RowsSentMax, :RowsSentMin, :ExecTimes, :SqlTemplate, :SqlText, :Schema, :QueryTimeRatio, :LockTimeRatio, :RowsExaminedRatio, :RowsSentRatio, :QueryTimeAvg, :RowsSentAvg, :LockTimeAvg, :RowsExaminedAvg
         
-        def initialize(locktime=nil, locktimemax=nil, locktimemin=nil, rowsexamined=nil, rowsexaminedmax=nil, rowsexaminedmin=nil, querytime=nil, querytimemax=nil, querytimemin=nil, rowssent=nil, rowssentmax=nil, rowssentmin=nil, exectimes=nil, sqltemplate=nil, sqltext=nil, schema=nil, querytimeratio=nil, locktimeratio=nil, rowsexaminedratio=nil, rowssentratio=nil)
+        def initialize(locktime=nil, locktimemax=nil, locktimemin=nil, rowsexamined=nil, rowsexaminedmax=nil, rowsexaminedmin=nil, querytime=nil, querytimemax=nil, querytimemin=nil, rowssent=nil, rowssentmax=nil, rowssentmin=nil, exectimes=nil, sqltemplate=nil, sqltext=nil, schema=nil, querytimeratio=nil, locktimeratio=nil, rowsexaminedratio=nil, rowssentratio=nil, querytimeavg=nil, rowssentavg=nil, locktimeavg=nil, rowsexaminedavg=nil)
           @LockTime = locktime
           @LockTimeMax = locktimemax
           @LockTimeMin = locktimemin
@@ -1861,6 +2444,10 @@ module TencentCloud
           @LockTimeRatio = locktimeratio
           @RowsExaminedRatio = rowsexaminedratio
           @RowsSentRatio = rowssentratio
+          @QueryTimeAvg = querytimeavg
+          @RowsSentAvg = rowssentavg
+          @LockTimeAvg = locktimeavg
+          @RowsExaminedAvg = rowsexaminedavg
         end
 
         def deserialize(params)
@@ -1884,6 +2471,10 @@ module TencentCloud
           @LockTimeRatio = params['LockTimeRatio']
           @RowsExaminedRatio = params['RowsExaminedRatio']
           @RowsSentRatio = params['RowsSentRatio']
+          @QueryTimeAvg = params['QueryTimeAvg']
+          @RowsSentAvg = params['RowsSentAvg']
+          @LockTimeAvg = params['LockTimeAvg']
+          @RowsExaminedAvg = params['RowsExaminedAvg']
         end
       end
 

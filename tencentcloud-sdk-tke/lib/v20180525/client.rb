@@ -625,7 +625,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除一个云原生Promehtheus配置模板
+        # 删除一个云原生Prometheus配置模板
 
         # @param request: Request instance for DeletePrometheusTemplate.
         # @type request: :class:`Tencentcloud::tke::V20180525::DeletePrometheusTemplateRequest`

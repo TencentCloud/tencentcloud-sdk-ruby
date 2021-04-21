@@ -580,6 +580,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeInstanceNodeInfo）用于获取数据库实例主备节点信息
+
+        # @param request: Request instance for DescribeInstanceNodeInfo.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeInstanceNodeInfoRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeInstanceNodeInfoResponse`
+        def DescribeInstanceNodeInfo(request)
+          body = send_request('DescribeInstanceNodeInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceNodeInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeLogFileRetentionPeriod)用于查看数据库备份日志的备份天数的设置情况。
 
         # @param request: Request instance for DescribeLogFileRetentionPeriod.

@@ -1802,6 +1802,59 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceNodeInfo请求参数结构体
+      class DescribeInstanceNodeInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如tdsql-6ltok4u9
+        # @type InstanceId: String
+        # @param Limit: 一次最多返回多少条数据。默认为无穷大，返回符合要求的所有数据
+        # @type Limit: Integer
+        # @param Offset: 返回数据的偏移量，默认为0
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Limit, :Offset
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeInstanceNodeInfo返回参数结构体
+      class DescribeInstanceNodeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 节点总个数
+        # @type TotalCount: Integer
+        # @param NodesInfo: 节点信息
+        # @type NodesInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NodesInfo, :RequestId
+        
+        def initialize(totalcount=nil, nodesinfo=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NodesInfo = nodesinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NodesInfo'].nil?
+            @NodesInfo = []
+            params['NodesInfo'].each do |i|
+              @NodesInfo << NodeInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogFileRetentionPeriod请求参数结构体
       class DescribeLogFileRetentionPeriodRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。
@@ -2795,6 +2848,26 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Data = params['Data']
+        end
+      end
+
+      # 描述实例的各个DB节点信息
+      class NodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeId: DB节点ID
+        # @type NodeId: String
+        # @param Role: DB节点角色，取值为master或者slave
+        # @type Role: String
+
+        attr_accessor :NodeId, :Role
+        
+        def initialize(nodeid=nil, role=nil)
+          @NodeId = nodeid
+          @Role = role
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @Role = params['Role']
         end
       end
 

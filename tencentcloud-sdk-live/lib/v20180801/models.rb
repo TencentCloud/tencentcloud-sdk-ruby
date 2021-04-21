@@ -3336,17 +3336,21 @@ module TencentCloud
         # 取值：1~100之前的任意整数。
         # 默认值：10。
         # @type PageSize: Integer
+        # @param StreamName: 搜索的推流 id 名称。
+        # @type StreamName: String
 
-        attr_accessor :PageNum, :PageSize
+        attr_accessor :PageNum, :PageSize, :StreamName
         
-        def initialize(pagenum=nil, pagesize=nil)
+        def initialize(pagenum=nil, pagesize=nil, streamname=nil)
           @PageNum = pagenum
           @PageSize = pagesize
+          @StreamName = streamname
         end
 
         def deserialize(params)
           @PageNum = params['PageNum']
           @PageSize = params['PageSize']
+          @StreamName = params['StreamName']
         end
       end
 

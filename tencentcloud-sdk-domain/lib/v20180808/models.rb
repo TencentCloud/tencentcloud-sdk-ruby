@@ -356,21 +356,24 @@ module TencentCloud
         # @type Period: Integer
         # @param Domains: 批量购买的域名,最多为4000个
         # @type Domains: Array
-        # @param PayMode: 付费模式 0手动在线付费，1使用余额付费
+        # @param PayMode: 付费模式 0手动在线付费，1使用余额付费，2使用特惠包
         # @type PayMode: Integer
         # @param AutoRenewFlag: 自动续费开关。有两个可选值：
         # 0 表示关闭，不自动续费（默认值）
         # 1 表示开启，将自动续费
         # @type AutoRenewFlag: Integer
+        # @param PackageResourceId: 使用的特惠包ID，PayMode为2时必填
+        # @type PackageResourceId: String
 
-        attr_accessor :TemplateId, :Period, :Domains, :PayMode, :AutoRenewFlag
+        attr_accessor :TemplateId, :Period, :Domains, :PayMode, :AutoRenewFlag, :PackageResourceId
         
-        def initialize(templateid=nil, period=nil, domains=nil, paymode=nil, autorenewflag=nil)
+        def initialize(templateid=nil, period=nil, domains=nil, paymode=nil, autorenewflag=nil, packageresourceid=nil)
           @TemplateId = templateid
           @Period = period
           @Domains = domains
           @PayMode = paymode
           @AutoRenewFlag = autorenewflag
+          @PackageResourceId = packageresourceid
         end
 
         def deserialize(params)
@@ -379,6 +382,7 @@ module TencentCloud
           @Domains = params['Domains']
           @PayMode = params['PayMode']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @PackageResourceId = params['PackageResourceId']
         end
       end
 

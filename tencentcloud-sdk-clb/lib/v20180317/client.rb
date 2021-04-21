@@ -855,7 +855,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询一个地域的负载均衡实例列表
+        # 查询一个地域的负载均衡实例列表。
 
         # @param request: Request instance for DescribeLoadBalancers.
         # @type request: :class:`Tencentcloud::clb::V20180317::DescribeLoadBalancersRequest`
