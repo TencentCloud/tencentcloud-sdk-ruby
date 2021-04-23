@@ -64,7 +64,7 @@ module TencentCloud
       class CreateTranscodeRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
         # @type SdkAppId: Integer
-        # @param Url: 需要进行转码文件地址
+        # @param Url: 经过URL编码后的转码文件地址。URL 编码会将字符转换为可通过因特网传输的格式，比如文档地址为http://example.com/测试.pdf，经过URL编码之后为http://example.com/%E6%B5%8B%E8%AF%95.pdf。为了提高URL解析的成功率，请对URL进行编码。
         # @type Url: String
         # @param IsStaticPPT: 是否为静态PPT，默认为False；
         # 如果IsStaticPPT为False，后缀名为.ppt或.pptx的文档会动态转码成HTML5页面，其他格式的文档会静态转码成图片；如果IsStaticPPT为True，所有格式的文档会静态转码成图片；
@@ -372,6 +372,73 @@ module TencentCloud
             end
           end
           @ReplayUrl = params['ReplayUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQualityMetrics请求参数结构体
+      class DescribeQualityMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 白板应用的SdkAppId
+        # @type SdkAppId: Integer
+        # @param StartTime: 开始时间，Unix时间戳，单位秒，时间跨度不能超过7天
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间，Unix时间戳，单位秒，时间跨度不能超过7天
+        # @type EndTime: Integer
+        # @param Metric: 查询的指标，目前支持以下值
+        #   - image_load_total_count: 图片加载总数
+        #   - image_load_fail_count: 图片加载失败数量
+        #   - image_load_success_rate: 图片加载成功率
+        #   - ppt_load_total_count: PPT加载总数
+        #   - ppt_load_fail_count: PPT加载失败总数
+        #   - ppt_load_success_rate: PPT加载成功率
+        # @type Metric: String
+        # @param Interval: 聚合的时间维度，目前只支持1小时，输入值为"1h"
+        # @type Interval: String
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime, :Metric, :Interval
+        
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil, metric=nil, interval=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Metric = metric
+          @Interval = interval
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Metric = params['Metric']
+          @Interval = params['Interval']
+        end
+      end
+
+      # DescribeQualityMetrics返回参数结构体
+      class DescribeQualityMetricsResponse < TencentCloud::Common::AbstractModel
+        # @param Metric: 输入的查询指标
+        # @type Metric: String
+        # @param Content: 时间序列
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Metric, :Content, :RequestId
+        
+        def initialize(metric=nil, content=nil, requestid=nil)
+          @Metric = metric
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Metric = params['Metric']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              @Content << TimeValue.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1669,6 +1736,26 @@ module TencentCloud
           @InputStreamId = params['InputStreamId']
           @BackgroundColor = params['BackgroundColor']
           @FillMode = params['FillMode']
+        end
+      end
+
+      # 查询指标返回的时间序列
+      class TimeValue < TencentCloud::Common::AbstractModel
+        # @param Time: Unix时间戳，单位秒
+        # @type Time: Integer
+        # @param Value: 查询指标对应当前时间的值
+        # @type Value: Float
+
+        attr_accessor :Time, :Value
+        
+        def initialize(time=nil, value=nil)
+          @Time = time
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Value = params['Value']
         end
       end
 

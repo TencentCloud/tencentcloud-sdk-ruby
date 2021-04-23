@@ -240,14 +240,17 @@ module TencentCloud
         # @type Role: String
         # @param ForceBind: 是否踢掉之前的主人，true：踢掉；false：不踢掉。当role为guest时，可以不填
         # @type ForceBind: Boolean
+        # @param Nick: 设备昵称
+        # @type Nick: String
 
-        attr_accessor :AccessId, :Tid, :Role, :ForceBind
+        attr_accessor :AccessId, :Tid, :Role, :ForceBind, :Nick
         
-        def initialize(accessid=nil, tid=nil, role=nil, forcebind=nil)
+        def initialize(accessid=nil, tid=nil, role=nil, forcebind=nil, nick=nil)
           @AccessId = accessid
           @Tid = tid
           @Role = role
           @ForceBind = forcebind
+          @Nick = nick
         end
 
         def deserialize(params)
@@ -255,6 +258,7 @@ module TencentCloud
           @Tid = params['Tid']
           @Role = params['Role']
           @ForceBind = params['ForceBind']
+          @Nick = params['Nick']
         end
       end
 
@@ -689,6 +693,10 @@ module TencentCloud
         # @param EndTime: 服务失效时间
         # @type EndTime: Integer
         # @param Status: 服务状态
+        # 1：正常使用中
+        # 2：待续费。设备云存服务已到期，但是历史云存数据未过期。续费后仍可查看这些历史数据。
+        # 3：已过期。查询不到设备保存在云端的数据。
+        # 4：等待服务生效。
         # @type Status: Integer
         # @param Data: 新增的云存定单列表
         # @type Data: Array
@@ -812,19 +820,23 @@ module TencentCloud
         # @type UniqueId: String
         # @param TtlMinutes: Token的TTL(time to alive)分钟数
         # @type TtlMinutes: Integer
+        # @param OldAccessToken: 旧的AccessToken。续期Token时，此参数为必须。
+        # @type OldAccessToken: String
 
-        attr_accessor :AccessId, :UniqueId, :TtlMinutes
+        attr_accessor :AccessId, :UniqueId, :TtlMinutes, :OldAccessToken
         
-        def initialize(accessid=nil, uniqueid=nil, ttlminutes=nil)
+        def initialize(accessid=nil, uniqueid=nil, ttlminutes=nil, oldaccesstoken=nil)
           @AccessId = accessid
           @UniqueId = uniqueid
           @TtlMinutes = ttlminutes
+          @OldAccessToken = oldaccesstoken
         end
 
         def deserialize(params)
           @AccessId = params['AccessId']
           @UniqueId = params['UniqueId']
           @TtlMinutes = params['TtlMinutes']
+          @OldAccessToken = params['OldAccessToken']
         end
       end
 
@@ -1216,6 +1228,10 @@ module TencentCloud
         # @param EndTime: 服务失效时间
         # @type EndTime: Integer
         # @param Status: 服务状态
+        # 1：正常使用中
+        # 2：待续费。设备云存服务已到期，但是历史云存数据未过期。续费后仍可查看这些历史数据。
+        # 3：已过期。查询不到设备保存在云端的数据。
+        # 4：等待服务生效。
         # @type Status: Integer
         # @param Data: 新增的云存定单列表
         # @type Data: Array
@@ -2222,6 +2238,10 @@ module TencentCloud
         # @param EndTime: 服务失效时间
         # @type EndTime: Integer
         # @param Status: 服务状态
+        # 1：正常使用中
+        # 2：待续费。设备云存服务已到期，但是历史云存数据未过期。续费后仍可查看这些历史数据。
+        # 3：已过期。查询不到设备保存在云端的数据。
+        # 4：等待服务生效。
         # @type Status: Integer
         # @param Data: 云存定单列表
         # @type Data: Array
@@ -3295,6 +3315,10 @@ module TencentCloud
         # @param EndTime: 服务失效时间
         # @type EndTime: Integer
         # @param Status: 服务状态
+        # 1：正常使用中
+        # 2：待续费。设备云存服务已到期，但是历史云存数据未过期。续费后仍可查看这些历史数据。
+        # 3：已过期。查询不到设备保存在云端的数据。
+        # 4：等待服务生效。
         # @type Status: Integer
         # @param Data: 有效云存定单列表
         # @type Data: Array
@@ -3633,6 +3657,7 @@ module TencentCloud
         # 3.控制状态变更
         # 4.状态信息变更
         # 5.事件发布
+        # 6.系统事件
         # @type MsgType: String
         # @param Topic: 消息队列主题，不超过32字符
         # @type Topic: String
@@ -3685,6 +3710,12 @@ module TencentCloud
         # @param PkgId: 云存套餐ID
         # @type PkgId: String
         # @param Status: 定单服务状态
+        # 1;订单正在使用。
+        # 2:订单未开始。
+        # 3:订单已经使用过，现在暂时未开始使用(该订单从其他服务转移而来)。
+        # 4:订单已过期。
+        # 5:订单已被退订。
+        # 6:定单已被转移到其他云存服务。
         # @type Status: Integer
         # @param StartTime: 定单服务生效时间
         # @type StartTime: Integer

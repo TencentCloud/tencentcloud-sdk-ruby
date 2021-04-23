@@ -17,6 +17,123 @@
 module TencentCloud
   module Apigateway
     module V20180808
+      # API文档基本信息
+      class APIDoc < TencentCloud::Common::AbstractModel
+        # @param ApiDocId: API文档ID
+        # @type ApiDocId: String
+        # @param ApiDocName: API文档名称
+        # @type ApiDocName: String
+        # @param ApiDocStatus: API文档构建状态
+        # @type ApiDocStatus: String
+
+        attr_accessor :ApiDocId, :ApiDocName, :ApiDocStatus
+        
+        def initialize(apidocid=nil, apidocname=nil, apidocstatus=nil)
+          @ApiDocId = apidocid
+          @ApiDocName = apidocname
+          @ApiDocStatus = apidocstatus
+        end
+
+        def deserialize(params)
+          @ApiDocId = params['ApiDocId']
+          @ApiDocName = params['ApiDocName']
+          @ApiDocStatus = params['ApiDocStatus']
+        end
+      end
+
+      # API文档详细信息
+      class APIDocInfo < TencentCloud::Common::AbstractModel
+        # @param ApiDocId: API文档ID
+        # @type ApiDocId: String
+        # @param ApiDocName: API文档名称
+        # @type ApiDocName: String
+        # @param ApiDocStatus: API文档构建状态
+        # @type ApiDocStatus: String
+        # @param ApiCount: API文档API数量
+        # @type ApiCount: Integer
+        # @param ViewCount: API文档查看次数
+        # @type ViewCount: Integer
+        # @param ReleaseCount: API文档发布次数
+        # @type ReleaseCount: Integer
+        # @param ApiDocUri: API文档访问URI
+        # @type ApiDocUri: String
+        # @param SharePassword: API文档分享密码
+        # @type SharePassword: String
+        # @param UpdatedTime: API文档更新时间
+        # @type UpdatedTime: String
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param Environment: 环境信息
+        # @type Environment: String
+        # @param ApiIds: 生成API文档的API ID
+        # @type ApiIds: Array
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param ApiNames: 生成API文档的API名称
+        # @type ApiNames: Array
+
+        attr_accessor :ApiDocId, :ApiDocName, :ApiDocStatus, :ApiCount, :ViewCount, :ReleaseCount, :ApiDocUri, :SharePassword, :UpdatedTime, :ServiceId, :Environment, :ApiIds, :ServiceName, :ApiNames
+        
+        def initialize(apidocid=nil, apidocname=nil, apidocstatus=nil, apicount=nil, viewcount=nil, releasecount=nil, apidocuri=nil, sharepassword=nil, updatedtime=nil, serviceid=nil, environment=nil, apiids=nil, servicename=nil, apinames=nil)
+          @ApiDocId = apidocid
+          @ApiDocName = apidocname
+          @ApiDocStatus = apidocstatus
+          @ApiCount = apicount
+          @ViewCount = viewcount
+          @ReleaseCount = releasecount
+          @ApiDocUri = apidocuri
+          @SharePassword = sharepassword
+          @UpdatedTime = updatedtime
+          @ServiceId = serviceid
+          @Environment = environment
+          @ApiIds = apiids
+          @ServiceName = servicename
+          @ApiNames = apinames
+        end
+
+        def deserialize(params)
+          @ApiDocId = params['ApiDocId']
+          @ApiDocName = params['ApiDocName']
+          @ApiDocStatus = params['ApiDocStatus']
+          @ApiCount = params['ApiCount']
+          @ViewCount = params['ViewCount']
+          @ReleaseCount = params['ReleaseCount']
+          @ApiDocUri = params['ApiDocUri']
+          @SharePassword = params['SharePassword']
+          @UpdatedTime = params['UpdatedTime']
+          @ServiceId = params['ServiceId']
+          @Environment = params['Environment']
+          @ApiIds = params['ApiIds']
+          @ServiceName = params['ServiceName']
+          @ApiNames = params['ApiNames']
+        end
+      end
+
+      # API文档列表
+      class APIDocs < TencentCloud::Common::AbstractModel
+        # @param TotalCount: API文档数量
+        # @type TotalCount: Integer
+        # @param APIDocSet: API文档基本信息
+        # @type APIDocSet: Array
+
+        attr_accessor :TotalCount, :APIDocSet
+        
+        def initialize(totalcount=nil, apidocset=nil)
+          @TotalCount = totalcount
+          @APIDocSet = apidocset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['APIDocSet'].nil?
+            @APIDocSet = []
+            params['APIDocSet'].each do |i|
+              @APIDocSet << APIDoc.new.deserialize(i)
+            end
+          end
+        end
+      end
+
       # api环境绑定策略
       class ApiEnvironmentStrategy < TencentCloud::Common::AbstractModel
         # @param ApiId: API唯一ID。
@@ -1006,6 +1123,42 @@ module TencentCloud
         end
       end
 
+      # BuildAPIDoc请求参数结构体
+      class BuildAPIDocRequest < TencentCloud::Common::AbstractModel
+        # @param ApiDocId: API文档ID
+        # @type ApiDocId: String
+
+        attr_accessor :ApiDocId
+        
+        def initialize(apidocid=nil)
+          @ApiDocId = apidocid
+        end
+
+        def deserialize(params)
+          @ApiDocId = params['ApiDocId']
+        end
+      end
+
+      # BuildAPIDoc返回参数结构体
+      class BuildAPIDocResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 常量参数
       class ConstantParameter < TencentCloud::Common::AbstractModel
         # @param Name: 常量参数名称。只有 ServiceType 是 HTTP 才会用到此参数。
@@ -1031,6 +1184,56 @@ module TencentCloud
           @Desc = params['Desc']
           @Position = params['Position']
           @DefaultValue = params['DefaultValue']
+        end
+      end
+
+      # CreateAPIDoc请求参数结构体
+      class CreateAPIDocRequest < TencentCloud::Common::AbstractModel
+        # @param ApiDocName: API文档名称
+        # @type ApiDocName: String
+        # @param ServiceId: 服务名称
+        # @type ServiceId: String
+        # @param Environment: 环境名称
+        # @type Environment: String
+        # @param ApiIds: 生成文档的API列表
+        # @type ApiIds: Array
+
+        attr_accessor :ApiDocName, :ServiceId, :Environment, :ApiIds
+        
+        def initialize(apidocname=nil, serviceid=nil, environment=nil, apiids=nil)
+          @ApiDocName = apidocname
+          @ServiceId = serviceid
+          @Environment = environment
+          @ApiIds = apiids
+        end
+
+        def deserialize(params)
+          @ApiDocName = params['ApiDocName']
+          @ServiceId = params['ServiceId']
+          @Environment = params['Environment']
+          @ApiIds = params['ApiIds']
+        end
+      end
+
+      # CreateAPIDoc返回参数结构体
+      class CreateAPIDocResponse < TencentCloud::Common::AbstractModel
+        # @param Result: API文档基本信息
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.APIDoc`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = APIDoc.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1103,7 +1306,7 @@ module TencentCloud
         # @type ApiDesc: String
         # @param ApiType: API 类型，支持NORMAL（普通API）和TSF（微服务API），默认为NORMAL。
         # @type ApiType: String
-        # @param AuthType: API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH。默认为NONE。
+        # @param AuthType: API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH、APP（应用认证）。默认为NONE。
         # @type AuthType: String
         # @param EnableCORS: 是否开启跨域。
         # @type EnableCORS: Boolean
@@ -1449,10 +1652,12 @@ module TencentCloud
         # @type AppIdType: String
         # @param Tags: 标签。
         # @type Tags: Array
+        # @param InstanceId: 独享实例id
+        # @type InstanceId: String
 
-        attr_accessor :ServiceName, :Protocol, :ServiceDesc, :ExclusiveSetName, :NetTypes, :IpVersion, :SetServerName, :AppIdType, :Tags
+        attr_accessor :ServiceName, :Protocol, :ServiceDesc, :ExclusiveSetName, :NetTypes, :IpVersion, :SetServerName, :AppIdType, :Tags, :InstanceId
         
-        def initialize(servicename=nil, protocol=nil, servicedesc=nil, exclusivesetname=nil, nettypes=nil, ipversion=nil, setservername=nil, appidtype=nil, tags=nil)
+        def initialize(servicename=nil, protocol=nil, servicedesc=nil, exclusivesetname=nil, nettypes=nil, ipversion=nil, setservername=nil, appidtype=nil, tags=nil, instanceid=nil)
           @ServiceName = servicename
           @Protocol = protocol
           @ServiceDesc = servicedesc
@@ -1462,6 +1667,7 @@ module TencentCloud
           @SetServerName = setservername
           @AppIdType = appidtype
           @Tags = tags
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -1479,6 +1685,7 @@ module TencentCloud
               @Tags << Tag.new.deserialize(i)
             end
           end
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -1578,6 +1785,42 @@ module TencentCloud
           unless params['Result'].nil?
             @Result = UsagePlanInfo.new.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAPIDoc请求参数结构体
+      class DeleteAPIDocRequest < TencentCloud::Common::AbstractModel
+        # @param ApiDocId: API文档ID
+        # @type ApiDocId: String
+
+        attr_accessor :ApiDocId
+        
+        def initialize(apidocid=nil)
+          @ApiDocId = apidocid
+        end
+
+        def deserialize(params)
+          @ApiDocId = params['ApiDocId']
+        end
+      end
+
+      # DeleteAPIDoc返回参数结构体
+      class DeleteAPIDocResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -1968,6 +2211,86 @@ module TencentCloud
           @Tags = params['Tags']
           @Path = params['Path']
           @Method = params['Method']
+        end
+      end
+
+      # DescribeAPIDocDetail请求参数结构体
+      class DescribeAPIDocDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ApiDocId: API文档ID
+        # @type ApiDocId: String
+
+        attr_accessor :ApiDocId
+        
+        def initialize(apidocid=nil)
+          @ApiDocId = apidocid
+        end
+
+        def deserialize(params)
+          @ApiDocId = params['ApiDocId']
+        end
+      end
+
+      # DescribeAPIDocDetail返回参数结构体
+      class DescribeAPIDocDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Result: API文档详细信息
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.APIDocInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = APIDocInfo.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAPIDocs请求参数结构体
+      class DescribeAPIDocsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+        
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeAPIDocs返回参数结构体
+      class DescribeAPIDocsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: API文档列表信息
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.APIDocs`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = APIDocs.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2882,12 +3205,21 @@ module TencentCloud
         # @param Tags: 服务绑定的标签。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param InstanceId: 独享实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 独享实例name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param SetType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :ExclusiveSetName, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :RequestId
+        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :ExclusiveSetName, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :InstanceId, :InstanceName, :SetType, :RequestId
         
-        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, exclusivesetname=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, requestid=nil)
+        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, exclusivesetname=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, instanceid=nil, instancename=nil, settype=nil, requestid=nil)
           @ServiceId = serviceid
           @AvailableEnvironments = availableenvironments
           @ServiceName = servicename
@@ -2909,6 +3241,9 @@ module TencentCloud
           @UserType = usertype
           @SetId = setid
           @Tags = tags
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @SetType = settype
           @RequestId = requestid
         end
 
@@ -2949,6 +3284,9 @@ module TencentCloud
               @Tags << Tag.new.deserialize(i)
             end
           end
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @SetType = params['SetType']
           @RequestId = params['RequestId']
         end
       end
@@ -3094,7 +3432,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为 0。
         # @type Offset: Integer
-        # @param Filters: 过滤条件。支持ServiceId、ServiceName、NotUsagePlanId、Environment、IpVersion。
+        # @param Filters: 过滤条件。支持ServiceId、ServiceName、NotUsagePlanId、Environment、IpVersion。InstanceId
         # @type Filters: Array
 
         attr_accessor :Limit, :Offset, :Filters
@@ -3518,17 +3856,22 @@ module TencentCloud
         # @type EnvironmentName: String
         # @param Quota: 限流值
         # @type Quota: Integer
+        # @param MaxQuota: 限流最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxQuota: Integer
 
-        attr_accessor :EnvironmentName, :Quota
+        attr_accessor :EnvironmentName, :Quota, :MaxQuota
         
-        def initialize(environmentname=nil, quota=nil)
+        def initialize(environmentname=nil, quota=nil, maxquota=nil)
           @EnvironmentName = environmentname
           @Quota = quota
+          @MaxQuota = maxquota
         end
 
         def deserialize(params)
           @EnvironmentName = params['EnvironmentName']
           @Quota = params['Quota']
+          @MaxQuota = params['MaxQuota']
         end
       end
 
@@ -3894,6 +4237,60 @@ module TencentCloud
         end
       end
 
+      # ModifyAPIDoc请求参数结构体
+      class ModifyAPIDocRequest < TencentCloud::Common::AbstractModel
+        # @param ApiDocId: API文档ID
+        # @type ApiDocId: String
+        # @param ApiDocName: API文档名称
+        # @type ApiDocName: String
+        # @param ServiceId: 服务名称
+        # @type ServiceId: String
+        # @param Environment: 环境名称
+        # @type Environment: String
+        # @param ApiIds: 生成文档的API列表
+        # @type ApiIds: Array
+
+        attr_accessor :ApiDocId, :ApiDocName, :ServiceId, :Environment, :ApiIds
+        
+        def initialize(apidocid=nil, apidocname=nil, serviceid=nil, environment=nil, apiids=nil)
+          @ApiDocId = apidocid
+          @ApiDocName = apidocname
+          @ServiceId = serviceid
+          @Environment = environment
+          @ApiIds = apiids
+        end
+
+        def deserialize(params)
+          @ApiDocId = params['ApiDocId']
+          @ApiDocName = params['ApiDocName']
+          @ServiceId = params['ServiceId']
+          @Environment = params['Environment']
+          @ApiIds = params['ApiIds']
+        end
+      end
+
+      # ModifyAPIDoc返回参数结构体
+      class ModifyAPIDocResponse < TencentCloud::Common::AbstractModel
+        # @param Result: API文档基本信息
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.APIDoc`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = APIDoc.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyApiEnvironmentStrategy请求参数结构体
       class ModifyApiEnvironmentStrategyRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务唯一ID。
@@ -4007,7 +4404,7 @@ module TencentCloud
         # @type ApiDesc: String
         # @param ApiType: API 类型，支持NORMAL和TSF，默认为NORMAL。
         # @type ApiType: String
-        # @param AuthType: API 鉴权类型。支持SECRET、NONE、OAUTH。默认为NONE。
+        # @param AuthType: API 鉴权类型。支持SECRET、NONE、OAUTH、APP。默认为NONE。
         # @type AuthType: String
         # @param AuthRequired: 是否需要签名认证，True 表示需要，False 表示不需要。待废弃。
         # @type AuthRequired: Boolean
@@ -4806,6 +5203,44 @@ module TencentCloud
         end
       end
 
+      # ResetAPIDocPassword请求参数结构体
+      class ResetAPIDocPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param ApiDocId: API文档ID
+        # @type ApiDocId: String
+
+        attr_accessor :ApiDocId
+        
+        def initialize(apidocid=nil)
+          @ApiDocId = apidocid
+        end
+
+        def deserialize(params)
+          @ApiDocId = params['ApiDocId']
+        end
+      end
+
+      # ResetAPIDocPassword返回参数结构体
+      class ResetAPIDocPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param Result: API文档基本信息
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.APIDoc`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = APIDoc.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 错误码入参
       class ResponseErrorCodeReq < TencentCloud::Common::AbstractModel
         # @param Code: 自定义响应配置错误码。
@@ -4888,10 +5323,16 @@ module TencentCloud
         # @param Tags: 服务绑定的标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param InstanceId: 独享实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param SetType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetType: String
 
-        attr_accessor :InnerHttpsPort, :ServiceDesc, :Protocol, :ModifiedTime, :NetTypes, :ExclusiveSetName, :ServiceId, :IpVersion, :AvailableEnvironments, :ServiceName, :OuterSubDomain, :CreatedTime, :InnerHttpPort, :InnerSubDomain, :TradeIsolateStatus, :Tags
+        attr_accessor :InnerHttpsPort, :ServiceDesc, :Protocol, :ModifiedTime, :NetTypes, :ExclusiveSetName, :ServiceId, :IpVersion, :AvailableEnvironments, :ServiceName, :OuterSubDomain, :CreatedTime, :InnerHttpPort, :InnerSubDomain, :TradeIsolateStatus, :Tags, :InstanceId, :SetType
         
-        def initialize(innerhttpsport=nil, servicedesc=nil, protocol=nil, modifiedtime=nil, nettypes=nil, exclusivesetname=nil, serviceid=nil, ipversion=nil, availableenvironments=nil, servicename=nil, outersubdomain=nil, createdtime=nil, innerhttpport=nil, innersubdomain=nil, tradeisolatestatus=nil, tags=nil)
+        def initialize(innerhttpsport=nil, servicedesc=nil, protocol=nil, modifiedtime=nil, nettypes=nil, exclusivesetname=nil, serviceid=nil, ipversion=nil, availableenvironments=nil, servicename=nil, outersubdomain=nil, createdtime=nil, innerhttpport=nil, innersubdomain=nil, tradeisolatestatus=nil, tags=nil, instanceid=nil, settype=nil)
           @InnerHttpsPort = innerhttpsport
           @ServiceDesc = servicedesc
           @Protocol = protocol
@@ -4908,6 +5349,8 @@ module TencentCloud
           @InnerSubDomain = innersubdomain
           @TradeIsolateStatus = tradeisolatestatus
           @Tags = tags
+          @InstanceId = instanceid
+          @SetType = settype
         end
 
         def deserialize(params)
@@ -4932,6 +5375,8 @@ module TencentCloud
               @Tags << Tag.new.deserialize(i)
             end
           end
+          @InstanceId = params['InstanceId']
+          @SetType = params['SetType']
         end
       end
 
@@ -5007,15 +5452,19 @@ module TencentCloud
         # @type VersionName: String
         # @param Strategy: 限流值。
         # @type Strategy: Integer
+        # @param MaxStrategy: 最大限流值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxStrategy: Integer
 
-        attr_accessor :EnvironmentName, :Url, :Status, :VersionName, :Strategy
+        attr_accessor :EnvironmentName, :Url, :Status, :VersionName, :Strategy, :MaxStrategy
         
-        def initialize(environmentname=nil, url=nil, status=nil, versionname=nil, strategy=nil)
+        def initialize(environmentname=nil, url=nil, status=nil, versionname=nil, strategy=nil, maxstrategy=nil)
           @EnvironmentName = environmentname
           @Url = url
           @Status = status
           @VersionName = versionname
           @Strategy = strategy
+          @MaxStrategy = maxstrategy
         end
 
         def deserialize(params)
@@ -5024,6 +5473,7 @@ module TencentCloud
           @Status = params['Status']
           @VersionName = params['VersionName']
           @Strategy = params['Strategy']
+          @MaxStrategy = params['MaxStrategy']
         end
       end
 

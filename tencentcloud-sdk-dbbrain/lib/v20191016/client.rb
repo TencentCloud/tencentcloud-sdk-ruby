@@ -625,6 +625,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取SQL优化建议。
+
+        # @param request: Request instance for DescribeUserSqlAdvice.
+        # @type request: :class:`Tencentcloud::dbbrain::V20191016::DescribeUserSqlAdviceRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20191016::DescribeUserSqlAdviceResponse`
+        def DescribeUserSqlAdvice(request)
+          body = send_request('DescribeUserSqlAdvice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserSqlAdviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改实例巡检开关。
 
         # @param request: Request instance for ModifyDiagDBInstanceConf.

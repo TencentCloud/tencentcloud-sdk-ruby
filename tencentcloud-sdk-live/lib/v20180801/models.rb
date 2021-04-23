@@ -606,17 +606,22 @@ module TencentCloud
         # @param AllowCopy: 取值范围[0,1]
         # 填1时，当InputStreamList中个数为1时，且OutputParams.OutputStreamType为1时，不执行取消操作，执行拷贝流操作
         # @type AllowCopy: Integer
+        # @param PassInputSei: 取值范围[0,1]
+        # 填1时，透传原始流的sei
+        # @type PassInputSei: Integer
 
-        attr_accessor :UseMixCropCenter, :AllowCopy
+        attr_accessor :UseMixCropCenter, :AllowCopy, :PassInputSei
         
-        def initialize(usemixcropcenter=nil, allowcopy=nil)
+        def initialize(usemixcropcenter=nil, allowcopy=nil, passinputsei=nil)
           @UseMixCropCenter = usemixcropcenter
           @AllowCopy = allowcopy
+          @PassInputSei = passinputsei
         end
 
         def deserialize(params)
           @UseMixCropCenter = params['UseMixCropCenter']
           @AllowCopy = params['AllowCopy']
+          @PassInputSei = params['PassInputSei']
         end
       end
 

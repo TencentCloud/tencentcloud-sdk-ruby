@@ -1727,7 +1727,7 @@ module TencentCloud
       class DeleteNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
         # @type NetworkInterfaceId: String
-        # @param EcmRegion: ECM 地域
+        # @param EcmRegion: ECM 地域，形如ap-xian-ecm。
         # @type EcmRegion: String
 
         attr_accessor :NetworkInterfaceId, :EcmRegion

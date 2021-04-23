@@ -1486,6 +1486,74 @@ module TencentCloud
         end
       end
 
+      # DescribeUserSqlAdvice请求参数结构体
+      class DescribeUserSqlAdviceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param SqlText: SQL语句。
+        # @type SqlText: String
+        # @param Schema: 库名。
+        # @type Schema: String
+
+        attr_accessor :InstanceId, :SqlText, :Schema
+        
+        def initialize(instanceid=nil, sqltext=nil, schema=nil)
+          @InstanceId = instanceid
+          @SqlText = sqltext
+          @Schema = schema
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SqlText = params['SqlText']
+          @Schema = params['Schema']
+        end
+      end
+
+      # DescribeUserSqlAdvice返回参数结构体
+      class DescribeUserSqlAdviceResponse < TencentCloud::Common::AbstractModel
+        # @param Advices: SQL优化建议，可解析为JSON数组。
+        # @type Advices: String
+        # @param Comments: SQL优化建议备注，可解析为String数组。
+        # @type Comments: String
+        # @param SqlText: SQL语句。
+        # @type SqlText: String
+        # @param Schema: 库名。
+        # @type Schema: String
+        # @param Tables: 相关表的DDL信息，可解析为JSON数组。
+        # @type Tables: String
+        # @param SqlPlan: SQL执行计划，可解析为JSON。
+        # @type SqlPlan: String
+        # @param Cost: SQL优化后的成本节约详情，可解析为JSON。
+        # @type Cost: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Advices, :Comments, :SqlText, :Schema, :Tables, :SqlPlan, :Cost, :RequestId
+        
+        def initialize(advices=nil, comments=nil, sqltext=nil, schema=nil, tables=nil, sqlplan=nil, cost=nil, requestid=nil)
+          @Advices = advices
+          @Comments = comments
+          @SqlText = sqltext
+          @Schema = schema
+          @Tables = tables
+          @SqlPlan = sqlplan
+          @Cost = cost
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Advices = params['Advices']
+          @Comments = params['Comments']
+          @SqlText = params['SqlText']
+          @Schema = params['Schema']
+          @Tables = params['Tables']
+          @SqlPlan = params['SqlPlan']
+          @Cost = params['Cost']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例诊断历史事件
       class DiagHistoryEventItem < TencentCloud::Common::AbstractModel
         # @param DiagType: 诊断类型。

@@ -1465,6 +1465,50 @@ module TencentCloud
         end
       end
 
+      # GetCOSURL请求参数结构体
+      class GetCOSURLRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FirmwareVersion: 固件版本
+        # @type FirmwareVersion: String
+        # @param FileSize: 文件大小
+        # @type FileSize: Integer
+
+        attr_accessor :ProductID, :FirmwareVersion, :FileSize
+        
+        def initialize(productid=nil, firmwareversion=nil, filesize=nil)
+          @ProductID = productid
+          @FirmwareVersion = firmwareversion
+          @FileSize = filesize
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FirmwareVersion = params['FirmwareVersion']
+          @FileSize = params['FileSize']
+        end
+      end
+
+      # GetCOSURL返回参数结构体
+      class GetCOSURLResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 固件URL
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :RequestId
+        
+        def initialize(url=nil, requestid=nil)
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetDeviceList请求参数结构体
       class GetDeviceListRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 需要查看设备列表的产品 ID

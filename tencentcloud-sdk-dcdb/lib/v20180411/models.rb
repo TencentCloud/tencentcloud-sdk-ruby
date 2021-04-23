@@ -81,6 +81,30 @@ module TencentCloud
         end
       end
 
+      # 描述分片DB节点信息
+      class BriefNodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeId: DB节点ID
+        # @type NodeId: String
+        # @param Role: DB节点角色，取值为master或者slave
+        # @type Role: String
+        # @param ShardId: 节点所属分片的分片ID
+        # @type ShardId: String
+
+        attr_accessor :NodeId, :Role, :ShardId
+        
+        def initialize(nodeid=nil, role=nil, shardid=nil)
+          @NodeId = nodeid
+          @Role = role
+          @ShardId = shardid
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @Role = params['Role']
+          @ShardId = params['ShardId']
+        end
+      end
+
       # CloneAccount请求参数结构体
       class CloneAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1328,6 +1352,59 @@ module TencentCloud
           @SyncMode = params['SyncMode']
           @IsModifying = params['IsModifying']
           @CurrentSyncMode = params['CurrentSyncMode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDCDBInstanceNodeInfo请求参数结构体
+      class DescribeDCDBInstanceNodeInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Limit: 单次最多返回多少条，取值范围为(0-100]，默认为100
+        # @type Limit: Integer
+        # @param Offset: 返回数据的偏移值，默认为0
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Limit, :Offset
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeDCDBInstanceNodeInfo返回参数结构体
+      class DescribeDCDBInstanceNodeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 节点总个数
+        # @type TotalCount: Integer
+        # @param NodesInfo: 节点信息
+        # @type NodesInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NodesInfo, :RequestId
+        
+        def initialize(totalcount=nil, nodesinfo=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NodesInfo = nodesinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NodesInfo'].nil?
+            @NodesInfo = []
+            params['NodesInfo'].each do |i|
+              @NodesInfo << BriefNodeInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

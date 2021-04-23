@@ -121,6 +121,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询互动白板质量数据
+
+        # @param request: Request instance for DescribeQualityMetrics.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::DescribeQualityMetricsRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::DescribeQualityMetricsResponse`
+        def DescribeQualityMetrics(request)
+          body = send_request('DescribeQualityMetrics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeQualityMetricsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询文档转码任务的执行进度与转码结果
 
         # @param request: Request instance for DescribeTranscode.

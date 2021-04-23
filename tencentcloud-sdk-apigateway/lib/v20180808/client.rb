@@ -125,6 +125,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 构建 API 文档
+
+        # @param request: Request instance for BuildAPIDoc.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::BuildAPIDocRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::BuildAPIDocResponse`
+        def BuildAPIDoc(request)
+          body = send_request('BuildAPIDoc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BuildAPIDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建 API 文档
+
+        # @param request: Request instance for CreateAPIDoc.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::CreateAPIDocRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::CreateAPIDocResponse`
+        def CreateAPIDoc(request)
+          body = send_request('CreateAPIDoc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAPIDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateApi）用于创建 API 接口，创建 API 前，用户需要先创建服务，每个 API 都有自己归属的服务。
 
         # @param request: Request instance for CreateApi.
@@ -233,6 +281,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateUsagePlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除 API 文档
+
+        # @param request: Request instance for DeleteAPIDoc.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DeleteAPIDocRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DeleteAPIDocResponse`
+        def DeleteAPIDoc(request)
+          body = send_request('DeleteAPIDoc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAPIDocResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -404,6 +476,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DemoteServiceUsagePlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 API 文档详情
+
+        # @param request: Request instance for DescribeAPIDocDetail.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeAPIDocDetailRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeAPIDocDetailResponse`
+        def DescribeAPIDocDetail(request)
+          body = send_request('DescribeAPIDocDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAPIDocDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 API 文档列表
+
+        # @param request: Request instance for DescribeAPIDocs.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeAPIDocsRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeAPIDocsResponse`
+        def DescribeAPIDocs(request)
+          body = send_request('DescribeAPIDocs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAPIDocsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1076,6 +1196,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改 API 文档
+
+        # @param request: Request instance for ModifyAPIDoc.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::ModifyAPIDocRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::ModifyAPIDocResponse`
+        def ModifyAPIDoc(request)
+          body = send_request('ModifyAPIDoc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAPIDocResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyApi）用于修改 API 接口，可调用此接口对已经配置的 API 接口进行编辑修改。修改后的 API 需要重新发布 API 所在的服务到对应环境方能生效。
 
         # @param request: Request instance for ModifyApi.
@@ -1279,6 +1423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReleaseServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重置API文档密码
+
+        # @param request: Request instance for ResetAPIDocPassword.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::ResetAPIDocPasswordRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::ResetAPIDocPasswordResponse`
+        def ResetAPIDocPassword(request)
+          body = send_request('ResetAPIDocPassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetAPIDocPasswordResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -25,6 +25,54 @@ module TencentCloud
         @@sdk_version = 'TSE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 查询微服务注册引擎实例访问地址
+
+        # @param request: Request instance for DescribeSREInstanceAccessAddress.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeSREInstanceAccessAddressRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeSREInstanceAccessAddressResponse`
+        def DescribeSREInstanceAccessAddress(request)
+          body = send_request('DescribeSREInstanceAccessAddress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSREInstanceAccessAddressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询微服务注册中心实例列表
+
+        # @param request: Request instance for DescribeSREInstances.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeSREInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeSREInstancesResponse`
+        def DescribeSREInstances(request)
+          body = send_request('DescribeSREInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSREInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 管理配置
 
         # @param request: Request instance for ManageConfig.

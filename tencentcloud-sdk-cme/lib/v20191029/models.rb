@@ -430,6 +430,10 @@ module TencentCloud
       class CreateProjectRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
         # @type Platform: String
+        # @param Name: 项目名称，不可超过30个字符。
+        # @type Name: String
+        # @param Owner: 项目归属者。
+        # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param Category: 项目类别，取值有：
         # <li>VIDEO_EDIT：视频编辑。</li>
         # <li>SWITCHER：导播台。</li>
@@ -437,10 +441,6 @@ module TencentCloud
         # <li>STREAM_CONNECT：云转推。</li>
         # <li>RECORD_REPLAY：录制回放。</li>
         # @type Category: String
-        # @param Name: 项目名称，不可超过30个字符。
-        # @type Name: String
-        # @param Owner: 项目归属者。
-        # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param AspectRatio: 画布宽高比。
         # 该字段已经废弃，请使用具体项目输入中的 AspectRatio 字段。
         # @type AspectRatio: String
@@ -459,13 +459,13 @@ module TencentCloud
         # @param RecordReplayProjectInput: 录制回放项目信息，仅当项目类型为 RECORD_REPLAY 时必填。
         # @type RecordReplayProjectInput: :class:`Tencentcloud::Cme.v20191029.models.RecordReplayProjectInput`
 
-        attr_accessor :Platform, :Category, :Name, :Owner, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput
+        attr_accessor :Platform, :Name, :Owner, :Category, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput
         
-        def initialize(platform=nil, category=nil, name=nil, owner=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil)
+        def initialize(platform=nil, name=nil, owner=nil, category=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil)
           @Platform = platform
-          @Category = category
           @Name = name
           @Owner = owner
+          @Category = category
           @AspectRatio = aspectratio
           @Description = description
           @SwitcherProjectInput = switcherprojectinput
@@ -478,11 +478,11 @@ module TencentCloud
 
         def deserialize(params)
           @Platform = params['Platform']
-          @Category = params['Category']
           @Name = params['Name']
           unless params['Owner'].nil?
             @Owner = Entity.new.deserialize(params['Owner'])
           end
+          @Category = params['Category']
           @AspectRatio = params['AspectRatio']
           @Description = params['Description']
           unless params['SwitcherProjectInput'].nil?
@@ -2103,6 +2103,68 @@ module TencentCloud
         end
       end
 
+      # HandleStreamConnectProject请求参数结构体
+      class HandleStreamConnectProjectRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param ProjectId: 云转推项目Id 。
+        # @type ProjectId: String
+        # @param Operation: 请参考 [操作类型](#Operation)
+        # @type Operation: String
+        # @param InputInfo: 转推输入源操作参数。具体操作方式详见 [操作类型](#Operation) 及下文示例。
+        # @type InputInfo: :class:`Tencentcloud::Cme.v20191029.models.StreamInputInfo`
+        # @param InputEndpoint: 主备输入源标识，取值有：
+        # <li> Main ：主源；</li>
+        # <li> Backup ：备源。</li>
+        # @type InputEndpoint: String
+        # @param OutputInfo: 转推输出源操作参数。具体操作方式详见 [操作类型](#Operation) 及下文示例。
+        # @type OutputInfo: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectOutput`
+        # @param CurrentStopTime: 云转推当前预计结束时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。具体操作方式详见 [操作类型](#Operation) 及下文示例。
+        # @type CurrentStopTime: String
+
+        attr_accessor :Platform, :ProjectId, :Operation, :InputInfo, :InputEndpoint, :OutputInfo, :CurrentStopTime
+        
+        def initialize(platform=nil, projectid=nil, operation=nil, inputinfo=nil, inputendpoint=nil, outputinfo=nil, currentstoptime=nil)
+          @Platform = platform
+          @ProjectId = projectid
+          @Operation = operation
+          @InputInfo = inputinfo
+          @InputEndpoint = inputendpoint
+          @OutputInfo = outputinfo
+          @CurrentStopTime = currentstoptime
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @ProjectId = params['ProjectId']
+          @Operation = params['Operation']
+          unless params['InputInfo'].nil?
+            @InputInfo = StreamInputInfo.new.deserialize(params['InputInfo'])
+          end
+          @InputEndpoint = params['InputEndpoint']
+          unless params['OutputInfo'].nil?
+            @OutputInfo = StreamConnectOutput.new.deserialize(params['OutputInfo'])
+          end
+          @CurrentStopTime = params['CurrentStopTime']
+        end
+      end
+
+      # HandleStreamConnectProject返回参数结构体
+      class HandleStreamConnectProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 图片素材信息
       class ImageMaterial < TencentCloud::Common::AbstractModel
         # @param Height: 图片高度，单位：px。
@@ -3373,8 +3435,7 @@ module TencentCloud
         # @type Name: String
         # @param AspectRatio: 画布宽高比。
         # @type AspectRatio: String
-        # @param Category: 项目类别，取值：
-        # 项目类别，取值有：
+        # @param Category: 项目类别，取值有：
         # <li>VIDEO_EDIT：视频编辑。</li>
         # <li>SWITCHER：导播台。</li>
         # <li>VIDEO_SEGMENTATION：视频拆条。</li>
@@ -3385,20 +3446,24 @@ module TencentCloud
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param CoverUrl: 项目封面图片地址。
         # @type CoverUrl: String
+        # @param StreamConnectProjectInfo: 云转推项目信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamConnectProjectInfo: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectProjectInfo`
         # @param CreateTime: 项目创建时间，格式按照 ISO 8601 标准表示。
         # @type CreateTime: String
         # @param UpdateTime: 项目更新时间，格式按照 ISO 8601 标准表示。
         # @type UpdateTime: String
 
-        attr_accessor :ProjectId, :Name, :AspectRatio, :Category, :Owner, :CoverUrl, :CreateTime, :UpdateTime
+        attr_accessor :ProjectId, :Name, :AspectRatio, :Category, :Owner, :CoverUrl, :StreamConnectProjectInfo, :CreateTime, :UpdateTime
         
-        def initialize(projectid=nil, name=nil, aspectratio=nil, category=nil, owner=nil, coverurl=nil, createtime=nil, updatetime=nil)
+        def initialize(projectid=nil, name=nil, aspectratio=nil, category=nil, owner=nil, coverurl=nil, streamconnectprojectinfo=nil, createtime=nil, updatetime=nil)
           @ProjectId = projectid
           @Name = name
           @AspectRatio = aspectratio
           @Category = category
           @Owner = owner
           @CoverUrl = coverurl
+          @StreamConnectProjectInfo = streamconnectprojectinfo
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -3412,6 +3477,9 @@ module TencentCloud
             @Owner = Entity.new.deserialize(params['Owner'])
           end
           @CoverUrl = params['CoverUrl']
+          unless params['StreamConnectProjectInfo'].nil?
+            @StreamConnectProjectInfo = StreamConnectProjectInfo.new.deserialize(params['StreamConnectProjectInfo'])
+          end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
         end
@@ -3815,6 +3883,90 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @PushUrl = params['PushUrl']
+        end
+      end
+
+      # 云转推输出源信息，包含输出源和输出源转推状态。
+      class StreamConnectOutputInfo < TencentCloud::Common::AbstractModel
+        # @param StreamConnectOutput: 输出源。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamConnectOutput: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectOutput`
+        # @param PushSwitch: 输出流状态：
+        # <li>On ：开；</li>
+        # <li>Off ：关 。</li>
+        # @type PushSwitch: String
+
+        attr_accessor :StreamConnectOutput, :PushSwitch
+        
+        def initialize(streamconnectoutput=nil, pushswitch=nil)
+          @StreamConnectOutput = streamconnectoutput
+          @PushSwitch = pushswitch
+        end
+
+        def deserialize(params)
+          unless params['StreamConnectOutput'].nil?
+            @StreamConnectOutput = StreamConnectOutput.new.deserialize(params['StreamConnectOutput'])
+          end
+          @PushSwitch = params['PushSwitch']
+        end
+      end
+
+      # 云转推项目信息，包含输入源、输出源、当前转推开始时间等信息。
+      class StreamConnectProjectInfo < TencentCloud::Common::AbstractModel
+        # @param Status: 转推项目状态，取值有：
+        # <li>Working ：转推中；</li>
+        # <li>Idle ：空闲中。</li>
+        # @type Status: String
+        # @param CurrentInputEndpoint: 当前转推输入源，取值有：
+        # <li>Main ：主输入源；</li>
+        # <li>Backup ：备输入源。</li>
+        # @type CurrentInputEndpoint: String
+        # @param CurrentStartTime: 当前转推开始时间， 采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。仅 Status 取值 Working 时有效。
+        # @type CurrentStartTime: String
+        # @param CurrentStopTime: 当前转推计划结束时间， 采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。仅 Status 取值 Working 时有效。
+        # @type CurrentStopTime: String
+        # @param LastStopTime: 上一次转推结束时间， 采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。仅 Status 取值 Idle 时有效。
+        # @type LastStopTime: String
+        # @param MainInput: 云转推主输入源。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainInput: :class:`Tencentcloud::Cme.v20191029.models.StreamInputInfo`
+        # @param BackupInput: 云转推备输入源。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupInput: :class:`Tencentcloud::Cme.v20191029.models.StreamInputInfo`
+        # @param OutputSet: 云转推输出源。
+        # @type OutputSet: Array
+
+        attr_accessor :Status, :CurrentInputEndpoint, :CurrentStartTime, :CurrentStopTime, :LastStopTime, :MainInput, :BackupInput, :OutputSet
+        
+        def initialize(status=nil, currentinputendpoint=nil, currentstarttime=nil, currentstoptime=nil, laststoptime=nil, maininput=nil, backupinput=nil, outputset=nil)
+          @Status = status
+          @CurrentInputEndpoint = currentinputendpoint
+          @CurrentStartTime = currentstarttime
+          @CurrentStopTime = currentstoptime
+          @LastStopTime = laststoptime
+          @MainInput = maininput
+          @BackupInput = backupinput
+          @OutputSet = outputset
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @CurrentInputEndpoint = params['CurrentInputEndpoint']
+          @CurrentStartTime = params['CurrentStartTime']
+          @CurrentStopTime = params['CurrentStopTime']
+          @LastStopTime = params['LastStopTime']
+          unless params['MainInput'].nil?
+            @MainInput = StreamInputInfo.new.deserialize(params['MainInput'])
+          end
+          unless params['BackupInput'].nil?
+            @BackupInput = StreamInputInfo.new.deserialize(params['BackupInput'])
+          end
+          unless params['OutputSet'].nil?
+            @OutputSet = []
+            params['OutputSet'].each do |i|
+              @OutputSet << StreamConnectOutputInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
