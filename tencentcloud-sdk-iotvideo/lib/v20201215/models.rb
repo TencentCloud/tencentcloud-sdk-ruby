@@ -359,8 +359,20 @@ module TencentCloud
         # @param DeviceName: 设备名称
         # @type DeviceName: String
         # @param PackageId: 云存套餐ID：
-        # yc1m3d：全时3天存储月套餐。
-        # ye1m3d：事件3天存储套餐。
+        # yc1m3d ： 全时3天存储月套餐。
+        # yc1m7d ： 全时7天存储月套餐。
+        # yc1m30d ：全时30天存储月套餐。
+        # yc1y3d ：全时3天存储年套餐。
+        # yc1y7d ：全时7天存储年套餐。
+        # yc1y30d ：全时30天存储年套餐。
+        # ye1m3d ：事件3天存储月套餐。
+        # ye1m7d ：事件7天存储月套餐。
+        # ye1m30d ：事件30天存储月套餐 。
+        # ye1y3d ：事件3天存储年套餐。
+        # ye1y7d ：事件7天存储年套餐。
+        # ye1y30d ：事件30天存储年套餐。
+        # yc1w7d : 全时7天存储周套餐。
+        # ye1w7d : 事件7天存储周套餐。
         # @type PackageId: String
 
         attr_accessor :ProductId, :DeviceName, :PackageId
@@ -1007,16 +1019,19 @@ module TencentCloud
         # @type Listover: Boolean
         # @param Total: 拉取结果数量
         # @type Total: Integer
+        # @param VideoURL: 视频播放URL
+        # @type VideoURL: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Events, :Context, :Listover, :Total, :RequestId
+        attr_accessor :Events, :Context, :Listover, :Total, :VideoURL, :RequestId
         
-        def initialize(events=nil, context=nil, listover=nil, total=nil, requestid=nil)
+        def initialize(events=nil, context=nil, listover=nil, total=nil, videourl=nil, requestid=nil)
           @Events = events
           @Context = context
           @Listover = listover
           @Total = total
+          @VideoURL = videourl
           @RequestId = requestid
         end
 
@@ -1030,6 +1045,7 @@ module TencentCloud
           @Context = params['Context']
           @Listover = params['Listover']
           @Total = params['Total']
+          @VideoURL = params['VideoURL']
           @RequestId = params['RequestId']
         end
       end

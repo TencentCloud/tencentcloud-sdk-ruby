@@ -2178,18 +2178,23 @@ module TencentCloud
         # @param Status: 查询集群访问端口状态（Created 开启成功，Creating 开启中中，NotFound 未开启）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param ErrorMsg: 开启访问入口失败信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :Status, :ErrorMsg, :RequestId
         
-        def initialize(status=nil, requestid=nil)
+        def initialize(status=nil, errormsg=nil, requestid=nil)
           @Status = status
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end

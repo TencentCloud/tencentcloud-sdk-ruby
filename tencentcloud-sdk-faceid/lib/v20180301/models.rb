@@ -845,6 +845,69 @@ module TencentCloud
         end
       end
 
+      # EncryptedPhoneVerification请求参数结构体
+      class EncryptedPhoneVerificationRequest < TencentCloud::Common::AbstractModel
+        # @param IdCard: 身份证号，加密方式以EncryptionMode为准
+        # @type IdCard: String
+        # @param Name: 姓名，加密方式以EncryptionMode为准
+        # @type Name: String
+        # @param Phone: 手机号，加密方式以EncryptionMode为准
+        # @type Phone: String
+        # @param EncryptionMode: 敏感信息的加密方式，目前只支持MD5加密传输，参数取值：
+
+        # 0：明文，不加密
+        # 1：使用MD5加密
+        # @type EncryptionMode: String
+
+        attr_accessor :IdCard, :Name, :Phone, :EncryptionMode
+        
+        def initialize(idcard=nil, name=nil, phone=nil, encryptionmode=nil)
+          @IdCard = idcard
+          @Name = name
+          @Phone = phone
+          @EncryptionMode = encryptionmode
+        end
+
+        def deserialize(params)
+          @IdCard = params['IdCard']
+          @Name = params['Name']
+          @Phone = params['Phone']
+          @EncryptionMode = params['EncryptionMode']
+        end
+      end
+
+      # EncryptedPhoneVerification返回参数结构体
+      class EncryptedPhoneVerificationResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 认证结果码:
+        # 【收费结果码】
+        # 0: 认证通过
+        # -4: 信息不一致
+
+        # 【不收费结果码】
+        # -7: 身份证号码有误
+        # -9: 没有记录
+        # -11: 验证中心服务繁忙
+        # @type Result: String
+        # @param Description: 业务结果描述。
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Description, :RequestId
+        
+        def initialize(result=nil, description=nil, requestid=nil)
+          @Result = result
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 敏感数据加密
       class Encryption < TencentCloud::Common::AbstractModel
         # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅<a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。

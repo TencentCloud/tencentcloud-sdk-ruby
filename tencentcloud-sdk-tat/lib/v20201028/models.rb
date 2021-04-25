@@ -1029,14 +1029,17 @@ module TencentCloud
         # @type ExecStartTime: String
         # @param ExecEndTime: 命令执行结束时间。
         # @type ExecEndTime: String
+        # @param Dropped: 命令最终输出被截断的字节数。
+        # @type Dropped: Integer
 
-        attr_accessor :ExitCode, :Output, :ExecStartTime, :ExecEndTime
+        attr_accessor :ExitCode, :Output, :ExecStartTime, :ExecEndTime, :Dropped
         
-        def initialize(exitcode=nil, output=nil, execstarttime=nil, execendtime=nil)
+        def initialize(exitcode=nil, output=nil, execstarttime=nil, execendtime=nil, dropped=nil)
           @ExitCode = exitcode
           @Output = output
           @ExecStartTime = execstarttime
           @ExecEndTime = execendtime
+          @Dropped = dropped
         end
 
         def deserialize(params)
@@ -1044,6 +1047,7 @@ module TencentCloud
           @Output = params['Output']
           @ExecStartTime = params['ExecStartTime']
           @ExecEndTime = params['ExecEndTime']
+          @Dropped = params['Dropped']
         end
       end
 

@@ -1454,6 +1454,68 @@ module TencentCloud
         end
       end
 
+      # CreateWxCloudBaseRunEnv请求参数结构体
+      class CreateWxCloudBaseRunEnvRequest < TencentCloud::Common::AbstractModel
+        # @param WxAppId: wx应用Id
+        # @type WxAppId: String
+        # @param Alias: 环境别名，要以a-z开头，不能包含 a-z,0-9,- 以外的字符
+        # @type Alias: String
+        # @param FreeQuota: 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，标识不享受免费额度。
+        # @type FreeQuota: String
+        # @param Flag: 订单标记。建议使用方统一转大小写之后再判断。
+        # QuickStart：快速启动来源
+        # Activity：活动来源
+        # @type Flag: String
+        # @param VpcId: 私有网络Id
+        # @type VpcId: String
+        # @param SubNetIds: 子网列表
+        # @type SubNetIds: Array
+
+        attr_accessor :WxAppId, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds
+        
+        def initialize(wxappid=nil, _alias=nil, freequota=nil, flag=nil, vpcid=nil, subnetids=nil)
+          @WxAppId = wxappid
+          @Alias = _alias
+          @FreeQuota = freequota
+          @Flag = flag
+          @VpcId = vpcid
+          @SubNetIds = subnetids
+        end
+
+        def deserialize(params)
+          @WxAppId = params['WxAppId']
+          @Alias = params['Alias']
+          @FreeQuota = params['FreeQuota']
+          @Flag = params['Flag']
+          @VpcId = params['VpcId']
+          @SubNetIds = params['SubNetIds']
+        end
+      end
+
+      # CreateWxCloudBaseRunEnv返回参数结构体
+      class CreateWxCloudBaseRunEnvResponse < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境Id
+        # @type EnvId: String
+        # @param TranId: 后付费订单号
+        # @type TranId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnvId, :TranId, :RequestId
+        
+        def initialize(envid=nil, tranid=nil, requestid=nil)
+          @EnvId = envid
+          @TranId = tranid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @TranId = params['TranId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据库资源信息
       class DatabasesInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据库唯一标识
@@ -3106,6 +3168,87 @@ module TencentCloud
               @SmsFreeQuotaList << SmsFreeQuota.new.deserialize(i)
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWxCloudBaseRunEnvs请求参数结构体
+      class DescribeWxCloudBaseRunEnvsRequest < TencentCloud::Common::AbstractModel
+        # @param WxAppId: wx应用Id
+        # @type WxAppId: String
+
+        attr_accessor :WxAppId
+        
+        def initialize(wxappid=nil)
+          @WxAppId = wxappid
+        end
+
+        def deserialize(params)
+          @WxAppId = params['WxAppId']
+        end
+      end
+
+      # DescribeWxCloudBaseRunEnvs返回参数结构体
+      class DescribeWxCloudBaseRunEnvsResponse < TencentCloud::Common::AbstractModel
+        # @param EnvList: env列表
+        # @type EnvList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnvList, :RequestId
+        
+        def initialize(envlist=nil, requestid=nil)
+          @EnvList = envlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EnvList'].nil?
+            @EnvList = []
+            params['EnvList'].each do |i|
+              @EnvList << EnvInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWxCloudBaseRunSubNets请求参数结构体
+      class DescribeWxCloudBaseRunSubNetsRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC id
+        # @type VpcId: String
+        # @param Limit: 查询个数限制，不填或小于等于0，等于不限制
+        # @type Limit: Integer
+
+        attr_accessor :VpcId, :Limit
+        
+        def initialize(vpcid=nil, limit=nil)
+          @VpcId = vpcid
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeWxCloudBaseRunSubNets返回参数结构体
+      class DescribeWxCloudBaseRunSubNetsResponse < TencentCloud::Common::AbstractModel
+        # @param SubNetIds: 子网Id列表
+        # @type SubNetIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubNetIds, :RequestId
+        
+        def initialize(subnetids=nil, requestid=nil)
+          @SubNetIds = subnetids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SubNetIds = params['SubNetIds']
           @RequestId = params['RequestId']
         end
       end

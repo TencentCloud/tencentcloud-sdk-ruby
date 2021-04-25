@@ -241,6 +241,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建微信云托管
+
+        # @param request: Request instance for CreateWxCloudBaseRunEnv.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateWxCloudBaseRunEnvRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateWxCloudBaseRunEnvResponse`
+        def CreateWxCloudBaseRunEnv(request)
+          body = send_request('CreateWxCloudBaseRunEnv', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWxCloudBaseRunEnvResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除云项目
 
         # @param request: Request instance for DeleteCloudBaseProjectLatestVersion.
@@ -854,6 +878,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSmsQuotasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询微信云托管环境信息
+
+        # @param request: Request instance for DescribeWxCloudBaseRunEnvs.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeWxCloudBaseRunEnvsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeWxCloudBaseRunEnvsResponse`
+        def DescribeWxCloudBaseRunEnvs(request)
+          body = send_request('DescribeWxCloudBaseRunEnvs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWxCloudBaseRunEnvsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询微信云托管子网
+
+        # @param request: Request instance for DescribeWxCloudBaseRunSubNets.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeWxCloudBaseRunSubNetsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeWxCloudBaseRunSubNetsResponse`
+        def DescribeWxCloudBaseRunSubNets(request)
+          body = send_request('DescribeWxCloudBaseRunSubNets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWxCloudBaseRunSubNetsResponse.new
             model.deserialize(response['Response'])
             model
           else
