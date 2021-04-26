@@ -2111,7 +2111,7 @@ module TencentCloud
         # @param UploadType: 枚举（package/repository/image)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadType: String
-        # @param RepoType: Repo的类型(coding/gitlab/github/coding)
+        # @param RepoType: Repo的类型(gitlab/github/coding)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoType: String
         # @param Repo: 地址

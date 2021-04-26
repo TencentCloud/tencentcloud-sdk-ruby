@@ -937,6 +937,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取视频防盗链播放URL
+
+        # @param request: Request instance for GenerateSignedVideoURL.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::GenerateSignedVideoURLRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::GenerateSignedVideoURLResponse`
+        def GenerateSignedVideoURL(request)
+          body = send_request('GenerateSignedVideoURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateSignedVideoURLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（GetAllFirmwareVersion）用于获取所有的版本列表
 
         # @param request: Request instance for GetAllFirmwareVersion.

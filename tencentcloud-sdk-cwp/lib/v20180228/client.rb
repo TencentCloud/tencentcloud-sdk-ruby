@@ -1081,6 +1081,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取机器地域列表
+
+        # @param request: Request instance for DescribeMachineRegions.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeMachineRegionsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeMachineRegionsResponse`
+        def DescribeMachineRegions(request)
+          body = send_request('DescribeMachineRegions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMachineRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeMachines) 用于获取区域主机列表。
 
         # @param request: Request instance for DescribeMachines.

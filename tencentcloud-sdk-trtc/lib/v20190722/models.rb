@@ -506,13 +506,13 @@ module TencentCloud
 
       # DescribePicture请求参数结构体
       class DescribePictureRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用id
+        # @param SdkAppId: 应用ID
         # @type SdkAppId: Integer
-        # @param PictureId: 图片id,不传时返回该应用下所有图片
+        # @param PictureId: 图片ID，不填时返回该应用下所有图片
         # @type PictureId: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: 每页数量，不填时默认为10
         # @type PageSize: Integer
-        # @param PageNo: 页码
+        # @param PageNo: 页码，不填时默认为1
         # @type PageNo: Integer
 
         attr_accessor :SdkAppId, :PictureId, :PageSize, :PageNo

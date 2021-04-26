@@ -221,7 +221,7 @@ module TencentCloud
         # @type CosBucketName: String
         # @param CosObjectName: 对象存储对象路径
         # @type CosObjectName: String
-        # @param ZipFile: 包含函数代码文件及其依赖项的 zip 格式文件，使用该接口时要求将 zip 文件的内容转成 base64 编码，最大支持20M
+        # @param ZipFile: 包含函数代码文件及其依赖项的 zip 格式文件，zip包大小上限为 50MB，使用该接口时要求将 zip 文件的内容转成 base64 编码
         # @type ZipFile: String
         # @param CosBucketRegion: 对象存储的地域，地域为北京时需要传入ap-beijing,北京一区时需要传递ap-beijing-1，其他的地域不需要传递。
         # @type CosBucketRegion: String
@@ -446,10 +446,14 @@ module TencentCloud
         # @type InitTimeout: Integer
         # @param Tags: 函数 Tag 参数，以键值对数组形式传入
         # @type Tags: Array
+        # @param AsyncRunEnable: 是否开启异步属性，TRUE 为开启，FALSE为关闭
+        # @type AsyncRunEnable: String
+        # @param TraceEnable: 是否开启事件追踪，TRUE 为开启，FALSE为关闭
+        # @type TraceEnable: String
 
-        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags
+        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable
         
-        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil)
+        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil)
           @FunctionName = functionname
           @Code = code
           @Handler = handler
@@ -471,6 +475,8 @@ module TencentCloud
           @CfsConfig = cfsconfig
           @InitTimeout = inittimeout
           @Tags = tags
+          @AsyncRunEnable = asyncrunenable
+          @TraceEnable = traceenable
         end
 
         def deserialize(params)
@@ -517,6 +523,8 @@ module TencentCloud
               @Tags << Tag.new.deserialize(i)
             end
           end
+          @AsyncRunEnable = params['AsyncRunEnable']
+          @TraceEnable = params['TraceEnable']
         end
       end
 

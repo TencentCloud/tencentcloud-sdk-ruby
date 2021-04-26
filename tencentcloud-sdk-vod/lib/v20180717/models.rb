@@ -237,7 +237,7 @@ module TencentCloud
         # @type Definition: Integer
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
-        # @param SubtitleSet: 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持10个。
+        # @param SubtitleSet: 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持16个。
         # @type SubtitleSet: Array
 
         attr_accessor :Definition, :WatermarkSet, :SubtitleSet

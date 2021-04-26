@@ -2557,6 +2557,46 @@ module TencentCloud
         end
       end
 
+      # GenerateSignedVideoURL请求参数结构体
+      class GenerateSignedVideoURLRequest < TencentCloud::Common::AbstractModel
+        # @param VideoURL: 视频播放原始URL地址
+        # @type VideoURL: String
+        # @param ExpireTime: 播放链接过期时间
+        # @type ExpireTime: Integer
+
+        attr_accessor :VideoURL, :ExpireTime
+        
+        def initialize(videourl=nil, expiretime=nil)
+          @VideoURL = videourl
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @VideoURL = params['VideoURL']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # GenerateSignedVideoURL返回参数结构体
+      class GenerateSignedVideoURLResponse < TencentCloud::Common::AbstractModel
+        # @param SignedVideoURL: 视频防盗链播放URL
+        # @type SignedVideoURL: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SignedVideoURL, :RequestId
+        
+        def initialize(signedvideourl=nil, requestid=nil)
+          @SignedVideoURL = signedvideourl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SignedVideoURL = params['SignedVideoURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetAllFirmwareVersion请求参数结构体
       class GetAllFirmwareVersionRequest < TencentCloud::Common::AbstractModel
         # @param ProductID: 产品ID

@@ -12291,6 +12291,42 @@ module TencentCloud
         end
       end
 
+      # ModifyNetworkInterfaceQos请求参数结构体
+      class ModifyNetworkInterfaceQosRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkInterfaceIds: 弹性网卡ID，支持批量修改。
+        # @type NetworkInterfaceIds: Array
+        # @param QosLevel: 服务质量，可选值：AU、AG、PT，分别代表金、银、白金三个等级。
+        # @type QosLevel: String
+
+        attr_accessor :NetworkInterfaceIds, :QosLevel
+        
+        def initialize(networkinterfaceids=nil, qoslevel=nil)
+          @NetworkInterfaceIds = networkinterfaceids
+          @QosLevel = qoslevel
+        end
+
+        def deserialize(params)
+          @NetworkInterfaceIds = params['NetworkInterfaceIds']
+          @QosLevel = params['QosLevel']
+        end
+      end
+
+      # ModifyNetworkInterfaceQos返回参数结构体
+      class ModifyNetworkInterfaceQosResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPrivateIpAddressesAttribute请求参数结构体
       class ModifyPrivateIpAddressesAttributeRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。

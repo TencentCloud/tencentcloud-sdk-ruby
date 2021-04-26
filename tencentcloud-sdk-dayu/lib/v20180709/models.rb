@@ -58,14 +58,17 @@ module TencentCloud
         # @type DeviceType: String
         # @param InstanceId: IP所属的资源实例ID，当绑定新IP时必须填写此字段；例如是弹性网卡的IP，则InstanceId填写弹性网卡的ID(eni-*); 如果绑定的是托管IP没有对应的资源实例ID，请填写"none";
         # @type InstanceId: String
+        # @param IspCode: 运营商，0：电信；1：联通；2：移动；5：BGP
+        # @type IspCode: Integer
 
-        attr_accessor :Ip, :BizType, :DeviceType, :InstanceId
+        attr_accessor :Ip, :BizType, :DeviceType, :InstanceId, :IspCode
         
-        def initialize(ip=nil, biztype=nil, devicetype=nil, instanceid=nil)
+        def initialize(ip=nil, biztype=nil, devicetype=nil, instanceid=nil, ispcode=nil)
           @Ip = ip
           @BizType = biztype
           @DeviceType = devicetype
           @InstanceId = instanceid
+          @IspCode = ispcode
         end
 
         def deserialize(params)
@@ -73,6 +76,7 @@ module TencentCloud
           @BizType = params['BizType']
           @DeviceType = params['DeviceType']
           @InstanceId = params['InstanceId']
+          @IspCode = params['IspCode']
         end
       end
 

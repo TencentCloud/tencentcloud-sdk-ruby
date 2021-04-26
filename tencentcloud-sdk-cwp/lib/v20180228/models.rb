@@ -2699,6 +2699,33 @@ module TencentCloud
         end
       end
 
+      # DescribeMachineRegions请求参数结构体
+      class DescribeMachineRegionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeMachineRegions返回参数结构体
+      class DescribeMachineRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMachines请求参数结构体
       class DescribeMachinesRequest < TencentCloud::Common::AbstractModel
         # @param MachineType: 云主机类型。
@@ -6854,14 +6881,17 @@ module TencentCloud
         # @type RegionId: Integer
         # @param RegionCode: 地域代码，如 gz，sh，bj
         # @type RegionCode: String
+        # @param RegionNameEn: 地域英文名
+        # @type RegionNameEn: String
 
-        attr_accessor :Region, :RegionName, :RegionId, :RegionCode
+        attr_accessor :Region, :RegionName, :RegionId, :RegionCode, :RegionNameEn
         
-        def initialize(region=nil, regionname=nil, regionid=nil, regioncode=nil)
+        def initialize(region=nil, regionname=nil, regionid=nil, regioncode=nil, regionnameen=nil)
           @Region = region
           @RegionName = regionname
           @RegionId = regionid
           @RegionCode = regioncode
+          @RegionNameEn = regionnameen
         end
 
         def deserialize(params)
@@ -6869,6 +6899,7 @@ module TencentCloud
           @RegionName = params['RegionName']
           @RegionId = params['RegionId']
           @RegionCode = params['RegionCode']
+          @RegionNameEn = params['RegionNameEn']
         end
       end
 
