@@ -1514,6 +1514,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取容器事件列表
+
+        # @param request: Request instance for DescribeContainerEvents.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeContainerEventsRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeContainerEventsResponse`
+        def DescribeContainerEvents(request)
+          body = send_request('DescribeContainerEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeContainerEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         #  容器部署组详情
 
         # @param request: Request instance for DescribeContainerGroupDetail.
@@ -2533,6 +2557,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTaskLastStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
+
+        # @param request: Request instance for DescribeUnitApiUseDetail.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeUnitApiUseDetailRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeUnitApiUseDetailResponse`
+        def DescribeUnitApiUseDetail(request)
+          body = send_request('DescribeUnitApiUseDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnitApiUseDetailResponse.new
             model.deserialize(response['Response'])
             model
           else

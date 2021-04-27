@@ -8256,6 +8256,14 @@ module TencentCloud
         # @type Status: String
         # @param FileId: 过滤条件：文件 ID。
         # @type FileId: String
+        # @param CreateTime: 过滤条件：任务创建时间。
+        # @type CreateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
+        # @param FinishTime: 过滤条件：任务结束时间。
+        # @type FinishTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
+        # @param Sort: 排序方式。Sort.Field 可选：
+        # <li> CreateTime 任务创建时间。</li>
+        # <li>FinishTime 任务结束时间。</li>
+        # @type Sort: :class:`Tencentcloud::Vod.v20180717.models.SortBy`
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer
         # @param ScrollToken: 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
@@ -8263,11 +8271,14 @@ module TencentCloud
         # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         # @type SubAppId: Integer
 
-        attr_accessor :Status, :FileId, :Limit, :ScrollToken, :SubAppId
+        attr_accessor :Status, :FileId, :CreateTime, :FinishTime, :Sort, :Limit, :ScrollToken, :SubAppId
         
-        def initialize(status=nil, fileid=nil, limit=nil, scrolltoken=nil, subappid=nil)
+        def initialize(status=nil, fileid=nil, createtime=nil, finishtime=nil, sort=nil, limit=nil, scrolltoken=nil, subappid=nil)
           @Status = status
           @FileId = fileid
+          @CreateTime = createtime
+          @FinishTime = finishtime
+          @Sort = sort
           @Limit = limit
           @ScrollToken = scrolltoken
           @SubAppId = subappid
@@ -8276,6 +8287,15 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @FileId = params['FileId']
+          unless params['CreateTime'].nil?
+            @CreateTime = TimeRange.new.deserialize(params['CreateTime'])
+          end
+          unless params['FinishTime'].nil?
+            @FinishTime = TimeRange.new.deserialize(params['FinishTime'])
+          end
+          unless params['Sort'].nil?
+            @Sort = SortBy.new.deserialize(params['Sort'])
+          end
           @Limit = params['Limit']
           @ScrollToken = params['ScrollToken']
           @SubAppId = params['SubAppId']
@@ -10365,10 +10385,14 @@ module TencentCloud
 
         # *注意：此字段暂不支持。
         # @type Status: String
+        # @param StorageClass: 媒体文件的存储类别：
+        # <li>STANDARD：标准存储。</li>
+        # <li>STANDARD_IA：低频存储。</li>
+        # @type StorageClass: String
 
-        attr_accessor :Name, :Description, :CreateTime, :UpdateTime, :ExpireTime, :ClassId, :ClassName, :ClassPath, :CoverUrl, :Type, :MediaUrl, :SourceInfo, :StorageRegion, :TagSet, :Vid, :Category, :Status
+        attr_accessor :Name, :Description, :CreateTime, :UpdateTime, :ExpireTime, :ClassId, :ClassName, :ClassPath, :CoverUrl, :Type, :MediaUrl, :SourceInfo, :StorageRegion, :TagSet, :Vid, :Category, :Status, :StorageClass
         
-        def initialize(name=nil, description=nil, createtime=nil, updatetime=nil, expiretime=nil, classid=nil, classname=nil, classpath=nil, coverurl=nil, type=nil, mediaurl=nil, sourceinfo=nil, storageregion=nil, tagset=nil, vid=nil, category=nil, status=nil)
+        def initialize(name=nil, description=nil, createtime=nil, updatetime=nil, expiretime=nil, classid=nil, classname=nil, classpath=nil, coverurl=nil, type=nil, mediaurl=nil, sourceinfo=nil, storageregion=nil, tagset=nil, vid=nil, category=nil, status=nil, storageclass=nil)
           @Name = name
           @Description = description
           @CreateTime = createtime
@@ -10386,6 +10410,7 @@ module TencentCloud
           @Vid = vid
           @Category = category
           @Status = status
+          @StorageClass = storageclass
         end
 
         def deserialize(params)
@@ -10408,6 +10433,7 @@ module TencentCloud
           @Vid = params['Vid']
           @Category = params['Category']
           @Status = params['Status']
+          @StorageClass = params['StorageClass']
         end
       end
 
@@ -16412,6 +16438,10 @@ module TencentCloud
       class TaskSimpleInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID。
         # @type TaskId: String
+        # @param Status: 任务状态。取值：WAITING（等待中）、PROCESSING（处理中）、FINISH（已完成）。
+        # @type Status: String
+        # @param FileId: 视频 ID。
+        # @type FileId: String
         # @param TaskType: 任务类型，取值：
         # <li>Procedure：视频处理任务；</li>
         # <li>EditMedia：视频编辑任务</li>
@@ -16434,10 +16464,12 @@ module TencentCloud
         # @param SessionContext: 来源上下文，用于透传用户请求信息。
         # @type SessionContext: String
 
-        attr_accessor :TaskId, :TaskType, :CreateTime, :BeginProcessTime, :FinishTime, :SessionId, :SessionContext
+        attr_accessor :TaskId, :Status, :FileId, :TaskType, :CreateTime, :BeginProcessTime, :FinishTime, :SessionId, :SessionContext
         
-        def initialize(taskid=nil, tasktype=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(taskid=nil, status=nil, fileid=nil, tasktype=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, sessionid=nil, sessioncontext=nil)
           @TaskId = taskid
+          @Status = status
+          @FileId = fileid
           @TaskType = tasktype
           @CreateTime = createtime
           @BeginProcessTime = beginprocesstime
@@ -16448,6 +16480,8 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @Status = params['Status']
+          @FileId = params['FileId']
           @TaskType = params['TaskType']
           @CreateTime = params['CreateTime']
           @BeginProcessTime = params['BeginProcessTime']

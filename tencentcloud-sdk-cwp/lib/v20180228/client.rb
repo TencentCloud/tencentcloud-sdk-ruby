@@ -985,6 +985,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询批量导入机器信息
+
+        # @param request: Request instance for DescribeImportMachineInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeImportMachineInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeImportMachineInfoResponse`
+        def DescribeImportMachineInfo(request)
+          body = send_request('DescribeImportMachineInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImportMachineInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取异地登录白名单列表
 
         # @param request: Request instance for DescribeLoginWhiteList.
@@ -2219,6 +2243,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExportTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导出本次漏洞检测Excel
+
+        # @param request: Request instance for ExportVulDetectionExcel.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ExportVulDetectionExcelRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ExportVulDetectionExcelResponse`
+        def ExportVulDetectionExcel(request)
+          body = send_request('ExportVulDetectionExcel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportVulDetectionExcelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导出漏洞检测报告。
+
+        # @param request: Request instance for ExportVulDetectionReport.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ExportVulDetectionReportRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ExportVulDetectionReportResponse`
+        def ExportVulDetectionReport(request)
+          body = send_request('ExportVulDetectionReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportVulDetectionReportResponse.new
             model.deserialize(response['Response'])
             model
           else

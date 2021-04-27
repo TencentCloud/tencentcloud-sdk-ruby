@@ -17,6 +17,36 @@
 module TencentCloud
   module Cme
     module V20191029
+      # 制作云用户账号信息。
+      class AccountInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户 Id。
+        # @type UserId: String
+        # @param Phone: 用户手机号码。
+        # @type Phone: String
+        # @param Nick: 用户昵称。
+        # @type Nick: String
+        # @param Status: 账号状态，取值：
+        # <li>Normal：有效；</li>
+        # <li>Stopped：无效。</li>
+        # @type Status: String
+
+        attr_accessor :UserId, :Phone, :Nick, :Status
+        
+        def initialize(userid=nil, phone=nil, nick=nil, status=nil)
+          @UserId = userid
+          @Phone = phone
+          @Nick = nick
+          @Status = status
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Phone = params['Phone']
+          @Nick = params['Nick']
+          @Status = params['Status']
+        end
+      end
+
       # 添加的团队成员信息
       class AddMemberInfo < TencentCloud::Common::AbstractModel
         # @param MemberId: 团队成员 ID。
@@ -820,6 +850,63 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccounts请求参数结构体
+      class DescribeAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台唯一标识。
+        # @type Platform: String
+        # @param Phone: 手机号码。
+        # @type Phone: String
+        # @param Offset: 分页返回的起始偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页返回的记录条数，默认值：10，最大值：20。
+        # @type Limit: Integer
+
+        attr_accessor :Platform, :Phone, :Offset, :Limit
+        
+        def initialize(platform=nil, phone=nil, offset=nil, limit=nil)
+          @Platform = platform
+          @Phone = phone
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @Phone = params['Phone']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAccounts返回参数结构体
+      class DescribeAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合搜索条件的记录总数。
+        # @type TotalCount: Integer
+        # @param AccountInfoSet: 账号信息列表。
+        # @type AccountInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AccountInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, accountinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AccountInfoSet = accountinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AccountInfoSet'].nil?
+            @AccountInfoSet = []
+            params['AccountInfoSet'].each do |i|
+              @AccountInfoSet << AccountInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

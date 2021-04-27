@@ -756,19 +756,23 @@ module TencentCloud
 
       # ModifyMusicOnShelves请求参数结构体
       class ModifyMusicOnShelvesRequest < TencentCloud::Common::AbstractModel
-        # @param MusicDetailInfos: 无
+        # @param MusicDetailInfos: 歌曲变更信息
         # @type MusicDetailInfos: :class:`Tencentcloud::Ame.v20190916.models.MusicDetailInfo`
+        # @param AmeKey: ame对接资源方密钥
+        # @type AmeKey: String
 
-        attr_accessor :MusicDetailInfos
+        attr_accessor :MusicDetailInfos, :AmeKey
         
-        def initialize(musicdetailinfos=nil)
+        def initialize(musicdetailinfos=nil, amekey=nil)
           @MusicDetailInfos = musicdetailinfos
+          @AmeKey = amekey
         end
 
         def deserialize(params)
           unless params['MusicDetailInfos'].nil?
             @MusicDetailInfos = MusicDetailInfo.new.deserialize(params['MusicDetailInfos'])
           end
+          @AmeKey = params['AmeKey']
         end
       end
 

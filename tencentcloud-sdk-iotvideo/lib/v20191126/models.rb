@@ -240,7 +240,7 @@ module TencentCloud
         # @type Role: String
         # @param ForceBind: 是否踢掉之前的主人，true：踢掉；false：不踢掉。当role为guest时，可以不填
         # @type ForceBind: Boolean
-        # @param Nick: 设备昵称
+        # @param Nick: 设备昵称，最多不超过64个字符
         # @type Nick: String
 
         attr_accessor :AccessId, :Tid, :Role, :ForceBind, :Nick
@@ -2885,7 +2885,7 @@ module TencentCloud
         # @type Tid: String
         # @param AccessId: 用户ID
         # @type AccessId: String
-        # @param Nick: 设备昵称
+        # @param Nick: 设备昵称，最多不超过64个字符
         # @type Nick: String
 
         attr_accessor :Tid, :AccessId, :Nick
