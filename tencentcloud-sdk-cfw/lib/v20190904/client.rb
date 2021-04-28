@@ -505,6 +505,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 支持对拦截列表、忽略列表如下操作：
+        # 批量增加拦截IP、忽略IP/域名
+        # 批量删除拦截IP、忽略IP/域名
+        # 批量修改拦截IP、忽略IP/域名生效事件
+
+        # @param request: Request instance for ModifyBlockIgnoreList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyBlockIgnoreListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyBlockIgnoreListResponse`
+        def ModifyBlockIgnoreList(request)
+          body = send_request('ModifyBlockIgnoreList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBlockIgnoreListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改单个防火墙开关
 
         # @param request: Request instance for ModifyItemSwitchStatus.

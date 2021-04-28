@@ -471,6 +471,11 @@ module TencentCloud
         # <li>STREAM_CONNECT：云转推。</li>
         # <li>RECORD_REPLAY：录制回放。</li>
         # @type Category: String
+        # @param Mode: 项目模式，一个项目可以有多种模式并相互切换。
+        # 当 Category 为 VIDEO_EDIT 时，可选模式有：
+        # <li>Default：默认模式。</li>
+        # <li>VideoEditTemplate：视频编辑模板制作模式。</li>
+        # @type Mode: String
         # @param AspectRatio: 画布宽高比。
         # 该字段已经废弃，请使用具体项目输入中的 AspectRatio 字段。
         # @type AspectRatio: String
@@ -489,13 +494,14 @@ module TencentCloud
         # @param RecordReplayProjectInput: 录制回放项目信息，仅当项目类型为 RECORD_REPLAY 时必填。
         # @type RecordReplayProjectInput: :class:`Tencentcloud::Cme.v20191029.models.RecordReplayProjectInput`
 
-        attr_accessor :Platform, :Name, :Owner, :Category, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput
+        attr_accessor :Platform, :Name, :Owner, :Category, :Mode, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput
         
-        def initialize(platform=nil, name=nil, owner=nil, category=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil)
+        def initialize(platform=nil, name=nil, owner=nil, category=nil, mode=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil)
           @Platform = platform
           @Name = name
           @Owner = owner
           @Category = category
+          @Mode = mode
           @AspectRatio = aspectratio
           @Description = description
           @SwitcherProjectInput = switcherprojectinput
@@ -513,6 +519,7 @@ module TencentCloud
             @Owner = Entity.new.deserialize(params['Owner'])
           end
           @Category = params['Category']
+          @Mode = params['Mode']
           @AspectRatio = params['AspectRatio']
           @Description = params['Description']
           unless params['SwitcherProjectInput'].nil?
@@ -1193,6 +1200,11 @@ module TencentCloud
         # <li>STREAM_CONNECT：云转推。</li>
         # <li>RECORD_REPLAY：录制回放。</li>
         # @type CategorySet: Array
+        # @param Modes: 项目模式，一个项目可以有多种模式并相互切换。
+        # 当 Category 为 VIDEO_EDIT 时，可选模式有：
+        # <li>Default：默认模式。</li>
+        # <li>VideoEditTemplate：视频编辑模板制作模式。</li>
+        # @type Modes: Array
         # @param Sort: 列表排序，支持下列排序字段：
         # <li>CreateTime：创建时间；</li>
         # <li>UpdateTime：更新时间。</li>
@@ -1206,13 +1218,14 @@ module TencentCloud
         # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验项目访问权限。
         # @type Operator: String
 
-        attr_accessor :Platform, :ProjectIds, :AspectRatioSet, :CategorySet, :Sort, :Owner, :Offset, :Limit, :Operator
+        attr_accessor :Platform, :ProjectIds, :AspectRatioSet, :CategorySet, :Modes, :Sort, :Owner, :Offset, :Limit, :Operator
         
-        def initialize(platform=nil, projectids=nil, aspectratioset=nil, categoryset=nil, sort=nil, owner=nil, offset=nil, limit=nil, operator=nil)
+        def initialize(platform=nil, projectids=nil, aspectratioset=nil, categoryset=nil, modes=nil, sort=nil, owner=nil, offset=nil, limit=nil, operator=nil)
           @Platform = platform
           @ProjectIds = projectids
           @AspectRatioSet = aspectratioset
           @CategorySet = categoryset
+          @Modes = modes
           @Sort = sort
           @Owner = owner
           @Offset = offset
@@ -1225,6 +1238,7 @@ module TencentCloud
           @ProjectIds = params['ProjectIds']
           @AspectRatioSet = params['AspectRatioSet']
           @CategorySet = params['CategorySet']
+          @Modes = params['Modes']
           unless params['Sort'].nil?
             @Sort = SortBy.new.deserialize(params['Sort'])
           end
@@ -3172,15 +3186,21 @@ module TencentCloud
         # @type AspectRatio: String
         # @param Owner: 项目归属者。
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param Mode: 项目模式，一个项目可以有多种模式并相互切换。
+        # 当 Category 为 VIDEO_EDIT 时，可选模式有：
+        # <li>Defualt：默认模式。</li>
+        # <li>VideoEditTemplate：视频编辑模板制作模式。</li>
+        # @type Mode: String
 
-        attr_accessor :Platform, :ProjectId, :Name, :AspectRatio, :Owner
+        attr_accessor :Platform, :ProjectId, :Name, :AspectRatio, :Owner, :Mode
         
-        def initialize(platform=nil, projectid=nil, name=nil, aspectratio=nil, owner=nil)
+        def initialize(platform=nil, projectid=nil, name=nil, aspectratio=nil, owner=nil, mode=nil)
           @Platform = platform
           @ProjectId = projectid
           @Name = name
           @AspectRatio = aspectratio
           @Owner = owner
+          @Mode = mode
         end
 
         def deserialize(params)
@@ -3191,6 +3211,7 @@ module TencentCloud
           unless params['Owner'].nil?
             @Owner = Entity.new.deserialize(params['Owner'])
           end
+          @Mode = params['Mode']
         end
       end
 
@@ -3533,7 +3554,7 @@ module TencentCloud
         # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
         # @param CoverUrl: 项目封面图片地址。
         # @type CoverUrl: String
-        # @param StreamConnectProjectInfo: 云转推项目信息。
+        # @param StreamConnectProjectInfo: 云转推项目信息，仅当项目类别取值 STREAM_CONNECT 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamConnectProjectInfo: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectProjectInfo`
         # @param CreateTime: 项目创建时间，格式按照 ISO 8601 标准表示。

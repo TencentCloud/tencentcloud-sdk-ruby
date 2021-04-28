@@ -103,6 +103,7 @@ module TencentCloud
         # @param VoiceSdkAppid: 在[语音控制台](https://console.cloud.tencent.com/vms)添加应用后生成的实际SdkAppid，示例如1400006666。
         # @type VoiceSdkAppid: String
         # @param TemplateParamSet: 模板参数，若模板没有参数，请提供为空数组。
+        # 注：语音消息的内容长度不超过350字。
         # @type TemplateParamSet: Array
         # @param PlayTimes: 播放次数，可选，最多3次，默认2次。
         # @type PlayTimes: Integer

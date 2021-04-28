@@ -2779,10 +2779,14 @@ module TencentCloud
         # ipv6：指定查询 ipv6 对应指标
         # 指定IP协议查询时，不可同时指定省份、运营商查询
         # @type IpProtocol: String
+        # @param Interval: 时间粒度，支持以下几种模式（默认5min）：
+        # min：1 分钟粒度，支持近 60 天内的数据查询，每次查询时间区间不超过10分钟，可返回 1 分钟粒度明细数据
+        # 5min：5 分钟粒度，支持近 60 天内的数据查询，每次查询时间区间不超过3 小时，可返回 5 分钟粒度明细数据
+        # @type Interval: String
 
-        attr_accessor :Domains, :StartTime, :EndTime, :Metric, :Districts, :Isps, :Protocol, :IpProtocol
+        attr_accessor :Domains, :StartTime, :EndTime, :Metric, :Districts, :Isps, :Protocol, :IpProtocol, :Interval
         
-        def initialize(domains=nil, starttime=nil, endtime=nil, metric=nil, districts=nil, isps=nil, protocol=nil, ipprotocol=nil)
+        def initialize(domains=nil, starttime=nil, endtime=nil, metric=nil, districts=nil, isps=nil, protocol=nil, ipprotocol=nil, interval=nil)
           @Domains = domains
           @StartTime = starttime
           @EndTime = endtime
@@ -2791,6 +2795,7 @@ module TencentCloud
           @Isps = isps
           @Protocol = protocol
           @IpProtocol = ipprotocol
+          @Interval = interval
         end
 
         def deserialize(params)
@@ -2802,6 +2807,7 @@ module TencentCloud
           @Isps = params['Isps']
           @Protocol = params['Protocol']
           @IpProtocol = params['IpProtocol']
+          @Interval = params['Interval']
         end
       end
 

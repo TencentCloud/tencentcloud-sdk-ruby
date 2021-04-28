@@ -4784,10 +4784,13 @@ module TencentCloud
         # @param ISP: 实例运营商字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ISP: String
+        # @param PhysicalPosition: 物理位置信息。注意该字段目前为保留字段，均为空值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalPosition: :class:`Tencentcloud::Ecm.v20190719.models.PhysicalPosition`
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceState, :Image, :SimpleModule, :Position, :Internet, :InstanceTypeConfig, :CreateTime, :TagSet, :LatestOperation, :LatestOperationState, :RestrictState, :SystemDiskSize, :DataDiskSize, :UUID, :PayMode, :ExpireTime, :IsolatedTime, :RenewFlag, :ExpireState, :SystemDisk, :DataDisks, :NewFlag, :SecurityGroupIds, :VirtualPrivateCloud, :ISP
+        attr_accessor :InstanceId, :InstanceName, :InstanceState, :Image, :SimpleModule, :Position, :Internet, :InstanceTypeConfig, :CreateTime, :TagSet, :LatestOperation, :LatestOperationState, :RestrictState, :SystemDiskSize, :DataDiskSize, :UUID, :PayMode, :ExpireTime, :IsolatedTime, :RenewFlag, :ExpireState, :SystemDisk, :DataDisks, :NewFlag, :SecurityGroupIds, :VirtualPrivateCloud, :ISP, :PhysicalPosition
         
-        def initialize(instanceid=nil, instancename=nil, instancestate=nil, image=nil, simplemodule=nil, position=nil, internet=nil, instancetypeconfig=nil, createtime=nil, tagset=nil, latestoperation=nil, latestoperationstate=nil, restrictstate=nil, systemdisksize=nil, datadisksize=nil, uuid=nil, paymode=nil, expiretime=nil, isolatedtime=nil, renewflag=nil, expirestate=nil, systemdisk=nil, datadisks=nil, newflag=nil, securitygroupids=nil, virtualprivatecloud=nil, isp=nil)
+        def initialize(instanceid=nil, instancename=nil, instancestate=nil, image=nil, simplemodule=nil, position=nil, internet=nil, instancetypeconfig=nil, createtime=nil, tagset=nil, latestoperation=nil, latestoperationstate=nil, restrictstate=nil, systemdisksize=nil, datadisksize=nil, uuid=nil, paymode=nil, expiretime=nil, isolatedtime=nil, renewflag=nil, expirestate=nil, systemdisk=nil, datadisks=nil, newflag=nil, securitygroupids=nil, virtualprivatecloud=nil, isp=nil, physicalposition=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceState = instancestate
@@ -4815,6 +4818,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @VirtualPrivateCloud = virtualprivatecloud
           @ISP = isp
+          @PhysicalPosition = physicalposition
         end
 
         def deserialize(params)
@@ -4869,6 +4873,9 @@ module TencentCloud
             @VirtualPrivateCloud = VirtualPrivateCloud.new.deserialize(params['VirtualPrivateCloud'])
           end
           @ISP = params['ISP']
+          unless params['PhysicalPosition'].nil?
+            @PhysicalPosition = PhysicalPosition.new.deserialize(params['PhysicalPosition'])
+          end
         end
       end
 
@@ -5082,10 +5089,10 @@ module TencentCloud
 
       # 实例的网络相关信息。
       class Internet < TencentCloud::Common::AbstractModel
-        # @param PrivateIPAddressSet: 实例的内网相关信息列表。
+        # @param PrivateIPAddressSet: 实例的内网相关信息列表。顺序为主网卡在前，辅助网卡按绑定先后顺序排列。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateIPAddressSet: Array
-        # @param PublicIPAddressSet: 实例的公网相关信息列表。
+        # @param PublicIPAddressSet: 实例的公网相关信息列表。顺序为主网卡在前，辅助网卡按绑定先后顺序排列。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicIPAddressSet: Array
         # @param InstanceNetworkInfoSet: 实例网络相关信息。
@@ -7210,6 +7217,33 @@ module TencentCloud
               @PeakNetworkSet << PeakNetwork.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # 物理位置信息
+      class PhysicalPosition < TencentCloud::Common::AbstractModel
+        # @param PosId: 机位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PosId: String
+        # @param RackId: 机架
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RackId: String
+        # @param SwitchId: 交换机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchId: String
+
+        attr_accessor :PosId, :RackId, :SwitchId
+        
+        def initialize(posid=nil, rackid=nil, switchid=nil)
+          @PosId = posid
+          @RackId = rackid
+          @SwitchId = switchid
+        end
+
+        def deserialize(params)
+          @PosId = params['PosId']
+          @RackId = params['RackId']
+          @SwitchId = params['SwitchId']
         end
       end
 

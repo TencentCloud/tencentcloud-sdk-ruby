@@ -337,6 +337,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查看ckafka的可用区列表
+
+        # @param request: Request instance for DescribeCkafkaZone.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeCkafkaZoneRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeCkafkaZoneResponse`
+        def DescribeCkafkaZone(request)
+          body = send_request('DescribeCkafkaZone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCkafkaZoneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询消费分组信息
 
         # @param request: Request instance for DescribeConsumerGroup.
@@ -491,6 +515,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 枚举地域,只支持广州地域
+
+        # @param request: Request instance for DescribeRegion.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeRegionRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeRegionResponse`
+        def DescribeRegion(request)
+          body = send_request('DescribeRegion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRegionResponse.new
             model.deserialize(response['Response'])
             model
           else

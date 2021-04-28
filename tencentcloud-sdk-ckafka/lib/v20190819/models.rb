@@ -128,6 +128,56 @@ module TencentCloud
         end
       end
 
+      # 集群信息实体
+      class ClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: Integer
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param MaxDiskSize: 集群最大磁盘 单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDiskSize: Integer
+        # @param MaxBandWidth: 集群最大带宽 单位MB/s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxBandWidth: Integer
+        # @param AvailableDiskSize: 集群当前可用磁盘  单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableDiskSize: Integer
+        # @param AvailableBandWidth: 集群当前可用带宽 单位MB/s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableBandWidth: Integer
+        # @param ZoneId: 集群所属可用区，表明集群归属的可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: Integer
+        # @param ZoneIds: 集群节点所在的可用区，若该集群为跨可用区集群，则包含该集群节点所在的多个可用区。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneIds: Array
+
+        attr_accessor :ClusterId, :ClusterName, :MaxDiskSize, :MaxBandWidth, :AvailableDiskSize, :AvailableBandWidth, :ZoneId, :ZoneIds
+        
+        def initialize(clusterid=nil, clustername=nil, maxdisksize=nil, maxbandwidth=nil, availabledisksize=nil, availablebandwidth=nil, zoneid=nil, zoneids=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @MaxDiskSize = maxdisksize
+          @MaxBandWidth = maxbandwidth
+          @AvailableDiskSize = availabledisksize
+          @AvailableBandWidth = availablebandwidth
+          @ZoneId = zoneid
+          @ZoneIds = zoneids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @MaxDiskSize = params['MaxDiskSize']
+          @MaxBandWidth = params['MaxBandWidth']
+          @AvailableDiskSize = params['AvailableDiskSize']
+          @AvailableBandWidth = params['AvailableBandWidth']
+          @ZoneId = params['ZoneId']
+          @ZoneIds = params['ZoneIds']
+        end
+      end
+
       # 高级配置对象
       class Config < TencentCloud::Common::AbstractModel
         # @param Retention: 消息保留时间
@@ -1024,6 +1074,39 @@ module TencentCloud
         end
       end
 
+      # DescribeCkafkaZone请求参数结构体
+      class DescribeCkafkaZoneRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCkafkaZone返回参数结构体
+      class DescribeCkafkaZoneResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 查询结果复杂对象实体
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ZoneResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ZoneResponse.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeConsumerGroup请求参数结构体
       class DescribeConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka实例id。
@@ -1410,6 +1493,56 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = InstanceResponse.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegion请求参数结构体
+      class DescribeRegionRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回最大结果数
+        # @type Limit: Integer
+        # @param Business: 业务字段，可忽略
+        # @type Business: String
+
+        attr_accessor :Offset, :Limit, :Business
+        
+        def initialize(offset=nil, limit=nil, business=nil)
+          @Offset = offset
+          @Limit = limit
+          @Business = business
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Business = params['Business']
+        end
+      end
+
+      # DescribeRegion返回参数结构体
+      class DescribeRegionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回地域枚举结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << Region.new.deserialize(i)
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -2683,6 +2816,75 @@ module TencentCloud
         end
       end
 
+      # 消息价格实体
+      class Price < TencentCloud::Common::AbstractModel
+        # @param RealTotalCost: 折扣价
+        # @type RealTotalCost: Float
+        # @param TotalCost: 原价
+        # @type TotalCost: Float
+
+        attr_accessor :RealTotalCost, :TotalCost
+        
+        def initialize(realtotalcost=nil, totalcost=nil)
+          @RealTotalCost = realtotalcost
+          @TotalCost = totalcost
+        end
+
+        def deserialize(params)
+          @RealTotalCost = params['RealTotalCost']
+          @TotalCost = params['TotalCost']
+        end
+      end
+
+      # 地域实体对象
+      class Region < TencentCloud::Common::AbstractModel
+        # @param RegionId: 地域ID
+        # @type RegionId: Integer
+        # @param RegionName: 地域名称
+        # @type RegionName: String
+        # @param AreaName: 区域名称
+        # @type AreaName: String
+        # @param RegionCode: 地域代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionCode: String
+        # @param RegionCodeV3: 地域代码（V3版本）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionCodeV3: String
+        # @param Support: NONE:默认值不支持任何特殊机型\nCVM:支持CVM类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Support: String
+        # @param Ipv6: 是否支持ipv6, 0：表示不支持，1：表示支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6: Integer
+        # @param MultiZone: 是否支持跨可用区, 0：表示不支持，1：表示支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultiZone: Integer
+
+        attr_accessor :RegionId, :RegionName, :AreaName, :RegionCode, :RegionCodeV3, :Support, :Ipv6, :MultiZone
+        
+        def initialize(regionid=nil, regionname=nil, areaname=nil, regioncode=nil, regioncodev3=nil, support=nil, ipv6=nil, multizone=nil)
+          @RegionId = regionid
+          @RegionName = regionname
+          @AreaName = areaname
+          @RegionCode = regioncode
+          @RegionCodeV3 = regioncodev3
+          @Support = support
+          @Ipv6 = ipv6
+          @MultiZone = multizone
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
+          @AreaName = params['AreaName']
+          @RegionCode = params['RegionCode']
+          @RegionCodeV3 = params['RegionCodeV3']
+          @Support = params['Support']
+          @Ipv6 = params['Ipv6']
+          @MultiZone = params['MultiZone']
+        end
+      end
+
       # 路由实体对象
       class Route < TencentCloud::Common::AbstractModel
         # @param AccessType: 实例接入方式
@@ -3136,6 +3338,121 @@ module TencentCloud
         def deserialize(params)
           @Vip = params['Vip']
           @Vport = params['Vport']
+        end
+      end
+
+      # zone信息实体
+      class ZoneInfo < TencentCloud::Common::AbstractModel
+        # @param ZoneId: zone的id
+        # @type ZoneId: String
+        # @param IsInternalApp: 是否内部APP
+        # @type IsInternalApp: Integer
+        # @param AppId: app id
+        # @type AppId: Integer
+        # @param Flag: 标识
+        # @type Flag: Boolean
+        # @param ZoneName: zone名称
+        # @type ZoneName: String
+        # @param ZoneStatus: zone状态
+        # @type ZoneStatus: Integer
+        # @param Exflag: 额外标识
+        # @type Exflag: String
+        # @param SoldOut: json对象，key为机型，value true为售罄，false为未售罄
+        # @type SoldOut: String
+
+        attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut
+        
+        def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil)
+          @ZoneId = zoneid
+          @IsInternalApp = isinternalapp
+          @AppId = appid
+          @Flag = flag
+          @ZoneName = zonename
+          @ZoneStatus = zonestatus
+          @Exflag = exflag
+          @SoldOut = soldout
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @IsInternalApp = params['IsInternalApp']
+          @AppId = params['AppId']
+          @Flag = params['Flag']
+          @ZoneName = params['ZoneName']
+          @ZoneStatus = params['ZoneStatus']
+          @Exflag = params['Exflag']
+          @SoldOut = params['SoldOut']
+        end
+      end
+
+      # 查询kafka的zone信息返回的实体
+      class ZoneResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneList: zone列表
+        # @type ZoneList: Array
+        # @param MaxBuyInstanceNum: 最大购买实例个数
+        # @type MaxBuyInstanceNum: Integer
+        # @param MaxBandwidth: 最大购买带宽 单位Mb/s
+        # @type MaxBandwidth: Integer
+        # @param UnitPrice: 后付费单位价格
+        # @type UnitPrice: :class:`Tencentcloud::Ckafka.v20190819.models.Price`
+        # @param MessagePrice: 后付费消息单价
+        # @type MessagePrice: :class:`Tencentcloud::Ckafka.v20190819.models.Price`
+        # @param ClusterInfo: 用户独占集群信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterInfo: Array
+        # @param Standard: 购买标准版配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Standard: String
+        # @param StandardS2: 购买标准版S2配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardS2: String
+        # @param Profession: 购买专业版配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Profession: String
+        # @param Physical: 购买物理独占版配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Physical: String
+
+        attr_accessor :ZoneList, :MaxBuyInstanceNum, :MaxBandwidth, :UnitPrice, :MessagePrice, :ClusterInfo, :Standard, :StandardS2, :Profession, :Physical
+        
+        def initialize(zonelist=nil, maxbuyinstancenum=nil, maxbandwidth=nil, unitprice=nil, messageprice=nil, clusterinfo=nil, standard=nil, standards2=nil, profession=nil, physical=nil)
+          @ZoneList = zonelist
+          @MaxBuyInstanceNum = maxbuyinstancenum
+          @MaxBandwidth = maxbandwidth
+          @UnitPrice = unitprice
+          @MessagePrice = messageprice
+          @ClusterInfo = clusterinfo
+          @Standard = standard
+          @StandardS2 = standards2
+          @Profession = profession
+          @Physical = physical
+        end
+
+        def deserialize(params)
+          unless params['ZoneList'].nil?
+            @ZoneList = []
+            params['ZoneList'].each do |i|
+              @ZoneList << ZoneInfo.new.deserialize(i)
+            end
+          end
+          @MaxBuyInstanceNum = params['MaxBuyInstanceNum']
+          @MaxBandwidth = params['MaxBandwidth']
+          unless params['UnitPrice'].nil?
+            @UnitPrice = Price.new.deserialize(params['UnitPrice'])
+          end
+          unless params['MessagePrice'].nil?
+            @MessagePrice = Price.new.deserialize(params['MessagePrice'])
+          end
+          unless params['ClusterInfo'].nil?
+            @ClusterInfo = []
+            params['ClusterInfo'].each do |i|
+              @ClusterInfo << ClusterInfo.new.deserialize(i)
+            end
+          end
+          @Standard = params['Standard']
+          @StandardS2 = params['StandardS2']
+          @Profession = params['Profession']
+          @Physical = params['Physical']
         end
       end
 

@@ -1177,6 +1177,30 @@ module TencentCloud
         end
       end
 
+      # 黑白名单IOC列表
+      class IocListData < TencentCloud::Common::AbstractModel
+        # @param IP: 待处置IP地址，IP/Domain字段二选一
+        # @type IP: String
+        # @param Direction: 只能为0或者1   0代表出站 1代表入站
+        # @type Direction: Integer
+        # @param Domain: 待处置域名，IP/Domain字段二选一
+        # @type Domain: String
+
+        attr_accessor :IP, :Direction, :Domain
+        
+        def initialize(ip=nil, direction=nil, domain=nil)
+          @IP = ip
+          @Direction = direction
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @IP = params['IP']
+          @Direction = params['Direction']
+          @Domain = params['Domain']
+        end
+      end
+
       # ModifyAcRule请求参数结构体
       class ModifyAcRuleRequest < TencentCloud::Common::AbstractModel
         # @param Data: 规则数组
@@ -1332,6 +1356,67 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBlockIgnoreList请求参数结构体
+      class ModifyBlockIgnoreListRequest < TencentCloud::Common::AbstractModel
+        # @param RuleType: 1拦截列表 2 忽略列表
+        # @type RuleType: Integer
+        # @param IOC: IP、Domain二选一，不能同时为空
+        # @type IOC: Array
+        # @param IocAction: 默认值:delete（删除）、edit（编辑）、add（添加）  其他值无效
+        # @type IocAction: String
+        # @param StartTime: 时间格式：yyyy-MM-dd HH:mm:ss
+        # @type StartTime: String
+        # @param EndTime: 时间格式：yyyy-MM-dd HH:mm:ss
+        # @type EndTime: String
+
+        attr_accessor :RuleType, :IOC, :IocAction, :StartTime, :EndTime
+        
+        def initialize(ruletype=nil, ioc=nil, iocaction=nil, starttime=nil, endtime=nil)
+          @RuleType = ruletype
+          @IOC = ioc
+          @IocAction = iocaction
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          unless params['IOC'].nil?
+            @IOC = []
+            params['IOC'].each do |i|
+              @IOC << IocListData.new.deserialize(i)
+            end
+          end
+          @IocAction = params['IocAction']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # ModifyBlockIgnoreList返回参数结构体
+      class ModifyBlockIgnoreListResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnMsg: 接口返回信息
+        # @type ReturnMsg: String
+        # @param ReturnCode: 接口返回错误码，0请求成功  非0失败
+        # @type ReturnCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnMsg, :ReturnCode, :RequestId
+        
+        def initialize(returnmsg=nil, returncode=nil, requestid=nil)
+          @ReturnMsg = returnmsg
+          @ReturnCode = returncode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnMsg = params['ReturnMsg']
+          @ReturnCode = params['ReturnCode']
           @RequestId = params['RequestId']
         end
       end

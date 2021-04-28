@@ -2421,9 +2421,9 @@ module TencentCloud
         # @type EnvId: String
         # @param SnapshotName: 版本历史名
         # @type SnapshotName: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量。默认0
         # @type Offset: Integer
-        # @param Limit: 限制大小
+        # @param Limit: 限制大小。默认10，最大20
         # @type Limit: Integer
 
         attr_accessor :ServerName, :VersionName, :EnvId, :SnapshotName, :Offset, :Limit

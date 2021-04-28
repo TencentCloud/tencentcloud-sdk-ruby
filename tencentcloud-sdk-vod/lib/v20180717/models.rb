@@ -12464,6 +12464,57 @@ module TencentCloud
         end
       end
 
+      # ModifyEventConfig请求参数结构体
+      class ModifyEventConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 接收事件通知的方式。
+        # <li>PUSH：[HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)；</li>
+        # <li>PULL：[基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779)。</li>
+        # @type Mode: String
+        # @param NotificationUrl: 采用 [HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 接收方式时，用于接收 3.0 格式回调的地址。
+        # 注意：如果带 NotificationUrl  参数且值为空字符串时将会清空 3.0 格式回调地址。
+        # @type NotificationUrl: String
+        # @param UploadMediaCompleteEventSwitch: 是否接收 [视频上传完成](https://cloud.tencent.com/document/product/266/7830) 事件通知， 默认 "OFF" 为忽略该事件通知，"ON" 为接收事件通知。
+        # @type UploadMediaCompleteEventSwitch: String
+        # @param DeleteMediaCompleteEventSwitch: 是否接收 [视频删除完成](https://cloud.tencent.com/document/product/266/13434) 事件通知，  默认 "OFF" 为忽略该事件通知，"ON" 为接收事件通知。
+        # @type DeleteMediaCompleteEventSwitch: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Mode, :NotificationUrl, :UploadMediaCompleteEventSwitch, :DeleteMediaCompleteEventSwitch, :SubAppId
+        
+        def initialize(mode=nil, notificationurl=nil, uploadmediacompleteeventswitch=nil, deletemediacompleteeventswitch=nil, subappid=nil)
+          @Mode = mode
+          @NotificationUrl = notificationurl
+          @UploadMediaCompleteEventSwitch = uploadmediacompleteeventswitch
+          @DeleteMediaCompleteEventSwitch = deletemediacompleteeventswitch
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @NotificationUrl = params['NotificationUrl']
+          @UploadMediaCompleteEventSwitch = params['UploadMediaCompleteEventSwitch']
+          @DeleteMediaCompleteEventSwitch = params['DeleteMediaCompleteEventSwitch']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # ModifyEventConfig返回参数结构体
+      class ModifyEventConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyImageSpriteTemplate请求参数结构体
       class ModifyImageSpriteTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 雪碧图模板唯一标识。

@@ -1485,6 +1485,62 @@ module TencentCloud
         end
       end
 
+      # StartMatchingBackfill请求参数结构体
+      class StartMatchingBackfillRequest < TencentCloud::Common::AbstractModel
+        # @param MatchCode: 匹配code
+        # @type MatchCode: String
+        # @param Players: 玩家信息
+        # @type Players: Array
+        # @param GameServerSessionId: 游戏服务器回话 ID [1-256] 个ASCII 字符
+        # @type GameServerSessionId: String
+        # @param MatchTicketId: 匹配票据 Id 默认 "" 为空则由 GPM 自动生成 长度 [1, 128]
+        # @type MatchTicketId: String
+
+        attr_accessor :MatchCode, :Players, :GameServerSessionId, :MatchTicketId
+        
+        def initialize(matchcode=nil, players=nil, gameserversessionid=nil, matchticketid=nil)
+          @MatchCode = matchcode
+          @Players = players
+          @GameServerSessionId = gameserversessionid
+          @MatchTicketId = matchticketid
+        end
+
+        def deserialize(params)
+          @MatchCode = params['MatchCode']
+          unless params['Players'].nil?
+            @Players = []
+            params['Players'].each do |i|
+              @Players << Player.new.deserialize(i)
+            end
+          end
+          @GameServerSessionId = params['GameServerSessionId']
+          @MatchTicketId = params['MatchTicketId']
+        end
+      end
+
+      # StartMatchingBackfill返回参数结构体
+      class StartMatchingBackfillResponse < TencentCloud::Common::AbstractModel
+        # @param MatchTicket: 匹配票据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchTicket: :class:`Tencentcloud::Gpm.v20200820.models.MatchTicket`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MatchTicket, :RequestId
+        
+        def initialize(matchticket=nil, requestid=nil)
+          @MatchTicket = matchticket
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MatchTicket'].nil?
+            @MatchTicket = MatchTicket.new.deserialize(params['MatchTicket'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartMatching请求参数结构体
       class StartMatchingRequest < TencentCloud::Common::AbstractModel
         # @param MatchCode: 匹配 Code。
