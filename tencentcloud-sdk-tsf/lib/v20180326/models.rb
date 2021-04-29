@@ -1215,10 +1215,13 @@ module TencentCloud
         # @param ReleaseDesc: 发布描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseDesc: String
+        # @param ApplicationId: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
 
-        attr_accessor :ConfigReleaseId, :ConfigId, :ConfigName, :ConfigVersion, :ReleaseTime, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ReleaseDesc
+        attr_accessor :ConfigReleaseId, :ConfigId, :ConfigName, :ConfigVersion, :ReleaseTime, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ReleaseDesc, :ApplicationId
         
-        def initialize(configreleaseid=nil, configid=nil, configname=nil, configversion=nil, releasetime=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, releasedesc=nil)
+        def initialize(configreleaseid=nil, configid=nil, configname=nil, configversion=nil, releasetime=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, releasedesc=nil, applicationid=nil)
           @ConfigReleaseId = configreleaseid
           @ConfigId = configid
           @ConfigName = configname
@@ -1231,6 +1234,7 @@ module TencentCloud
           @ClusterId = clusterid
           @ClusterName = clustername
           @ReleaseDesc = releasedesc
+          @ApplicationId = applicationid
         end
 
         def deserialize(params)
@@ -1246,6 +1250,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @ClusterName = params['ClusterName']
           @ReleaseDesc = params['ReleaseDesc']
+          @ApplicationId = params['ApplicationId']
         end
       end
 

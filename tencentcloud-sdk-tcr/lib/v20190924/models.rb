@@ -2365,6 +2365,54 @@ module TencentCloud
         end
       end
 
+      # DescribeReplicationInstanceSyncStatus请求参数结构体
+      class DescribeReplicationInstanceSyncStatusRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 主实例Id
+        # @type RegistryId: String
+        # @param ReplicationRegistryId: 复制实例Id
+        # @type ReplicationRegistryId: String
+        # @param ReplicationRegionId: 复制实例的地域Id
+        # @type ReplicationRegionId: Integer
+
+        attr_accessor :RegistryId, :ReplicationRegistryId, :ReplicationRegionId
+        
+        def initialize(registryid=nil, replicationregistryid=nil, replicationregionid=nil)
+          @RegistryId = registryid
+          @ReplicationRegistryId = replicationregistryid
+          @ReplicationRegionId = replicationregionid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @ReplicationRegistryId = params['ReplicationRegistryId']
+          @ReplicationRegionId = params['ReplicationRegionId']
+        end
+      end
+
+      # DescribeReplicationInstanceSyncStatus返回参数结构体
+      class DescribeReplicationInstanceSyncStatusResponse < TencentCloud::Common::AbstractModel
+        # @param ReplicationStatus: 同步状态
+        # @type ReplicationStatus: String
+        # @param ReplicationTime: 同步完成时间
+        # @type ReplicationTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReplicationStatus, :ReplicationTime, :RequestId
+        
+        def initialize(replicationstatus=nil, replicationtime=nil, requestid=nil)
+          @ReplicationStatus = replicationstatus
+          @ReplicationTime = replicationtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReplicationStatus = params['ReplicationStatus']
+          @ReplicationTime = params['ReplicationTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeReplicationInstances请求参数结构体
       class DescribeReplicationInstancesRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例Id
