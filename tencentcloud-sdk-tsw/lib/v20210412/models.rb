@@ -71,6 +71,42 @@ module TencentCloud
         end
       end
 
+      # DescribeToken请求参数结构体
+      class DescribeTokenRequest < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+
+        attr_accessor :Namespace
+        
+        def initialize(namespace=nil)
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+        end
+      end
+
+      # DescribeToken返回参数结构体
+      class DescribeTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Result: token
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

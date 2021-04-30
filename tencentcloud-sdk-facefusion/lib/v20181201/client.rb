@@ -75,7 +75,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 人脸融合活动专用版
+        # 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
 
         # @param request: Request instance for FaceFusionLite.
         # @type request: :class:`Tencentcloud::facefusion::V20181201::FaceFusionLiteRequest`

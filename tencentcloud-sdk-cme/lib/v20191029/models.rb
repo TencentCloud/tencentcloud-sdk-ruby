@@ -547,18 +547,28 @@ module TencentCloud
       class CreateProjectResponse < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目 Id。
         # @type ProjectId: String
+        # @param RtmpPushInputInfoSet: 输入源推流信息。
+        #  <li> 当 Catagory 为 STREAM_CONNECT 时，数组返回长度为 2 ，第 0 个代表主输入源，第 1 个代表备输入源。只有当各自输入源类型为推流时才有有效内容。</li>
+        # @type RtmpPushInputInfoSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProjectId, :RequestId
+        attr_accessor :ProjectId, :RtmpPushInputInfoSet, :RequestId
         
-        def initialize(projectid=nil, requestid=nil)
+        def initialize(projectid=nil, rtmppushinputinfoset=nil, requestid=nil)
           @ProjectId = projectid
+          @RtmpPushInputInfoSet = rtmppushinputinfoset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
+          unless params['RtmpPushInputInfoSet'].nil?
+            @RtmpPushInputInfoSet = []
+            params['RtmpPushInputInfoSet'].each do |i|
+              @RtmpPushInputInfoSet << RtmpPushInputInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2252,16 +2262,20 @@ module TencentCloud
 
       # HandleStreamConnectProject返回参数结构体
       class HandleStreamConnectProjectResponse < TencentCloud::Common::AbstractModel
+        # @param StreamInputRtmpPushUrl: 输入源推流地址，当 Operation 取值 AddInput 且 InputType 为 RtmpPush 类型时有效。
+        # @type StreamInputRtmpPushUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :StreamInputRtmpPushUrl, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(streaminputrtmppushurl=nil, requestid=nil)
+          @StreamInputRtmpPushUrl = streaminputrtmppushurl
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @StreamInputRtmpPushUrl = params['StreamInputRtmpPushUrl']
           @RequestId = params['RequestId']
         end
       end

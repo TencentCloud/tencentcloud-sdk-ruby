@@ -8308,7 +8308,8 @@ module TencentCloud
         # @type CreateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
         # @param FinishTime: 过滤条件：任务结束时间。
         # @type FinishTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
-        # @param Sort: 排序方式。Sort.Field 可选：
+        # @param Sort: (该字段暂不支持)
+        # 排序方式。Sort.Field 可选：
         # <li> CreateTime 任务创建时间。</li>
         # <li>FinishTime 任务结束时间。</li>
         # @type Sort: :class:`Tencentcloud::Vod.v20180717.models.SortBy`
