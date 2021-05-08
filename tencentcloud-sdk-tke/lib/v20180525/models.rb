@@ -2175,7 +2175,7 @@ module TencentCloud
 
       # DescribeClusterEndpointStatus返回参数结构体
       class DescribeClusterEndpointStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 查询集群访问端口状态（Created 开启成功，Creating 开启中中，NotFound 未开启）
+        # @param Status: 查询集群访问端口状态（Created 开启成功，Creating 开启中，NotFound 未开启）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param ErrorMsg: 开启访问入口失败信息

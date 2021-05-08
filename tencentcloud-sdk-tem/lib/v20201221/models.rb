@@ -120,6 +120,57 @@ module TencentCloud
         end
       end
 
+      # CreateCosTokenV2请求参数结构体
+      class CreateCosTokenV2Request < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param PkgName: 包名
+        # @type PkgName: String
+        # @param OptType: optType 1上传  2查询
+        # @type OptType: Integer
+        # @param SourceChannel: 来源 channel
+        # @type SourceChannel: Integer
+
+        attr_accessor :ServiceId, :PkgName, :OptType, :SourceChannel
+        
+        def initialize(serviceid=nil, pkgname=nil, opttype=nil, sourcechannel=nil)
+          @ServiceId = serviceid
+          @PkgName = pkgname
+          @OptType = opttype
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @PkgName = params['PkgName']
+          @OptType = params['OptType']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # CreateCosTokenV2返回参数结构体
+      class CreateCosTokenV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 成功时为CosToken对象，失败为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tem.v20201221.models.CosToken`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CosToken.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNamespace请求参数结构体
       class CreateNamespaceRequest < TencentCloud::Common::AbstractModel
         # @param NamespaceName: 命名空间名称
@@ -177,6 +228,432 @@ module TencentCloud
         end
       end
 
+      # CreateResource请求参数结构体
+      class CreateResourceRequest < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: 命名空间 Id
+        # @type NamespaceId: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param ResourceId: 资源 Id
+        # @type ResourceId: String
+        # @param SourceChannel: 来源
+        # @type SourceChannel: Integer
+
+        attr_accessor :NamespaceId, :ResourceType, :ResourceId, :SourceChannel
+        
+        def initialize(namespaceid=nil, resourcetype=nil, resourceid=nil, sourcechannel=nil)
+          @NamespaceId = namespaceid
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # CreateResource返回参数结构体
+      class CreateResourceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 成功与否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateServiceV2请求参数结构体
+      class CreateServiceV2Request < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param UseDefaultImageService: 是否使用默认镜像服务
+        # @type UseDefaultImageService: Integer
+        # @param RepoType: 如果是绑定仓库，绑定的仓库类型，0-个人版，1-企业版
+        # @type RepoType: Integer
+        # @param InstanceId: 企业版镜像服务的实例id
+        # @type InstanceId: String
+        # @param RepoServer: 绑定镜像服务器地址
+        # @type RepoServer: String
+        # @param RepoName: 绑定镜像仓库名
+        # @type RepoName: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param SubnetList: 服务所在子网
+        # @type SubnetList: Array
+        # @param CodingLanguage: 编程语言
+        # @type CodingLanguage: String
+        # @param DeployMode: 部署方式
+        # @type DeployMode: String
+
+        attr_accessor :ServiceName, :Description, :UseDefaultImageService, :RepoType, :InstanceId, :RepoServer, :RepoName, :SourceChannel, :SubnetList, :CodingLanguage, :DeployMode
+        
+        def initialize(servicename=nil, description=nil, usedefaultimageservice=nil, repotype=nil, instanceid=nil, reposerver=nil, reponame=nil, sourcechannel=nil, subnetlist=nil, codinglanguage=nil, deploymode=nil)
+          @ServiceName = servicename
+          @Description = description
+          @UseDefaultImageService = usedefaultimageservice
+          @RepoType = repotype
+          @InstanceId = instanceid
+          @RepoServer = reposerver
+          @RepoName = reponame
+          @SourceChannel = sourcechannel
+          @SubnetList = subnetlist
+          @CodingLanguage = codinglanguage
+          @DeployMode = deploymode
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @Description = params['Description']
+          @UseDefaultImageService = params['UseDefaultImageService']
+          @RepoType = params['RepoType']
+          @InstanceId = params['InstanceId']
+          @RepoServer = params['RepoServer']
+          @RepoName = params['RepoName']
+          @SourceChannel = params['SourceChannel']
+          @SubnetList = params['SubnetList']
+          @CodingLanguage = params['CodingLanguage']
+          @DeployMode = params['DeployMode']
+        end
+      end
+
+      # CreateServiceV2返回参数结构体
+      class CreateServiceV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 服务code
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteIngress请求参数结构体
+      class DeleteIngressRequest < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: tem NamespaceId
+        # @type NamespaceId: String
+        # @param EksNamespace: eks namespace 名
+        # @type EksNamespace: String
+        # @param Name: ingress 规则名
+        # @type Name: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+
+        attr_accessor :NamespaceId, :EksNamespace, :Name, :SourceChannel
+        
+        def initialize(namespaceid=nil, eksnamespace=nil, name=nil, sourcechannel=nil)
+          @NamespaceId = namespaceid
+          @EksNamespace = eksnamespace
+          @Name = name
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @EksNamespace = params['EksNamespace']
+          @Name = params['Name']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DeleteIngress返回参数结构体
+      class DeleteIngressResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否删除成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeployServiceV2请求参数结构体
+      class DeployServiceV2Request < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param ContainerPort: 容器端口
+        # @type ContainerPort: Integer
+        # @param InitPodNum: 初始化 pod 数
+        # @type InitPodNum: Integer
+        # @param CpuSpec: cpu规格
+        # @type CpuSpec: Float
+        # @param MemorySpec: 内存规格
+        # @type MemorySpec: Float
+        # @param NamespaceId: 环境ID
+        # @type NamespaceId: String
+        # @param ImgRepo: 镜像仓库
+        # @type ImgRepo: String
+        # @param VersionDesc: 版本描述信息
+        # @type VersionDesc: String
+        # @param JvmOpts: 启动参数
+        # @type JvmOpts: String
+        # @param EsInfo: 弹性伸缩配置，不传默认不启用弹性伸缩配置
+        # @type EsInfo: :class:`Tencentcloud::Tem.v20201221.models.EsInfo`
+        # @param EnvConf: 环境变量配置
+        # @type EnvConf: Array
+        # @param LogConfs: 日志配置
+        # @type LogConfs: Array
+        # @param StorageConfs: 数据卷配置
+        # @type StorageConfs: Array
+        # @param StorageMountConfs: 数据卷挂载配置
+        # @type StorageMountConfs: Array
+        # @param DeployMode: 部署类型。
+        # - JAR：通过 jar 包部署
+        # - WAR：通过 war 包部署
+        # - IMAGE：通过镜像部署
+        # @type DeployMode: String
+        # @param DeployVersion: 部署类型为 IMAGE 时，该参数表示镜像 tag。
+        # 部署类型为 JAR/WAR 时，该参数表示包版本号。
+        # @type DeployVersion: String
+        # @param PkgName: 包名。使用 JAR 包或者 WAR 包部署的时候必填。
+        # @type PkgName: String
+        # @param JdkVersion: JDK 版本。
+        # - KONA：使用 kona jdk。
+        # - OPEN：使用 open jdk。
+        # @type JdkVersion: String
+        # @param SecurityGroupIds: 安全组ID s
+        # @type SecurityGroupIds: Array
+        # @param LogOutputConf: 日志输出配置
+        # @type LogOutputConf: :class:`Tencentcloud::Tem.v20201221.models.LogOutputConf`
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param Description: 版本描述
+        # @type Description: String
+        # @param ImageCommand: 镜像命令
+        # @type ImageCommand: String
+        # @param ImageArgs: 镜像命令参数
+        # @type ImageArgs: Array
+
+        attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs
+        
+        def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil)
+          @ServiceId = serviceid
+          @ContainerPort = containerport
+          @InitPodNum = initpodnum
+          @CpuSpec = cpuspec
+          @MemorySpec = memoryspec
+          @NamespaceId = namespaceid
+          @ImgRepo = imgrepo
+          @VersionDesc = versiondesc
+          @JvmOpts = jvmopts
+          @EsInfo = esinfo
+          @EnvConf = envconf
+          @LogConfs = logconfs
+          @StorageConfs = storageconfs
+          @StorageMountConfs = storagemountconfs
+          @DeployMode = deploymode
+          @DeployVersion = deployversion
+          @PkgName = pkgname
+          @JdkVersion = jdkversion
+          @SecurityGroupIds = securitygroupids
+          @LogOutputConf = logoutputconf
+          @SourceChannel = sourcechannel
+          @Description = description
+          @ImageCommand = imagecommand
+          @ImageArgs = imageargs
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ContainerPort = params['ContainerPort']
+          @InitPodNum = params['InitPodNum']
+          @CpuSpec = params['CpuSpec']
+          @MemorySpec = params['MemorySpec']
+          @NamespaceId = params['NamespaceId']
+          @ImgRepo = params['ImgRepo']
+          @VersionDesc = params['VersionDesc']
+          @JvmOpts = params['JvmOpts']
+          unless params['EsInfo'].nil?
+            @EsInfo = EsInfo.new.deserialize(params['EsInfo'])
+          end
+          unless params['EnvConf'].nil?
+            @EnvConf = []
+            params['EnvConf'].each do |i|
+              @EnvConf << Pair.new.deserialize(i)
+            end
+          end
+          @LogConfs = params['LogConfs']
+          unless params['StorageConfs'].nil?
+            @StorageConfs = []
+            params['StorageConfs'].each do |i|
+              @StorageConfs << StorageConf.new.deserialize(i)
+            end
+          end
+          unless params['StorageMountConfs'].nil?
+            @StorageMountConfs = []
+            params['StorageMountConfs'].each do |i|
+              @StorageMountConfs << StorageMountConf.new.deserialize(i)
+            end
+          end
+          @DeployMode = params['DeployMode']
+          @DeployVersion = params['DeployVersion']
+          @PkgName = params['PkgName']
+          @JdkVersion = params['JdkVersion']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['LogOutputConf'].nil?
+            @LogOutputConf = LogOutputConf.new.deserialize(params['LogOutputConf'])
+          end
+          @SourceChannel = params['SourceChannel']
+          @Description = params['Description']
+          @ImageCommand = params['ImageCommand']
+          @ImageArgs = params['ImageArgs']
+        end
+      end
+
+      # DeployServiceV2返回参数结构体
+      class DeployServiceV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 版本ID（前端可忽略）
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIngress请求参数结构体
+      class DescribeIngressRequest < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: tem namespaceId
+        # @type NamespaceId: String
+        # @param EksNamespace: eks namespace 名
+        # @type EksNamespace: String
+        # @param Name: ingress 规则名
+        # @type Name: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+
+        attr_accessor :NamespaceId, :EksNamespace, :Name, :SourceChannel
+        
+        def initialize(namespaceid=nil, eksnamespace=nil, name=nil, sourcechannel=nil)
+          @NamespaceId = namespaceid
+          @EksNamespace = eksnamespace
+          @Name = name
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @EksNamespace = params['EksNamespace']
+          @Name = params['Name']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DescribeIngress返回参数结构体
+      class DescribeIngressResponse < TencentCloud::Common::AbstractModel
+        # @param Result: ingressInfo
+        # @type Result: :class:`Tencentcloud::Tem.v20201221.models.IngressInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = IngressInfo.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIngresses请求参数结构体
+      class DescribeIngressesRequest < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: namespace id
+        # @type NamespaceId: String
+        # @param EksNamespace: namespace
+        # @type EksNamespace: String
+        # @param SourceChannel: 来源
+        # @type SourceChannel: Integer
+
+        attr_accessor :NamespaceId, :EksNamespace, :SourceChannel
+        
+        def initialize(namespaceid=nil, eksnamespace=nil, sourcechannel=nil)
+          @NamespaceId = namespaceid
+          @EksNamespace = eksnamespace
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @EksNamespace = params['EksNamespace']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DescribeIngresses返回参数结构体
+      class DescribeIngressesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: ingress 数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << IngressInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNamespaces请求参数结构体
       class DescribeNamespacesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 分页limit
@@ -220,6 +697,137 @@ module TencentCloud
             @Result = NamespacePage.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 版本pod列表
+      class DescribeRunPodPage < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页下标
+        # @type Offset: Integer
+        # @param Limit: 单页条数
+        # @type Limit: Integer
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 请求id
+        # @type RequestId: String
+        # @param PodList: 条目
+        # @type PodList: Array
+
+        attr_accessor :Offset, :Limit, :TotalCount, :RequestId, :PodList
+        
+        def initialize(offset=nil, limit=nil, totalcount=nil, requestid=nil, podlist=nil)
+          @Offset = offset
+          @Limit = limit
+          @TotalCount = totalcount
+          @RequestId = requestid
+          @PodList = podlist
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+          unless params['PodList'].nil?
+            @PodList = []
+            params['PodList'].each do |i|
+              @PodList << RunVersionPod.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeServiceRunPodListV2请求参数结构体
+      class DescribeServiceRunPodListV2Request < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: 环境id
+        # @type NamespaceId: String
+        # @param ServiceId: 服务名id
+        # @type ServiceId: String
+        # @param Limit: 单页条数
+        # @type Limit: Integer
+        # @param Offset: 分页下标
+        # @type Offset: Integer
+        # @param Status: pod状态
+        # @type Status: String
+        # @param PodName: 名字
+        # @type PodName: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+
+        attr_accessor :NamespaceId, :ServiceId, :Limit, :Offset, :Status, :PodName, :SourceChannel
+        
+        def initialize(namespaceid=nil, serviceid=nil, limit=nil, offset=nil, status=nil, podname=nil, sourcechannel=nil)
+          @NamespaceId = namespaceid
+          @ServiceId = serviceid
+          @Limit = limit
+          @Offset = offset
+          @Status = status
+          @PodName = podname
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @ServiceId = params['ServiceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Status = params['Status']
+          @PodName = params['PodName']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # DescribeServiceRunPodListV2返回参数结构体
+      class DescribeServiceRunPodListV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Tem.v20201221.models.DescribeRunPodPage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeRunPodPage.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 弹性伸缩配置
+      class EsInfo < TencentCloud::Common::AbstractModel
+        # @param MinAliveInstances: 最小实例数
+        # @type MinAliveInstances: Integer
+        # @param MaxAliveInstances: 最大实例数
+        # @type MaxAliveInstances: Integer
+        # @param EsStrategy: 弹性策略,1:cpu，2:内存
+        # @type EsStrategy: Integer
+        # @param Threshold: 弹性扩缩容条件值
+        # @type Threshold: Integer
+        # @param VersionId: 版本Id
+        # @type VersionId: String
+
+        attr_accessor :MinAliveInstances, :MaxAliveInstances, :EsStrategy, :Threshold, :VersionId
+        
+        def initialize(minaliveinstances=nil, maxaliveinstances=nil, esstrategy=nil, threshold=nil, versionid=nil)
+          @MinAliveInstances = minaliveinstances
+          @MaxAliveInstances = maxaliveinstances
+          @EsStrategy = esstrategy
+          @Threshold = threshold
+          @VersionId = versionid
+        end
+
+        def deserialize(params)
+          @MinAliveInstances = params['MinAliveInstances']
+          @MaxAliveInstances = params['MaxAliveInstances']
+          @EsStrategy = params['EsStrategy']
+          @Threshold = params['Threshold']
+          @VersionId = params['VersionId']
         end
       end
 
@@ -392,6 +1000,30 @@ module TencentCloud
         end
       end
 
+      # 日志输出配置
+      class LogOutputConf < TencentCloud::Common::AbstractModel
+        # @param OutputType: 日志消费端类型
+        # @type OutputType: String
+        # @param ClsLogsetName: cls日志集
+        # @type ClsLogsetName: String
+        # @param ClsLogTopicId: cls日志主题
+        # @type ClsLogTopicId: String
+
+        attr_accessor :OutputType, :ClsLogsetName, :ClsLogTopicId
+        
+        def initialize(outputtype=nil, clslogsetname=nil, clslogtopicid=nil)
+          @OutputType = outputtype
+          @ClsLogsetName = clslogsetname
+          @ClsLogTopicId = clslogtopicid
+        end
+
+        def deserialize(params)
+          @OutputType = params['OutputType']
+          @ClsLogsetName = params['ClsLogsetName']
+          @ClsLogTopicId = params['ClsLogTopicId']
+        end
+      end
+
       # ModifyIngress请求参数结构体
       class ModifyIngressRequest < TencentCloud::Common::AbstractModel
         # @param Ingress: Ingress 规则配置
@@ -522,6 +1154,103 @@ module TencentCloud
           @Total = params['Total']
           @Size = params['Size']
           @Pages = params['Pages']
+        end
+      end
+
+      # 键值对
+      class Pair < TencentCloud::Common::AbstractModel
+        # @param Key: 建
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 版本pod
+      class RunVersionPod < TencentCloud::Common::AbstractModel
+        # @param Webshell: shell地址
+        # @type Webshell: String
+        # @param PodId: pod的id
+        # @type PodId: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param PodIp: pod的ip
+        # @type PodIp: String
+
+        attr_accessor :Webshell, :PodId, :Status, :CreateTime, :PodIp
+        
+        def initialize(webshell=nil, podid=nil, status=nil, createtime=nil, podip=nil)
+          @Webshell = webshell
+          @PodId = podid
+          @Status = status
+          @CreateTime = createtime
+          @PodIp = podip
+        end
+
+        def deserialize(params)
+          @Webshell = params['Webshell']
+          @PodId = params['PodId']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @PodIp = params['PodIp']
+        end
+      end
+
+      # 存储卷配置
+      class StorageConf < TencentCloud::Common::AbstractModel
+        # @param StorageVolName: 存储卷名称
+        # @type StorageVolName: String
+        # @param StorageVolPath: 存储卷路径
+        # @type StorageVolPath: String
+        # @param StorageVolIp: 存储卷IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageVolIp: String
+
+        attr_accessor :StorageVolName, :StorageVolPath, :StorageVolIp
+        
+        def initialize(storagevolname=nil, storagevolpath=nil, storagevolip=nil)
+          @StorageVolName = storagevolname
+          @StorageVolPath = storagevolpath
+          @StorageVolIp = storagevolip
+        end
+
+        def deserialize(params)
+          @StorageVolName = params['StorageVolName']
+          @StorageVolPath = params['StorageVolPath']
+          @StorageVolIp = params['StorageVolIp']
+        end
+      end
+
+      # 数据卷挂载信息
+      class StorageMountConf < TencentCloud::Common::AbstractModel
+        # @param VolumeName: 数据卷名
+        # @type VolumeName: String
+        # @param MountPath: 数据卷绑定路径
+        # @type MountPath: String
+
+        attr_accessor :VolumeName, :MountPath
+        
+        def initialize(volumename=nil, mountpath=nil)
+          @VolumeName = volumename
+          @MountPath = mountpath
+        end
+
+        def deserialize(params)
+          @VolumeName = params['VolumeName']
+          @MountPath = params['MountPath']
         end
       end
 

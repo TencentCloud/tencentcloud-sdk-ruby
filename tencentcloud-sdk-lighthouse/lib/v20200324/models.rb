@@ -53,6 +53,42 @@ module TencentCloud
         end
       end
 
+      # AssociateInstancesKeyPairs请求参数结构体
+      class AssociateInstancesKeyPairsRequest < TencentCloud::Common::AbstractModel
+        # @param KeyIds: 密钥对 ID 列表。每次请求批量密钥对的上限为 100。
+        # @type KeyIds: Array
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceIds: Array
+
+        attr_accessor :KeyIds, :InstanceIds
+        
+        def initialize(keyids=nil, instanceids=nil)
+          @KeyIds = keyids
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @KeyIds = params['KeyIds']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # AssociateInstancesKeyPairs返回参数结构体
+      class AssociateInstancesKeyPairsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了镜像信息。
       class Blueprint < TencentCloud::Common::AbstractModel
         # @param BlueprintId: 镜像 ID  ，是 Blueprint 的唯一标识。
@@ -124,6 +160,65 @@ module TencentCloud
           @BlueprintName = params['BlueprintName']
           @SupportAutomationTools = params['SupportAutomationTools']
           @RequiredMemorySize = params['RequiredMemorySize']
+        end
+      end
+
+      # 描述镜像实例信息。
+      class BlueprintInstance < TencentCloud::Common::AbstractModel
+        # @param Blueprint: 镜像信息。
+        # @type Blueprint: :class:`Tencentcloud::Lighthouse.v20200324.models.Blueprint`
+        # @param SoftwareSet: 软件列表。
+        # @type SoftwareSet: Array
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :Blueprint, :SoftwareSet, :InstanceId
+        
+        def initialize(blueprint=nil, softwareset=nil, instanceid=nil)
+          @Blueprint = blueprint
+          @SoftwareSet = softwareset
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          unless params['Blueprint'].nil?
+            @Blueprint = Blueprint.new.deserialize(params['Blueprint'])
+          end
+          unless params['SoftwareSet'].nil?
+            @SoftwareSet = []
+            params['SoftwareSet'].each do |i|
+              @SoftwareSet << Software.new.deserialize(i)
+            end
+          end
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # BlueprintPrice	自定义镜像的价格参数。
+      class BlueprintPrice < TencentCloud::Common::AbstractModel
+        # @param OriginalBlueprintPrice: 镜像单价，原价。单位元。
+        # @type OriginalBlueprintPrice: Float
+        # @param OriginalPrice: 镜像总价，原价。单位元。
+        # @type OriginalPrice: Float
+        # @param Discount: 折扣。
+        # @type Discount: Integer
+        # @param DiscountPrice: 镜像折扣后总价。单位元。
+        # @type DiscountPrice: Float
+
+        attr_accessor :OriginalBlueprintPrice, :OriginalPrice, :Discount, :DiscountPrice
+        
+        def initialize(originalblueprintprice=nil, originalprice=nil, discount=nil, discountprice=nil)
+          @OriginalBlueprintPrice = originalblueprintprice
+          @OriginalPrice = originalprice
+          @Discount = discount
+          @DiscountPrice = discountprice
+        end
+
+        def deserialize(params)
+          @OriginalBlueprintPrice = params['OriginalBlueprintPrice']
+          @OriginalPrice = params['OriginalPrice']
+          @Discount = params['Discount']
+          @DiscountPrice = params['DiscountPrice']
         end
       end
 
@@ -334,6 +429,44 @@ module TencentCloud
         end
       end
 
+      # CreateKeyPair请求参数结构体
+      class CreateKeyPairRequest < TencentCloud::Common::AbstractModel
+        # @param KeyName: 密钥对名称，可由数字，字母和下划线组成，长度不超过 25 个字符。
+        # @type KeyName: String
+
+        attr_accessor :KeyName
+        
+        def initialize(keyname=nil)
+          @KeyName = keyname
+        end
+
+        def deserialize(params)
+          @KeyName = params['KeyName']
+        end
+      end
+
+      # CreateKeyPair返回参数结构体
+      class CreateKeyPairResponse < TencentCloud::Common::AbstractModel
+        # @param KeyPair: 密钥对信息。
+        # @type KeyPair: :class:`Tencentcloud::Lighthouse.v20200324.models.KeyPair`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyPair, :RequestId
+        
+        def initialize(keypair=nil, requestid=nil)
+          @KeyPair = keypair
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KeyPair'].nil?
+            @KeyPair = KeyPair.new.deserialize(params['KeyPair'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteBlueprints请求参数结构体
       class DeleteBlueprintsRequest < TencentCloud::Common::AbstractModel
         # @param BlueprintIds: 镜像ID列表。镜像ID，可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
@@ -411,6 +544,38 @@ module TencentCloud
         end
       end
 
+      # DeleteKeyPairs请求参数结构体
+      class DeleteKeyPairsRequest < TencentCloud::Common::AbstractModel
+        # @param KeyIds: 密钥对 ID 列表，每次请求批量密钥对的上限为 10。
+        # @type KeyIds: Array
+
+        attr_accessor :KeyIds
+        
+        def initialize(keyids=nil)
+          @KeyIds = keyids
+        end
+
+        def deserialize(params)
+          @KeyIds = params['KeyIds']
+        end
+      end
+
+      # DeleteKeyPairs返回参数结构体
+      class DeleteKeyPairsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSnapshots请求参数结构体
       class DeleteSnapshotsRequest < TencentCloud::Common::AbstractModel
         # @param SnapshotIds: 要删除的快照 ID 列表，可通过 DescribeSnapshots 查询。
@@ -439,6 +604,75 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 限制操作。
+      class DeniedAction < TencentCloud::Common::AbstractModel
+        # @param Action: 限制操作名。
+        # @type Action: String
+        # @param Code: 限制操作消息码。
+        # @type Code: String
+        # @param Message: 限制操作消息。
+        # @type Message: String
+
+        attr_accessor :Action, :Code, :Message
+        
+        def initialize(action=nil, code=nil, message=nil)
+          @Action = action
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Code = params['Code']
+          @Message = params['Message']
+        end
+      end
+
+      # DescribeBlueprintInstances请求参数结构体
+      class DescribeBlueprintInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID 列表，当前最多支持 1 个。
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeBlueprintInstances返回参数结构体
+      class DescribeBlueprintInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的镜像实例数量。
+        # @type TotalCount: Integer
+        # @param BlueprintInstanceSet: 镜像实例列表信息。
+        # @type BlueprintInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BlueprintInstanceSet, :RequestId
+        
+        def initialize(totalcount=nil, blueprintinstanceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BlueprintInstanceSet = blueprintinstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BlueprintInstanceSet'].nil?
+            @BlueprintInstanceSet = []
+            params['BlueprintInstanceSet'].each do |i|
+              @BlueprintInstanceSet << BlueprintInstance.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -644,6 +878,200 @@ module TencentCloud
         end
       end
 
+      # DescribeFirewallRulesTemplate请求参数结构体
+      class DescribeFirewallRulesTemplateRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeFirewallRulesTemplate返回参数结构体
+      class DescribeFirewallRulesTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的防火墙规则数量。
+        # @type TotalCount: Integer
+        # @param FirewallRuleSet: 防火墙规则详细信息列表。
+        # @type FirewallRuleSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :FirewallRuleSet, :RequestId
+        
+        def initialize(totalcount=nil, firewallruleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @FirewallRuleSet = firewallruleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['FirewallRuleSet'].nil?
+            @FirewallRuleSet = []
+            params['FirewallRuleSet'].each do |i|
+              @FirewallRuleSet << FirewallRuleInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGeneralResourceQuotas请求参数结构体
+      class DescribeGeneralResourceQuotasRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceNames: 资源名列表，取值为：USER_KEY_PAIR、INSTANCE、SNAPSHOT。
+        # @type ResourceNames: Array
+
+        attr_accessor :ResourceNames
+        
+        def initialize(resourcenames=nil)
+          @ResourceNames = resourcenames
+        end
+
+        def deserialize(params)
+          @ResourceNames = params['ResourceNames']
+        end
+      end
+
+      # DescribeGeneralResourceQuotas返回参数结构体
+      class DescribeGeneralResourceQuotasResponse < TencentCloud::Common::AbstractModel
+        # @param GeneralResourceQuotaSet: 通用资源配额详细信息列表。
+        # @type GeneralResourceQuotaSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GeneralResourceQuotaSet, :RequestId
+        
+        def initialize(generalresourcequotaset=nil, requestid=nil)
+          @GeneralResourceQuotaSet = generalresourcequotaset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GeneralResourceQuotaSet'].nil?
+            @GeneralResourceQuotaSet = []
+            params['GeneralResourceQuotaSet'].each do |i|
+              @GeneralResourceQuotaSet << GeneralResourceQuota.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceLoginKeyPairAttribute请求参数结构体
+      class DescribeInstanceLoginKeyPairAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceLoginKeyPairAttribute返回参数结构体
+      class DescribeInstanceLoginKeyPairAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param PermitLogin: 是否允许使用默认密钥对登录，YES：允许登录 NO：禁止登录。
+        # @type PermitLogin: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PermitLogin, :RequestId
+        
+        def initialize(permitlogin=nil, requestid=nil)
+          @PermitLogin = permitlogin
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PermitLogin = params['PermitLogin']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceVncUrl请求参数结构体
+      class DescribeInstanceVncUrlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceVncUrl返回参数结构体
+      class DescribeInstanceVncUrlResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceVncUrl: 实例的管理终端地址。
+        # @type InstanceVncUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceVncUrl, :RequestId
+        
+        def initialize(instancevncurl=nil, requestid=nil)
+          @InstanceVncUrl = instancevncurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceVncUrl = params['InstanceVncUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstancesDeniedActions请求参数结构体
+      class DescribeInstancesDeniedActionsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeInstancesDeniedActions返回参数结构体
+      class DescribeInstancesDeniedActionsResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceDeniedActionSet: 实例操作限制列表详细信息。
+        # @type InstanceDeniedActionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceDeniedActionSet, :RequestId
+        
+        def initialize(instancedeniedactionset=nil, requestid=nil)
+          @InstanceDeniedActionSet = instancedeniedactionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceDeniedActionSet'].nil?
+            @InstanceDeniedActionSet = []
+            params['InstanceDeniedActionSet'].each do |i|
+              @InstanceDeniedActionSet << InstanceDeniedActions.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。
@@ -716,6 +1144,59 @@ module TencentCloud
         end
       end
 
+      # DescribeInstancesReturnable请求参数结构体
+      class DescribeInstancesReturnableRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceIds: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceIds, :Offset, :Limit
+        
+        def initialize(instanceids=nil, offset=nil, limit=nil)
+          @InstanceIds = instanceids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInstancesReturnable返回参数结构体
+      class DescribeInstancesReturnableResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的实例数量。
+        # @type TotalCount: Integer
+        # @param InstanceReturnableSet: 可退还实例详细信息列表。
+        # @type InstanceReturnableSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceReturnableSet, :RequestId
+        
+        def initialize(totalcount=nil, instancereturnableset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceReturnableSet = instancereturnableset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceReturnableSet'].nil?
+            @InstanceReturnableSet = []
+            params['InstanceReturnableSet'].each do |i|
+              @InstanceReturnableSet << InstanceReturnable.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstancesTrafficPackages请求参数结构体
       class DescribeInstancesTrafficPackagesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -763,6 +1244,284 @@ module TencentCloud
             @InstanceTrafficPackageSet = []
             params['InstanceTrafficPackageSet'].each do |i|
               @InstanceTrafficPackageSet << InstanceTrafficPackage.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKeyPairs请求参数结构体
+      class DescribeKeyPairsRequest < TencentCloud::Common::AbstractModel
+        # @param KeyIds: 密钥对 ID 列表。
+        # @type KeyIds: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :KeyIds, :Offset, :Limit
+        
+        def initialize(keyids=nil, offset=nil, limit=nil)
+          @KeyIds = keyids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @KeyIds = params['KeyIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeKeyPairs返回参数结构体
+      class DescribeKeyPairsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的密钥对数量。
+        # @type TotalCount: Integer
+        # @param KeyPairSet: 密钥对详细信息列表。
+        # @type KeyPairSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :KeyPairSet, :RequestId
+        
+        def initialize(totalcount=nil, keypairset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @KeyPairSet = keypairset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['KeyPairSet'].nil?
+            @KeyPairSet = []
+            params['KeyPairSet'].each do |i|
+              @KeyPairSet << KeyPair.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModifyInstanceBundles请求参数结构体
+      class DescribeModifyInstanceBundlesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param Filters: 过滤器列表。
+        # <li>bundle-id</li>按照【套餐 ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>support-platform-type</li>按照【系统类型】进行过滤。
+        # 取值： LINUX_UNIX（Linux/Unix系统）；WINDOWS（Windows 系统）
+        # 类型：String
+        # 必选：否
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit
+        
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeModifyInstanceBundles返回参数结构体
+      class DescribeModifyInstanceBundlesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的套餐数量。
+        # @type TotalCount: Integer
+        # @param ModifyBundleSet: 变更套餐详细信息。
+        # @type ModifyBundleSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ModifyBundleSet, :RequestId
+        
+        def initialize(totalcount=nil, modifybundleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ModifyBundleSet = modifybundleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ModifyBundleSet'].nil?
+            @ModifyBundleSet = []
+            params['ModifyBundleSet'].each do |i|
+              @ModifyBundleSet << ModifyBundle.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegions请求参数结构体
+      class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRegions返回参数结构体
+      class DescribeRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 地域数量。
+        # @type TotalCount: Integer
+        # @param RegionSet: 地域信息列表。
+        # @type RegionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RegionSet, :RequestId
+        
+        def initialize(totalcount=nil, regionset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RegionSet = regionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              @RegionSet << RegionInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResetInstanceBlueprints请求参数结构体
+      class DescribeResetInstanceBlueprintsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Limit: Integer
+        # @param Filters: 过滤器列表。
+        # <li>blueprint-id</li>按照【镜像 ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>blueprint-type</li>按照【镜像类型】进行过滤。
+        # 取值： APP_OS（预置应用的系统 ）；PURE_OS（纯净的 OS 系统）。
+        # 类型：String
+        # 必选：否
+        # <li>platform-type</li>按照【镜像平台类型】进行过滤。
+        # 取值： LINUX_UNIX（Linux/Unix系统）；WINDOWS（Windows 系统）。
+        # 类型：String
+        # 必选：否
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 BlueprintIds 和 Filters 。
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Filters
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil, filters=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeResetInstanceBlueprints返回参数结构体
+      class DescribeResetInstanceBlueprintsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的镜像数量。
+        # @type TotalCount: Integer
+        # @param ResetInstanceBlueprintSet: 镜像重置信息列表
+        # @type ResetInstanceBlueprintSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ResetInstanceBlueprintSet, :RequestId
+        
+        def initialize(totalcount=nil, resetinstanceblueprintset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ResetInstanceBlueprintSet = resetinstanceblueprintset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ResetInstanceBlueprintSet'].nil?
+            @ResetInstanceBlueprintSet = []
+            params['ResetInstanceBlueprintSet'].each do |i|
+              @ResetInstanceBlueprintSet << ResetInstanceBlueprint.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotsDeniedActions请求参数结构体
+      class DescribeSnapshotsDeniedActionsRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotIds: 快照 ID 列表, 可通过 DescribeSnapshots 查询。
+        # @type SnapshotIds: Array
+
+        attr_accessor :SnapshotIds
+        
+        def initialize(snapshotids=nil)
+          @SnapshotIds = snapshotids
+        end
+
+        def deserialize(params)
+          @SnapshotIds = params['SnapshotIds']
+        end
+      end
+
+      # DescribeSnapshotsDeniedActions返回参数结构体
+      class DescribeSnapshotsDeniedActionsResponse < TencentCloud::Common::AbstractModel
+        # @param SnapshotDeniedActionSet: 快照操作限制列表详细信息。
+        # @type SnapshotDeniedActionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SnapshotDeniedActionSet, :RequestId
+        
+        def initialize(snapshotdeniedactionset=nil, requestid=nil)
+          @SnapshotDeniedActionSet = snapshotdeniedactionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SnapshotDeniedActionSet'].nil?
+            @SnapshotDeniedActionSet = []
+            params['SnapshotDeniedActionSet'].each do |i|
+              @SnapshotDeniedActionSet << SnapshotDeniedActions.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
@@ -841,6 +1600,42 @@ module TencentCloud
               @SnapshotSet << Snapshot.new.deserialize(i)
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisassociateInstancesKeyPairs请求参数结构体
+      class DisassociateInstancesKeyPairsRequest < TencentCloud::Common::AbstractModel
+        # @param KeyIds: 密钥对 ID 列表。每次请求批量密钥对的上限为 100。
+        # @type KeyIds: Array
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceIds: Array
+
+        attr_accessor :KeyIds, :InstanceIds
+        
+        def initialize(keyids=nil, instanceids=nil)
+          @KeyIds = keyids
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @KeyIds = params['KeyIds']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DisassociateInstancesKeyPairs返回参数结构体
+      class DisassociateInstancesKeyPairsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -940,6 +1735,205 @@ module TencentCloud
           @CidrBlock = params['CidrBlock']
           @Action = params['Action']
           @FirewallRuleDescription = params['FirewallRuleDescription']
+        end
+      end
+
+      # 描述通用资源配额信息。
+
+      class GeneralResourceQuota < TencentCloud::Common::AbstractModel
+        # @param ResourceName: 资源名称。
+        # @type ResourceName: String
+        # @param ResourceQuotaAvailable: 资源当前可用数量。
+        # @type ResourceQuotaAvailable: Integer
+        # @param ResourceQuotaTotal: 资源总数量。
+        # @type ResourceQuotaTotal: Integer
+
+        attr_accessor :ResourceName, :ResourceQuotaAvailable, :ResourceQuotaTotal
+        
+        def initialize(resourcename=nil, resourcequotaavailable=nil, resourcequotatotal=nil)
+          @ResourceName = resourcename
+          @ResourceQuotaAvailable = resourcequotaavailable
+          @ResourceQuotaTotal = resourcequotatotal
+        end
+
+        def deserialize(params)
+          @ResourceName = params['ResourceName']
+          @ResourceQuotaAvailable = params['ResourceQuotaAvailable']
+          @ResourceQuotaTotal = params['ResourceQuotaTotal']
+        end
+      end
+
+      # ImportKeyPair请求参数结构体
+      class ImportKeyPairRequest < TencentCloud::Common::AbstractModel
+        # @param KeyName: 密钥对名称，可由数字，字母和下划线组成，长度不超过 25 个字符。
+        # @type KeyName: String
+        # @param PublicKey: 密钥对的公钥内容， OpenSSH RSA 格式。
+        # @type PublicKey: String
+
+        attr_accessor :KeyName, :PublicKey
+        
+        def initialize(keyname=nil, publickey=nil)
+          @KeyName = keyname
+          @PublicKey = publickey
+        end
+
+        def deserialize(params)
+          @KeyName = params['KeyName']
+          @PublicKey = params['PublicKey']
+        end
+      end
+
+      # ImportKeyPair返回参数结构体
+      class ImportKeyPairResponse < TencentCloud::Common::AbstractModel
+        # @param KeyId: 密钥对 ID。
+        # @type KeyId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyId, :RequestId
+        
+        def initialize(keyid=nil, requestid=nil)
+          @KeyId = keyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquirePriceCreateBlueprint请求参数结构体
+      class InquirePriceCreateBlueprintRequest < TencentCloud::Common::AbstractModel
+        # @param BlueprintCount: 自定义镜像的个数。默认值为1。
+        # @type BlueprintCount: Integer
+
+        attr_accessor :BlueprintCount
+        
+        def initialize(blueprintcount=nil)
+          @BlueprintCount = blueprintcount
+        end
+
+        def deserialize(params)
+          @BlueprintCount = params['BlueprintCount']
+        end
+      end
+
+      # InquirePriceCreateBlueprint返回参数结构体
+      class InquirePriceCreateBlueprintResponse < TencentCloud::Common::AbstractModel
+        # @param BlueprintPrice: 自定义镜像的价格参数。
+        # @type BlueprintPrice: :class:`Tencentcloud::Lighthouse.v20200324.models.BlueprintPrice`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BlueprintPrice, :RequestId
+        
+        def initialize(blueprintprice=nil, requestid=nil)
+          @BlueprintPrice = blueprintprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BlueprintPrice'].nil?
+            @BlueprintPrice = BlueprintPrice.new.deserialize(params['BlueprintPrice'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquirePriceCreateInstances请求参数结构体
+      class InquirePriceCreateInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param BundleId: 实例的套餐 ID。
+        # @type BundleId: String
+        # @param InstanceCount: 创建数量，默认为 1。
+        # @type InstanceCount: Integer
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
+        # @param BlueprintId: 应用镜像 ID，使用收费应用镜像时必填。
+        # @type BlueprintId: String
+
+        attr_accessor :BundleId, :InstanceCount, :InstanceChargePrepaid, :BlueprintId
+        
+        def initialize(bundleid=nil, instancecount=nil, instancechargeprepaid=nil, blueprintid=nil)
+          @BundleId = bundleid
+          @InstanceCount = instancecount
+          @InstanceChargePrepaid = instancechargeprepaid
+          @BlueprintId = blueprintid
+        end
+
+        def deserialize(params)
+          @BundleId = params['BundleId']
+          @InstanceCount = params['InstanceCount']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new.deserialize(params['InstanceChargePrepaid'])
+          end
+          @BlueprintId = params['BlueprintId']
+        end
+      end
+
+      # InquirePriceCreateInstances返回参数结构体
+      class InquirePriceCreateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 询价信息。
+        # @type Price: :class:`Tencentcloud::Lighthouse.v20200324.models.Price`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+        
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = Price.new.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquirePriceRenewInstances请求参数结构体
+      class InquirePriceRenewInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 待续费的实例。
+        # @type InstanceIds: Array
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceChargePrepaid`
+
+        attr_accessor :InstanceIds, :InstanceChargePrepaid
+        
+        def initialize(instanceids=nil, instancechargeprepaid=nil)
+          @InstanceIds = instanceids
+          @InstanceChargePrepaid = instancechargeprepaid
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new.deserialize(params['InstanceChargePrepaid'])
+          end
+        end
+      end
+
+      # InquirePriceRenewInstances返回参数结构体
+      class InquirePriceRenewInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 询价信息。
+        # @type Price: :class:`Tencentcloud::Lighthouse.v20200324.models.Price`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+        
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = Price.new.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1074,6 +2068,52 @@ module TencentCloud
         end
       end
 
+      # 描述了实例的计费模式
+      class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
+        # @type Period: Integer
+        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费<br><li>DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # @type RenewFlag: String
+
+        attr_accessor :Period, :RenewFlag
+        
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # 实例操作限制列表。
+      class InstanceDeniedActions < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param DeniedActions: 操作限制列表。
+        # @type DeniedActions: Array
+
+        attr_accessor :InstanceId, :DeniedActions
+        
+        def initialize(instanceid=nil, deniedactions=nil)
+          @InstanceId = instanceid
+          @DeniedActions = deniedactions
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['DeniedActions'].nil?
+            @DeniedActions = []
+            params['DeniedActions'].each do |i|
+              @DeniedActions << DeniedAction.new.deserialize(i)
+            end
+          end
+        end
+      end
+
       # 关于Lighthouse Instance实例的价格信息
       class InstancePrice < TencentCloud::Common::AbstractModel
         # @param OriginalBundlePrice: 套餐单价原价。
@@ -1099,6 +2139,34 @@ module TencentCloud
           @OriginalPrice = params['OriginalPrice']
           @Discount = params['Discount']
           @DiscountPrice = params['DiscountPrice']
+        end
+      end
+
+      # 实例可退还信息。
+      class InstanceReturnable < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param IsReturnable: 实例是否可退还。
+        # @type IsReturnable: Boolean
+        # @param ReturnFailCode: 实例退还失败错误码。
+        # @type ReturnFailCode: Integer
+        # @param ReturnFailMessage: 实例退还失败错误信息。
+        # @type ReturnFailMessage: String
+
+        attr_accessor :InstanceId, :IsReturnable, :ReturnFailCode, :ReturnFailMessage
+        
+        def initialize(instanceid=nil, isreturnable=nil, returnfailcode=nil, returnfailmessage=nil)
+          @InstanceId = instanceid
+          @IsReturnable = isreturnable
+          @ReturnFailCode = returnfailcode
+          @ReturnFailMessage = returnfailmessage
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @IsReturnable = params['IsReturnable']
+          @ReturnFailCode = params['ReturnFailCode']
+          @ReturnFailMessage = params['ReturnFailMessage']
         end
       end
 
@@ -1151,6 +2219,45 @@ module TencentCloud
         end
       end
 
+      # 描述密钥对信息。
+      class KeyPair < TencentCloud::Common::AbstractModel
+        # @param KeyId: 密钥对 ID ，是密钥对的唯一标识。
+        # @type KeyId: String
+        # @param KeyName: 密钥对名称。
+        # @type KeyName: String
+        # @param PublicKey: 密钥对的纯文本公钥。
+        # @type PublicKey: String
+        # @param AssociatedInstanceIds: 密钥对关联的实例 ID 列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedInstanceIds: Array
+        # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param PrivateKey: 密钥对私钥。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateKey: String
+
+        attr_accessor :KeyId, :KeyName, :PublicKey, :AssociatedInstanceIds, :CreatedTime, :PrivateKey
+        
+        def initialize(keyid=nil, keyname=nil, publickey=nil, associatedinstanceids=nil, createdtime=nil, privatekey=nil)
+          @KeyId = keyid
+          @KeyName = keyname
+          @PublicKey = publickey
+          @AssociatedInstanceIds = associatedinstanceids
+          @CreatedTime = createdtime
+          @PrivateKey = privatekey
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @KeyName = params['KeyName']
+          @PublicKey = params['PublicKey']
+          @AssociatedInstanceIds = params['AssociatedInstanceIds']
+          @CreatedTime = params['CreatedTime']
+          @PrivateKey = params['PrivateKey']
+        end
+      end
+
       # 描述了实例登录相关配置与信息。
       class LoginSettings < TencentCloud::Common::AbstractModel
         # @param KeyIds: 密钥 ID 列表。关联密钥后，就可以通过对应的私钥来访问实例。注意：此字段可能返回 []，表示取不到有效值。
@@ -1193,6 +2300,232 @@ module TencentCloud
 
       # ModifyBlueprintAttribute返回参数结构体
       class ModifyBlueprintAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述了实例可变更的套餐。
+      class ModifyBundle < TencentCloud::Common::AbstractModel
+        # @param ModifyPrice: 更改实例套餐后需要补的差价。
+        # @type ModifyPrice: :class:`Tencentcloud::Lighthouse.v20200324.models.Price`
+        # @param ModifyBundleState: 变更套餐状态。取值：
+        # <li>SOLD_OUT：套餐售罄</li>
+        # <li>AVAILABLE：支持套餐变更</li>
+        # <li>UNAVAILABLE：暂不支持套餐变更</li>
+        # @type ModifyBundleState: String
+        # @param Bundle: 套餐信息。
+        # @type Bundle: :class:`Tencentcloud::Lighthouse.v20200324.models.Bundle`
+
+        attr_accessor :ModifyPrice, :ModifyBundleState, :Bundle
+        
+        def initialize(modifyprice=nil, modifybundlestate=nil, bundle=nil)
+          @ModifyPrice = modifyprice
+          @ModifyBundleState = modifybundlestate
+          @Bundle = bundle
+        end
+
+        def deserialize(params)
+          unless params['ModifyPrice'].nil?
+            @ModifyPrice = Price.new.deserialize(params['ModifyPrice'])
+          end
+          @ModifyBundleState = params['ModifyBundleState']
+          unless params['Bundle'].nil?
+            @Bundle = Bundle.new.deserialize(params['Bundle'])
+          end
+        end
+      end
+
+      # ModifyFirewallRuleDescription请求参数结构体
+      class ModifyFirewallRuleDescriptionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param FirewallRule: 防火墙规则。
+        # @type FirewallRule: :class:`Tencentcloud::Lighthouse.v20200324.models.FirewallRule`
+        # @param FirewallVersion: 防火墙当前版本。用户每次更新防火墙规则时版本会自动加1，防止规则已过期，不填不考虑冲突。
+        # @type FirewallVersion: Integer
+
+        attr_accessor :InstanceId, :FirewallRule, :FirewallVersion
+        
+        def initialize(instanceid=nil, firewallrule=nil, firewallversion=nil)
+          @InstanceId = instanceid
+          @FirewallRule = firewallrule
+          @FirewallVersion = firewallversion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['FirewallRule'].nil?
+            @FirewallRule = FirewallRule.new.deserialize(params['FirewallRule'])
+          end
+          @FirewallVersion = params['FirewallVersion']
+        end
+      end
+
+      # ModifyFirewallRuleDescription返回参数结构体
+      class ModifyFirewallRuleDescriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyFirewallRules请求参数结构体
+      class ModifyFirewallRulesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param FirewallRules: 防火墙规则列表。
+        # @type FirewallRules: Array
+        # @param FirewallVersion: 防火墙当前版本。用户每次更新防火墙规则时版本会自动加1，防止规则已过期，不填不考虑冲突。
+        # @type FirewallVersion: Integer
+
+        attr_accessor :InstanceId, :FirewallRules, :FirewallVersion
+        
+        def initialize(instanceid=nil, firewallrules=nil, firewallversion=nil)
+          @InstanceId = instanceid
+          @FirewallRules = firewallrules
+          @FirewallVersion = firewallversion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['FirewallRules'].nil?
+            @FirewallRules = []
+            params['FirewallRules'].each do |i|
+              @FirewallRules << FirewallRule.new.deserialize(i)
+            end
+          end
+          @FirewallVersion = params['FirewallVersion']
+        end
+      end
+
+      # ModifyFirewallRules返回参数结构体
+      class ModifyFirewallRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstancesAttribute请求参数结构体
+      class ModifyInstancesAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceIds: Array
+        # @param InstanceName: 实例名称。可任意命名，但不得超过 60 个字符。
+        # @type InstanceName: String
+
+        attr_accessor :InstanceIds, :InstanceName
+        
+        def initialize(instanceids=nil, instancename=nil)
+          @InstanceIds = instanceids
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # ModifyInstancesAttribute返回参数结构体
+      class ModifyInstancesAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstancesLoginKeyPairAttribute请求参数结构体
+      class ModifyInstancesLoginKeyPairAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。
+        # @type InstanceIds: Array
+        # @param PermitLogin: 是否允许使用默认密钥对登录，YES：允许登录；NO：禁止登录
+        # @type PermitLogin: String
+
+        attr_accessor :InstanceIds, :PermitLogin
+        
+        def initialize(instanceids=nil, permitlogin=nil)
+          @InstanceIds = instanceids
+          @PermitLogin = permitlogin
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @PermitLogin = params['PermitLogin']
+        end
+      end
+
+      # ModifyInstancesLoginKeyPairAttribute返回参数结构体
+      class ModifyInstancesLoginKeyPairAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstancesRenewFlag请求参数结构体
+      class ModifyInstancesRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceIds: Array
+        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # @type RenewFlag: String
+
+        attr_accessor :InstanceIds, :RenewFlag
+        
+        def initialize(instanceids=nil, renewflag=nil)
+          @InstanceIds = instanceids
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # ModifyInstancesRenewFlag返回参数结构体
+      class ModifyInstancesRenewFlagResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1293,6 +2626,60 @@ module TencentCloud
         end
       end
 
+      # 描述地域信息。
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param Region: 地域名称，例如，ap-guangzhou。
+        # @type Region: String
+        # @param RegionName: 地域描述，例如，华南地区(广州)。
+        # @type RegionName: String
+        # @param RegionState: 地域是否可用状态。
+        # @type RegionState: String
+        # @param IsChinaMainland: 是否中国大陆地域
+        # @type IsChinaMainland: Boolean
+
+        attr_accessor :Region, :RegionName, :RegionState, :IsChinaMainland
+        
+        def initialize(region=nil, regionname=nil, regionstate=nil, ischinamainland=nil)
+          @Region = region
+          @RegionName = regionname
+          @RegionState = regionstate
+          @IsChinaMainland = ischinamainland
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionName = params['RegionName']
+          @RegionState = params['RegionState']
+          @IsChinaMainland = params['IsChinaMainland']
+        end
+      end
+
+      # 描述了镜像重置信息
+      class ResetInstanceBlueprint < TencentCloud::Common::AbstractModel
+        # @param BlueprintInfo: 镜像详细信息
+        # @type BlueprintInfo: :class:`Tencentcloud::Lighthouse.v20200324.models.Blueprint`
+        # @param IsResettable: 实例镜像是否可重置为目标镜像
+        # @type IsResettable: Boolean
+        # @param NonResettableMessage: 不可重置信息.当镜像可重置时为""
+        # @type NonResettableMessage: String
+
+        attr_accessor :BlueprintInfo, :IsResettable, :NonResettableMessage
+        
+        def initialize(blueprintinfo=nil, isresettable=nil, nonresettablemessage=nil)
+          @BlueprintInfo = blueprintinfo
+          @IsResettable = isresettable
+          @NonResettableMessage = nonresettablemessage
+        end
+
+        def deserialize(params)
+          unless params['BlueprintInfo'].nil?
+            @BlueprintInfo = Blueprint.new.deserialize(params['BlueprintInfo'])
+          end
+          @IsResettable = params['IsResettable']
+          @NonResettableMessage = params['NonResettableMessage']
+        end
+      end
+
       # ResetInstance请求参数结构体
       class ResetInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -1315,6 +2702,48 @@ module TencentCloud
 
       # ResetInstance返回参数结构体
       class ResetInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetInstancesPassword请求参数结构体
+      class ResetInstancesPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。
+        # @type InstanceIds: Array
+        # @param Password: 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
+        # `LINUX_UNIX` 实例密码必须 8-30 位，推荐使用 12 位以上密码，不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字：0-9<br><li>特殊字符： ()\`~!@#$%^&\*-+=\_|{}[]:;'<>,.?/
+        # `WINDOWS` 实例密码必须 12-30 位，不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字： 0-9<br><li>特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/<br><li>如果实例即包含 `LINUX_UNIX` 实例又包含 `WINDOWS` 实例，则密码复杂度限制按照 `WINDOWS` 实例的限制。
+        # @type Password: String
+        # @param UserName: 待重置密码的实例操作系统用户名。不得超过 64 个字符。
+        # @type UserName: String
+
+        attr_accessor :InstanceIds, :Password, :UserName
+        
+        def initialize(instanceids=nil, password=nil, username=nil)
+          @InstanceIds = instanceids
+          @Password = password
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @Password = params['Password']
+          @UserName = params['UserName']
+        end
+      end
+
+      # ResetInstancesPassword返回参数结构体
+      class ResetInstancesPasswordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1393,6 +2822,92 @@ module TencentCloud
           @LatestOperationState = params['LatestOperationState']
           @LatestOperationRequestId = params['LatestOperationRequestId']
           @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # 快照操作限制列表。
+      class SnapshotDeniedActions < TencentCloud::Common::AbstractModel
+        # @param SnapshotId: 快照 ID。
+        # @type SnapshotId: String
+        # @param DeniedActions: 操作限制列表。
+        # @type DeniedActions: Array
+
+        attr_accessor :SnapshotId, :DeniedActions
+        
+        def initialize(snapshotid=nil, deniedactions=nil)
+          @SnapshotId = snapshotid
+          @DeniedActions = deniedactions
+        end
+
+        def deserialize(params)
+          @SnapshotId = params['SnapshotId']
+          unless params['DeniedActions'].nil?
+            @DeniedActions = []
+            params['DeniedActions'].each do |i|
+              @DeniedActions << DeniedAction.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 描述镜像软件信息。
+      class Software < TencentCloud::Common::AbstractModel
+        # @param Name: 软件名称。
+        # @type Name: String
+        # @param Version: 软件版本。
+        # @type Version: String
+        # @param ImageUrl: 软件图片 URL。
+        # @type ImageUrl: String
+        # @param InstallDir: 软件安装目录。
+        # @type InstallDir: String
+        # @param DetailSet: 软件详情列表。
+        # @type DetailSet: Array
+
+        attr_accessor :Name, :Version, :ImageUrl, :InstallDir, :DetailSet
+        
+        def initialize(name=nil, version=nil, imageurl=nil, installdir=nil, detailset=nil)
+          @Name = name
+          @Version = version
+          @ImageUrl = imageurl
+          @InstallDir = installdir
+          @DetailSet = detailset
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Version = params['Version']
+          @ImageUrl = params['ImageUrl']
+          @InstallDir = params['InstallDir']
+          unless params['DetailSet'].nil?
+            @DetailSet = []
+            params['DetailSet'].each do |i|
+              @DetailSet << SoftwareDetail.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 描述镜像软件详细信息。
+      class SoftwareDetail < TencentCloud::Common::AbstractModel
+        # @param Key: 详情唯一键。
+        # @type Key: String
+        # @param Title: 详情标题。
+        # @type Title: String
+        # @param Value: 详情值。
+        # @type Value: String
+
+        attr_accessor :Key, :Title, :Value
+        
+        def initialize(key=nil, title=nil, value=nil)
+          @Key = key
+          @Title = title
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Title = params['Title']
+          @Value = params['Value']
         end
       end
 
@@ -1484,6 +2999,38 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
           @DiskId = params['DiskId']
+        end
+      end
+
+      # TerminateInstances请求参数结构体
+      class TerminateInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # TerminateInstances返回参数结构体
+      class TerminateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -49,7 +49,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建命名空间
+        # 生成Cos临时秘钥
+
+        # @param request: Request instance for CreateCosTokenV2.
+        # @type request: :class:`Tencentcloud::tem::V20201221::CreateCosTokenV2Request`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::CreateCosTokenV2Response`
+        def CreateCosTokenV2(request)
+          body = send_request('CreateCosTokenV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCosTokenV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建环境
 
         # @param request: Request instance for CreateNamespace.
         # @type request: :class:`Tencentcloud::tem::V20201221::CreateNamespaceRequest`
@@ -73,7 +97,154 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取租户命名空间列表
+        # 绑定云资源
+
+        # @param request: Request instance for CreateResource.
+        # @type request: :class:`Tencentcloud::tem::V20201221::CreateResourceRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::CreateResourceResponse`
+        def CreateResource(request)
+          body = send_request('CreateResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建服务
+
+        # @param request: Request instance for CreateServiceV2.
+        # @type request: :class:`Tencentcloud::tem::V20201221::CreateServiceV2Request`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::CreateServiceV2Response`
+        def CreateServiceV2(request)
+          body = send_request('CreateServiceV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateServiceV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除 Ingress 规则
+
+        # @param request: Request instance for DeleteIngress.
+        # @type request: :class:`Tencentcloud::tem::V20201221::DeleteIngressRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::DeleteIngressResponse`
+        def DeleteIngress(request)
+          body = send_request('DeleteIngress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteIngressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 服务部署
+        #  - 创建新版本
+        #  - 部署新版本
+        #  - 一个服务只能有一个版本，所以前端无需关心版本及版本ID
+
+        # @param request: Request instance for DeployServiceV2.
+        # @type request: :class:`Tencentcloud::tem::V20201221::DeployServiceV2Request`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::DeployServiceV2Response`
+        def DeployServiceV2(request)
+          body = send_request('DeployServiceV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployServiceV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 Ingress 规则
+
+        # @param request: Request instance for DescribeIngress.
+        # @type request: :class:`Tencentcloud::tem::V20201221::DescribeIngressRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::DescribeIngressResponse`
+        def DescribeIngress(request)
+          body = send_request('DescribeIngress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIngressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 Ingress 规则列表
+
+        # @param request: Request instance for DescribeIngresses.
+        # @type request: :class:`Tencentcloud::tem::V20201221::DescribeIngressesRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::DescribeIngressesResponse`
+        def DescribeIngresses(request)
+          body = send_request('DescribeIngresses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIngressesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取租户环境列表
 
         # @param request: Request instance for DescribeNamespaces.
         # @type request: :class:`Tencentcloud::tem::V20201221::DescribeNamespacesRequest`
@@ -83,6 +254,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNamespacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取服务下面运行pod列表
+
+        # @param request: Request instance for DescribeServiceRunPodListV2.
+        # @type request: :class:`Tencentcloud::tem::V20201221::DescribeServiceRunPodListV2Request`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::DescribeServiceRunPodListV2Response`
+        def DescribeServiceRunPodListV2(request)
+          body = send_request('DescribeServiceRunPodListV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServiceRunPodListV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -121,7 +316,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 编辑命名空间
+        # 编辑环境
 
         # @param request: Request instance for ModifyNamespace.
         # @type request: :class:`Tencentcloud::tem::V20201221::ModifyNamespaceRequest`

@@ -333,10 +333,12 @@ module TencentCloud
         # @type SelectedTimerType: String
         # @param CcnInfos: 云联网信息，包含对应的账号信息及所属id
         # @type CcnInfos: Array
+        # @param InternetMaxBandwidthOut: fleet公网出带宽最大值，默认100Mbps，范围1-200Mbps
+        # @type InternetMaxBandwidthOut: Integer
 
-        attr_accessor :FleetId, :CopyNumber, :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :GameServerSessionProtectionTimeLimit, :SelectedScalingType, :SelectedCcnType, :Tags, :SystemDiskInfo, :DataDiskInfo, :SelectedTimerType, :CcnInfos
+        attr_accessor :FleetId, :CopyNumber, :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :GameServerSessionProtectionTimeLimit, :SelectedScalingType, :SelectedCcnType, :Tags, :SystemDiskInfo, :DataDiskInfo, :SelectedTimerType, :CcnInfos, :InternetMaxBandwidthOut
         
-        def initialize(fleetid=nil, copynumber=nil, assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, gameserversessionprotectiontimelimit=nil, selectedscalingtype=nil, selectedccntype=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, selectedtimertype=nil, ccninfos=nil)
+        def initialize(fleetid=nil, copynumber=nil, assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, gameserversessionprotectiontimelimit=nil, selectedscalingtype=nil, selectedccntype=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, selectedtimertype=nil, ccninfos=nil, internetmaxbandwidthout=nil)
           @FleetId = fleetid
           @CopyNumber = copynumber
           @AssetId = assetid
@@ -356,6 +358,7 @@ module TencentCloud
           @DataDiskInfo = datadiskinfo
           @SelectedTimerType = selectedtimertype
           @CcnInfos = ccninfos
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
         end
 
         def deserialize(params)
@@ -404,6 +407,7 @@ module TencentCloud
               @CcnInfos << CcnInfo.new.deserialize(i)
             end
           end
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
         end
       end
 
@@ -504,7 +508,7 @@ module TencentCloud
         # @type AssetVersion: String
         # @param AssetRegion: 生成包所在地域，详见产品支持的 [地域列表](https://cloud.tencent.com/document/api/1165/42053#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
         # @type AssetRegion: String
-        # @param OperateSystem: 生成包可运行的操作系统，若传入参数为CentOS7.16则不需要传入ImageId字段，否则，需要传入Imageid字段（该方式是为了兼容之前的版本，后续建议使用ImageId来替代该字段）
+        # @param OperateSystem: 生成包可运行的操作系统，若传入参数为CentOS7.16则不需要传入ImageId字段，否则，需要传入Imageid字段（该方式是为了兼容之前的版本，后续建议使用ImageId来替代该字段）。这里可通过[DescribeAssetSystems](https://cloud.tencent.com/document/product/1165/49191)接口获取asset支持的操作系统进行传入（使用AssetSupportSys的OsVersion字段）
         # @type OperateSystem: String
         # @param ImageId: 生成包支持的操作系统镜像id，若传入OperateSystem字段的值是CentOS7.16，则不需要传入该值；如果不是，则需要通过[DescribeAssetSystems](https://cloud.tencent.com/document/product/1165/49191)接口获取asset支持的操作系统ImageId进行传入
         # @type ImageId: String
@@ -669,10 +673,12 @@ module TencentCloud
         # @type DataDiskInfo: Array
         # @param CcnInfos: 云联网信息，包含对应的账号信息及所属id
         # @type CcnInfos: Array
+        # @param InternetMaxBandwidthOut: fleet公网出带宽最大值，默认100Mbps，范围1-200Mbps
+        # @type InternetMaxBandwidthOut: Integer
 
-        attr_accessor :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :PeerVpcId, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :SubNetId, :GameServerSessionProtectionTimeLimit, :Tags, :SystemDiskInfo, :DataDiskInfo, :CcnInfos
+        attr_accessor :AssetId, :Description, :InboundPermissions, :InstanceType, :FleetType, :Name, :NewGameServerSessionProtectionPolicy, :PeerVpcId, :ResourceCreationLimitPolicy, :RuntimeConfiguration, :SubNetId, :GameServerSessionProtectionTimeLimit, :Tags, :SystemDiskInfo, :DataDiskInfo, :CcnInfos, :InternetMaxBandwidthOut
         
-        def initialize(assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, peervpcid=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, subnetid=nil, gameserversessionprotectiontimelimit=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, ccninfos=nil)
+        def initialize(assetid=nil, description=nil, inboundpermissions=nil, instancetype=nil, fleettype=nil, name=nil, newgameserversessionprotectionpolicy=nil, peervpcid=nil, resourcecreationlimitpolicy=nil, runtimeconfiguration=nil, subnetid=nil, gameserversessionprotectiontimelimit=nil, tags=nil, systemdiskinfo=nil, datadiskinfo=nil, ccninfos=nil, internetmaxbandwidthout=nil)
           @AssetId = assetid
           @Description = description
           @InboundPermissions = inboundpermissions
@@ -689,6 +695,7 @@ module TencentCloud
           @SystemDiskInfo = systemdiskinfo
           @DataDiskInfo = datadiskinfo
           @CcnInfos = ccninfos
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
         end
 
         def deserialize(params)
@@ -734,6 +741,7 @@ module TencentCloud
               @CcnInfos << CcnInfo.new.deserialize(i)
             end
           end
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
         end
       end
 
@@ -1480,19 +1488,31 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页时的数据偏移量，默认为0
         # @type Offset: Integer
+        # @param EventCode: 事件代码
+        # @type EventCode: String
+        # @param StartTime: 发生事件的开始时间
+        # @type StartTime: String
+        # @param EndTime: 发生事件的结束时间
+        # @type EndTime: String
 
-        attr_accessor :FleetId, :Limit, :Offset
+        attr_accessor :FleetId, :Limit, :Offset, :EventCode, :StartTime, :EndTime
         
-        def initialize(fleetid=nil, limit=nil, offset=nil)
+        def initialize(fleetid=nil, limit=nil, offset=nil, eventcode=nil, starttime=nil, endtime=nil)
           @FleetId = fleetid
           @Limit = limit
           @Offset = offset
+          @EventCode = eventcode
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @FleetId = params['FleetId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @EventCode = params['EventCode']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -2829,10 +2849,13 @@ module TencentCloud
         # @param RelatedCcnInfos: 云联网相关信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelatedCcnInfos: Array
+        # @param InternetMaxBandwidthOut: fleet公网出带宽最大值，默认100Mbps，范围1-200Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetMaxBandwidthOut: Integer
 
-        attr_accessor :AssetId, :CreationTime, :Description, :FleetArn, :FleetId, :FleetType, :InstanceType, :Name, :NewGameServerSessionProtectionPolicy, :OperatingSystem, :ResourceCreationLimitPolicy, :Status, :StoppedActions, :TerminationTime, :GameServerSessionProtectionTimeLimit, :BillingStatus, :Tags, :DataDiskInfo, :SystemDiskInfo, :RelatedCcnInfos
+        attr_accessor :AssetId, :CreationTime, :Description, :FleetArn, :FleetId, :FleetType, :InstanceType, :Name, :NewGameServerSessionProtectionPolicy, :OperatingSystem, :ResourceCreationLimitPolicy, :Status, :StoppedActions, :TerminationTime, :GameServerSessionProtectionTimeLimit, :BillingStatus, :Tags, :DataDiskInfo, :SystemDiskInfo, :RelatedCcnInfos, :InternetMaxBandwidthOut
         
-        def initialize(assetid=nil, creationtime=nil, description=nil, fleetarn=nil, fleetid=nil, fleettype=nil, instancetype=nil, name=nil, newgameserversessionprotectionpolicy=nil, operatingsystem=nil, resourcecreationlimitpolicy=nil, status=nil, stoppedactions=nil, terminationtime=nil, gameserversessionprotectiontimelimit=nil, billingstatus=nil, tags=nil, datadiskinfo=nil, systemdiskinfo=nil, relatedccninfos=nil)
+        def initialize(assetid=nil, creationtime=nil, description=nil, fleetarn=nil, fleetid=nil, fleettype=nil, instancetype=nil, name=nil, newgameserversessionprotectionpolicy=nil, operatingsystem=nil, resourcecreationlimitpolicy=nil, status=nil, stoppedactions=nil, terminationtime=nil, gameserversessionprotectiontimelimit=nil, billingstatus=nil, tags=nil, datadiskinfo=nil, systemdiskinfo=nil, relatedccninfos=nil, internetmaxbandwidthout=nil)
           @AssetId = assetid
           @CreationTime = creationtime
           @Description = description
@@ -2853,6 +2876,7 @@ module TencentCloud
           @DataDiskInfo = datadiskinfo
           @SystemDiskInfo = systemdiskinfo
           @RelatedCcnInfos = relatedccninfos
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
         end
 
         def deserialize(params)
@@ -2895,6 +2919,7 @@ module TencentCloud
               @RelatedCcnInfos << RelatedCcnInfo.new.deserialize(i)
             end
           end
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
         end
       end
 

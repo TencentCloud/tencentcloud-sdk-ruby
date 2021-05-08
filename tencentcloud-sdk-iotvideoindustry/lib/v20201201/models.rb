@@ -222,20 +222,24 @@ module TencentCloud
         # @type NickName: String
         # @param PassWord: 设备密码
         # @type PassWord: String
+        # @param DeviceType: 设备类型 2:国标IPC设备; 3:NVR设备
+        # @type DeviceType: Integer
         # @param GroupId: 设备需要绑定的分组ID，参数为空则默认绑定到根分组
         # @type GroupId: String
 
-        attr_accessor :NickName, :PassWord, :GroupId
+        attr_accessor :NickName, :PassWord, :DeviceType, :GroupId
         
-        def initialize(nickname=nil, password=nil, groupid=nil)
+        def initialize(nickname=nil, password=nil, devicetype=nil, groupid=nil)
           @NickName = nickname
           @PassWord = password
+          @DeviceType = devicetype
           @GroupId = groupid
         end
 
         def deserialize(params)
           @NickName = params['NickName']
           @PassWord = params['PassWord']
+          @DeviceType = params['DeviceType']
           @GroupId = params['GroupId']
         end
       end
