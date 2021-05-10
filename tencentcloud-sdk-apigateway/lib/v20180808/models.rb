@@ -1948,15 +1948,19 @@ module TencentCloud
       class DeleteServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 待删除服务的唯一 ID。
         # @type ServiceId: String
+        # @param SkipVerification: 跳过删除前置条件校验（仅支持独享实例上的服务）
+        # @type SkipVerification: Integer
 
-        attr_accessor :ServiceId
+        attr_accessor :ServiceId, :SkipVerification
         
-        def initialize(serviceid=nil)
+        def initialize(serviceid=nil, skipverification=nil)
           @ServiceId = serviceid
+          @SkipVerification = skipverification
         end
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
+          @SkipVerification = params['SkipVerification']
         end
       end
 

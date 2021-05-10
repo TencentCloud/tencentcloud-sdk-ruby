@@ -1463,10 +1463,12 @@ module TencentCloud
         # @type Currency: String
         # @param RouterCount: 扩容的Router节点数量。
         # @type RouterCount: Integer
+        # @param MasterCount: 扩容的Master节点数量。
+        # @type MasterCount: Integer
 
-        attr_accessor :TimeUnit, :TimeSpan, :ZoneId, :PayMode, :InstanceId, :CoreCount, :TaskCount, :Currency, :RouterCount
+        attr_accessor :TimeUnit, :TimeSpan, :ZoneId, :PayMode, :InstanceId, :CoreCount, :TaskCount, :Currency, :RouterCount, :MasterCount
         
-        def initialize(timeunit=nil, timespan=nil, zoneid=nil, paymode=nil, instanceid=nil, corecount=nil, taskcount=nil, currency=nil, routercount=nil)
+        def initialize(timeunit=nil, timespan=nil, zoneid=nil, paymode=nil, instanceid=nil, corecount=nil, taskcount=nil, currency=nil, routercount=nil, mastercount=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @ZoneId = zoneid
@@ -1476,6 +1478,7 @@ module TencentCloud
           @TaskCount = taskcount
           @Currency = currency
           @RouterCount = routercount
+          @MasterCount = mastercount
         end
 
         def deserialize(params)
@@ -1488,6 +1491,7 @@ module TencentCloud
           @TaskCount = params['TaskCount']
           @Currency = params['Currency']
           @RouterCount = params['RouterCount']
+          @MasterCount = params['MasterCount']
         end
       end
 

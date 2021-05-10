@@ -4865,6 +4865,67 @@ module TencentCloud
         end
       end
 
+      # CreateHeadTailTemplate请求参数结构体
+      class CreateHeadTailTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 模板名，长度限制 64 个字符。
+        # @type Name: String
+        # @param Comment: 模板描述信息，长度限制 256 个字符。
+        # @type Comment: String
+        # @param HeadCandidateSet: 片头候选列表，填写视频的 FileId。转码时将自动选择与正片宽高比最接近的一个片头（相同宽高比时，靠前的候选项优先）。最多支持 5 个候选片头。
+        # @type HeadCandidateSet: Array
+        # @param TailCandidateSet: 片尾候选列表，填写视频的 FileId。转码时将自动选择与正片宽高比最接近的一个片尾（相同宽高比时，靠前的候选项优先）。最多支持 5 个候选片尾。
+        # @type TailCandidateSet: Array
+        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
+        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
+        # <li> gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊；</li>
+        # <li> white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充；</li>
+        # <li> black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        # 默认值：stretch 。
+        # @type FillType: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Name, :Comment, :HeadCandidateSet, :TailCandidateSet, :FillType, :SubAppId
+        
+        def initialize(name=nil, comment=nil, headcandidateset=nil, tailcandidateset=nil, filltype=nil, subappid=nil)
+          @Name = name
+          @Comment = comment
+          @HeadCandidateSet = headcandidateset
+          @TailCandidateSet = tailcandidateset
+          @FillType = filltype
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @HeadCandidateSet = params['HeadCandidateSet']
+          @TailCandidateSet = params['TailCandidateSet']
+          @FillType = params['FillType']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # CreateHeadTailTemplate返回参数结构体
+      class CreateHeadTailTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 片头片尾模板号。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+        
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateImageProcessingTemplate请求参数结构体
       class CreateImageProcessingTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Operations: 图片处理操作数组，操作将以其在数组中的顺序执行。
@@ -5960,6 +6021,42 @@ module TencentCloud
 
       # DeleteContentReviewTemplate返回参数结构体
       class DeleteContentReviewTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteHeadTailTemplate请求参数结构体
+      class DeleteHeadTailTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 片头片尾模板号。
+        # @type Definition: Integer
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Definition, :SubAppId
+        
+        def initialize(definition=nil, subappid=nil)
+          @Definition = definition
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DeleteHeadTailTemplate返回参数结构体
+      class DeleteHeadTailTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7279,6 +7376,63 @@ module TencentCloud
 
         def deserialize(params)
           @CountOfEventsToPull = params['CountOfEventsToPull']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHeadTailTemplates请求参数结构体
+      class DescribeHeadTailTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Definitions: 片头片尾模板号，数组长度限制：100。
+        # @type Definitions: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Definitions, :Offset, :Limit, :SubAppId
+        
+        def initialize(definitions=nil, offset=nil, limit=nil, subappid=nil)
+          @Definitions = definitions
+          @Offset = offset
+          @Limit = limit
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Definitions = params['Definitions']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeHeadTailTemplates返回参数结构体
+      class DescribeHeadTailTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param HeadTailTemplateSet: 片头片尾模板详情列表。
+        # @type HeadTailTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :HeadTailTemplateSet, :RequestId
+        
+        def initialize(totalcount=nil, headtailtemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @HeadTailTemplateSet = headtailtemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['HeadTailTemplateSet'].nil?
+            @HeadTailTemplateSet = []
+            params['HeadTailTemplateSet'].each do |i|
+              @HeadTailTemplateSet << HeadTailTemplate.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9523,6 +9677,63 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 片尾任务输入类型。
+      class HeadTailTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 片头片尾模板号。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+        
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 片头片尾模板详情
+      class HeadTailTemplate < TencentCloud::Common::AbstractModel
+        # @param Definition: 片头片尾模板号。
+        # @type Definition: Integer
+        # @param Name: 模板名，最大支持 64 个字符。
+        # @type Name: String
+        # @param Comment: 模板描述，最大支持 256 个字符。
+        # @type Comment: String
+        # @param HeadCandidateSet: 片头候选列表。使用时会选择跟正片分辨率最贴近的一个使用，当存在相同的候选时，选择第一个使用，最大支持 5 个。
+        # @type HeadCandidateSet: Array
+        # @param TailCandidateSet: 片尾候选列表。使用时会选择跟正片分辨率最贴近的一个使用，当存在相同的候选时，选择第一个使用，最大支持 5 个。
+        # @type TailCandidateSet: Array
+        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
+        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
+        # <li> gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊；</li>
+        # <li> white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充；</li>
+        # <li> black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        # 默认值：stretch 。
+        # @type FillType: String
+
+        attr_accessor :Definition, :Name, :Comment, :HeadCandidateSet, :TailCandidateSet, :FillType
+        
+        def initialize(definition=nil, name=nil, comment=nil, headcandidateset=nil, tailcandidateset=nil, filltype=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @HeadCandidateSet = headcandidateset
+          @TailCandidateSet = tailcandidateset
+          @FillType = filltype
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @HeadCandidateSet = params['HeadCandidateSet']
+          @TailCandidateSet = params['TailCandidateSet']
+          @FillType = params['FillType']
         end
       end
 
@@ -12550,6 +12761,67 @@ module TencentCloud
 
       # ModifyEventConfig返回参数结构体
       class ModifyEventConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHeadTailTemplate请求参数结构体
+      class ModifyHeadTailTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 片头片尾模板号。
+        # @type Definition: Integer
+        # @param Name: 模板名，长度限制 64 个字符。不传代表不修改。
+        # @type Name: String
+        # @param Comment: 模板描述，长度限制 256 个字符。不传代表不修改，传空代表清空。
+        # @type Comment: String
+        # @param HeadCandidateSet: 片头候选列表，填写视频的 FileId。转码时将自动选择与正片宽高比最接近的一个片头（相同宽高比时，靠前的候选项优先）。最多支持 5 个候选片头。不传代表不修改，传空数组代表清空。
+        # @type HeadCandidateSet: Array
+        # @param TailCandidateSet: 片尾候选列表，填写视频的 FileId。转码时将自动选择与正片宽高比最接近的一个片尾（相同宽高比时，靠前的候选项优先）。最多支持 5 个候选片头。不传代表不修改，传空数组代表清空。
+        # @type TailCandidateSet: Array
+        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
+        # <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
+        # <li> gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊；</li>
+        # <li> white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充；</li>
+        # <li> black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        # 默认值为不修改。
+        # @type FillType: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Definition, :Name, :Comment, :HeadCandidateSet, :TailCandidateSet, :FillType, :SubAppId
+        
+        def initialize(definition=nil, name=nil, comment=nil, headcandidateset=nil, tailcandidateset=nil, filltype=nil, subappid=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @HeadCandidateSet = headcandidateset
+          @TailCandidateSet = tailcandidateset
+          @FillType = filltype
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @HeadCandidateSet = params['HeadCandidateSet']
+          @TailCandidateSet = params['TailCandidateSet']
+          @FillType = params['FillType']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # ModifyHeadTailTemplate返回参数结构体
+      class ModifyHeadTailTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -17075,6 +17347,8 @@ module TencentCloud
         # @type WatermarkSet: Array
         # @param MosaicSet: 马赛克列表，最大可支持 10 张。
         # @type MosaicSet: Array
+        # @param HeadTailSet: 片头片尾列表，支持多片头片尾，最大可支持 10 个。
+        # @type HeadTailSet: Array
         # @param StartTimeOffset: 转码后的视频的起始时间偏移，单位：秒。
         # <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
         # <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
@@ -17086,12 +17360,13 @@ module TencentCloud
         # <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
         # @type EndTimeOffset: Float
 
-        attr_accessor :Definition, :WatermarkSet, :MosaicSet, :StartTimeOffset, :EndTimeOffset
+        attr_accessor :Definition, :WatermarkSet, :MosaicSet, :HeadTailSet, :StartTimeOffset, :EndTimeOffset
         
-        def initialize(definition=nil, watermarkset=nil, mosaicset=nil, starttimeoffset=nil, endtimeoffset=nil)
+        def initialize(definition=nil, watermarkset=nil, mosaicset=nil, headtailset=nil, starttimeoffset=nil, endtimeoffset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @MosaicSet = mosaicset
+          @HeadTailSet = headtailset
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
         end
@@ -17108,6 +17383,12 @@ module TencentCloud
             @MosaicSet = []
             params['MosaicSet'].each do |i|
               @MosaicSet << MosaicInput.new.deserialize(i)
+            end
+          end
+          unless params['HeadTailSet'].nil?
+            @HeadTailSet = []
+            params['HeadTailSet'].each do |i|
+              @HeadTailSet << HeadTailTaskInput.new.deserialize(i)
             end
           end
           @StartTimeOffset = params['StartTimeOffset']

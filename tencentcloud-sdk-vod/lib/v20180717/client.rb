@@ -302,6 +302,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建片头片尾模板。
+
+        # @param request: Request instance for CreateHeadTailTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateHeadTailTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateHeadTailTemplateResponse`
+        def CreateHeadTailTemplate(request)
+          body = send_request('CreateHeadTailTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateHeadTailTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
 
         # @param request: Request instance for CreateImageProcessingTemplate.
@@ -699,6 +723,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteContentReviewTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除片头片尾模板。
+
+        # @param request: Request instance for DeleteHeadTailTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteHeadTailTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteHeadTailTemplateResponse`
+        def DeleteHeadTailTemplate(request)
+          body = send_request('DeleteHeadTailTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteHeadTailTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1353,6 +1401,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEventsStateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取片头片尾模板列表。
+
+        # @param request: Request instance for DescribeHeadTailTemplates.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeHeadTailTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeHeadTailTemplatesResponse`
+        def DescribeHeadTailTemplates(request)
+          body = send_request('DescribeHeadTailTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHeadTailTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2191,6 +2263,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyEventConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改片头片尾模板。
+
+        # @param request: Request instance for ModifyHeadTailTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyHeadTailTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyHeadTailTemplateResponse`
+        def ModifyHeadTailTemplate(request)
+          body = send_request('ModifyHeadTailTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyHeadTailTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
