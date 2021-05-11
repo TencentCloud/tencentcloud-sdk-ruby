@@ -978,14 +978,20 @@ module TencentCloud
         # @type Limit: Integer
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
+        # @param Filters: * EnvironmentId
+        # 按照名称空间进行过滤，精确查询。
+        # 类型：String
+        # 必选：否
+        # @type Filters: Array
 
-        attr_accessor :EnvironmentId, :Offset, :Limit, :ClusterId
+        attr_accessor :EnvironmentId, :Offset, :Limit, :ClusterId, :Filters
         
-        def initialize(environmentid=nil, offset=nil, limit=nil, clusterid=nil)
+        def initialize(environmentid=nil, offset=nil, limit=nil, clusterid=nil, filters=nil)
           @EnvironmentId = environmentid
           @Offset = offset
           @Limit = limit
           @ClusterId = clusterid
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -993,6 +999,12 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ClusterId = params['ClusterId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1184,16 +1196,22 @@ module TencentCloud
         # @type TopicType: Integer
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
+        # @param Filters: * TopicName
+        # 按照主题名字查询，精确查询。
+        # 类型：String
+        # 必选：否
+        # @type Filters: Array
 
-        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :TopicType, :ClusterId
+        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :TopicType, :ClusterId, :Filters
         
-        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, topictype=nil, clusterid=nil)
+        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, topictype=nil, clusterid=nil, filters=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Offset = offset
           @Limit = limit
           @TopicType = topictype
           @ClusterId = clusterid
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -1203,6 +1221,12 @@ module TencentCloud
           @Limit = params['Limit']
           @TopicType = params['TopicType']
           @ClusterId = params['ClusterId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1311,6 +1335,26 @@ module TencentCloud
         end
       end
 
+      # 过滤参数
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤参数的名字
+        # @type Name: String
+        # @param Values: 数值
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+        
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # 过滤订阅列表
       class FilterSubscription < TencentCloud::Common::AbstractModel
         # @param ConsumerHasCount: 是否仅展示包含真实消费者的订阅。
@@ -1319,19 +1363,23 @@ module TencentCloud
         # @type ConsumerHasBacklog: Boolean
         # @param ConsumerHasExpired: 是否仅展示存在消息超期丢弃的订阅。
         # @type ConsumerHasExpired: Boolean
+        # @param SubscriptionNames: 按照订阅名过滤，精确查询。
+        # @type SubscriptionNames: Array
 
-        attr_accessor :ConsumerHasCount, :ConsumerHasBacklog, :ConsumerHasExpired
+        attr_accessor :ConsumerHasCount, :ConsumerHasBacklog, :ConsumerHasExpired, :SubscriptionNames
         
-        def initialize(consumerhascount=nil, consumerhasbacklog=nil, consumerhasexpired=nil)
+        def initialize(consumerhascount=nil, consumerhasbacklog=nil, consumerhasexpired=nil, subscriptionnames=nil)
           @ConsumerHasCount = consumerhascount
           @ConsumerHasBacklog = consumerhasbacklog
           @ConsumerHasExpired = consumerhasexpired
+          @SubscriptionNames = subscriptionnames
         end
 
         def deserialize(params)
           @ConsumerHasCount = params['ConsumerHasCount']
           @ConsumerHasBacklog = params['ConsumerHasBacklog']
           @ConsumerHasExpired = params['ConsumerHasExpired']
+          @SubscriptionNames = params['SubscriptionNames']
         end
       end
 
@@ -2012,10 +2060,16 @@ module TencentCloud
         # @param UpdateTime: 最近修改时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param ProducerLimit: 生产者上限。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProducerLimit: String
+        # @param ConsumerLimit: 消费者上限。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerLimit: String
 
-        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime
+        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit
         
-        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil)
+        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil)
           @AverageMsgSize = averagemsgsize
           @ConsumerCount = consumercount
           @LastConfirmedEntry = lastconfirmedentry
@@ -2035,6 +2089,8 @@ module TencentCloud
           @Remark = remark
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @ProducerLimit = producerlimit
+          @ConsumerLimit = consumerlimit
         end
 
         def deserialize(params)
@@ -2062,6 +2118,8 @@ module TencentCloud
           @Remark = params['Remark']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @ProducerLimit = params['ProducerLimit']
+          @ConsumerLimit = params['ConsumerLimit']
         end
       end
 

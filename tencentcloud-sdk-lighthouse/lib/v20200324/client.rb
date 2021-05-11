@@ -342,6 +342,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
+
+        # @param request: Request instance for DescribeBundleDiscount.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeBundleDiscountRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeBundleDiscountResponse`
+        def DescribeBundleDiscount(request)
+          body = send_request('DescribeBundleDiscount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBundleDiscountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeBundles）用于查询套餐信息。
 
         # @param request: Request instance for DescribeBundles.

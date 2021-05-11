@@ -260,6 +260,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeAccountQuota)用于查询用户配额详情。
+
+        # @param request: Request instance for DescribeAccountQuota.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeAccountQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeAccountQuotaResponse`
+        def DescribeAccountQuota(request)
+          body = send_request('DescribeAccountQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccountQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
 
         # @param request: Request instance for DescribeDisasterRecoverGroupQuota.

@@ -2454,15 +2454,18 @@ module TencentCloud
         # @type GatewayType: String
         # @param ModeType: 云联网路由发布模式，可选值：`standard`（标准模式）、`exquisite`（精细模式）。只有云联网类型专线网关才支持`ModeType`。
         # @type ModeType: String
+        # @param Zone: 专线网关可用区
+        # @type Zone: String
 
-        attr_accessor :DirectConnectGatewayName, :NetworkType, :NetworkInstanceId, :GatewayType, :ModeType
+        attr_accessor :DirectConnectGatewayName, :NetworkType, :NetworkInstanceId, :GatewayType, :ModeType, :Zone
         
-        def initialize(directconnectgatewayname=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, modetype=nil)
+        def initialize(directconnectgatewayname=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, modetype=nil, zone=nil)
           @DirectConnectGatewayName = directconnectgatewayname
           @NetworkType = networktype
           @NetworkInstanceId = networkinstanceid
           @GatewayType = gatewaytype
           @ModeType = modetype
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -2471,6 +2474,7 @@ module TencentCloud
           @NetworkInstanceId = params['NetworkInstanceId']
           @GatewayType = params['GatewayType']
           @ModeType = params['ModeType']
+          @Zone = params['Zone']
         end
       end
 
@@ -9261,10 +9265,16 @@ module TencentCloud
         # @param ModeType: 云联网路由发布模式：`standard`（标准模式）、`exquisite`（精细模式）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModeType: String
+        # @param LocalZone: 是否为localZone专线网关。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalZone: Boolean
+        # @param Zone: 专线网关所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
 
-        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :VpcId, :NetworkType, :NetworkInstanceId, :GatewayType, :CreateTime, :DirectConnectGatewayIp, :CcnId, :CcnRouteType, :EnableBGP, :EnableBGPCommunity, :NatGatewayId, :VXLANSupport, :ModeType
+        attr_accessor :DirectConnectGatewayId, :DirectConnectGatewayName, :VpcId, :NetworkType, :NetworkInstanceId, :GatewayType, :CreateTime, :DirectConnectGatewayIp, :CcnId, :CcnRouteType, :EnableBGP, :EnableBGPCommunity, :NatGatewayId, :VXLANSupport, :ModeType, :LocalZone, :Zone
         
-        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, vpcid=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, createtime=nil, directconnectgatewayip=nil, ccnid=nil, ccnroutetype=nil, enablebgp=nil, enablebgpcommunity=nil, natgatewayid=nil, vxlansupport=nil, modetype=nil)
+        def initialize(directconnectgatewayid=nil, directconnectgatewayname=nil, vpcid=nil, networktype=nil, networkinstanceid=nil, gatewaytype=nil, createtime=nil, directconnectgatewayip=nil, ccnid=nil, ccnroutetype=nil, enablebgp=nil, enablebgpcommunity=nil, natgatewayid=nil, vxlansupport=nil, modetype=nil, localzone=nil, zone=nil)
           @DirectConnectGatewayId = directconnectgatewayid
           @DirectConnectGatewayName = directconnectgatewayname
           @VpcId = vpcid
@@ -9280,6 +9290,8 @@ module TencentCloud
           @NatGatewayId = natgatewayid
           @VXLANSupport = vxlansupport
           @ModeType = modetype
+          @LocalZone = localzone
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -9298,6 +9310,8 @@ module TencentCloud
           @NatGatewayId = params['NatGatewayId']
           @VXLANSupport = params['VXLANSupport']
           @ModeType = params['ModeType']
+          @LocalZone = params['LocalZone']
+          @Zone = params['Zone']
         end
       end
 

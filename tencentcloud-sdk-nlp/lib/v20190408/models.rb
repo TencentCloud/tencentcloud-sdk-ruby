@@ -60,25 +60,25 @@ module TencentCloud
 
       # 文本纠错结果
       class CCIToken < TencentCloud::Common::AbstractModel
+        # @param Word: 错别字内容
+        # @type Word: String
         # @param BeginOffset: 错别字的起始位置，从0开始
         # @type BeginOffset: Integer
         # @param CorrectWord: 错别字纠错结果
         # @type CorrectWord: String
-        # @param Word: 错别字内容
-        # @type Word: String
 
-        attr_accessor :BeginOffset, :CorrectWord, :Word
+        attr_accessor :Word, :BeginOffset, :CorrectWord
         
-        def initialize(beginoffset=nil, correctword=nil, word=nil)
+        def initialize(word=nil, beginoffset=nil, correctword=nil)
+          @Word = word
           @BeginOffset = beginoffset
           @CorrectWord = correctword
-          @Word = word
         end
 
         def deserialize(params)
+          @Word = params['Word']
           @BeginOffset = params['BeginOffset']
           @CorrectWord = params['CorrectWord']
-          @Word = params['Word']
         end
       end
 
@@ -86,46 +86,46 @@ module TencentCloud
       class ChatBotRequest < TencentCloud::Common::AbstractModel
         # @param Query: 用户请求的query
         # @type Query: String
-        # @param Flag: 0: 通用闲聊, 1:儿童闲聊, 默认是通用闲聊
-        # @type Flag: Integer
         # @param OpenId: 服务的id,  主要用于儿童闲聊接口，比如手Q的openid
         # @type OpenId: String
+        # @param Flag: 0: 通用闲聊, 1:儿童闲聊, 默认是通用闲聊
+        # @type Flag: Integer
 
-        attr_accessor :Query, :Flag, :OpenId
+        attr_accessor :Query, :OpenId, :Flag
         
-        def initialize(query=nil, flag=nil, openid=nil)
+        def initialize(query=nil, openid=nil, flag=nil)
           @Query = query
-          @Flag = flag
           @OpenId = openid
+          @Flag = flag
         end
 
         def deserialize(params)
           @Query = params['Query']
-          @Flag = params['Flag']
           @OpenId = params['OpenId']
+          @Flag = params['Flag']
         end
       end
 
       # ChatBot返回参数结构体
       class ChatBotResponse < TencentCloud::Common::AbstractModel
-        # @param Confidence: 对于当前输出回复的自信度
-        # @type Confidence: Float
         # @param Reply: 闲聊回复
         # @type Reply: String
+        # @param Confidence: 对于当前输出回复的自信度
+        # @type Confidence: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Confidence, :Reply, :RequestId
+        attr_accessor :Reply, :Confidence, :RequestId
         
-        def initialize(confidence=nil, reply=nil, requestid=nil)
-          @Confidence = confidence
+        def initialize(reply=nil, confidence=nil, requestid=nil)
           @Reply = reply
+          @Confidence = confidence
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Confidence = params['Confidence']
           @Reply = params['Reply']
+          @Confidence = params['Confidence']
           @RequestId = params['RequestId']
         end
       end
@@ -134,27 +134,59 @@ module TencentCloud
       class ClassificationResult < TencentCloud::Common::AbstractModel
         # @param FirstClassName: 一级分类名称
         # @type FirstClassName: String
-        # @param FirstClassProbability: 一级分类概率
-        # @type FirstClassProbability: Float
         # @param SecondClassName: 二级分类名称
         # @type SecondClassName: String
+        # @param FirstClassProbability: 一级分类概率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstClassProbability: Float
         # @param SecondClassProbability: 二级分类概率
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondClassProbability: Float
+        # @param ThirdClassName: 三级分类名称，仅有当新闻领域五分类可能出现，详情见文本分类文档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThirdClassName: String
+        # @param ThirdClassProbability: 三级分类概率，仅有当新闻领域五分类可能出现，详情见文本分类文档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThirdClassProbability: Float
+        # @param FourthClassName: 四级分类名称，仅有当新闻领域五分类可能出现，详情见文本分类文档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FourthClassName: String
+        # @param FourthClassProbability: 四级分类概率，仅有当新闻领域五分类可能出现，详情见文本分类文档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FourthClassProbability: Float
+        # @param FifthClassName: 五级分类名称，仅有当新闻领域五分类可能出现，详情见文本分类文档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FifthClassName: String
+        # @param FifthClassProbability: 五级分类概率，仅有当新闻领域五分类可能出现，详情见文本分类文档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FifthClassProbability: Float
 
-        attr_accessor :FirstClassName, :FirstClassProbability, :SecondClassName, :SecondClassProbability
+        attr_accessor :FirstClassName, :SecondClassName, :FirstClassProbability, :SecondClassProbability, :ThirdClassName, :ThirdClassProbability, :FourthClassName, :FourthClassProbability, :FifthClassName, :FifthClassProbability
         
-        def initialize(firstclassname=nil, firstclassprobability=nil, secondclassname=nil, secondclassprobability=nil)
+        def initialize(firstclassname=nil, secondclassname=nil, firstclassprobability=nil, secondclassprobability=nil, thirdclassname=nil, thirdclassprobability=nil, fourthclassname=nil, fourthclassprobability=nil, fifthclassname=nil, fifthclassprobability=nil)
           @FirstClassName = firstclassname
-          @FirstClassProbability = firstclassprobability
           @SecondClassName = secondclassname
+          @FirstClassProbability = firstclassprobability
           @SecondClassProbability = secondclassprobability
+          @ThirdClassName = thirdclassname
+          @ThirdClassProbability = thirdclassprobability
+          @FourthClassName = fourthclassname
+          @FourthClassProbability = fourthclassprobability
+          @FifthClassName = fifthclassname
+          @FifthClassProbability = fifthclassprobability
         end
 
         def deserialize(params)
           @FirstClassName = params['FirstClassName']
-          @FirstClassProbability = params['FirstClassProbability']
           @SecondClassName = params['SecondClassName']
+          @FirstClassProbability = params['FirstClassProbability']
           @SecondClassProbability = params['SecondClassProbability']
+          @ThirdClassName = params['ThirdClassName']
+          @ThirdClassProbability = params['ThirdClassProbability']
+          @FourthClassName = params['FourthClassName']
+          @FourthClassProbability = params['FourthClassProbability']
+          @FifthClassName = params['FifthClassName']
+          @FifthClassProbability = params['FifthClassProbability']
         end
       end
 
@@ -181,6 +213,7 @@ module TencentCloud
       # CreateDict返回参数结构体
       class CreateDictResponse < TencentCloud::Common::AbstractModel
         # @param DictId: 创建的自定义词库ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DictId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -200,26 +233,26 @@ module TencentCloud
 
       # CreateWordItems请求参数结构体
       class CreateWordItemsRequest < TencentCloud::Common::AbstractModel
-        # @param WordItems: 待添加的词条集合。
-        # @type WordItems: Array
         # @param DictId: 自定义词库ID。
         # @type DictId: String
+        # @param WordItems: 待添加的词条集合。
+        # @type WordItems: Array
 
-        attr_accessor :WordItems, :DictId
+        attr_accessor :DictId, :WordItems
         
-        def initialize(worditems=nil, dictid=nil)
-          @WordItems = worditems
+        def initialize(dictid=nil, worditems=nil)
           @DictId = dictid
+          @WordItems = worditems
         end
 
         def deserialize(params)
+          @DictId = params['DictId']
           unless params['WordItems'].nil?
             @WordItems = []
             params['WordItems'].each do |i|
               @WordItems << WordItem.new.deserialize(i)
             end
           end
-          @DictId = params['DictId']
         end
       end
 
@@ -273,26 +306,26 @@ module TencentCloud
 
       # DeleteWordItems请求参数结构体
       class DeleteWordItemsRequest < TencentCloud::Common::AbstractModel
-        # @param WordItems: 待删除的词条集合。
-        # @type WordItems: Array
         # @param DictId: 自定义词库ID。
         # @type DictId: String
+        # @param WordItems: 待删除的词条集合。
+        # @type WordItems: Array
 
-        attr_accessor :WordItems, :DictId
+        attr_accessor :DictId, :WordItems
         
-        def initialize(worditems=nil, dictid=nil)
-          @WordItems = worditems
+        def initialize(dictid=nil, worditems=nil)
           @DictId = dictid
+          @WordItems = worditems
         end
 
         def deserialize(params)
+          @DictId = params['DictId']
           unless params['WordItems'].nil?
             @WordItems = []
             params['WordItems'].each do |i|
               @WordItems << WordItem.new.deserialize(i)
             end
           end
-          @DictId = params['DictId']
         end
       end
 
@@ -391,6 +424,7 @@ module TencentCloud
       # DescribeDict返回参数结构体
       class DescribeDictResponse < TencentCloud::Common::AbstractModel
         # @param Dicts: 查询到的词库信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dicts: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -435,29 +469,30 @@ module TencentCloud
 
       # DescribeDicts返回参数结构体
       class DescribeDictsResponse < TencentCloud::Common::AbstractModel
-        # @param Dicts: 自定义词库信息列表。
-        # @type Dicts: Array
         # @param TotalCount: 记录总条数。
         # @type TotalCount: Integer
+        # @param Dicts: 自定义词库信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dicts: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Dicts, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :Dicts, :RequestId
         
-        def initialize(dicts=nil, totalcount=nil, requestid=nil)
-          @Dicts = dicts
+        def initialize(totalcount=nil, dicts=nil, requestid=nil)
           @TotalCount = totalcount
+          @Dicts = dicts
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['Dicts'].nil?
             @Dicts = []
             params['Dicts'].each do |i|
               @Dicts << DictInfo.new.deserialize(i)
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -588,134 +623,145 @@ module TencentCloud
       class DescribeWordItemsRequest < TencentCloud::Common::AbstractModel
         # @param DictId: 自定义词库ID。
         # @type DictId: String
-        # @param Limit: 每页数据量，范围为1~100，默认为10。
-        # @type Limit: Integer
         # @param Offset: 分页偏移量，从0开始，默认为0。
         # @type Offset: Integer
+        # @param Limit: 每页数据量，范围为1~100，默认为10。
+        # @type Limit: Integer
         # @param Text: 待检索的词条文本，支持模糊匹配。
         # @type Text: String
 
-        attr_accessor :DictId, :Limit, :Offset, :Text
+        attr_accessor :DictId, :Offset, :Limit, :Text
         
-        def initialize(dictid=nil, limit=nil, offset=nil, text=nil)
+        def initialize(dictid=nil, offset=nil, limit=nil, text=nil)
           @DictId = dictid
-          @Limit = limit
           @Offset = offset
+          @Limit = limit
           @Text = text
         end
 
         def deserialize(params)
           @DictId = params['DictId']
-          @Limit = params['Limit']
           @Offset = params['Offset']
+          @Limit = params['Limit']
           @Text = params['Text']
         end
       end
 
       # DescribeWordItems返回参数结构体
       class DescribeWordItemsResponse < TencentCloud::Common::AbstractModel
-        # @param WordItems: 词条信息列表。
-        # @type WordItems: Array
         # @param TotalCount: 词条记录总条数。
         # @type TotalCount: Integer
+        # @param WordItems: 词条信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WordItems: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :WordItems, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :WordItems, :RequestId
         
-        def initialize(worditems=nil, totalcount=nil, requestid=nil)
-          @WordItems = worditems
+        def initialize(totalcount=nil, worditems=nil, requestid=nil)
           @TotalCount = totalcount
+          @WordItems = worditems
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['WordItems'].nil?
             @WordItems = []
             params['WordItems'].each do |i|
               @WordItems << WordItem.new.deserialize(i)
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
       # 自定义词库信息
       class DictInfo < TencentCloud::Common::AbstractModel
-        # @param Id: 自定义词库ID。
-        # @type Id: String
         # @param Name: 自定义词库名称。
         # @type Name: String
-        # @param CreateTime: 自定义词库创建时间，形式为:yyyy-mm-dd hh:mm:ss。
-        # @type CreateTime: String
+        # @param Id: 自定义词库ID。
+        # @type Id: String
         # @param Description: 自定义词库描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param UpdateTime: 自定义词库修改时间，形式为:yyyy-mm-dd hh:mm:ss。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param CreateTime: 自定义词库创建时间，形式为:yyyy-mm-dd hh:mm:ss。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
 
-        attr_accessor :Id, :Name, :CreateTime, :Description, :UpdateTime
+        attr_accessor :Name, :Id, :Description, :UpdateTime, :CreateTime
         
-        def initialize(id=nil, name=nil, createtime=nil, description=nil, updatetime=nil)
-          @Id = id
+        def initialize(name=nil, id=nil, description=nil, updatetime=nil, createtime=nil)
           @Name = name
-          @CreateTime = createtime
+          @Id = id
           @Description = description
           @UpdateTime = updatetime
+          @CreateTime = createtime
         end
 
         def deserialize(params)
-          @Id = params['Id']
           @Name = params['Name']
-          @CreateTime = params['CreateTime']
+          @Id = params['Id']
           @Description = params['Description']
           @UpdateTime = params['UpdateTime']
+          @CreateTime = params['CreateTime']
         end
       end
 
       # 句法依存分析结果，包括基础词，基础词的序号，当前词父节点的序号，句法依存关系的类型
       class DpToken < TencentCloud::Common::AbstractModel
-        # @param HeadId: 当前词父节点的序号
-        # @type HeadId: Integer
-        # @param Id: 基础词的序号
-        # @type Id: Integer
         # @param Relation: 句法依存关系的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: String
+        # @param HeadId: 当前词父节点的序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadId: Integer
         # @param Word: 基础词
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Word: String
+        # @param Id: 基础词的序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
 
-        attr_accessor :HeadId, :Id, :Relation, :Word
+        attr_accessor :Relation, :HeadId, :Word, :Id
         
-        def initialize(headid=nil, id=nil, relation=nil, word=nil)
-          @HeadId = headid
-          @Id = id
+        def initialize(relation=nil, headid=nil, word=nil, id=nil)
           @Relation = relation
+          @HeadId = headid
           @Word = word
+          @Id = id
         end
 
         def deserialize(params)
-          @HeadId = params['HeadId']
-          @Id = params['Id']
           @Relation = params['Relation']
+          @HeadId = params['HeadId']
           @Word = params['Word']
+          @Id = params['Id']
         end
       end
 
       # 返回的实体关系查询结果详细内容
       class EntityRelationContent < TencentCloud::Common::AbstractModel
         # @param Object: 实体关系查询返回关系的object
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Object: Array
-        # @param Subject: 实体关系查询返回关系的subject
-        # @type Subject: Array
         # @param Relation: 实体关系查询返回的关系名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: String
+        # @param Subject: 实体关系查询返回关系的subject
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Subject: Array
 
-        attr_accessor :Object, :Subject, :Relation
+        attr_accessor :Object, :Relation, :Subject
         
-        def initialize(object=nil, subject=nil, relation=nil)
+        def initialize(object=nil, relation=nil, subject=nil)
           @Object = object
-          @Subject = subject
           @Relation = relation
+          @Subject = subject
         end
 
         def deserialize(params)
@@ -725,61 +771,64 @@ module TencentCloud
               @Object << EntityRelationObject.new.deserialize(i)
             end
           end
+          @Relation = params['Relation']
           unless params['Subject'].nil?
             @Subject = []
             params['Subject'].each do |i|
               @Subject << EntityRelationSubject.new.deserialize(i)
             end
           end
-          @Relation = params['Relation']
         end
       end
 
       # 实体关系查询返回的Object类型
       class EntityRelationObject < TencentCloud::Common::AbstractModel
+        # @param Popular: object对应popular值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Popular: Array
         # @param Id: object对应id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Array
         # @param Name: object对应name
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: Array
-        # @param Popular: object对应popular值
-        # @type Popular: Array
 
-        attr_accessor :Id, :Name, :Popular
+        attr_accessor :Popular, :Id, :Name
         
-        def initialize(id=nil, name=nil, popular=nil)
+        def initialize(popular=nil, id=nil, name=nil)
+          @Popular = popular
           @Id = id
           @Name = name
-          @Popular = popular
         end
 
         def deserialize(params)
+          @Popular = params['Popular']
           @Id = params['Id']
           @Name = params['Name']
-          @Popular = params['Popular']
         end
       end
 
       # 实体关系查询返回Subject
       class EntityRelationSubject < TencentCloud::Common::AbstractModel
+        # @param Popular: Subject对应popular
+        # @type Popular: Array
         # @param Id: Subject对应id
         # @type Id: Array
         # @param Name: Subject对应name
         # @type Name: Array
-        # @param Popular: Subject对应popular
-        # @type Popular: Array
 
-        attr_accessor :Id, :Name, :Popular
+        attr_accessor :Popular, :Id, :Name
         
-        def initialize(id=nil, name=nil, popular=nil)
+        def initialize(popular=nil, id=nil, name=nil)
+          @Popular = popular
           @Id = id
           @Name = name
-          @Popular = popular
         end
 
         def deserialize(params)
+          @Popular = params['Popular']
           @Id = params['Id']
           @Name = params['Name']
-          @Popular = params['Popular']
         end
       end
 
@@ -826,6 +875,7 @@ module TencentCloud
       # KeywordsExtraction返回参数结构体
       class KeywordsExtractionResponse < TencentCloud::Common::AbstractModel
         # @param Keywords: 关键词提取结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -881,6 +931,7 @@ module TencentCloud
         # <li>LOC：表示地名，如北京、华山</li>
         # <li>ORG：表示机构团体名，如腾讯、最高人民法院、人大附中</li>
         # <li>PRODUCTION：表示产品名，如QQ、微信、iPhone</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NerTokens: Array
         # @param PosTokens: 分词&词性标注结果（词性表请参见附录）
         # @type PosTokens: Array
@@ -914,116 +965,119 @@ module TencentCloud
 
       # 命名实体识别结果
       class NerToken < TencentCloud::Common::AbstractModel
-        # @param BeginOffset: 起始位置
-        # @type BeginOffset: Integer
-        # @param Length: 长度
-        # @type Length: Integer
-        # @param Type: 命名实体类型
-        # @type Type: String
         # @param Word: 基础词
         # @type Word: String
+        # @param Length: 长度
+        # @type Length: Integer
+        # @param BeginOffset: 起始位置
+        # @type BeginOffset: Integer
+        # @param Type: 命名实体类型
+        # @type Type: String
 
-        attr_accessor :BeginOffset, :Length, :Type, :Word
+        attr_accessor :Word, :Length, :BeginOffset, :Type
         
-        def initialize(beginoffset=nil, length=nil, type=nil, word=nil)
-          @BeginOffset = beginoffset
-          @Length = length
-          @Type = type
+        def initialize(word=nil, length=nil, beginoffset=nil, type=nil)
           @Word = word
+          @Length = length
+          @BeginOffset = beginoffset
+          @Type = type
         end
 
         def deserialize(params)
-          @BeginOffset = params['BeginOffset']
-          @Length = params['Length']
-          @Type = params['Type']
           @Word = params['Word']
+          @Length = params['Length']
+          @BeginOffset = params['BeginOffset']
+          @Type = params['Type']
         end
       end
 
       # 分词&词性标注结果
       class PosToken < TencentCloud::Common::AbstractModel
-        # @param BeginOffset: 起始位置
-        # @type BeginOffset: Integer
-        # @param Length: 长度
-        # @type Length: Integer
-        # @param Pos: 词性
-        # @type Pos: String
         # @param Word: 基础词
         # @type Word: String
+        # @param Length: 长度
+        # @type Length: Integer
+        # @param BeginOffset: 起始位置
+        # @type BeginOffset: Integer
+        # @param Pos: 词性
+        # @type Pos: String
 
-        attr_accessor :BeginOffset, :Length, :Pos, :Word
+        attr_accessor :Word, :Length, :BeginOffset, :Pos
         
-        def initialize(beginoffset=nil, length=nil, pos=nil, word=nil)
-          @BeginOffset = beginoffset
-          @Length = length
-          @Pos = pos
+        def initialize(word=nil, length=nil, beginoffset=nil, pos=nil)
           @Word = word
+          @Length = length
+          @BeginOffset = beginoffset
+          @Pos = pos
         end
 
         def deserialize(params)
-          @BeginOffset = params['BeginOffset']
-          @Length = params['Length']
-          @Pos = params['Pos']
           @Word = params['Word']
+          @Length = params['Length']
+          @BeginOffset = params['BeginOffset']
+          @Pos = params['Pos']
         end
       end
 
       # 词条搜索的结果，主要描述该词条是否存在以及相关的词性。
       class SearchResult < TencentCloud::Common::AbstractModel
+        # @param Text: 被搜索的词条文本。
+        # @type Text: String
         # @param IsExist: 0表示词条不存在，1表示存在。
         # @type IsExist: Integer
         # @param MatchText: 匹配到的词条文本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MatchText: String
-        # @param Text: 被搜索的词条文本。
-        # @type Text: String
         # @param Pos: 词条的词性。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pos: String
 
-        attr_accessor :IsExist, :MatchText, :Text, :Pos
+        attr_accessor :Text, :IsExist, :MatchText, :Pos
         
-        def initialize(isexist=nil, matchtext=nil, text=nil, pos=nil)
+        def initialize(text=nil, isexist=nil, matchtext=nil, pos=nil)
+          @Text = text
           @IsExist = isexist
           @MatchText = matchtext
-          @Text = text
           @Pos = pos
         end
 
         def deserialize(params)
+          @Text = params['Text']
           @IsExist = params['IsExist']
           @MatchText = params['MatchText']
-          @Text = params['Text']
           @Pos = params['Pos']
         end
       end
 
       # SearchWordItems请求参数结构体
       class SearchWordItemsRequest < TencentCloud::Common::AbstractModel
-        # @param WordItems: 待检索的词条集合。
-        # @type WordItems: Array
         # @param DictId: 自定义词库ID。
         # @type DictId: String
+        # @param WordItems: 待检索的词条集合。
+        # @type WordItems: Array
 
-        attr_accessor :WordItems, :DictId
+        attr_accessor :DictId, :WordItems
         
-        def initialize(worditems=nil, dictid=nil)
-          @WordItems = worditems
+        def initialize(dictid=nil, worditems=nil)
           @DictId = dictid
+          @WordItems = worditems
         end
 
         def deserialize(params)
+          @DictId = params['DictId']
           unless params['WordItems'].nil?
             @WordItems = []
             params['WordItems'].each do |i|
               @WordItems << WordItem.new.deserialize(i)
             end
           end
-          @DictId = params['DictId']
         end
       end
 
       # SearchWordItems返回参数结构体
       class SearchWordItemsResponse < TencentCloud::Common::AbstractModel
         # @param Results: 词条检索结果集合。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1064,24 +1118,24 @@ module TencentCloud
 
       # SentenceEmbedding返回参数结构体
       class SentenceEmbeddingResponse < TencentCloud::Common::AbstractModel
-        # @param Dimension: 句向量的维度
-        # @type Dimension: Integer
         # @param Vector: 句向量数组
         # @type Vector: Array
+        # @param Dimension: 句向量的维度
+        # @type Dimension: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Dimension, :Vector, :RequestId
+        attr_accessor :Vector, :Dimension, :RequestId
         
-        def initialize(dimension=nil, vector=nil, requestid=nil)
-          @Dimension = dimension
+        def initialize(vector=nil, dimension=nil, requestid=nil)
           @Vector = vector
+          @Dimension = dimension
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Dimension = params['Dimension']
           @Vector = params['Vector']
+          @Dimension = params['Dimension']
           @RequestId = params['RequestId']
         end
       end
@@ -1118,12 +1172,13 @@ module TencentCloud
 
       # SentimentAnalysis返回参数结构体
       class SentimentAnalysisResponse < TencentCloud::Common::AbstractModel
-        # @param Negative: 负面情感概率
-        # @type Negative: Float
-        # @param Neutral: 中性情感概率，当输入参数Mode取值为3class时有效，否则值为空
-        # @type Neutral: Float
         # @param Positive: 正面情感概率
         # @type Positive: Float
+        # @param Neutral: 中性情感概率，当输入参数Mode取值为3class时有效，否则值为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Neutral: Float
+        # @param Negative: 负面情感概率
+        # @type Negative: Float
         # @param Sentiment: 情感分类结果：
         # 1、positive，表示正面情感
         # 2、negative，表示负面情感
@@ -1132,20 +1187,20 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Negative, :Neutral, :Positive, :Sentiment, :RequestId
+        attr_accessor :Positive, :Neutral, :Negative, :Sentiment, :RequestId
         
-        def initialize(negative=nil, neutral=nil, positive=nil, sentiment=nil, requestid=nil)
-          @Negative = negative
-          @Neutral = neutral
+        def initialize(positive=nil, neutral=nil, negative=nil, sentiment=nil, requestid=nil)
           @Positive = positive
+          @Neutral = neutral
+          @Negative = negative
           @Sentiment = sentiment
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Negative = params['Negative']
-          @Neutral = params['Neutral']
           @Positive = params['Positive']
+          @Neutral = params['Neutral']
+          @Negative = params['Negative']
           @Sentiment = params['Sentiment']
           @RequestId = params['RequestId']
         end
@@ -1193,21 +1248,21 @@ module TencentCloud
 
       # 文本相似度
       class Similarity < TencentCloud::Common::AbstractModel
-        # @param Score: 相似度分数
-        # @type Score: Float
         # @param Text: 目标文本句子
         # @type Text: String
+        # @param Score: 相似度分数
+        # @type Score: Float
 
-        attr_accessor :Score, :Text
+        attr_accessor :Text, :Score
         
-        def initialize(score=nil, text=nil)
-          @Score = score
+        def initialize(text=nil, score=nil)
           @Text = text
+          @Score = score
         end
 
         def deserialize(params)
-          @Score = params['Score']
           @Text = params['Text']
+          @Score = params['Score']
         end
       end
 
@@ -1216,8 +1271,8 @@ module TencentCloud
         # @param Text: 待分类的文本（仅支持UTF-8格式，不超过10000字）
         # @type Text: String
         # @param Flag: 领域分类体系（默认取1值）：
-        # 1、通用领域
-        # 2、新闻领域
+        # 1、通用领域，二分类
+        # 2、新闻领域，五分类。类别数据不一定全部返回，详情见类目映射表
         # @type Flag: Integer
 
         attr_accessor :Text, :Flag
@@ -1260,7 +1315,7 @@ module TencentCloud
 
       # TextCorrection请求参数结构体
       class TextCorrectionRequest < TencentCloud::Common::AbstractModel
-        # @param Text: 待纠错的文本（仅支持UTF-8格式，不超过2000字）
+        # @param Text: 待纠错的文本（仅支持UTF-8格式，不超过2000字符）
         # @type Text: String
 
         attr_accessor :Text
@@ -1277,6 +1332,7 @@ module TencentCloud
       # TextCorrection返回参数结构体
       class TextCorrectionResponse < TencentCloud::Common::AbstractModel
         # @param CCITokens: 纠错详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CCITokens: Array
         # @param ResultText: 纠错后的文本
         # @type ResultText: String
@@ -1307,8 +1363,7 @@ module TencentCloud
       class TextSimilarityRequest < TencentCloud::Common::AbstractModel
         # @param SrcText: 需要与目标句子计算相似度的源句子（仅支持UTF-8格式，不超过500字符）
         # @type SrcText: String
-        # @param TargetText: 需要与源句子计算相似度的一个或多个目标句子（仅支持UTF-8格式，目标句子的数量不超过100个，每个句子不超过500字符）
-        # 注意：每成功计算1个目标句子与源句子的相似度算1次调用
+        # @param TargetText: 目标句子
         # @type TargetText: Array
 
         attr_accessor :SrcText, :TargetText
@@ -1351,29 +1406,33 @@ module TencentCloud
 
       # 三元组查询返回的元记录
       class TripleContent < TencentCloud::Common::AbstractModel
-        # @param Id: 实体id
-        # @type Id: String
+        # @param Popular: 实体流行度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Popular: Integer
         # @param Name: 实体名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Order: 实体order
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Order: Integer
-        # @param Popular: 实体流行度
-        # @type Popular: Integer
+        # @param Id: 实体id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
 
-        attr_accessor :Id, :Name, :Order, :Popular
+        attr_accessor :Popular, :Name, :Order, :Id
         
-        def initialize(id=nil, name=nil, order=nil, popular=nil)
-          @Id = id
+        def initialize(popular=nil, name=nil, order=nil, id=nil)
+          @Popular = popular
           @Name = name
           @Order = order
-          @Popular = popular
+          @Id = id
         end
 
         def deserialize(params)
-          @Id = params['Id']
+          @Popular = params['Popular']
           @Name = params['Name']
           @Order = params['Order']
-          @Popular = params['Popular']
+          @Id = params['Id']
         end
       end
 
@@ -1435,24 +1494,24 @@ module TencentCloud
 
       # WordEmbedding返回参数结构体
       class WordEmbeddingResponse < TencentCloud::Common::AbstractModel
-        # @param Dimension: 词向量的维度
-        # @type Dimension: Integer
         # @param Vector: 词向量数组
         # @type Vector: Array
+        # @param Dimension: 词向量的维度
+        # @type Dimension: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Dimension, :Vector, :RequestId
+        attr_accessor :Vector, :Dimension, :RequestId
         
-        def initialize(dimension=nil, vector=nil, requestid=nil)
-          @Dimension = dimension
+        def initialize(vector=nil, dimension=nil, requestid=nil)
           @Vector = vector
+          @Dimension = dimension
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Dimension = params['Dimension']
           @Vector = params['Vector']
+          @Dimension = params['Dimension']
           @RequestId = params['RequestId']
         end
       end
@@ -1464,6 +1523,7 @@ module TencentCloud
         # @param CreateTime: 词条创建时间。
         # @type CreateTime: String
         # @param Pos: 词条的词性。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pos: String
 
         attr_accessor :Text, :CreateTime, :Pos

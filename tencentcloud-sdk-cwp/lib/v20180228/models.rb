@@ -2153,6 +2153,50 @@ module TencentCloud
         end
       end
 
+      # DescribeESHits请求参数结构体
+      class DescribeESHitsRequest < TencentCloud::Common::AbstractModel
+        # @param Query: ES查询条件JSON
+        # @type Query: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :Query, :Offset, :Limit
+        
+        def initialize(query=nil, offset=nil, limit=nil)
+          @Query = query
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeESHits返回参数结构体
+      class DescribeESHitsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: ES查询结果JSON
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExportMachines请求参数结构体
       class DescribeExportMachinesRequest < TencentCloud::Common::AbstractModel
         # @param MachineType: 云主机类型。

@@ -938,6 +938,87 @@ module TencentCloud
         end
       end
 
+      # CreateAlertRule请求参数结构体
+      class CreateAlertRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Expr: 规则表达式
+        # @type Expr: String
+        # @param Receivers: 告警通知模板 ID 列表
+        # @type Receivers: Array
+        # @param RuleState: 规则状态码，取值如下：
+        # <li>2=RuleEnabled</li>
+        # <li>3=RuleDisabled</li>
+        # @type RuleState: Integer
+        # @param Duration: 规则报警持续时间
+        # @type Duration: String
+        # @param Labels: 标签列表
+        # @type Labels: Array
+        # @param Annotations: 注释列表
+        # @type Annotations: Array
+        # @param Type: 报警策略模板分类
+        # @type Type: String
+
+        attr_accessor :InstanceId, :RuleName, :Expr, :Receivers, :RuleState, :Duration, :Labels, :Annotations, :Type
+        
+        def initialize(instanceid=nil, rulename=nil, expr=nil, receivers=nil, rulestate=nil, duration=nil, labels=nil, annotations=nil, type=nil)
+          @InstanceId = instanceid
+          @RuleName = rulename
+          @Expr = expr
+          @Receivers = receivers
+          @RuleState = rulestate
+          @Duration = duration
+          @Labels = labels
+          @Annotations = annotations
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RuleName = params['RuleName']
+          @Expr = params['Expr']
+          @Receivers = params['Receivers']
+          @RuleState = params['RuleState']
+          @Duration = params['Duration']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              @Labels << PrometheusRuleKV.new.deserialize(i)
+            end
+          end
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              @Annotations << PrometheusRuleKV.new.deserialize(i)
+            end
+          end
+          @Type = params['Type']
+        end
+      end
+
+      # CreateAlertRule返回参数结构体
+      class CreateAlertRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+        
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建策略传入的阈值告警条件
       class CreatePolicyGroupCondition < TencentCloud::Common::AbstractModel
         # @param MetricId: 指标Id
@@ -1245,6 +1326,42 @@ module TencentCloud
 
       # DeleteAlarmPolicy返回参数结构体
       class DeleteAlarmPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAlertRules请求参数结构体
+      class DeleteAlertRulesRequest < TencentCloud::Common::AbstractModel
+        # @param RuleIds: 规则 ID 列表
+        # @type RuleIds: Array
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :RuleIds, :InstanceId
+        
+        def initialize(ruleids=nil, instanceid=nil)
+          @RuleIds = ruleids
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @RuleIds = params['RuleIds']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteAlertRules返回参数结构体
+      class DeleteAlertRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2018,6 +2135,78 @@ module TencentCloud
         def deserialize(params)
           unless params['Policy'].nil?
             @Policy = AlarmPolicy.new.deserialize(params['Policy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlertRules请求参数结构体
+      class DescribeAlertRulesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0
+        # @type Offset: Integer
+        # @param RuleId: 规则 ID
+        # @type RuleId: String
+        # @param RuleState: 规则状态码，取值如下：
+        # <li>2=RuleEnabled</li>
+        # <li>3=RuleDisabled</li>
+        # @type RuleState: Integer
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Type: 报警策略模板分类
+        # @type Type: String
+
+        attr_accessor :InstanceId, :Limit, :Offset, :RuleId, :RuleState, :RuleName, :Type
+        
+        def initialize(instanceid=nil, limit=nil, offset=nil, ruleid=nil, rulestate=nil, rulename=nil, type=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+          @RuleId = ruleid
+          @RuleState = rulestate
+          @RuleName = rulename
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @RuleId = params['RuleId']
+          @RuleState = params['RuleState']
+          @RuleName = params['RuleName']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeAlertRules返回参数结构体
+      class DescribeAlertRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 报警规则数量
+        # @type TotalCount: Integer
+        # @param AlertRuleSet: 报警规则详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertRuleSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AlertRuleSet, :RequestId
+        
+        def initialize(totalcount=nil, alertruleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AlertRuleSet = alertruleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AlertRuleSet'].nil?
+            @AlertRuleSet = []
+            params['AlertRuleSet'].each do |i|
+              @AlertRuleSet << PrometheusRuleSet.new.deserialize(i)
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -5127,6 +5316,108 @@ module TencentCloud
         end
       end
 
+      # prometheus 报警规则 KV 参数
+      class PrometheusRuleKV < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # prometheus 报警规则集
+      class PrometheusRuleSet < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID
+        # @type RuleId: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param RuleState: 规则状态码
+        # @type RuleState: Integer
+        # @param Type: 规则类别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Labels: 规则标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
+        # @param Annotations: 规则注释列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Annotations: Array
+        # @param Expr: 规则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expr: String
+        # @param Duration: 规则报警持续时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: String
+        # @param Receivers: 报警接收组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Receivers: Array
+        # @param Health: 规则运行健康状态，取值如下：
+        # <li>unknown 未知状态</li>
+        # <li>pending 加载中</li>
+        # <li>ok 运行正常</li>
+        # <li>err 运行错误</li>
+        # @type Health: String
+        # @param CreatedAt: 规则创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param UpdatedAt: 规则更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+
+        attr_accessor :RuleId, :RuleName, :RuleState, :Type, :Labels, :Annotations, :Expr, :Duration, :Receivers, :Health, :CreatedAt, :UpdatedAt
+        
+        def initialize(ruleid=nil, rulename=nil, rulestate=nil, type=nil, labels=nil, annotations=nil, expr=nil, duration=nil, receivers=nil, health=nil, createdat=nil, updatedat=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @RuleState = rulestate
+          @Type = type
+          @Labels = labels
+          @Annotations = annotations
+          @Expr = expr
+          @Duration = duration
+          @Receivers = receivers
+          @Health = health
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @RuleState = params['RuleState']
+          @Type = params['Type']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              @Labels << PrometheusRuleKV.new.deserialize(i)
+            end
+          end
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              @Annotations << PrometheusRuleKV.new.deserialize(i)
+            end
+          end
+          @Expr = params['Expr']
+          @Duration = params['Duration']
+          @Receivers = params['Receivers']
+          @Health = params['Health']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
       # PutMonitorData请求参数结构体
       class PutMonitorDataRequest < TencentCloud::Common::AbstractModel
         # @param Metrics: 一组指标和数据
@@ -5515,6 +5806,135 @@ module TencentCloud
 
       # UnBindingPolicyObject返回参数结构体
       class UnBindingPolicyObjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateAlertRule请求参数结构体
+      class UpdateAlertRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: Prometheus 报警规则 ID
+        # @type RuleId: String
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param RuleState: 规则状态码，取值如下：
+        # <li>1=RuleDeleted</li>
+        # <li>2=RuleEnabled</li>
+        # <li>3=RuleDisabled</li>
+        # 默认状态码为 2 启用。
+        # @type RuleState: Integer
+        # @param RuleName: 报警规则名称
+        # @type RuleName: String
+        # @param Expr: 报警规则表达式
+        # @type Expr: String
+        # @param Duration: 报警规则持续时间
+        # @type Duration: String
+        # @param Receivers: 报警规则接收组列表
+        # @type Receivers: Array
+        # @param Labels: 报警规则标签列表
+        # @type Labels: Array
+        # @param Annotations: 报警规则注释列表
+        # @type Annotations: Array
+        # @param Type: 报警策略模板分类
+        # @type Type: String
+
+        attr_accessor :RuleId, :InstanceId, :RuleState, :RuleName, :Expr, :Duration, :Receivers, :Labels, :Annotations, :Type
+        
+        def initialize(ruleid=nil, instanceid=nil, rulestate=nil, rulename=nil, expr=nil, duration=nil, receivers=nil, labels=nil, annotations=nil, type=nil)
+          @RuleId = ruleid
+          @InstanceId = instanceid
+          @RuleState = rulestate
+          @RuleName = rulename
+          @Expr = expr
+          @Duration = duration
+          @Receivers = receivers
+          @Labels = labels
+          @Annotations = annotations
+          @Type = type
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @InstanceId = params['InstanceId']
+          @RuleState = params['RuleState']
+          @RuleName = params['RuleName']
+          @Expr = params['Expr']
+          @Duration = params['Duration']
+          @Receivers = params['Receivers']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              @Labels << PrometheusRuleKV.new.deserialize(i)
+            end
+          end
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              @Annotations << PrometheusRuleKV.new.deserialize(i)
+            end
+          end
+          @Type = params['Type']
+        end
+      end
+
+      # UpdateAlertRule返回参数结构体
+      class UpdateAlertRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID
+        # @type RuleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+        
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateAlertRuleState请求参数结构体
+      class UpdateAlertRuleStateRequest < TencentCloud::Common::AbstractModel
+        # @param RuleIds: 规则 ID 列表
+        # @type RuleIds: Array
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param RuleState: 规则状态码，取值如下：
+        # <li>2=RuleEnabled</li>
+        # <li>3=RuleDisabled</li>
+        # 默认状态码为 2 启用。
+        # @type RuleState: Integer
+
+        attr_accessor :RuleIds, :InstanceId, :RuleState
+        
+        def initialize(ruleids=nil, instanceid=nil, rulestate=nil)
+          @RuleIds = ruleids
+          @InstanceId = instanceid
+          @RuleState = rulestate
+        end
+
+        def deserialize(params)
+          @RuleIds = params['RuleIds']
+          @InstanceId = params['InstanceId']
+          @RuleState = params['RuleState']
+        end
+      end
+
+      # UpdateAlertRuleState返回参数结构体
+      class UpdateAlertRuleStateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

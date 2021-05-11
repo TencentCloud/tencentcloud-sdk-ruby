@@ -97,6 +97,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建 Prometheus 告警规则
+
+        # @param request: Request instance for CreateAlertRule.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::CreateAlertRuleRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::CreateAlertRuleResponse`
+        def CreateAlertRule(request)
+          body = send_request('CreateAlertRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAlertRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 增加策略组
 
         # @param request: Request instance for CreatePolicyGroup.
@@ -181,6 +205,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAlarmPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除 Prometheus 报警规则
+
+        # @param request: Request instance for DeleteAlertRules.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DeleteAlertRulesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DeleteAlertRulesResponse`
+        def DeleteAlertRules(request)
+          body = send_request('DeleteAlertRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAlertRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -449,6 +497,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAlarmPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Prometheus 报警规则查询接口
+
+        # @param request: Request instance for DescribeAlertRules.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeAlertRulesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeAlertRulesResponse`
+        def DescribeAlertRules(request)
+          body = send_request('DescribeAlertRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAlertRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1084,6 +1156,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnBindingPolicyObjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 Prometheus 的报警规则
+
+        # @param request: Request instance for UpdateAlertRule.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateAlertRuleRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateAlertRuleResponse`
+        def UpdateAlertRule(request)
+          body = send_request('UpdateAlertRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAlertRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新 Prometheus 报警策略状态
+
+        # @param request: Request instance for UpdateAlertRuleState.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::UpdateAlertRuleStateRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::UpdateAlertRuleStateResponse`
+        def UpdateAlertRuleState(request)
+          body = send_request('UpdateAlertRuleState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAlertRuleStateResponse.new
             model.deserialize(response['Response'])
             model
           else

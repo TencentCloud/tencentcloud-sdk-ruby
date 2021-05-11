@@ -751,6 +751,51 @@ module TencentCloud
         end
       end
 
+      # DescribeBundleDiscount请求参数结构体
+      class DescribeBundleDiscountRequest < TencentCloud::Common::AbstractModel
+        # @param BundleId: 套餐 ID。
+        # @type BundleId: String
+
+        attr_accessor :BundleId
+        
+        def initialize(bundleid=nil)
+          @BundleId = bundleid
+        end
+
+        def deserialize(params)
+          @BundleId = params['BundleId']
+        end
+      end
+
+      # DescribeBundleDiscount返回参数结构体
+      class DescribeBundleDiscountResponse < TencentCloud::Common::AbstractModel
+        # @param Currency: 币种：CNY人民币，USD 美元。
+        # @type Currency: String
+        # @param DiscountDetail: 折扣梯度详情，每个梯度包含的信息有：时长，折扣数，总价，折扣价，折扣详情（用户折扣、官网折扣、最终折扣）。
+        # @type DiscountDetail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Currency, :DiscountDetail, :RequestId
+        
+        def initialize(currency=nil, discountdetail=nil, requestid=nil)
+          @Currency = currency
+          @DiscountDetail = discountdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Currency = params['Currency']
+          unless params['DiscountDetail'].nil?
+            @DiscountDetail = []
+            params['DiscountDetail'].each do |i|
+              @DiscountDetail << DiscountDetail.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBundles请求参数结构体
       class DescribeBundlesRequest < TencentCloud::Common::AbstractModel
         # @param BundleIds: 套餐 ID 列表。
@@ -1637,6 +1682,44 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 套餐折扣详情（仅用于控制台调用询价相关接口返回）。
+      class DiscountDetail < TencentCloud::Common::AbstractModel
+        # @param TimeSpan: 计费时长。
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 计费单元。
+        # @type TimeUnit: String
+        # @param TotalCost: 总价。
+        # @type TotalCost: Float
+        # @param RealTotalCost: 折后总价。
+        # @type RealTotalCost: Float
+        # @param Discount: 折扣。
+        # @type Discount: Integer
+        # @param PolicyDetail: 具体折扣详情。
+        # @type PolicyDetail: :class:`Tencentcloud::Lighthouse.v20200324.models.PolicyDetail`
+
+        attr_accessor :TimeSpan, :TimeUnit, :TotalCost, :RealTotalCost, :Discount, :PolicyDetail
+        
+        def initialize(timespan=nil, timeunit=nil, totalcost=nil, realtotalcost=nil, discount=nil, policydetail=nil)
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @TotalCost = totalcost
+          @RealTotalCost = realtotalcost
+          @Discount = discount
+          @PolicyDetail = policydetail
+        end
+
+        def deserialize(params)
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @TotalCost = params['TotalCost']
+          @RealTotalCost = params['RealTotalCost']
+          @Discount = params['Discount']
+          unless params['PolicyDetail'].nil?
+            @PolicyDetail = PolicyDetail.new.deserialize(params['PolicyDetail'])
+          end
         end
       end
 
@@ -2573,6 +2656,30 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 折扣详情信息。
+      class PolicyDetail < TencentCloud::Common::AbstractModel
+        # @param UserDiscount: 用户折扣。
+        # @type UserDiscount: Integer
+        # @param CommonDiscount: 公共折扣。
+        # @type CommonDiscount: Integer
+        # @param FinalDiscount: 最终折扣。
+        # @type FinalDiscount: Integer
+
+        attr_accessor :UserDiscount, :CommonDiscount, :FinalDiscount
+        
+        def initialize(userdiscount=nil, commondiscount=nil, finaldiscount=nil)
+          @UserDiscount = userdiscount
+          @CommonDiscount = commondiscount
+          @FinalDiscount = finaldiscount
+        end
+
+        def deserialize(params)
+          @UserDiscount = params['UserDiscount']
+          @CommonDiscount = params['CommonDiscount']
+          @FinalDiscount = params['FinalDiscount']
         end
       end
 

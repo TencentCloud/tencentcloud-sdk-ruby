@@ -17,6 +17,85 @@
 module TencentCloud
   module Cvm
     module V20170312
+      # 配额详情
+      class AccountQuota < TencentCloud::Common::AbstractModel
+        # @param PostPaidQuotaSet: 后付费配额列表
+        # @type PostPaidQuotaSet: Array
+        # @param PrePaidQuotaSet: 预付费配额列表
+        # @type PrePaidQuotaSet: Array
+        # @param SpotPaidQuotaSet: spot配额列表
+        # @type SpotPaidQuotaSet: Array
+        # @param ImageQuotaSet: 镜像配额列表
+        # @type ImageQuotaSet: Array
+        # @param DisasterRecoverGroupQuotaSet: 置放群组配额列表
+        # @type DisasterRecoverGroupQuotaSet: Array
+
+        attr_accessor :PostPaidQuotaSet, :PrePaidQuotaSet, :SpotPaidQuotaSet, :ImageQuotaSet, :DisasterRecoverGroupQuotaSet
+        
+        def initialize(postpaidquotaset=nil, prepaidquotaset=nil, spotpaidquotaset=nil, imagequotaset=nil, disasterrecovergroupquotaset=nil)
+          @PostPaidQuotaSet = postpaidquotaset
+          @PrePaidQuotaSet = prepaidquotaset
+          @SpotPaidQuotaSet = spotpaidquotaset
+          @ImageQuotaSet = imagequotaset
+          @DisasterRecoverGroupQuotaSet = disasterrecovergroupquotaset
+        end
+
+        def deserialize(params)
+          unless params['PostPaidQuotaSet'].nil?
+            @PostPaidQuotaSet = []
+            params['PostPaidQuotaSet'].each do |i|
+              @PostPaidQuotaSet << PostPaidQuota.new.deserialize(i)
+            end
+          end
+          unless params['PrePaidQuotaSet'].nil?
+            @PrePaidQuotaSet = []
+            params['PrePaidQuotaSet'].each do |i|
+              @PrePaidQuotaSet << PrePaidQuota.new.deserialize(i)
+            end
+          end
+          unless params['SpotPaidQuotaSet'].nil?
+            @SpotPaidQuotaSet = []
+            params['SpotPaidQuotaSet'].each do |i|
+              @SpotPaidQuotaSet << SpotPaidQuota.new.deserialize(i)
+            end
+          end
+          unless params['ImageQuotaSet'].nil?
+            @ImageQuotaSet = []
+            params['ImageQuotaSet'].each do |i|
+              @ImageQuotaSet << ImageQuota.new.deserialize(i)
+            end
+          end
+          unless params['DisasterRecoverGroupQuotaSet'].nil?
+            @DisasterRecoverGroupQuotaSet = []
+            params['DisasterRecoverGroupQuotaSet'].each do |i|
+              @DisasterRecoverGroupQuotaSet << DisasterRecoverGroupQuota.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 配额详情概览
+      class AccountQuotaOverview < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param AccountQuota: 配额数据
+        # @type AccountQuota: :class:`Tencentcloud::Cvm.v20170312.models.AccountQuota`
+
+        attr_accessor :Region, :AccountQuota
+        
+        def initialize(region=nil, accountquota=nil)
+          @Region = region
+          @AccountQuota = accountquota
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['AccountQuota'].nil?
+            @AccountQuota = AccountQuota.new.deserialize(params['AccountQuota'])
+          end
+        end
+      end
+
       # 定时任务
       class ActionTimer < TencentCloud::Common::AbstractModel
         # @param Externals: 扩展数据
@@ -539,6 +618,56 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccountQuota请求参数结构体
+      class DescribeAccountQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <li><strong>zone</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>可用区</strong>】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
+        # <li><strong>quota-type</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>配额类型</strong>】进行过滤。配额类型形如：PostPaidQuotaSet。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：PostPaidQuotaSet,DisasterRecoverGroupQuotaSet,PrePaidQuotaSet,SpotPaidQuotaSet</p>
+        # @type Filters: Array
+
+        attr_accessor :Filters
+        
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeAccountQuota返回参数结构体
+      class DescribeAccountQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户appid
+        # @type AppId: String
+        # @param AccountQuotaOverview: 配额数据
+        # @type AccountQuotaOverview: :class:`Tencentcloud::Cvm.v20170312.models.AccountQuotaOverview`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppId, :AccountQuotaOverview, :RequestId
+        
+        def initialize(appid=nil, accountquotaoverview=nil, requestid=nil)
+          @AppId = appid
+          @AccountQuotaOverview = accountquotaoverview
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          unless params['AccountQuotaOverview'].nil?
+            @AccountQuotaOverview = AccountQuotaOverview.new.deserialize(params['AccountQuotaOverview'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1838,6 +1967,38 @@ module TencentCloud
         end
       end
 
+      # 置放群组配置数据
+      class DisasterRecoverGroupQuota < TencentCloud::Common::AbstractModel
+        # @param GroupQuota: 可创建置放群组数量的上限。
+        # @type GroupQuota: Integer
+        # @param CurrentNum: 当前用户已经创建的置放群组数量。
+        # @type CurrentNum: Integer
+        # @param CvmInHostGroupQuota: 物理机类型容灾组内实例的配额数。
+        # @type CvmInHostGroupQuota: Integer
+        # @param CvmInSwitchGroupQuota: 交换机类型容灾组内实例的配额数。
+        # @type CvmInSwitchGroupQuota: Integer
+        # @param CvmInRackGroupQuota: 机架类型容灾组内实例的配额数。
+        # @type CvmInRackGroupQuota: Integer
+
+        attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwitchGroupQuota, :CvmInRackGroupQuota
+        
+        def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswitchgroupquota=nil, cvminrackgroupquota=nil)
+          @GroupQuota = groupquota
+          @CurrentNum = currentnum
+          @CvmInHostGroupQuota = cvminhostgroupquota
+          @CvmInSwitchGroupQuota = cvminswitchgroupquota
+          @CvmInRackGroupQuota = cvminrackgroupquota
+        end
+
+        def deserialize(params)
+          @GroupQuota = params['GroupQuota']
+          @CurrentNum = params['CurrentNum']
+          @CvmInHostGroupQuota = params['CvmInHostGroupQuota']
+          @CvmInSwitchGroupQuota = params['CvmInSwitchGroupQuota']
+          @CvmInRackGroupQuota = params['CvmInRackGroupQuota']
+        end
+      end
+
       # 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent
       class EnhancedService < TencentCloud::Common::AbstractModel
         # @param SecurityService: 开启云安全服务。若不指定该参数，则默认开启云安全服务。
@@ -2137,6 +2298,26 @@ module TencentCloud
         def deserialize(params)
           @Windows = params['Windows']
           @Linux = params['Linux']
+        end
+      end
+
+      # 镜像配额
+      class ImageQuota < TencentCloud::Common::AbstractModel
+        # @param UsedQuota: 已使用配额
+        # @type UsedQuota: Integer
+        # @param TotalQuota: 总配额
+        # @type TotalQuota: Integer
+
+        attr_accessor :UsedQuota, :TotalQuota
+        
+        def initialize(usedquota=nil, totalquota=nil)
+          @UsedQuota = usedquota
+          @TotalQuota = totalquota
+        end
+
+        def deserialize(params)
+          @UsedQuota = params['UsedQuota']
+          @TotalQuota = params['TotalQuota']
         end
       end
 
@@ -3919,6 +4100,66 @@ module TencentCloud
         end
       end
 
+      # 后付费实例配额
+      class PostPaidQuota < TencentCloud::Common::AbstractModel
+        # @param UsedQuota: 累计已使用配额
+        # @type UsedQuota: Integer
+        # @param RemainingQuota: 剩余配额
+        # @type RemainingQuota: Integer
+        # @param TotalQuota: 总配额
+        # @type TotalQuota: Integer
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :UsedQuota, :RemainingQuota, :TotalQuota, :Zone
+        
+        def initialize(usedquota=nil, remainingquota=nil, totalquota=nil, zone=nil)
+          @UsedQuota = usedquota
+          @RemainingQuota = remainingquota
+          @TotalQuota = totalquota
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @UsedQuota = params['UsedQuota']
+          @RemainingQuota = params['RemainingQuota']
+          @TotalQuota = params['TotalQuota']
+          @Zone = params['Zone']
+        end
+      end
+
+      # 预付费实例配额
+      class PrePaidQuota < TencentCloud::Common::AbstractModel
+        # @param UsedQuota: 当月已使用配额
+        # @type UsedQuota: Integer
+        # @param OnceQuota: 单次购买最大数量
+        # @type OnceQuota: Integer
+        # @param RemainingQuota: 剩余配额
+        # @type RemainingQuota: Integer
+        # @param TotalQuota: 总配额
+        # @type TotalQuota: Integer
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :UsedQuota, :OnceQuota, :RemainingQuota, :TotalQuota, :Zone
+        
+        def initialize(usedquota=nil, oncequota=nil, remainingquota=nil, totalquota=nil, zone=nil)
+          @UsedQuota = usedquota
+          @OnceQuota = oncequota
+          @RemainingQuota = remainingquota
+          @TotalQuota = totalquota
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @UsedQuota = params['UsedQuota']
+          @OnceQuota = params['OnceQuota']
+          @RemainingQuota = params['RemainingQuota']
+          @TotalQuota = params['TotalQuota']
+          @Zone = params['Zone']
+        end
+      end
+
       # 价格
       class Price < TencentCloud::Common::AbstractModel
         # @param InstancePrice: 描述了实例价格。
@@ -4963,6 +5204,34 @@ module TencentCloud
         def deserialize(params)
           @MaxPrice = params['MaxPrice']
           @SpotInstanceType = params['SpotInstanceType']
+        end
+      end
+
+      # 竞价实例配额
+      class SpotPaidQuota < TencentCloud::Common::AbstractModel
+        # @param UsedQuota: 已使用配额，单位：vCPU核心数
+        # @type UsedQuota: Integer
+        # @param RemainingQuota: 剩余配额，单位：vCPU核心数
+        # @type RemainingQuota: Integer
+        # @param TotalQuota: 总配额，单位：vCPU核心数
+        # @type TotalQuota: Integer
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :UsedQuota, :RemainingQuota, :TotalQuota, :Zone
+        
+        def initialize(usedquota=nil, remainingquota=nil, totalquota=nil, zone=nil)
+          @UsedQuota = usedquota
+          @RemainingQuota = remainingquota
+          @TotalQuota = totalquota
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @UsedQuota = params['UsedQuota']
+          @RemainingQuota = params['RemainingQuota']
+          @TotalQuota = params['TotalQuota']
+          @Zone = params['Zone']
         end
       end
 

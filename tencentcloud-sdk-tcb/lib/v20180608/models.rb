@@ -917,7 +917,7 @@ module TencentCloud
         # @type Type: String
         # @param Parameters: 环境变量
         # @type Parameters: Array
-        # @param EnvAlias: 环境别名
+        # @param EnvAlias: 环境别名。要以a-z开头，不能包含a-zA-z0-9-以外的字符
         # @type EnvAlias: String
         # @param RcJson: rc.json的内容
         # @type RcJson: String
@@ -927,7 +927,7 @@ module TencentCloud
         # @type Tags: Array
         # @param NetworkConfig: 网络配置
         # @type NetworkConfig: String
-        # @param FreeQuota: 免费额度的"basic", 不使用的用""
+        # @param FreeQuota: 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，标识不享受免费额度。
         # @type FreeQuota: String
         # @param AutoDeployOnCodeChange: 是否代码变更触发自动部署
         # @type AutoDeployOnCodeChange: Boolean
@@ -1516,6 +1516,46 @@ module TencentCloud
         end
       end
 
+      # CreateWxCloudBaseRunServerDBCluster请求参数结构体
+      class CreateWxCloudBaseRunServerDBClusterRequest < TencentCloud::Common::AbstractModel
+        # @param AccountPassword: 账户密码
+        # @type AccountPassword: String
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param WxAppId: 微信appid
+        # @type WxAppId: String
+
+        attr_accessor :AccountPassword, :EnvId, :WxAppId
+        
+        def initialize(accountpassword=nil, envid=nil, wxappid=nil)
+          @AccountPassword = accountpassword
+          @EnvId = envid
+          @WxAppId = wxappid
+        end
+
+        def deserialize(params)
+          @AccountPassword = params['AccountPassword']
+          @EnvId = params['EnvId']
+          @WxAppId = params['WxAppId']
+        end
+      end
+
+      # CreateWxCloudBaseRunServerDBCluster返回参数结构体
+      class CreateWxCloudBaseRunServerDBClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据库资源信息
       class DatabasesInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据库唯一标识
@@ -1856,9 +1896,9 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNum: 第几页,从0开始
         # @type PageNum: Integer
-        # @param StartTime: 起始时间
+        # @param StartTime: 起始时间 2021-03-27 12:00:00
         # @type StartTime: String
-        # @param EndTime: 终止时间
+        # @param EndTime: 终止时间 2021-03-27 12:00:00
         # @type EndTime: String
 
         attr_accessor :EnvId, :ProjectName, :PageSize, :PageNum, :StartTime, :EndTime
@@ -3978,6 +4018,8 @@ module TencentCloud
         # @param UUId: C端用户端的唯一ID
         # @type UUId: String
         # @param Status: 帐号的状态
+        # <li>ENABLE</li>
+        # <li>DISABLE</li>
         # @type Status: String
 
         attr_accessor :EnvId, :UUId, :Status

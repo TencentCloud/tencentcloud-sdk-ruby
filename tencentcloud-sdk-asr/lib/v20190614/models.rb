@@ -227,7 +227,7 @@ module TencentCloud
       class CreateCustomizationRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: 自学习模型名称，需在1-20字符之间
         # @type ModelName: String
-        # @param TextUrl: 文本文件的下载地址，服务会从该地址下载文件， 以训练模型，目前仅支持腾讯云cos
+        # @param TextUrl: 文本文件的下载地址，服务会从该地址下载文件，目前仅支持腾讯云cos
         # @type TextUrl: String
         # @param ModelType: 自学习模型类型，填写8k或者16k
         # @type ModelType: String

@@ -458,6 +458,46 @@ module TencentCloud
         end
       end
 
+      # DiagnoseInstance请求参数结构体
+      class DiagnoseInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES实例ID
+        # @type InstanceId: String
+        # @param DiagnoseJobs: 需要触发的诊断项
+        # @type DiagnoseJobs: Array
+        # @param DiagnoseIndices: 需要诊断的索引，支持通配符
+        # @type DiagnoseIndices: String
+
+        attr_accessor :InstanceId, :DiagnoseJobs, :DiagnoseIndices
+        
+        def initialize(instanceid=nil, diagnosejobs=nil, diagnoseindices=nil)
+          @InstanceId = instanceid
+          @DiagnoseJobs = diagnosejobs
+          @DiagnoseIndices = diagnoseindices
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DiagnoseJobs = params['DiagnoseJobs']
+          @DiagnoseIndices = params['DiagnoseIndices']
+        end
+      end
+
+      # DiagnoseInstance返回参数结构体
+      class DiagnoseInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ik插件词典信息
       class DictInfo < TencentCloud::Common::AbstractModel
         # @param Key: 词典键值
@@ -1322,6 +1362,46 @@ module TencentCloud
               @SubTasks << SubTaskDetail.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # UpdateDiagnoseSettings请求参数结构体
+      class UpdateDiagnoseSettingsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES实例ID
+        # @type InstanceId: String
+        # @param Status: 0：开启智能运维；-1：关闭智能运维
+        # @type Status: Integer
+        # @param CronTime: 智能运维每天定时巡检时间
+        # @type CronTime: String
+
+        attr_accessor :InstanceId, :Status, :CronTime
+        
+        def initialize(instanceid=nil, status=nil, crontime=nil)
+          @InstanceId = instanceid
+          @Status = status
+          @CronTime = crontime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Status = params['Status']
+          @CronTime = params['CronTime']
+        end
+      end
+
+      # UpdateDiagnoseSettings返回参数结构体
+      class UpdateDiagnoseSettingsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -145,6 +145,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 智能运维诊断集群
+
+        # @param request: Request instance for DiagnoseInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::DiagnoseInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DiagnoseInstanceResponse`
+        def DiagnoseInstance(request)
+          body = send_request('DiagnoseInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DiagnoseInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取接收客户端请求的节点类型
 
         # @param request: Request instance for GetRequestTargetNodeTypes.
@@ -227,6 +251,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RestartNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新智能运维配置
+
+        # @param request: Request instance for UpdateDiagnoseSettings.
+        # @type request: :class:`Tencentcloud::es::V20180416::UpdateDiagnoseSettingsRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::UpdateDiagnoseSettingsResponse`
+        def UpdateDiagnoseSettings(request)
+          body = send_request('UpdateDiagnoseSettings', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDiagnoseSettingsResponse.new
             model.deserialize(response['Response'])
             model
           else

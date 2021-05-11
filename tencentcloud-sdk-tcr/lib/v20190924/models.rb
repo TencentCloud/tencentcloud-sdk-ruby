@@ -3574,23 +3574,31 @@ module TencentCloud
       class ModifyInstanceTokenRequest < TencentCloud::Common::AbstractModel
         # @param TokenId: 实例长期访问凭证 ID
         # @type TokenId: String
-        # @param Enable: 启用或禁用实例长期访问凭证
-        # @type Enable: Boolean
         # @param RegistryId: 实例 ID
         # @type RegistryId: String
+        # @param Enable: 启用或禁用实例长期访问凭证
+        # @type Enable: Boolean
+        # @param Desc: 访问凭证描述
+        # @type Desc: String
+        # @param ModifyFlag: 1为修改描述 2为启动禁用，不填写默认为修改启动禁用
+        # @type ModifyFlag: Integer
 
-        attr_accessor :TokenId, :Enable, :RegistryId
+        attr_accessor :TokenId, :RegistryId, :Enable, :Desc, :ModifyFlag
         
-        def initialize(tokenid=nil, enable=nil, registryid=nil)
+        def initialize(tokenid=nil, registryid=nil, enable=nil, desc=nil, modifyflag=nil)
           @TokenId = tokenid
-          @Enable = enable
           @RegistryId = registryid
+          @Enable = enable
+          @Desc = desc
+          @ModifyFlag = modifyflag
         end
 
         def deserialize(params)
           @TokenId = params['TokenId']
-          @Enable = params['Enable']
           @RegistryId = params['RegistryId']
+          @Enable = params['Enable']
+          @Desc = params['Desc']
+          @ModifyFlag = params['ModifyFlag']
         end
       end
 

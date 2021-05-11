@@ -889,6 +889,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取ES查询文档列表
+
+        # @param request: Request instance for DescribeESHits.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeESHitsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeESHitsResponse`
+        def DescribeESHits(request)
+          body = send_request('DescribeESHits', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeESHitsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeExportMachines) 用于导出区域主机列表。
 
         # @param request: Request instance for DescribeExportMachines.
