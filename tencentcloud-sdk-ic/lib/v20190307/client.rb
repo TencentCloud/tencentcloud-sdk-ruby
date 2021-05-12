@@ -97,6 +97,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 编辑卡片备注
+
+        # @param request: Request instance for ModifyUserCardRemark.
+        # @type request: :class:`Tencentcloud::ic::V20190307::ModifyUserCardRemarkRequest`
+        # @rtype: :class:`Tencentcloud::ic::V20190307::ModifyUserCardRemarkResponse`
+        def ModifyUserCardRemark(request)
+          body = send_request('ModifyUserCardRemark', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserCardRemarkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量为卡片续费，此接口建议调用至少间隔10s,如果出现返回deal lock failed相关的错误，请过10s再重试。
         # 续费的必要条件：
         # 1、单次续费的卡片不可以超过 100张。

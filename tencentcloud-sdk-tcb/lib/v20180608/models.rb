@@ -1152,10 +1152,12 @@ module TencentCloud
         # @type Security: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseSecurityContext`
         # @param ServiceVolumes: 服务磁盘挂载
         # @type ServiceVolumes: Array
+        # @param IsCreateJnsGw: 是否创建JnsGw 0未传默认创建 1创建 2不创建
+        # @type IsCreateJnsGw: Integer
 
-        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security, :ServiceVolumes
+        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security, :ServiceVolumes, :IsCreateJnsGw
         
-        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil, servicevolumes=nil)
+        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil, servicevolumes=nil, iscreatejnsgw=nil)
           @EnvId = envid
           @UploadType = uploadtype
           @FlowRatio = flowratio
@@ -1192,6 +1194,7 @@ module TencentCloud
           @SidecarSpecs = sidecarspecs
           @Security = security
           @ServiceVolumes = servicevolumes
+          @IsCreateJnsGw = iscreatejnsgw
         end
 
         def deserialize(params)
@@ -1256,6 +1259,7 @@ module TencentCloud
               @ServiceVolumes << CloudRunServiceVolume.new.deserialize(i)
             end
           end
+          @IsCreateJnsGw = params['IsCreateJnsGw']
         end
       end
 
@@ -4291,6 +4295,185 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RollUpdateCloudBaseRunServerVersion请求参数结构体
+      class RollUpdateCloudBaseRunServerVersionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param VersionName: 要替换的版本名称，可以为latest
+        # @type VersionName: String
+        # @param UploadType: 枚举（package/repository/image)
+        # @type UploadType: String
+        # @param RepositoryType: repository的类型(coding/gitlab/github)
+        # @type RepositoryType: String
+        # @param FlowRatio: 流量占比
+        # @type FlowRatio: Integer
+        # @param DockerfilePath: dockerfile地址
+        # @type DockerfilePath: String
+        # @param BuildDir: 构建目录
+        # @type BuildDir: String
+        # @param Cpu: Cpu的大小，单位：核
+        # @type Cpu: String
+        # @param Mem: Mem的大小，单位：G
+        # @type Mem: String
+        # @param MinNum: 最小副本数，最小值：0
+        # @type MinNum: String
+        # @param MaxNum: 最大副本数
+        # @type MaxNum: String
+        # @param PolicyType: 策略类型
+        # @type PolicyType: String
+        # @param PolicyThreshold: 策略阈值
+        # @type PolicyThreshold: String
+        # @param EnvParams: 环境变量
+        # @type EnvParams: String
+        # @param ContainerPort: 容器端口
+        # @type ContainerPort: Integer
+        # @param ServerName: 服务名称
+        # @type ServerName: String
+        # @param Repository: repository地址
+        # @type Repository: String
+        # @param Branch: 分支
+        # @type Branch: String
+        # @param VersionRemark: 版本备注
+        # @type VersionRemark: String
+        # @param PackageName: 代码包名字
+        # @type PackageName: String
+        # @param PackageVersion: 代码包版本
+        # @type PackageVersion: String
+        # @param ImageInfo: Image的详情
+        # @type ImageInfo: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunImageInfo`
+        # @param CodeDetail: Github等拉取代码的详情
+        # @type CodeDetail: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseCodeRepoDetail`
+        # @param IsRebuild: 是否回放流量
+        # @type IsRebuild: Boolean
+        # @param InitialDelaySeconds: 延迟多长时间开始健康检查（单位s）
+        # @type InitialDelaySeconds: Integer
+        # @param MountVolumeInfo: cfs挂载信息
+        # @type MountVolumeInfo: Array
+        # @param Rollback: 是否回滚
+        # @type Rollback: Boolean
+        # @param SnapshotName: 版本历史名
+        # @type SnapshotName: String
+        # @param CustomLogs: 自定义采集路径
+        # @type CustomLogs: String
+        # @param EnableUnion: 是否启用统一域名
+        # @type EnableUnion: Boolean
+        # @param OperatorRemark: 操作备注
+        # @type OperatorRemark: String
+        # @param ServerPath: 服务路径（只会第一次生效）
+        # @type ServerPath: String
+
+        attr_accessor :EnvId, :VersionName, :UploadType, :RepositoryType, :FlowRatio, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :ContainerPort, :ServerName, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :IsRebuild, :InitialDelaySeconds, :MountVolumeInfo, :Rollback, :SnapshotName, :CustomLogs, :EnableUnion, :OperatorRemark, :ServerPath
+        
+        def initialize(envid=nil, versionname=nil, uploadtype=nil, repositorytype=nil, flowratio=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, containerport=nil, servername=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, isrebuild=nil, initialdelayseconds=nil, mountvolumeinfo=nil, rollback=nil, snapshotname=nil, customlogs=nil, enableunion=nil, operatorremark=nil, serverpath=nil)
+          @EnvId = envid
+          @VersionName = versionname
+          @UploadType = uploadtype
+          @RepositoryType = repositorytype
+          @FlowRatio = flowratio
+          @DockerfilePath = dockerfilepath
+          @BuildDir = builddir
+          @Cpu = cpu
+          @Mem = mem
+          @MinNum = minnum
+          @MaxNum = maxnum
+          @PolicyType = policytype
+          @PolicyThreshold = policythreshold
+          @EnvParams = envparams
+          @ContainerPort = containerport
+          @ServerName = servername
+          @Repository = repository
+          @Branch = branch
+          @VersionRemark = versionremark
+          @PackageName = packagename
+          @PackageVersion = packageversion
+          @ImageInfo = imageinfo
+          @CodeDetail = codedetail
+          @IsRebuild = isrebuild
+          @InitialDelaySeconds = initialdelayseconds
+          @MountVolumeInfo = mountvolumeinfo
+          @Rollback = rollback
+          @SnapshotName = snapshotname
+          @CustomLogs = customlogs
+          @EnableUnion = enableunion
+          @OperatorRemark = operatorremark
+          @ServerPath = serverpath
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @VersionName = params['VersionName']
+          @UploadType = params['UploadType']
+          @RepositoryType = params['RepositoryType']
+          @FlowRatio = params['FlowRatio']
+          @DockerfilePath = params['DockerfilePath']
+          @BuildDir = params['BuildDir']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @MinNum = params['MinNum']
+          @MaxNum = params['MaxNum']
+          @PolicyType = params['PolicyType']
+          @PolicyThreshold = params['PolicyThreshold']
+          @EnvParams = params['EnvParams']
+          @ContainerPort = params['ContainerPort']
+          @ServerName = params['ServerName']
+          @Repository = params['Repository']
+          @Branch = params['Branch']
+          @VersionRemark = params['VersionRemark']
+          @PackageName = params['PackageName']
+          @PackageVersion = params['PackageVersion']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = CloudBaseRunImageInfo.new.deserialize(params['ImageInfo'])
+          end
+          unless params['CodeDetail'].nil?
+            @CodeDetail = CloudBaseCodeRepoDetail.new.deserialize(params['CodeDetail'])
+          end
+          @IsRebuild = params['IsRebuild']
+          @InitialDelaySeconds = params['InitialDelaySeconds']
+          unless params['MountVolumeInfo'].nil?
+            @MountVolumeInfo = []
+            params['MountVolumeInfo'].each do |i|
+              @MountVolumeInfo << CloudBaseRunVolumeMount.new.deserialize(i)
+            end
+          end
+          @Rollback = params['Rollback']
+          @SnapshotName = params['SnapshotName']
+          @CustomLogs = params['CustomLogs']
+          @EnableUnion = params['EnableUnion']
+          @OperatorRemark = params['OperatorRemark']
+          @ServerPath = params['ServerPath']
+        end
+      end
+
+      # RollUpdateCloudBaseRunServerVersion返回参数结构体
+      class RollUpdateCloudBaseRunServerVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: succ为成功
+        # @type Result: String
+        # @param VersionName: 滚动更新的VersionName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param RunId: 操作记录id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :VersionName, :RunId, :RequestId
+        
+        def initialize(result=nil, versionname=nil, runid=nil, requestid=nil)
+          @Result = result
+          @VersionName = versionname
+          @RunId = runid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @VersionName = params['VersionName']
+          @RunId = params['RunId']
           @RequestId = params['RequestId']
         end
       end

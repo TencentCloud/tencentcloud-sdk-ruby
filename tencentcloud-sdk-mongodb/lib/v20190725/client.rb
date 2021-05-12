@@ -339,6 +339,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例绑定的安全组
+
+        # @param request: Request instance for DescribeSecurityGroup.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeSecurityGroupRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeSecurityGroupResponse`
+        def DescribeSecurityGroup(request)
+          body = send_request('DescribeSecurityGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeSlowLogPatterns）用于获取数据库实例慢日志的统计信息。
 
         # @param request: Request instance for DescribeSlowLogPatterns.

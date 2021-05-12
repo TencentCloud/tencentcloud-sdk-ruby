@@ -1008,19 +1008,27 @@ module TencentCloud
         # @type ClsLogsetName: String
         # @param ClsLogTopicId: cls日志主题
         # @type ClsLogTopicId: String
+        # @param ClsLogsetId: cls日志集id
+        # @type ClsLogsetId: String
+        # @param ClsLogTopicName: cls日志名称
+        # @type ClsLogTopicName: String
 
-        attr_accessor :OutputType, :ClsLogsetName, :ClsLogTopicId
+        attr_accessor :OutputType, :ClsLogsetName, :ClsLogTopicId, :ClsLogsetId, :ClsLogTopicName
         
-        def initialize(outputtype=nil, clslogsetname=nil, clslogtopicid=nil)
+        def initialize(outputtype=nil, clslogsetname=nil, clslogtopicid=nil, clslogsetid=nil, clslogtopicname=nil)
           @OutputType = outputtype
           @ClsLogsetName = clslogsetname
           @ClsLogTopicId = clslogtopicid
+          @ClsLogsetId = clslogsetid
+          @ClsLogTopicName = clslogtopicname
         end
 
         def deserialize(params)
           @OutputType = params['OutputType']
           @ClsLogsetName = params['ClsLogsetName']
           @ClsLogTopicId = params['ClsLogTopicId']
+          @ClsLogsetId = params['ClsLogsetId']
+          @ClsLogTopicName = params['ClsLogTopicName']
         end
       end
 
@@ -1289,10 +1297,12 @@ module TencentCloud
         # @type TcbEnvStatus: String
         # @param ClusterStatus: eks cluster status
         # @type ClusterStatus: String
+        # @param EnableTswTraceService: 是否开启tsw
+        # @type EnableTswTraceService: Boolean
 
-        attr_accessor :NamespaceId, :Channel, :NamespaceName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ServiceNum, :RunInstancesNum, :SubnetId, :TcbEnvStatus, :ClusterStatus
+        attr_accessor :NamespaceId, :Channel, :NamespaceName, :Region, :Description, :Status, :Vpc, :CreateDate, :ModifyDate, :Modifier, :Creator, :ServiceNum, :RunInstancesNum, :SubnetId, :TcbEnvStatus, :ClusterStatus, :EnableTswTraceService
         
-        def initialize(namespaceid=nil, channel=nil, namespacename=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, servicenum=nil, runinstancesnum=nil, subnetid=nil, tcbenvstatus=nil, clusterstatus=nil)
+        def initialize(namespaceid=nil, channel=nil, namespacename=nil, region=nil, description=nil, status=nil, vpc=nil, createdate=nil, modifydate=nil, modifier=nil, creator=nil, servicenum=nil, runinstancesnum=nil, subnetid=nil, tcbenvstatus=nil, clusterstatus=nil, enabletswtraceservice=nil)
           @NamespaceId = namespaceid
           @Channel = channel
           @NamespaceName = namespacename
@@ -1309,6 +1319,7 @@ module TencentCloud
           @SubnetId = subnetid
           @TcbEnvStatus = tcbenvstatus
           @ClusterStatus = clusterstatus
+          @EnableTswTraceService = enabletswtraceservice
         end
 
         def deserialize(params)
@@ -1328,6 +1339,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @TcbEnvStatus = params['TcbEnvStatus']
           @ClusterStatus = params['ClusterStatus']
+          @EnableTswTraceService = params['EnableTswTraceService']
         end
       end
 

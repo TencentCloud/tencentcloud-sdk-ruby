@@ -354,6 +354,46 @@ module TencentCloud
         end
       end
 
+      # ModifyUserCardRemark请求参数结构体
+      class ModifyUserCardRemarkRequest < TencentCloud::Common::AbstractModel
+        # @param Sdkappid: 应用ID
+        # @type Sdkappid: Integer
+        # @param Iccid: 物联卡ICCID
+        # @type Iccid: String
+        # @param Remark: 备注信息，限50字
+        # @type Remark: String
+
+        attr_accessor :Sdkappid, :Iccid, :Remark
+        
+        def initialize(sdkappid=nil, iccid=nil, remark=nil)
+          @Sdkappid = sdkappid
+          @Iccid = iccid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Sdkappid = params['Sdkappid']
+          @Iccid = params['Iccid']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyUserCardRemark返回参数结构体
+      class ModifyUserCardRemarkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RenewCards请求参数结构体
       class RenewCardsRequest < TencentCloud::Common::AbstractModel
         # @param Sdkappid: 应用ID

@@ -1146,6 +1146,47 @@ module TencentCloud
         end
       end
 
+      # DescribeSecurityGroup请求参数结构体
+      class DescribeSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeSecurityGroup返回参数结构体
+      class DescribeSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Groups: 实例绑定的安全组
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Groups, :RequestId
+        
+        def initialize(groups=nil, requestid=nil)
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              @Groups << SecurityGroup.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSlowLogPatterns请求参数结构体
       class DescribeSlowLogPatternsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -2051,6 +2092,84 @@ module TencentCloud
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 安全组信息
+      class SecurityGroup < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 所属项目id
+        # @type ProjectId: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Inbound: 入站规则
+        # @type Inbound: Array
+        # @param Outbound: 出站规则
+        # @type Outbound: Array
+        # @param SecurityGroupId: 安全组id
+        # @type SecurityGroupId: String
+        # @param SecurityGroupName: 安全组名称
+        # @type SecurityGroupName: String
+        # @param SecurityGroupRemark: 安全组备注
+        # @type SecurityGroupRemark: String
+
+        attr_accessor :ProjectId, :CreateTime, :Inbound, :Outbound, :SecurityGroupId, :SecurityGroupName, :SecurityGroupRemark
+        
+        def initialize(projectid=nil, createtime=nil, inbound=nil, outbound=nil, securitygroupid=nil, securitygroupname=nil, securitygroupremark=nil)
+          @ProjectId = projectid
+          @CreateTime = createtime
+          @Inbound = inbound
+          @Outbound = outbound
+          @SecurityGroupId = securitygroupid
+          @SecurityGroupName = securitygroupname
+          @SecurityGroupRemark = securitygroupremark
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @CreateTime = params['CreateTime']
+          unless params['Inbound'].nil?
+            @Inbound = []
+            params['Inbound'].each do |i|
+              @Inbound << SecurityGroupBound.new.deserialize(i)
+            end
+          end
+          unless params['Outbound'].nil?
+            @Outbound = []
+            params['Outbound'].each do |i|
+              @Outbound << SecurityGroupBound.new.deserialize(i)
+            end
+          end
+          @SecurityGroupId = params['SecurityGroupId']
+          @SecurityGroupName = params['SecurityGroupName']
+          @SecurityGroupRemark = params['SecurityGroupRemark']
+        end
+      end
+
+      # 安全组规则
+      class SecurityGroupBound < TencentCloud::Common::AbstractModel
+        # @param Action: 执行规则。ACCEPT或DROP
+        # @type Action: String
+        # @param CidrIp: ip段。
+        # @type CidrIp: String
+        # @param PortRange: 端口范围
+        # @type PortRange: String
+        # @param IpProtocol: 传输层协议。tcp，udp或ALL
+        # @type IpProtocol: String
+
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol
+        
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil)
+          @Action = action
+          @CidrIp = cidrip
+          @PortRange = portrange
+          @IpProtocol = ipprotocol
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @CidrIp = params['CidrIp']
+          @PortRange = params['PortRange']
+          @IpProtocol = params['IpProtocol']
         end
       end
 
