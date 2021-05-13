@@ -882,6 +882,26 @@ module TencentCloud
         end
       end
 
+      # 账户UIN与客户端证书CommonName的映射
+      class CommonName < TencentCloud::Common::AbstractModel
+        # @param SubaccountUin: 子账户UIN
+        # @type SubaccountUin: String
+        # @param CN: 子账户客户端证书中的CommonName字段
+        # @type CN: String
+
+        attr_accessor :SubaccountUin, :CN
+        
+        def initialize(subaccountuin=nil, cn=nil)
+          @SubaccountUin = subaccountuin
+          @CN = cn
+        end
+
+        def deserialize(params)
+          @SubaccountUin = params['SubaccountUin']
+          @CN = params['CN']
+        end
+      end
+
       # CreateClusterAsGroup请求参数结构体
       class CreateClusterAsGroupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -2147,6 +2167,55 @@ module TencentCloud
             @ClusterAsGroupSet = []
             params['ClusterAsGroupSet'].each do |i|
               @ClusterAsGroupSet << ClusterAsGroup.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterCommonNames请求参数结构体
+      class DescribeClusterCommonNamesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param SubaccountUins: 子账户列表，不可超出最大值50
+        # @type SubaccountUins: Array
+        # @param RoleIds: 角色ID列表，不可超出最大值50
+        # @type RoleIds: Array
+
+        attr_accessor :ClusterId, :SubaccountUins, :RoleIds
+        
+        def initialize(clusterid=nil, subaccountuins=nil, roleids=nil)
+          @ClusterId = clusterid
+          @SubaccountUins = subaccountuins
+          @RoleIds = roleids
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @SubaccountUins = params['SubaccountUins']
+          @RoleIds = params['RoleIds']
+        end
+      end
+
+      # DescribeClusterCommonNames返回参数结构体
+      class DescribeClusterCommonNamesResponse < TencentCloud::Common::AbstractModel
+        # @param CommonNames: 子账户Uin与其客户端证书的CN字段映射
+        # @type CommonNames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CommonNames, :RequestId
+        
+        def initialize(commonnames=nil, requestid=nil)
+          @CommonNames = commonnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CommonNames'].nil?
+            @CommonNames = []
+            params['CommonNames'].each do |i|
+              @CommonNames << CommonName.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']

@@ -266,7 +266,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。最大跨度为14天。
+        # 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。
 
         # @param request: Request instance for GetStatisticsReport.
         # @type request: :class:`Tencentcloud::ses::V20201002::GetStatisticsReportRequest`

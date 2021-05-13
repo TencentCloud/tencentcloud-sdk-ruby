@@ -703,6 +703,80 @@ module TencentCloud
         end
       end
 
+      # CreateSearchLog请求参数结构体
+      class CreateSearchLogRequest < TencentCloud::Common::AbstractModel
+        # @param SearchContent: 搜索内容
+        # @type SearchContent: String
+
+        attr_accessor :SearchContent
+        
+        def initialize(searchcontent=nil)
+          @SearchContent = searchcontent
+        end
+
+        def deserialize(params)
+          @SearchContent = params['SearchContent']
+        end
+      end
+
+      # CreateSearchLog返回参数结构体
+      class CreateSearchLogResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 0：成功，非0：失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSearchTemplate请求参数结构体
+      class CreateSearchTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SearchTemplate: 搜索模板
+        # @type SearchTemplate: :class:`Tencentcloud::Cwp.v20180228.models.SearchTemplate`
+
+        attr_accessor :SearchTemplate
+        
+        def initialize(searchtemplate=nil)
+          @SearchTemplate = searchtemplate
+        end
+
+        def deserialize(params)
+          unless params['SearchTemplate'].nil?
+            @SearchTemplate = SearchTemplate.new.deserialize(params['SearchTemplate'])
+          end
+        end
+      end
+
+      # CreateSearchTemplate返回参数结构体
+      class CreateSearchTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 0：成功，非0：失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUsualLoginPlaces请求参数结构体
       class CreateUsualLoginPlacesRequest < TencentCloud::Common::AbstractModel
         # @param Uuids: 云镜客户端UUID数组。
@@ -1264,6 +1338,42 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSearchTemplate请求参数结构体
+      class DeleteSearchTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 模板ID
+        # @type Id: Integer
+
+        attr_accessor :Id
+        
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteSearchTemplate返回参数结构体
+      class DeleteSearchTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 0：成功，非0：失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -2153,6 +2263,42 @@ module TencentCloud
         end
       end
 
+      # DescribeESAggregations请求参数结构体
+      class DescribeESAggregationsRequest < TencentCloud::Common::AbstractModel
+        # @param Query: ES聚合条件JSON
+        # @type Query: String
+
+        attr_accessor :Query
+        
+        def initialize(query=nil)
+          @Query = query
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+        end
+      end
+
+      # DescribeESAggregations返回参数结构体
+      class DescribeESAggregationsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: ES聚合结果JSON
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeESHits请求参数结构体
       class DescribeESHitsRequest < TencentCloud::Common::AbstractModel
         # @param Query: ES查询条件JSON
@@ -2401,6 +2547,57 @@ module TencentCloud
         end
       end
 
+      # DescribeHistoryService请求参数结构体
+      class DescribeHistoryServiceRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeHistoryService返回参数结构体
+      class DescribeHistoryServiceResponse < TencentCloud::Common::AbstractModel
+        # @param BuyStatus: 1 可购买 2 只能升降配 3 只能跳到续费管理页
+        # @type BuyStatus: Integer
+        # @param InquireNum: 用户已购容量 单位 G
+        # @type InquireNum: Integer
+        # @param EndTime: 到期时间
+        # @type EndTime: String
+        # @param IsAutoOpenRenew: 是否自动续费,0 初始值, 1 开通 2 没开通
+        # @type IsAutoOpenRenew: Integer
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param Status: 0 没开通 1 正常 2隔离 3销毁
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BuyStatus, :InquireNum, :EndTime, :IsAutoOpenRenew, :ResourceId, :Status, :RequestId
+        
+        def initialize(buystatus=nil, inquirenum=nil, endtime=nil, isautoopenrenew=nil, resourceid=nil, status=nil, requestid=nil)
+          @BuyStatus = buystatus
+          @InquireNum = inquirenum
+          @EndTime = endtime
+          @IsAutoOpenRenew = isautoopenrenew
+          @ResourceId = resourceid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BuyStatus = params['BuyStatus']
+          @InquireNum = params['InquireNum']
+          @EndTime = params['EndTime']
+          @IsAutoOpenRenew = params['IsAutoOpenRenew']
+          @ResourceId = params['ResourceId']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeImpactedHosts请求参数结构体
       class DescribeImpactedHostsRequest < TencentCloud::Common::AbstractModel
         # @param VulId: 漏洞种类ID。
@@ -2511,6 +2708,72 @@ module TencentCloud
             end
           end
           @InvalidMachineList = params['InvalidMachineList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIndexList请求参数结构体
+      class DescribeIndexListRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeIndexList返回参数结构体
+      class DescribeIndexListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: ES 索引信息
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogStorageStatistic请求参数结构体
+      class DescribeLogStorageStatisticRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLogStorageStatistic返回参数结构体
+      class DescribeLogStorageStatisticResponse < TencentCloud::Common::AbstractModel
+        # @param TotalSize: 总容量
+        # @type TotalSize: Integer
+        # @param UsedSize: 已使用容量
+        # @type UsedSize: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalSize, :UsedSize, :RequestId
+        
+        def initialize(totalsize=nil, usedsize=nil, requestid=nil)
+          @TotalSize = totalsize
+          @UsedSize = usedsize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalSize = params['TotalSize']
+          @UsedSize = params['UsedSize']
           @RequestId = params['RequestId']
         end
       end
@@ -3893,6 +4156,126 @@ module TencentCloud
           @RiskFileNumber = params['RiskFileNumber']
           @IsSchedule = params['IsSchedule']
           @ScanStatus = params['ScanStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSearchExportList请求参数结构体
+      class DescribeSearchExportListRequest < TencentCloud::Common::AbstractModel
+        # @param Query: ES查询条件JSON
+        # @type Query: String
+
+        attr_accessor :Query
+        
+        def initialize(query=nil)
+          @Query = query
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+        end
+      end
+
+      # DescribeSearchExportList返回参数结构体
+      class DescribeSearchExportListResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 导出的任务号
+        # @type TaskId: Integer
+        # @param DownloadUrl: 下载地址
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :DownloadUrl, :RequestId
+        
+        def initialize(taskid=nil, downloadurl=nil, requestid=nil)
+          @TaskId = taskid
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSearchLogs请求参数结构体
+      class DescribeSearchLogsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSearchLogs返回参数结构体
+      class DescribeSearchLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 历史搜索记录
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSearchTemplates请求参数结构体
+      class DescribeSearchTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+        
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSearchTemplates返回参数结构体
+      class DescribeSearchTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param List: 模板列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+        
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              @List << SearchTemplate.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7348,6 +7731,50 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Hostip = params['Hostip']
+        end
+      end
+
+      # 快速搜索模板
+      class SearchTemplate < TencentCloud::Common::AbstractModel
+        # @param Name: 检索名称
+        # @type Name: String
+        # @param LogType: 检索索引类型
+        # @type LogType: String
+        # @param Condition: 检索语句
+        # @type Condition: String
+        # @param TimeRange: 时间范围
+        # @type TimeRange: String
+        # @param Query: 转换的检索语句内容
+        # @type Query: String
+        # @param Flag: 检索方式。输入框检索：standard,过滤，检索：simple
+        # @type Flag: String
+        # @param DisplayData: 展示数据
+        # @type DisplayData: String
+        # @param Id: 规则ID
+        # @type Id: Integer
+
+        attr_accessor :Name, :LogType, :Condition, :TimeRange, :Query, :Flag, :DisplayData, :Id
+        
+        def initialize(name=nil, logtype=nil, condition=nil, timerange=nil, query=nil, flag=nil, displaydata=nil, id=nil)
+          @Name = name
+          @LogType = logtype
+          @Condition = condition
+          @TimeRange = timerange
+          @Query = query
+          @Flag = flag
+          @DisplayData = displaydata
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @LogType = params['LogType']
+          @Condition = params['Condition']
+          @TimeRange = params['TimeRange']
+          @Query = params['Query']
+          @Flag = params['Flag']
+          @DisplayData = params['DisplayData']
+          @Id = params['Id']
         end
       end
 

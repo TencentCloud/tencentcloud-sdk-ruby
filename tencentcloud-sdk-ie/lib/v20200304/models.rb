@@ -42,6 +42,22 @@ module TencentCloud
         end
       end
 
+      # 音频音效增强，只支持无背景音的音频
+      class AudioEnhance < TencentCloud::Common::AbstractModel
+        # @param Type: 音效增强种类，可选项：normal
+        # @type Type: String
+
+        attr_accessor :Type
+        
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
       # 音频参数信息
       class AudioInfo < TencentCloud::Common::AbstractModel
         # @param Bitrate: 音频码率，取值范围：0 和 [26, 256]，单位：kbps。
@@ -63,16 +79,25 @@ module TencentCloud
         # 1：开启，
         # 默认不开启
         # @type EnableMuteAudio: Integer
+        # @param LoudnessInfo: 音频响度信息
+        # @type LoudnessInfo: :class:`Tencentcloud::Ie.v20200304.models.LoudnessInfo`
+        # @param AudioEnhance: 音频音效增强
+        # @type AudioEnhance: :class:`Tencentcloud::Ie.v20200304.models.AudioEnhance`
+        # @param RemoveReverb: 去除混音
+        # @type RemoveReverb: :class:`Tencentcloud::Ie.v20200304.models.RemoveReverb`
 
-        attr_accessor :Bitrate, :Codec, :Channel, :SampleRate, :Denoise, :EnableMuteAudio
+        attr_accessor :Bitrate, :Codec, :Channel, :SampleRate, :Denoise, :EnableMuteAudio, :LoudnessInfo, :AudioEnhance, :RemoveReverb
         
-        def initialize(bitrate=nil, codec=nil, channel=nil, samplerate=nil, denoise=nil, enablemuteaudio=nil)
+        def initialize(bitrate=nil, codec=nil, channel=nil, samplerate=nil, denoise=nil, enablemuteaudio=nil, loudnessinfo=nil, audioenhance=nil, removereverb=nil)
           @Bitrate = bitrate
           @Codec = codec
           @Channel = channel
           @SampleRate = samplerate
           @Denoise = denoise
           @EnableMuteAudio = enablemuteaudio
+          @LoudnessInfo = loudnessinfo
+          @AudioEnhance = audioenhance
+          @RemoveReverb = removereverb
         end
 
         def deserialize(params)
@@ -84,6 +109,15 @@ module TencentCloud
             @Denoise = Denoise.new.deserialize(params['Denoise'])
           end
           @EnableMuteAudio = params['EnableMuteAudio']
+          unless params['LoudnessInfo'].nil?
+            @LoudnessInfo = LoudnessInfo.new.deserialize(params['LoudnessInfo'])
+          end
+          unless params['AudioEnhance'].nil?
+            @AudioEnhance = AudioEnhance.new.deserialize(params['AudioEnhance'])
+          end
+          unless params['RemoveReverb'].nil?
+            @RemoveReverb = RemoveReverb.new.deserialize(params['RemoveReverb'])
+          end
         end
       end
 
@@ -1328,6 +1362,26 @@ module TencentCloud
         end
       end
 
+      # 音频响度信息
+      class LoudnessInfo < TencentCloud::Common::AbstractModel
+        # @param Loudness: 音频整体响度
+        # @type Loudness: Float
+        # @param LoudnessRange: 音频响度范围
+        # @type LoudnessRange: Float
+
+        attr_accessor :Loudness, :LoudnessRange
+        
+        def initialize(loudness=nil, loudnessrange=nil)
+          @Loudness = loudness
+          @LoudnessRange = loudnessrange
+        end
+
+        def deserialize(params)
+          @Loudness = params['Loudness']
+          @LoudnessRange = params['LoudnessRange']
+        end
+      end
+
       # 低光照增强参数
       class LowLightEnhance < TencentCloud::Common::AbstractModel
         # @param Type: 低光照增强类型，可选项：normal。
@@ -2248,6 +2302,22 @@ module TencentCloud
               @QualityControlItems << QualityControlItem.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # 音频去除混响
+      class RemoveReverb < TencentCloud::Common::AbstractModel
+        # @param Type: 去混响类型，可选项：normal
+        # @type Type: String
+
+        attr_accessor :Type
+        
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
         end
       end
 

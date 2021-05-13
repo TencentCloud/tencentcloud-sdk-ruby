@@ -3800,10 +3800,13 @@ module TencentCloud
         # @param ReserveValue: 实例是否保留, 1-保留，0-不保留,默认
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReserveValue: Integer
+        # @param PrivateIpAddress: 实例的私有IP地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateIpAddress: String
 
-        attr_accessor :FleetId, :InstanceId, :IpAddress, :DnsName, :OperatingSystem, :Status, :Type, :CreateTime, :Weight, :ReserveValue
+        attr_accessor :FleetId, :InstanceId, :IpAddress, :DnsName, :OperatingSystem, :Status, :Type, :CreateTime, :Weight, :ReserveValue, :PrivateIpAddress
         
-        def initialize(fleetid=nil, instanceid=nil, ipaddress=nil, dnsname=nil, operatingsystem=nil, status=nil, type=nil, createtime=nil, weight=nil, reservevalue=nil)
+        def initialize(fleetid=nil, instanceid=nil, ipaddress=nil, dnsname=nil, operatingsystem=nil, status=nil, type=nil, createtime=nil, weight=nil, reservevalue=nil, privateipaddress=nil)
           @FleetId = fleetid
           @InstanceId = instanceid
           @IpAddress = ipaddress
@@ -3814,6 +3817,7 @@ module TencentCloud
           @CreateTime = createtime
           @Weight = weight
           @ReserveValue = reservevalue
+          @PrivateIpAddress = privateipaddress
         end
 
         def deserialize(params)
@@ -3827,6 +3831,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Weight = params['Weight']
           @ReserveValue = params['ReserveValue']
+          @PrivateIpAddress = params['PrivateIpAddress']
         end
       end
 
