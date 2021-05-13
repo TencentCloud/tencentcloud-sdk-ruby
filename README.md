@@ -15,7 +15,7 @@
 
 前往 [Github 代码托管地址](https://github.com/tencentcloud/tencentcloud-sdk-ruby) 下载最新代码，以安装cvm sdk为例，解压后
 
-    $ cd tencentcloud-sdk-ruby/tencentcloud
+    $ cd tencentcloud-sdk-ruby
     $ cd tencentcloud-sdk-common
     $ gem build tencentcloud-sdk-common.gemspec
     $ gem install tencentcloud-sdk-common-1.0.0.gem
