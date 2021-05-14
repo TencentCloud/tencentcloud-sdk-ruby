@@ -2844,6 +2844,47 @@ module TencentCloud
         end
       end
 
+      # DescribeEnableVpcCniProgress请求参数结构体
+      class DescribeEnableVpcCniProgressRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 开启vpc-cni的集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeEnableVpcCniProgress返回参数结构体
+      class DescribeEnableVpcCniProgressResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务进度的描述：Running/Succeed/Failed
+        # @type Status: String
+        # @param ErrorMessage: 当任务进度为Failed时，对任务状态的进一步描述，例如IPAMD组件安装失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorMessage, :RequestId
+        
+        def initialize(status=nil, errormessage=nil, requestid=nil)
+          @Status = status
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExistedInstances请求参数结构体
       class DescribeExistedInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID，请填写查询集群列表 接口中返回的 ClusterId 字段（仅通过ClusterId获取需要过滤条件中的VPCID。节点状态比较时会使用该地域下所有集群中的节点进行比较。参数不支持同时指定InstanceIds和ClusterId。
@@ -3596,6 +3637,50 @@ module TencentCloud
               @TagSpecification << TagSpecification.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # EnableVpcCniNetworkType请求参数结构体
+      class EnableVpcCniNetworkTypeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param VpcCniType: 开启vpc-cni的模式，tke-route-eni开启的是策略路由模式，tke-direct-eni开启的是独立网卡模式
+        # @type VpcCniType: String
+        # @param EnableStaticIp: 是否开启固定IP模式
+        # @type EnableStaticIp: Boolean
+        # @param Subnets: 使用的容器子网
+        # @type Subnets: Array
+
+        attr_accessor :ClusterId, :VpcCniType, :EnableStaticIp, :Subnets
+        
+        def initialize(clusterid=nil, vpccnitype=nil, enablestaticip=nil, subnets=nil)
+          @ClusterId = clusterid
+          @VpcCniType = vpccnitype
+          @EnableStaticIp = enablestaticip
+          @Subnets = subnets
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @VpcCniType = params['VpcCniType']
+          @EnableStaticIp = params['EnableStaticIp']
+          @Subnets = params['Subnets']
+        end
+      end
+
+      # EnableVpcCniNetworkType返回参数结构体
+      class EnableVpcCniNetworkTypeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

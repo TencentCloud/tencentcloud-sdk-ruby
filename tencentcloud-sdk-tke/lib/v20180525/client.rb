@@ -1057,6 +1057,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于查询开启vpc-cni模式的任务进度
+
+        # @param request: Request instance for DescribeEnableVpcCniProgress.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEnableVpcCniProgressRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEnableVpcCniProgressResponse`
+        def DescribeEnableVpcCniProgress(request)
+          body = send_request('DescribeEnableVpcCniProgress', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnableVpcCniProgressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询已经存在的节点，判断是否可以加入集群
 
         # @param request: Request instance for DescribeExistedInstances.
@@ -1331,6 +1355,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRouteTableConflictsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
+
+        # @param request: Request instance for EnableVpcCniNetworkType.
+        # @type request: :class:`Tencentcloud::tke::V20180525::EnableVpcCniNetworkTypeRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::EnableVpcCniNetworkTypeResponse`
+        def EnableVpcCniNetworkType(request)
+          body = send_request('EnableVpcCniNetworkType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableVpcCniNetworkTypeResponse.new
             model.deserialize(response['Response'])
             model
           else

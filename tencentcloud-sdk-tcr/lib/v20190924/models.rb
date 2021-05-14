@@ -1590,6 +1590,54 @@ module TencentCloud
         end
       end
 
+      # DescribeChartDownloadInfo请求参数结构体
+      class DescribeChartDownloadInfoRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例ID
+        # @type RegistryId: String
+        # @param NamespaceName: 命名空间
+        # @type NamespaceName: String
+        # @param ChartName: Chart包的名称
+        # @type ChartName: String
+        # @param ChartVersion: Chart包的版本
+        # @type ChartVersion: String
+
+        attr_accessor :RegistryId, :NamespaceName, :ChartName, :ChartVersion
+        
+        def initialize(registryid=nil, namespacename=nil, chartname=nil, chartversion=nil)
+          @RegistryId = registryid
+          @NamespaceName = namespacename
+          @ChartName = chartname
+          @ChartVersion = chartversion
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceName = params['NamespaceName']
+          @ChartName = params['ChartName']
+          @ChartVersion = params['ChartVersion']
+        end
+      end
+
+      # DescribeChartDownloadInfo返回参数结构体
+      class DescribeChartDownloadInfoResponse < TencentCloud::Common::AbstractModel
+        # @param PreSignedDownloadURL: 用于下载的url的预签名地址
+        # @type PreSignedDownloadURL: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PreSignedDownloadURL, :RequestId
+        
+        def initialize(presigneddownloadurl=nil, requestid=nil)
+          @PreSignedDownloadURL = presigneddownloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PreSignedDownloadURL = params['PreSignedDownloadURL']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExternalEndpointStatus请求参数结构体
       class DescribeExternalEndpointStatusRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例Id

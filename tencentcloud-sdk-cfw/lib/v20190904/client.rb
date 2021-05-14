@@ -241,6 +241,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeGuideScanInfo新手引导扫描接口信息
+
+        # @param request: Request instance for DescribeGuideScanInfo.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeGuideScanInfoRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeGuideScanInfoResponse`
+        def DescribeGuideScanInfo(request)
+          body = send_request('DescribeGuideScanInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGuideScanInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # nat规则列表概况
 
         # @param request: Request instance for DescribeNatRuleOverview.

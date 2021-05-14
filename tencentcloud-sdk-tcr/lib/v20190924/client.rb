@@ -865,6 +865,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于在企业版中返回Chart的下载信息
+
+        # @param request: Request instance for DescribeChartDownloadInfo.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeChartDownloadInfoRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeChartDownloadInfoResponse`
+        def DescribeChartDownloadInfo(request)
+          body = send_request('DescribeChartDownloadInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChartDownloadInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实例公网访问入口状态
 
         # @param request: Request instance for DescribeExternalEndpointStatus.

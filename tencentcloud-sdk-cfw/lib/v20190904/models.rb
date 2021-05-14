@@ -705,6 +705,39 @@ module TencentCloud
         end
       end
 
+      # DescribeGuideScanInfo请求参数结构体
+      class DescribeGuideScanInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeGuideScanInfo返回参数结构体
+      class DescribeGuideScanInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 扫描信息
+        # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.ScanInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ScanInfo.new.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNatRuleOverview请求参数结构体
       class DescribeNatRuleOverviewRequest < TencentCloud::Common::AbstractModel
         # @param Direction: 方向，0：出站，1：入站 默认值：0
@@ -1760,6 +1793,77 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 新手引导扫描信息
+      class ScanInfo < TencentCloud::Common::AbstractModel
+        # @param ScanResultInfo: 扫描结果信息
+        # @type ScanResultInfo: :class:`Tencentcloud::Cfw.v20190904.models.ScanResultInfo`
+        # @param ScanStatus: 扫描状态 0扫描中 1完成   2没赠送过扫描显示开启界面
+        # @type ScanStatus: Integer
+        # @param ScanPercent: 进度
+        # @type ScanPercent: Float
+        # @param ScanTime: 预计完成时间
+        # @type ScanTime: String
+
+        attr_accessor :ScanResultInfo, :ScanStatus, :ScanPercent, :ScanTime
+        
+        def initialize(scanresultinfo=nil, scanstatus=nil, scanpercent=nil, scantime=nil)
+          @ScanResultInfo = scanresultinfo
+          @ScanStatus = scanstatus
+          @ScanPercent = scanpercent
+          @ScanTime = scantime
+        end
+
+        def deserialize(params)
+          unless params['ScanResultInfo'].nil?
+            @ScanResultInfo = ScanResultInfo.new.deserialize(params['ScanResultInfo'])
+          end
+          @ScanStatus = params['ScanStatus']
+          @ScanPercent = params['ScanPercent']
+          @ScanTime = params['ScanTime']
+        end
+      end
+
+      # 新手引导扫描结果信息PortNum   int
+      # 	LeakNum   int
+      # 	IPNum     int
+      # 	IPStatus  bool
+      # 	IdpStatus bool
+      # 	BanStatus bool
+      class ScanResultInfo < TencentCloud::Common::AbstractModel
+        # @param LeakNum: 暴漏漏洞数量
+        # @type LeakNum: Integer
+        # @param IPNum: 防护ip数量
+        # @type IPNum: Integer
+        # @param PortNum: 暴漏端口数量
+        # @type PortNum: Integer
+        # @param IPStatus: 是否开启防护
+        # @type IPStatus: Boolean
+        # @param IdpStatus: 是否拦截攻击
+        # @type IdpStatus: Boolean
+        # @param BanStatus: 是否禁封端口
+        # @type BanStatus: Boolean
+
+        attr_accessor :LeakNum, :IPNum, :PortNum, :IPStatus, :IdpStatus, :BanStatus
+        
+        def initialize(leaknum=nil, ipnum=nil, portnum=nil, ipstatus=nil, idpstatus=nil, banstatus=nil)
+          @LeakNum = leaknum
+          @IPNum = ipnum
+          @PortNum = portnum
+          @IPStatus = ipstatus
+          @IdpStatus = idpstatus
+          @BanStatus = banstatus
+        end
+
+        def deserialize(params)
+          @LeakNum = params['LeakNum']
+          @IPNum = params['IPNum']
+          @PortNum = params['PortNum']
+          @IPStatus = params['IPStatus']
+          @IdpStatus = params['IdpStatus']
+          @BanStatus = params['BanStatus']
         end
       end
 
