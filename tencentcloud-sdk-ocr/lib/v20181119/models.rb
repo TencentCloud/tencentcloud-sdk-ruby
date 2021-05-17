@@ -836,6 +836,26 @@ module TencentCloud
         end
       end
 
+      # 企业四要素核验结果
+      class Detail < TencentCloud::Common::AbstractModel
+        # @param Result: 企业四要素核验结果状态码
+        # @type Result: Integer
+        # @param Desc: 企业四要素核验结果描述
+        # @type Desc: String
+
+        attr_accessor :Result, :Desc
+        
+        def initialize(result=nil, desc=nil)
+          @Result = result
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Desc = params['Desc']
+        end
+      end
+
       # DriverLicenseOCR请求参数结构体
       class DriverLicenseOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -6349,6 +6369,61 @@ module TencentCloud
           @Address = params['Address']
           unless params['RegNumResult'].nil?
             @RegNumResult = BizLicenseVerifyResult.new.deserialize(params['RegNumResult'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyEnterpriseFourFactors请求参数结构体
+      class VerifyEnterpriseFourFactorsRequest < TencentCloud::Common::AbstractModel
+        # @param RealName: 姓名
+        # @type RealName: String
+        # @param IdCard: 证件号码（公司注册证件号）
+        # @type IdCard: String
+        # @param EnterpriseName: 企业全称
+        # @type EnterpriseName: String
+        # @param EnterpriseMark: 企业标识（注册号，统一社会信用代码）
+        # @type EnterpriseMark: String
+
+        attr_accessor :RealName, :IdCard, :EnterpriseName, :EnterpriseMark
+        
+        def initialize(realname=nil, idcard=nil, enterprisename=nil, enterprisemark=nil)
+          @RealName = realname
+          @IdCard = idcard
+          @EnterpriseName = enterprisename
+          @EnterpriseMark = enterprisemark
+        end
+
+        def deserialize(params)
+          @RealName = params['RealName']
+          @IdCard = params['IdCard']
+          @EnterpriseName = params['EnterpriseName']
+          @EnterpriseMark = params['EnterpriseMark']
+        end
+      end
+
+      # VerifyEnterpriseFourFactors返回参数结构体
+      class VerifyEnterpriseFourFactorsResponse < TencentCloud::Common::AbstractModel
+        # @param State: 核验一致性（1:一致，2:不一致）
+        # @type State: Integer
+        # @param Detail: 返回不一致时，返回明细，-22：姓名不一致，-23：证件号码不一致，-24：企业名称不一致，-25：企业标识不一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: :class:`Tencentcloud::Ocr.v20181119.models.Detail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :State, :Detail, :RequestId
+        
+        def initialize(state=nil, detail=nil, requestid=nil)
+          @State = state
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @State = params['State']
+          unless params['Detail'].nil?
+            @Detail = Detail.new.deserialize(params['Detail'])
           end
           @RequestId = params['RequestId']
         end

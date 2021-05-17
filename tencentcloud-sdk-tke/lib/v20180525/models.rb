@@ -5777,27 +5777,54 @@ module TencentCloud
 
       # SetNodePoolNodeProtection请求参数结构体
       class SetNodePoolNodeProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池id
+        # @type NodePoolId: String
+        # @param InstanceIds: 节点id
+        # @type InstanceIds: Array
+        # @param ProtectedFromScaleIn: 节点是否需要移出保护
+        # @type ProtectedFromScaleIn: Boolean
 
+        attr_accessor :ClusterId, :NodePoolId, :InstanceIds, :ProtectedFromScaleIn
         
-        def initialize()
+        def initialize(clusterid=nil, nodepoolid=nil, instanceids=nil, protectedfromscalein=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @InstanceIds = instanceids
+          @ProtectedFromScaleIn = protectedfromscalein
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @InstanceIds = params['InstanceIds']
+          @ProtectedFromScaleIn = params['ProtectedFromScaleIn']
         end
       end
 
       # SetNodePoolNodeProtection返回参数结构体
       class SetNodePoolNodeProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param SucceedInstanceIds: 成功设置的节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SucceedInstanceIds: Array
+        # @param FailedInstanceIds: 没有成功设置的节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedInstanceIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SucceedInstanceIds, :FailedInstanceIds, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(succeedinstanceids=nil, failedinstanceids=nil, requestid=nil)
+          @SucceedInstanceIds = succeedinstanceids
+          @FailedInstanceIds = failedinstanceids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SucceedInstanceIds = params['SucceedInstanceIds']
+          @FailedInstanceIds = params['FailedInstanceIds']
           @RequestId = params['RequestId']
         end
       end

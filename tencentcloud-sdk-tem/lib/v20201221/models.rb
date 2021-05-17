@@ -232,11 +232,11 @@ module TencentCloud
       class CreateResourceRequest < TencentCloud::Common::AbstractModel
         # @param NamespaceId: 命名空间 Id
         # @type NamespaceId: String
-        # @param ResourceType: 资源类型
+        # @param ResourceType: 资源类型，目前支持文件系统：CFS；日志服务：CLS；注册中心：TSE_SRE
         # @type ResourceType: String
         # @param ResourceId: 资源 Id
         # @type ResourceId: String
-        # @param SourceChannel: 来源
+        # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
 
         attr_accessor :NamespaceId, :ResourceType, :ResourceId, :SourceChannel
@@ -283,7 +283,7 @@ module TencentCloud
         # @type ServiceName: String
         # @param Description: 描述
         # @type Description: String
-        # @param UseDefaultImageService: 是否使用默认镜像服务
+        # @param UseDefaultImageService: 是否使用默认镜像服务 1-是，0-否
         # @type UseDefaultImageService: Integer
         # @param RepoType: 如果是绑定仓库，绑定的仓库类型，0-个人版，1-企业版
         # @type RepoType: Integer
@@ -298,8 +298,13 @@ module TencentCloud
         # @param SubnetList: 服务所在子网
         # @type SubnetList: Array
         # @param CodingLanguage: 编程语言
+        # - JAVA
+        # - OTHER
         # @type CodingLanguage: String
         # @param DeployMode: 部署方式
+        # - IMAGE
+        # - JAR
+        # - WAR
         # @type DeployMode: String
 
         attr_accessor :ServiceName, :Description, :UseDefaultImageService, :RepoType, :InstanceId, :RepoServer, :RepoName, :SourceChannel, :SubnetList, :CodingLanguage, :DeployMode
@@ -584,7 +589,7 @@ module TencentCloud
 
       # DescribeIngress返回参数结构体
       class DescribeIngressResponse < TencentCloud::Common::AbstractModel
-        # @param Result: ingressInfo
+        # @param Result: Ingress 规则配置
         # @type Result: :class:`Tencentcloud::Tem.v20201221.models.IngressInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -610,7 +615,7 @@ module TencentCloud
         # @type NamespaceId: String
         # @param EksNamespace: namespace
         # @type EksNamespace: String
-        # @param SourceChannel: 来源
+        # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
 
         attr_accessor :NamespaceId, :EksNamespace, :SourceChannel
@@ -743,13 +748,16 @@ module TencentCloud
         # @type NamespaceId: String
         # @param ServiceId: 服务名id
         # @type ServiceId: String
-        # @param Limit: 单页条数
+        # @param Limit: 单页条数，默认值20
         # @type Limit: Integer
-        # @param Offset: 分页下标
+        # @param Offset: 分页下标，默认值0
         # @type Offset: Integer
-        # @param Status: pod状态
+        # @param Status: 实例状态
+        # - Running
+        # - Pending
+        # - Error
         # @type Status: String
-        # @param PodName: 名字
+        # @param PodName: 实例名字
         # @type PodName: String
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
