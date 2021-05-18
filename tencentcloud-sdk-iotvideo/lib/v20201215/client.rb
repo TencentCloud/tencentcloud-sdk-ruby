@@ -313,6 +313,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询账户余额
+
+        # @param request: Request instance for DescribeBalance.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::DescribeBalanceRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::DescribeBalanceResponse`
+        def DescribeBalance(request)
+          body = send_request('DescribeBalance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBalanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 拉取账户流水
+
+        # @param request: Request instance for DescribeBalanceTransactions.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::DescribeBalanceTransactionsRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::DescribeBalanceTransactionsResponse`
+        def DescribeBalanceTransactions(request)
+          body = send_request('DescribeBalanceTransactions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBalanceTransactionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取批次详情
 
         # @param request: Request instance for DescribeBatch.

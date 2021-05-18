@@ -3650,14 +3650,17 @@ module TencentCloud
         # @type EnableStaticIp: Boolean
         # @param Subnets: 使用的容器子网
         # @type Subnets: Array
+        # @param ExpiredSeconds: 在固定IP模式下，Pod销毁后退还IP的时间，传参必须大于300；不传默认IP永不销毁。
+        # @type ExpiredSeconds: Integer
 
-        attr_accessor :ClusterId, :VpcCniType, :EnableStaticIp, :Subnets
+        attr_accessor :ClusterId, :VpcCniType, :EnableStaticIp, :Subnets, :ExpiredSeconds
         
-        def initialize(clusterid=nil, vpccnitype=nil, enablestaticip=nil, subnets=nil)
+        def initialize(clusterid=nil, vpccnitype=nil, enablestaticip=nil, subnets=nil, expiredseconds=nil)
           @ClusterId = clusterid
           @VpcCniType = vpccnitype
           @EnableStaticIp = enablestaticip
           @Subnets = subnets
+          @ExpiredSeconds = expiredseconds
         end
 
         def deserialize(params)
@@ -3665,6 +3668,7 @@ module TencentCloud
           @VpcCniType = params['VpcCniType']
           @EnableStaticIp = params['EnableStaticIp']
           @Subnets = params['Subnets']
+          @ExpiredSeconds = params['ExpiredSeconds']
         end
       end
 

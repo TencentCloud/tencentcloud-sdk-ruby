@@ -1045,10 +1045,10 @@ module TencentCloud
         # @param LocalZone: 物理专线是否为LocalZone
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalZone: Boolean
-        # @param VlanZeroDirectConnectTunnelCount: 该物理专线下vlan 0的专线通道数量
+        # @param VlanZeroDirectConnectTunnelCount: 该物理专线下vlan 0的专用通道数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VlanZeroDirectConnectTunnelCount: Integer
-        # @param OtherVlanDirectConnectTunnelCount: 该物理专线下非vlan 0的专线通道数量
+        # @param OtherVlanDirectConnectTunnelCount: 该物理专线下非vlan 0的专用通道数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherVlanDirectConnectTunnelCount: Integer
         # @param MinBandwidth: 物理专线最小带宽
@@ -1497,7 +1497,7 @@ module TencentCloud
         end
       end
 
-      # 专线通道路由
+      # 专用通道路由
       class DirectConnectTunnelRoute < TencentCloud::Common::AbstractModel
         # @param RouteId: 专用通道路由ID
         # @type RouteId: String

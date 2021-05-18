@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'IOTCLOUD_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 本接口（BatchUpdateFirmware）用于批量更新设备固件
+
+        # @param request: Request instance for BatchUpdateFirmware.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::BatchUpdateFirmwareRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::BatchUpdateFirmwareResponse`
+        def BatchUpdateFirmware(request)
+          body = send_request('BatchUpdateFirmware', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchUpdateFirmwareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（BindDevices）用于网关设备批量绑定子设备
 
         # @param request: Request instance for BindDevices.
@@ -1067,6 +1091,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（GetCOSURL）用于获取固件存储在COS的URL
+
+        # @param request: Request instance for GetCOSURL.
+        # @type request: :class:`Tencentcloud::iotcloud::V20180614::GetCOSURLRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20180614::GetCOSURLResponse`
+        def GetCOSURL(request)
+          body = send_request('GetCOSURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetCOSURLResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -58,6 +58,74 @@ module TencentCloud
         end
       end
 
+      # BatchUpdateFirmware请求参数结构体
+      class BatchUpdateFirmwareRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FirmwareVersion: 固件新版本号
+        # @type FirmwareVersion: String
+        # @param FirmwareOriVersion: 固件原版本号，根据文件列表升级固件不需要填写此参数
+        # @type FirmwareOriVersion: String
+        # @param UpgradeMethod: 升级方式，0 静默升级  1 用户确认升级。 不填默认为静默升级方式
+        # @type UpgradeMethod: Integer
+        # @param FileName: 设备列表文件名称，根据文件列表升级固件需要填写此参数
+        # @type FileName: String
+        # @param FileMd5: 设备列表的文件md5值
+        # @type FileMd5: String
+        # @param FileSize: 设备列表的文件大小值
+        # @type FileSize: Integer
+        # @param DeviceNames: 需要升级的设备名称列表
+        # @type DeviceNames: Array
+        # @param TimeoutInterval: 固件升级任务，默认超时时间。 最小取值60秒，最大为3600秒
+        # @type TimeoutInterval: Integer
+
+        attr_accessor :ProductID, :FirmwareVersion, :FirmwareOriVersion, :UpgradeMethod, :FileName, :FileMd5, :FileSize, :DeviceNames, :TimeoutInterval
+        
+        def initialize(productid=nil, firmwareversion=nil, firmwareoriversion=nil, upgrademethod=nil, filename=nil, filemd5=nil, filesize=nil, devicenames=nil, timeoutinterval=nil)
+          @ProductID = productid
+          @FirmwareVersion = firmwareversion
+          @FirmwareOriVersion = firmwareoriversion
+          @UpgradeMethod = upgrademethod
+          @FileName = filename
+          @FileMd5 = filemd5
+          @FileSize = filesize
+          @DeviceNames = devicenames
+          @TimeoutInterval = timeoutinterval
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FirmwareVersion = params['FirmwareVersion']
+          @FirmwareOriVersion = params['FirmwareOriVersion']
+          @UpgradeMethod = params['UpgradeMethod']
+          @FileName = params['FileName']
+          @FileMd5 = params['FileMd5']
+          @FileSize = params['FileSize']
+          @DeviceNames = params['DeviceNames']
+          @TimeoutInterval = params['TimeoutInterval']
+        end
+      end
+
+      # BatchUpdateFirmware返回参数结构体
+      class BatchUpdateFirmwareResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 批量更新设备影子任务
       class BatchUpdateShadow < TencentCloud::Common::AbstractModel
         # @param Desired: 设备影子的期望状态，格式为 Json 对象序列化之后的字符串
@@ -2816,6 +2884,46 @@ module TencentCloud
           @Status = params['Status']
           @Type = params['Type']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # GetCOSURL请求参数结构体
+      class GetCOSURLRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FirmwareVersion: 固件版本
+        # @type FirmwareVersion: String
+
+        attr_accessor :ProductID, :FirmwareVersion
+        
+        def initialize(productid=nil, firmwareversion=nil)
+          @ProductID = productid
+          @FirmwareVersion = firmwareversion
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FirmwareVersion = params['FirmwareVersion']
+        end
+      end
+
+      # GetCOSURL返回参数结构体
+      class GetCOSURLResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 固件URL
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :RequestId
+        
+        def initialize(url=nil, requestid=nil)
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @RequestId = params['RequestId']
         end
       end
 

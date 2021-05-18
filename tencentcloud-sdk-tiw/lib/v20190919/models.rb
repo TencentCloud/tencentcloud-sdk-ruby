@@ -1451,7 +1451,7 @@ module TencentCloud
         # @type PushUserSig: String
         # @param Whiteboard: 白板参数，例如白板宽高、背景颜色等
         # @type Whiteboard: :class:`Tencentcloud::Tiw.v20190919.models.Whiteboard`
-        # @param AutoStopTimeout: 自动停止推流超时时间，单位秒，取值范围[300, 259200], 默认值为1800秒。
+        # @param AutoStopTimeout: 自动停止推流超时时间，单位秒，取值范围[300, 43200], 默认值为1800秒。
 
         # 当白板超过设定时间没有操作的时候，白板推流服务会自动停止白板推流。
         # @type AutoStopTimeout: Integer

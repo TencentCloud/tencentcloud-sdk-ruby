@@ -310,7 +310,7 @@ module TencentCloud
       class AssignPrivateIpAddressesRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
         # @type NetworkInterfaceId: String
-        # @param EcmRegion: ECM 地域
+        # @param EcmRegion: ECM 地域，形如ap-xian-ecm。
         # @type EcmRegion: String
         # @param PrivateIpAddresses: 指定的内网IP信息，单次最多指定10个。与SecondaryPrivateIpAddressCount至少提供一个。
         # @type PrivateIpAddresses: Array
@@ -5454,7 +5454,7 @@ module TencentCloud
 
       # MigrateNetworkInterface请求参数结构体
       class MigrateNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
-        # @param EcmRegion: ECM 地域
+        # @param EcmRegion: ECM 地域，形如ap-xian-ecm。
         # @type EcmRegion: String
         # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
         # @type NetworkInterfaceId: String
@@ -5498,9 +5498,9 @@ module TencentCloud
 
       # MigratePrivateIpAddress请求参数结构体
       class MigratePrivateIpAddressRequest < TencentCloud::Common::AbstractModel
-        # @param EcmRegion: ECM 地域
+        # @param EcmRegion: ECM 地域，形如ap-xian-ecm。
         # @type EcmRegion: String
-        # @param SourceNetworkInterfaceId: 当内网IP绑定的弹性网卡实例ID，例如：eni-11112222。
+        # @param SourceNetworkInterfaceId: 当前内网IP绑定的弹性网卡实例ID，例如：eni-11112222。
         # @type SourceNetworkInterfaceId: String
         # @param DestinationNetworkInterfaceId: 待迁移的目的弹性网卡实例ID。
         # @type DestinationNetworkInterfaceId: String
@@ -7575,7 +7575,7 @@ module TencentCloud
 
       # RemovePrivateIpAddresses请求参数结构体
       class RemovePrivateIpAddressesRequest < TencentCloud::Common::AbstractModel
-        # @param EcmRegion: ECM 地域。
+        # @param EcmRegion: ECM 地域，形如ap-xian-ecm。
         # @type EcmRegion: String
         # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-11112222。
         # @type NetworkInterfaceId: String

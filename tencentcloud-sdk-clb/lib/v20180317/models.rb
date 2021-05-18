@@ -988,10 +988,12 @@ module TencentCloud
         # @type KeepaliveEnable: Integer
         # @param EndPort: 创建端口段监听器时必须传入此参数，用以标识结束端口。同时，入参Ports只允许传入一个成员，用以标识开始端口。【如果您需要体验端口段功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】。
         # @type EndPort: Integer
+        # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，此参数仅适用于TCP监听器。
+        # @type DeregisterTargetRst: Boolean
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst
         
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -1005,6 +1007,7 @@ module TencentCloud
           @SessionType = sessiontype
           @KeepaliveEnable = keepaliveenable
           @EndPort = endport
+          @DeregisterTargetRst = deregistertargetrst
         end
 
         def deserialize(params)
@@ -1025,6 +1028,7 @@ module TencentCloud
           @SessionType = params['SessionType']
           @KeepaliveEnable = params['KeepaliveEnable']
           @EndPort = params['EndPort']
+          @DeregisterTargetRst = params['DeregisterTargetRst']
         end
       end
 
@@ -3282,10 +3286,13 @@ module TencentCloud
         # @param Toa: 仅支持Nat64 CLB TCP监听器
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Toa: Boolean
+        # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，（此参数仅对于TCP监听器有意义）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeregisterTargetRst: Boolean
 
-        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa
+        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst
         
-        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil)
+        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil, deregistertargetrst=nil)
           @ListenerId = listenerid
           @Protocol = protocol
           @Port = port
@@ -3303,6 +3310,7 @@ module TencentCloud
           @SessionType = sessiontype
           @KeepaliveEnable = keepaliveenable
           @Toa = toa
+          @DeregisterTargetRst = deregistertargetrst
         end
 
         def deserialize(params)
@@ -3334,6 +3342,7 @@ module TencentCloud
           @SessionType = params['SessionType']
           @KeepaliveEnable = params['KeepaliveEnable']
           @Toa = params['Toa']
+          @DeregisterTargetRst = params['DeregisterTargetRst']
         end
       end
 
@@ -4200,10 +4209,12 @@ module TencentCloud
         # @type SniSwitch: Integer
         # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS监听器。
         # @type KeepaliveEnable: Integer
+        # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，此参数仅适用于TCP监听器。
+        # @type DeregisterTargetRst: Boolean
 
-        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :KeepaliveEnable
+        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :KeepaliveEnable, :DeregisterTargetRst
         
-        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, keepaliveenable=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, keepaliveenable=nil, deregistertargetrst=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -4213,6 +4224,7 @@ module TencentCloud
           @Scheduler = scheduler
           @SniSwitch = sniswitch
           @KeepaliveEnable = keepaliveenable
+          @DeregisterTargetRst = deregistertargetrst
         end
 
         def deserialize(params)
@@ -4229,6 +4241,7 @@ module TencentCloud
           @Scheduler = params['Scheduler']
           @SniSwitch = params['SniSwitch']
           @KeepaliveEnable = params['KeepaliveEnable']
+          @DeregisterTargetRst = params['DeregisterTargetRst']
         end
       end
 

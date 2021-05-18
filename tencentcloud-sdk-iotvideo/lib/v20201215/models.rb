@@ -71,6 +71,42 @@ module TencentCloud
         end
       end
 
+      # 账户流水
+      class BalanceTransaction < TencentCloud::Common::AbstractModel
+        # @param AccountType: 账户类型：1-设备接入 2-云存。
+        # @type AccountType: Integer
+        # @param Operation: 账户变更类型：Rechareg-充值；CreateOrder-新购。
+        # @type Operation: String
+        # @param DealId: 流水ID。
+        # @type DealId: String
+        # @param Amount: 变更金额，单位：分（人民币）。
+        # @type Amount: Integer
+        # @param Balance: 变更后账户余额，单位：分（人民币）。
+        # @type Balance: Integer
+        # @param OperationTime: 变更时间。
+        # @type OperationTime: Integer
+
+        attr_accessor :AccountType, :Operation, :DealId, :Amount, :Balance, :OperationTime
+        
+        def initialize(accounttype=nil, operation=nil, dealid=nil, amount=nil, balance=nil, operationtime=nil)
+          @AccountType = accounttype
+          @Operation = operation
+          @DealId = dealid
+          @Amount = amount
+          @Balance = balance
+          @OperationTime = operationtime
+        end
+
+        def deserialize(params)
+          @AccountType = params['AccountType']
+          @Operation = params['Operation']
+          @DealId = params['DealId']
+          @Amount = params['Amount']
+          @Balance = params['Balance']
+          @OperationTime = params['OperationTime']
+        end
+      end
+
       # BatchUpdateFirmware请求参数结构体
       class BatchUpdateFirmwareRequest < TencentCloud::Common::AbstractModel
         # @param ProductID: 产品ID
@@ -796,6 +832,99 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBalance请求参数结构体
+      class DescribeBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param AccountType: 账户类型：1-设备接入；2-云存。
+        # @type AccountType: Integer
+
+        attr_accessor :AccountType
+        
+        def initialize(accounttype=nil)
+          @AccountType = accounttype
+        end
+
+        def deserialize(params)
+          @AccountType = params['AccountType']
+        end
+      end
+
+      # DescribeBalance返回参数结构体
+      class DescribeBalanceResponse < TencentCloud::Common::AbstractModel
+        # @param Balance: 账户余额，单位：分（人民币）。
+        # @type Balance: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Balance, :RequestId
+        
+        def initialize(balance=nil, requestid=nil)
+          @Balance = balance
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Balance = params['Balance']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBalanceTransactions请求参数结构体
+      class DescribeBalanceTransactionsRequest < TencentCloud::Common::AbstractModel
+        # @param AccountType: 账户类型：1-设备接入；2-云存。
+        # @type AccountType: Integer
+        # @param Offset: 分页游标开始，默认为0开始拉取第一条。
+        # @type Offset: Integer
+        # @param Limit: 分页每页数量。
+        # @type Limit: Integer
+        # @param Operation: 流水类型：All-全部类型；Recharge-充值；CreateOrder-新购。
+        # @type Operation: String
+
+        attr_accessor :AccountType, :Offset, :Limit, :Operation
+        
+        def initialize(accounttype=nil, offset=nil, limit=nil, operation=nil)
+          @AccountType = accounttype
+          @Offset = offset
+          @Limit = limit
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @AccountType = params['AccountType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Operation = params['Operation']
+        end
+      end
+
+      # DescribeBalanceTransactions返回参数结构体
+      class DescribeBalanceTransactionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 账户流水总数。
+        # @type TotalCount: Integer
+        # @param Transactions: 账户流水详情数组。
+        # @type Transactions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Transactions, :RequestId
+        
+        def initialize(totalcount=nil, transactions=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Transactions = transactions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Transactions'].nil?
+            @Transactions = []
+            params['Transactions'].each do |i|
+              @Transactions << BalanceTransaction.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
