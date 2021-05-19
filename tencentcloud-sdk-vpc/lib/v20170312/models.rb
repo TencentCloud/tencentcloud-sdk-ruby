@@ -14366,7 +14366,7 @@ module TencentCloud
 
       # VPC资源看板（各资源个数）
       class ResourceDashboard < TencentCloud::Common::AbstractModel
-        # @param VpcId: Vpc实例ID，例如：vpc-f1xjkw1b。
+        # @param VpcId: Vpc实例ID，例如：vpc-bq4bzxpj。
         # @type VpcId: String
         # @param SubnetId: 子网实例ID，例如：subnet-bthucmmy。
         # @type SubnetId: String
@@ -14376,7 +14376,7 @@ module TencentCloud
         # @type Dcg: Integer
         # @param Pcx: 对等连接。
         # @type Pcx: Integer
-        # @param Ip: 当前已使用的IP总数。
+        # @param Ip: 统计当前除云服务器 IP、弹性网卡IP和网络探测IP以外的所有已使用的IP总数。云服务器 IP、弹性网卡IP和网络探测IP单独计数。
         # @type Ip: Integer
         # @param Nat: NAT网关。
         # @type Nat: Integer
