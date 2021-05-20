@@ -173,7 +173,7 @@ module TencentCloud
       class CreateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
         # @type SpecCode: String
-        # @param DBVersion: PostgreSQL内核版本，目前支持：9.3.5、9.5.4、10.4三种版本。
+        # @param DBVersion: PostgreSQL内核版本，目前支持以下版本：9.3.5、9.5.4、10.4、11.8、12.4 。
         # @type DBVersion: String
         # @param Storage: 实例容量大小，单位：GB。
         # @type Storage: Integer
@@ -265,6 +265,135 @@ module TencentCloud
         # @param BillId: 冻结流水号
         # @type BillId: String
         # @param DBInstanceIdSet: 创建成功的实例ID集合，只在后付费情景下有返回值
+        # @type DBInstanceIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealNames, :BillId, :DBInstanceIdSet, :RequestId
+        
+        def initialize(dealnames=nil, billid=nil, dbinstanceidset=nil, requestid=nil)
+          @DealNames = dealnames
+          @BillId = billid
+          @DBInstanceIdSet = dbinstanceidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
+          @BillId = params['BillId']
+          @DBInstanceIdSet = params['DBInstanceIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateInstances请求参数结构体
+      class CreateInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
+        # @type SpecCode: String
+        # @param DBVersion: PostgreSQL内核版本，目前支持：9.3.5、9.5.4、10.4、11.8、12.4五种版本。
+        # @type DBVersion: String
+        # @param Storage: 实例容量大小，单位：GB。
+        # @type Storage: Integer
+        # @param InstanceCount: 一次性购买的实例数量。取值1-10。
+        # @type InstanceCount: Integer
+        # @param Period: 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
+        # @type Period: Integer
+        # @param Zone: 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
+        # @type Zone: String
+        # @param Charset: 实例字符集，目前只支持：UTF8、LATIN1。
+        # @type Charset: String
+        # @param AdminName: 实例根账号用户名。
+        # @type AdminName: String
+        # @param AdminPassword: 实例根账号用户名对应的密码。
+        # @type AdminPassword: String
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: Integer
+        # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。
+        # @type InstanceChargeType: String
+        # @param AutoVoucher: 是否自动使用代金券。1（是），0（否），默认不使用。
+        # @type AutoVoucher: Integer
+        # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
+        # @type VoucherIds: Array
+        # @param VpcId: 私有网络ID。
+        # @type VpcId: String
+        # @param SubnetId: 已配置的私有网络中的子网ID。
+        # @type SubnetId: String
+        # @param AutoRenewFlag: 续费标记：0-正常续费（默认）；1-自动续费。
+        # @type AutoRenewFlag: Integer
+        # @param ActivityId: 活动ID。
+        # @type ActivityId: Integer
+        # @param Name: 实例名。
+        # @type Name: String
+        # @param NeedSupportIpv6: 是否需要支持Ipv6，1：是，0：否。
+        # @type NeedSupportIpv6: Integer
+        # @param TagList: 实例需要绑定的Tag信息，默认为空。
+        # @type TagList: Array
+        # @param SecurityGroupIds: 安全组ID。
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :SpecCode, :DBVersion, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds
+        
+        def initialize(speccode=nil, dbversion=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil)
+          @SpecCode = speccode
+          @DBVersion = dbversion
+          @Storage = storage
+          @InstanceCount = instancecount
+          @Period = period
+          @Zone = zone
+          @Charset = charset
+          @AdminName = adminname
+          @AdminPassword = adminpassword
+          @ProjectId = projectid
+          @InstanceChargeType = instancechargetype
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @AutoRenewFlag = autorenewflag
+          @ActivityId = activityid
+          @Name = name
+          @NeedSupportIpv6 = needsupportipv6
+          @TagList = taglist
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @SpecCode = params['SpecCode']
+          @DBVersion = params['DBVersion']
+          @Storage = params['Storage']
+          @InstanceCount = params['InstanceCount']
+          @Period = params['Period']
+          @Zone = params['Zone']
+          @Charset = params['Charset']
+          @AdminName = params['AdminName']
+          @AdminPassword = params['AdminPassword']
+          @ProjectId = params['ProjectId']
+          @InstanceChargeType = params['InstanceChargeType']
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @ActivityId = params['ActivityId']
+          @Name = params['Name']
+          @NeedSupportIpv6 = params['NeedSupportIpv6']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              @TagList << Tag.new.deserialize(i)
+            end
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # CreateInstances返回参数结构体
+      class CreateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param DealNames: 订单号列表。每个实例对应一个订单号。
+        # @type DealNames: Array
+        # @param BillId: 冻结流水号。
+        # @type BillId: String
+        # @param DBInstanceIdSet: 创建成功的实例ID集合，只在后付费情景下有返回值。
         # @type DBInstanceIdSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1673,7 +1802,7 @@ module TencentCloud
         # @type DBInstanceIdSet: Array
         # @param Period: 包年包月实例解隔离时购买时常 以月为单位
         # @type Period: Integer
-        # @param AutoVoucher: 是否使用代金券
+        # @param AutoVoucher: 是否使用代金券：true-使用,false-不使用，默认不使用
         # @type AutoVoucher: Boolean
         # @param VoucherIds: 代金券id列表
         # @type VoucherIds: Array

@@ -385,7 +385,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 国际站根据UIN查询代客基础信息
+        # 国际站根据UIN查询代客基础信息【本接口仅限主账号访问】
 
         # @param request: Request instance for DescribeClientBaseInfo.
         # @type request: :class:`Tencentcloud::partners::V20180321::DescribeClientBaseInfoRequest`

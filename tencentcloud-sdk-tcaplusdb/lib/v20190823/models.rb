@@ -17,6 +17,158 @@
 module TencentCloud
   module Tcaplusdb
     module V20190823
+      # 审批申请单
+      class Application < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 审批单号
+        # @type ApplicationId: String
+        # @param ApplicationType: 申请类型
+        # @type ApplicationType: Integer
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param TableGroupName: 表格组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableGroupName: String
+        # @param TableName: 表格名称
+        # @type TableName: String
+        # @param Applicant: 申请人
+        # @type Applicant: String
+        # @param CreatedTime: 建单时间
+        # @type CreatedTime: String
+        # @param ApplicationStatus: 处理状态 -1 撤回 0-待审核 1-已经审核并提交任务 2-已驳回
+        # @type ApplicationStatus: Integer
+        # @param TableGroupId: 表格组Id
+        # @type TableGroupId: String
+        # @param TaskId: 已提交的任务Id，未提交申请为0
+        # @type TaskId: String
+        # @param TableInstanceId: 腾讯云上table的唯一键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableInstanceId: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param ExecuteUser: 审批人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteUser: String
+        # @param ExecuteStatus: 执行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteStatus: String
+        # @param CanCensor: 该申请单是否可以被当前用户审批
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanCensor: Boolean
+        # @param CanWithdrawal: 该申请单是否可以被当前用户撤回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanWithdrawal: Boolean
+
+        attr_accessor :ApplicationId, :ApplicationType, :ClusterId, :ClusterName, :TableGroupName, :TableName, :Applicant, :CreatedTime, :ApplicationStatus, :TableGroupId, :TaskId, :TableInstanceId, :UpdateTime, :ExecuteUser, :ExecuteStatus, :CanCensor, :CanWithdrawal
+        
+        def initialize(applicationid=nil, applicationtype=nil, clusterid=nil, clustername=nil, tablegroupname=nil, tablename=nil, applicant=nil, createdtime=nil, applicationstatus=nil, tablegroupid=nil, taskid=nil, tableinstanceid=nil, updatetime=nil, executeuser=nil, executestatus=nil, cancensor=nil, canwithdrawal=nil)
+          @ApplicationId = applicationid
+          @ApplicationType = applicationtype
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @TableGroupName = tablegroupname
+          @TableName = tablename
+          @Applicant = applicant
+          @CreatedTime = createdtime
+          @ApplicationStatus = applicationstatus
+          @TableGroupId = tablegroupid
+          @TaskId = taskid
+          @TableInstanceId = tableinstanceid
+          @UpdateTime = updatetime
+          @ExecuteUser = executeuser
+          @ExecuteStatus = executestatus
+          @CanCensor = cancensor
+          @CanWithdrawal = canwithdrawal
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @ApplicationType = params['ApplicationType']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @TableGroupName = params['TableGroupName']
+          @TableName = params['TableName']
+          @Applicant = params['Applicant']
+          @CreatedTime = params['CreatedTime']
+          @ApplicationStatus = params['ApplicationStatus']
+          @TableGroupId = params['TableGroupId']
+          @TaskId = params['TaskId']
+          @TableInstanceId = params['TableInstanceId']
+          @UpdateTime = params['UpdateTime']
+          @ExecuteUser = params['ExecuteUser']
+          @ExecuteStatus = params['ExecuteStatus']
+          @CanCensor = params['CanCensor']
+          @CanWithdrawal = params['CanWithdrawal']
+        end
+      end
+
+      # 更新申请单结果
+      class ApplyResult < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 申请单id
+        # @type ApplicationId: String
+        # @param ApplicationType: 申请类型
+        # @type ApplicationType: Integer
+        # @param ApplicationStatus: 处理状态 0-待审核 1-已经审核并提交任务 2-已驳回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationStatus: Integer
+        # @param TaskId: 已提交的任务Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param Error: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
+
+        attr_accessor :ApplicationId, :ApplicationType, :ApplicationStatus, :TaskId, :Error
+        
+        def initialize(applicationid=nil, applicationtype=nil, applicationstatus=nil, taskid=nil, error=nil)
+          @ApplicationId = applicationid
+          @ApplicationType = applicationtype
+          @ApplicationStatus = applicationstatus
+          @TaskId = taskid
+          @Error = error
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @ApplicationType = params['ApplicationType']
+          @ApplicationStatus = params['ApplicationStatus']
+          @TaskId = params['TaskId']
+          unless params['Error'].nil?
+            @Error = ErrorInfo.new.deserialize(params['Error'])
+          end
+        end
+      end
+
+      # 申请单id及其状态
+      class ApplyStatus < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 集群id-申请单id
+        # @type ApplicationId: String
+        # @param ApplicationStatus: 处理状态-1-撤回 1-通过 2-驳回，非0状态的申请单不可改变状态。
+        # @type ApplicationStatus: Integer
+        # @param ApplicationType: 申请单类型
+        # @type ApplicationType: Integer
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+
+        attr_accessor :ApplicationId, :ApplicationStatus, :ApplicationType, :ClusterId
+        
+        def initialize(applicationid=nil, applicationstatus=nil, applicationtype=nil, clusterid=nil)
+          @ApplicationId = applicationid
+          @ApplicationStatus = applicationstatus
+          @ApplicationType = applicationtype
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @ApplicationStatus = params['ApplicationStatus']
+          @ApplicationType = params['ApplicationType']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
       # ClearTables请求参数结构体
       class ClearTablesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 表所属集群实例ID
@@ -126,10 +278,15 @@ module TencentCloud
         # @param ProxyList: 独占proxy机器信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyList: Array
+        # @param Censorship: 是否开启审核 0-不开启 1-开启
+        # @type Censorship: Integer
+        # @param DbaUins: 审批人uin列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbaUins: Array
 
-        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList
+        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins
         
-        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil)
+        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil)
           @ClusterName = clustername
           @ClusterId = clusterid
           @Region = region
@@ -152,6 +309,8 @@ module TencentCloud
           @DiskVolume = diskvolume
           @ServerList = serverlist
           @ProxyList = proxylist
+          @Censorship = censorship
+          @DbaUins = dbauins
         end
 
         def deserialize(params)
@@ -187,6 +346,8 @@ module TencentCloud
               @ProxyList << ProxyDetailInfo.new.deserialize(i)
             end
           end
+          @Censorship = params['Censorship']
+          @DbaUins = params['DbaUins']
         end
       end
 
@@ -271,6 +432,50 @@ module TencentCloud
         end
       end
 
+      # 比较表格的Meta信息
+      class CompareTablesInfo < TencentCloud::Common::AbstractModel
+        # @param SrcTableClusterId: 源表格的集群id
+        # @type SrcTableClusterId: String
+        # @param SrcTableGroupId: 源表格的表格组id
+        # @type SrcTableGroupId: String
+        # @param SrcTableName: 源表格的表名
+        # @type SrcTableName: String
+        # @param DstTableClusterId: 目标表格的集群id
+        # @type DstTableClusterId: String
+        # @param DstTableGroupId: 目标表格的表格组id
+        # @type DstTableGroupId: String
+        # @param DstTableName: 目标表格的表名
+        # @type DstTableName: String
+        # @param SrcTableInstanceId: 源表格的实例id
+        # @type SrcTableInstanceId: String
+        # @param DstTableInstanceId: 目标表格的实例id
+        # @type DstTableInstanceId: String
+
+        attr_accessor :SrcTableClusterId, :SrcTableGroupId, :SrcTableName, :DstTableClusterId, :DstTableGroupId, :DstTableName, :SrcTableInstanceId, :DstTableInstanceId
+        
+        def initialize(srctableclusterid=nil, srctablegroupid=nil, srctablename=nil, dsttableclusterid=nil, dsttablegroupid=nil, dsttablename=nil, srctableinstanceid=nil, dsttableinstanceid=nil)
+          @SrcTableClusterId = srctableclusterid
+          @SrcTableGroupId = srctablegroupid
+          @SrcTableName = srctablename
+          @DstTableClusterId = dsttableclusterid
+          @DstTableGroupId = dsttablegroupid
+          @DstTableName = dsttablename
+          @SrcTableInstanceId = srctableinstanceid
+          @DstTableInstanceId = dsttableinstanceid
+        end
+
+        def deserialize(params)
+          @SrcTableClusterId = params['SrcTableClusterId']
+          @SrcTableGroupId = params['SrcTableGroupId']
+          @SrcTableName = params['SrcTableName']
+          @DstTableClusterId = params['DstTableClusterId']
+          @DstTableGroupId = params['DstTableGroupId']
+          @DstTableName = params['DstTableName']
+          @SrcTableInstanceId = params['SrcTableInstanceId']
+          @DstTableInstanceId = params['DstTableInstanceId']
+        end
+      end
+
       # CreateBackup请求参数结构体
       class CreateBackupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 待创建备份表所属集群ID
@@ -303,19 +508,25 @@ module TencentCloud
       # CreateBackup返回参数结构体
       class CreateBackupResponse < TencentCloud::Common::AbstractModel
         # @param TaskIds: 创建的备份任务ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskIds: Array
+        # @param ApplicationIds: 创建的备份申请ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskIds, :RequestId
+        attr_accessor :TaskIds, :ApplicationIds, :RequestId
         
-        def initialize(taskids=nil, requestid=nil)
+        def initialize(taskids=nil, applicationids=nil, requestid=nil)
           @TaskIds = taskids
+          @ApplicationIds = applicationids
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskIds = params['TaskIds']
+          @ApplicationIds = params['ApplicationIds']
           @RequestId = params['RequestId']
         end
       end
@@ -874,6 +1085,79 @@ module TencentCloud
               @TableResults << TableResultNew.new.deserialize(i)
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApplications请求参数结构体
+      class DescribeApplicationsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID，用于获取指定集群的单据
+        # @type ClusterId: String
+        # @param Limit: 分页
+        # @type Limit: Integer
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param CensorStatus: 申请单状态，用于过滤
+        # @type CensorStatus: Integer
+        # @param TableGroupId: 表格组id，用于过滤
+        # @type TableGroupId: String
+        # @param TableName: 表格名，用于过滤
+        # @type TableName: String
+        # @param Applicant: 申请人uin，用于过滤
+        # @type Applicant: String
+        # @param ApplyType: 申请类型，用于过滤
+        # @type ApplyType: Integer
+
+        attr_accessor :ClusterId, :Limit, :Offset, :CensorStatus, :TableGroupId, :TableName, :Applicant, :ApplyType
+        
+        def initialize(clusterid=nil, limit=nil, offset=nil, censorstatus=nil, tablegroupid=nil, tablename=nil, applicant=nil, applytype=nil)
+          @ClusterId = clusterid
+          @Limit = limit
+          @Offset = offset
+          @CensorStatus = censorstatus
+          @TableGroupId = tablegroupid
+          @TableName = tablename
+          @Applicant = applicant
+          @ApplyType = applytype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @CensorStatus = params['CensorStatus']
+          @TableGroupId = params['TableGroupId']
+          @TableName = params['TableName']
+          @Applicant = params['Applicant']
+          @ApplyType = params['ApplyType']
+        end
+      end
+
+      # DescribeApplications返回参数结构体
+      class DescribeApplicationsResponse < TencentCloud::Common::AbstractModel
+        # @param Applications: 申请单列表
+        # @type Applications: Array
+        # @param TotalCount: 申请单个数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Applications, :TotalCount, :RequestId
+        
+        def initialize(applications=nil, totalcount=nil, requestid=nil)
+          @Applications = applications
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Applications'].nil?
+            @Applications = []
+            params['Applications'].each do |i|
+              @Applications << Application.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1733,17 +2017,21 @@ module TencentCloud
         # @type Name: String
         # @param Value: 过滤字段值
         # @type Value: String
+        # @param Values: 过滤字段值
+        # @type Values: Array
 
-        attr_accessor :Name, :Value
+        attr_accessor :Name, :Value, :Values
         
-        def initialize(name=nil, value=nil)
+        def initialize(name=nil, value=nil, values=nil)
           @Name = name
           @Value = value
+          @Values = values
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+          @Values = params['Values']
         end
       end
 
@@ -1939,6 +2227,166 @@ module TencentCloud
         def deserialize(params)
           @MachineType = params['MachineType']
           @MachineNum = params['MachineNum']
+        end
+      end
+
+      # 合服结果
+      class MergeTableResult < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param Error: 成功时此字段返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
+        # @param Table: 对比的表格信息
+        # @type Table: :class:`Tencentcloud::Tcaplusdb.v20190823.models.CompareTablesInfo`
+        # @param ApplicationId: 申请单Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+
+        attr_accessor :TaskId, :Error, :Table, :ApplicationId
+        
+        def initialize(taskid=nil, error=nil, table=nil, applicationid=nil)
+          @TaskId = taskid
+          @Error = error
+          @Table = table
+          @ApplicationId = applicationid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['Error'].nil?
+            @Error = ErrorInfo.new.deserialize(params['Error'])
+          end
+          unless params['Table'].nil?
+            @Table = CompareTablesInfo.new.deserialize(params['Table'])
+          end
+          @ApplicationId = params['ApplicationId']
+        end
+      end
+
+      # MergeTablesData请求参数结构体
+      class MergeTablesDataRequest < TencentCloud::Common::AbstractModel
+        # @param SelectedTables: 选取的表格
+        # @type SelectedTables: Array
+        # @param IsOnlyCompare: true只做对比，false既对比又执行
+        # @type IsOnlyCompare: Boolean
+
+        attr_accessor :SelectedTables, :IsOnlyCompare
+        
+        def initialize(selectedtables=nil, isonlycompare=nil)
+          @SelectedTables = selectedtables
+          @IsOnlyCompare = isonlycompare
+        end
+
+        def deserialize(params)
+          unless params['SelectedTables'].nil?
+            @SelectedTables = []
+            params['SelectedTables'].each do |i|
+              @SelectedTables << MergeTablesInfo.new.deserialize(i)
+            end
+          end
+          @IsOnlyCompare = params['IsOnlyCompare']
+        end
+      end
+
+      # MergeTablesData返回参数结构体
+      class MergeTablesDataResponse < TencentCloud::Common::AbstractModel
+        # @param Results: 合服结果集
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :RequestId
+        
+        def initialize(results=nil, requestid=nil)
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              @Results << MergeTableResult.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 合服请求入参
+      class MergeTablesInfo < TencentCloud::Common::AbstractModel
+        # @param MergeTables: 合服的表格信息
+        # @type MergeTables: :class:`Tencentcloud::Tcaplusdb.v20190823.models.CompareTablesInfo`
+        # @param CheckIndex: 是否检查索引
+        # @type CheckIndex: Boolean
+
+        attr_accessor :MergeTables, :CheckIndex
+        
+        def initialize(mergetables=nil, checkindex=nil)
+          @MergeTables = mergetables
+          @CheckIndex = checkindex
+        end
+
+        def deserialize(params)
+          unless params['MergeTables'].nil?
+            @MergeTables = CompareTablesInfo.new.deserialize(params['MergeTables'])
+          end
+          @CheckIndex = params['CheckIndex']
+        end
+      end
+
+      # ModifyCensorship请求参数结构体
+      class ModifyCensorshipRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Censorship: 集群是否开启审核 0-关闭 1-开启
+        # @type Censorship: Integer
+        # @param Uins: 审批人uin列表
+        # @type Uins: Array
+
+        attr_accessor :ClusterId, :Censorship, :Uins
+        
+        def initialize(clusterid=nil, censorship=nil, uins=nil)
+          @ClusterId = clusterid
+          @Censorship = censorship
+          @Uins = uins
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Censorship = params['Censorship']
+          @Uins = params['Uins']
+        end
+      end
+
+      # ModifyCensorship返回参数结构体
+      class ModifyCensorshipResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Uins: 已加入审批人的uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uins: Array
+        # @param Censorship: 集群是否开启审核 0-关闭 1-开启
+        # @type Censorship: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :Uins, :Censorship, :RequestId
+        
+        def initialize(clusterid=nil, uins=nil, censorship=nil, requestid=nil)
+          @ClusterId = clusterid
+          @Uins = uins
+          @Censorship = censorship
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Uins = params['Uins']
+          @Censorship = params['Censorship']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3436,10 +3884,13 @@ module TencentCloud
         # @param TaskIds: 任务ID列表，对于创建多任务的接口有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskIds: Array
+        # @param ApplicationId: 腾讯云申请审核单Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
 
-        attr_accessor :TableInstanceId, :TaskId, :TableName, :TableType, :TableIdlType, :TableGroupId, :Error, :TaskIds
+        attr_accessor :TableInstanceId, :TaskId, :TableName, :TableType, :TableIdlType, :TableGroupId, :Error, :TaskIds, :ApplicationId
         
-        def initialize(tableinstanceid=nil, taskid=nil, tablename=nil, tabletype=nil, tableidltype=nil, tablegroupid=nil, error=nil, taskids=nil)
+        def initialize(tableinstanceid=nil, taskid=nil, tablename=nil, tabletype=nil, tableidltype=nil, tablegroupid=nil, error=nil, taskids=nil, applicationid=nil)
           @TableInstanceId = tableinstanceid
           @TaskId = taskid
           @TableName = tablename
@@ -3448,6 +3899,7 @@ module TencentCloud
           @TableGroupId = tablegroupid
           @Error = error
           @TaskIds = taskids
+          @ApplicationId = applicationid
         end
 
         def deserialize(params)
@@ -3461,6 +3913,7 @@ module TencentCloud
             @Error = ErrorInfo.new.deserialize(params['Error'])
           end
           @TaskIds = params['TaskIds']
+          @ApplicationId = params['ApplicationId']
         end
       end
 
@@ -3720,6 +4173,57 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Operator = params['Operator']
           @Content = params['Content']
+        end
+      end
+
+      # UpdateApply请求参数结构体
+      class UpdateApplyRequest < TencentCloud::Common::AbstractModel
+        # @param ApplyStatus: 申请单状态
+        # @type ApplyStatus: Array
+
+        attr_accessor :ApplyStatus
+        
+        def initialize(applystatus=nil)
+          @ApplyStatus = applystatus
+        end
+
+        def deserialize(params)
+          unless params['ApplyStatus'].nil?
+            @ApplyStatus = []
+            params['ApplyStatus'].each do |i|
+              @ApplyStatus << ApplyStatus.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # UpdateApply返回参数结构体
+      class UpdateApplyResponse < TencentCloud::Common::AbstractModel
+        # @param ApplyResults: 已更新的申请单列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplyResults: Array
+        # @param TotalCount: 更新数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplyResults, :TotalCount, :RequestId
+        
+        def initialize(applyresults=nil, totalcount=nil, requestid=nil)
+          @ApplyResults = applyresults
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApplyResults'].nil?
+            @ApplyResults = []
+            params['ApplyResults'].each do |i|
+              @ApplyResults << ApplyResult.new.deserialize(i)
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
         end
       end
 

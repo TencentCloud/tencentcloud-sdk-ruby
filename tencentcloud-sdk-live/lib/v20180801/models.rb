@@ -3229,6 +3229,44 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveDomainReferer请求参数结构体
+      class DescribeLiveDomainRefererRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: 播放域名。
+        # @type DomainName: String
+
+        attr_accessor :DomainName
+        
+        def initialize(domainname=nil)
+          @DomainName = domainname
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+        end
+      end
+
+      # DescribeLiveDomainReferer返回参数结构体
+      class DescribeLiveDomainRefererResponse < TencentCloud::Common::AbstractModel
+        # @param RefererAuthConfig: 域名 Referer 黑白名单配置。
+        # @type RefererAuthConfig: :class:`Tencentcloud::Live.v20180801.models.RefererAuthConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RefererAuthConfig, :RequestId
+        
+        def initialize(refererauthconfig=nil, requestid=nil)
+          @RefererAuthConfig = refererauthconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RefererAuthConfig'].nil?
+            @RefererAuthConfig = RefererAuthConfig.new.deserialize(params['RefererAuthConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLiveDomain请求参数结构体
       class DescribeLiveDomainRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 域名。
@@ -6264,6 +6302,54 @@ module TencentCloud
         end
       end
 
+      # ModifyLiveDomainReferer请求参数结构体
+      class ModifyLiveDomainRefererRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: 播放域名。
+        # @type DomainName: String
+        # @param Enable: 是否开启当前域名的 Referer 黑白名单鉴权。
+        # @type Enable: Integer
+        # @param Type: 名单类型，0：黑名单，1：白名单。
+        # @type Type: Integer
+        # @param AllowEmpty: 是否允许空 Referer，0：不允许，1：允许。
+        # @type AllowEmpty: Integer
+        # @param Rules: Referer 名单列表，以;分隔。
+        # @type Rules: String
+
+        attr_accessor :DomainName, :Enable, :Type, :AllowEmpty, :Rules
+        
+        def initialize(domainname=nil, enable=nil, type=nil, allowempty=nil, rules=nil)
+          @DomainName = domainname
+          @Enable = enable
+          @Type = type
+          @AllowEmpty = allowempty
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @Enable = params['Enable']
+          @Type = params['Type']
+          @AllowEmpty = params['AllowEmpty']
+          @Rules = params['Rules']
+        end
+      end
+
+      # ModifyLiveDomainReferer返回参数结构体
+      class ModifyLiveDomainRefererResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLivePlayAuthKey请求参数结构体
       class ModifyLivePlayAuthKeyRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 播放域名。
@@ -7436,6 +7522,38 @@ module TencentCloud
           unless params['Mp3Param'].nil?
             @Mp3Param = RecordParam.new.deserialize(params['Mp3Param'])
           end
+        end
+      end
+
+      # 直播域名Referer黑白名单配置
+      class RefererAuthConfig < TencentCloud::Common::AbstractModel
+        # @param DomainName: 域名。
+        # @type DomainName: String
+        # @param Enable: 是否启用，0：关闭，1：启用。
+        # @type Enable: Integer
+        # @param Type: 名单类型，0：黑名单，1：白名单。
+        # @type Type: Integer
+        # @param AllowEmpty: 是否允许空Referer，0：不允许，1：允许。
+        # @type AllowEmpty: Integer
+        # @param Rules: 名单列表，以分号(;)分隔。
+        # @type Rules: String
+
+        attr_accessor :DomainName, :Enable, :Type, :AllowEmpty, :Rules
+        
+        def initialize(domainname=nil, enable=nil, type=nil, allowempty=nil, rules=nil)
+          @DomainName = domainname
+          @Enable = enable
+          @Type = type
+          @AllowEmpty = allowempty
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @Enable = params['Enable']
+          @Type = params['Type']
+          @AllowEmpty = params['AllowEmpty']
+          @Rules = params['Rules']
         end
       end
 

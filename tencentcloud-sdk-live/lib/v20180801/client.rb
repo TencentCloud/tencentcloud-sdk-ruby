@@ -1296,6 +1296,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询直播域名 Referer 黑白名单配置。
+        # 由于 Referer 信息包含在 http 协议中，在开启配置后，播放协议为 rtmp 或 webrtc 不会校验 Referer 配置，仍可正常播放。如需配置 Referer 鉴权建议使用 http-flv 或 http-hls 协议播放。
+
+        # @param request: Request instance for DescribeLiveDomainReferer.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveDomainRefererRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveDomainRefererResponse`
+        def DescribeLiveDomainReferer(request)
+          body = send_request('DescribeLiveDomainReferer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveDomainRefererResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据域名状态、类型等信息查询用户的域名信息。
 
         # @param request: Request instance for DescribeLiveDomains.
@@ -2320,6 +2345,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLiveDomainCertResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置直播域名 Referer 黑白名单。
+        # 由于 Referer 信息包含在 http 协议中，在开启配置后，播放协议为 rtmp 或 webrtc 不会校验 Referer 配置，仍可正常播放。如需配置 Referer 鉴权建议使用 http-flv 或 http-hls 协议播放。
+
+        # @param request: Request instance for ModifyLiveDomainReferer.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveDomainRefererRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLiveDomainRefererResponse`
+        def ModifyLiveDomainReferer(request)
+          body = send_request('ModifyLiveDomainReferer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLiveDomainRefererResponse.new
             model.deserialize(response['Response'])
             model
           else

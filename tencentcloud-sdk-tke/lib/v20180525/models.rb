@@ -4126,10 +4126,13 @@ module TencentCloud
         # @param ExtraArgs: 节点相关的自定义参数信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.InstanceExtraArgs`
+        # @param DesiredPodNumber: 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DesiredPodNumber: Integer
 
-        attr_accessor :MountTarget, :DockerGraphPath, :UserScript, :Unschedulable, :Labels, :DataDisks, :ExtraArgs
+        attr_accessor :MountTarget, :DockerGraphPath, :UserScript, :Unschedulable, :Labels, :DataDisks, :ExtraArgs, :DesiredPodNumber
         
-        def initialize(mounttarget=nil, dockergraphpath=nil, userscript=nil, unschedulable=nil, labels=nil, datadisks=nil, extraargs=nil)
+        def initialize(mounttarget=nil, dockergraphpath=nil, userscript=nil, unschedulable=nil, labels=nil, datadisks=nil, extraargs=nil, desiredpodnumber=nil)
           @MountTarget = mounttarget
           @DockerGraphPath = dockergraphpath
           @UserScript = userscript
@@ -4137,6 +4140,7 @@ module TencentCloud
           @Labels = labels
           @DataDisks = datadisks
           @ExtraArgs = extraargs
+          @DesiredPodNumber = desiredpodnumber
         end
 
         def deserialize(params)
@@ -4159,6 +4163,7 @@ module TencentCloud
           unless params['ExtraArgs'].nil?
             @ExtraArgs = InstanceExtraArgs.new.deserialize(params['ExtraArgs'])
           end
+          @DesiredPodNumber = params['DesiredPodNumber']
         end
       end
 

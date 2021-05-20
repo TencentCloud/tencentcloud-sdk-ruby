@@ -667,7 +667,7 @@ module TencentCloud
         end
       end
 
-      # 代客基础信息，for国际站查代客API
+      # 代客基础信息
       class ClientBaseElem < TencentCloud::Common::AbstractModel
         # @param AgentUin: 代客关联的代理商UIN
         # @type AgentUin: String

@@ -741,14 +741,17 @@ module TencentCloud
         # @type Type: String
         # @param Status: 认证状态：未实名认证:NotUpload, 实名审核中:InAudit，已实名认证:Approved，实名审核失败:Reject
         # @type Status: String
+        # @param Keyword: 域名所有者筛选
+        # @type Keyword: String
 
-        attr_accessor :Offset, :Limit, :Type, :Status
+        attr_accessor :Offset, :Limit, :Type, :Status, :Keyword
         
-        def initialize(offset=nil, limit=nil, type=nil, status=nil)
+        def initialize(offset=nil, limit=nil, type=nil, status=nil, keyword=nil)
           @Offset = offset
           @Limit = limit
           @Type = type
           @Status = status
+          @Keyword = keyword
         end
 
         def deserialize(params)
@@ -756,6 +759,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Type = params['Type']
           @Status = params['Status']
+          @Keyword = params['Keyword']
         end
       end
 

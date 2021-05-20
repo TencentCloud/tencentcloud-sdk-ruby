@@ -97,7 +97,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例。
+        # 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
 
         # @param request: Request instance for CreateDBInstances.
         # @type request: :class:`Tencentcloud::postgres::V20170312::CreateDBInstancesRequest`
@@ -107,6 +107,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateDBInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
+
+        # @param request: Request instance for CreateInstances.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateInstancesRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateInstancesResponse`
+        def CreateInstances(request)
+          body = send_request('CreateInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

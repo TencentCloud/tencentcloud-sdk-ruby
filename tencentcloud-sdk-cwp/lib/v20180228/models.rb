@@ -1182,19 +1182,23 @@ module TencentCloud
         # @type Ids: Array
         # @param Ip: 异地登录事件的Ip。DelType为Ip时必填
         # @type Ip: Array
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
 
-        attr_accessor :DelType, :Ids, :Ip
+        attr_accessor :DelType, :Ids, :Ip, :Uuid
         
-        def initialize(deltype=nil, ids=nil, ip=nil)
+        def initialize(deltype=nil, ids=nil, ip=nil, uuid=nil)
           @DelType = deltype
           @Ids = ids
           @Ip = ip
+          @Uuid = uuid
         end
 
         def deserialize(params)
           @DelType = params['DelType']
           @Ids = params['Ids']
           @Ip = params['Ip']
+          @Uuid = params['Uuid']
         end
       end
 
@@ -2756,9 +2760,9 @@ module TencentCloud
 
       # DescribeLogStorageStatistic返回参数结构体
       class DescribeLogStorageStatisticResponse < TencentCloud::Common::AbstractModel
-        # @param TotalSize: 总容量
+        # @param TotalSize: 总容量（单位：GB）
         # @type TotalSize: Integer
-        # @param UsedSize: 已使用容量
+        # @param UsedSize: 已使用容量（单位：GB）
         # @type UsedSize: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
