@@ -5036,6 +5036,71 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordTask请求参数结构体
+      class DescribeRecordTaskRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询任务开始时间，Unix 时间戳。设置时间不早于当前时间之前90天的时间，且查询时间跨度不超过一周。
+        # @type StartTime: Integer
+        # @param EndTime: 查询任务结束时间，Unix 时间戳。EndTime 必须大于 StartTime，设置时间不早于当前时间之前90天的时间，且查询时间跨度不超过一周。（注意：任务开始结束时间必须在查询时间范围内）。
+        # @type EndTime: Integer
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param DomainName: 推流域名。
+        # @type DomainName: String
+        # @param AppName: 推流路径。
+        # @type AppName: String
+        # @param ScrollToken: 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
+        # @type ScrollToken: String
+
+        attr_accessor :StartTime, :EndTime, :StreamName, :DomainName, :AppName, :ScrollToken
+        
+        def initialize(starttime=nil, endtime=nil, streamname=nil, domainname=nil, appname=nil, scrolltoken=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @StreamName = streamname
+          @DomainName = domainname
+          @AppName = appname
+          @ScrollToken = scrolltoken
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @StreamName = params['StreamName']
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @ScrollToken = params['ScrollToken']
+        end
+      end
+
+      # DescribeRecordTask返回参数结构体
+      class DescribeRecordTaskResponse < TencentCloud::Common::AbstractModel
+        # @param ScrollToken: 翻页标识，当请求未返回所有数据，该字段表示下一条记录的 Token。当该字段为空，说明已无更多数据。
+        # @type ScrollToken: String
+        # @param TaskList: 录制任务列表。当该字段为空，说明已返回所有数据。
+        # @type TaskList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScrollToken, :TaskList, :RequestId
+        
+        def initialize(scrolltoken=nil, tasklist=nil, requestid=nil)
+          @ScrollToken = scrolltoken
+          @TaskList = tasklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ScrollToken = params['ScrollToken']
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              @TaskList << RecordTask.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeScreenShotSheetNumList请求参数结构体
       class DescribeScreenShotSheetNumListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: utc起始时间，格式为yyyy-mm-ddTHH:MM:SSZ
@@ -7457,6 +7522,50 @@ module TencentCloud
           @Enable = params['Enable']
           @VodSubAppId = params['VodSubAppId']
           @VodFileName = params['VodFileName']
+        end
+      end
+
+      # 录制任务
+      class RecordTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 录制任务ID。
+        # @type TaskId: String
+        # @param DomainName: 推流域名。
+        # @type DomainName: String
+        # @param AppName: 推流路径。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param StartTime: 任务开始时间，Unix时间戳。
+        # @type StartTime: Integer
+        # @param EndTime: 任务结束时间，Unix时间戳。
+        # @type EndTime: Integer
+        # @param TemplateId: 录制模板ID。
+        # @type TemplateId: Integer
+        # @param Stopped: 调用 StopRecordTask 停止任务时间，Unix时间戳。值为0表示未曾调用接口停止任务。
+        # @type Stopped: Integer
+
+        attr_accessor :TaskId, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :TemplateId, :Stopped
+        
+        def initialize(taskid=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, templateid=nil, stopped=nil)
+          @TaskId = taskid
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+          @StartTime = starttime
+          @EndTime = endtime
+          @TemplateId = templateid
+          @Stopped = stopped
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TemplateId = params['TemplateId']
+          @Stopped = params['Stopped']
         end
       end
 

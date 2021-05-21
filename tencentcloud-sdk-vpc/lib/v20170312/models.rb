@@ -215,10 +215,13 @@ module TencentCloud
         # @param InternetChargeType: 弹性公网IP的网络计费模式。注意，传统账户类型账户的弹性公网IP没有网络计费模式属性，值为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetChargeType: String
+        # @param TagSet: 弹性公网IP关联的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSet: Array
 
-        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType
+        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet
         
-        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil)
+        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil)
           @AddressId = addressid
           @AddressName = addressname
           @AddressStatus = addressstatus
@@ -237,6 +240,7 @@ module TencentCloud
           @LocalBgp = localbgp
           @Bandwidth = bandwidth
           @InternetChargeType = internetchargetype
+          @TagSet = tagset
         end
 
         def deserialize(params)
@@ -260,6 +264,12 @@ module TencentCloud
           @LocalBgp = params['LocalBgp']
           @Bandwidth = params['Bandwidth']
           @InternetChargeType = params['InternetChargeType']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              @TagSet << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1121,17 +1131,21 @@ module TencentCloud
         # @type NetworkInterfaceId: String
         # @param InstanceId: CVM实例ID。形如：ins-r8hr2upy。
         # @type InstanceId: String
+        # @param AttachType: 网卡的挂载类型：0 标准型，1扩展型，默认值0。
+        # @type AttachType: Integer
 
-        attr_accessor :NetworkInterfaceId, :InstanceId
+        attr_accessor :NetworkInterfaceId, :InstanceId, :AttachType
         
-        def initialize(networkinterfaceid=nil, instanceid=nil)
+        def initialize(networkinterfaceid=nil, instanceid=nil, attachtype=nil)
           @NetworkInterfaceId = networkinterfaceid
           @InstanceId = instanceid
+          @AttachType = attachtype
         end
 
         def deserialize(params)
           @NetworkInterfaceId = params['NetworkInterfaceId']
           @InstanceId = params['InstanceId']
+          @AttachType = params['AttachType']
         end
       end
 
@@ -1974,10 +1988,12 @@ module TencentCloud
         # @type NetworkInterfaceDescription: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
+        # @param AttachType: 绑定类型：0 标准型 1 扩展型。
+        # @type AttachType: Integer
 
-        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :InstanceId, :PrivateIpAddresses, :SecondaryPrivateIpAddressCount, :SecurityGroupIds, :NetworkInterfaceDescription, :Tags
+        attr_accessor :VpcId, :NetworkInterfaceName, :SubnetId, :InstanceId, :PrivateIpAddresses, :SecondaryPrivateIpAddressCount, :SecurityGroupIds, :NetworkInterfaceDescription, :Tags, :AttachType
         
-        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, instanceid=nil, privateipaddresses=nil, secondaryprivateipaddresscount=nil, securitygroupids=nil, networkinterfacedescription=nil, tags=nil)
+        def initialize(vpcid=nil, networkinterfacename=nil, subnetid=nil, instanceid=nil, privateipaddresses=nil, secondaryprivateipaddresscount=nil, securitygroupids=nil, networkinterfacedescription=nil, tags=nil, attachtype=nil)
           @VpcId = vpcid
           @NetworkInterfaceName = networkinterfacename
           @SubnetId = subnetid
@@ -1987,6 +2003,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @NetworkInterfaceDescription = networkinterfacedescription
           @Tags = tags
+          @AttachType = attachtype
         end
 
         def deserialize(params)
@@ -2009,6 +2026,7 @@ module TencentCloud
               @Tags << Tag.new.deserialize(i)
             end
           end
+          @AttachType = params['AttachType']
         end
       end
 
@@ -5441,6 +5459,9 @@ module TencentCloud
         # <li> address-type - String - 是否必填：否 - （过滤条件）按照 IP类型 进行过滤。可选值：'EIP'，'AnycastEIP'，'HighQualityEIP'</li>
         # <li> address-isp - String - 是否必填：否 - （过滤条件）按照 运营商类型 进行过滤。可选值：'BGP'，'CMCC'，'CUCC', 'CTCC'</li>
         # <li> dedicated-cluster-id - String - 是否必填：否 - （过滤条件）按照 CDC 的唯一 ID 过滤。CDC 唯一 ID 形如：cluster-11112222。</li>
+        # <li> tag-key - String - 是否必填：否 - （过滤条件）按照标签键进行过滤。</li>
+        # <li> tag-value - String - 是否必填：否 - （过滤条件）按照标签值进行过滤。</li>
+        # <li> tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。tag-key使用具体的标签键进行替换。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         # @type Offset: Integer
@@ -5710,11 +5731,14 @@ module TencentCloud
         # @param Filters: 每次请求的`Filters`的上限为10。参数不支持同时指定`BandwidthPackageIds`和`Filters`。详细的过滤条件如下：
         # <li> bandwidth-package_id - String - 是否必填：否 - （过滤条件）按照带宽包的唯一标识ID过滤。</li>
         # <li> bandwidth-package-name - String - 是否必填：否 - （过滤条件）按照 带宽包名称过滤。不支持模糊过滤。</li>
-        # <li> network-type - String - 是否必填：否 - （过滤条件）按照带宽包的类型过滤。类型包括'BGP','SINGLEISP'和'ANYCAST'。</li>
-        # <li> charge-type - String - 是否必填：否 - （过滤条件）按照带宽包的计费类型过滤。计费类型包括'TOP5_POSTPAID_BY_MONTH'和'PERCENT95_POSTPAID_BY_MONTH'</li>
+        # <li> network-type - String - 是否必填：否 - （过滤条件）按照带宽包的类型过滤。类型包括'HIGH_QUALITY_BGP','BGP','SINGLEISP'和'ANYCAST'。</li>
+        # <li> charge-type - String - 是否必填：否 - （过滤条件）按照带宽包的计费类型过滤。计费类型包括'TOP5_POSTPAID_BY_MONTH'和'PERCENT95_POSTPAID_BY_MONTH'。</li>
         # <li> resource.resource-type - String - 是否必填：否 - （过滤条件）按照带宽包资源类型过滤。资源类型包括'Address'和'LoadBalance'</li>
         # <li> resource.resource-id - String - 是否必填：否 - （过滤条件）按照带宽包资源Id过滤。资源Id形如'eip-xxxx','lb-xxxx'</li>
         # <li> resource.address-ip - String - 是否必填：否 - （过滤条件）按照带宽包资源Ip过滤。</li>
+        # <li> tag-key - String - 是否必填：否 - （过滤条件）按照标签键进行过滤。</li>
+        # <li> tag-value - String - 是否必填：否 - （过滤条件）按照标签值进行过滤。</li>
+        # <li> tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。tag-key使用具体的标签键进行替换。</li>
         # @type Filters: Array
         # @param Offset: 查询带宽包偏移量
         # @type Offset: Integer
@@ -7582,24 +7606,34 @@ module TencentCloud
 
       # DescribeNetworkInterfaceLimit返回参数结构体
       class DescribeNetworkInterfaceLimitResponse < TencentCloud::Common::AbstractModel
-        # @param EniQuantity: 弹性网卡配额
+        # @param EniQuantity: 标准型弹性网卡配额
         # @type EniQuantity: Integer
-        # @param EniPrivateIpAddressQuantity: 每个弹性网卡可以分配的IP配额
+        # @param EniPrivateIpAddressQuantity: 每个标准型弹性网卡可以分配的IP配额
         # @type EniPrivateIpAddressQuantity: Integer
+        # @param ExtendEniQuantity: 扩展型网卡配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtendEniQuantity: Integer
+        # @param ExtendEniPrivateIpAddressQuantity: 每个扩展型弹性网卡可以分配的IP配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtendEniPrivateIpAddressQuantity: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EniQuantity, :EniPrivateIpAddressQuantity, :RequestId
+        attr_accessor :EniQuantity, :EniPrivateIpAddressQuantity, :ExtendEniQuantity, :ExtendEniPrivateIpAddressQuantity, :RequestId
         
-        def initialize(eniquantity=nil, eniprivateipaddressquantity=nil, requestid=nil)
+        def initialize(eniquantity=nil, eniprivateipaddressquantity=nil, extendeniquantity=nil, extendeniprivateipaddressquantity=nil, requestid=nil)
           @EniQuantity = eniquantity
           @EniPrivateIpAddressQuantity = eniprivateipaddressquantity
+          @ExtendEniQuantity = extendeniquantity
+          @ExtendEniPrivateIpAddressQuantity = extendeniprivateipaddressquantity
           @RequestId = requestid
         end
 
         def deserialize(params)
           @EniQuantity = params['EniQuantity']
           @EniPrivateIpAddressQuantity = params['EniPrivateIpAddressQuantity']
+          @ExtendEniQuantity = params['ExtendEniQuantity']
+          @ExtendEniPrivateIpAddressQuantity = params['ExtendEniPrivateIpAddressQuantity']
           @RequestId = params['RequestId']
         end
       end
@@ -8191,6 +8225,8 @@ module TencentCloud
         # <li>zone - String - （过滤条件）可用区。</li>
         # <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。</li>
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。</li>
+        # <li>cdc-id - String - 是否必填：否 - （过滤条件）按照cdc信息进行过滤。过滤出来制定cdc下的子网。</li>
+        # <li>is-cdc-subnet - String - 是否必填：否 - （过滤条件）按照是否是cdc子网进行过滤。取值：“0”-非cdc子网，“1”--cdc子网</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: String
@@ -11053,19 +11089,23 @@ module TencentCloud
         # @type SourceInstanceId: String
         # @param DestinationInstanceId: 待迁移的目的CVM实例ID。
         # @type DestinationInstanceId: String
+        # @param AttachType: 网卡绑定类型：0 标准型 1 扩展型。
+        # @type AttachType: Integer
 
-        attr_accessor :NetworkInterfaceId, :SourceInstanceId, :DestinationInstanceId
+        attr_accessor :NetworkInterfaceId, :SourceInstanceId, :DestinationInstanceId, :AttachType
         
-        def initialize(networkinterfaceid=nil, sourceinstanceid=nil, destinationinstanceid=nil)
+        def initialize(networkinterfaceid=nil, sourceinstanceid=nil, destinationinstanceid=nil, attachtype=nil)
           @NetworkInterfaceId = networkinterfaceid
           @SourceInstanceId = sourceinstanceid
           @DestinationInstanceId = destinationinstanceid
+          @AttachType = attachtype
         end
 
         def deserialize(params)
           @NetworkInterfaceId = params['NetworkInterfaceId']
           @SourceInstanceId = params['SourceInstanceId']
           @DestinationInstanceId = params['DestinationInstanceId']
+          @AttachType = params['AttachType']
         end
       end
 
@@ -13422,10 +13462,13 @@ module TencentCloud
         # @param CdcId: 网卡所关联的CDC实例ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
+        # @param AttachType: 弹性网卡类型：0:标准型/1:扩展型。默认值为0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachType: Integer
 
-        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType, :Business, :CdcId
+        attr_accessor :NetworkInterfaceId, :NetworkInterfaceName, :NetworkInterfaceDescription, :SubnetId, :VpcId, :GroupSet, :Primary, :MacAddress, :State, :PrivateIpAddressSet, :Attachment, :Zone, :CreatedTime, :Ipv6AddressSet, :TagSet, :EniType, :Business, :CdcId, :AttachType
         
-        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil, business=nil, cdcid=nil)
+        def initialize(networkinterfaceid=nil, networkinterfacename=nil, networkinterfacedescription=nil, subnetid=nil, vpcid=nil, groupset=nil, primary=nil, macaddress=nil, state=nil, privateipaddressset=nil, attachment=nil, zone=nil, createdtime=nil, ipv6addressset=nil, tagset=nil, enitype=nil, business=nil, cdcid=nil, attachtype=nil)
           @NetworkInterfaceId = networkinterfaceid
           @NetworkInterfaceName = networkinterfacename
           @NetworkInterfaceDescription = networkinterfacedescription
@@ -13444,6 +13487,7 @@ module TencentCloud
           @EniType = enitype
           @Business = business
           @CdcId = cdcid
+          @AttachType = attachtype
         end
 
         def deserialize(params)
@@ -13482,6 +13526,7 @@ module TencentCloud
           @EniType = params['EniType']
           @Business = params['Business']
           @CdcId = params['CdcId']
+          @AttachType = params['AttachType']
         end
       end
 

@@ -69,10 +69,14 @@ module TencentCloud
         # @type NodePool: :class:`Tencentcloud::Tke.v20180525.models.NodePoolOption`
         # @param SkipValidateOptions: 校验规则相关选项，可配置跳过某些校验规则。目前支持GlobalRouteCIDRCheck（跳过GlobalRouter的相关校验），VpcCniCIDRCheck（跳过VpcCni相关校验）
         # @type SkipValidateOptions: Array
+        # @param InstanceAdvancedSettingsOverrides: 参数InstanceAdvancedSettingsOverride数组用于定制化地配置各台instance，与InstanceIds顺序对应。当传入InstanceAdvancedSettingsOverrides数组时，将覆盖默认参数InstanceAdvancedSettings；当没有传入参数InstanceAdvancedSettingsOverrides时，InstanceAdvancedSettings参数对每台instance生效。
 
-        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :HostName, :SecurityGroupIds, :NodePool, :SkipValidateOptions
+        # 参数InstanceAdvancedSettingsOverride数组的长度应与InstanceIds数组一致；当长度大于InstanceIds数组长度时将报错；当长度小于InstanceIds数组时，没有对应配置的instace将使用默认配置。
+        # @type InstanceAdvancedSettingsOverrides: Array
+
+        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :HostName, :SecurityGroupIds, :NodePool, :SkipValidateOptions, :InstanceAdvancedSettingsOverrides
         
-        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, hostname=nil, securitygroupids=nil, nodepool=nil, skipvalidateoptions=nil)
+        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, hostname=nil, securitygroupids=nil, nodepool=nil, skipvalidateoptions=nil, instanceadvancedsettingsoverrides=nil)
           @ClusterId = clusterid
           @InstanceIds = instanceids
           @InstanceAdvancedSettings = instanceadvancedsettings
@@ -82,6 +86,7 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @NodePool = nodepool
           @SkipValidateOptions = skipvalidateoptions
+          @InstanceAdvancedSettingsOverrides = instanceadvancedsettingsoverrides
         end
 
         def deserialize(params)
@@ -102,6 +107,12 @@ module TencentCloud
             @NodePool = NodePoolOption.new.deserialize(params['NodePool'])
           end
           @SkipValidateOptions = params['SkipValidateOptions']
+          unless params['InstanceAdvancedSettingsOverrides'].nil?
+            @InstanceAdvancedSettingsOverrides = []
+            params['InstanceAdvancedSettingsOverrides'].each do |i|
+              @InstanceAdvancedSettingsOverrides << InstanceAdvancedSettings.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3802,13 +3813,16 @@ module TencentCloud
         # @type ExistedInstancesPara: :class:`Tencentcloud::Tke.v20180525.models.ExistedInstancesPara`
         # @param InstanceAdvancedSettingsOverride: 节点高级设置，会覆盖集群级别设置的InstanceAdvancedSettings（当前只对节点自定义参数ExtraArgs生效）
         # @type InstanceAdvancedSettingsOverride: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
+        # @param DesiredPodNumbers: 自定义模式集群，可指定每个节点的pod数量
+        # @type DesiredPodNumbers: Array
 
-        attr_accessor :NodeRole, :ExistedInstancesPara, :InstanceAdvancedSettingsOverride
+        attr_accessor :NodeRole, :ExistedInstancesPara, :InstanceAdvancedSettingsOverride, :DesiredPodNumbers
         
-        def initialize(noderole=nil, existedinstancespara=nil, instanceadvancedsettingsoverride=nil)
+        def initialize(noderole=nil, existedinstancespara=nil, instanceadvancedsettingsoverride=nil, desiredpodnumbers=nil)
           @NodeRole = noderole
           @ExistedInstancesPara = existedinstancespara
           @InstanceAdvancedSettingsOverride = instanceadvancedsettingsoverride
+          @DesiredPodNumbers = desiredpodnumbers
         end
 
         def deserialize(params)
@@ -3819,6 +3833,7 @@ module TencentCloud
           unless params['InstanceAdvancedSettingsOverride'].nil?
             @InstanceAdvancedSettingsOverride = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettingsOverride'])
           end
+          @DesiredPodNumbers = params['DesiredPodNumbers']
         end
       end
 

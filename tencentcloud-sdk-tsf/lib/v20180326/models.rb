@@ -7144,6 +7144,68 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskRecords请求参数结构体
+      class DescribeTaskRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 翻页偏移量。
+        # @type Offset: Integer
+        # @param Limit: 翻页查询单页数量。
+        # @type Limit: Integer
+        # @param SearchWord: 模糊查询关键字，支持任务ID和任务名称。
+        # @type SearchWord: String
+        # @param TaskState: 任务启用状态。enabled/disabled
+        # @type TaskState: String
+        # @param GroupId: 分组ID。
+        # @type GroupId: String
+        # @param TaskType: 任务类型。
+        # @type TaskType: String
+        # @param ExecuteType: 任务触发类型，UNICAST、BROADCAST。
+        # @type ExecuteType: String
+
+        attr_accessor :Offset, :Limit, :SearchWord, :TaskState, :GroupId, :TaskType, :ExecuteType
+        
+        def initialize(offset=nil, limit=nil, searchword=nil, taskstate=nil, groupid=nil, tasktype=nil, executetype=nil)
+          @Offset = offset
+          @Limit = limit
+          @SearchWord = searchword
+          @TaskState = taskstate
+          @GroupId = groupid
+          @TaskType = tasktype
+          @ExecuteType = executetype
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchWord = params['SearchWord']
+          @TaskState = params['TaskState']
+          @GroupId = params['GroupId']
+          @TaskType = params['TaskType']
+          @ExecuteType = params['ExecuteType']
+        end
+      end
+
+      # DescribeTaskRecords返回参数结构体
+      class DescribeTaskRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 任务记录列表
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TaskRecordPage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TaskRecordPage.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUnitApiUseDetail请求参数结构体
       class DescribeUnitApiUseDetailRequest < TencentCloud::Common::AbstractModel
         # @param GatewayDeployGroupId: 网关部署组ID
@@ -12138,6 +12200,31 @@ module TencentCloud
           @TaskLogId = params['TaskLogId']
           @TriggerType = params['TriggerType']
           @TaskArgument = params['TaskArgument']
+        end
+      end
+
+      # 翻页查询的任务记录返回
+      class TaskRecordPage < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param Content: 任务记录列表
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              @Content << TaskRecord.new.deserialize(i)
+            end
+          end
         end
       end
 

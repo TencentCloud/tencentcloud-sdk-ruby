@@ -335,6 +335,30 @@ module TencentCloud
         end
       end
 
+      # emptydir 数据卷详细信息
+      class CloudBaseRunEmptyDirVolumeSource < TencentCloud::Common::AbstractModel
+        # @param EnableEmptyDirVolume: 启用emptydir数据卷
+        # @type EnableEmptyDirVolume: Boolean
+        # @param Medium: "","Memory","HugePages"
+        # @type Medium: String
+        # @param SizeLimit: emptydir数据卷大小
+        # @type SizeLimit: String
+
+        attr_accessor :EnableEmptyDirVolume, :Medium, :SizeLimit
+        
+        def initialize(enableemptydirvolume=nil, medium=nil, sizelimit=nil)
+          @EnableEmptyDirVolume = enableemptydirvolume
+          @Medium = medium
+          @SizeLimit = sizelimit
+        end
+
+        def deserialize(params)
+          @EnableEmptyDirVolume = params['EnableEmptyDirVolume']
+          @Medium = params['Medium']
+          @SizeLimit = params['SizeLimit']
+        end
+      end
+
       # CloudBaseRun 镜像信息
       class CloudBaseRunImageInfo < TencentCloud::Common::AbstractModel
         # @param RepositoryName: 镜像仓库名称
@@ -424,6 +448,38 @@ module TencentCloud
           @ReadOnly = params['ReadOnly']
           @SecretName = params['SecretName']
           @EnableEmptyDirVolume = params['EnableEmptyDirVolume']
+        end
+      end
+
+      # 对标 EKS VolumeMount
+      class CloudBaseRunServiceVolumeMount < TencentCloud::Common::AbstractModel
+        # @param Name: Volume 名称
+        # @type Name: String
+        # @param MountPath: 挂载路径
+        # @type MountPath: String
+        # @param ReadOnly: 是否只读
+        # @type ReadOnly: Boolean
+        # @param SubPath: 子路径
+        # @type SubPath: String
+        # @param MountPropagation: 传播挂载方式
+        # @type MountPropagation: String
+
+        attr_accessor :Name, :MountPath, :ReadOnly, :SubPath, :MountPropagation
+        
+        def initialize(name=nil, mountpath=nil, readonly=nil, subpath=nil, mountpropagation=nil)
+          @Name = name
+          @MountPath = mountpath
+          @ReadOnly = readonly
+          @SubPath = subpath
+          @MountPropagation = mountpropagation
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @MountPath = params['MountPath']
+          @ReadOnly = params['ReadOnly']
+          @SubPath = params['SubPath']
+          @MountPropagation = params['MountPropagation']
         end
       end
 
@@ -790,17 +846,21 @@ module TencentCloud
         # @param SecretName: secret名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretName: String
-        # @param EnableEmptyDirVolume: 是否开启临时目录
+        # @param EnableEmptyDirVolume: 是否开启临时目录逐步废弃，请使用 EmptyDir
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableEmptyDirVolume: Boolean
+        # @param EmptyDir: emptydir数据卷详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmptyDir: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunEmptyDirVolumeSource`
 
-        attr_accessor :Name, :NFS, :SecretName, :EnableEmptyDirVolume
+        attr_accessor :Name, :NFS, :SecretName, :EnableEmptyDirVolume, :EmptyDir
         
-        def initialize(name=nil, nfs=nil, secretname=nil, enableemptydirvolume=nil)
+        def initialize(name=nil, nfs=nil, secretname=nil, enableemptydirvolume=nil, emptydir=nil)
           @Name = name
           @NFS = nfs
           @SecretName = secretname
           @EnableEmptyDirVolume = enableemptydirvolume
+          @EmptyDir = emptydir
         end
 
         def deserialize(params)
@@ -810,6 +870,9 @@ module TencentCloud
           end
           @SecretName = params['SecretName']
           @EnableEmptyDirVolume = params['EnableEmptyDirVolume']
+          unless params['EmptyDir'].nil?
+            @EmptyDir = CloudBaseRunEmptyDirVolumeSource.new.deserialize(params['EmptyDir'])
+          end
         end
       end
 
@@ -1154,10 +1217,12 @@ module TencentCloud
         # @type ServiceVolumes: Array
         # @param IsCreateJnsGw: 是否创建JnsGw 0未传默认创建 1创建 2不创建
         # @type IsCreateJnsGw: Integer
+        # @param ServiceVolumeMounts: 数据卷挂载参数
+        # @type ServiceVolumeMounts: Array
 
-        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security, :ServiceVolumes, :IsCreateJnsGw
+        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security, :ServiceVolumes, :IsCreateJnsGw, :ServiceVolumeMounts
         
-        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil, servicevolumes=nil, iscreatejnsgw=nil)
+        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil, servicevolumes=nil, iscreatejnsgw=nil, servicevolumemounts=nil)
           @EnvId = envid
           @UploadType = uploadtype
           @FlowRatio = flowratio
@@ -1195,6 +1260,7 @@ module TencentCloud
           @Security = security
           @ServiceVolumes = servicevolumes
           @IsCreateJnsGw = iscreatejnsgw
+          @ServiceVolumeMounts = servicevolumemounts
         end
 
         def deserialize(params)
@@ -1260,6 +1326,12 @@ module TencentCloud
             end
           end
           @IsCreateJnsGw = params['IsCreateJnsGw']
+          unless params['ServiceVolumeMounts'].nil?
+            @ServiceVolumeMounts = []
+            params['ServiceVolumeMounts'].each do |i|
+              @ServiceVolumeMounts << CloudBaseRunServiceVolumeMount.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -3574,10 +3646,13 @@ module TencentCloud
         # @param Region: 环境所属地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
+        # @param Tags: 环境标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region
+        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags
         
-        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil)
+        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil)
           @EnvId = envid
           @Source = source
           @Alias = _alias
@@ -3596,6 +3671,7 @@ module TencentCloud
           @PayMode = paymode
           @IsDefault = isdefault
           @Region = region
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3642,6 +3718,12 @@ module TencentCloud
           @PayMode = params['PayMode']
           @IsDefault = params['IsDefault']
           @Region = params['Region']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -4578,6 +4660,26 @@ module TencentCloud
           @Bucket = params['Bucket']
           @CdnDomain = params['CdnDomain']
           @AppId = params['AppId']
+        end
+      end
+
+      # 标签键值对
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

@@ -2022,6 +2022,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定时间段范围内启动和结束的录制任务列表。
+        # - 使用前提
+        # 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
+        # 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
+
+        # @param request: Request instance for DescribeRecordTask.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeRecordTaskRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeRecordTaskResponse`
+        def DescribeRecordTask(request)
+          body = send_request('DescribeRecordTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口用来查询直播增值业务--截图的张数
 
         # @param request: Request instance for DescribeScreenShotSheetNumList.
