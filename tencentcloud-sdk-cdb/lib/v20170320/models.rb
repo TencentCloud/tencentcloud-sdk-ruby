@@ -49,18 +49,21 @@ module TencentCloud
         # @type ModifyTime: String
         # @param ModifyPasswordTime: 修改密码的时间
         # @type ModifyPasswordTime: String
-        # @param CreateTime: 账号的创建时间
+        # @param CreateTime: 该值已废弃
         # @type CreateTime: String
+        # @param MaxUserConnections: 用户最大可用实例连接数
+        # @type MaxUserConnections: Integer
 
-        attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime
+        attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections
         
-        def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil)
+        def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil)
           @Notes = notes
           @Host = host
           @User = user
           @ModifyTime = modifytime
           @ModifyPasswordTime = modifypasswordtime
           @CreateTime = createtime
+          @MaxUserConnections = maxuserconnections
         end
 
         def deserialize(params)
@@ -70,6 +73,7 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @ModifyPasswordTime = params['ModifyPasswordTime']
           @CreateTime = params['CreateTime']
+          @MaxUserConnections = params['MaxUserConnections']
         end
       end
 
@@ -789,14 +793,17 @@ module TencentCloud
         # @type Password: String
         # @param Description: 备注信息。
         # @type Description: String
+        # @param MaxUserConnections: 新账户最大可用连接数。
+        # @type MaxUserConnections: Integer
 
-        attr_accessor :InstanceId, :Accounts, :Password, :Description
+        attr_accessor :InstanceId, :Accounts, :Password, :Description, :MaxUserConnections
         
-        def initialize(instanceid=nil, accounts=nil, password=nil, description=nil)
+        def initialize(instanceid=nil, accounts=nil, password=nil, description=nil, maxuserconnections=nil)
           @InstanceId = instanceid
           @Accounts = accounts
           @Password = password
           @Description = description
+          @MaxUserConnections = maxuserconnections
         end
 
         def deserialize(params)
@@ -809,6 +816,7 @@ module TencentCloud
           end
           @Password = params['Password']
           @Description = params['Description']
+          @MaxUserConnections = params['MaxUserConnections']
         end
       end
 
@@ -2229,14 +2237,17 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Items: 符合查询条件的账号详细信息。
         # @type Items: Array
+        # @param MaxUserConnections: 用户可设置实例最大连接数。
+        # @type MaxUserConnections: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Items, :RequestId
+        attr_accessor :TotalCount, :Items, :MaxUserConnections, :RequestId
         
-        def initialize(totalcount=nil, items=nil, requestid=nil)
+        def initialize(totalcount=nil, items=nil, maxuserconnections=nil, requestid=nil)
           @TotalCount = totalcount
           @Items = items
+          @MaxUserConnections = maxuserconnections
           @RequestId = requestid
         end
 
@@ -2248,6 +2259,7 @@ module TencentCloud
               @Items << AccountInfo.new.deserialize(i)
             end
           end
+          @MaxUserConnections = params['MaxUserConnections']
           @RequestId = params['RequestId']
         end
       end
@@ -5510,10 +5522,13 @@ module TencentCloud
         # @type ZoneId: Integer
         # @param InstanceNodes: 节点数
         # @type InstanceNodes: Integer
+        # @param TagList: 标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
 
-        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes
+        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList
         
-        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil)
+        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil)
           @WanStatus = wanstatus
           @Zone = zone
           @InitFlag = initflag
@@ -5556,6 +5571,7 @@ module TencentCloud
           @DeployGroupId = deploygroupid
           @ZoneId = zoneid
           @InstanceNodes = instancenodes
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -5617,6 +5633,12 @@ module TencentCloud
           @DeployGroupId = params['DeployGroupId']
           @ZoneId = params['ZoneId']
           @InstanceNodes = params['InstanceNodes']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              @TagList << TagInfoItem.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -5843,6 +5865,55 @@ module TencentCloud
         end
       end
 
+      # ModifyAccountMaxUserConnections请求参数结构体
+      class ModifyAccountMaxUserConnectionsRequest < TencentCloud::Common::AbstractModel
+        # @param Accounts: 云数据库账号。
+        # @type Accounts: Array
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param MaxUserConnections: 设置账户最大可用连接数。
+        # @type MaxUserConnections: Integer
+
+        attr_accessor :Accounts, :InstanceId, :MaxUserConnections
+        
+        def initialize(accounts=nil, instanceid=nil, maxuserconnections=nil)
+          @Accounts = accounts
+          @InstanceId = instanceid
+          @MaxUserConnections = maxuserconnections
+        end
+
+        def deserialize(params)
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              @Accounts << Account.new.deserialize(i)
+            end
+          end
+          @InstanceId = params['InstanceId']
+          @MaxUserConnections = params['MaxUserConnections']
+        end
+      end
+
+      # ModifyAccountMaxUserConnections返回参数结构体
+      class ModifyAccountMaxUserConnectionsResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAccountPassword请求参数结构体
       class ModifyAccountPasswordRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -5910,16 +5981,19 @@ module TencentCloud
         # @param ColumnPrivileges: 数据库表中列的权限。Privileges 权限的可选值为："SELECT","INSERT","UPDATE","REFERENCES"。
         # 注意，不传该参数表示清除该权限。
         # @type ColumnPrivileges: Array
+        # @param ModifyAction: 该参数不为空时，为批量修改权限。可选值为：grant，revoke。
+        # @type ModifyAction: String
 
-        attr_accessor :InstanceId, :Accounts, :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges, :ColumnPrivileges
+        attr_accessor :InstanceId, :Accounts, :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges, :ColumnPrivileges, :ModifyAction
         
-        def initialize(instanceid=nil, accounts=nil, globalprivileges=nil, databaseprivileges=nil, tableprivileges=nil, columnprivileges=nil)
+        def initialize(instanceid=nil, accounts=nil, globalprivileges=nil, databaseprivileges=nil, tableprivileges=nil, columnprivileges=nil, modifyaction=nil)
           @InstanceId = instanceid
           @Accounts = accounts
           @GlobalPrivileges = globalprivileges
           @DatabasePrivileges = databaseprivileges
           @TablePrivileges = tableprivileges
           @ColumnPrivileges = columnprivileges
+          @ModifyAction = modifyaction
         end
 
         def deserialize(params)
@@ -5949,6 +6023,7 @@ module TencentCloud
               @ColumnPrivileges << ColumnPrivilege.new.deserialize(i)
             end
           end
+          @ModifyAction = params['ModifyAction']
         end
       end
 
@@ -8338,6 +8413,28 @@ module TencentCloud
         # @type TagKey: String
         # @param TagValue: 标签值
         # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+        
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签信息
+      class TagInfoItem < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
         

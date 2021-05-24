@@ -1718,6 +1718,29 @@ module TencentCloud
         end
       end
 
+      # 回调事件内容。
+      class EventContent < TencentCloud::Common::AbstractModel
+        # @param EventType: 事件类型，可取值为：
+        # <li>Storage.NewFileCreated：新文件产生。</li>
+        # @type EventType: String
+        # @param StorageNewFileCreatedEvent: 新文件产生事件信息。仅当 EventType 为 Storage.NewFileCreated 时有效。
+        # @type StorageNewFileCreatedEvent: :class:`Tencentcloud::Cme.v20191029.models.StorageNewFileCreatedEvent`
+
+        attr_accessor :EventType, :StorageNewFileCreatedEvent
+        
+        def initialize(eventtype=nil, storagenewfilecreatedevent=nil)
+          @EventType = eventtype
+          @StorageNewFileCreatedEvent = storagenewfilecreatedevent
+        end
+
+        def deserialize(params)
+          @EventType = params['EventType']
+          unless params['StorageNewFileCreatedEvent'].nil?
+            @StorageNewFileCreatedEvent = StorageNewFileCreatedEvent.new.deserialize(params['StorageNewFileCreatedEvent'])
+          end
+        end
+      end
+
       # ExportVideoByEditorTrackData请求参数结构体
       class ExportVideoByEditorTrackDataRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
@@ -3461,6 +3484,48 @@ module TencentCloud
         end
       end
 
+      # ParseEvent请求参数结构体
+      class ParseEventRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param EventContent: 回调事件内容。
+        # @type EventContent: String
+
+        attr_accessor :Platform, :EventContent
+        
+        def initialize(platform=nil, eventcontent=nil)
+          @Platform = platform
+          @EventContent = eventcontent
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @EventContent = params['EventContent']
+        end
+      end
+
+      # ParseEvent返回参数结构体
+      class ParseEventResponse < TencentCloud::Common::AbstractModel
+        # @param EventContent: 事件内容。
+        # @type EventContent: :class:`Tencentcloud::Cme.v20191029.models.EventContent`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventContent, :RequestId
+        
+        def initialize(eventcontent=nil, requestid=nil)
+          @EventContent = eventcontent
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EventContent'].nil?
+            @EventContent = EventContent.new.deserialize(params['EventContent'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 企鹅号发布信息。
       class PenguinMediaPlatformPublishInfo < TencentCloud::Common::AbstractModel
         # @param Title: 视频发布标题。
@@ -3975,6 +4040,47 @@ module TencentCloud
         def deserialize(params)
           @Field = params['Field']
           @Order = params['Order']
+        end
+      end
+
+      # 新文件生成事件
+      class StorageNewFileCreatedEvent < TencentCloud::Common::AbstractModel
+        # @param FileId: 云点播文件  Id。
+        # @type FileId: String
+        # @param MaterialId: 媒体 Id。
+        # @type MaterialId: String
+        # @param Operator: 操作者 Id。
+        # @type Operator: String
+        # @param OperationType: 操作类型，可取值为：
+        # <li>Upload：上传；</li>
+        # <li>PullUpload：拉取上传；</li>
+        # <li>Record：直播录制。</li>
+        # @type OperationType: String
+        # @param Owner: 媒体归属。
+        # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param ClassPath: 媒体分类路径。
+        # @type ClassPath: String
+
+        attr_accessor :FileId, :MaterialId, :Operator, :OperationType, :Owner, :ClassPath
+        
+        def initialize(fileid=nil, materialid=nil, operator=nil, operationtype=nil, owner=nil, classpath=nil)
+          @FileId = fileid
+          @MaterialId = materialid
+          @Operator = operator
+          @OperationType = operationtype
+          @Owner = owner
+          @ClassPath = classpath
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @MaterialId = params['MaterialId']
+          @Operator = params['Operator']
+          @OperationType = params['OperationType']
+          unless params['Owner'].nil?
+            @Owner = Entity.new.deserialize(params['Owner'])
+          end
+          @ClassPath = params['ClassPath']
         end
       end
 

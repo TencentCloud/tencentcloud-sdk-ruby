@@ -2912,6 +2912,7 @@ module TencentCloud
         # PEERCONNECTION：对等连接；
         # NAT：NAT网关；
         # NORMAL_CVM：普通云服务器；
+        # CCN：云联网网关；
         # @type NextHopType: String
         # @param NextHopDestination: 下一跳目的网关，取值与“下一跳类型”相关：
         # 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
@@ -2919,6 +2920,7 @@ module TencentCloud
         # 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
         # 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
         # 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
+        # 下一跳类型为CCN，取值云联网ID，形如：ccn-12345678；
         # @type NextHopDestination: String
         # @param NetDetectDescription: 网络探测描述。
         # @type NetDetectDescription: String
@@ -13180,6 +13182,7 @@ module TencentCloud
         # PEERCONNECTION：对等连接；
         # NAT：NAT网关；
         # NORMAL_CVM：普通云服务器；
+        # CCN：云联网网关；
         # @type NextHopType: String
         # @param NextHopDestination: 下一跳目的网关，取值与“下一跳类型”相关：
         # 下一跳类型为VPN，取值VPN网关ID，形如：vpngw-12345678；
@@ -13187,6 +13190,7 @@ module TencentCloud
         # 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
         # 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
         # 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
+        # 下一跳类型为CCN，取值云联网网关，形如：ccn-12345678；
         # @type NextHopDestination: String
         # @param NextHopName: 下一跳网关名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -15114,12 +15118,15 @@ module TencentCloud
         # @type CcnId: String
         # @param CcnRegionBandwidthLimits: 云联网（CCN）各地域出带宽上限。
         # @type CcnRegionBandwidthLimits: Array
+        # @param SetDefaultLimitFlag: 是否设置带宽为默认值。
+        # @type SetDefaultLimitFlag: Boolean
 
-        attr_accessor :CcnId, :CcnRegionBandwidthLimits
+        attr_accessor :CcnId, :CcnRegionBandwidthLimits, :SetDefaultLimitFlag
         
-        def initialize(ccnid=nil, ccnregionbandwidthlimits=nil)
+        def initialize(ccnid=nil, ccnregionbandwidthlimits=nil, setdefaultlimitflag=nil)
           @CcnId = ccnid
           @CcnRegionBandwidthLimits = ccnregionbandwidthlimits
+          @SetDefaultLimitFlag = setdefaultlimitflag
         end
 
         def deserialize(params)
@@ -15130,6 +15137,7 @@ module TencentCloud
               @CcnRegionBandwidthLimits << CcnRegionBandwidthLimit.new.deserialize(i)
             end
           end
+          @SetDefaultLimitFlag = params['SetDefaultLimitFlag']
         end
       end
 

@@ -1046,6 +1046,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口接受制作云回调给客户的事件内容，将其转化为对应的 EventContent 结构，请不要实际调用该接口，只需要将接收到的事件内容直接使用 JSON 解析到 EventContent  即可使用。
+
+        # @param request: Request instance for ParseEvent.
+        # @type request: :class:`Tencentcloud::cme::V20191029::ParseEventRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::ParseEventResponse`
+        def ParseEvent(request)
+          body = send_request('ParseEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ParseEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         #  资源所属实体对目标实体回收目标资源的相应权限，若原本没有相应权限则不产生变更。
 
         # @param request: Request instance for RevokeResourceAuthorization.

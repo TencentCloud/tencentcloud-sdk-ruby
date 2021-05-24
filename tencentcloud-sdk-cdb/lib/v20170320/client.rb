@@ -121,7 +121,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(CreateAccounts)用于创建云数据库的账户，需要指定新的账户名和域名，以及所对应的密码，同时可以设置账号的备注信息。
+        # 本接口(CreateAccounts)用于创建云数据库的账户，需要指定新的账户名和域名，以及所对应的密码，同时可以设置账号的备注信息以及最大可用连接数。
 
         # @param request: Request instance for CreateAccounts.
         # @type request: :class:`Tencentcloud::cdb::V20170320::CreateAccountsRequest`
@@ -1931,6 +1931,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAccountDescriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyAccountMaxUserConnections)用于修改云数据库账户最大可用连接数。
+
+        # @param request: Request instance for ModifyAccountMaxUserConnections.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyAccountMaxUserConnectionsRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::ModifyAccountMaxUserConnectionsResponse`
+        def ModifyAccountMaxUserConnections(request)
+          body = send_request('ModifyAccountMaxUserConnections', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountMaxUserConnectionsResponse.new
             model.deserialize(response['Response'])
             model
           else
