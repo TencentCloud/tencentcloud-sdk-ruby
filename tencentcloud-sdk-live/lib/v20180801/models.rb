@@ -1077,6 +1077,135 @@ module TencentCloud
         end
       end
 
+      # CreateLivePullStreamTask请求参数结构体
+      class CreateLivePullStreamTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SourceType: 拉流源的类型：
+        # PullLivePushLive -直播，
+        # PullVodPushLive -点播。
+        # @type SourceType: String
+        # @param SourceUrls: 拉流源 url 列表。
+        # SourceType 为直播（PullLivePushLive）只可以填1个，
+        # SourceType 为点播（PullVodPushLive）可以填多个，上限30个。
+        # 当前支持的文件格式：flv，mp4，hls。
+        # 当前支持的拉流协议：http，https，rtmp。
+        # @type SourceUrls: Array
+        # @param DomainName: 推流域名。
+        # 将拉取过来的流推到该域名。
+        # 注意：请使用已在云直播配置的推流域名。
+        # @type DomainName: String
+        # @param AppName: 推流路径。
+        # 将拉取过来的流推到该路径。
+        # @type AppName: String
+        # @param StreamName: 推流名称。
+        # 将拉取过来的流推到该流名称。
+        # @type StreamName: String
+        # @param StartTime: 开始时间。
+        # 使用 UTC 格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，注意：
+        # 1. 结束时间必须大于开始时间；
+        # 2. 结束时间和开始时间必须大于当前时间；
+        # 3. 结束时间 和 开始时间 间隔必须小于七天。
+        # 使用 UTC 格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type EndTime: String
+        # @param Operator: 任务操作人备注。
+        # @type Operator: String
+        # @param PushArgs: 推流参数。
+        # 推流时携带自定义参数。
+        # 示例：
+        # bak=1&test=2 。
+        # @type PushArgs: String
+        # @param CallbackEvents: 选择需要回调的事件（不填则回调全部）：
+        # TaskStart：任务启动回调，
+        # TaskExit：任务停止回调，
+        # VodSourceFileStart：从点播源文件开始拉流回调，
+        # VodSourceFileFinish：从点播源文件拉流结束回调，
+        # ResetTaskConfig：任务更新回调。
+        # @type CallbackEvents: Array
+        # @param VodLoopTimes: 点播拉流转推循环次数。默认：-1。
+        # -1：无限循环，直到任务结束。
+        # 0：不循环。
+        # >0：具体循环次数。次数和时间以先结束的为准。
+        # 注意：该配置仅对拉流源为点播时生效。
+        # @type VodLoopTimes: String
+        # @param VodRefreshType: 点播更新SourceUrls后的播放方式：
+        # ImmediateNewSource：立即播放新的拉流源内容；
+        # ContinueBreakPoint：播放完当前正在播放的点播 url 后再使用新的拉流源播放。（旧拉流源未播放的点播 url 不会再播放）
+
+        # 注意：该配置生效仅对变更前拉流源为点播时生效。
+        # @type VodRefreshType: String
+        # @param CallbackUrl: 自定义回调地址。
+        # 拉流转推任务相关事件会回调到该地址。
+        # @type CallbackUrl: String
+        # @param ExtraCmd: 其他参数。
+        # 示例: ignore_region  用于忽略传入地域, 内部按负载分配。
+        # @type ExtraCmd: String
+        # @param Comment: 任务描述，限制 512 字节。
+        # @type Comment: String
+
+        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :Comment
+        
+        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, comment=nil)
+          @SourceType = sourcetype
+          @SourceUrls = sourceurls
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+          @StartTime = starttime
+          @EndTime = endtime
+          @Operator = operator
+          @PushArgs = pushargs
+          @CallbackEvents = callbackevents
+          @VodLoopTimes = vodlooptimes
+          @VodRefreshType = vodrefreshtype
+          @CallbackUrl = callbackurl
+          @ExtraCmd = extracmd
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @SourceType = params['SourceType']
+          @SourceUrls = params['SourceUrls']
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Operator = params['Operator']
+          @PushArgs = params['PushArgs']
+          @CallbackEvents = params['CallbackEvents']
+          @VodLoopTimes = params['VodLoopTimes']
+          @VodRefreshType = params['VodRefreshType']
+          @CallbackUrl = params['CallbackUrl']
+          @ExtraCmd = params['ExtraCmd']
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateLivePullStreamTask返回参数结构体
+      class CreateLivePullStreamTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 Id 。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLiveRecord请求参数结构体
       class CreateLiveRecordRequest < TencentCloud::Common::AbstractModel
         # @param StreamName: 流名称。
@@ -2001,6 +2130,42 @@ module TencentCloud
 
       # DeleteLiveDomain返回参数结构体
       class DeleteLiveDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLivePullStreamTask请求参数结构体
+      class DeleteLivePullStreamTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 Id。
+        # @type TaskId: String
+        # @param Operator: 操作人姓名。
+        # @type Operator: String
+
+        attr_accessor :TaskId, :Operator
+        
+        def initialize(taskid=nil, operator=nil)
+          @TaskId = taskid
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Operator = params['Operator']
+        end
+      end
+
+      # DeleteLivePullStreamTask返回参数结构体
+      class DeleteLivePullStreamTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3571,6 +3736,78 @@ module TencentCloud
           unless params['PlayAuthKeyInfo'].nil?
             @PlayAuthKeyInfo = PlayAuthKeyInfo.new.deserialize(params['PlayAuthKeyInfo'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLivePullStreamTasks请求参数结构体
+      class DescribeLivePullStreamTasksRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # 来源：调用 CreateLivePullStreamTask 接口时返回。
+        # 不填默认查询所有任务，按更新时间倒序排序。
+        # @type TaskId: String
+        # @param PageNum: 取得第几页，默认值：1。
+        # @type PageNum: Integer
+        # @param PageSize: 分页大小，默认值：10。
+        # 取值范围：1~20 之前的任意整数。
+        # @type PageSize: Integer
+
+        attr_accessor :TaskId, :PageNum, :PageSize
+        
+        def initialize(taskid=nil, pagenum=nil, pagesize=nil)
+          @TaskId = taskid
+          @PageNum = pagenum
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeLivePullStreamTasks返回参数结构体
+      class DescribeLivePullStreamTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TaskInfos: 直播拉流任务信息列表。
+        # @type TaskInfos: Array
+        # @param PageNum: 分页的页码。
+        # @type PageNum: Integer
+        # @param PageSize: 每页大小。
+        # @type PageSize: Integer
+        # @param TotalNum: 符合条件的总个数。
+        # @type TotalNum: Integer
+        # @param TotalPage: 总页数。
+        # @type TotalPage: Integer
+        # @param LimitTaskNum: 限制可创建的最大任务数。
+        # @type LimitTaskNum: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskInfos, :PageNum, :PageSize, :TotalNum, :TotalPage, :LimitTaskNum, :RequestId
+        
+        def initialize(taskinfos=nil, pagenum=nil, pagesize=nil, totalnum=nil, totalpage=nil, limittasknum=nil, requestid=nil)
+          @TaskInfos = taskinfos
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @TotalNum = totalnum
+          @TotalPage = totalpage
+          @LimitTaskNum = limittasknum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskInfos'].nil?
+            @TaskInfos = []
+            params['TaskInfos'].each do |i|
+              @TaskInfos << PullStreamTaskInfo.new.deserialize(i)
+            end
+          end
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @TotalNum = params['TotalNum']
+          @TotalPage = params['TotalPage']
+          @LimitTaskNum = params['LimitTaskNum']
           @RequestId = params['RequestId']
         end
       end
@@ -6503,6 +6740,120 @@ module TencentCloud
         end
       end
 
+      # ModifyLivePullStreamTask请求参数结构体
+      class ModifyLivePullStreamTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id。
+        # @type TaskId: String
+        # @param Operator: 操作人姓名。
+        # @type Operator: String
+        # @param SourceUrls: 拉流源url列表。
+        # SourceType为直播（PullLivePushLive）只可以填1个，
+        # SourceType为点播（PullVodPushLive）可以填多个，上限30个。
+        # @type SourceUrls: Array
+        # @param StartTime: 开始时间。
+        # 使用UTC格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，注意：
+        # 1. 结束时间必须大于开始时间；
+        # 2. 结束时间和开始时间必须大于当前时间；
+        # 3. 结束时间 和 开始时间 间隔必须小于七天。
+        # 使用UTC格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type EndTime: String
+        # @param VodLoopTimes: 点播拉流转推循环次数。
+        # -1：无限循环，直到任务结束。
+        # 0：不循环。
+        # >0：具体循环次数。次数和时间以先结束的为准。
+        # 注意：拉流源为点播，该配置生效。
+        # @type VodLoopTimes: Integer
+        # @param VodRefreshType: 点播更新SourceUrls后的播放方式：
+        # ImmediateNewSource：立即从更新的拉流源开始播放；
+        # ContinueBreakPoint：从上次断流url源的断点处继续，结束后再使用新的拉流源。
+        # 注意：拉流源为点播，该配置生效。
+        # @type VodRefreshType: String
+        # @param Status: 任务状态：
+        # enable - 启用，
+        # pause - 暂停。
+        # @type Status: String
+        # @param CallbackEvents: 选择需要回调的事件（不填则回调全部）：
+        # TaskStart：任务启动回调，
+        # TaskExit：任务停止回调，
+        # VodSourceFileStart：从点播源文件开始拉流回调，
+        # VodSourceFileFinish：从点播源文件拉流结束回调，
+        # ResetTaskConfig：任务更新回调。
+        # @type CallbackEvents: Array
+        # @param CallbackUrl: 自定义回调地址。
+        # 相关事件会回调到该地址。
+        # @type CallbackUrl: String
+        # @param FileIndex: 指定播放文件索引。
+        # 注意：
+        # 1. 从1开始，不大于SourceUrls中文件个数。
+        # 2. 只有VodRefreshType为ContinueBeginPoint时指定才有效。
+        # 3. 只有当前任务处于暂停时，指定后启动任务才会生效。
+        # @type FileIndex: Integer
+        # @param OffsetTime: 指定播放文件偏移。
+        # 注意：
+        # 1. 单位：秒，配合FileIndex使用。
+        # 2. 只有VodRefreshType为ContinueBeginPoint时指定才有效。
+        # 3. 只有当前任务处于暂停时，指定后启动任务才会生效。
+        # @type OffsetTime: Integer
+        # @param Comment: 任务备注。
+        # @type Comment: String
+
+        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :Comment
+        
+        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, comment=nil)
+          @TaskId = taskid
+          @Operator = operator
+          @SourceUrls = sourceurls
+          @StartTime = starttime
+          @EndTime = endtime
+          @VodLoopTimes = vodlooptimes
+          @VodRefreshType = vodrefreshtype
+          @Status = status
+          @CallbackEvents = callbackevents
+          @CallbackUrl = callbackurl
+          @FileIndex = fileindex
+          @OffsetTime = offsettime
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Operator = params['Operator']
+          @SourceUrls = params['SourceUrls']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @VodLoopTimes = params['VodLoopTimes']
+          @VodRefreshType = params['VodRefreshType']
+          @Status = params['Status']
+          @CallbackEvents = params['CallbackEvents']
+          @CallbackUrl = params['CallbackUrl']
+          @FileIndex = params['FileIndex']
+          @OffsetTime = params['OffsetTime']
+          @Comment = params['Comment']
+        end
+      end
+
+      # ModifyLivePullStreamTask返回参数结构体
+      class ModifyLivePullStreamTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLivePushAuthKey请求参数结构体
       class ModifyLivePushAuthKeyRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 推流域名。
@@ -7264,6 +7615,158 @@ module TencentCloud
         end
       end
 
+      # 直播拉流任务信息。
+      class PullStreamTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 拉流任务Id。
+        # @type TaskId: String
+        # @param SourceType: 拉流源的类型：
+        # PullLivePushLive -直播，
+        # PullVodPushLive -点播。
+        # @type SourceType: String
+        # @param SourceUrls: 拉流源url列表。
+        # SourceType为直播（PullLiveToLive）只可以填1个，
+        # SourceType为点播（PullVodToLive）可以填多个，上限10个。
+        # @type SourceUrls: Array
+        # @param DomainName: 推流域名。
+        # 将拉到的源推到该域名。
+        # @type DomainName: String
+        # @param AppName: 推流路径。
+        # 将拉到的源推到该路径。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # 将拉到的源推到该流名称。
+        # @type StreamName: String
+        # @param PushArgs: 推流参数。
+        # 推流携带的自定义参数。
+        # @type PushArgs: String
+        # @param StartTime: 开始时间。
+        # 使用UTC格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，注意：
+        # 1. 结束时间必须大于开始时间；
+        # 2. 结束时间和开始时间必须大于当前时间；
+        # 3. 结束时间 和 开始时间 间隔必须小于七天。
+        # 使用UTC格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type EndTime: String
+        # @param Region: 拉流源所在地域（请就近选取）：
+        # ap-beijing - 华北地区(北京)，
+        # ap-shanghai -华东地区(上海)，
+        # ap-guangzhou -华南地区(广州)，
+        # ap-mumbai - 印度。
+        # @type Region: String
+        # @param VodLoopTimes: 点播拉流转推循环次数。
+        # -1：无限循环，直到任务结束。
+        # 0：不循环。
+        # >0：具体循环次数。次数和时间以先结束的为准。
+        # 注意：拉流源为点播，该配置生效。
+        # @type VodLoopTimes: Integer
+        # @param VodRefreshType: 点播更新SourceUrls后的播放方式：
+        # ImmediateNewSource：立即从更新的拉流源开始播放；
+        # ContinueBreakPoint：从上次断流url源的断点处继续，结束后再使用新的拉流源。
+
+        # 注意：拉流源为点播，该配置生效。
+        # @type VodRefreshType: String
+        # @param CreateTime: 任务创建时间。
+        # 使用UTC格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+        # @param UpdateTime: 任务更新时间。
+        # 使用UTC格式时间，
+        # 例如：2019-01-08T10:00:00Z。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type UpdateTime: String
+        # @param CreateBy: 创建任务的操作者。
+        # @type CreateBy: String
+        # @param UpdateBy: 最后更新任务的操作者。
+        # @type UpdateBy: String
+        # @param CallbackUrl: 回调地址。
+        # @type CallbackUrl: String
+        # @param CallbackEvents: 选择需要回调的事件：
+        # TaskStart：任务启动回调，
+        # TaskExit：任务停止回调，
+        # VodSourceFileStart：从点播源文件开始拉流回调，
+        # VodSourceFileFinish：从点播源文件拉流结束回调，
+        # ResetTaskConfig：任务更新回调。
+        # @type CallbackEvents: Array
+        # @param CallbackInfo: 注意：该信息暂不返回。
+        # 最后一次回调信息。
+        # @type CallbackInfo: String
+        # @param ErrorInfo: 注意：该信息暂不返回。
+        # 错误信息。
+        # @type ErrorInfo: String
+        # @param Status: 状态。
+        # enable：生效中。
+        # pause：暂停中。
+        # @type Status: String
+        # @param RecentPullInfo: 注意：该信息仅在查询单个任务时返回。
+        # 任务最新拉流信息。
+        # 包含：源 url，偏移时间，上报时间。
+        # @type RecentPullInfo: :class:`Tencentcloud::Live.v20180801.models.RecentPullInfo`
+        # @param Comment: 任务备注信息。
+        # @type Comment: String
+
+        attr_accessor :TaskId, :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :PushArgs, :StartTime, :EndTime, :Region, :VodLoopTimes, :VodRefreshType, :CreateTime, :UpdateTime, :CreateBy, :UpdateBy, :CallbackUrl, :CallbackEvents, :CallbackInfo, :ErrorInfo, :Status, :RecentPullInfo, :Comment
+        
+        def initialize(taskid=nil, sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, pushargs=nil, starttime=nil, endtime=nil, region=nil, vodlooptimes=nil, vodrefreshtype=nil, createtime=nil, updatetime=nil, createby=nil, updateby=nil, callbackurl=nil, callbackevents=nil, callbackinfo=nil, errorinfo=nil, status=nil, recentpullinfo=nil, comment=nil)
+          @TaskId = taskid
+          @SourceType = sourcetype
+          @SourceUrls = sourceurls
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+          @PushArgs = pushargs
+          @StartTime = starttime
+          @EndTime = endtime
+          @Region = region
+          @VodLoopTimes = vodlooptimes
+          @VodRefreshType = vodrefreshtype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @CreateBy = createby
+          @UpdateBy = updateby
+          @CallbackUrl = callbackurl
+          @CallbackEvents = callbackevents
+          @CallbackInfo = callbackinfo
+          @ErrorInfo = errorinfo
+          @Status = status
+          @RecentPullInfo = recentpullinfo
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @SourceType = params['SourceType']
+          @SourceUrls = params['SourceUrls']
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+          @PushArgs = params['PushArgs']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Region = params['Region']
+          @VodLoopTimes = params['VodLoopTimes']
+          @VodRefreshType = params['VodRefreshType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @CreateBy = params['CreateBy']
+          @UpdateBy = params['UpdateBy']
+          @CallbackUrl = params['CallbackUrl']
+          @CallbackEvents = params['CallbackEvents']
+          @CallbackInfo = params['CallbackInfo']
+          @ErrorInfo = params['ErrorInfo']
+          @Status = params['Status']
+          unless params['RecentPullInfo'].nil?
+            @RecentPullInfo = RecentPullInfo.new.deserialize(params['RecentPullInfo'])
+          end
+          @Comment = params['Comment']
+        end
+      end
+
       # 推流鉴权key信息。
       class PushAuthKeyInfo < TencentCloud::Common::AbstractModel
         # @param DomainName: 域名。
@@ -7467,6 +7970,36 @@ module TencentCloud
           @MetaAudioRate = params['MetaAudioRate']
           @MateFps = params['MateFps']
           @StreamParam = params['StreamParam']
+        end
+      end
+
+      # 直播拉流当前正在拉的文件信息。
+      class RecentPullInfo < TencentCloud::Common::AbstractModel
+        # @param FileUrl: 当前正在拉的文件地址。
+        # @type FileUrl: String
+        # @param OffsetTime: 当前正在拉的文件偏移，单位：秒。
+        # @type OffsetTime: Integer
+        # @param ReportTime: 最新上报偏移信息时间。UTC格式。
+        # 如：2020-07-23T03:20:39Z。
+        # 注意：与北京时间相差八小时。
+        # @type ReportTime: String
+        # @param LoopedTimes: 已经轮播的次数。
+        # @type LoopedTimes: Integer
+
+        attr_accessor :FileUrl, :OffsetTime, :ReportTime, :LoopedTimes
+        
+        def initialize(fileurl=nil, offsettime=nil, reporttime=nil, loopedtimes=nil)
+          @FileUrl = fileurl
+          @OffsetTime = offsettime
+          @ReportTime = reporttime
+          @LoopedTimes = loopedtimes
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @OffsetTime = params['OffsetTime']
+          @ReportTime = params['ReportTime']
+          @LoopedTimes = params['LoopedTimes']
         end
       end
 

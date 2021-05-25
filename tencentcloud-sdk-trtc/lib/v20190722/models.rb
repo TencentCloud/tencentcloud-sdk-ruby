@@ -1229,10 +1229,12 @@ module TencentCloud
         # @type PlaceHolderMode: Integer
         # @param PureAudioHoldPlaceMode: 悬浮模板、九宫格、屏幕分享模板生效，用于控制纯音频上行是否占用画面布局位置。设置为0是代表后台默认处理方式，悬浮小画面占布局位置，九宫格画面占布局位置、屏幕分享小画面不占布局位置；设置为1时代表纯音频上行占布局位置；设置为2时代表纯音频上行不占布局位置。默认为0。
         # @type PureAudioHoldPlaceMode: Integer
+        # @param WaterMarkParams: 水印参数。
+        # @type WaterMarkParams: :class:`Tencentcloud::Trtc.v20190722.models.WaterMarkParams`
 
-        attr_accessor :Template, :MainVideoUserId, :MainVideoStreamType, :SmallVideoLayoutParams, :MainVideoRightAlign, :MixVideoUids, :PresetLayoutConfig, :PlaceHolderMode, :PureAudioHoldPlaceMode
+        attr_accessor :Template, :MainVideoUserId, :MainVideoStreamType, :SmallVideoLayoutParams, :MainVideoRightAlign, :MixVideoUids, :PresetLayoutConfig, :PlaceHolderMode, :PureAudioHoldPlaceMode, :WaterMarkParams
         
-        def initialize(template=nil, mainvideouserid=nil, mainvideostreamtype=nil, smallvideolayoutparams=nil, mainvideorightalign=nil, mixvideouids=nil, presetlayoutconfig=nil, placeholdermode=nil, pureaudioholdplacemode=nil)
+        def initialize(template=nil, mainvideouserid=nil, mainvideostreamtype=nil, smallvideolayoutparams=nil, mainvideorightalign=nil, mixvideouids=nil, presetlayoutconfig=nil, placeholdermode=nil, pureaudioholdplacemode=nil, watermarkparams=nil)
           @Template = template
           @MainVideoUserId = mainvideouserid
           @MainVideoStreamType = mainvideostreamtype
@@ -1242,6 +1244,7 @@ module TencentCloud
           @PresetLayoutConfig = presetlayoutconfig
           @PlaceHolderMode = placeholdermode
           @PureAudioHoldPlaceMode = pureaudioholdplacemode
+          @WaterMarkParams = watermarkparams
         end
 
         def deserialize(params)
@@ -1261,6 +1264,9 @@ module TencentCloud
           end
           @PlaceHolderMode = params['PlaceHolderMode']
           @PureAudioHoldPlaceMode = params['PureAudioHoldPlaceMode']
+          unless params['WaterMarkParams'].nil?
+            @WaterMarkParams = WaterMarkParams.new.deserialize(params['WaterMarkParams'])
+          end
         end
       end
 
@@ -2134,6 +2140,38 @@ module TencentCloud
           @SdkVersion = params['SdkVersion']
           @ClientIp = params['ClientIp']
           @Finished = params['Finished']
+        end
+      end
+
+      # MCU混流水印参数
+      class WaterMarkParams < TencentCloud::Common::AbstractModel
+        # @param WaterMarkId: 混流-水印图片ID。取值为实时音视频控制台上传的图片ID。
+        # @type WaterMarkId: Integer
+        # @param WaterMarkWidth: 混流-水印宽。单位为像素值。
+        # @type WaterMarkWidth: Integer
+        # @param WaterMarkHeight: 混流-水印高。单位为像素值。
+        # @type WaterMarkHeight: Integer
+        # @param LocationX: 水印在输出时的X偏移。单位为像素值。
+        # @type LocationX: Integer
+        # @param LocationY: 水印在输出时的Y偏移。单位为像素值。
+        # @type LocationY: Integer
+
+        attr_accessor :WaterMarkId, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY
+        
+        def initialize(watermarkid=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil)
+          @WaterMarkId = watermarkid
+          @WaterMarkWidth = watermarkwidth
+          @WaterMarkHeight = watermarkheight
+          @LocationX = locationx
+          @LocationY = locationy
+        end
+
+        def deserialize(params)
+          @WaterMarkId = params['WaterMarkId']
+          @WaterMarkWidth = params['WaterMarkWidth']
+          @WaterMarkHeight = params['WaterMarkHeight']
+          @LocationX = params['LocationX']
+          @LocationY = params['LocationY']
         end
       end
 

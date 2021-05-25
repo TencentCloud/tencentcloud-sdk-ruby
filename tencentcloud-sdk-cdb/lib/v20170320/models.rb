@@ -3378,10 +3378,12 @@ module TencentCloud
         # @type WithMaster: Integer
         # @param DeployGroupIds: 置放群组ID列表。
         # @type DeployGroupIds: Array
+        # @param TagKeysForSearch: 是否以标签键为过滤条件。
+        # @type TagKeysForSearch: Array
 
-        attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds
+        attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch
         
-        def initialize(projectid=nil, instancetypes=nil, vips=nil, status=nil, offset=nil, limit=nil, securitygroupid=nil, paytypes=nil, instancenames=nil, taskstatus=nil, engineversions=nil, vpcids=nil, zoneids=nil, subnetids=nil, cdberrors=nil, orderby=nil, orderdirection=nil, withsecuritygroup=nil, withexcluster=nil, exclusterid=nil, instanceids=nil, initflag=nil, withdr=nil, withro=nil, withmaster=nil, deploygroupids=nil)
+        def initialize(projectid=nil, instancetypes=nil, vips=nil, status=nil, offset=nil, limit=nil, securitygroupid=nil, paytypes=nil, instancenames=nil, taskstatus=nil, engineversions=nil, vpcids=nil, zoneids=nil, subnetids=nil, cdberrors=nil, orderby=nil, orderdirection=nil, withsecuritygroup=nil, withexcluster=nil, exclusterid=nil, instanceids=nil, initflag=nil, withdr=nil, withro=nil, withmaster=nil, deploygroupids=nil, tagkeysforsearch=nil)
           @ProjectId = projectid
           @InstanceTypes = instancetypes
           @Vips = vips
@@ -3408,6 +3410,7 @@ module TencentCloud
           @WithRo = withro
           @WithMaster = withmaster
           @DeployGroupIds = deploygroupids
+          @TagKeysForSearch = tagkeysforsearch
         end
 
         def deserialize(params)
@@ -3437,6 +3440,7 @@ module TencentCloud
           @WithRo = params['WithRo']
           @WithMaster = params['WithMaster']
           @DeployGroupIds = params['DeployGroupIds']
+          @TagKeysForSearch = params['TagKeysForSearch']
         end
       end
 
@@ -3471,20 +3475,20 @@ module TencentCloud
 
       # DescribeDBPrice请求参数结构体
       class DescribeDBPriceRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区信息，格式如 "ap-guangzhou-2"。具体能设置的值请通过 <a href="https://cloud.tencent.com/document/api/236/17229">DescribeDBZoneConfig</a> 接口查询。
-        # @type Zone: String
-        # @param GoodsNum: 实例数量，默认值为 1，最小值 1，最大值为 100。
-        # @type GoodsNum: Integer
-        # @param Memory: 实例内存大小，单位：MB。
-        # @type Memory: Integer
-        # @param Volume: 实例硬盘大小，单位：GB。
-        # @type Volume: Integer
-        # @param PayType: 付费类型，支持值包括：PRE_PAID - 包年包月，HOUR_PAID - 按量计费。
-        # @type PayType: String
         # @param Period: 实例时长，单位：月，最小值 1，最大值为 36；查询按量计费价格时，该字段无效。
         # @type Period: Integer
-        # @param InstanceRole: 实例类型，默认为 master，支持值包括：master - 表示主实例，ro - 表示只读实例，dr - 表示灾备实例。
+        # @param Zone: 可用区信息，格式如 "ap-guangzhou-2"。具体能设置的值请通过 <a href="https://cloud.tencent.com/document/api/236/17229">DescribeDBZoneConfig</a> 接口查询。InstanceId为空时该参数为必填项。
+        # @type Zone: String
+        # @param GoodsNum: 实例数量，默认值为 1，最小值 1，最大值为 100。InstanceId为空时该参数为必填项。
+        # @type GoodsNum: Integer
+        # @param Memory: 实例内存大小，单位：MB。InstanceId为空时该参数为必填项。
+        # @type Memory: Integer
+        # @param Volume: 实例硬盘大小，单位：GB。InstanceId为空时该参数为必填项。
+        # @type Volume: Integer
+        # @param InstanceRole: 实例类型，默认为 master，支持值包括：master - 表示主实例，ro - 表示只读实例，dr - 表示灾备实例。InstanceId为空时该参数为必填项。
         # @type InstanceRole: String
+        # @param PayType: 付费类型，支持值包括：PRE_PAID - 包年包月，HOUR_PAID - 按量计费。InstanceId为空时该参数为必填项。
+        # @type PayType: String
         # @param ProtectMode: 数据复制方式，默认为 0，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
         # @type ProtectMode: Integer
         # @param DeviceType: 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC" - 基础版实例。 不指定则默认为通用型实例。
@@ -3493,35 +3497,39 @@ module TencentCloud
         # @type InstanceNodes: Integer
         # @param Cpu: 询价实例的CPU核心数目，单位：核，为保证传入 CPU 值有效，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/product/236/17229) 接口获取可售卖的核心数目，当未指定该值时，将按照 Memory 大小补全一个默认值。
         # @type Cpu: Integer
+        # @param InstanceId: 续费询价实例ID。如需查询实例续费价格，填写InstanceId和Period即可。
+        # @type InstanceId: String
 
-        attr_accessor :Zone, :GoodsNum, :Memory, :Volume, :PayType, :Period, :InstanceRole, :ProtectMode, :DeviceType, :InstanceNodes, :Cpu
+        attr_accessor :Period, :Zone, :GoodsNum, :Memory, :Volume, :InstanceRole, :PayType, :ProtectMode, :DeviceType, :InstanceNodes, :Cpu, :InstanceId
         
-        def initialize(zone=nil, goodsnum=nil, memory=nil, volume=nil, paytype=nil, period=nil, instancerole=nil, protectmode=nil, devicetype=nil, instancenodes=nil, cpu=nil)
+        def initialize(period=nil, zone=nil, goodsnum=nil, memory=nil, volume=nil, instancerole=nil, paytype=nil, protectmode=nil, devicetype=nil, instancenodes=nil, cpu=nil, instanceid=nil)
+          @Period = period
           @Zone = zone
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
-          @PayType = paytype
-          @Period = period
           @InstanceRole = instancerole
+          @PayType = paytype
           @ProtectMode = protectmode
           @DeviceType = devicetype
           @InstanceNodes = instancenodes
           @Cpu = cpu
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
+          @Period = params['Period']
           @Zone = params['Zone']
           @GoodsNum = params['GoodsNum']
           @Memory = params['Memory']
           @Volume = params['Volume']
-          @PayType = params['PayType']
-          @Period = params['Period']
           @InstanceRole = params['InstanceRole']
+          @PayType = params['PayType']
           @ProtectMode = params['ProtectMode']
           @DeviceType = params['DeviceType']
           @InstanceNodes = params['InstanceNodes']
           @Cpu = params['Cpu']
+          @InstanceId = params['InstanceId']
         end
       end
 
