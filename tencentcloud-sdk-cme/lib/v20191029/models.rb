@@ -338,6 +338,34 @@ module TencentCloud
         end
       end
 
+      # COS 发布信息。
+      class CosPublishInputInfo < TencentCloud::Common::AbstractModel
+        # @param Bucket: 发布生成的对象存储文件所在的 COS Bucket 名，如 TopRankVideo-125xxx88。
+        # @type Bucket: String
+        # @param Region: 发布生成的对象存储文件所在的 COS Bucket 所属园区，如 ap-chongqing。
+        # @type Region: String
+        # @param VideoKey: 发布生成的视频在 COS 存储的对象键。对象键（ObjectKey）是对象（Object）在存储桶（Bucket）中的唯一标识。
+        # @type VideoKey: String
+        # @param CoverKey: 发布生成的封面在 COS 存储的对象键。
+        # @type CoverKey: String
+
+        attr_accessor :Bucket, :Region, :VideoKey, :CoverKey
+        
+        def initialize(bucket=nil, region=nil, videokey=nil, coverkey=nil)
+          @Bucket = bucket
+          @Region = region
+          @VideoKey = videokey
+          @CoverKey = coverkey
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Region = params['Region']
+          @VideoKey = params['VideoKey']
+          @CoverKey = params['CoverKey']
+        end
+      end
+
       # CreateClass请求参数结构体
       class CreateClassRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台名称，指定访问的平台。
@@ -4443,14 +4471,17 @@ module TencentCloud
         # @type WeiboPublishInfo: :class:`Tencentcloud::Cme.v20191029.models.WeiboPublishInfo`
         # @param KuaishouPublishInfo: 快手发布信息，如果使用的发布通道为快手时必填。
         # @type KuaishouPublishInfo: :class:`Tencentcloud::Cme.v20191029.models.KuaishouPublishInfo`
+        # @param CosPublishInfo: 腾讯云对象存储发布信息， 如果使用的发布通道为腾讯云对象存储时必填。
+        # @type CosPublishInfo: :class:`Tencentcloud::Cme.v20191029.models.CosPublishInputInfo`
 
-        attr_accessor :ChannelMaterialId, :PenguinMediaPlatformPublishInfo, :WeiboPublishInfo, :KuaishouPublishInfo
+        attr_accessor :ChannelMaterialId, :PenguinMediaPlatformPublishInfo, :WeiboPublishInfo, :KuaishouPublishInfo, :CosPublishInfo
         
-        def initialize(channelmaterialid=nil, penguinmediaplatformpublishinfo=nil, weibopublishinfo=nil, kuaishoupublishinfo=nil)
+        def initialize(channelmaterialid=nil, penguinmediaplatformpublishinfo=nil, weibopublishinfo=nil, kuaishoupublishinfo=nil, cospublishinfo=nil)
           @ChannelMaterialId = channelmaterialid
           @PenguinMediaPlatformPublishInfo = penguinmediaplatformpublishinfo
           @WeiboPublishInfo = weibopublishinfo
           @KuaishouPublishInfo = kuaishoupublishinfo
+          @CosPublishInfo = cospublishinfo
         end
 
         def deserialize(params)
@@ -4463,6 +4494,9 @@ module TencentCloud
           end
           unless params['KuaishouPublishInfo'].nil?
             @KuaishouPublishInfo = KuaishouPublishInfo.new.deserialize(params['KuaishouPublishInfo'])
+          end
+          unless params['CosPublishInfo'].nil?
+            @CosPublishInfo = CosPublishInputInfo.new.deserialize(params['CosPublishInfo'])
           end
         end
       end

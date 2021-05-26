@@ -428,10 +428,12 @@ module TencentCloud
         # @type Resources: :class:`Tencentcloud::Cloudaudit.v20190319.models.Resource`
         # @param EventRegion: 事件地域
         # @type EventRegion: String
+        # @param Location: IP 归属地
+        # @type Location: String
 
-        attr_accessor :EventId, :Username, :EventTime, :CloudAuditEvent, :ResourceTypeCn, :ErrorCode, :EventName, :SecretId, :EventSource, :RequestID, :ResourceRegion, :AccountID, :SourceIPAddress, :EventNameCn, :Resources, :EventRegion
+        attr_accessor :EventId, :Username, :EventTime, :CloudAuditEvent, :ResourceTypeCn, :ErrorCode, :EventName, :SecretId, :EventSource, :RequestID, :ResourceRegion, :AccountID, :SourceIPAddress, :EventNameCn, :Resources, :EventRegion, :Location
         
-        def initialize(eventid=nil, username=nil, eventtime=nil, cloudauditevent=nil, resourcetypecn=nil, errorcode=nil, eventname=nil, secretid=nil, eventsource=nil, requestid=nil, resourceregion=nil, accountid=nil, sourceipaddress=nil, eventnamecn=nil, resources=nil, eventregion=nil)
+        def initialize(eventid=nil, username=nil, eventtime=nil, cloudauditevent=nil, resourcetypecn=nil, errorcode=nil, eventname=nil, secretid=nil, eventsource=nil, requestid=nil, resourceregion=nil, accountid=nil, sourceipaddress=nil, eventnamecn=nil, resources=nil, eventregion=nil, location=nil)
           @EventId = eventid
           @Username = username
           @EventTime = eventtime
@@ -448,6 +450,7 @@ module TencentCloud
           @EventNameCn = eventnamecn
           @Resources = resources
           @EventRegion = eventregion
+          @Location = location
         end
 
         def deserialize(params)
@@ -469,6 +472,7 @@ module TencentCloud
             @Resources = Resource.new.deserialize(params['Resources'])
           end
           @EventRegion = params['EventRegion']
+          @Location = params['Location']
         end
       end
 
