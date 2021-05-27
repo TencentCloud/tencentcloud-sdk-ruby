@@ -6064,10 +6064,12 @@ module TencentCloud
         # @type Address: String
         # @param RegCapital: 1表示输出注册资本字段（单位：万元），其他值表示不输出。默认不输出。
         # @type RegCapital: Integer
+        # @param EstablishTime: true表示展示成立/注册日期
+        # @type EstablishTime: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :ImageConfig, :RegNum, :Name, :Address, :RegCapital
+        attr_accessor :ImageBase64, :ImageUrl, :ImageConfig, :RegNum, :Name, :Address, :RegCapital, :EstablishTime
         
-        def initialize(imagebase64=nil, imageurl=nil, imageconfig=nil, regnum=nil, name=nil, address=nil, regcapital=nil)
+        def initialize(imagebase64=nil, imageurl=nil, imageconfig=nil, regnum=nil, name=nil, address=nil, regcapital=nil, establishtime=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @ImageConfig = imageconfig
@@ -6075,6 +6077,7 @@ module TencentCloud
           @Name = name
           @Address = address
           @RegCapital = regcapital
+          @EstablishTime = establishtime
         end
 
         def deserialize(params)
@@ -6085,6 +6088,7 @@ module TencentCloud
           @Name = params['Name']
           @Address = params['Address']
           @RegCapital = params['RegCapital']
+          @EstablishTime = params['EstablishTime']
         end
       end
 
@@ -6124,12 +6128,14 @@ module TencentCloud
         # @type RegNumResult: :class:`Tencentcloud::Ocr.v20181119.models.BizLicenseVerifyResult`
         # @param RegCapital: 注册资本（单位：万元）,只有输入参数regCapital为1的时候才输出
         # @type RegCapital: String
+        # @param EstablishTime: 成立/注册日期，只有输入参数EstablishTime为true时展示，默认为空
+        # @type EstablishTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ErrorCode, :CreditCode, :Opfrom, :Opto, :Frname, :Entstatus, :Zsopscope, :Reason, :Oriregno, :VerifyRegno, :Regno, :VerifyEntname, :Entname, :VerifyDom, :Dom, :RegNumResult, :RegCapital, :RequestId
+        attr_accessor :ErrorCode, :CreditCode, :Opfrom, :Opto, :Frname, :Entstatus, :Zsopscope, :Reason, :Oriregno, :VerifyRegno, :Regno, :VerifyEntname, :Entname, :VerifyDom, :Dom, :RegNumResult, :RegCapital, :EstablishTime, :RequestId
         
-        def initialize(errorcode=nil, creditcode=nil, opfrom=nil, opto=nil, frname=nil, entstatus=nil, zsopscope=nil, reason=nil, oriregno=nil, verifyregno=nil, regno=nil, verifyentname=nil, entname=nil, verifydom=nil, dom=nil, regnumresult=nil, regcapital=nil, requestid=nil)
+        def initialize(errorcode=nil, creditcode=nil, opfrom=nil, opto=nil, frname=nil, entstatus=nil, zsopscope=nil, reason=nil, oriregno=nil, verifyregno=nil, regno=nil, verifyentname=nil, entname=nil, verifydom=nil, dom=nil, regnumresult=nil, regcapital=nil, establishtime=nil, requestid=nil)
           @ErrorCode = errorcode
           @CreditCode = creditcode
           @Opfrom = opfrom
@@ -6147,6 +6153,7 @@ module TencentCloud
           @Dom = dom
           @RegNumResult = regnumresult
           @RegCapital = regcapital
+          @EstablishTime = establishtime
           @RequestId = requestid
         end
 
@@ -6170,6 +6177,7 @@ module TencentCloud
             @RegNumResult = BizLicenseVerifyResult.new.deserialize(params['RegNumResult'])
           end
           @RegCapital = params['RegCapital']
+          @EstablishTime = params['EstablishTime']
           @RequestId = params['RequestId']
         end
       end

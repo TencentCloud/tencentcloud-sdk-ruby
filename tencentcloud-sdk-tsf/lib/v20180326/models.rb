@@ -41,7 +41,7 @@ module TencentCloud
         # @type FeatureIdList: Array
         # @param InstanceAdvancedSettings: 实例额外需要设置参数信息
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tsf.v20180326.models.InstanceAdvancedSettings`
-        # @param SecurityGroupIds: 部署组ID
+        # @param SecurityGroupIds: 安全组 ID 列表
         # @type SecurityGroupIds: Array
 
         attr_accessor :ClusterId, :InstanceIdList, :OsName, :ImageId, :Password, :KeyId, :SgId, :InstanceImportMode, :OsCustomizeType, :FeatureIdList, :InstanceAdvancedSettings, :SecurityGroupIds

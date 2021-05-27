@@ -2155,14 +2155,26 @@ module TencentCloud
         # @type PortRange: String
         # @param IpProtocol: 传输层协议。tcp，udp或ALL
         # @type IpProtocol: String
+        # @param Id: 安全组id代表的地址集合
+        # @type Id: String
+        # @param AddressModule: 地址组id代表的地址集合
+        # @type AddressModule: String
+        # @param ServiceModule: 服务组id代表的协议和端口集合
+        # @type ServiceModule: String
+        # @param Desc: 描述
+        # @type Desc: String
 
-        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol
+        attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Id, :AddressModule, :ServiceModule, :Desc
         
-        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil)
+        def initialize(action=nil, cidrip=nil, portrange=nil, ipprotocol=nil, id=nil, addressmodule=nil, servicemodule=nil, desc=nil)
           @Action = action
           @CidrIp = cidrip
           @PortRange = portrange
           @IpProtocol = ipprotocol
+          @Id = id
+          @AddressModule = addressmodule
+          @ServiceModule = servicemodule
+          @Desc = desc
         end
 
         def deserialize(params)
@@ -2170,6 +2182,10 @@ module TencentCloud
           @CidrIp = params['CidrIp']
           @PortRange = params['PortRange']
           @IpProtocol = params['IpProtocol']
+          @Id = params['Id']
+          @AddressModule = params['AddressModule']
+          @ServiceModule = params['ServiceModule']
+          @Desc = params['Desc']
         end
       end
 

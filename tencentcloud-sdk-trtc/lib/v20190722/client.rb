@@ -25,7 +25,7 @@ module TencentCloud
         @@sdk_version = 'TRTC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
-        # 上传图片
+        # 此接口已废弃，调用将报错。如需使用相关功能请参见 [控制台指南 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769)  。
 
         # @param request: Request instance for CreatePicture.
         # @type request: :class:`Tencentcloud::trtc::V20190722::CreatePictureRequest`
@@ -73,7 +73,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除图片
+        # 此接口已废弃，调用将报错。如需使用相关功能请参见 [控制台指南 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769)  。
 
         # @param request: Request instance for DeletePicture.
         # @type request: :class:`Tencentcloud::trtc::V20190722::DeletePictureRequest`
@@ -194,7 +194,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询某图片相关参数。
+        # 此接口已废弃，调用将报错。如需使用相关功能请参见 [控制台指南 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769)  。
 
         # @param request: Request instance for DescribePicture.
         # @type request: :class:`Tencentcloud::trtc::V20190722::DescribePictureRequest`
@@ -473,7 +473,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改图片相关参数。
+        # 此接口已废弃，调用将报错。如需使用相关功能请参见 [控制台指南 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769)  。
 
         # @param request: Request instance for ModifyPicture.
         # @type request: :class:`Tencentcloud::trtc::V20190722::ModifyPictureRequest`

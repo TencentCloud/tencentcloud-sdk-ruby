@@ -556,6 +556,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实例灾备详情
+
+        # @param request: Request instance for DescribeDcnDetail.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeDcnDetailRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DescribeDcnDetailResponse`
+        def DescribeDcnDetail(request)
+          body = send_request('DescribeDcnDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDcnDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeFlow）用于查询流程状态。
 
         # @param request: Request instance for DescribeFlow.

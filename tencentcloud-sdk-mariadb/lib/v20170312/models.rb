@@ -782,6 +782,62 @@ module TencentCloud
         end
       end
 
+      # DCN详情条目
+      class DcnDetailItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param Region: 实例地域
+        # @type Region: String
+        # @param Zone: 实例可用区
+        # @type Zone: String
+        # @param Vip: 实例IP地址
+        # @type Vip: String
+        # @param Vipv6: 实例IPv6地址
+        # @type Vipv6: String
+        # @param Vport: 实例端口
+        # @type Vport: Integer
+        # @param Status: 实例状态
+        # @type Status: Integer
+        # @param StatusDesc: 实例状态描述
+        # @type StatusDesc: String
+        # @param DcnFlag: 实例DCN标志，1-主，2-备
+        # @type DcnFlag: Integer
+        # @param DcnStatus: 实例DCN状态，0-无，1-创建中，2-同步中，3-已断开
+        # @type DcnStatus: Integer
+
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :Vip, :Vipv6, :Vport, :Status, :StatusDesc, :DcnFlag, :DcnStatus
+        
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, vip=nil, vipv6=nil, vport=nil, status=nil, statusdesc=nil, dcnflag=nil, dcnstatus=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Region = region
+          @Zone = zone
+          @Vip = vip
+          @Vipv6 = vipv6
+          @Vport = vport
+          @Status = status
+          @StatusDesc = statusdesc
+          @DcnFlag = dcnflag
+          @DcnStatus = dcnstatus
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @Vip = params['Vip']
+          @Vipv6 = params['Vipv6']
+          @Vport = params['Vport']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @DcnFlag = params['DcnFlag']
+          @DcnStatus = params['DcnStatus']
+        end
+      end
+
       # 订单信息
       class Deal < TencentCloud::Common::AbstractModel
         # @param DealName: 订单号
@@ -1762,6 +1818,47 @@ module TencentCloud
             end
           end
           @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDcnDetail请求参数结构体
+      class DescribeDcnDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDcnDetail返回参数结构体
+      class DescribeDcnDetailResponse < TencentCloud::Common::AbstractModel
+        # @param DcnDetails: DCN同步详情
+        # @type DcnDetails: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DcnDetails, :RequestId
+        
+        def initialize(dcndetails=nil, requestid=nil)
+          @DcnDetails = dcndetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DcnDetails'].nil?
+            @DcnDetails = []
+            params['DcnDetails'].each do |i|
+              @DcnDetails << DcnDetailItem.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

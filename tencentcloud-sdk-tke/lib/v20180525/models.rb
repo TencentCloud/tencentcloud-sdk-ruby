@@ -857,19 +857,23 @@ module TencentCloud
         # @type AllowFromCidrs: Array
         # @param SecurityPolicies: 安全策略放通单个IP或CIDR(例如: "192.168.1.0/24",默认为拒绝所有)
         # @type SecurityPolicies: Array
+        # @param ExtraParam: 外网访问相关的扩展参数，格式为json
+        # @type ExtraParam: String
 
-        attr_accessor :Enabled, :AllowFromCidrs, :SecurityPolicies
+        attr_accessor :Enabled, :AllowFromCidrs, :SecurityPolicies, :ExtraParam
         
-        def initialize(enabled=nil, allowfromcidrs=nil, securitypolicies=nil)
+        def initialize(enabled=nil, allowfromcidrs=nil, securitypolicies=nil, extraparam=nil)
           @Enabled = enabled
           @AllowFromCidrs = allowfromcidrs
           @SecurityPolicies = securitypolicies
+          @ExtraParam = extraparam
         end
 
         def deserialize(params)
           @Enabled = params['Enabled']
           @AllowFromCidrs = params['AllowFromCidrs']
           @SecurityPolicies = params['SecurityPolicies']
+          @ExtraParam = params['ExtraParam']
         end
       end
 

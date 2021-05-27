@@ -16566,14 +16566,20 @@ module TencentCloud
         # @type InfrequentStorage: Integer
         # @param StandardStorage: 当前标准存储量，单位是字节。
         # @type StandardStorage: Integer
+        # @param ArchiveStorage: 当前归档存储量，单位是字节。
+        # @type ArchiveStorage: Integer
+        # @param DeepArchiveStorage: 当前深度归档存储量，单位是字节。
+        # @type DeepArchiveStorage: Integer
 
-        attr_accessor :Area, :TotalStorage, :InfrequentStorage, :StandardStorage
+        attr_accessor :Area, :TotalStorage, :InfrequentStorage, :StandardStorage, :ArchiveStorage, :DeepArchiveStorage
         
-        def initialize(area=nil, totalstorage=nil, infrequentstorage=nil, standardstorage=nil)
+        def initialize(area=nil, totalstorage=nil, infrequentstorage=nil, standardstorage=nil, archivestorage=nil, deeparchivestorage=nil)
           @Area = area
           @TotalStorage = totalstorage
           @InfrequentStorage = infrequentstorage
           @StandardStorage = standardstorage
+          @ArchiveStorage = archivestorage
+          @DeepArchiveStorage = deeparchivestorage
         end
 
         def deserialize(params)
@@ -16581,6 +16587,8 @@ module TencentCloud
           @TotalStorage = params['TotalStorage']
           @InfrequentStorage = params['InfrequentStorage']
           @StandardStorage = params['StandardStorage']
+          @ArchiveStorage = params['ArchiveStorage']
+          @DeepArchiveStorage = params['DeepArchiveStorage']
         end
       end
 
