@@ -3440,6 +3440,86 @@ module TencentCloud
         end
       end
 
+      # ScaleInInstances请求参数结构体
+      class ScaleInInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID。
+        # @type AutoScalingGroupId: String
+        # @param ScaleInNumber: 希望缩容的实例数量。
+        # @type ScaleInNumber: Integer
+
+        attr_accessor :AutoScalingGroupId, :ScaleInNumber
+        
+        def initialize(autoscalinggroupid=nil, scaleinnumber=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @ScaleInNumber = scaleinnumber
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @ScaleInNumber = params['ScaleInNumber']
+        end
+      end
+
+      # ScaleInInstances返回参数结构体
+      class ScaleInInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 伸缩活动ID。
+        # @type ActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivityId, :RequestId
+        
+        def initialize(activityid=nil, requestid=nil)
+          @ActivityId = activityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ScaleOutInstances请求参数结构体
+      class ScaleOutInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID。
+        # @type AutoScalingGroupId: String
+        # @param ScaleOutNumber: 希望扩容的实例数量。
+        # @type ScaleOutNumber: Integer
+
+        attr_accessor :AutoScalingGroupId, :ScaleOutNumber
+        
+        def initialize(autoscalinggroupid=nil, scaleoutnumber=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @ScaleOutNumber = scaleoutnumber
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @ScaleOutNumber = params['ScaleOutNumber']
+        end
+      end
+
+      # ScaleOutInstances返回参数结构体
+      class ScaleOutInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 伸缩活动ID。
+        # @type ActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivityId, :RequestId
+        
+        def initialize(activityid=nil, requestid=nil)
+          @ActivityId = activityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 告警触发策略。
       class ScalingPolicy < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupId: 伸缩组ID。

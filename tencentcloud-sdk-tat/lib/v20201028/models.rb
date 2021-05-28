@@ -79,10 +79,12 @@ module TencentCloud
         # @type FormattedDescription: String
         # @param CreatedBy: 命令创建者。TAT 代表公共命令，USER 代表个人命令。
         # @type CreatedBy: String
+        # @param Tags: 命令关联的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :FormattedDescription, :CreatedBy
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :FormattedDescription, :CreatedBy, :Tags
         
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, formatteddescription=nil, createdby=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, formatteddescription=nil, createdby=nil, tags=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -96,6 +98,7 @@ module TencentCloud
           @DefaultParameters = defaultparameters
           @FormattedDescription = formatteddescription
           @CreatedBy = createdby
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -112,6 +115,12 @@ module TencentCloud
           @DefaultParameters = params['DefaultParameters']
           @FormattedDescription = params['FormattedDescription']
           @CreatedBy = params['CreatedBy']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1016,6 +1025,26 @@ module TencentCloud
           @CommandId = params['CommandId']
           @InvocationId = params['InvocationId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键。
+        # @type Key: String
+        # @param Value: 标签值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

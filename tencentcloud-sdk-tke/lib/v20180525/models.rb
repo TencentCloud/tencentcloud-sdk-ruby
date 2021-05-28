@@ -192,6 +192,46 @@ module TencentCloud
         end
       end
 
+      # AddVpcCniSubnets请求参数结构体
+      class AddVpcCniSubnetsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param SubnetIds: 为集群容器网络增加的子网列表
+        # @type SubnetIds: Array
+        # @param VpcId: 集群所属的VPC的ID
+        # @type VpcId: String
+
+        attr_accessor :ClusterId, :SubnetIds, :VpcId
+        
+        def initialize(clusterid=nil, subnetids=nil, vpcid=nil)
+          @ClusterId = clusterid
+          @SubnetIds = subnetids
+          @VpcId = vpcid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @SubnetIds = params['SubnetIds']
+          @VpcId = params['VpcId']
+        end
+      end
+
+      # AddVpcCniSubnets返回参数结构体
+      class AddVpcCniSubnetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群关联的伸缩组最大实例数最小值实例数
       class AutoScalingGroupRange < TencentCloud::Common::AbstractModel
         # @param MinSize: 伸缩组最小实例数
@@ -825,10 +865,19 @@ module TencentCloud
         # @type VpcId: String
         # @param Cni: 网络插件是否启用CNI(默认开启)
         # @type Cni: Boolean
+        # @param KubeProxyMode: service的网络模式，当前参数只适用于ipvs+bpf模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KubeProxyMode: String
+        # @param ServiceCIDR: 用于分配service的IP range，不得与 VPC CIDR 冲突，也不得与同 VPC 内其他集群 CIDR 冲突
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceCIDR: String
+        # @param Subnets: 集群关联的容器子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Subnets: Array
 
-        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni
+        attr_accessor :ClusterCIDR, :IgnoreClusterCIDRConflict, :MaxNodePodNum, :MaxClusterServiceNum, :Ipvs, :VpcId, :Cni, :KubeProxyMode, :ServiceCIDR, :Subnets
         
-        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil)
+        def initialize(clustercidr=nil, ignoreclustercidrconflict=nil, maxnodepodnum=nil, maxclusterservicenum=nil, ipvs=nil, vpcid=nil, cni=nil, kubeproxymode=nil, servicecidr=nil, subnets=nil)
           @ClusterCIDR = clustercidr
           @IgnoreClusterCIDRConflict = ignoreclustercidrconflict
           @MaxNodePodNum = maxnodepodnum
@@ -836,6 +885,9 @@ module TencentCloud
           @Ipvs = ipvs
           @VpcId = vpcid
           @Cni = cni
+          @KubeProxyMode = kubeproxymode
+          @ServiceCIDR = servicecidr
+          @Subnets = subnets
         end
 
         def deserialize(params)
@@ -846,6 +898,9 @@ module TencentCloud
           @Ipvs = params['Ipvs']
           @VpcId = params['VpcId']
           @Cni = params['Cni']
+          @KubeProxyMode = params['KubeProxyMode']
+          @ServiceCIDR = params['ServiceCIDR']
+          @Subnets = params['Subnets']
         end
       end
 

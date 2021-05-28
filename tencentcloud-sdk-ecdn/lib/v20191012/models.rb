@@ -221,6 +221,50 @@ module TencentCloud
         end
       end
 
+      # CreateVerifyRecord请求参数结构体
+      class CreateVerifyRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要取回的域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+        
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # CreateVerifyRecord返回参数结构体
+      class CreateVerifyRecordResponse < TencentCloud::Common::AbstractModel
+        # @param SubDomain: 子解析
+        # @type SubDomain: String
+        # @param Record: 解析值
+        # @type Record: String
+        # @param RecordType: 解析类型
+        # @type RecordType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubDomain, :Record, :RecordType, :RequestId
+        
+        def initialize(subdomain=nil, record=nil, recordtype=nil, requestid=nil)
+          @SubDomain = subdomain
+          @Record = record
+          @RecordType = recordtype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SubDomain = params['SubDomain']
+          @Record = params['Record']
+          @RecordType = params['RecordType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteEcdnDomain请求参数结构体
       class DeleteEcdnDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 待删除域名。

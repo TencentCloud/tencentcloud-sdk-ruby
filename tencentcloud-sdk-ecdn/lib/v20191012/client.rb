@@ -49,6 +49,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权
+
+        # @param request: Request instance for CreateVerifyRecord.
+        # @type request: :class:`Tencentcloud::ecdn::V20191012::CreateVerifyRecordRequest`
+        # @rtype: :class:`Tencentcloud::ecdn::V20191012::CreateVerifyRecordResponse`
+        def CreateVerifyRecord(request)
+          body = send_request('CreateVerifyRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVerifyRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。
 
         # @param request: Request instance for DeleteEcdnDomain.

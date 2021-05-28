@@ -155,6 +155,42 @@ module TencentCloud
         end
       end
 
+      # DescribeSupportedHsm请求参数结构体
+      class DescribeSupportedHsmRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSupportedHsm返回参数结构体
+      class DescribeSupportedHsmResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceTypes: 当前地域所支持的设备列表
+        # @type DeviceTypes: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeviceTypes, :RequestId
+        
+        def initialize(devicetypes=nil, requestid=nil)
+          @DeviceTypes = devicetypes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeviceTypes'].nil?
+            @DeviceTypes = []
+            params['DeviceTypes'].each do |i|
+              @DeviceTypes << DeviceInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUsg请求参数结构体
       class DescribeUsgRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量，当Offset和Limit均为0时将一次性返回用户所有的安全组列表。
@@ -383,12 +419,15 @@ module TencentCloud
         # @param RenewFlag: 资源续费标识，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
+        # @param Manufacturer: 厂商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Manufacturer: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :RequestId
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :Manufacturer, :RequestId
         
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, requestid=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, manufacturer=nil, requestid=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -411,6 +450,7 @@ module TencentCloud
           @SubnetCidrBlock = subnetcidrblock
           @Tags = tags
           @RenewFlag = renewflag
+          @Manufacturer = manufacturer
           @RequestId = requestid
         end
 
@@ -447,6 +487,7 @@ module TencentCloud
             end
           end
           @RenewFlag = params['RenewFlag']
+          @Manufacturer = params['Manufacturer']
           @RequestId = params['RequestId']
         end
       end
@@ -461,14 +502,17 @@ module TencentCloud
         # @type SearchWord: String
         # @param TagFilters: 标签过滤条件
         # @type TagFilters: Array
+        # @param Manufacturer: 设备所属的厂商名称，根据厂商来进行筛选
+        # @type Manufacturer: String
 
-        attr_accessor :Offset, :Limit, :SearchWord, :TagFilters
+        attr_accessor :Offset, :Limit, :SearchWord, :TagFilters, :Manufacturer
         
-        def initialize(offset=nil, limit=nil, searchword=nil, tagfilters=nil)
+        def initialize(offset=nil, limit=nil, searchword=nil, tagfilters=nil, manufacturer=nil)
           @Offset = offset
           @Limit = limit
           @SearchWord = searchword
           @TagFilters = tagfilters
+          @Manufacturer = manufacturer
         end
 
         def deserialize(params)
@@ -481,6 +525,7 @@ module TencentCloud
               @TagFilters << TagFilter.new.deserialize(i)
             end
           end
+          @Manufacturer = params['Manufacturer']
         end
       end
 
@@ -511,6 +556,56 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 设备厂商信息
+      class DeviceInfo < TencentCloud::Common::AbstractModel
+        # @param Manufacturer: 厂商名称
+        # @type Manufacturer: String
+        # @param HsmTypes: 此厂商旗下的设备信息列表
+        # @type HsmTypes: Array
+
+        attr_accessor :Manufacturer, :HsmTypes
+        
+        def initialize(manufacturer=nil, hsmtypes=nil)
+          @Manufacturer = manufacturer
+          @HsmTypes = hsmtypes
+        end
+
+        def deserialize(params)
+          @Manufacturer = params['Manufacturer']
+          unless params['HsmTypes'].nil?
+            @HsmTypes = []
+            params['HsmTypes'].each do |i|
+              @HsmTypes << HsmInfo.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 支持的加密机类型信息
+      class HsmInfo < TencentCloud::Common::AbstractModel
+        # @param Model: 加密机型号
+        # @type Model: String
+        # @param VsmTypes: 此类型的加密机所支持的VSM类型列表
+        # @type VsmTypes: Array
+
+        attr_accessor :Model, :VsmTypes
+        
+        def initialize(model=nil, vsmtypes=nil)
+          @Model = model
+          @VsmTypes = vsmtypes
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          unless params['VsmTypes'].nil?
+            @VsmTypes = []
+            params['VsmTypes'].each do |i|
+              @VsmTypes << VsmInfo.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -711,10 +806,13 @@ module TencentCloud
         # @param Tags: 标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param Manufacturer: 厂商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Manufacturer: String
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer
         
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -736,6 +834,7 @@ module TencentCloud
           @CreateUin = createuin
           @RenewFlag = renewflag
           @Tags = tags
+          @Manufacturer = manufacturer
         end
 
         def deserialize(params)
@@ -770,6 +869,7 @@ module TencentCloud
               @Tags << Tag.new.deserialize(i)
             end
           end
+          @Manufacturer = params['Manufacturer']
         end
       end
 
@@ -1040,6 +1140,26 @@ module TencentCloud
           @VpcId = params['VpcId']
           @CreatedTime = params['CreatedTime']
           @IsDefault = params['IsDefault']
+        end
+      end
+
+      # 支持的Vsm类型信息
+      class VsmInfo < TencentCloud::Common::AbstractModel
+        # @param TypeName: VSM类型名称
+        # @type TypeName: String
+        # @param TypeID: VSM类型值
+        # @type TypeID: Integer
+
+        attr_accessor :TypeName, :TypeID
+        
+        def initialize(typename=nil, typeid=nil)
+          @TypeName = typename
+          @TypeID = typeid
+        end
+
+        def deserialize(params)
+          @TypeName = params['TypeName']
+          @TypeID = params['TypeID']
         end
       end
 

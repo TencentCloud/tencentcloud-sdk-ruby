@@ -441,6 +441,112 @@ module TencentCloud
         end
       end
 
+      # 密码破解列表实体
+      class BruteAttackInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 唯一Id
+        # @type Id: Integer
+        # @param Uuid: 云镜客户端唯一标识UUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
+        # @param MachineIp: 主机ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineIp: String
+        # @param MachineName: 主机名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineName: String
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param SrcIp: 来源ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcIp: String
+        # @param Status: 失败：FAILED；成功：SUCCESS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Country: 国家id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: Integer
+        # @param City: 城市id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: Integer
+        # @param Province: 省份id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param BanStatus: 阻断状态：0-未阻断；1-已阻断；2-阻断失败；3-内网攻击暂不支持阻断；4-安平暂不支持阻断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BanStatus: Integer
+        # @param EventType: 事件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventType: Integer
+        # @param Count: 发生次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Quuid: 机器UUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Quuid: String
+        # @param IsProVersion: 是否为专业版（true/false）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsProVersion: Boolean
+        # @param Protocol: 被攻击的服务的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ModifyTime: 最近攻击时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime
+        
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil)
+          @Id = id
+          @Uuid = uuid
+          @MachineIp = machineip
+          @MachineName = machinename
+          @UserName = username
+          @SrcIp = srcip
+          @Status = status
+          @Country = country
+          @City = city
+          @Province = province
+          @CreateTime = createtime
+          @BanStatus = banstatus
+          @EventType = eventtype
+          @Count = count
+          @Quuid = quuid
+          @IsProVersion = isproversion
+          @Protocol = protocol
+          @Port = port
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uuid = params['Uuid']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @UserName = params['UserName']
+          @SrcIp = params['SrcIp']
+          @Status = params['Status']
+          @Country = params['Country']
+          @City = params['City']
+          @Province = params['Province']
+          @CreateTime = params['CreateTime']
+          @BanStatus = params['BanStatus']
+          @EventType = params['EventType']
+          @Count = params['Count']
+          @Quuid = params['Quuid']
+          @IsProVersion = params['IsProVersion']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
       # 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
       class ChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
@@ -2018,6 +2124,73 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBruteAttackList请求参数结构体
+      class DescribeBruteAttackListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Status - String - 是否必填：否 - 状态筛选：失败：FAILED 成功：SUCCESS</li>
+        # <li>UserName - String - 是否必填：否 - UserName筛选</li>
+        # <li>SrcIp - String - 是否必填：否 - 来源ip筛选</li>
+        # <li>CreateBeginTime - String - 是否必填：否 - 创建时间筛选，开始时间</li>
+        # <li>CreateEndTime - String - 是否必填：否 - 创建时间筛选，结束时间</li>
+        # <li>Banned - String - 是否必填：否 - 阻断状态筛选，多个用","分割：0-未阻断（全局ZK开关关闭），82-未阻断(非专业版)，83-未阻断(已加白名单)，1-已阻断，2-未阻断-程序异常，3-未阻断-内网攻击暂不支持阻断，4-未阻断-安平暂不支持阻断</li>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DescribeBruteAttackList返回参数结构体
+      class DescribeBruteAttackListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param BruteAttackList: 密码破解列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BruteAttackList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BruteAttackList, :RequestId
+        
+        def initialize(totalcount=nil, bruteattacklist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BruteAttackList = bruteattacklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BruteAttackList'].nil?
+            @BruteAttackList = []
+            params['BruteAttackList'].each do |i|
+              @BruteAttackList << BruteAttackInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

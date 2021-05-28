@@ -5,6 +5,9 @@ require 'tencentcloud-sdk-common'
 require_relative 'v20191016/client'
 require_relative 'v20191016/models'
 
+require_relative 'v20210527/client'
+require_relative 'v20210527/models'
+
 module TencentCloud
   module Dbbrain
   end

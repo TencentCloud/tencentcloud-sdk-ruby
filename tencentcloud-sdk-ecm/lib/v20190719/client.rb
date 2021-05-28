@@ -2763,7 +2763,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建ECM实例
+        # 创建ECM实例。
 
         # @param request: Request instance for RunInstances.
         # @type request: :class:`Tencentcloud::ecm::V20190719::RunInstancesRequest`

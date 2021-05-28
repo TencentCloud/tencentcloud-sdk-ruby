@@ -865,6 +865,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取密码破解列表
+
+        # @param request: Request instance for DescribeBruteAttackList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBruteAttackListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBruteAttackListResponse`
+        def DescribeBruteAttackList(request)
+          body = send_request('DescribeBruteAttackList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBruteAttackListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
 
         # @param request: Request instance for DescribeBruteAttacks.

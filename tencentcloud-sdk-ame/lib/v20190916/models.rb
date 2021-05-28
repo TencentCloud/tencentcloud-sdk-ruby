@@ -236,8 +236,11 @@ module TencentCloud
       class DescribeCloudMusicRequest < TencentCloud::Common::AbstractModel
         # @param MusicId: 歌曲Id
         # @type MusicId: String
-        # @param MusicType: MP3-320K-FTD-P  为获取320kbps歌曲热门片段。
-        # MP3-320K-FTD 为获取320kbps已核验歌曲完整资源。
+        # @param MusicType: 歌曲类型，可选值有：
+        # <li>MP3-128K-FTW：含有水印的试听资源；</li>
+        # <li>MP3-320K-FTD-P：320kbps歌曲热门片段；</li>
+        # <li>MP3-320K-FTD：320kbps已核验歌曲完整资源。</li>
+        # 默认为：MP3-128K-FTW
         # @type MusicType: String
 
         attr_accessor :MusicId, :MusicType
@@ -845,16 +848,34 @@ module TencentCloud
         # @type Bpm: Integer
         # @param Score: 商业化权益
         # @type Score: Float
+        # @param Scene: 场景信息
+        # @type Scene: Array
+        # @param Region: 应用地域
+        # @type Region: Array
+        # @param AuthPeriod: 授权期限
+        # @type AuthPeriod: String
+        # @param Commercialization: 商业化权益
+        # @type Commercialization: String
+        # @param Platform: 跨平台传播权益
+        # @type Platform: String
+        # @param Channel: 传播渠道
+        # @type Channel: String
 
-        attr_accessor :MusicId, :AmeId, :Tags, :HitWords, :Bpm, :Score
+        attr_accessor :MusicId, :AmeId, :Tags, :HitWords, :Bpm, :Score, :Scene, :Region, :AuthPeriod, :Commercialization, :Platform, :Channel
         
-        def initialize(musicid=nil, ameid=nil, tags=nil, hitwords=nil, bpm=nil, score=nil)
+        def initialize(musicid=nil, ameid=nil, tags=nil, hitwords=nil, bpm=nil, score=nil, scene=nil, region=nil, authperiod=nil, commercialization=nil, platform=nil, channel=nil)
           @MusicId = musicid
           @AmeId = ameid
           @Tags = tags
           @HitWords = hitwords
           @Bpm = bpm
           @Score = score
+          @Scene = scene
+          @Region = region
+          @AuthPeriod = authperiod
+          @Commercialization = commercialization
+          @Platform = platform
+          @Channel = channel
         end
 
         def deserialize(params)
@@ -864,6 +885,12 @@ module TencentCloud
           @HitWords = params['HitWords']
           @Bpm = params['Bpm']
           @Score = params['Score']
+          @Scene = params['Scene']
+          @Region = params['Region']
+          @AuthPeriod = params['AuthPeriod']
+          @Commercialization = params['Commercialization']
+          @Platform = params['Platform']
+          @Channel = params['Channel']
         end
       end
 

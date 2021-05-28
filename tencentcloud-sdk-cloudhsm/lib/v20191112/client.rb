@@ -97,6 +97,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取当前地域所支持的设备列表
+
+        # @param request: Request instance for DescribeSupportedHsm.
+        # @type request: :class:`Tencentcloud::cloudhsm::V20191112::DescribeSupportedHsmRequest`
+        # @rtype: :class:`Tencentcloud::cloudhsm::V20191112::DescribeSupportedHsmResponse`
+        def DescribeSupportedHsm(request)
+          body = send_request('DescribeSupportedHsm', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSupportedHsmResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据用户的AppId获取用户安全组列表
 
         # @param request: Request instance for DescribeUsg.

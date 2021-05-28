@@ -1238,24 +1238,29 @@ module TencentCloud
 
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件，目前支持：db-instance-id、db-instance-name、db-project-id、db-pay-mode、db-tag-key。
+        # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
+        # db-instance-id：按照实例ID过滤，类型为string
+        # db-instance-name：按照实例名过滤，类型为string
+        # db-project-id：按照项目ID过滤，类型为integer
+        # db-pay-mode：按照付费模式过滤，类型为string
+        # db-tag-key：按照标签键过滤，类型为string
         # @type Filters: Array
-        # @param Limit: 每页显示数量，默认返回10条。
+        # @param Limit: 每页显示数量，取值范围为1-100，默认为返回10条。
         # @type Limit: Integer
-        # @param Offset: 数据偏移量，从0开始。
-        # @type Offset: Integer
         # @param OrderBy: 排序指标，如实例名、创建时间等，支持DBInstanceId,CreateTime,Name,EndTime
         # @type OrderBy: String
-        # @param OrderByType: 排序方式，包括升序、降序
+        # @param Offset: 页码偏移量，从0开始。
+        # @type Offset: Integer
+        # @param OrderByType: 排序方式，包括升序：asc、降序：desc。
         # @type OrderByType: String
 
-        attr_accessor :Filters, :Limit, :Offset, :OrderBy, :OrderByType
+        attr_accessor :Filters, :Limit, :OrderBy, :Offset, :OrderByType
         
-        def initialize(filters=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
+        def initialize(filters=nil, limit=nil, orderby=nil, offset=nil, orderbytype=nil)
           @Filters = filters
           @Limit = limit
-          @Offset = offset
           @OrderBy = orderby
+          @Offset = offset
           @OrderByType = orderbytype
         end
 
@@ -1267,8 +1272,8 @@ module TencentCloud
             end
           end
           @Limit = params['Limit']
-          @Offset = params['Offset']
           @OrderBy = params['OrderBy']
+          @Offset = params['Offset']
           @OrderByType = params['OrderByType']
         end
       end
