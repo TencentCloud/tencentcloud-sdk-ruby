@@ -344,6 +344,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 应用需要先带上签约信息调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
+
+        # @param request: Request instance for ContractOrder.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::ContractOrderRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::ContractOrderResponse`
+        def ContractOrder(request)
+          body = send_request('ContractOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ContractOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 子商户入驻聚鑫平台
 
         # @param request: Request instance for CreateAcct.
@@ -1137,6 +1161,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过此接口查询签约数据
+
+        # @param request: Request instance for QueryContract.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryContractRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryContractResponse`
+        def QueryContract(request)
+          body = send_request('QueryContract', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryContractResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询银行子账户余额。查询会员子账户以及平台的功能子账户的余额。
 
         # @param request: Request instance for QueryCustAcctIdBalance.
@@ -1844,6 +1892,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RevokeRechargeByThirdPayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 对于存量的签约关系导入或者部分场景下米大师无法收到签约通知的场景，需要由调用方主动将签约状态同步至米大师
+
+        # @param request: Request instance for SyncContractData.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::SyncContractDataRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::SyncContractDataResponse`
+        def SyncContractData(request)
+          body = send_request('SyncContractData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncContractDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过此接口进行解约
+
+        # @param request: Request instance for TerminateContract.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::TerminateContractRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::TerminateContractResponse`
+        def TerminateContract(request)
+          body = send_request('TerminateContract', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateContractResponse.new
             model.deserialize(response['Response'])
             model
           else

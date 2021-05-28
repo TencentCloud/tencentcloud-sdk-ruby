@@ -1366,6 +1366,52 @@ module TencentCloud
         end
       end
 
+      # 米大师内部存放的合约信息
+      class ChannelContractInfo < TencentCloud::Common::AbstractModel
+        # @param OutContractCode: 外部合约协议号
+        # @type OutContractCode: String
+        # @param ChannelContractCode: 米大师内部生成的合约协议号
+        # @type ChannelContractCode: String
+
+        attr_accessor :OutContractCode, :ChannelContractCode
+        
+        def initialize(outcontractcode=nil, channelcontractcode=nil)
+          @OutContractCode = outcontractcode
+          @ChannelContractCode = channelcontractcode
+        end
+
+        def deserialize(params)
+          @OutContractCode = params['OutContractCode']
+          @ChannelContractCode = params['ChannelContractCode']
+        end
+      end
+
+      # 米大师内部生成的合约信息
+      class ChannelReturnContractInfo < TencentCloud::Common::AbstractModel
+        # @param ContractStatus: 平台合约状态
+        # 协议状态，枚举值：
+        # CONTRACT_STATUS_SIGNED：已签约
+        # CONTRACT_STATUS_TERMINATED：未签约
+        # CONTRACT_STATUS_PENDING：签约进行中
+        # @type ContractStatus: String
+        # @param ChannelContractInfo: 米大师内部存放的合约信息
+        # @type ChannelContractInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ChannelContractInfo`
+
+        attr_accessor :ContractStatus, :ChannelContractInfo
+        
+        def initialize(contractstatus=nil, channelcontractinfo=nil)
+          @ContractStatus = contractstatus
+          @ChannelContractInfo = channelcontractinfo
+        end
+
+        def deserialize(params)
+          @ContractStatus = params['ContractStatus']
+          unless params['ChannelContractInfo'].nil?
+            @ChannelContractInfo = ChannelContractInfo.new.deserialize(params['ChannelContractInfo'])
+          end
+        end
+      end
+
       # CheckAcct请求参数结构体
       class CheckAcctRequest < TencentCloud::Common::AbstractModel
         # @param MidasAppId: 聚鑫分配的支付主MidasAppId
@@ -1641,6 +1687,370 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 合约信息
+      class ContractInfo < TencentCloud::Common::AbstractModel
+        # @param ChannelContractMerchantId: 米大师内部签约商户号
+        # @type ChannelContractMerchantId: String
+        # @param ChannelContractSubMerchantId: 米大师内部签约子商户号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelContractSubMerchantId: String
+        # @param ChannelContractAppId: 米大师内部签约应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelContractAppId: String
+        # @param ChannelContractSubAppId: 米大师内部签约子应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelContractSubAppId: String
+        # @param OutContractCode: 业务合约协议号
+        # @type OutContractCode: String
+        # @param ExternalContractUserInfoList: 第三方渠道用户信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalContractUserInfoList: Array
+        # @param ContractMethod: 签约方式，如 wechat_app ，使用app方式下的微信签
+        # @type ContractMethod: String
+        # @param ContractSceneId: 合约场景id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContractSceneId: String
+        # @param UserInfo: 用户信息
+        # @type UserInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ContractUserInfo`
+        # @param ExternalContractData: 第三方渠道签约数据
+        # @type ExternalContractData: String
+
+        attr_accessor :ChannelContractMerchantId, :ChannelContractSubMerchantId, :ChannelContractAppId, :ChannelContractSubAppId, :OutContractCode, :ExternalContractUserInfoList, :ContractMethod, :ContractSceneId, :UserInfo, :ExternalContractData
+        
+        def initialize(channelcontractmerchantid=nil, channelcontractsubmerchantid=nil, channelcontractappid=nil, channelcontractsubappid=nil, outcontractcode=nil, externalcontractuserinfolist=nil, contractmethod=nil, contractsceneid=nil, userinfo=nil, externalcontractdata=nil)
+          @ChannelContractMerchantId = channelcontractmerchantid
+          @ChannelContractSubMerchantId = channelcontractsubmerchantid
+          @ChannelContractAppId = channelcontractappid
+          @ChannelContractSubAppId = channelcontractsubappid
+          @OutContractCode = outcontractcode
+          @ExternalContractUserInfoList = externalcontractuserinfolist
+          @ContractMethod = contractmethod
+          @ContractSceneId = contractsceneid
+          @UserInfo = userinfo
+          @ExternalContractData = externalcontractdata
+        end
+
+        def deserialize(params)
+          @ChannelContractMerchantId = params['ChannelContractMerchantId']
+          @ChannelContractSubMerchantId = params['ChannelContractSubMerchantId']
+          @ChannelContractAppId = params['ChannelContractAppId']
+          @ChannelContractSubAppId = params['ChannelContractSubAppId']
+          @OutContractCode = params['OutContractCode']
+          unless params['ExternalContractUserInfoList'].nil?
+            @ExternalContractUserInfoList = []
+            params['ExternalContractUserInfoList'].each do |i|
+              @ExternalContractUserInfoList << ExternalContractUserInfo.new.deserialize(i)
+            end
+          end
+          @ContractMethod = params['ContractMethod']
+          @ContractSceneId = params['ContractSceneId']
+          unless params['UserInfo'].nil?
+            @UserInfo = ContractUserInfo.new.deserialize(params['UserInfo'])
+          end
+          @ExternalContractData = params['ExternalContractData']
+        end
+      end
+
+      # 支付中签约子订单列表
+      class ContractOrderInSubOrder < TencentCloud::Common::AbstractModel
+        # @param SubMchIncome: 子订单结算应收金额，单位： 分
+        # @type SubMchIncome: Integer
+        # @param PlatformIncome: 子订单平台应收金额，单位：分
+        # @type PlatformIncome: Integer
+        # @param ProductDetail: 子订单商品详情
+        # @type ProductDetail: String
+        # @param ProductName: 子订单商品名称
+        # @type ProductName: String
+        # @param SubAppId: 聚鑫计费SubAppId，代表子商户
+        # @type SubAppId: String
+        # @param SubOutTradeNo: 子订单号
+        # @type SubOutTradeNo: String
+        # @param Amt: 子订单支付金额
+        # @type Amt: Integer
+        # @param OriginalAmt: 子订单原始金额
+        # @type OriginalAmt: Integer
+        # @param Metadata: 发货标识，由业务在调用聚鑫下单接口的 时候下发
+        # @type Metadata: String
+
+        attr_accessor :SubMchIncome, :PlatformIncome, :ProductDetail, :ProductName, :SubAppId, :SubOutTradeNo, :Amt, :OriginalAmt, :Metadata
+        
+        def initialize(submchincome=nil, platformincome=nil, productdetail=nil, productname=nil, subappid=nil, subouttradeno=nil, amt=nil, originalamt=nil, metadata=nil)
+          @SubMchIncome = submchincome
+          @PlatformIncome = platformincome
+          @ProductDetail = productdetail
+          @ProductName = productname
+          @SubAppId = subappid
+          @SubOutTradeNo = subouttradeno
+          @Amt = amt
+          @OriginalAmt = originalamt
+          @Metadata = metadata
+        end
+
+        def deserialize(params)
+          @SubMchIncome = params['SubMchIncome']
+          @PlatformIncome = params['PlatformIncome']
+          @ProductDetail = params['ProductDetail']
+          @ProductName = params['ProductName']
+          @SubAppId = params['SubAppId']
+          @SubOutTradeNo = params['SubOutTradeNo']
+          @Amt = params['Amt']
+          @OriginalAmt = params['OriginalAmt']
+          @Metadata = params['Metadata']
+        end
+      end
+
+      # ContractOrder请求参数结构体
+      class ContractOrderRequest < TencentCloud::Common::AbstractModel
+        # @param CurrencyType: ISO 货币代码，CNY
+        # @type CurrencyType: String
+        # @param MidasAppId: 聚鑫分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param OutTradeNo: 支付订单号，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合
+        # @type OutTradeNo: String
+        # @param ProductDetail: 商品详情，需要URL编码
+        # @type ProductDetail: String
+        # @param ProductId: 商品ID，仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合
+        # @type ProductId: String
+        # @param ProductName: 商品名称，需要URL编码
+        # @type ProductName: String
+        # @param TotalAmt: 支付金额，单位： 分
+        # @type TotalAmt: Integer
+        # @param UserId: 用户ID，长度不小于5位，仅支持字母和数字的组合
+        # @type UserId: String
+        # @param RealChannel: 银行真实渠道.如:bank_pingan
+        # @type RealChannel: String
+        # @param OriginalAmt: 原始金额
+        # @type OriginalAmt: Integer
+        # @param MidasSecretId: 聚鑫分配的安全ID
+        # @type MidasSecretId: String
+        # @param MidasSignature: 按照聚鑫安全密钥计算的签名
+        # @type MidasSignature: String
+        # @param ContractNotifyUrl: 签约通知地址
+        # @type ContractNotifyUrl: String
+        # @param CallbackUrl: Web端回调地址
+        # @type CallbackUrl: String
+        # @param Channel: 指定支付渠道：  wechat：微信支付  qqwallet：QQ钱包
+        #  bank：网银支付  只有一个渠道时需要指定
+        # @type Channel: String
+        # @param Metadata: 透传字段，支付成功回调透传给应用，用于业务透传自定义内容
+        # @type Metadata: String
+        # @param Quantity: 购买数量，不传默认为1
+        # @type Quantity: Integer
+        # @param SubAppId: 聚鑫计费SubAppId，代表子商户
+        # @type SubAppId: String
+        # @param SubOrderList: 子订单信息列表，格式：子订单号、子应用ID、金额。 压缩后最长不可超过65535字节(去除空格，换行，制表符等无意义字符)
+        # 注：接入银行或其他支付渠道服务商模式下，必传
+        # @type SubOrderList: Array
+        # @param TotalMchIncome: 结算应收金额，单位：分
+        # @type TotalMchIncome: Integer
+        # @param TotalPlatformIncome: 平台应收金额，单位：分
+        # @type TotalPlatformIncome: Integer
+        # @param WxOpenId: 微信公众号/小程序支付时为必选，需要传微信下的openid
+        # @type WxOpenId: String
+        # @param WxSubOpenId: 在服务商模式下，微信公众号/小程序支付时wx_sub_openid和wx_openid二选一
+        # @type WxSubOpenId: String
+        # @param MidasEnvironment: 环境名:
+        # release: 现网环境
+        # sandbox: 沙箱环境
+        # development: 开发环境
+        # 缺省: release
+        # @type MidasEnvironment: String
+        # @param WxAppId: 微信商户应用ID
+        # @type WxAppId: String
+        # @param WxSubAppId: 微信商户子应用ID
+        # @type WxSubAppId: String
+        # @param PaymentNotifyUrl: 支付通知地址
+        # @type PaymentNotifyUrl: String
+        # @param ContractSceneId: 传入调用方在Midas注册签约信息时获得的ContractSceneId。若未在Midas注册签约信息，则传入ExternalContractData。注意：ContractSceneId与ExternalContractData必须二选一传入其中一个
+        # @type ContractSceneId: String
+        # @param ExternalContractData: 需要按照各个渠道的扩展签约信息规范组装好该字段。若未在Midas注册签约信息，则传入该字段。注意：ContractSceneId与ExternalContractData必须二选一传入其中一个
+        # @type ExternalContractData: String
+        # @param OutContractCode: 外部签约协议号，唯一标记一个签约关系。仅支持数字、字母、下划线（_）、横杠字符（-）、点（.）的组合
+        # @type OutContractCode: String
+        # @param AttachData: 透传给第三方渠道的附加数据
+        # @type AttachData: String
+        # @param ContractDisplayName: 展示用的签约用户名称，若不传入时，默认取UserId
+        # @type ContractDisplayName: String
+
+        attr_accessor :CurrencyType, :MidasAppId, :OutTradeNo, :ProductDetail, :ProductId, :ProductName, :TotalAmt, :UserId, :RealChannel, :OriginalAmt, :MidasSecretId, :MidasSignature, :ContractNotifyUrl, :CallbackUrl, :Channel, :Metadata, :Quantity, :SubAppId, :SubOrderList, :TotalMchIncome, :TotalPlatformIncome, :WxOpenId, :WxSubOpenId, :MidasEnvironment, :WxAppId, :WxSubAppId, :PaymentNotifyUrl, :ContractSceneId, :ExternalContractData, :OutContractCode, :AttachData, :ContractDisplayName
+        
+        def initialize(currencytype=nil, midasappid=nil, outtradeno=nil, productdetail=nil, productid=nil, productname=nil, totalamt=nil, userid=nil, realchannel=nil, originalamt=nil, midassecretid=nil, midassignature=nil, contractnotifyurl=nil, callbackurl=nil, channel=nil, metadata=nil, quantity=nil, subappid=nil, suborderlist=nil, totalmchincome=nil, totalplatformincome=nil, wxopenid=nil, wxsubopenid=nil, midasenvironment=nil, wxappid=nil, wxsubappid=nil, paymentnotifyurl=nil, contractsceneid=nil, externalcontractdata=nil, outcontractcode=nil, attachdata=nil, contractdisplayname=nil)
+          @CurrencyType = currencytype
+          @MidasAppId = midasappid
+          @OutTradeNo = outtradeno
+          @ProductDetail = productdetail
+          @ProductId = productid
+          @ProductName = productname
+          @TotalAmt = totalamt
+          @UserId = userid
+          @RealChannel = realchannel
+          @OriginalAmt = originalamt
+          @MidasSecretId = midassecretid
+          @MidasSignature = midassignature
+          @ContractNotifyUrl = contractnotifyurl
+          @CallbackUrl = callbackurl
+          @Channel = channel
+          @Metadata = metadata
+          @Quantity = quantity
+          @SubAppId = subappid
+          @SubOrderList = suborderlist
+          @TotalMchIncome = totalmchincome
+          @TotalPlatformIncome = totalplatformincome
+          @WxOpenId = wxopenid
+          @WxSubOpenId = wxsubopenid
+          @MidasEnvironment = midasenvironment
+          @WxAppId = wxappid
+          @WxSubAppId = wxsubappid
+          @PaymentNotifyUrl = paymentnotifyurl
+          @ContractSceneId = contractsceneid
+          @ExternalContractData = externalcontractdata
+          @OutContractCode = outcontractcode
+          @AttachData = attachdata
+          @ContractDisplayName = contractdisplayname
+        end
+
+        def deserialize(params)
+          @CurrencyType = params['CurrencyType']
+          @MidasAppId = params['MidasAppId']
+          @OutTradeNo = params['OutTradeNo']
+          @ProductDetail = params['ProductDetail']
+          @ProductId = params['ProductId']
+          @ProductName = params['ProductName']
+          @TotalAmt = params['TotalAmt']
+          @UserId = params['UserId']
+          @RealChannel = params['RealChannel']
+          @OriginalAmt = params['OriginalAmt']
+          @MidasSecretId = params['MidasSecretId']
+          @MidasSignature = params['MidasSignature']
+          @ContractNotifyUrl = params['ContractNotifyUrl']
+          @CallbackUrl = params['CallbackUrl']
+          @Channel = params['Channel']
+          @Metadata = params['Metadata']
+          @Quantity = params['Quantity']
+          @SubAppId = params['SubAppId']
+          unless params['SubOrderList'].nil?
+            @SubOrderList = []
+            params['SubOrderList'].each do |i|
+              @SubOrderList << ContractOrderInSubOrder.new.deserialize(i)
+            end
+          end
+          @TotalMchIncome = params['TotalMchIncome']
+          @TotalPlatformIncome = params['TotalPlatformIncome']
+          @WxOpenId = params['WxOpenId']
+          @WxSubOpenId = params['WxSubOpenId']
+          @MidasEnvironment = params['MidasEnvironment']
+          @WxAppId = params['WxAppId']
+          @WxSubAppId = params['WxSubAppId']
+          @PaymentNotifyUrl = params['PaymentNotifyUrl']
+          @ContractSceneId = params['ContractSceneId']
+          @ExternalContractData = params['ExternalContractData']
+          @OutContractCode = params['OutContractCode']
+          @AttachData = params['AttachData']
+          @ContractDisplayName = params['ContractDisplayName']
+        end
+      end
+
+      # ContractOrder返回参数结构体
+      class ContractOrderResponse < TencentCloud::Common::AbstractModel
+        # @param TotalAmt: 支付金额，单位： 分
+        # @type TotalAmt: Integer
+        # @param OutTradeNo: 应用支付订单号
+        # @type OutTradeNo: String
+        # @param PayInfo: 支付参数透传给聚鑫SDK（原文透传给SDK即可，不需要解码）
+        # @type PayInfo: String
+        # @param TransactionId: 聚鑫的交易订单号
+        # @type TransactionId: String
+        # @param OutContractCode: 外部签约协议号
+        # @type OutContractCode: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalAmt, :OutTradeNo, :PayInfo, :TransactionId, :OutContractCode, :RequestId
+        
+        def initialize(totalamt=nil, outtradeno=nil, payinfo=nil, transactionid=nil, outcontractcode=nil, requestid=nil)
+          @TotalAmt = totalamt
+          @OutTradeNo = outtradeno
+          @PayInfo = payinfo
+          @TransactionId = transactionid
+          @OutContractCode = outcontractcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalAmt = params['TotalAmt']
+          @OutTradeNo = params['OutTradeNo']
+          @PayInfo = params['PayInfo']
+          @TransactionId = params['TransactionId']
+          @OutContractCode = params['OutContractCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 签约同步信息
+      class ContractSyncInfo < TencentCloud::Common::AbstractModel
+        # @param ExternalReturnContractInfo: 第三方渠道合约信息
+        # @type ExternalReturnContractInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ExternalReturnContractInfo`
+        # @param ExternalContractUserInfo: 第三方渠道用户信息
+        # @type ExternalContractUserInfo: Array
+        # @param ContractMethod: 签约方式，枚举值，
+        # <br/>CONTRACT_METHOD_WECHAT_INVALID: 无效
+        # CONTRACT_METHOD_WECHAT_APP: 微信APP
+        # CONTRACT_METHOD_WECHAT_PUBLIC: 微信公众号
+        # CONTRACT_METHOD_WECHAT_MINIPROGRAM: 微信小程序
+        # CONTRACT_METHOD_WECHAT_H5: 微信H5
+        # @type ContractMethod: String
+        # @param ContractSceneId: 在米大师侧分配的场景id
+        # @type ContractSceneId: String
+        # @param ExternalReturnContractData: 调用方从第三方渠道查询到的签约数据，由各个渠道定义
+        # @type ExternalReturnContractData: String
+
+        attr_accessor :ExternalReturnContractInfo, :ExternalContractUserInfo, :ContractMethod, :ContractSceneId, :ExternalReturnContractData
+        
+        def initialize(externalreturncontractinfo=nil, externalcontractuserinfo=nil, contractmethod=nil, contractsceneid=nil, externalreturncontractdata=nil)
+          @ExternalReturnContractInfo = externalreturncontractinfo
+          @ExternalContractUserInfo = externalcontractuserinfo
+          @ContractMethod = contractmethod
+          @ContractSceneId = contractsceneid
+          @ExternalReturnContractData = externalreturncontractdata
+        end
+
+        def deserialize(params)
+          unless params['ExternalReturnContractInfo'].nil?
+            @ExternalReturnContractInfo = ExternalReturnContractInfo.new.deserialize(params['ExternalReturnContractInfo'])
+          end
+          unless params['ExternalContractUserInfo'].nil?
+            @ExternalContractUserInfo = []
+            params['ExternalContractUserInfo'].each do |i|
+              @ExternalContractUserInfo << ExternalContractUserInfo.new.deserialize(i)
+            end
+          end
+          @ContractMethod = params['ContractMethod']
+          @ContractSceneId = params['ContractSceneId']
+          @ExternalReturnContractData = params['ExternalReturnContractData']
+        end
+      end
+
+      # 用户信息
+      class ContractUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserType: USER_ID: 用户ID
+        # ANONYMOUS: 匿名类型用户ID
+        # @type UserType: String
+        # @param UserId: 用户类型
+        # @type UserId: String
+
+        attr_accessor :UserType, :UserId
+        
+        def initialize(usertype=nil, userid=nil)
+          @UserType = usertype
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @UserType = params['UserType']
+          @UserId = params['UserId']
         end
       end
 
@@ -3658,6 +4068,92 @@ module TencentCloud
         end
       end
 
+      # 第三方渠道用户信息
+      class ExternalContractUserInfo < TencentCloud::Common::AbstractModel
+        # @param ExternalUserType: 第三方用户类型，例如:  WX_OPENID, WX_SUB_OPENID,WX_PAYER_OPENID
+        # @type ExternalUserType: String
+        # @param ExternalUserId: 第三方用户ID
+        # @type ExternalUserId: String
+
+        attr_accessor :ExternalUserType, :ExternalUserId
+        
+        def initialize(externalusertype=nil, externaluserid=nil)
+          @ExternalUserType = externalusertype
+          @ExternalUserId = externaluserid
+        end
+
+        def deserialize(params)
+          @ExternalUserType = params['ExternalUserType']
+          @ExternalUserId = params['ExternalUserId']
+        end
+      end
+
+      # 第三方渠道合约信息
+      class ExternalReturnContractInfo < TencentCloud::Common::AbstractModel
+        # @param ExternalReturnAgreementId: 第三方渠道协议id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnAgreementId: String
+        # @param ExternalReturnContractEffectiveTimestamp: 第三方渠道协议生效时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnContractEffectiveTimestamp: String
+        # @param ExternalReturnContractTerminationTimestamp: 第三方渠道协议解约时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnContractTerminationTimestamp: String
+        # @param ExternalReturnContractStatus: 平台合约状态
+        # 协议状态，枚举值：
+        # CONTRACT_STATUS_SIGNED：已签约
+        # CONTRACT_STATUS_TERMINATED：未签约
+        # CONTRACT_STATUS_PENDING：签约进行中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnContractStatus: String
+        # @param ExternalReturnRequestId: 第三方渠道请求序列号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnRequestId: String
+        # @param ExternalReturnContractSignedTimestamp: 第三方渠道协议签署时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnContractSignedTimestamp: String
+        # @param ExternalReturnContractExpiredTimestamp: 第三方渠道协议到期时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnContractExpiredTimestamp: String
+        # @param ExternalReturnContractData: 第三方渠道返回的合约数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnContractData: String
+        # @param ExternalReturnContractTerminationRemark: 第三方渠道解约备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnContractTerminationRemark: String
+        # @param ExternalReturnContractTerminationMode: 第三方渠道协议解约方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnContractTerminationMode: String
+
+        attr_accessor :ExternalReturnAgreementId, :ExternalReturnContractEffectiveTimestamp, :ExternalReturnContractTerminationTimestamp, :ExternalReturnContractStatus, :ExternalReturnRequestId, :ExternalReturnContractSignedTimestamp, :ExternalReturnContractExpiredTimestamp, :ExternalReturnContractData, :ExternalReturnContractTerminationRemark, :ExternalReturnContractTerminationMode
+        
+        def initialize(externalreturnagreementid=nil, externalreturncontracteffectivetimestamp=nil, externalreturncontractterminationtimestamp=nil, externalreturncontractstatus=nil, externalreturnrequestid=nil, externalreturncontractsignedtimestamp=nil, externalreturncontractexpiredtimestamp=nil, externalreturncontractdata=nil, externalreturncontractterminationremark=nil, externalreturncontractterminationmode=nil)
+          @ExternalReturnAgreementId = externalreturnagreementid
+          @ExternalReturnContractEffectiveTimestamp = externalreturncontracteffectivetimestamp
+          @ExternalReturnContractTerminationTimestamp = externalreturncontractterminationtimestamp
+          @ExternalReturnContractStatus = externalreturncontractstatus
+          @ExternalReturnRequestId = externalreturnrequestid
+          @ExternalReturnContractSignedTimestamp = externalreturncontractsignedtimestamp
+          @ExternalReturnContractExpiredTimestamp = externalreturncontractexpiredtimestamp
+          @ExternalReturnContractData = externalreturncontractdata
+          @ExternalReturnContractTerminationRemark = externalreturncontractterminationremark
+          @ExternalReturnContractTerminationMode = externalreturncontractterminationmode
+        end
+
+        def deserialize(params)
+          @ExternalReturnAgreementId = params['ExternalReturnAgreementId']
+          @ExternalReturnContractEffectiveTimestamp = params['ExternalReturnContractEffectiveTimestamp']
+          @ExternalReturnContractTerminationTimestamp = params['ExternalReturnContractTerminationTimestamp']
+          @ExternalReturnContractStatus = params['ExternalReturnContractStatus']
+          @ExternalReturnRequestId = params['ExternalReturnRequestId']
+          @ExternalReturnContractSignedTimestamp = params['ExternalReturnContractSignedTimestamp']
+          @ExternalReturnContractExpiredTimestamp = params['ExternalReturnContractExpiredTimestamp']
+          @ExternalReturnContractData = params['ExternalReturnContractData']
+          @ExternalReturnContractTerminationRemark = params['ExternalReturnContractTerminationRemark']
+          @ExternalReturnContractTerminationMode = params['ExternalReturnContractTerminationMode']
+        end
+      end
+
       # 对账文件信息
       class FileItem < TencentCloud::Common::AbstractModel
         # @param FileName: STRING(256)，文件名称
@@ -5235,6 +5731,105 @@ module TencentCloud
             end
           end
           @ReservedMsg = params['ReservedMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryContract请求参数结构体
+      class QueryContractRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 聚鑫分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param UserId: 用户ID，长度不小于5位，仅支持字母和数字的组合
+        # @type UserId: String
+        # @param Channel: 指定渠道：  wechat：微信支付  qqwallet：QQ钱包
+        #  bank：网银支付  只有一个渠道时需要指定
+        # @type Channel: String
+        # @param ContractQueryMode: 枚举值：
+        # CONTRACT_QUERY_MODE_BY_OUT_CONTRACT_CODE：按 OutContractCode + ContractSceneId 查询
+        # CONTRACT_QUERY_MODE_BY_CHANNEL_CONTRACT_CODE：按ChannelContractCode查询
+        # @type ContractQueryMode: String
+        # @param MidasSignature: 按照聚鑫安全密钥计算的签名
+        # @type MidasSignature: String
+        # @param MidasSecretId: 聚鑫分配的安全ID
+        # @type MidasSecretId: String
+        # @param SubAppId: 聚鑫计费SubAppId，代表子商户
+        # @type SubAppId: String
+        # @param OutContractCode: 业务签约合同协议号 当 ContractQueryMode=CONTRACT_QUERY_MODE_BY_OUT_CONTRACT_CODE 时 ，必填
+        # @type OutContractCode: String
+        # @param ContractSceneId: 签约场景ID，当 ContractQueryMode=CONTRACT_QUERY_MODE_BY_OUT_CONTRACT_CODE 时 必填，在米大师侧托管后生成
+        # @type ContractSceneId: String
+        # @param ChannelContractCode: 米大师生成的协议号 ，当 ContractQueryMode=CONTRACT_QUERY_MODE_BY_CHANNEL_CONTRACT_CODE 时必填
+        # @type ChannelContractCode: String
+        # @param ExternalContractData: 第三方渠道合约数据，为json字符串，与特定渠道有关
+        # @type ExternalContractData: String
+        # @param MidasEnvironment: 环境名:
+        # release: 现网环境
+        # sandbox: 沙箱环境
+        # development: 开发环境
+        # 缺省: release
+        # @type MidasEnvironment: String
+        # @param UserType: USER_ID: 用户ID
+        # ANONYMOUS: 匿名类型 USER_ID
+        # 默认值为 USER_ID
+        # @type UserType: String
+
+        attr_accessor :MidasAppId, :UserId, :Channel, :ContractQueryMode, :MidasSignature, :MidasSecretId, :SubAppId, :OutContractCode, :ContractSceneId, :ChannelContractCode, :ExternalContractData, :MidasEnvironment, :UserType
+        
+        def initialize(midasappid=nil, userid=nil, channel=nil, contractquerymode=nil, midassignature=nil, midassecretid=nil, subappid=nil, outcontractcode=nil, contractsceneid=nil, channelcontractcode=nil, externalcontractdata=nil, midasenvironment=nil, usertype=nil)
+          @MidasAppId = midasappid
+          @UserId = userid
+          @Channel = channel
+          @ContractQueryMode = contractquerymode
+          @MidasSignature = midassignature
+          @MidasSecretId = midassecretid
+          @SubAppId = subappid
+          @OutContractCode = outcontractcode
+          @ContractSceneId = contractsceneid
+          @ChannelContractCode = channelcontractcode
+          @ExternalContractData = externalcontractdata
+          @MidasEnvironment = midasenvironment
+          @UserType = usertype
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @UserId = params['UserId']
+          @Channel = params['Channel']
+          @ContractQueryMode = params['ContractQueryMode']
+          @MidasSignature = params['MidasSignature']
+          @MidasSecretId = params['MidasSecretId']
+          @SubAppId = params['SubAppId']
+          @OutContractCode = params['OutContractCode']
+          @ContractSceneId = params['ContractSceneId']
+          @ChannelContractCode = params['ChannelContractCode']
+          @ExternalContractData = params['ExternalContractData']
+          @MidasEnvironment = params['MidasEnvironment']
+          @UserType = params['UserType']
+        end
+      end
+
+      # QueryContract返回参数结构体
+      class QueryContractResponse < TencentCloud::Common::AbstractModel
+        # @param ContractData: 签约数据
+        # @type ContractData: :class:`Tencentcloud::Cpdp.v20190820.models.ResponseQueryContract`
+        # @param Msg: 请求处理信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContractData, :Msg, :RequestId
+        
+        def initialize(contractdata=nil, msg=nil, requestid=nil)
+          @ContractData = contractdata
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ContractData'].nil?
+            @ContractData = ResponseQueryContract.new.deserialize(params['ContractData'])
+          end
+          @Msg = params['Msg']
           @RequestId = params['RequestId']
         end
       end
@@ -8458,6 +9053,124 @@ module TencentCloud
         end
       end
 
+      # 签约数据
+      class ResponseQueryContract < TencentCloud::Common::AbstractModel
+        # @param ExternalReturnCode: 第三方渠道错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnCode: String
+        # @param ExternalReturnMessage: 第三方渠道错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnMessage: String
+        # @param ExternalReturnData: 第三方渠道返回的原始数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnData: String
+        # @param ChannelMerchantId: 米大师内部商户号
+        # @type ChannelMerchantId: String
+        # @param ChannelSubMerchantId: 米大师内部子商户号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelSubMerchantId: String
+        # @param ChannelAppId: 米大师内部应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelAppId: String
+        # @param ChannelSubAppId: 米大师内部子应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelSubAppId: String
+        # @param ChannelName: 渠道名称
+        # @type ChannelName: String
+        # @param ReturnContractInfo: 返回的合约信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnContractInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ReturnContractInfo`
+        # @param NotifyUrl: 签约通知地址
+        # @type NotifyUrl: String
+
+        attr_accessor :ExternalReturnCode, :ExternalReturnMessage, :ExternalReturnData, :ChannelMerchantId, :ChannelSubMerchantId, :ChannelAppId, :ChannelSubAppId, :ChannelName, :ReturnContractInfo, :NotifyUrl
+        
+        def initialize(externalreturncode=nil, externalreturnmessage=nil, externalreturndata=nil, channelmerchantid=nil, channelsubmerchantid=nil, channelappid=nil, channelsubappid=nil, channelname=nil, returncontractinfo=nil, notifyurl=nil)
+          @ExternalReturnCode = externalreturncode
+          @ExternalReturnMessage = externalreturnmessage
+          @ExternalReturnData = externalreturndata
+          @ChannelMerchantId = channelmerchantid
+          @ChannelSubMerchantId = channelsubmerchantid
+          @ChannelAppId = channelappid
+          @ChannelSubAppId = channelsubappid
+          @ChannelName = channelname
+          @ReturnContractInfo = returncontractinfo
+          @NotifyUrl = notifyurl
+        end
+
+        def deserialize(params)
+          @ExternalReturnCode = params['ExternalReturnCode']
+          @ExternalReturnMessage = params['ExternalReturnMessage']
+          @ExternalReturnData = params['ExternalReturnData']
+          @ChannelMerchantId = params['ChannelMerchantId']
+          @ChannelSubMerchantId = params['ChannelSubMerchantId']
+          @ChannelAppId = params['ChannelAppId']
+          @ChannelSubAppId = params['ChannelSubAppId']
+          @ChannelName = params['ChannelName']
+          unless params['ReturnContractInfo'].nil?
+            @ReturnContractInfo = ReturnContractInfo.new.deserialize(params['ReturnContractInfo'])
+          end
+          @NotifyUrl = params['NotifyUrl']
+        end
+      end
+
+      # 解约数据
+      class ResponseTerminateContract < TencentCloud::Common::AbstractModel
+        # @param ExternalReturnCode: 第三方渠道错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnCode: String
+        # @param ExternalReturnMessage: 第三方渠道错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnMessage: String
+        # @param ExternalReturnData: 第三方渠道返回的原始数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReturnData: String
+
+        attr_accessor :ExternalReturnCode, :ExternalReturnMessage, :ExternalReturnData
+        
+        def initialize(externalreturncode=nil, externalreturnmessage=nil, externalreturndata=nil)
+          @ExternalReturnCode = externalreturncode
+          @ExternalReturnMessage = externalreturnmessage
+          @ExternalReturnData = externalreturndata
+        end
+
+        def deserialize(params)
+          @ExternalReturnCode = params['ExternalReturnCode']
+          @ExternalReturnMessage = params['ExternalReturnMessage']
+          @ExternalReturnData = params['ExternalReturnData']
+        end
+      end
+
+      # 返回的合约信息
+      class ReturnContractInfo < TencentCloud::Common::AbstractModel
+        # @param ContractInfo: 合约信息
+        # @type ContractInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ContractInfo`
+        # @param ChannelReturnContractInfo: 米大师内部生成的合约信息
+        # @type ChannelReturnContractInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ChannelReturnContractInfo`
+        # @param ExternalReturnContractInfo: 第三方渠道合约信息
+        # @type ExternalReturnContractInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ExternalReturnContractInfo`
+
+        attr_accessor :ContractInfo, :ChannelReturnContractInfo, :ExternalReturnContractInfo
+        
+        def initialize(contractinfo=nil, channelreturncontractinfo=nil, externalreturncontractinfo=nil)
+          @ContractInfo = contractinfo
+          @ChannelReturnContractInfo = channelreturncontractinfo
+          @ExternalReturnContractInfo = externalreturncontractinfo
+        end
+
+        def deserialize(params)
+          unless params['ContractInfo'].nil?
+            @ContractInfo = ContractInfo.new.deserialize(params['ContractInfo'])
+          end
+          unless params['ChannelReturnContractInfo'].nil?
+            @ChannelReturnContractInfo = ChannelReturnContractInfo.new.deserialize(params['ChannelReturnContractInfo'])
+          end
+          unless params['ExternalReturnContractInfo'].nil?
+            @ExternalReturnContractInfo = ExternalReturnContractInfo.new.deserialize(params['ExternalReturnContractInfo'])
+          end
+        end
+      end
+
       # RevResigterBillSupportWithdraw请求参数结构体
       class RevResigterBillSupportWithdrawRequest < TencentCloud::Common::AbstractModel
         # @param MrchCode: String(22)，商户号（签约客户号）
@@ -8837,6 +9550,232 @@ module TencentCloud
           @RequestType = params['RequestType']
           @ReservedMessage = params['ReservedMessage']
           @FrontSequenceNumber = params['FrontSequenceNumber']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 场景信息
+      class SceneInfo < TencentCloud::Common::AbstractModel
+        # @param LocaleCode: 语言代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocaleCode: String
+        # @param RegionCode: 地区代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionCode: String
+        # @param UserClientIp: 用户IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserClientIp: String
+
+        attr_accessor :LocaleCode, :RegionCode, :UserClientIp
+        
+        def initialize(localecode=nil, regioncode=nil, userclientip=nil)
+          @LocaleCode = localecode
+          @RegionCode = regioncode
+          @UserClientIp = userclientip
+        end
+
+        def deserialize(params)
+          @LocaleCode = params['LocaleCode']
+          @RegionCode = params['RegionCode']
+          @UserClientIp = params['UserClientIp']
+        end
+      end
+
+      # SyncContractData请求参数结构体
+      class SyncContractDataRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 聚鑫分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param UserId: 用户ID，长度不小于5位，仅支持字母和数字的组合
+        # @type UserId: String
+        # @param Channel: 签约使用的渠道
+        # @type Channel: String
+        # @param OutContractCode: 业务签约合同协议号
+        # @type OutContractCode: String
+        # @param ContractStatus: 签约状态，枚举值
+        # CONTRACT_STATUS_INVALID=无效状态
+        # CONTRACT_STATUS_SIGNED=已签约
+        # CONTRACT_STATUS_TERMINATED=已解约
+        # CONTRACT_STATUS_PENDING=签约进行中
+        # @type ContractStatus: String
+        # @param ContractSyncInfo: 签约同步信息
+        # @type ContractSyncInfo: :class:`Tencentcloud::Cpdp.v20190820.models.ContractSyncInfo`
+        # @param MidasSignature: 按照聚鑫安全密钥计算的签名
+        # @type MidasSignature: String
+        # @param MidasSecretId: 聚鑫分配的安全ID
+        # @type MidasSecretId: String
+        # @param SubAppId: 聚鑫计费SubAppId，代表子商户
+        # @type SubAppId: String
+        # @param UserType: 用户类型，枚举值
+        # USER_ID: 用户ID
+        # ANONYMOUS: 匿名类型 USER_ID
+        # 默认值为 USER_ID
+        # @type UserType: String
+        # @param SceneInfo: 场景信息
+        # @type SceneInfo: :class:`Tencentcloud::Cpdp.v20190820.models.SceneInfo`
+        # @param MidasEnvironment: 环境名:
+        # release: 现网环境
+        # sandbox: 沙箱环境
+        # development: 开发环境
+        # 缺省: release
+        # @type MidasEnvironment: String
+
+        attr_accessor :MidasAppId, :UserId, :Channel, :OutContractCode, :ContractStatus, :ContractSyncInfo, :MidasSignature, :MidasSecretId, :SubAppId, :UserType, :SceneInfo, :MidasEnvironment
+        
+        def initialize(midasappid=nil, userid=nil, channel=nil, outcontractcode=nil, contractstatus=nil, contractsyncinfo=nil, midassignature=nil, midassecretid=nil, subappid=nil, usertype=nil, sceneinfo=nil, midasenvironment=nil)
+          @MidasAppId = midasappid
+          @UserId = userid
+          @Channel = channel
+          @OutContractCode = outcontractcode
+          @ContractStatus = contractstatus
+          @ContractSyncInfo = contractsyncinfo
+          @MidasSignature = midassignature
+          @MidasSecretId = midassecretid
+          @SubAppId = subappid
+          @UserType = usertype
+          @SceneInfo = sceneinfo
+          @MidasEnvironment = midasenvironment
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @UserId = params['UserId']
+          @Channel = params['Channel']
+          @OutContractCode = params['OutContractCode']
+          @ContractStatus = params['ContractStatus']
+          unless params['ContractSyncInfo'].nil?
+            @ContractSyncInfo = ContractSyncInfo.new.deserialize(params['ContractSyncInfo'])
+          end
+          @MidasSignature = params['MidasSignature']
+          @MidasSecretId = params['MidasSecretId']
+          @SubAppId = params['SubAppId']
+          @UserType = params['UserType']
+          unless params['SceneInfo'].nil?
+            @SceneInfo = SceneInfo.new.deserialize(params['SceneInfo'])
+          end
+          @MidasEnvironment = params['MidasEnvironment']
+        end
+      end
+
+      # SyncContractData返回参数结构体
+      class SyncContractDataResponse < TencentCloud::Common::AbstractModel
+        # @param Msg: 请求处理信息
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Msg, :RequestId
+        
+        def initialize(msg=nil, requestid=nil)
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TerminateContract请求参数结构体
+      class TerminateContractRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 聚鑫分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param UserId: 用户ID，长度不小于5位，仅支持字母和数字的组合
+        # @type UserId: String
+        # @param Channel: 指定渠道：  wechat：微信支付  qqwallet：QQ钱包
+        #  bank：网银支付  只有一个渠道时需要指定
+        # @type Channel: String
+        # @param TerminateMode: 枚举值：
+        # CONTRACT_TERMINATION_MODE_BY_OUT_CONTRACT_CODE: 按OutContractCode+ContractSceneId解约
+        # CONTRACT_TERMINATION_MODE_BY_CHANNEL_CONTRACT_CODE：按ChannelContractCode解约
+        # @type TerminateMode: String
+        # @param MidasSecretId: 聚鑫分配的安全ID
+        # @type MidasSecretId: String
+        # @param MidasSignature: 按照聚鑫安全密钥计算的签名
+        # @type MidasSignature: String
+        # @param SubAppId: 聚鑫计费SubAppId，代表子商户
+        # @type SubAppId: String
+        # @param OutContractCode: 业务签约合同协议号 当TerminateMode=CONTRACT_TERMINATION_MODE_BY_OUT_CONTRACT_CODE 时 必填
+        # @type OutContractCode: String
+        # @param ContractSceneId: 签约场景ID，当 TerminateMode=CONTRACT_TERMINATION_MODE_BY_OUT_CONTRACT_CODE 时 必填，在米大师侧托管后生成
+        # @type ContractSceneId: String
+        # @param ChannelContractCode: 米大师生成的协议号 当 TerminateMode=CONTRACT_TERMINATION_MODE_BY_CHANNEL_CONTRACT_CODE 时 必填
+        # @type ChannelContractCode: String
+        # @param ExternalContractData: 第三方渠道合约数据，json字符串，与特定渠道有关
+        # @type ExternalContractData: String
+        # @param TerminationReason: 终止合约原因
+        # @type TerminationReason: String
+        # @param MidasEnvironment: 环境名:
+        # release: 现网环境
+        # sandbox: 沙箱环境
+        # development: 开发环境
+        # 缺省: release
+        # @type MidasEnvironment: String
+        # @param UserType: USER_ID: 用户ID
+        # ANONYMOUS: 匿名类型 USER_ID
+        # 默认值为 USER_ID
+        # @type UserType: String
+
+        attr_accessor :MidasAppId, :UserId, :Channel, :TerminateMode, :MidasSecretId, :MidasSignature, :SubAppId, :OutContractCode, :ContractSceneId, :ChannelContractCode, :ExternalContractData, :TerminationReason, :MidasEnvironment, :UserType
+        
+        def initialize(midasappid=nil, userid=nil, channel=nil, terminatemode=nil, midassecretid=nil, midassignature=nil, subappid=nil, outcontractcode=nil, contractsceneid=nil, channelcontractcode=nil, externalcontractdata=nil, terminationreason=nil, midasenvironment=nil, usertype=nil)
+          @MidasAppId = midasappid
+          @UserId = userid
+          @Channel = channel
+          @TerminateMode = terminatemode
+          @MidasSecretId = midassecretid
+          @MidasSignature = midassignature
+          @SubAppId = subappid
+          @OutContractCode = outcontractcode
+          @ContractSceneId = contractsceneid
+          @ChannelContractCode = channelcontractcode
+          @ExternalContractData = externalcontractdata
+          @TerminationReason = terminationreason
+          @MidasEnvironment = midasenvironment
+          @UserType = usertype
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @UserId = params['UserId']
+          @Channel = params['Channel']
+          @TerminateMode = params['TerminateMode']
+          @MidasSecretId = params['MidasSecretId']
+          @MidasSignature = params['MidasSignature']
+          @SubAppId = params['SubAppId']
+          @OutContractCode = params['OutContractCode']
+          @ContractSceneId = params['ContractSceneId']
+          @ChannelContractCode = params['ChannelContractCode']
+          @ExternalContractData = params['ExternalContractData']
+          @TerminationReason = params['TerminationReason']
+          @MidasEnvironment = params['MidasEnvironment']
+          @UserType = params['UserType']
+        end
+      end
+
+      # TerminateContract返回参数结构体
+      class TerminateContractResponse < TencentCloud::Common::AbstractModel
+        # @param ContractTerminateData: 解约数据
+        # @type ContractTerminateData: :class:`Tencentcloud::Cpdp.v20190820.models.ResponseTerminateContract`
+        # @param Msg: 请求处理信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContractTerminateData, :Msg, :RequestId
+        
+        def initialize(contractterminatedata=nil, msg=nil, requestid=nil)
+          @ContractTerminateData = contractterminatedata
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ContractTerminateData'].nil?
+            @ContractTerminateData = ResponseTerminateContract.new.deserialize(params['ContractTerminateData'])
+          end
+          @Msg = params['Msg']
           @RequestId = params['RequestId']
         end
       end
