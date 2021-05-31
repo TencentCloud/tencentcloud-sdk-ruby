@@ -184,7 +184,7 @@ module TencentCloud
       class CheckDomainRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 所查询域名名称
         # @type DomainName: String
-        # @param Period: 年限
+        # @param Period: 年限。该参数为空时无法查询溢价词域名
         # @type Period: String
 
         attr_accessor :DomainName, :Period

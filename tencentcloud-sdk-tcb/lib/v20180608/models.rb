@@ -3751,10 +3751,12 @@ module TencentCloud
         # @type VpcInfo: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseRunVpcInfo`
         # @param PublicAccess: 0/1=允许公网访问;2=关闭公网访问
         # @type PublicAccess: Integer
+        # @param OpenAccessTypes: OA PUBLIC MINIAPP VPC
+        # @type OpenAccessTypes: Array
 
-        attr_accessor :EnvId, :ServiceName, :IsPublic, :ImageRepo, :Remark, :EsInfo, :LogType, :OperatorRemark, :Source, :VpcInfo, :PublicAccess
+        attr_accessor :EnvId, :ServiceName, :IsPublic, :ImageRepo, :Remark, :EsInfo, :LogType, :OperatorRemark, :Source, :VpcInfo, :PublicAccess, :OpenAccessTypes
         
-        def initialize(envid=nil, servicename=nil, ispublic=nil, imagerepo=nil, remark=nil, esinfo=nil, logtype=nil, operatorremark=nil, source=nil, vpcinfo=nil, publicaccess=nil)
+        def initialize(envid=nil, servicename=nil, ispublic=nil, imagerepo=nil, remark=nil, esinfo=nil, logtype=nil, operatorremark=nil, source=nil, vpcinfo=nil, publicaccess=nil, openaccesstypes=nil)
           @EnvId = envid
           @ServiceName = servicename
           @IsPublic = ispublic
@@ -3766,6 +3768,7 @@ module TencentCloud
           @Source = source
           @VpcInfo = vpcinfo
           @PublicAccess = publicaccess
+          @OpenAccessTypes = openaccesstypes
         end
 
         def deserialize(params)
@@ -3784,6 +3787,7 @@ module TencentCloud
             @VpcInfo = CloudBaseRunVpcInfo.new.deserialize(params['VpcInfo'])
           end
           @PublicAccess = params['PublicAccess']
+          @OpenAccessTypes = params['OpenAccessTypes']
         end
       end
 

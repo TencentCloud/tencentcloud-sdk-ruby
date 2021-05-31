@@ -412,6 +412,48 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVMusicDetail请求参数结构体
+      class DescribeKTVMusicDetailRequest < TencentCloud::Common::AbstractModel
+        # @param MusicId: 曲目 Id
+        # @type MusicId: String
+
+        attr_accessor :MusicId
+        
+        def initialize(musicid=nil)
+          @MusicId = musicid
+        end
+
+        def deserialize(params)
+          @MusicId = params['MusicId']
+        end
+      end
+
+      # DescribeKTVMusicDetail返回参数结构体
+      class DescribeKTVMusicDetailResponse < TencentCloud::Common::AbstractModel
+        # @param KTVMusicBaseInfo: 歌曲基础信息
+        # @type KTVMusicBaseInfo: :class:`Tencentcloud::Ame.v20190916.models.KTVMusicBaseInfo`
+        # @param PlayToken: 播放凭证
+        # @type PlayToken: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KTVMusicBaseInfo, :PlayToken, :RequestId
+        
+        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, requestid=nil)
+          @KTVMusicBaseInfo = ktvmusicbaseinfo
+          @PlayToken = playtoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KTVMusicBaseInfo'].nil?
+            @KTVMusicBaseInfo = KTVMusicBaseInfo.new.deserialize(params['KTVMusicBaseInfo'])
+          end
+          @PlayToken = params['PlayToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLyric请求参数结构体
       class DescribeLyricRequest < TencentCloud::Common::AbstractModel
         # @param ItemId: 歌曲ID
@@ -730,6 +772,42 @@ module TencentCloud
             end
           end
           @Status = params['Status']
+        end
+      end
+
+      # KTV 曲目基础信息
+      class KTVMusicBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MusicId: 歌曲 Id
+        # @type MusicId: String
+        # @param Name: 歌曲名称
+        # @type Name: String
+        # @param SingerSet: 演唱者列表
+        # @type SingerSet: Array
+        # @param LyricistSet: 作词者列表
+        # @type LyricistSet: Array
+        # @param ComposerSet: 作曲者列表
+        # @type ComposerSet: Array
+        # @param TagSet: 标签列表
+        # @type TagSet: Array
+
+        attr_accessor :MusicId, :Name, :SingerSet, :LyricistSet, :ComposerSet, :TagSet
+        
+        def initialize(musicid=nil, name=nil, singerset=nil, lyricistset=nil, composerset=nil, tagset=nil)
+          @MusicId = musicid
+          @Name = name
+          @SingerSet = singerset
+          @LyricistSet = lyricistset
+          @ComposerSet = composerset
+          @TagSet = tagset
+        end
+
+        def deserialize(params)
+          @MusicId = params['MusicId']
+          @Name = params['Name']
+          @SingerSet = params['SingerSet']
+          @LyricistSet = params['LyricistSet']
+          @ComposerSet = params['ComposerSet']
+          @TagSet = params['TagSet']
         end
       end
 
@@ -1137,6 +1215,59 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SearchKTVMusics请求参数结构体
+      class SearchKTVMusicsRequest < TencentCloud::Common::AbstractModel
+        # @param KeyWord: 搜索关键词
+        # @type KeyWord: String
+        # @param Offset: 分页游标
+        # @type Offset: Integer
+        # @param Limit: 分页页长
+        # @type Limit: Integer
+
+        attr_accessor :KeyWord, :Offset, :Limit
+        
+        def initialize(keyword=nil, offset=nil, limit=nil)
+          @KeyWord = keyword
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @KeyWord = params['KeyWord']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # SearchKTVMusics返回参数结构体
+      class SearchKTVMusicsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param KTVMusicInfoSet: KTV 曲目列表
+        # @type KTVMusicInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :KTVMusicInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, ktvmusicinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @KTVMusicInfoSet = ktvmusicinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['KTVMusicInfoSet'].nil?
+            @KTVMusicInfoSet = []
+            params['KTVMusicInfoSet'].each do |i|
+              @KTVMusicInfoSet << KTVMusicBaseInfo.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

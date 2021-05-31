@@ -666,10 +666,16 @@ module TencentCloud
         # @type Zone: String
         # @param ResourceTags: 实例绑定的tag数组信息
         # @type ResourceTags: Array
+        # @param ServerlessStatus: 当Db类型为SERVERLESS时，serverless集群状态，可选值:
+        # resume
+        # resuming
+        # pause
+        # pausing
+        # @type ServerlessStatus: String
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Status, :StatusDesc, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbVersion, :UsedStorage, :RoAddr, :InstanceSet, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :Zone, :ResourceTags
+        attr_accessor :ClusterId, :ClusterName, :Region, :Status, :StatusDesc, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbVersion, :UsedStorage, :RoAddr, :InstanceSet, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :Zone, :ResourceTags, :ServerlessStatus
         
-        def initialize(clusterid=nil, clustername=nil, region=nil, status=nil, statusdesc=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbversion=nil, usedstorage=nil, roaddr=nil, instanceset=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, zone=nil, resourcetags=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, status=nil, statusdesc=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbversion=nil, usedstorage=nil, roaddr=nil, instanceset=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, zone=nil, resourcetags=nil, serverlessstatus=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -693,6 +699,7 @@ module TencentCloud
           @ProjectID = projectid
           @Zone = zone
           @ResourceTags = resourcetags
+          @ServerlessStatus = serverlessstatus
         end
 
         def deserialize(params)
@@ -734,6 +741,7 @@ module TencentCloud
               @ResourceTags << Tag.new.deserialize(i)
             end
           end
+          @ServerlessStatus = params['ServerlessStatus']
         end
       end
 

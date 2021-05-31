@@ -176,10 +176,12 @@ module TencentCloud
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
+        # @param Tags: 为命令关联的标签，列表长度不超过10。
+        # @type Tags: Array
 
-        attr_accessor :CommandName, :Content, :Description, :CommandType, :WorkingDirectory, :Timeout, :EnableParameter, :DefaultParameters
+        attr_accessor :CommandName, :Content, :Description, :CommandType, :WorkingDirectory, :Timeout, :EnableParameter, :DefaultParameters, :Tags
         
-        def initialize(commandname=nil, content=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, enableparameter=nil, defaultparameters=nil)
+        def initialize(commandname=nil, content=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, enableparameter=nil, defaultparameters=nil, tags=nil)
           @CommandName = commandname
           @Content = content
           @Description = description
@@ -188,6 +190,7 @@ module TencentCloud
           @Timeout = timeout
           @EnableParameter = enableparameter
           @DefaultParameters = defaultparameters
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -199,6 +202,12 @@ module TencentCloud
           @Timeout = params['Timeout']
           @EnableParameter = params['EnableParameter']
           @DefaultParameters = params['DefaultParameters']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -320,7 +329,15 @@ module TencentCloud
       class DescribeCommandsRequest < TencentCloud::Common::AbstractModel
         # @param CommandIds: 命令ID列表，每次请求的上限为100。参数不支持同时指定 `CommandIds` 和 `Filters` 。
         # @type CommandIds: Array
-        # @param Filters: 过滤条件。<br> <li> command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。<br> <li> command-name - String - 是否必填：否 -（过滤条件）按照命令名称过滤。<br> <li> created-by - String - 是否必填：否 -（过滤条件）按照命令创建者过滤，取值为 TAT 或 USER，TAT 代表公共命令，USER 代表由用户创建的命令。 <br>每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `CommandIds` 和 `Filters` 。
+        # @param Filters: 过滤条件。
+        # <li> command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。
+        # <li> command-name - String - 是否必填：否 -（过滤条件）按照命令名称过滤。
+        # <li> created-by - String - 是否必填：否 -（过滤条件）按照命令创建者过滤，取值为 TAT 或 USER，TAT 代表公共命令，USER 代表由用户创建的命令。
+        # <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
+        # <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
+        # <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例4</li>
+
+        # 每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `CommandIds` 和 `Filters` 。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Limit: Integer
@@ -972,10 +989,12 @@ module TencentCloud
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type Parameters: String
+        # @param Tags: 如果保存命令，可为命令设置标签。列表长度不超过10。
+        # @type Tags: Array
 
-        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :Parameters
+        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :Parameters, :Tags
         
-        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, parameters=nil)
+        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, parameters=nil, tags=nil)
           @Content = content
           @InstanceIds = instanceids
           @CommandName = commandname
@@ -987,6 +1006,7 @@ module TencentCloud
           @EnableParameter = enableparameter
           @DefaultParameters = defaultparameters
           @Parameters = parameters
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1001,6 +1021,12 @@ module TencentCloud
           @EnableParameter = params['EnableParameter']
           @DefaultParameters = params['DefaultParameters']
           @Parameters = params['Parameters']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              @Tags << Tag.new.deserialize(i)
+            end
+          end
         end
       end
 
