@@ -3018,15 +3018,19 @@ module TencentCloud
       class DescribeMachineInfoRequest < TencentCloud::Common::AbstractModel
         # @param Uuid: 云镜客户端唯一Uuid。
         # @type Uuid: String
+        # @param Quuid: cvm id， quuid、uuid必填一个
+        # @type Quuid: String
 
-        attr_accessor :Uuid
+        attr_accessor :Uuid, :Quuid
         
-        def initialize(uuid=nil)
+        def initialize(uuid=nil, quuid=nil)
           @Uuid = uuid
+          @Quuid = quuid
         end
 
         def deserialize(params)
           @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
         end
       end
 
@@ -3076,12 +3080,14 @@ module TencentCloud
         # @type AgentVersion: String
         # @param ProVersionDeadline: 专业版到期时间(仅预付费)
         # @type ProVersionDeadline: String
+        # @param HasAssetScan: 是否有资产扫描记录，0无，1有
+        # @type HasAssetScan: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MachineIp, :ProtectDays, :MachineOs, :MachineName, :MachineStatus, :InstanceId, :MachineWanIp, :Quuid, :Uuid, :IsProVersion, :ProVersionOpenDate, :MachineType, :MachineRegion, :PayMode, :FreeMalwaresLeft, :FreeVulsLeft, :AgentVersion, :ProVersionDeadline, :RequestId
+        attr_accessor :MachineIp, :ProtectDays, :MachineOs, :MachineName, :MachineStatus, :InstanceId, :MachineWanIp, :Quuid, :Uuid, :IsProVersion, :ProVersionOpenDate, :MachineType, :MachineRegion, :PayMode, :FreeMalwaresLeft, :FreeVulsLeft, :AgentVersion, :ProVersionDeadline, :HasAssetScan, :RequestId
         
-        def initialize(machineip=nil, protectdays=nil, machineos=nil, machinename=nil, machinestatus=nil, instanceid=nil, machinewanip=nil, quuid=nil, uuid=nil, isproversion=nil, proversionopendate=nil, machinetype=nil, machineregion=nil, paymode=nil, freemalwaresleft=nil, freevulsleft=nil, agentversion=nil, proversiondeadline=nil, requestid=nil)
+        def initialize(machineip=nil, protectdays=nil, machineos=nil, machinename=nil, machinestatus=nil, instanceid=nil, machinewanip=nil, quuid=nil, uuid=nil, isproversion=nil, proversionopendate=nil, machinetype=nil, machineregion=nil, paymode=nil, freemalwaresleft=nil, freevulsleft=nil, agentversion=nil, proversiondeadline=nil, hasassetscan=nil, requestid=nil)
           @MachineIp = machineip
           @ProtectDays = protectdays
           @MachineOs = machineos
@@ -3100,6 +3106,7 @@ module TencentCloud
           @FreeVulsLeft = freevulsleft
           @AgentVersion = agentversion
           @ProVersionDeadline = proversiondeadline
+          @HasAssetScan = hasassetscan
           @RequestId = requestid
         end
 
@@ -3122,6 +3129,7 @@ module TencentCloud
           @FreeVulsLeft = params['FreeVulsLeft']
           @AgentVersion = params['AgentVersion']
           @ProVersionDeadline = params['ProVersionDeadline']
+          @HasAssetScan = params['HasAssetScan']
           @RequestId = params['RequestId']
         end
       end
@@ -5645,6 +5653,65 @@ module TencentCloud
             end
           end
           @Quuid = params['Quuid']
+        end
+      end
+
+      # ExportAssetCoreModuleList请求参数结构体
+      class ExportAssetCoreModuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Name- string - 是否必填：否 - 包名</li>
+        # <li>User- string - 是否必填：否 - 用户</li>
+        # @type Filters: Array
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序依据:Size,ProcessCount,ModuleCount
+        # @type By: String
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+
+        attr_accessor :Filters, :Order, :By, :Uuid, :Quuid
+        
+        def initialize(filters=nil, order=nil, by=nil, uuid=nil, quuid=nil)
+          @Filters = filters
+          @Order = order
+          @By = by
+          @Uuid = uuid
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << AssetFilters.new.deserialize(i)
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # ExportAssetCoreModuleList返回参数结构体
+      class ExportAssetCoreModuleListResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步下载任务ID，需要配合ExportTasks接口使用
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

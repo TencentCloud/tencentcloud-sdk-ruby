@@ -2907,12 +2907,16 @@ module TencentCloud
         # @type MaxDeleteMonthly: Integer
         # @param CurrentDeleteMonthly: 本月已销毁环境次数
         # @type CurrentDeleteMonthly: Integer
+        # @param MaxFreeTrialNum: 微信网关体验版可购买月份数
+        # @type MaxFreeTrialNum: Integer
+        # @param CurrentFreeTrialNum: 微信网关体验版已购买月份数
+        # @type CurrentFreeTrialNum: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MaxEnvNum, :CurrentEnvNum, :MaxFreeEnvNum, :CurrentFreeEnvNum, :MaxDeleteTotal, :CurrentDeleteTotal, :MaxDeleteMonthly, :CurrentDeleteMonthly, :RequestId
+        attr_accessor :MaxEnvNum, :CurrentEnvNum, :MaxFreeEnvNum, :CurrentFreeEnvNum, :MaxDeleteTotal, :CurrentDeleteTotal, :MaxDeleteMonthly, :CurrentDeleteMonthly, :MaxFreeTrialNum, :CurrentFreeTrialNum, :RequestId
         
-        def initialize(maxenvnum=nil, currentenvnum=nil, maxfreeenvnum=nil, currentfreeenvnum=nil, maxdeletetotal=nil, currentdeletetotal=nil, maxdeletemonthly=nil, currentdeletemonthly=nil, requestid=nil)
+        def initialize(maxenvnum=nil, currentenvnum=nil, maxfreeenvnum=nil, currentfreeenvnum=nil, maxdeletetotal=nil, currentdeletetotal=nil, maxdeletemonthly=nil, currentdeletemonthly=nil, maxfreetrialnum=nil, currentfreetrialnum=nil, requestid=nil)
           @MaxEnvNum = maxenvnum
           @CurrentEnvNum = currentenvnum
           @MaxFreeEnvNum = maxfreeenvnum
@@ -2921,6 +2925,8 @@ module TencentCloud
           @CurrentDeleteTotal = currentdeletetotal
           @MaxDeleteMonthly = maxdeletemonthly
           @CurrentDeleteMonthly = currentdeletemonthly
+          @MaxFreeTrialNum = maxfreetrialnum
+          @CurrentFreeTrialNum = currentfreetrialnum
           @RequestId = requestid
         end
 
@@ -2933,6 +2939,8 @@ module TencentCloud
           @CurrentDeleteTotal = params['CurrentDeleteTotal']
           @MaxDeleteMonthly = params['MaxDeleteMonthly']
           @CurrentDeleteMonthly = params['CurrentDeleteMonthly']
+          @MaxFreeTrialNum = params['MaxFreeTrialNum']
+          @CurrentFreeTrialNum = params['CurrentFreeTrialNum']
           @RequestId = params['RequestId']
         end
       end

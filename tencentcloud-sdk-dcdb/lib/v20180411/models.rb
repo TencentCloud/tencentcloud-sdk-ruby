@@ -394,10 +394,12 @@ module TencentCloud
         # @type Ipv6Flag: Integer
         # @param ResourceTags: 标签键值对数组
         # @type ResourceTags: Array
+        # @param InitParams: 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
+        # @type InitParams: Array
 
-        attr_accessor :Zones, :Period, :ShardMemory, :ShardStorage, :ShardNodeCount, :ShardCount, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :AutoVoucher, :VoucherIds, :SecurityGroupId, :InstanceName, :Ipv6Flag, :ResourceTags
+        attr_accessor :Zones, :Period, :ShardMemory, :ShardStorage, :ShardNodeCount, :ShardCount, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :AutoVoucher, :VoucherIds, :SecurityGroupId, :InstanceName, :Ipv6Flag, :ResourceTags, :InitParams
         
-        def initialize(zones=nil, period=nil, shardmemory=nil, shardstorage=nil, shardnodecount=nil, shardcount=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, autovoucher=nil, voucherids=nil, securitygroupid=nil, instancename=nil, ipv6flag=nil, resourcetags=nil)
+        def initialize(zones=nil, period=nil, shardmemory=nil, shardstorage=nil, shardnodecount=nil, shardcount=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, autovoucher=nil, voucherids=nil, securitygroupid=nil, instancename=nil, ipv6flag=nil, resourcetags=nil, initparams=nil)
           @Zones = zones
           @Period = period
           @ShardMemory = shardmemory
@@ -415,6 +417,7 @@ module TencentCloud
           @InstanceName = instancename
           @Ipv6Flag = ipv6flag
           @ResourceTags = resourcetags
+          @InitParams = initparams
         end
 
         def deserialize(params)
@@ -438,6 +441,12 @@ module TencentCloud
             @ResourceTags = []
             params['ResourceTags'].each do |i|
               @ResourceTags << ResourceTag.new.deserialize(i)
+            end
+          end
+          unless params['InitParams'].nil?
+            @InitParams = []
+            params['InitParams'].each do |i|
+              @InitParams << DBParamValue.new.deserialize(i)
             end
           end
         end
@@ -550,7 +559,7 @@ module TencentCloud
         # @type SubnetId: Integer
         # @param StatusDesc: 状态中文描述
         # @type StatusDesc: String
-        # @param Status: 状态
+        # @param Status: 实例状态：0 创建中，1 流程处理中， 2 运行中，3 实例未初始化，-1 实例已隔离，-2 实例已删除，4 实例初始化中，5 实例删除中，6 实例重启中，7 数据迁移中
         # @type Status: Integer
         # @param Vip: 内网IP
         # @type Vip: String
@@ -1499,10 +1508,14 @@ module TencentCloud
         # @type TagKeys: Array
         # @param FilterInstanceType: 实例类型过滤，1-独享实例，2-主实例，3-灾备实例，多个按逗号分隔
         # @type FilterInstanceType: String
+        # @param Status: 按实例状态筛选
+        # @type Status: Array
+        # @param ExcludeStatus: 排除实例状态
+        # @type ExcludeStatus: Array
 
-        attr_accessor :InstanceIds, :SearchName, :SearchKey, :ProjectIds, :IsFilterVpc, :VpcId, :SubnetId, :OrderBy, :OrderByType, :Offset, :Limit, :ExclusterType, :IsFilterExcluster, :ExclusterIds, :TagKeys, :FilterInstanceType
+        attr_accessor :InstanceIds, :SearchName, :SearchKey, :ProjectIds, :IsFilterVpc, :VpcId, :SubnetId, :OrderBy, :OrderByType, :Offset, :Limit, :ExclusterType, :IsFilterExcluster, :ExclusterIds, :TagKeys, :FilterInstanceType, :Status, :ExcludeStatus
         
-        def initialize(instanceids=nil, searchname=nil, searchkey=nil, projectids=nil, isfiltervpc=nil, vpcid=nil, subnetid=nil, orderby=nil, orderbytype=nil, offset=nil, limit=nil, exclustertype=nil, isfilterexcluster=nil, exclusterids=nil, tagkeys=nil, filterinstancetype=nil)
+        def initialize(instanceids=nil, searchname=nil, searchkey=nil, projectids=nil, isfiltervpc=nil, vpcid=nil, subnetid=nil, orderby=nil, orderbytype=nil, offset=nil, limit=nil, exclustertype=nil, isfilterexcluster=nil, exclusterids=nil, tagkeys=nil, filterinstancetype=nil, status=nil, excludestatus=nil)
           @InstanceIds = instanceids
           @SearchName = searchname
           @SearchKey = searchkey
@@ -1519,6 +1532,8 @@ module TencentCloud
           @ExclusterIds = exclusterids
           @TagKeys = tagkeys
           @FilterInstanceType = filterinstancetype
+          @Status = status
+          @ExcludeStatus = excludestatus
         end
 
         def deserialize(params)
@@ -1538,6 +1553,8 @@ module TencentCloud
           @ExclusterIds = params['ExclusterIds']
           @TagKeys = params['TagKeys']
           @FilterInstanceType = params['FilterInstanceType']
+          @Status = params['Status']
+          @ExcludeStatus = params['ExcludeStatus']
         end
       end
 
@@ -2083,6 +2100,42 @@ module TencentCloud
         end
       end
 
+      # DescribeFlow请求参数结构体
+      class DescribeFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步请求接口返回的任务流程号。
+        # @type FlowId: Integer
+
+        attr_accessor :FlowId
+        
+        def initialize(flowid=nil)
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # DescribeFlow返回参数结构体
+      class DescribeFlowResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 流程状态，0：成功，1：失败，2：运行中
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrders请求参数结构体
       class DescribeOrdersRequest < TencentCloud::Common::AbstractModel
         # @param DealNames: 待查询的长订单号列表，创建实例、续费实例、扩容实例接口返回。
@@ -2383,6 +2436,86 @@ module TencentCloud
               @FlowSet << UserTaskInfo.new.deserialize(i)
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyDCDBInstance请求参数结构体
+      class DestroyDCDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DestroyDCDBInstance返回参数结构体
+      class DestroyDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，与入参InstanceId一致。
+        # @type InstanceId: String
+        # @param FlowId: 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/237/16177)。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :FlowId, :RequestId
+        
+        def initialize(instanceid=nil, flowid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyHourDCDBInstance请求参数结构体
+      class DestroyHourDCDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DestroyHourDCDBInstance返回参数结构体
+      class DestroyHourDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/237/16177)。
+        # @type FlowId: Integer
+        # @param InstanceId: 实例 ID，与入参InstanceId一致。
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :InstanceId, :RequestId
+        
+        def initialize(flowid=nil, instanceid=nil, requestid=nil)
+          @FlowId = flowid
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @InstanceId = params['InstanceId']
           @RequestId = params['RequestId']
         end
       end

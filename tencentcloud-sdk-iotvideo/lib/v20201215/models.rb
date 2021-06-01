@@ -410,19 +410,23 @@ module TencentCloud
         # yc1w7d : 全时7天存储周套餐。
         # ye1w7d : 事件7天存储周套餐。
         # @type PackageId: String
+        # @param Override: 如果当前设备已开启云存套餐，Override=1会使用新套餐覆盖原有套餐。不传此参数则默认为0。
+        # @type Override: Integer
 
-        attr_accessor :ProductId, :DeviceName, :PackageId
+        attr_accessor :ProductId, :DeviceName, :PackageId, :Override
         
-        def initialize(productid=nil, devicename=nil, packageid=nil)
+        def initialize(productid=nil, devicename=nil, packageid=nil, override=nil)
           @ProductId = productid
           @DeviceName = devicename
           @PackageId = packageid
+          @Override = override
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
           @PackageId = params['PackageId']
+          @Override = params['Override']
         end
       end
 

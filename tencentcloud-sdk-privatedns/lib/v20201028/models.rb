@@ -144,7 +144,7 @@ module TencentCloud
         # @type VpcSet: Array
         # @param Remark: 备注
         # @type Remark: String
-        # @param DnsForwardStatus: 是否开启子域名递归, ENABLED， DISABLED
+        # @param DnsForwardStatus: 是否开启子域名递归, ENABLED， DISABLED。默认值为DISABLED
         # @type DnsForwardStatus: String
         # @param Vpcs: 创建私有域的同时，将其关联至VPC
         # @type Vpcs: Array
@@ -309,7 +309,7 @@ module TencentCloud
       class DescribeAuditLogRequest < TencentCloud::Common::AbstractModel
         # @param TimeRangeBegin: 请求量统计起始时间
         # @type TimeRangeBegin: String
-        # @param Filters: 筛选参数：
+        # @param Filters: 筛选参数：ZoneId：私有域ID；Domain：私有域；OperatorUin：操作者账号ID
         # @type Filters: Array
         # @param TimeRangeEnd: 请求量统计结束时间
         # @type TimeRangeEnd: String
@@ -586,7 +586,7 @@ module TencentCloud
 
       # DescribePrivateZoneService返回参数结构体
       class DescribePrivateZoneServiceResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceStatus: 私有域解析服务开通状态
+        # @param ServiceStatus: 私有域解析服务开通状态。ENABLED已开通，DISABLED未开通
         # @type ServiceStatus: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -606,11 +606,11 @@ module TencentCloud
 
       # DescribeRequestData请求参数结构体
       class DescribeRequestDataRequest < TencentCloud::Common::AbstractModel
-        # @param TimeRangeBegin: 请求量统计起始时间
+        # @param TimeRangeBegin: 请求量统计起始时间，格式：2020-11-22 00:00:00
         # @type TimeRangeBegin: String
         # @param Filters: 筛选参数：
         # @type Filters: Array
-        # @param TimeRangeEnd: 请求量统计结束时间
+        # @param TimeRangeEnd: 请求量统计结束时间，格式：2020-11-22 23:59:59
         # @type TimeRangeEnd: String
 
         attr_accessor :TimeRangeBegin, :Filters, :TimeRangeEnd
@@ -797,7 +797,7 @@ module TencentCloud
 
       # ModifyPrivateZone请求参数结构体
       class ModifyPrivateZoneRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 域名，格式必须是标准的TLD
+        # @param ZoneId: 私有域ID
         # @type ZoneId: String
         # @param Remark: 备注
         # @type Remark: String

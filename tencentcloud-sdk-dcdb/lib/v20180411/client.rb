@@ -604,6 +604,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeFlow）用于查询流程状态
+
+        # @param request: Request instance for DescribeFlow.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::DescribeFlowRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::DescribeFlowResponse`
+        def DescribeFlow(request)
+          body = send_request('DescribeFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeOrders）用于查询分布式数据库订单信息。传入订单ID来查询订单关联的分布式数据库实例，和对应的任务流程ID。
 
         # @param request: Request instance for DescribeOrders.
@@ -734,6 +758,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
+
+        # @param request: Request instance for DestroyDCDBInstance.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::DestroyDCDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::DestroyDCDBInstanceResponse`
+        def DestroyDCDBInstance(request)
+          body = send_request('DestroyDCDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyDCDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+
+        # @param request: Request instance for DestroyHourDCDBInstance.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::DestroyHourDCDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::DestroyHourDCDBInstanceResponse`
+        def DestroyHourDCDBInstance(request)
+          body = send_request('DestroyHourDCDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyHourDCDBInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

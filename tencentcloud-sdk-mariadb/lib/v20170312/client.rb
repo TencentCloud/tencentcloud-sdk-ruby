@@ -820,6 +820,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
+
+        # @param request: Request instance for DestroyHourDBInstance.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::DestroyHourDBInstanceRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::DestroyHourDBInstanceResponse`
+        def DestroyHourDBInstance(request)
+          body = send_request('DestroyHourDBInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyHourDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
 
         # @param request: Request instance for DisassociateSecurityGroups.
@@ -952,6 +976,35 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAccountDescriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+
+        # **注意**
+        # - 系统保留库："mysql"，只开放["SELECT"]权限
+        # - 只读账号授予读写权限会报错
+        # - 不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组
+
+        # @param request: Request instance for ModifyAccountPrivileges.
+        # @type request: :class:`Tencentcloud::mariadb::V20170312::ModifyAccountPrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::mariadb::V20170312::ModifyAccountPrivilegesResponse`
+        def ModifyAccountPrivileges(request)
+          body = send_request('ModifyAccountPrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccountPrivilegesResponse.new
             model.deserialize(response['Response'])
             model
           else
