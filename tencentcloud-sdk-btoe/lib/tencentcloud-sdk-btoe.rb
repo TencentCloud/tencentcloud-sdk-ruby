@@ -5,6 +5,9 @@ require 'tencentcloud-sdk-common'
 require_relative 'v20210303/client'
 require_relative 'v20210303/models'
 
+require_relative 'v20210514/client'
+require_relative 'v20210514/models'
+
 module TencentCloud
   module Btoe
   end

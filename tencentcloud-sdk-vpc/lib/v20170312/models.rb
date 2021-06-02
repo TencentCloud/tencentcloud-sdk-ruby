@@ -10492,9 +10492,9 @@ module TencentCloud
 
       # IPSec配置，腾讯云提供IPSec安全会话设置
       class IPSECOptionsSpecification < TencentCloud::Common::AbstractModel
-        # @param EncryptAlgorithm: 加密算法，可选值：'3DES-CBC', 'AES-CBC-128', 'AES-CBC-192', 'AES-CBC-256', 'DES-CBC', 'NULL'， 默认为AES-CBC-128
+        # @param EncryptAlgorithm: 加密算法，可选值：'3DES-CBC', 'AES-CBC-128', 'AES-CBC-192', 'AES-CBC-256', 'DES-CBC', 'SM4', 'NULL'， 默认为AES-CBC-128
         # @type EncryptAlgorithm: String
-        # @param IntegrityAlgorith: 认证算法：可选值：'MD5', 'SHA1'，默认为
+        # @param IntegrityAlgorith: 认证算法：可选值：'MD5', 'SHA1'，'SHA-256' 默认为
         # @type IntegrityAlgorith: String
         # @param IPSECSaLifetimeSeconds: IPsec SA lifetime(s)：单位秒，取值范围：180-604800
         # @type IPSECSaLifetimeSeconds: Integer

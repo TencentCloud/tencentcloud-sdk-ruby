@@ -1399,7 +1399,7 @@ module TencentCloud
         # @type RuleType: Integer
         # @param IOC: IP、Domain二选一，不能同时为空
         # @type IOC: Array
-        # @param IocAction: 默认值:delete（删除）、edit（编辑）、add（添加）  其他值无效
+        # @param IocAction: 可选值：delete（删除）、edit（编辑）、add（添加）  其他值无效
         # @type IocAction: String
         # @param StartTime: 时间格式：yyyy-MM-dd HH:mm:ss
         # @type StartTime: String

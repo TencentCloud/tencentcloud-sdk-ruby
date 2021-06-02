@@ -64,6 +64,34 @@ module TencentCloud
         end
       end
 
+      # 经办人信息
+      class AgencyClientInfo < TencentCloud::Common::AbstractModel
+        # @param AgencyClientName: 经办人姓名，存在经办人必输
+        # @type AgencyClientName: String
+        # @param AgencyClientGlobalType: 经办人证件类型，存在经办人必输
+        # @type AgencyClientGlobalType: String
+        # @param AgencyClientGlobalId: 经办人证件号，存在经办人必输
+        # @type AgencyClientGlobalId: String
+        # @param AgencyClientMobile: 经办人手机号，存在经办人必输
+        # @type AgencyClientMobile: String
+
+        attr_accessor :AgencyClientName, :AgencyClientGlobalType, :AgencyClientGlobalId, :AgencyClientMobile
+        
+        def initialize(agencyclientname=nil, agencyclientglobaltype=nil, agencyclientglobalid=nil, agencyclientmobile=nil)
+          @AgencyClientName = agencyclientname
+          @AgencyClientGlobalType = agencyclientglobaltype
+          @AgencyClientGlobalId = agencyclientglobalid
+          @AgencyClientMobile = agencyclientmobile
+        end
+
+        def deserialize(params)
+          @AgencyClientName = params['AgencyClientName']
+          @AgencyClientGlobalType = params['AgencyClientGlobalType']
+          @AgencyClientGlobalId = params['AgencyClientGlobalId']
+          @AgencyClientMobile = params['AgencyClientMobile']
+        end
+      end
+
       # 代理商完税证明
       class AgentTaxPayment < TencentCloud::Common::AbstractModel
         # @param AnchorId: 主播银行账号
@@ -1040,10 +1068,12 @@ module TencentCloud
         # development: 开发环境
         # 缺省: release
         # @type MidasEnvironment: String
+        # @param AgencyClientInfo: 经办人信息
+        # @type AgencyClientInfo: :class:`Tencentcloud::Cpdp.v20190820.models.AgencyClientInfo`
 
-        attr_accessor :MidasAppId, :SubAppId, :BindType, :SettleAcctNo, :SettleAcctName, :SettleAcctType, :IdType, :IdCode, :AcctBranchName, :MidasSecretId, :MidasSignature, :Mobile, :CnapsBranchId, :EiconBankBranchId, :EncryptType, :MidasEnvironment
+        attr_accessor :MidasAppId, :SubAppId, :BindType, :SettleAcctNo, :SettleAcctName, :SettleAcctType, :IdType, :IdCode, :AcctBranchName, :MidasSecretId, :MidasSignature, :Mobile, :CnapsBranchId, :EiconBankBranchId, :EncryptType, :MidasEnvironment, :AgencyClientInfo
         
-        def initialize(midasappid=nil, subappid=nil, bindtype=nil, settleacctno=nil, settleacctname=nil, settleaccttype=nil, idtype=nil, idcode=nil, acctbranchname=nil, midassecretid=nil, midassignature=nil, mobile=nil, cnapsbranchid=nil, eiconbankbranchid=nil, encrypttype=nil, midasenvironment=nil)
+        def initialize(midasappid=nil, subappid=nil, bindtype=nil, settleacctno=nil, settleacctname=nil, settleaccttype=nil, idtype=nil, idcode=nil, acctbranchname=nil, midassecretid=nil, midassignature=nil, mobile=nil, cnapsbranchid=nil, eiconbankbranchid=nil, encrypttype=nil, midasenvironment=nil, agencyclientinfo=nil)
           @MidasAppId = midasappid
           @SubAppId = subappid
           @BindType = bindtype
@@ -1060,6 +1090,7 @@ module TencentCloud
           @EiconBankBranchId = eiconbankbranchid
           @EncryptType = encrypttype
           @MidasEnvironment = midasenvironment
+          @AgencyClientInfo = agencyclientinfo
         end
 
         def deserialize(params)
@@ -1079,6 +1110,9 @@ module TencentCloud
           @EiconBankBranchId = params['EiconBankBranchId']
           @EncryptType = params['EncryptType']
           @MidasEnvironment = params['MidasEnvironment']
+          unless params['AgencyClientInfo'].nil?
+            @AgencyClientInfo = AgencyClientInfo.new.deserialize(params['AgencyClientInfo'])
+          end
         end
       end
 
@@ -2080,6 +2114,7 @@ module TencentCloud
         # @param SubMchType: 子商户类型：
         # 个人: personal
         # 企业: enterprise
+        # 个体工商户: individual
         # 缺省: enterprise
         # @type SubMchType: String
         # @param ShortName: 不填则默认子商户名称
@@ -2108,10 +2143,15 @@ module TencentCloud
         # development: 开发环境
         # 缺省: release
         # @type MidasEnvironment: String
+        # @param SubMerchantStoreName: 店铺名称
+        # 企业、个体工商户必输
+        # @type SubMerchantStoreName: String
+        # @param OrganizationInfo: 公司信息
+        # @type OrganizationInfo: :class:`Tencentcloud::Cpdp.v20190820.models.OrganizationInfo`
 
-        attr_accessor :MidasAppId, :SubMchId, :SubMchName, :Address, :Contact, :Mobile, :Email, :MidasSecretId, :MidasSignature, :SubMchType, :ShortName, :SubMerchantMemberType, :SubMerchantKey, :SubMerchantPrivateKey, :EncryptType, :SubAcctNo, :MidasEnvironment
+        attr_accessor :MidasAppId, :SubMchId, :SubMchName, :Address, :Contact, :Mobile, :Email, :MidasSecretId, :MidasSignature, :SubMchType, :ShortName, :SubMerchantMemberType, :SubMerchantKey, :SubMerchantPrivateKey, :EncryptType, :SubAcctNo, :MidasEnvironment, :SubMerchantStoreName, :OrganizationInfo
         
-        def initialize(midasappid=nil, submchid=nil, submchname=nil, address=nil, contact=nil, mobile=nil, email=nil, midassecretid=nil, midassignature=nil, submchtype=nil, shortname=nil, submerchantmembertype=nil, submerchantkey=nil, submerchantprivatekey=nil, encrypttype=nil, subacctno=nil, midasenvironment=nil)
+        def initialize(midasappid=nil, submchid=nil, submchname=nil, address=nil, contact=nil, mobile=nil, email=nil, midassecretid=nil, midassignature=nil, submchtype=nil, shortname=nil, submerchantmembertype=nil, submerchantkey=nil, submerchantprivatekey=nil, encrypttype=nil, subacctno=nil, midasenvironment=nil, submerchantstorename=nil, organizationinfo=nil)
           @MidasAppId = midasappid
           @SubMchId = submchid
           @SubMchName = submchname
@@ -2129,6 +2169,8 @@ module TencentCloud
           @EncryptType = encrypttype
           @SubAcctNo = subacctno
           @MidasEnvironment = midasenvironment
+          @SubMerchantStoreName = submerchantstorename
+          @OrganizationInfo = organizationinfo
         end
 
         def deserialize(params)
@@ -2149,6 +2191,10 @@ module TencentCloud
           @EncryptType = params['EncryptType']
           @SubAcctNo = params['SubAcctNo']
           @MidasEnvironment = params['MidasEnvironment']
+          @SubMerchantStoreName = params['SubMerchantStoreName']
+          unless params['OrganizationInfo'].nil?
+            @OrganizationInfo = OrganizationInfo.new.deserialize(params['OrganizationInfo'])
+          end
         end
       end
 
@@ -4632,6 +4678,42 @@ module TencentCloud
           @Status = params['Status']
           @Price = params['Price']
           @TaxCode = params['TaxCode']
+        end
+      end
+
+      # 公司信息
+      class OrganizationInfo < TencentCloud::Common::AbstractModel
+        # @param OrganizationName: 公司名称，个体工商户必输
+        # @type OrganizationName: String
+        # @param OrganizationType: 公司证件类型，个体工商户必输，证件类型仅支持73
+        # @type OrganizationType: String
+        # @param OrganizationCode: 公司证件号码，个体工商户必输
+        # @type OrganizationCode: String
+        # @param LegalPersonName: 法人名称，如果SubMchName不是法人，需要另外送入法人信息（企业必输）
+        # @type LegalPersonName: String
+        # @param LegalPersonIdType: 法人证件类型，如果SubMchName不是法人，需要另外送入法人信息（企业必输）
+        # @type LegalPersonIdType: String
+        # @param LegalPersonIdCode: 法人证件号码，如果SubMchName不是法人，需要另外送入法人信息（企业必输）
+        # @type LegalPersonIdCode: String
+
+        attr_accessor :OrganizationName, :OrganizationType, :OrganizationCode, :LegalPersonName, :LegalPersonIdType, :LegalPersonIdCode
+        
+        def initialize(organizationname=nil, organizationtype=nil, organizationcode=nil, legalpersonname=nil, legalpersonidtype=nil, legalpersonidcode=nil)
+          @OrganizationName = organizationname
+          @OrganizationType = organizationtype
+          @OrganizationCode = organizationcode
+          @LegalPersonName = legalpersonname
+          @LegalPersonIdType = legalpersonidtype
+          @LegalPersonIdCode = legalpersonidcode
+        end
+
+        def deserialize(params)
+          @OrganizationName = params['OrganizationName']
+          @OrganizationType = params['OrganizationType']
+          @OrganizationCode = params['OrganizationCode']
+          @LegalPersonName = params['LegalPersonName']
+          @LegalPersonIdType = params['LegalPersonIdType']
+          @LegalPersonIdCode = params['LegalPersonIdCode']
         end
       end
 
@@ -8846,6 +8928,104 @@ module TencentCloud
         end
       end
 
+      # RegisterBehavior请求参数结构体
+      class RegisterBehaviorRequest < TencentCloud::Common::AbstractModel
+        # @param MidasAppId: 聚鑫分配的支付主MidasAppId
+        # @type MidasAppId: String
+        # @param SubAppId: 聚鑫计费SubAppId，代表子商户
+        # @type SubAppId: String
+        # @param MidasSecretId: 聚鑫分配的安全ID
+        # @type MidasSecretId: String
+        # @param MidasSignature: 按照聚鑫安全密钥计算的签名
+        # @type MidasSignature: String
+        # @param FunctionFlag: 功能标志
+        # 1：登记行为记录信息
+        # 2：查询补录信息
+        # @type FunctionFlag: Integer
+        # @param MidasEnvironment: 环境名:
+        # release: 现网环境
+        # sandbox: 沙箱环境
+        # development: 开发环境
+        # 缺省: release
+        # @type MidasEnvironment: String
+        # @param OperationClickTime: 操作点击时间
+        # yyyyMMddHHmmss
+        # 功能标志FunctionFlag=1时必输
+        # @type OperationClickTime: String
+        # @param IpAddress: IP地址
+        # 功能标志FunctionFlag=1时必输
+        # @type IpAddress: String
+        # @param MacAddress: MAC地址
+        # 功能标志FunctionFlag=1时必输
+        # @type MacAddress: String
+        # @param SignChannel: 签约渠道
+        # 1:  App
+        # 2:  平台H5网页
+        # 3：公众号
+        # 4：小程序
+        # 功能标志FunctionFlag=1时必输
+        # @type SignChannel: Integer
+
+        attr_accessor :MidasAppId, :SubAppId, :MidasSecretId, :MidasSignature, :FunctionFlag, :MidasEnvironment, :OperationClickTime, :IpAddress, :MacAddress, :SignChannel
+        
+        def initialize(midasappid=nil, subappid=nil, midassecretid=nil, midassignature=nil, functionflag=nil, midasenvironment=nil, operationclicktime=nil, ipaddress=nil, macaddress=nil, signchannel=nil)
+          @MidasAppId = midasappid
+          @SubAppId = subappid
+          @MidasSecretId = midassecretid
+          @MidasSignature = midassignature
+          @FunctionFlag = functionflag
+          @MidasEnvironment = midasenvironment
+          @OperationClickTime = operationclicktime
+          @IpAddress = ipaddress
+          @MacAddress = macaddress
+          @SignChannel = signchannel
+        end
+
+        def deserialize(params)
+          @MidasAppId = params['MidasAppId']
+          @SubAppId = params['SubAppId']
+          @MidasSecretId = params['MidasSecretId']
+          @MidasSignature = params['MidasSignature']
+          @FunctionFlag = params['FunctionFlag']
+          @MidasEnvironment = params['MidasEnvironment']
+          @OperationClickTime = params['OperationClickTime']
+          @IpAddress = params['IpAddress']
+          @MacAddress = params['MacAddress']
+          @SignChannel = params['SignChannel']
+        end
+      end
+
+      # RegisterBehavior返回参数结构体
+      class RegisterBehaviorResponse < TencentCloud::Common::AbstractModel
+        # @param ReplenishSuccessFlag: 补录是否成功标志
+        # 功能标志为2时存在。
+        # S：成功
+        # F：失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplenishSuccessFlag: String
+        # @param RegisterInfo: 签约信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegisterInfo: :class:`Tencentcloud::Cpdp.v20190820.models.RegisterInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReplenishSuccessFlag, :RegisterInfo, :RequestId
+        
+        def initialize(replenishsuccessflag=nil, registerinfo=nil, requestid=nil)
+          @ReplenishSuccessFlag = replenishsuccessflag
+          @RegisterInfo = registerinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReplenishSuccessFlag = params['ReplenishSuccessFlag']
+          unless params['RegisterInfo'].nil?
+            @RegisterInfo = RegisterInfo.new.deserialize(params['RegisterInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RegisterBill请求参数结构体
       class RegisterBillRequest < TencentCloud::Common::AbstractModel
         # @param RequestType: 请求类型此接口固定填：RegBillSupportWithdrawReq
@@ -9050,6 +9230,48 @@ module TencentCloud
           @CnsmrSeqNo = params['CnsmrSeqNo']
           @ReservedMsg = params['ReservedMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 签约信息
+      class RegisterInfo < TencentCloud::Common::AbstractModel
+        # @param LegalPersonIdCode: 法人证件号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalPersonIdCode: String
+        # @param LegalPersonIdType: 法人证件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalPersonIdType: String
+        # @param LegalPersonName: 法人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalPersonName: String
+        # @param OrganizationCode: 公司证件号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationCode: String
+        # @param OrganizationName: 公司名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationName: String
+        # @param OrganizationType: 公司证件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationType: String
+
+        attr_accessor :LegalPersonIdCode, :LegalPersonIdType, :LegalPersonName, :OrganizationCode, :OrganizationName, :OrganizationType
+        
+        def initialize(legalpersonidcode=nil, legalpersonidtype=nil, legalpersonname=nil, organizationcode=nil, organizationname=nil, organizationtype=nil)
+          @LegalPersonIdCode = legalpersonidcode
+          @LegalPersonIdType = legalpersonidtype
+          @LegalPersonName = legalpersonname
+          @OrganizationCode = organizationcode
+          @OrganizationName = organizationname
+          @OrganizationType = organizationtype
+        end
+
+        def deserialize(params)
+          @LegalPersonIdCode = params['LegalPersonIdCode']
+          @LegalPersonIdType = params['LegalPersonIdType']
+          @LegalPersonName = params['LegalPersonName']
+          @OrganizationCode = params['OrganizationCode']
+          @OrganizationName = params['OrganizationName']
+          @OrganizationType = params['OrganizationType']
         end
       end
 

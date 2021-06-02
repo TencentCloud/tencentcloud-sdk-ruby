@@ -473,6 +473,51 @@ module TencentCloud
         end
       end
 
+      # CreateMultipleSecurityPolicy请求参数结构体
+      class CreateMultipleSecurityPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param SecurityGroupPolicySet: 安全组策略
+        # @type SecurityGroupPolicySet: Array
+
+        attr_accessor :RegistryId, :SecurityGroupPolicySet
+        
+        def initialize(registryid=nil, securitygrouppolicyset=nil)
+          @RegistryId = registryid
+          @SecurityGroupPolicySet = securitygrouppolicyset
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          unless params['SecurityGroupPolicySet'].nil?
+            @SecurityGroupPolicySet = []
+            params['SecurityGroupPolicySet'].each do |i|
+              @SecurityGroupPolicySet << SecurityPolicy.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # CreateMultipleSecurityPolicy返回参数结构体
+      class CreateMultipleSecurityPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegistryId, :RequestId
+        
+        def initialize(registryid=nil, requestid=nil)
+          @RegistryId = registryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNamespacePersonal请求参数结构体
       class CreateNamespacePersonalRequest < TencentCloud::Common::AbstractModel
         # @param Namespace: 命名空间名称
@@ -1171,6 +1216,51 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMultipleSecurityPolicy请求参数结构体
+      class DeleteMultipleSecurityPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param SecurityGroupPolicySet: 安全组策略
+        # @type SecurityGroupPolicySet: Array
+
+        attr_accessor :RegistryId, :SecurityGroupPolicySet
+        
+        def initialize(registryid=nil, securitygrouppolicyset=nil)
+          @RegistryId = registryid
+          @SecurityGroupPolicySet = securitygrouppolicyset
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          unless params['SecurityGroupPolicySet'].nil?
+            @SecurityGroupPolicySet = []
+            params['SecurityGroupPolicySet'].each do |i|
+              @SecurityGroupPolicySet << SecurityPolicy.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # DeleteMultipleSecurityPolicy返回参数结构体
+      class DeleteMultipleSecurityPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegistryId, :RequestId
+        
+        def initialize(registryid=nil, requestid=nil)
+          @RegistryId = registryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
           @RequestId = params['RequestId']
         end
       end
@@ -4727,7 +4817,7 @@ module TencentCloud
         # @type PolicyIndex: Integer
         # @param Description: 备注
         # @type Description: String
-        # @param CidrBlock: 192.168.1.0/24
+        # @param CidrBlock: 运行访问的公网IP地址端
         # @type CidrBlock: String
         # @param PolicyVersion: 安全策略的版本
         # @type PolicyVersion: String
