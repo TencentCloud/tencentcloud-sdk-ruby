@@ -169,6 +169,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取waf流量访问趋势
+
+        # @param request: Request instance for DescribeFlowTrend.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeFlowTrendRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeFlowTrendResponse`
+        def DescribeFlowTrend(request)
+          body = send_request('DescribeFlowTrend', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlowTrendResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在负载均衡型WAF的添加、编辑域名配置的时候，需要展示负载均衡型WAF（clb-waf)支持的地域列表，通过DescribeUserClbWafRegions既可以获得当前对客户已经开放的地域列表
 
         # @param request: Request instance for DescribeUserClbWafRegions.

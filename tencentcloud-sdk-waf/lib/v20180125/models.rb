@@ -97,6 +97,34 @@ module TencentCloud
         end
       end
 
+      # bot的趋势图对象
+      class BotStatPointItem < TencentCloud::Common::AbstractModel
+        # @param TimeStamp: 横坐标
+        # @type TimeStamp: String
+        # @param Key: value的所属对象
+        # @type Key: String
+        # @param Value: 纵列表
+        # @type Value: Integer
+        # @param Label: Key对应的页面展示内容
+        # @type Label: String
+
+        attr_accessor :TimeStamp, :Key, :Value, :Label
+        
+        def initialize(timestamp=nil, key=nil, value=nil, label=nil)
+          @TimeStamp = timestamp
+          @Key = key
+          @Value = value
+          @Label = label
+        end
+
+        def deserialize(params)
+          @TimeStamp = params['TimeStamp']
+          @Key = params['Key']
+          @Value = params['Value']
+          @Label = params['Label']
+        end
+      end
+
       # CreateAttackDownloadTask请求参数结构体
       class CreateAttackDownloadTaskRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名，所有域名填写all
@@ -407,6 +435,55 @@ module TencentCloud
               @Strategies << Strategy.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # DescribeFlowTrend请求参数结构体
+      class DescribeFlowTrendRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要获取流量趋势的域名, all表示所有域名
+        # @type Domain: String
+        # @param StartTs: 起始时间戳，精度秒
+        # @type StartTs: Integer
+        # @param EndTs: 结束时间戳，精度秒
+        # @type EndTs: Integer
+
+        attr_accessor :Domain, :StartTs, :EndTs
+        
+        def initialize(domain=nil, startts=nil, endts=nil)
+          @Domain = domain
+          @StartTs = startts
+          @EndTs = endts
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @StartTs = params['StartTs']
+          @EndTs = params['EndTs']
+        end
+      end
+
+      # DescribeFlowTrend返回参数结构体
+      class DescribeFlowTrendResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 流量趋势数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << BotStatPointItem.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

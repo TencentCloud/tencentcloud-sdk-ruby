@@ -1072,6 +1072,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（EndGameServerSessionAndProcess）用于终止游戏服务器会话和对应的进程。
+
+        # @param request: Request instance for EndGameServerSessionAndProcess.
+        # @type request: :class:`Tencentcloud::gse::V20191112::EndGameServerSessionAndProcessRequest`
+        # @rtype: :class:`Tencentcloud::gse::V20191112::EndGameServerSessionAndProcessResponse`
+        def EndGameServerSessionAndProcess(request)
+          body = send_request('EndGameServerSessionAndProcess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EndGameServerSessionAndProcessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取游戏服务器实例的日志URL。
 
         # @param request: Request instance for GetGameServerInstanceLogUrl.

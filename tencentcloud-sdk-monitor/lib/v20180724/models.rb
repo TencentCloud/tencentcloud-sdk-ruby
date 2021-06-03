@@ -653,30 +653,31 @@ module TencentCloud
 
       # BindingPolicyObject请求参数结构体
       class BindingPolicyObjectRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 策略组id，如传入 PolicyId 则该字段会被忽略可传入任意值如 0
-        # @type GroupId: Integer
         # @param Module: 必填。固定值"monitor"
         # @type Module: String
+        # @param GroupId: 策略组id，如传入 PolicyId 则该字段会被忽略可传入任意值如 0
+        # @type GroupId: Integer
+        # @param PolicyId: 告警策略ID，使用此字段时 GroupId 会被忽略
+        # @type PolicyId: String
         # @param InstanceGroupId: 实例分组ID
         # @type InstanceGroupId: Integer
         # @param Dimensions: 需要绑定的对象维度信息
         # @type Dimensions: Array
-        # @param PolicyId: 告警策略ID，使用此字段时 GroupId 会被忽略
-        # @type PolicyId: String
 
-        attr_accessor :GroupId, :Module, :InstanceGroupId, :Dimensions, :PolicyId
+        attr_accessor :Module, :GroupId, :PolicyId, :InstanceGroupId, :Dimensions
         
-        def initialize(groupid=nil, _module=nil, instancegroupid=nil, dimensions=nil, policyid=nil)
-          @GroupId = groupid
+        def initialize(_module=nil, groupid=nil, policyid=nil, instancegroupid=nil, dimensions=nil)
           @Module = _module
+          @GroupId = groupid
+          @PolicyId = policyid
           @InstanceGroupId = instancegroupid
           @Dimensions = dimensions
-          @PolicyId = policyid
         end
 
         def deserialize(params)
-          @GroupId = params['GroupId']
           @Module = params['Module']
+          @GroupId = params['GroupId']
+          @PolicyId = params['PolicyId']
           @InstanceGroupId = params['InstanceGroupId']
           unless params['Dimensions'].nil?
             @Dimensions = []
@@ -684,7 +685,6 @@ module TencentCloud
               @Dimensions << BindingPolicyObjectDimension.new.deserialize(i)
             end
           end
-          @PolicyId = params['PolicyId']
         end
       end
 

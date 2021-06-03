@@ -864,10 +864,15 @@ module TencentCloud
         # @param Vip: clb ip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Mixed: 是否混合 https，默认 false，可选值 true 代表有 https 协议监听
+        # @type Mixed: Boolean
 
-        attr_accessor :NamespaceId, :EksNamespace, :AddressIPVersion, :Name, :Rules, :ClbId, :Tls, :ClusterId, :Vip
+        attr_accessor :NamespaceId, :EksNamespace, :AddressIPVersion, :Name, :Rules, :ClbId, :Tls, :ClusterId, :Vip, :CreateTime, :Mixed
         
-        def initialize(namespaceid=nil, eksnamespace=nil, addressipversion=nil, name=nil, rules=nil, clbid=nil, tls=nil, clusterid=nil, vip=nil)
+        def initialize(namespaceid=nil, eksnamespace=nil, addressipversion=nil, name=nil, rules=nil, clbid=nil, tls=nil, clusterid=nil, vip=nil, createtime=nil, mixed=nil)
           @NamespaceId = namespaceid
           @EksNamespace = eksnamespace
           @AddressIPVersion = addressipversion
@@ -877,6 +882,8 @@ module TencentCloud
           @Tls = tls
           @ClusterId = clusterid
           @Vip = vip
+          @CreateTime = createtime
+          @Mixed = mixed
         end
 
         def deserialize(params)
@@ -899,6 +906,8 @@ module TencentCloud
           end
           @ClusterId = params['ClusterId']
           @Vip = params['Vip']
+          @CreateTime = params['CreateTime']
+          @Mixed = params['Mixed']
         end
       end
 
@@ -909,12 +918,15 @@ module TencentCloud
         # @param Host: host 地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
+        # @param Protocol: 协议，选项为 http， https，默认为 http
+        # @type Protocol: String
 
-        attr_accessor :Http, :Host
+        attr_accessor :Http, :Host, :Protocol
         
-        def initialize(http=nil, host=nil)
+        def initialize(http=nil, host=nil, protocol=nil)
           @Http = http
           @Host = host
+          @Protocol = protocol
         end
 
         def deserialize(params)
@@ -922,6 +934,7 @@ module TencentCloud
             @Http = IngressRuleValue.new.deserialize(params['Http'])
           end
           @Host = params['Host']
+          @Protocol = params['Protocol']
         end
       end
 
@@ -990,21 +1003,25 @@ module TencentCloud
 
       # ingress tls 配置
       class IngressTls < TencentCloud::Common::AbstractModel
-        # @param Hosts: host 数组
+        # @param Hosts: host 数组, 空数组表示全部域名的默认证书
         # @type Hosts: Array
-        # @param SecretName: secret name
+        # @param SecretName: secret name，如使用证书，则填空字符串
         # @type SecretName: String
+        # @param CertificateId: SSL Certificate Id
+        # @type CertificateId: String
 
-        attr_accessor :Hosts, :SecretName
+        attr_accessor :Hosts, :SecretName, :CertificateId
         
-        def initialize(hosts=nil, secretname=nil)
+        def initialize(hosts=nil, secretname=nil, certificateid=nil)
           @Hosts = hosts
           @SecretName = secretname
+          @CertificateId = certificateid
         end
 
         def deserialize(params)
           @Hosts = params['Hosts']
           @SecretName = params['SecretName']
+          @CertificateId = params['CertificateId']
         end
       end
 
@@ -1203,17 +1220,25 @@ module TencentCloud
         # @type Status: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param PodIp: pod的ip
+        # @param PodIp: 实例的ip
         # @type PodIp: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param DeployVersion: 部署版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployVersion: String
 
-        attr_accessor :Webshell, :PodId, :Status, :CreateTime, :PodIp
+        attr_accessor :Webshell, :PodId, :Status, :CreateTime, :PodIp, :Zone, :DeployVersion
         
-        def initialize(webshell=nil, podid=nil, status=nil, createtime=nil, podip=nil)
+        def initialize(webshell=nil, podid=nil, status=nil, createtime=nil, podip=nil, zone=nil, deployversion=nil)
           @Webshell = webshell
           @PodId = podid
           @Status = status
           @CreateTime = createtime
           @PodIp = podip
+          @Zone = zone
+          @DeployVersion = deployversion
         end
 
         def deserialize(params)
@@ -1222,6 +1247,8 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @PodIp = params['PodIp']
+          @Zone = params['Zone']
+          @DeployVersion = params['DeployVersion']
         end
       end
 

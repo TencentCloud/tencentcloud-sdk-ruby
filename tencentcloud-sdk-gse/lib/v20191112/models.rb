@@ -2688,6 +2688,46 @@ module TencentCloud
         end
       end
 
+      # EndGameServerSessionAndProcess请求参数结构体
+      class EndGameServerSessionAndProcessRequest < TencentCloud::Common::AbstractModel
+        # @param GameServerSessionId: 游戏服务器会话ID
+        # @type GameServerSessionId: String
+        # @param IpAddress: CVM的公网IP地址
+        # @type IpAddress: String
+        # @param Port: 端口号，最小值不小于1，最大值不超过60000
+        # @type Port: Integer
+
+        attr_accessor :GameServerSessionId, :IpAddress, :Port
+        
+        def initialize(gameserversessionid=nil, ipaddress=nil, port=nil)
+          @GameServerSessionId = gameserversessionid
+          @IpAddress = ipaddress
+          @Port = port
+        end
+
+        def deserialize(params)
+          @GameServerSessionId = params['GameServerSessionId']
+          @IpAddress = params['IpAddress']
+          @Port = params['Port']
+        end
+      end
+
+      # EndGameServerSessionAndProcess返回参数结构体
+      class EndGameServerSessionAndProcessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 事件对象
       class Event < TencentCloud::Common::AbstractModel
         # @param EventCode: 事件代码，支持以下的事件代码
