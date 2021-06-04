@@ -1072,7 +1072,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（EndGameServerSessionAndProcess）用于终止游戏服务器会话和对应的进程。
+        # 本接口（EndGameServerSessionAndProcess）用于终止游戏服务器会话和对应的进程，适用于时限保护和不保护。
 
         # @param request: Request instance for EndGameServerSessionAndProcess.
         # @type request: :class:`Tencentcloud::gse::V20191112::EndGameServerSessionAndProcessRequest`

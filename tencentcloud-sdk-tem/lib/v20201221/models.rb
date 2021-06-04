@@ -185,16 +185,19 @@ module TencentCloud
         # @type K8sVersion: String
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
+        # @param EnableTswTraceService: 是否开启tsw服务
+        # @type EnableTswTraceService: Boolean
 
-        attr_accessor :NamespaceName, :Vpc, :SubnetIds, :Description, :K8sVersion, :SourceChannel
+        attr_accessor :NamespaceName, :Vpc, :SubnetIds, :Description, :K8sVersion, :SourceChannel, :EnableTswTraceService
         
-        def initialize(namespacename=nil, vpc=nil, subnetids=nil, description=nil, k8sversion=nil, sourcechannel=nil)
+        def initialize(namespacename=nil, vpc=nil, subnetids=nil, description=nil, k8sversion=nil, sourcechannel=nil, enabletswtraceservice=nil)
           @NamespaceName = namespacename
           @Vpc = vpc
           @SubnetIds = subnetids
           @Description = description
           @K8sVersion = k8sversion
           @SourceChannel = sourcechannel
+          @EnableTswTraceService = enabletswtraceservice
         end
 
         def deserialize(params)
@@ -204,6 +207,7 @@ module TencentCloud
           @Description = params['Description']
           @K8sVersion = params['K8sVersion']
           @SourceChannel = params['SourceChannel']
+          @EnableTswTraceService = params['EnableTswTraceService']
         end
       end
 
@@ -462,10 +466,14 @@ module TencentCloud
         # @type ImageCommand: String
         # @param ImageArgs: 镜像命令参数
         # @type ImageArgs: Array
+        # @param PortMappings: 服务端口映射
+        # @type PortMappings: Array
+        # @param UseRegistryDefaultConfig: 是否添加默认注册中心配置
+        # @type UseRegistryDefaultConfig: Boolean
 
-        attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs
+        attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :PortMappings, :UseRegistryDefaultConfig
         
-        def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil)
+        def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, portmappings=nil, useregistrydefaultconfig=nil)
           @ServiceId = serviceid
           @ContainerPort = containerport
           @InitPodNum = initpodnum
@@ -490,6 +498,8 @@ module TencentCloud
           @Description = description
           @ImageCommand = imagecommand
           @ImageArgs = imageargs
+          @PortMappings = portmappings
+          @UseRegistryDefaultConfig = useregistrydefaultconfig
         end
 
         def deserialize(params)
@@ -536,6 +546,13 @@ module TencentCloud
           @Description = params['Description']
           @ImageCommand = params['ImageCommand']
           @ImageArgs = params['ImageArgs']
+          unless params['PortMappings'].nil?
+            @PortMappings = []
+            params['PortMappings'].each do |i|
+              @PortMappings << PortMapping.new.deserialize(i)
+            end
+          end
+          @UseRegistryDefaultConfig = params['UseRegistryDefaultConfig']
         end
       end
 
@@ -617,19 +634,23 @@ module TencentCloud
         # @type EksNamespace: String
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
+        # @param Names: ingress 规则名列表
+        # @type Names: Array
 
-        attr_accessor :NamespaceId, :EksNamespace, :SourceChannel
+        attr_accessor :NamespaceId, :EksNamespace, :SourceChannel, :Names
         
-        def initialize(namespaceid=nil, eksnamespace=nil, sourcechannel=nil)
+        def initialize(namespaceid=nil, eksnamespace=nil, sourcechannel=nil, names=nil)
           @NamespaceId = namespaceid
           @EksNamespace = eksnamespace
           @SourceChannel = sourcechannel
+          @Names = names
         end
 
         def deserialize(params)
           @NamespaceId = params['NamespaceId']
           @EksNamespace = params['EksNamespace']
           @SourceChannel = params['SourceChannel']
+          @Names = params['Names']
         end
       end
 
@@ -700,6 +721,60 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = NamespacePage.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRelatedIngresses请求参数结构体
+      class DescribeRelatedIngressesRequest < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: 环境 id
+        # @type NamespaceId: String
+        # @param EksNamespace: EKS namespace
+        # @type EksNamespace: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+        # @param ServiceId: 服务 ID
+        # @type ServiceId: String
+
+        attr_accessor :NamespaceId, :EksNamespace, :SourceChannel, :ServiceId
+        
+        def initialize(namespaceid=nil, eksnamespace=nil, sourcechannel=nil, serviceid=nil)
+          @NamespaceId = namespaceid
+          @EksNamespace = eksnamespace
+          @SourceChannel = sourcechannel
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @EksNamespace = params['EksNamespace']
+          @SourceChannel = params['SourceChannel']
+          @ServiceId = params['ServiceId']
+        end
+      end
+
+      # DescribeRelatedIngresses返回参数结构体
+      class DescribeRelatedIngressesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: ingress 数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              @Result << IngressInfo.new.deserialize(i)
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -1157,6 +1232,51 @@ module TencentCloud
         end
       end
 
+      # ModifyServiceInfo请求参数结构体
+      class ModifyServiceInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+
+        attr_accessor :ServiceId, :Description, :SourceChannel
+        
+        def initialize(serviceid=nil, description=nil, sourcechannel=nil)
+          @ServiceId = serviceid
+          @Description = description
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Description = params['Description']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # ModifyServiceInfo返回参数结构体
+      class ModifyServiceInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 成功与否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 命名空间分页
       class NamespacePage < TencentCloud::Common::AbstractModel
         # @param Records: 分页内容
@@ -1207,6 +1327,91 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 服务端口映射
+      class PortMapping < TencentCloud::Common::AbstractModel
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param TargetPort: 映射端口
+        # @type TargetPort: Integer
+        # @param Protocol: 协议栈 TCP/UDP
+        # @type Protocol: String
+
+        attr_accessor :Port, :TargetPort, :Protocol
+        
+        def initialize(port=nil, targetport=nil, protocol=nil)
+          @Port = port
+          @TargetPort = targetport
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
+          @TargetPort = params['TargetPort']
+          @Protocol = params['Protocol']
+        end
+      end
+
+      # RestartServiceRunPod请求参数结构体
+      class RestartServiceRunPodRequest < TencentCloud::Common::AbstractModel
+        # @param NamespaceId: 环境id
+        # @type NamespaceId: String
+        # @param ServiceId: 服务名id
+        # @type ServiceId: String
+        # @param PodName: 名字
+        # @type PodName: String
+        # @param Limit: 单页条数
+        # @type Limit: Integer
+        # @param Offset: 分页下标
+        # @type Offset: Integer
+        # @param Status: pod状态
+        # @type Status: String
+        # @param SourceChannel: 来源渠道
+        # @type SourceChannel: Integer
+
+        attr_accessor :NamespaceId, :ServiceId, :PodName, :Limit, :Offset, :Status, :SourceChannel
+        
+        def initialize(namespaceid=nil, serviceid=nil, podname=nil, limit=nil, offset=nil, status=nil, sourcechannel=nil)
+          @NamespaceId = namespaceid
+          @ServiceId = serviceid
+          @PodName = podname
+          @Limit = limit
+          @Offset = offset
+          @Status = status
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @NamespaceId = params['NamespaceId']
+          @ServiceId = params['ServiceId']
+          @PodName = params['PodName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Status = params['Status']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # RestartServiceRunPod返回参数结构体
+      class RestartServiceRunPodResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

@@ -3277,19 +3277,23 @@ module TencentCloud
         # @type Payload: String
         # @param Qos: 消息质量等级
         # @type Qos: Integer
+        # @param PayloadEncoding: Payload内容的编码格式，取值为base64或空。base64表示云端将收到的请求数据进行base64解码后下发到设备，空则直接将原始内容下发到设备
+        # @type PayloadEncoding: String
 
-        attr_accessor :ProductId, :Payload, :Qos
+        attr_accessor :ProductId, :Payload, :Qos, :PayloadEncoding
         
-        def initialize(productid=nil, payload=nil, qos=nil)
+        def initialize(productid=nil, payload=nil, qos=nil, payloadencoding=nil)
           @ProductId = productid
           @Payload = payload
           @Qos = qos
+          @PayloadEncoding = payloadencoding
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @Payload = params['Payload']
           @Qos = params['Qos']
+          @PayloadEncoding = params['PayloadEncoding']
         end
       end
 

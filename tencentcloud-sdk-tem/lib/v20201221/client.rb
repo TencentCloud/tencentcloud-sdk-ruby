@@ -265,6 +265,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询服务关联的 Ingress 规则列表
+
+        # @param request: Request instance for DescribeRelatedIngresses.
+        # @type request: :class:`Tencentcloud::tem::V20201221::DescribeRelatedIngressesRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::DescribeRelatedIngressesResponse`
+        def DescribeRelatedIngresses(request)
+          body = send_request('DescribeRelatedIngresses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRelatedIngressesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取服务下面运行pod列表
 
         # @param request: Request instance for DescribeServiceRunPodListV2.
@@ -323,6 +347,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNamespaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改服务基本信息
+
+        # @param request: Request instance for ModifyServiceInfo.
+        # @type request: :class:`Tencentcloud::tem::V20201221::ModifyServiceInfoRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::ModifyServiceInfoResponse`
+        def ModifyServiceInfo(request)
+          body = send_request('ModifyServiceInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyServiceInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重启实例
+
+        # @param request: Request instance for RestartServiceRunPod.
+        # @type request: :class:`Tencentcloud::tem::V20201221::RestartServiceRunPodRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::RestartServiceRunPodResponse`
+        def RestartServiceRunPod(request)
+          body = send_request('RestartServiceRunPod', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartServiceRunPodResponse.new
             model.deserialize(response['Response'])
             model
           else

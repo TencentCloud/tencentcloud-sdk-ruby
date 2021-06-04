@@ -49,6 +49,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口仅支持多AZ实例副本组提主
+
+        # @param request: Request instance for ChangeReplicaToMaster.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ChangeReplicaToMasterRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ChangeReplicaToMasterResponse`
+        def ChangeReplicaToMaster(request)
+          body = send_request('ChangeReplicaToMaster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChangeReplicaToMasterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 回收站实例立即下线
 
         # @param request: Request instance for CleanUpInstance.

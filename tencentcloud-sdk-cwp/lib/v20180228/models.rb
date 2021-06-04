@@ -2844,17 +2844,21 @@ module TencentCloud
         # @type MachineList: Array
         # @param ImportType: 批量导入的数据类型：Ip、Name、Id 三选一
         # @type ImportType: String
+        # @param IsQueryProMachine: 是否仅支持专业版机器的查询（true：仅专业版   false：专业版+基础版）
+        # @type IsQueryProMachine: Boolean
 
-        attr_accessor :MachineList, :ImportType
+        attr_accessor :MachineList, :ImportType, :IsQueryProMachine
         
-        def initialize(machinelist=nil, importtype=nil)
+        def initialize(machinelist=nil, importtype=nil, isquerypromachine=nil)
           @MachineList = machinelist
           @ImportType = importtype
+          @IsQueryProMachine = isquerypromachine
         end
 
         def deserialize(params)
           @MachineList = params['MachineList']
           @ImportType = params['ImportType']
+          @IsQueryProMachine = params['IsQueryProMachine']
         end
       end
 
@@ -5631,15 +5635,19 @@ module TencentCloud
         # @param Quuid: 机器Quuid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Quuid: String
+        # @param Uuid: 云镜Uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
 
-        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid
+        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid, :Uuid
         
-        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil)
+        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil, uuid=nil)
           @MachineName = machinename
           @MachinePublicIp = machinepublicip
           @MachinePrivateIp = machineprivateip
           @MachineTag = machinetag
           @Quuid = quuid
+          @Uuid = uuid
         end
 
         def deserialize(params)
@@ -5653,6 +5661,7 @@ module TencentCloud
             end
           end
           @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
         end
       end
 

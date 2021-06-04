@@ -1768,12 +1768,15 @@ module TencentCloud
         # @type DiskIds: Array
         # @param DiskChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
         # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.DiskChargePrepaid`
+        # @param DiskChargePostpaid: 后付费模式
+        # @type DiskChargePostpaid: Boolean
 
-        attr_accessor :DiskIds, :DiskChargePrepaid
+        attr_accessor :DiskIds, :DiskChargePrepaid, :DiskChargePostpaid
         
-        def initialize(diskids=nil, diskchargeprepaid=nil)
+        def initialize(diskids=nil, diskchargeprepaid=nil, diskchargepostpaid=nil)
           @DiskIds = diskids
           @DiskChargePrepaid = diskchargeprepaid
+          @DiskChargePostpaid = diskchargepostpaid
         end
 
         def deserialize(params)
@@ -1781,6 +1784,7 @@ module TencentCloud
           unless params['DiskChargePrepaid'].nil?
             @DiskChargePrepaid = DiskChargePrepaid.new.deserialize(params['DiskChargePrepaid'])
           end
+          @DiskChargePostpaid = params['DiskChargePostpaid']
         end
       end
 

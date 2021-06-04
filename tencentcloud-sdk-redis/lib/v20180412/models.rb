@@ -159,6 +159,46 @@ module TencentCloud
         end
       end
 
+      # ChangeReplicaToMaster请求参数结构体
+      class ChangeReplicaToMasterRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param GroupId: 副本Id
+        # @type GroupId: Integer
+
+        attr_accessor :InstanceId, :GroupId
+        
+        def initialize(instanceid=nil, groupid=nil)
+          @InstanceId = instanceid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # ChangeReplicaToMaster返回参数结构体
+      class ChangeReplicaToMasterResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CleanUpInstance请求参数结构体
       class CleanUpInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
