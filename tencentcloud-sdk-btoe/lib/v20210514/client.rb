@@ -290,7 +290,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用户向BTOE核验存证结果中的区块链交易hash
+        # 用户向BTOE核验存证结果中的区块链交易hash的真实性
 
         # @param request: Request instance for VerifyEvidenceBlockChainTxHash.
         # @type request: :class:`Tencentcloud::btoe::V20210514::VerifyEvidenceBlockChainTxHashRequest`

@@ -3238,6 +3238,50 @@ module TencentCloud
         end
       end
 
+      # SendMsg请求参数结构体
+      class SendMsgRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）名称。
+        # @type EnvironmentId: String
+        # @param TopicName: 主题名称，如果是分区topic需要指定具体分区，如果没有指定则默认发到0分区，例如：my_topic-partition-0。
+        # @type TopicName: String
+        # @param MsgContent: 消息内容，不能为空且大小不得大于5242880个byte。
+        # @type MsgContent: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
+
+        attr_accessor :EnvironmentId, :TopicName, :MsgContent, :ClusterId
+        
+        def initialize(environmentid=nil, topicname=nil, msgcontent=nil, clusterid=nil)
+          @EnvironmentId = environmentid
+          @TopicName = topicname
+          @MsgContent = msgcontent
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @TopicName = params['TopicName']
+          @MsgContent = params['MsgContent']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # SendMsg返回参数结构体
+      class SendMsgResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 订阅者
       class Subscription < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名称。

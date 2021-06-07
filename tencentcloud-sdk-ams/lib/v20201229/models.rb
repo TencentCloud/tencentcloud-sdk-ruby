@@ -297,6 +297,113 @@ module TencentCloud
         end
       end
 
+      # CreateAudioModerationSyncTask请求参数结构体
+      class CreateAudioModerationSyncTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BizType: Biztype为策略的具体的编号，用于接口调度，在内容安全控制台中可配置。不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；调用时不传入Biztype代表采用默认的识别策略。
+        # @type BizType: String
+        # @param DataId: 数据标识，可以由英文字母、数字、下划线、-、@#组成，不超过64个字符
+        # @type DataId: String
+        # @param FileFormat: 音频文件资源格式，当前为mp3，wav，请按照实际文件格式填入
+        # @type FileFormat: String
+        # @param Name: 文件名称，可以由英文字母、数字、下划线、-、@#组成，不超过64个字符
+        # @type Name: String
+        # @param FileContent: 数据Base64编码，短音频同步接口仅传入可音频内容；
+        # 支持范围：文件大小不能超过5M，时长不可超过60s，码率范围为8-16Kbps；
+        # 支持格式：wav、mp3
+        # @type FileContent: String
+        # @param FileUrl: 音频资源访问链接，与FileContent参数必须二选一输入；
+        # 支持范围：同FileContent；
+        # @type FileUrl: String
+
+        attr_accessor :BizType, :DataId, :FileFormat, :Name, :FileContent, :FileUrl
+        
+        def initialize(biztype=nil, dataid=nil, fileformat=nil, name=nil, filecontent=nil, fileurl=nil)
+          @BizType = biztype
+          @DataId = dataid
+          @FileFormat = fileformat
+          @Name = name
+          @FileContent = filecontent
+          @FileUrl = fileurl
+        end
+
+        def deserialize(params)
+          @BizType = params['BizType']
+          @DataId = params['DataId']
+          @FileFormat = params['FileFormat']
+          @Name = params['Name']
+          @FileContent = params['FileContent']
+          @FileUrl = params['FileUrl']
+        end
+      end
+
+      # CreateAudioModerationSyncTask返回参数结构体
+      class CreateAudioModerationSyncTaskResponse < TencentCloud::Common::AbstractModel
+        # @param DataId: 请求接口时传入的数据标识
+        # @type DataId: String
+        # @param Name: 文件名称，可以由英文字母、数字、下划线、-、@#组成，不超过64个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param BizType: Biztype为策略的具体的编号，用于接口调度，在内容安全控制台中可配置。不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；调用时不传入Biztype代表采用默认的识别策略。
+        # @type BizType: String
+        # @param Suggestion: 智能审核服务对于内容违规类型的等级，可选值：
+        # Pass 建议通过；
+        # Reveiw 建议复审；
+        # Block 建议屏蔽；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Suggestion: String
+        # @param Label: 智能审核服务对于内容违规类型的判断，详见返回值列表
+        # 如：Label：Porn（色情）；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param AsrText: 音频文本，备注：这里的文本最大只返回前1000个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrText: String
+        # @param TextResults: 音频中对话内容审核结果；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextResults: Array
+        # @param MoanResults: 音频中低俗内容审核结果；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MoanResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataId, :Name, :BizType, :Suggestion, :Label, :AsrText, :TextResults, :MoanResults, :RequestId
+        
+        def initialize(dataid=nil, name=nil, biztype=nil, suggestion=nil, label=nil, asrtext=nil, textresults=nil, moanresults=nil, requestid=nil)
+          @DataId = dataid
+          @Name = name
+          @BizType = biztype
+          @Suggestion = suggestion
+          @Label = label
+          @AsrText = asrtext
+          @TextResults = textresults
+          @MoanResults = moanresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataId = params['DataId']
+          @Name = params['Name']
+          @BizType = params['BizType']
+          @Suggestion = params['Suggestion']
+          @Label = params['Label']
+          @AsrText = params['AsrText']
+          unless params['TextResults'].nil?
+            @TextResults = []
+            params['TextResults'].each do |i|
+              @TextResults << TextResult.new.deserialize(i)
+            end
+          end
+          unless params['MoanResults'].nil?
+            @MoanResults = []
+            params['MoanResults'].each do |i|
+              @MoanResults << MoanResult.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAudioModerationTask请求参数结构体
       class CreateAudioModerationTaskRequest < TencentCloud::Common::AbstractModel
         # @param Tasks: 输入的任务信息，最多可以同时创建10个任务
@@ -624,6 +731,41 @@ module TencentCloud
         end
       end
 
+      # 呻吟低俗检测结果
+      class MoanResult < TencentCloud::Common::AbstractModel
+        # @param Label: 固定取值为Moan（呻吟/娇喘），如音频中无复杂类型「MoanResult」的返回则代表改音频中无呻吟/娇喘相关违规内容；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Score: 机器判断当前分类的置信度，取值范围：0~100。分数越高，表示越有可能属于当前分类。
+        # （如：Moan 99，则该样本属于呻吟/娇喘的置信度非常高。）
+        # @type Score: Integer
+        # @param Suggestion: 建议您拿到判断结果后的执行操作。
+        # 建议值，Block：建议屏蔽，Review：建议复审，Pass：建议通过
+        # @type Suggestion: String
+        # @param StartTime: 违规事件开始时间，单位为毫秒（ms）；
+        # @type StartTime: Float
+        # @param EndTime: 违规事件结束时间，单位为毫秒（ms）；
+        # @type EndTime: Float
+
+        attr_accessor :Label, :Score, :Suggestion, :StartTime, :EndTime
+        
+        def initialize(label=nil, score=nil, suggestion=nil, starttime=nil, endtime=nil)
+          @Label = label
+          @Score = score
+          @Suggestion = suggestion
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Score = params['Score']
+          @Suggestion = params['Suggestion']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       #  数据存储信息
       class StorageInfo < TencentCloud::Common::AbstractModel
         # @param Type: 类型 可选：
@@ -835,6 +977,61 @@ module TencentCloud
           @TaskId = params['TaskId']
           @Code = params['Code']
           @Message = params['Message']
+        end
+      end
+
+      # 音频文本内容审核结果
+      class TextResult < TencentCloud::Common::AbstractModel
+        # @param Label: 恶意标签，Normal：正常，Porn：色情，Abuse：谩骂，Ad：广告，Custom：自定义词库。
+        # 以及其他令人反感、不安全或不适宜的内容类型。
+
+        # 如音频中无复杂类型「TextResults」的返回则代表改音频中无相关违规内容；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Keywords: 命中的关键词，为空则代表该违规内容出自于模型的判断；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keywords: Array
+        # @param LibId: 命中关键词库的库标识；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LibId: String
+        # @param LibName: 命中关键词库的名字；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LibName: String
+        # @param Score: 机器判断当前分类的置信度，取值范围：0~100。分数越高，表示越有可能属于当前分类。
+        # （如：Porn 99，则该样本属于色情的置信度非常高。）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Integer
+        # @param Suggestion: 建议您拿到判断结果后的执行操作。
+        # 建议值，Block：建议屏蔽，Review：建议复审，Pass：建议通过
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Suggestion: String
+        # @param LibType: 自定义词库的类型，自定义词库相关的信息可登录控制台中查看；
+
+        # 1：自定义黑白库；
+
+        # 2：自定义库；
+        # @type LibType: Integer
+
+        attr_accessor :Label, :Keywords, :LibId, :LibName, :Score, :Suggestion, :LibType
+        
+        def initialize(label=nil, keywords=nil, libid=nil, libname=nil, score=nil, suggestion=nil, libtype=nil)
+          @Label = label
+          @Keywords = keywords
+          @LibId = libid
+          @LibName = libname
+          @Score = score
+          @Suggestion = suggestion
+          @LibType = libtype
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Keywords = params['Keywords']
+          @LibId = params['LibId']
+          @LibName = params['LibName']
+          @Score = params['Score']
+          @Suggestion = params['Suggestion']
+          @LibType = params['LibType']
         end
       end
 

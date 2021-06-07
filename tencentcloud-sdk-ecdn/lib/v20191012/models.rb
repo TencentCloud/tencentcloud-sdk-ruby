@@ -1063,6 +1063,7 @@ module TencentCloud
         # - https：是否配置https，on，off或processing。
         # - originPullProtocol：回源协议类型，支持http，follow或https。
         # - area：加速区域，支持mainland，overseas或global。
+        # - tagKey：标签键。
         # @type Name: String
         # @param Value: 过滤字段值。
         # @type Value: Array
