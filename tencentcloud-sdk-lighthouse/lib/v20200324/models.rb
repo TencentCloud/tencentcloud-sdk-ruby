@@ -2289,7 +2289,9 @@ module TencentCloud
 
       # 描述了启动配置创建实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等。
       class InternetAccessible < TencentCloud::Common::AbstractModel
-        # @param InternetChargeType: 网络计费类型。
+        # @param InternetChargeType: 网络计费类型,，取值范围：
+        # <li>按流量包付费：TRAFFIC_POSTPAID_BY_HOUR</li>
+        # <li>按带宽付费： BANDWIDTH_POSTPAID_BY_HOUR</li>
         # @type InternetChargeType: String
         # @param InternetMaxBandwidthOut: 公网出带宽上限，单位：Mbps。
         # @type InternetMaxBandwidthOut: Integer

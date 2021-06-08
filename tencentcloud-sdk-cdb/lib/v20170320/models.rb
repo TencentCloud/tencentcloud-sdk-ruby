@@ -8646,10 +8646,14 @@ module TencentCloud
         # @type BackupZone: String
         # @param InstanceRole: 实例类型，默认为 master，支持值包括：master - 表示主实例，dr - 表示灾备实例，ro - 表示只读实例。
         # @type InstanceRole: String
+        # @param DeviceType: 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC" - 基础版实例。
+        # @type DeviceType: String
+        # @param Cpu: 升级后的实例cpu核数， 如果不传将根据 Memory 指定的内存值自动填充对应的cpu值。
+        # @type Cpu: Integer
 
-        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole
+        attr_accessor :InstanceId, :Memory, :Volume, :ProtectMode, :DeployMode, :SlaveZone, :EngineVersion, :WaitSwitch, :BackupZone, :InstanceRole, :DeviceType, :Cpu
         
-        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, protectmode=nil, deploymode=nil, slavezone=nil, engineversion=nil, waitswitch=nil, backupzone=nil, instancerole=nil, devicetype=nil, cpu=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
@@ -8660,6 +8664,8 @@ module TencentCloud
           @WaitSwitch = waitswitch
           @BackupZone = backupzone
           @InstanceRole = instancerole
+          @DeviceType = devicetype
+          @Cpu = cpu
         end
 
         def deserialize(params)
@@ -8673,6 +8679,8 @@ module TencentCloud
           @WaitSwitch = params['WaitSwitch']
           @BackupZone = params['BackupZone']
           @InstanceRole = params['InstanceRole']
+          @DeviceType = params['DeviceType']
+          @Cpu = params['Cpu']
         end
       end
 
