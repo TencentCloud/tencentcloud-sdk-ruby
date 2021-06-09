@@ -242,15 +242,18 @@ module TencentCloud
         # @type ForceBind: Boolean
         # @param Nick: 设备昵称，最多不超过64个字符
         # @type Nick: String
+        # @param BindToken: 绑定过程中的会话token，由设备通过SDK接口确认是否允许绑定的token，用于增加设备被绑定的安全性
+        # @type BindToken: String
 
-        attr_accessor :AccessId, :Tid, :Role, :ForceBind, :Nick
+        attr_accessor :AccessId, :Tid, :Role, :ForceBind, :Nick, :BindToken
         
-        def initialize(accessid=nil, tid=nil, role=nil, forcebind=nil, nick=nil)
+        def initialize(accessid=nil, tid=nil, role=nil, forcebind=nil, nick=nil, bindtoken=nil)
           @AccessId = accessid
           @Tid = tid
           @Role = role
           @ForceBind = forcebind
           @Nick = nick
+          @BindToken = bindtoken
         end
 
         def deserialize(params)
@@ -259,6 +262,7 @@ module TencentCloud
           @Role = params['Role']
           @ForceBind = params['ForceBind']
           @Nick = params['Nick']
+          @BindToken = params['BindToken']
         end
       end
 

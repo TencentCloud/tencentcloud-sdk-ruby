@@ -6350,6 +6350,52 @@ module TencentCloud
         end
       end
 
+      # ModifyPurgeFetchTaskStatus请求参数结构体
+      class ModifyPurgeFetchTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ExecutionTime: 执行时间
+        # @type ExecutionTime: String
+        # @param ExecutionStatus: 执行状态
+        # success: 成功
+        # failed: 失败
+        # @type ExecutionStatus: String
+        # @param Id: 任务 ID
+        # @type Id: String
+        # @param ExecutionStatusDesc: 执行状态详情
+        # @type ExecutionStatusDesc: String
+
+        attr_accessor :ExecutionTime, :ExecutionStatus, :Id, :ExecutionStatusDesc
+        
+        def initialize(executiontime=nil, executionstatus=nil, id=nil, executionstatusdesc=nil)
+          @ExecutionTime = executiontime
+          @ExecutionStatus = executionstatus
+          @Id = id
+          @ExecutionStatusDesc = executionstatusdesc
+        end
+
+        def deserialize(params)
+          @ExecutionTime = params['ExecutionTime']
+          @ExecutionStatus = params['ExecutionStatus']
+          @Id = params['Id']
+          @ExecutionStatusDesc = params['ExecutionStatusDesc']
+        end
+      end
+
+      # ModifyPurgeFetchTaskStatus返回参数结构体
+      class ModifyPurgeFetchTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 离线缓存是否开启
       class OfflineCache < TencentCloud::Common::AbstractModel
         # @param Switch: on | off, 离线缓存是否开启

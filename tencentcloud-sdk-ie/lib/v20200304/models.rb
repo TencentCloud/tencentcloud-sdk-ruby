@@ -25,8 +25,7 @@ module TencentCloud
         # edaf,
         # wdaf，
         # 默认edaf。
-        # 注意：edaf：速度快，去毛刺效果强，保护边缘效果较弱；
-        # wdaf：速度慢，保护边缘效果好
+        # 注意：此参数已经弃用
         # @type Algorithm: String
 
         attr_accessor :Type, :Algorithm
@@ -3058,6 +3057,7 @@ module TencentCloud
         # @param Sharp: 细节增强参数。
         # @type Sharp: :class:`Tencentcloud::Ie.v20200304.models.Sharp`
         # @param WdSuperResolution: 超分参数，可选项：2，目前仅支持2倍超分。
+        # 注意：此参数已经弃用，超分可以使用VideoSuperResolution参数
         # @type WdSuperResolution: Integer
         # @param FaceProtect: 人脸保护信息。
         # @type FaceProtect: :class:`Tencentcloud::Ie.v20200304.models.FaceProtect`
@@ -3068,10 +3068,14 @@ module TencentCloud
         # @type ScratchRepair: :class:`Tencentcloud::Ie.v20200304.models.ScratchRepair`
         # @param LowLightEnhance: 低光照增强参数
         # @type LowLightEnhance: :class:`Tencentcloud::Ie.v20200304.models.LowLightEnhance`
+        # @param VideoSuperResolution: 视频超分参数
+        # @type VideoSuperResolution: :class:`Tencentcloud::Ie.v20200304.models.VideoSuperResolution`
+        # @param VideoRepair: 视频画质修复参数
+        # @type VideoRepair: :class:`Tencentcloud::Ie.v20200304.models.VideoRepair`
 
-        attr_accessor :ArtifactReduction, :Denoising, :ColorEnhance, :Sharp, :WdSuperResolution, :FaceProtect, :WdFps, :ScratchRepair, :LowLightEnhance
+        attr_accessor :ArtifactReduction, :Denoising, :ColorEnhance, :Sharp, :WdSuperResolution, :FaceProtect, :WdFps, :ScratchRepair, :LowLightEnhance, :VideoSuperResolution, :VideoRepair
         
-        def initialize(artifactreduction=nil, denoising=nil, colorenhance=nil, sharp=nil, wdsuperresolution=nil, faceprotect=nil, wdfps=nil, scratchrepair=nil, lowlightenhance=nil)
+        def initialize(artifactreduction=nil, denoising=nil, colorenhance=nil, sharp=nil, wdsuperresolution=nil, faceprotect=nil, wdfps=nil, scratchrepair=nil, lowlightenhance=nil, videosuperresolution=nil, videorepair=nil)
           @ArtifactReduction = artifactreduction
           @Denoising = denoising
           @ColorEnhance = colorenhance
@@ -3081,6 +3085,8 @@ module TencentCloud
           @WdFps = wdfps
           @ScratchRepair = scratchrepair
           @LowLightEnhance = lowlightenhance
+          @VideoSuperResolution = videosuperresolution
+          @VideoRepair = videorepair
         end
 
         def deserialize(params)
@@ -3106,6 +3112,12 @@ module TencentCloud
           end
           unless params['LowLightEnhance'].nil?
             @LowLightEnhance = LowLightEnhance.new.deserialize(params['LowLightEnhance'])
+          end
+          unless params['VideoSuperResolution'].nil?
+            @VideoSuperResolution = VideoSuperResolution.new.deserialize(params['VideoSuperResolution'])
+          end
+          unless params['VideoRepair'].nil?
+            @VideoRepair = VideoRepair.new.deserialize(params['VideoRepair'])
           end
         end
       end
@@ -3277,6 +3289,47 @@ module TencentCloud
           @Rotate = params['Rotate']
           @Duration = params['Duration']
           @PixFormat = params['PixFormat']
+        end
+      end
+
+      # 综合画质修复，包括：去噪，去毛刺，细节增强，主观画质提升。
+      class VideoRepair < TencentCloud::Common::AbstractModel
+        # @param Type: 画质修复类型，可选值：weak，normal，strong;
+        # 默认值: weak
+        # @type Type: String
+
+        attr_accessor :Type
+        
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
+      # 视频超分
+      class VideoSuperResolution < TencentCloud::Common::AbstractModel
+        # @param Type: 超分视频类型：可选值：lq,hq
+        # lq: 针对低清晰度有较多噪声视频的超分;
+        # hq: 针对高清晰度视频超分;
+        # 默认取值：lq。
+        # @type Type: String
+        # @param Size: 超分倍数，可选值：2。
+        # 注意：当前只支持两倍超分。
+        # @type Size: Integer
+
+        attr_accessor :Type, :Size
+        
+        def initialize(type=nil, size=nil)
+          @Type = type
+          @Size = size
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Size = params['Size']
         end
       end
 

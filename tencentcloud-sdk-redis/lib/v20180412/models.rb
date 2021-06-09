@@ -4290,14 +4290,17 @@ module TencentCloud
         # @type NodeId: String
         # @param Status: 节点的状态
         # @type Status: String
+        # @param Role: 节点角色
+        # @type Role: String
 
-        attr_accessor :Keys, :Slot, :NodeId, :Status
+        attr_accessor :Keys, :Slot, :NodeId, :Status, :Role
         
-        def initialize(keys=nil, slot=nil, nodeid=nil, status=nil)
+        def initialize(keys=nil, slot=nil, nodeid=nil, status=nil, role=nil)
           @Keys = keys
           @Slot = slot
           @NodeId = nodeid
           @Status = status
+          @Role = role
         end
 
         def deserialize(params)
@@ -4305,6 +4308,7 @@ module TencentCloud
           @Slot = params['Slot']
           @NodeId = params['NodeId']
           @Status = params['Status']
+          @Role = params['Role']
         end
       end
 
@@ -4340,19 +4344,23 @@ module TencentCloud
         # @type NodeRole: String
         # @param ClusterId: 分片ID
         # @type ClusterId: Integer
+        # @param ZoneId: 可用区ID
+        # @type ZoneId: Integer
 
-        attr_accessor :NodeId, :NodeRole, :ClusterId
+        attr_accessor :NodeId, :NodeRole, :ClusterId, :ZoneId
         
-        def initialize(nodeid=nil, noderole=nil, clusterid=nil)
+        def initialize(nodeid=nil, noderole=nil, clusterid=nil, zoneid=nil)
           @NodeId = nodeid
           @NodeRole = noderole
           @ClusterId = clusterid
+          @ZoneId = zoneid
         end
 
         def deserialize(params)
           @NodeId = params['NodeId']
           @NodeRole = params['NodeRole']
           @ClusterId = params['ClusterId']
+          @ZoneId = params['ZoneId']
         end
       end
 
