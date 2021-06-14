@@ -745,6 +745,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取资产数量： 主机数、账号数、端口数、进程数、软件数、数据库数、Web应用数、Web框架数、Web服务数、Web站点数
+
+        # @param request: Request instance for DescribeAssetInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetInfoResponse`
+        def DescribeAssetInfo(request)
+          body = send_request('DescribeAssetInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取主机最近趋势情况
+
+        # @param request: Request instance for DescribeAssetRecentMachineInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetRecentMachineInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetRecentMachineInfoResponse`
+        def DescribeAssetRecentMachineInfo(request)
+          body = send_request('DescribeAssetRecentMachineInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetRecentMachineInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 网络攻击日志详情
 
         # @param request: Request instance for DescribeAttackLogInfo.
@@ -2987,6 +3035,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchBashRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 同步资产扫描信息
+
+        # @param request: Request instance for SyncAssetScan.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::SyncAssetScanRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::SyncAssetScanResponse`
+        def SyncAssetScan(request)
+          body = send_request('SyncAssetScan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncAssetScanResponse.new
             model.deserialize(response['Response'])
             model
           else

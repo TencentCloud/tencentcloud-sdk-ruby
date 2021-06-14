@@ -470,10 +470,14 @@ module TencentCloud
         # @type PortMappings: Array
         # @param UseRegistryDefaultConfig: 是否添加默认注册中心配置
         # @type UseRegistryDefaultConfig: Boolean
+        # @param SettingConfs: 挂载配置信息
+        # @type SettingConfs: Array
+        # @param EksService: eks 访问设置
+        # @type EksService: :class:`Tencentcloud::Tem.v20201221.models.EksService`
 
-        attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :PortMappings, :UseRegistryDefaultConfig
+        attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :PortMappings, :UseRegistryDefaultConfig, :SettingConfs, :EksService
         
-        def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, portmappings=nil, useregistrydefaultconfig=nil)
+        def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, portmappings=nil, useregistrydefaultconfig=nil, settingconfs=nil, eksservice=nil)
           @ServiceId = serviceid
           @ContainerPort = containerport
           @InitPodNum = initpodnum
@@ -500,6 +504,8 @@ module TencentCloud
           @ImageArgs = imageargs
           @PortMappings = portmappings
           @UseRegistryDefaultConfig = useregistrydefaultconfig
+          @SettingConfs = settingconfs
+          @EksService = eksservice
         end
 
         def deserialize(params)
@@ -553,6 +559,15 @@ module TencentCloud
             end
           end
           @UseRegistryDefaultConfig = params['UseRegistryDefaultConfig']
+          unless params['SettingConfs'].nil?
+            @SettingConfs = []
+            params['SettingConfs'].each do |i|
+              @SettingConfs << MountedSettingConf.new.deserialize(i)
+            end
+          end
+          unless params['EksService'].nil?
+            @EksService = EksService.new.deserialize(params['EksService'])
+          end
         end
       end
 
@@ -879,6 +894,78 @@ module TencentCloud
             @Result = DescribeRunPodPage.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # eks service info
+      class EksService < TencentCloud::Common::AbstractModel
+        # @param Name: service name
+        # @type Name: String
+        # @param Ports: 可用端口
+        # @type Ports: Array
+        # @param Yaml: yaml 内容
+        # @type Yaml: String
+        # @param ServiceName: 服务名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param VersionName: 版本名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param ClusterIp: 内网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIp: Array
+        # @param ExternalIp: 外网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalIp: String
+        # @param Type: 访问类型，可选值：
+        # - EXTERNAL（公网访问）
+        # - VPC（vpc内访问）
+        # - CLUSTER（集群内访问）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param SubnetId: 子网ID，只在类型为vpc访问时才有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param LoadBalanceId: 负载均衡ID，只在外网访问和vpc内访问才有值，默认自动创建
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalanceId: String
+        # @param PortMappings: 端口映射
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PortMappings: Array
+
+        attr_accessor :Name, :Ports, :Yaml, :ServiceName, :VersionName, :ClusterIp, :ExternalIp, :Type, :SubnetId, :LoadBalanceId, :PortMappings
+        
+        def initialize(name=nil, ports=nil, yaml=nil, servicename=nil, versionname=nil, clusterip=nil, externalip=nil, type=nil, subnetid=nil, loadbalanceid=nil, portmappings=nil)
+          @Name = name
+          @Ports = ports
+          @Yaml = yaml
+          @ServiceName = servicename
+          @VersionName = versionname
+          @ClusterIp = clusterip
+          @ExternalIp = externalip
+          @Type = type
+          @SubnetId = subnetid
+          @LoadBalanceId = loadbalanceid
+          @PortMappings = portmappings
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Ports = params['Ports']
+          @Yaml = params['Yaml']
+          @ServiceName = params['ServiceName']
+          @VersionName = params['VersionName']
+          @ClusterIp = params['ClusterIp']
+          @ExternalIp = params['ExternalIp']
+          @Type = params['Type']
+          @SubnetId = params['SubnetId']
+          @LoadBalanceId = params['LoadBalanceId']
+          unless params['PortMappings'].nil?
+            @PortMappings = []
+            params['PortMappings'].each do |i|
+              @PortMappings << PortMapping.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -1274,6 +1361,35 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 挂载配置信息
+      class MountedSettingConf < TencentCloud::Common::AbstractModel
+        # @param ConfigDataName: 配置名称
+        # @type ConfigDataName: String
+        # @param MountedPath: 挂载路径
+        # @type MountedPath: String
+        # @param Data: 配置内容
+        # @type Data: Array
+
+        attr_accessor :ConfigDataName, :MountedPath, :Data
+        
+        def initialize(configdataname=nil, mountedpath=nil, data=nil)
+          @ConfigDataName = configdataname
+          @MountedPath = mountedpath
+          @Data = data
+        end
+
+        def deserialize(params)
+          @ConfigDataName = params['ConfigDataName']
+          @MountedPath = params['MountedPath']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              @Data << Pair.new.deserialize(i)
+            end
+          end
         end
       end
 

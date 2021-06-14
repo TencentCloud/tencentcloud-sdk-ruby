@@ -242,6 +242,31 @@ module TencentCloud
         end
       end
 
+      # key-val类型的通用数据结构
+      class AssetKeyVal < TencentCloud::Common::AbstractModel
+        # @param Key: 标签
+        # @type Key: String
+        # @param Value: 数量
+        # @type Value: Integer
+        # @param Desc: 描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+
+        attr_accessor :Key, :Value, :Desc
+        
+        def initialize(key=nil, value=nil, desc=nil)
+          @Key = key
+          @Value = value
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Desc = params['Desc']
+        end
+      end
+
       # 高危命令数据
       class BashEvent < TencentCloud::Common::AbstractModel
         # @param Id: ID
@@ -1801,6 +1826,149 @@ module TencentCloud
           @Malware = params['Malware']
           @NonlocalLogin = params['NonlocalLogin']
           @CrackSuccess = params['CrackSuccess']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetInfo请求参数结构体
+      class DescribeAssetInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAssetInfo返回参数结构体
+      class DescribeAssetInfoResponse < TencentCloud::Common::AbstractModel
+        # @param MachineCount: 主机数
+        # @type MachineCount: Integer
+        # @param AccountCount: 账号数
+        # @type AccountCount: Integer
+        # @param PortCount: 端口数
+        # @type PortCount: Integer
+        # @param ProcessCount: 进程数
+        # @type ProcessCount: Integer
+        # @param SoftwareCount: 软件数
+        # @type SoftwareCount: Integer
+        # @param DatabaseCount: 数据库数
+        # @type DatabaseCount: Integer
+        # @param WebAppCount: Web应用数
+        # @type WebAppCount: Integer
+        # @param WebFrameCount: Web框架数
+        # @type WebFrameCount: Integer
+        # @param WebServiceCount: Web服务数
+        # @type WebServiceCount: Integer
+        # @param WebLocationCount: Web站点数
+        # @type WebLocationCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MachineCount, :AccountCount, :PortCount, :ProcessCount, :SoftwareCount, :DatabaseCount, :WebAppCount, :WebFrameCount, :WebServiceCount, :WebLocationCount, :RequestId
+        
+        def initialize(machinecount=nil, accountcount=nil, portcount=nil, processcount=nil, softwarecount=nil, databasecount=nil, webappcount=nil, webframecount=nil, webservicecount=nil, weblocationcount=nil, requestid=nil)
+          @MachineCount = machinecount
+          @AccountCount = accountcount
+          @PortCount = portcount
+          @ProcessCount = processcount
+          @SoftwareCount = softwarecount
+          @DatabaseCount = databasecount
+          @WebAppCount = webappcount
+          @WebFrameCount = webframecount
+          @WebServiceCount = webservicecount
+          @WebLocationCount = weblocationcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MachineCount = params['MachineCount']
+          @AccountCount = params['AccountCount']
+          @PortCount = params['PortCount']
+          @ProcessCount = params['ProcessCount']
+          @SoftwareCount = params['SoftwareCount']
+          @DatabaseCount = params['DatabaseCount']
+          @WebAppCount = params['WebAppCount']
+          @WebFrameCount = params['WebFrameCount']
+          @WebServiceCount = params['WebServiceCount']
+          @WebLocationCount = params['WebLocationCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetRecentMachineInfo请求参数结构体
+      class DescribeAssetRecentMachineInfoRequest < TencentCloud::Common::AbstractModel
+        # @param BeginDate: 开始时间。
+        # @type BeginDate: String
+        # @param EndDate: 结束时间。
+        # @type EndDate: String
+
+        attr_accessor :BeginDate, :EndDate
+        
+        def initialize(begindate=nil, enddate=nil)
+          @BeginDate = begindate
+          @EndDate = enddate
+        end
+
+        def deserialize(params)
+          @BeginDate = params['BeginDate']
+          @EndDate = params['EndDate']
+        end
+      end
+
+      # DescribeAssetRecentMachineInfo返回参数结构体
+      class DescribeAssetRecentMachineInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalList: 总数量列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalList: Array
+        # @param LiveList: 在线数量列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveList: Array
+        # @param OfflineList: 离线数量列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineList: Array
+        # @param RiskList: 风险数量列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalList, :LiveList, :OfflineList, :RiskList, :RequestId
+        
+        def initialize(totallist=nil, livelist=nil, offlinelist=nil, risklist=nil, requestid=nil)
+          @TotalList = totallist
+          @LiveList = livelist
+          @OfflineList = offlinelist
+          @RiskList = risklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TotalList'].nil?
+            @TotalList = []
+            params['TotalList'].each do |i|
+              @TotalList << AssetKeyVal.new.deserialize(i)
+            end
+          end
+          unless params['LiveList'].nil?
+            @LiveList = []
+            params['LiveList'].each do |i|
+              @LiveList << AssetKeyVal.new.deserialize(i)
+            end
+          end
+          unless params['OfflineList'].nil?
+            @OfflineList = []
+            params['OfflineList'].each do |i|
+              @OfflineList << AssetKeyVal.new.deserialize(i)
+            end
+          end
+          unless params['RiskList'].nil?
+            @RiskList = []
+            params['RiskList'].each do |i|
+              @RiskList << AssetKeyVal.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8210,6 +8378,38 @@ module TencentCloud
 
       # SwitchBashRules返回参数结构体
       class SwitchBashRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SyncAssetScan请求参数结构体
+      class SyncAssetScanRequest < TencentCloud::Common::AbstractModel
+        # @param Sync: 是否同步
+        # @type Sync: Boolean
+
+        attr_accessor :Sync
+        
+        def initialize(sync=nil)
+          @Sync = sync
+        end
+
+        def deserialize(params)
+          @Sync = params['Sync']
+        end
+      end
+
+      # SyncAssetScan返回参数结构体
+      class SyncAssetScanResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
