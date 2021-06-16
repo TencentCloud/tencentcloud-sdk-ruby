@@ -103,17 +103,21 @@ module TencentCloud
       class CreateDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param DatabaseInfo: 数据库基础信息
         # @type DatabaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.DatabaseInfo`
+        # @param DatasourceConnectionName: 数据源名称，默认为CosDataCatalog
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DatabaseInfo
+        attr_accessor :DatabaseInfo, :DatasourceConnectionName
         
-        def initialize(databaseinfo=nil)
+        def initialize(databaseinfo=nil, datasourceconnectionname=nil)
           @DatabaseInfo = databaseinfo
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
           unless params['DatabaseInfo'].nil?
             @DatabaseInfo = DatabaseInfo.new.deserialize(params['DatabaseInfo'])
           end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -183,6 +187,38 @@ module TencentCloud
         end
       end
 
+      # CreateStoreLocation请求参数结构体
+      class CreateStoreLocationRequest < TencentCloud::Common::AbstractModel
+        # @param StoreLocation: 计算结果存储cos路径，如：cosn://bucketname/
+        # @type StoreLocation: String
+
+        attr_accessor :StoreLocation
+        
+        def initialize(storelocation=nil)
+          @StoreLocation = storelocation
+        end
+
+        def deserialize(params)
+          @StoreLocation = params['StoreLocation']
+        end
+      end
+
+      # CreateStoreLocation返回参数结构体
+      class CreateStoreLocationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTable请求参数结构体
       class CreateTableRequest < TencentCloud::Common::AbstractModel
         # @param TableInfo: 数据表配置信息
@@ -229,12 +265,15 @@ module TencentCloud
         # @type Task: :class:`Tencentcloud::Dlc.v20210125.models.Task`
         # @param DatabaseName: 数据库名称。任务在执行前均会USE该数据库， 除了首次建库时，其他情况建议均添加上。
         # @type DatabaseName: String
+        # @param DatasourceConnectionName: 默认数据源名称。
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :Task, :DatabaseName
+        attr_accessor :Task, :DatabaseName, :DatasourceConnectionName
         
-        def initialize(task=nil, databasename=nil)
+        def initialize(task=nil, databasename=nil, datasourceconnectionname=nil)
           @Task = task
           @DatabaseName = databasename
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -242,6 +281,7 @@ module TencentCloud
             @Task = Task.new.deserialize(params['Task'])
           end
           @DatabaseName = params['DatabaseName']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -436,19 +476,23 @@ module TencentCloud
         # @type Offset: Integer
         # @param KeyWord: 模糊匹配，库名关键字。
         # @type KeyWord: String
+        # @param DatasourceConnectionName: 数据源唯名称，该名称可以通过DescribeDatasourceConnection接口查询到。默认为CosDataCatalog
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :Limit, :Offset, :KeyWord
+        attr_accessor :Limit, :Offset, :KeyWord, :DatasourceConnectionName
         
-        def initialize(limit=nil, offset=nil, keyword=nil)
+        def initialize(limit=nil, offset=nil, keyword=nil, datasourceconnectionname=nil)
           @Limit = limit
           @Offset = offset
           @KeyWord = keyword
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
           @Limit = params['Limit']
           @Offset = params['Offset']
           @KeyWord = params['KeyWord']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -556,17 +600,21 @@ module TencentCloud
         # @type TableName: String
         # @param DatabaseName: 查询表所在的数据库名称。
         # @type DatabaseName: String
+        # @param DatasourceConnectionName: 查询表所在的数据源名称
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :TableName, :DatabaseName
+        attr_accessor :TableName, :DatabaseName, :DatasourceConnectionName
         
-        def initialize(tablename=nil, databasename=nil)
+        def initialize(tablename=nil, databasename=nil, datasourceconnectionname=nil)
           @TableName = tablename
           @DatabaseName = databasename
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
           @TableName = params['TableName']
           @DatabaseName = params['DatabaseName']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -604,14 +652,17 @@ module TencentCloud
         # table-name - String - （过滤条件）数据表名称,形如：table-001。
         # table-id - String - （过滤条件）table id形如：12342。
         # @type Filters: Array
+        # @param DatasourceConnectionName: 指定查询的数据源名称，默认为CosDataCatalog
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DatabaseName, :Limit, :Offset, :Filters
+        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName
         
-        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil)
+        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil)
           @DatabaseName = databasename
           @Limit = limit
           @Offset = offset
           @Filters = filters
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -624,6 +675,7 @@ module TencentCloud
               @Filters << Filter.new.deserialize(i)
             end
           end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -745,14 +797,17 @@ module TencentCloud
         # view-name - String - （过滤条件）数据表名称,形如：view-001。
         # view-id - String - （过滤条件）view id形如：12342。
         # @type Filters: Array
+        # @param DatasourceConnectionName: 数据库所属的数据源名称
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DatabaseName, :Limit, :Offset, :Filters
+        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName
         
-        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil)
+        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil)
           @DatabaseName = databasename
           @Limit = limit
           @Offset = offset
           @Filters = filters
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
@@ -765,6 +820,7 @@ module TencentCloud
               @Filters << Filter.new.deserialize(i)
             end
           end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -833,6 +889,28 @@ module TencentCloud
         end
       end
 
+      # 配置格式
+      class KVPair < TencentCloud::Common::AbstractModel
+        # @param Key: 配置的key值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 配置的value值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 数据格式其它类型。
       class Other < TencentCloud::Common::AbstractModel
         # @param Format: 枚举类型，默认值为Json，可选值为[Json, Parquet, ORC, AVRD]之一。
@@ -897,15 +975,24 @@ module TencentCloud
       class SQLTask < TencentCloud::Common::AbstractModel
         # @param SQL: base64加密后的SQL语句
         # @type SQL: String
+        # @param Config: 任务的配置信息
+        # @type Config: Array
 
-        attr_accessor :SQL
+        attr_accessor :SQL, :Config
         
-        def initialize(sql=nil)
+        def initialize(sql=nil, config=nil)
           @SQL = sql
+          @Config = config
         end
 
         def deserialize(params)
           @SQL = params['SQL']
+          unless params['Config'].nil?
+            @Config = []
+            params['Config'].each do |i|
+              @Config << KVPair.new.deserialize(i)
+            end
+          end
         end
       end
 
@@ -957,17 +1044,22 @@ module TencentCloud
         # @type DatabaseName: String
         # @param TableName: 数据表名字
         # @type TableName: String
+        # @param DatasourceConnectionName: 该数据表所属数据源名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DatabaseName, :TableName
+        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName
         
-        def initialize(databasename=nil, tablename=nil)
+        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil)
           @DatabaseName = databasename
           @TableName = tablename
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
           @DatabaseName = params['DatabaseName']
           @TableName = params['TableName']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 
@@ -1089,16 +1181,22 @@ module TencentCloud
       class Task < TencentCloud::Common::AbstractModel
         # @param SQLTask: SQL查询任务
         # @type SQLTask: :class:`Tencentcloud::Dlc.v20210125.models.SQLTask`
+        # @param SparkSQLTask: Spark SQL查询任务
+        # @type SparkSQLTask: :class:`Tencentcloud::Dlc.v20210125.models.SQLTask`
 
-        attr_accessor :SQLTask
+        attr_accessor :SQLTask, :SparkSQLTask
         
-        def initialize(sqltask=nil)
+        def initialize(sqltask=nil, sparksqltask=nil)
           @SQLTask = sqltask
+          @SparkSQLTask = sparksqltask
         end
 
         def deserialize(params)
           unless params['SQLTask'].nil?
             @SQLTask = SQLTask.new.deserialize(params['SQLTask'])
+          end
+          unless params['SparkSQLTask'].nil?
+            @SparkSQLTask = SQLTask.new.deserialize(params['SparkSQLTask'])
           end
         end
       end
@@ -1136,10 +1234,12 @@ module TencentCloud
         # @type Percentage: Integer
         # @param OutputMessage: 任务执行输出信息。
         # @type OutputMessage: String
+        # @param TaskType: 执行SQL的引擎类型
+        # @type TaskType: String
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType
         
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -1155,6 +1255,7 @@ module TencentCloud
           @Error = error
           @Percentage = percentage
           @OutputMessage = outputmessage
+          @TaskType = tasktype
         end
 
         def deserialize(params)
@@ -1173,6 +1274,7 @@ module TencentCloud
           @Error = params['Error']
           @Percentage = params['Percentage']
           @OutputMessage = params['OutputMessage']
+          @TaskType = params['TaskType']
         end
       end
 

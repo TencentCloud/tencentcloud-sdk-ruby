@@ -956,7 +956,9 @@ module TencentCloud
         # @type Duration: String
         # @param Labels: 标签列表
         # @type Labels: Array
-        # @param Annotations: 注释列表
+        # @param Annotations: 注释列表。
+
+        # 告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description。
         # @type Annotations: Array
         # @param Type: 报警策略模板分类
         # @type Type: String
@@ -5842,7 +5844,9 @@ module TencentCloud
         # @type Receivers: Array
         # @param Labels: 报警规则标签列表
         # @type Labels: Array
-        # @param Annotations: 报警规则注释列表
+        # @param Annotations: 报警规则注释列表。
+
+        # 告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description。
         # @type Annotations: Array
         # @param Type: 报警策略模板分类
         # @type Type: String

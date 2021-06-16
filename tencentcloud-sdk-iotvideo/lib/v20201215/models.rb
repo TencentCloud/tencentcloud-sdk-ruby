@@ -344,6 +344,64 @@ module TencentCloud
         end
       end
 
+      # ControlDeviceData请求参数结构体
+      class ControlDeviceDataRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Data: 属性数据, JSON格式字符串, 注意字段需要在物模型属性里定义
+        # @type Data: String
+        # @param Method: 请求类型 , 不填该参数或者 desired 表示下发属性给设备,  reported 表示模拟设备上报属性
+        # @type Method: String
+        # @param DataTimestamp: 上报数据UNIX时间戳(毫秒), 仅对Method:reported有效
+        # @type DataTimestamp: Integer
+
+        attr_accessor :ProductId, :DeviceName, :Data, :Method, :DataTimestamp
+        
+        def initialize(productid=nil, devicename=nil, data=nil, method=nil, datatimestamp=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Data = data
+          @Method = method
+          @DataTimestamp = datatimestamp
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Data = params['Data']
+          @Method = params['Method']
+          @DataTimestamp = params['DataTimestamp']
+        end
+      end
+
+      # ControlDeviceData返回参数结构体
+      class ControlDeviceDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回信息
+        # @type Data: String
+        # @param Result: JSON字符串， 返回下发控制的结果信息,
+        # Sent = 1 表示设备已经在线并且订阅了控制下发的mqtt topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Result, :RequestId
+        
+        def initialize(data=nil, result=nil, requestid=nil)
+          @Data = data
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBatch请求参数结构体
       class CreateBatchRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -3190,6 +3248,58 @@ module TencentCloud
           @ListOrder = params['ListOrder']
           @IconUrl = params['IconUrl']
           @IconUrlGrid = params['IconUrlGrid']
+        end
+      end
+
+      # PublishMessage请求参数结构体
+      class PublishMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Topic: 消息发往的主题
+        # @type Topic: String
+        # @param Payload: 云端下发到设备的控制报文
+        # @type Payload: String
+        # @param Qos: 消息服务质量等级，取值为0或1
+        # @type Qos: Integer
+        # @param PayloadEncoding: Payload的内容编码格式，取值为base64或空。base64表示云端将接收到的base64编码后的报文再转换成二进制报文下发至设备，为空表示不作转换，透传下发至设备
+        # @type PayloadEncoding: String
+
+        attr_accessor :ProductId, :DeviceName, :Topic, :Payload, :Qos, :PayloadEncoding
+        
+        def initialize(productid=nil, devicename=nil, topic=nil, payload=nil, qos=nil, payloadencoding=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Topic = topic
+          @Payload = payload
+          @Qos = qos
+          @PayloadEncoding = payloadencoding
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Topic = params['Topic']
+          @Payload = params['Payload']
+          @Qos = params['Qos']
+          @PayloadEncoding = params['PayloadEncoding']
+        end
+      end
+
+      # PublishMessage返回参数结构体
+      class PublishMessageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

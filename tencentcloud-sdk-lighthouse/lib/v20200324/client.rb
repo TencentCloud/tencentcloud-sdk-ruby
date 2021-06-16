@@ -688,7 +688,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询重置实例的镜像信息
+        # 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
 
         # @param request: Request instance for DescribeResetInstanceBlueprints.
         # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeResetInstanceBlueprintsRequest`

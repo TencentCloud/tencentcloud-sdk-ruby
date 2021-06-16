@@ -34,7 +34,7 @@ module TencentCloud
         end
       end
 
-      # 横纵比
+      # 纵横比
       class AspectRatio < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -314,7 +314,7 @@ module TencentCloud
         end
       end
 
-      # 质地
+      # 弹性质地
       class Elastic < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -458,7 +458,7 @@ module TencentCloud
         end
       end
 
-      # 等级
+      # 组织学等级
       class HistologyLevel < TencentCloud::Common::AbstractModel
         # @param Grade: 等级
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -485,7 +485,7 @@ module TencentCloud
         end
       end
 
-      # 类型
+      # 组织学类型
       class HistologyType < TencentCloud::Common::AbstractModel
         # @param Infiltration: 浸润
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -514,6 +514,58 @@ module TencentCloud
           @Index = params['Index']
           @Src = params['Src']
           @Type = params['Type']
+        end
+      end
+
+      # 出入院信息
+      class Hospitalization < TencentCloud::Common::AbstractModel
+        # @param AdmissionTime: 入院时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdmissionTime: String
+        # @param DischargeTime: 出院时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DischargeTime: String
+        # @param AdmissionDays: 住院天数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdmissionDays: String
+        # @param AdmissionDignosis: 入院诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdmissionDignosis: String
+        # @param AdmissionCondition: 入院情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdmissionCondition: String
+        # @param DiagnosisTreatment: 诊疗经过
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnosisTreatment: String
+        # @param DischargeDiagnosis: 出院诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DischargeDiagnosis: String
+        # @param DischargeInstruction: 出院医嘱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DischargeInstruction: String
+
+        attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction
+        
+        def initialize(admissiontime=nil, dischargetime=nil, admissiondays=nil, admissiondignosis=nil, admissioncondition=nil, diagnosistreatment=nil, dischargediagnosis=nil, dischargeinstruction=nil)
+          @AdmissionTime = admissiontime
+          @DischargeTime = dischargetime
+          @AdmissionDays = admissiondays
+          @AdmissionDignosis = admissiondignosis
+          @AdmissionCondition = admissioncondition
+          @DiagnosisTreatment = diagnosistreatment
+          @DischargeDiagnosis = dischargediagnosis
+          @DischargeInstruction = dischargeinstruction
+        end
+
+        def deserialize(params)
+          @AdmissionTime = params['AdmissionTime']
+          @DischargeTime = params['DischargeTime']
+          @AdmissionDays = params['AdmissionDays']
+          @AdmissionDignosis = params['AdmissionDignosis']
+          @AdmissionCondition = params['AdmissionCondition']
+          @DiagnosisTreatment = params['DiagnosisTreatment']
+          @DischargeDiagnosis = params['DischargeDiagnosis']
+          @DischargeInstruction = params['DischargeInstruction']
         end
       end
 
@@ -580,7 +632,7 @@ module TencentCloud
         # @type ImageInfoList: Array
         # @param HandleParam: 图片处理参数
         # @type HandleParam: :class:`Tencentcloud::Mrs.v20200910.models.HandleParam`
-        # @param Type: 图片类型
+        # @param Type: 图片类型，目前支持11（检验报告），12（检查报告），15（病理报告），218（诊断证明）。
         # @type Type: Integer
 
         attr_accessor :ImageInfoList, :HandleParam, :Type
@@ -637,9 +689,10 @@ module TencentCloud
         # @type ImageInfoList: Array
         # @param HandleParam: 图片处理参数
         # @type HandleParam: :class:`Tencentcloud::Mrs.v20200910.models.HandleParam`
-        # @param Type: 图片类别
+        # @param Type: 报告类型，目前支持11（检验报告），12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
         # @type Type: Integer
-        # @param IsUsedClassify: 是否使用分类引擎
+        # @param IsUsedClassify: 是否使用分类引擎，当不确定报告类型时，可以使用收费的报告分类引擎服务。若该字段为 False，则 Type 字段不能为 0，否则无法输出结果。
+        # 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。
         # @type IsUsedClassify: Boolean
 
         attr_accessor :ImageInfoList, :HandleParam, :Type, :IsUsedClassify
@@ -711,7 +764,7 @@ module TencentCloud
         end
       end
 
-      # 指标项
+      # 检验指标项
       class IndicatorItem < TencentCloud::Common::AbstractModel
         # @param Code: 英文缩写
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -768,7 +821,7 @@ module TencentCloud
         end
       end
 
-      # Invasive
+      # 侵犯扩散
       class Invas < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -907,6 +960,58 @@ module TencentCloud
         end
       end
 
+      # 门诊病历信息
+      class MedicalRecordInfo < TencentCloud::Common::AbstractModel
+        # @param DiagnosisTime: 就诊日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnosisTime: String
+        # @param DiagnosisDepartmentName: 就诊科室
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnosisDepartmentName: String
+        # @param DiagnosisDoctorName: 就诊医生
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnosisDoctorName: String
+        # @param ClinicalDiagnosis: 临床诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClinicalDiagnosis: String
+        # @param MainNarration: 主述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainNarration: String
+        # @param PhysicalExamination: 体格检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalExamination: String
+        # @param InspectionFindings: 检查结论
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InspectionFindings: String
+        # @param TreatmentOpinion: 治疗意见
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TreatmentOpinion: String
+
+        attr_accessor :DiagnosisTime, :DiagnosisDepartmentName, :DiagnosisDoctorName, :ClinicalDiagnosis, :MainNarration, :PhysicalExamination, :InspectionFindings, :TreatmentOpinion
+        
+        def initialize(diagnosistime=nil, diagnosisdepartmentname=nil, diagnosisdoctorname=nil, clinicaldiagnosis=nil, mainnarration=nil, physicalexamination=nil, inspectionfindings=nil, treatmentopinion=nil)
+          @DiagnosisTime = diagnosistime
+          @DiagnosisDepartmentName = diagnosisdepartmentname
+          @DiagnosisDoctorName = diagnosisdoctorname
+          @ClinicalDiagnosis = clinicaldiagnosis
+          @MainNarration = mainnarration
+          @PhysicalExamination = physicalexamination
+          @InspectionFindings = inspectionfindings
+          @TreatmentOpinion = treatmentopinion
+        end
+
+        def deserialize(params)
+          @DiagnosisTime = params['DiagnosisTime']
+          @DiagnosisDepartmentName = params['DiagnosisDepartmentName']
+          @DiagnosisDoctorName = params['DiagnosisDoctorName']
+          @ClinicalDiagnosis = params['ClinicalDiagnosis']
+          @MainNarration = params['MainNarration']
+          @PhysicalExamination = params['PhysicalExamination']
+          @InspectionFindings = params['InspectionFindings']
+          @TreatmentOpinion = params['TreatmentOpinion']
+        end
+      end
+
       # 月经史
       class MenstrualMedicalHistory < TencentCloud::Common::AbstractModel
         # @param LastMenstrualPeriod: 末次月经时间
@@ -949,7 +1054,7 @@ module TencentCloud
         end
       end
 
-      # 数量
+      # 多发
       class Multiple < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -986,7 +1091,7 @@ module TencentCloud
         end
       end
 
-      # 部位
+      # 标准部位
       class NormPart < TencentCloud::Common::AbstractModel
         # @param Part: 部位值
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1237,7 +1342,7 @@ module TencentCloud
         end
       end
 
-      # 部位
+      # 部位信息
       class Part < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1412,16 +1517,56 @@ module TencentCloud
         # @param IdCard: 患者身份证
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdCard: String
+        # @param HealthCardNo: 健康卡号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCardNo: String
+        # @param SocialSecurityCardNo: 社保卡号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SocialSecurityCardNo: String
+        # @param Birthday: 出生日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Birthday: String
+        # @param Ethnicity: 民族
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ethnicity: String
+        # @param Married: 婚姻状况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Married: String
+        # @param Profession: 职业
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Profession: String
+        # @param EducationBackground: 教育程度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EducationBackground: String
+        # @param Nationality: 国籍
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nationality: String
+        # @param BirthPlace: 籍贯
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BirthPlace: String
+        # @param MedicalInsuranceType: 医保类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MedicalInsuranceType: String
 
-        attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard
+        attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType
         
-        def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil)
+        def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil)
           @Name = name
           @Sex = sex
           @Age = age
           @Phone = phone
           @Address = address
           @IdCard = idcard
+          @HealthCardNo = healthcardno
+          @SocialSecurityCardNo = socialsecuritycardno
+          @Birthday = birthday
+          @Ethnicity = ethnicity
+          @Married = married
+          @Profession = profession
+          @EducationBackground = educationbackground
+          @Nationality = nationality
+          @BirthPlace = birthplace
+          @MedicalInsuranceType = medicalinsurancetype
         end
 
         def deserialize(params)
@@ -1431,6 +1576,16 @@ module TencentCloud
           @Phone = params['Phone']
           @Address = params['Address']
           @IdCard = params['IdCard']
+          @HealthCardNo = params['HealthCardNo']
+          @SocialSecurityCardNo = params['SocialSecurityCardNo']
+          @Birthday = params['Birthday']
+          @Ethnicity = params['Ethnicity']
+          @Married = params['Married']
+          @Profession = params['Profession']
+          @EducationBackground = params['EducationBackground']
+          @Nationality = params['Nationality']
+          @BirthPlace = params['BirthPlace']
+          @MedicalInsuranceType = params['MedicalInsuranceType']
         end
       end
 
@@ -1524,10 +1679,13 @@ module TencentCloud
         # @param UltraNum: 超声号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UltraNum: String
+        # @param Diagnose: 临床诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Diagnose: String
 
-        attr_accessor :Hospital, :DepartmentName, :BillingTime, :ReportTime, :InspectTime, :CheckNum, :ImageNum, :RadiationNum, :TestNum, :OutpatientNum, :PathologyNum, :InHospitalNum, :SampleNum, :SampleType, :MedicalRecordNum, :ReportName, :UltraNum
+        attr_accessor :Hospital, :DepartmentName, :BillingTime, :ReportTime, :InspectTime, :CheckNum, :ImageNum, :RadiationNum, :TestNum, :OutpatientNum, :PathologyNum, :InHospitalNum, :SampleNum, :SampleType, :MedicalRecordNum, :ReportName, :UltraNum, :Diagnose
         
-        def initialize(hospital=nil, departmentname=nil, billingtime=nil, reporttime=nil, inspecttime=nil, checknum=nil, imagenum=nil, radiationnum=nil, testnum=nil, outpatientnum=nil, pathologynum=nil, inhospitalnum=nil, samplenum=nil, sampletype=nil, medicalrecordnum=nil, reportname=nil, ultranum=nil)
+        def initialize(hospital=nil, departmentname=nil, billingtime=nil, reporttime=nil, inspecttime=nil, checknum=nil, imagenum=nil, radiationnum=nil, testnum=nil, outpatientnum=nil, pathologynum=nil, inhospitalnum=nil, samplenum=nil, sampletype=nil, medicalrecordnum=nil, reportname=nil, ultranum=nil, diagnose=nil)
           @Hospital = hospital
           @DepartmentName = departmentname
           @BillingTime = billingtime
@@ -1545,6 +1703,7 @@ module TencentCloud
           @MedicalRecordNum = medicalrecordnum
           @ReportName = reportname
           @UltraNum = ultranum
+          @Diagnose = diagnose
         end
 
         def deserialize(params)
@@ -1565,6 +1724,7 @@ module TencentCloud
           @MedicalRecordNum = params['MedicalRecordNum']
           @ReportName = params['ReportName']
           @UltraNum = params['UltraNum']
+          @Diagnose = params['Diagnose']
         end
       end
 
@@ -1602,7 +1762,7 @@ module TencentCloud
         end
       end
 
-      # 总结
+      # 结论
       class Summary < TencentCloud::Common::AbstractModel
         # @param Symptom: 症状
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1629,7 +1789,102 @@ module TencentCloud
         end
       end
 
-      # 病症描述
+      # 手术记录
+      class Surgery < TencentCloud::Common::AbstractModel
+        # @param SurgeryHistory: 手术史
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SurgeryHistory: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryHistory`
+
+        attr_accessor :SurgeryHistory
+        
+        def initialize(surgeryhistory=nil)
+          @SurgeryHistory = surgeryhistory
+        end
+
+        def deserialize(params)
+          unless params['SurgeryHistory'].nil?
+            @SurgeryHistory = SurgeryHistory.new.deserialize(params['SurgeryHistory'])
+          end
+        end
+      end
+
+      # 手术记录属性
+      class SurgeryAttr < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # 手术史
+      class SurgeryHistory < TencentCloud::Common::AbstractModel
+        # @param SurgeryName: 手术名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SurgeryName: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
+        # @param SurgeryDate: 手术日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SurgeryDate: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
+        # @param PreoperativePathology: 术前诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreoperativePathology: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
+        # @param IntraoperativePathology: 术中诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntraoperativePathology: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
+        # @param PostoperativePathology: 术后诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostoperativePathology: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
+        # @param DischargeDiagnosis: 出院诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DischargeDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAttr`
+
+        attr_accessor :SurgeryName, :SurgeryDate, :PreoperativePathology, :IntraoperativePathology, :PostoperativePathology, :DischargeDiagnosis
+        
+        def initialize(surgeryname=nil, surgerydate=nil, preoperativepathology=nil, intraoperativepathology=nil, postoperativepathology=nil, dischargediagnosis=nil)
+          @SurgeryName = surgeryname
+          @SurgeryDate = surgerydate
+          @PreoperativePathology = preoperativepathology
+          @IntraoperativePathology = intraoperativepathology
+          @PostoperativePathology = postoperativepathology
+          @DischargeDiagnosis = dischargediagnosis
+        end
+
+        def deserialize(params)
+          unless params['SurgeryName'].nil?
+            @SurgeryName = SurgeryAttr.new.deserialize(params['SurgeryName'])
+          end
+          unless params['SurgeryDate'].nil?
+            @SurgeryDate = SurgeryAttr.new.deserialize(params['SurgeryDate'])
+          end
+          unless params['PreoperativePathology'].nil?
+            @PreoperativePathology = SurgeryAttr.new.deserialize(params['PreoperativePathology'])
+          end
+          unless params['IntraoperativePathology'].nil?
+            @IntraoperativePathology = SurgeryAttr.new.deserialize(params['IntraoperativePathology'])
+          end
+          unless params['PostoperativePathology'].nil?
+            @PostoperativePathology = SurgeryAttr.new.deserialize(params['PostoperativePathology'])
+          end
+          unless params['DischargeDiagnosis'].nil?
+            @DischargeDiagnosis = SurgeryAttr.new.deserialize(params['DischargeDiagnosis'])
+          end
+        end
+      end
+
+      # 病症描述信息
       class SymptomInfo < TencentCloud::Common::AbstractModel
         # @param Grade: 等级
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1711,10 +1966,19 @@ module TencentCloud
         # @param ReportType: 报告类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportType: String
+        # @param MedicalRecordInfo: 门诊病历信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MedicalRecordInfo: :class:`Tencentcloud::Mrs.v20200910.models.MedicalRecordInfo`
+        # @param Hospitalization: 出入院信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hospitalization: :class:`Tencentcloud::Mrs.v20200910.models.Hospitalization`
+        # @param Surgery: 手术记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Surgery: :class:`Tencentcloud::Mrs.v20200910.models.Surgery`
 
-        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType
+        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery
         
-        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil)
+        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil)
           @PatientInfo = patientinfo
           @ReportInfo = reportinfo
           @Check = check
@@ -1724,6 +1988,9 @@ module TencentCloud
           @FirstPage = firstpage
           @Indicator = indicator
           @ReportType = reporttype
+          @MedicalRecordInfo = medicalrecordinfo
+          @Hospitalization = hospitalization
+          @Surgery = surgery
         end
 
         def deserialize(params)
@@ -1752,6 +2019,15 @@ module TencentCloud
             @Indicator = Indicator.new.deserialize(params['Indicator'])
           end
           @ReportType = params['ReportType']
+          unless params['MedicalRecordInfo'].nil?
+            @MedicalRecordInfo = MedicalRecordInfo.new.deserialize(params['MedicalRecordInfo'])
+          end
+          unless params['Hospitalization'].nil?
+            @Hospitalization = Hospitalization.new.deserialize(params['Hospitalization'])
+          end
+          unless params['Surgery'].nil?
+            @Surgery = Surgery.new.deserialize(params['Surgery'])
+          end
         end
       end
 
@@ -1800,9 +2076,10 @@ module TencentCloud
       class TextToObjectRequest < TencentCloud::Common::AbstractModel
         # @param Text: 报告文本
         # @type Text: String
-        # @param Type: 报告类型，目前支持12（检查报告单），15（病理报告），218（诊断证明）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
+        # @param Type: 报告类型，目前支持12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
         # @type Type: Integer
         # @param IsUsedClassify: 是否使用分类引擎，当不确定报告类型时，可以使用收费的报告分类引擎服务。若该字段为False，则Type字段不能为0，否则无法输出结果。
+        # 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。
         # @type IsUsedClassify: Boolean
 
         attr_accessor :Text, :Type, :IsUsedClassify
@@ -2042,7 +2319,7 @@ module TencentCloud
         # @param RearEcho: 外部回声
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RearEcho: :class:`Tencentcloud::Mrs.v20200910.models.BlockInfo`
-        # @param Elastic: 质地弹性
+        # @param Elastic: 弹性质地
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Elastic: :class:`Tencentcloud::Mrs.v20200910.models.Elastic`
         # @param Shape: 形状

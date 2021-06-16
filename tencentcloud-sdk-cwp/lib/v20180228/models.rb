@@ -834,6 +834,47 @@ module TencentCloud
         end
       end
 
+      # CreateProtectServer请求参数结构体
+      class CreateProtectServerRequest < TencentCloud::Common::AbstractModel
+        # @param ProtectDir: 防护目录地址
+        # @type ProtectDir: String
+        # @param ProtectHostConfig: 防护机器 信息
+        # @type ProtectHostConfig: Array
+
+        attr_accessor :ProtectDir, :ProtectHostConfig
+        
+        def initialize(protectdir=nil, protecthostconfig=nil)
+          @ProtectDir = protectdir
+          @ProtectHostConfig = protecthostconfig
+        end
+
+        def deserialize(params)
+          @ProtectDir = params['ProtectDir']
+          unless params['ProtectHostConfig'].nil?
+            @ProtectHostConfig = []
+            params['ProtectHostConfig'].each do |i|
+              @ProtectHostConfig << ProtectHostConfig.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # CreateProtectServer返回参数结构体
+      class CreateProtectServerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSearchLog请求参数结构体
       class CreateSearchLogRequest < TencentCloud::Common::AbstractModel
         # @param SearchContent: 搜索内容
@@ -1567,6 +1608,33 @@ module TencentCloud
 
       # DeleteUsualLoginPlaces返回参数结构体
       class DeleteUsualLoginPlacesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteWebPageEventLog请求参数结构体
+      class DeleteWebPageEventLogRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteWebPageEventLog返回参数结构体
+      class DeleteWebPageEventLogResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5234,6 +5302,61 @@ module TencentCloud
         end
       end
 
+      # DescribeWebPageGeneralize请求参数结构体
+      class DescribeWebPageGeneralizeRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeWebPageGeneralize返回参数结构体
+      class DescribeWebPageGeneralizeResponse < TencentCloud::Common::AbstractModel
+        # @param ProtectMonitor: 防护监测 0 未开启 1 已开启 2 异常
+        # @type ProtectMonitor: Integer
+        # @param ProtectDirNum: 防护目录数
+        # @type ProtectDirNum: Integer
+        # @param ProtectFileNum: 防护文件数
+        # @type ProtectFileNum: Integer
+        # @param TamperFileNum: 篡改文件数
+        # @type TamperFileNum: Integer
+        # @param TamperNum: 篡改数
+        # @type TamperNum: Integer
+        # @param ProtectToday: 今日防护
+        # @type ProtectToday: Integer
+        # @param ProtectHostNum: 防护主机数
+        # @type ProtectHostNum: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProtectMonitor, :ProtectDirNum, :ProtectFileNum, :TamperFileNum, :TamperNum, :ProtectToday, :ProtectHostNum, :RequestId
+        
+        def initialize(protectmonitor=nil, protectdirnum=nil, protectfilenum=nil, tamperfilenum=nil, tampernum=nil, protecttoday=nil, protecthostnum=nil, requestid=nil)
+          @ProtectMonitor = protectmonitor
+          @ProtectDirNum = protectdirnum
+          @ProtectFileNum = protectfilenum
+          @TamperFileNum = tamperfilenum
+          @TamperNum = tampernum
+          @ProtectToday = protecttoday
+          @ProtectHostNum = protecthostnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProtectMonitor = params['ProtectMonitor']
+          @ProtectDirNum = params['ProtectDirNum']
+          @ProtectFileNum = params['ProtectFileNum']
+          @TamperFileNum = params['TamperFileNum']
+          @TamperNum = params['TamperNum']
+          @ProtectToday = params['ProtectToday']
+          @ProtectHostNum = params['ProtectHostNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWeeklyReportBruteAttacks请求参数结构体
       class DescribeWeeklyReportBruteAttacksRequest < TencentCloud::Common::AbstractModel
         # @param BeginDate: 专业周报开始时间。
@@ -7360,6 +7483,46 @@ module TencentCloud
         end
       end
 
+      # ModifyWebPageProtectSetting请求参数结构体
+      class ModifyWebPageProtectSettingRequest < TencentCloud::Common::AbstractModel
+        # @param ModifyType: 需要操作的类型1 目录名称 2 防护文件类型
+        # @type ModifyType: Integer
+        # @param Value: 提交值
+        # @type Value: String
+        # @param Id: 配置对应的protect_path
+        # @type Id: String
+
+        attr_accessor :ModifyType, :Value, :Id
+        
+        def initialize(modifytype=nil, value=nil, id=nil)
+          @ModifyType = modifytype
+          @Value = value
+          @Id = id
+        end
+
+        def deserialize(params)
+          @ModifyType = params['ModifyType']
+          @Value = params['Value']
+          @Id = params['Id']
+        end
+      end
+
+      # ModifyWebPageProtectSetting返回参数结构体
+      class ModifyWebPageProtectSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 异地登录
       class NonLocalLoginPlace < TencentCloud::Common::AbstractModel
         # @param Id: 事件ID。
@@ -7869,6 +8032,30 @@ module TencentCloud
         end
       end
 
+      # 防护机器信息
+      class ProtectHostConfig < TencentCloud::Common::AbstractModel
+        # @param Quuid: 机器唯一ID
+        # @type Quuid: String
+        # @param ProtectSwitch: 防护开关 0  关闭 1开启
+        # @type ProtectSwitch: Integer
+        # @param AutoRecovery: 自动恢复开关 0 关闭 1开启
+        # @type AutoRecovery: Integer
+
+        attr_accessor :Quuid, :ProtectSwitch, :AutoRecovery
+        
+        def initialize(quuid=nil, protectswitch=nil, autorecovery=nil)
+          @Quuid = quuid
+          @ProtectSwitch = protectswitch
+          @AutoRecovery = autorecovery
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @ProtectSwitch = params['ProtectSwitch']
+          @AutoRecovery = params['AutoRecovery']
+        end
+      end
+
       # RecoverMalwares请求参数结构体
       class RecoverMalwaresRequest < TencentCloud::Common::AbstractModel
         # @param Ids: 木马Id数组,单次最大删除不能超过200条
@@ -8152,6 +8339,59 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Hostip = params['Hostip']
+        end
+      end
+
+      # ScanVul请求参数结构体
+      class ScanVulRequest < TencentCloud::Common::AbstractModel
+        # @param VulCategories: 漏洞类型：1: web应用漏洞 2:系统组件漏洞 (多选英文;分隔)
+        # @type VulCategories: String
+        # @param VulLevels: 危害等级：1-低危；2-中危；3-高危；4-严重 (多选英文;分隔)
+        # @type VulLevels: String
+        # @param HostType: 服务器分类：1:专业版服务器；2:自选服务器
+        # @type HostType: Integer
+        # @param QuuidList: 自选服务器时生效，主机quuid的string数组
+        # @type QuuidList: Array
+        # @param VulEmergency: 是否是应急漏洞 0 否 1 是
+        # @type VulEmergency: Integer
+
+        attr_accessor :VulCategories, :VulLevels, :HostType, :QuuidList, :VulEmergency
+        
+        def initialize(vulcategories=nil, vullevels=nil, hosttype=nil, quuidlist=nil, vulemergency=nil)
+          @VulCategories = vulcategories
+          @VulLevels = vullevels
+          @HostType = hosttype
+          @QuuidList = quuidlist
+          @VulEmergency = vulemergency
+        end
+
+        def deserialize(params)
+          @VulCategories = params['VulCategories']
+          @VulLevels = params['VulLevels']
+          @HostType = params['HostType']
+          @QuuidList = params['QuuidList']
+          @VulEmergency = params['VulEmergency']
+        end
+      end
+
+      # ScanVul返回参数结构体
+      class ScanVulResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

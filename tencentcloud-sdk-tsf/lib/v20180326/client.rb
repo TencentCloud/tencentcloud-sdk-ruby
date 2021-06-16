@@ -3485,6 +3485,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 业务日志搜索
+
+        # @param request: Request instance for SearchBusinessLog.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::SearchBusinessLogRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::SearchBusinessLogResponse`
+        def SearchBusinessLog(request)
+          body = send_request('SearchBusinessLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchBusinessLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 标准输出日志搜索
+
+        # @param request: Request instance for SearchStdoutLog.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::SearchStdoutLogRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::SearchStdoutLogResponse`
+        def SearchStdoutLog(request)
+          body = send_request('SearchStdoutLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchStdoutLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 下线部署组所有机器实例
 
         # @param request: Request instance for ShrinkGroup.

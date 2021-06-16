@@ -926,15 +926,15 @@ module TencentCloud
         # @type Bpm: Integer
         # @param Score: 商业化权益
         # @type Score: Float
-        # @param Scene: 场景信息
+        # @param Scene: 应用歌曲信息,1.图文/短视频,2.网络直播,3.网络电台FM,4.免费游戏,5.商业游戏,6.网店网站设计,7.广告营销,8.网络长视频
         # @type Scene: Array
-        # @param Region: 应用地域
+        # @param Region: 应用地域,1. 中国大陆,2. 中国含港澳台,3. 全球
         # @type Region: Array
-        # @param AuthPeriod: 授权期限
+        # @param AuthPeriod: 授权时间,1. 1年, 5. 随片永久
         # @type AuthPeriod: String
-        # @param Commercialization: 商业化权益
+        # @param Commercialization: 商业化授权，1. 支持商业化 ,2. 不支持商业化
         # @type Commercialization: String
-        # @param Platform: 跨平台传播权益
+        # @param Platform: 跨平台传播，1. 支持跨平台传播 ,2. 不支持跨平台传播
         # @type Platform: String
         # @param Channel: 传播渠道
         # @type Channel: String
@@ -1318,6 +1318,7 @@ module TencentCloud
         # @param MusicIds: 资源方对应音乐Id
         # @type MusicIds: String
         # @param SaleStatus: 当曲目临时下架时：已订购客户无影响，无需消息通知。当曲目封杀下架后，推送消息至已订购老客户，枚举值，判断是否上/下架
+        # 在售状态，0在售，1临时下架，2永久下架
         # @type SaleStatus: String
 
         attr_accessor :MusicIds, :SaleStatus

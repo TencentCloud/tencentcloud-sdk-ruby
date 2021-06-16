@@ -35,11 +35,11 @@ module TencentCloud
         # @type ImageUrl: String
         # @param SetNo: 【已废弃】
         # @type SetNo: Integer
-        # @param Bitrate: 单位Mbps，固定码率，有一定浮动范围，后端不动态调整(MaxBitrate和MinBitrate将无效)
+        # @param Bitrate: 单位Mbps，固定码率建议值，有一定浮动范围，后端不动态调整(MaxBitrate和MinBitrate将无效)
         # @type Bitrate: Integer
-        # @param MaxBitrate: 单位Mbps，动态调整最大码率，有一定浮动范围
+        # @param MaxBitrate: 单位Mbps，动态调整最大码率建议值，会按实际情况调整
         # @type MaxBitrate: Integer
-        # @param MinBitrate: 单位Mbps，动态调整最小码率，有一定浮动范围
+        # @param MinBitrate: 单位Mbps，动态调整最小码率建议值，会按实际情况调整
         # @type MinBitrate: Integer
         # @param Fps: 帧率，可设置为30、45、60、90、120、144
         # @type Fps: Integer

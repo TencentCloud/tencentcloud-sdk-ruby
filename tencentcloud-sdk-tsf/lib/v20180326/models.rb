@@ -909,6 +909,48 @@ module TencentCloud
         end
       end
 
+      # 业务日志
+      class BusinessLogV2 < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Content: 日志内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Timestamp: 日志时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param InstanceIp: 实例IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIp: String
+        # @param LogId: 日志ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogId: String
+        # @param GroupId: 部署组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+
+        attr_accessor :InstanceId, :Content, :Timestamp, :InstanceIp, :LogId, :GroupId
+        
+        def initialize(instanceid=nil, content=nil, timestamp=nil, instanceip=nil, logid=nil, groupid=nil)
+          @InstanceId = instanceid
+          @Content = content
+          @Timestamp = timestamp
+          @InstanceIp = instanceip
+          @LogId = logid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Content = params['Content']
+          @Timestamp = params['Timestamp']
+          @InstanceIp = params['InstanceIp']
+          @LogId = params['LogId']
+          @GroupId = params['GroupId']
+        end
+      end
+
       # ChangeApiUsableStatus请求参数结构体
       class ChangeApiUsableStatusRequest < TencentCloud::Common::AbstractModel
         # @param ApiId: API ID
@@ -11268,6 +11310,180 @@ module TencentCloud
         end
       end
 
+      # SearchBusinessLog请求参数结构体
+      class SearchBusinessLogRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 日志配置项ID
+        # @type ConfigId: String
+        # @param InstanceIds: 机器实例ID，不传表示全部实例
+        # @type InstanceIds: Array
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 请求偏移量，取值范围大于等于0，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 单页请求配置数量，取值范围[1, 200]，默认值为50
+        # @type Limit: Integer
+        # @param OrderBy: 排序规则，默认值"time"
+        # @type OrderBy: String
+        # @param OrderType: 排序方式，取值"asc"或"desc"，默认值"desc"
+        # @type OrderType: String
+        # @param SearchWords: 检索关键词
+        # @type SearchWords: Array
+        # @param GroupIds: 部署组ID列表，不传表示全部部署组
+        # @type GroupIds: Array
+        # @param SearchWordType: 检索类型，取值"LUCENE", "REGEXP", "NORMAL"
+        # @type SearchWordType: String
+        # @param BatchType: 批量请求类型，取值"page"或"scroll"
+        # @type BatchType: String
+        # @param ScrollId: 游标ID
+        # @type ScrollId: String
+
+        attr_accessor :ConfigId, :InstanceIds, :StartTime, :EndTime, :Offset, :Limit, :OrderBy, :OrderType, :SearchWords, :GroupIds, :SearchWordType, :BatchType, :ScrollId
+        
+        def initialize(configid=nil, instanceids=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, orderby=nil, ordertype=nil, searchwords=nil, groupids=nil, searchwordtype=nil, batchtype=nil, scrollid=nil)
+          @ConfigId = configid
+          @InstanceIds = instanceids
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @OrderBy = orderby
+          @OrderType = ordertype
+          @SearchWords = searchwords
+          @GroupIds = groupids
+          @SearchWordType = searchwordtype
+          @BatchType = batchtype
+          @ScrollId = scrollid
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @InstanceIds = params['InstanceIds']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+          @SearchWords = params['SearchWords']
+          @GroupIds = params['GroupIds']
+          @SearchWordType = params['SearchWordType']
+          @BatchType = params['BatchType']
+          @ScrollId = params['ScrollId']
+        end
+      end
+
+      # SearchBusinessLog返回参数结构体
+      class SearchBusinessLogResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 业务日志列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageBusinessLogV2`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageBusinessLogV2.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SearchStdoutLog请求参数结构体
+      class SearchStdoutLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 机器实例ID
+        # @type InstanceId: String
+        # @param Limit: 单页请求配置数量，取值范围[1, 500]，默认值为100
+        # @type Limit: Integer
+        # @param SearchWords: 检索关键词
+        # @type SearchWords: Array
+        # @param StartTime: 查询起始时间
+        # @type StartTime: String
+        # @param GroupId: 部署组ID
+        # @type GroupId: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+        # @param Offset: 请求偏移量，取值范围大于等于0，默认值为
+        # 0
+        # @type Offset: Integer
+        # @param OrderBy: 排序规则，默认值"time"
+        # @type OrderBy: String
+        # @param OrderType: 排序方式，取值"asc"或"desc"，默认
+        # 值"desc"
+        # @type OrderType: String
+        # @param SearchWordType: 检索类型，取值"LUCENE", "REGEXP",
+        # "NORMAL"
+        # @type SearchWordType: String
+        # @param BatchType: 批量请求类型，取值"page"或"scroll"，默认
+        # 值"page"
+        # @type BatchType: String
+        # @param ScrollId: 游标ID
+        # @type ScrollId: String
+
+        attr_accessor :InstanceId, :Limit, :SearchWords, :StartTime, :GroupId, :EndTime, :Offset, :OrderBy, :OrderType, :SearchWordType, :BatchType, :ScrollId
+        
+        def initialize(instanceid=nil, limit=nil, searchwords=nil, starttime=nil, groupid=nil, endtime=nil, offset=nil, orderby=nil, ordertype=nil, searchwordtype=nil, batchtype=nil, scrollid=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @SearchWords = searchwords
+          @StartTime = starttime
+          @GroupId = groupid
+          @EndTime = endtime
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderType = ordertype
+          @SearchWordType = searchwordtype
+          @BatchType = batchtype
+          @ScrollId = scrollid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @SearchWords = params['SearchWords']
+          @StartTime = params['StartTime']
+          @GroupId = params['GroupId']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
+          @SearchWordType = params['SearchWordType']
+          @BatchType = params['BatchType']
+          @ScrollId = params['ScrollId']
+        end
+      end
+
+      # SearchStdoutLog返回参数结构体
+      class SearchStdoutLogResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 标准输出日志列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageStdoutLogV2`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageStdoutLogV2.new.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Serverless部署组信息
       class ServerlessGroup < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID
@@ -11786,6 +12002,38 @@ module TencentCloud
             @Result = TaskId.new.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 标准输出日志
+      class StdoutLogV2 < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Content: 日志内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Timestamp: 日志时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param InstanceIp: 实例IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIp: String
+
+        attr_accessor :InstanceId, :Content, :Timestamp, :InstanceIp
+        
+        def initialize(instanceid=nil, content=nil, timestamp=nil, instanceip=nil)
+          @InstanceId = instanceid
+          @Content = content
+          @Timestamp = timestamp
+          @InstanceIp = instanceip
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Content = params['Content']
+          @Timestamp = params['Timestamp']
+          @InstanceIp = params['InstanceIp']
         end
       end
 
@@ -12369,6 +12617,43 @@ module TencentCloud
         end
       end
 
+      # 业务日志列表
+      class TsfPageBusinessLogV2 < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 业务日志列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+        # @param ScrollId: 游标ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScrollId: String
+        # @param Status: 查询状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :TotalCount, :Content, :ScrollId, :Status
+        
+        def initialize(totalcount=nil, content=nil, scrollid=nil, status=nil)
+          @TotalCount = totalcount
+          @Content = content
+          @ScrollId = scrollid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              @Content << BusinessLogV2.new.deserialize(i)
+            end
+          end
+          @ScrollId = params['ScrollId']
+          @Status = params['Status']
+        end
+      end
+
       # Tsf分页集群对象
       class TsfPageCluster < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总条数
@@ -12711,6 +12996,43 @@ module TencentCloud
               @Content << SimpleGroup.new.deserialize(i)
             end
           end
+        end
+      end
+
+      # 标准输出日志列表
+      class TsfPageStdoutLogV2 < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 标准输出日志列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+        # @param ScrollId: 游标ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScrollId: String
+        # @param Status: 查询状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :TotalCount, :Content, :ScrollId, :Status
+        
+        def initialize(totalcount=nil, content=nil, scrollid=nil, status=nil)
+          @TotalCount = totalcount
+          @Content = content
+          @ScrollId = scrollid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              @Content << StdoutLogV2.new.deserialize(i)
+            end
+          end
+          @ScrollId = params['ScrollId']
+          @Status = params['Status']
         end
       end
 

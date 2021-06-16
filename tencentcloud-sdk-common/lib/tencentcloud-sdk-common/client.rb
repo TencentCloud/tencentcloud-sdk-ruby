@@ -14,7 +14,7 @@ module TencentCloud
 
       @@api_version = ''
       @@endpoint = ''
-      @@sdk_version = '1.0.95'
+      @@sdk_version = '1.0.96'
       def initialize(credential, region, profile = nil)
         raise TencentCloudSDKException.new('InvalidCredential', 'Credential is None or invalid') unless credential
 

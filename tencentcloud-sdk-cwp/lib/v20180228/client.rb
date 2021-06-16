@@ -169,6 +169,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加房展防护服务器
+
+        # @param request: Request instance for CreateProtectServer.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::CreateProtectServerRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::CreateProtectServerResponse`
+        def CreateProtectServer(request)
+          body = send_request('CreateProtectServer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProtectServerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加历史搜索记录
 
         # @param request: Request instance for CreateSearchLog.
@@ -635,6 +659,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteUsualLoginPlacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 网站防篡改-删除事件记录
+
+        # @param request: Request instance for DeleteWebPageEventLog.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DeleteWebPageEventLogRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DeleteWebPageEventLogResponse`
+        def DeleteWebPageEventLog(request)
+          body = send_request('DeleteWebPageEventLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWebPageEventLogResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2137,6 +2185,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询网站防篡改 概览信息
+
+        # @param request: Request instance for DescribeWebPageGeneralize.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeWebPageGeneralizeRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeWebPageGeneralizeResponse`
+        def DescribeWebPageGeneralize(request)
+          body = send_request('DescribeWebPageGeneralize', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWebPageGeneralizeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
 
         # @param request: Request instance for DescribeWeeklyReportBruteAttacks.
@@ -2857,6 +2929,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 网站防篡改-修改网站防护设置
+
+        # @param request: Request instance for ModifyWebPageProtectSetting.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyWebPageProtectSettingRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyWebPageProtectSettingResponse`
+        def ModifyWebPageProtectSetting(request)
+          body = send_request('ModifyWebPageProtectSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWebPageProtectSettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (OpenProVersion) 用于开通专业版。
 
         # @param request: Request instance for OpenProVersion.
@@ -2963,6 +3059,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RescanImpactedHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 漏洞管理 - 一键检测
+
+        # @param request: Request instance for ScanVul.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ScanVulRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ScanVulResponse`
+        def ScanVul(request)
+          body = send_request('ScanVul', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScanVulResponse.new
             model.deserialize(response['Response'])
             model
           else

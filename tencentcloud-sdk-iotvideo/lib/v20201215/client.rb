@@ -97,6 +97,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据设备产品ID、设备名称，设置控制设备的属性数据。
+
+        # @param request: Request instance for ControlDeviceData.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::ControlDeviceDataRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::ControlDeviceDataResponse`
+        def ControlDeviceData(request)
+          body = send_request('ControlDeviceData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ControlDeviceDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建批次
 
         # @param request: Request instance for CreateBatch.
@@ -1187,6 +1211,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyProductResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
+
+        # @param request: Request instance for PublishMessage.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::PublishMessageRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::PublishMessageResponse`
+        def PublishMessage(request)
+          body = send_request('PublishMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PublishMessageResponse.new
             model.deserialize(response['Response'])
             model
           else

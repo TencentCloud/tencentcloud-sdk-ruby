@@ -79,15 +79,19 @@ module TencentCloud
       class CompleteMigrateJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 数据迁移任务ID
         # @type JobId: String
+        # @param CompleteMode: 完成任务的方式,仅支持旧版MySQL迁移任务。waitForSync-等待主从差距为0才停止,immediately-立即完成，不会等待主从差距一致。默认为waitForSync
+        # @type CompleteMode: String
 
-        attr_accessor :JobId
+        attr_accessor :JobId, :CompleteMode
         
-        def initialize(jobid=nil)
+        def initialize(jobid=nil, completemode=nil)
           @JobId = jobid
+          @CompleteMode = completemode
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @CompleteMode = params['CompleteMode']
         end
       end
 

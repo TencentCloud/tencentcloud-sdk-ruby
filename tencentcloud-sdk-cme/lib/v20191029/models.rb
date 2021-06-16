@@ -1749,22 +1749,29 @@ module TencentCloud
       # 回调事件内容。
       class EventContent < TencentCloud::Common::AbstractModel
         # @param EventType: 事件类型，可取值为：
-        # <li>Storage.NewFileCreated：新文件产生。</li>
+        # <li>Storage.NewFileCreated：新文件产生；</li>
+        # <li>Project.StreamConnect.StatusChanged：云转推项目状态变更。</li>
         # @type EventType: String
         # @param StorageNewFileCreatedEvent: 新文件产生事件信息。仅当 EventType 为 Storage.NewFileCreated 时有效。
         # @type StorageNewFileCreatedEvent: :class:`Tencentcloud::Cme.v20191029.models.StorageNewFileCreatedEvent`
+        # @param ProjectStreamConnectStatusChangedEvent: 云转推项目状态变更事件信息。仅当 EventType 为 Project.StreamConnect.StatusChanged 时有效。
+        # @type ProjectStreamConnectStatusChangedEvent: :class:`Tencentcloud::Cme.v20191029.models.ProjectStreamConnectStatusChangedEvent`
 
-        attr_accessor :EventType, :StorageNewFileCreatedEvent
+        attr_accessor :EventType, :StorageNewFileCreatedEvent, :ProjectStreamConnectStatusChangedEvent
         
-        def initialize(eventtype=nil, storagenewfilecreatedevent=nil)
+        def initialize(eventtype=nil, storagenewfilecreatedevent=nil, projectstreamconnectstatuschangedevent=nil)
           @EventType = eventtype
           @StorageNewFileCreatedEvent = storagenewfilecreatedevent
+          @ProjectStreamConnectStatusChangedEvent = projectstreamconnectstatuschangedevent
         end
 
         def deserialize(params)
           @EventType = params['EventType']
           unless params['StorageNewFileCreatedEvent'].nil?
             @StorageNewFileCreatedEvent = StorageNewFileCreatedEvent.new.deserialize(params['StorageNewFileCreatedEvent'])
+          end
+          unless params['ProjectStreamConnectStatusChangedEvent'].nil?
+            @ProjectStreamConnectStatusChangedEvent = ProjectStreamConnectStatusChangedEvent.new.deserialize(params['ProjectStreamConnectStatusChangedEvent'])
           end
         end
       end
@@ -3697,6 +3704,28 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 云转推项目状态变更事件。
+      class ProjectStreamConnectStatusChangedEvent < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目 Id。
+        # @type ProjectId: String
+        # @param Status: 项目状态，取值有：
+        # <li>Working：云转推推流开始；</li>
+        # <li>Stopped：云转推推流结束。</li>
+        # @type Status: String
+
+        attr_accessor :ProjectId, :Status
+        
+        def initialize(projectid=nil, status=nil)
+          @ProjectId = projectid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Status = params['Status']
         end
       end
 
