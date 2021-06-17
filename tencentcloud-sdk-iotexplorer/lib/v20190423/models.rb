@@ -1639,19 +1639,35 @@ module TencentCloud
         # @type Limit: Integer
         # @param InstanceId: 实例ID
         # @type InstanceId: String
+        # @param ProjectId: 按项目D搜索
+        # @type ProjectId: String
+        # @param ProductId: 按产品ID搜索
+        # @type ProductId: String
+        # @param Includes: 加载 ProductCount、DeviceCount、ApplicationCount，可选值：ProductCount、DeviceCount、ApplicationCount，可多选
+        # @type Includes: Array
+        # @param ProjectName: 按项目名称搜索
+        # @type ProjectName: String
 
-        attr_accessor :Offset, :Limit, :InstanceId
+        attr_accessor :Offset, :Limit, :InstanceId, :ProjectId, :ProductId, :Includes, :ProjectName
         
-        def initialize(offset=nil, limit=nil, instanceid=nil)
+        def initialize(offset=nil, limit=nil, instanceid=nil, projectid=nil, productid=nil, includes=nil, projectname=nil)
           @Offset = offset
           @Limit = limit
           @InstanceId = instanceid
+          @ProjectId = projectid
+          @ProductId = productid
+          @Includes = includes
+          @ProjectName = projectname
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @InstanceId = params['InstanceId']
+          @ProjectId = params['ProjectId']
+          @ProductId = params['ProductId']
+          @Includes = params['Includes']
+          @ProjectName = params['ProjectName']
         end
       end
 
@@ -2553,10 +2569,16 @@ module TencentCloud
         # @param InstanceId: 实例ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param ApplicationCount: 应用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationCount: Integer
+        # @param DeviceCount: 设备注册总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceCount: Integer
 
-        attr_accessor :ProjectId, :ProjectName, :ProjectDesc, :CreateTime, :UpdateTime, :ProductCount, :NativeAppCount, :WebAppCount, :InstanceId
+        attr_accessor :ProjectId, :ProjectName, :ProjectDesc, :CreateTime, :UpdateTime, :ProductCount, :NativeAppCount, :WebAppCount, :InstanceId, :ApplicationCount, :DeviceCount
         
-        def initialize(projectid=nil, projectname=nil, projectdesc=nil, createtime=nil, updatetime=nil, productcount=nil, nativeappcount=nil, webappcount=nil, instanceid=nil)
+        def initialize(projectid=nil, projectname=nil, projectdesc=nil, createtime=nil, updatetime=nil, productcount=nil, nativeappcount=nil, webappcount=nil, instanceid=nil, applicationcount=nil, devicecount=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @ProjectDesc = projectdesc
@@ -2566,6 +2588,8 @@ module TencentCloud
           @NativeAppCount = nativeappcount
           @WebAppCount = webappcount
           @InstanceId = instanceid
+          @ApplicationCount = applicationcount
+          @DeviceCount = devicecount
         end
 
         def deserialize(params)
@@ -2578,6 +2602,8 @@ module TencentCloud
           @NativeAppCount = params['NativeAppCount']
           @WebAppCount = params['WebAppCount']
           @InstanceId = params['InstanceId']
+          @ApplicationCount = params['ApplicationCount']
+          @DeviceCount = params['DeviceCount']
         end
       end
 
@@ -2701,15 +2727,18 @@ module TencentCloud
         # @type Offset: Integer
         # @param DevStatus: 产品Status
         # @type DevStatus: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
 
-        attr_accessor :ProjectId, :ProductName, :Limit, :Offset, :DevStatus
+        attr_accessor :ProjectId, :ProductName, :Limit, :Offset, :DevStatus, :ProductId
         
-        def initialize(projectid=nil, productname=nil, limit=nil, offset=nil, devstatus=nil)
+        def initialize(projectid=nil, productname=nil, limit=nil, offset=nil, devstatus=nil, productid=nil)
           @ProjectId = projectid
           @ProductName = productname
           @Limit = limit
           @Offset = offset
           @DevStatus = devstatus
+          @ProductId = productid
         end
 
         def deserialize(params)
@@ -2718,6 +2747,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @DevStatus = params['DevStatus']
+          @ProductId = params['ProductId']
         end
       end
 

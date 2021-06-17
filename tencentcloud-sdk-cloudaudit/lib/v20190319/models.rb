@@ -333,15 +333,18 @@ module TencentCloud
         # @type MaxResults: Integer
         # @param LookupAttributes: 检索条件（目前支持 RequestId：请求 ID、EventName：事件名称、ActionType：操作类型（Write：写；Read：读）、PrincipalId：子账号、ResourceType：资源类型、ResourceName：资源名称、AccessKeyId：密钥 ID、SensitiveAction：是否敏感操作、ApiErrorCode：API 错误码、CamErrorCode：CAM 错误码）
         # @type LookupAttributes: Array
+        # @param IsReturnLocation: 是否返回 IP 归属地（1 返回，0 不返回）
+        # @type IsReturnLocation: Integer
 
-        attr_accessor :StartTime, :EndTime, :NextToken, :MaxResults, :LookupAttributes
+        attr_accessor :StartTime, :EndTime, :NextToken, :MaxResults, :LookupAttributes, :IsReturnLocation
         
-        def initialize(starttime=nil, endtime=nil, nexttoken=nil, maxresults=nil, lookupattributes=nil)
+        def initialize(starttime=nil, endtime=nil, nexttoken=nil, maxresults=nil, lookupattributes=nil, isreturnlocation=nil)
           @StartTime = starttime
           @EndTime = endtime
           @NextToken = nexttoken
           @MaxResults = maxresults
           @LookupAttributes = lookupattributes
+          @IsReturnLocation = isreturnlocation
         end
 
         def deserialize(params)
@@ -355,6 +358,7 @@ module TencentCloud
               @LookupAttributes << LookupAttribute.new.deserialize(i)
             end
           end
+          @IsReturnLocation = params['IsReturnLocation']
         end
       end
 

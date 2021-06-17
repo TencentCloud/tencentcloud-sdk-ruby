@@ -8434,10 +8434,13 @@ module TencentCloud
         # @param ModifyTime: 修改时间，例如 2020-07-22 19：27：23
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
+        # @param Ipv6CidrBlock: 网段或IPv6(互斥)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6CidrBlock: String
 
-        attr_accessor :PolicyIndex, :Protocol, :Port, :ServiceTemplate, :CidrBlock, :SecurityGroupId, :AddressTemplate, :Action, :PolicyDescription, :ModifyTime
+        attr_accessor :PolicyIndex, :Protocol, :Port, :ServiceTemplate, :CidrBlock, :SecurityGroupId, :AddressTemplate, :Action, :PolicyDescription, :ModifyTime, :Ipv6CidrBlock
         
-        def initialize(policyindex=nil, protocol=nil, port=nil, servicetemplate=nil, cidrblock=nil, securitygroupid=nil, addresstemplate=nil, action=nil, policydescription=nil, modifytime=nil)
+        def initialize(policyindex=nil, protocol=nil, port=nil, servicetemplate=nil, cidrblock=nil, securitygroupid=nil, addresstemplate=nil, action=nil, policydescription=nil, modifytime=nil, ipv6cidrblock=nil)
           @PolicyIndex = policyindex
           @Protocol = protocol
           @Port = port
@@ -8448,6 +8451,7 @@ module TencentCloud
           @Action = action
           @PolicyDescription = policydescription
           @ModifyTime = modifytime
+          @Ipv6CidrBlock = ipv6cidrblock
         end
 
         def deserialize(params)
@@ -8465,6 +8469,7 @@ module TencentCloud
           @Action = params['Action']
           @PolicyDescription = params['PolicyDescription']
           @ModifyTime = params['ModifyTime']
+          @Ipv6CidrBlock = params['Ipv6CidrBlock']
         end
       end
 

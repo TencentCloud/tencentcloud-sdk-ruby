@@ -17,6 +17,51 @@
 module TencentCloud
   module Tdmq
     module V20200217
+      # AcknowledgeMessage请求参数结构体
+      class AcknowledgeMessageRequest < TencentCloud::Common::AbstractModel
+        # @param MessageId: 用作标识消息的唯一的ID（可从 receiveMessage 的返回值中获得）
+        # @type MessageId: String
+        # @param AckTopic: Topic 名字（可从 receiveMessage 的返回值中获得）这里尽量需要使用topic的全路径，如果不指定，默认使用的是：public/default
+        # @type AckTopic: String
+        # @param SubName: 订阅者的名字，可以从receiveMessage的返回值中获取到。这里尽量与receiveMessage中的订阅者保持一致，否则没办法正确ack 接收回来的消息。
+        # @type SubName: String
+
+        attr_accessor :MessageId, :AckTopic, :SubName
+        
+        def initialize(messageid=nil, acktopic=nil, subname=nil)
+          @MessageId = messageid
+          @AckTopic = acktopic
+          @SubName = subname
+        end
+
+        def deserialize(params)
+          @MessageId = params['MessageId']
+          @AckTopic = params['AckTopic']
+          @SubName = params['SubName']
+        end
+      end
+
+      # AcknowledgeMessage返回参数结构体
+      class AcknowledgeMessageResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorMsg: 如果为“”，则说明没有错误返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorMsg, :RequestId
+        
+        def initialize(errormsg=nil, requestid=nil)
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户专享集群信息
       class BindCluster < TencentCloud::Common::AbstractModel
         # @param ClusterName: 物理集群的名称
@@ -2965,6 +3010,72 @@ module TencentCloud
         end
       end
 
+      # ReceiveMessage请求参数结构体
+      class ReceiveMessageRequest < TencentCloud::Common::AbstractModel
+        # @param Topic: 接收消息的topic的名字, 这里尽量需要使用topic的全路径，如果不指定，默认使用的是：public/default
+        # @type Topic: String
+        # @param SubscriptionName: 订阅者的名字
+        # @type SubscriptionName: String
+        # @param ReceiverQueueSize: 默认值为1000，consumer接收的消息会首先存储到receiverQueueSize这个队列中，用作调优接收消息的速率
+        # @type ReceiverQueueSize: Integer
+        # @param SubInitialPosition: 默认值为：Latest。用作判定consumer初始接收消息的位置，可选参数为：Earliest, Latest
+        # @type SubInitialPosition: String
+
+        attr_accessor :Topic, :SubscriptionName, :ReceiverQueueSize, :SubInitialPosition
+        
+        def initialize(topic=nil, subscriptionname=nil, receiverqueuesize=nil, subinitialposition=nil)
+          @Topic = topic
+          @SubscriptionName = subscriptionname
+          @ReceiverQueueSize = receiverqueuesize
+          @SubInitialPosition = subinitialposition
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @SubscriptionName = params['SubscriptionName']
+          @ReceiverQueueSize = params['ReceiverQueueSize']
+          @SubInitialPosition = params['SubInitialPosition']
+        end
+      end
+
+      # ReceiveMessage返回参数结构体
+      class ReceiveMessageResponse < TencentCloud::Common::AbstractModel
+        # @param MessageID: 用作标识消息的唯一主键
+        # @type MessageID: String
+        # @param MessagePayload: 接收消息的内容
+        # @type MessagePayload: String
+        # @param AckTopic: 提供给 Ack 接口，用来Ack哪一个topic中的消息
+        # @type AckTopic: String
+        # @param ErrorMsg: 返回的错误信息，如果为空，说明没有错误
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param SubName: 返回订阅者的名字，用来创建 ack consumer时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MessageID, :MessagePayload, :AckTopic, :ErrorMsg, :SubName, :RequestId
+        
+        def initialize(messageid=nil, messagepayload=nil, acktopic=nil, errormsg=nil, subname=nil, requestid=nil)
+          @MessageID = messageid
+          @MessagePayload = messagepayload
+          @AckTopic = acktopic
+          @ErrorMsg = errormsg
+          @SubName = subname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MessageID = params['MessageID']
+          @MessagePayload = params['MessagePayload']
+          @AckTopic = params['AckTopic']
+          @ErrorMsg = params['ErrorMsg']
+          @SubName = params['SubName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetMsgSubOffsetByTimestamp请求参数结构体
       class ResetMsgSubOffsetByTimestampRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 命名空间名称。
@@ -3056,11 +3167,11 @@ module TencentCloud
 
       # SendBatchMessages请求参数结构体
       class SendBatchMessagesRequest < TencentCloud::Common::AbstractModel
-        # @param Topic: Topic name
+        # @param Topic: 消息要发送的topic的名字, 这里尽量需要使用topic的全路径，如果不指定，默认使用的是：public/default
         # @type Topic: String
         # @param Payload: 需要发送消息的内容
         # @type Payload: String
-        # @param StringToken: String 类型的 token，用来校验客户端和服务端之间的连接
+        # @param StringToken: String 类型的 token，可以不填，系统会自动获取
         # @type StringToken: String
         # @param ProducerName: producer 的名字，要求全局是唯一的，如果不设置，系统会自动生成
         # @type ProducerName: String
@@ -3178,12 +3289,12 @@ module TencentCloud
 
       # SendMessages请求参数结构体
       class SendMessagesRequest < TencentCloud::Common::AbstractModel
-        # @param StringToken: Token 是用来做鉴权使用的
-        # @type StringToken: String
-        # @param Topic: 消息要发送的topic的名字
+        # @param Topic: 消息要发送的topic的名字, 这里尽量需要使用topic的全路径，如果不指定，默认使用的是：public/default
         # @type Topic: String
         # @param Payload: 要发送的消息的内容
         # @type Payload: String
+        # @param StringToken: Token 是用来做鉴权使用的，可以不填，系统会自动获取
+        # @type StringToken: String
         # @param ProducerName: 设置 producer 的名字，要求全局唯一，用户不配置，系统会随机生成
         # @type ProducerName: String
         # @param SendTimeout: 设置消息发送的超时时间，默认为30s
@@ -3191,21 +3302,21 @@ module TencentCloud
         # @param MaxPendingMessages: 内存中缓存的最大的生产消息的数量，默认为1000条
         # @type MaxPendingMessages: Integer
 
-        attr_accessor :StringToken, :Topic, :Payload, :ProducerName, :SendTimeout, :MaxPendingMessages
+        attr_accessor :Topic, :Payload, :StringToken, :ProducerName, :SendTimeout, :MaxPendingMessages
         
-        def initialize(stringtoken=nil, topic=nil, payload=nil, producername=nil, sendtimeout=nil, maxpendingmessages=nil)
-          @StringToken = stringtoken
+        def initialize(topic=nil, payload=nil, stringtoken=nil, producername=nil, sendtimeout=nil, maxpendingmessages=nil)
           @Topic = topic
           @Payload = payload
+          @StringToken = stringtoken
           @ProducerName = producername
           @SendTimeout = sendtimeout
           @MaxPendingMessages = maxpendingmessages
         end
 
         def deserialize(params)
-          @StringToken = params['StringToken']
           @Topic = params['Topic']
           @Payload = params['Payload']
+          @StringToken = params['StringToken']
           @ProducerName = params['ProducerName']
           @SendTimeout = params['SendTimeout']
           @MaxPendingMessages = params['MaxPendingMessages']

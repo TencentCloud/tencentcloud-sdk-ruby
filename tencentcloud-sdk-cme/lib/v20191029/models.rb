@@ -4650,12 +4650,15 @@ module TencentCloud
         # @type AspectRatio: String
         # @param SlotSet: 卡槽信息。
         # @type SlotSet: Array
+        # @param PreviewVideoUrl: 模板预览视频 URL 地址 。
+        # @type PreviewVideoUrl: String
 
-        attr_accessor :AspectRatio, :SlotSet
+        attr_accessor :AspectRatio, :SlotSet, :PreviewVideoUrl
         
-        def initialize(aspectratio=nil, slotset=nil)
+        def initialize(aspectratio=nil, slotset=nil, previewvideourl=nil)
           @AspectRatio = aspectratio
           @SlotSet = slotset
+          @PreviewVideoUrl = previewvideourl
         end
 
         def deserialize(params)
@@ -4666,6 +4669,7 @@ module TencentCloud
               @SlotSet << SlotInfo.new.deserialize(i)
             end
           end
+          @PreviewVideoUrl = params['PreviewVideoUrl']
         end
       end
 

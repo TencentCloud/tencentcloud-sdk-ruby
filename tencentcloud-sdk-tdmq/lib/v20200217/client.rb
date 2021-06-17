@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'TDMQ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 根据提供的 MessageID 确认指定 topic 中的消息
+
+        # @param request: Request instance for AcknowledgeMessage.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::AcknowledgeMessageRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::AcknowledgeMessageResponse`
+        def AcknowledgeMessage(request)
+          body = send_request('AcknowledgeMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AcknowledgeMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 清空cmq消息队列中的消息
 
         # @param request: Request instance for ClearCmqQueue.
@@ -947,6 +971,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = PublishCmqMsgResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接收发送到指定 topic 中的消息
+
+        # @param request: Request instance for ReceiveMessage.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ReceiveMessageRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ReceiveMessageResponse`
+        def ReceiveMessage(request)
+          body = send_request('ReceiveMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReceiveMessageResponse.new
             model.deserialize(response['Response'])
             model
           else

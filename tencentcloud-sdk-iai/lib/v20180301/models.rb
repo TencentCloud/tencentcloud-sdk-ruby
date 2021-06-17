@@ -2386,7 +2386,7 @@ module TencentCloud
         # @type ToFaceModelVersion: String
         # @param GroupId: 人员库ID。
         # @type GroupId: String
-        # @param FailedFacesUrl: 无法升级的人脸Id信息，文件格式
+        # @param FailedFacesUrl: 无法升级的人脸Id信息，文件格式为json。半小时有效
         # @type FailedFacesUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3372,7 +3372,7 @@ module TencentCloud
       class UpgradeGroupFaceModelVersionRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 需要升级的人员库ID。
         # @type GroupId: String
-        # @param FaceModelVersion: 需要升级至的算法模型版本。默认为最新版本。
+        # @param FaceModelVersion: 需要升级至的算法模型版本。默认为最新版本。不可逆向升级
         # @type FaceModelVersion: String
 
         attr_accessor :GroupId, :FaceModelVersion

@@ -6154,10 +6154,14 @@ module TencentCloud
         # @type ServiceEndDate: String
         # @param State: （精确匹配）状态。待审批：`PENDING`，通过：`APPROVED `，拒绝：`DENY`。
         # @type State: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回数量
+        # @type Limit: Integer
 
-        attr_accessor :ServiceProvider, :ComplianceId, :Company, :UniformSocialCreditCode, :LegalPerson, :IssuingAuthority, :BusinessAddress, :PostCode, :Manager, :ManagerId, :ManagerAddress, :ManagerTelephone, :Email, :ServiceStartDate, :ServiceEndDate, :State
+        attr_accessor :ServiceProvider, :ComplianceId, :Company, :UniformSocialCreditCode, :LegalPerson, :IssuingAuthority, :BusinessAddress, :PostCode, :Manager, :ManagerId, :ManagerAddress, :ManagerTelephone, :Email, :ServiceStartDate, :ServiceEndDate, :State, :Offset, :Limit
         
-        def initialize(serviceprovider=nil, complianceid=nil, company=nil, uniformsocialcreditcode=nil, legalperson=nil, issuingauthority=nil, businessaddress=nil, postcode=nil, manager=nil, managerid=nil, manageraddress=nil, managertelephone=nil, email=nil, servicestartdate=nil, serviceenddate=nil, state=nil)
+        def initialize(serviceprovider=nil, complianceid=nil, company=nil, uniformsocialcreditcode=nil, legalperson=nil, issuingauthority=nil, businessaddress=nil, postcode=nil, manager=nil, managerid=nil, manageraddress=nil, managertelephone=nil, email=nil, servicestartdate=nil, serviceenddate=nil, state=nil, offset=nil, limit=nil)
           @ServiceProvider = serviceprovider
           @ComplianceId = complianceid
           @Company = company
@@ -6174,6 +6178,8 @@ module TencentCloud
           @ServiceStartDate = servicestartdate
           @ServiceEndDate = serviceenddate
           @State = state
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
@@ -6193,6 +6199,8 @@ module TencentCloud
           @ServiceStartDate = params['ServiceStartDate']
           @ServiceEndDate = params['ServiceEndDate']
           @State = params['State']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 

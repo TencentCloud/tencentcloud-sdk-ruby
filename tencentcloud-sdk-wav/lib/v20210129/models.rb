@@ -274,13 +274,16 @@ module TencentCloud
         # @param MsgTime: 消息发送的时间戳，单位为秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgTime: Integer
-        # @param Video: MsgType=video时的消息体
+        # @param Video: MsgType=video时的消息体，忽略此字段，见BodyJson字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Video: :class:`Tencentcloud::Wav.v20210129.models.ChatArchivingMsgTypeVideo`
+        # @param BodyJson: 根据MsgType的不同取值，解析内容不同，参考：https://open.work.weixin.qq.com/api/doc/90000/90135/91774
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BodyJson: String
 
-        attr_accessor :MsgId, :Action, :MsgType, :From, :ToList, :RoomId, :MsgTime, :Video
+        attr_accessor :MsgId, :Action, :MsgType, :From, :ToList, :RoomId, :MsgTime, :Video, :BodyJson
         
-        def initialize(msgid=nil, action=nil, msgtype=nil, from=nil, tolist=nil, roomid=nil, msgtime=nil, video=nil)
+        def initialize(msgid=nil, action=nil, msgtype=nil, from=nil, tolist=nil, roomid=nil, msgtime=nil, video=nil, bodyjson=nil)
           @MsgId = msgid
           @Action = action
           @MsgType = msgtype
@@ -289,6 +292,7 @@ module TencentCloud
           @RoomId = roomid
           @MsgTime = msgtime
           @Video = video
+          @BodyJson = bodyjson
         end
 
         def deserialize(params)
@@ -302,6 +306,7 @@ module TencentCloud
           unless params['Video'].nil?
             @Video = ChatArchivingMsgTypeVideo.new.deserialize(params['Video'])
           end
+          @BodyJson = params['BodyJson']
         end
       end
 
@@ -954,9 +959,9 @@ module TencentCloud
       class QueryExternalContactDetailRequest < TencentCloud::Common::AbstractModel
         # @param ExternalUserId: 外部联系人的userid，注意不是企业成员的帐号
         # @type ExternalUserId: String
-        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填。当客户在企业内的跟进人超过500人时需要使用cursor参数进行分页获取
         # @type Cursor: String
-        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @param Limit: 当前接口Limit不需要传参， 保留Limit只是为了保持向后兼容性， Limit默认值为500，当返回结果超过500时， NextCursor才有返回值
         # @type Limit: Integer
 
         attr_accessor :ExternalUserId, :Cursor, :Limit

@@ -405,10 +405,13 @@ module TencentCloud
         # @param DeletionProtection: 删除保护开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeletionProtection: Boolean
+        # @param EnableExternalNode: 集群是否开启第三方节点支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableExternalNode: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode
         
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -427,6 +430,7 @@ module TencentCloud
           @ContainerRuntime = containerruntime
           @CreatedTime = createdtime
           @DeletionProtection = deletionprotection
+          @EnableExternalNode = enableexternalnode
         end
 
         def deserialize(params)
@@ -455,6 +459,7 @@ module TencentCloud
           @ContainerRuntime = params['ContainerRuntime']
           @CreatedTime = params['CreatedTime']
           @DeletionProtection = params['DeletionProtection']
+          @EnableExternalNode = params['EnableExternalNode']
         end
       end
 

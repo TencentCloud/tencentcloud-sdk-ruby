@@ -1463,8 +1463,8 @@ module TencentCloud
         # @type MidasSecretId: String
         # @param MidasSignature: 按照聚鑫安全密钥计算的签名
         # @type MidasSignature: String
-        # @param CheckCode: 短信验证码
-        # BindType==2必填
+        # @param CheckCode: 短信验证码或指令号
+        # BindType==2必填，平安渠道必填
         # @type CheckCode: String
         # @param CurrencyType: 币种 RMB
         # BindType==1必填
