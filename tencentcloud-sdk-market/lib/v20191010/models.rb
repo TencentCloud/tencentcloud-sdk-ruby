@@ -17,6 +17,71 @@
 module TencentCloud
   module Market
     module V20191010
+      # FlowProductRemind请求参数结构体
+      class FlowProductRemindRequest < TencentCloud::Common::AbstractModel
+        # @param ProviderUin: 服务商uin
+        # @type ProviderUin: String
+        # @param SignId: 服务商实例ID
+        # @type SignId: String
+        # @param ResourceId: 云市场实例ID
+        # @type ResourceId: String
+        # @param TotalFlow: 实例总流量
+        # @type TotalFlow: String
+        # @param LeftFlow: 剩余流量
+        # @type LeftFlow: String
+        # @param FlowUnit: 流量单位
+        # @type FlowUnit: String
+
+        attr_accessor :ProviderUin, :SignId, :ResourceId, :TotalFlow, :LeftFlow, :FlowUnit
+        
+        def initialize(provideruin=nil, signid=nil, resourceid=nil, totalflow=nil, leftflow=nil, flowunit=nil)
+          @ProviderUin = provideruin
+          @SignId = signid
+          @ResourceId = resourceid
+          @TotalFlow = totalflow
+          @LeftFlow = leftflow
+          @FlowUnit = flowunit
+        end
+
+        def deserialize(params)
+          @ProviderUin = params['ProviderUin']
+          @SignId = params['SignId']
+          @ResourceId = params['ResourceId']
+          @TotalFlow = params['TotalFlow']
+          @LeftFlow = params['LeftFlow']
+          @FlowUnit = params['FlowUnit']
+        end
+      end
+
+      # FlowProductRemind返回参数结构体
+      class FlowProductRemindResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 是否成功
+        # @type Success: String
+        # @param FlowId: 流水号
+        # @type FlowId: String
+        # @param Info: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Info: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :FlowId, :Info, :RequestId
+        
+        def initialize(success=nil, flowid=nil, info=nil, requestid=nil)
+          @Success = success
+          @FlowId = flowid
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
+          @FlowId = params['FlowId']
+          @Info = params['Info']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetCateTree请求参数结构体
       class GetCateTreeRequest < TencentCloud::Common::AbstractModel
         # @param CateId: 分类ID

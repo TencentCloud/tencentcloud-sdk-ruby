@@ -1658,6 +1658,46 @@ module TencentCloud
         end
       end
 
+      # DescribeZones请求参数结构体
+      class DescribeZonesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeZones返回参数结构体
+      class DescribeZonesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 可用区数量
+        # @type TotalCount: Integer
+        # @param ZoneInfoSet: 可用区详细信息列表
+        # @type ZoneInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ZoneInfoSet, :RequestId
+        
+        def initialize(totalcount=nil, zoneinfoset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ZoneInfoSet = zoneinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ZoneInfoSet'].nil?
+            @ZoneInfoSet = []
+            params['ZoneInfoSet'].each do |i|
+              @ZoneInfoSet << ZoneInfo.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateInstancesKeyPairs请求参数结构体
       class DisassociateInstancesKeyPairsRequest < TencentCloud::Common::AbstractModel
         # @param KeyIds: 密钥对 ID 列表。每次请求批量密钥对的上限为 100。
@@ -3205,6 +3245,26 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Deadline = params['Deadline']
           @Status = params['Status']
+        end
+      end
+
+      # 可用区详细信息
+      class ZoneInfo < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param ZoneName: 可用区中文名称
+        # @type ZoneName: String
+
+        attr_accessor :Zone, :ZoneName
+        
+        def initialize(zone=nil, zonename=nil)
+          @Zone = zone
+          @ZoneName = zonename
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ZoneName = params['ZoneName']
         end
       end
 

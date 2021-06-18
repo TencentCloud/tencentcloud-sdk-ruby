@@ -25,6 +25,30 @@ module TencentCloud
         @@sdk_version = 'MARKET_' + File.read(File.expand_path('../VERSION', __dir__)).strip
 
 
+        # 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
+
+        # @param request: Request instance for FlowProductRemind.
+        # @type request: :class:`Tencentcloud::market::V20191010::FlowProductRemindRequest`
+        # @rtype: :class:`Tencentcloud::market::V20191010::FlowProductRemindResponse`
+        def FlowProductRemind(request)
+          body = send_request('FlowProductRemind', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FlowProductRemindResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取分类名称
 
         # @param request: Request instance for GetCateTree.
@@ -50,8 +74,6 @@ module TencentCloud
         end
 
         # 该接口可以根据InstanceId查询实例的api的使用情况。
-
-        # 默认接口请求频率限制：20次/秒。
 
         # @param request: Request instance for GetUsagePlanUsageAmount.
         # @type request: :class:`Tencentcloud::market::V20191010::GetUsagePlanUsageAmountRequest`

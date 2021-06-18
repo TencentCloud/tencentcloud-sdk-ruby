@@ -3086,6 +3086,42 @@ module TencentCloud
         end
       end
 
+      # DescribeHostingDomainTask请求参数结构体
+      class DescribeHostingDomainTaskRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+        
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeHostingDomainTask返回参数结构体
+      class DescribeHostingDomainTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: todo/doing/done/error
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePostpayFreeQuotas请求参数结构体
       class DescribePostpayFreeQuotasRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID

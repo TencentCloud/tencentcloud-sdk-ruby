@@ -263,7 +263,7 @@ module TencentCloud
         # @type PronAccuracy: Float
         # @param DetectedStress: 当前音节是否检测为重音
         # @type DetectedStress: Boolean
-        # @param Phone: 当前音节
+        # @param Phone: 当前音节，当前评测识别的音素
         # @type Phone: String
         # @param Stress: 当前音节是否应为重音
         # @type Stress: Boolean
@@ -271,10 +271,12 @@ module TencentCloud
         # @type ReferencePhone: String
         # @param MatchTag: 当前词与输入语句的匹配情况，0：匹配单词、1：新增单词、2：缺少单词、3：错读的词、4：未录入单词。
         # @type MatchTag: Integer
+        # @param ReferenceLetter: 参考字符，在单词诊断模式下，代表音素对应的原始文本
+        # @type ReferenceLetter: String
 
-        attr_accessor :MemBeginTime, :MemEndTime, :PronAccuracy, :DetectedStress, :Phone, :Stress, :ReferencePhone, :MatchTag
+        attr_accessor :MemBeginTime, :MemEndTime, :PronAccuracy, :DetectedStress, :Phone, :Stress, :ReferencePhone, :MatchTag, :ReferenceLetter
         
-        def initialize(membegintime=nil, memendtime=nil, pronaccuracy=nil, detectedstress=nil, phone=nil, stress=nil, referencephone=nil, matchtag=nil)
+        def initialize(membegintime=nil, memendtime=nil, pronaccuracy=nil, detectedstress=nil, phone=nil, stress=nil, referencephone=nil, matchtag=nil, referenceletter=nil)
           @MemBeginTime = membegintime
           @MemEndTime = memendtime
           @PronAccuracy = pronaccuracy
@@ -283,6 +285,7 @@ module TencentCloud
           @Stress = stress
           @ReferencePhone = referencephone
           @MatchTag = matchtag
+          @ReferenceLetter = referenceletter
         end
 
         def deserialize(params)
@@ -294,6 +297,7 @@ module TencentCloud
           @Stress = params['Stress']
           @ReferencePhone = params['ReferencePhone']
           @MatchTag = params['MatchTag']
+          @ReferenceLetter = params['ReferenceLetter']
         end
       end
 

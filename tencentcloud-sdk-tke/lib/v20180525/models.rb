@@ -503,10 +503,12 @@ module TencentCloud
         # @type EnableCustomizedPodCIDR: Boolean
         # @param BasePodNumber: 自定义模式下的基础pod数量
         # @type BasePodNumber: Integer
+        # @param CiliumMode: 启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
+        # @type CiliumMode: String
 
-        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion, :EnableCustomizedPodCIDR, :BasePodNumber
+        attr_accessor :IPVS, :AsEnabled, :ContainerRuntime, :NodeNameType, :ExtraArgs, :NetworkType, :IsNonStaticIpMode, :DeletionProtection, :KubeProxyMode, :AuditEnabled, :AuditLogsetId, :AuditLogTopicId, :VpcCniType, :RuntimeVersion, :EnableCustomizedPodCIDR, :BasePodNumber, :CiliumMode
         
-        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil, enablecustomizedpodcidr=nil, basepodnumber=nil)
+        def initialize(ipvs=nil, asenabled=nil, containerruntime=nil, nodenametype=nil, extraargs=nil, networktype=nil, isnonstaticipmode=nil, deletionprotection=nil, kubeproxymode=nil, auditenabled=nil, auditlogsetid=nil, auditlogtopicid=nil, vpccnitype=nil, runtimeversion=nil, enablecustomizedpodcidr=nil, basepodnumber=nil, ciliummode=nil)
           @IPVS = ipvs
           @AsEnabled = asenabled
           @ContainerRuntime = containerruntime
@@ -523,6 +525,7 @@ module TencentCloud
           @RuntimeVersion = runtimeversion
           @EnableCustomizedPodCIDR = enablecustomizedpodcidr
           @BasePodNumber = basepodnumber
+          @CiliumMode = ciliummode
         end
 
         def deserialize(params)
@@ -544,6 +547,7 @@ module TencentCloud
           @RuntimeVersion = params['RuntimeVersion']
           @EnableCustomizedPodCIDR = params['EnableCustomizedPodCIDR']
           @BasePodNumber = params['BasePodNumber']
+          @CiliumMode = params['CiliumMode']
         end
       end
 
@@ -5193,16 +5197,28 @@ module TencentCloud
         # @type Status: String
         # @param COSBucket: COS桶存储
         # @type COSBucket: String
+        # @param GrafanaURL: grafana默认地址，如果开启外网访问得为域名，否则为内网地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrafanaURL: String
+        # @param BoundTotal: 关联集群总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BoundTotal: Integer
+        # @param BoundNormal: 运行正常的集群数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BoundNormal: Integer
 
-        attr_accessor :InstanceId, :Name, :VpcId, :SubnetId, :Status, :COSBucket
+        attr_accessor :InstanceId, :Name, :VpcId, :SubnetId, :Status, :COSBucket, :GrafanaURL, :BoundTotal, :BoundNormal
         
-        def initialize(instanceid=nil, name=nil, vpcid=nil, subnetid=nil, status=nil, cosbucket=nil)
+        def initialize(instanceid=nil, name=nil, vpcid=nil, subnetid=nil, status=nil, cosbucket=nil, grafanaurl=nil, boundtotal=nil, boundnormal=nil)
           @InstanceId = instanceid
           @Name = name
           @VpcId = vpcid
           @SubnetId = subnetid
           @Status = status
           @COSBucket = cosbucket
+          @GrafanaURL = grafanaurl
+          @BoundTotal = boundtotal
+          @BoundNormal = boundnormal
         end
 
         def deserialize(params)
@@ -5212,6 +5228,9 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @Status = params['Status']
           @COSBucket = params['COSBucket']
+          @GrafanaURL = params['GrafanaURL']
+          @BoundTotal = params['BoundTotal']
+          @BoundNormal = params['BoundNormal']
         end
       end
 
