@@ -313,6 +313,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成包预签名下载链接
+
+        # @param request: Request instance for GenerateDownloadUrl.
+        # @type request: :class:`Tencentcloud::tem::V20201221::GenerateDownloadUrlRequest`
+        # @rtype: :class:`Tencentcloud::tem::V20201221::GenerateDownloadUrlResponse`
+        def GenerateDownloadUrl(request)
+          body = send_request('GenerateDownloadUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建或者更新 Ingress 规则
 
         # @param request: Request instance for ModifyIngress.

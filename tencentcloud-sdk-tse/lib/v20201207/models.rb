@@ -278,10 +278,16 @@ module TencentCloud
         # @param Paymode: 计费方式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Paymode: String
+        # @param EKSClusterID: EKS集群的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EKSClusterID: String
+        # @param CreateTime: 集群创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -295,6 +301,8 @@ module TencentCloud
           @StorageType = storagetype
           @StorageCapacity = storagecapacity
           @Paymode = paymode
+          @EKSClusterID = eksclusterid
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -311,6 +319,8 @@ module TencentCloud
           @StorageType = params['StorageType']
           @StorageCapacity = params['StorageCapacity']
           @Paymode = params['Paymode']
+          @EKSClusterID = params['EKSClusterID']
+          @CreateTime = params['CreateTime']
         end
       end
 

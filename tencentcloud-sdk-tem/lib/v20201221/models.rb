@@ -130,14 +130,17 @@ module TencentCloud
         # @type OptType: Integer
         # @param SourceChannel: 来源 channel
         # @type SourceChannel: Integer
+        # @param TimeVersion: 充当deployVersion入参
+        # @type TimeVersion: String
 
-        attr_accessor :ServiceId, :PkgName, :OptType, :SourceChannel
+        attr_accessor :ServiceId, :PkgName, :OptType, :SourceChannel, :TimeVersion
         
-        def initialize(serviceid=nil, pkgname=nil, opttype=nil, sourcechannel=nil)
+        def initialize(serviceid=nil, pkgname=nil, opttype=nil, sourcechannel=nil, timeversion=nil)
           @ServiceId = serviceid
           @PkgName = pkgname
           @OptType = opttype
           @SourceChannel = sourcechannel
+          @TimeVersion = timeversion
         end
 
         def deserialize(params)
@@ -145,6 +148,7 @@ module TencentCloud
           @PkgName = params['PkgName']
           @OptType = params['OptType']
           @SourceChannel = params['SourceChannel']
+          @TimeVersion = params['TimeVersion']
         end
       end
 
@@ -474,10 +478,12 @@ module TencentCloud
         # @type SettingConfs: Array
         # @param EksService: eks 访问设置
         # @type EksService: :class:`Tencentcloud::Tem.v20201221.models.EksService`
+        # @param VersionId: 要回滚到的历史版本id
+        # @type VersionId: String
 
-        attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :PortMappings, :UseRegistryDefaultConfig, :SettingConfs, :EksService
+        attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :PortMappings, :UseRegistryDefaultConfig, :SettingConfs, :EksService, :VersionId
         
-        def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, portmappings=nil, useregistrydefaultconfig=nil, settingconfs=nil, eksservice=nil)
+        def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, portmappings=nil, useregistrydefaultconfig=nil, settingconfs=nil, eksservice=nil, versionid=nil)
           @ServiceId = serviceid
           @ContainerPort = containerport
           @InitPodNum = initpodnum
@@ -506,6 +512,7 @@ module TencentCloud
           @UseRegistryDefaultConfig = useregistrydefaultconfig
           @SettingConfs = settingconfs
           @EksService = eksservice
+          @VersionId = versionid
         end
 
         def deserialize(params)
@@ -568,6 +575,7 @@ module TencentCloud
           unless params['EksService'].nil?
             @EksService = EksService.new.deserialize(params['EksService'])
           end
+          @VersionId = params['VersionId']
         end
       end
 
@@ -998,6 +1006,55 @@ module TencentCloud
           @EsStrategy = params['EsStrategy']
           @Threshold = params['Threshold']
           @VersionId = params['VersionId']
+        end
+      end
+
+      # GenerateDownloadUrl请求参数结构体
+      class GenerateDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param PkgName: 包名
+        # @type PkgName: String
+        # @param DeployVersion: 需要下载的包版本
+        # @type DeployVersion: String
+        # @param SourceChannel: 来源 channel
+        # @type SourceChannel: Integer
+
+        attr_accessor :ServiceId, :PkgName, :DeployVersion, :SourceChannel
+        
+        def initialize(serviceid=nil, pkgname=nil, deployversion=nil, sourcechannel=nil)
+          @ServiceId = serviceid
+          @PkgName = pkgname
+          @DeployVersion = deployversion
+          @SourceChannel = sourcechannel
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @PkgName = params['PkgName']
+          @DeployVersion = params['DeployVersion']
+          @SourceChannel = params['SourceChannel']
+        end
+      end
+
+      # GenerateDownloadUrl返回参数结构体
+      class GenerateDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 包下载临时链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

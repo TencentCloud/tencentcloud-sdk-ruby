@@ -481,15 +481,19 @@ module TencentCloud
         # @param UnionId: 外部联系人在微信开放平台的唯一身份标识（微信unionid），通过此字段企业可将外部联系人与公众号/小程序用户关联起来。仅当联系人类型是微信用户，且企业或第三方服务商绑定了微信开发者ID有此字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnionId: String
+        # @param Phone: 外部联系人联系电话
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phone: String
 
-        attr_accessor :ExternalUserId, :Gender, :Name, :Type, :UnionId
+        attr_accessor :ExternalUserId, :Gender, :Name, :Type, :UnionId, :Phone
         
-        def initialize(externaluserid=nil, gender=nil, name=nil, type=nil, unionid=nil)
+        def initialize(externaluserid=nil, gender=nil, name=nil, type=nil, unionid=nil, phone=nil)
           @ExternalUserId = externaluserid
           @Gender = gender
           @Name = name
           @Type = type
           @UnionId = unionid
+          @Phone = phone
         end
 
         def deserialize(params)
@@ -498,6 +502,7 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @UnionId = params['UnionId']
+          @Phone = params['Phone']
         end
       end
 
@@ -507,17 +512,22 @@ module TencentCloud
         # @type ExternalUserId: String
         # @param UserId: 添加了此外部联系人的企业成员userId
         # @type UserId: String
+        # @param SalesName: 添加了此外部联系人的企业成员的姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SalesName: String
 
-        attr_accessor :ExternalUserId, :UserId
+        attr_accessor :ExternalUserId, :UserId, :SalesName
         
-        def initialize(externaluserid=nil, userid=nil)
+        def initialize(externaluserid=nil, userid=nil, salesname=nil)
           @ExternalUserId = externaluserid
           @UserId = userid
+          @SalesName = salesname
         end
 
         def deserialize(params)
           @ExternalUserId = params['ExternalUserId']
           @UserId = params['UserId']
+          @SalesName = params['SalesName']
         end
       end
 
