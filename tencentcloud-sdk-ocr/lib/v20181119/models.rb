@@ -279,6 +279,84 @@ module TencentCloud
         end
       end
 
+      # 银行回单识别出的字段
+      class BankSlipInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 识别出的字段名称(关键字)，支持以下字段：
+        # 付款开户行、收款开户行、付款账号、收款账号、回单类型、回单编号、币种、流水号、凭证号码、交易机构、交易金额、手续费、日期等字段信息。
+        # @type Name: String
+        # @param Value: 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
+        # @type Value: String
+        # @param Rect: 文本行在旋转纠正之后的图像中的像素坐标。
+        # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
+
+        attr_accessor :Name, :Value, :Rect
+        
+        def initialize(name=nil, value=nil, rect=nil)
+          @Name = name
+          @Value = value
+          @Rect = rect
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          unless params['Rect'].nil?
+            @Rect = Rect.new.deserialize(params['Rect'])
+          end
+        end
+      end
+
+      # BankSlipOCR请求参数结构体
+      class BankSlipOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。
+        # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @type ImageUrl: String
+
+        attr_accessor :ImageBase64, :ImageUrl
+        
+        def initialize(imagebase64=nil, imageurl=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # BankSlipOCR返回参数结构体
+      class BankSlipOCRResponse < TencentCloud::Common::AbstractModel
+        # @param BankSlipInfos: 银行回单识别结果，具体内容请点击左侧链接。
+        # @type BankSlipInfos: Array
+        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
+        # @type Angle: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BankSlipInfos, :Angle, :RequestId
+        
+        def initialize(bankslipinfos=nil, angle=nil, requestid=nil)
+          @BankSlipInfos = bankslipinfos
+          @Angle = angle
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BankSlipInfos'].nil?
+            @BankSlipInfos = []
+            params['BankSlipInfos'].each do |i|
+              @BankSlipInfos << BankSlipInfo.new.deserialize(i)
+            end
+          end
+          @Angle = params['Angle']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BizLicenseOCR请求参数结构体
       class BizLicenseOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -853,6 +931,47 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @Desc = params['Desc']
+        end
+      end
+
+      # 单字在原图中的坐标，以四个顶点坐标表示，以左上角为起点，顺时针返回。
+      class DetectedWordCoordPoint < TencentCloud::Common::AbstractModel
+        # @param WordCoordinate: 单字在原图中的坐标，以四个顶点坐标表示，以左上角为起点，顺时针返回。
+        # @type WordCoordinate: Array
+
+        attr_accessor :WordCoordinate
+        
+        def initialize(wordcoordinate=nil)
+          @WordCoordinate = wordcoordinate
+        end
+
+        def deserialize(params)
+          unless params['WordCoordinate'].nil?
+            @WordCoordinate = []
+            params['WordCoordinate'].each do |i|
+              @WordCoordinate << Coord.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # 识别出来的单字信息包括单字（包括单字Character和单字置信度confidence）
+      class DetectedWords < TencentCloud::Common::AbstractModel
+        # @param Confidence: 置信度 0 ~100
+        # @type Confidence: Integer
+        # @param Character: 候选字Character
+        # @type Character: String
+
+        attr_accessor :Confidence, :Character
+        
+        def initialize(confidence=nil, character=nil)
+          @Confidence = confidence
+          @Character = character
+        end
+
+        def deserialize(params)
+          @Confidence = params['Confidence']
+          @Character = params['Character']
         end
       end
 
@@ -1654,17 +1773,21 @@ module TencentCloud
         # 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
         # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
+        # @param IsWords: 是否返回单字信息，默认关
+        # @type IsWords: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :IsWords
         
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, iswords=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @IsWords = iswords
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @IsWords = params['IsWords']
         end
       end
 
@@ -1729,16 +1852,19 @@ module TencentCloud
         # @type IsPdf: Boolean
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         # @type PdfPageNumber: Integer
+        # @param IsWords: 是否返回单字信息，默认关
+        # @type IsWords: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :Scene, :LanguageType, :IsPdf, :PdfPageNumber
+        attr_accessor :ImageBase64, :ImageUrl, :Scene, :LanguageType, :IsPdf, :PdfPageNumber, :IsWords
         
-        def initialize(imagebase64=nil, imageurl=nil, scene=nil, languagetype=nil, ispdf=nil, pdfpagenumber=nil)
+        def initialize(imagebase64=nil, imageurl=nil, scene=nil, languagetype=nil, ispdf=nil, pdfpagenumber=nil, iswords=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Scene = scene
           @LanguageType = languagetype
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
+          @IsWords = iswords
         end
 
         def deserialize(params)
@@ -1748,6 +1874,7 @@ module TencentCloud
           @LanguageType = params['LanguageType']
           @IsPdf = params['IsPdf']
           @PdfPageNumber = params['PdfPageNumber']
+          @IsWords = params['IsWords']
         end
       end
 
@@ -4812,15 +4939,21 @@ module TencentCloud
         # @type AdvancedInfo: String
         # @param ItemPolygon: 文本行在旋转纠正之后的图像中的像素坐标，表示为（左上角x, 左上角y，宽width，高height）
         # @type ItemPolygon: :class:`Tencentcloud::Ocr.v20181119.models.ItemCoord`
+        # @param Words: 识别出来的单字信息包括单字（包括单字Character和单字置信度confidence）， 支持识别的接口：GeneralBasicOCR、GeneralAccurateOCR
+        # @type Words: Array
+        # @param WordCoordPoint: 单字在原图中的四点坐标， 支持识别的接口：GeneralBasicOCR、GeneralAccurateOCR
+        # @type WordCoordPoint: Array
 
-        attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo, :ItemPolygon
+        attr_accessor :DetectedText, :Confidence, :Polygon, :AdvancedInfo, :ItemPolygon, :Words, :WordCoordPoint
         
-        def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil, itempolygon=nil)
+        def initialize(detectedtext=nil, confidence=nil, polygon=nil, advancedinfo=nil, itempolygon=nil, words=nil, wordcoordpoint=nil)
           @DetectedText = detectedtext
           @Confidence = confidence
           @Polygon = polygon
           @AdvancedInfo = advancedinfo
           @ItemPolygon = itempolygon
+          @Words = words
+          @WordCoordPoint = wordcoordpoint
         end
 
         def deserialize(params)
@@ -4835,6 +4968,18 @@ module TencentCloud
           @AdvancedInfo = params['AdvancedInfo']
           unless params['ItemPolygon'].nil?
             @ItemPolygon = ItemCoord.new.deserialize(params['ItemPolygon'])
+          end
+          unless params['Words'].nil?
+            @Words = []
+            params['Words'].each do |i|
+              @Words << DetectedWords.new.deserialize(i)
+            end
+          end
+          unless params['WordCoordPoint'].nil?
+            @WordCoordPoint = []
+            params['WordCoordPoint'].each do |i|
+              @WordCoordPoint << DetectedWordCoordPoint.new.deserialize(i)
+            end
           end
         end
       end

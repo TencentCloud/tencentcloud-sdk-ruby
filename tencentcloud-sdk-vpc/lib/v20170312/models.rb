@@ -3932,6 +3932,56 @@ module TencentCloud
         end
       end
 
+      # CreateVpnGatewayRoutes请求参数结构体
+      class CreateVpnGatewayRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param VpnGatewayId: VPN网关的ID
+        # @type VpnGatewayId: String
+        # @param Routes: VPN网关目的路由列表
+        # @type Routes: Array
+
+        attr_accessor :VpnGatewayId, :Routes
+        
+        def initialize(vpngatewayid=nil, routes=nil)
+          @VpnGatewayId = vpngatewayid
+          @Routes = routes
+        end
+
+        def deserialize(params)
+          @VpnGatewayId = params['VpnGatewayId']
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              @Routes << VpnGatewayRoute.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # CreateVpnGatewayRoutes返回参数结构体
+      class CreateVpnGatewayRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param Routes: VPN网关目的路由
+        # @type Routes: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Routes, :RequestId
+        
+        def initialize(routes=nil, requestid=nil)
+          @Routes = routes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              @Routes << VpnGatewayRoute.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 合规化审批单
       class CrossBorderCompliance < TencentCloud::Common::AbstractModel
         # @param ServiceProvider: 服务商，可选值：`UNICOM`。
@@ -5239,6 +5289,42 @@ module TencentCloud
 
       # DeleteVpnGateway返回参数结构体
       class DeleteVpnGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVpnGatewayRoutes请求参数结构体
+      class DeleteVpnGatewayRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param VpnGatewayId: VPN网关实例ID
+        # @type VpnGatewayId: String
+        # @param RouteIds: 路由ID信息列表
+        # @type RouteIds: Array
+
+        attr_accessor :VpnGatewayId, :RouteIds
+        
+        def initialize(vpngatewayid=nil, routeids=nil)
+          @VpnGatewayId = vpngatewayid
+          @RouteIds = routeids
+        end
+
+        def deserialize(params)
+          @VpnGatewayId = params['VpnGatewayId']
+          @RouteIds = params['RouteIds']
+        end
+      end
+
+      # DeleteVpnGatewayRoutes返回参数结构体
+      class DeleteVpnGatewayRoutesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8991,6 +9077,64 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVpnGatewayRoutes请求参数结构体
+      class DescribeVpnGatewayRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param VpnGatewayId: VPN网关的ID
+        # @type VpnGatewayId: String
+        # @param Filters: 过滤条件,  条件包括(DestinationCidr, InstanceId,InstanceType)
+        # @type Filters: Array
+        # @param Offset: 偏移量, 默认0
+        # @type Offset: Integer
+        # @param Limit: 单页个数, 默认20, 最大值100
+        # @type Limit: Integer
+
+        attr_accessor :VpnGatewayId, :Filters, :Offset, :Limit
+        
+        def initialize(vpngatewayid=nil, filters=nil, offset=nil, limit=nil)
+          @VpnGatewayId = vpngatewayid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @VpnGatewayId = params['VpnGatewayId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              @Filters << Filter.new.deserialize(i)
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeVpnGatewayRoutes返回参数结构体
+      class DescribeVpnGatewayRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param Routes: VPN网关目的路由
+        # @type Routes: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Routes, :RequestId
+        
+        def initialize(routes=nil, requestid=nil)
+          @Routes = routes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              @Routes << VpnGatewayRoute.new.deserialize(i)
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12999,6 +13143,57 @@ module TencentCloud
         end
       end
 
+      # ModifyVpnGatewayRoutes请求参数结构体
+      class ModifyVpnGatewayRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param VpnGatewayId: Vpn网关id
+        # @type VpnGatewayId: String
+        # @param Routes: 路由修改参数
+        # @type Routes: Array
+
+        attr_accessor :VpnGatewayId, :Routes
+        
+        def initialize(vpngatewayid=nil, routes=nil)
+          @VpnGatewayId = vpngatewayid
+          @Routes = routes
+        end
+
+        def deserialize(params)
+          @VpnGatewayId = params['VpnGatewayId']
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              @Routes << VpnGatewayRouteModify.new.deserialize(i)
+            end
+          end
+        end
+      end
+
+      # ModifyVpnGatewayRoutes返回参数结构体
+      class ModifyVpnGatewayRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param Routes: VPN路由信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Routes: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Routes, :RequestId
+        
+        def initialize(routes=nil, requestid=nil)
+          @Routes = routes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              @Routes << VpnGatewayRoute.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # NAT网关对象。
       class NatGateway < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID。
@@ -15962,6 +16157,74 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @Cname = params['Cname']
           @Name = params['Name']
+        end
+      end
+
+      # Vpn网关目的路由
+      class VpnGatewayRoute < TencentCloud::Common::AbstractModel
+        # @param DestinationCidrBlock: 目的端IDC网段
+        # @type DestinationCidrBlock: String
+        # @param InstanceType: 下一跳类型（关联实例类型）可选值:"VPNCONN"(VPN通道), "CCN"(CCN实例)
+        # @type InstanceType: String
+        # @param InstanceId: 下一跳实例ID
+        # @type InstanceId: String
+        # @param Priority: 优先级, 可选值: 0, 100
+        # @type Priority: Integer
+        # @param Status: 启用状态, 可选值: "ENABLE"(启用), "DISABLE"(禁用)
+        # @type Status: String
+        # @param RouteId: 路由条目ID
+        # @type RouteId: String
+        # @param Type: 路由类型, 可选值: "VPC"(VPC路由), "CCN"(云联网传播路由), "Static"(静态路由), "BGP"(BGP路由)
+        # @type Type: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :DestinationCidrBlock, :InstanceType, :InstanceId, :Priority, :Status, :RouteId, :Type, :CreateTime, :UpdateTime
+        
+        def initialize(destinationcidrblock=nil, instancetype=nil, instanceid=nil, priority=nil, status=nil, routeid=nil, type=nil, createtime=nil, updatetime=nil)
+          @DestinationCidrBlock = destinationcidrblock
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @Priority = priority
+          @Status = status
+          @RouteId = routeid
+          @Type = type
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @DestinationCidrBlock = params['DestinationCidrBlock']
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @Priority = params['Priority']
+          @Status = params['Status']
+          @RouteId = params['RouteId']
+          @Type = params['Type']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 修改VPN状态参数
+      class VpnGatewayRouteModify < TencentCloud::Common::AbstractModel
+        # @param RouteId: Vpn网关路由ID
+        # @type RouteId: String
+        # @param Status: Vpn网关状态, ENABEL 启用, DISABLE禁用
+        # @type Status: String
+
+        attr_accessor :RouteId, :Status
+        
+        def initialize(routeid=nil, status=nil)
+          @RouteId = routeid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RouteId = params['RouteId']
+          @Status = params['Status']
         end
       end
 

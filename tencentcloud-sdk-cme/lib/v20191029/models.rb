@@ -4055,20 +4055,24 @@ module TencentCloud
         # @param Id: 卡槽 Id。
         # @type Id: Integer
         # @param ReplacementType: 替换类型，可取值有：
-        # <li> AUDIO :音频;</li>
-        # <li> VIDEO :视频;</li>
-        # <li> IMAGE :图片。</li>
-        # 注意：这里必须保证替换的素材类型与模板轨道数据的素材类型一致。
+        # <li> AUDIO ：音频；</li>
+        # <li> VIDEO ：视频；</li>
+        # <li> IMAGE ：图片；</li>
+        # <li> TEXT ：文本。</li>
+        # 注意：这里必须保证替换的素材类型与模板轨道数据的素材类型一致。如果替换的类型为Text,，则必须保证模板轨道数据中相应卡槽的位置标记的是文本。
         # @type ReplacementType: String
         # @param MediaReplacementInfo: 媒体替换信息，仅当要替换的媒体类型为音频、视频、图片时有效。
         # @type MediaReplacementInfo: :class:`Tencentcloud::Cme.v20191029.models.MediaReplacementInfo`
+        # @param TextReplacementInfo: 文本替换信息，仅当要替换的卡槽类型为文本时有效。
+        # @type TextReplacementInfo: :class:`Tencentcloud::Cme.v20191029.models.TextReplacementInfo`
 
-        attr_accessor :Id, :ReplacementType, :MediaReplacementInfo
+        attr_accessor :Id, :ReplacementType, :MediaReplacementInfo, :TextReplacementInfo
         
-        def initialize(id=nil, replacementtype=nil, mediareplacementinfo=nil)
+        def initialize(id=nil, replacementtype=nil, mediareplacementinfo=nil, textreplacementinfo=nil)
           @Id = id
           @ReplacementType = replacementtype
           @MediaReplacementInfo = mediareplacementinfo
+          @TextReplacementInfo = textreplacementinfo
         end
 
         def deserialize(params)
@@ -4076,6 +4080,9 @@ module TencentCloud
           @ReplacementType = params['ReplacementType']
           unless params['MediaReplacementInfo'].nil?
             @MediaReplacementInfo = MediaReplacementInfo.new.deserialize(params['MediaReplacementInfo'])
+          end
+          unless params['TextReplacementInfo'].nil?
+            @TextReplacementInfo = TextReplacementInfo.new.deserialize(params['TextReplacementInfo'])
           end
         end
       end
@@ -4487,6 +4494,22 @@ module TencentCloud
           @MemberId = params['MemberId']
           @Remark = params['Remark']
           @Role = params['Role']
+        end
+      end
+
+      # 模板插槽文本替换信息。
+      class TextReplacementInfo < TencentCloud::Common::AbstractModel
+        # @param Text: 替换的文本信息。
+        # @type Text: String
+
+        attr_accessor :Text
+        
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
         end
       end
 

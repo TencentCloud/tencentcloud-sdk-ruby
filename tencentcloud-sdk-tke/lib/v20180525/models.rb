@@ -5079,16 +5079,20 @@ module TencentCloud
         # @param Describe: 该条规则的描述信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describe: String
+        # @param Annotations: 参考prometheus rule中的annotations
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Annotations: Array
 
-        attr_accessor :Name, :Rule, :Labels, :Template, :For, :Describe
+        attr_accessor :Name, :Rule, :Labels, :Template, :For, :Describe, :Annotations
         
-        def initialize(name=nil, rule=nil, labels=nil, template=nil, _for=nil, describe=nil)
+        def initialize(name=nil, rule=nil, labels=nil, template=nil, _for=nil, describe=nil, annotations=nil)
           @Name = name
           @Rule = rule
           @Labels = labels
           @Template = template
           @For = _for
           @Describe = describe
+          @Annotations = annotations
         end
 
         def deserialize(params)
@@ -5103,6 +5107,12 @@ module TencentCloud
           @Template = params['Template']
           @For = params['For']
           @Describe = params['Describe']
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              @Annotations << Label.new.deserialize(i)
+            end
+          end
         end
       end
 

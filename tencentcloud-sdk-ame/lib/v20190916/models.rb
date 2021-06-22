@@ -434,14 +434,17 @@ module TencentCloud
         # @type KTVMusicBaseInfo: :class:`Tencentcloud::Ame.v20190916.models.KTVMusicBaseInfo`
         # @param PlayToken: 播放凭证
         # @type PlayToken: String
+        # @param LyricsUrl: 歌词下载地址
+        # @type LyricsUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KTVMusicBaseInfo, :PlayToken, :RequestId
+        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :RequestId
         
-        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, requestid=nil)
+        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, requestid=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @PlayToken = playtoken
+          @LyricsUrl = lyricsurl
           @RequestId = requestid
         end
 
@@ -450,6 +453,7 @@ module TencentCloud
             @KTVMusicBaseInfo = KTVMusicBaseInfo.new.deserialize(params['KTVMusicBaseInfo'])
           end
           @PlayToken = params['PlayToken']
+          @LyricsUrl = params['LyricsUrl']
           @RequestId = params['RequestId']
         end
       end

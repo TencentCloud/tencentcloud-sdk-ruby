@@ -99,6 +99,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口支持银行回单全字段的识别，包括付款开户行、收款开户行、付款账号、收款账号、回单类型、回单编号、币种、流水号、凭证号码、交易机构、交易金额、手续费、日期等字段信息。
+
+
+        # @param request: Request instance for BankSlipOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::BankSlipOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::BankSlipOCRResponse`
+        def BankSlipOCR(request)
+          body = send_request('BankSlipOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BankSlipOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、经营场所、主体类型、法定代表人、注册资金、组成形式、成立日期、营业期限和经营范围等字段。
 
         # @param request: Request instance for BizLicenseOCR.

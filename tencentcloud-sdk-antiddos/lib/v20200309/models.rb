@@ -280,10 +280,14 @@ module TencentCloud
         # "failed"：绑定失败
         # ]
         # @type BoundStatus: String
+        # @param DDoSLevel: 四层防护严格级别
+        # @type DDoSLevel: String
+        # @param CCEnable: CC防护开关
+        # @type CCEnable: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -295,6 +299,8 @@ module TencentCloud
           @PackInfo = packinfo
           @EipProductInfos = eipproductinfos
           @BoundStatus = boundstatus
+          @DDoSLevel = ddoslevel
+          @CCEnable = ccenable
         end
 
         def deserialize(params)
@@ -324,6 +330,8 @@ module TencentCloud
             end
           end
           @BoundStatus = params['BoundStatus']
+          @DDoSLevel = params['DDoSLevel']
+          @CCEnable = params['CCEnable']
         end
       end
 

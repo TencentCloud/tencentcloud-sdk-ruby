@@ -568,14 +568,18 @@ module TencentCloud
         # @param ProductInfo: 图像识别出的商品的详细信息。
         # 当图像中检测到多个物品时，会对显著性最高的进行识别。
         # @type ProductInfo: :class:`Tencentcloud::Tiia.v20190529.models.ProductInfo`
+        # @param ProductInfoList: 相似商品信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductInfoList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RegionDetected, :ProductInfo, :RequestId
+        attr_accessor :RegionDetected, :ProductInfo, :ProductInfoList, :RequestId
         
-        def initialize(regiondetected=nil, productinfo=nil, requestid=nil)
+        def initialize(regiondetected=nil, productinfo=nil, productinfolist=nil, requestid=nil)
           @RegionDetected = regiondetected
           @ProductInfo = productinfo
+          @ProductInfoList = productinfolist
           @RequestId = requestid
         end
 
@@ -588,6 +592,12 @@ module TencentCloud
           end
           unless params['ProductInfo'].nil?
             @ProductInfo = ProductInfo.new.deserialize(params['ProductInfo'])
+          end
+          unless params['ProductInfoList'].nil?
+            @ProductInfoList = []
+            params['ProductInfoList'].each do |i|
+              @ProductInfoList << ProductInfo.new.deserialize(i)
+            end
           end
           @RequestId = params['RequestId']
         end

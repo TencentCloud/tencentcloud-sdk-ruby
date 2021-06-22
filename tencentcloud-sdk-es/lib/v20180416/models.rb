@@ -41,7 +41,7 @@ module TencentCloud
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区
         # @type Zone: String
-        # @param EsVersion: 实例版本（支持"5.6.4"、"6.4.3"、"6.8.2"、"7.5.1"）
+        # @param EsVersion: 实例版本（支持"5.6.4"、"6.4.3"、"6.8.2"、"7.5.1"、"7.10.1"）
         # @type EsVersion: String
         # @param VpcId: 私有网络ID
         # @type VpcId: String
@@ -103,10 +103,12 @@ module TencentCloud
         # @type BasicSecurityType: Integer
         # @param SceneType: 场景化模板类型 0：不启用 1：通用 2：日志 3：搜索
         # @type SceneType: Integer
+        # @param WebNodeTypeInfo: 可视化节点配置
+        # @type WebNodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.WebNodeTypeInfo`
 
-        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType
+        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo
         
-        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil)
+        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil)
           @Zone = zone
           @EsVersion = esversion
           @VpcId = vpcid
@@ -135,6 +137,7 @@ module TencentCloud
           @TagList = taglist
           @BasicSecurityType = basicsecuritytype
           @SceneType = scenetype
+          @WebNodeTypeInfo = webnodetypeinfo
         end
 
         def deserialize(params)
@@ -181,6 +184,9 @@ module TencentCloud
           end
           @BasicSecurityType = params['BasicSecurityType']
           @SceneType = params['SceneType']
+          unless params['WebNodeTypeInfo'].nil?
+            @WebNodeTypeInfo = WebNodeTypeInfo.new.deserialize(params['WebNodeTypeInfo'])
+          end
         end
       end
 
@@ -778,10 +784,13 @@ module TencentCloud
         # @param KibanaConfig: Kibana配置项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaConfig: String
+        # @param KibanaNodeInfo: Kibana节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaNodeInfo: :class:`Tencentcloud::Es.v20180416.models.KibanaNodeInfo`
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -836,6 +845,7 @@ module TencentCloud
           @SecurityType = securitytype
           @SceneType = scenetype
           @KibanaConfig = kibanaconfig
+          @KibanaNodeInfo = kibananodeinfo
         end
 
         def deserialize(params)
@@ -918,6 +928,9 @@ module TencentCloud
           @SecurityType = params['SecurityType']
           @SceneType = params['SceneType']
           @KibanaConfig = params['KibanaConfig']
+          unless params['KibanaNodeInfo'].nil?
+            @KibanaNodeInfo = KibanaNodeInfo.new.deserialize(params['KibanaNodeInfo'])
+          end
         end
       end
 
@@ -966,6 +979,42 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 实例Kibana节点相关信息
+      class KibanaNodeInfo < TencentCloud::Common::AbstractModel
+        # @param KibanaNodeType: Kibana节点规格
+        # @type KibanaNodeType: String
+        # @param KibanaNodeNum: Kibana节点个数
+        # @type KibanaNodeNum: Integer
+        # @param KibanaNodeCpuNum: Kibana节点CPU数
+        # @type KibanaNodeCpuNum: Integer
+        # @param KibanaNodeMemSize: Kibana节点内存GB
+        # @type KibanaNodeMemSize: Integer
+        # @param KibanaNodeDiskType: Kibana节点磁盘类型
+        # @type KibanaNodeDiskType: String
+        # @param KibanaNodeDiskSize: Kibana节点磁盘大小
+        # @type KibanaNodeDiskSize: Integer
+
+        attr_accessor :KibanaNodeType, :KibanaNodeNum, :KibanaNodeCpuNum, :KibanaNodeMemSize, :KibanaNodeDiskType, :KibanaNodeDiskSize
+        
+        def initialize(kibananodetype=nil, kibananodenum=nil, kibananodecpunum=nil, kibananodememsize=nil, kibananodedisktype=nil, kibananodedisksize=nil)
+          @KibanaNodeType = kibananodetype
+          @KibanaNodeNum = kibananodenum
+          @KibanaNodeCpuNum = kibananodecpunum
+          @KibanaNodeMemSize = kibananodememsize
+          @KibanaNodeDiskType = kibananodedisktype
+          @KibanaNodeDiskSize = kibananodedisksize
+        end
+
+        def deserialize(params)
+          @KibanaNodeType = params['KibanaNodeType']
+          @KibanaNodeNum = params['KibanaNodeNum']
+          @KibanaNodeCpuNum = params['KibanaNodeCpuNum']
+          @KibanaNodeMemSize = params['KibanaNodeMemSize']
+          @KibanaNodeDiskType = params['KibanaNodeDiskType']
+          @KibanaNodeDiskSize = params['KibanaNodeDiskSize']
         end
       end
 
@@ -1736,6 +1785,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 可视化节点配置
+      class WebNodeTypeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeNum: 可视化节点个数，固定为1
+        # @type NodeNum: Integer
+        # @param NodeType: 可视化节点规格
+        # @type NodeType: String
+
+        attr_accessor :NodeNum, :NodeType
+        
+        def initialize(nodenum=nil, nodetype=nil)
+          @NodeNum = nodenum
+          @NodeType = nodetype
+        end
+
+        def deserialize(params)
+          @NodeNum = params['NodeNum']
+          @NodeType = params['NodeType']
         end
       end
 
