@@ -105,28 +105,36 @@ module TencentCloud
           @BeginProcessTime = params['BeginProcessTime']
           @FinishTime = params['FinishTime']
           unless params['PornResult'].nil?
-            @PornResult = VodPornReviewResult.new.deserialize(params['PornResult'])
+            @PornResult = VodPornReviewResult.new
+            @PornResult.deserialize(params['PornResult'])
           end
           unless params['TerrorismResult'].nil?
-            @TerrorismResult = VodTerrorismReviewResult.new.deserialize(params['TerrorismResult'])
+            @TerrorismResult = VodTerrorismReviewResult.new
+            @TerrorismResult.deserialize(params['TerrorismResult'])
           end
           unless params['PoliticalResult'].nil?
-            @PoliticalResult = VodPoliticalReviewResult.new.deserialize(params['PoliticalResult'])
+            @PoliticalResult = VodPoliticalReviewResult.new
+            @PoliticalResult.deserialize(params['PoliticalResult'])
           end
           unless params['PoliticalOcrResult'].nil?
-            @PoliticalOcrResult = VodPoliticalOcrReviewResult.new.deserialize(params['PoliticalOcrResult'])
+            @PoliticalOcrResult = VodPoliticalOcrReviewResult.new
+            @PoliticalOcrResult.deserialize(params['PoliticalOcrResult'])
           end
           unless params['PornAsrResult'].nil?
-            @PornAsrResult = VodPornAsrReviewResult.new.deserialize(params['PornAsrResult'])
+            @PornAsrResult = VodPornAsrReviewResult.new
+            @PornAsrResult.deserialize(params['PornAsrResult'])
           end
           unless params['PoliticalAsrResult'].nil?
-            @PoliticalAsrResult = VodPoliticalAsrReviewResult.new.deserialize(params['PoliticalAsrResult'])
+            @PoliticalAsrResult = VodPoliticalAsrReviewResult.new
+            @PoliticalAsrResult.deserialize(params['PoliticalAsrResult'])
           end
           unless params['PornOcrResult'].nil?
-            @PornOcrResult = VodPornOcrResult.new.deserialize(params['PornOcrResult'])
+            @PornOcrResult = VodPornOcrResult.new
+            @PornOcrResult.deserialize(params['PornOcrResult'])
           end
           unless params['MetaData'].nil?
-            @MetaData = VodMetaData.new.deserialize(params['MetaData'])
+            @MetaData = VodMetaData.new
+            @MetaData.deserialize(params['MetaData'])
           end
           @RequestId = params['RequestId']
         end
@@ -210,12 +218,15 @@ module TencentCloud
 
         def deserialize(params)
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
+            @FaceRect = FaceRect.new
+            @FaceRect.deserialize(params['FaceRect'])
           end
           unless params['Candidates'].nil?
             @Candidates = []
             params['Candidates'].each do |i|
-              @Candidates << Candidate.new.deserialize(i)
+              candidate_tmp = Candidate.new
+              candidate_tmp.deserialize(i)
+              @Candidates << candidate_tmp
             end
           end
         end
@@ -303,17 +314,21 @@ module TencentCloud
         def deserialize(params)
           @Suggestion = params['Suggestion']
           unless params['PornResult'].nil?
-            @PornResult = PornResult.new.deserialize(params['PornResult'])
+            @PornResult = PornResult.new
+            @PornResult.deserialize(params['PornResult'])
           end
           unless params['TerrorismResult'].nil?
-            @TerrorismResult = TerrorismResult.new.deserialize(params['TerrorismResult'])
+            @TerrorismResult = TerrorismResult.new
+            @TerrorismResult.deserialize(params['TerrorismResult'])
           end
           unless params['PoliticsResult'].nil?
-            @PoliticsResult = PoliticsResult.new.deserialize(params['PoliticsResult'])
+            @PoliticsResult = PoliticsResult.new
+            @PoliticsResult.deserialize(params['PoliticsResult'])
           end
           @Extra = params['Extra']
           unless params['DisgustResult'].nil?
-            @DisgustResult = DisgustResult.new.deserialize(params['DisgustResult'])
+            @DisgustResult = DisgustResult.new
+            @DisgustResult.deserialize(params['DisgustResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -372,7 +387,9 @@ module TencentCloud
           unless params['FaceResults'].nil?
             @FaceResults = []
             params['FaceResults'].each do |i|
-              @FaceResults << FaceResult.new.deserialize(i)
+              faceresult_tmp = FaceResult.new
+              faceresult_tmp.deserialize(i)
+              @FaceResults << faceresult_tmp
             end
           end
           @Type = params['Type']
@@ -475,7 +492,9 @@ module TencentCloud
           unless params['FaceResults'].nil?
             @FaceResults = []
             params['FaceResults'].each do |i|
-              @FaceResults << FaceResult.new.deserialize(i)
+              faceresult_tmp = FaceResult.new
+              faceresult_tmp.deserialize(i)
+              @FaceResults << faceresult_tmp
             end
           end
           @AdvancedInfo = params['AdvancedInfo']
@@ -662,13 +681,17 @@ module TencentCloud
           unless params['VideoStreamSet'].nil?
             @VideoStreamSet = []
             params['VideoStreamSet'].each do |i|
-              @VideoStreamSet << VodVideoStreamItem.new.deserialize(i)
+              vodvideostreamitem_tmp = VodVideoStreamItem.new
+              vodvideostreamitem_tmp.deserialize(i)
+              @VideoStreamSet << vodvideostreamitem_tmp
             end
           end
           unless params['AudioStreamSet'].nil?
             @AudioStreamSet = []
             params['AudioStreamSet'].each do |i|
-              @AudioStreamSet << VodAudioStreamItem.new.deserialize(i)
+              vodaudiostreamitem_tmp = VodAudioStreamItem.new
+              vodaudiostreamitem_tmp.deserialize(i)
+              @AudioStreamSet << vodaudiostreamitem_tmp
             end
           end
           @VideoDuration = params['VideoDuration']
@@ -771,7 +794,9 @@ module TencentCloud
           unless params['SegmentSet'].nil?
             @SegmentSet = []
             params['SegmentSet'].each do |i|
-              @SegmentSet << VodAsrTextSegmentItem.new.deserialize(i)
+              vodasrtextsegmentitem_tmp = VodAsrTextSegmentItem.new
+              vodasrtextsegmentitem_tmp.deserialize(i)
+              @SegmentSet << vodasrtextsegmentitem_tmp
             end
           end
         end
@@ -818,7 +843,9 @@ module TencentCloud
           unless params['SegmentSet'].nil?
             @SegmentSet = []
             params['SegmentSet'].each do |i|
-              @SegmentSet << VodOcrTextSegmentItem.new.deserialize(i)
+              vodocrtextsegmentitem_tmp = VodOcrTextSegmentItem.new
+              vodocrtextsegmentitem_tmp.deserialize(i)
+              @SegmentSet << vodocrtextsegmentitem_tmp
             end
           end
         end
@@ -876,7 +903,9 @@ module TencentCloud
           unless params['SegmentSet'].nil?
             @SegmentSet = []
             params['SegmentSet'].each do |i|
-              @SegmentSet << VodPoliticalReviewSegmentItem.new.deserialize(i)
+              vodpoliticalreviewsegmentitem_tmp = VodPoliticalReviewSegmentItem.new
+              vodpoliticalreviewsegmentitem_tmp.deserialize(i)
+              @SegmentSet << vodpoliticalreviewsegmentitem_tmp
             end
           end
         end
@@ -988,7 +1017,9 @@ module TencentCloud
           unless params['SegmentSet'].nil?
             @SegmentSet = []
             params['SegmentSet'].each do |i|
-              @SegmentSet << VodAsrTextSegmentItem.new.deserialize(i)
+              vodasrtextsegmentitem_tmp = VodAsrTextSegmentItem.new
+              vodasrtextsegmentitem_tmp.deserialize(i)
+              @SegmentSet << vodasrtextsegmentitem_tmp
             end
           end
         end
@@ -1038,7 +1069,9 @@ module TencentCloud
           unless params['SegmentSet'].nil?
             @SegmentSet = []
             params['SegmentSet'].each do |i|
-              @SegmentSet << VodOcrTextSegmentItem.new.deserialize(i)
+              vodocrtextsegmentitem_tmp = VodOcrTextSegmentItem.new
+              vodocrtextsegmentitem_tmp.deserialize(i)
+              @SegmentSet << vodocrtextsegmentitem_tmp
             end
           end
         end
@@ -1098,7 +1131,9 @@ module TencentCloud
           unless params['SegmentSet'].nil?
             @SegmentSet = []
             params['SegmentSet'].each do |i|
-              @SegmentSet << VodPornReviewSegmentItem.new.deserialize(i)
+              vodpornreviewsegmentitem_tmp = VodPornReviewSegmentItem.new
+              vodpornreviewsegmentitem_tmp.deserialize(i)
+              @SegmentSet << vodpornreviewsegmentitem_tmp
             end
           end
         end
@@ -1214,7 +1249,9 @@ module TencentCloud
           unless params['SegmentSet'].nil?
             @SegmentSet = []
             params['SegmentSet'].each do |i|
-              @SegmentSet << VodPornReviewSegmentItem.new.deserialize(i)
+              vodpornreviewsegmentitem_tmp = VodPornReviewSegmentItem.new
+              vodpornreviewsegmentitem_tmp.deserialize(i)
+              @SegmentSet << vodpornreviewsegmentitem_tmp
             end
           end
         end

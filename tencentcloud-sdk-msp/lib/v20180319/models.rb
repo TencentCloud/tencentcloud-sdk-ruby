@@ -83,7 +83,9 @@ module TencentCloud
           unless params['TaskStatus'].nil?
             @TaskStatus = []
             params['TaskStatus'].each do |i|
-              @TaskStatus << TaskStatus.new.deserialize(i)
+              taskstatus_tmp = TaskStatus.new
+              taskstatus_tmp.deserialize(i)
+              @TaskStatus << taskstatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -159,7 +161,9 @@ module TencentCloud
           unless params['Projects'].nil?
             @Projects = []
             params['Projects'].each do |i|
-              @Projects << Project.new.deserialize(i)
+              project_tmp = Project.new
+              project_tmp.deserialize(i)
+              @Projects << project_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -213,7 +217,9 @@ module TencentCloud
           unless params['Tasks'].nil?
             @Tasks = []
             params['Tasks'].each do |i|
-              @Tasks << Task.new.deserialize(i)
+              task_tmp = Task.new
+              task_tmp.deserialize(i)
+              @Tasks << task_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -364,10 +370,12 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @MigrateClass = params['MigrateClass']
           unless params['SrcInfo'].nil?
-            @SrcInfo = SrcInfo.new.deserialize(params['SrcInfo'])
+            @SrcInfo = SrcInfo.new
+            @SrcInfo.deserialize(params['SrcInfo'])
           end
           unless params['DstInfo'].nil?
-            @DstInfo = DstInfo.new.deserialize(params['DstInfo'])
+            @DstInfo = DstInfo.new
+            @DstInfo.deserialize(params['DstInfo'])
           end
           @SrcAccessType = params['SrcAccessType']
           @SrcDatabaseType = params['SrcDatabaseType']
@@ -470,14 +478,17 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @ProjectName = params['ProjectName']
           unless params['SrcInfo'].nil?
-            @SrcInfo = SrcInfo.new.deserialize(params['SrcInfo'])
+            @SrcInfo = SrcInfo.new
+            @SrcInfo.deserialize(params['SrcInfo'])
           end
           unless params['MigrationTimeLine'].nil?
-            @MigrationTimeLine = TimeObj.new.deserialize(params['MigrationTimeLine'])
+            @MigrationTimeLine = TimeObj.new
+            @MigrationTimeLine.deserialize(params['MigrationTimeLine'])
           end
           @Updated = params['Updated']
           unless params['DstInfo'].nil?
-            @DstInfo = DstInfo.new.deserialize(params['DstInfo'])
+            @DstInfo = DstInfo.new
+            @DstInfo.deserialize(params['DstInfo'])
           end
         end
       end

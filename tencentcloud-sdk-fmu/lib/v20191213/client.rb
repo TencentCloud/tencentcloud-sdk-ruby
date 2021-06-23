@@ -20,9 +20,13 @@ module TencentCloud
   module Fmu
     module V20191213
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-12-13'
-        @@endpoint = 'fmu.tencentcloudapi.com'
-        @@sdk_version = 'FMU_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-12-13'
+            api_endpoint = 'fmu.tencentcloudapi.com'
+            sdk_version = 'FMU_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。

@@ -86,7 +86,8 @@ module TencentCloud
           @FacePic = params['FacePic']
           @Time = params['Time']
           unless params['PersonInfo'].nil?
-            @PersonInfo = PersonInfo.new.deserialize(params['PersonInfo'])
+            @PersonInfo = PersonInfo.new
+            @PersonInfo.deserialize(params['PersonInfo'])
           end
         end
       end
@@ -222,7 +223,9 @@ module TencentCloud
           unless params['TracePointSet'].nil?
             @TracePointSet = []
             params['TracePointSet'].each do |i|
-              @TracePointSet << PersonTracePoint.new.deserialize(i)
+              persontracepoint_tmp = PersonTracePoint.new
+              persontracepoint_tmp.deserialize(i)
+              @TracePointSet << persontracepoint_tmp
             end
           end
         end
@@ -346,7 +349,9 @@ module TencentCloud
           unless params['Infos'].nil?
             @Infos = []
             params['Infos'].each do |i|
-              @Infos << CameraPersonInfo.new.deserialize(i)
+              camerapersoninfo_tmp = CameraPersonInfo.new
+              camerapersoninfo_tmp.deserialize(i)
+              @Infos << camerapersoninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -411,7 +416,9 @@ module TencentCloud
           unless params['ArrivedMallSet'].nil?
             @ArrivedMallSet = []
             params['ArrivedMallSet'].each do |i|
-              @ArrivedMallSet << ArrivedMallInfo.new.deserialize(i)
+              arrivedmallinfo_tmp = ArrivedMallInfo.new
+              arrivedmallinfo_tmp.deserialize(i)
+              @ArrivedMallSet << arrivedmallinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -476,7 +483,9 @@ module TencentCloud
           unless params['TracePointSet'].nil?
             @TracePointSet = []
             params['TracePointSet'].each do |i|
-              @TracePointSet << DailyTracePoint.new.deserialize(i)
+              dailytracepoint_tmp = DailyTracePoint.new
+              dailytracepoint_tmp.deserialize(i)
+              @TracePointSet << dailytracepoint_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -559,7 +568,8 @@ module TencentCloud
           @TempId = params['TempId']
           @FaceId = params['FaceId']
           unless params['PersonInfo'].nil?
-            @PersonInfo = PersonInfo.new.deserialize(params['PersonInfo'])
+            @PersonInfo = PersonInfo.new
+            @PersonInfo.deserialize(params['PersonInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -621,7 +631,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['InstanceSet'].nil?
-            @InstanceSet = NetworkHistoryInfo.new.deserialize(params['InstanceSet'])
+            @InstanceSet = NetworkHistoryInfo.new
+            @InstanceSet.deserialize(params['InstanceSet'])
           end
           @RequestId = params['RequestId']
         end
@@ -667,7 +678,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['InstanceSet'].nil?
-            @InstanceSet = NetworkLastInfo.new.deserialize(params['InstanceSet'])
+            @InstanceSet = NetworkLastInfo.new
+            @InstanceSet.deserialize(params['InstanceSet'])
           end
           @RequestId = params['RequestId']
         end
@@ -731,7 +743,9 @@ module TencentCloud
           unless params['ArrivedMallSet'].nil?
             @ArrivedMallSet = []
             params['ArrivedMallSet'].each do |i|
-              @ArrivedMallSet << ArrivedMallInfo.new.deserialize(i)
+              arrivedmallinfo_tmp = ArrivedMallInfo.new
+              arrivedmallinfo_tmp.deserialize(i)
+              @ArrivedMallSet << arrivedmallinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -876,7 +890,9 @@ module TencentCloud
           unless params['PersonInfoSet'].nil?
             @PersonInfoSet = []
             params['PersonInfoSet'].each do |i|
-              @PersonInfoSet << PersonInfo.new.deserialize(i)
+              personinfo_tmp = PersonInfo.new
+              personinfo_tmp.deserialize(i)
+              @PersonInfoSet << personinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -929,7 +945,9 @@ module TencentCloud
           unless params['PersonSet'].nil?
             @PersonSet = []
             params['PersonSet'].each do |i|
-              @PersonSet << PersonProfile.new.deserialize(i)
+              personprofile_tmp = PersonProfile.new
+              personprofile_tmp.deserialize(i)
+              @PersonSet << personprofile_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -990,7 +1008,9 @@ module TencentCloud
           unless params['CoordinateSet'].nil?
             @CoordinateSet = []
             params['CoordinateSet'].each do |i|
-              @CoordinateSet << PersonCoordinate.new.deserialize(i)
+              personcoordinate_tmp = PersonCoordinate.new
+              personcoordinate_tmp.deserialize(i)
+              @CoordinateSet << personcoordinate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1055,7 +1075,9 @@ module TencentCloud
           unless params['TraceRouteSet'].nil?
             @TraceRouteSet = []
             params['TraceRouteSet'].each do |i|
-              @TraceRouteSet << PersonTraceRoute.new.deserialize(i)
+              persontraceroute_tmp = PersonTraceRoute.new
+              persontraceroute_tmp.deserialize(i)
+              @TraceRouteSet << persontraceroute_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1140,7 +1162,9 @@ module TencentCloud
           unless params['PersonVisitInfoSet'].nil?
             @PersonVisitInfoSet = []
             params['PersonVisitInfoSet'].each do |i|
-              @PersonVisitInfoSet << PersonVisitInfo.new.deserialize(i)
+              personvisitinfo_tmp = PersonVisitInfo.new
+              personvisitinfo_tmp.deserialize(i)
+              @PersonVisitInfoSet << personvisitinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1213,7 +1237,9 @@ module TencentCloud
           unless params['ShopHourTrafficInfoSet'].nil?
             @ShopHourTrafficInfoSet = []
             params['ShopHourTrafficInfoSet'].each do |i|
-              @ShopHourTrafficInfoSet << ShopHourTrafficInfo.new.deserialize(i)
+              shophourtrafficinfo_tmp = ShopHourTrafficInfo.new
+              shophourtrafficinfo_tmp.deserialize(i)
+              @ShopHourTrafficInfoSet << shophourtrafficinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1262,7 +1288,9 @@ module TencentCloud
           unless params['ShopInfoSet'].nil?
             @ShopInfoSet = []
             params['ShopInfoSet'].each do |i|
-              @ShopInfoSet << ShopInfo.new.deserialize(i)
+              shopinfo_tmp = ShopInfo.new
+              shopinfo_tmp.deserialize(i)
+              @ShopInfoSet << shopinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1335,7 +1363,9 @@ module TencentCloud
           unless params['ShopDayTrafficInfoSet'].nil?
             @ShopDayTrafficInfoSet = []
             params['ShopDayTrafficInfoSet'].each do |i|
-              @ShopDayTrafficInfoSet << ShopDayTrafficInfo.new.deserialize(i)
+              shopdaytrafficinfo_tmp = ShopDayTrafficInfo.new
+              shopdaytrafficinfo_tmp.deserialize(i)
+              @ShopDayTrafficInfoSet << shopdaytrafficinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1420,7 +1450,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << TrajectorySunData.new.deserialize(i)
+              trajectorysundata_tmp = TrajectorySunData.new
+              trajectorysundata_tmp.deserialize(i)
+              @Data << trajectorysundata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1549,7 +1581,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ZoneFlowAndAvrStayTime.new.deserialize(i)
+              zoneflowandavrstaytime_tmp = ZoneFlowAndAvrStayTime.new
+              zoneflowandavrstaytime_tmp.deserialize(i)
+              @Data << zoneflowandavrstaytime_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1622,7 +1656,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ZoneDayFlow.new.deserialize(i)
+              zonedayflow_tmp = ZoneDayFlow.new
+              zonedayflow_tmp.deserialize(i)
+              @Data << zonedayflow_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1695,7 +1731,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ZoneAgeGroupAvrStayTime.new.deserialize(i)
+              zoneagegroupavrstaytime_tmp = ZoneAgeGroupAvrStayTime.new
+              zoneagegroupavrstaytime_tmp.deserialize(i)
+              @Data << zoneagegroupavrstaytime_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1840,7 +1878,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ZoneHourFlow.new.deserialize(i)
+              zonehourflow_tmp = ZoneHourFlow.new
+              zonehourflow_tmp.deserialize(i)
+              @Data << zonehourflow_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1913,7 +1953,9 @@ module TencentCloud
           unless params['ZoneTrafficInfoSet'].nil?
             @ZoneTrafficInfoSet = []
             params['ZoneTrafficInfoSet'].each do |i|
-              @ZoneTrafficInfoSet << ZoneTrafficInfo.new.deserialize(i)
+              zonetrafficinfo_tmp = ZoneTrafficInfo.new
+              zonetrafficinfo_tmp.deserialize(i)
+              @ZoneTrafficInfoSet << zonetrafficinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2063,7 +2105,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << PersonTagInfo.new.deserialize(i)
+              persontaginfo_tmp = PersonTagInfo.new
+              persontaginfo_tmp.deserialize(i)
+              @Tags << persontaginfo_tmp
             end
           end
         end
@@ -2243,7 +2287,9 @@ module TencentCloud
           unless params['Infos'].nil?
             @Infos = []
             params['Infos'].each do |i|
-              @Infos << NetworkInfo.new.deserialize(i)
+              networkinfo_tmp = NetworkInfo.new
+              networkinfo_tmp.deserialize(i)
+              @Infos << networkinfo_tmp
             end
           end
         end
@@ -2316,7 +2362,9 @@ module TencentCloud
           unless params['Infos'].nil?
             @Infos = []
             params['Infos'].each do |i|
-              @Infos << NetworkAndShopInfo.new.deserialize(i)
+              networkandshopinfo_tmp = NetworkAndShopInfo.new
+              networkandshopinfo_tmp.deserialize(i)
+              @Infos << networkandshopinfo_tmp
             end
           end
         end
@@ -2544,7 +2592,9 @@ module TencentCloud
           unless params['TracePointSet'].nil?
             @TracePointSet = []
             params['TracePointSet'].each do |i|
-              @TracePointSet << PersonTracePoint.new.deserialize(i)
+              persontracepoint_tmp = PersonTracePoint.new
+              persontracepoint_tmp.deserialize(i)
+              @TracePointSet << persontracepoint_tmp
             end
           end
         end
@@ -2595,7 +2645,8 @@ module TencentCloud
           @HairType = params['HairType']
           @CapturedPictureUrl = params['CapturedPictureUrl']
           unless params['SceneInfo'].nil?
-            @SceneInfo = SceneInfo.new.deserialize(params['SceneInfo'])
+            @SceneInfo = SceneInfo.new
+            @SceneInfo.deserialize(params['SceneInfo'])
           end
         end
       end
@@ -2699,7 +2750,9 @@ module TencentCloud
           unless params['GenderAgeTrafficDetailSet'].nil?
             @GenderAgeTrafficDetailSet = []
             params['GenderAgeTrafficDetailSet'].each do |i|
-              @GenderAgeTrafficDetailSet << GenderAgeTrafficDetail.new.deserialize(i)
+              genderagetrafficdetail_tmp = GenderAgeTrafficDetail.new
+              genderagetrafficdetail_tmp.deserialize(i)
+              @GenderAgeTrafficDetailSet << genderagetrafficdetail_tmp
             end
           end
         end
@@ -2724,7 +2777,9 @@ module TencentCloud
           unless params['HourTrafficInfoDetailSet'].nil?
             @HourTrafficInfoDetailSet = []
             params['HourTrafficInfoDetailSet'].each do |i|
-              @HourTrafficInfoDetailSet << HourTrafficInfoDetail.new.deserialize(i)
+              hourtrafficinfodetail_tmp = HourTrafficInfoDetail.new
+              hourtrafficinfodetail_tmp.deserialize(i)
+              @HourTrafficInfoDetailSet << hourtrafficinfodetail_tmp
             end
           end
         end
@@ -2901,7 +2956,9 @@ module TencentCloud
           unless params['ZoneTrafficInfoDetailSet'].nil?
             @ZoneTrafficInfoDetailSet = []
             params['ZoneTrafficInfoDetailSet'].each do |i|
-              @ZoneTrafficInfoDetailSet << ZoneTrafficInfoDetail.new.deserialize(i)
+              zonetrafficinfodetail_tmp = ZoneTrafficInfoDetail.new
+              zonetrafficinfodetail_tmp.deserialize(i)
+              @ZoneTrafficInfoDetailSet << zonetrafficinfodetail_tmp
             end
           end
         end

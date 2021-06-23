@@ -302,7 +302,9 @@ module TencentCloud
           unless params['Devices'].nil?
             @Devices = []
             params['Devices'].each do |i|
-              @Devices << DeviceItem.new.deserialize(i)
+              deviceitem_tmp = DeviceItem.new
+              deviceitem_tmp.deserialize(i)
+              @Devices << deviceitem_tmp
             end
           end
         end
@@ -351,7 +353,9 @@ module TencentCloud
           unless params['TimeTemplateSpecs'].nil?
             @TimeTemplateSpecs = []
             params['TimeTemplateSpecs'].each do |i|
-              @TimeTemplateSpecs << TimeTemplateSpec.new.deserialize(i)
+              timetemplatespec_tmp = TimeTemplateSpec.new
+              timetemplatespec_tmp.deserialize(i)
+              @TimeTemplateSpecs << timetemplatespec_tmp
             end
           end
         end
@@ -576,7 +580,9 @@ module TencentCloud
           unless params['Devices'].nil?
             @Devices = []
             params['Devices'].each do |i|
-              @Devices << AllDeviceInfo.new.deserialize(i)
+              alldeviceinfo_tmp = AllDeviceInfo.new
+              alldeviceinfo_tmp.deserialize(i)
+              @Devices << alldeviceinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -618,7 +624,9 @@ module TencentCloud
           unless params['DevGroups'].nil?
             @DevGroups = []
             params['DevGroups'].each do |i|
-              @DevGroups << DevGroupInfo.new.deserialize(i)
+              devgroupinfo_tmp = DevGroupInfo.new
+              devgroupinfo_tmp.deserialize(i)
+              @DevGroups << devgroupinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -725,7 +733,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DescribeDeviceStreamsData.new.deserialize(params['Data'])
+            @Data = DescribeDeviceStreamsData.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -764,7 +773,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Group'].nil?
-            @Group = GroupItem.new.deserialize(params['Group'])
+            @Group = GroupItem.new
+            @Group.deserialize(params['Group'])
           end
           @RequestId = params['RequestId']
         end
@@ -803,7 +813,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Group'].nil?
-            @Group = GroupItem.new.deserialize(params['Group'])
+            @Group = GroupItem.new
+            @Group.deserialize(params['Group'])
           end
           @RequestId = params['RequestId']
         end
@@ -865,7 +876,9 @@ module TencentCloud
           unless params['DeviceList'].nil?
             @DeviceList = []
             params['DeviceList'].each do |i|
-              @DeviceList << GroupDeviceItem.new.deserialize(i)
+              groupdeviceitem_tmp = GroupDeviceItem.new
+              groupdeviceitem_tmp.deserialize(i)
+              @DeviceList << groupdeviceitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -907,7 +920,9 @@ module TencentCloud
           unless params['Groups'].nil?
             @Groups = []
             params['Groups'].each do |i|
-              @Groups << GroupInfo.new.deserialize(i)
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @Groups << groupinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -994,7 +1009,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DescribeRecordStreamData.new.deserialize(params['Data'])
+            @Data = DescribeRecordStreamData.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1027,7 +1043,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = ServerConfiguration.new.deserialize(params['Data'])
+            @Data = ServerConfiguration.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1080,7 +1097,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << StatisticItem.new.deserialize(i)
+              statisticitem_tmp = StatisticItem.new
+              statisticitem_tmp.deserialize(i)
+              @Data << statisticitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1194,7 +1213,9 @@ module TencentCloud
           unless params['GroupList'].nil?
             @GroupList = []
             params['GroupList'].each do |i|
-              @GroupList << GroupItem.new.deserialize(i)
+              groupitem_tmp = GroupItem.new
+              groupitem_tmp.deserialize(i)
+              @GroupList << groupitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1257,12 +1278,15 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           unless params['VideoList'].nil?
-            @VideoList = RecordTaskItem.new.deserialize(params['VideoList'])
+            @VideoList = RecordTaskItem.new
+            @VideoList.deserialize(params['VideoList'])
           end
           unless params['RecordList'].nil?
             @RecordList = []
             params['RecordList'].each do |i|
-              @RecordList << RecordTaskItem.new.deserialize(i)
+              recordtaskitem_tmp = RecordTaskItem.new
+              recordtaskitem_tmp.deserialize(i)
+              @RecordList << recordtaskitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1396,7 +1420,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Plan'].nil?
-            @Plan = RecordPlanItem.new.deserialize(params['Plan'])
+            @Plan = RecordPlanItem.new
+            @Plan.deserialize(params['Plan'])
           end
           @RequestId = params['RequestId']
         end
@@ -1435,7 +1460,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Plan'].nil?
-            @Plan = RecordPlanItem.new.deserialize(params['Plan'])
+            @Plan = RecordPlanItem.new
+            @Plan.deserialize(params['Plan'])
           end
           @RequestId = params['RequestId']
         end
@@ -1475,7 +1501,9 @@ module TencentCloud
           unless params['Plans'].nil?
             @Plans = []
             params['Plans'].each do |i|
-              @Plans << RecordPlanItem.new.deserialize(i)
+              recordplanitem_tmp = RecordPlanItem.new
+              recordplanitem_tmp.deserialize(i)
+              @Plans << recordplanitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1516,7 +1544,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Template'].nil?
-            @Template = TimeTemplateItem.new.deserialize(params['Template'])
+            @Template = TimeTemplateItem.new
+            @Template.deserialize(params['Template'])
           end
           @RequestId = params['RequestId']
         end
@@ -1555,7 +1584,9 @@ module TencentCloud
           unless params['Templates'].nil?
             @Templates = []
             params['Templates'].each do |i|
-              @Templates << TimeTemplateItem.new.deserialize(i)
+              timetemplateitem_tmp = TimeTemplateItem.new
+              timetemplateitem_tmp.deserialize(i)
+              @Templates << timetemplateitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1619,7 +1650,9 @@ module TencentCloud
           unless params['VideoList'].nil?
             @VideoList = []
             params['VideoList'].each do |i|
-              @VideoList << RecordTaskItem.new.deserialize(i)
+              recordtaskitem_tmp = RecordTaskItem.new
+              recordtaskitem_tmp.deserialize(i)
+              @VideoList << recordtaskitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1887,7 +1920,9 @@ module TencentCloud
           unless params['Devices'].nil?
             @Devices = []
             params['Devices'].each do |i|
-              @Devices << DeviceItem.new.deserialize(i)
+              deviceitem_tmp = DeviceItem.new
+              deviceitem_tmp.deserialize(i)
+              @Devices << deviceitem_tmp
             end
           end
         end
@@ -2026,7 +2061,9 @@ module TencentCloud
           unless params['TimeTemplateSpecs'].nil?
             @TimeTemplateSpecs = []
             params['TimeTemplateSpecs'].each do |i|
-              @TimeTemplateSpecs << TimeTemplateSpec.new.deserialize(i)
+              timetemplatespec_tmp = TimeTemplateSpec.new
+              timetemplatespec_tmp.deserialize(i)
+              @TimeTemplateSpecs << timetemplatespec_tmp
             end
           end
         end
@@ -2180,7 +2217,9 @@ module TencentCloud
           unless params['Devices'].nil?
             @Devices = []
             params['Devices'].each do |i|
-              @Devices << DeviceItem.new.deserialize(i)
+              deviceitem_tmp = DeviceItem.new
+              deviceitem_tmp.deserialize(i)
+              @Devices << deviceitem_tmp
             end
           end
           @IsModifyDevices = params['IsModifyDevices']
@@ -2235,7 +2274,9 @@ module TencentCloud
           unless params['TimeTemplateSpecs'].nil?
             @TimeTemplateSpecs = []
             params['TimeTemplateSpecs'].each do |i|
-              @TimeTemplateSpecs << TimeTemplateSpec.new.deserialize(i)
+              timetemplatespec_tmp = TimeTemplateSpec.new
+              timetemplatespec_tmp.deserialize(i)
+              @TimeTemplateSpecs << timetemplatespec_tmp
             end
           end
         end

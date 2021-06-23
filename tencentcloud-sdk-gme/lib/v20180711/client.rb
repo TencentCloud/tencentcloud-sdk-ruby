@@ -20,9 +20,13 @@ module TencentCloud
   module Gme
     module V20180711
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-07-11'
-        @@endpoint = 'gme.tencentcloudapi.com'
-        @@sdk_version = 'GME_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-07-11'
+            api_endpoint = 'gme.tencentcloudapi.com'
+            sdk_version = 'GME_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口(CreateApp)用于创建一个GME应用。

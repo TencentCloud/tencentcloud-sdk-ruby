@@ -20,9 +20,13 @@ module TencentCloud
   module Bda
     module V20200324
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-03-24'
-        @@endpoint = 'bda.tencentcloudapi.com'
-        @@sdk_version = 'BDA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-03-24'
+            api_endpoint = 'bda.tencentcloudapi.com'
+            sdk_version = 'BDA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 用于创建一个空的人体库，如果人体库已存在返回错误。

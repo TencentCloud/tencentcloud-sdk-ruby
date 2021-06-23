@@ -238,7 +238,9 @@ module TencentCloud
           unless params['TagList'].nil?
             @TagList = []
             params['TagList'].each do |i|
-              @TagList << WeComTagDetail.new.deserialize(i)
+              wecomtagdetail_tmp = WeComTagDetail.new
+              wecomtagdetail_tmp.deserialize(i)
+              @TagList << wecomtagdetail_tmp
             end
           end
           @SkipVerify = params['SkipVerify']
@@ -304,7 +306,8 @@ module TencentCloud
           @RoomId = params['RoomId']
           @MsgTime = params['MsgTime']
           unless params['Video'].nil?
-            @Video = ChatArchivingMsgTypeVideo.new.deserialize(params['Video'])
+            @Video = ChatArchivingMsgTypeVideo.new
+            @Video.deserialize(params['Video'])
           end
           @BodyJson = params['BodyJson']
         end
@@ -391,7 +394,9 @@ module TencentCloud
           unless params['Tag'].nil?
             @Tag = []
             params['Tag'].each do |i|
-              @Tag << WeComTagDetail.new.deserialize(i)
+              wecomtagdetail_tmp = WeComTagDetail.new
+              wecomtagdetail_tmp.deserialize(i)
+              @Tag << wecomtagdetail_tmp
             end
           end
           @SkipVerify = params['SkipVerify']
@@ -439,7 +444,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagInfo.new.deserialize(i)
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
             end
           end
           @Sort = params['Sort']
@@ -462,7 +469,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TagGroup'].nil?
-            @TagGroup = TagGroup.new.deserialize(params['TagGroup'])
+            @TagGroup = TagGroup.new
+            @TagGroup.deserialize(params['TagGroup'])
           end
           @RequestId = params['RequestId']
         end
@@ -605,7 +613,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << ExternalContactTag.new.deserialize(i)
+              externalcontacttag_tmp = ExternalContactTag.new
+              externalcontacttag_tmp.deserialize(i)
+              @Tags << externalcontacttag_tmp
             end
           end
         end
@@ -754,7 +764,9 @@ module TencentCloud
           unless params['PageData'].nil?
             @PageData = []
             params['PageData'].each do |i|
-              @PageData << ActivityJoinDetail.new.deserialize(i)
+              activityjoindetail_tmp = ActivityJoinDetail.new
+              activityjoindetail_tmp.deserialize(i)
+              @PageData << activityjoindetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -805,7 +817,9 @@ module TencentCloud
           unless params['PageData'].nil?
             @PageData = []
             params['PageData'].each do |i|
-              @PageData << ActivityDetail.new.deserialize(i)
+              activitydetail_tmp = ActivityDetail.new
+              activitydetail_tmp.deserialize(i)
+              @PageData << activitydetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -856,7 +870,9 @@ module TencentCloud
           unless params['PageData'].nil?
             @PageData = []
             params['PageData'].each do |i|
-              @PageData << LiveCodeDetail.new.deserialize(i)
+              livecodedetail_tmp = LiveCodeDetail.new
+              livecodedetail_tmp.deserialize(i)
+              @PageData << livecodedetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -907,7 +923,9 @@ module TencentCloud
           unless params['PageData'].nil?
             @PageData = []
             params['PageData'].each do |i|
-              @PageData << ChannelCodeInnerDetail.new.deserialize(i)
+              channelcodeinnerdetail_tmp = ChannelCodeInnerDetail.new
+              channelcodeinnerdetail_tmp.deserialize(i)
+              @PageData << channelcodeinnerdetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -958,7 +976,9 @@ module TencentCloud
           unless params['PageData'].nil?
             @PageData = []
             params['PageData'].each do |i|
-              @PageData << ChatArchivingDetail.new.deserialize(i)
+              chatarchivingdetail_tmp = ChatArchivingDetail.new
+              chatarchivingdetail_tmp.deserialize(i)
+              @PageData << chatarchivingdetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1015,12 +1035,15 @@ module TencentCloud
         def deserialize(params)
           @NextCursor = params['NextCursor']
           unless params['Customer'].nil?
-            @Customer = ExternalContact.new.deserialize(params['Customer'])
+            @Customer = ExternalContact.new
+            @Customer.deserialize(params['Customer'])
           end
           unless params['FollowUser'].nil?
             @FollowUser = []
             params['FollowUser'].each do |i|
-              @FollowUser << FollowUser.new.deserialize(i)
+              followuser_tmp = FollowUser.new
+              followuser_tmp.deserialize(i)
+              @FollowUser << followuser_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1070,7 +1093,9 @@ module TencentCloud
           unless params['PageData'].nil?
             @PageData = []
             params['PageData'].each do |i|
-              @PageData << ExternalContactSimpleInfo.new.deserialize(i)
+              externalcontactsimpleinfo_tmp = ExternalContactSimpleInfo.new
+              externalcontactsimpleinfo_tmp.deserialize(i)
+              @PageData << externalcontactsimpleinfo_tmp
             end
           end
           @NextCursor = params['NextCursor']
@@ -1122,7 +1147,9 @@ module TencentCloud
           unless params['PageData'].nil?
             @PageData = []
             params['PageData'].each do |i|
-              @PageData << MiniAppCodeInfo.new.deserialize(i)
+              miniappcodeinfo_tmp = MiniAppCodeInfo.new
+              miniappcodeinfo_tmp.deserialize(i)
+              @PageData << miniappcodeinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1196,7 +1223,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagDetailInfo.new.deserialize(i)
+              tagdetailinfo_tmp = TagDetailInfo.new
+              tagdetailinfo_tmp.deserialize(i)
+              @Tags << tagdetailinfo_tmp
             end
           end
         end

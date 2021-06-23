@@ -59,7 +59,9 @@ module TencentCloud
           unless params['Strategies'].nil?
             @Strategies = []
             params['Strategies'].each do |i|
-              @Strategies << Strategy.new.deserialize(i)
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
             end
           end
           @Domain = params['Domain']
@@ -90,7 +92,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Success'].nil?
-            @Success = ResponseCode.new.deserialize(params['Success'])
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
           end
           @RuleId = params['RuleId']
           @RequestId = params['RequestId']
@@ -344,7 +347,8 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           unless params['Paging'].nil?
-            @Paging = DescribeCustomRulesPagingInfo.new.deserialize(params['Paging'])
+            @Paging = DescribeCustomRulesPagingInfo.new
+            @Paging.deserialize(params['Paging'])
           end
           @Edition = params['Edition']
           @ActionType = params['ActionType']
@@ -373,7 +377,9 @@ module TencentCloud
           unless params['RuleList'].nil?
             @RuleList = []
             params['RuleList'].each do |i|
-              @RuleList << DescribeCustomRulesRspRuleListItem.new.deserialize(i)
+              describecustomrulesrsprulelistitem_tmp = DescribeCustomRulesRspRuleListItem.new
+              describecustomrulesrsprulelistitem_tmp.deserialize(i)
+              @RuleList << describecustomrulesrsprulelistitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -432,7 +438,9 @@ module TencentCloud
           unless params['Strategies'].nil?
             @Strategies = []
             params['Strategies'].each do |i|
-              @Strategies << Strategy.new.deserialize(i)
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
             end
           end
         end
@@ -480,7 +488,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << BotStatPointItem.new.deserialize(i)
+              botstatpointitem_tmp = BotStatPointItem.new
+              botstatpointitem_tmp.deserialize(i)
+              @Data << botstatpointitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -563,7 +573,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Success'].nil?
-            @Success = ResponseCode.new.deserialize(params['Success'])
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
           end
           @RequestId = params['RequestId']
         end

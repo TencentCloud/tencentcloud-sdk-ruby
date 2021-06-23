@@ -42,13 +42,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RealtimeSpeechStatisticsItem'].nil?
-            @RealtimeSpeechStatisticsItem = RealTimeSpeechStatisticsItem.new.deserialize(params['RealtimeSpeechStatisticsItem'])
+            @RealtimeSpeechStatisticsItem = RealTimeSpeechStatisticsItem.new
+            @RealtimeSpeechStatisticsItem.deserialize(params['RealtimeSpeechStatisticsItem'])
           end
           unless params['VoiceMessageStatisticsItem'].nil?
-            @VoiceMessageStatisticsItem = VoiceMessageStatisticsItem.new.deserialize(params['VoiceMessageStatisticsItem'])
+            @VoiceMessageStatisticsItem = VoiceMessageStatisticsItem.new
+            @VoiceMessageStatisticsItem.deserialize(params['VoiceMessageStatisticsItem'])
           end
           unless params['VoiceFilterStatisticsItem'].nil?
-            @VoiceFilterStatisticsItem = VoiceFilterStatisticsItem.new.deserialize(params['VoiceFilterStatisticsItem'])
+            @VoiceFilterStatisticsItem = VoiceFilterStatisticsItem.new
+            @VoiceFilterStatisticsItem.deserialize(params['VoiceFilterStatisticsItem'])
           end
           @Date = params['Date']
         end
@@ -107,57 +110,75 @@ module TencentCloud
           unless params['DauDataMainland'].nil?
             @DauDataMainland = []
             params['DauDataMainland'].each do |i|
-              @DauDataMainland << StatisticsItem.new.deserialize(i)
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @DauDataMainland << statisticsitem_tmp
             end
           end
           unless params['DauDataOversea'].nil?
             @DauDataOversea = []
             params['DauDataOversea'].each do |i|
-              @DauDataOversea << StatisticsItem.new.deserialize(i)
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @DauDataOversea << statisticsitem_tmp
             end
           end
           unless params['DauDataSum'].nil?
             @DauDataSum = []
             params['DauDataSum'].each do |i|
-              @DauDataSum << StatisticsItem.new.deserialize(i)
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @DauDataSum << statisticsitem_tmp
             end
           end
           @DurationDataNum = params['DurationDataNum']
           unless params['DurationDataMainland'].nil?
             @DurationDataMainland = []
             params['DurationDataMainland'].each do |i|
-              @DurationDataMainland << StatisticsItem.new.deserialize(i)
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @DurationDataMainland << statisticsitem_tmp
             end
           end
           unless params['DurationDataOversea'].nil?
             @DurationDataOversea = []
             params['DurationDataOversea'].each do |i|
-              @DurationDataOversea << StatisticsItem.new.deserialize(i)
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @DurationDataOversea << statisticsitem_tmp
             end
           end
           unless params['DurationDataSum'].nil?
             @DurationDataSum = []
             params['DurationDataSum'].each do |i|
-              @DurationDataSum << StatisticsItem.new.deserialize(i)
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @DurationDataSum << statisticsitem_tmp
             end
           end
           @PcuDataNum = params['PcuDataNum']
           unless params['PcuDataMainland'].nil?
             @PcuDataMainland = []
             params['PcuDataMainland'].each do |i|
-              @PcuDataMainland << StatisticsItem.new.deserialize(i)
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @PcuDataMainland << statisticsitem_tmp
             end
           end
           unless params['PcuDataOversea'].nil?
             @PcuDataOversea = []
             params['PcuDataOversea'].each do |i|
-              @PcuDataOversea << StatisticsItem.new.deserialize(i)
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @PcuDataOversea << statisticsitem_tmp
             end
           end
           unless params['PcuDataSum'].nil?
             @PcuDataSum = []
             params['PcuDataSum'].each do |i|
-              @PcuDataSum << StatisticsItem.new.deserialize(i)
+              statisticsitem_tmp = StatisticsItem.new
+              statisticsitem_tmp.deserialize(i)
+              @PcuDataSum << statisticsitem_tmp
             end
           end
         end
@@ -201,18 +222,23 @@ module TencentCloud
           @EngineList = params['EngineList']
           @RegionList = params['RegionList']
           unless params['RealtimeSpeechConf'].nil?
-            @RealtimeSpeechConf = RealtimeSpeechConf.new.deserialize(params['RealtimeSpeechConf'])
+            @RealtimeSpeechConf = RealtimeSpeechConf.new
+            @RealtimeSpeechConf.deserialize(params['RealtimeSpeechConf'])
           end
           unless params['VoiceMessageConf'].nil?
-            @VoiceMessageConf = VoiceMessageConf.new.deserialize(params['VoiceMessageConf'])
+            @VoiceMessageConf = VoiceMessageConf.new
+            @VoiceMessageConf.deserialize(params['VoiceMessageConf'])
           end
           unless params['VoiceFilterConf'].nil?
-            @VoiceFilterConf = VoiceFilterConf.new.deserialize(params['VoiceFilterConf'])
+            @VoiceFilterConf = VoiceFilterConf.new
+            @VoiceFilterConf.deserialize(params['VoiceFilterConf'])
           end
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -257,13 +283,16 @@ module TencentCloud
           @SecretKey = params['SecretKey']
           @CreateTime = params['CreateTime']
           unless params['RealtimeSpeechConf'].nil?
-            @RealtimeSpeechConf = RealtimeSpeechConf.new.deserialize(params['RealtimeSpeechConf'])
+            @RealtimeSpeechConf = RealtimeSpeechConf.new
+            @RealtimeSpeechConf.deserialize(params['RealtimeSpeechConf'])
           end
           unless params['VoiceMessageConf'].nil?
-            @VoiceMessageConf = VoiceMessageConf.new.deserialize(params['VoiceMessageConf'])
+            @VoiceMessageConf = VoiceMessageConf.new
+            @VoiceMessageConf.deserialize(params['VoiceMessageConf'])
           end
           unless params['VoiceFilterConf'].nil?
-            @VoiceFilterConf = VoiceFilterConf.new.deserialize(params['VoiceFilterConf'])
+            @VoiceFilterConf = VoiceFilterConf.new
+            @VoiceFilterConf.deserialize(params['VoiceFilterConf'])
           end
         end
       end
@@ -311,7 +340,9 @@ module TencentCloud
           unless params['AppStatistics'].nil?
             @AppStatistics = []
             params['AppStatistics'].each do |i|
-              @AppStatistics << AppStatisticsItem.new.deserialize(i)
+              appstatisticsitem_tmp = AppStatisticsItem.new
+              appstatisticsitem_tmp.deserialize(i)
+              @AppStatistics << appstatisticsitem_tmp
             end
           end
         end
@@ -357,7 +388,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = ApplicationDataStatistics.new.deserialize(params['Data'])
+            @Data = ApplicationDataStatistics.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -419,7 +451,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << VoiceFilterInfo.new.deserialize(i)
+              voicefilterinfo_tmp = VoiceFilterInfo.new
+              voicefilterinfo_tmp.deserialize(i)
+              @Data << voicefilterinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -463,7 +497,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = VoiceFilterInfo.new.deserialize(params['Data'])
+            @Data = VoiceFilterInfo.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -513,7 +548,9 @@ module TencentCloud
           unless params['RoomUsers'].nil?
             @RoomUsers = []
             params['RoomUsers'].each do |i|
-              @RoomUsers << RoomUser.new.deserialize(i)
+              roomuser_tmp = RoomUser.new
+              roomuser_tmp.deserialize(i)
+              @RoomUsers << roomuser_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -579,7 +616,9 @@ module TencentCloud
           unless params['ScanPiece'].nil?
             @ScanPiece = []
             params['ScanPiece'].each do |i|
-              @ScanPiece << ScanPiece.new.deserialize(i)
+              scanpiece_tmp = ScanPiece.new
+              scanpiece_tmp.deserialize(i)
+              @ScanPiece << scanpiece_tmp
             end
           end
           @ScanStartTime = params['ScanStartTime']
@@ -633,7 +672,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << DescribeScanResult.new.deserialize(i)
+              describescanresult_tmp = DescribeScanResult.new
+              describescanresult_tmp.deserialize(i)
+              @Data << describescanresult_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -685,7 +726,9 @@ module TencentCloud
           unless params['InOutList'].nil?
             @InOutList = []
             params['InOutList'].each do |i|
-              @InOutList << InOutTimeInfo.new.deserialize(i)
+              inouttimeinfo_tmp = InOutTimeInfo.new
+              inouttimeinfo_tmp.deserialize(i)
+              @InOutList << inouttimeinfo_tmp
             end
           end
           @Duration = params['Duration']
@@ -967,7 +1010,9 @@ module TencentCloud
           unless params['ScanDetail'].nil?
             @ScanDetail = []
             params['ScanDetail'].each do |i|
-              @ScanDetail << ScanDetail.new.deserialize(i)
+              scandetail_tmp = ScanDetail.new
+              scandetail_tmp.deserialize(i)
+              @ScanDetail << scandetail_tmp
             end
           end
           @RoomId = params['RoomId']
@@ -1011,7 +1056,9 @@ module TencentCloud
           unless params['Tasks'].nil?
             @Tasks = []
             params['Tasks'].each do |i|
-              @Tasks << Task.new.deserialize(i)
+              task_tmp = Task.new
+              task_tmp.deserialize(i)
+              @Tasks << task_tmp
             end
           end
           @Callback = params['Callback']
@@ -1037,7 +1084,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ScanVoiceResult.new.deserialize(i)
+              scanvoiceresult_tmp = ScanVoiceResult.new
+              scanvoiceresult_tmp.deserialize(i)
+              @Data << scanvoiceresult_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1213,7 +1262,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << VoiceFilter.new.deserialize(i)
+              voicefilter_tmp = VoiceFilter.new
+              voicefilter_tmp.deserialize(i)
+              @Data << voicefilter_tmp
             end
           end
         end

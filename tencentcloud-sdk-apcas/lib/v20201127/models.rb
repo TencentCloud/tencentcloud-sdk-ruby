@@ -60,7 +60,9 @@ module TencentCloud
           unless params['CallDetailSet'].nil?
             @CallDetailSet = []
             params['CallDetailSet'].each do |i|
-              @CallDetailSet << CallDetailItem.new.deserialize(i)
+              calldetailitem_tmp = CallDetailItem.new
+              calldetailitem_tmp.deserialize(i)
+              @CallDetailSet << calldetailitem_tmp
             end
           end
         end
@@ -148,7 +150,9 @@ module TencentCloud
           unless params['TaskDetailDataList'].nil?
             @TaskDetailDataList = []
             params['TaskDetailDataList'].each do |i|
-              @TaskDetailDataList << TaskDetailData.new.deserialize(i)
+              taskdetaildata_tmp = TaskDetailData.new
+              taskdetaildata_tmp.deserialize(i)
+              @TaskDetailDataList << taskdetaildata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -207,7 +211,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TaskListData'].nil?
-            @TaskListData = TaskListData.new.deserialize(params['TaskListData'])
+            @TaskListData = TaskListData.new
+            @TaskListData.deserialize(params['TaskListData'])
           end
           @RequestId = params['RequestId']
         end
@@ -229,7 +234,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Value'].nil?
-            @Value = LabelValue.new.deserialize(params['Value'])
+            @Value = LabelValue.new
+            @Value.deserialize(params['Value'])
           end
           @Label = params['Label']
         end
@@ -331,7 +337,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RatingData'].nil?
-            @RatingData = RatingData.new.deserialize(params['RatingData'])
+            @RatingData = RatingData.new
+            @RatingData.deserialize(params['RatingData'])
           end
           @RequestId = params['RequestId']
         end
@@ -385,7 +392,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['CallDetails'].nil?
-            @CallDetails = CallDetails.new.deserialize(params['CallDetails'])
+            @CallDetails = CallDetails.new
+            @CallDetails.deserialize(params['CallDetails'])
           end
           @RequestId = params['RequestId']
         end
@@ -433,7 +441,9 @@ module TencentCloud
           unless params['CallSet'].nil?
             @CallSet = []
             params['CallSet'].each do |i|
-              @CallSet << CallStatItem.new.deserialize(i)
+              callstatitem_tmp = CallStatItem.new
+              callstatitem_tmp.deserialize(i)
+              @CallSet << callstatitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -472,7 +482,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GeneralStat'].nil?
-            @GeneralStat = GeneralStat.new.deserialize(params['GeneralStat'])
+            @GeneralStat = GeneralStat.new
+            @GeneralStat.deserialize(params['GeneralStat'])
           end
           @RequestId = params['RequestId']
         end
@@ -533,7 +544,9 @@ module TencentCloud
           unless params['LabelDetailDataList'].nil?
             @LabelDetailDataList = []
             params['LabelDetailDataList'].each do |i|
-              @LabelDetailDataList << LabelDetailData.new.deserialize(i)
+              labeldetaildata_tmp = LabelDetailData.new
+              labeldetaildata_tmp.deserialize(i)
+              @LabelDetailDataList << labeldetaildata_tmp
             end
           end
         end
@@ -566,7 +579,9 @@ module TencentCloud
           unless params['TaskList'].nil?
             @TaskList = []
             params['TaskList'].each do |i|
-              @TaskList << ListModel.new.deserialize(i)
+              listmodel_tmp = ListModel.new
+              listmodel_tmp.deserialize(i)
+              @TaskList << listmodel_tmp
             end
           end
         end
@@ -612,7 +627,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TaskData'].nil?
-            @TaskData = TaskData.new.deserialize(params['TaskData'])
+            @TaskData = TaskData.new
+            @TaskData.deserialize(params['TaskData'])
           end
           @RequestId = params['RequestId']
         end

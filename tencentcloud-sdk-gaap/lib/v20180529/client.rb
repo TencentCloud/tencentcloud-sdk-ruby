@@ -20,9 +20,13 @@ module TencentCloud
   module Gaap
     module V20180529
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-05-29'
-        @@endpoint = 'gaap.tencentcloudapi.com'
-        @@sdk_version = 'GAAP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-05-29'
+            api_endpoint = 'gaap.tencentcloudapi.com'
+            sdk_version = 'GAAP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 添加源站(服务器)信息，支持IP或域名

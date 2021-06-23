@@ -20,9 +20,13 @@ module TencentCloud
   module Iotcloud
     module V20180614
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-06-14'
-        @@endpoint = 'iotcloud.tencentcloudapi.com'
-        @@sdk_version = 'IOTCLOUD_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-06-14'
+            api_endpoint = 'iotcloud.tencentcloudapi.com'
+            sdk_version = 'IOTCLOUD_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（BatchUpdateFirmware）用于批量更新设备固件

@@ -224,7 +224,9 @@ module TencentCloud
           unless params['RecordList'].nil?
             @RecordList = []
             params['RecordList'].each do |i|
-              @RecordList << CreateDomainBatchRecord.new.deserialize(i)
+              createdomainbatchrecord_tmp = CreateDomainBatchRecord.new
+              createdomainbatchrecord_tmp.deserialize(i)
+              @RecordList << createdomainbatchrecord_tmp
             end
           end
           @Id = params['Id']
@@ -333,7 +335,9 @@ module TencentCloud
           unless params['DetailList'].nil?
             @DetailList = []
             params['DetailList'].each do |i|
-              @DetailList << CreateDomainBatchDetail.new.deserialize(i)
+              createdomainbatchdetail_tmp = CreateDomainBatchDetail.new
+              createdomainbatchdetail_tmp.deserialize(i)
+              @DetailList << createdomainbatchdetail_tmp
             end
           end
           @JobId = params['JobId']
@@ -417,7 +421,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DomainInfo'].nil?
-            @DomainInfo = DomainCreateInfo.new.deserialize(params['DomainInfo'])
+            @DomainInfo = DomainCreateInfo.new
+            @DomainInfo.deserialize(params['DomainInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -466,7 +471,9 @@ module TencentCloud
           unless params['RecordList'].nil?
             @RecordList = []
             params['RecordList'].each do |i|
-              @RecordList << CreateRecordBatchRecord.new.deserialize(i)
+              createrecordbatchrecord_tmp = CreateRecordBatchRecord.new
+              createrecordbatchrecord_tmp.deserialize(i)
+              @RecordList << createrecordbatchrecord_tmp
             end
           end
           @Id = params['Id']
@@ -559,7 +566,9 @@ module TencentCloud
           unless params['RecordList'].nil?
             @RecordList = []
             params['RecordList'].each do |i|
-              @RecordList << AddRecordBatch.new.deserialize(i)
+              addrecordbatch_tmp = AddRecordBatch.new
+              addrecordbatch_tmp.deserialize(i)
+              @RecordList << addrecordbatch_tmp
             end
           end
         end
@@ -586,7 +595,9 @@ module TencentCloud
           unless params['DetailList'].nil?
             @DetailList = []
             params['DetailList'].each do |i|
-              @DetailList << CreateRecordBatchDetail.new.deserialize(i)
+              createrecordbatchdetail_tmp = CreateRecordBatchDetail.new
+              createrecordbatchdetail_tmp.deserialize(i)
+              @DetailList << createrecordbatchdetail_tmp
             end
           end
           @JobId = params['JobId']
@@ -869,7 +880,9 @@ module TencentCloud
           unless params['RecordList'].nil?
             @RecordList = []
             params['RecordList'].each do |i|
-              @RecordList << BatchRecordInfo.new.deserialize(i)
+              batchrecordinfo_tmp = BatchRecordInfo.new
+              batchrecordinfo_tmp.deserialize(i)
+              @RecordList << batchrecordinfo_tmp
             end
           end
           @Id = params['Id']
@@ -931,7 +944,9 @@ module TencentCloud
           unless params['DetailList'].nil?
             @DetailList = []
             params['DetailList'].each do |i|
-              @DetailList << DescribeBatchTaskDetail.new.deserialize(i)
+              describebatchtaskdetail_tmp = DescribeBatchTaskDetail.new
+              describebatchtaskdetail_tmp.deserialize(i)
+              @DetailList << describebatchtaskdetail_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -994,12 +1009,15 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DomainCountInfo'].nil?
-            @DomainCountInfo = DomainCountInfo.new.deserialize(params['DomainCountInfo'])
+            @DomainCountInfo = DomainCountInfo.new
+            @DomainCountInfo.deserialize(params['DomainCountInfo'])
           end
           unless params['DomainList'].nil?
             @DomainList = []
             params['DomainList'].each do |i|
-              @DomainList << DomainListItem.new.deserialize(i)
+              domainlistitem_tmp = DomainListItem.new
+              domainlistitem_tmp.deserialize(i)
+              @DomainList << domainlistitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1101,7 +1119,9 @@ module TencentCloud
           unless params['PurviewList'].nil?
             @PurviewList = []
             params['PurviewList'].each do |i|
-              @PurviewList << PurviewInfo.new.deserialize(i)
+              purviewinfo_tmp = PurviewInfo.new
+              purviewinfo_tmp.deserialize(i)
+              @PurviewList << purviewinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1144,7 +1164,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DomainInfo'].nil?
-            @DomainInfo = DomainInfo.new.deserialize(params['DomainInfo'])
+            @DomainInfo = DomainInfo.new
+            @DomainInfo.deserialize(params['DomainInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1191,7 +1212,9 @@ module TencentCloud
           unless params['ShareList'].nil?
             @ShareList = []
             params['ShareList'].each do |i|
-              @ShareList << DomainShareInfo.new.deserialize(i)
+              domainshareinfo_tmp = DomainShareInfo.new
+              domainshareinfo_tmp.deserialize(i)
+              @ShareList << domainshareinfo_tmp
             end
           end
           @Owner = params['Owner']
@@ -1246,13 +1269,17 @@ module TencentCloud
           unless params['LineList'].nil?
             @LineList = []
             params['LineList'].each do |i|
-              @LineList << LineInfo.new.deserialize(i)
+              lineinfo_tmp = LineInfo.new
+              lineinfo_tmp.deserialize(i)
+              @LineList << lineinfo_tmp
             end
           end
           unless params['LineGroupList'].nil?
             @LineGroupList = []
             params['LineGroupList'].each do |i|
-              @LineGroupList << LineGroupInfo.new.deserialize(i)
+              linegroupinfo_tmp = LineGroupInfo.new
+              linegroupinfo_tmp.deserialize(i)
+              @LineGroupList << linegroupinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1338,12 +1365,15 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RecordCountInfo'].nil?
-            @RecordCountInfo = RecordCountInfo.new.deserialize(params['RecordCountInfo'])
+            @RecordCountInfo = RecordCountInfo.new
+            @RecordCountInfo.deserialize(params['RecordCountInfo'])
           end
           unless params['RecordList'].nil?
             @RecordList = []
             params['RecordList'].each do |i|
-              @RecordList << RecordListItem.new.deserialize(i)
+              recordlistitem_tmp = RecordListItem.new
+              recordlistitem_tmp.deserialize(i)
+              @RecordList << recordlistitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1390,7 +1420,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RecordInfo'].nil?
-            @RecordInfo = RecordInfo.new.deserialize(params['RecordInfo'])
+            @RecordInfo = RecordInfo.new
+            @RecordInfo.deserialize(params['RecordInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1461,7 +1492,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['UserInfo'].nil?
-            @UserInfo = UserInfo.new.deserialize(params['UserInfo'])
+            @UserInfo = UserInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1898,7 +1930,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['LockInfo'].nil?
-            @LockInfo = LockInfo.new.deserialize(params['LockInfo'])
+            @LockInfo = LockInfo.new
+            @LockInfo.deserialize(params['LockInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -2167,7 +2200,9 @@ module TencentCloud
           unless params['RecordList'].nil?
             @RecordList = []
             params['RecordList'].each do |i|
-              @RecordList << BatchRecordInfo.new.deserialize(i)
+              batchrecordinfo_tmp = BatchRecordInfo.new
+              batchrecordinfo_tmp.deserialize(i)
+              @RecordList << batchrecordinfo_tmp
             end
           end
           @Id = params['Id']
@@ -2234,7 +2269,9 @@ module TencentCloud
           unless params['DetailList'].nil?
             @DetailList = []
             params['DetailList'].each do |i|
-              @DetailList << ModifyRecordBatchDetail.new.deserialize(i)
+              modifyrecordbatchdetail_tmp = ModifyRecordBatchDetail.new
+              modifyrecordbatchdetail_tmp.deserialize(i)
+              @DetailList << modifyrecordbatchdetail_tmp
             end
           end
           @RequestId = params['RequestId']

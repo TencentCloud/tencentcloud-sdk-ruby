@@ -20,9 +20,13 @@ module TencentCloud
   module Tmt
     module V20180321
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-21'
-        @@endpoint = 'tmt.tencentcloudapi.com'
-        @@sdk_version = 'TMT_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-21'
+            api_endpoint = 'tmt.tencentcloudapi.com'
+            sdk_version = 'TMT_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 提供13种语言的图片翻译服务，可自动识别图片中的文本内容并翻译成目标语言，识别后的文本按行翻译，后续会提供可按段落翻译的版本。<br />

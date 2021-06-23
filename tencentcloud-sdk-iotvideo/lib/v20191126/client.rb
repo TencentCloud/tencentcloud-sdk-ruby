@@ -20,9 +20,13 @@ module TencentCloud
   module Iotvideo
     module V20191126
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-11-26'
-        @@endpoint = 'iotvideo.tencentcloudapi.com'
-        @@sdk_version = 'IOTVIDEO_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-11-26'
+            api_endpoint = 'iotvideo.tencentcloudapi.com'
+            sdk_version = 'IOTVIDEO_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 清除设备激活码

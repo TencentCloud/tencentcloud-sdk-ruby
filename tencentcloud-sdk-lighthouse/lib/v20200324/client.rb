@@ -20,9 +20,13 @@ module TencentCloud
   module Lighthouse
     module V20200324
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-03-24'
-        @@endpoint = 'lighthouse.tencentcloudapi.com'
-        @@sdk_version = 'LIGHTHOUSE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-03-24'
+            api_endpoint = 'lighthouse.tencentcloudapi.com'
+            sdk_version = 'LIGHTHOUSE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。

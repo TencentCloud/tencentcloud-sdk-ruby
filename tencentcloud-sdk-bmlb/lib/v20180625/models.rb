@@ -71,7 +71,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << BindL4Backend.new.deserialize(i)
+              bindl4backend_tmp = BindL4Backend.new
+              bindl4backend_tmp.deserialize(i)
+              @BackendSet << bindl4backend_tmp
             end
           end
           @BindType = params['BindType']
@@ -156,7 +158,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << BindL7Backend.new.deserialize(i)
+              bindl7backend_tmp = BindL7Backend.new
+              bindl7backend_tmp.deserialize(i)
+              @BackendSet << bindl7backend_tmp
             end
           end
           @BindType = params['BindType']
@@ -266,7 +270,9 @@ module TencentCloud
           unless params['ReceiverSet'].nil?
             @ReceiverSet = []
             params['ReceiverSet'].each do |i|
-              @ReceiverSet << BindTrafficMirrorReceiver.new.deserialize(i)
+              bindtrafficmirrorreceiver_tmp = BindTrafficMirrorReceiver.new
+              bindtrafficmirrorreceiver_tmp.deserialize(i)
+              @ReceiverSet << bindtrafficmirrorreceiver_tmp
             end
           end
         end
@@ -415,7 +421,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << CreateL4Listener.new.deserialize(i)
+              createl4listener_tmp = CreateL4Listener.new
+              createl4listener_tmp.deserialize(i)
+              @ListenerSet << createl4listener_tmp
             end
           end
         end
@@ -524,7 +532,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << CreateL7Listener.new.deserialize(i)
+              createl7listener_tmp = CreateL7Listener.new
+              createl7listener_tmp.deserialize(i)
+              @ListenerSet << createl7listener_tmp
             end
           end
         end
@@ -629,7 +639,9 @@ module TencentCloud
           unless params['RuleSet'].nil?
             @RuleSet = []
             params['RuleSet'].each do |i|
-              @RuleSet << CreateL7Rule.new.deserialize(i)
+              createl7rule_tmp = CreateL7Rule.new
+              createl7rule_tmp.deserialize(i)
+              @RuleSet << createl7rule_tmp
             end
           end
         end
@@ -731,7 +743,8 @@ module TencentCloud
           @Exclusive = params['Exclusive']
           @SpecifiedVips = params['SpecifiedVips']
           unless params['BzConf'].nil?
-            @BzConf = CreateLoadBalancerBzConf.new.deserialize(params['BzConf'])
+            @BzConf = CreateLoadBalancerBzConf.new
+            @BzConf.deserialize(params['BzConf'])
           end
           @IpProtocolType = params['IpProtocolType']
         end
@@ -1075,7 +1088,9 @@ module TencentCloud
           unless params['CertLoadBalancerSet'].nil?
             @CertLoadBalancerSet = []
             params['CertLoadBalancerSet'].each do |i|
-              @CertLoadBalancerSet << CertDetailLoadBalancer.new.deserialize(i)
+              certdetailloadbalancer_tmp = CertDetailLoadBalancer.new
+              certdetailloadbalancer_tmp.deserialize(i)
+              @CertLoadBalancerSet << certdetailloadbalancer_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1120,7 +1135,9 @@ module TencentCloud
           unless params['LoadBalancerSet'].nil?
             @LoadBalancerSet = []
             params['LoadBalancerSet'].each do |i|
-              @LoadBalancerSet << DevicesBindInfoLoadBalancer.new.deserialize(i)
+              devicesbindinfoloadbalancer_tmp = DevicesBindInfoLoadBalancer.new
+              devicesbindinfoloadbalancer_tmp.deserialize(i)
+              @LoadBalancerSet << devicesbindinfoloadbalancer_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1170,7 +1187,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << DescribeL4Backend.new.deserialize(i)
+              describel4backend_tmp = DescribeL4Backend.new
+              describel4backend_tmp.deserialize(i)
+              @BackendSet << describel4backend_tmp
             end
           end
         end
@@ -1194,7 +1213,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << L4Backend.new.deserialize(i)
+              l4backend_tmp = L4Backend.new
+              l4backend_tmp.deserialize(i)
+              @BackendSet << l4backend_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1243,7 +1264,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << L4ListenerInfo.new.deserialize(i)
+              l4listenerinfo_tmp = L4ListenerInfo.new
+              l4listenerinfo_tmp.deserialize(i)
+              @ListenerSet << l4listenerinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1288,7 +1311,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << L4Listener.new.deserialize(i)
+              l4listener_tmp = L4Listener.new
+              l4listener_tmp.deserialize(i)
+              @ListenerSet << l4listener_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1345,7 +1370,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << L7Backend.new.deserialize(i)
+              l7backend_tmp = L7Backend.new
+              l7backend_tmp.deserialize(i)
+              @BackendSet << l7backend_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1398,7 +1425,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << L7ListenerInfo.new.deserialize(i)
+              l7listenerinfo_tmp = L7ListenerInfo.new
+              l7listenerinfo_tmp.deserialize(i)
+              @ListenerSet << l7listenerinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1443,7 +1472,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -1471,7 +1502,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << L7ExListener.new.deserialize(i)
+              l7exlistener_tmp = L7ExListener.new
+              l7exlistener_tmp.deserialize(i)
+              @ListenerSet << l7exlistener_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1516,7 +1549,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << L7Listener.new.deserialize(i)
+              l7listener_tmp = L7Listener.new
+              l7listener_tmp.deserialize(i)
+              @ListenerSet << l7listener_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1565,7 +1600,9 @@ module TencentCloud
           unless params['RuleSet'].nil?
             @RuleSet = []
             params['RuleSet'].each do |i|
-              @RuleSet << L7Rule.new.deserialize(i)
+              l7rule_tmp = L7Rule.new
+              l7rule_tmp.deserialize(i)
+              @RuleSet << l7rule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1606,7 +1643,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << LoadBalancerPortInfoListener.new.deserialize(i)
+              loadbalancerportinfolistener_tmp = LoadBalancerPortInfoListener.new
+              loadbalancerportinfolistener_tmp.deserialize(i)
+              @ListenerSet << loadbalancerportinfolistener_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1746,7 +1785,9 @@ module TencentCloud
           unless params['LoadBalancerSet'].nil?
             @LoadBalancerSet = []
             params['LoadBalancerSet'].each do |i|
-              @LoadBalancerSet << LoadBalancer.new.deserialize(i)
+              loadbalancer_tmp = LoadBalancer.new
+              loadbalancer_tmp.deserialize(i)
+              @LoadBalancerSet << loadbalancer_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1827,7 +1868,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << TrafficMirrorListener.new.deserialize(i)
+              trafficmirrorlistener_tmp = TrafficMirrorListener.new
+              trafficmirrorlistener_tmp.deserialize(i)
+              @ListenerSet << trafficmirrorlistener_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1874,7 +1917,9 @@ module TencentCloud
           unless params['ReceiverSet'].nil?
             @ReceiverSet = []
             params['ReceiverSet'].each do |i|
-              @ReceiverSet << DescribeTrafficMirrorReceiver.new.deserialize(i)
+              describetrafficmirrorreceiver_tmp = DescribeTrafficMirrorReceiver.new
+              describetrafficmirrorreceiver_tmp.deserialize(i)
+              @ReceiverSet << describetrafficmirrorreceiver_tmp
             end
           end
         end
@@ -1898,7 +1943,9 @@ module TencentCloud
           unless params['ReceiversStatusSet'].nil?
             @ReceiversStatusSet = []
             params['ReceiversStatusSet'].each do |i|
-              @ReceiversStatusSet << TrafficMirrorReciversStatus.new.deserialize(i)
+              trafficmirrorreciversstatus_tmp = TrafficMirrorReciversStatus.new
+              trafficmirrorreciversstatus_tmp.deserialize(i)
+              @ReceiversStatusSet << trafficmirrorreciversstatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1970,7 +2017,9 @@ module TencentCloud
           unless params['ReceiverSet'].nil?
             @ReceiverSet = []
             params['ReceiverSet'].each do |i|
-              @ReceiverSet << TrafficMirrorReceiver.new.deserialize(i)
+              trafficmirrorreceiver_tmp = TrafficMirrorReceiver.new
+              trafficmirrorreceiver_tmp.deserialize(i)
+              @ReceiverSet << trafficmirrorreceiver_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2044,7 +2093,9 @@ module TencentCloud
           unless params['TrafficMirrorSet'].nil?
             @TrafficMirrorSet = []
             params['TrafficMirrorSet'].each do |i|
-              @TrafficMirrorSet << TrafficMirror.new.deserialize(i)
+              trafficmirror_tmp = TrafficMirror.new
+              trafficmirror_tmp.deserialize(i)
+              @TrafficMirrorSet << trafficmirror_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2098,7 +2149,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << DevicesBindInfoBackend.new.deserialize(i)
+              devicesbindinfobackend_tmp = DevicesBindInfoBackend.new
+              devicesbindinfobackend_tmp.deserialize(i)
+              @BackendSet << devicesbindinfobackend_tmp
             end
           end
         end
@@ -2131,7 +2184,9 @@ module TencentCloud
           unless params['RuleSet'].nil?
             @RuleSet = []
             params['RuleSet'].each do |i|
-              @RuleSet << DevicesBindInfoRule.new.deserialize(i)
+              devicesbindinforule_tmp = DevicesBindInfoRule.new
+              devicesbindinforule_tmp.deserialize(i)
+              @RuleSet << devicesbindinforule_tmp
             end
           end
         end
@@ -2183,13 +2238,17 @@ module TencentCloud
           unless params['L4ListenerSet'].nil?
             @L4ListenerSet = []
             params['L4ListenerSet'].each do |i|
-              @L4ListenerSet << DevicesBindInfoL4Listener.new.deserialize(i)
+              devicesbindinfol4listener_tmp = DevicesBindInfoL4Listener.new
+              devicesbindinfol4listener_tmp.deserialize(i)
+              @L4ListenerSet << devicesbindinfol4listener_tmp
             end
           end
           unless params['L7ListenerSet'].nil?
             @L7ListenerSet = []
             params['L7ListenerSet'].each do |i|
-              @L7ListenerSet << DevicesBindInfoL7Listener.new.deserialize(i)
+              devicesbindinfol7listener_tmp = DevicesBindInfoL7Listener.new
+              devicesbindinfol7listener_tmp.deserialize(i)
+              @L7ListenerSet << devicesbindinfol7listener_tmp
             end
           end
         end
@@ -2218,7 +2277,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << DevicesBindInfoBackend.new.deserialize(i)
+              devicesbindinfobackend_tmp = DevicesBindInfoBackend.new
+              devicesbindinfobackend_tmp.deserialize(i)
+              @BackendSet << devicesbindinfobackend_tmp
             end
           end
         end
@@ -2247,7 +2308,9 @@ module TencentCloud
           unless params['LocationSet'].nil?
             @LocationSet = []
             params['LocationSet'].each do |i|
-              @LocationSet << DevicesBindInfoLocation.new.deserialize(i)
+              devicesbindinfolocation_tmp = DevicesBindInfoLocation.new
+              devicesbindinfolocation_tmp.deserialize(i)
+              @LocationSet << devicesbindinfolocation_tmp
             end
           end
         end
@@ -2771,7 +2834,9 @@ module TencentCloud
           unless params['RuleSet'].nil?
             @RuleSet = []
             params['RuleSet'].each do |i|
-              @RuleSet << L7ListenerInfoRule.new.deserialize(i)
+              l7listenerinforule_tmp = L7ListenerInfoRule.new
+              l7listenerinforule_tmp.deserialize(i)
+              @RuleSet << l7listenerinforule_tmp
             end
           end
           @ForwardProtocol = params['ForwardProtocol']
@@ -2885,7 +2950,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << L7ListenerInfoBackend.new.deserialize(i)
+              l7listenerinfobackend_tmp = L7ListenerInfoBackend.new
+              l7listenerinfobackend_tmp.deserialize(i)
+              @BackendSet << l7listenerinfobackend_tmp
             end
           end
         end
@@ -2922,7 +2989,9 @@ module TencentCloud
           unless params['LocationSet'].nil?
             @LocationSet = []
             params['LocationSet'].each do |i|
-              @LocationSet << L7ListenerInfoLocation.new.deserialize(i)
+              l7listenerinfolocation_tmp = L7ListenerInfoLocation.new
+              l7listenerinfolocation_tmp.deserialize(i)
+              @LocationSet << l7listenerinfolocation_tmp
             end
           end
         end
@@ -2959,7 +3028,9 @@ module TencentCloud
           unless params['LocationSet'].nil?
             @LocationSet = []
             params['LocationSet'].each do |i|
-              @LocationSet << L7RulesLocation.new.deserialize(i)
+              l7ruleslocation_tmp = L7RulesLocation.new
+              l7ruleslocation_tmp.deserialize(i)
+              @LocationSet << l7ruleslocation_tmp
             end
           end
         end
@@ -3761,7 +3832,9 @@ module TencentCloud
           unless params['RuleSet'].nil?
             @RuleSet = []
             params['RuleSet'].each do |i|
-              @RuleSet << ModifyL7LocationRule.new.deserialize(i)
+              modifyl7locationrule_tmp = ModifyL7LocationRule.new
+              modifyl7locationrule_tmp.deserialize(i)
+              @RuleSet << modifyl7locationrule_tmp
             end
           end
         end
@@ -3834,7 +3907,9 @@ module TencentCloud
           unless params['ListenerSet'].nil?
             @ListenerSet = []
             params['ListenerSet'].each do |i|
-              @ListenerSet << ModifyLoadBalancerChargeModeListener.new.deserialize(i)
+              modifyloadbalancerchargemodelistener_tmp = ModifyLoadBalancerChargeModeListener.new
+              modifyloadbalancerchargemodelistener_tmp.deserialize(i)
+              @ListenerSet << modifyloadbalancerchargemodelistener_tmp
             end
           end
         end
@@ -4315,7 +4390,9 @@ module TencentCloud
           unless params['ReceiversPortStatusSet'].nil?
             @ReceiversPortStatusSet = []
             params['ReceiversPortStatusSet'].each do |i|
-              @ReceiversPortStatusSet << TrafficMirrorPortStatus.new.deserialize(i)
+              trafficmirrorportstatus_tmp = TrafficMirrorPortStatus.new
+              trafficmirrorportstatus_tmp.deserialize(i)
+              @ReceiversPortStatusSet << trafficmirrorportstatus_tmp
             end
           end
         end
@@ -4367,7 +4444,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << UnbindL4Backend.new.deserialize(i)
+              unbindl4backend_tmp = UnbindL4Backend.new
+              unbindl4backend_tmp.deserialize(i)
+              @BackendSet << unbindl4backend_tmp
             end
           end
           @BindType = params['BindType']
@@ -4448,7 +4527,9 @@ module TencentCloud
           unless params['BackendSet'].nil?
             @BackendSet = []
             params['BackendSet'].each do |i|
-              @BackendSet << UnbindL7Backend.new.deserialize(i)
+              unbindl7backend_tmp = UnbindL7Backend.new
+              unbindl7backend_tmp.deserialize(i)
+              @BackendSet << unbindl7backend_tmp
             end
           end
           @BindType = params['BindType']
@@ -4554,7 +4635,9 @@ module TencentCloud
           unless params['ReceiverSet'].nil?
             @ReceiverSet = []
             params['ReceiverSet'].each do |i|
-              @ReceiverSet << UnbindTrafficMirrorReceiver.new.deserialize(i)
+              unbindtrafficmirrorreceiver_tmp = UnbindTrafficMirrorReceiver.new
+              unbindtrafficmirrorreceiver_tmp.deserialize(i)
+              @ReceiverSet << unbindtrafficmirrorreceiver_tmp
             end
           end
         end

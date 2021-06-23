@@ -135,7 +135,9 @@ module TencentCloud
           unless params['Attributes'].nil?
             @Attributes = []
             params['Attributes'].each do |i|
-              @Attributes << DNSAttributes.new.deserialize(i)
+              dnsattributes_tmp = DNSAttributes.new
+              dnsattributes_tmp.deserialize(i)
+              @Attributes << dnsattributes_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -159,7 +161,8 @@ module TencentCloud
         def deserialize(params)
           @TemplateName = params['TemplateName']
           unless params['TemplateContent'].nil?
-            @TemplateContent = TemplateContent.new.deserialize(params['TemplateContent'])
+            @TemplateContent = TemplateContent.new
+            @TemplateContent.deserialize(params['TemplateContent'])
           end
         end
       end
@@ -432,7 +435,9 @@ module TencentCloud
           unless params['Attributes'].nil?
             @Attributes = []
             params['Attributes'].each do |i|
-              @Attributes << DNSAttributes.new.deserialize(i)
+              dnsattributes_tmp = DNSAttributes.new
+              dnsattributes_tmp.deserialize(i)
+              @Attributes << dnsattributes_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -471,7 +476,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TemplateContent'].nil?
-            @TemplateContent = TemplateContent.new.deserialize(params['TemplateContent'])
+            @TemplateContent = TemplateContent.new
+            @TemplateContent.deserialize(params['TemplateContent'])
           end
           @RequestId = params['RequestId']
         end
@@ -527,7 +533,9 @@ module TencentCloud
           unless params['EmailStatusList'].nil?
             @EmailStatusList = []
             params['EmailStatusList'].each do |i|
-              @EmailStatusList << SendEmailStatus.new.deserialize(i)
+              sendemailstatus_tmp = SendEmailStatus.new
+              sendemailstatus_tmp.deserialize(i)
+              @EmailStatusList << sendemailstatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -583,11 +591,14 @@ module TencentCloud
           unless params['DailyVolumes'].nil?
             @DailyVolumes = []
             params['DailyVolumes'].each do |i|
-              @DailyVolumes << Volume.new.deserialize(i)
+              volume_tmp = Volume.new
+              volume_tmp.deserialize(i)
+              @DailyVolumes << volume_tmp
             end
           end
           unless params['OverallVolume'].nil?
-            @OverallVolume = Volume.new.deserialize(params['OverallVolume'])
+            @OverallVolume = Volume.new
+            @OverallVolume.deserialize(params['OverallVolume'])
           end
           @RequestId = params['RequestId']
         end
@@ -650,7 +661,9 @@ module TencentCloud
           unless params['BlackList'].nil?
             @BlackList = []
             params['BlackList'].each do |i|
-              @BlackList << BlackEmailAddress.new.deserialize(i)
+              blackemailaddress_tmp = BlackEmailAddress.new
+              blackemailaddress_tmp.deserialize(i)
+              @BlackList << blackemailaddress_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -688,7 +701,9 @@ module TencentCloud
           unless params['EmailSenders'].nil?
             @EmailSenders = []
             params['EmailSenders'].each do |i|
-              @EmailSenders << EmailSender.new.deserialize(i)
+              emailsender_tmp = EmailSender.new
+              emailsender_tmp.deserialize(i)
+              @EmailSenders << emailsender_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -724,7 +739,9 @@ module TencentCloud
           unless params['EmailIdentities'].nil?
             @EmailIdentities = []
             params['EmailIdentities'].each do |i|
-              @EmailIdentities << EmailIdentity.new.deserialize(i)
+              emailidentity_tmp = EmailIdentity.new
+              emailidentity_tmp.deserialize(i)
+              @EmailIdentities << emailidentity_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -772,7 +789,9 @@ module TencentCloud
           unless params['TemplatesMetadata'].nil?
             @TemplatesMetadata = []
             params['TemplatesMetadata'].each do |i|
-              @TemplatesMetadata << TemplatesMetadata.new.deserialize(i)
+              templatesmetadata_tmp = TemplatesMetadata.new
+              templatesmetadata_tmp.deserialize(i)
+              @TemplatesMetadata << templatesmetadata_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -817,15 +836,19 @@ module TencentCloud
           @Subject = params['Subject']
           @ReplyToAddresses = params['ReplyToAddresses']
           unless params['Template'].nil?
-            @Template = Template.new.deserialize(params['Template'])
+            @Template = Template.new
+            @Template.deserialize(params['Template'])
           end
           unless params['Simple'].nil?
-            @Simple = Simple.new.deserialize(params['Simple'])
+            @Simple = Simple.new
+            @Simple.deserialize(params['Simple'])
           end
           unless params['Attachments'].nil?
             @Attachments = []
             params['Attachments'].each do |i|
-              @Attachments << Attachment.new.deserialize(i)
+              attachment_tmp = Attachment.new
+              attachment_tmp.deserialize(i)
+              @Attachments << attachment_tmp
             end
           end
         end
@@ -1072,7 +1095,9 @@ module TencentCloud
           unless params['Attributes'].nil?
             @Attributes = []
             params['Attributes'].each do |i|
-              @Attributes << DNSAttributes.new.deserialize(i)
+              dnsattributes_tmp = DNSAttributes.new
+              dnsattributes_tmp.deserialize(i)
+              @Attributes << dnsattributes_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1098,7 +1123,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TemplateContent'].nil?
-            @TemplateContent = TemplateContent.new.deserialize(params['TemplateContent'])
+            @TemplateContent = TemplateContent.new
+            @TemplateContent.deserialize(params['TemplateContent'])
           end
           @TemplateID = params['TemplateID']
           @TemplateName = params['TemplateName']

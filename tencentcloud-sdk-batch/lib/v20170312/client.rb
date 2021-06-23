@@ -20,9 +20,13 @@ module TencentCloud
   module Batch
     module V20170312
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2017-03-12'
-        @@endpoint = 'batch.tencentcloudapi.com'
-        @@sdk_version = 'BATCH_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2017-03-12'
+            api_endpoint = 'batch.tencentcloudapi.com'
+            sdk_version = 'BATCH_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 此接口可将已存在实例添加到计算环境中。

@@ -20,9 +20,13 @@ module TencentCloud
   module Aa
     module V20200224
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-02-24'
-        @@endpoint = 'aa.tencentcloudapi.com'
-        @@sdk_version = 'AA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-02-24'
+            api_endpoint = 'aa.tencentcloudapi.com'
+            sdk_version = 'AA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 活动防刷、注册保护、登录保护等营销产品的高级版本

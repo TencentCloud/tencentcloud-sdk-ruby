@@ -20,9 +20,13 @@ module TencentCloud
   module Hcm
     module V20181106
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-11-06'
-        @@endpoint = 'hcm.tencentcloudapi.com'
-        @@sdk_version = 'HCM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-11-06'
+            api_endpoint = 'hcm.tencentcloudapi.com'
+            sdk_version = 'HCM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。

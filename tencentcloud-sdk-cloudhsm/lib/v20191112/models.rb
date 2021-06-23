@@ -148,7 +148,9 @@ module TencentCloud
           unless params['SubnetList'].nil?
             @SubnetList = []
             params['SubnetList'].each do |i|
-              @SubnetList << Subnet.new.deserialize(i)
+              subnet_tmp = Subnet.new
+              subnet_tmp.deserialize(i)
+              @SubnetList << subnet_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -184,7 +186,9 @@ module TencentCloud
           unless params['DeviceTypes'].nil?
             @DeviceTypes = []
             params['DeviceTypes'].each do |i|
-              @DeviceTypes << DeviceInfo.new.deserialize(i)
+              deviceinfo_tmp = DeviceInfo.new
+              deviceinfo_tmp.deserialize(i)
+              @DeviceTypes << deviceinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -237,7 +241,9 @@ module TencentCloud
           unless params['SgList'].nil?
             @SgList = []
             params['SgList'].each do |i|
-              @SgList << SgUnit.new.deserialize(i)
+              sgunit_tmp = SgUnit.new
+              sgunit_tmp.deserialize(i)
+              @SgList << sgunit_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -284,7 +290,9 @@ module TencentCloud
           unless params['SgRules'].nil?
             @SgRules = []
             params['SgRules'].each do |i|
-              @SgRules << UsgRuleDetail.new.deserialize(i)
+              usgruledetail_tmp = UsgRuleDetail.new
+              usgruledetail_tmp.deserialize(i)
+              @SgRules << usgruledetail_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -339,7 +347,9 @@ module TencentCloud
           unless params['VpcList'].nil?
             @VpcList = []
             params['VpcList'].each do |i|
-              @VpcList << Vpc.new.deserialize(i)
+              vpc_tmp = Vpc.new
+              vpc_tmp.deserialize(i)
+              @VpcList << vpc_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -469,7 +479,9 @@ module TencentCloud
           unless params['SgList'].nil?
             @SgList = []
             params['SgList'].each do |i|
-              @SgList << UsgRuleDetail.new.deserialize(i)
+              usgruledetail_tmp = UsgRuleDetail.new
+              usgruledetail_tmp.deserialize(i)
+              @SgList << usgruledetail_tmp
             end
           end
           @SubnetName = params['SubnetName']
@@ -483,7 +495,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
           @RenewFlag = params['RenewFlag']
@@ -522,7 +536,9 @@ module TencentCloud
           unless params['TagFilters'].nil?
             @TagFilters = []
             params['TagFilters'].each do |i|
-              @TagFilters << TagFilter.new.deserialize(i)
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
             end
           end
           @Manufacturer = params['Manufacturer']
@@ -552,7 +568,9 @@ module TencentCloud
           unless params['VsmList'].nil?
             @VsmList = []
             params['VsmList'].each do |i|
-              @VsmList << ResourceInfo.new.deserialize(i)
+              resourceinfo_tmp = ResourceInfo.new
+              resourceinfo_tmp.deserialize(i)
+              @VsmList << resourceinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -578,7 +596,9 @@ module TencentCloud
           unless params['HsmTypes'].nil?
             @HsmTypes = []
             params['HsmTypes'].each do |i|
-              @HsmTypes << HsmInfo.new.deserialize(i)
+              hsminfo_tmp = HsmInfo.new
+              hsminfo_tmp.deserialize(i)
+              @HsmTypes << hsminfo_tmp
             end
           end
         end
@@ -603,7 +623,9 @@ module TencentCloud
           unless params['VsmTypes'].nil?
             @VsmTypes = []
             params['VsmTypes'].each do |i|
-              @VsmTypes << VsmInfo.new.deserialize(i)
+              vsminfo_tmp = VsmInfo.new
+              vsminfo_tmp.deserialize(i)
+              @VsmTypes << vsminfo_tmp
             end
           end
         end
@@ -854,7 +876,9 @@ module TencentCloud
           unless params['SgList'].nil?
             @SgList = []
             params['SgList'].each do |i|
-              @SgList << SgUnit.new.deserialize(i)
+              sgunit_tmp = SgUnit.new
+              sgunit_tmp.deserialize(i)
+              @SgList << sgunit_tmp
             end
           end
           @SubnetName = params['SubnetName']
@@ -866,7 +890,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
           @Manufacturer = params['Manufacturer']
@@ -1094,13 +1120,17 @@ module TencentCloud
           unless params['InBound'].nil?
             @InBound = []
             params['InBound'].each do |i|
-              @InBound << UsgPolicy.new.deserialize(i)
+              usgpolicy_tmp = UsgPolicy.new
+              usgpolicy_tmp.deserialize(i)
+              @InBound << usgpolicy_tmp
             end
           end
           unless params['OutBound'].nil?
             @OutBound = []
             params['OutBound'].each do |i|
-              @OutBound << UsgPolicy.new.deserialize(i)
+              usgpolicy_tmp = UsgPolicy.new
+              usgpolicy_tmp.deserialize(i)
+              @OutBound << usgpolicy_tmp
             end
           end
           @SgId = params['SgId']

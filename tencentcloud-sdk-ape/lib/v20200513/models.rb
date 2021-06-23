@@ -136,7 +136,9 @@ module TencentCloud
           unless params['ImageInfos'].nil?
             @ImageInfos = []
             params['ImageInfos'].each do |i|
-              @ImageInfos << ImageInfo.new.deserialize(i)
+              imageinfo_tmp = ImageInfo.new
+              imageinfo_tmp.deserialize(i)
+              @ImageInfos << imageinfo_tmp
             end
           end
         end
@@ -164,7 +166,9 @@ module TencentCloud
           unless params['DownloadInfos'].nil?
             @DownloadInfos = []
             params['DownloadInfos'].each do |i|
-              @DownloadInfos << DownloadInfo.new.deserialize(i)
+              downloadinfo_tmp = DownloadInfo.new
+              downloadinfo_tmp.deserialize(i)
+              @DownloadInfos << downloadinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -261,7 +265,9 @@ module TencentCloud
           unless params['Users'].nil?
             @Users = []
             params['Users'].each do |i|
-              @Users << AuthInfo.new.deserialize(i)
+              authinfo_tmp = AuthInfo.new
+              authinfo_tmp.deserialize(i)
+              @Users << authinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -324,7 +330,9 @@ module TencentCloud
           unless params['DownloadInfos'].nil?
             @DownloadInfos = []
             params['DownloadInfos'].each do |i|
-              @DownloadInfos << DownloadInfo.new.deserialize(i)
+              downloadinfo_tmp = DownloadInfo.new
+              downloadinfo_tmp.deserialize(i)
+              @DownloadInfos << downloadinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -411,7 +419,9 @@ module TencentCloud
           unless params['Marshals'].nil?
             @Marshals = []
             params['Marshals'].each do |i|
-              @Marshals << ImageMarshal.new.deserialize(i)
+              imagemarshal_tmp = ImageMarshal.new
+              imagemarshal_tmp.deserialize(i)
+              @Marshals << imagemarshal_tmp
             end
           end
           @Width = params['Width']
@@ -495,7 +505,9 @@ module TencentCloud
           unless params['Items'].nil?
             @Items = []
             params['Items'].each do |i|
-              @Items << ImageItem.new.deserialize(i)
+              imageitem_tmp = ImageItem.new
+              imageitem_tmp.deserialize(i)
+              @Items << imageitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -539,7 +551,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ImageInfo'].nil?
-            @ImageInfo = ImageInfo.new.deserialize(params['ImageInfo'])
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
           end
           @ImageUrl = params['ImageUrl']
           @ImageThumbUrl = params['ImageThumbUrl']

@@ -44,7 +44,9 @@ module TencentCloud
           unless params['DataSet'].nil?
             @DataSet = []
             params['DataSet'].each do |i|
-              @DataSet << AuditLogInfo.new.deserialize(i)
+              auditloginfo_tmp = AuditLogInfo.new
+              auditloginfo_tmp.deserialize(i)
+              @DataSet << auditloginfo_tmp
             end
           end
         end
@@ -165,13 +167,17 @@ module TencentCloud
           unless params['TagSet'].nil?
             @TagSet = []
             params['TagSet'].each do |i|
-              @TagSet << TagInfo.new.deserialize(i)
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagSet << taginfo_tmp
             end
           end
           unless params['VpcSet'].nil?
             @VpcSet = []
             params['VpcSet'].each do |i|
-              @VpcSet << VpcInfo.new.deserialize(i)
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcSet << vpcinfo_tmp
             end
           end
           @Remark = params['Remark']
@@ -179,7 +185,9 @@ module TencentCloud
           unless params['Vpcs'].nil?
             @Vpcs = []
             params['Vpcs'].each do |i|
-              @Vpcs << VpcInfo.new.deserialize(i)
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @Vpcs << vpcinfo_tmp
             end
           end
         end
@@ -333,7 +341,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @TimeRangeEnd = params['TimeRangeEnd']
@@ -360,7 +370,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << AuditLog.new.deserialize(i)
+              auditlog_tmp = AuditLog.new
+              auditlog_tmp.deserialize(i)
+              @Data << auditlog_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -408,7 +420,9 @@ module TencentCloud
           unless params['FlowUsage'].nil?
             @FlowUsage = []
             params['FlowUsage'].each do |i|
-              @FlowUsage << FlowUsage.new.deserialize(i)
+              flowusage_tmp = FlowUsage.new
+              flowusage_tmp.deserialize(i)
+              @FlowUsage << flowusage_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -438,7 +452,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -466,7 +482,9 @@ module TencentCloud
           unless params['PrivateZoneSet'].nil?
             @PrivateZoneSet = []
             params['PrivateZoneSet'].each do |i|
-              @PrivateZoneSet << PrivateZone.new.deserialize(i)
+              privatezone_tmp = PrivateZone.new
+              privatezone_tmp.deserialize(i)
+              @PrivateZoneSet << privatezone_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -498,7 +516,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Offset = params['Offset']
@@ -528,7 +548,9 @@ module TencentCloud
           unless params['RecordSet'].nil?
             @RecordSet = []
             params['RecordSet'].each do |i|
-              @RecordSet << PrivateZoneRecord.new.deserialize(i)
+              privatezonerecord_tmp = PrivateZoneRecord.new
+              privatezonerecord_tmp.deserialize(i)
+              @RecordSet << privatezonerecord_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -567,7 +589,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['PrivateZone'].nil?
-            @PrivateZone = PrivateZone.new.deserialize(params['PrivateZone'])
+            @PrivateZone = PrivateZone.new
+            @PrivateZone.deserialize(params['PrivateZone'])
           end
           @RequestId = params['RequestId']
         end
@@ -626,7 +649,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @TimeRangeEnd = params['TimeRangeEnd']
@@ -654,7 +679,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << MetricData.new.deserialize(i)
+              metricdata_tmp = MetricData.new
+              metricdata_tmp.deserialize(i)
+              @Data << metricdata_tmp
             end
           end
           @Interval = params['Interval']
@@ -729,7 +756,9 @@ module TencentCloud
           unless params['DataSet'].nil?
             @DataSet = []
             params['DataSet'].each do |i|
-              @DataSet << DatePoint.new.deserialize(i)
+              datepoint_tmp = DatePoint.new
+              datepoint_tmp.deserialize(i)
+              @DataSet << datepoint_tmp
             end
           end
         end
@@ -854,7 +883,9 @@ module TencentCloud
           unless params['VpcSet'].nil?
             @VpcSet = []
             params['VpcSet'].each do |i|
-              @VpcSet << VpcInfo.new.deserialize(i)
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcSet << vpcinfo_tmp
             end
           end
         end
@@ -882,7 +913,9 @@ module TencentCloud
           unless params['VpcSet'].nil?
             @VpcSet = []
             params['VpcSet'].each do |i|
-              @VpcSet << VpcInfo.new.deserialize(i)
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcSet << vpcinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -942,7 +975,9 @@ module TencentCloud
           unless params['VpcSet'].nil?
             @VpcSet = []
             params['VpcSet'].each do |i|
-              @VpcSet << VpcInfo.new.deserialize(i)
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcSet << vpcinfo_tmp
             end
           end
           @Status = params['Status']
@@ -950,7 +985,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagInfo.new.deserialize(i)
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
             end
           end
         end

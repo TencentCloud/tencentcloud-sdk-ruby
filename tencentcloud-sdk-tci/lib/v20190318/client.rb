@@ -20,9 +20,13 @@ module TencentCloud
   module Tci
     module V20190318
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-03-18'
-        @@endpoint = 'tci.tencentcloudapi.com'
-        @@sdk_version = 'TCI_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-03-18'
+            api_endpoint = 'tci.tencentcloudapi.com'
+            sdk_version = 'TCI_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 提供 AI 助教基础版本功能接口

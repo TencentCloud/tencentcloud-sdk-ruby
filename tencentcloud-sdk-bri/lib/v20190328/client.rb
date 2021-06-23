@@ -20,9 +20,13 @@ module TencentCloud
   module Bri
     module V20190328
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-03-28'
-        @@endpoint = 'bri.tencentcloudapi.com'
-        @@sdk_version = 'BRI_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-03-28'
+            api_endpoint = 'bri.tencentcloudapi.com'
+            sdk_version = 'BRI_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 输入业务名 (bri_num, bri_dev, bri_ip, bri_apk, bri_url, bri_social 六种之一)  及其 相应字段, 获取业务风险分数和标签。

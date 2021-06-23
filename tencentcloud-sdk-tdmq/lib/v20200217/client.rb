@@ -20,9 +20,13 @@ module TencentCloud
   module Tdmq
     module V20200217
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-02-17'
-        @@endpoint = 'tdmq.tencentcloudapi.com'
-        @@sdk_version = 'TDMQ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-02-17'
+            api_endpoint = 'tdmq.tencentcloudapi.com'
+            sdk_version = 'TDMQ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 根据提供的 MessageID 确认指定 topic 中的消息

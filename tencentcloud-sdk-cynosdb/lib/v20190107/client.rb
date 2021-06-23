@@ -20,9 +20,13 @@ module TencentCloud
   module Cynosdb
     module V20190107
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-01-07'
-        @@endpoint = 'cynosdb.tencentcloudapi.com'
-        @@sdk_version = 'CYNOSDB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-01-07'
+            api_endpoint = 'cynosdb.tencentcloudapi.com'
+            sdk_version = 'CYNOSDB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（AddInstances）用于集群添加实例

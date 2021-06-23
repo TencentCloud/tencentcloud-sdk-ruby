@@ -20,9 +20,13 @@ module TencentCloud
   module Ses
     module V20201002
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-10-02'
-        @@endpoint = 'ses.tencentcloudapi.com'
-        @@sdk_version = 'SES_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-10-02'
+            api_endpoint = 'ses.tencentcloudapi.com'
+            sdk_version = 'SES_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 在验证了发信域名之后，您需要一个发信地址来发送邮件。例如发信域名是mail.qcloud.com，那么发信地址可以为 service@mail.qcloud.com。如果您想要收件人在收件箱列表中显示您的别名，例如"腾讯云邮件通知"。那么发信地址为： 别名 空格 尖括号 邮箱地址。请注意中间需要有空格

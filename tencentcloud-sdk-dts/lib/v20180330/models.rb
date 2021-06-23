@@ -48,7 +48,8 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @SubscribeObjectType = params['SubscribeObjectType']
           unless params['Objects'].nil?
-            @Objects = SubscribeObject.new.deserialize(params['Objects'])
+            @Objects = SubscribeObject.new
+            @Objects.deserialize(params['Objects'])
           end
           @UniqSubnetId = params['UniqSubnetId']
           @Vport = params['Vport']
@@ -213,17 +214,20 @@ module TencentCloud
         def deserialize(params)
           @JobName = params['JobName']
           unless params['MigrateOption'].nil?
-            @MigrateOption = MigrateOption.new.deserialize(params['MigrateOption'])
+            @MigrateOption = MigrateOption.new
+            @MigrateOption.deserialize(params['MigrateOption'])
           end
           @SrcDatabaseType = params['SrcDatabaseType']
           @SrcAccessType = params['SrcAccessType']
           unless params['SrcInfo'].nil?
-            @SrcInfo = SrcInfo.new.deserialize(params['SrcInfo'])
+            @SrcInfo = SrcInfo.new
+            @SrcInfo.deserialize(params['SrcInfo'])
           end
           @DstDatabaseType = params['DstDatabaseType']
           @DstAccessType = params['DstAccessType']
           unless params['DstInfo'].nil?
-            @DstInfo = DstInfo.new.deserialize(params['DstInfo'])
+            @DstInfo = DstInfo.new
+            @DstInfo.deserialize(params['DstInfo'])
           end
           @DatabaseInfo = params['DatabaseInfo']
         end
@@ -284,7 +288,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagItem.new.deserialize(i)
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @Tags << tagitem_tmp
             end
           end
         end
@@ -383,17 +389,20 @@ module TencentCloud
         def deserialize(params)
           @JobName = params['JobName']
           unless params['SyncOption'].nil?
-            @SyncOption = SyncOption.new.deserialize(params['SyncOption'])
+            @SyncOption = SyncOption.new
+            @SyncOption.deserialize(params['SyncOption'])
           end
           @SrcDatabaseType = params['SrcDatabaseType']
           @SrcAccessType = params['SrcAccessType']
           unless params['SrcInfo'].nil?
-            @SrcInfo = SyncInstanceInfo.new.deserialize(params['SrcInfo'])
+            @SrcInfo = SyncInstanceInfo.new
+            @SrcInfo.deserialize(params['SrcInfo'])
           end
           @DstDatabaseType = params['DstDatabaseType']
           @DstAccessType = params['DstAccessType']
           unless params['DstInfo'].nil?
-            @DstInfo = SyncInstanceInfo.new.deserialize(params['DstInfo'])
+            @DstInfo = SyncInstanceInfo.new
+            @DstInfo.deserialize(params['DstInfo'])
           end
           @DatabaseInfo = params['DatabaseInfo']
         end
@@ -633,7 +642,9 @@ module TencentCloud
           unless params['JobList'].nil?
             @JobList = []
             params['JobList'].each do |i|
-              @JobList << MigrateJobInfo.new.deserialize(i)
+              migratejobinfo_tmp = MigrateJobInfo.new
+              migratejobinfo_tmp.deserialize(i)
+              @JobList << migratejobinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -673,7 +684,9 @@ module TencentCloud
           unless params['Items'].nil?
             @Items = []
             params['Items'].each do |i|
-              @Items << SubscribeRegionConf.new.deserialize(i)
+              subscriberegionconf_tmp = SubscribeRegionConf.new
+              subscriberegionconf_tmp.deserialize(i)
+              @Items << subscriberegionconf_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -812,7 +825,9 @@ module TencentCloud
           unless params['SubscribeObjects'].nil?
             @SubscribeObjects = []
             params['SubscribeObjects'].each do |i|
-              @SubscribeObjects << SubscribeObject.new.deserialize(i)
+              subscribeobject_tmp = SubscribeObject.new
+              subscribeobject_tmp.deserialize(i)
+              @SubscribeObjects << subscribeobject_tmp
             end
           end
           @ModifyTime = params['ModifyTime']
@@ -820,7 +835,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagItem.new.deserialize(i)
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @Tags << tagitem_tmp
             end
           end
           @AutoRenewFlag = params['AutoRenewFlag']
@@ -890,7 +907,9 @@ module TencentCloud
           unless params['TagFilters'].nil?
             @TagFilters = []
             params['TagFilters'].each do |i|
-              @TagFilters << TagFilter.new.deserialize(i)
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
             end
           end
           @SubscribeVersion = params['SubscribeVersion']
@@ -919,7 +938,9 @@ module TencentCloud
           unless params['Items'].nil?
             @Items = []
             params['Items'].each do |i|
-              @Items << SubscribeInfo.new.deserialize(i)
+              subscribeinfo_tmp = SubscribeInfo.new
+              subscribeinfo_tmp.deserialize(i)
+              @Items << subscribeinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -975,7 +996,9 @@ module TencentCloud
           unless params['StepInfo'].nil?
             @StepInfo = []
             params['StepInfo'].each do |i|
-              @StepInfo << SyncCheckStepInfo.new.deserialize(i)
+              synccheckstepinfo_tmp = SyncCheckStepInfo.new
+              synccheckstepinfo_tmp.deserialize(i)
+              @StepInfo << synccheckstepinfo_tmp
             end
           end
           @CheckFlag = params['CheckFlag']
@@ -1041,7 +1064,9 @@ module TencentCloud
           unless params['JobList'].nil?
             @JobList = []
             params['JobList'].each do |i|
-              @JobList << SyncJobInfo.new.deserialize(i)
+              syncjobinfo_tmp = SyncJobInfo.new
+              syncjobinfo_tmp.deserialize(i)
+              @JobList << syncjobinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1179,7 +1204,9 @@ module TencentCloud
           unless params['StepInfo'].nil?
             @StepInfo = []
             params['StepInfo'].each do |i|
-              @StepInfo << MigrateStepDetailInfo.new.deserialize(i)
+              migratestepdetailinfo_tmp = MigrateStepDetailInfo.new
+              migratestepdetailinfo_tmp.deserialize(i)
+              @StepInfo << migratestepdetailinfo_tmp
             end
           end
         end
@@ -1245,17 +1272,20 @@ module TencentCloud
           @JobId = params['JobId']
           @JobName = params['JobName']
           unless params['MigrateOption'].nil?
-            @MigrateOption = MigrateOption.new.deserialize(params['MigrateOption'])
+            @MigrateOption = MigrateOption.new
+            @MigrateOption.deserialize(params['MigrateOption'])
           end
           @SrcDatabaseType = params['SrcDatabaseType']
           @SrcAccessType = params['SrcAccessType']
           unless params['SrcInfo'].nil?
-            @SrcInfo = SrcInfo.new.deserialize(params['SrcInfo'])
+            @SrcInfo = SrcInfo.new
+            @SrcInfo.deserialize(params['SrcInfo'])
           end
           @DstDatabaseType = params['DstDatabaseType']
           @DstAccessType = params['DstAccessType']
           unless params['DstInfo'].nil?
-            @DstInfo = DstInfo.new.deserialize(params['DstInfo'])
+            @DstInfo = DstInfo.new
+            @DstInfo.deserialize(params['DstInfo'])
           end
           @DatabaseInfo = params['DatabaseInfo']
           @CreateTime = params['CreateTime']
@@ -1263,12 +1293,15 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Status = params['Status']
           unless params['Detail'].nil?
-            @Detail = MigrateDetailInfo.new.deserialize(params['Detail'])
+            @Detail = MigrateDetailInfo.new
+            @Detail.deserialize(params['Detail'])
           end
           unless params['ErrorInfo'].nil?
             @ErrorInfo = []
             params['ErrorInfo'].each do |i|
-              @ErrorInfo << ErrorInfo.new.deserialize(i)
+              errorinfo_tmp = ErrorInfo.new
+              errorinfo_tmp.deserialize(i)
+              @ErrorInfo << errorinfo_tmp
             end
           end
         end
@@ -1330,7 +1363,8 @@ module TencentCloud
           @IsOverrideRoot = params['IsOverrideRoot']
           @ExternParams = params['ExternParams']
           unless params['ConsistencyParams'].nil?
-            @ConsistencyParams = ConsistencyParams.new.deserialize(params['ConsistencyParams'])
+            @ConsistencyParams = ConsistencyParams.new
+            @ConsistencyParams.deserialize(params['ConsistencyParams'])
           end
         end
       end
@@ -1411,15 +1445,18 @@ module TencentCloud
           @JobId = params['JobId']
           @JobName = params['JobName']
           unless params['MigrateOption'].nil?
-            @MigrateOption = MigrateOption.new.deserialize(params['MigrateOption'])
+            @MigrateOption = MigrateOption.new
+            @MigrateOption.deserialize(params['MigrateOption'])
           end
           @SrcAccessType = params['SrcAccessType']
           unless params['SrcInfo'].nil?
-            @SrcInfo = SrcInfo.new.deserialize(params['SrcInfo'])
+            @SrcInfo = SrcInfo.new
+            @SrcInfo.deserialize(params['SrcInfo'])
           end
           @DstAccessType = params['DstAccessType']
           unless params['DstInfo'].nil?
-            @DstInfo = DstInfo.new.deserialize(params['DstInfo'])
+            @DstInfo = DstInfo.new
+            @DstInfo.deserialize(params['DstInfo'])
           end
           @DatabaseInfo = params['DatabaseInfo']
         end
@@ -1572,7 +1609,9 @@ module TencentCloud
           unless params['Objects'].nil?
             @Objects = []
             params['Objects'].each do |i|
-              @Objects << SubscribeObject.new.deserialize(i)
+              subscribeobject_tmp = SubscribeObject.new
+              subscribeobject_tmp.deserialize(i)
+              @Objects << subscribeobject_tmp
             end
           end
         end
@@ -1668,7 +1707,8 @@ module TencentCloud
           @JobId = params['JobId']
           @JobName = params['JobName']
           unless params['SyncOption'].nil?
-            @SyncOption = SyncOption.new.deserialize(params['SyncOption'])
+            @SyncOption = SyncOption.new
+            @SyncOption.deserialize(params['SyncOption'])
           end
           @DatabaseInfo = params['DatabaseInfo']
         end
@@ -2035,7 +2075,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagItem.new.deserialize(i)
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @Tags << tagitem_tmp
             end
           end
           @AutoRenewFlag = params['AutoRenewFlag']
@@ -2123,7 +2165,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DstInfo'].nil?
-            @DstInfo = SyncInstanceInfo.new.deserialize(params['DstInfo'])
+            @DstInfo = SyncInstanceInfo.new
+            @DstInfo.deserialize(params['DstInfo'])
           end
           @DatabaseType = params['DatabaseType']
         end
@@ -2216,7 +2259,9 @@ module TencentCloud
           unless params['StepInfo'].nil?
             @StepInfo = []
             params['StepInfo'].each do |i|
-              @StepInfo << SyncStepDetailInfo.new.deserialize(i)
+              syncstepdetailinfo_tmp = SyncStepDetailInfo.new
+              syncstepdetailinfo_tmp.deserialize(i)
+              @StepInfo << syncstepdetailinfo_tmp
             end
           end
         end
@@ -2299,20 +2344,24 @@ module TencentCloud
           @JobId = params['JobId']
           @JobName = params['JobName']
           unless params['SyncOption'].nil?
-            @SyncOption = SyncOption.new.deserialize(params['SyncOption'])
+            @SyncOption = SyncOption.new
+            @SyncOption.deserialize(params['SyncOption'])
           end
           @SrcAccessType = params['SrcAccessType']
           @SrcDatabaseType = params['SrcDatabaseType']
           unless params['SrcInfo'].nil?
-            @SrcInfo = SyncInstanceInfo.new.deserialize(params['SrcInfo'])
+            @SrcInfo = SyncInstanceInfo.new
+            @SrcInfo.deserialize(params['SrcInfo'])
           end
           @DstAccessType = params['DstAccessType']
           @DstDatabaseType = params['DstDatabaseType']
           unless params['DstInfo'].nil?
-            @DstInfo = SyncInstanceInfo.new.deserialize(params['DstInfo'])
+            @DstInfo = SyncInstanceInfo.new
+            @DstInfo.deserialize(params['DstInfo'])
           end
           unless params['Detail'].nil?
-            @Detail = SyncDetailInfo.new.deserialize(params['Detail'])
+            @Detail = SyncDetailInfo.new
+            @Detail.deserialize(params['Detail'])
           end
           @Status = params['Status']
           @DatabaseInfo = params['DatabaseInfo']

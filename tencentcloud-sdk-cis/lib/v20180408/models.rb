@@ -67,7 +67,9 @@ module TencentCloud
           unless params['EnvironmentVars'].nil?
             @EnvironmentVars = []
             params['EnvironmentVars'].each do |i|
-              @EnvironmentVars << EnvironmentVar.new.deserialize(i)
+              environmentvar_tmp = EnvironmentVar.new
+              environmentvar_tmp.deserialize(i)
+              @EnvironmentVars << environmentvar_tmp
             end
           end
           @Image = params['Image']
@@ -76,10 +78,12 @@ module TencentCloud
           @Memory = params['Memory']
           @RestartCount = params['RestartCount']
           unless params['CurrentState'].nil?
-            @CurrentState = ContainerState.new.deserialize(params['CurrentState'])
+            @CurrentState = ContainerState.new
+            @CurrentState.deserialize(params['CurrentState'])
           end
           unless params['PreviousState'].nil?
-            @PreviousState = ContainerState.new.deserialize(params['PreviousState'])
+            @PreviousState = ContainerState.new
+            @PreviousState.deserialize(params['PreviousState'])
           end
           @WorkingDir = params['WorkingDir']
           @ContainerId = params['ContainerId']
@@ -148,7 +152,9 @@ module TencentCloud
           unless params['Containers'].nil?
             @Containers = []
             params['Containers'].each do |i|
-              @Containers << Container.new.deserialize(i)
+              container_tmp = Container.new
+              container_tmp.deserialize(i)
+              @Containers << container_tmp
             end
           end
           @RestartPolicy = params['RestartPolicy']
@@ -254,7 +260,9 @@ module TencentCloud
           unless params['Containers'].nil?
             @Containers = []
             params['Containers'].each do |i|
-              @Containers << Container.new.deserialize(i)
+              container_tmp = Container.new
+              container_tmp.deserialize(i)
+              @Containers << container_tmp
             end
           end
         end
@@ -350,7 +358,9 @@ module TencentCloud
           unless params['EventList'].nil?
             @EventList = []
             params['EventList'].each do |i|
-              @EventList << Event.new.deserialize(i)
+              event_tmp = Event.new
+              event_tmp.deserialize(i)
+              @EventList << event_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -389,7 +399,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ContainerInstance'].nil?
-            @ContainerInstance = ContainerInstance.new.deserialize(params['ContainerInstance'])
+            @ContainerInstance = ContainerInstance.new
+            @ContainerInstance.deserialize(params['ContainerInstance'])
           end
           @RequestId = params['RequestId']
         end
@@ -421,7 +432,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -448,7 +461,9 @@ module TencentCloud
           unless params['ContainerInstanceList'].nil?
             @ContainerInstanceList = []
             params['ContainerInstanceList'].each do |i|
-              @ContainerInstanceList << ContainerInstance.new.deserialize(i)
+              containerinstance_tmp = ContainerInstance.new
+              containerinstance_tmp.deserialize(i)
+              @ContainerInstanceList << containerinstance_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -502,7 +517,9 @@ module TencentCloud
           unless params['ContainerLogList'].nil?
             @ContainerLogList = []
             params['ContainerLogList'].each do |i|
-              @ContainerLogList << ContainerLog.new.deserialize(i)
+              containerlog_tmp = ContainerLog.new
+              containerlog_tmp.deserialize(i)
+              @ContainerLogList << containerlog_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -625,7 +642,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Price'].nil?
-            @Price = Price.new.deserialize(params['Price'])
+            @Price = Price.new
+            @Price.deserialize(params['Price'])
           end
           @RequestId = params['RequestId']
         end

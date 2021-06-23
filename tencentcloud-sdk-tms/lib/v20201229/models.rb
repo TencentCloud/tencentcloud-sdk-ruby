@@ -153,10 +153,12 @@ module TencentCloud
           @BizType = params['BizType']
           @DataId = params['DataId']
           unless params['User'].nil?
-            @User = User.new.deserialize(params['User'])
+            @User = User.new
+            @User.deserialize(params['User'])
           end
           unless params['Device'].nil?
-            @Device = Device.new.deserialize(params['Device'])
+            @Device = Device.new
+            @Device.deserialize(params['Device'])
           end
         end
       end
@@ -213,13 +215,17 @@ module TencentCloud
           unless params['DetailResults'].nil?
             @DetailResults = []
             params['DetailResults'].each do |i|
-              @DetailResults << DetailResults.new.deserialize(i)
+              detailresults_tmp = DetailResults.new
+              detailresults_tmp.deserialize(i)
+              @DetailResults << detailresults_tmp
             end
           end
           unless params['RiskDetails'].nil?
             @RiskDetails = []
             params['RiskDetails'].each do |i|
-              @RiskDetails << RiskDetails.new.deserialize(i)
+              riskdetails_tmp = RiskDetails.new
+              riskdetails_tmp.deserialize(i)
+              @RiskDetails << riskdetails_tmp
             end
           end
           @Extra = params['Extra']

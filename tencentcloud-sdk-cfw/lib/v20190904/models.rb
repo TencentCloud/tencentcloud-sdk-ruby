@@ -200,7 +200,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << RuleInfoData.new.deserialize(i)
+              ruleinfodata_tmp = RuleInfoData.new
+              ruleinfodata_tmp.deserialize(i)
+              @Data << ruleinfodata_tmp
             end
           end
           @Type = params['Type']
@@ -262,7 +264,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << SecurityGroupApiRuleData.new.deserialize(i)
+              securitygroupapiruledata_tmp = SecurityGroupApiRuleData.new
+              securitygroupapiruledata_tmp.deserialize(i)
+              @Data << securitygroupapiruledata_tmp
             end
           end
           @Direction = params['Direction']
@@ -572,7 +576,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << AcListsData.new.deserialize(i)
+              aclistsdata_tmp = AcListsData.new
+              aclistsdata_tmp.deserialize(i)
+              @Data << aclistsdata_tmp
             end
           end
           @AllTotal = params['AllTotal']
@@ -649,7 +655,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << AssociatedInstanceInfo.new.deserialize(i)
+              associatedinstanceinfo_tmp = AssociatedInstanceInfo.new
+              associatedinstanceinfo_tmp.deserialize(i)
+              @Data << associatedinstanceinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -698,7 +706,9 @@ module TencentCloud
           unless params['NatFwEipList'].nil?
             @NatFwEipList = []
             params['NatFwEipList'].each do |i|
-              @NatFwEipList << NatFwEipsInfo.new.deserialize(i)
+              natfweipsinfo_tmp = NatFwEipsInfo.new
+              natfweipsinfo_tmp.deserialize(i)
+              @NatFwEipList << natfweipsinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -732,7 +742,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = ScanInfo.new.deserialize(params['Data'])
+            @Data = ScanInfo.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -947,7 +958,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << SecurityGroupListData.new.deserialize(i)
+              securitygrouplistdata_tmp = SecurityGroupListData.new
+              securitygrouplistdata_tmp.deserialize(i)
+              @Data << securitygrouplistdata_tmp
             end
           end
           @AllTotal = params['AllTotal']
@@ -1033,7 +1046,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << SwitchListsData.new.deserialize(i)
+              switchlistsdata_tmp = SwitchListsData.new
+              switchlistsdata_tmp.deserialize(i)
+              @Data << switchlistsdata_tmp
             end
           end
           @AreaLists = params['AreaLists']
@@ -1258,7 +1273,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << RuleInfoData.new.deserialize(i)
+              ruleinfodata_tmp = RuleInfoData.new
+              ruleinfodata_tmp.deserialize(i)
+              @Data << ruleinfodata_tmp
             end
           end
           @EdgeId = params['EdgeId']
@@ -1421,7 +1438,9 @@ module TencentCloud
           unless params['IOC'].nil?
             @IOC = []
             params['IOC'].each do |i|
-              @IOC << IocListData.new.deserialize(i)
+              ioclistdata_tmp = IocListData.new
+              ioclistdata_tmp.deserialize(i)
+              @IOC << ioclistdata_tmp
             end
           end
           @IocAction = params['IocAction']
@@ -1572,7 +1591,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << SequenceData.new.deserialize(i)
+              sequencedata_tmp = SequenceData.new
+              sequencedata_tmp.deserialize(i)
+              @Data << sequencedata_tmp
             end
           end
           @Area = params['Area']
@@ -1818,7 +1839,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ScanResultInfo'].nil?
-            @ScanResultInfo = ScanResultInfo.new.deserialize(params['ScanResultInfo'])
+            @ScanResultInfo = ScanResultInfo.new
+            @ScanResultInfo.deserialize(params['ScanResultInfo'])
           end
           @ScanStatus = params['ScanStatus']
           @ScanPercent = params['ScanPercent']
@@ -2066,14 +2088,18 @@ module TencentCloud
           unless params['AddOrDelDnatRules'].nil?
             @AddOrDelDnatRules = []
             params['AddOrDelDnatRules'].each do |i|
-              @AddOrDelDnatRules << CfwNatDnatRule.new.deserialize(i)
+              cfwnatdnatrule_tmp = CfwNatDnatRule.new
+              cfwnatdnatrule_tmp.deserialize(i)
+              @AddOrDelDnatRules << cfwnatdnatrule_tmp
             end
           end
           unless params['OriginDnat'].nil?
-            @OriginDnat = CfwNatDnatRule.new.deserialize(params['OriginDnat'])
+            @OriginDnat = CfwNatDnatRule.new
+            @OriginDnat.deserialize(params['OriginDnat'])
           end
           unless params['NewDnat'].nil?
-            @NewDnat = CfwNatDnatRule.new.deserialize(params['NewDnat'])
+            @NewDnat = CfwNatDnatRule.new
+            @NewDnat.deserialize(params['NewDnat'])
           end
         end
       end

@@ -20,9 +20,13 @@ module TencentCloud
   module Ie
     module V20200304
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-03-04'
-        @@endpoint = 'ie.tencentcloudapi.com'
-        @@sdk_version = 'IE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-03-04'
+            api_endpoint = 'ie.tencentcloudapi.com'
+            sdk_version = 'IE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建编辑理解任务，可以同时选择视频标签识别、分类识别、智能拆条、智能集锦、智能封面和片头片尾识别中的一项或者多项能力。

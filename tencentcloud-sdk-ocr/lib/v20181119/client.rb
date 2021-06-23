@@ -20,9 +20,13 @@ module TencentCloud
   module Ocr
     module V20181119
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-11-19'
-        @@endpoint = 'ocr.tencentcloudapi.com'
-        @@sdk_version = 'OCR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-11-19'
+            api_endpoint = 'ocr.tencentcloudapi.com'
+            sdk_version = 'OCR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。

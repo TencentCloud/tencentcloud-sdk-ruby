@@ -20,9 +20,13 @@ module TencentCloud
   module Mvj
     module V20190926
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-09-26'
-        @@endpoint = 'mvj.tencentcloudapi.com'
-        @@sdk_version = 'MVJ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-09-26'
+            api_endpoint = 'mvj.tencentcloudapi.com'
+            sdk_version = 'MVJ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。

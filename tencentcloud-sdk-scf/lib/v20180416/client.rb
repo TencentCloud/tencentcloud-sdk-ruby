@@ -20,9 +20,13 @@ module TencentCloud
   module Scf
     module V20180416
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-04-16'
-        @@endpoint = 'scf.tencentcloudapi.com'
-        @@sdk_version = 'SCF_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-04-16'
+            api_endpoint = 'scf.tencentcloudapi.com'
+            sdk_version = 'SCF_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 复制一个函数，您可以选择将复制出的新函数放置在特定的Region和Namespace。

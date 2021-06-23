@@ -20,9 +20,13 @@ module TencentCloud
   module Iot
     module V20180123
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-01-23'
-        @@endpoint = 'iot.tencentcloudapi.com'
-        @@sdk_version = 'IOT_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-01-23'
+            api_endpoint = 'iot.tencentcloudapi.com'
+            sdk_version = 'IOT_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 启用规则

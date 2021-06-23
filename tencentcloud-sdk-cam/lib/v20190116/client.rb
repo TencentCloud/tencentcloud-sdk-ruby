@@ -20,9 +20,13 @@ module TencentCloud
   module Cam
     module V20190116
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-01-16'
-        @@endpoint = 'cam.tencentcloudapi.com'
-        @@sdk_version = 'CAM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-01-16'
+            api_endpoint = 'cam.tencentcloudapi.com'
+            sdk_version = 'CAM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 添加子用户

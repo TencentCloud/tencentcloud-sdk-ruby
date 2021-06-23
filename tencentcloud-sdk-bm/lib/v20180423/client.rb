@@ -20,9 +20,13 @@ module TencentCloud
   module Bm
     module V20180423
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-04-23'
-        @@endpoint = 'bm.tencentcloudapi.com'
-        @@sdk_version = 'BM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-04-23'
+            api_endpoint = 'bm.tencentcloudapi.com'
+            sdk_version = 'BM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 服务器绑定CAM角色，该角色授权访问黑石物理服务器服务，为黑石物理服务器提供了访问资源的权限，如请求服务器的临时证书

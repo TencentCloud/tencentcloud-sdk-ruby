@@ -20,9 +20,13 @@ module TencentCloud
   module Tms
     module V20201229
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-12-29'
-        @@endpoint = 'tms.tencentcloudapi.com'
-        @@sdk_version = 'TMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-12-29'
+            api_endpoint = 'tms.tencentcloudapi.com'
+            sdk_version = 'TMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（Text Moderation）用于提交文本内容进行智能审核任务。使用前请您使用腾讯云主账号登录控制台 [开通文本内容安全服务](https://console.cloud.tencent.com/cms/text/package) 并调整好对应的业务配置。

@@ -107,7 +107,9 @@ module TencentCloud
           unless params['Items'].nil?
             @Items = []
             params['Items'].each do |i|
-              @Items << Item.new.deserialize(i)
+              item_tmp = Item.new
+              item_tmp.deserialize(i)
+              @Items << item_tmp
             end
           end
           @TaskId = params['TaskId']
@@ -151,7 +153,8 @@ module TencentCloud
           @Item = params['Item']
           @ItemString = params['ItemString']
           unless params['ItemCoord'].nil?
-            @ItemCoord = ItemCoord.new.deserialize(params['ItemCoord'])
+            @ItemCoord = ItemCoord.new
+            @ItemCoord.deserialize(params['ItemCoord'])
           end
           @Answer = params['Answer']
           @ExpressionType = params['ExpressionType']

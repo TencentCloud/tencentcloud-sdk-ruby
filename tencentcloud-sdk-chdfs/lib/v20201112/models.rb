@@ -165,7 +165,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['AccessGroup'].nil?
-            @AccessGroup = AccessGroup.new.deserialize(params['AccessGroup'])
+            @AccessGroup = AccessGroup.new
+            @AccessGroup.deserialize(params['AccessGroup'])
           end
           @RequestId = params['RequestId']
         end
@@ -189,7 +190,9 @@ module TencentCloud
           unless params['AccessRules'].nil?
             @AccessRules = []
             params['AccessRules'].each do |i|
-              @AccessRules << AccessRule.new.deserialize(i)
+              accessrule_tmp = AccessRule.new
+              accessrule_tmp.deserialize(i)
+              @AccessRules << accessrule_tmp
             end
           end
           @AccessGroupId = params['AccessGroupId']
@@ -268,7 +271,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['FileSystem'].nil?
-            @FileSystem = FileSystem.new.deserialize(params['FileSystem'])
+            @FileSystem = FileSystem.new
+            @FileSystem.deserialize(params['FileSystem'])
           end
           @RequestId = params['RequestId']
         end
@@ -293,7 +297,9 @@ module TencentCloud
           unless params['LifeCycleRules'].nil?
             @LifeCycleRules = []
             params['LifeCycleRules'].each do |i|
-              @LifeCycleRules << LifeCycleRule.new.deserialize(i)
+              lifecyclerule_tmp = LifeCycleRule.new
+              lifecyclerule_tmp.deserialize(i)
+              @LifeCycleRules << lifecyclerule_tmp
             end
           end
         end
@@ -355,7 +361,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MountPoint'].nil?
-            @MountPoint = MountPoint.new.deserialize(params['MountPoint'])
+            @MountPoint = MountPoint.new
+            @MountPoint.deserialize(params['MountPoint'])
           end
           @RequestId = params['RequestId']
         end
@@ -380,7 +387,9 @@ module TencentCloud
           unless params['RestoreTasks'].nil?
             @RestoreTasks = []
             params['RestoreTasks'].each do |i|
-              @RestoreTasks << RestoreTask.new.deserialize(i)
+              restoretask_tmp = RestoreTask.new
+              restoretask_tmp.deserialize(i)
+              @RestoreTasks << restoretask_tmp
             end
           end
         end
@@ -594,7 +603,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['AccessGroup'].nil?
-            @AccessGroup = AccessGroup.new.deserialize(params['AccessGroup'])
+            @AccessGroup = AccessGroup.new
+            @AccessGroup.deserialize(params['AccessGroup'])
           end
           @RequestId = params['RequestId']
         end
@@ -639,7 +649,9 @@ module TencentCloud
           unless params['AccessGroups'].nil?
             @AccessGroups = []
             params['AccessGroups'].each do |i|
-              @AccessGroups << AccessGroup.new.deserialize(i)
+              accessgroup_tmp = AccessGroup.new
+              accessgroup_tmp.deserialize(i)
+              @AccessGroups << accessgroup_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -680,7 +692,9 @@ module TencentCloud
           unless params['AccessRules'].nil?
             @AccessRules = []
             params['AccessRules'].each do |i|
-              @AccessRules << AccessRule.new.deserialize(i)
+              accessrule_tmp = AccessRule.new
+              accessrule_tmp.deserialize(i)
+              @AccessRules << accessrule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -727,7 +741,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['FileSystem'].nil?
-            @FileSystem = FileSystem.new.deserialize(params['FileSystem'])
+            @FileSystem = FileSystem.new
+            @FileSystem.deserialize(params['FileSystem'])
           end
           @CapacityUsed = params['CapacityUsed']
           @ArchiveCapacityUsed = params['ArchiveCapacityUsed']
@@ -764,7 +779,9 @@ module TencentCloud
           unless params['FileSystems'].nil?
             @FileSystems = []
             params['FileSystems'].each do |i|
-              @FileSystems << FileSystem.new.deserialize(i)
+              filesystem_tmp = FileSystem.new
+              filesystem_tmp.deserialize(i)
+              @FileSystems << filesystem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -805,7 +822,9 @@ module TencentCloud
           unless params['LifeCycleRules'].nil?
             @LifeCycleRules = []
             params['LifeCycleRules'].each do |i|
-              @LifeCycleRules << LifeCycleRule.new.deserialize(i)
+              lifecyclerule_tmp = LifeCycleRule.new
+              lifecyclerule_tmp.deserialize(i)
+              @LifeCycleRules << lifecyclerule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -844,7 +863,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MountPoint'].nil?
-            @MountPoint = MountPoint.new.deserialize(params['MountPoint'])
+            @MountPoint = MountPoint.new
+            @MountPoint.deserialize(params['MountPoint'])
           end
           @RequestId = params['RequestId']
         end
@@ -893,7 +913,9 @@ module TencentCloud
           unless params['MountPoints'].nil?
             @MountPoints = []
             params['MountPoints'].each do |i|
-              @MountPoints << MountPoint.new.deserialize(i)
+              mountpoint_tmp = MountPoint.new
+              mountpoint_tmp.deserialize(i)
+              @MountPoints << mountpoint_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -934,7 +956,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -975,7 +999,9 @@ module TencentCloud
           unless params['RestoreTasks'].nil?
             @RestoreTasks = []
             params['RestoreTasks'].each do |i|
-              @RestoreTasks << RestoreTask.new.deserialize(i)
+              restoretask_tmp = RestoreTask.new
+              restoretask_tmp.deserialize(i)
+              @RestoreTasks << restoretask_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1107,7 +1133,9 @@ module TencentCloud
           unless params['Transitions'].nil?
             @Transitions = []
             params['Transitions'].each do |i|
-              @Transitions << Transition.new.deserialize(i)
+              transition_tmp = Transition.new
+              transition_tmp.deserialize(i)
+              @Transitions << transition_tmp
             end
           end
           @Status = params['Status']
@@ -1170,7 +1198,9 @@ module TencentCloud
           unless params['AccessRules'].nil?
             @AccessRules = []
             params['AccessRules'].each do |i|
-              @AccessRules << AccessRule.new.deserialize(i)
+              accessrule_tmp = AccessRule.new
+              accessrule_tmp.deserialize(i)
+              @AccessRules << accessrule_tmp
             end
           end
         end
@@ -1260,7 +1290,9 @@ module TencentCloud
           unless params['LifeCycleRules'].nil?
             @LifeCycleRules = []
             params['LifeCycleRules'].each do |i|
-              @LifeCycleRules << LifeCycleRule.new.deserialize(i)
+              lifecyclerule_tmp = LifeCycleRule.new
+              lifecyclerule_tmp.deserialize(i)
+              @LifeCycleRules << lifecyclerule_tmp
             end
           end
         end
@@ -1341,7 +1373,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end

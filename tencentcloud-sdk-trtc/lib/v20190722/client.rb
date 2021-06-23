@@ -20,9 +20,13 @@ module TencentCloud
   module Trtc
     module V20190722
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-07-22'
-        @@endpoint = 'trtc.tencentcloudapi.com'
-        @@sdk_version = 'TRTC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-07-22'
+            api_endpoint = 'trtc.tencentcloudapi.com'
+            sdk_version = 'TRTC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 此接口已废弃，调用将报错。如需使用相关功能请参见 [控制台指南 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769)  。

@@ -20,9 +20,13 @@ module TencentCloud
   module Habo
     module V20181203
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-12-03'
-        @@endpoint = 'habo.tencentcloudapi.com'
-        @@sdk_version = 'HABO_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-12-03'
+            api_endpoint = 'habo.tencentcloudapi.com'
+            sdk_version = 'HABO_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 查询指定md5样本是否分析完成，并获取分析日志下载地址。

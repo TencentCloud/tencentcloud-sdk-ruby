@@ -143,7 +143,9 @@ module TencentCloud
           unless params['SlotInfoList'].nil?
             @SlotInfoList = []
             params['SlotInfoList'].each do |i|
-              @SlotInfoList << SlotInfo.new.deserialize(i)
+              slotinfo_tmp = SlotInfo.new
+              slotinfo_tmp.deserialize(i)
+              @SlotInfoList << slotinfo_tmp
             end
           end
           @SessionAttributes = params['SessionAttributes']
@@ -254,7 +256,9 @@ module TencentCloud
           unless params['SlotInfoList'].nil?
             @SlotInfoList = []
             params['SlotInfoList'].each do |i|
-              @SlotInfoList << SlotInfo.new.deserialize(i)
+              slotinfo_tmp = SlotInfo.new
+              slotinfo_tmp.deserialize(i)
+              @SlotInfoList << slotinfo_tmp
             end
           end
           @InputText = params['InputText']
@@ -334,7 +338,9 @@ module TencentCloud
           unless params['SlotInfoList'].nil?
             @SlotInfoList = []
             params['SlotInfoList'].each do |i|
-              @SlotInfoList << SlotInfo.new.deserialize(i)
+              slotinfo_tmp = SlotInfo.new
+              slotinfo_tmp.deserialize(i)
+              @SlotInfoList << slotinfo_tmp
             end
           end
           @InputText = params['InputText']

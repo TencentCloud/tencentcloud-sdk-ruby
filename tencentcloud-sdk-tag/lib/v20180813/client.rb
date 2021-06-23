@@ -20,9 +20,13 @@ module TencentCloud
   module Tag
     module V20180813
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-08-13'
-        @@endpoint = 'tag.tencentcloudapi.com'
-        @@sdk_version = 'TAG_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-08-13'
+            api_endpoint = 'tag.tencentcloudapi.com'
+            sdk_version = 'TAG_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口用于给标签关联资源

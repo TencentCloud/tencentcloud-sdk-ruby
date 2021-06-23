@@ -20,9 +20,13 @@ module TencentCloud
   module Sqlserver
     module V20180328
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-28'
-        @@endpoint = 'sqlserver.tencentcloudapi.com'
-        @@sdk_version = 'SQLSERVER_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-28'
+            api_endpoint = 'sqlserver.tencentcloudapi.com'
+            sdk_version = 'SQLSERVER_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。

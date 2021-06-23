@@ -355,7 +355,9 @@ module TencentCloud
           unless params['LookupAttributes'].nil?
             @LookupAttributes = []
             params['LookupAttributes'].each do |i|
-              @LookupAttributes << LookupAttribute.new.deserialize(i)
+              lookupattribute_tmp = LookupAttribute.new
+              lookupattribute_tmp.deserialize(i)
+              @LookupAttributes << lookupattribute_tmp
             end
           end
           @IsReturnLocation = params['IsReturnLocation']
@@ -389,7 +391,9 @@ module TencentCloud
           unless params['Events'].nil?
             @Events = []
             params['Events'].each do |i|
-              @Events << Event.new.deserialize(i)
+              event_tmp = Event.new
+              event_tmp.deserialize(i)
+              @Events << event_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -473,7 +477,8 @@ module TencentCloud
           @SourceIPAddress = params['SourceIPAddress']
           @EventNameCn = params['EventNameCn']
           unless params['Resources'].nil?
-            @Resources = Resource.new.deserialize(params['Resources'])
+            @Resources = Resource.new
+            @Resources.deserialize(params['Resources'])
           end
           @EventRegion = params['EventRegion']
           @Location = params['Location']
@@ -514,7 +519,9 @@ module TencentCloud
           unless params['AttributeKeyDetails'].nil?
             @AttributeKeyDetails = []
             params['AttributeKeyDetails'].each do |i|
-              @AttributeKeyDetails << AttributeKeyDetail.new.deserialize(i)
+              attributekeydetail_tmp = AttributeKeyDetail.new
+              attributekeydetail_tmp.deserialize(i)
+              @AttributeKeyDetails << attributekeydetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -602,7 +609,9 @@ module TencentCloud
           unless params['AuditSummarys'].nil?
             @AuditSummarys = []
             params['AuditSummarys'].each do |i|
-              @AuditSummarys << AuditSummary.new.deserialize(i)
+              auditsummary_tmp = AuditSummary.new
+              auditsummary_tmp.deserialize(i)
+              @AuditSummarys << auditsummary_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -643,7 +652,9 @@ module TencentCloud
           unless params['EnableRegions'].nil?
             @EnableRegions = []
             params['EnableRegions'].each do |i|
-              @EnableRegions << CmqRegionInfo.new.deserialize(i)
+              cmqregioninfo_tmp = CmqRegionInfo.new
+              cmqregioninfo_tmp.deserialize(i)
+              @EnableRegions << cmqregioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -684,7 +695,9 @@ module TencentCloud
           unless params['EnableRegions'].nil?
             @EnableRegions = []
             params['EnableRegions'].each do |i|
-              @EnableRegions << CosRegionInfo.new.deserialize(i)
+              cosregioninfo_tmp = CosRegionInfo.new
+              cosregioninfo_tmp.deserialize(i)
+              @EnableRegions << cosregioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -737,7 +750,9 @@ module TencentCloud
           unless params['KeyMetadatas'].nil?
             @KeyMetadatas = []
             params['KeyMetadatas'].each do |i|
-              @KeyMetadatas << KeyMetadata.new.deserialize(i)
+              keymetadata_tmp = KeyMetadata.new
+              keymetadata_tmp.deserialize(i)
+              @KeyMetadatas << keymetadata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -776,7 +791,9 @@ module TencentCloud
           unless params['LookupAttributes'].nil?
             @LookupAttributes = []
             params['LookupAttributes'].each do |i|
-              @LookupAttributes << LookupAttribute.new.deserialize(i)
+              lookupattribute_tmp = LookupAttribute.new
+              lookupattribute_tmp.deserialize(i)
+              @LookupAttributes << lookupattribute_tmp
             end
           end
           @NextToken = params['NextToken']
@@ -813,7 +830,9 @@ module TencentCloud
           unless params['Events'].nil?
             @Events = []
             params['Events'].each do |i|
-              @Events << Event.new.deserialize(i)
+              event_tmp = Event.new
+              event_tmp.deserialize(i)
+              @Events << event_tmp
             end
           end
           @ListOver = params['ListOver']

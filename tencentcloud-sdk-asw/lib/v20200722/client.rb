@@ -20,9 +20,13 @@ module TencentCloud
   module Asw
     module V20200722
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-07-22'
-        @@endpoint = 'asw.tencentcloudapi.com'
-        @@sdk_version = 'ASW_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-07-22'
+            api_endpoint = 'asw.tencentcloudapi.com'
+            sdk_version = 'ASW_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 该接口用于生成状态机服务

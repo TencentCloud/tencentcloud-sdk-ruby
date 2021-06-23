@@ -20,9 +20,13 @@ module TencentCloud
   module Ims
     module V20201229
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-12-29'
-        @@endpoint = 'ims.tencentcloudapi.com'
-        @@sdk_version = 'IMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-12-29'
+            api_endpoint = 'ims.tencentcloudapi.com'
+            sdk_version = 'IMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（Image Moderation, IM）用于提交图片文件进行智能审核任务。使用前请您使用腾讯云主账号登录控制台 [开通图片内容安全服务](https://console.cloud.tencent.com/cms/image/package) 并调整好对应的业务配置。

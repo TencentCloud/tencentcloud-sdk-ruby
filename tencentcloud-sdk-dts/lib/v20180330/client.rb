@@ -20,9 +20,13 @@ module TencentCloud
   module Dts
     module V20180330
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-30'
-        @@endpoint = 'dts.tencentcloudapi.com'
-        @@sdk_version = 'DTS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-30'
+            api_endpoint = 'dts.tencentcloudapi.com'
+            sdk_version = 'DTS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口用于配置数据订阅，只有在未配置状态的订阅实例才能调用此接口。

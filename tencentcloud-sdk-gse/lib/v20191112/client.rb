@@ -20,9 +20,13 @@ module TencentCloud
   module Gse
     module V20191112
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-11-12'
-        @@endpoint = 'gse.tencentcloudapi.com'
-        @@sdk_version = 'GSE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-11-12'
+            api_endpoint = 'gse.tencentcloudapi.com'
+            sdk_version = 'GSE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（AttachCcnInstances）用于关联云联网实例。

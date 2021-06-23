@@ -36,7 +36,9 @@ module TencentCloud
           unless params['Bucket'].nil?
             @Bucket = []
             params['Bucket'].each do |i|
-              @Bucket << Bucket.new.deserialize(i)
+              bucket_tmp = Bucket.new
+              bucket_tmp.deserialize(i)
+              @Bucket << bucket_tmp
             end
           end
         end
@@ -169,7 +171,9 @@ module TencentCloud
           unless params['Tag'].nil?
             @Tag = []
             params['Tag'].each do |i|
-              @Tag << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
             end
           end
           @AssetCspmRiskNum = params['AssetCspmRiskNum']
@@ -386,7 +390,9 @@ module TencentCloud
           unless params['Tag'].nil?
             @Tag = []
             params['Tag'].each do |i|
-              @Tag << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
             end
           end
           @Vip = params['Vip']
@@ -446,7 +452,9 @@ module TencentCloud
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
-              @List << Asset.new.deserialize(i)
+              asset_tmp = Asset.new
+              asset_tmp.deserialize(i)
+              @List << asset_tmp
             end
           end
         end
@@ -812,7 +820,9 @@ module TencentCloud
           unless params['Tag'].nil?
             @Tag = []
             params['Tag'].each do |i|
-              @Tag << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
             end
           end
           @Group = params['Group']
@@ -1179,7 +1189,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AssetDetail.new.deserialize(params['Data'])
+            @Data = AssetDetail.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1223,12 +1234,15 @@ module TencentCloud
 
         def deserialize(params)
           unless params['AssetList'].nil?
-            @AssetList = AssetList.new.deserialize(params['AssetList'])
+            @AssetList = AssetList.new
+            @AssetList.deserialize(params['AssetList'])
           end
           unless params['AggregationData'].nil?
             @AggregationData = []
             params['AggregationData'].each do |i|
-              @AggregationData << AggregationObj.new.deserialize(i)
+              aggregationobj_tmp = AggregationObj.new
+              aggregationobj_tmp.deserialize(i)
+              @AggregationData << aggregationobj_tmp
             end
           end
           @NamespaceData = params['NamespaceData']
@@ -1277,7 +1291,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << DataAssetMapping.new.deserialize(i)
+              dataassetmapping_tmp = DataAssetMapping.new
+              dataassetmapping_tmp.deserialize(i)
+              @Data << dataassetmapping_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1316,13 +1332,17 @@ module TencentCloud
           unless params['Search'].nil?
             @Search = []
             params['Search'].each do |i|
-              @Search << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Search << filter_tmp
             end
           end
           unless params['Filter'].nil?
             @Filter = []
             params['Filter'].each do |i|
-              @Filter << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filter << filter_tmp
             end
           end
         end
@@ -1351,7 +1371,9 @@ module TencentCloud
           unless params['CheckAssetsList'].nil?
             @CheckAssetsList = []
             params['CheckAssetsList'].each do |i|
-              @CheckAssetsList << CheckAssetItem.new.deserialize(i)
+              checkassetitem_tmp = CheckAssetItem.new
+              checkassetitem_tmp.deserialize(i)
+              @CheckAssetsList << checkassetitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1390,7 +1412,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['CheckConfigDetail'].nil?
-            @CheckConfigDetail = CheckConfigDetail.new.deserialize(params['CheckConfigDetail'])
+            @CheckConfigDetail = CheckConfigDetail.new
+            @CheckConfigDetail.deserialize(params['CheckConfigDetail'])
           end
           @RequestId = params['RequestId']
         end
@@ -1426,13 +1449,17 @@ module TencentCloud
           unless params['Filter'].nil?
             @Filter = []
             params['Filter'].each do |i|
-              @Filter << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filter << filter_tmp
             end
           end
           unless params['Search'].nil?
             @Search = []
             params['Search'].each do |i|
-              @Search << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Search << filter_tmp
             end
           end
         end
@@ -1459,7 +1486,9 @@ module TencentCloud
           unless params['CheckAssetsList'].nil?
             @CheckAssetsList = []
             params['CheckAssetsList'].each do |i|
-              @CheckAssetsList << CheckAssetItem.new.deserialize(i)
+              checkassetitem_tmp = CheckAssetItem.new
+              checkassetitem_tmp.deserialize(i)
+              @CheckAssetsList << checkassetitem_tmp
             end
           end
           @Total = params['Total']
@@ -1499,7 +1528,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['CheckConfigDetail'].nil?
-            @CheckConfigDetail = ComplianceCheckDetail.new.deserialize(params['CheckConfigDetail'])
+            @CheckConfigDetail = ComplianceCheckDetail.new
+            @CheckConfigDetail.deserialize(params['CheckConfigDetail'])
           end
           @RequestId = params['RequestId']
         end
@@ -1547,7 +1577,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << DataCompliance.new.deserialize(i)
+              datacompliance_tmp = DataCompliance.new
+              datacompliance_tmp.deserialize(i)
+              @Data << datacompliance_tmp
             end
           end
           @AssetTotalNum = params['AssetTotalNum']
@@ -1590,7 +1622,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << DataCheck.new.deserialize(i)
+              datacheck_tmp = DataCheck.new
+              datacheck_tmp.deserialize(i)
+              @Data << datacheck_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1676,7 +1710,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -1775,7 +1811,9 @@ module TencentCloud
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
-              @List << DataEvent.new.deserialize(i)
+              dataevent_tmp = DataEvent.new
+              dataevent_tmp.deserialize(i)
+              @List << dataevent_tmp
             end
           end
           @Total = params['Total']
@@ -1956,7 +1994,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = VulList.new.deserialize(params['Data'])
+            @Data = VulList.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -2084,7 +2123,9 @@ module TencentCloud
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
-              @List << SaDivulgeDataQueryPub.new.deserialize(i)
+              sadivulgedataquerypub_tmp = SaDivulgeDataQueryPub.new
+              sadivulgedataquerypub_tmp.deserialize(i)
+              @List << sadivulgedataquerypub_tmp
             end
           end
         end
@@ -2166,7 +2207,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SaDivulgeDataQueryPubList.new.deserialize(params['Data'])
+            @Data = SaDivulgeDataQueryPubList.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -2361,7 +2403,9 @@ module TencentCloud
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
-              @List << VulItem.new.deserialize(i)
+              vulitem_tmp = VulItem.new
+              vulitem_tmp.deserialize(i)
+              @List << vulitem_tmp
             end
           end
           @Total = params['Total']

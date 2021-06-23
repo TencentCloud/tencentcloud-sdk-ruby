@@ -20,9 +20,13 @@ module TencentCloud
   module Postgres
     module V20170312
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2017-03-12'
-        @@endpoint = 'postgres.tencentcloudapi.com'
-        @@sdk_version = 'POSTGRES_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2017-03-12'
+            api_endpoint = 'postgres.tencentcloudapi.com'
+            sdk_version = 'POSTGRES_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组

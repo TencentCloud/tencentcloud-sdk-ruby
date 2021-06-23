@@ -20,9 +20,13 @@ module TencentCloud
   module Cfw
     module V20190904
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-09-04'
-        @@endpoint = 'cfw.tencentcloudapi.com'
-        @@sdk_version = 'CFW_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-09-04'
+            api_endpoint = 'cfw.tencentcloudapi.com'
+            sdk_version = 'CFW_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建规则

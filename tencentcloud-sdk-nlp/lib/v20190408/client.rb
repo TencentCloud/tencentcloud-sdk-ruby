@@ -20,9 +20,13 @@ module TencentCloud
   module Nlp
     module V20190408
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-04-08'
-        @@endpoint = 'nlp.tencentcloudapi.com'
-        @@sdk_version = 'NLP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-04-08'
+            api_endpoint = 'nlp.tencentcloudapi.com'
+            sdk_version = 'NLP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。

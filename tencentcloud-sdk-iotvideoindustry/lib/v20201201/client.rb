@@ -20,9 +20,13 @@ module TencentCloud
   module Iotvideoindustry
     module V20201201
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-12-01'
-        @@endpoint = 'iotvideoindustry.tencentcloudapi.com'
-        @@sdk_version = 'IOTVIDEOINDUSTRY_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-12-01'
+            api_endpoint = 'iotvideoindustry.tencentcloudapi.com'
+            sdk_version = 'IOTVIDEOINDUSTRY_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口(BindGroupDevices) 用于绑定设备到分组。

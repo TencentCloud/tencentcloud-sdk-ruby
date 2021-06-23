@@ -20,9 +20,13 @@ module TencentCloud
   module Mariadb
     module V20170312
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2017-03-12'
-        @@endpoint = 'mariadb.tencentcloudapi.com'
-        @@sdk_version = 'MARIADB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2017-03-12'
+            api_endpoint = 'mariadb.tencentcloudapi.com'
+            sdk_version = 'MARIADB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口 (AssociateSecurityGroups) 用于安全组批量绑定云资源。

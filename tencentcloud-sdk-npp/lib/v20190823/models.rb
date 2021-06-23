@@ -185,7 +185,8 @@ module TencentCloud
           @BizId = params['BizId']
           @LastCallId = params['LastCallId']
           unless params['PreCallerHandle'].nil?
-            @PreCallerHandle = RreCallerHandle.new.deserialize(params['PreCallerHandle'])
+            @PreCallerHandle = RreCallerHandle.new
+            @PreCallerHandle.deserialize(params['PreCallerHandle'])
           end
           @OrderId = params['OrderId']
         end
@@ -407,7 +408,9 @@ module TencentCloud
           unless params['Cdr'].nil?
             @Cdr = []
             params['Cdr'].each do |i|
-              @Cdr << CallBackCdr.new.deserialize(i)
+              callbackcdr_tmp = CallBackCdr.new
+              callbackcdr_tmp.deserialize(i)
+              @Cdr << callbackcdr_tmp
             end
           end
           @Offset = params['Offset']
@@ -540,7 +543,9 @@ module TencentCloud
           unless params['CodeList'].nil?
             @CodeList = []
             params['CodeList'].each do |i|
-              @CodeList << CallBackPhoneCode.new.deserialize(i)
+              callbackphonecode_tmp = CallBackPhoneCode.new
+              callbackphonecode_tmp.deserialize(i)
+              @CodeList << callbackphonecode_tmp
             end
           end
           @ErrorCode = params['ErrorCode']
@@ -614,7 +619,9 @@ module TencentCloud
           unless params['Cdr'].nil?
             @Cdr = []
             params['Cdr'].each do |i|
-              @Cdr << VirturalNumCdr.new.deserialize(i)
+              virturalnumcdr_tmp = VirturalNumCdr.new
+              virturalnumcdr_tmp.deserialize(i)
+              @Cdr << virturalnumcdr_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -793,7 +800,9 @@ module TencentCloud
           unless params['KeyList'].nil?
             @KeyList = []
             params['KeyList'].each do |i|
-              @KeyList << KeyList.new.deserialize(i)
+              keylist_tmp = KeyList.new
+              keylist_tmp.deserialize(i)
+              @KeyList << keylist_tmp
             end
           end
           @RepeatTimes = params['RepeatTimes']

@@ -20,9 +20,13 @@ module TencentCloud
   module Iotvideo
     module V20201215
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-12-15'
-        @@endpoint = 'iotvideo.tencentcloudapi.com'
-        @@sdk_version = 'IOTVIDEO_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-12-15'
+            api_endpoint = 'iotvideo.tencentcloudapi.com'
+            sdk_version = 'IOTVIDEO_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（BatchUpdateFirmware）用于批量更新设备固件

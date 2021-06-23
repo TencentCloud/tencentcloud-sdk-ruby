@@ -74,7 +74,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = TipoffResponse.new.deserialize(params['Data'])
+            @Data = TipoffResponse.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -114,7 +115,9 @@ module TencentCloud
           unless params['TextLib'].nil?
             @TextLib = []
             params['TextLib'].each do |i|
-              @TextLib << TextLib.new.deserialize(i)
+              textlib_tmp = TextLib.new
+              textlib_tmp.deserialize(i)
+              @TextLib << textlib_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -140,7 +143,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filters.new.deserialize(i)
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
             end
           end
         end
@@ -169,18 +174,23 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Overview'].nil?
-            @Overview = Overview.new.deserialize(params['Overview'])
+            @Overview = Overview.new
+            @Overview.deserialize(params['Overview'])
           end
           unless params['TrendCount'].nil?
             @TrendCount = []
             params['TrendCount'].each do |i|
-              @TrendCount << TrendCount.new.deserialize(i)
+              trendcount_tmp = TrendCount.new
+              trendcount_tmp.deserialize(i)
+              @TrendCount << trendcount_tmp
             end
           end
           unless params['EvilCount'].nil?
             @EvilCount = []
             params['EvilCount'].each do |i|
-              @EvilCount << EvilCount.new.deserialize(i)
+              evilcount_tmp = EvilCount.new
+              evilcount_tmp.deserialize(i)
+              @EvilCount << evilcount_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -430,10 +440,12 @@ module TencentCloud
           @BizType = params['BizType']
           @DataId = params['DataId']
           unless params['User'].nil?
-            @User = User.new.deserialize(params['User'])
+            @User = User.new
+            @User.deserialize(params['User'])
           end
           unless params['Device'].nil?
-            @Device = Device.new.deserialize(params['Device'])
+            @Device = Device.new
+            @Device.deserialize(params['Device'])
           end
         end
       end
@@ -499,13 +511,17 @@ module TencentCloud
           unless params['DetailResults'].nil?
             @DetailResults = []
             params['DetailResults'].each do |i|
-              @DetailResults << DetailResults.new.deserialize(i)
+              detailresults_tmp = DetailResults.new
+              detailresults_tmp.deserialize(i)
+              @DetailResults << detailresults_tmp
             end
           end
           unless params['RiskDetails'].nil?
             @RiskDetails = []
             params['RiskDetails'].each do |i|
-              @RiskDetails << RiskDetails.new.deserialize(i)
+              riskdetails_tmp = RiskDetails.new
+              riskdetails_tmp.deserialize(i)
+              @RiskDetails << riskdetails_tmp
             end
           end
           @Extra = params['Extra']

@@ -250,7 +250,9 @@ module TencentCloud
           unless params['WordItems'].nil?
             @WordItems = []
             params['WordItems'].each do |i|
-              @WordItems << WordItem.new.deserialize(i)
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordItems << worditem_tmp
             end
           end
         end
@@ -323,7 +325,9 @@ module TencentCloud
           unless params['WordItems'].nil?
             @WordItems = []
             params['WordItems'].each do |i|
-              @WordItems << WordItem.new.deserialize(i)
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordItems << worditem_tmp
             end
           end
         end
@@ -394,7 +398,9 @@ module TencentCloud
           unless params['DpTokens'].nil?
             @DpTokens = []
             params['DpTokens'].each do |i|
-              @DpTokens << DpToken.new.deserialize(i)
+              dptoken_tmp = DpToken.new
+              dptoken_tmp.deserialize(i)
+              @DpTokens << dptoken_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -440,7 +446,9 @@ module TencentCloud
           unless params['Dicts'].nil?
             @Dicts = []
             params['Dicts'].each do |i|
-              @Dicts << DictInfo.new.deserialize(i)
+              dictinfo_tmp = DictInfo.new
+              dictinfo_tmp.deserialize(i)
+              @Dicts << dictinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -490,7 +498,9 @@ module TencentCloud
           unless params['Dicts'].nil?
             @Dicts = []
             params['Dicts'].each do |i|
-              @Dicts << DictInfo.new.deserialize(i)
+              dictinfo_tmp = DictInfo.new
+              dictinfo_tmp.deserialize(i)
+              @Dicts << dictinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -571,7 +581,9 @@ module TencentCloud
           unless params['Content'].nil?
             @Content = []
             params['Content'].each do |i|
-              @Content << EntityRelationContent.new.deserialize(i)
+              entityrelationcontent_tmp = EntityRelationContent.new
+              entityrelationcontent_tmp.deserialize(i)
+              @Content << entityrelationcontent_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -612,7 +624,9 @@ module TencentCloud
           unless params['Content'].nil?
             @Content = []
             params['Content'].each do |i|
-              @Content << TripleContent.new.deserialize(i)
+              triplecontent_tmp = TripleContent.new
+              triplecontent_tmp.deserialize(i)
+              @Content << triplecontent_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -670,7 +684,9 @@ module TencentCloud
           unless params['WordItems'].nil?
             @WordItems = []
             params['WordItems'].each do |i|
-              @WordItems << WordItem.new.deserialize(i)
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordItems << worditem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -768,14 +784,18 @@ module TencentCloud
           unless params['Object'].nil?
             @Object = []
             params['Object'].each do |i|
-              @Object << EntityRelationObject.new.deserialize(i)
+              entityrelationobject_tmp = EntityRelationObject.new
+              entityrelationobject_tmp.deserialize(i)
+              @Object << entityrelationobject_tmp
             end
           end
           @Relation = params['Relation']
           unless params['Subject'].nil?
             @Subject = []
             params['Subject'].each do |i|
-              @Subject << EntityRelationSubject.new.deserialize(i)
+              entityrelationsubject_tmp = EntityRelationSubject.new
+              entityrelationsubject_tmp.deserialize(i)
+              @Subject << entityrelationsubject_tmp
             end
           end
         end
@@ -891,7 +911,9 @@ module TencentCloud
           unless params['Keywords'].nil?
             @Keywords = []
             params['Keywords'].each do |i|
-              @Keywords << Keyword.new.deserialize(i)
+              keyword_tmp = Keyword.new
+              keyword_tmp.deserialize(i)
+              @Keywords << keyword_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -950,13 +972,17 @@ module TencentCloud
           unless params['NerTokens'].nil?
             @NerTokens = []
             params['NerTokens'].each do |i|
-              @NerTokens << NerToken.new.deserialize(i)
+              nertoken_tmp = NerToken.new
+              nertoken_tmp.deserialize(i)
+              @NerTokens << nertoken_tmp
             end
           end
           unless params['PosTokens'].nil?
             @PosTokens = []
             params['PosTokens'].each do |i|
-              @PosTokens << PosToken.new.deserialize(i)
+              postoken_tmp = PosToken.new
+              postoken_tmp.deserialize(i)
+              @PosTokens << postoken_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1068,7 +1094,9 @@ module TencentCloud
           unless params['WordItems'].nil?
             @WordItems = []
             params['WordItems'].each do |i|
-              @WordItems << WordItem.new.deserialize(i)
+              worditem_tmp = WordItem.new
+              worditem_tmp.deserialize(i)
+              @WordItems << worditem_tmp
             end
           end
         end
@@ -1093,7 +1121,9 @@ module TencentCloud
           unless params['Results'].nil?
             @Results = []
             params['Results'].each do |i|
-              @Results << SearchResult.new.deserialize(i)
+              searchresult_tmp = SearchResult.new
+              searchresult_tmp.deserialize(i)
+              @Results << searchresult_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1306,7 +1336,9 @@ module TencentCloud
           unless params['Classes'].nil?
             @Classes = []
             params['Classes'].each do |i|
-              @Classes << ClassificationResult.new.deserialize(i)
+              classificationresult_tmp = ClassificationResult.new
+              classificationresult_tmp.deserialize(i)
+              @Classes << classificationresult_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1351,7 +1383,9 @@ module TencentCloud
           unless params['CCITokens'].nil?
             @CCITokens = []
             params['CCITokens'].each do |i|
-              @CCITokens << CCIToken.new.deserialize(i)
+              ccitoken_tmp = CCIToken.new
+              ccitoken_tmp.deserialize(i)
+              @CCITokens << ccitoken_tmp
             end
           end
           @ResultText = params['ResultText']
@@ -1397,7 +1431,9 @@ module TencentCloud
           unless params['Similarity'].nil?
             @Similarity = []
             params['Similarity'].each do |i|
-              @Similarity << Similarity.new.deserialize(i)
+              similarity_tmp = Similarity.new
+              similarity_tmp.deserialize(i)
+              @Similarity << similarity_tmp
             end
           end
           @RequestId = params['RequestId']

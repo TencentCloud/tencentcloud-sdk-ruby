@@ -20,9 +20,13 @@ module TencentCloud
   module Bmeip
     module V20180625
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-06-25'
-        @@endpoint = 'bmeip.tencentcloudapi.com'
-        @@sdk_version = 'BMEIP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-06-25'
+            api_endpoint = 'bmeip.tencentcloudapi.com'
+            sdk_version = 'BMEIP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 此接口用于为某个 EIP 关联 ACL。

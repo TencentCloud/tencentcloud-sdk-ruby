@@ -48,13 +48,16 @@ module TencentCloud
         def deserialize(params)
           @AccountType = params['AccountType']
           unless params['QQAccount'].nil?
-            @QQAccount = QQAccountInfo.new.deserialize(params['QQAccount'])
+            @QQAccount = QQAccountInfo.new
+            @QQAccount.deserialize(params['QQAccount'])
           end
           unless params['WeChatAccount'].nil?
-            @WeChatAccount = WeChatAccountInfo.new.deserialize(params['WeChatAccount'])
+            @WeChatAccount = WeChatAccountInfo.new
+            @WeChatAccount.deserialize(params['WeChatAccount'])
           end
           unless params['OtherAccount'].nil?
-            @OtherAccount = OtherAccountInfo.new.deserialize(params['OtherAccount'])
+            @OtherAccount = OtherAccountInfo.new
+            @OtherAccount.deserialize(params['OtherAccount'])
           end
         end
       end
@@ -219,7 +222,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Account'].nil?
-            @Account = AccountInfo.new.deserialize(params['Account'])
+            @Account = AccountInfo.new
+            @Account.deserialize(params['Account'])
           end
           @SceneCode = params['SceneCode']
           @UserIp = params['UserIp']
@@ -241,14 +245,18 @@ module TencentCloud
           unless params['Details'].nil?
             @Details = []
             params['Details'].each do |i|
-              @Details << InputDetails.new.deserialize(i)
+              inputdetails_tmp = InputDetails.new
+              inputdetails_tmp.deserialize(i)
+              @Details << inputdetails_tmp
             end
           end
           unless params['Sponsor'].nil?
-            @Sponsor = SponsorInfo.new.deserialize(params['Sponsor'])
+            @Sponsor = SponsorInfo.new
+            @Sponsor.deserialize(params['Sponsor'])
           end
           unless params['OnlineScam'].nil?
-            @OnlineScam = OnlineScamInfo.new.deserialize(params['OnlineScam'])
+            @OnlineScam = OnlineScamInfo.new
+            @OnlineScam.deserialize(params['OnlineScam'])
           end
         end
       end
@@ -266,7 +274,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BusinessSecurityData'].nil?
-            @BusinessSecurityData = InputManageMarketingRisk.new.deserialize(params['BusinessSecurityData'])
+            @BusinessSecurityData = InputManageMarketingRisk.new
+            @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
           end
         end
       end
@@ -287,7 +296,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = OutputManageMarketingRisk.new.deserialize(params['Data'])
+            @Data = OutputManageMarketingRisk.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -388,7 +398,8 @@ module TencentCloud
           @Code = params['Code']
           @Message = params['Message']
           unless params['Value'].nil?
-            @Value = OutputManageMarketingRiskValue.new.deserialize(params['Value'])
+            @Value = OutputManageMarketingRiskValue.new
+            @Value.deserialize(params['Value'])
           end
           @UUid = params['UUid']
         end

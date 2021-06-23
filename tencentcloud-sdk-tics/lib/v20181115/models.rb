@@ -93,13 +93,17 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagType.new.deserialize(i)
+              tagtype_tmp = TagType.new
+              tagtype_tmp.deserialize(i)
+              @Tags << tagtype_tmp
             end
           end
           unless params['Intelligences'].nil?
             @Intelligences = []
             params['Intelligences'].each do |i|
-              @Intelligences << IntelligenceType.new.deserialize(i)
+              intelligencetype_tmp = IntelligenceType.new
+              intelligencetype_tmp.deserialize(i)
+              @Intelligences << intelligencetype_tmp
             end
           end
           @Context = params['Context']
@@ -168,19 +172,25 @@ module TencentCloud
           unless params['FileInfo'].nil?
             @FileInfo = []
             params['FileInfo'].each do |i|
-              @FileInfo << FileInfoType.new.deserialize(i)
+              fileinfotype_tmp = FileInfoType.new
+              fileinfotype_tmp.deserialize(i)
+              @FileInfo << fileinfotype_tmp
             end
           end
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagType.new.deserialize(i)
+              tagtype_tmp = TagType.new
+              tagtype_tmp.deserialize(i)
+              @Tags << tagtype_tmp
             end
           end
           unless params['Intelligences'].nil?
             @Intelligences = []
             params['Intelligences'].each do |i|
-              @Intelligences << IntelligenceType.new.deserialize(i)
+              intelligencetype_tmp = IntelligenceType.new
+              intelligencetype_tmp.deserialize(i)
+              @Intelligences << intelligencetype_tmp
             end
           end
           @Context = params['Context']
@@ -264,13 +274,17 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagType.new.deserialize(i)
+              tagtype_tmp = TagType.new
+              tagtype_tmp.deserialize(i)
+              @Tags << tagtype_tmp
             end
           end
           unless params['Intelligences'].nil?
             @Intelligences = []
             params['Intelligences'].each do |i|
-              @Intelligences << IntelligenceType.new.deserialize(i)
+              intelligencetype_tmp = IntelligenceType.new
+              intelligencetype_tmp.deserialize(i)
+              @Intelligences << intelligencetype_tmp
             end
           end
           @Context = params['Context']

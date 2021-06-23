@@ -20,9 +20,13 @@ module TencentCloud
   module Iir
     module V20200417
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-04-17'
-        @@endpoint = 'iir.tencentcloudapi.com'
-        @@sdk_version = 'IIR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-04-17'
+            api_endpoint = 'iir.tencentcloudapi.com'
+            sdk_version = 'IIR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 商品识别，使用微信扫一扫识物同款技术，基于人工智能技术、海量训练图片、亿级商品库，可以实现全覆盖、细粒度、高准确率的商品识别和商品推荐功能。 本服务可以识别出图片中的主体位置、主体商品类型，覆盖亿级SKU，输出具体商品的价格、型号等详细信息。 客户无需自建商品库，即可快速实现商品识别、拍照搜商品等功能。

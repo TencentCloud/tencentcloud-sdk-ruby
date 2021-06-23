@@ -165,7 +165,9 @@ module TencentCloud
           unless params['RiskInfo'].nil?
             @RiskInfo = []
             params['RiskInfo'].each do |i|
-              @RiskInfo << RiskDetail.new.deserialize(i)
+              riskdetail_tmp = RiskDetail.new
+              riskdetail_tmp.deserialize(i)
+              @RiskInfo << riskdetail_tmp
             end
           end
           @CodeDesc = params['CodeDesc']

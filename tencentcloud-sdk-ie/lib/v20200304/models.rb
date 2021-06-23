@@ -105,17 +105,21 @@ module TencentCloud
           @Channel = params['Channel']
           @SampleRate = params['SampleRate']
           unless params['Denoise'].nil?
-            @Denoise = Denoise.new.deserialize(params['Denoise'])
+            @Denoise = Denoise.new
+            @Denoise.deserialize(params['Denoise'])
           end
           @EnableMuteAudio = params['EnableMuteAudio']
           unless params['LoudnessInfo'].nil?
-            @LoudnessInfo = LoudnessInfo.new.deserialize(params['LoudnessInfo'])
+            @LoudnessInfo = LoudnessInfo.new
+            @LoudnessInfo.deserialize(params['LoudnessInfo'])
           end
           unless params['AudioEnhance'].nil?
-            @AudioEnhance = AudioEnhance.new.deserialize(params['AudioEnhance'])
+            @AudioEnhance = AudioEnhance.new
+            @AudioEnhance.deserialize(params['AudioEnhance'])
           end
           unless params['RemoveReverb'].nil?
-            @RemoveReverb = RemoveReverb.new.deserialize(params['RemoveReverb'])
+            @RemoveReverb = RemoveReverb.new
+            @RemoveReverb.deserialize(params['RemoveReverb'])
           end
         end
       end
@@ -232,7 +236,9 @@ module TencentCloud
           unless params['ItemSet'].nil?
             @ItemSet = []
             params['ItemSet'].each do |i|
-              @ItemSet << ClassificationTaskResultItem.new.deserialize(i)
+              classificationtaskresultitem_tmp = ClassificationTaskResultItem.new
+              classificationtaskresultitem_tmp.deserialize(i)
+              @ItemSet << classificationtaskresultitem_tmp
             end
           end
         end
@@ -342,7 +348,8 @@ module TencentCloud
           @Bucket = params['Bucket']
           @Path = params['Path']
           unless params['CosAuthMode'].nil?
-            @CosAuthMode = CosAuthMode.new.deserialize(params['CosAuthMode'])
+            @CosAuthMode = CosAuthMode.new
+            @CosAuthMode.deserialize(params['CosAuthMode'])
           end
         end
       end
@@ -397,7 +404,9 @@ module TencentCloud
           unless params['ItemSet'].nil?
             @ItemSet = []
             params['ItemSet'].each do |i|
-              @ItemSet << CoverTaskResultItem.new.deserialize(i)
+              covertaskresultitem_tmp = CoverTaskResultItem.new
+              covertaskresultitem_tmp.deserialize(i)
+              @ItemSet << covertaskresultitem_tmp
             end
           end
         end
@@ -445,16 +454,20 @@ module TencentCloud
 
         def deserialize(params)
           unless params['EditingInfo'].nil?
-            @EditingInfo = EditingInfo.new.deserialize(params['EditingInfo'])
+            @EditingInfo = EditingInfo.new
+            @EditingInfo.deserialize(params['EditingInfo'])
           end
           unless params['DownInfo'].nil?
-            @DownInfo = DownInfo.new.deserialize(params['DownInfo'])
+            @DownInfo = DownInfo.new
+            @DownInfo.deserialize(params['DownInfo'])
           end
           unless params['SaveInfo'].nil?
-            @SaveInfo = SaveInfo.new.deserialize(params['SaveInfo'])
+            @SaveInfo = SaveInfo.new
+            @SaveInfo.deserialize(params['SaveInfo'])
           end
           unless params['CallbackInfo'].nil?
-            @CallbackInfo = CallbackInfo.new.deserialize(params['CallbackInfo'])
+            @CallbackInfo = CallbackInfo.new
+            @CallbackInfo.deserialize(params['CallbackInfo'])
           end
         end
       end
@@ -501,24 +514,31 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MediaProcessInfo'].nil?
-            @MediaProcessInfo = MediaProcessInfo.new.deserialize(params['MediaProcessInfo'])
+            @MediaProcessInfo = MediaProcessInfo.new
+            @MediaProcessInfo.deserialize(params['MediaProcessInfo'])
           end
           unless params['SourceInfoSet'].nil?
             @SourceInfoSet = []
             params['SourceInfoSet'].each do |i|
-              @SourceInfoSet << MediaSourceInfo.new.deserialize(i)
+              mediasourceinfo_tmp = MediaSourceInfo.new
+              mediasourceinfo_tmp.deserialize(i)
+              @SourceInfoSet << mediasourceinfo_tmp
             end
           end
           unless params['SaveInfoSet'].nil?
             @SaveInfoSet = []
             params['SaveInfoSet'].each do |i|
-              @SaveInfoSet << SaveInfo.new.deserialize(i)
+              saveinfo_tmp = SaveInfo.new
+              saveinfo_tmp.deserialize(i)
+              @SaveInfoSet << saveinfo_tmp
             end
           end
           unless params['CallbackInfoSet'].nil?
             @CallbackInfoSet = []
             params['CallbackInfoSet'].each do |i|
-              @CallbackInfoSet << CallbackInfo.new.deserialize(i)
+              callbackinfo_tmp = CallbackInfo.new
+              callbackinfo_tmp.deserialize(i)
+              @CallbackInfoSet << callbackinfo_tmp
             end
           end
         end
@@ -567,19 +587,24 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DownInfo'].nil?
-            @DownInfo = DownInfo.new.deserialize(params['DownInfo'])
+            @DownInfo = DownInfo.new
+            @DownInfo.deserialize(params['DownInfo'])
           end
           unless params['TransInfo'].nil?
             @TransInfo = []
             params['TransInfo'].each do |i|
-              @TransInfo << SubTaskTranscodeInfo.new.deserialize(i)
+              subtasktranscodeinfo_tmp = SubTaskTranscodeInfo.new
+              subtasktranscodeinfo_tmp.deserialize(i)
+              @TransInfo << subtasktranscodeinfo_tmp
             end
           end
           unless params['SaveInfo'].nil?
-            @SaveInfo = SaveInfo.new.deserialize(params['SaveInfo'])
+            @SaveInfo = SaveInfo.new
+            @SaveInfo.deserialize(params['SaveInfo'])
           end
           unless params['CallbackInfo'].nil?
-            @CallbackInfo = CallbackInfo.new.deserialize(params['CallbackInfo'])
+            @CallbackInfo = CallbackInfo.new
+            @CallbackInfo.deserialize(params['CallbackInfo'])
           end
         end
       end
@@ -623,13 +648,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['QualityControlInfo'].nil?
-            @QualityControlInfo = QualityControlInfo.new.deserialize(params['QualityControlInfo'])
+            @QualityControlInfo = QualityControlInfo.new
+            @QualityControlInfo.deserialize(params['QualityControlInfo'])
           end
           unless params['DownInfo'].nil?
-            @DownInfo = DownInfo.new.deserialize(params['DownInfo'])
+            @DownInfo = DownInfo.new
+            @DownInfo.deserialize(params['DownInfo'])
           end
           unless params['CallbackInfo'].nil?
-            @CallbackInfo = CallbackInfo.new.deserialize(params['CallbackInfo'])
+            @CallbackInfo = CallbackInfo.new
+            @CallbackInfo.deserialize(params['CallbackInfo'])
           end
         end
       end
@@ -756,7 +784,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TaskResult'].nil?
-            @TaskResult = EditingTaskResult.new.deserialize(params['TaskResult'])
+            @TaskResult = EditingTaskResult.new
+            @TaskResult.deserialize(params['TaskResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -795,7 +824,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TaskResult'].nil?
-            @TaskResult = MediaProcessTaskResult.new.deserialize(params['TaskResult'])
+            @TaskResult = MediaProcessTaskResult.new
+            @TaskResult.deserialize(params['TaskResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -833,7 +863,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TaskResult'].nil?
-            @TaskResult = MediaQualityRestorationTaskResult.new.deserialize(params['TaskResult'])
+            @TaskResult = MediaQualityRestorationTaskResult.new
+            @TaskResult.deserialize(params['TaskResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -871,7 +902,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TaskResult'].nil?
-            @TaskResult = QualityControlInfoTaskResult.new.deserialize(params['TaskResult'])
+            @TaskResult = QualityControlInfoTaskResult.new
+            @TaskResult.deserialize(params['TaskResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -899,10 +931,12 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           unless params['UrlInfo'].nil?
-            @UrlInfo = UrlInfo.new.deserialize(params['UrlInfo'])
+            @UrlInfo = UrlInfo.new
+            @UrlInfo.deserialize(params['UrlInfo'])
           end
           unless params['CosInfo'].nil?
-            @CosInfo = CosInfo.new.deserialize(params['CosInfo'])
+            @CosInfo = CosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
           end
         end
       end
@@ -955,22 +989,28 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TagEditingInfo'].nil?
-            @TagEditingInfo = TagEditingInfo.new.deserialize(params['TagEditingInfo'])
+            @TagEditingInfo = TagEditingInfo.new
+            @TagEditingInfo.deserialize(params['TagEditingInfo'])
           end
           unless params['ClassificationEditingInfo'].nil?
-            @ClassificationEditingInfo = ClassificationEditingInfo.new.deserialize(params['ClassificationEditingInfo'])
+            @ClassificationEditingInfo = ClassificationEditingInfo.new
+            @ClassificationEditingInfo.deserialize(params['ClassificationEditingInfo'])
           end
           unless params['StripEditingInfo'].nil?
-            @StripEditingInfo = StripEditingInfo.new.deserialize(params['StripEditingInfo'])
+            @StripEditingInfo = StripEditingInfo.new
+            @StripEditingInfo.deserialize(params['StripEditingInfo'])
           end
           unless params['HighlightsEditingInfo'].nil?
-            @HighlightsEditingInfo = HighlightsEditingInfo.new.deserialize(params['HighlightsEditingInfo'])
+            @HighlightsEditingInfo = HighlightsEditingInfo.new
+            @HighlightsEditingInfo.deserialize(params['HighlightsEditingInfo'])
           end
           unless params['CoverEditingInfo'].nil?
-            @CoverEditingInfo = CoverEditingInfo.new.deserialize(params['CoverEditingInfo'])
+            @CoverEditingInfo = CoverEditingInfo.new
+            @CoverEditingInfo.deserialize(params['CoverEditingInfo'])
           end
           unless params['OpeningEndingEditingInfo'].nil?
-            @OpeningEndingEditingInfo = OpeningEndingEditingInfo.new.deserialize(params['OpeningEndingEditingInfo'])
+            @OpeningEndingEditingInfo = OpeningEndingEditingInfo.new
+            @OpeningEndingEditingInfo.deserialize(params['OpeningEndingEditingInfo'])
           end
         end
       end
@@ -1018,22 +1058,28 @@ module TencentCloud
           @TaskId = params['TaskId']
           @Status = params['Status']
           unless params['TagTaskResult'].nil?
-            @TagTaskResult = TagTaskResult.new.deserialize(params['TagTaskResult'])
+            @TagTaskResult = TagTaskResult.new
+            @TagTaskResult.deserialize(params['TagTaskResult'])
           end
           unless params['ClassificationTaskResult'].nil?
-            @ClassificationTaskResult = ClassificationTaskResult.new.deserialize(params['ClassificationTaskResult'])
+            @ClassificationTaskResult = ClassificationTaskResult.new
+            @ClassificationTaskResult.deserialize(params['ClassificationTaskResult'])
           end
           unless params['StripTaskResult'].nil?
-            @StripTaskResult = StripTaskResult.new.deserialize(params['StripTaskResult'])
+            @StripTaskResult = StripTaskResult.new
+            @StripTaskResult.deserialize(params['StripTaskResult'])
           end
           unless params['HighlightsTaskResult'].nil?
-            @HighlightsTaskResult = HighlightsTaskResult.new.deserialize(params['HighlightsTaskResult'])
+            @HighlightsTaskResult = HighlightsTaskResult.new
+            @HighlightsTaskResult.deserialize(params['HighlightsTaskResult'])
           end
           unless params['CoverTaskResult'].nil?
-            @CoverTaskResult = CoverTaskResult.new.deserialize(params['CoverTaskResult'])
+            @CoverTaskResult = CoverTaskResult.new
+            @CoverTaskResult.deserialize(params['CoverTaskResult'])
           end
           unless params['OpeningEndingTaskResult'].nil?
-            @OpeningEndingTaskResult = OpeningEndingTaskResult.new.deserialize(params['OpeningEndingTaskResult'])
+            @OpeningEndingTaskResult = OpeningEndingTaskResult.new
+            @OpeningEndingTaskResult.deserialize(params['OpeningEndingTaskResult'])
           end
         end
       end
@@ -1100,13 +1146,17 @@ module TencentCloud
           unless params['VideoInfoResult'].nil?
             @VideoInfoResult = []
             params['VideoInfoResult'].each do |i|
-              @VideoInfoResult << VideoInfoResultItem.new.deserialize(i)
+              videoinforesultitem_tmp = VideoInfoResultItem.new
+              videoinforesultitem_tmp.deserialize(i)
+              @VideoInfoResult << videoinforesultitem_tmp
             end
           end
           unless params['AudioInfoResult'].nil?
             @AudioInfoResult = []
             params['AudioInfoResult'].each do |i|
-              @AudioInfoResult << AudioInfoResultItem.new.deserialize(i)
+              audioinforesultitem_tmp = AudioInfoResultItem.new
+              audioinforesultitem_tmp.deserialize(i)
+              @AudioInfoResult << audioinforesultitem_tmp
             end
           end
         end
@@ -1139,7 +1189,9 @@ module TencentCloud
           unless params['TagItems'].nil?
             @TagItems = []
             params['TagItems'].each do |i|
-              @TagItems << TagItem.new.deserialize(i)
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @TagItems << tagitem_tmp
             end
           end
         end
@@ -1188,7 +1240,9 @@ module TencentCloud
           unless params['FrameTagItems'].nil?
             @FrameTagItems = []
             params['FrameTagItems'].each do |i|
-              @FrameTagItems << FrameTagItem.new.deserialize(i)
+              frametagitem_tmp = FrameTagItem.new
+              frametagitem_tmp.deserialize(i)
+              @FrameTagItems << frametagitem_tmp
             end
           end
         end
@@ -1219,7 +1273,8 @@ module TencentCloud
           @Frequency = params['Frequency']
           @Strength = params['Strength']
           unless params['CosInfo'].nil?
-            @CosInfo = CosInfo.new.deserialize(params['CosInfo'])
+            @CosInfo = CosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
           end
         end
       end
@@ -1274,7 +1329,9 @@ module TencentCloud
           unless params['ItemSet'].nil?
             @ItemSet = []
             params['ItemSet'].each do |i|
-              @ItemSet << HighlightsTaskResultItem.new.deserialize(i)
+              highlightstaskresultitem_tmp = HighlightsTaskResultItem.new
+              highlightstaskresultitem_tmp.deserialize(i)
+              @ItemSet << highlightstaskresultitem_tmp
             end
           end
         end
@@ -1311,7 +1368,9 @@ module TencentCloud
           unless params['SegmentSet'].nil?
             @SegmentSet = []
             params['SegmentSet'].each do |i|
-              @SegmentSet << HighlightsTaskResultItemSegment.new.deserialize(i)
+              highlightstaskresultitemsegment_tmp = HighlightsTaskResultItemSegment.new
+              highlightstaskresultitemsegment_tmp.deserialize(i)
+              @SegmentSet << highlightstaskresultitemsegment_tmp
             end
           end
         end
@@ -1421,13 +1480,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TimeInfo'].nil?
-            @TimeInfo = MediaCuttingTimeInfo.new.deserialize(params['TimeInfo'])
+            @TimeInfo = MediaCuttingTimeInfo.new
+            @TimeInfo.deserialize(params['TimeInfo'])
           end
           unless params['TargetInfo'].nil?
-            @TargetInfo = MediaTargetInfo.new.deserialize(params['TargetInfo'])
+            @TargetInfo = MediaTargetInfo.new
+            @TargetInfo.deserialize(params['TargetInfo'])
           end
           unless params['OutForm'].nil?
-            @OutForm = MediaCuttingOutForm.new.deserialize(params['OutForm'])
+            @OutForm = MediaCuttingOutForm.new
+            @OutForm.deserialize(params['OutForm'])
           end
           @ResultListSaveType = params['ResultListSaveType']
         end
@@ -1504,14 +1566,17 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ListFile'].nil?
-            @ListFile = TaskResultFile.new.deserialize(params['ListFile'])
+            @ListFile = TaskResultFile.new
+            @ListFile.deserialize(params['ListFile'])
           end
           @ResultCount = params['ResultCount']
           unless params['FirstFile'].nil?
-            @FirstFile = TaskResultFile.new.deserialize(params['FirstFile'])
+            @FirstFile = TaskResultFile.new
+            @FirstFile.deserialize(params['FirstFile'])
           end
           unless params['LastFile'].nil?
-            @LastFile = TaskResultFile.new.deserialize(params['LastFile'])
+            @LastFile = TaskResultFile.new
+            @LastFile.deserialize(params['LastFile'])
           end
         end
       end
@@ -1543,12 +1608,15 @@ module TencentCloud
           @Type = params['Type']
           @PointSet = params['PointSet']
           unless params['IntervalPoint'].nil?
-            @IntervalPoint = IntervalTime.new.deserialize(params['IntervalPoint'])
+            @IntervalPoint = IntervalTime.new
+            @IntervalPoint.deserialize(params['IntervalPoint'])
           end
           unless params['SectionSet'].nil?
             @SectionSet = []
             params['SectionSet'].each do |i|
-              @SectionSet << SectionTime.new.deserialize(i)
+              sectiontime_tmp = SectionTime.new
+              sectiontime_tmp.deserialize(i)
+              @SectionSet << sectiontime_tmp
             end
           end
         end
@@ -1568,7 +1636,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TargetInfo'].nil?
-            @TargetInfo = MediaTargetInfo.new.deserialize(params['TargetInfo'])
+            @TargetInfo = MediaTargetInfo.new
+            @TargetInfo.deserialize(params['TargetInfo'])
           end
         end
       end
@@ -1587,7 +1656,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['File'].nil?
-            @File = TaskResultFile.new.deserialize(params['File'])
+            @File = TaskResultFile.new
+            @File.deserialize(params['File'])
           end
         end
       end
@@ -1619,13 +1689,16 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           unless params['MediaCuttingInfo'].nil?
-            @MediaCuttingInfo = MediaCuttingInfo.new.deserialize(params['MediaCuttingInfo'])
+            @MediaCuttingInfo = MediaCuttingInfo.new
+            @MediaCuttingInfo.deserialize(params['MediaCuttingInfo'])
           end
           unless params['MediaJoiningInfo'].nil?
-            @MediaJoiningInfo = MediaJoiningInfo.new.deserialize(params['MediaJoiningInfo'])
+            @MediaJoiningInfo = MediaJoiningInfo.new
+            @MediaJoiningInfo.deserialize(params['MediaJoiningInfo'])
           end
           unless params['MediaRecognitionInfo'].nil?
-            @MediaRecognitionInfo = MediaRecognitionInfo.new.deserialize(params['MediaRecognitionInfo'])
+            @MediaRecognitionInfo = MediaRecognitionInfo.new
+            @MediaRecognitionInfo.deserialize(params['MediaRecognitionInfo'])
           end
         end
       end
@@ -1690,13 +1763,16 @@ module TencentCloud
           @ErrCode = params['ErrCode']
           @ErrMsg = params['ErrMsg']
           unless params['MediaCuttingTaskResult'].nil?
-            @MediaCuttingTaskResult = MediaCuttingTaskResult.new.deserialize(params['MediaCuttingTaskResult'])
+            @MediaCuttingTaskResult = MediaCuttingTaskResult.new
+            @MediaCuttingTaskResult.deserialize(params['MediaCuttingTaskResult'])
           end
           unless params['MediaJoiningTaskResult'].nil?
-            @MediaJoiningTaskResult = MediaJoiningTaskResult.new.deserialize(params['MediaJoiningTaskResult'])
+            @MediaJoiningTaskResult = MediaJoiningTaskResult.new
+            @MediaJoiningTaskResult.deserialize(params['MediaJoiningTaskResult'])
           end
           unless params['MediaRecognitionTaskResult'].nil?
-            @MediaRecognitionTaskResult = MediaRecognitionTaskResult.new.deserialize(params['MediaRecognitionTaskResult'])
+            @MediaRecognitionTaskResult = MediaRecognitionTaskResult.new
+            @MediaRecognitionTaskResult.deserialize(params['MediaRecognitionTaskResult'])
           end
         end
       end
@@ -1720,7 +1796,9 @@ module TencentCloud
           unless params['SubTaskResult'].nil?
             @SubTaskResult = []
             params['SubTaskResult'].each do |i|
-              @SubTaskResult << SubTaskResultItem.new.deserialize(i)
+              subtaskresultitem_tmp = SubTaskResultItem.new
+              subtaskresultitem_tmp.deserialize(i)
+              @SubTaskResult << subtaskresultitem_tmp
             end
           end
         end
@@ -1742,10 +1820,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['FrameTagRec'].nil?
-            @FrameTagRec = FrameTagRec.new.deserialize(params['FrameTagRec'])
+            @FrameTagRec = FrameTagRec.new
+            @FrameTagRec.deserialize(params['FrameTagRec'])
           end
           unless params['SubtitleRec'].nil?
-            @SubtitleRec = SubtitleRec.new.deserialize(params['SubtitleRec'])
+            @SubtitleRec = SubtitleRec.new
+            @SubtitleRec.deserialize(params['SubtitleRec'])
           end
         end
       end
@@ -1768,10 +1848,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['FrameTagResults'].nil?
-            @FrameTagResults = FrameTagResult.new.deserialize(params['FrameTagResults'])
+            @FrameTagResults = FrameTagResult.new
+            @FrameTagResults.deserialize(params['FrameTagResults'])
           end
           unless params['SubtitleResults'].nil?
-            @SubtitleResults = SubtitleResult.new.deserialize(params['SubtitleResults'])
+            @SubtitleResults = SubtitleResult.new
+            @SubtitleResults.deserialize(params['SubtitleResults'])
           end
         end
       end
@@ -1801,13 +1883,17 @@ module TencentCloud
           unless params['ResultVideoInfoSet'].nil?
             @ResultVideoInfoSet = []
             params['ResultVideoInfoSet'].each do |i|
-              @ResultVideoInfoSet << ResultVideoInfo.new.deserialize(i)
+              resultvideoinfo_tmp = ResultVideoInfo.new
+              resultvideoinfo_tmp.deserialize(i)
+              @ResultVideoInfoSet << resultvideoinfo_tmp
             end
           end
           unless params['ResultAudioInfoSet'].nil?
             @ResultAudioInfoSet = []
             params['ResultAudioInfoSet'].each do |i|
-              @ResultAudioInfoSet << ResultAudioInfo.new.deserialize(i)
+              resultaudioinfo_tmp = ResultAudioInfo.new
+              resultaudioinfo_tmp.deserialize(i)
+              @ResultAudioInfoSet << resultaudioinfo_tmp
             end
           end
         end
@@ -1836,7 +1922,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DownInfo'].nil?
-            @DownInfo = DownInfo.new.deserialize(params['DownInfo'])
+            @DownInfo = DownInfo.new
+            @DownInfo.deserialize(params['DownInfo'])
           end
           @Id = params['Id']
           @Type = params['Type']
@@ -1873,7 +1960,8 @@ module TencentCloud
           @FileName = params['FileName']
           @Format = params['Format']
           unless params['TargetVideoInfo'].nil?
-            @TargetVideoInfo = TargetVideoInfo.new.deserialize(params['TargetVideoInfo'])
+            @TargetVideoInfo = TargetVideoInfo.new
+            @TargetVideoInfo.deserialize(params['TargetVideoInfo'])
           end
           @ResultListSaveType = params['ResultListSaveType']
         end
@@ -1947,7 +2035,8 @@ module TencentCloud
           @ErrCode = params['ErrCode']
           @ErrMsg = params['ErrMsg']
           unless params['Item'].nil?
-            @Item = OpeningEndingTaskResultItem.new.deserialize(params['Item'])
+            @Item = OpeningEndingTaskResultItem.new
+            @Item.deserialize(params['Item'])
           end
         end
       end
@@ -2017,7 +2106,8 @@ module TencentCloud
           @PosY = params['PosY']
           @Path = params['Path']
           unless params['CosInfo'].nil?
-            @CosInfo = CosInfo.new.deserialize(params['CosInfo'])
+            @CosInfo = CosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
           end
           @Width = params['Width']
           @Height = params['Height']
@@ -2186,61 +2276,81 @@ module TencentCloud
           unless params['QualityEvaluationResults'].nil?
             @QualityEvaluationResults = []
             params['QualityEvaluationResults'].each do |i|
-              @QualityEvaluationResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @QualityEvaluationResults << qualitycontrolresultitems_tmp
             end
           end
           unless params['JitterResults'].nil?
             @JitterResults = []
             params['JitterResults'].each do |i|
-              @JitterResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @JitterResults << qualitycontrolresultitems_tmp
             end
           end
           unless params['BlurResults'].nil?
             @BlurResults = []
             params['BlurResults'].each do |i|
-              @BlurResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @BlurResults << qualitycontrolresultitems_tmp
             end
           end
           unless params['AbnormalLightingResults'].nil?
             @AbnormalLightingResults = []
             params['AbnormalLightingResults'].each do |i|
-              @AbnormalLightingResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @AbnormalLightingResults << qualitycontrolresultitems_tmp
             end
           end
           unless params['CrashScreenResults'].nil?
             @CrashScreenResults = []
             params['CrashScreenResults'].each do |i|
-              @CrashScreenResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @CrashScreenResults << qualitycontrolresultitems_tmp
             end
           end
           unless params['BlackWhiteEdgeResults'].nil?
             @BlackWhiteEdgeResults = []
             params['BlackWhiteEdgeResults'].each do |i|
-              @BlackWhiteEdgeResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @BlackWhiteEdgeResults << qualitycontrolresultitems_tmp
             end
           end
           unless params['NoiseResults'].nil?
             @NoiseResults = []
             params['NoiseResults'].each do |i|
-              @NoiseResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @NoiseResults << qualitycontrolresultitems_tmp
             end
           end
           unless params['MosaicResults'].nil?
             @MosaicResults = []
             params['MosaicResults'].each do |i|
-              @MosaicResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @MosaicResults << qualitycontrolresultitems_tmp
             end
           end
           unless params['QRCodeResults'].nil?
             @QRCodeResults = []
             params['QRCodeResults'].each do |i|
-              @QRCodeResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @QRCodeResults << qualitycontrolresultitems_tmp
             end
           end
           unless params['VoiceResults'].nil?
             @VoiceResults = []
             params['VoiceResults'].each do |i|
-              @VoiceResults << QualityControlResultItems.new.deserialize(i)
+              qualitycontrolresultitems_tmp = QualityControlResultItems.new
+              qualitycontrolresultitems_tmp.deserialize(i)
+              @VoiceResults << qualitycontrolresultitems_tmp
             end
           end
           @ErrCode = params['ErrCode']
@@ -2298,7 +2408,9 @@ module TencentCloud
           unless params['QualityControlItems'].nil?
             @QualityControlItems = []
             params['QualityControlItems'].each do |i|
-              @QualityControlItems << QualityControlItem.new.deserialize(i)
+              qualitycontrolitem_tmp = QualityControlItem.new
+              qualitycontrolitem_tmp.deserialize(i)
+              @QualityControlItems << qualitycontrolitem_tmp
             end
           end
         end
@@ -2397,7 +2509,8 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           unless params['CosInfo'].nil?
-            @CosInfo = CosInfo.new.deserialize(params['CosInfo'])
+            @CosInfo = CosInfo.new
+            @CosInfo.deserialize(params['CosInfo'])
           end
         end
       end
@@ -2602,7 +2715,9 @@ module TencentCloud
           unless params['ItemSet'].nil?
             @ItemSet = []
             params['ItemSet'].each do |i|
-              @ItemSet << StripTaskResultItem.new.deserialize(i)
+              striptaskresultitem_tmp = StripTaskResultItem.new
+              striptaskresultitem_tmp.deserialize(i)
+              @ItemSet << striptaskresultitem_tmp
             end
           end
         end
@@ -2690,7 +2805,8 @@ module TencentCloud
           @DownloadUrl = params['DownloadUrl']
           @Md5 = params['Md5']
           unless params['FileInfo'].nil?
-            @FileInfo = FileInfo.new.deserialize(params['FileInfo'])
+            @FileInfo = FileInfo.new
+            @FileInfo.deserialize(params['FileInfo'])
           end
         end
       end
@@ -2724,19 +2840,24 @@ module TencentCloud
         def deserialize(params)
           @TaskName = params['TaskName']
           unless params['TargetInfo'].nil?
-            @TargetInfo = TargetInfo.new.deserialize(params['TargetInfo'])
+            @TargetInfo = TargetInfo.new
+            @TargetInfo.deserialize(params['TargetInfo'])
           end
           unless params['EditInfo'].nil?
-            @EditInfo = EditInfo.new.deserialize(params['EditInfo'])
+            @EditInfo = EditInfo.new
+            @EditInfo.deserialize(params['EditInfo'])
           end
           unless params['VideoInfo'].nil?
-            @VideoInfo = VideoInfo.new.deserialize(params['VideoInfo'])
+            @VideoInfo = VideoInfo.new
+            @VideoInfo.deserialize(params['VideoInfo'])
           end
           unless params['AudioInfo'].nil?
-            @AudioInfo = AudioInfo.new.deserialize(params['AudioInfo'])
+            @AudioInfo = AudioInfo.new
+            @AudioInfo.deserialize(params['AudioInfo'])
           end
           unless params['MuxInfo'].nil?
-            @MuxInfo = MuxInfo.new.deserialize(params['MuxInfo'])
+            @MuxInfo = MuxInfo.new
+            @MuxInfo.deserialize(params['MuxInfo'])
           end
         end
       end
@@ -2831,7 +2952,9 @@ module TencentCloud
           unless params['SubtitleItems'].nil?
             @SubtitleItems = []
             params['SubtitleItems'].each do |i|
-              @SubtitleItems << SubtitleItem.new.deserialize(i)
+              subtitleitem_tmp = SubtitleItem.new
+              subtitleitem_tmp.deserialize(i)
+              @SubtitleItems << subtitleitem_tmp
             end
           end
         end
@@ -2917,7 +3040,9 @@ module TencentCloud
           unless params['ItemSet'].nil?
             @ItemSet = []
             params['ItemSet'].each do |i|
-              @ItemSet << TagTaskResultItem.new.deserialize(i)
+              tagtaskresultitem_tmp = TagTaskResultItem.new
+              tagtaskresultitem_tmp.deserialize(i)
+              @ItemSet << tagtaskresultitem_tmp
             end
           end
         end
@@ -2960,7 +3085,8 @@ module TencentCloud
         def deserialize(params)
           @FileName = params['FileName']
           unless params['SegmentInfo'].nil?
-            @SegmentInfo = SegmentInfo.new.deserialize(params['SegmentInfo'])
+            @SegmentInfo = SegmentInfo.new
+            @SegmentInfo.deserialize(params['SegmentInfo'])
           end
         end
       end
@@ -3013,7 +3139,8 @@ module TencentCloud
           @Url = params['Url']
           @FileSize = params['FileSize']
           unless params['MediaInfo'].nil?
-            @MediaInfo = MediaResultInfo.new.deserialize(params['MediaInfo'])
+            @MediaInfo = MediaResultInfo.new
+            @MediaInfo.deserialize(params['MediaInfo'])
           end
         end
       end
@@ -3091,33 +3218,42 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ArtifactReduction'].nil?
-            @ArtifactReduction = ArtifactReduction.new.deserialize(params['ArtifactReduction'])
+            @ArtifactReduction = ArtifactReduction.new
+            @ArtifactReduction.deserialize(params['ArtifactReduction'])
           end
           unless params['Denoising'].nil?
-            @Denoising = Denoising.new.deserialize(params['Denoising'])
+            @Denoising = Denoising.new
+            @Denoising.deserialize(params['Denoising'])
           end
           unless params['ColorEnhance'].nil?
-            @ColorEnhance = ColorEnhance.new.deserialize(params['ColorEnhance'])
+            @ColorEnhance = ColorEnhance.new
+            @ColorEnhance.deserialize(params['ColorEnhance'])
           end
           unless params['Sharp'].nil?
-            @Sharp = Sharp.new.deserialize(params['Sharp'])
+            @Sharp = Sharp.new
+            @Sharp.deserialize(params['Sharp'])
           end
           @WdSuperResolution = params['WdSuperResolution']
           unless params['FaceProtect'].nil?
-            @FaceProtect = FaceProtect.new.deserialize(params['FaceProtect'])
+            @FaceProtect = FaceProtect.new
+            @FaceProtect.deserialize(params['FaceProtect'])
           end
           @WdFps = params['WdFps']
           unless params['ScratchRepair'].nil?
-            @ScratchRepair = ScratchRepair.new.deserialize(params['ScratchRepair'])
+            @ScratchRepair = ScratchRepair.new
+            @ScratchRepair.deserialize(params['ScratchRepair'])
           end
           unless params['LowLightEnhance'].nil?
-            @LowLightEnhance = LowLightEnhance.new.deserialize(params['LowLightEnhance'])
+            @LowLightEnhance = LowLightEnhance.new
+            @LowLightEnhance.deserialize(params['LowLightEnhance'])
           end
           unless params['VideoSuperResolution'].nil?
-            @VideoSuperResolution = VideoSuperResolution.new.deserialize(params['VideoSuperResolution'])
+            @VideoSuperResolution = VideoSuperResolution.new
+            @VideoSuperResolution.deserialize(params['VideoSuperResolution'])
           end
           unless params['VideoRepair'].nil?
-            @VideoRepair = VideoRepair.new.deserialize(params['VideoRepair'])
+            @VideoRepair = VideoRepair.new
+            @VideoRepair.deserialize(params['VideoRepair'])
           end
         end
       end
@@ -3212,18 +3348,23 @@ module TencentCloud
           unless params['PicMarkInfo'].nil?
             @PicMarkInfo = []
             params['PicMarkInfo'].each do |i|
-              @PicMarkInfo << PicMarkInfoItem.new.deserialize(i)
+              picmarkinfoitem_tmp = PicMarkInfoItem.new
+              picmarkinfoitem_tmp.deserialize(i)
+              @PicMarkInfo << picmarkinfoitem_tmp
             end
           end
           unless params['DarInfo'].nil?
-            @DarInfo = DarInfo.new.deserialize(params['DarInfo'])
+            @DarInfo = DarInfo.new
+            @DarInfo.deserialize(params['DarInfo'])
           end
           @Hdr = params['Hdr']
           unless params['VideoEnhance'].nil?
-            @VideoEnhance = VideoEnhance.new.deserialize(params['VideoEnhance'])
+            @VideoEnhance = VideoEnhance.new
+            @VideoEnhance.deserialize(params['VideoEnhance'])
           end
           unless params['HiddenMarkInfo'].nil?
-            @HiddenMarkInfo = HiddenMarkInfo.new.deserialize(params['HiddenMarkInfo'])
+            @HiddenMarkInfo = HiddenMarkInfo.new
+            @HiddenMarkInfo.deserialize(params['HiddenMarkInfo'])
           end
         end
       end

@@ -20,9 +20,13 @@ module TencentCloud
   module Facefusion
     module V20181201
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-12-01'
-        @@endpoint = 'facefusion.tencentcloudapi.com'
-        @@sdk_version = 'FACEFUSION_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-12-01'
+            api_endpoint = 'facefusion.tencentcloudapi.com'
+            sdk_version = 'FACEFUSION_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 通常通过腾讯云人脸融合的控制台可以查看到素材相关的参数数据，可以满足使用。本接口返回活动的素材数据，包括素材状态等。用于用户通过Api查看素材相关数据，方便使用。

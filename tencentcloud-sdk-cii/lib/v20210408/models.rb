@@ -130,7 +130,9 @@ module TencentCloud
           unless params['TaskInfos'].nil?
             @TaskInfos = []
             params['TaskInfos'].each do |i|
-              @TaskInfos << CreateStructureTaskInfo.new.deserialize(i)
+              createstructuretaskinfo_tmp = CreateStructureTaskInfo.new
+              createstructuretaskinfo_tmp.deserialize(i)
+              @TaskInfos << createstructuretaskinfo_tmp
             end
           end
           @PolicyId = params['PolicyId']
@@ -240,7 +242,8 @@ module TencentCloud
           @MachineResult = params['MachineResult']
           @ManualResult = params['ManualResult']
           unless params['Metrics'].nil?
-            @Metrics = CompareMetricsData.new.deserialize(params['Metrics'])
+            @Metrics = CompareMetricsData.new
+            @Metrics.deserialize(params['Metrics'])
           end
           @NewItems = params['NewItems']
           @ModifyItems = params['ModifyItems']
@@ -248,7 +251,9 @@ module TencentCloud
           unless params['AllTasks'].nil?
             @AllTasks = []
             params['AllTasks'].each do |i|
-              @AllTasks << ReviewDataTaskInfo.new.deserialize(i)
+              reviewdatataskinfo_tmp = ReviewDataTaskInfo.new
+              reviewdatataskinfo_tmp.deserialize(i)
+              @AllTasks << reviewdatataskinfo_tmp
             end
           end
           @TaskType = params['TaskType']
@@ -298,7 +303,9 @@ module TencentCloud
           unless params['Results'].nil?
             @Results = []
             params['Results'].each do |i|
-              @Results << ResultObject.new.deserialize(i)
+              resultobject_tmp = ResultObject.new
+              resultobject_tmp.deserialize(i)
+              @Results << resultobject_tmp
             end
           end
           @RequestId = params['RequestId']

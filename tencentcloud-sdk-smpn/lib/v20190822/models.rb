@@ -77,7 +77,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RequestData'].nil?
-            @RequestData = EPARequest.new.deserialize(params['RequestData'])
+            @RequestData = EPARequest.new
+            @RequestData.deserialize(params['RequestData'])
           end
           @ResourceId = params['ResourceId']
         end
@@ -99,7 +100,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ResponseData'].nil?
-            @ResponseData = EPAResponse.new.deserialize(params['ResponseData'])
+            @ResponseData = EPAResponse.new
+            @ResponseData.deserialize(params['ResponseData'])
           end
           @RequestId = params['RequestId']
         end
@@ -122,7 +124,8 @@ module TencentCloud
         def deserialize(params)
           @ResourceId = params['ResourceId']
           unless params['RequestData'].nil?
-            @RequestData = CHPRequest.new.deserialize(params['RequestData'])
+            @RequestData = CHPRequest.new
+            @RequestData.deserialize(params['RequestData'])
           end
         end
       end
@@ -143,7 +146,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ResponseData'].nil?
-            @ResponseData = CHPResponse.new.deserialize(params['ResponseData'])
+            @ResponseData = CHPResponse.new
+            @ResponseData.deserialize(params['ResponseData'])
           end
           @RequestId = params['RequestId']
         end
@@ -165,7 +169,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RequestData'].nil?
-            @RequestData = FNRRequest.new.deserialize(params['RequestData'])
+            @RequestData = FNRRequest.new
+            @RequestData.deserialize(params['RequestData'])
           end
           @ResourceId = params['ResourceId']
         end
@@ -187,7 +192,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ResponseData'].nil?
-            @ResponseData = FNRResponse.new.deserialize(params['ResponseData'])
+            @ResponseData = FNRResponse.new
+            @ResponseData.deserialize(params['ResponseData'])
           end
           @RequestId = params['RequestId']
         end
@@ -209,7 +215,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RequestData'].nil?
-            @RequestData = MHMRequest.new.deserialize(params['RequestData'])
+            @RequestData = MHMRequest.new
+            @RequestData.deserialize(params['RequestData'])
           end
           @ResourceId = params['ResourceId']
         end
@@ -231,7 +238,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ResponseData'].nil?
-            @ResponseData = MHMResponse.new.deserialize(params['ResponseData'])
+            @ResponseData = MHMResponse.new
+            @ResponseData.deserialize(params['ResponseData'])
           end
           @RequestId = params['RequestId']
         end
@@ -253,7 +261,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RequestData'].nil?
-            @RequestData = MRLRequest.new.deserialize(params['RequestData'])
+            @RequestData = MRLRequest.new
+            @RequestData.deserialize(params['RequestData'])
           end
           @ResourceId = params['ResourceId']
         end
@@ -275,7 +284,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ResponseData'].nil?
-            @ResponseData = MRLResponse.new.deserialize(params['ResponseData'])
+            @ResponseData = MRLResponse.new
+            @ResponseData.deserialize(params['ResponseData'])
           end
           @RequestId = params['RequestId']
         end

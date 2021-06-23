@@ -131,10 +131,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Desc'].nil?
-            @Desc = Desc.new.deserialize(params['Desc'])
+            @Desc = Desc.new
+            @Desc.deserialize(params['Desc'])
           end
           unless params['Summary'].nil?
-            @Summary = Summary.new.deserialize(params['Summary'])
+            @Summary = Summary.new
+            @Summary.deserialize(params['Summary'])
           end
         end
       end
@@ -164,13 +166,17 @@ module TencentCloud
           unless params['Organ'].nil?
             @Organ = []
             params['Organ'].each do |i|
-              @Organ << Organ.new.deserialize(i)
+              organ_tmp = Organ.new
+              organ_tmp.deserialize(i)
+              @Organ << organ_tmp
             end
           end
           unless params['Tuber'].nil?
             @Tuber = []
             params['Tuber'].each do |i|
-              @Tuber << TuberInfo.new.deserialize(i)
+              tuberinfo_tmp = TuberInfo.new
+              tuberinfo_tmp.deserialize(i)
+              @Tuber << tuberinfo_tmp
             end
           end
         end
@@ -194,12 +200,15 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Advice'].nil?
-            @Advice = Advice.new.deserialize(params['Advice'])
+            @Advice = Advice.new
+            @Advice.deserialize(params['Advice'])
           end
           unless params['Diagnosis'].nil?
             @Diagnosis = []
             params['Diagnosis'].each do |i|
-              @Diagnosis << DiagCertItem.new.deserialize(i)
+              diagcertitem_tmp = DiagCertItem.new
+              diagcertitem_tmp.deserialize(i)
+              @Diagnosis << diagcertitem_tmp
             end
           end
         end
@@ -263,16 +272,20 @@ module TencentCloud
         def deserialize(params)
           @TableIndex = params['TableIndex']
           unless params['OutDiagnosis'].nil?
-            @OutDiagnosis = BlockInfo.new.deserialize(params['OutDiagnosis'])
+            @OutDiagnosis = BlockInfo.new
+            @OutDiagnosis.deserialize(params['OutDiagnosis'])
           end
           unless params['DiseaseCode'].nil?
-            @DiseaseCode = BlockInfo.new.deserialize(params['DiseaseCode'])
+            @DiseaseCode = BlockInfo.new
+            @DiseaseCode.deserialize(params['DiseaseCode'])
           end
           unless params['InStatus'].nil?
-            @InStatus = BlockInfo.new.deserialize(params['InStatus'])
+            @InStatus = BlockInfo.new
+            @InStatus.deserialize(params['InStatus'])
           end
           unless params['OutStatus'].nil?
-            @OutStatus = BlockInfo.new.deserialize(params['OutStatus'])
+            @OutStatus = BlockInfo.new
+            @OutStatus.deserialize(params['OutStatus'])
           end
         end
       end
@@ -402,14 +415,18 @@ module TencentCloud
           unless params['DischargeDiagnosis'].nil?
             @DischargeDiagnosis = []
             params['DischargeDiagnosis'].each do |i|
-              @DischargeDiagnosis << DischargeDiagnosis.new.deserialize(i)
+              dischargediagnosis_tmp = DischargeDiagnosis.new
+              dischargediagnosis_tmp.deserialize(i)
+              @DischargeDiagnosis << dischargediagnosis_tmp
             end
           end
           unless params['PathologicalDiagnosis'].nil?
-            @PathologicalDiagnosis = BlockInfo.new.deserialize(params['PathologicalDiagnosis'])
+            @PathologicalDiagnosis = BlockInfo.new
+            @PathologicalDiagnosis.deserialize(params['PathologicalDiagnosis'])
           end
           unless params['ClinicalDiagnosis'].nil?
-            @ClinicalDiagnosis = BlockInfo.new.deserialize(params['ClinicalDiagnosis'])
+            @ClinicalDiagnosis = BlockInfo.new
+            @ClinicalDiagnosis.deserialize(params['ClinicalDiagnosis'])
           end
         end
       end
@@ -597,7 +614,8 @@ module TencentCloud
           @Src = params['Src']
           @Name = params['Name']
           unless params['Value'].nil?
-            @Value = Value.new.deserialize(params['Value'])
+            @Value = Value.new
+            @Value.deserialize(params['Value'])
           end
         end
       end
@@ -647,11 +665,14 @@ module TencentCloud
           unless params['ImageInfoList'].nil?
             @ImageInfoList = []
             params['ImageInfoList'].each do |i|
-              @ImageInfoList << ImageInfo.new.deserialize(i)
+              imageinfo_tmp = ImageInfo.new
+              imageinfo_tmp.deserialize(i)
+              @ImageInfoList << imageinfo_tmp
             end
           end
           unless params['HandleParam'].nil?
-            @HandleParam = HandleParam.new.deserialize(params['HandleParam'])
+            @HandleParam = HandleParam.new
+            @HandleParam.deserialize(params['HandleParam'])
           end
           @Type = params['Type']
         end
@@ -676,7 +697,9 @@ module TencentCloud
           unless params['TextTypeList'].nil?
             @TextTypeList = []
             params['TextTypeList'].each do |i|
-              @TextTypeList << TextType.new.deserialize(i)
+              texttype_tmp = TextType.new
+              texttype_tmp.deserialize(i)
+              @TextTypeList << texttype_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -708,11 +731,14 @@ module TencentCloud
           unless params['ImageInfoList'].nil?
             @ImageInfoList = []
             params['ImageInfoList'].each do |i|
-              @ImageInfoList << ImageInfo.new.deserialize(i)
+              imageinfo_tmp = ImageInfo.new
+              imageinfo_tmp.deserialize(i)
+              @ImageInfoList << imageinfo_tmp
             end
           end
           unless params['HandleParam'].nil?
-            @HandleParam = HandleParam.new.deserialize(params['HandleParam'])
+            @HandleParam = HandleParam.new
+            @HandleParam.deserialize(params['HandleParam'])
           end
           @Type = params['Type']
           @IsUsedClassify = params['IsUsedClassify']
@@ -736,7 +762,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Template'].nil?
-            @Template = Template.new.deserialize(params['Template'])
+            @Template = Template.new
+            @Template.deserialize(params['Template'])
           end
           @RequestId = params['RequestId']
         end
@@ -758,7 +785,9 @@ module TencentCloud
           unless params['Indicators'].nil?
             @Indicators = []
             params['Indicators'].each do |i|
-              @Indicators << IndicatorItem.new.deserialize(i)
+              indicatoritem_tmp = IndicatorItem.new
+              indicatoritem_tmp.deserialize(i)
+              @Indicators << indicatoritem_tmp
             end
           end
         end
@@ -848,7 +877,8 @@ module TencentCloud
         def deserialize(params)
           @Index = params['Index']
           unless params['Part'].nil?
-            @Part = Part.new.deserialize(params['Part'])
+            @Part = Part.new
+            @Part.deserialize(params['Part'])
           end
           @Positive = params['Positive']
           @Src = params['Src']
@@ -887,7 +917,8 @@ module TencentCloud
           @Src = params['Src']
           @Index = params['Index']
           unless params['Part'].nil?
-            @Part = Part.new.deserialize(params['Part'])
+            @Part = Part.new
+            @Part.deserialize(params['Part'])
           end
           @Total = params['Total']
           @TransferNum = params['TransferNum']
@@ -931,31 +962,40 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Advice'].nil?
-            @Advice = Advice.new.deserialize(params['Advice'])
+            @Advice = Advice.new
+            @Advice.deserialize(params['Advice'])
           end
           unless params['Diagnosis'].nil?
             @Diagnosis = []
             params['Diagnosis'].each do |i|
-              @Diagnosis << DiagCertItem.new.deserialize(i)
+              diagcertitem_tmp = DiagCertItem.new
+              diagcertitem_tmp.deserialize(i)
+              @Diagnosis << diagcertitem_tmp
             end
           end
           unless params['DiseaseMedicalHistory'].nil?
-            @DiseaseMedicalHistory = DiseaseMedicalHistory.new.deserialize(params['DiseaseMedicalHistory'])
+            @DiseaseMedicalHistory = DiseaseMedicalHistory.new
+            @DiseaseMedicalHistory.deserialize(params['DiseaseMedicalHistory'])
           end
           unless params['PersonalMedicalHistory'].nil?
-            @PersonalMedicalHistory = PersonalMedicalHistory.new.deserialize(params['PersonalMedicalHistory'])
+            @PersonalMedicalHistory = PersonalMedicalHistory.new
+            @PersonalMedicalHistory.deserialize(params['PersonalMedicalHistory'])
           end
           unless params['ObstericalMedicalHistory'].nil?
-            @ObstericalMedicalHistory = ObstericalMedicalHistory.new.deserialize(params['ObstericalMedicalHistory'])
+            @ObstericalMedicalHistory = ObstericalMedicalHistory.new
+            @ObstericalMedicalHistory.deserialize(params['ObstericalMedicalHistory'])
           end
           unless params['FamilyMedicalHistory'].nil?
-            @FamilyMedicalHistory = FamilyMedicalHistory.new.deserialize(params['FamilyMedicalHistory'])
+            @FamilyMedicalHistory = FamilyMedicalHistory.new
+            @FamilyMedicalHistory.deserialize(params['FamilyMedicalHistory'])
           end
           unless params['MenstrualMedicalHistory'].nil?
-            @MenstrualMedicalHistory = MenstrualMedicalHistory.new.deserialize(params['MenstrualMedicalHistory'])
+            @MenstrualMedicalHistory = MenstrualMedicalHistory.new
+            @MenstrualMedicalHistory.deserialize(params['MenstrualMedicalHistory'])
           end
           unless params['TreatmentRecord'].nil?
-            @TreatmentRecord = TreatmentRecord.new.deserialize(params['TreatmentRecord'])
+            @TreatmentRecord = TreatmentRecord.new
+            @TreatmentRecord.deserialize(params['TreatmentRecord'])
           end
         end
       end
@@ -1275,67 +1315,88 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Part'].nil?
-            @Part = Part.new.deserialize(params['Part'])
+            @Part = Part.new
+            @Part.deserialize(params['Part'])
           end
           unless params['Size'].nil?
             @Size = []
             params['Size'].each do |i|
-              @Size << Size.new.deserialize(i)
+              size_tmp = Size.new
+              size_tmp.deserialize(i)
+              @Size << size_tmp
             end
           end
           unless params['Envelope'].nil?
-            @Envelope = BlockInfo.new.deserialize(params['Envelope'])
+            @Envelope = BlockInfo.new
+            @Envelope.deserialize(params['Envelope'])
           end
           unless params['Edge'].nil?
-            @Edge = BlockInfo.new.deserialize(params['Edge'])
+            @Edge = BlockInfo.new
+            @Edge.deserialize(params['Edge'])
           end
           unless params['InnerEcho'].nil?
-            @InnerEcho = BlockInfo.new.deserialize(params['InnerEcho'])
+            @InnerEcho = BlockInfo.new
+            @InnerEcho.deserialize(params['InnerEcho'])
           end
           unless params['Gland'].nil?
-            @Gland = BlockInfo.new.deserialize(params['Gland'])
+            @Gland = BlockInfo.new
+            @Gland.deserialize(params['Gland'])
           end
           unless params['Shape'].nil?
-            @Shape = BlockInfo.new.deserialize(params['Shape'])
+            @Shape = BlockInfo.new
+            @Shape.deserialize(params['Shape'])
           end
           unless params['Thickness'].nil?
-            @Thickness = BlockInfo.new.deserialize(params['Thickness'])
+            @Thickness = BlockInfo.new
+            @Thickness.deserialize(params['Thickness'])
           end
           unless params['ShapeAttr'].nil?
-            @ShapeAttr = BlockInfo.new.deserialize(params['ShapeAttr'])
+            @ShapeAttr = BlockInfo.new
+            @ShapeAttr.deserialize(params['ShapeAttr'])
           end
           unless params['CDFI'].nil?
-            @CDFI = BlockInfo.new.deserialize(params['CDFI'])
+            @CDFI = BlockInfo.new
+            @CDFI.deserialize(params['CDFI'])
           end
           unless params['SymDesc'].nil?
-            @SymDesc = BlockInfo.new.deserialize(params['SymDesc'])
+            @SymDesc = BlockInfo.new
+            @SymDesc.deserialize(params['SymDesc'])
           end
           unless params['SizeStatus'].nil?
-            @SizeStatus = BlockInfo.new.deserialize(params['SizeStatus'])
+            @SizeStatus = BlockInfo.new
+            @SizeStatus.deserialize(params['SizeStatus'])
           end
           unless params['Outline'].nil?
-            @Outline = BlockInfo.new.deserialize(params['Outline'])
+            @Outline = BlockInfo.new
+            @Outline.deserialize(params['Outline'])
           end
           unless params['Structure'].nil?
-            @Structure = BlockInfo.new.deserialize(params['Structure'])
+            @Structure = BlockInfo.new
+            @Structure.deserialize(params['Structure'])
           end
           unless params['Density'].nil?
-            @Density = BlockInfo.new.deserialize(params['Density'])
+            @Density = BlockInfo.new
+            @Density.deserialize(params['Density'])
           end
           unless params['Vas'].nil?
-            @Vas = BlockInfo.new.deserialize(params['Vas'])
+            @Vas = BlockInfo.new
+            @Vas.deserialize(params['Vas'])
           end
           unless params['Cysticwall'].nil?
-            @Cysticwall = BlockInfo.new.deserialize(params['Cysticwall'])
+            @Cysticwall = BlockInfo.new
+            @Cysticwall.deserialize(params['Cysticwall'])
           end
           unless params['Capsule'].nil?
-            @Capsule = BlockInfo.new.deserialize(params['Capsule'])
+            @Capsule = BlockInfo.new
+            @Capsule.deserialize(params['Capsule'])
           end
           unless params['IsthmusThicknese'].nil?
-            @IsthmusThicknese = Size.new.deserialize(params['IsthmusThicknese'])
+            @IsthmusThicknese = Size.new
+            @IsthmusThicknese.deserialize(params['IsthmusThicknese'])
           end
           unless params['InnerEchoDistribution'].nil?
-            @InnerEchoDistribution = BlockInfo.new.deserialize(params['InnerEchoDistribution'])
+            @InnerEchoDistribution = BlockInfo.new
+            @InnerEchoDistribution.deserialize(params['InnerEchoDistribution'])
           end
           @Src = params['Src']
           @Index = params['Index']
@@ -1373,7 +1434,8 @@ module TencentCloud
         def deserialize(params)
           @Index = params['Index']
           unless params['NormPart'].nil?
-            @NormPart = NormPart.new.deserialize(params['NormPart'])
+            @NormPart = NormPart.new
+            @NormPart.deserialize(params['NormPart'])
           end
           @Src = params['Src']
           @Value = params['Value']
@@ -1447,51 +1509,66 @@ module TencentCloud
 
         def deserialize(params)
           unless params['CancerPart'].nil?
-            @CancerPart = Part.new.deserialize(params['CancerPart'])
+            @CancerPart = Part.new
+            @CancerPart.deserialize(params['CancerPart'])
           end
           unless params['CancerSize'].nil?
             @CancerSize = []
             params['CancerSize'].each do |i|
-              @CancerSize << Size.new.deserialize(i)
+              size_tmp = Size.new
+              size_tmp.deserialize(i)
+              @CancerSize << size_tmp
             end
           end
           @DescText = params['DescText']
           unless params['HistologyLevel'].nil?
-            @HistologyLevel = HistologyLevel.new.deserialize(params['HistologyLevel'])
+            @HistologyLevel = HistologyLevel.new
+            @HistologyLevel.deserialize(params['HistologyLevel'])
           end
           unless params['HistologyType'].nil?
-            @HistologyType = HistologyType.new.deserialize(params['HistologyType'])
+            @HistologyType = HistologyType.new
+            @HistologyType.deserialize(params['HistologyType'])
           end
           unless params['IHC'].nil?
             @IHC = []
             params['IHC'].each do |i|
-              @IHC << IHCInfo.new.deserialize(i)
+              ihcinfo_tmp = IHCInfo.new
+              ihcinfo_tmp.deserialize(i)
+              @IHC << ihcinfo_tmp
             end
           end
           unless params['InfiltrationDepth'].nil?
-            @InfiltrationDepth = BlockInfo.new.deserialize(params['InfiltrationDepth'])
+            @InfiltrationDepth = BlockInfo.new
+            @InfiltrationDepth.deserialize(params['InfiltrationDepth'])
           end
           unless params['Invasive'].nil?
             @Invasive = []
             params['Invasive'].each do |i|
-              @Invasive << Invas.new.deserialize(i)
+              invas_tmp = Invas.new
+              invas_tmp.deserialize(i)
+              @Invasive << invas_tmp
             end
           end
           unless params['LymphNodes'].nil?
             @LymphNodes = []
             params['LymphNodes'].each do |i|
-              @LymphNodes << Lymph.new.deserialize(i)
+              lymph_tmp = Lymph.new
+              lymph_tmp.deserialize(i)
+              @LymphNodes << lymph_tmp
             end
           end
           unless params['PTNM'].nil?
-            @PTNM = BlockInfo.new.deserialize(params['PTNM'])
+            @PTNM = BlockInfo.new
+            @PTNM.deserialize(params['PTNM'])
           end
           unless params['PathologicalReportType'].nil?
-            @PathologicalReportType = BlockInfo.new.deserialize(params['PathologicalReportType'])
+            @PathologicalReportType = BlockInfo.new
+            @PathologicalReportType.deserialize(params['PathologicalReportType'])
           end
           @ReportText = params['ReportText']
           unless params['SampleType'].nil?
-            @SampleType = BlockInfo.new.deserialize(params['SampleType'])
+            @SampleType = BlockInfo.new
+            @SampleType.deserialize(params['SampleType'])
           end
           @SummaryText = params['SummaryText']
         end
@@ -1755,7 +1832,8 @@ module TencentCloud
         def deserialize(params)
           @Index = params['Index']
           unless params['NormSize'].nil?
-            @NormSize = NormSize.new.deserialize(params['NormSize'])
+            @NormSize = NormSize.new
+            @NormSize.deserialize(params['NormSize'])
           end
           @Src = params['Src']
           @Value = params['Value']
@@ -1782,7 +1860,9 @@ module TencentCloud
           unless params['Symptom'].nil?
             @Symptom = []
             params['Symptom'].each do |i|
-              @Symptom << SymptomInfo.new.deserialize(i)
+              symptominfo_tmp = SymptomInfo.new
+              symptominfo_tmp.deserialize(i)
+              @Symptom << symptominfo_tmp
             end
           end
           @Text = params['Text']
@@ -1803,7 +1883,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SurgeryHistory'].nil?
-            @SurgeryHistory = SurgeryHistory.new.deserialize(params['SurgeryHistory'])
+            @SurgeryHistory = SurgeryHistory.new
+            @SurgeryHistory.deserialize(params['SurgeryHistory'])
           end
         end
       end
@@ -1864,22 +1945,28 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SurgeryName'].nil?
-            @SurgeryName = SurgeryAttr.new.deserialize(params['SurgeryName'])
+            @SurgeryName = SurgeryAttr.new
+            @SurgeryName.deserialize(params['SurgeryName'])
           end
           unless params['SurgeryDate'].nil?
-            @SurgeryDate = SurgeryAttr.new.deserialize(params['SurgeryDate'])
+            @SurgeryDate = SurgeryAttr.new
+            @SurgeryDate.deserialize(params['SurgeryDate'])
           end
           unless params['PreoperativePathology'].nil?
-            @PreoperativePathology = SurgeryAttr.new.deserialize(params['PreoperativePathology'])
+            @PreoperativePathology = SurgeryAttr.new
+            @PreoperativePathology.deserialize(params['PreoperativePathology'])
           end
           unless params['IntraoperativePathology'].nil?
-            @IntraoperativePathology = SurgeryAttr.new.deserialize(params['IntraoperativePathology'])
+            @IntraoperativePathology = SurgeryAttr.new
+            @IntraoperativePathology.deserialize(params['IntraoperativePathology'])
           end
           unless params['PostoperativePathology'].nil?
-            @PostoperativePathology = SurgeryAttr.new.deserialize(params['PostoperativePathology'])
+            @PostoperativePathology = SurgeryAttr.new
+            @PostoperativePathology.deserialize(params['PostoperativePathology'])
           end
           unless params['DischargeDiagnosis'].nil?
-            @DischargeDiagnosis = SurgeryAttr.new.deserialize(params['DischargeDiagnosis'])
+            @DischargeDiagnosis = SurgeryAttr.new
+            @DischargeDiagnosis.deserialize(params['DischargeDiagnosis'])
           end
         end
       end
@@ -1918,19 +2005,24 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Grade'].nil?
-            @Grade = BlockInfo.new.deserialize(params['Grade'])
+            @Grade = BlockInfo.new
+            @Grade.deserialize(params['Grade'])
           end
           unless params['Part'].nil?
-            @Part = Part.new.deserialize(params['Part'])
+            @Part = Part.new
+            @Part.deserialize(params['Part'])
           end
           @Index = params['Index']
           unless params['Symptom'].nil?
-            @Symptom = BlockInfo.new.deserialize(params['Symptom'])
+            @Symptom = BlockInfo.new
+            @Symptom.deserialize(params['Symptom'])
           end
           unless params['Attrs'].nil?
             @Attrs = []
             params['Attrs'].each do |i|
-              @Attrs << BlockInfo.new.deserialize(i)
+              blockinfo_tmp = BlockInfo.new
+              blockinfo_tmp.deserialize(i)
+              @Attrs << blockinfo_tmp
             end
           end
           @Src = params['Src']
@@ -1995,38 +2087,49 @@ module TencentCloud
 
         def deserialize(params)
           unless params['PatientInfo'].nil?
-            @PatientInfo = PatientInfo.new.deserialize(params['PatientInfo'])
+            @PatientInfo = PatientInfo.new
+            @PatientInfo.deserialize(params['PatientInfo'])
           end
           unless params['ReportInfo'].nil?
-            @ReportInfo = ReportInfo.new.deserialize(params['ReportInfo'])
+            @ReportInfo = ReportInfo.new
+            @ReportInfo.deserialize(params['ReportInfo'])
           end
           unless params['Check'].nil?
-            @Check = Check.new.deserialize(params['Check'])
+            @Check = Check.new
+            @Check.deserialize(params['Check'])
           end
           unless params['Pathology'].nil?
-            @Pathology = PathologyReport.new.deserialize(params['Pathology'])
+            @Pathology = PathologyReport.new
+            @Pathology.deserialize(params['Pathology'])
           end
           unless params['MedDoc'].nil?
-            @MedDoc = MedDoc.new.deserialize(params['MedDoc'])
+            @MedDoc = MedDoc.new
+            @MedDoc.deserialize(params['MedDoc'])
           end
           unless params['DiagCert'].nil?
-            @DiagCert = DiagCert.new.deserialize(params['DiagCert'])
+            @DiagCert = DiagCert.new
+            @DiagCert.deserialize(params['DiagCert'])
           end
           unless params['FirstPage'].nil?
-            @FirstPage = FirstPage.new.deserialize(params['FirstPage'])
+            @FirstPage = FirstPage.new
+            @FirstPage.deserialize(params['FirstPage'])
           end
           unless params['Indicator'].nil?
-            @Indicator = Indicator.new.deserialize(params['Indicator'])
+            @Indicator = Indicator.new
+            @Indicator.deserialize(params['Indicator'])
           end
           @ReportType = params['ReportType']
           unless params['MedicalRecordInfo'].nil?
-            @MedicalRecordInfo = MedicalRecordInfo.new.deserialize(params['MedicalRecordInfo'])
+            @MedicalRecordInfo = MedicalRecordInfo.new
+            @MedicalRecordInfo.deserialize(params['MedicalRecordInfo'])
           end
           unless params['Hospitalization'].nil?
-            @Hospitalization = Hospitalization.new.deserialize(params['Hospitalization'])
+            @Hospitalization = Hospitalization.new
+            @Hospitalization.deserialize(params['Hospitalization'])
           end
           unless params['Surgery'].nil?
-            @Surgery = Surgery.new.deserialize(params['Surgery'])
+            @Surgery = Surgery.new
+            @Surgery.deserialize(params['Surgery'])
           end
         end
       end
@@ -2065,7 +2168,9 @@ module TencentCloud
           unless params['TextTypeList'].nil?
             @TextTypeList = []
             params['TextTypeList'].each do |i|
-              @TextTypeList << TextType.new.deserialize(i)
+              texttype_tmp = TextType.new
+              texttype_tmp.deserialize(i)
+              @TextTypeList << texttype_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2113,7 +2218,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Template'].nil?
-            @Template = Template.new.deserialize(params['Template'])
+            @Template = Template.new
+            @Template.deserialize(params['Template'])
           end
           @RequestId = params['RequestId']
         end
@@ -2435,104 +2541,137 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Type'].nil?
-            @Type = BlockInfo.new.deserialize(params['Type'])
+            @Type = BlockInfo.new
+            @Type.deserialize(params['Type'])
           end
           unless params['Part'].nil?
-            @Part = Part.new.deserialize(params['Part'])
+            @Part = Part.new
+            @Part.deserialize(params['Part'])
           end
           unless params['Size'].nil?
             @Size = []
             params['Size'].each do |i|
-              @Size << Size.new.deserialize(i)
+              size_tmp = Size.new
+              size_tmp.deserialize(i)
+              @Size << size_tmp
             end
           end
           unless params['Multiple'].nil?
-            @Multiple = Multiple.new.deserialize(params['Multiple'])
+            @Multiple = Multiple.new
+            @Multiple.deserialize(params['Multiple'])
           end
           unless params['AspectRatio'].nil?
-            @AspectRatio = AspectRatio.new.deserialize(params['AspectRatio'])
+            @AspectRatio = AspectRatio.new
+            @AspectRatio.deserialize(params['AspectRatio'])
           end
           unless params['Edge'].nil?
-            @Edge = BlockInfo.new.deserialize(params['Edge'])
+            @Edge = BlockInfo.new
+            @Edge.deserialize(params['Edge'])
           end
           unless params['InnerEcho'].nil?
-            @InnerEcho = BlockInfo.new.deserialize(params['InnerEcho'])
+            @InnerEcho = BlockInfo.new
+            @InnerEcho.deserialize(params['InnerEcho'])
           end
           unless params['RearEcho'].nil?
-            @RearEcho = BlockInfo.new.deserialize(params['RearEcho'])
+            @RearEcho = BlockInfo.new
+            @RearEcho.deserialize(params['RearEcho'])
           end
           unless params['Elastic'].nil?
-            @Elastic = Elastic.new.deserialize(params['Elastic'])
+            @Elastic = Elastic.new
+            @Elastic.deserialize(params['Elastic'])
           end
           unless params['Shape'].nil?
-            @Shape = BlockInfo.new.deserialize(params['Shape'])
+            @Shape = BlockInfo.new
+            @Shape.deserialize(params['Shape'])
           end
           unless params['ShapeAttr'].nil?
-            @ShapeAttr = BlockInfo.new.deserialize(params['ShapeAttr'])
+            @ShapeAttr = BlockInfo.new
+            @ShapeAttr.deserialize(params['ShapeAttr'])
           end
           unless params['SkinMedulla'].nil?
-            @SkinMedulla = BlockInfo.new.deserialize(params['SkinMedulla'])
+            @SkinMedulla = BlockInfo.new
+            @SkinMedulla.deserialize(params['SkinMedulla'])
           end
           unless params['Trend'].nil?
-            @Trend = BlockInfo.new.deserialize(params['Trend'])
+            @Trend = BlockInfo.new
+            @Trend.deserialize(params['Trend'])
           end
           unless params['Calcification'].nil?
-            @Calcification = BlockInfo.new.deserialize(params['Calcification'])
+            @Calcification = BlockInfo.new
+            @Calcification.deserialize(params['Calcification'])
           end
           unless params['Envelope'].nil?
-            @Envelope = BlockInfo.new.deserialize(params['Envelope'])
+            @Envelope = BlockInfo.new
+            @Envelope.deserialize(params['Envelope'])
           end
           unless params['Enhancement'].nil?
-            @Enhancement = BlockInfo.new.deserialize(params['Enhancement'])
+            @Enhancement = BlockInfo.new
+            @Enhancement.deserialize(params['Enhancement'])
           end
           unless params['LymphEnlargement'].nil?
-            @LymphEnlargement = BlockInfo.new.deserialize(params['LymphEnlargement'])
+            @LymphEnlargement = BlockInfo.new
+            @LymphEnlargement.deserialize(params['LymphEnlargement'])
           end
           unless params['LymphDoor'].nil?
-            @LymphDoor = BlockInfo.new.deserialize(params['LymphDoor'])
+            @LymphDoor = BlockInfo.new
+            @LymphDoor.deserialize(params['LymphDoor'])
           end
           unless params['Activity'].nil?
-            @Activity = BlockInfo.new.deserialize(params['Activity'])
+            @Activity = BlockInfo.new
+            @Activity.deserialize(params['Activity'])
           end
           unless params['Operation'].nil?
-            @Operation = BlockInfo.new.deserialize(params['Operation'])
+            @Operation = BlockInfo.new
+            @Operation.deserialize(params['Operation'])
           end
           unless params['CDFI'].nil?
-            @CDFI = BlockInfo.new.deserialize(params['CDFI'])
+            @CDFI = BlockInfo.new
+            @CDFI.deserialize(params['CDFI'])
           end
           @Index = params['Index']
           unless params['SizeStatus'].nil?
-            @SizeStatus = BlockInfo.new.deserialize(params['SizeStatus'])
+            @SizeStatus = BlockInfo.new
+            @SizeStatus.deserialize(params['SizeStatus'])
           end
           unless params['InnerEchoDistribution'].nil?
-            @InnerEchoDistribution = BlockInfo.new.deserialize(params['InnerEchoDistribution'])
+            @InnerEchoDistribution = BlockInfo.new
+            @InnerEchoDistribution.deserialize(params['InnerEchoDistribution'])
           end
           unless params['InnerEchoType'].nil?
             @InnerEchoType = []
             params['InnerEchoType'].each do |i|
-              @InnerEchoType << BlockInfo.new.deserialize(i)
+              blockinfo_tmp = BlockInfo.new
+              blockinfo_tmp.deserialize(i)
+              @InnerEchoType << blockinfo_tmp
             end
           end
           unless params['Outline'].nil?
-            @Outline = BlockInfo.new.deserialize(params['Outline'])
+            @Outline = BlockInfo.new
+            @Outline.deserialize(params['Outline'])
           end
           unless params['Structure'].nil?
-            @Structure = BlockInfo.new.deserialize(params['Structure'])
+            @Structure = BlockInfo.new
+            @Structure.deserialize(params['Structure'])
           end
           unless params['Density'].nil?
-            @Density = BlockInfo.new.deserialize(params['Density'])
+            @Density = BlockInfo.new
+            @Density.deserialize(params['Density'])
           end
           unless params['Vas'].nil?
-            @Vas = BlockInfo.new.deserialize(params['Vas'])
+            @Vas = BlockInfo.new
+            @Vas.deserialize(params['Vas'])
           end
           unless params['Cysticwall'].nil?
-            @Cysticwall = BlockInfo.new.deserialize(params['Cysticwall'])
+            @Cysticwall = BlockInfo.new
+            @Cysticwall.deserialize(params['Cysticwall'])
           end
           unless params['Capsule'].nil?
-            @Capsule = BlockInfo.new.deserialize(params['Capsule'])
+            @Capsule = BlockInfo.new
+            @Capsule.deserialize(params['Capsule'])
           end
           unless params['IsthmusThicknese'].nil?
-            @IsthmusThicknese = Size.new.deserialize(params['IsthmusThicknese'])
+            @IsthmusThicknese = Size.new
+            @IsthmusThicknese.deserialize(params['IsthmusThicknese'])
           end
           @Src = params['Src']
         end

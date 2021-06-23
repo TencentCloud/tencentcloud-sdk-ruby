@@ -20,9 +20,13 @@ module TencentCloud
   module Cfs
     module V20190719
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-07-19'
-        @@endpoint = 'cfs.tencentcloudapi.com'
-        @@sdk_version = 'CFS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-07-19'
+            api_endpoint = 'cfs.tencentcloudapi.com'
+            sdk_version = 'CFS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 用于添加新文件系统

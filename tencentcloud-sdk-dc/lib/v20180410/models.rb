@@ -100,7 +100,8 @@ module TencentCloud
           @RegionId = params['RegionId']
           @AvailablePortType = params['AvailablePortType']
           unless params['Coordinate'].nil?
-            @Coordinate = Coordinate.new.deserialize(params['Coordinate'])
+            @Coordinate = Coordinate.new
+            @Coordinate.deserialize(params['Coordinate'])
           end
           @City = params['City']
           @Area = params['Area']
@@ -413,12 +414,15 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @RouteType = params['RouteType']
           unless params['BgpPeer'].nil?
-            @BgpPeer = BgpPeer.new.deserialize(params['BgpPeer'])
+            @BgpPeer = BgpPeer.new
+            @BgpPeer.deserialize(params['BgpPeer'])
           end
           unless params['RouteFilterPrefixes'].nil?
             @RouteFilterPrefixes = []
             params['RouteFilterPrefixes'].each do |i|
-              @RouteFilterPrefixes << RouteFilterPrefix.new.deserialize(i)
+              routefilterprefix_tmp = RouteFilterPrefix.new
+              routefilterprefix_tmp.deserialize(i)
+              @RouteFilterPrefixes << routefilterprefix_tmp
             end
           end
           @Vlan = params['Vlan']
@@ -560,7 +564,9 @@ module TencentCloud
           unless params['AccessPointSet'].nil?
             @AccessPointSet = []
             params['AccessPointSet'].each do |i|
-              @AccessPointSet << AccessPoint.new.deserialize(i)
+              accesspoint_tmp = AccessPoint.new
+              accesspoint_tmp.deserialize(i)
+              @AccessPointSet << accesspoint_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -600,7 +606,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DirectConnectTunnelExtra'].nil?
-            @DirectConnectTunnelExtra = DirectConnectTunnelExtra.new.deserialize(params['DirectConnectTunnelExtra'])
+            @DirectConnectTunnelExtra = DirectConnectTunnelExtra.new
+            @DirectConnectTunnelExtra.deserialize(params['DirectConnectTunnelExtra'])
           end
           @RequestId = params['RequestId']
         end
@@ -634,7 +641,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @DirectConnectTunnelIds = params['DirectConnectTunnelIds']
@@ -664,7 +673,9 @@ module TencentCloud
           unless params['DirectConnectTunnelSet'].nil?
             @DirectConnectTunnelSet = []
             params['DirectConnectTunnelSet'].each do |i|
-              @DirectConnectTunnelSet << DirectConnectTunnel.new.deserialize(i)
+              directconnecttunnel_tmp = DirectConnectTunnel.new
+              directconnecttunnel_tmp.deserialize(i)
+              @DirectConnectTunnelSet << directconnecttunnel_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -696,7 +707,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @DirectConnectIds = params['DirectConnectIds']
@@ -730,7 +743,9 @@ module TencentCloud
           unless params['DirectConnectSet'].nil?
             @DirectConnectSet = []
             params['DirectConnectSet'].each do |i|
-              @DirectConnectSet << DirectConnect.new.deserialize(i)
+              directconnect_tmp = DirectConnect.new
+              directconnect_tmp.deserialize(i)
+              @DirectConnectSet << directconnect_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -819,7 +834,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -848,7 +865,9 @@ module TencentCloud
           unless params['Subnets'].nil?
             @Subnets = []
             params['Subnets'].each do |i|
-              @Subnets << InternetAddressDetail.new.deserialize(i)
+              internetaddressdetail_tmp = InternetAddressDetail.new
+              internetaddressdetail_tmp.deserialize(i)
+              @Subnets << internetaddressdetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -889,7 +908,9 @@ module TencentCloud
           unless params['InternetAddressStatistics'].nil?
             @InternetAddressStatistics = []
             params['InternetAddressStatistics'].each do |i|
-              @InternetAddressStatistics << InternetAddressStatistics.new.deserialize(i)
+              internetaddressstatistics_tmp = InternetAddressStatistics.new
+              internetaddressstatistics_tmp.deserialize(i)
+              @InternetAddressStatistics << internetaddressstatistics_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -923,7 +944,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Offset = params['Offset']
@@ -952,7 +975,9 @@ module TencentCloud
           unless params['Routes'].nil?
             @Routes = []
             params['Routes'].each do |i|
-              @Routes << DirectConnectTunnelRoute.new.deserialize(i)
+              directconnecttunnelroute_tmp = DirectConnectTunnelRoute.new
+              directconnecttunnelroute_tmp.deserialize(i)
+              @Routes << directconnecttunnelroute_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1118,7 +1143,9 @@ module TencentCloud
           unless params['TagSet'].nil?
             @TagSet = []
             params['TagSet'].each do |i|
-              @TagSet << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
             end
           end
           @AccessPointType = params['AccessPointType']
@@ -1264,12 +1291,15 @@ module TencentCloud
           @DirectConnectGatewayId = params['DirectConnectGatewayId']
           @RouteType = params['RouteType']
           unless params['BgpPeer'].nil?
-            @BgpPeer = BgpPeer.new.deserialize(params['BgpPeer'])
+            @BgpPeer = BgpPeer.new
+            @BgpPeer.deserialize(params['BgpPeer'])
           end
           unless params['RouteFilterPrefixes'].nil?
             @RouteFilterPrefixes = []
             params['RouteFilterPrefixes'].each do |i|
-              @RouteFilterPrefixes << RouteFilterPrefix.new.deserialize(i)
+              routefilterprefix_tmp = RouteFilterPrefix.new
+              routefilterprefix_tmp.deserialize(i)
+              @RouteFilterPrefixes << routefilterprefix_tmp
             end
           end
           @Vlan = params['Vlan']
@@ -1281,7 +1311,9 @@ module TencentCloud
           unless params['TagSet'].nil?
             @TagSet = []
             params['TagSet'].each do |i|
-              @TagSet << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
             end
           end
           @NetDetectId = params['NetDetectId']
@@ -1451,18 +1483,23 @@ module TencentCloud
           @DirectConnectGatewayId = params['DirectConnectGatewayId']
           @RouteType = params['RouteType']
           unless params['BgpPeer'].nil?
-            @BgpPeer = BgpPeer.new.deserialize(params['BgpPeer'])
+            @BgpPeer = BgpPeer.new
+            @BgpPeer.deserialize(params['BgpPeer'])
           end
           unless params['RouteFilterPrefixes'].nil?
             @RouteFilterPrefixes = []
             params['RouteFilterPrefixes'].each do |i|
-              @RouteFilterPrefixes << RouteFilterPrefix.new.deserialize(i)
+              routefilterprefix_tmp = RouteFilterPrefix.new
+              routefilterprefix_tmp.deserialize(i)
+              @RouteFilterPrefixes << routefilterprefix_tmp
             end
           end
           unless params['PublicAddresses'].nil?
             @PublicAddresses = []
             params['PublicAddresses'].each do |i|
-              @PublicAddresses << RouteFilterPrefix.new.deserialize(i)
+              routefilterprefix_tmp = RouteFilterPrefix.new
+              routefilterprefix_tmp.deserialize(i)
+              @PublicAddresses << routefilterprefix_tmp
             end
           end
           @Vlan = params['Vlan']
@@ -1483,19 +1520,23 @@ module TencentCloud
           @VpcName = params['VpcName']
           @SignLaw = params['SignLaw']
           unless params['BfdInfo'].nil?
-            @BfdInfo = BFDInfo.new.deserialize(params['BfdInfo'])
+            @BfdInfo = BFDInfo.new
+            @BfdInfo.deserialize(params['BfdInfo'])
           end
           unless params['NqaInfo'].nil?
-            @NqaInfo = NQAInfo.new.deserialize(params['NqaInfo'])
+            @NqaInfo = NQAInfo.new
+            @NqaInfo.deserialize(params['NqaInfo'])
           end
           unless params['BgpStatus'].nil?
-            @BgpStatus = BGPStatus.new.deserialize(params['BgpStatus'])
+            @BgpStatus = BGPStatus.new
+            @BgpStatus.deserialize(params['BgpStatus'])
           end
           @IPv6Enable = params['IPv6Enable']
           @TencentIPv6Address = params['TencentIPv6Address']
           @TencentBackupIPv6Address = params['TencentBackupIPv6Address']
           unless params['BgpIPv6Status'].nil?
-            @BgpIPv6Status = BGPStatus.new.deserialize(params['BgpIPv6Status'])
+            @BgpIPv6Status = BGPStatus.new
+            @BgpIPv6Status.deserialize(params['BgpIPv6Status'])
           end
           @CustomerIPv6Address = params['CustomerIPv6Address']
           @JumboEnable = params['JumboEnable']
@@ -1836,12 +1877,15 @@ module TencentCloud
           @DirectConnectTunnelId = params['DirectConnectTunnelId']
           @DirectConnectTunnelName = params['DirectConnectTunnelName']
           unless params['BgpPeer'].nil?
-            @BgpPeer = BgpPeer.new.deserialize(params['BgpPeer'])
+            @BgpPeer = BgpPeer.new
+            @BgpPeer.deserialize(params['BgpPeer'])
           end
           unless params['RouteFilterPrefixes'].nil?
             @RouteFilterPrefixes = []
             params['RouteFilterPrefixes'].each do |i|
-              @RouteFilterPrefixes << RouteFilterPrefix.new.deserialize(i)
+              routefilterprefix_tmp = RouteFilterPrefix.new
+              routefilterprefix_tmp.deserialize(i)
+              @RouteFilterPrefixes << routefilterprefix_tmp
             end
           end
           @TencentAddress = params['TencentAddress']
@@ -1930,10 +1974,12 @@ module TencentCloud
           @DirectConnectTunnelId = params['DirectConnectTunnelId']
           @Vlan = params['Vlan']
           unless params['BgpPeer'].nil?
-            @BgpPeer = BgpPeer.new.deserialize(params['BgpPeer'])
+            @BgpPeer = BgpPeer.new
+            @BgpPeer.deserialize(params['BgpPeer'])
           end
           unless params['RouteFilterPrefixes'].nil?
-            @RouteFilterPrefixes = RouteFilterPrefix.new.deserialize(params['RouteFilterPrefixes'])
+            @RouteFilterPrefixes = RouteFilterPrefix.new
+            @RouteFilterPrefixes.deserialize(params['RouteFilterPrefixes'])
           end
           @TencentAddress = params['TencentAddress']
           @TencentBackupAddress = params['TencentBackupAddress']
@@ -1943,16 +1989,20 @@ module TencentCloud
           @BfdEnable = params['BfdEnable']
           @NqaEnable = params['NqaEnable']
           unless params['BfdInfo'].nil?
-            @BfdInfo = BFDInfo.new.deserialize(params['BfdInfo'])
+            @BfdInfo = BFDInfo.new
+            @BfdInfo.deserialize(params['BfdInfo'])
           end
           unless params['NqaInfo'].nil?
-            @NqaInfo = NQAInfo.new.deserialize(params['NqaInfo'])
+            @NqaInfo = NQAInfo.new
+            @NqaInfo.deserialize(params['NqaInfo'])
           end
           @IPv6Enable = params['IPv6Enable']
           unless params['CustomerIDCRoutes'].nil?
             @CustomerIDCRoutes = []
             params['CustomerIDCRoutes'].each do |i|
-              @CustomerIDCRoutes << RouteFilterPrefix.new.deserialize(i)
+              routefilterprefix_tmp = RouteFilterPrefix.new
+              routefilterprefix_tmp.deserialize(i)
+              @CustomerIDCRoutes << routefilterprefix_tmp
             end
           end
           @JumboEnable = params['JumboEnable']

@@ -67,7 +67,9 @@ module TencentCloud
           unless params['Zones'].nil?
             @Zones = []
             params['Zones'].each do |i|
-              @Zones << AvailableZone.new.deserialize(i)
+              availablezone_tmp = AvailableZone.new
+              availablezone_tmp.deserialize(i)
+              @Zones << availablezone_tmp
             end
           end
           @RegionCnName = params['RegionCnName']
@@ -95,7 +97,9 @@ module TencentCloud
           unless params['Protocols'].nil?
             @Protocols = []
             params['Protocols'].each do |i|
-              @Protocols << AvailableProtoStatus.new.deserialize(i)
+              availableprotostatus_tmp = AvailableProtoStatus.new
+              availableprotostatus_tmp.deserialize(i)
+              @Protocols << availableprotostatus_tmp
             end
           end
           @Type = params['Type']
@@ -133,7 +137,9 @@ module TencentCloud
           unless params['Types'].nil?
             @Types = []
             params['Types'].each do |i|
-              @Types << AvailableType.new.deserialize(i)
+              availabletype_tmp = AvailableType.new
+              availabletype_tmp.deserialize(i)
+              @Types << availabletype_tmp
             end
           end
           @ZoneName = params['ZoneName']
@@ -194,7 +200,9 @@ module TencentCloud
           unless params['ResourceTags'].nil?
             @ResourceTags = []
             params['ResourceTags'].each do |i|
-              @ResourceTags << TagInfo.new.deserialize(i)
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @ResourceTags << taginfo_tmp
             end
           end
           @ClientToken = params['ClientToken']
@@ -558,7 +566,9 @@ module TencentCloud
           unless params['RegionZones'].nil?
             @RegionZones = []
             params['RegionZones'].each do |i|
-              @RegionZones << AvailableRegion.new.deserialize(i)
+              availableregion_tmp = AvailableRegion.new
+              availableregion_tmp.deserialize(i)
+              @RegionZones << availableregion_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -599,7 +609,9 @@ module TencentCloud
           unless params['ClientList'].nil?
             @ClientList = []
             params['ClientList'].each do |i|
-              @ClientList << FileSystemClient.new.deserialize(i)
+              filesystemclient_tmp = FileSystemClient.new
+              filesystemclient_tmp.deserialize(i)
+              @ClientList << filesystemclient_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -651,7 +663,9 @@ module TencentCloud
           unless params['FileSystems'].nil?
             @FileSystems = []
             params['FileSystems'].each do |i|
-              @FileSystems << FileSystemInfo.new.deserialize(i)
+              filesysteminfo_tmp = FileSystemInfo.new
+              filesysteminfo_tmp.deserialize(i)
+              @FileSystems << filesysteminfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -688,7 +702,9 @@ module TencentCloud
           unless params['PGroupList'].nil?
             @PGroupList = []
             params['PGroupList'].each do |i|
-              @PGroupList << PGroupInfo.new.deserialize(i)
+              pgroupinfo_tmp = PGroupInfo.new
+              pgroupinfo_tmp.deserialize(i)
+              @PGroupList << pgroupinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -729,7 +745,9 @@ module TencentCloud
           unless params['RuleList'].nil?
             @RuleList = []
             params['RuleList'].each do |i|
-              @RuleList << PGroupRuleInfo.new.deserialize(i)
+              pgroupruleinfo_tmp = PGroupRuleInfo.new
+              pgroupruleinfo_tmp.deserialize(i)
+              @RuleList << pgroupruleinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -804,7 +822,9 @@ module TencentCloud
           unless params['MountTargets'].nil?
             @MountTargets = []
             params['MountTargets'].each do |i|
-              @MountTargets << MountInfo.new.deserialize(i)
+              mountinfo_tmp = MountInfo.new
+              mountinfo_tmp.deserialize(i)
+              @MountTargets << mountinfo_tmp
             end
           end
           @NumberOfMountTargets = params['NumberOfMountTargets']
@@ -924,7 +944,8 @@ module TencentCloud
           @StorageResourcePkg = params['StorageResourcePkg']
           @BandwidthResourcePkg = params['BandwidthResourcePkg']
           unless params['PGroup'].nil?
-            @PGroup = PGroup.new.deserialize(params['PGroup'])
+            @PGroup = PGroup.new
+            @PGroup.deserialize(params['PGroup'])
           end
           @FsName = params['FsName']
           @Encrypted = params['Encrypted']

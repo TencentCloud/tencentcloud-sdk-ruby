@@ -20,9 +20,13 @@ module TencentCloud
   module Yunsou
     module V20180504
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-05-04'
-        @@endpoint = 'yunsou.tencentcloudapi.com'
-        @@sdk_version = 'YUNSOU_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-05-04'
+            api_endpoint = 'yunsou.tencentcloudapi.com'
+            sdk_version = 'YUNSOU_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 上传云搜数据的API接口

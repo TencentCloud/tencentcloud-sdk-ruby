@@ -20,9 +20,13 @@ module TencentCloud
   module Iottid
     module V20190411
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-04-11'
-        @@endpoint = 'iottid.tencentcloudapi.com'
-        @@sdk_version = 'IOTTID_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-04-11'
+            api_endpoint = 'iottid.tencentcloudapi.com'
+            sdk_version = 'IOTTID_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 单向认证测试TID

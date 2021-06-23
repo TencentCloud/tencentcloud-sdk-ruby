@@ -20,9 +20,13 @@ module TencentCloud
   module Ape
     module V20200513
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-05-13'
-        @@endpoint = 'ape.tencentcloudapi.com'
-        @@sdk_version = 'APE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-05-13'
+            api_endpoint = 'ape.tencentcloudapi.com'
+            sdk_version = 'APE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 批量获取授权书下载地址

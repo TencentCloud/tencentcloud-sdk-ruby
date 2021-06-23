@@ -201,7 +201,9 @@ module TencentCloud
           unless params['DbauditTypesSet'].nil?
             @DbauditTypesSet = []
             params['DbauditTypesSet'].each do |i|
-              @DbauditTypesSet << DbauditTypesInfo.new.deserialize(i)
+              dbaudittypesinfo_tmp = DbauditTypesInfo.new
+              dbaudittypesinfo_tmp.deserialize(i)
+              @DbauditTypesSet << dbaudittypesinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -254,7 +256,9 @@ module TencentCloud
           unless params['CdsAuditInstanceSet'].nil?
             @CdsAuditInstanceSet = []
             params['CdsAuditInstanceSet'].each do |i|
-              @CdsAuditInstanceSet << CdsAuditInstance.new.deserialize(i)
+              cdsauditinstance_tmp = CdsAuditInstance.new
+              cdsauditinstance_tmp.deserialize(i)
+              @CdsAuditInstanceSet << cdsauditinstance_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -290,7 +294,9 @@ module TencentCloud
           unless params['RegionSet'].nil?
             @RegionSet = []
             params['RegionSet'].each do |i|
-              @RegionSet << RegionInfo.new.deserialize(i)
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionSet << regioninfo_tmp
             end
           end
           @RequestId = params['RequestId']

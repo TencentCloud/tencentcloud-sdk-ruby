@@ -20,9 +20,13 @@ module TencentCloud
   module Ba
     module V20200720
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-07-20'
-        @@endpoint = 'ba.tencentcloudapi.com'
-        @@sdk_version = 'BA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-07-20'
+            api_endpoint = 'ba.tencentcloudapi.com'
+            sdk_version = 'BA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建渠道备案小程序二维码

@@ -59,7 +59,9 @@ module TencentCloud
           unless params['GroupList'].nil?
             @GroupList = []
             params['GroupList'].each do |i|
-              @GroupList << Group.new.deserialize(i)
+              group_tmp = Group.new
+              group_tmp.deserialize(i)
+              @GroupList << group_tmp
             end
           end
         end
@@ -177,12 +179,15 @@ module TencentCloud
           unless params['SlotInfoList'].nil?
             @SlotInfoList = []
             params['SlotInfoList'].each do |i|
-              @SlotInfoList << SlotInfo.new.deserialize(i)
+              slotinfo_tmp = SlotInfo.new
+              slotinfo_tmp.deserialize(i)
+              @SlotInfoList << slotinfo_tmp
             end
           end
           @InputText = params['InputText']
           unless params['ResponseMessage'].nil?
-            @ResponseMessage = ResponseMessage.new.deserialize(params['ResponseMessage'])
+            @ResponseMessage = ResponseMessage.new
+            @ResponseMessage.deserialize(params['ResponseMessage'])
           end
           @SessionAttributes = params['SessionAttributes']
           @ResultType = params['ResultType']
@@ -272,12 +277,15 @@ module TencentCloud
           unless params['SlotInfoList'].nil?
             @SlotInfoList = []
             params['SlotInfoList'].each do |i|
-              @SlotInfoList << SlotInfo.new.deserialize(i)
+              slotinfo_tmp = SlotInfo.new
+              slotinfo_tmp.deserialize(i)
+              @SlotInfoList << slotinfo_tmp
             end
           end
           @InputText = params['InputText']
           unless params['ResponseMessage'].nil?
-            @ResponseMessage = ResponseMessage.new.deserialize(params['ResponseMessage'])
+            @ResponseMessage = ResponseMessage.new
+            @ResponseMessage.deserialize(params['ResponseMessage'])
           end
           @SessionAttributes = params['SessionAttributes']
           @ResultType = params['ResultType']

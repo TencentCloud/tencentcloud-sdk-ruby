@@ -20,9 +20,13 @@ module TencentCloud
   module Mrs
     module V20200910
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-09-10'
-        @@endpoint = 'mrs.tencentcloudapi.com'
-        @@sdk_version = 'MRS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-09-10'
+            api_endpoint = 'mrs.tencentcloudapi.com'
+            sdk_version = 'MRS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 图片分类

@@ -20,9 +20,13 @@ module TencentCloud
   module Ft
     module V20200304
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-03-04'
-        @@endpoint = 'ft.tencentcloudapi.com'
-        @@sdk_version = 'FT_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-03-04'
+            api_endpoint = 'ft.tencentcloudapi.com'
+            sdk_version = 'FT_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 撤销人像渐变任务请求

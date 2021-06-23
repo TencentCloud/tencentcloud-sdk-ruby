@@ -20,9 +20,13 @@ module TencentCloud
   module Apcas
     module V20201127
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-11-27'
-        @@endpoint = 'apcas.tencentcloudapi.com'
-        @@sdk_version = 'APCAS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-11-27'
+            api_endpoint = 'apcas.tencentcloudapi.com'
+            sdk_version = 'APCAS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 查询画像洞察任务详情

@@ -53,7 +53,9 @@ module TencentCloud
           unless params['Tasks'].nil?
             @Tasks = []
             params['Tasks'].each do |i|
-              @Tasks << AsyncRecognitionTaskInfo.new.deserialize(i)
+              asyncrecognitiontaskinfo_tmp = AsyncRecognitionTaskInfo.new
+              asyncrecognitiontaskinfo_tmp.deserialize(i)
+              @Tasks << asyncrecognitiontaskinfo_tmp
             end
           end
         end
@@ -118,7 +120,9 @@ module TencentCloud
           unless params['WordWeights'].nil?
             @WordWeights = []
             params['WordWeights'].each do |i|
-              @WordWeights << HotWord.new.deserialize(i)
+              hotword_tmp = HotWord.new
+              hotword_tmp.deserialize(i)
+              @WordWeights << hotword_tmp
             end
           end
           @WordWeightStr = params['WordWeightStr']
@@ -217,7 +221,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = Task.new.deserialize(params['Data'])
+            @Data = Task.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -377,7 +382,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = Task.new.deserialize(params['Data'])
+            @Data = Task.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -475,7 +481,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AsyncRecognitionTasks.new.deserialize(params['Data'])
+            @Data = AsyncRecognitionTasks.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -513,7 +520,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = TaskStatus.new.deserialize(params['Data'])
+            @Data = TaskStatus.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -640,7 +648,9 @@ module TencentCloud
           unless params['VocabList'].nil?
             @VocabList = []
             params['VocabList'].each do |i|
-              @VocabList << Vocab.new.deserialize(i)
+              vocab_tmp = Vocab.new
+              vocab_tmp.deserialize(i)
+              @VocabList << vocab_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -703,7 +713,9 @@ module TencentCloud
           unless params['WordWeights'].nil?
             @WordWeights = []
             params['WordWeights'].each do |i|
-              @WordWeights << HotWord.new.deserialize(i)
+              hotword_tmp = HotWord.new
+              hotword_tmp.deserialize(i)
+              @WordWeights << hotword_tmp
             end
           end
           @CreateTime = params['CreateTime']
@@ -760,7 +772,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << Model.new.deserialize(i)
+              model_tmp = Model.new
+              model_tmp.deserialize(i)
+              @Data << model_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -962,7 +976,9 @@ module TencentCloud
           unless params['Words'].nil?
             @Words = []
             params['Words'].each do |i|
-              @Words << SentenceWords.new.deserialize(i)
+              sentencewords_tmp = SentenceWords.new
+              sentencewords_tmp.deserialize(i)
+              @Words << sentencewords_tmp
             end
           end
           @SpeechSpeed = params['SpeechSpeed']
@@ -1083,7 +1099,9 @@ module TencentCloud
           unless params['WordList'].nil?
             @WordList = []
             params['WordList'].each do |i|
-              @WordList << SentenceWord.new.deserialize(i)
+              sentenceword_tmp = SentenceWord.new
+              sentenceword_tmp.deserialize(i)
+              @WordList << sentenceword_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1233,7 +1251,9 @@ module TencentCloud
           unless params['ResultDetail'].nil?
             @ResultDetail = []
             params['ResultDetail'].each do |i|
-              @ResultDetail << SentenceDetail.new.deserialize(i)
+              sentencedetail_tmp = SentenceDetail.new
+              sentencedetail_tmp.deserialize(i)
+              @ResultDetail << sentencedetail_tmp
             end
           end
         end
@@ -1269,7 +1289,9 @@ module TencentCloud
           unless params['WordWeights'].nil?
             @WordWeights = []
             params['WordWeights'].each do |i|
-              @WordWeights << HotWord.new.deserialize(i)
+              hotword_tmp = HotWord.new
+              hotword_tmp.deserialize(i)
+              @WordWeights << hotword_tmp
             end
           end
           @WordWeightStr = params['WordWeightStr']
@@ -1337,7 +1359,9 @@ module TencentCloud
           unless params['WordWeights'].nil?
             @WordWeights = []
             params['WordWeights'].each do |i|
-              @WordWeights << HotWord.new.deserialize(i)
+              hotword_tmp = HotWord.new
+              hotword_tmp.deserialize(i)
+              @WordWeights << hotword_tmp
             end
           end
           @CreateTime = params['CreateTime']

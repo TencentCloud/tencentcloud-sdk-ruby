@@ -20,9 +20,13 @@ module TencentCloud
   module Cii
     module V20201210
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-12-10'
-        @@endpoint = 'cii.tencentcloudapi.com'
-        @@sdk_version = 'CII_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-12-10'
+            api_endpoint = 'cii.tencentcloudapi.com'
+            sdk_version = 'CII_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 基于提供的客户及保单信息，启动结构化识别任务。

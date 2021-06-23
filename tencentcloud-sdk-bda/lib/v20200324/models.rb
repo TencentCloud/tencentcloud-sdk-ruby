@@ -137,22 +137,28 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Age'].nil?
-            @Age = Age.new.deserialize(params['Age'])
+            @Age = Age.new
+            @Age.deserialize(params['Age'])
           end
           unless params['Bag'].nil?
-            @Bag = Bag.new.deserialize(params['Bag'])
+            @Bag = Bag.new
+            @Bag.deserialize(params['Bag'])
           end
           unless params['Gender'].nil?
-            @Gender = Gender.new.deserialize(params['Gender'])
+            @Gender = Gender.new
+            @Gender.deserialize(params['Gender'])
           end
           unless params['Orientation'].nil?
-            @Orientation = Orientation.new.deserialize(params['Orientation'])
+            @Orientation = Orientation.new
+            @Orientation.deserialize(params['Orientation'])
           end
           unless params['UpperBodyCloth'].nil?
-            @UpperBodyCloth = UpperBodyCloth.new.deserialize(params['UpperBodyCloth'])
+            @UpperBodyCloth = UpperBodyCloth.new
+            @UpperBodyCloth.deserialize(params['UpperBodyCloth'])
           end
           unless params['LowerBodyCloth'].nil?
-            @LowerBodyCloth = LowerBodyCloth.new.deserialize(params['LowerBodyCloth'])
+            @LowerBodyCloth = LowerBodyCloth.new
+            @LowerBodyCloth.deserialize(params['LowerBodyCloth'])
           end
         end
       end
@@ -179,10 +185,12 @@ module TencentCloud
         def deserialize(params)
           @Confidence = params['Confidence']
           unless params['BodyRect'].nil?
-            @BodyRect = BodyRect.new.deserialize(params['BodyRect'])
+            @BodyRect = BodyRect.new
+            @BodyRect.deserialize(params['BodyRect'])
           end
           unless params['BodyAttributeInfo'].nil?
-            @BodyAttributeInfo = BodyAttributeInfo.new.deserialize(params['BodyAttributeInfo'])
+            @BodyAttributeInfo = BodyAttributeInfo.new
+            @BodyAttributeInfo.deserialize(params['BodyAttributeInfo'])
           end
         end
       end
@@ -206,12 +214,15 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BoundBox'].nil?
-            @BoundBox = BoundRect.new.deserialize(params['BoundBox'])
+            @BoundBox = BoundRect.new
+            @BoundBox.deserialize(params['BoundBox'])
           end
           unless params['BodyJoints'].nil?
             @BodyJoints = []
             params['BodyJoints'].each do |i|
-              @BodyJoints << KeyPointInfo.new.deserialize(i)
+              keypointinfo_tmp = KeyPointInfo.new
+              keypointinfo_tmp.deserialize(i)
+              @BodyJoints << keypointinfo_tmp
             end
           end
           @Confidence = params['Confidence']
@@ -375,7 +386,8 @@ module TencentCloud
           @PersonName = params['PersonName']
           @PersonId = params['PersonId']
           unless params['Trace'].nil?
-            @Trace = Trace.new.deserialize(params['Trace'])
+            @Trace = Trace.new
+            @Trace.deserialize(params['Trace'])
           end
         end
       end
@@ -483,7 +495,8 @@ module TencentCloud
         def deserialize(params)
           @PersonId = params['PersonId']
           unless params['Trace'].nil?
-            @Trace = Trace.new.deserialize(params['Trace'])
+            @Trace = Trace.new
+            @Trace.deserialize(params['Trace'])
           end
         end
       end
@@ -641,7 +654,8 @@ module TencentCloud
           @ResultVideoUrl = params['ResultVideoUrl']
           @ResultVideoMD5 = params['ResultVideoMD5']
           unless params['VideoBasicInformation'].nil?
-            @VideoBasicInformation = VideoBasicInformation.new.deserialize(params['VideoBasicInformation'])
+            @VideoBasicInformation = VideoBasicInformation.new
+            @VideoBasicInformation.deserialize(params['VideoBasicInformation'])
           end
           @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
@@ -691,7 +705,9 @@ module TencentCloud
           unless params['BodyJointsResults'].nil?
             @BodyJointsResults = []
             params['BodyJointsResults'].each do |i|
-              @BodyJointsResults << BodyJointsResult.new.deserialize(i)
+              bodyjointsresult_tmp = BodyJointsResult.new
+              bodyjointsresult_tmp.deserialize(i)
+              @BodyJointsResults << bodyjointsresult_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -737,7 +753,8 @@ module TencentCloud
           @MaxBodyNum = params['MaxBodyNum']
           @Url = params['Url']
           unless params['AttributesOptions'].nil?
-            @AttributesOptions = AttributesOptions.new.deserialize(params['AttributesOptions'])
+            @AttributesOptions = AttributesOptions.new
+            @AttributesOptions.deserialize(params['AttributesOptions'])
           end
         end
       end
@@ -763,7 +780,9 @@ module TencentCloud
           unless params['BodyDetectResults'].nil?
             @BodyDetectResults = []
             params['BodyDetectResults'].each do |i|
-              @BodyDetectResults << BodyDetectResult.new.deserialize(i)
+              bodydetectresult_tmp = BodyDetectResult.new
+              bodydetectresult_tmp.deserialize(i)
+              @BodyDetectResults << bodydetectresult_tmp
             end
           end
           @BodyModelVersion = params['BodyModelVersion']
@@ -833,7 +852,9 @@ module TencentCloud
           unless params['GroupInfos'].nil?
             @GroupInfos = []
             params['GroupInfos'].each do |i|
-              @GroupInfos << GroupInfo.new.deserialize(i)
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @GroupInfos << groupinfo_tmp
             end
           end
           @GroupNum = params['GroupNum']
@@ -889,7 +910,9 @@ module TencentCloud
           unless params['PersonInfos'].nil?
             @PersonInfos = []
             params['PersonInfos'].each do |i|
-              @PersonInfos << PersonInfo.new.deserialize(i)
+              personinfo_tmp = PersonInfo.new
+              personinfo_tmp.deserialize(i)
+              @PersonInfos << personinfo_tmp
             end
           end
           @PersonNum = params['PersonNum']
@@ -1006,13 +1029,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Color'].nil?
-            @Color = LowerBodyClothColor.new.deserialize(params['Color'])
+            @Color = LowerBodyClothColor.new
+            @Color.deserialize(params['Color'])
           end
           unless params['Length'].nil?
-            @Length = LowerBodyClothLength.new.deserialize(params['Length'])
+            @Length = LowerBodyClothLength.new
+            @Length.deserialize(params['Length'])
           end
           unless params['Type'].nil?
-            @Type = LowerBodyClothType.new.deserialize(params['Type'])
+            @Type = LowerBodyClothType.new
+            @Type.deserialize(params['Type'])
           end
         end
       end
@@ -1197,7 +1223,9 @@ module TencentCloud
           unless params['TraceInfos'].nil?
             @TraceInfos = []
             params['TraceInfos'].each do |i|
-              @TraceInfos << TraceInfo.new.deserialize(i)
+              traceinfo_tmp = TraceInfo.new
+              traceinfo_tmp.deserialize(i)
+              @TraceInfos << traceinfo_tmp
             end
           end
         end
@@ -1229,7 +1257,8 @@ module TencentCloud
         def deserialize(params)
           @GroupId = params['GroupId']
           unless params['Trace'].nil?
-            @Trace = Trace.new.deserialize(params['Trace'])
+            @Trace = Trace.new
+            @Trace.deserialize(params['Trace'])
           end
           @MaxPersonNum = params['MaxPersonNum']
           @TraceMatchThreshold = params['TraceMatchThreshold']
@@ -1266,7 +1295,9 @@ module TencentCloud
           unless params['Candidates'].nil?
             @Candidates = []
             params['Candidates'].each do |i|
-              @Candidates << Candidate.new.deserialize(i)
+              candidate_tmp = Candidate.new
+              candidate_tmp.deserialize(i)
+              @Candidates << candidate_tmp
             end
           end
           @InputRetCode = params['InputRetCode']
@@ -1302,7 +1333,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SegmentationOptions'].nil?
-            @SegmentationOptions = SegmentationOptions.new.deserialize(params['SegmentationOptions'])
+            @SegmentationOptions = SegmentationOptions.new
+            @SegmentationOptions.deserialize(params['SegmentationOptions'])
           end
           @Image = params['Image']
           @Url = params['Url']
@@ -1336,7 +1368,9 @@ module TencentCloud
           unless params['ImageRects'].nil?
             @ImageRects = []
             params['ImageRects'].each do |i|
-              @ImageRects << ImageRect.new.deserialize(i)
+              imagerect_tmp = ImageRect.new
+              imagerect_tmp.deserialize(i)
+              @ImageRects << imagerect_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1557,7 +1591,9 @@ module TencentCloud
           unless params['BodyRects'].nil?
             @BodyRects = []
             params['BodyRects'].each do |i|
-              @BodyRects << BodyRect.new.deserialize(i)
+              bodyrect_tmp = BodyRect.new
+              bodyrect_tmp.deserialize(i)
+              @BodyRects << bodyrect_tmp
             end
           end
         end
@@ -1602,13 +1638,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Texture'].nil?
-            @Texture = UpperBodyClothTexture.new.deserialize(params['Texture'])
+            @Texture = UpperBodyClothTexture.new
+            @Texture.deserialize(params['Texture'])
           end
           unless params['Color'].nil?
-            @Color = UpperBodyClothColor.new.deserialize(params['Color'])
+            @Color = UpperBodyClothColor.new
+            @Color.deserialize(params['Color'])
           end
           unless params['Sleeve'].nil?
-            @Sleeve = UpperBodyClothSleeve.new.deserialize(params['Sleeve'])
+            @Sleeve = UpperBodyClothSleeve.new
+            @Sleeve.deserialize(params['Sleeve'])
           end
         end
       end

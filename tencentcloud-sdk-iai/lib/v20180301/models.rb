@@ -87,7 +87,9 @@ module TencentCloud
           unless params['DenseFaceShapeSet'].nil?
             @DenseFaceShapeSet = []
             params['DenseFaceShapeSet'].each do |i|
-              @DenseFaceShapeSet << DenseFaceShape.new.deserialize(i)
+              densefaceshape_tmp = DenseFaceShape.new
+              densefaceshape_tmp.deserialize(i)
+              @DenseFaceShapeSet << densefaceshape_tmp
             end
           end
           @FaceModelVersion = params['FaceModelVersion']
@@ -169,7 +171,9 @@ module TencentCloud
           unless params['FaceShapeSet'].nil?
             @FaceShapeSet = []
             params['FaceShapeSet'].each do |i|
-              @FaceShapeSet << FaceShape.new.deserialize(i)
+              faceshape_tmp = FaceShape.new
+              faceshape_tmp.deserialize(i)
+              @FaceShapeSet << faceshape_tmp
             end
           end
           @FaceModelVersion = params['FaceModelVersion']
@@ -241,7 +245,9 @@ module TencentCloud
           unless params['PersonGroupInfos'].nil?
             @PersonGroupInfos = []
             params['PersonGroupInfos'].each do |i|
-              @PersonGroupInfos << PersonGroupInfo.new.deserialize(i)
+              persongroupinfo_tmp = PersonGroupInfo.new
+              persongroupinfo_tmp.deserialize(i)
+              @PersonGroupInfos << persongroupinfo_tmp
             end
           end
         end
@@ -525,7 +531,9 @@ module TencentCloud
           unless params['SucFaceRects'].nil?
             @SucFaceRects = []
             params['SucFaceRects'].each do |i|
-              @SucFaceRects << FaceRect.new.deserialize(i)
+              facerect_tmp = FaceRect.new
+              facerect_tmp.deserialize(i)
+              @SucFaceRects << facerect_tmp
             end
           end
           @FaceModelVersion = params['FaceModelVersion']
@@ -666,7 +674,9 @@ module TencentCloud
           unless params['PersonExDescriptionInfos'].nil?
             @PersonExDescriptionInfos = []
             params['PersonExDescriptionInfos'].each do |i|
-              @PersonExDescriptionInfos << PersonExDescriptionInfo.new.deserialize(i)
+              personexdescriptioninfo_tmp = PersonExDescriptionInfo.new
+              personexdescriptioninfo_tmp.deserialize(i)
+              @PersonExDescriptionInfos << personexdescriptioninfo_tmp
             end
           end
           @Image = params['Image']
@@ -705,7 +715,8 @@ module TencentCloud
         def deserialize(params)
           @FaceId = params['FaceId']
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
+            @FaceRect = FaceRect.new
+            @FaceRect.deserialize(params['FaceRect'])
           end
           @SimilarPersonId = params['SimilarPersonId']
           @FaceModelVersion = params['FaceModelVersion']
@@ -927,85 +938,113 @@ module TencentCloud
           unless params['LeftEye'].nil?
             @LeftEye = []
             params['LeftEye'].each do |i|
-              @LeftEye << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @LeftEye << point_tmp
             end
           end
           unless params['RightEye'].nil?
             @RightEye = []
             params['RightEye'].each do |i|
-              @RightEye << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @RightEye << point_tmp
             end
           end
           unless params['LeftEyeBrow'].nil?
             @LeftEyeBrow = []
             params['LeftEyeBrow'].each do |i|
-              @LeftEyeBrow << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @LeftEyeBrow << point_tmp
             end
           end
           unless params['RightEyeBrow'].nil?
             @RightEyeBrow = []
             params['RightEyeBrow'].each do |i|
-              @RightEyeBrow << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @RightEyeBrow << point_tmp
             end
           end
           unless params['MouthOutside'].nil?
             @MouthOutside = []
             params['MouthOutside'].each do |i|
-              @MouthOutside << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @MouthOutside << point_tmp
             end
           end
           unless params['MouthInside'].nil?
             @MouthInside = []
             params['MouthInside'].each do |i|
-              @MouthInside << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @MouthInside << point_tmp
             end
           end
           unless params['Nose'].nil?
             @Nose = []
             params['Nose'].each do |i|
-              @Nose << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @Nose << point_tmp
             end
           end
           unless params['LeftPupil'].nil?
             @LeftPupil = []
             params['LeftPupil'].each do |i|
-              @LeftPupil << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @LeftPupil << point_tmp
             end
           end
           unless params['RightPupil'].nil?
             @RightPupil = []
             params['RightPupil'].each do |i|
-              @RightPupil << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @RightPupil << point_tmp
             end
           end
           unless params['CentralAxis'].nil?
             @CentralAxis = []
             params['CentralAxis'].each do |i|
-              @CentralAxis << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @CentralAxis << point_tmp
             end
           end
           unless params['Chin'].nil?
             @Chin = []
             params['Chin'].each do |i|
-              @Chin << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @Chin << point_tmp
             end
           end
           unless params['LeftEyeBags'].nil?
             @LeftEyeBags = []
             params['LeftEyeBags'].each do |i|
-              @LeftEyeBags << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @LeftEyeBags << point_tmp
             end
           end
           unless params['RightEyeBags'].nil?
             @RightEyeBags = []
             params['RightEyeBags'].each do |i|
-              @RightEyeBags << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @RightEyeBags << point_tmp
             end
           end
           unless params['Forehead'].nil?
             @Forehead = []
             params['Forehead'].each do |i|
-              @Forehead << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @Forehead << point_tmp
             end
           end
         end
@@ -1092,7 +1131,9 @@ module TencentCloud
           unless params['FaceDetailInfos'].nil?
             @FaceDetailInfos = []
             params['FaceDetailInfos'].each do |i|
-              @FaceDetailInfos << FaceDetailInfo.new.deserialize(i)
+              facedetailinfo_tmp = FaceDetailInfo.new
+              facedetailinfo_tmp.deserialize(i)
+              @FaceDetailInfos << facedetailinfo_tmp
             end
           end
           @FaceModelVersion = params['FaceModelVersion']
@@ -1197,7 +1238,9 @@ module TencentCloud
           unless params['FaceInfos'].nil?
             @FaceInfos = []
             params['FaceInfos'].each do |i|
-              @FaceInfos << FaceInfo.new.deserialize(i)
+              faceinfo_tmp = FaceInfo.new
+              faceinfo_tmp.deserialize(i)
+              @FaceInfos << faceinfo_tmp
             end
           end
           @FaceModelVersion = params['FaceModelVersion']
@@ -1336,16 +1379,20 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Glass'].nil?
-            @Glass = AttributeItem.new.deserialize(params['Glass'])
+            @Glass = AttributeItem.new
+            @Glass.deserialize(params['Glass'])
           end
           unless params['EyeOpen'].nil?
-            @EyeOpen = AttributeItem.new.deserialize(params['EyeOpen'])
+            @EyeOpen = AttributeItem.new
+            @EyeOpen.deserialize(params['EyeOpen'])
           end
           unless params['EyelidType'].nil?
-            @EyelidType = AttributeItem.new.deserialize(params['EyelidType'])
+            @EyelidType = AttributeItem.new
+            @EyelidType.deserialize(params['EyelidType'])
           end
           unless params['EyeSize'].nil?
-            @EyeSize = AttributeItem.new.deserialize(params['EyeSize'])
+            @EyeSize = AttributeItem.new
+            @EyeSize.deserialize(params['EyeSize'])
           end
         end
       end
@@ -1372,13 +1419,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['EyebrowDensity'].nil?
-            @EyebrowDensity = AttributeItem.new.deserialize(params['EyebrowDensity'])
+            @EyebrowDensity = AttributeItem.new
+            @EyebrowDensity.deserialize(params['EyebrowDensity'])
           end
           unless params['EyebrowCurve'].nil?
-            @EyebrowCurve = AttributeItem.new.deserialize(params['EyebrowCurve'])
+            @EyebrowCurve = AttributeItem.new
+            @EyebrowCurve.deserialize(params['EyebrowCurve'])
           end
           unless params['EyebrowLength'].nil?
-            @EyebrowLength = AttributeItem.new.deserialize(params['EyebrowLength'])
+            @EyebrowLength = AttributeItem.new
+            @EyebrowLength.deserialize(params['EyebrowLength'])
           end
         end
       end
@@ -1447,7 +1497,8 @@ module TencentCloud
           @Hat = params['Hat']
           @Mask = params['Mask']
           unless params['Hair'].nil?
-            @Hair = FaceHairAttributesInfo.new.deserialize(params['Hair'])
+            @Hair = FaceHairAttributesInfo.new
+            @Hair.deserialize(params['Hair'])
           end
           @EyeOpen = params['EyeOpen']
         end
@@ -1540,43 +1591,56 @@ module TencentCloud
           @Age = params['Age']
           @Beauty = params['Beauty']
           unless params['Emotion'].nil?
-            @Emotion = AttributeItem.new.deserialize(params['Emotion'])
+            @Emotion = AttributeItem.new
+            @Emotion.deserialize(params['Emotion'])
           end
           unless params['Eye'].nil?
-            @Eye = Eye.new.deserialize(params['Eye'])
+            @Eye = Eye.new
+            @Eye.deserialize(params['Eye'])
           end
           unless params['Eyebrow'].nil?
-            @Eyebrow = Eyebrow.new.deserialize(params['Eyebrow'])
+            @Eyebrow = Eyebrow.new
+            @Eyebrow.deserialize(params['Eyebrow'])
           end
           unless params['Gender'].nil?
-            @Gender = AttributeItem.new.deserialize(params['Gender'])
+            @Gender = AttributeItem.new
+            @Gender.deserialize(params['Gender'])
           end
           unless params['Hair'].nil?
-            @Hair = Hair.new.deserialize(params['Hair'])
+            @Hair = Hair.new
+            @Hair.deserialize(params['Hair'])
           end
           unless params['Hat'].nil?
-            @Hat = Hat.new.deserialize(params['Hat'])
+            @Hat = Hat.new
+            @Hat.deserialize(params['Hat'])
           end
           unless params['HeadPose'].nil?
-            @HeadPose = HeadPose.new.deserialize(params['HeadPose'])
+            @HeadPose = HeadPose.new
+            @HeadPose.deserialize(params['HeadPose'])
           end
           unless params['Mask'].nil?
-            @Mask = AttributeItem.new.deserialize(params['Mask'])
+            @Mask = AttributeItem.new
+            @Mask.deserialize(params['Mask'])
           end
           unless params['Mouth'].nil?
-            @Mouth = Mouth.new.deserialize(params['Mouth'])
+            @Mouth = Mouth.new
+            @Mouth.deserialize(params['Mouth'])
           end
           unless params['Moustache'].nil?
-            @Moustache = AttributeItem.new.deserialize(params['Moustache'])
+            @Moustache = AttributeItem.new
+            @Moustache.deserialize(params['Moustache'])
           end
           unless params['Nose'].nil?
-            @Nose = AttributeItem.new.deserialize(params['Nose'])
+            @Nose = AttributeItem.new
+            @Nose.deserialize(params['Nose'])
           end
           unless params['Shape'].nil?
-            @Shape = AttributeItem.new.deserialize(params['Shape'])
+            @Shape = AttributeItem.new
+            @Shape.deserialize(params['Shape'])
           end
           unless params['Skin'].nil?
-            @Skin = AttributeItem.new.deserialize(params['Skin'])
+            @Skin = AttributeItem.new
+            @Skin.deserialize(params['Skin'])
           end
           @Smile = params['Smile']
         end
@@ -1602,10 +1666,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
+            @FaceRect = FaceRect.new
+            @FaceRect.deserialize(params['FaceRect'])
           end
           unless params['FaceDetailAttributesInfo'].nil?
-            @FaceDetailAttributesInfo = FaceDetailAttributesInfo.new.deserialize(params['FaceDetailAttributesInfo'])
+            @FaceDetailAttributesInfo = FaceDetailAttributesInfo.new
+            @FaceDetailAttributesInfo.deserialize(params['FaceDetailAttributesInfo'])
           end
         end
       end
@@ -1675,10 +1741,12 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           unless params['FaceAttributesInfo'].nil?
-            @FaceAttributesInfo = FaceAttributesInfo.new.deserialize(params['FaceAttributesInfo'])
+            @FaceAttributesInfo = FaceAttributesInfo.new
+            @FaceAttributesInfo.deserialize(params['FaceAttributesInfo'])
           end
           unless params['FaceQualityInfo'].nil?
-            @FaceQualityInfo = FaceQualityInfo.new.deserialize(params['FaceQualityInfo'])
+            @FaceQualityInfo = FaceQualityInfo.new
+            @FaceQualityInfo.deserialize(params['FaceQualityInfo'])
           end
         end
       end
@@ -1767,7 +1835,8 @@ module TencentCloud
           @Sharpness = params['Sharpness']
           @Brightness = params['Brightness']
           unless params['Completeness'].nil?
-            @Completeness = FaceQualityCompleteness.new.deserialize(params['Completeness'])
+            @Completeness = FaceQualityCompleteness.new
+            @Completeness.deserialize(params['Completeness'])
           end
         end
       end
@@ -1843,55 +1912,73 @@ module TencentCloud
           unless params['FaceProfile'].nil?
             @FaceProfile = []
             params['FaceProfile'].each do |i|
-              @FaceProfile << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @FaceProfile << point_tmp
             end
           end
           unless params['LeftEye'].nil?
             @LeftEye = []
             params['LeftEye'].each do |i|
-              @LeftEye << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @LeftEye << point_tmp
             end
           end
           unless params['RightEye'].nil?
             @RightEye = []
             params['RightEye'].each do |i|
-              @RightEye << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @RightEye << point_tmp
             end
           end
           unless params['LeftEyeBrow'].nil?
             @LeftEyeBrow = []
             params['LeftEyeBrow'].each do |i|
-              @LeftEyeBrow << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @LeftEyeBrow << point_tmp
             end
           end
           unless params['RightEyeBrow'].nil?
             @RightEyeBrow = []
             params['RightEyeBrow'].each do |i|
-              @RightEyeBrow << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @RightEyeBrow << point_tmp
             end
           end
           unless params['Mouth'].nil?
             @Mouth = []
             params['Mouth'].each do |i|
-              @Mouth << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @Mouth << point_tmp
             end
           end
           unless params['Nose'].nil?
             @Nose = []
             params['Nose'].each do |i|
-              @Nose << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @Nose << point_tmp
             end
           end
           unless params['LeftPupil'].nil?
             @LeftPupil = []
             params['LeftPupil'].each do |i|
-              @LeftPupil << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @LeftPupil << point_tmp
             end
           end
           unless params['RightPupil'].nil?
             @RightPupil = []
             params['RightPupil'].each do |i|
-              @RightPupil << Point.new.deserialize(i)
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @RightPupil << point_tmp
             end
           end
         end
@@ -1938,7 +2025,9 @@ module TencentCloud
           unless params['JobIdInfos'].nil?
             @JobIdInfos = []
             params['JobIdInfos'].each do |i|
-              @JobIdInfos << JobIdInfo.new.deserialize(i)
+              jobidinfo_tmp = JobIdInfo.new
+              jobidinfo_tmp.deserialize(i)
+              @JobIdInfos << jobidinfo_tmp
             end
           end
           @JobIdNum = params['JobIdNum']
@@ -2044,7 +2133,9 @@ module TencentCloud
           unless params['GroupInfos'].nil?
             @GroupInfos = []
             params['GroupInfos'].each do |i|
-              @GroupInfos << GroupInfo.new.deserialize(i)
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @GroupInfos << groupinfo_tmp
             end
           end
           @GroupNum = params['GroupNum']
@@ -2146,7 +2237,9 @@ module TencentCloud
           unless params['PersonGroupInfos'].nil?
             @PersonGroupInfos = []
             params['PersonGroupInfos'].each do |i|
-              @PersonGroupInfos << PersonGroupInfo.new.deserialize(i)
+              persongroupinfo_tmp = PersonGroupInfo.new
+              persongroupinfo_tmp.deserialize(i)
+              @PersonGroupInfos << persongroupinfo_tmp
             end
           end
           @GroupNum = params['GroupNum']
@@ -2249,7 +2342,9 @@ module TencentCloud
           unless params['PersonInfos'].nil?
             @PersonInfos = []
             params['PersonInfos'].each do |i|
-              @PersonInfos << PersonInfo.new.deserialize(i)
+              personinfo_tmp = PersonInfo.new
+              personinfo_tmp.deserialize(i)
+              @PersonInfos << personinfo_tmp
             end
           end
           @PersonNum = params['PersonNum']
@@ -2341,7 +2436,9 @@ module TencentCloud
           unless params['JobInfos'].nil?
             @JobInfos = []
             params['JobInfos'].each do |i|
-              @JobInfos << UpgradeJobInfo.new.deserialize(i)
+              upgradejobinfo_tmp = UpgradeJobInfo.new
+              upgradejobinfo_tmp.deserialize(i)
+              @JobInfos << upgradejobinfo_tmp
             end
           end
           @JobNum = params['JobNum']
@@ -2437,7 +2534,9 @@ module TencentCloud
           unless params['Candidates'].nil?
             @Candidates = []
             params['Candidates'].each do |i|
-              @Candidates << Candidate.new.deserialize(i)
+              candidate_tmp = Candidate.new
+              candidate_tmp.deserialize(i)
+              @Candidates << candidate_tmp
             end
           end
         end
@@ -2527,13 +2626,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Length'].nil?
-            @Length = AttributeItem.new.deserialize(params['Length'])
+            @Length = AttributeItem.new
+            @Length.deserialize(params['Length'])
           end
           unless params['Bang'].nil?
-            @Bang = AttributeItem.new.deserialize(params['Bang'])
+            @Bang = AttributeItem.new
+            @Bang.deserialize(params['Bang'])
           end
           unless params['Color'].nil?
-            @Color = AttributeItem.new.deserialize(params['Color'])
+            @Color = AttributeItem.new
+            @Color.deserialize(params['Color'])
           end
         end
       end
@@ -2556,10 +2658,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Style'].nil?
-            @Style = AttributeItem.new.deserialize(params['Style'])
+            @Style = AttributeItem.new
+            @Style.deserialize(params['Style'])
           end
           unless params['Color'].nil?
-            @Color = AttributeItem.new.deserialize(params['Color'])
+            @Color = AttributeItem.new
+            @Color.deserialize(params['Color'])
           end
         end
       end
@@ -2641,7 +2745,9 @@ module TencentCloud
           unless params['GroupExDescriptionInfos'].nil?
             @GroupExDescriptionInfos = []
             params['GroupExDescriptionInfos'].each do |i|
-              @GroupExDescriptionInfos << GroupExDescriptionInfo.new.deserialize(i)
+              groupexdescriptioninfo_tmp = GroupExDescriptionInfo.new
+              groupexdescriptioninfo_tmp.deserialize(i)
+              @GroupExDescriptionInfos << groupexdescriptioninfo_tmp
             end
           end
           @Tag = params['Tag']
@@ -2727,7 +2833,9 @@ module TencentCloud
           unless params['PersonExDescriptionInfos'].nil?
             @PersonExDescriptionInfos = []
             params['PersonExDescriptionInfos'].each do |i|
-              @PersonExDescriptionInfos << PersonExDescriptionInfo.new.deserialize(i)
+              personexdescriptioninfo_tmp = PersonExDescriptionInfo.new
+              personexdescriptioninfo_tmp.deserialize(i)
+              @PersonExDescriptionInfos << personexdescriptioninfo_tmp
             end
           end
         end
@@ -2763,7 +2871,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MouthOpen'].nil?
-            @MouthOpen = AttributeItem.new.deserialize(params['MouthOpen'])
+            @MouthOpen = AttributeItem.new
+            @MouthOpen.deserialize(params['MouthOpen'])
           end
         end
       end
@@ -2888,11 +2997,14 @@ module TencentCloud
           unless params['Candidates'].nil?
             @Candidates = []
             params['Candidates'].each do |i|
-              @Candidates << Candidate.new.deserialize(i)
+              candidate_tmp = Candidate.new
+              candidate_tmp.deserialize(i)
+              @Candidates << candidate_tmp
             end
           end
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
+            @FaceRect = FaceRect.new
+            @FaceRect.deserialize(params['FaceRect'])
           end
           @RetCode = params['RetCode']
         end
@@ -2918,12 +3030,15 @@ module TencentCloud
 
         def deserialize(params)
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
+            @FaceRect = FaceRect.new
+            @FaceRect.deserialize(params['FaceRect'])
           end
           unless params['GroupCandidates'].nil?
             @GroupCandidates = []
             params['GroupCandidates'].each do |i|
-              @GroupCandidates << GroupCandidate.new.deserialize(i)
+              groupcandidate_tmp = GroupCandidate.new
+              groupcandidate_tmp.deserialize(i)
+              @GroupCandidates << groupcandidate_tmp
             end
           end
           @RetCode = params['RetCode']
@@ -3054,7 +3169,9 @@ module TencentCloud
           unless params['Results'].nil?
             @Results = []
             params['Results'].each do |i|
-              @Results << Result.new.deserialize(i)
+              result_tmp = Result.new
+              result_tmp.deserialize(i)
+              @Results << result_tmp
             end
           end
           @FaceNum = params['FaceNum']
@@ -3157,7 +3274,9 @@ module TencentCloud
           unless params['ResultsReturnsByGroup'].nil?
             @ResultsReturnsByGroup = []
             params['ResultsReturnsByGroup'].each do |i|
-              @ResultsReturnsByGroup << ResultsReturnsByGroup.new.deserialize(i)
+              resultsreturnsbygroup_tmp = ResultsReturnsByGroup.new
+              resultsreturnsbygroup_tmp.deserialize(i)
+              @ResultsReturnsByGroup << resultsreturnsbygroup_tmp
             end
           end
           @FaceModelVersion = params['FaceModelVersion']
@@ -3259,7 +3378,9 @@ module TencentCloud
           unless params['Results'].nil?
             @Results = []
             params['Results'].each do |i|
-              @Results << Result.new.deserialize(i)
+              result_tmp = Result.new
+              result_tmp.deserialize(i)
+              @Results << result_tmp
             end
           end
           @PersonNum = params['PersonNum']
@@ -3360,7 +3481,9 @@ module TencentCloud
           unless params['ResultsReturnsByGroup'].nil?
             @ResultsReturnsByGroup = []
             params['ResultsReturnsByGroup'].each do |i|
-              @ResultsReturnsByGroup << ResultsReturnsByGroup.new.deserialize(i)
+              resultsreturnsbygroup_tmp = ResultsReturnsByGroup.new
+              resultsreturnsbygroup_tmp.deserialize(i)
+              @ResultsReturnsByGroup << resultsreturnsbygroup_tmp
             end
           end
           @FaceModelVersion = params['FaceModelVersion']

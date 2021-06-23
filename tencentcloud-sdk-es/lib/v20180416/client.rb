@@ -20,9 +20,13 @@ module TencentCloud
   module Es
     module V20180416
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-04-16'
-        @@endpoint = 'es.tencentcloudapi.com'
-        @@sdk_version = 'ES_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-04-16'
+            api_endpoint = 'es.tencentcloudapi.com'
+            sdk_version = 'ES_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建指定规格的ES集群实例

@@ -74,18 +74,22 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SrcAddressInfo'].nil?
-            @SrcAddressInfo = SrcAddressInfo.new.deserialize(params['SrcAddressInfo'])
+            @SrcAddressInfo = SrcAddressInfo.new
+            @SrcAddressInfo.deserialize(params['SrcAddressInfo'])
           end
           unless params['DestAddressInfo'].nil?
-            @DestAddressInfo = DestAddressInfo.new.deserialize(params['DestAddressInfo'])
+            @DestAddressInfo = DestAddressInfo.new
+            @DestAddressInfo.deserialize(params['DestAddressInfo'])
           end
           @QosMenu = params['QosMenu']
           unless params['DeviceInfo'].nil?
-            @DeviceInfo = DeviceInfo.new.deserialize(params['DeviceInfo'])
+            @DeviceInfo = DeviceInfo.new
+            @DeviceInfo.deserialize(params['DeviceInfo'])
           end
           @Duration = params['Duration']
           unless params['Capacity'].nil?
-            @Capacity = Capacity.new.deserialize(params['Capacity'])
+            @Capacity = Capacity.new
+            @Capacity.deserialize(params['Capacity'])
           end
         end
       end

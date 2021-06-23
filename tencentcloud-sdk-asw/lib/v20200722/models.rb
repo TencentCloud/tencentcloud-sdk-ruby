@@ -123,7 +123,9 @@ module TencentCloud
           unless params['Events'].nil?
             @Events = []
             params['Events'].each do |i|
-              @Events << ExecutionEvent.new.deserialize(i)
+              executionevent_tmp = ExecutionEvent.new
+              executionevent_tmp.deserialize(i)
+              @Events << executionevent_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -354,7 +356,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -381,7 +385,9 @@ module TencentCloud
           unless params['FlowServiceSet'].nil?
             @FlowServiceSet = []
             params['FlowServiceSet'].each do |i|
-              @FlowServiceSet << StateMachine.new.deserialize(i)
+              statemachine_tmp = StateMachine.new
+              statemachine_tmp.deserialize(i)
+              @FlowServiceSet << statemachine_tmp
             end
           end
           @TotalCount = params['TotalCount']

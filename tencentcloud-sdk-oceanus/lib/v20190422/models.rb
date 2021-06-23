@@ -63,14 +63,18 @@ module TencentCloud
           unless params['ResourceRefs'].nil?
             @ResourceRefs = []
             params['ResourceRefs'].each do |i|
-              @ResourceRefs << ResourceRef.new.deserialize(i)
+              resourceref_tmp = ResourceRef.new
+              resourceref_tmp.deserialize(i)
+              @ResourceRefs << resourceref_tmp
             end
           end
           @DefaultParallelism = params['DefaultParallelism']
           unless params['Properties'].nil?
             @Properties = []
             params['Properties'].each do |i|
-              @Properties << Property.new.deserialize(i)
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
             end
           end
           @AutoDelete = params['AutoDelete']
@@ -178,7 +182,8 @@ module TencentCloud
         def deserialize(params)
           @ResourceId = params['ResourceId']
           unless params['ResourceLoc'].nil?
-            @ResourceLoc = ResourceLoc.new.deserialize(params['ResourceLoc'])
+            @ResourceLoc = ResourceLoc.new
+            @ResourceLoc.deserialize(params['ResourceLoc'])
           end
           @Remark = params['Remark']
           @AutoDelete = params['AutoDelete']
@@ -230,7 +235,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ResourceLoc'].nil?
-            @ResourceLoc = ResourceLoc.new.deserialize(params['ResourceLoc'])
+            @ResourceLoc = ResourceLoc.new
+            @ResourceLoc.deserialize(params['ResourceLoc'])
           end
           @Name = params['Name']
           @ResourceType = params['ResourceType']
@@ -405,7 +411,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @OnlyDraft = params['OnlyDraft']
@@ -434,7 +442,9 @@ module TencentCloud
           unless params['JobConfigSet'].nil?
             @JobConfigSet = []
             params['JobConfigSet'].each do |i|
-              @JobConfigSet << JobConfig.new.deserialize(i)
+              jobconfig_tmp = JobConfig.new
+              jobconfig_tmp.deserialize(i)
+              @JobConfigSet << jobconfig_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -466,7 +476,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Offset = params['Offset']
@@ -496,7 +508,9 @@ module TencentCloud
           unless params['JobSet'].nil?
             @JobSet = []
             params['JobSet'].each do |i|
-              @JobSet << JobV1.new.deserialize(i)
+              jobv1_tmp = JobV1.new
+              jobv1_tmp.deserialize(i)
+              @JobSet << jobv1_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -560,7 +574,9 @@ module TencentCloud
           unless params['ResourceConfigSet'].nil?
             @ResourceConfigSet = []
             params['ResourceConfigSet'].each do |i|
-              @ResourceConfigSet << ResourceConfigItem.new.deserialize(i)
+              resourceconfigitem_tmp = ResourceConfigItem.new
+              resourceconfigitem_tmp.deserialize(i)
+              @ResourceConfigSet << resourceconfigitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -618,7 +634,9 @@ module TencentCloud
           unless params['RefJobInfos'].nil?
             @RefJobInfos = []
             params['RefJobInfos'].each do |i|
-              @RefJobInfos << ResourceRefJobInfo.new.deserialize(i)
+              resourcerefjobinfo_tmp = ResourceRefJobInfo.new
+              resourcerefjobinfo_tmp.deserialize(i)
+              @RefJobInfos << resourcerefjobinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -652,7 +670,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -679,7 +699,9 @@ module TencentCloud
           unless params['ResourceSet'].nil?
             @ResourceSet = []
             params['ResourceSet'].each do |i|
-              @ResourceSet << ResourceItem.new.deserialize(i)
+              resourceitem_tmp = ResourceItem.new
+              resourceitem_tmp.deserialize(i)
+              @ResourceSet << resourceitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -717,7 +739,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @ClusterId = params['ClusterId']
@@ -745,7 +769,9 @@ module TencentCloud
           unless params['ResourceSet'].nil?
             @ResourceSet = []
             params['ResourceSet'].each do |i|
-              @ResourceSet << SystemResourceItem.new.deserialize(i)
+              systemresourceitem_tmp = SystemResourceItem.new
+              systemresourceitem_tmp.deserialize(i)
+              @ResourceSet << systemresourceitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -845,13 +871,17 @@ module TencentCloud
           unless params['Properties'].nil?
             @Properties = []
             params['Properties'].each do |i|
-              @Properties << Property.new.deserialize(i)
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
             end
           end
           unless params['ResourceRefDetails'].nil?
             @ResourceRefDetails = []
             params['ResourceRefDetails'].each do |i|
-              @ResourceRefDetails << ResourceRefDetail.new.deserialize(i)
+              resourcerefdetail_tmp = ResourceRefDetail.new
+              resourcerefdetail_tmp.deserialize(i)
+              @ResourceRefDetails << resourcerefdetail_tmp
             end
           end
           @CreatorUin = params['CreatorUin']
@@ -1083,7 +1113,8 @@ module TencentCloud
           @OwnerUin = params['OwnerUin']
           @CreatorUin = params['CreatorUin']
           unless params['ResourceLoc'].nil?
-            @ResourceLoc = ResourceLoc.new.deserialize(params['ResourceLoc'])
+            @ResourceLoc = ResourceLoc.new
+            @ResourceLoc.deserialize(params['ResourceLoc'])
           end
           @CreateTime = params['CreateTime']
           @Version = params['Version']
@@ -1151,7 +1182,8 @@ module TencentCloud
           @Name = params['Name']
           @ResourceType = params['ResourceType']
           unless params['ResourceLoc'].nil?
-            @ResourceLoc = ResourceLoc.new.deserialize(params['ResourceLoc'])
+            @ResourceLoc = ResourceLoc.new
+            @ResourceLoc.deserialize(params['ResourceLoc'])
           end
           @Region = params['Region']
           @AppId = params['AppId']
@@ -1183,7 +1215,8 @@ module TencentCloud
         def deserialize(params)
           @StorageType = params['StorageType']
           unless params['Param'].nil?
-            @Param = ResourceLocParam.new.deserialize(params['Param'])
+            @Param = ResourceLocParam.new
+            @Param.deserialize(params['Param'])
           end
         end
       end
@@ -1336,7 +1369,9 @@ module TencentCloud
           unless params['RunJobDescriptions'].nil?
             @RunJobDescriptions = []
             params['RunJobDescriptions'].each do |i|
-              @RunJobDescriptions << RunJobDescription.new.deserialize(i)
+              runjobdescription_tmp = RunJobDescription.new
+              runjobdescription_tmp.deserialize(i)
+              @RunJobDescriptions << runjobdescription_tmp
             end
           end
         end
@@ -1393,7 +1428,9 @@ module TencentCloud
           unless params['StopJobDescriptions'].nil?
             @StopJobDescriptions = []
             params['StopJobDescriptions'].each do |i|
-              @StopJobDescriptions << StopJobDescription.new.deserialize(i)
+              stopjobdescription_tmp = StopJobDescription.new
+              stopjobdescription_tmp.deserialize(i)
+              @StopJobDescriptions << stopjobdescription_tmp
             end
           end
         end

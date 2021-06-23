@@ -20,9 +20,13 @@ module TencentCloud
   module Tts
     module V20190823
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-08-23'
-        @@endpoint = 'tts.tencentcloudapi.com'
-        @@sdk_version = 'TTS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-08-23'
+            api_endpoint = 'tts.tencentcloudapi.com'
+            sdk_version = 'TTS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口服务对10万字符以内的文本进行语音合成，异步返回音频结果。满足一次性合成较长文本的客户需求，如阅读播报、新闻媒体等场景。

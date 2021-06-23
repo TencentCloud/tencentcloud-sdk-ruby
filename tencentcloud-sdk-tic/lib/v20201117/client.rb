@@ -20,9 +20,13 @@ module TencentCloud
   module Tic
     module V20201117
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-11-17'
-        @@endpoint = 'tic.tencentcloudapi.com'
-        @@sdk_version = 'TIC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-11-17'
+            api_endpoint = 'tic.tencentcloudapi.com'
+            sdk_version = 'TIC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（ApplyStack）用于触发资源栈下某个版本的Apply事件。

@@ -20,9 +20,13 @@ module TencentCloud
   module Api
     module V20201106
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-11-06'
-        @@endpoint = 'api.tencentcloudapi.com'
-        @@sdk_version = 'API_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-11-06'
+            api_endpoint = 'api.tencentcloudapi.com'
+            sdk_version = 'API_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口(DescribeRegions)用于查询各个产品支持地域信息，当前只支持cvm。

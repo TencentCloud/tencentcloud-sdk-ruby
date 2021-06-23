@@ -324,7 +324,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Offset = params['Offset']
@@ -354,7 +356,9 @@ module TencentCloud
           unless params['Events'].nil?
             @Events = []
             params['Events'].each do |i|
-              @Events << EventInfo.new.deserialize(i)
+              eventinfo_tmp = EventInfo.new
+              eventinfo_tmp.deserialize(i)
+              @Events << eventinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -398,7 +402,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -426,7 +432,9 @@ module TencentCloud
           unless params['Versions'].nil?
             @Versions = []
             params['Versions'].each do |i|
-              @Versions << VersionInfo.new.deserialize(i)
+              versioninfo_tmp = VersionInfo.new
+              versioninfo_tmp.deserialize(i)
+              @Versions << versioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -479,7 +487,9 @@ module TencentCloud
           unless params['Stacks'].nil?
             @Stacks = []
             params['Stacks'].each do |i|
-              @Stacks << StackInfo.new.deserialize(i)
+              stackinfo_tmp = StackInfo.new
+              stackinfo_tmp.deserialize(i)
+              @Stacks << stackinfo_tmp
             end
           end
           @RequestId = params['RequestId']

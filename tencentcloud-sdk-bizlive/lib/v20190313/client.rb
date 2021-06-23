@@ -20,9 +20,13 @@ module TencentCloud
   module Bizlive
     module V20190313
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-03-13'
-        @@endpoint = 'bizlive.tencentcloudapi.com'
-        @@sdk_version = 'BIZLIVE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-03-13'
+            api_endpoint = 'bizlive.tencentcloudapi.com'
+            sdk_version = 'BIZLIVE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建会话

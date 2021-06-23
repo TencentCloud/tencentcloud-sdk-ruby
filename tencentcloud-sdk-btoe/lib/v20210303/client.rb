@@ -20,9 +20,13 @@ module TencentCloud
   module Btoe
     module V20210303
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2021-03-03'
-        @@endpoint = 'btoe.tencentcloudapi.com'
-        @@sdk_version = 'BTOE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2021-03-03'
+            api_endpoint = 'btoe.tencentcloudapi.com'
+            sdk_version = 'BTOE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。

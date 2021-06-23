@@ -91,7 +91,9 @@ module TencentCloud
           unless params['Content'].nil?
             @Content = []
             params['Content'].each do |i|
-              @Content << EntityRelationContent.new.deserialize(i)
+              entityrelationcontent_tmp = EntityRelationContent.new
+              entityrelationcontent_tmp.deserialize(i)
+              @Content << entityrelationcontent_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -132,7 +134,9 @@ module TencentCloud
           unless params['Content'].nil?
             @Content = []
             params['Content'].each do |i|
-              @Content << TripleContent.new.deserialize(i)
+              triplecontent_tmp = TripleContent.new
+              triplecontent_tmp.deserialize(i)
+              @Content << triplecontent_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -160,13 +164,17 @@ module TencentCloud
           unless params['Object'].nil?
             @Object = []
             params['Object'].each do |i|
-              @Object << EntityRelationObject.new.deserialize(i)
+              entityrelationobject_tmp = EntityRelationObject.new
+              entityrelationobject_tmp.deserialize(i)
+              @Object << entityrelationobject_tmp
             end
           end
           unless params['Subject'].nil?
             @Subject = []
             params['Subject'].each do |i|
-              @Subject << EntityRelationSubject.new.deserialize(i)
+              entityrelationsubject_tmp = EntityRelationSubject.new
+              entityrelationsubject_tmp.deserialize(i)
+              @Subject << entityrelationsubject_tmp
             end
           end
           @Relation = params['Relation']

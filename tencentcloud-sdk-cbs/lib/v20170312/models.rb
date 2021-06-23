@@ -171,7 +171,9 @@ module TencentCloud
           unless params['Policy'].nil?
             @Policy = []
             params['Policy'].each do |i|
-              @Policy << Policy.new.deserialize(i)
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @Policy << policy_tmp
             end
           end
           @DiskIdSet = params['DiskIdSet']
@@ -244,7 +246,9 @@ module TencentCloud
           unless params['Policy'].nil?
             @Policy = []
             params['Policy'].each do |i|
-              @Policy << Policy.new.deserialize(i)
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @Policy << policy_tmp
             end
           end
           @AutoSnapshotPolicyName = params['AutoSnapshotPolicyName']
@@ -330,12 +334,14 @@ module TencentCloud
           @DiskType = params['DiskType']
           @DiskChargeType = params['DiskChargeType']
           unless params['Placement'].nil?
-            @Placement = Placement.new.deserialize(params['Placement'])
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
           end
           @DiskName = params['DiskName']
           @DiskCount = params['DiskCount']
           unless params['DiskChargePrepaid'].nil?
-            @DiskChargePrepaid = DiskChargePrepaid.new.deserialize(params['DiskChargePrepaid'])
+            @DiskChargePrepaid = DiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
           end
           @DiskSize = params['DiskSize']
           @SnapshotId = params['SnapshotId']
@@ -344,7 +350,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
           @Shareable = params['Shareable']
@@ -511,7 +519,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -543,7 +553,9 @@ module TencentCloud
           unless params['AutoSnapshotPolicySet'].nil?
             @AutoSnapshotPolicySet = []
             params['AutoSnapshotPolicySet'].each do |i|
-              @AutoSnapshotPolicySet << AutoSnapshotPolicy.new.deserialize(i)
+              autosnapshotpolicy_tmp = AutoSnapshotPolicy.new
+              autosnapshotpolicy_tmp.deserialize(i)
+              @AutoSnapshotPolicySet << autosnapshotpolicy_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -588,7 +600,9 @@ module TencentCloud
           unless params['AutoSnapshotPolicySet'].nil?
             @AutoSnapshotPolicySet = []
             params['AutoSnapshotPolicySet'].each do |i|
-              @AutoSnapshotPolicySet << AutoSnapshotPolicy.new.deserialize(i)
+              autosnapshotpolicy_tmp = AutoSnapshotPolicy.new
+              autosnapshotpolicy_tmp.deserialize(i)
+              @AutoSnapshotPolicySet << autosnapshotpolicy_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -657,7 +671,9 @@ module TencentCloud
           unless params['DiskConfigSet'].nil?
             @DiskConfigSet = []
             params['DiskConfigSet'].each do |i|
-              @DiskConfigSet << DiskConfig.new.deserialize(i)
+              diskconfig_tmp = DiskConfig.new
+              diskconfig_tmp.deserialize(i)
+              @DiskConfigSet << diskconfig_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -686,7 +702,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @BeginTime = params['BeginTime']
@@ -712,7 +730,9 @@ module TencentCloud
           unless params['DiskOperationLogSet'].nil?
             @DiskOperationLogSet = []
             params['DiskOperationLogSet'].each do |i|
-              @DiskOperationLogSet << DiskOperationLog.new.deserialize(i)
+              diskoperationlog_tmp = DiskOperationLog.new
+              diskoperationlog_tmp.deserialize(i)
+              @DiskOperationLogSet << diskoperationlog_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -752,7 +772,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -786,7 +808,9 @@ module TencentCloud
           unless params['DiskSet'].nil?
             @DiskSet = []
             params['DiskSet'].each do |i|
-              @DiskSet << Disk.new.deserialize(i)
+              disk_tmp = Disk.new
+              disk_tmp.deserialize(i)
+              @DiskSet << disk_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -827,7 +851,9 @@ module TencentCloud
           unless params['AttachDetail'].nil?
             @AttachDetail = []
             params['AttachDetail'].each do |i|
-              @AttachDetail << AttachDetail.new.deserialize(i)
+              attachdetail_tmp = AttachDetail.new
+              attachdetail_tmp.deserialize(i)
+              @AttachDetail << attachdetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -856,7 +882,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @BeginTime = params['BeginTime']
@@ -882,7 +910,9 @@ module TencentCloud
           unless params['SnapshotOperationLogSet'].nil?
             @SnapshotOperationLogSet = []
             params['SnapshotOperationLogSet'].each do |i|
-              @SnapshotOperationLogSet << SnapshotOperationLog.new.deserialize(i)
+              snapshotoperationlog_tmp = SnapshotOperationLog.new
+              snapshotoperationlog_tmp.deserialize(i)
+              @SnapshotOperationLogSet << snapshotoperationlog_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -923,7 +953,9 @@ module TencentCloud
           unless params['SharePermissionSet'].nil?
             @SharePermissionSet = []
             params['SharePermissionSet'].each do |i|
-              @SharePermissionSet << SharePermission.new.deserialize(i)
+              sharepermission_tmp = SharePermission.new
+              sharepermission_tmp.deserialize(i)
+              @SharePermissionSet << sharepermission_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -963,7 +995,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Offset = params['Offset']
@@ -995,7 +1029,9 @@ module TencentCloud
           unless params['SnapshotSet'].nil?
             @SnapshotSet = []
             params['SnapshotSet'].each do |i|
-              @SnapshotSet << Snapshot.new.deserialize(i)
+              snapshot_tmp = Snapshot.new
+              snapshot_tmp.deserialize(i)
+              @SnapshotSet << snapshot_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1179,7 +1215,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
           @InstanceId = params['InstanceId']
@@ -1190,7 +1228,8 @@ module TencentCloud
           @DiskId = params['DiskId']
           @SnapshotSize = params['SnapshotSize']
           unless params['Placement'].nil?
-            @Placement = Placement.new.deserialize(params['Placement'])
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
           end
           @IsReturnable = params['IsReturnable']
           @DeadlineTime = params['DeadlineTime']
@@ -1451,7 +1490,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DiskPrice'].nil?
-            @DiskPrice = Price.new.deserialize(params['DiskPrice'])
+            @DiskPrice = Price.new
+            @DiskPrice.deserialize(params['DiskPrice'])
           end
           @RequestId = params['RequestId']
         end
@@ -1491,7 +1531,8 @@ module TencentCloud
           @DiskSize = params['DiskSize']
           @DiskChargeType = params['DiskChargeType']
           unless params['DiskChargePrepaid'].nil?
-            @DiskChargePrepaid = DiskChargePrepaid.new.deserialize(params['DiskChargePrepaid'])
+            @DiskChargePrepaid = DiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
           end
           @DiskCount = params['DiskCount']
           @ProjectId = params['ProjectId']
@@ -1515,7 +1556,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DiskPrice'].nil?
-            @DiskPrice = Price.new.deserialize(params['DiskPrice'])
+            @DiskPrice = Price.new
+            @DiskPrice.deserialize(params['DiskPrice'])
           end
           @RequestId = params['RequestId']
         end
@@ -1546,7 +1588,9 @@ module TencentCloud
           unless params['DiskChargePrepaids'].nil?
             @DiskChargePrepaids = []
             params['DiskChargePrepaids'].each do |i|
-              @DiskChargePrepaids << DiskChargePrepaid.new.deserialize(i)
+              diskchargeprepaid_tmp = DiskChargePrepaid.new
+              diskchargeprepaid_tmp.deserialize(i)
+              @DiskChargePrepaids << diskchargeprepaid_tmp
             end
           end
           @NewDeadline = params['NewDeadline']
@@ -1570,7 +1614,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DiskPrice'].nil?
-            @DiskPrice = PrepayPrice.new.deserialize(params['DiskPrice'])
+            @DiskPrice = PrepayPrice.new
+            @DiskPrice.deserialize(params['DiskPrice'])
           end
           @RequestId = params['RequestId']
         end
@@ -1616,7 +1661,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DiskPrice'].nil?
-            @DiskPrice = PrepayPrice.new.deserialize(params['DiskPrice'])
+            @DiskPrice = PrepayPrice.new
+            @DiskPrice.deserialize(params['DiskPrice'])
           end
           @RequestId = params['RequestId']
         end
@@ -1653,7 +1699,9 @@ module TencentCloud
           unless params['Policy'].nil?
             @Policy = []
             params['Policy'].each do |i|
-              @Policy << Policy.new.deserialize(i)
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @Policy << policy_tmp
             end
           end
           @AutoSnapshotPolicyName = params['AutoSnapshotPolicyName']
@@ -1787,7 +1835,8 @@ module TencentCloud
         def deserialize(params)
           @DiskIds = params['DiskIds']
           unless params['DiskChargePrepaid'].nil?
-            @DiskChargePrepaid = DiskChargePrepaid.new.deserialize(params['DiskChargePrepaid'])
+            @DiskChargePrepaid = DiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
           end
           @DiskChargePostpaid = params['DiskChargePostpaid']
         end
@@ -2118,7 +2167,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DiskChargePrepaid'].nil?
-            @DiskChargePrepaid = DiskChargePrepaid.new.deserialize(params['DiskChargePrepaid'])
+            @DiskChargePrepaid = DiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
           end
           @DiskId = params['DiskId']
         end
@@ -2264,7 +2314,8 @@ module TencentCloud
         def deserialize(params)
           @SnapshotId = params['SnapshotId']
           unless params['Placement'].nil?
-            @Placement = Placement.new.deserialize(params['Placement'])
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
           end
           @DiskUsage = params['DiskUsage']
           @DiskId = params['DiskId']
@@ -2281,7 +2332,9 @@ module TencentCloud
           unless params['Images'].nil?
             @Images = []
             params['Images'].each do |i|
-              @Images << Image.new.deserialize(i)
+              image_tmp = Image.new
+              image_tmp.deserialize(i)
+              @Images << image_tmp
             end
           end
           @ImageCount = params['ImageCount']

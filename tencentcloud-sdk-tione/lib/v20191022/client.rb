@@ -20,9 +20,13 @@ module TencentCloud
   module Tione
     module V20191022
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-10-22'
-        @@endpoint = 'tione.tencentcloudapi.com'
-        @@sdk_version = 'TIONE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-10-22'
+            api_endpoint = 'tione.tencentcloudapi.com'
+            sdk_version = 'TIONE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建存储库

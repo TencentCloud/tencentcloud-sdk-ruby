@@ -112,7 +112,9 @@ module TencentCloud
           unless params['Results'].nil?
             @Results = []
             params['Results'].each do |i|
-              @Results << AlgorithmResult.new.deserialize(i)
+              algorithmresult_tmp = AlgorithmResult.new
+              algorithmresult_tmp.deserialize(i)
+              @Results << algorithmresult_tmp
             end
           end
           @Status = params['Status']

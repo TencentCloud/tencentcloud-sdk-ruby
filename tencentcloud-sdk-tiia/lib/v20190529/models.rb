@@ -128,7 +128,9 @@ module TencentCloud
           unless params['CarLocation'].nil?
             @CarLocation = []
             params['CarLocation'].each do |i|
-              @CarLocation << Coord.new.deserialize(i)
+              coord_tmp = Coord.new
+              coord_tmp.deserialize(i)
+              @CarLocation << coord_tmp
             end
           end
         end
@@ -299,11 +301,14 @@ module TencentCloud
           unless params['Faces'].nil?
             @Faces = []
             params['Faces'].each do |i|
-              @Faces << Face.new.deserialize(i)
+              face_tmp = Face.new
+              face_tmp.deserialize(i)
+              @Faces << face_tmp
             end
           end
           unless params['Threshold'].nil?
-            @Threshold = Threshold.new.deserialize(params['Threshold'])
+            @Threshold = Threshold.new
+            @Threshold.deserialize(params['Threshold'])
           end
           @RequestId = params['RequestId']
         end
@@ -460,25 +465,33 @@ module TencentCloud
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << DetectLabelItem.new.deserialize(i)
+              detectlabelitem_tmp = DetectLabelItem.new
+              detectlabelitem_tmp.deserialize(i)
+              @Labels << detectlabelitem_tmp
             end
           end
           unless params['CameraLabels'].nil?
             @CameraLabels = []
             params['CameraLabels'].each do |i|
-              @CameraLabels << DetectLabelItem.new.deserialize(i)
+              detectlabelitem_tmp = DetectLabelItem.new
+              detectlabelitem_tmp.deserialize(i)
+              @CameraLabels << detectlabelitem_tmp
             end
           end
           unless params['AlbumLabels'].nil?
             @AlbumLabels = []
             params['AlbumLabels'].each do |i|
-              @AlbumLabels << DetectLabelItem.new.deserialize(i)
+              detectlabelitem_tmp = DetectLabelItem.new
+              detectlabelitem_tmp.deserialize(i)
+              @AlbumLabels << detectlabelitem_tmp
             end
           end
           unless params['NewsLabels'].nil?
             @NewsLabels = []
             params['NewsLabels'].each do |i|
-              @NewsLabels << DetectLabelItem.new.deserialize(i)
+              detectlabelitem_tmp = DetectLabelItem.new
+              detectlabelitem_tmp.deserialize(i)
+              @NewsLabels << detectlabelitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -587,16 +600,21 @@ module TencentCloud
           unless params['RegionDetected'].nil?
             @RegionDetected = []
             params['RegionDetected'].each do |i|
-              @RegionDetected << RegionDetected.new.deserialize(i)
+              regiondetected_tmp = RegionDetected.new
+              regiondetected_tmp.deserialize(i)
+              @RegionDetected << regiondetected_tmp
             end
           end
           unless params['ProductInfo'].nil?
-            @ProductInfo = ProductInfo.new.deserialize(params['ProductInfo'])
+            @ProductInfo = ProductInfo.new
+            @ProductInfo.deserialize(params['ProductInfo'])
           end
           unless params['ProductInfoList'].nil?
             @ProductInfoList = []
             params['ProductInfoList'].each do |i|
-              @ProductInfoList << ProductInfo.new.deserialize(i)
+              productinfo_tmp = ProductInfo.new
+              productinfo_tmp.deserialize(i)
+              @ProductInfoList << productinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -649,7 +667,9 @@ module TencentCloud
           unless params['Products'].nil?
             @Products = []
             params['Products'].each do |i|
-              @Products << Product.new.deserialize(i)
+              product_tmp = Product.new
+              product_tmp.deserialize(i)
+              @Products << product_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -745,7 +765,9 @@ module TencentCloud
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << Labels.new.deserialize(i)
+              labels_tmp = Labels.new
+              labels_tmp.deserialize(i)
+              @Labels << labels_tmp
             end
           end
           @BasicInfo = params['BasicInfo']
@@ -888,7 +910,8 @@ module TencentCloud
         def deserialize(params)
           @FindSKU = params['FindSKU']
           unless params['Location'].nil?
-            @Location = Location.new.deserialize(params['Location'])
+            @Location = Location.new
+            @Location.deserialize(params['Location'])
           end
           @Name = params['Name']
           @Brand = params['Brand']
@@ -949,13 +972,17 @@ module TencentCloud
           unless params['CarCoords'].nil?
             @CarCoords = []
             params['CarCoords'].each do |i|
-              @CarCoords << Coord.new.deserialize(i)
+              coord_tmp = Coord.new
+              coord_tmp.deserialize(i)
+              @CarCoords << coord_tmp
             end
           end
           unless params['CarTags'].nil?
             @CarTags = []
             params['CarTags'].each do |i|
-              @CarTags << CarTagItem.new.deserialize(i)
+              cartagitem_tmp = CarTagItem.new
+              cartagitem_tmp.deserialize(i)
+              @CarTags << cartagitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -986,7 +1013,8 @@ module TencentCloud
           @Category = params['Category']
           @CategoryScore = params['CategoryScore']
           unless params['Location'].nil?
-            @Location = Location.new.deserialize(params['Location'])
+            @Location = Location.new
+            @Location.deserialize(params['Location'])
           end
         end
       end

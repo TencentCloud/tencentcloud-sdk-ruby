@@ -20,9 +20,13 @@ module TencentCloud
   module Bmvpc
     module V20180625
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-06-25'
-        @@endpoint = 'bmvpc.tencentcloudapi.com'
-        @@sdk_version = 'BMVPC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-06-25'
+            api_endpoint = 'bmvpc.tencentcloudapi.com'
+            sdk_version = 'BMVPC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 接受黑石对等连接

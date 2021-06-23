@@ -20,9 +20,13 @@ module TencentCloud
   module Afc
     module V20200226
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-02-26'
-        @@endpoint = 'afc.tencentcloudapi.com'
-        @@sdk_version = 'AFC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-02-26'
+            api_endpoint = 'afc.tencentcloudapi.com'
+            sdk_version = 'AFC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 天御反欺诈服务，主要应用于银行、证券、保险、P2P等金融行业客户，通过腾讯的大数据风控能力，

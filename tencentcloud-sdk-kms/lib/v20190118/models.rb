@@ -300,7 +300,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -384,7 +386,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -569,7 +573,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['KeyMetadata'].nil?
-            @KeyMetadata = KeyMetadata.new.deserialize(params['KeyMetadata'])
+            @KeyMetadata = KeyMetadata.new
+            @KeyMetadata.deserialize(params['KeyMetadata'])
           end
           @RequestId = params['RequestId']
         end
@@ -610,7 +615,9 @@ module TencentCloud
           unless params['KeyMetadatas'].nil?
             @KeyMetadatas = []
             params['KeyMetadatas'].each do |i|
-              @KeyMetadatas << KeyMetadata.new.deserialize(i)
+              keymetadata_tmp = KeyMetadata.new
+              keymetadata_tmp.deserialize(i)
+              @KeyMetadatas << keymetadata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -687,7 +694,9 @@ module TencentCloud
           unless params['DeviceFingerprints'].nil?
             @DeviceFingerprints = []
             params['DeviceFingerprints'].each do |i|
-              @DeviceFingerprints << DeviceFingerprint.new.deserialize(i)
+              devicefingerprint_tmp = DeviceFingerprint.new
+              devicefingerprint_tmp.deserialize(i)
+              @DeviceFingerprints << devicefingerprint_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -721,7 +730,9 @@ module TencentCloud
           unless params['TagFilters'].nil?
             @TagFilters = []
             params['TagFilters'].each do |i|
-              @TagFilters << TagFilter.new.deserialize(i)
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
             end
           end
         end
@@ -749,7 +760,9 @@ module TencentCloud
           unless params['KeyInfos'].nil?
             @KeyInfos = []
             params['KeyInfos'].each do |i|
-              @KeyInfos << WhiteboxKeyInfo.new.deserialize(i)
+              whiteboxkeyinfo_tmp = WhiteboxKeyInfo.new
+              whiteboxkeyinfo_tmp.deserialize(i)
+              @KeyInfos << whiteboxkeyinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -789,7 +802,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['KeyInfo'].nil?
-            @KeyInfo = WhiteboxKeyInfo.new.deserialize(params['KeyInfo'])
+            @KeyInfo = WhiteboxKeyInfo.new
+            @KeyInfo.deserialize(params['KeyInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1748,19 +1762,25 @@ module TencentCloud
           unless params['SymmetricAlgorithms'].nil?
             @SymmetricAlgorithms = []
             params['SymmetricAlgorithms'].each do |i|
-              @SymmetricAlgorithms << AlgorithmInfo.new.deserialize(i)
+              algorithminfo_tmp = AlgorithmInfo.new
+              algorithminfo_tmp.deserialize(i)
+              @SymmetricAlgorithms << algorithminfo_tmp
             end
           end
           unless params['AsymmetricAlgorithms'].nil?
             @AsymmetricAlgorithms = []
             params['AsymmetricAlgorithms'].each do |i|
-              @AsymmetricAlgorithms << AlgorithmInfo.new.deserialize(i)
+              algorithminfo_tmp = AlgorithmInfo.new
+              algorithminfo_tmp.deserialize(i)
+              @AsymmetricAlgorithms << algorithminfo_tmp
             end
           end
           unless params['AsymmetricSignVerifyAlgorithms'].nil?
             @AsymmetricSignVerifyAlgorithms = []
             params['AsymmetricSignVerifyAlgorithms'].each do |i|
-              @AsymmetricSignVerifyAlgorithms << AlgorithmInfo.new.deserialize(i)
+              algorithminfo_tmp = AlgorithmInfo.new
+              algorithminfo_tmp.deserialize(i)
+              @AsymmetricSignVerifyAlgorithms << algorithminfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1814,7 +1834,9 @@ module TencentCloud
           unless params['TagFilters'].nil?
             @TagFilters = []
             params['TagFilters'].each do |i|
-              @TagFilters << TagFilter.new.deserialize(i)
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
             end
           end
         end
@@ -1843,7 +1865,9 @@ module TencentCloud
           unless params['KeyMetadatas'].nil?
             @KeyMetadatas = []
             params['KeyMetadatas'].each do |i|
-              @KeyMetadatas << KeyMetadata.new.deserialize(i)
+              keymetadata_tmp = KeyMetadata.new
+              keymetadata_tmp.deserialize(i)
+              @KeyMetadatas << keymetadata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1896,7 +1920,9 @@ module TencentCloud
           unless params['Keys'].nil?
             @Keys = []
             params['Keys'].each do |i|
-              @Keys << Key.new.deserialize(i)
+              key_tmp = Key.new
+              key_tmp.deserialize(i)
+              @Keys << key_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1923,7 +1949,9 @@ module TencentCloud
           unless params['DeviceFingerprints'].nil?
             @DeviceFingerprints = []
             params['DeviceFingerprints'].each do |i|
-              @DeviceFingerprints << DeviceFingerprint.new.deserialize(i)
+              devicefingerprint_tmp = DeviceFingerprint.new
+              devicefingerprint_tmp.deserialize(i)
+              @DeviceFingerprints << devicefingerprint_tmp
             end
           end
         end

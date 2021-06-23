@@ -155,7 +155,9 @@ module TencentCloud
           unless params['BeautyParam'].nil?
             @BeautyParam = []
             params['BeautyParam'].each do |i|
-              @BeautyParam << BeautyParam.new.deserialize(i)
+              beautyparam_tmp = BeautyParam.new
+              beautyparam_tmp.deserialize(i)
+              @BeautyParam << beautyparam_tmp
             end
           end
           @OutputVideoType = params['OutputVideoType']
@@ -389,7 +391,9 @@ module TencentCloud
           unless params['ModelInfos'].nil?
             @ModelInfos = []
             params['ModelInfos'].each do |i|
-              @ModelInfos << ModelInfo.new.deserialize(i)
+              modelinfo_tmp = ModelInfo.new
+              modelinfo_tmp.deserialize(i)
+              @ModelInfos << modelinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -420,11 +424,13 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RGBA'].nil?
-            @RGBA = RGBAInfo.new.deserialize(params['RGBA'])
+            @RGBA = RGBAInfo.new
+            @RGBA.deserialize(params['RGBA'])
           end
           @ModelId = params['ModelId']
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
+            @FaceRect = FaceRect.new
+            @FaceRect.deserialize(params['FaceRect'])
           end
           @ModelAlpha = params['ModelAlpha']
         end
@@ -491,7 +497,8 @@ module TencentCloud
         def deserialize(params)
           @JobStatus = params['JobStatus']
           unless params['BeautifyVideoOutput'].nil?
-            @BeautifyVideoOutput = BeautifyVideoOutput.new.deserialize(params['BeautifyVideoOutput'])
+            @BeautifyVideoOutput = BeautifyVideoOutput.new
+            @BeautifyVideoOutput.deserialize(params['BeautifyVideoOutput'])
           end
           @RequestId = params['RequestId']
         end
@@ -683,7 +690,9 @@ module TencentCloud
           unless params['LipColorInfos'].nil?
             @LipColorInfos = []
             params['LipColorInfos'].each do |i|
-              @LipColorInfos << LipColorInfo.new.deserialize(i)
+              lipcolorinfo_tmp = LipColorInfo.new
+              lipcolorinfo_tmp.deserialize(i)
+              @LipColorInfos << lipcolorinfo_tmp
             end
           end
           @Image = params['Image']

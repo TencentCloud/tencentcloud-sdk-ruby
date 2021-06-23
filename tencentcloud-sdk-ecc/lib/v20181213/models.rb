@@ -67,7 +67,8 @@ module TencentCloud
         def deserialize(params)
           @Content = params['Content']
           unless params['CorrectData'].nil?
-            @CorrectData = CorrectData.new.deserialize(params['CorrectData'])
+            @CorrectData = CorrectData.new
+            @CorrectData.deserialize(params['CorrectData'])
           end
           @TaskId = params['TaskId']
           @SessionId = params['SessionId']
@@ -97,13 +98,16 @@ module TencentCloud
         def deserialize(params)
           @Score = params['Score']
           unless params['ScoreCat'].nil?
-            @ScoreCat = ScoreCategory.new.deserialize(params['ScoreCat'])
+            @ScoreCat = ScoreCategory.new
+            @ScoreCat.deserialize(params['ScoreCat'])
           end
           @Comment = params['Comment']
           unless params['SentenceComments'].nil?
             @SentenceComments = []
             params['SentenceComments'].each do |i|
-              @SentenceComments << SentenceCom.new.deserialize(i)
+              sentencecom_tmp = SentenceCom.new
+              sentencecom_tmp.deserialize(i)
+              @SentenceComments << sentencecom_tmp
             end
           end
         end
@@ -181,7 +185,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CompostionContext.new.deserialize(params['Data'])
+            @Data = CompostionContext.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -232,7 +237,8 @@ module TencentCloud
         def deserialize(params)
           @Content = params['Content']
           unless params['CorrectData'].nil?
-            @CorrectData = CorrectData.new.deserialize(params['CorrectData'])
+            @CorrectData = CorrectData.new
+            @CorrectData.deserialize(params['CorrectData'])
           end
           @Status = params['Status']
           @RequestId = params['RequestId']
@@ -308,7 +314,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CorrectData.new.deserialize(params['Data'])
+            @Data = CorrectData.new
+            @Data.deserialize(params['Data'])
           end
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
@@ -387,7 +394,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CompostionContext.new.deserialize(params['Data'])
+            @Data = CompostionContext.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -437,16 +445,20 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Words'].nil?
-            @Words = Aspect.new.deserialize(params['Words'])
+            @Words = Aspect.new
+            @Words.deserialize(params['Words'])
           end
           unless params['Sentences'].nil?
-            @Sentences = Aspect.new.deserialize(params['Sentences'])
+            @Sentences = Aspect.new
+            @Sentences.deserialize(params['Sentences'])
           end
           unless params['Structure'].nil?
-            @Structure = Aspect.new.deserialize(params['Structure'])
+            @Structure = Aspect.new
+            @Structure.deserialize(params['Structure'])
           end
           unless params['Content'].nil?
-            @Content = Aspect.new.deserialize(params['Content'])
+            @Content = Aspect.new
+            @Content.deserialize(params['Content'])
           end
           @Score = params['Score']
           @Percentage = params['Percentage']
@@ -471,11 +483,14 @@ module TencentCloud
           unless params['Suggestions'].nil?
             @Suggestions = []
             params['Suggestions'].each do |i|
-              @Suggestions << SentenceSuggest.new.deserialize(i)
+              sentencesuggest_tmp = SentenceSuggest.new
+              sentencesuggest_tmp.deserialize(i)
+              @Suggestions << sentencesuggest_tmp
             end
           end
           unless params['Sentence'].nil?
-            @Sentence = SentenceItem.new.deserialize(params['Sentence'])
+            @Sentence = SentenceItem.new
+            @Sentence.deserialize(params['Sentence'])
           end
         end
       end
@@ -543,7 +558,9 @@ module TencentCloud
           unless params['ErrorCoordinates'].nil?
             @ErrorCoordinates = []
             params['ErrorCoordinates'].each do |i|
-              @ErrorCoordinates << ErrorCoordinate.new.deserialize(i)
+              errorcoordinate_tmp = ErrorCoordinate.new
+              errorcoordinate_tmp.deserialize(i)
+              @ErrorCoordinates << errorcoordinate_tmp
             end
           end
         end

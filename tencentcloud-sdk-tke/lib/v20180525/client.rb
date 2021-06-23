@@ -20,9 +20,13 @@ module TencentCloud
   module Tke
     module V20180525
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-05-25'
-        @@endpoint = 'tke.tencentcloudapi.com'
-        @@sdk_version = 'TKE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-05-25'
+            api_endpoint = 'tke.tencentcloudapi.com'
+            sdk_version = 'TKE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 通过此接口，可以获取集群的tke:admin的ClusterRole，即管理员角色，可以用于CAM侧高权限的用户，通过CAM策略给予子账户此接口权限，进而可以通过此接口直接获取到kubernetes集群内的管理员角色。

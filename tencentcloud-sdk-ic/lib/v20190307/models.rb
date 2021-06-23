@@ -220,7 +220,9 @@ module TencentCloud
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
-              @List << CardInfo.new.deserialize(i)
+              cardinfo_tmp = CardInfo.new
+              cardinfo_tmp.deserialize(i)
+              @List << cardinfo_tmp
             end
           end
         end
@@ -259,7 +261,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AppInfo.new.deserialize(params['Data'])
+            @Data = AppInfo.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -302,7 +305,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CardInfo.new.deserialize(params['Data'])
+            @Data = CardInfo.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -348,7 +352,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CardList.new.deserialize(params['Data'])
+            @Data = CardList.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -435,7 +440,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = ResRenew.new.deserialize(params['Data'])
+            @Data = ResRenew.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -501,7 +507,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << SmsRet.new.deserialize(i)
+              smsret_tmp = SmsRet.new
+              smsret_tmp.deserialize(i)
+              @Data << smsret_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -549,7 +557,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SmsSid.new.deserialize(params['Data'])
+            @Data = SmsSid.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end

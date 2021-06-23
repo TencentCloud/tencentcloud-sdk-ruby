@@ -299,7 +299,9 @@ module TencentCloud
           unless params['Operations'].nil?
             @Operations = []
             params['Operations'].each do |i|
-              @Operations << EisConnectionOperation.new.deserialize(i)
+              eisconnectionoperation_tmp = EisConnectionOperation.new
+              eisconnectionoperation_tmp.deserialize(i)
+              @Operations << eisconnectionoperation_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -352,7 +354,9 @@ module TencentCloud
           unless params['Connectors'].nil?
             @Connectors = []
             params['Connectors'].each do |i|
-              @Connectors << EisConnectorSummary.new.deserialize(i)
+              eisconnectorsummary_tmp = EisConnectorSummary.new
+              eisconnectorsummary_tmp.deserialize(i)
+              @Connectors << eisconnectorsummary_tmp
             end
           end
           @RequestId = params['RequestId']

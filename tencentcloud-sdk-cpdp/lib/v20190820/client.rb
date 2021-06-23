@@ -20,9 +20,13 @@ module TencentCloud
   module Cpdp
     module V20190820
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-08-20'
-        @@endpoint = 'cpdp.tencentcloudapi.com'
-        @@sdk_version = 'CPDP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-08-20'
+            api_endpoint = 'cpdp.tencentcloudapi.com'
+            sdk_version = 'CPDP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。

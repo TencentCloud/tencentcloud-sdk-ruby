@@ -118,7 +118,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -205,7 +207,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -288,7 +292,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -317,7 +323,9 @@ module TencentCloud
           unless params['AutomationAgentSet'].nil?
             @AutomationAgentSet = []
             params['AutomationAgentSet'].each do |i|
-              @AutomationAgentSet << AutomationAgentInfo.new.deserialize(i)
+              automationagentinfo_tmp = AutomationAgentInfo.new
+              automationagentinfo_tmp.deserialize(i)
+              @AutomationAgentSet << automationagentinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -358,7 +366,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -388,7 +398,9 @@ module TencentCloud
           unless params['CommandSet'].nil?
             @CommandSet = []
             params['CommandSet'].each do |i|
-              @CommandSet << Command.new.deserialize(i)
+              command_tmp = Command.new
+              command_tmp.deserialize(i)
+              @CommandSet << command_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -423,7 +435,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -454,7 +468,9 @@ module TencentCloud
           unless params['InvocationTaskSet'].nil?
             @InvocationTaskSet = []
             params['InvocationTaskSet'].each do |i|
-              @InvocationTaskSet << InvocationTask.new.deserialize(i)
+              invocationtask_tmp = InvocationTask.new
+              invocationtask_tmp.deserialize(i)
+              @InvocationTaskSet << invocationtask_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -486,7 +502,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -516,7 +534,9 @@ module TencentCloud
           unless params['InvocationSet'].nil?
             @InvocationSet = []
             params['InvocationSet'].each do |i|
-              @InvocationSet << Invocation.new.deserialize(i)
+              invocation_tmp = Invocation.new
+              invocation_tmp.deserialize(i)
+              @InvocationSet << invocation_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -556,7 +576,9 @@ module TencentCloud
           unless params['RegionSet'].nil?
             @RegionSet = []
             params['RegionSet'].each do |i|
-              @RegionSet << RegionInfo.new.deserialize(i)
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionSet << regioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -648,7 +670,9 @@ module TencentCloud
           unless params['InvocationTaskBasicInfoSet'].nil?
             @InvocationTaskBasicInfoSet = []
             params['InvocationTaskBasicInfoSet'].each do |i|
-              @InvocationTaskBasicInfoSet << InvocationTaskBasicInfo.new.deserialize(i)
+              invocationtaskbasicinfo_tmp = InvocationTaskBasicInfo.new
+              invocationtaskbasicinfo_tmp.deserialize(i)
+              @InvocationTaskBasicInfoSet << invocationtaskbasicinfo_tmp
             end
           end
           @Description = params['Description']
@@ -718,14 +742,16 @@ module TencentCloud
           @TaskStatus = params['TaskStatus']
           @InstanceId = params['InstanceId']
           unless params['TaskResult'].nil?
-            @TaskResult = TaskResult.new.deserialize(params['TaskResult'])
+            @TaskResult = TaskResult.new
+            @TaskResult.deserialize(params['TaskResult'])
           end
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @CreatedTime = params['CreatedTime']
           @UpdatedTime = params['UpdatedTime']
           unless params['CommandDocument'].nil?
-            @CommandDocument = CommandDocument.new.deserialize(params['CommandDocument'])
+            @CommandDocument = CommandDocument.new
+            @CommandDocument.deserialize(params['CommandDocument'])
           end
         end
       end
@@ -1024,7 +1050,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end

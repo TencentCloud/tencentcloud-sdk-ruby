@@ -20,9 +20,13 @@ module TencentCloud
   module Partners
     module V20180321
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-21'
-        @@endpoint = 'partners.tencentcloudapi.com'
-        @@sdk_version = 'PARTNERS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-21'
+            api_endpoint = 'partners.tencentcloudapi.com'
+            sdk_version = 'PARTNERS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 代理商支付订单接口，支持自付/代付

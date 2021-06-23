@@ -20,9 +20,13 @@ module TencentCloud
   module Apigateway
     module V20180808
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-08-08'
-        @@endpoint = 'apigateway.tencentcloudapi.com'
-        @@sdk_version = 'APIGATEWAY_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-08-08'
+            api_endpoint = 'apigateway.tencentcloudapi.com'
+            sdk_version = 'APIGATEWAY_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（BindEnvironment）用于绑定使用计划到服务或API。

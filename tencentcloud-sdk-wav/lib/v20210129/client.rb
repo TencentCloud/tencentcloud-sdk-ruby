@@ -20,9 +20,13 @@ module TencentCloud
   module Wav
     module V20210129
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2021-01-29'
-        @@endpoint = 'wav.tencentcloudapi.com'
-        @@sdk_version = 'WAV_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2021-01-29'
+            api_endpoint = 'wav.tencentcloudapi.com'
+            sdk_version = 'WAV_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 新增渠道活码接口

@@ -20,9 +20,13 @@ module TencentCloud
   module Npp
     module V20190823
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-08-23'
-        @@endpoint = 'npp.tencentcloudapi.com'
-        @@sdk_version = 'NPP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-08-23'
+            api_endpoint = 'npp.tencentcloudapi.com'
+            sdk_version = 'NPP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 回拨呼叫请求

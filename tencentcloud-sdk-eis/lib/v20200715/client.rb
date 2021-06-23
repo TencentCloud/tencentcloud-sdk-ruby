@@ -20,9 +20,13 @@ module TencentCloud
   module Eis
     module V20200715
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-07-15'
-        @@endpoint = 'eis.tencentcloudapi.com'
-        @@sdk_version = 'EIS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-07-15'
+            api_endpoint = 'eis.tencentcloudapi.com'
+            sdk_version = 'EIS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 获取连接器配置参数

@@ -333,7 +333,8 @@ module TencentCloud
           @AppId = params['AppId']
           @GoodsNum = params['GoodsNum']
           unless params['GoodsPrice'].nil?
-            @GoodsPrice = DealGoodsPriceElem.new.deserialize(params['GoodsPrice'])
+            @GoodsPrice = DealGoodsPriceElem.new
+            @GoodsPrice.deserialize(params['GoodsPrice'])
           end
           @Creater = params['Creater']
           @CreatTime = params['CreatTime']
@@ -356,7 +357,9 @@ module TencentCloud
           unless params['ProductInfo'].nil?
             @ProductInfo = []
             params['ProductInfo'].each do |i|
-              @ProductInfo << ProductInfoElem.new.deserialize(i)
+              productinfoelem_tmp = ProductInfoElem.new
+              productinfoelem_tmp.deserialize(i)
+              @ProductInfo << productinfoelem_tmp
             end
           end
         end
@@ -478,7 +481,8 @@ module TencentCloud
           @AppId = params['AppId']
           @GoodsNum = params['GoodsNum']
           unless params['GoodsPrice'].nil?
-            @GoodsPrice = DealGoodsPriceNewElem.new.deserialize(params['GoodsPrice'])
+            @GoodsPrice = DealGoodsPriceNewElem.new
+            @GoodsPrice.deserialize(params['GoodsPrice'])
           end
           @Creater = params['Creater']
           @CreatTime = params['CreatTime']
@@ -501,7 +505,9 @@ module TencentCloud
           unless params['ProductInfo'].nil?
             @ProductInfo = []
             params['ProductInfo'].each do |i|
-              @ProductInfo << ProductInfoElem.new.deserialize(i)
+              productinfoelem_tmp = ProductInfoElem.new
+              productinfoelem_tmp.deserialize(i)
+              @ProductInfo << productinfoelem_tmp
             end
           end
         end
@@ -848,7 +854,9 @@ module TencentCloud
           unless params['AgentClientSet'].nil?
             @AgentClientSet = []
             params['AgentClientSet'].each do |i|
-              @AgentClientSet << AgentAuditedClient.new.deserialize(i)
+              agentauditedclient_tmp = AgentAuditedClient.new
+              agentauditedclient_tmp.deserialize(i)
+              @AgentClientSet << agentauditedclient_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -918,7 +926,9 @@ module TencentCloud
           unless params['AgentBillSet'].nil?
             @AgentBillSet = []
             params['AgentBillSet'].each do |i|
-              @AgentBillSet << AgentBillElem.new.deserialize(i)
+              agentbillelem_tmp = AgentBillElem.new
+              agentbillelem_tmp.deserialize(i)
+              @AgentBillSet << agentbillelem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1038,7 +1048,9 @@ module TencentCloud
           unless params['AgentClientSet'].nil?
             @AgentClientSet = []
             params['AgentClientSet'].each do |i|
-              @AgentClientSet << AgentClientElem.new.deserialize(i)
+              agentclientelem_tmp = AgentClientElem.new
+              agentclientelem_tmp.deserialize(i)
+              @AgentClientSet << agentclientelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1115,7 +1127,9 @@ module TencentCloud
           unless params['AgentDealSet'].nil?
             @AgentDealSet = []
             params['AgentDealSet'].each do |i|
-              @AgentDealSet << AgentDealNewElem.new.deserialize(i)
+              agentdealnewelem_tmp = AgentDealNewElem.new
+              agentdealnewelem_tmp.deserialize(i)
+              @AgentDealSet << agentdealnewelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1192,7 +1206,9 @@ module TencentCloud
           unless params['AgentDealSet'].nil?
             @AgentDealSet = []
             params['AgentDealSet'].each do |i|
-              @AgentDealSet << AgentDealElem.new.deserialize(i)
+              agentdealelem_tmp = AgentDealElem.new
+              agentdealelem_tmp.deserialize(i)
+              @AgentDealSet << agentdealelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1265,7 +1281,9 @@ module TencentCloud
           unless params['AgentPayDealSet'].nil?
             @AgentPayDealSet = []
             params['AgentPayDealSet'].each do |i|
-              @AgentPayDealSet << AgentDealElem.new.deserialize(i)
+              agentdealelem_tmp = AgentDealElem.new
+              agentdealelem_tmp.deserialize(i)
+              @AgentPayDealSet << agentdealelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1338,7 +1356,9 @@ module TencentCloud
           unless params['AgentPayDealSet'].nil?
             @AgentPayDealSet = []
             params['AgentPayDealSet'].each do |i|
-              @AgentPayDealSet << AgentDealNewElem.new.deserialize(i)
+              agentdealnewelem_tmp = AgentDealNewElem.new
+              agentdealnewelem_tmp.deserialize(i)
+              @AgentPayDealSet << agentdealnewelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1411,7 +1431,9 @@ module TencentCloud
           unless params['AgentPayDealSet'].nil?
             @AgentPayDealSet = []
             params['AgentPayDealSet'].each do |i|
-              @AgentPayDealSet << AgentDealElem.new.deserialize(i)
+              agentdealelem_tmp = AgentDealElem.new
+              agentdealelem_tmp.deserialize(i)
+              @AgentPayDealSet << agentdealelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1484,7 +1506,9 @@ module TencentCloud
           unless params['AgentPayDealSet'].nil?
             @AgentPayDealSet = []
             params['AgentPayDealSet'].each do |i|
-              @AgentPayDealSet << AgentDealNewElem.new.deserialize(i)
+              agentdealnewelem_tmp = AgentDealNewElem.new
+              agentdealnewelem_tmp.deserialize(i)
+              @AgentPayDealSet << agentdealnewelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1569,7 +1593,9 @@ module TencentCloud
           unless params['ClientBaseSet'].nil?
             @ClientBaseSet = []
             params['ClientBaseSet'].each do |i|
-              @ClientBaseSet << ClientBaseElem.new.deserialize(i)
+              clientbaseelem_tmp = ClientBaseElem.new
+              clientbaseelem_tmp.deserialize(i)
+              @ClientBaseSet << clientbaseelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1622,7 +1648,9 @@ module TencentCloud
           unless params['RebateInfoSet'].nil?
             @RebateInfoSet = []
             params['RebateInfoSet'].each do |i|
-              @RebateInfoSet << RebateInfoElem.new.deserialize(i)
+              rebateinfoelem_tmp = RebateInfoElem.new
+              rebateinfoelem_tmp.deserialize(i)
+              @RebateInfoSet << rebateinfoelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1683,7 +1711,9 @@ module TencentCloud
           unless params['AgentSalesmanSet'].nil?
             @AgentSalesmanSet = []
             params['AgentSalesmanSet'].each do |i|
-              @AgentSalesmanSet << AgentSalesmanElem.new.deserialize(i)
+              agentsalesmanelem_tmp = AgentSalesmanElem.new
+              agentsalesmanelem_tmp.deserialize(i)
+              @AgentSalesmanSet << agentsalesmanelem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1753,7 +1783,9 @@ module TencentCloud
           unless params['UnbindClientList'].nil?
             @UnbindClientList = []
             params['UnbindClientList'].each do |i|
-              @UnbindClientList << UnbindClientElem.new.deserialize(i)
+              unbindclientelem_tmp = UnbindClientElem.new
+              unbindclientelem_tmp.deserialize(i)
+              @UnbindClientList << unbindclientelem_tmp
             end
           end
           @RequestId = params['RequestId']

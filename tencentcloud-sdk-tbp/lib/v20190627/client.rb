@@ -20,9 +20,13 @@ module TencentCloud
   module Tbp
     module V20190627
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-06-27'
-        @@endpoint = 'tbp.tencentcloudapi.com'
-        @@sdk_version = 'TBP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-06-27'
+            api_endpoint = 'tbp.tencentcloudapi.com'
+            sdk_version = 'TBP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 接收调用侧的文本输入，返回应答文本。

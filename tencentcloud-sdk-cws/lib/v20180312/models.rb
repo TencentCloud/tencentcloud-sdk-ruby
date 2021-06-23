@@ -111,7 +111,9 @@ module TencentCloud
           unless params['Sites'].nil?
             @Sites = []
             params['Sites'].each do |i|
-              @Sites << MiniSite.new.deserialize(i)
+              minisite_tmp = MiniSite.new
+              minisite_tmp.deserialize(i)
+              @Sites << minisite_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -370,7 +372,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Offset = params['Offset']
@@ -399,7 +403,9 @@ module TencentCloud
           unless params['Monitors'].nil?
             @Monitors = []
             params['Monitors'].each do |i|
-              @Monitors << MonitorsDetail.new.deserialize(i)
+              monitorsdetail_tmp = MonitorsDetail.new
+              monitorsdetail_tmp.deserialize(i)
+              @Monitors << monitorsdetail_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -471,7 +477,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Offset = params['Offset']
@@ -501,7 +509,9 @@ module TencentCloud
           unless params['Sites'].nil?
             @Sites = []
             params['Sites'].each do |i|
-              @Sites << Site.new.deserialize(i)
+              site_tmp = Site.new
+              site_tmp.deserialize(i)
+              @Sites << site_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -546,7 +556,9 @@ module TencentCloud
           unless params['SitesVerification'].nil?
             @SitesVerification = []
             params['SitesVerification'].each do |i|
-              @SitesVerification << SitesVerification.new.deserialize(i)
+              sitesverification_tmp = SitesVerification.new
+              sitesverification_tmp.deserialize(i)
+              @SitesVerification << sitesverification_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -613,13 +625,17 @@ module TencentCloud
           unless params['Sites'].nil?
             @Sites = []
             params['Sites'].each do |i|
-              @Sites << MonitorMiniSite.new.deserialize(i)
+              monitorminisite_tmp = MonitorMiniSite.new
+              monitorminisite_tmp.deserialize(i)
+              @Sites << monitorminisite_tmp
             end
           end
           unless params['ImpactSites'].nil?
             @ImpactSites = []
             params['ImpactSites'].each do |i|
-              @ImpactSites << MonitorMiniSite.new.deserialize(i)
+              monitorminisite_tmp = MonitorMiniSite.new
+              monitorminisite_tmp.deserialize(i)
+              @ImpactSites << monitorminisite_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -659,7 +675,9 @@ module TencentCloud
           unless params['VulsTimeline'].nil?
             @VulsTimeline = []
             params['VulsTimeline'].each do |i|
-              @VulsTimeline << VulsTimeline.new.deserialize(i)
+              vulstimeline_tmp = VulsTimeline.new
+              vulstimeline_tmp.deserialize(i)
+              @VulsTimeline << vulstimeline_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -695,7 +713,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Offset = params['Offset']
@@ -725,7 +745,9 @@ module TencentCloud
           unless params['Vuls'].nil?
             @Vuls = []
             params['Vuls'].each do |i|
-              @Vuls << Vul.new.deserialize(i)
+              vul_tmp = Vul.new
+              vul_tmp.deserialize(i)
+              @Vuls << vul_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1061,19 +1083,24 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Basic'].nil?
-            @Basic = Monitor.new.deserialize(params['Basic'])
+            @Basic = Monitor.new
+            @Basic.deserialize(params['Basic'])
           end
           unless params['Sites'].nil?
             @Sites = []
             params['Sites'].each do |i|
-              @Sites << MonitorMiniSite.new.deserialize(i)
+              monitorminisite_tmp = MonitorMiniSite.new
+              monitorminisite_tmp.deserialize(i)
+              @Sites << monitorminisite_tmp
             end
           end
           @SiteNumber = params['SiteNumber']
           unless params['ImpactSites'].nil?
             @ImpactSites = []
             params['ImpactSites'].each do |i|
-              @ImpactSites << MonitorMiniSite.new.deserialize(i)
+              monitorminisite_tmp = MonitorMiniSite.new
+              monitorminisite_tmp.deserialize(i)
+              @ImpactSites << monitorminisite_tmp
             end
           end
           @ImpactSiteNumber = params['ImpactSiteNumber']

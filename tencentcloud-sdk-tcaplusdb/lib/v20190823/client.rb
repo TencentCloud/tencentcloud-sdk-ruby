@@ -20,9 +20,13 @@ module TencentCloud
   module Tcaplusdb
     module V20190823
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-08-23'
-        @@endpoint = 'tcaplusdb.tencentcloudapi.com'
-        @@sdk_version = 'TCAPLUSDB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-08-23'
+            api_endpoint = 'tcaplusdb.tencentcloudapi.com'
+            sdk_version = 'TCAPLUSDB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 根据给定的表信息，清除表数据。

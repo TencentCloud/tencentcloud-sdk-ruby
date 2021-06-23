@@ -20,9 +20,13 @@ module TencentCloud
   module Gs
     module V20191118
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-11-18'
-        @@endpoint = 'gs.tencentcloudapi.com'
-        @@sdk_version = 'GS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-11-18'
+            api_endpoint = 'gs.tencentcloudapi.com'
+            sdk_version = 'GS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建会话

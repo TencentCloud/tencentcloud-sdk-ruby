@@ -639,7 +639,9 @@ module TencentCloud
           unless params['UserList'].nil?
             @UserList = []
             params['UserList'].each do |i|
-              @UserList << CustomerInfo.new.deserialize(i)
+              customerinfo_tmp = CustomerInfo.new
+              customerinfo_tmp.deserialize(i)
+              @UserList << customerinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -707,7 +709,9 @@ module TencentCloud
           unless params['SubProjectList'].nil?
             @SubProjectList = []
             params['SubProjectList'].each do |i|
-              @SubProjectList << SubProjectInfo.new.deserialize(i)
+              subprojectinfo_tmp = SubProjectInfo.new
+              subprojectinfo_tmp.deserialize(i)
+              @SubProjectList << subprojectinfo_tmp
             end
           end
           @ProjectStatus = params['ProjectStatus']
@@ -750,7 +754,9 @@ module TencentCloud
           unless params['ProjectStocks'].nil?
             @ProjectStocks = []
             params['ProjectStocks'].each do |i|
-              @ProjectStocks << ProjectStock.new.deserialize(i)
+              projectstock_tmp = ProjectStock.new
+              projectstock_tmp.deserialize(i)
+              @ProjectStocks << projectstock_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -785,7 +791,8 @@ module TencentCloud
           @PageSize = params['PageSize']
           @SearchWord = params['SearchWord']
           unless params['Filters'].nil?
-            @Filters = Filters.new.deserialize(params['Filters'])
+            @Filters = Filters.new
+            @Filters.deserialize(params['Filters'])
           end
           @ProjectStatus = params['ProjectStatus']
         end
@@ -812,7 +819,9 @@ module TencentCloud
           unless params['ProjectList'].nil?
             @ProjectList = []
             params['ProjectList'].each do |i|
-              @ProjectList << ProjectInfo.new.deserialize(i)
+              projectinfo_tmp = ProjectInfo.new
+              projectinfo_tmp.deserialize(i)
+              @ProjectList << projectinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -859,7 +868,9 @@ module TencentCloud
           unless params['TmplList'].nil?
             @TmplList = []
             params['TmplList'].each do |i|
-              @TmplList << ResourceTemplateHeader.new.deserialize(i)
+              resourcetemplateheader_tmp = ResourceTemplateHeader.new
+              resourcetemplateheader_tmp.deserialize(i)
+              @TmplList << resourcetemplateheader_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -931,10 +942,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ProductInfo'].nil?
-            @ProductInfo = ProductInfo.new.deserialize(params['ProductInfo'])
+            @ProductInfo = ProductInfo.new
+            @ProductInfo.deserialize(params['ProductInfo'])
           end
           unless params['ActivityInfo'].nil?
-            @ActivityInfo = ActivityInfo.new.deserialize(params['ActivityInfo'])
+            @ActivityInfo = ActivityInfo.new
+            @ActivityInfo.deserialize(params['ActivityInfo'])
           end
           @ShareTitle = params['ShareTitle']
           @ShareDesc = params['ShareDesc']

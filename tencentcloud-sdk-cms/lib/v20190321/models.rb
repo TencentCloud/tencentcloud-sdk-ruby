@@ -41,7 +41,9 @@ module TencentCloud
           unless params['CodePosition'].nil?
             @CodePosition = []
             params['CodePosition'].each do |i|
-              @CodePosition << CodePosition.new.deserialize(i)
+              codeposition_tmp = CodePosition.new
+              codeposition_tmp.deserialize(i)
+              @CodePosition << codeposition_tmp
             end
           end
           @CodeCharset = params['CodeCharset']
@@ -68,7 +70,9 @@ module TencentCloud
           unless params['ModerationDetail'].nil?
             @ModerationDetail = []
             params['ModerationDetail'].each do |i|
-              @ModerationDetail << CodeDetail.new.deserialize(i)
+              codedetail_tmp = CodeDetail.new
+              codedetail_tmp.deserialize(i)
+              @ModerationDetail << codedetail_tmp
             end
           end
           @ModerationCode = params['ModerationCode']
@@ -156,7 +160,9 @@ module TencentCloud
           unless params['Contents'].nil?
             @Contents = []
             params['Contents'].each do |i|
-              @Contents << FileSample.new.deserialize(i)
+              filesample_tmp = FileSample.new
+              filesample_tmp.deserialize(i)
+              @Contents << filesample_tmp
             end
           end
           @EvilType = params['EvilType']
@@ -381,7 +387,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -412,7 +420,9 @@ module TencentCloud
           unless params['FileSampleSet'].nil?
             @FileSampleSet = []
             params['FileSampleSet'].each do |i|
-              @FileSampleSet << FileSampleInfo.new.deserialize(i)
+              filesampleinfo_tmp = FileSampleInfo.new
+              filesampleinfo_tmp.deserialize(i)
+              @FileSampleSet << filesampleinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -447,7 +457,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -478,7 +490,9 @@ module TencentCloud
           unless params['TextSampleSet'].nil?
             @TextSampleSet = []
             params['TextSampleSet'].each do |i|
-              @TextSampleSet << TextSample.new.deserialize(i)
+              textsample_tmp = TextSample.new
+              textsample_tmp.deserialize(i)
+              @TextSampleSet << textsample_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -734,34 +748,44 @@ module TencentCloud
           @EvilFlag = params['EvilFlag']
           @EvilType = params['EvilType']
           unless params['CodeDetect'].nil?
-            @CodeDetect = CodeDetect.new.deserialize(params['CodeDetect'])
+            @CodeDetect = CodeDetect.new
+            @CodeDetect.deserialize(params['CodeDetect'])
           end
           unless params['HotDetect'].nil?
-            @HotDetect = ImageHotDetect.new.deserialize(params['HotDetect'])
+            @HotDetect = ImageHotDetect.new
+            @HotDetect.deserialize(params['HotDetect'])
           end
           unless params['IllegalDetect'].nil?
-            @IllegalDetect = ImageIllegalDetect.new.deserialize(params['IllegalDetect'])
+            @IllegalDetect = ImageIllegalDetect.new
+            @IllegalDetect.deserialize(params['IllegalDetect'])
           end
           unless params['LogoDetect'].nil?
-            @LogoDetect = LogoDetail.new.deserialize(params['LogoDetect'])
+            @LogoDetect = LogoDetail.new
+            @LogoDetect.deserialize(params['LogoDetect'])
           end
           unless params['OCRDetect'].nil?
-            @OCRDetect = OCRDetect.new.deserialize(params['OCRDetect'])
+            @OCRDetect = OCRDetect.new
+            @OCRDetect.deserialize(params['OCRDetect'])
           end
           unless params['PhoneDetect'].nil?
-            @PhoneDetect = PhoneDetect.new.deserialize(params['PhoneDetect'])
+            @PhoneDetect = PhoneDetect.new
+            @PhoneDetect.deserialize(params['PhoneDetect'])
           end
           unless params['PolityDetect'].nil?
-            @PolityDetect = ImagePolityDetect.new.deserialize(params['PolityDetect'])
+            @PolityDetect = ImagePolityDetect.new
+            @PolityDetect.deserialize(params['PolityDetect'])
           end
           unless params['PornDetect'].nil?
-            @PornDetect = ImagePornDetect.new.deserialize(params['PornDetect'])
+            @PornDetect = ImagePornDetect.new
+            @PornDetect.deserialize(params['PornDetect'])
           end
           unless params['Similar'].nil?
-            @Similar = Similar.new.deserialize(params['Similar'])
+            @Similar = Similar.new
+            @Similar.deserialize(params['Similar'])
           end
           unless params['TerrorDetect'].nil?
-            @TerrorDetect = ImageTerrorDetect.new.deserialize(params['TerrorDetect'])
+            @TerrorDetect = ImageTerrorDetect.new
+            @TerrorDetect.deserialize(params['TerrorDetect'])
           end
         end
       end
@@ -877,7 +901,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = ImageData.new.deserialize(params['Data'])
+            @Data = ImageData.new
+            @Data.deserialize(params['Data'])
           end
           @BusinessCode = params['BusinessCode']
           @RequestId = params['RequestId']
@@ -921,7 +946,9 @@ module TencentCloud
           unless params['PolityLogoDetail'].nil?
             @PolityLogoDetail = []
             params['PolityLogoDetail'].each do |i|
-              @PolityLogoDetail << Logo.new.deserialize(i)
+              logo_tmp = Logo.new
+              logo_tmp.deserialize(i)
+              @PolityLogoDetail << logo_tmp
             end
           end
           @FaceNames = params['FaceNames']
@@ -1018,7 +1045,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['RrectF'].nil?
-            @RrectF = RrectF.new.deserialize(params['RrectF'])
+            @RrectF = RrectF.new
+            @RrectF.deserialize(params['RrectF'])
           end
           @Confidence = params['Confidence']
           @Name = params['Name']
@@ -1040,7 +1068,9 @@ module TencentCloud
           unless params['AppLogoDetail'].nil?
             @AppLogoDetail = []
             params['AppLogoDetail'].each do |i|
-              @AppLogoDetail << Logo.new.deserialize(i)
+              logo_tmp = Logo.new
+              logo_tmp.deserialize(i)
+              @AppLogoDetail << logo_tmp
             end
           end
         end
@@ -1101,7 +1131,8 @@ module TencentCloud
           @ContentId = params['ContentId']
           @ContentType = params['ContentType']
           unless params['UserInfo'].nil?
-            @UserInfo = User.new.deserialize(params['UserInfo'])
+            @UserInfo = User.new
+            @UserInfo.deserialize(params['UserInfo'])
           end
           @AutoDetailCode = params['AutoDetailCode']
           @AutoResult = params['AutoResult']
@@ -1145,7 +1176,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ReviewContent'].nil?
-            @ReviewContent = ManualReviewContent.new.deserialize(params['ReviewContent'])
+            @ReviewContent = ManualReviewContent.new
+            @ReviewContent.deserialize(params['ReviewContent'])
           end
         end
       end
@@ -1166,7 +1198,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = ManualReviewData.new.deserialize(params['Data'])
+            @Data = ManualReviewData.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1190,7 +1223,9 @@ module TencentCloud
           unless params['Item'].nil?
             @Item = []
             params['Item'].each do |i|
-              @Item << OCRItem.new.deserialize(i)
+              ocritem_tmp = OCRItem.new
+              ocritem_tmp.deserialize(i)
+              @Item << ocritem_tmp
             end
           end
           @TextInfo = params['TextInfo']
@@ -1225,7 +1260,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['TextPosition'].nil?
-            @TextPosition = Coordinate.new.deserialize(params['TextPosition'])
+            @TextPosition = Coordinate.new
+            @TextPosition.deserialize(params['TextPosition'])
           end
           @EvilLabel = params['EvilLabel']
           @EvilType = params['EvilType']
@@ -1419,30 +1455,39 @@ module TencentCloud
           @EvilFlag = params['EvilFlag']
           @EvilType = params['EvilType']
           unless params['Common'].nil?
-            @Common = TextOutputComm.new.deserialize(params['Common'])
+            @Common = TextOutputComm.new
+            @Common.deserialize(params['Common'])
           end
           unless params['CustomResult'].nil?
             @CustomResult = []
             params['CustomResult'].each do |i|
-              @CustomResult << CustomResult.new.deserialize(i)
+              customresult_tmp = CustomResult.new
+              customresult_tmp.deserialize(i)
+              @CustomResult << customresult_tmp
             end
           end
           unless params['DetailResult'].nil?
             @DetailResult = []
             params['DetailResult'].each do |i|
-              @DetailResult << DetailResult.new.deserialize(i)
+              detailresult_tmp = DetailResult.new
+              detailresult_tmp.deserialize(i)
+              @DetailResult << detailresult_tmp
             end
           end
           unless params['ID'].nil?
-            @ID = TextOutputID.new.deserialize(params['ID'])
+            @ID = TextOutputID.new
+            @ID.deserialize(params['ID'])
           end
           unless params['Res'].nil?
-            @Res = TextOutputRes.new.deserialize(params['Res'])
+            @Res = TextOutputRes.new
+            @Res.deserialize(params['Res'])
           end
           unless params['RiskDetails'].nil?
             @RiskDetails = []
             params['RiskDetails'].each do |i|
-              @RiskDetails << RiskDetails.new.deserialize(i)
+              riskdetails_tmp = RiskDetails.new
+              riskdetails_tmp.deserialize(i)
+              @RiskDetails << riskdetails_tmp
             end
           end
           @BizType = params['BizType']
@@ -1484,10 +1529,12 @@ module TencentCloud
         def deserialize(params)
           @Content = params['Content']
           unless params['Device'].nil?
-            @Device = Device.new.deserialize(params['Device'])
+            @Device = Device.new
+            @Device.deserialize(params['Device'])
           end
           unless params['User'].nil?
-            @User = User.new.deserialize(params['User'])
+            @User = User.new
+            @User.deserialize(params['User'])
           end
           @BizType = params['BizType']
           @DataId = params['DataId']
@@ -1514,7 +1561,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = TextData.new.deserialize(params['Data'])
+            @Data = TextData.new
+            @Data.deserialize(params['Data'])
           end
           @BusinessCode = params['BusinessCode']
           @RequestId = params['RequestId']

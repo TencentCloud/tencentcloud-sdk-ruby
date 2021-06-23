@@ -20,9 +20,13 @@ module TencentCloud
   module Ms
     module V20180408
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-04-08'
-        @@endpoint = 'ms.tencentcloudapi.com'
-        @@sdk_version = 'MS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-04-08'
+            api_endpoint = 'ms.tencentcloudapi.com'
+            sdk_version = 'MS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 将应用和资源进行绑定

@@ -66,7 +66,9 @@ module TencentCloud
           unless params['MaterialInfos'].nil?
             @MaterialInfos = []
             params['MaterialInfos'].each do |i|
-              @MaterialInfos << PublicMaterialInfos.new.deserialize(i)
+              publicmaterialinfos_tmp = PublicMaterialInfos.new
+              publicmaterialinfos_tmp.deserialize(i)
+              @MaterialInfos << publicmaterialinfos_tmp
             end
           end
           @Count = params['Count']
@@ -106,7 +108,9 @@ module TencentCloud
           unless params['MergeInfos'].nil?
             @MergeInfos = []
             params['MergeInfos'].each do |i|
-              @MergeInfos << MergeInfo.new.deserialize(i)
+              mergeinfo_tmp = MergeInfo.new
+              mergeinfo_tmp.deserialize(i)
+              @MergeInfos << mergeinfo_tmp
             end
           end
           @RspImgType = params['RspImgType']
@@ -138,7 +142,9 @@ module TencentCloud
           unless params['ReviewResultSet'].nil?
             @ReviewResultSet = []
             params['ReviewResultSet'].each do |i|
-              @ReviewResultSet << FuseFaceReviewResult.new.deserialize(i)
+              fusefacereviewresult_tmp = FuseFaceReviewResult.new
+              fusefacereviewresult_tmp.deserialize(i)
+              @ReviewResultSet << fusefacereviewresult_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -204,7 +210,9 @@ module TencentCloud
           unless params['ReviewResultSet'].nil?
             @ReviewResultSet = []
             params['ReviewResultSet'].each do |i|
-              @ReviewResultSet << FuseFaceReviewResult.new.deserialize(i)
+              fusefacereviewresult_tmp = FuseFaceReviewResult.new
+              fusefacereviewresult_tmp.deserialize(i)
+              @ReviewResultSet << fusefacereviewresult_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -306,7 +314,9 @@ module TencentCloud
           unless params['MergeInfos'].nil?
             @MergeInfos = []
             params['MergeInfos'].each do |i|
-              @MergeInfos << MergeInfo.new.deserialize(i)
+              mergeinfo_tmp = MergeInfo.new
+              mergeinfo_tmp.deserialize(i)
+              @MergeInfos << mergeinfo_tmp
             end
           end
           @FuseProfileDegree = params['FuseProfileDegree']
@@ -338,7 +348,9 @@ module TencentCloud
           unless params['ReviewResultSet'].nil?
             @ReviewResultSet = []
             params['ReviewResultSet'].each do |i|
-              @ReviewResultSet << FuseFaceReviewResult.new.deserialize(i)
+              fusefacereviewresult_tmp = FuseFaceReviewResult.new
+              fusefacereviewresult_tmp.deserialize(i)
+              @ReviewResultSet << fusefacereviewresult_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -414,7 +426,9 @@ module TencentCloud
           unless params['DetailSet'].nil?
             @DetailSet = []
             params['DetailSet'].each do |i|
-              @DetailSet << FuseFaceReviewDetail.new.deserialize(i)
+              fusefacereviewdetail_tmp = FuseFaceReviewDetail.new
+              fusefacereviewdetail_tmp.deserialize(i)
+              @DetailSet << fusefacereviewdetail_tmp
             end
           end
         end
@@ -437,7 +451,8 @@ module TencentCloud
         def deserialize(params)
           @FaceId = params['FaceId']
           unless params['FaceInfo'].nil?
-            @FaceInfo = FaceInfo.new.deserialize(params['FaceInfo'])
+            @FaceInfo = FaceInfo.new
+            @FaceInfo.deserialize(params['FaceInfo'])
           end
         end
       end
@@ -466,7 +481,8 @@ module TencentCloud
           @Image = params['Image']
           @Url = params['Url']
           unless params['InputImageFaceRect'].nil?
-            @InputImageFaceRect = FaceRect.new.deserialize(params['InputImageFaceRect'])
+            @InputImageFaceRect = FaceRect.new
+            @InputImageFaceRect.deserialize(params['InputImageFaceRect'])
           end
           @TemplateFaceID = params['TemplateFaceID']
         end
@@ -523,7 +539,9 @@ module TencentCloud
           unless params['MaterialFaceList'].nil?
             @MaterialFaceList = []
             params['MaterialFaceList'].each do |i|
-              @MaterialFaceList << MaterialFaceList.new.deserialize(i)
+              materialfacelist_tmp = MaterialFaceList.new
+              materialfacelist_tmp.deserialize(i)
+              @MaterialFaceList << materialfacelist_tmp
             end
           end
         end

@@ -67,39 +67,50 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           @Area = params['Area']
           @ProjectId = params['ProjectId']
           unless params['IpFilter'].nil?
-            @IpFilter = IpFilter.new.deserialize(params['IpFilter'])
+            @IpFilter = IpFilter.new
+            @IpFilter.deserialize(params['IpFilter'])
           end
           unless params['IpFreqLimit'].nil?
-            @IpFreqLimit = IpFreqLimit.new.deserialize(params['IpFreqLimit'])
+            @IpFreqLimit = IpFreqLimit.new
+            @IpFreqLimit.deserialize(params['IpFreqLimit'])
           end
           unless params['ResponseHeader'].nil?
-            @ResponseHeader = ResponseHeader.new.deserialize(params['ResponseHeader'])
+            @ResponseHeader = ResponseHeader.new
+            @ResponseHeader.deserialize(params['ResponseHeader'])
           end
           unless params['CacheKey'].nil?
-            @CacheKey = CacheKey.new.deserialize(params['CacheKey'])
+            @CacheKey = CacheKey.new
+            @CacheKey.deserialize(params['CacheKey'])
           end
           unless params['Cache'].nil?
-            @Cache = Cache.new.deserialize(params['Cache'])
+            @Cache = Cache.new
+            @Cache.deserialize(params['Cache'])
           end
           unless params['Https'].nil?
-            @Https = Https.new.deserialize(params['Https'])
+            @Https = Https.new
+            @Https.deserialize(params['Https'])
           end
           unless params['ForceRedirect'].nil?
-            @ForceRedirect = ForceRedirect.new.deserialize(params['ForceRedirect'])
+            @ForceRedirect = ForceRedirect.new
+            @ForceRedirect.deserialize(params['ForceRedirect'])
           end
           unless params['Tag'].nil?
             @Tag = []
             params['Tag'].each do |i|
-              @Tag << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
             end
           end
           unless params['WebSocket'].nil?
-            @WebSocket = WebSocket.new.deserialize(params['WebSocket'])
+            @WebSocket = WebSocket.new
+            @WebSocket.deserialize(params['WebSocket'])
           end
         end
       end
@@ -142,7 +153,9 @@ module TencentCloud
           unless params['CacheRules'].nil?
             @CacheRules = []
             params['CacheRules'].each do |i|
-              @CacheRules << CacheRule.new.deserialize(i)
+              cacherule_tmp = CacheRule.new
+              cacherule_tmp.deserialize(i)
+              @CacheRules << cacherule_tmp
             end
           end
           @FollowOrigin = params['FollowOrigin']
@@ -323,11 +336,14 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << DomainFilter.new.deserialize(i)
+              domainfilter_tmp = DomainFilter.new
+              domainfilter_tmp.deserialize(i)
+              @Filters << domainfilter_tmp
             end
           end
           unless params['Sort'].nil?
-            @Sort = Sort.new.deserialize(params['Sort'])
+            @Sort = Sort.new
+            @Sort.deserialize(params['Sort'])
           end
         end
       end
@@ -353,7 +369,9 @@ module TencentCloud
           unless params['Domains'].nil?
             @Domains = []
             params['Domains'].each do |i|
-              @Domains << DomainDetailInfo.new.deserialize(i)
+              domaindetailinfo_tmp = DomainDetailInfo.new
+              domaindetailinfo_tmp.deserialize(i)
+              @Domains << domaindetailinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -384,7 +402,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << DomainFilter.new.deserialize(i)
+              domainfilter_tmp = DomainFilter.new
+              domainfilter_tmp.deserialize(i)
+              @Filters << domainfilter_tmp
             end
           end
         end
@@ -411,7 +431,9 @@ module TencentCloud
           unless params['Domains'].nil?
             @Domains = []
             params['Domains'].each do |i|
-              @Domains << DomainBriefInfo.new.deserialize(i)
+              domainbriefinfo_tmp = DomainBriefInfo.new
+              domainbriefinfo_tmp.deserialize(i)
+              @Domains << domainbriefinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -473,7 +495,9 @@ module TencentCloud
           unless params['DomainLogs'].nil?
             @DomainLogs = []
             params['DomainLogs'].each do |i|
-              @DomainLogs << DomainLogs.new.deserialize(i)
+              domainlogs_tmp = DomainLogs.new
+              domainlogs_tmp.deserialize(i)
+              @DomainLogs << domainlogs_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -556,7 +580,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << DomainData.new.deserialize(i)
+              domaindata_tmp = DomainData.new
+              domaindata_tmp.deserialize(i)
+              @Data << domaindata_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -640,7 +666,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ResourceData.new.deserialize(i)
+              resourcedata_tmp = ResourceData.new
+              resourcedata_tmp.deserialize(i)
+              @Data << resourcedata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -691,7 +719,9 @@ module TencentCloud
           unless params['Ips'].nil?
             @Ips = []
             params['Ips'].each do |i|
-              @Ips << IpStatus.new.deserialize(i)
+              ipstatus_tmp = IpStatus.new
+              ipstatus_tmp.deserialize(i)
+              @Ips << ipstatus_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -729,10 +759,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['UrlPurge'].nil?
-            @UrlPurge = Quota.new.deserialize(params['UrlPurge'])
+            @UrlPurge = Quota.new
+            @UrlPurge.deserialize(params['UrlPurge'])
           end
           unless params['PathPurge'].nil?
-            @PathPurge = Quota.new.deserialize(params['PathPurge'])
+            @PathPurge = Quota.new
+            @PathPurge.deserialize(params['PathPurge'])
           end
           @RequestId = params['RequestId']
         end
@@ -803,7 +835,9 @@ module TencentCloud
           unless params['PurgeLogs'].nil?
             @PurgeLogs = []
             params['PurgeLogs'].each do |i|
-              @PurgeLogs << PurgeTask.new.deserialize(i)
+              purgetask_tmp = PurgeTask.new
+              purgetask_tmp.deserialize(i)
+              @PurgeLogs << purgetask_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -885,7 +919,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           @Disable = params['Disable']
           @Area = params['Area']
@@ -912,7 +947,9 @@ module TencentCloud
           unless params['DetailData'].nil?
             @DetailData = []
             params['DetailData'].each do |i|
-              @DetailData << DetailData.new.deserialize(i)
+              detaildata_tmp = DetailData.new
+              detaildata_tmp.deserialize(i)
+              @DetailData << detaildata_tmp
             end
           end
         end
@@ -1012,40 +1049,51 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           unless params['IpFilter'].nil?
-            @IpFilter = IpFilter.new.deserialize(params['IpFilter'])
+            @IpFilter = IpFilter.new
+            @IpFilter.deserialize(params['IpFilter'])
           end
           unless params['IpFreqLimit'].nil?
-            @IpFreqLimit = IpFreqLimit.new.deserialize(params['IpFreqLimit'])
+            @IpFreqLimit = IpFreqLimit.new
+            @IpFreqLimit.deserialize(params['IpFreqLimit'])
           end
           unless params['ResponseHeader'].nil?
-            @ResponseHeader = ResponseHeader.new.deserialize(params['ResponseHeader'])
+            @ResponseHeader = ResponseHeader.new
+            @ResponseHeader.deserialize(params['ResponseHeader'])
           end
           unless params['CacheKey'].nil?
-            @CacheKey = CacheKey.new.deserialize(params['CacheKey'])
+            @CacheKey = CacheKey.new
+            @CacheKey.deserialize(params['CacheKey'])
           end
           unless params['Cache'].nil?
-            @Cache = Cache.new.deserialize(params['Cache'])
+            @Cache = Cache.new
+            @Cache.deserialize(params['Cache'])
           end
           unless params['Https'].nil?
-            @Https = Https.new.deserialize(params['Https'])
+            @Https = Https.new
+            @Https.deserialize(params['Https'])
           end
           @Disable = params['Disable']
           unless params['ForceRedirect'].nil?
-            @ForceRedirect = ForceRedirect.new.deserialize(params['ForceRedirect'])
+            @ForceRedirect = ForceRedirect.new
+            @ForceRedirect.deserialize(params['ForceRedirect'])
           end
           @Area = params['Area']
           @Readonly = params['Readonly']
           unless params['Tag'].nil?
             @Tag = []
             params['Tag'].each do |i|
-              @Tag << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
             end
           end
           unless params['WebSocket'].nil?
-            @WebSocket = WebSocket.new.deserialize(params['WebSocket'])
+            @WebSocket = WebSocket.new
+            @WebSocket.deserialize(params['WebSocket'])
           end
         end
       end
@@ -1128,7 +1176,9 @@ module TencentCloud
           unless params['DetailData'].nil?
             @DetailData = []
             params['DetailData'].each do |i|
-              @DetailData << TimestampData.new.deserialize(i)
+              timestampdata_tmp = TimestampData.new
+              timestampdata_tmp.deserialize(i)
+              @DetailData << timestampdata_tmp
             end
           end
         end
@@ -1275,15 +1325,18 @@ module TencentCloud
           @OcspStapling = params['OcspStapling']
           @VerifyClient = params['VerifyClient']
           unless params['CertInfo'].nil?
-            @CertInfo = ServerCert.new.deserialize(params['CertInfo'])
+            @CertInfo = ServerCert.new
+            @CertInfo.deserialize(params['CertInfo'])
           end
           unless params['ClientCertInfo'].nil?
-            @ClientCertInfo = ClientCert.new.deserialize(params['ClientCertInfo'])
+            @ClientCertInfo = ClientCert.new
+            @ClientCertInfo.deserialize(params['ClientCertInfo'])
           end
           @Spdy = params['Spdy']
           @SslStatus = params['SslStatus']
           unless params['Hsts'].nil?
-            @Hsts = Hsts.new.deserialize(params['Hsts'])
+            @Hsts = Hsts.new
+            @Hsts.deserialize(params['Hsts'])
           end
         end
       end
@@ -1573,7 +1626,8 @@ module TencentCloud
         def deserialize(params)
           @Resource = params['Resource']
           unless params['EcdnData'].nil?
-            @EcdnData = EcdnData.new.deserialize(params['EcdnData'])
+            @EcdnData = EcdnData.new
+            @EcdnData.deserialize(params['EcdnData'])
           end
         end
       end
@@ -1598,7 +1652,9 @@ module TencentCloud
           unless params['HeaderRules'].nil?
             @HeaderRules = []
             params['HeaderRules'].each do |i|
-              @HeaderRules << HttpHeaderPathRule.new.deserialize(i)
+              httpheaderpathrule_tmp = HttpHeaderPathRule.new
+              httpheaderpathrule_tmp.deserialize(i)
+              @HeaderRules << httpheaderpathrule_tmp
             end
           end
         end
@@ -1827,33 +1883,42 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           @ProjectId = params['ProjectId']
           unless params['IpFilter'].nil?
-            @IpFilter = IpFilter.new.deserialize(params['IpFilter'])
+            @IpFilter = IpFilter.new
+            @IpFilter.deserialize(params['IpFilter'])
           end
           unless params['IpFreqLimit'].nil?
-            @IpFreqLimit = IpFreqLimit.new.deserialize(params['IpFreqLimit'])
+            @IpFreqLimit = IpFreqLimit.new
+            @IpFreqLimit.deserialize(params['IpFreqLimit'])
           end
           unless params['ResponseHeader'].nil?
-            @ResponseHeader = ResponseHeader.new.deserialize(params['ResponseHeader'])
+            @ResponseHeader = ResponseHeader.new
+            @ResponseHeader.deserialize(params['ResponseHeader'])
           end
           unless params['CacheKey'].nil?
-            @CacheKey = CacheKey.new.deserialize(params['CacheKey'])
+            @CacheKey = CacheKey.new
+            @CacheKey.deserialize(params['CacheKey'])
           end
           unless params['Cache'].nil?
-            @Cache = Cache.new.deserialize(params['Cache'])
+            @Cache = Cache.new
+            @Cache.deserialize(params['Cache'])
           end
           unless params['Https'].nil?
-            @Https = Https.new.deserialize(params['Https'])
+            @Https = Https.new
+            @Https.deserialize(params['Https'])
           end
           unless params['ForceRedirect'].nil?
-            @ForceRedirect = ForceRedirect.new.deserialize(params['ForceRedirect'])
+            @ForceRedirect = ForceRedirect.new
+            @ForceRedirect.deserialize(params['ForceRedirect'])
           end
           @Area = params['Area']
           unless params['WebSocket'].nil?
-            @WebSocket = WebSocket.new.deserialize(params['WebSocket'])
+            @WebSocket = WebSocket.new
+            @WebSocket.deserialize(params['WebSocket'])
           end
         end
       end

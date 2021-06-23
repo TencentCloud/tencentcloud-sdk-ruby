@@ -35,7 +35,8 @@ module TencentCloud
         def deserialize(params)
           @Age = params['Age']
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
+            @FaceRect = FaceRect.new
+            @FaceRect.deserialize(params['FaceRect'])
           end
         end
       end
@@ -102,7 +103,9 @@ module TencentCloud
           unless params['AgeInfos'].nil?
             @AgeInfos = []
             params['AgeInfos'].each do |i|
-              @AgeInfos << AgeInfo.new.deserialize(i)
+              ageinfo_tmp = AgeInfo.new
+              ageinfo_tmp.deserialize(i)
+              @AgeInfos << ageinfo_tmp
             end
           end
           @Image = params['Image']
@@ -265,7 +268,8 @@ module TencentCloud
         def deserialize(params)
           @Gender = params['Gender']
           unless params['FaceRect'].nil?
-            @FaceRect = FaceRect.new.deserialize(params['FaceRect'])
+            @FaceRect = FaceRect.new
+            @FaceRect.deserialize(params['FaceRect'])
           end
         end
       end
@@ -334,7 +338,9 @@ module TencentCloud
           unless params['GradientInfos'].nil?
             @GradientInfos = []
             params['GradientInfos'].each do |i|
-              @GradientInfos << GradientInfo.new.deserialize(i)
+              gradientinfo_tmp = GradientInfo.new
+              gradientinfo_tmp.deserialize(i)
+              @GradientInfos << gradientinfo_tmp
             end
           end
           @Fps = params['Fps']
@@ -405,7 +411,8 @@ module TencentCloud
         def deserialize(params)
           @JobStatus = params['JobStatus']
           unless params['FaceMorphOutput'].nil?
-            @FaceMorphOutput = FaceMorphOutput.new.deserialize(params['FaceMorphOutput'])
+            @FaceMorphOutput = FaceMorphOutput.new
+            @FaceMorphOutput.deserialize(params['FaceMorphOutput'])
           end
           @RequestId = params['RequestId']
         end
@@ -441,7 +448,9 @@ module TencentCloud
           unless params['GenderInfos'].nil?
             @GenderInfos = []
             params['GenderInfos'].each do |i|
-              @GenderInfos << GenderInfo.new.deserialize(i)
+              genderinfo_tmp = GenderInfo.new
+              genderinfo_tmp.deserialize(i)
+              @GenderInfos << genderinfo_tmp
             end
           end
           @Image = params['Image']

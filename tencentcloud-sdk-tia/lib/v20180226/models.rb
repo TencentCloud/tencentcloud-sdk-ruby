@@ -101,7 +101,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Job'].nil?
-            @Job = Job.new.deserialize(params['Job'])
+            @Job = Job.new
+            @Job.deserialize(params['Job'])
           end
           @RequestId = params['RequestId']
         end
@@ -171,7 +172,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Model'].nil?
-            @Model = Model.new.deserialize(params['Model'])
+            @Model = Model.new
+            @Model.deserialize(params['Model'])
           end
           @RequestId = params['RequestId']
         end
@@ -289,7 +291,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Job'].nil?
-            @Job = Job.new.deserialize(params['Job'])
+            @Job = Job.new
+            @Job.deserialize(params['Job'])
           end
           @RequestId = params['RequestId']
         end
@@ -335,7 +338,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Model'].nil?
-            @Model = Model.new.deserialize(params['Model'])
+            @Model = Model.new
+            @Model.deserialize(params['Model'])
           end
           @RequestId = params['RequestId']
         end
@@ -531,7 +535,9 @@ module TencentCloud
           unless params['Jobs'].nil?
             @Jobs = []
             params['Jobs'].each do |i|
-              @Jobs << Job.new.deserialize(i)
+              job_tmp = Job.new
+              job_tmp.deserialize(i)
+              @Jobs << job_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -584,7 +590,9 @@ module TencentCloud
           unless params['Models'].nil?
             @Models = []
             params['Models'].each do |i|
-              @Models << Model.new.deserialize(i)
+              model_tmp = Model.new
+              model_tmp.deserialize(i)
+              @Models << model_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -777,7 +785,9 @@ module TencentCloud
           unless params['Logs'].nil?
             @Logs = []
             params['Logs'].each do |i|
-              @Logs << Log.new.deserialize(i)
+              log_tmp = Log.new
+              log_tmp.deserialize(i)
+              @Logs << log_tmp
             end
           end
           @Listover = params['Listover']

@@ -40,7 +40,9 @@ module TencentCloud
           unless params['BlackList'].nil?
             @BlackList = []
             params['BlackList'].each do |i|
-              @BlackList << BlackListData.new.deserialize(i)
+              blacklistdata_tmp = BlackListData.new
+              blacklistdata_tmp.deserialize(i)
+              @BlackList << blacklistdata_tmp
             end
           end
         end
@@ -88,7 +90,9 @@ module TencentCloud
           unless params['BlackList'].nil?
             @BlackList = []
             params['BlackList'].each do |i|
-              @BlackList << SingleBlackApply.new.deserialize(i)
+              singleblackapply_tmp = SingleBlackApply.new
+              singleblackapply_tmp.deserialize(i)
+              @BlackList << singleblackapply_tmp
             end
           end
           @InstId = params['InstId']
@@ -258,7 +262,9 @@ module TencentCloud
           unless params['PhonePoolList'].nil?
             @PhonePoolList = []
             params['PhonePoolList'].each do |i|
-              @PhonePoolList << PhonePool.new.deserialize(i)
+              phonepool_tmp = PhonePool.new
+              phonepool_tmp.deserialize(i)
+              @PhonePoolList << phonepool_tmp
             end
           end
         end
@@ -356,25 +362,32 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Monday'].nil?
-            @Monday = CallTimeInfo.new.deserialize(params['Monday'])
+            @Monday = CallTimeInfo.new
+            @Monday.deserialize(params['Monday'])
           end
           unless params['Tuesday'].nil?
-            @Tuesday = CallTimeInfo.new.deserialize(params['Tuesday'])
+            @Tuesday = CallTimeInfo.new
+            @Tuesday.deserialize(params['Tuesday'])
           end
           unless params['Wednesday'].nil?
-            @Wednesday = CallTimeInfo.new.deserialize(params['Wednesday'])
+            @Wednesday = CallTimeInfo.new
+            @Wednesday.deserialize(params['Wednesday'])
           end
           unless params['Thursday'].nil?
-            @Thursday = CallTimeInfo.new.deserialize(params['Thursday'])
+            @Thursday = CallTimeInfo.new
+            @Thursday.deserialize(params['Thursday'])
           end
           unless params['Friday'].nil?
-            @Friday = CallTimeInfo.new.deserialize(params['Friday'])
+            @Friday = CallTimeInfo.new
+            @Friday.deserialize(params['Friday'])
           end
           unless params['Saturday'].nil?
-            @Saturday = CallTimeInfo.new.deserialize(params['Saturday'])
+            @Saturday = CallTimeInfo.new
+            @Saturday.deserialize(params['Saturday'])
           end
           unless params['Sunday'].nil?
-            @Sunday = CallTimeInfo.new.deserialize(params['Sunday'])
+            @Sunday = CallTimeInfo.new
+            @Sunday.deserialize(params['Sunday'])
           end
         end
       end
@@ -575,7 +588,8 @@ module TencentCloud
           @BanCall = params['BanCall']
           @PhoneCollection = params['PhoneCollection']
           unless params['CallTimeCollection'].nil?
-            @CallTimeCollection = CallTimeDict.new.deserialize(params['CallTimeCollection'])
+            @CallTimeCollection = CallTimeDict.new
+            @CallTimeCollection.deserialize(params['CallTimeCollection'])
           end
           @StartTimeBan = params['StartTimeBan']
           @EndTimeBan = params['EndTimeBan']
@@ -658,19 +672,25 @@ module TencentCloud
           unless params['BotFlowList'].nil?
             @BotFlowList = []
             params['BotFlowList'].each do |i|
-              @BotFlowList << BotFlow.new.deserialize(i)
+              botflow_tmp = BotFlow.new
+              botflow_tmp.deserialize(i)
+              @BotFlowList << botflow_tmp
             end
           end
           unless params['SmsSignList'].nil?
             @SmsSignList = []
             params['SmsSignList'].each do |i|
-              @SmsSignList << SmsSign.new.deserialize(i)
+              smssign_tmp = SmsSign.new
+              smssign_tmp.deserialize(i)
+              @SmsSignList << smssign_tmp
             end
           end
           unless params['SmsTemplateList'].nil?
             @SmsTemplateList = []
             params['SmsTemplateList'].each do |i|
-              @SmsTemplateList << SmsTemplate.new.deserialize(i)
+              smstemplate_tmp = SmsTemplate.new
+              smstemplate_tmp.deserialize(i)
+              @SmsTemplateList << smstemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -882,7 +902,9 @@ module TencentCloud
           unless params['RecordList'].nil?
             @RecordList = []
             params['RecordList'].each do |i|
-              @RecordList << SingleRecord.new.deserialize(i)
+              singlerecord_tmp = SingleRecord.new
+              singlerecord_tmp.deserialize(i)
+              @RecordList << singlerecord_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1215,7 +1237,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << BotFileData.new.deserialize(i)
+              botfiledata_tmp = BotFileData.new
+              botfiledata_tmp.deserialize(i)
+              @Data << botfiledata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1340,7 +1364,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << BlackListData.new.deserialize(i)
+              blacklistdata_tmp = BlackListData.new
+              blacklistdata_tmp.deserialize(i)
+              @Data << blacklistdata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1385,7 +1411,9 @@ module TencentCloud
           unless params['BotList'].nil?
             @BotList = []
             params['BotList'].each do |i|
-              @BotList << BotInfo.new.deserialize(i)
+              botinfo_tmp = BotInfo.new
+              botinfo_tmp.deserialize(i)
+              @BotList << botinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1447,7 +1475,9 @@ module TencentCloud
           unless params['CallList'].nil?
             @CallList = []
             params['CallList'].each do |i|
-              @CallList << CallInfo.new.deserialize(i)
+              callinfo_tmp = CallInfo.new
+              callinfo_tmp.deserialize(i)
+              @CallList << callinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1558,7 +1588,9 @@ module TencentCloud
           unless params['ProductList'].nil?
             @ProductList = []
             params['ProductList'].each do |i|
-              @ProductList << ProductQueryInfo.new.deserialize(i)
+              productqueryinfo_tmp = ProductQueryInfo.new
+              productqueryinfo_tmp.deserialize(i)
+              @ProductList << productqueryinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1634,7 +1666,9 @@ module TencentCloud
           unless params['RecordList'].nil?
             @RecordList = []
             params['RecordList'].each do |i|
-              @RecordList << RecordInfo.new.deserialize(i)
+              recordinfo_tmp = RecordInfo.new
+              recordinfo_tmp.deserialize(i)
+              @RecordList << recordinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1867,7 +1901,8 @@ module TencentCloud
           @BotName = params['BotName']
           @BotId = params['BotId']
           unless params['CallTimeCollection'].nil?
-            @CallTimeCollection = CallTimeDict.new.deserialize(params['CallTimeCollection'])
+            @CallTimeCollection = CallTimeDict.new
+            @CallTimeCollection.deserialize(params['CallTimeCollection'])
           end
           @BanCall = params['BanCall']
           @StartTimeBan = params['StartTimeBan']

@@ -20,9 +20,13 @@ module TencentCloud
   module Memcached
     module V20190318
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-03-18'
-        @@endpoint = 'memcached.tencentcloudapi.com'
-        @@sdk_version = 'MEMCACHED_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-03-18'
+            api_endpoint = 'memcached.tencentcloudapi.com'
+            sdk_version = 'MEMCACHED_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 获取Cmem实例列表

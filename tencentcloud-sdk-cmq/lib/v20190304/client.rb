@@ -20,9 +20,13 @@ module TencentCloud
   module Cmq
     module V20190304
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-03-04'
-        @@endpoint = 'cmq.tencentcloudapi.com'
-        @@sdk_version = 'CMQ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-03-04'
+            api_endpoint = 'cmq.tencentcloudapi.com'
+            sdk_version = 'CMQ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 清除queue中的所有消息

@@ -20,9 +20,13 @@ module TencentCloud
   module Soe
     module V20180724
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-07-24'
-        @@endpoint = 'soe.tencentcloudapi.com'
-        @@sdk_version = 'SOE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-07-24'
+            api_endpoint = 'soe.tencentcloudapi.com'
+            sdk_version = 'SOE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 初始化发音评估过程，每一轮评估前进行调用。语音输入模式分为流式模式和非流式模式，流式模式支持数据分片传输，可以加快评估响应速度。评估模式分为词模式和句子模式，词模式会标注每个音节的详细信息；句子模式会有完整度和流利度的评估。

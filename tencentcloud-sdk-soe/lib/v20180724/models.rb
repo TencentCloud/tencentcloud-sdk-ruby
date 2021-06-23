@@ -174,7 +174,9 @@ module TencentCloud
           unless params['Keywords'].nil?
             @Keywords = []
             params['Keywords'].each do |i|
-              @Keywords << Keyword.new.deserialize(i)
+              keyword_tmp = Keyword.new
+              keyword_tmp.deserialize(i)
+              @Keywords << keyword_tmp
             end
           end
           @SoeAppId = params['SoeAppId']
@@ -203,7 +205,9 @@ module TencentCloud
           unless params['KeywordScores'].nil?
             @KeywordScores = []
             params['KeywordScores'].each do |i|
-              @KeywordScores << KeywordScore.new.deserialize(i)
+              keywordscore_tmp = KeywordScore.new
+              keywordscore_tmp.deserialize(i)
+              @KeywordScores << keywordscore_tmp
             end
           end
           @SessionId = params['SessionId']
@@ -246,7 +250,9 @@ module TencentCloud
           unless params['Words'].nil?
             @Words = []
             params['Words'].each do |i|
-              @Words << WordRsp.new.deserialize(i)
+              wordrsp_tmp = WordRsp.new
+              wordrsp_tmp.deserialize(i)
+              @Words << wordrsp_tmp
             end
           end
           @SuggestedScore = params['SuggestedScore']
@@ -332,7 +338,9 @@ module TencentCloud
           unless params['Words'].nil?
             @Words = []
             params['Words'].each do |i|
-              @Words << WordRsp.new.deserialize(i)
+              wordrsp_tmp = WordRsp.new
+              wordrsp_tmp.deserialize(i)
+              @Words << wordrsp_tmp
             end
           end
           @PronAccuracy = params['PronAccuracy']
@@ -435,7 +443,9 @@ module TencentCloud
           unless params['Words'].nil?
             @Words = []
             params['Words'].each do |i|
-              @Words << WordRsp.new.deserialize(i)
+              wordrsp_tmp = WordRsp.new
+              wordrsp_tmp.deserialize(i)
+              @Words << wordrsp_tmp
             end
           end
           @SessionId = params['SessionId']
@@ -443,7 +453,9 @@ module TencentCloud
           unless params['SentenceInfoSet'].nil?
             @SentenceInfoSet = []
             params['SentenceInfoSet'].each do |i|
-              @SentenceInfoSet << SentenceInfo.new.deserialize(i)
+              sentenceinfo_tmp = SentenceInfo.new
+              sentenceinfo_tmp.deserialize(i)
+              @SentenceInfoSet << sentenceinfo_tmp
             end
           end
           @Status = params['Status']
@@ -617,7 +629,9 @@ module TencentCloud
           unless params['Words'].nil?
             @Words = []
             params['Words'].each do |i|
-              @Words << WordRsp.new.deserialize(i)
+              wordrsp_tmp = WordRsp.new
+              wordrsp_tmp.deserialize(i)
+              @Words << wordrsp_tmp
             end
           end
           @SessionId = params['SessionId']
@@ -625,7 +639,9 @@ module TencentCloud
           unless params['SentenceInfoSet'].nil?
             @SentenceInfoSet = []
             params['SentenceInfoSet'].each do |i|
-              @SentenceInfoSet << SentenceInfo.new.deserialize(i)
+              sentenceinfo_tmp = SentenceInfo.new
+              sentenceinfo_tmp.deserialize(i)
+              @SentenceInfoSet << sentenceinfo_tmp
             end
           end
           @Status = params['Status']
@@ -676,7 +692,9 @@ module TencentCloud
           unless params['PhoneInfos'].nil?
             @PhoneInfos = []
             params['PhoneInfos'].each do |i|
-              @PhoneInfos << PhoneInfo.new.deserialize(i)
+              phoneinfo_tmp = PhoneInfo.new
+              phoneinfo_tmp.deserialize(i)
+              @PhoneInfos << phoneinfo_tmp
             end
           end
           @ReferenceWord = params['ReferenceWord']

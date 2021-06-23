@@ -93,24 +93,30 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @InstanceIds = params['InstanceIds']
           unless params['InstanceAdvancedSettings'].nil?
-            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettings'])
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           unless params['EnhancedService'].nil?
-            @EnhancedService = EnhancedService.new.deserialize(params['EnhancedService'])
+            @EnhancedService = EnhancedService.new
+            @EnhancedService.deserialize(params['EnhancedService'])
           end
           unless params['LoginSettings'].nil?
-            @LoginSettings = LoginSettings.new.deserialize(params['LoginSettings'])
+            @LoginSettings = LoginSettings.new
+            @LoginSettings.deserialize(params['LoginSettings'])
           end
           @HostName = params['HostName']
           @SecurityGroupIds = params['SecurityGroupIds']
           unless params['NodePool'].nil?
-            @NodePool = NodePoolOption.new.deserialize(params['NodePool'])
+            @NodePool = NodePoolOption.new
+            @NodePool.deserialize(params['NodePool'])
           end
           @SkipValidateOptions = params['SkipValidateOptions']
           unless params['InstanceAdvancedSettingsOverrides'].nil?
             @InstanceAdvancedSettingsOverrides = []
             params['InstanceAdvancedSettingsOverrides'].each do |i|
-              @InstanceAdvancedSettingsOverrides << InstanceAdvancedSettings.new.deserialize(i)
+              instanceadvancedsettings_tmp = InstanceAdvancedSettings.new
+              instanceadvancedsettings_tmp.deserialize(i)
+              @InstanceAdvancedSettingsOverrides << instanceadvancedsettings_tmp
             end
           end
         end
@@ -315,7 +321,9 @@ module TencentCloud
           unless params['Filter'].nil?
             @Filter = []
             params['Filter'].each do |i|
-              @Filter << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filter << filter_tmp
             end
           end
         end
@@ -352,7 +360,9 @@ module TencentCloud
           unless params['UpgradeAbleInstances'].nil?
             @UpgradeAbleInstances = []
             params['UpgradeAbleInstances'].each do |i|
-              @UpgradeAbleInstances << UpgradeAbleInstancesItem.new.deserialize(i)
+              upgradeableinstancesitem_tmp = UpgradeAbleInstancesItem.new
+              upgradeableinstancesitem_tmp.deserialize(i)
+              @UpgradeAbleInstances << upgradeableinstancesitem_tmp
             end
           end
           @Total = params['Total']
@@ -441,14 +451,17 @@ module TencentCloud
           @ClusterOs = params['ClusterOs']
           @ClusterType = params['ClusterType']
           unless params['ClusterNetworkSettings'].nil?
-            @ClusterNetworkSettings = ClusterNetworkSettings.new.deserialize(params['ClusterNetworkSettings'])
+            @ClusterNetworkSettings = ClusterNetworkSettings.new
+            @ClusterNetworkSettings.deserialize(params['ClusterNetworkSettings'])
           end
           @ClusterNodeNum = params['ClusterNodeNum']
           @ProjectId = params['ProjectId']
           unless params['TagSpecification'].nil?
             @TagSpecification = []
             params['TagSpecification'].each do |i|
-              @TagSpecification << TagSpecification.new.deserialize(i)
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
             end
           end
           @ClusterStatus = params['ClusterStatus']
@@ -534,7 +547,8 @@ module TencentCloud
           @ContainerRuntime = params['ContainerRuntime']
           @NodeNameType = params['NodeNameType']
           unless params['ExtraArgs'].nil?
-            @ExtraArgs = ClusterExtraArgs.new.deserialize(params['ExtraArgs'])
+            @ExtraArgs = ClusterExtraArgs.new
+            @ExtraArgs.deserialize(params['ExtraArgs'])
           end
           @NetworkType = params['NetworkType']
           @IsNonStaticIpMode = params['IsNonStaticIpMode']
@@ -583,7 +597,9 @@ module TencentCloud
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << Label.new.deserialize(i)
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
             end
           end
           @CreatedTime = params['CreatedTime']
@@ -611,7 +627,8 @@ module TencentCloud
           @AutoScalingGroupId = params['AutoScalingGroupId']
           @AutoScalingGroupEnabled = params['AutoScalingGroupEnabled']
           unless params['AutoScalingGroupRange'].nil?
-            @AutoScalingGroupRange = AutoScalingGroupRange.new.deserialize(params['AutoScalingGroupRange'])
+            @AutoScalingGroupRange = AutoScalingGroupRange.new
+            @AutoScalingGroupRange.deserialize(params['AutoScalingGroupRange'])
           end
         end
       end
@@ -738,7 +755,9 @@ module TencentCloud
           unless params['TagSpecification'].nil?
             @TagSpecification = []
             params['TagSpecification'].each do |i|
-              @TagSpecification << TagSpecification.new.deserialize(i)
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
             end
           end
           @OsCustomizeType = params['OsCustomizeType']
@@ -1029,12 +1048,15 @@ module TencentCloud
           @AutoScalingGroupPara = params['AutoScalingGroupPara']
           @LaunchConfigurePara = params['LaunchConfigurePara']
           unless params['InstanceAdvancedSettings'].nil?
-            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettings'])
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << Label.new.deserialize(i)
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
             end
           end
         end
@@ -1168,7 +1190,8 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @RunInstancePara = params['RunInstancePara']
           unless params['InstanceAdvancedSettings'].nil?
-            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettings'])
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           @SkipValidateOptions = params['SkipValidateOptions']
         end
@@ -1277,20 +1300,25 @@ module TencentCloud
           @AutoScalingGroupPara = params['AutoScalingGroupPara']
           @LaunchConfigurePara = params['LaunchConfigurePara']
           unless params['InstanceAdvancedSettings'].nil?
-            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettings'])
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           @EnableAutoscale = params['EnableAutoscale']
           @Name = params['Name']
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << Label.new.deserialize(i)
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
             end
           end
           unless params['Taints'].nil?
             @Taints = []
             params['Taints'].each do |i|
-              @Taints << Taint.new.deserialize(i)
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
             end
           end
           @NodePoolOs = params['NodePoolOs']
@@ -1355,40 +1383,52 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ClusterCIDRSettings'].nil?
-            @ClusterCIDRSettings = ClusterCIDRSettings.new.deserialize(params['ClusterCIDRSettings'])
+            @ClusterCIDRSettings = ClusterCIDRSettings.new
+            @ClusterCIDRSettings.deserialize(params['ClusterCIDRSettings'])
           end
           @ClusterType = params['ClusterType']
           unless params['RunInstancesForNode'].nil?
             @RunInstancesForNode = []
             params['RunInstancesForNode'].each do |i|
-              @RunInstancesForNode << RunInstancesForNode.new.deserialize(i)
+              runinstancesfornode_tmp = RunInstancesForNode.new
+              runinstancesfornode_tmp.deserialize(i)
+              @RunInstancesForNode << runinstancesfornode_tmp
             end
           end
           unless params['ClusterBasicSettings'].nil?
-            @ClusterBasicSettings = ClusterBasicSettings.new.deserialize(params['ClusterBasicSettings'])
+            @ClusterBasicSettings = ClusterBasicSettings.new
+            @ClusterBasicSettings.deserialize(params['ClusterBasicSettings'])
           end
           unless params['ClusterAdvancedSettings'].nil?
-            @ClusterAdvancedSettings = ClusterAdvancedSettings.new.deserialize(params['ClusterAdvancedSettings'])
+            @ClusterAdvancedSettings = ClusterAdvancedSettings.new
+            @ClusterAdvancedSettings.deserialize(params['ClusterAdvancedSettings'])
           end
           unless params['InstanceAdvancedSettings'].nil?
-            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettings'])
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           unless params['ExistedInstancesForNode'].nil?
             @ExistedInstancesForNode = []
             params['ExistedInstancesForNode'].each do |i|
-              @ExistedInstancesForNode << ExistedInstancesForNode.new.deserialize(i)
+              existedinstancesfornode_tmp = ExistedInstancesForNode.new
+              existedinstancesfornode_tmp.deserialize(i)
+              @ExistedInstancesForNode << existedinstancesfornode_tmp
             end
           end
           unless params['InstanceDataDiskMountSettings'].nil?
             @InstanceDataDiskMountSettings = []
             params['InstanceDataDiskMountSettings'].each do |i|
-              @InstanceDataDiskMountSettings << InstanceDataDiskMountSetting.new.deserialize(i)
+              instancedatadiskmountsetting_tmp = InstanceDataDiskMountSetting.new
+              instancedatadiskmountsetting_tmp.deserialize(i)
+              @InstanceDataDiskMountSettings << instancedatadiskmountsetting_tmp
             end
           end
           unless params['ExtensionAddons'].nil?
             @ExtensionAddons = []
             params['ExtensionAddons'].each do |i|
-              @ExtensionAddons << ExtensionAddon.new.deserialize(i)
+              extensionaddon_tmp = ExtensionAddon.new
+              extensionaddon_tmp.deserialize(i)
+              @ExtensionAddons << extensionaddon_tmp
             end
           end
         end
@@ -1546,7 +1586,9 @@ module TencentCloud
           unless params['DnsServers'].nil?
             @DnsServers = []
             params['DnsServers'].each do |i|
-              @DnsServers << DnsServerConf.new.deserialize(i)
+              dnsserverconf_tmp = DnsServerConf.new
+              dnsserverconf_tmp.deserialize(i)
+              @DnsServers << dnsserverconf_tmp
             end
           end
           @ExtraParam = params['ExtraParam']
@@ -1554,7 +1596,9 @@ module TencentCloud
           unless params['TagSpecification'].nil?
             @TagSpecification = []
             params['TagSpecification'].each do |i|
-              @TagSpecification << TagSpecification.new.deserialize(i)
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
             end
           end
         end
@@ -1634,7 +1678,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Template'].nil?
-            @Template = PrometheusTemplate.new.deserialize(params['Template'])
+            @Template = PrometheusTemplate.new
+            @Template.deserialize(params['Template'])
           end
         end
       end
@@ -1926,7 +1971,9 @@ module TencentCloud
           unless params['ResourceDeleteOptions'].nil?
             @ResourceDeleteOptions = []
             params['ResourceDeleteOptions'].each do |i|
-              @ResourceDeleteOptions << ResourceDeleteOption.new.deserialize(i)
+              resourcedeleteoption_tmp = ResourceDeleteOption.new
+              resourcedeleteoption_tmp.deserialize(i)
+              @ResourceDeleteOptions << resourcedeleteoption_tmp
             end
           end
         end
@@ -2103,7 +2150,9 @@ module TencentCloud
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|
-              @Targets << PrometheusTemplateSyncTarget.new.deserialize(i)
+              prometheustemplatesynctarget_tmp = PrometheusTemplateSyncTarget.new
+              prometheustemplatesynctarget_tmp.deserialize(i)
+              @Targets << prometheustemplatesynctarget_tmp
             end
           end
         end
@@ -2169,7 +2218,9 @@ module TencentCloud
           unless params['Clusters'].nil?
             @Clusters = []
             params['Clusters'].each do |i|
-              @Clusters << ClusterVersion.new.deserialize(i)
+              clusterversion_tmp = ClusterVersion.new
+              clusterversion_tmp.deserialize(i)
+              @Clusters << clusterversion_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2209,7 +2260,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ClusterAsGroupOption'].nil?
-            @ClusterAsGroupOption = ClusterAsGroupOption.new.deserialize(params['ClusterAsGroupOption'])
+            @ClusterAsGroupOption = ClusterAsGroupOption.new
+            @ClusterAsGroupOption.deserialize(params['ClusterAsGroupOption'])
           end
           @RequestId = params['RequestId']
         end
@@ -2265,7 +2317,9 @@ module TencentCloud
           unless params['ClusterAsGroupSet'].nil?
             @ClusterAsGroupSet = []
             params['ClusterAsGroupSet'].each do |i|
-              @ClusterAsGroupSet << ClusterAsGroup.new.deserialize(i)
+              clusterasgroup_tmp = ClusterAsGroup.new
+              clusterasgroup_tmp.deserialize(i)
+              @ClusterAsGroupSet << clusterasgroup_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2314,7 +2368,9 @@ module TencentCloud
           unless params['CommonNames'].nil?
             @CommonNames = []
             params['CommonNames'].each do |i|
-              @CommonNames << CommonName.new.deserialize(i)
+              commonname_tmp = CommonName.new
+              commonname_tmp.deserialize(i)
+              @CommonNames << commonname_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2355,7 +2411,9 @@ module TencentCloud
           unless params['ControllerStatusSet'].nil?
             @ControllerStatusSet = []
             params['ControllerStatusSet'].each do |i|
-              @ControllerStatusSet << ControllerStatus.new.deserialize(i)
+              controllerstatus_tmp = ControllerStatus.new
+              controllerstatus_tmp.deserialize(i)
+              @ControllerStatusSet << controllerstatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2503,7 +2561,9 @@ module TencentCloud
           unless params['InstanceSet'].nil?
             @InstanceSet = []
             params['InstanceSet'].each do |i|
-              @InstanceSet << Instance.new.deserialize(i)
+              instance_tmp = Instance.new
+              instance_tmp.deserialize(i)
+              @InstanceSet << instance_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2582,7 +2642,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['NodePool'].nil?
-            @NodePool = NodePool.new.deserialize(params['NodePool'])
+            @NodePool = NodePool.new
+            @NodePool.deserialize(params['NodePool'])
           end
           @RequestId = params['RequestId']
         end
@@ -2626,7 +2687,9 @@ module TencentCloud
           unless params['NodePoolSet'].nil?
             @NodePoolSet = []
             params['NodePoolSet'].each do |i|
-              @NodePoolSet << NodePool.new.deserialize(i)
+              nodepool_tmp = NodePool.new
+              nodepool_tmp.deserialize(i)
+              @NodePoolSet << nodepool_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2667,7 +2730,9 @@ module TencentCloud
           unless params['RouteTableSet'].nil?
             @RouteTableSet = []
             params['RouteTableSet'].each do |i|
-              @RouteTableSet << RouteTableInfo.new.deserialize(i)
+              routetableinfo_tmp = RouteTableInfo.new
+              routetableinfo_tmp.deserialize(i)
+              @RouteTableSet << routetableinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2693,7 +2758,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -2721,7 +2788,9 @@ module TencentCloud
           unless params['RouteSet'].nil?
             @RouteSet = []
             params['RouteSet'].each do |i|
-              @RouteSet << RouteInfo.new.deserialize(i)
+              routeinfo_tmp = RouteInfo.new
+              routeinfo_tmp.deserialize(i)
+              @RouteSet << routeinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2827,7 +2896,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -2855,7 +2926,9 @@ module TencentCloud
           unless params['Clusters'].nil?
             @Clusters = []
             params['Clusters'].each do |i|
-              @Clusters << Cluster.new.deserialize(i)
+              cluster_tmp = Cluster.new
+              cluster_tmp.deserialize(i)
+              @Clusters << cluster_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2905,17 +2978,22 @@ module TencentCloud
           unless params['Addresses'].nil?
             @Addresses = []
             params['Addresses'].each do |i|
-              @Addresses << IPAddress.new.deserialize(i)
+              ipaddress_tmp = IPAddress.new
+              ipaddress_tmp.deserialize(i)
+              @Addresses << ipaddress_tmp
             end
           end
           unless params['Credential'].nil?
-            @Credential = ClusterCredential.new.deserialize(params['Credential'])
+            @Credential = ClusterCredential.new
+            @Credential.deserialize(params['Credential'])
           end
           unless params['PublicLB'].nil?
-            @PublicLB = ClusterPublicLB.new.deserialize(params['PublicLB'])
+            @PublicLB = ClusterPublicLB.new
+            @PublicLB.deserialize(params['PublicLB'])
           end
           unless params['InternalLB'].nil?
-            @InternalLB = ClusterInternalLB.new.deserialize(params['InternalLB'])
+            @InternalLB = ClusterInternalLB.new
+            @InternalLB.deserialize(params['InternalLB'])
           end
           @RequestId = params['RequestId']
         end
@@ -2949,7 +3027,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -2977,7 +3057,9 @@ module TencentCloud
           unless params['Clusters'].nil?
             @Clusters = []
             params['Clusters'].each do |i|
-              @Clusters << EksCluster.new.deserialize(i)
+              ekscluster_tmp = EksCluster.new
+              ekscluster_tmp.deserialize(i)
+              @Clusters << ekscluster_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3063,7 +3145,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @VagueIpAddress = params['VagueIpAddress']
@@ -3096,7 +3180,9 @@ module TencentCloud
           unless params['ExistedInstanceSet'].nil?
             @ExistedInstanceSet = []
             params['ExistedInstanceSet'].each do |i|
-              @ExistedInstanceSet << ExistedInstance.new.deserialize(i)
+              existedinstance_tmp = ExistedInstance.new
+              existedinstance_tmp.deserialize(i)
+              @ExistedInstanceSet << existedinstance_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -3139,7 +3225,9 @@ module TencentCloud
           unless params['ImageInstanceSet'].nil?
             @ImageInstanceSet = []
             params['ImageInstanceSet'].each do |i|
-              @ImageInstanceSet << ImageInstance.new.deserialize(i)
+              imageinstance_tmp = ImageInstance.new
+              imageinstance_tmp.deserialize(i)
+              @ImageInstanceSet << imageinstance_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3229,7 +3317,9 @@ module TencentCloud
           unless params['Agents'].nil?
             @Agents = []
             params['Agents'].each do |i|
-              @Agents << PrometheusAgentOverview.new.deserialize(i)
+              prometheusagentoverview_tmp = PrometheusAgentOverview.new
+              prometheusagentoverview_tmp.deserialize(i)
+              @Agents << prometheusagentoverview_tmp
             end
           end
           @Total = params['Total']
@@ -3298,7 +3388,9 @@ module TencentCloud
           unless params['Items'].nil?
             @Items = []
             params['Items'].each do |i|
-              @Items << PrometheusAlertHistoryItem.new.deserialize(i)
+              prometheusalerthistoryitem_tmp = PrometheusAlertHistoryItem.new
+              prometheusalerthistoryitem_tmp.deserialize(i)
+              @Items << prometheusalerthistoryitem_tmp
             end
           end
           @Total = params['Total']
@@ -3334,7 +3426,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -3361,7 +3455,9 @@ module TencentCloud
           unless params['AlertRules'].nil?
             @AlertRules = []
             params['AlertRules'].each do |i|
-              @AlertRules << PrometheusAlertRuleDetail.new.deserialize(i)
+              prometheusalertruledetail_tmp = PrometheusAlertRuleDetail.new
+              prometheusalertruledetail_tmp.deserialize(i)
+              @AlertRules << prometheusalertruledetail_tmp
             end
           end
           @Total = params['Total']
@@ -3394,7 +3490,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -3422,7 +3520,9 @@ module TencentCloud
           unless params['Instances'].nil?
             @Instances = []
             params['Instances'].each do |i|
-              @Instances << PrometheusInstanceOverview.new.deserialize(i)
+              prometheusinstanceoverview_tmp = PrometheusInstanceOverview.new
+              prometheusinstanceoverview_tmp.deserialize(i)
+              @Instances << prometheusinstanceoverview_tmp
             end
           end
           @Total = params['Total']
@@ -3459,7 +3559,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
         end
@@ -3483,7 +3585,9 @@ module TencentCloud
           unless params['Jobs'].nil?
             @Jobs = []
             params['Jobs'].each do |i|
-              @Jobs << PrometheusJobTargets.new.deserialize(i)
+              prometheusjobtargets_tmp = PrometheusJobTargets.new
+              prometheusjobtargets_tmp.deserialize(i)
+              @Jobs << prometheusjobtargets_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3524,7 +3628,9 @@ module TencentCloud
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|
-              @Targets << PrometheusTemplateSyncTarget.new.deserialize(i)
+              prometheustemplatesynctarget_tmp = PrometheusTemplateSyncTarget.new
+              prometheustemplatesynctarget_tmp.deserialize(i)
+              @Targets << prometheustemplatesynctarget_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3556,7 +3662,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Offset = params['Offset']
@@ -3585,7 +3693,9 @@ module TencentCloud
           unless params['Templates'].nil?
             @Templates = []
             params['Templates'].each do |i|
-              @Templates << PrometheusTemplate.new.deserialize(i)
+              prometheustemplate_tmp = PrometheusTemplate.new
+              prometheustemplate_tmp.deserialize(i)
+              @Templates << prometheustemplate_tmp
             end
           end
           @Total = params['Total']
@@ -3628,7 +3738,9 @@ module TencentCloud
           unless params['RegionInstanceSet'].nil?
             @RegionInstanceSet = []
             params['RegionInstanceSet'].each do |i|
-              @RegionInstanceSet << RegionInstance.new.deserialize(i)
+              regioninstance_tmp = RegionInstance.new
+              regioninstance_tmp.deserialize(i)
+              @RegionInstanceSet << regioninstance_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3678,7 +3790,9 @@ module TencentCloud
           unless params['RouteTableConflictSet'].nil?
             @RouteTableConflictSet = []
             params['RouteTableConflictSet'].each do |i|
-              @RouteTableConflictSet << RouteTableConflict.new.deserialize(i)
+              routetableconflict_tmp = RouteTableConflict.new
+              routetableconflict_tmp.deserialize(i)
+              @RouteTableConflictSet << routetableconflict_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3766,7 +3880,9 @@ module TencentCloud
           unless params['DnsServers'].nil?
             @DnsServers = []
             params['DnsServers'].each do |i|
-              @DnsServers << DnsServerConf.new.deserialize(i)
+              dnsserverconf_tmp = DnsServerConf.new
+              dnsserverconf_tmp.deserialize(i)
+              @DnsServers << dnsserverconf_tmp
             end
           end
           @NeedDeleteCbs = params['NeedDeleteCbs']
@@ -3774,7 +3890,9 @@ module TencentCloud
           unless params['TagSpecification'].nil?
             @TagSpecification = []
             params['TagSpecification'].each do |i|
-              @TagSpecification << TagSpecification.new.deserialize(i)
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
             end
           end
         end
@@ -3844,10 +3962,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SecurityService'].nil?
-            @SecurityService = RunSecurityServiceEnabled.new.deserialize(params['SecurityService'])
+            @SecurityService = RunSecurityServiceEnabled.new
+            @SecurityService.deserialize(params['SecurityService'])
           end
           unless params['MonitorService'].nil?
-            @MonitorService = RunMonitorServiceEnabled.new.deserialize(params['MonitorService'])
+            @MonitorService = RunMonitorServiceEnabled.new
+            @MonitorService.deserialize(params['MonitorService'])
           end
         end
       end
@@ -3957,10 +4077,12 @@ module TencentCloud
         def deserialize(params)
           @NodeRole = params['NodeRole']
           unless params['ExistedInstancesPara'].nil?
-            @ExistedInstancesPara = ExistedInstancesPara.new.deserialize(params['ExistedInstancesPara'])
+            @ExistedInstancesPara = ExistedInstancesPara.new
+            @ExistedInstancesPara.deserialize(params['ExistedInstancesPara'])
           end
           unless params['InstanceAdvancedSettingsOverride'].nil?
-            @InstanceAdvancedSettingsOverride = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettingsOverride'])
+            @InstanceAdvancedSettingsOverride = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettingsOverride.deserialize(params['InstanceAdvancedSettingsOverride'])
           end
           @DesiredPodNumbers = params['DesiredPodNumbers']
         end
@@ -3995,13 +4117,16 @@ module TencentCloud
         def deserialize(params)
           @InstanceIds = params['InstanceIds']
           unless params['InstanceAdvancedSettings'].nil?
-            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettings'])
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           unless params['EnhancedService'].nil?
-            @EnhancedService = EnhancedService.new.deserialize(params['EnhancedService'])
+            @EnhancedService = EnhancedService.new
+            @EnhancedService.deserialize(params['EnhancedService'])
           end
           unless params['LoginSettings'].nil?
-            @LoginSettings = LoginSettings.new.deserialize(params['LoginSettings'])
+            @LoginSettings = LoginSettings.new
+            @LoginSettings.deserialize(params['LoginSettings'])
           end
           @SecurityGroupIds = params['SecurityGroupIds']
           @HostName = params['HostName']
@@ -4122,11 +4247,14 @@ module TencentCloud
           unless params['Instances'].nil?
             @Instances = []
             params['Instances'].each do |i|
-              @Instances << InstanceUpgradeProgressItem.new.deserialize(i)
+              instanceupgradeprogressitem_tmp = InstanceUpgradeProgressItem.new
+              instanceupgradeprogressitem_tmp.deserialize(i)
+              @Instances << instanceupgradeprogressitem_tmp
             end
           end
           unless params['ClusterStatus'].nil?
-            @ClusterStatus = InstanceUpgradeClusterStatus.new.deserialize(params['ClusterStatus'])
+            @ClusterStatus = InstanceUpgradeClusterStatus.new
+            @ClusterStatus.deserialize(params['ClusterStatus'])
           end
           @RequestId = params['RequestId']
         end
@@ -4238,7 +4366,8 @@ module TencentCloud
           @InstanceState = params['InstanceState']
           @DrainStatus = params['DrainStatus']
           unless params['InstanceAdvancedSettings'].nil?
-            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettings'])
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           @CreatedTime = params['CreatedTime']
           @LanIP = params['LanIP']
@@ -4295,17 +4424,22 @@ module TencentCloud
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << Label.new.deserialize(i)
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
             end
           end
           unless params['DataDisks'].nil?
             @DataDisks = []
             params['DataDisks'].each do |i|
-              @DataDisks << DataDisk.new.deserialize(i)
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
             end
           end
           unless params['ExtraArgs'].nil?
-            @ExtraArgs = InstanceExtraArgs.new.deserialize(params['ExtraArgs'])
+            @ExtraArgs = InstanceExtraArgs.new
+            @ExtraArgs.deserialize(params['ExtraArgs'])
           end
           @DesiredPodNumber = params['DesiredPodNumber']
         end
@@ -4333,7 +4467,9 @@ module TencentCloud
           unless params['DataDisks'].nil?
             @DataDisks = []
             params['DataDisks'].each do |i|
-              @DataDisks << DataDisk.new.deserialize(i)
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
             end
           end
           @Zone = params['Zone']
@@ -4399,7 +4535,9 @@ module TencentCloud
           unless params['Items'].nil?
             @Items = []
             params['Items'].each do |i|
-              @Items << InstanceUpgradePreCheckResultItem.new.deserialize(i)
+              instanceupgradeprecheckresultitem_tmp = InstanceUpgradePreCheckResultItem.new
+              instanceupgradeprecheckresultitem_tmp.deserialize(i)
+              @Items << instanceupgradeprecheckresultitem_tmp
             end
           end
           @SinglePods = params['SinglePods']
@@ -4483,12 +4621,15 @@ module TencentCloud
           @StartAt = params['StartAt']
           @EndAt = params['EndAt']
           unless params['CheckResult'].nil?
-            @CheckResult = InstanceUpgradePreCheckResult.new.deserialize(params['CheckResult'])
+            @CheckResult = InstanceUpgradePreCheckResult.new
+            @CheckResult.deserialize(params['CheckResult'])
           end
           unless params['Detail'].nil?
             @Detail = []
             params['Detail'].each do |i|
-              @Detail << TaskStepInfo.new.deserialize(i)
+              taskstepinfo_tmp = TaskStepInfo.new
+              taskstepinfo_tmp.deserialize(i)
+              @Detail << taskstepinfo_tmp
             end
           end
         end
@@ -4586,7 +4727,8 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           unless params['ClusterAsGroupAttribute'].nil?
-            @ClusterAsGroupAttribute = ClusterAsGroupAttribute.new.deserialize(params['ClusterAsGroupAttribute'])
+            @ClusterAsGroupAttribute = ClusterAsGroupAttribute.new
+            @ClusterAsGroupAttribute.deserialize(params['ClusterAsGroupAttribute'])
           end
         end
       end
@@ -4624,7 +4766,8 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           unless params['ClusterAsGroupOption'].nil?
-            @ClusterAsGroupOption = ClusterAsGroupOption.new.deserialize(params['ClusterAsGroupOption'])
+            @ClusterAsGroupOption = ClusterAsGroupOption.new
+            @ClusterAsGroupOption.deserialize(params['ClusterAsGroupOption'])
           end
         end
       end
@@ -4787,13 +4930,17 @@ module TencentCloud
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << Label.new.deserialize(i)
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
             end
           end
           unless params['Taints'].nil?
             @Taints = []
             params['Taints'].each do |i|
-              @Taints << Taint.new.deserialize(i)
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
             end
           end
           @EnableAutoscale = params['EnableAutoscale']
@@ -4875,7 +5022,8 @@ module TencentCloud
         def deserialize(params)
           @TemplateId = params['TemplateId']
           unless params['Template'].nil?
-            @Template = PrometheusTemplateModify.new.deserialize(params['Template'])
+            @Template = PrometheusTemplateModify.new
+            @Template.deserialize(params['Template'])
           end
         end
       end
@@ -4914,10 +5062,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ManuallyAdded'].nil?
-            @ManuallyAdded = ManuallyAdded.new.deserialize(params['ManuallyAdded'])
+            @ManuallyAdded = ManuallyAdded.new
+            @ManuallyAdded.deserialize(params['ManuallyAdded'])
           end
           unless params['AutoscalingAdded'].nil?
-            @AutoscalingAdded = AutoscalingAdded.new.deserialize(params['AutoscalingAdded'])
+            @AutoscalingAdded = AutoscalingAdded.new
+            @AutoscalingAdded.deserialize(params['AutoscalingAdded'])
           end
         end
       end
@@ -5003,17 +5153,22 @@ module TencentCloud
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << Label.new.deserialize(i)
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
             end
           end
           unless params['Taints'].nil?
             @Taints = []
             params['Taints'].each do |i|
-              @Taints << Taint.new.deserialize(i)
+              taint_tmp = Taint.new
+              taint_tmp.deserialize(i)
+              @Taints << taint_tmp
             end
           end
           unless params['NodeCountSummary'].nil?
-            @NodeCountSummary = NodeCountSummary.new.deserialize(params['NodeCountSummary'])
+            @NodeCountSummary = NodeCountSummary.new
+            @NodeCountSummary.deserialize(params['NodeCountSummary'])
           end
           @AutoscalingGroupStatus = params['AutoscalingGroupStatus']
           @MaxNodesNum = params['MaxNodesNum']
@@ -5162,7 +5317,9 @@ module TencentCloud
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << Label.new.deserialize(i)
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
             end
           end
           @Template = params['Template']
@@ -5171,7 +5328,9 @@ module TencentCloud
           unless params['Annotations'].nil?
             @Annotations = []
             params['Annotations'].each do |i|
-              @Annotations << Label.new.deserialize(i)
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Annotations << label_tmp
             end
           end
         end
@@ -5213,12 +5372,15 @@ module TencentCloud
           unless params['Rules'].nil?
             @Rules = []
             params['Rules'].each do |i|
-              @Rules << PrometheusAlertRule.new.deserialize(i)
+              prometheusalertrule_tmp = PrometheusAlertRule.new
+              prometheusalertrule_tmp.deserialize(i)
+              @Rules << prometheusalertrule_tmp
             end
           end
           @UpdatedAt = params['UpdatedAt']
           unless params['Notification'].nil?
-            @Notification = PrometheusNotification.new.deserialize(params['Notification'])
+            @Notification = PrometheusNotification.new
+            @Notification.deserialize(params['Notification'])
           end
           @Id = params['Id']
           @TemplateId = params['TemplateId']
@@ -5329,7 +5491,9 @@ module TencentCloud
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|
-              @Targets << PrometheusTarget.new.deserialize(i)
+              prometheustarget_tmp = PrometheusTarget.new
+              prometheustarget_tmp.deserialize(i)
+              @Targets << prometheustarget_tmp
             end
           end
           @JobName = params['JobName']
@@ -5454,7 +5618,9 @@ module TencentCloud
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|
-              @Labels << Label.new.deserialize(i)
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
             end
           end
           @LastScrape = params['LastScrape']
@@ -5536,31 +5702,41 @@ module TencentCloud
           unless params['AlertRules'].nil?
             @AlertRules = []
             params['AlertRules'].each do |i|
-              @AlertRules << PrometheusAlertRule.new.deserialize(i)
+              prometheusalertrule_tmp = PrometheusAlertRule.new
+              prometheusalertrule_tmp.deserialize(i)
+              @AlertRules << prometheusalertrule_tmp
             end
           end
           unless params['RecordRules'].nil?
             @RecordRules = []
             params['RecordRules'].each do |i|
-              @RecordRules << PrometheusConfigItem.new.deserialize(i)
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RecordRules << prometheusconfigitem_tmp
             end
           end
           unless params['ServiceMonitors'].nil?
             @ServiceMonitors = []
             params['ServiceMonitors'].each do |i|
-              @ServiceMonitors << PrometheusConfigItem.new.deserialize(i)
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @ServiceMonitors << prometheusconfigitem_tmp
             end
           end
           unless params['PodMonitors'].nil?
             @PodMonitors = []
             params['PodMonitors'].each do |i|
-              @PodMonitors << PrometheusConfigItem.new.deserialize(i)
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @PodMonitors << prometheusconfigitem_tmp
             end
           end
           unless params['RawJobs'].nil?
             @RawJobs = []
             params['RawJobs'].each do |i|
-              @RawJobs << PrometheusConfigItem.new.deserialize(i)
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RawJobs << prometheusconfigitem_tmp
             end
           end
           @TemplateId = params['TemplateId']
@@ -5570,7 +5746,9 @@ module TencentCloud
           unless params['AlertDetailRules'].nil?
             @AlertDetailRules = []
             params['AlertDetailRules'].each do |i|
-              @AlertDetailRules << PrometheusAlertRuleDetail.new.deserialize(i)
+              prometheusalertruledetail_tmp = PrometheusAlertRuleDetail.new
+              prometheusalertruledetail_tmp.deserialize(i)
+              @AlertDetailRules << prometheusalertruledetail_tmp
             end
           end
         end
@@ -5625,37 +5803,49 @@ module TencentCloud
           unless params['AlertRules'].nil?
             @AlertRules = []
             params['AlertRules'].each do |i|
-              @AlertRules << PrometheusAlertRule.new.deserialize(i)
+              prometheusalertrule_tmp = PrometheusAlertRule.new
+              prometheusalertrule_tmp.deserialize(i)
+              @AlertRules << prometheusalertrule_tmp
             end
           end
           unless params['RecordRules'].nil?
             @RecordRules = []
             params['RecordRules'].each do |i|
-              @RecordRules << PrometheusConfigItem.new.deserialize(i)
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RecordRules << prometheusconfigitem_tmp
             end
           end
           unless params['ServiceMonitors'].nil?
             @ServiceMonitors = []
             params['ServiceMonitors'].each do |i|
-              @ServiceMonitors << PrometheusConfigItem.new.deserialize(i)
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @ServiceMonitors << prometheusconfigitem_tmp
             end
           end
           unless params['PodMonitors'].nil?
             @PodMonitors = []
             params['PodMonitors'].each do |i|
-              @PodMonitors << PrometheusConfigItem.new.deserialize(i)
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @PodMonitors << prometheusconfigitem_tmp
             end
           end
           unless params['RawJobs'].nil?
             @RawJobs = []
             params['RawJobs'].each do |i|
-              @RawJobs << PrometheusConfigItem.new.deserialize(i)
+              prometheusconfigitem_tmp = PrometheusConfigItem.new
+              prometheusconfigitem_tmp.deserialize(i)
+              @RawJobs << prometheusconfigitem_tmp
             end
           end
           unless params['AlertDetailRules'].nil?
             @AlertDetailRules = []
             params['AlertDetailRules'].each do |i|
-              @AlertDetailRules << PrometheusAlertRuleDetail.new.deserialize(i)
+              prometheusalertruledetail_tmp = PrometheusAlertRuleDetail.new
+              prometheusalertruledetail_tmp.deserialize(i)
+              @AlertDetailRules << prometheusalertruledetail_tmp
             end
           end
         end
@@ -5915,7 +6105,9 @@ module TencentCloud
           unless params['InstanceAdvancedSettingsOverrides'].nil?
             @InstanceAdvancedSettingsOverrides = []
             params['InstanceAdvancedSettingsOverrides'].each do |i|
-              @InstanceAdvancedSettingsOverrides << InstanceAdvancedSettings.new.deserialize(i)
+              instanceadvancedsettings_tmp = InstanceAdvancedSettings.new
+              instanceadvancedsettings_tmp.deserialize(i)
+              @InstanceAdvancedSettingsOverrides << instanceadvancedsettings_tmp
             end
           end
         end
@@ -6026,7 +6218,9 @@ module TencentCloud
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|
-              @Targets << PrometheusTemplateSyncTarget.new.deserialize(i)
+              prometheustemplatesynctarget_tmp = PrometheusTemplateSyncTarget.new
+              prometheustemplatesynctarget_tmp.deserialize(i)
+              @Targets << prometheustemplatesynctarget_tmp
             end
           end
         end
@@ -6089,7 +6283,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -6185,7 +6381,8 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @DstVersion = params['DstVersion']
           unless params['ExtraArgs'].nil?
-            @ExtraArgs = ClusterExtraArgs.new.deserialize(params['ExtraArgs'])
+            @ExtraArgs = ClusterExtraArgs.new
+            @ExtraArgs.deserialize(params['ExtraArgs'])
           end
           @MaxNotReadyPercent = params['MaxNotReadyPercent']
           @SkipPreCheck = params['SkipPreCheck']
@@ -6252,16 +6449,20 @@ module TencentCloud
           @ClusterDesc = params['ClusterDesc']
           @SubnetIds = params['SubnetIds']
           unless params['PublicLB'].nil?
-            @PublicLB = ClusterPublicLB.new.deserialize(params['PublicLB'])
+            @PublicLB = ClusterPublicLB.new
+            @PublicLB.deserialize(params['PublicLB'])
           end
           unless params['InternalLB'].nil?
-            @InternalLB = ClusterInternalLB.new.deserialize(params['InternalLB'])
+            @InternalLB = ClusterInternalLB.new
+            @InternalLB.deserialize(params['InternalLB'])
           end
           @ServiceSubnetId = params['ServiceSubnetId']
           unless params['DnsServers'].nil?
             @DnsServers = []
             params['DnsServers'].each do |i|
-              @DnsServers << DnsServerConf.new.deserialize(i)
+              dnsserverconf_tmp = DnsServerConf.new
+              dnsserverconf_tmp.deserialize(i)
+              @DnsServers << dnsserverconf_tmp
             end
           end
           @ClearDnsServer = params['ClearDnsServer']
@@ -6351,7 +6552,8 @@ module TencentCloud
           @UpgradeType = params['UpgradeType']
           @InstanceIds = params['InstanceIds']
           unless params['ResetParam'].nil?
-            @ResetParam = UpgradeNodeResetParam.new.deserialize(params['ResetParam'])
+            @ResetParam = UpgradeNodeResetParam.new
+            @ResetParam.deserialize(params['ResetParam'])
           end
           @SkipPreCheck = params['SkipPreCheck']
           @MaxNotReadyPercent = params['MaxNotReadyPercent']
@@ -6396,13 +6598,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['InstanceAdvancedSettings'].nil?
-            @InstanceAdvancedSettings = InstanceAdvancedSettings.new.deserialize(params['InstanceAdvancedSettings'])
+            @InstanceAdvancedSettings = InstanceAdvancedSettings.new
+            @InstanceAdvancedSettings.deserialize(params['InstanceAdvancedSettings'])
           end
           unless params['EnhancedService'].nil?
-            @EnhancedService = EnhancedService.new.deserialize(params['EnhancedService'])
+            @EnhancedService = EnhancedService.new
+            @EnhancedService.deserialize(params['EnhancedService'])
           end
           unless params['LoginSettings'].nil?
-            @LoginSettings = LoginSettings.new.deserialize(params['LoginSettings'])
+            @LoginSettings = LoginSettings.new
+            @LoginSettings.deserialize(params['LoginSettings'])
           end
           @SecurityGroupIds = params['SecurityGroupIds']
         end

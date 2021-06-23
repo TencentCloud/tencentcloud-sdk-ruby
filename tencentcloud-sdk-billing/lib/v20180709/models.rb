@@ -164,7 +164,9 @@ module TencentCloud
           unless params['ComponentSet'].nil?
             @ComponentSet = []
             params['ComponentSet'].each do |i|
-              @ComponentSet << BillDetailComponent.new.deserialize(i)
+              billdetailcomponent_tmp = BillDetailComponent.new
+              billdetailcomponent_tmp.deserialize(i)
+              @ComponentSet << billdetailcomponent_tmp
             end
           end
           @PayerUin = params['PayerUin']
@@ -173,7 +175,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << BillTagInfo.new.deserialize(i)
+              billtaginfo_tmp = BillTagInfo.new
+              billtaginfo_tmp.deserialize(i)
+              @Tags << billtaginfo_tmp
             end
           end
           @BusinessCode = params['BusinessCode']
@@ -413,7 +417,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << BillTagInfo.new.deserialize(i)
+              billtaginfo_tmp = BillTagInfo.new
+              billtaginfo_tmp.deserialize(i)
+              @Tags << billtaginfo_tmp
             end
           end
           @PayerUin = params['PayerUin']
@@ -767,7 +773,8 @@ module TencentCloud
           @BusinessCodeName = params['BusinessCodeName']
           @RealTotalCost = params['RealTotalCost']
           unless params['Trend'].nil?
-            @Trend = ConsumptionSummaryTrend.new.deserialize(params['Trend'])
+            @Trend = ConsumptionSummaryTrend.new
+            @Trend.deserialize(params['Trend'])
           end
         end
       end
@@ -800,12 +807,15 @@ module TencentCloud
           @ProjectName = params['ProjectName']
           @RealTotalCost = params['RealTotalCost']
           unless params['Trend'].nil?
-            @Trend = ConsumptionSummaryTrend.new.deserialize(params['Trend'])
+            @Trend = ConsumptionSummaryTrend.new
+            @Trend.deserialize(params['Trend'])
           end
           unless params['Business'].nil?
             @Business = []
             params['Business'].each do |i|
-              @Business << ConsumptionBusinessSummaryDataItem.new.deserialize(i)
+              consumptionbusinesssummarydataitem_tmp = ConsumptionBusinessSummaryDataItem.new
+              consumptionbusinesssummarydataitem_tmp.deserialize(i)
+              @Business << consumptionbusinesssummarydataitem_tmp
             end
           end
         end
@@ -839,12 +849,15 @@ module TencentCloud
           @RegionName = params['RegionName']
           @RealTotalCost = params['RealTotalCost']
           unless params['Trend'].nil?
-            @Trend = ConsumptionSummaryTrend.new.deserialize(params['Trend'])
+            @Trend = ConsumptionSummaryTrend.new
+            @Trend.deserialize(params['Trend'])
           end
           unless params['Business'].nil?
             @Business = []
             params['Business'].each do |i|
-              @Business << ConsumptionBusinessSummaryDataItem.new.deserialize(i)
+              consumptionbusinesssummarydataitem_tmp = ConsumptionBusinessSummaryDataItem.new
+              consumptionbusinesssummarydataitem_tmp.deserialize(i)
+              @Business << consumptionbusinesssummarydataitem_tmp
             end
           end
         end
@@ -874,25 +887,33 @@ module TencentCloud
           unless params['Business'].nil?
             @Business = []
             params['Business'].each do |i|
-              @Business << ConditionBusiness.new.deserialize(i)
+              conditionbusiness_tmp = ConditionBusiness.new
+              conditionbusiness_tmp.deserialize(i)
+              @Business << conditionbusiness_tmp
             end
           end
           unless params['Project'].nil?
             @Project = []
             params['Project'].each do |i|
-              @Project << ConditionProject.new.deserialize(i)
+              conditionproject_tmp = ConditionProject.new
+              conditionproject_tmp.deserialize(i)
+              @Project << conditionproject_tmp
             end
           end
           unless params['Region'].nil?
             @Region = []
             params['Region'].each do |i|
-              @Region << ConditionRegion.new.deserialize(i)
+              conditionregion_tmp = ConditionRegion.new
+              conditionregion_tmp.deserialize(i)
+              @Region << conditionregion_tmp
             end
           end
           unless params['PayMode'].nil?
             @PayMode = []
             params['PayMode'].each do |i|
-              @PayMode << ConditionPayMode.new.deserialize(i)
+              conditionpaymode_tmp = ConditionPayMode.new
+              conditionpaymode_tmp.deserialize(i)
+              @PayMode << conditionpaymode_tmp
             end
           end
         end
@@ -1174,7 +1195,9 @@ module TencentCloud
           unless params['ComponentSet'].nil?
             @ComponentSet = []
             params['ComponentSet'].each do |i|
-              @ComponentSet << CostComponentSet.new.deserialize(i)
+              costcomponentset_tmp = CostComponentSet.new
+              costcomponentset_tmp.deserialize(i)
+              @ComponentSet << costcomponentset_tmp
             end
           end
           @ProductCode = params['ProductCode']
@@ -1271,7 +1294,9 @@ module TencentCloud
           unless params['ProductInfo'].nil?
             @ProductInfo = []
             params['ProductInfo'].each do |i|
-              @ProductInfo << ProductInfo.new.deserialize(i)
+              productinfo_tmp = ProductInfo.new
+              productinfo_tmp.deserialize(i)
+              @ProductInfo << productinfo_tmp
             end
           end
           @TimeSpan = params['TimeSpan']
@@ -1451,7 +1476,9 @@ module TencentCloud
           unless params['DetailSet'].nil?
             @DetailSet = []
             params['DetailSet'].each do |i|
-              @DetailSet << BillDetail.new.deserialize(i)
+              billdetail_tmp = BillDetail.new
+              billdetail_tmp.deserialize(i)
+              @DetailSet << billdetail_tmp
             end
           end
           @Total = params['Total']
@@ -1550,7 +1577,9 @@ module TencentCloud
           unless params['TransactionList'].nil?
             @TransactionList = []
             params['TransactionList'].each do |i|
-              @TransactionList << BillTransactionInfo.new.deserialize(i)
+              billtransactioninfo_tmp = BillTransactionInfo.new
+              billtransactioninfo_tmp.deserialize(i)
+              @TransactionList << billtransactioninfo_tmp
             end
           end
           @Total = params['Total']
@@ -1627,7 +1656,9 @@ module TencentCloud
           unless params['ResourceSummarySet'].nil?
             @ResourceSummarySet = []
             params['ResourceSummarySet'].each do |i|
-              @ResourceSummarySet << BillResourceSummary.new.deserialize(i)
+              billresourcesummary_tmp = BillResourceSummary.new
+              billresourcesummary_tmp.deserialize(i)
+              @ResourceSummarySet << billresourcesummary_tmp
             end
           end
           @Total = params['Total']
@@ -1682,7 +1713,9 @@ module TencentCloud
           unless params['SummaryOverview'].nil?
             @SummaryOverview = []
             params['SummaryOverview'].each do |i|
-              @SummaryOverview << PayModeSummaryOverviewItem.new.deserialize(i)
+              paymodesummaryoverviewitem_tmp = PayModeSummaryOverviewItem.new
+              paymodesummaryoverviewitem_tmp.deserialize(i)
+              @SummaryOverview << paymodesummaryoverviewitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1738,12 +1771,15 @@ module TencentCloud
         def deserialize(params)
           @Ready = params['Ready']
           unless params['SummaryTotal'].nil?
-            @SummaryTotal = BusinessSummaryTotal.new.deserialize(params['SummaryTotal'])
+            @SummaryTotal = BusinessSummaryTotal.new
+            @SummaryTotal.deserialize(params['SummaryTotal'])
           end
           unless params['SummaryOverview'].nil?
             @SummaryOverview = []
             params['SummaryOverview'].each do |i|
-              @SummaryOverview << BusinessSummaryOverviewItem.new.deserialize(i)
+              businesssummaryoverviewitem_tmp = BusinessSummaryOverviewItem.new
+              businesssummaryoverviewitem_tmp.deserialize(i)
+              @SummaryOverview << businesssummaryoverviewitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1797,7 +1833,9 @@ module TencentCloud
           unless params['SummaryOverview'].nil?
             @SummaryOverview = []
             params['SummaryOverview'].each do |i|
-              @SummaryOverview << ProjectSummaryOverviewItem.new.deserialize(i)
+              projectsummaryoverviewitem_tmp = ProjectSummaryOverviewItem.new
+              projectsummaryoverviewitem_tmp.deserialize(i)
+              @SummaryOverview << projectsummaryoverviewitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1851,7 +1889,9 @@ module TencentCloud
           unless params['SummaryOverview'].nil?
             @SummaryOverview = []
             params['SummaryOverview'].each do |i|
-              @SummaryOverview << RegionSummaryOverviewItem.new.deserialize(i)
+              regionsummaryoverviewitem_tmp = RegionSummaryOverviewItem.new
+              regionsummaryoverviewitem_tmp.deserialize(i)
+              @SummaryOverview << regionsummaryoverviewitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1909,7 +1949,9 @@ module TencentCloud
           unless params['SummaryOverview'].nil?
             @SummaryOverview = []
             params['SummaryOverview'].each do |i|
-              @SummaryOverview << TagSummaryOverviewItem.new.deserialize(i)
+              tagsummaryoverviewitem_tmp = TagSummaryOverviewItem.new
+              tagsummaryoverviewitem_tmp.deserialize(i)
+              @SummaryOverview << tagsummaryoverviewitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1988,7 +2030,9 @@ module TencentCloud
           unless params['DetailSet'].nil?
             @DetailSet = []
             params['DetailSet'].each do |i|
-              @DetailSet << CostDetail.new.deserialize(i)
+              costdetail_tmp = CostDetail.new
+              costdetail_tmp.deserialize(i)
+              @DetailSet << costdetail_tmp
             end
           end
           @Total = params['Total']
@@ -2060,12 +2104,15 @@ module TencentCloud
         def deserialize(params)
           @Ready = params['Ready']
           unless params['Total'].nil?
-            @Total = ConsumptionSummaryTotal.new.deserialize(params['Total'])
+            @Total = ConsumptionSummaryTotal.new
+            @Total.deserialize(params['Total'])
           end
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ConsumptionBusinessSummaryDataItem.new.deserialize(i)
+              consumptionbusinesssummarydataitem_tmp = ConsumptionBusinessSummaryDataItem.new
+              consumptionbusinesssummarydataitem_tmp.deserialize(i)
+              @Data << consumptionbusinesssummarydataitem_tmp
             end
           end
           @RecordNum = params['RecordNum']
@@ -2135,12 +2182,15 @@ module TencentCloud
         def deserialize(params)
           @Ready = params['Ready']
           unless params['Total'].nil?
-            @Total = ConsumptionSummaryTotal.new.deserialize(params['Total'])
+            @Total = ConsumptionSummaryTotal.new
+            @Total.deserialize(params['Total'])
           end
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ConsumptionProjectSummaryDataItem.new.deserialize(i)
+              consumptionprojectsummarydataitem_tmp = ConsumptionProjectSummaryDataItem.new
+              consumptionprojectsummarydataitem_tmp.deserialize(i)
+              @Data << consumptionprojectsummarydataitem_tmp
             end
           end
           @RecordNum = params['RecordNum']
@@ -2211,12 +2261,15 @@ module TencentCloud
         def deserialize(params)
           @Ready = params['Ready']
           unless params['Total'].nil?
-            @Total = ConsumptionSummaryTotal.new.deserialize(params['Total'])
+            @Total = ConsumptionSummaryTotal.new
+            @Total.deserialize(params['Total'])
           end
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ConsumptionRegionSummaryDataItem.new.deserialize(i)
+              consumptionregionsummarydataitem_tmp = ConsumptionRegionSummaryDataItem.new
+              consumptionregionsummarydataitem_tmp.deserialize(i)
+              @Data << consumptionregionsummarydataitem_tmp
             end
           end
           @RecordNum = params['RecordNum']
@@ -2265,7 +2318,8 @@ module TencentCloud
           @NeedRecordNum = params['NeedRecordNum']
           @NeedConditionValue = params['NeedConditionValue']
           unless params['Conditions'].nil?
-            @Conditions = Conditions.new.deserialize(params['Conditions'])
+            @Conditions = Conditions.new
+            @Conditions.deserialize(params['Conditions'])
           end
         end
       end
@@ -2303,16 +2357,20 @@ module TencentCloud
         def deserialize(params)
           @Ready = params['Ready']
           unless params['Total'].nil?
-            @Total = ConsumptionSummaryTotal.new.deserialize(params['Total'])
+            @Total = ConsumptionSummaryTotal.new
+            @Total.deserialize(params['Total'])
           end
           unless params['ConditionValue'].nil?
-            @ConditionValue = ConsumptionResourceSummaryConditionValue.new.deserialize(params['ConditionValue'])
+            @ConditionValue = ConsumptionResourceSummaryConditionValue.new
+            @ConditionValue.deserialize(params['ConditionValue'])
           end
           @RecordNum = params['RecordNum']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ConsumptionResourceSummaryDataItem.new.deserialize(i)
+              consumptionresourcesummarydataitem_tmp = ConsumptionResourceSummaryDataItem.new
+              consumptionresourcesummarydataitem_tmp.deserialize(i)
+              @Data << consumptionresourcesummarydataitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2392,7 +2450,9 @@ module TencentCloud
           unless params['Deals'].nil?
             @Deals = []
             params['Deals'].each do |i|
-              @Deals << Deal.new.deserialize(i)
+              deal_tmp = Deal.new
+              deal_tmp.deserialize(i)
+              @Deals << deal_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2442,7 +2502,9 @@ module TencentCloud
           unless params['DetailSets'].nil?
             @DetailSets = []
             params['DetailSets'].each do |i|
-              @DetailSets << CosDetailSets.new.deserialize(i)
+              cosdetailsets_tmp = CosDetailSets.new
+              cosdetailsets_tmp.deserialize(i)
+              @DetailSets << cosdetailsets_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2534,7 +2596,9 @@ module TencentCloud
           unless params['DetailSets'].nil?
             @DetailSets = []
             params['DetailSets'].each do |i|
-              @DetailSets << DetailSet.new.deserialize(i)
+              detailset_tmp = DetailSet.new
+              detailset_tmp.deserialize(i)
+              @DetailSets << detailset_tmp
             end
           end
           @RetCode = params['RetCode']
@@ -2586,7 +2650,9 @@ module TencentCloud
           unless params['DetailPoints'].nil?
             @DetailPoints = []
             params['DetailPoints'].each do |i|
-              @DetailPoints << DetailPoint.new.deserialize(i)
+              detailpoint_tmp = DetailPoint.new
+              detailpoint_tmp.deserialize(i)
+              @DetailPoints << detailpoint_tmp
             end
           end
           @InstanceID = params['InstanceID']
@@ -2689,7 +2755,9 @@ module TencentCloud
           unless params['Detail'].nil?
             @Detail = []
             params['Detail'].each do |i|
-              @Detail << ActionSummaryOverviewItem.new.deserialize(i)
+              actionsummaryoverviewitem_tmp = ActionSummaryOverviewItem.new
+              actionsummaryoverviewitem_tmp.deserialize(i)
+              @Detail << actionsummaryoverviewitem_tmp
             end
           end
           @CashPayAmount = params['CashPayAmount']

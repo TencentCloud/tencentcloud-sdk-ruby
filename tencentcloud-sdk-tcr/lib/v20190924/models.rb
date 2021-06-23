@@ -101,7 +101,9 @@ module TencentCloud
           unless params['StrategyInfo'].nil?
             @StrategyInfo = []
             params['StrategyInfo'].each do |i|
-              @StrategyInfo << AutoDelStrategyInfo.new.deserialize(i)
+              autodelstrategyinfo_tmp = AutoDelStrategyInfo.new
+              autodelstrategyinfo_tmp.deserialize(i)
+              @StrategyInfo << autodelstrategyinfo_tmp
             end
           end
         end
@@ -343,7 +345,8 @@ module TencentCloud
           @RegistryName = params['RegistryName']
           @RegistryType = params['RegistryType']
           unless params['TagSpecification'].nil?
-            @TagSpecification = TagSpecification.new.deserialize(params['TagSpecification'])
+            @TagSpecification = TagSpecification.new
+            @TagSpecification.deserialize(params['TagSpecification'])
           end
           @RegistryChargeType = params['RegistryChargeType']
         end
@@ -492,7 +495,9 @@ module TencentCloud
           unless params['SecurityGroupPolicySet'].nil?
             @SecurityGroupPolicySet = []
             params['SecurityGroupPolicySet'].each do |i|
-              @SecurityGroupPolicySet << SecurityPolicy.new.deserialize(i)
+              securitypolicy_tmp = SecurityPolicy.new
+              securitypolicy_tmp.deserialize(i)
+              @SecurityGroupPolicySet << securitypolicy_tmp
             end
           end
         end
@@ -829,7 +834,8 @@ module TencentCloud
           @RegistryId = params['RegistryId']
           @NamespaceId = params['NamespaceId']
           unless params['RetentionRule'].nil?
-            @RetentionRule = RetentionRule.new.deserialize(params['RetentionRule'])
+            @RetentionRule = RetentionRule.new
+            @RetentionRule.deserialize(params['RetentionRule'])
           end
           @CronSetting = params['CronSetting']
           @Disabled = params['Disabled']
@@ -904,7 +910,8 @@ module TencentCloud
         def deserialize(params)
           @RegistryId = params['RegistryId']
           unless params['Trigger'].nil?
-            @Trigger = WebhookTrigger.new.deserialize(params['Trigger'])
+            @Trigger = WebhookTrigger.new
+            @Trigger.deserialize(params['Trigger'])
           end
           @Namespace = params['Namespace']
         end
@@ -926,7 +933,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Trigger'].nil?
-            @Trigger = WebhookTrigger.new.deserialize(params['Trigger'])
+            @Trigger = WebhookTrigger.new
+            @Trigger.deserialize(params['Trigger'])
           end
           @RequestId = params['RequestId']
         end
@@ -1239,7 +1247,9 @@ module TencentCloud
           unless params['SecurityGroupPolicySet'].nil?
             @SecurityGroupPolicySet = []
             params['SecurityGroupPolicySet'].each do |i|
-              @SecurityGroupPolicySet << SecurityPolicy.new.deserialize(i)
+              securitypolicy_tmp = SecurityPolicy.new
+              securitypolicy_tmp.deserialize(i)
+              @SecurityGroupPolicySet << securitypolicy_tmp
             end
           end
         end
@@ -1577,7 +1587,9 @@ module TencentCloud
           unless params['LogInfo'].nil?
             @LogInfo = []
             params['LogInfo'].each do |i|
-              @LogInfo << TriggerLogResp.new.deserialize(i)
+              triggerlogresp_tmp = TriggerLogResp.new
+              triggerlogresp_tmp.deserialize(i)
+              @LogInfo << triggerlogresp_tmp
             end
           end
         end
@@ -1599,7 +1611,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DescribeApplicationTriggerLogPersonalResp.new.deserialize(params['Data'])
+            @Data = DescribeApplicationTriggerLogPersonalResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1652,7 +1665,9 @@ module TencentCloud
           unless params['TriggerInfo'].nil?
             @TriggerInfo = []
             params['TriggerInfo'].each do |i|
-              @TriggerInfo << TriggerResp.new.deserialize(i)
+              triggerresp_tmp = TriggerResp.new
+              triggerresp_tmp.deserialize(i)
+              @TriggerInfo << triggerresp_tmp
             end
           end
         end
@@ -1674,7 +1689,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DescribeApplicationTriggerPersonalResp.new.deserialize(params['Data'])
+            @Data = DescribeApplicationTriggerPersonalResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1809,7 +1825,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = FavorResp.new.deserialize(params['Data'])
+            @Data = FavorResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1851,7 +1868,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SameImagesResp.new.deserialize(params['Data'])
+            @Data = SameImagesResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1884,7 +1902,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AutoDelStrategyInfoResp.new.deserialize(params['Data'])
+            @Data = AutoDelStrategyInfoResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -1922,7 +1941,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AutoDelStrategyInfoResp.new.deserialize(params['Data'])
+            @Data = AutoDelStrategyInfoResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -2024,7 +2044,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = TagInfoResp.new.deserialize(params['Data'])
+            @Data = TagInfoResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -2087,7 +2108,9 @@ module TencentCloud
           unless params['ImageInfoList'].nil?
             @ImageInfoList = []
             params['ImageInfoList'].each do |i|
-              @ImageInfoList << TcrImageInfo.new.deserialize(i)
+              tcrimageinfo_tmp = TcrImageInfo.new
+              tcrimageinfo_tmp.deserialize(i)
+              @ImageInfoList << tcrimageinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2130,7 +2153,9 @@ module TencentCloud
           unless params['RegistryStatusSet'].nil?
             @RegistryStatusSet = []
             params['RegistryStatusSet'].each do |i|
-              @RegistryStatusSet << RegistryStatus.new.deserialize(i)
+              registrystatus_tmp = RegistryStatus.new
+              registrystatus_tmp.deserialize(i)
+              @RegistryStatusSet << registrystatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2183,7 +2208,9 @@ module TencentCloud
           unless params['Tokens'].nil?
             @Tokens = []
             params['Tokens'].each do |i|
-              @Tokens << TcrInstanceToken.new.deserialize(i)
+              tcrinstancetoken_tmp = TcrInstanceToken.new
+              tcrinstancetoken_tmp.deserialize(i)
+              @Tokens << tcrinstancetoken_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2221,7 +2248,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @AllRegion = params['AllRegion']
@@ -2251,7 +2280,9 @@ module TencentCloud
           unless params['Registries'].nil?
             @Registries = []
             params['Registries'].each do |i|
-              @Registries << Registry.new.deserialize(i)
+              registry_tmp = Registry.new
+              registry_tmp.deserialize(i)
+              @Registries << registry_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2273,7 +2304,9 @@ module TencentCloud
           unless params['VpcSet'].nil?
             @VpcSet = []
             params['VpcSet'].each do |i|
-              @VpcSet << VpcAndDomainInfo.new.deserialize(i)
+              vpcanddomaininfo_tmp = VpcAndDomainInfo.new
+              vpcanddomaininfo_tmp.deserialize(i)
+              @VpcSet << vpcanddomaininfo_tmp
             end
           end
         end
@@ -2298,7 +2331,9 @@ module TencentCloud
           unless params['VpcSet'].nil?
             @VpcSet = []
             params['VpcSet'].each do |i|
-              @VpcSet << VpcPrivateDomainStatus.new.deserialize(i)
+              vpcprivatedomainstatus_tmp = VpcPrivateDomainStatus.new
+              vpcprivatedomainstatus_tmp.deserialize(i)
+              @VpcSet << vpcprivatedomainstatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2343,7 +2378,9 @@ module TencentCloud
           unless params['AccessVpcSet'].nil?
             @AccessVpcSet = []
             params['AccessVpcSet'].each do |i|
-              @AccessVpcSet << AccessVpc.new.deserialize(i)
+              accessvpc_tmp = AccessVpc.new
+              accessvpc_tmp.deserialize(i)
+              @AccessVpcSet << accessvpc_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2391,7 +2428,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = NamespaceInfoResp.new.deserialize(params['Data'])
+            @Data = NamespaceInfoResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -2446,7 +2484,9 @@ module TencentCloud
           unless params['NamespaceList'].nil?
             @NamespaceList = []
             params['NamespaceList'].each do |i|
-              @NamespaceList << TcrNamespaceInfo.new.deserialize(i)
+              tcrnamespaceinfo_tmp = TcrNamespaceInfo.new
+              tcrnamespaceinfo_tmp.deserialize(i)
+              @NamespaceList << tcrnamespaceinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2495,7 +2535,9 @@ module TencentCloud
           unless params['TaskDetail'].nil?
             @TaskDetail = []
             params['TaskDetail'].each do |i|
-              @TaskDetail << TaskDetail.new.deserialize(i)
+              taskdetail_tmp = TaskDetail.new
+              taskdetail_tmp.deserialize(i)
+              @TaskDetail << taskdetail_tmp
             end
           end
           @Status = params['Status']
@@ -2598,7 +2640,9 @@ module TencentCloud
           unless params['ReplicationRegistries'].nil?
             @ReplicationRegistries = []
             params['ReplicationRegistries'].each do |i|
-              @ReplicationRegistries << ReplicationRegistry.new.deserialize(i)
+              replicationregistry_tmp = ReplicationRegistry.new
+              replicationregistry_tmp.deserialize(i)
+              @ReplicationRegistries << replicationregistry_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2662,7 +2706,9 @@ module TencentCloud
           unless params['RepositoryList'].nil?
             @RepositoryList = []
             params['RepositoryList'].each do |i|
-              @RepositoryList << TcrRepositoryInfo.new.deserialize(i)
+              tcrrepositoryinfo_tmp = TcrRepositoryInfo.new
+              tcrrepositoryinfo_tmp.deserialize(i)
+              @RepositoryList << tcrrepositoryinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2718,7 +2764,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = SearchUserRepositoryResp.new.deserialize(params['Data'])
+            @Data = SearchUserRepositoryResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -2764,7 +2811,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = RepoInfoResp.new.deserialize(params['Data'])
+            @Data = RepoInfoResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -2802,7 +2850,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = RepositoryInfoResp.new.deserialize(params['Data'])
+            @Data = RepositoryInfoResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -2843,7 +2892,9 @@ module TencentCloud
           unless params['SecurityPolicySet'].nil?
             @SecurityPolicySet = []
             params['SecurityPolicySet'].each do |i|
-              @SecurityPolicySet << SecurityPolicy.new.deserialize(i)
+              securitypolicy_tmp = SecurityPolicy.new
+              securitypolicy_tmp.deserialize(i)
+              @SecurityPolicySet << securitypolicy_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2899,7 +2950,9 @@ module TencentCloud
           unless params['RetentionExecutionList'].nil?
             @RetentionExecutionList = []
             params['RetentionExecutionList'].each do |i|
-              @RetentionExecutionList << RetentionExecution.new.deserialize(i)
+              retentionexecution_tmp = RetentionExecution.new
+              retentionexecution_tmp.deserialize(i)
+              @RetentionExecutionList << retentionexecution_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2960,7 +3013,9 @@ module TencentCloud
           unless params['RetentionTaskList'].nil?
             @RetentionTaskList = []
             params['RetentionTaskList'].each do |i|
-              @RetentionTaskList << RetentionTask.new.deserialize(i)
+              retentiontask_tmp = RetentionTask.new
+              retentiontask_tmp.deserialize(i)
+              @RetentionTaskList << retentiontask_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -3017,7 +3072,9 @@ module TencentCloud
           unless params['RetentionPolicyList'].nil?
             @RetentionPolicyList = []
             params['RetentionPolicyList'].each do |i|
-              @RetentionPolicyList << RetentionPolicy.new.deserialize(i)
+              retentionpolicy_tmp = RetentionPolicy.new
+              retentionpolicy_tmp.deserialize(i)
+              @RetentionPolicyList << retentionpolicy_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -3052,7 +3109,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = RespLimit.new.deserialize(params['Data'])
+            @Data = RespLimit.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -3112,7 +3170,9 @@ module TencentCloud
           unless params['Logs'].nil?
             @Logs = []
             params['Logs'].each do |i|
-              @Logs << WebhookTriggerLog.new.deserialize(i)
+              webhooktriggerlog_tmp = WebhookTriggerLog.new
+              webhooktriggerlog_tmp.deserialize(i)
+              @Logs << webhooktriggerlog_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3169,7 +3229,9 @@ module TencentCloud
           unless params['Triggers'].nil?
             @Triggers = []
             params['Triggers'].each do |i|
-              @Triggers << WebhookTrigger.new.deserialize(i)
+              webhooktrigger_tmp = WebhookTrigger.new
+              webhooktrigger_tmp.deserialize(i)
+              @Triggers << webhooktrigger_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3304,7 +3366,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DupImageTagResp.new.deserialize(params['Data'])
+            @Data = DupImageTagResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -3330,7 +3393,9 @@ module TencentCloud
           unless params['RepoInfo'].nil?
             @RepoInfo = []
             params['RepoInfo'].each do |i|
-              @RepoInfo << Favors.new.deserialize(i)
+              favors_tmp = Favors.new
+              favors_tmp.deserialize(i)
+              @RepoInfo << favors_tmp
             end
           end
         end
@@ -3613,7 +3678,8 @@ module TencentCloud
           @SourceRegistryId = params['SourceRegistryId']
           @DestinationRegistryId = params['DestinationRegistryId']
           unless params['Rule'].nil?
-            @Rule = ReplicationRule.new.deserialize(params['Rule'])
+            @Rule = ReplicationRule.new
+            @Rule.deserialize(params['Rule'])
           end
           @Description = params['Description']
           @DestinationRegionId = params['DestinationRegionId']
@@ -3994,7 +4060,8 @@ module TencentCloud
           @RegistryId = params['RegistryId']
           @NamespaceId = params['NamespaceId']
           unless params['RetentionRule'].nil?
-            @RetentionRule = RetentionRule.new.deserialize(params['RetentionRule'])
+            @RetentionRule = RetentionRule.new
+            @RetentionRule.deserialize(params['RetentionRule'])
           end
           @CronSetting = params['CronSetting']
           @RetentionId = params['RetentionId']
@@ -4070,7 +4137,8 @@ module TencentCloud
         def deserialize(params)
           @RegistryId = params['RegistryId']
           unless params['Trigger'].nil?
-            @Trigger = WebhookTrigger.new.deserialize(params['Trigger'])
+            @Trigger = WebhookTrigger.new
+            @Trigger.deserialize(params['Trigger'])
           end
           @Namespace = params['Namespace']
         end
@@ -4135,7 +4203,9 @@ module TencentCloud
           unless params['NamespaceInfo'].nil?
             @NamespaceInfo = []
             params['NamespaceInfo'].each do |i|
-              @NamespaceInfo << NamespaceInfo.new.deserialize(i)
+              namespaceinfo_tmp = NamespaceInfo.new
+              namespaceinfo_tmp.deserialize(i)
+              @NamespaceInfo << namespaceinfo_tmp
             end
           end
         end
@@ -4231,7 +4301,8 @@ module TencentCloud
           @TokenValidTime = params['TokenValidTime']
           @InternalEndpoint = params['InternalEndpoint']
           unless params['TagSpecification'].nil?
-            @TagSpecification = TagSpecification.new.deserialize(params['TagSpecification'])
+            @TagSpecification = TagSpecification.new
+            @TagSpecification.deserialize(params['TagSpecification'])
           end
           @ExpiredAt = params['ExpiredAt']
           @PayMod = params['PayMod']
@@ -4308,7 +4379,9 @@ module TencentCloud
           unless params['Conditions'].nil?
             @Conditions = []
             params['Conditions'].each do |i|
-              @Conditions << RegistryCondition.new.deserialize(i)
+              registrycondition_tmp = RegistryCondition.new
+              registrycondition_tmp.deserialize(i)
+              @Conditions << registrycondition_tmp
             end
           end
         end
@@ -4334,7 +4407,8 @@ module TencentCloud
         def deserialize(params)
           @RegistryId = params['RegistryId']
           unless params['RegistryChargePrepaid'].nil?
-            @RegistryChargePrepaid = RegistryChargePrepaid.new.deserialize(params['RegistryChargePrepaid'])
+            @RegistryChargePrepaid = RegistryChargePrepaid.new
+            @RegistryChargePrepaid.deserialize(params['RegistryChargePrepaid'])
           end
           @Flag = params['Flag']
         end
@@ -4443,7 +4517,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << ReplicationFilter.new.deserialize(i)
+              replicationfilter_tmp = ReplicationFilter.new
+              replicationfilter_tmp.deserialize(i)
+              @Filters << replicationfilter_tmp
             end
           end
         end
@@ -4527,7 +4603,9 @@ module TencentCloud
           unless params['RepoInfo'].nil?
             @RepoInfo = []
             params['RepoInfo'].each do |i|
-              @RepoInfo << RepoInfo.new.deserialize(i)
+              repoinfo_tmp = RepoInfo.new
+              repoinfo_tmp.deserialize(i)
+              @RepoInfo << repoinfo_tmp
             end
           end
           @Server = params['Server']
@@ -4618,7 +4696,9 @@ module TencentCloud
           unless params['LimitInfo'].nil?
             @LimitInfo = []
             params['LimitInfo'].each do |i|
-              @LimitInfo << Limit.new.deserialize(i)
+              limit_tmp = Limit.new
+              limit_tmp.deserialize(i)
+              @LimitInfo << limit_tmp
             end
           end
         end
@@ -4688,7 +4768,9 @@ module TencentCloud
           unless params['RetentionRuleList'].nil?
             @RetentionRuleList = []
             params['RetentionRuleList'].each do |i|
-              @RetentionRuleList << RetentionRule.new.deserialize(i)
+              retentionrule_tmp = RetentionRule.new
+              retentionrule_tmp.deserialize(i)
+              @RetentionRuleList << retentionrule_tmp
             end
           end
           @CronSetting = params['CronSetting']
@@ -4803,7 +4885,9 @@ module TencentCloud
           unless params['RepoInfo'].nil?
             @RepoInfo = []
             params['RepoInfo'].each do |i|
-              @RepoInfo << RepoInfo.new.deserialize(i)
+              repoinfo_tmp = RepoInfo.new
+              repoinfo_tmp.deserialize(i)
+              @RepoInfo << repoinfo_tmp
             end
           end
           @Server = params['Server']
@@ -4953,7 +5037,9 @@ module TencentCloud
           unless params['TagInfo'].nil?
             @TagInfo = []
             params['TagInfo'].each do |i|
-              @TagInfo << TagInfo.new.deserialize(i)
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfo << taginfo_tmp
             end
           end
           @Server = params['Server']
@@ -4982,7 +5068,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -5297,13 +5385,16 @@ module TencentCloud
           @InvokeAction = params['InvokeAction']
           @InvokeTime = params['InvokeTime']
           unless params['InvokeCondition'].nil?
-            @InvokeCondition = TriggerInvokeCondition.new.deserialize(params['InvokeCondition'])
+            @InvokeCondition = TriggerInvokeCondition.new
+            @InvokeCondition.deserialize(params['InvokeCondition'])
           end
           unless params['InvokePara'].nil?
-            @InvokePara = TriggerInvokePara.new.deserialize(params['InvokePara'])
+            @InvokePara = TriggerInvokePara.new
+            @InvokePara.deserialize(params['InvokePara'])
           end
           unless params['InvokeResult'].nil?
-            @InvokeResult = TriggerInvokeResult.new.deserialize(params['InvokeResult'])
+            @InvokeResult = TriggerInvokeResult.new
+            @InvokeResult.deserialize(params['InvokeResult'])
           end
         end
       end
@@ -5351,10 +5442,12 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           unless params['InvokeCondition'].nil?
-            @InvokeCondition = TriggerInvokeCondition.new.deserialize(params['InvokeCondition'])
+            @InvokeCondition = TriggerInvokeCondition.new
+            @InvokeCondition.deserialize(params['InvokeCondition'])
           end
           unless params['InvokePara'].nil?
-            @InvokePara = TriggerInvokePara.new.deserialize(params['InvokePara'])
+            @InvokePara = TriggerInvokePara.new
+            @InvokePara.deserialize(params['InvokePara'])
           end
         end
       end
@@ -5391,7 +5484,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = NamespaceIsExistsResp.new.deserialize(params['Data'])
+            @Data = NamespaceIsExistsResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -5429,7 +5523,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = RepoIsExistResp.new.deserialize(params['Data'])
+            @Data = RepoIsExistResp.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -5510,7 +5605,9 @@ module TencentCloud
           unless params['Headers'].nil?
             @Headers = []
             params['Headers'].each do |i|
-              @Headers << Header.new.deserialize(i)
+              header_tmp = Header.new
+              header_tmp.deserialize(i)
+              @Headers << header_tmp
             end
           end
         end
@@ -5553,7 +5650,9 @@ module TencentCloud
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|
-              @Targets << WebhookTarget.new.deserialize(i)
+              webhooktarget_tmp = WebhookTarget.new
+              webhooktarget_tmp.deserialize(i)
+              @Targets << webhooktarget_tmp
             end
           end
           @EventTypes = params['EventTypes']

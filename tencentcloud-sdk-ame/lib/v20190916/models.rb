@@ -37,7 +37,9 @@ module TencentCloud
           unless params['ImagePathMap'].nil?
             @ImagePathMap = []
             params['ImagePathMap'].each do |i|
-              @ImagePathMap << ImagePath.new.deserialize(i)
+              imagepath_tmp = ImagePath.new
+              imagepath_tmp.deserialize(i)
+              @ImagePathMap << imagepath_tmp
             end
           end
         end
@@ -182,7 +184,9 @@ module TencentCloud
           unless params['AuthInfo'].nil?
             @AuthInfo = []
             params['AuthInfo'].each do |i|
-              @AuthInfo << AuthInfo.new.deserialize(i)
+              authinfo_tmp = AuthInfo.new
+              authinfo_tmp.deserialize(i)
+              @AuthInfo << authinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -225,7 +229,9 @@ module TencentCloud
           unless params['MusicOpenDetail'].nil?
             @MusicOpenDetail = []
             params['MusicOpenDetail'].each do |i|
-              @MusicOpenDetail << MusicOpenDetail.new.deserialize(i)
+              musicopendetail_tmp = MusicOpenDetail.new
+              musicopendetail_tmp.deserialize(i)
+              @MusicOpenDetail << musicopendetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -334,7 +340,9 @@ module TencentCloud
           unless params['Items'].nil?
             @Items = []
             params['Items'].each do |i|
-              @Items << Item.new.deserialize(i)
+              item_tmp = Item.new
+              item_tmp.deserialize(i)
+              @Items << item_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -405,7 +413,9 @@ module TencentCloud
           unless params['Items'].nil?
             @Items = []
             params['Items'].each do |i|
-              @Items << Item.new.deserialize(i)
+              item_tmp = Item.new
+              item_tmp.deserialize(i)
+              @Items << item_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -450,7 +460,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['KTVMusicBaseInfo'].nil?
-            @KTVMusicBaseInfo = KTVMusicBaseInfo.new.deserialize(params['KTVMusicBaseInfo'])
+            @KTVMusicBaseInfo = KTVMusicBaseInfo.new
+            @KTVMusicBaseInfo.deserialize(params['KTVMusicBaseInfo'])
           end
           @PlayToken = params['PlayToken']
           @LyricsUrl = params['LyricsUrl']
@@ -495,7 +506,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Lyric'].nil?
-            @Lyric = Lyric.new.deserialize(params['Lyric'])
+            @Lyric = Lyric.new
+            @Lyric.deserialize(params['Lyric'])
           end
           @RequestId = params['RequestId']
         end
@@ -548,7 +560,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Music'].nil?
-            @Music = Music.new.deserialize(params['Music'])
+            @Music = Music.new
+            @Music.deserialize(params['Music'])
           end
           @RequestId = params['RequestId']
         end
@@ -597,7 +610,9 @@ module TencentCloud
           unless params['PackageItems'].nil?
             @PackageItems = []
             params['PackageItems'].each do |i|
-              @PackageItems << PackageItem.new.deserialize(i)
+              packageitem_tmp = PackageItem.new
+              packageitem_tmp.deserialize(i)
+              @PackageItems << packageitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -643,7 +658,9 @@ module TencentCloud
           unless params['Packages'].nil?
             @Packages = []
             params['Packages'].each do |i|
-              @Packages << Package.new.deserialize(i)
+              package_tmp = Package.new
+              package_tmp.deserialize(i)
+              @Packages << package_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -705,7 +722,9 @@ module TencentCloud
           unless params['Stations'].nil?
             @Stations = []
             params['Stations'].each do |i|
-              @Stations << Station.new.deserialize(i)
+              station_tmp = Station.new
+              station_tmp.deserialize(i)
+              @Stations << station_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -764,15 +783,19 @@ module TencentCloud
         def deserialize(params)
           @ItemID = params['ItemID']
           unless params['DataInfo'].nil?
-            @DataInfo = DataInfo.new.deserialize(params['DataInfo'])
+            @DataInfo = DataInfo.new
+            @DataInfo.deserialize(params['DataInfo'])
           end
           unless params['Album'].nil?
-            @Album = Album.new.deserialize(params['Album'])
+            @Album = Album.new
+            @Album.deserialize(params['Album'])
           end
           unless params['Artists'].nil?
             @Artists = []
             params['Artists'].each do |i|
-              @Artists << Artist.new.deserialize(i)
+              artist_tmp = Artist.new
+              artist_tmp.deserialize(i)
+              @Artists << artist_tmp
             end
           end
           @Status = params['Status']
@@ -855,7 +878,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['MusicDetailInfos'].nil?
-            @MusicDetailInfos = MusicDetailInfo.new.deserialize(params['MusicDetailInfos'])
+            @MusicDetailInfos = MusicDetailInfo.new
+            @MusicDetailInfos.deserialize(params['MusicDetailInfos'])
           end
           @AmeKey = params['AmeKey']
         end
@@ -1088,7 +1112,9 @@ module TencentCloud
           unless params['UseRanges'].nil?
             @UseRanges = []
             params['UseRanges'].each do |i|
-              @UseRanges << UseRange.new.deserialize(i)
+              userange_tmp = UseRange.new
+              userange_tmp.deserialize(i)
+              @UseRanges << userange_tmp
             end
           end
         end
@@ -1269,7 +1295,9 @@ module TencentCloud
           unless params['KTVMusicInfoSet'].nil?
             @KTVMusicInfoSet = []
             params['KTVMusicInfoSet'].each do |i|
-              @KTVMusicInfoSet << KTVMusicBaseInfo.new.deserialize(i)
+              ktvmusicbaseinfo_tmp = KTVMusicBaseInfo.new
+              ktvmusicbaseinfo_tmp.deserialize(i)
+              @KTVMusicInfoSet << ktvmusicbaseinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1311,7 +1339,9 @@ module TencentCloud
           unless params['ImagePathMap'].nil?
             @ImagePathMap = []
             params['ImagePathMap'].each do |i|
-              @ImagePathMap << ImagePath.new.deserialize(i)
+              imagepath_tmp = ImagePath.new
+              imagepath_tmp.deserialize(i)
+              @ImagePathMap << imagepath_tmp
             end
           end
         end
@@ -1353,7 +1383,9 @@ module TencentCloud
           unless params['TakeMusicOffShelves'].nil?
             @TakeMusicOffShelves = []
             params['TakeMusicOffShelves'].each do |i|
-              @TakeMusicOffShelves << TakeMusicOffShelves.new.deserialize(i)
+              takemusicoffshelves_tmp = TakeMusicOffShelves.new
+              takemusicoffshelves_tmp.deserialize(i)
+              @TakeMusicOffShelves << takemusicoffshelves_tmp
             end
           end
         end

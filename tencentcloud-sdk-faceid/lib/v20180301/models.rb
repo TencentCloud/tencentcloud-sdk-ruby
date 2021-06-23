@@ -114,7 +114,8 @@ module TencentCloud
           @IdCard = params['IdCard']
           @CertType = params['CertType']
           unless params['Encryption'].nil?
-            @Encryption = Encryption.new.deserialize(params['Encryption'])
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
           end
         end
       end
@@ -194,7 +195,8 @@ module TencentCloud
           @BankCard = params['BankCard']
           @CertType = params['CertType']
           unless params['Encryption'].nil?
-            @Encryption = Encryption.new.deserialize(params['Encryption'])
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
           end
         end
       end
@@ -507,7 +509,8 @@ module TencentCloud
           @Extra = params['Extra']
           @ImageBase64 = params['ImageBase64']
           unless params['Encryption'].nil?
-            @Encryption = Encryption.new.deserialize(params['Encryption'])
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
           end
         end
       end
@@ -800,7 +803,9 @@ module TencentCloud
           unless params['LivenessDetail'].nil?
             @LivenessDetail = []
             params['LivenessDetail'].each do |i|
-              @LivenessDetail << DetectDetail.new.deserialize(i)
+              detectdetail_tmp = DetectDetail.new
+              detectdetail_tmp.deserialize(i)
+              @LivenessDetail << detectdetail_tmp
             end
           end
           @Mobile = params['Mobile']
@@ -1043,19 +1048,24 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Text'].nil?
-            @Text = DetectInfoText.new.deserialize(params['Text'])
+            @Text = DetectInfoText.new
+            @Text.deserialize(params['Text'])
           end
           unless params['IdCardData'].nil?
-            @IdCardData = DetectInfoIdCardData.new.deserialize(params['IdCardData'])
+            @IdCardData = DetectInfoIdCardData.new
+            @IdCardData.deserialize(params['IdCardData'])
           end
           unless params['BestFrame'].nil?
-            @BestFrame = DetectInfoBestFrame.new.deserialize(params['BestFrame'])
+            @BestFrame = DetectInfoBestFrame.new
+            @BestFrame.deserialize(params['BestFrame'])
           end
           unless params['VideoData'].nil?
-            @VideoData = DetectInfoVideoData.new.deserialize(params['VideoData'])
+            @VideoData = DetectInfoVideoData.new
+            @VideoData.deserialize(params['VideoData'])
           end
           unless params['Encryption'].nil?
-            @Encryption = Encryption.new.deserialize(params['Encryption'])
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
           end
           @RequestId = params['RequestId']
         end
@@ -1210,16 +1220,20 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Text'].nil?
-            @Text = DetectInfoText.new.deserialize(params['Text'])
+            @Text = DetectInfoText.new
+            @Text.deserialize(params['Text'])
           end
           unless params['IdCardData'].nil?
-            @IdCardData = DetectInfoIdCardData.new.deserialize(params['IdCardData'])
+            @IdCardData = DetectInfoIdCardData.new
+            @IdCardData.deserialize(params['IdCardData'])
           end
           unless params['BestFrame'].nil?
-            @BestFrame = DetectInfoBestFrame.new.deserialize(params['BestFrame'])
+            @BestFrame = DetectInfoBestFrame.new
+            @BestFrame.deserialize(params['BestFrame'])
           end
           unless params['EidInfo'].nil?
-            @EidInfo = EidInfo.new.deserialize(params['EidInfo'])
+            @EidInfo = EidInfo.new
+            @EidInfo.deserialize(params['EidInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1277,7 +1291,8 @@ module TencentCloud
           @Name = params['Name']
           @Extra = params['Extra']
           unless params['Config'].nil?
-            @Config = GetEidTokenConfig.new.deserialize(params['Config'])
+            @Config = GetEidTokenConfig.new
+            @Config.deserialize(params['Config'])
           end
         end
       end
@@ -1594,7 +1609,8 @@ module TencentCloud
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           unless params['Encryption'].nil?
-            @Encryption = Encryption.new.deserialize(params['Encryption'])
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
           end
         end
       end
@@ -2032,7 +2048,8 @@ module TencentCloud
           @IdCard = params['IdCard']
           @Name = params['Name']
           unless params['Encryption'].nil?
-            @Encryption = Encryption.new.deserialize(params['Encryption'])
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
           end
         end
       end
@@ -2098,7 +2115,8 @@ module TencentCloud
         def deserialize(params)
           @Mobile = params['Mobile']
           unless params['Encryption'].nil?
-            @Encryption = Encryption.new.deserialize(params['Encryption'])
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
           end
         end
       end
@@ -2156,7 +2174,8 @@ module TencentCloud
         def deserialize(params)
           @Mobile = params['Mobile']
           unless params['Encryption'].nil?
-            @Encryption = Encryption.new.deserialize(params['Encryption'])
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
           end
         end
       end

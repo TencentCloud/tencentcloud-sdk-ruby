@@ -20,9 +20,13 @@ module TencentCloud
   module Wss
     module V20180426
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-04-26'
-        @@endpoint = 'wss.tencentcloudapi.com'
-        @@sdk_version = 'WSS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-04-26'
+            api_endpoint = 'wss.tencentcloudapi.com'
+            sdk_version = 'WSS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（DeleteCert）用于删除证书。

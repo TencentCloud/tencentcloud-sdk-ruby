@@ -20,9 +20,13 @@ module TencentCloud
   module Ticm
     module V20181127
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-11-27'
-        @@endpoint = 'ticm.tencentcloudapi.com'
-        @@sdk_version = 'TICM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-11-27'
+            api_endpoint = 'ticm.tencentcloudapi.com'
+            sdk_version = 'TICM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果

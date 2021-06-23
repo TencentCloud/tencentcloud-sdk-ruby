@@ -20,9 +20,13 @@ module TencentCloud
   module Cms
     module V20190321
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-03-21'
-        @@endpoint = 'cms.tencentcloudapi.com'
-        @@sdk_version = 'CMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-03-21'
+            api_endpoint = 'cms.tencentcloudapi.com'
+            sdk_version = 'CMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。

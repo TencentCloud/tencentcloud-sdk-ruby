@@ -20,9 +20,13 @@ module TencentCloud
   module Tms
     module V20200713
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-07-13'
-        @@endpoint = 'tms.tencentcloudapi.com'
-        @@sdk_version = 'TMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-07-13'
+            api_endpoint = 'tms.tencentcloudapi.com'
+            sdk_version = 'TMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 举报恶意账号

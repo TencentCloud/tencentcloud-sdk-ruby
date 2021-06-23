@@ -20,9 +20,13 @@ module TencentCloud
   module Rp
     module V20200224
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-02-24'
-        @@endpoint = 'rp.tencentcloudapi.com'
-        @@sdk_version = 'RP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-02-24'
+            api_endpoint = 'rp.tencentcloudapi.com'
+            sdk_version = 'RP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 注册保护服务（RegisterProtection，RP）针对网站、APP 的线上注册场景，遇到 “恶意注册” 、“小号注册” 、“注册器注册” 等恶意行为，提供基于天御 DNA 算法的恶意防护引擎，从账号、设备、行为三个维度有效识别 “恶意注册”，从“源头”上防范业务风险。

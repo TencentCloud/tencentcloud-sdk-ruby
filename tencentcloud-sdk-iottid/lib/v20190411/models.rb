@@ -183,7 +183,9 @@ module TencentCloud
           unless params['TidSet'].nil?
             @TidSet = []
             params['TidSet'].each do |i|
-              @TidSet << TidKeysInfo.new.deserialize(i)
+              tidkeysinfo_tmp = TidKeysInfo.new
+              tidkeysinfo_tmp.deserialize(i)
+              @TidSet << tidkeysinfo_tmp
             end
           end
           @ProductKey = params['ProductKey']
@@ -305,7 +307,9 @@ module TencentCloud
           unless params['TidSet'].nil?
             @TidSet = []
             params['TidSet'].each do |i|
-              @TidSet << TidKeysInfo.new.deserialize(i)
+              tidkeysinfo_tmp = TidKeysInfo.new
+              tidkeysinfo_tmp.deserialize(i)
+              @TidSet << tidkeysinfo_tmp
             end
           end
           @RequestId = params['RequestId']

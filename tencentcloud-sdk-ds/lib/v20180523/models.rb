@@ -103,7 +103,9 @@ module TencentCloud
           unless params['SignInfos'].nil?
             @SignInfos = []
             params['SignInfos'].each do |i|
-              @SignInfos << SignInfo.new.deserialize(i)
+              signinfo_tmp = SignInfo.new
+              signinfo_tmp.deserialize(i)
+              @SignInfos << signinfo_tmp
             end
           end
           @ContractFile = params['ContractFile']
@@ -596,7 +598,9 @@ module TencentCloud
           unless params['SignLocations'].nil?
             @SignLocations = []
             params['SignLocations'].each do |i|
-              @SignLocations << SignLocation.new.deserialize(i)
+              signlocation_tmp = SignLocation.new
+              signlocation_tmp.deserialize(i)
+              @SignLocations << signlocation_tmp
             end
           end
           @AuthorizationTime = params['AuthorizationTime']
@@ -667,7 +671,8 @@ module TencentCloud
           @ContractResId = params['ContractResId']
           @AccountResId = params['AccountResId']
           unless params['SignKeyword'].nil?
-            @SignKeyword = SignKeyword.new.deserialize(params['SignKeyword'])
+            @SignKeyword = SignKeyword.new
+            @SignKeyword.deserialize(params['SignKeyword'])
           end
           @AuthorizationTime = params['AuthorizationTime']
           @Position = params['Position']

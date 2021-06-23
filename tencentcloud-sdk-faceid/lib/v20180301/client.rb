@@ -20,9 +20,13 @@ module TencentCloud
   module Faceid
     module V20180301
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-01'
-        @@endpoint = 'faceid.tencentcloudapi.com'
-        @@sdk_version = 'FACEID_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-01'
+            api_endpoint = 'faceid.tencentcloudapi.com'
+            sdk_version = 'FACEID_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口用于校验姓名和银行卡号的真实性和一致性。

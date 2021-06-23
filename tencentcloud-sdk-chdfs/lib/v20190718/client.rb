@@ -20,9 +20,13 @@ module TencentCloud
   module Chdfs
     module V20190718
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-07-18'
-        @@endpoint = 'chdfs.tencentcloudapi.com'
-        @@sdk_version = 'CHDFS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-07-18'
+            api_endpoint = 'chdfs.tencentcloudapi.com'
+            sdk_version = 'CHDFS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。

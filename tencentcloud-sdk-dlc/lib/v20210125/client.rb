@@ -20,9 +20,13 @@ module TencentCloud
   module Dlc
     module V20210125
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2021-01-25'
-        @@endpoint = 'dlc.tencentcloudapi.com'
-        @@sdk_version = 'DLC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2021-01-25'
+            api_endpoint = 'dlc.tencentcloudapi.com'
+            sdk_version = 'DLC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（CreateDatabase）用于生成建库SQL语句。

@@ -20,9 +20,13 @@ module TencentCloud
   module Ds
     module V20180523
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-05-23'
-        @@endpoint = 'ds.tencentcloudapi.com'
-        @@sdk_version = 'DS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-05-23'
+            api_endpoint = 'ds.tencentcloudapi.com'
+            sdk_version = 'DS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 检测验证码接口。此接口用于企业电子合同平台通过给用户发送短信验证码，以短信授权方式签署合同。此接口配合发送验证码接口使用。

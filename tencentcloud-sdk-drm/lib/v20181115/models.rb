@@ -105,7 +105,9 @@ module TencentCloud
           unless params['Keys'].nil?
             @Keys = []
             params['Keys'].each do |i|
-              @Keys << KeyParam.new.deserialize(i)
+              keyparam_tmp = KeyParam.new
+              keyparam_tmp.deserialize(i)
+              @Keys << keyparam_tmp
             end
           end
           @ContentId = params['ContentId']
@@ -159,7 +161,8 @@ module TencentCloud
           @ContentType = params['ContentType']
           @Tracks = params['Tracks']
           unless params['PlaybackPolicy'].nil?
-            @PlaybackPolicy = PlaybackPolicy.new.deserialize(params['PlaybackPolicy'])
+            @PlaybackPolicy = PlaybackPolicy.new
+            @PlaybackPolicy.deserialize(params['PlaybackPolicy'])
           end
         end
       end
@@ -283,7 +286,9 @@ module TencentCloud
           unless params['Keys'].nil?
             @Keys = []
             params['Keys'].each do |i|
-              @Keys << Key.new.deserialize(i)
+              key_tmp = Key.new
+              key_tmp.deserialize(i)
+              @Keys << key_tmp
             end
           end
           @SessionKey = params['SessionKey']
@@ -332,7 +337,9 @@ module TencentCloud
           unless params['FairPlayPems'].nil?
             @FairPlayPems = []
             params['FairPlayPems'].each do |i|
-              @FairPlayPems << FairPlayPemDigestInfo.new.deserialize(i)
+              fairplaypemdigestinfo_tmp = FairPlayPemDigestInfo.new
+              fairplaypemdigestinfo_tmp.deserialize(i)
+              @FairPlayPems << fairplaypemdigestinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -403,7 +410,9 @@ module TencentCloud
           unless params['Keys'].nil?
             @Keys = []
             params['Keys'].each do |i|
-              @Keys << Key.new.deserialize(i)
+              key_tmp = Key.new
+              key_tmp.deserialize(i)
+              @Keys << key_tmp
             end
           end
           @SessionKey = params['SessionKey']
@@ -434,7 +443,8 @@ module TencentCloud
           @BucketName = params['BucketName']
           @ObjectName = params['ObjectName']
           unless params['Para'].nil?
-            @Para = DrmOutputPara.new.deserialize(params['Para'])
+            @Para = DrmOutputPara.new
+            @Para.deserialize(params['Para'])
           end
         end
       end
@@ -697,12 +707,15 @@ module TencentCloud
           @CosSecretKey = params['CosSecretKey']
           @DrmType = params['DrmType']
           unless params['SourceObject'].nil?
-            @SourceObject = DrmSourceObject.new.deserialize(params['SourceObject'])
+            @SourceObject = DrmSourceObject.new
+            @SourceObject.deserialize(params['SourceObject'])
           end
           unless params['OutputObjects'].nil?
             @OutputObjects = []
             params['OutputObjects'].each do |i|
-              @OutputObjects << DrmOutputObject.new.deserialize(i)
+              drmoutputobject_tmp = DrmOutputObject.new
+              drmoutputobject_tmp.deserialize(i)
+              @OutputObjects << drmoutputobject_tmp
             end
           end
         end

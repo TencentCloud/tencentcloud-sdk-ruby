@@ -20,9 +20,13 @@ module TencentCloud
   module Rkp
     module V20191209
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-12-09'
-        @@endpoint = 'rkp.tencentcloudapi.com'
-        @@sdk_version = 'RKP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-12-09'
+            api_endpoint = 'rkp.tencentcloudapi.com'
+            sdk_version = 'RKP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 根据DevicceToken查询OpenID。

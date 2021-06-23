@@ -20,9 +20,13 @@ module TencentCloud
   module Cdb
     module V20170320
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2017-03-20'
-        @@endpoint = 'cdb.tencentcloudapi.com'
-        @@sdk_version = 'CDB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2017-03-20'
+            api_endpoint = 'cdb.tencentcloudapi.com'
+            sdk_version = 'CDB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口(AddTimeWindow)用于添加云数据库实例的维护时间窗口，以指定实例在哪些时间段可以自动执行切换访问操作。

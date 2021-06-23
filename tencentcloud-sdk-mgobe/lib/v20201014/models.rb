@@ -57,7 +57,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params['Room'])
+            @Room = Room.new
+            @Room.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -103,7 +104,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params['Room'])
+            @Room = Room.new
+            @Room.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -149,7 +151,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Player'].nil?
-            @Player = Player.new.deserialize(params['Player'])
+            @Player = Player.new
+            @Player.deserialize(params['Player'])
           end
           @RequestId = params['RequestId']
         end
@@ -195,7 +198,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params['Room'])
+            @Room = Room.new
+            @Room.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -309,7 +313,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params['Room'])
+            @Room = Room.new
+            @Room.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -391,7 +396,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Room'].nil?
-            @Room = Room.new.deserialize(params['Room'])
+            @Room = Room.new
+            @Room.deserialize(params['Room'])
           end
           @RequestId = params['RequestId']
         end
@@ -464,13 +470,17 @@ module TencentCloud
           unless params['Players'].nil?
             @Players = []
             params['Players'].each do |i|
-              @Players << Player.new.deserialize(i)
+              player_tmp = Player.new
+              player_tmp.deserialize(i)
+              @Players << player_tmp
             end
           end
           unless params['Teams'].nil?
             @Teams = []
             params['Teams'].each do |i|
-              @Teams << Team.new.deserialize(i)
+              team_tmp = Team.new
+              team_tmp.deserialize(i)
+              @Teams << team_tmp
             end
           end
           @Id = params['Id']

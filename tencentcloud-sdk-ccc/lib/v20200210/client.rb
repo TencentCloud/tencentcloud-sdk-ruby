@@ -20,9 +20,13 @@ module TencentCloud
   module Ccc
     module V20200210
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-02-10'
-        @@endpoint = 'ccc.tencentcloudapi.com'
-        @@sdk_version = 'CCC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-02-10'
+            api_endpoint = 'ccc.tencentcloudapi.com'
+            sdk_version = 'CCC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建 SDK 登录 Token。

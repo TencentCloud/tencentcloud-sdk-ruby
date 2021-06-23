@@ -20,9 +20,13 @@ module TencentCloud
   module Tics
     module V20181115
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-11-15'
-        @@endpoint = 'tics.tencentcloudapi.com'
-        @@sdk_version = 'TICS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-11-15'
+            api_endpoint = 'tics.tencentcloudapi.com'
+            sdk_version = 'TICS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 提供域名相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。

@@ -20,9 +20,13 @@ module TencentCloud
   module Msp
     module V20180319
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-19'
-        @@endpoint = 'msp.tencentcloudapi.com'
-        @@sdk_version = 'MSP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-19'
+            api_endpoint = 'msp.tencentcloudapi.com'
+            sdk_version = 'MSP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 取消注册迁移任务

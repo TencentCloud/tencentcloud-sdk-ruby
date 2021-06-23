@@ -20,9 +20,13 @@ module TencentCloud
   module Youmall
     module V20180228
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-02-28'
-        @@endpoint = 'youmall.tencentcloudapi.com'
-        @@sdk_version = 'YOUMALL_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-02-28'
+            api_endpoint = 'youmall.tencentcloudapi.com'
+            sdk_version = 'YOUMALL_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建集团门店管理员账号

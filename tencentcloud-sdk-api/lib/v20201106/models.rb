@@ -55,7 +55,9 @@ module TencentCloud
           unless params['RegionSet'].nil?
             @RegionSet = []
             params['RegionSet'].each do |i|
-              @RegionSet << RegionInfo.new.deserialize(i)
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionSet << regioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -100,7 +102,9 @@ module TencentCloud
           unless params['ZoneSet'].nil?
             @ZoneSet = []
             params['ZoneSet'].each do |i|
-              @ZoneSet << ZoneInfo.new.deserialize(i)
+              zoneinfo_tmp = ZoneInfo.new
+              zoneinfo_tmp.deserialize(i)
+              @ZoneSet << zoneinfo_tmp
             end
           end
           @RequestId = params['RequestId']

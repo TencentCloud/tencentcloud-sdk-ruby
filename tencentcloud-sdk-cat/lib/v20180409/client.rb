@@ -20,9 +20,13 @@ module TencentCloud
   module Cat
     module V20180409
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-04-09'
-        @@endpoint = 'cat.tencentcloudapi.com'
-        @@sdk_version = 'CAT_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-04-09'
+            api_endpoint = 'cat.tencentcloudapi.com'
+            sdk_version = 'CAT_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 绑定拨测任务和告警策略组

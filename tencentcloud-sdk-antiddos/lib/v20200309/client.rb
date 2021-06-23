@@ -20,9 +20,13 @@ module TencentCloud
   module Antiddos
     module V20200309
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-03-09'
-        @@endpoint = 'antiddos.tencentcloudapi.com'
-        @@sdk_version = 'ANTIDDOS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-03-09'
+            api_endpoint = 'antiddos.tencentcloudapi.com'
+            sdk_version = 'ANTIDDOS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。

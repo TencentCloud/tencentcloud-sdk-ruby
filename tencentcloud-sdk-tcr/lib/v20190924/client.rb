@@ -20,9 +20,13 @@ module TencentCloud
   module Tcr
     module V20190924
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-09-24'
-        @@endpoint = 'tcr.tencentcloudapi.com'
-        @@sdk_version = 'TCR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-09-24'
+            api_endpoint = 'tcr.tencentcloudapi.com'
+            sdk_version = 'TCR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 用于在个人版镜像仓库中批量删除Tag

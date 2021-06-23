@@ -20,9 +20,13 @@ module TencentCloud
   module Cim
     module V20190318
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-03-18'
-        @@endpoint = 'cim.tencentcloudapi.com'
-        @@sdk_version = 'CIM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-03-18'
+            api_endpoint = 'cim.tencentcloudapi.com'
+            sdk_version = 'CIM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 获取云通信IM中腾讯云账号对应的SDKAppID

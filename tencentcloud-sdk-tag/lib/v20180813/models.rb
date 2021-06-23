@@ -283,7 +283,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagResource.new.deserialize(i)
+              tagresource_tmp = TagResource.new
+              tagresource_tmp.deserialize(i)
+              @Tags << tagresource_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -356,7 +358,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagResource.new.deserialize(i)
+              tagresource_tmp = TagResource.new
+              tagresource_tmp.deserialize(i)
+              @Tags << tagresource_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -433,7 +437,9 @@ module TencentCloud
           unless params['Rows'].nil?
             @Rows = []
             params['Rows'].each do |i|
-              @Rows << ResourceIdTag.new.deserialize(i)
+              resourceidtag_tmp = ResourceIdTag.new
+              resourceidtag_tmp.deserialize(i)
+              @Rows << resourceidtag_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -515,7 +521,9 @@ module TencentCloud
           unless params['Rows'].nil?
             @Rows = []
             params['Rows'].each do |i|
-              @Rows << TagResource.new.deserialize(i)
+              tagresource_tmp = TagResource.new
+              tagresource_tmp.deserialize(i)
+              @Rows << tagresource_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -558,7 +566,9 @@ module TencentCloud
           unless params['TagFilters'].nil?
             @TagFilters = []
             params['TagFilters'].each do |i|
-              @TagFilters << TagFilter.new.deserialize(i)
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
             end
           end
           @CreateUin = params['CreateUin']
@@ -602,7 +612,9 @@ module TencentCloud
           unless params['Rows'].nil?
             @Rows = []
             params['Rows'].each do |i|
-              @Rows << ResourceTag.new.deserialize(i)
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @Rows << resourcetag_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -645,7 +657,9 @@ module TencentCloud
           unless params['TagFilters'].nil?
             @TagFilters = []
             params['TagFilters'].each do |i|
-              @TagFilters << TagFilter.new.deserialize(i)
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
             end
           end
           @CreateUin = params['CreateUin']
@@ -688,7 +702,9 @@ module TencentCloud
           unless params['Rows'].nil?
             @Rows = []
             params['Rows'].each do |i|
-              @Rows << ResourceTag.new.deserialize(i)
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @Rows << resourcetag_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -813,7 +829,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -878,7 +896,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -955,7 +975,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagWithDelete.new.deserialize(i)
+              tagwithdelete_tmp = TagWithDelete.new
+              tagwithdelete_tmp.deserialize(i)
+              @Tags << tagwithdelete_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1032,7 +1054,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagWithDelete.new.deserialize(i)
+              tagwithdelete_tmp = TagWithDelete.new
+              tagwithdelete_tmp.deserialize(i)
+              @Tags << tagwithdelete_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1109,13 +1133,17 @@ module TencentCloud
           unless params['ReplaceTags'].nil?
             @ReplaceTags = []
             params['ReplaceTags'].each do |i|
-              @ReplaceTags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ReplaceTags << tag_tmp
             end
           end
           unless params['DeleteTags'].nil?
             @DeleteTags = []
             params['DeleteTags'].each do |i|
-              @DeleteTags << TagKeyObject.new.deserialize(i)
+              tagkeyobject_tmp = TagKeyObject.new
+              tagkeyobject_tmp.deserialize(i)
+              @DeleteTags << tagkeyobject_tmp
             end
           end
         end
@@ -1210,7 +1238,9 @@ module TencentCloud
           unless params['TagKeyValues'].nil?
             @TagKeyValues = []
             params['TagKeyValues'].each do |i|
-              @TagKeyValues << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagKeyValues << tag_tmp
             end
           end
         end
@@ -1252,7 +1282,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end

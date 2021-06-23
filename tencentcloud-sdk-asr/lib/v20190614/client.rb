@@ -20,9 +20,13 @@ module TencentCloud
   module Asr
     module V20190614
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-06-14'
-        @@endpoint = 'asr.tencentcloudapi.com'
-        @@sdk_version = 'ASR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-06-14'
+            api_endpoint = 'asr.tencentcloudapi.com'
+            sdk_version = 'ASR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口用于关闭语音流异步识别任务。

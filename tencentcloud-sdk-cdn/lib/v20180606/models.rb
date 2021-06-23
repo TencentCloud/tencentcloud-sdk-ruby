@@ -41,7 +41,9 @@ module TencentCloud
           unless params['AccessControlRules'].nil?
             @AccessControlRules = []
             params['AccessControlRules'].each do |i|
-              @AccessControlRules << AccessControlRule.new.deserialize(i)
+              accesscontrolrule_tmp = AccessControlRule.new
+              accesscontrolrule_tmp.deserialize(i)
+              @AccessControlRules << accesscontrolrule_tmp
             end
           end
           @ReturnCode = params['ReturnCode']
@@ -204,99 +206,130 @@ module TencentCloud
           @Domain = params['Domain']
           @ServiceType = params['ServiceType']
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           @ProjectId = params['ProjectId']
           unless params['IpFilter'].nil?
-            @IpFilter = IpFilter.new.deserialize(params['IpFilter'])
+            @IpFilter = IpFilter.new
+            @IpFilter.deserialize(params['IpFilter'])
           end
           unless params['IpFreqLimit'].nil?
-            @IpFreqLimit = IpFreqLimit.new.deserialize(params['IpFreqLimit'])
+            @IpFreqLimit = IpFreqLimit.new
+            @IpFreqLimit.deserialize(params['IpFreqLimit'])
           end
           unless params['StatusCodeCache'].nil?
-            @StatusCodeCache = StatusCodeCache.new.deserialize(params['StatusCodeCache'])
+            @StatusCodeCache = StatusCodeCache.new
+            @StatusCodeCache.deserialize(params['StatusCodeCache'])
           end
           unless params['Compression'].nil?
-            @Compression = Compression.new.deserialize(params['Compression'])
+            @Compression = Compression.new
+            @Compression.deserialize(params['Compression'])
           end
           unless params['BandwidthAlert'].nil?
-            @BandwidthAlert = BandwidthAlert.new.deserialize(params['BandwidthAlert'])
+            @BandwidthAlert = BandwidthAlert.new
+            @BandwidthAlert.deserialize(params['BandwidthAlert'])
           end
           unless params['RangeOriginPull'].nil?
-            @RangeOriginPull = RangeOriginPull.new.deserialize(params['RangeOriginPull'])
+            @RangeOriginPull = RangeOriginPull.new
+            @RangeOriginPull.deserialize(params['RangeOriginPull'])
           end
           unless params['FollowRedirect'].nil?
-            @FollowRedirect = FollowRedirect.new.deserialize(params['FollowRedirect'])
+            @FollowRedirect = FollowRedirect.new
+            @FollowRedirect.deserialize(params['FollowRedirect'])
           end
           unless params['ErrorPage'].nil?
-            @ErrorPage = ErrorPage.new.deserialize(params['ErrorPage'])
+            @ErrorPage = ErrorPage.new
+            @ErrorPage.deserialize(params['ErrorPage'])
           end
           unless params['RequestHeader'].nil?
-            @RequestHeader = RequestHeader.new.deserialize(params['RequestHeader'])
+            @RequestHeader = RequestHeader.new
+            @RequestHeader.deserialize(params['RequestHeader'])
           end
           unless params['ResponseHeader'].nil?
-            @ResponseHeader = ResponseHeader.new.deserialize(params['ResponseHeader'])
+            @ResponseHeader = ResponseHeader.new
+            @ResponseHeader.deserialize(params['ResponseHeader'])
           end
           unless params['DownstreamCapping'].nil?
-            @DownstreamCapping = DownstreamCapping.new.deserialize(params['DownstreamCapping'])
+            @DownstreamCapping = DownstreamCapping.new
+            @DownstreamCapping.deserialize(params['DownstreamCapping'])
           end
           unless params['CacheKey'].nil?
-            @CacheKey = CacheKey.new.deserialize(params['CacheKey'])
+            @CacheKey = CacheKey.new
+            @CacheKey.deserialize(params['CacheKey'])
           end
           unless params['ResponseHeaderCache'].nil?
-            @ResponseHeaderCache = ResponseHeaderCache.new.deserialize(params['ResponseHeaderCache'])
+            @ResponseHeaderCache = ResponseHeaderCache.new
+            @ResponseHeaderCache.deserialize(params['ResponseHeaderCache'])
           end
           unless params['VideoSeek'].nil?
-            @VideoSeek = VideoSeek.new.deserialize(params['VideoSeek'])
+            @VideoSeek = VideoSeek.new
+            @VideoSeek.deserialize(params['VideoSeek'])
           end
           unless params['Cache'].nil?
-            @Cache = Cache.new.deserialize(params['Cache'])
+            @Cache = Cache.new
+            @Cache.deserialize(params['Cache'])
           end
           unless params['OriginPullOptimization'].nil?
-            @OriginPullOptimization = OriginPullOptimization.new.deserialize(params['OriginPullOptimization'])
+            @OriginPullOptimization = OriginPullOptimization.new
+            @OriginPullOptimization.deserialize(params['OriginPullOptimization'])
           end
           unless params['Https'].nil?
-            @Https = Https.new.deserialize(params['Https'])
+            @Https = Https.new
+            @Https.deserialize(params['Https'])
           end
           unless params['Authentication'].nil?
-            @Authentication = Authentication.new.deserialize(params['Authentication'])
+            @Authentication = Authentication.new
+            @Authentication.deserialize(params['Authentication'])
           end
           unless params['Seo'].nil?
-            @Seo = Seo.new.deserialize(params['Seo'])
+            @Seo = Seo.new
+            @Seo.deserialize(params['Seo'])
           end
           unless params['ForceRedirect'].nil?
-            @ForceRedirect = ForceRedirect.new.deserialize(params['ForceRedirect'])
+            @ForceRedirect = ForceRedirect.new
+            @ForceRedirect.deserialize(params['ForceRedirect'])
           end
           unless params['Referer'].nil?
-            @Referer = Referer.new.deserialize(params['Referer'])
+            @Referer = Referer.new
+            @Referer.deserialize(params['Referer'])
           end
           unless params['MaxAge'].nil?
-            @MaxAge = MaxAge.new.deserialize(params['MaxAge'])
+            @MaxAge = MaxAge.new
+            @MaxAge.deserialize(params['MaxAge'])
           end
           unless params['Ipv6'].nil?
-            @Ipv6 = Ipv6.new.deserialize(params['Ipv6'])
+            @Ipv6 = Ipv6.new
+            @Ipv6.deserialize(params['Ipv6'])
           end
           unless params['SpecificConfig'].nil?
-            @SpecificConfig = SpecificConfig.new.deserialize(params['SpecificConfig'])
+            @SpecificConfig = SpecificConfig.new
+            @SpecificConfig.deserialize(params['SpecificConfig'])
           end
           @Area = params['Area']
           unless params['OriginPullTimeout'].nil?
-            @OriginPullTimeout = OriginPullTimeout.new.deserialize(params['OriginPullTimeout'])
+            @OriginPullTimeout = OriginPullTimeout.new
+            @OriginPullTimeout.deserialize(params['OriginPullTimeout'])
           end
           unless params['Tag'].nil?
             @Tag = []
             params['Tag'].each do |i|
-              @Tag << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
             end
           end
           unless params['Ipv6Access'].nil?
-            @Ipv6Access = Ipv6Access.new.deserialize(params['Ipv6Access'])
+            @Ipv6Access = Ipv6Access.new
+            @Ipv6Access.deserialize(params['Ipv6Access'])
           end
           unless params['OfflineCache'].nil?
-            @OfflineCache = OfflineCache.new.deserialize(params['OfflineCache'])
+            @OfflineCache = OfflineCache.new
+            @OfflineCache.deserialize(params['OfflineCache'])
           end
           unless params['Quic'].nil?
-            @Quic = Quic.new.deserialize(params['Quic'])
+            @Quic = Quic.new
+            @Quic.deserialize(params['Quic'])
           end
         end
       end
@@ -417,22 +450,28 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           unless params['TypeA'].nil?
-            @TypeA = AdvancedAuthenticationTypeA.new.deserialize(params['TypeA'])
+            @TypeA = AdvancedAuthenticationTypeA.new
+            @TypeA.deserialize(params['TypeA'])
           end
           unless params['TypeB'].nil?
-            @TypeB = AdvancedAuthenticationTypeB.new.deserialize(params['TypeB'])
+            @TypeB = AdvancedAuthenticationTypeB.new
+            @TypeB.deserialize(params['TypeB'])
           end
           unless params['TypeC'].nil?
-            @TypeC = AdvancedAuthenticationTypeC.new.deserialize(params['TypeC'])
+            @TypeC = AdvancedAuthenticationTypeC.new
+            @TypeC.deserialize(params['TypeC'])
           end
           unless params['TypeD'].nil?
-            @TypeD = AdvancedAuthenticationTypeD.new.deserialize(params['TypeD'])
+            @TypeD = AdvancedAuthenticationTypeD.new
+            @TypeD.deserialize(params['TypeD'])
           end
           unless params['TypeE'].nil?
-            @TypeE = AdvancedAuthenticationTypeE.new.deserialize(params['TypeE'])
+            @TypeE = AdvancedAuthenticationTypeE.new
+            @TypeE.deserialize(params['TypeE'])
           end
           unless params['TypeF'].nil?
-            @TypeF = AdvancedAuthenticationTypeF.new.deserialize(params['TypeF'])
+            @TypeF = AdvancedAuthenticationTypeF.new
+            @TypeF.deserialize(params['TypeF'])
           end
         end
       end
@@ -712,7 +751,9 @@ module TencentCloud
           unless params['CacheRules'].nil?
             @CacheRules = []
             params['CacheRules'].each do |i|
-              @CacheRules << AdvanceCacheRule.new.deserialize(i)
+              advancecacherule_tmp = AdvanceCacheRule.new
+              advancecacherule_tmp.deserialize(i)
+              @CacheRules << advancecacherule_tmp
             end
           end
           @IgnoreCacheControl = params['IgnoreCacheControl']
@@ -753,16 +794,20 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           unless params['TypeA'].nil?
-            @TypeA = AuthenticationTypeA.new.deserialize(params['TypeA'])
+            @TypeA = AuthenticationTypeA.new
+            @TypeA.deserialize(params['TypeA'])
           end
           unless params['TypeB'].nil?
-            @TypeB = AuthenticationTypeB.new.deserialize(params['TypeB'])
+            @TypeB = AuthenticationTypeB.new
+            @TypeB.deserialize(params['TypeB'])
           end
           unless params['TypeC'].nil?
-            @TypeC = AuthenticationTypeC.new.deserialize(params['TypeC'])
+            @TypeC = AuthenticationTypeC.new
+            @TypeC.deserialize(params['TypeC'])
           end
           unless params['TypeD'].nil?
-            @TypeD = AuthenticationTypeD.new.deserialize(params['TypeD'])
+            @TypeD = AuthenticationTypeD.new
+            @TypeD.deserialize(params['TypeD'])
           end
         end
       end
@@ -1155,7 +1200,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           @Disable = params['Disable']
           @Area = params['Area']
@@ -1187,15 +1233,19 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SimpleCache'].nil?
-            @SimpleCache = SimpleCache.new.deserialize(params['SimpleCache'])
+            @SimpleCache = SimpleCache.new
+            @SimpleCache.deserialize(params['SimpleCache'])
           end
           unless params['AdvancedCache'].nil?
-            @AdvancedCache = AdvancedCache.new.deserialize(params['AdvancedCache'])
+            @AdvancedCache = AdvancedCache.new
+            @AdvancedCache.deserialize(params['AdvancedCache'])
           end
           unless params['RuleCache'].nil?
             @RuleCache = []
             params['RuleCache'].each do |i|
-              @RuleCache << RuleCache.new.deserialize(i)
+              rulecache_tmp = RuleCache.new
+              rulecache_tmp.deserialize(i)
+              @RuleCache << rulecache_tmp
             end
           end
         end
@@ -1340,24 +1390,31 @@ module TencentCloud
           @FullUrlCache = params['FullUrlCache']
           @IgnoreCase = params['IgnoreCase']
           unless params['QueryString'].nil?
-            @QueryString = QueryStringKey.new.deserialize(params['QueryString'])
+            @QueryString = QueryStringKey.new
+            @QueryString.deserialize(params['QueryString'])
           end
           unless params['Cookie'].nil?
-            @Cookie = CookieKey.new.deserialize(params['Cookie'])
+            @Cookie = CookieKey.new
+            @Cookie.deserialize(params['Cookie'])
           end
           unless params['Header'].nil?
-            @Header = HeaderKey.new.deserialize(params['Header'])
+            @Header = HeaderKey.new
+            @Header.deserialize(params['Header'])
           end
           unless params['CacheTag'].nil?
-            @CacheTag = CacheTagKey.new.deserialize(params['CacheTag'])
+            @CacheTag = CacheTagKey.new
+            @CacheTag.deserialize(params['CacheTag'])
           end
           unless params['Scheme'].nil?
-            @Scheme = SchemeKey.new.deserialize(params['Scheme'])
+            @Scheme = SchemeKey.new
+            @Scheme.deserialize(params['Scheme'])
           end
           unless params['KeyRules'].nil?
             @KeyRules = []
             params['KeyRules'].each do |i|
-              @KeyRules << KeyRule.new.deserialize(i)
+              keyrule_tmp = KeyRule.new
+              keyrule_tmp.deserialize(i)
+              @KeyRules << keyrule_tmp
             end
           end
         end
@@ -1471,11 +1528,14 @@ module TencentCloud
           unless params['DetailData'].nil?
             @DetailData = []
             params['DetailData'].each do |i|
-              @DetailData << TimestampData.new.deserialize(i)
+              timestampdata_tmp = TimestampData.new
+              timestampdata_tmp.deserialize(i)
+              @DetailData << timestampdata_tmp
             end
           end
           unless params['SummarizedData'].nil?
-            @SummarizedData = SummarizedData.new.deserialize(params['SummarizedData'])
+            @SummarizedData = SummarizedData.new
+            @SummarizedData.deserialize(params['SummarizedData'])
           end
         end
       end
@@ -1520,7 +1580,9 @@ module TencentCloud
           unless params['History'].nil?
             @History = []
             params['History'].each do |i|
-              @History << CdnIpHistory.new.deserialize(i)
+              cdniphistory_tmp = CdnIpHistory.new
+              cdniphistory_tmp.deserialize(i)
+              @History << cdniphistory_tmp
             end
           end
           @Area = params['Area']
@@ -1678,7 +1740,9 @@ module TencentCloud
           unless params['Results'].nil?
             @Results = []
             params['Results'].each do |i|
-              @Results << ClsLogObject.new.deserialize(i)
+              clslogobject_tmp = ClsLogObject.new
+              clslogobject_tmp.deserialize(i)
+              @Results << clslogobject_tmp
             end
           end
         end
@@ -1723,7 +1787,9 @@ module TencentCloud
           unless params['CompressionRules'].nil?
             @CompressionRules = []
             params['CompressionRules'].each do |i|
-              @CompressionRules << CompressionRule.new.deserialize(i)
+              compressionrule_tmp = CompressionRule.new
+              compressionrule_tmp.deserialize(i)
+              @CompressionRules << compressionrule_tmp
             end
           end
         end
@@ -1819,7 +1885,9 @@ module TencentCloud
           unless params['DomainAreaConfigs'].nil?
             @DomainAreaConfigs = []
             params['DomainAreaConfigs'].each do |i|
-              @DomainAreaConfigs << DomainAreaConfig.new.deserialize(i)
+              domainareaconfig_tmp = DomainAreaConfig.new
+              domainareaconfig_tmp.deserialize(i)
+              @DomainAreaConfigs << domainareaconfig_tmp
             end
           end
         end
@@ -2051,7 +2119,9 @@ module TencentCloud
           unless params['Conditions'].nil?
             @Conditions = []
             params['Conditions'].each do |i|
-              @Conditions << ScdnEventLogConditions.new.deserialize(i)
+              scdneventlogconditions_tmp = ScdnEventLogConditions.new
+              scdneventlogconditions_tmp.deserialize(i)
+              @Conditions << scdneventlogconditions_tmp
             end
           end
           @Source = params['Source']
@@ -2322,7 +2392,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ResourceBillingData.new.deserialize(i)
+              resourcebillingdata_tmp = ResourceBillingData.new
+              resourcebillingdata_tmp.deserialize(i)
+              @Data << resourcebillingdata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2464,7 +2536,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ResourceData.new.deserialize(i)
+              resourcedata_tmp = ResourceData.new
+              resourcedata_tmp.deserialize(i)
+              @Data << resourcedata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2537,7 +2611,9 @@ module TencentCloud
           unless params['DomainLogs'].nil?
             @DomainLogs = []
             params['DomainLogs'].each do |i|
-              @DomainLogs << DomainLog.new.deserialize(i)
+              domainlog_tmp = DomainLog.new
+              domainlog_tmp.deserialize(i)
+              @DomainLogs << domainlog_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2579,7 +2655,9 @@ module TencentCloud
           unless params['Ips'].nil?
             @Ips = []
             params['Ips'].each do |i|
-              @Ips << CdnIp.new.deserialize(i)
+              cdnip_tmp = CdnIp.new
+              cdnip_tmp.deserialize(i)
+              @Ips << cdnip_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2618,7 +2696,9 @@ module TencentCloud
           unless params['Ips'].nil?
             @Ips = []
             params['Ips'].each do |i|
-              @Ips << OriginIp.new.deserialize(i)
+              originip_tmp = OriginIp.new
+              originip_tmp.deserialize(i)
+              @Ips << originip_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -2721,28 +2801,36 @@ module TencentCloud
 
         def deserialize(params)
           unless params['BaskInfo'].nil?
-            @BaskInfo = DiagnoseData.new.deserialize(params['BaskInfo'])
+            @BaskInfo = DiagnoseData.new
+            @BaskInfo.deserialize(params['BaskInfo'])
           end
           unless params['CnameInfo'].nil?
-            @CnameInfo = DiagnoseData.new.deserialize(params['CnameInfo'])
+            @CnameInfo = DiagnoseData.new
+            @CnameInfo.deserialize(params['CnameInfo'])
           end
           unless params['ClientInfo'].nil?
-            @ClientInfo = DiagnoseData.new.deserialize(params['ClientInfo'])
+            @ClientInfo = DiagnoseData.new
+            @ClientInfo.deserialize(params['ClientInfo'])
           end
           unless params['DnsInfo'].nil?
-            @DnsInfo = DiagnoseData.new.deserialize(params['DnsInfo'])
+            @DnsInfo = DiagnoseData.new
+            @DnsInfo.deserialize(params['DnsInfo'])
           end
           unless params['NetworkInfo'].nil?
-            @NetworkInfo = DiagnoseData.new.deserialize(params['NetworkInfo'])
+            @NetworkInfo = DiagnoseData.new
+            @NetworkInfo.deserialize(params['NetworkInfo'])
           end
           unless params['OcNodeInfo'].nil?
-            @OcNodeInfo = DiagnoseData.new.deserialize(params['OcNodeInfo'])
+            @OcNodeInfo = DiagnoseData.new
+            @OcNodeInfo.deserialize(params['OcNodeInfo'])
           end
           unless params['MidNodeInfo'].nil?
-            @MidNodeInfo = DiagnoseData.new.deserialize(params['MidNodeInfo'])
+            @MidNodeInfo = DiagnoseData.new
+            @MidNodeInfo.deserialize(params['MidNodeInfo'])
           end
           unless params['OriginInfo'].nil?
-            @OriginInfo = DiagnoseData.new.deserialize(params['OriginInfo'])
+            @OriginInfo = DiagnoseData.new
+            @OriginInfo.deserialize(params['OriginInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -2830,7 +2918,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << DistrictIspInfo.new.deserialize(i)
+              districtispinfo_tmp = DistrictIspInfo.new
+              districtispinfo_tmp.deserialize(i)
+              @Data << districtispinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2863,11 +2953,14 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << DomainFilter.new.deserialize(i)
+              domainfilter_tmp = DomainFilter.new
+              domainfilter_tmp.deserialize(i)
+              @Filters << domainfilter_tmp
             end
           end
           unless params['Sort'].nil?
-            @Sort = Sort.new.deserialize(params['Sort'])
+            @Sort = Sort.new
+            @Sort.deserialize(params['Sort'])
           end
         end
       end
@@ -2894,7 +2987,9 @@ module TencentCloud
           unless params['Domains'].nil?
             @Domains = []
             params['Domains'].each do |i|
-              @Domains << DetailDomain.new.deserialize(i)
+              detaildomain_tmp = DetailDomain.new
+              detaildomain_tmp.deserialize(i)
+              @Domains << detaildomain_tmp
             end
           end
           @TotalNumber = params['TotalNumber']
@@ -2925,7 +3020,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << DomainFilter.new.deserialize(i)
+              domainfilter_tmp = DomainFilter.new
+              domainfilter_tmp.deserialize(i)
+              @Filters << domainfilter_tmp
             end
           end
         end
@@ -2953,7 +3050,9 @@ module TencentCloud
           unless params['Domains'].nil?
             @Domains = []
             params['Domains'].each do |i|
-              @Domains << BriefDomain.new.deserialize(i)
+              briefdomain_tmp = BriefDomain.new
+              briefdomain_tmp.deserialize(i)
+              @Domains << briefdomain_tmp
             end
           end
           @TotalNumber = params['TotalNumber']
@@ -3002,13 +3101,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['WebpAdapter'].nil?
-            @WebpAdapter = WebpAdapter.new.deserialize(params['WebpAdapter'])
+            @WebpAdapter = WebpAdapter.new
+            @WebpAdapter.deserialize(params['WebpAdapter'])
           end
           unless params['TpgAdapter'].nil?
-            @TpgAdapter = TpgAdapter.new.deserialize(params['TpgAdapter'])
+            @TpgAdapter = TpgAdapter.new
+            @TpgAdapter.deserialize(params['TpgAdapter'])
           end
           unless params['GuetzliAdapter'].nil?
-            @GuetzliAdapter = GuetzliAdapter.new.deserialize(params['GuetzliAdapter'])
+            @GuetzliAdapter = GuetzliAdapter.new
+            @GuetzliAdapter.deserialize(params['GuetzliAdapter'])
           end
           @RequestId = params['RequestId']
         end
@@ -3069,7 +3171,9 @@ module TencentCloud
           unless params['Ips'].nil?
             @Ips = []
             params['Ips'].each do |i|
-              @Ips << IpStatus.new.deserialize(i)
+              ipstatus_tmp = IpStatus.new
+              ipstatus_tmp.deserialize(i)
+              @Ips << ipstatus_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -3136,7 +3240,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ResourceData.new.deserialize(i)
+              resourcedata_tmp = ResourceData.new
+              resourcedata_tmp.deserialize(i)
+              @Data << resourcedata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3187,19 +3293,25 @@ module TencentCloud
           unless params['MapInfoList'].nil?
             @MapInfoList = []
             params['MapInfoList'].each do |i|
-              @MapInfoList << MapInfo.new.deserialize(i)
+              mapinfo_tmp = MapInfo.new
+              mapinfo_tmp.deserialize(i)
+              @MapInfoList << mapinfo_tmp
             end
           end
           unless params['ServerRegionRelation'].nil?
             @ServerRegionRelation = []
             params['ServerRegionRelation'].each do |i|
-              @ServerRegionRelation << RegionMapRelation.new.deserialize(i)
+              regionmaprelation_tmp = RegionMapRelation.new
+              regionmaprelation_tmp.deserialize(i)
+              @ServerRegionRelation << regionmaprelation_tmp
             end
           end
           unless params['ClientRegionRelation'].nil?
             @ClientRegionRelation = []
             params['ClientRegionRelation'].each do |i|
-              @ClientRegionRelation << RegionMapRelation.new.deserialize(i)
+              regionmaprelation_tmp = RegionMapRelation.new
+              regionmaprelation_tmp.deserialize(i)
+              @ClientRegionRelation << regionmaprelation_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3296,7 +3408,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << ResourceOriginData.new.deserialize(i)
+              resourceorigindata_tmp = ResourceOriginData.new
+              resourceorigindata_tmp.deserialize(i)
+              @Data << resourceorigindata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3404,13 +3518,17 @@ module TencentCloud
           unless params['UrlPurge'].nil?
             @UrlPurge = []
             params['UrlPurge'].each do |i|
-              @UrlPurge << Quota.new.deserialize(i)
+              quota_tmp = Quota.new
+              quota_tmp.deserialize(i)
+              @UrlPurge << quota_tmp
             end
           end
           unless params['PathPurge'].nil?
             @PathPurge = []
             params['PathPurge'].each do |i|
-              @PathPurge << Quota.new.deserialize(i)
+              quota_tmp = Quota.new
+              quota_tmp.deserialize(i)
+              @PathPurge << quota_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3497,7 +3615,9 @@ module TencentCloud
           unless params['PurgeLogs'].nil?
             @PurgeLogs = []
             params['PurgeLogs'].each do |i|
-              @PurgeLogs << PurgeTask.new.deserialize(i)
+              purgetask_tmp = PurgeTask.new
+              purgetask_tmp.deserialize(i)
+              @PurgeLogs << purgetask_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -3534,7 +3654,9 @@ module TencentCloud
           unless params['UrlPush'].nil?
             @UrlPush = []
             params['UrlPush'].each do |i|
-              @UrlPush << Quota.new.deserialize(i)
+              quota_tmp = Quota.new
+              quota_tmp.deserialize(i)
+              @UrlPush << quota_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3615,7 +3737,9 @@ module TencentCloud
           unless params['PushLogs'].nil?
             @PushLogs = []
             params['PushLogs'].each do |i|
-              @PushLogs << PushTask.new.deserialize(i)
+              pushtask_tmp = PushTask.new
+              pushtask_tmp.deserialize(i)
+              @PushLogs << pushtask_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -3695,13 +3819,17 @@ module TencentCloud
           unless params['DomainReport'].nil?
             @DomainReport = []
             params['DomainReport'].each do |i|
-              @DomainReport << ReportData.new.deserialize(i)
+              reportdata_tmp = ReportData.new
+              reportdata_tmp.deserialize(i)
+              @DomainReport << reportdata_tmp
             end
           end
           unless params['ProjectReport'].nil?
             @ProjectReport = []
             params['ProjectReport'].each do |i|
-              @ProjectReport << ReportData.new.deserialize(i)
+              reportdata_tmp = ReportData.new
+              reportdata_tmp.deserialize(i)
+              @ProjectReport << reportdata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3756,19 +3884,24 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Acl'].nil?
-            @Acl = ScdnAclConfig.new.deserialize(params['Acl'])
+            @Acl = ScdnAclConfig.new
+            @Acl.deserialize(params['Acl'])
           end
           unless params['Waf'].nil?
-            @Waf = ScdnWafConfig.new.deserialize(params['Waf'])
+            @Waf = ScdnWafConfig.new
+            @Waf.deserialize(params['Waf'])
           end
           unless params['CC'].nil?
-            @CC = ScdnConfig.new.deserialize(params['CC'])
+            @CC = ScdnConfig.new
+            @CC.deserialize(params['CC'])
           end
           unless params['Ddos'].nil?
-            @Ddos = ScdnDdosConfig.new.deserialize(params['Ddos'])
+            @Ddos = ScdnDdosConfig.new
+            @Ddos.deserialize(params['Ddos'])
           end
           unless params['Bot'].nil?
-            @Bot = ScdnBotConfig.new.deserialize(params['Bot'])
+            @Bot = ScdnBotConfig.new
+            @Bot.deserialize(params['Bot'])
           end
           @Status = params['Status']
           @RequestId = params['RequestId']
@@ -3875,20 +4008,26 @@ module TencentCloud
           unless params['TopTypeData'].nil?
             @TopTypeData = []
             params['TopTypeData'].each do |i|
-              @TopTypeData << ScdnTypeData.new.deserialize(i)
+              scdntypedata_tmp = ScdnTypeData.new
+              scdntypedata_tmp.deserialize(i)
+              @TopTypeData << scdntypedata_tmp
             end
           end
           unless params['TopIpData'].nil?
             @TopIpData = []
             params['TopIpData'].each do |i|
-              @TopIpData << ScdnTopData.new.deserialize(i)
+              scdntopdata_tmp = ScdnTopData.new
+              scdntopdata_tmp.deserialize(i)
+              @TopIpData << scdntopdata_tmp
             end
           end
           @Mode = params['Mode']
           unless params['TopUrlData'].nil?
             @TopUrlData = []
             params['TopUrlData'].each do |i|
-              @TopUrlData << ScdnTopUrlData.new.deserialize(i)
+              scdntopurldata_tmp = ScdnTopUrlData.new
+              scdntopurldata_tmp.deserialize(i)
+              @TopUrlData << scdntopurldata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3943,7 +4082,9 @@ module TencentCloud
           unless params['TrafficPackages'].nil?
             @TrafficPackages = []
             params['TrafficPackages'].each do |i|
-              @TrafficPackages << TrafficPackage.new.deserialize(i)
+              trafficpackage_tmp = TrafficPackage.new
+              trafficpackage_tmp.deserialize(i)
+              @TrafficPackages << trafficpackage_tmp
             end
           end
           @ExpiringCount = params['ExpiringCount']
@@ -3998,7 +4139,9 @@ module TencentCloud
           unless params['UrlRecordList'].nil?
             @UrlRecordList = []
             params['UrlRecordList'].each do |i|
-              @UrlRecordList << ViolationUrl.new.deserialize(i)
+              violationurl_tmp = ViolationUrl.new
+              violationurl_tmp.deserialize(i)
+              @UrlRecordList << violationurl_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -4264,141 +4407,185 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           unless params['IpFilter'].nil?
-            @IpFilter = IpFilter.new.deserialize(params['IpFilter'])
+            @IpFilter = IpFilter.new
+            @IpFilter.deserialize(params['IpFilter'])
           end
           unless params['IpFreqLimit'].nil?
-            @IpFreqLimit = IpFreqLimit.new.deserialize(params['IpFreqLimit'])
+            @IpFreqLimit = IpFreqLimit.new
+            @IpFreqLimit.deserialize(params['IpFreqLimit'])
           end
           unless params['StatusCodeCache'].nil?
-            @StatusCodeCache = StatusCodeCache.new.deserialize(params['StatusCodeCache'])
+            @StatusCodeCache = StatusCodeCache.new
+            @StatusCodeCache.deserialize(params['StatusCodeCache'])
           end
           unless params['Compression'].nil?
-            @Compression = Compression.new.deserialize(params['Compression'])
+            @Compression = Compression.new
+            @Compression.deserialize(params['Compression'])
           end
           unless params['BandwidthAlert'].nil?
-            @BandwidthAlert = BandwidthAlert.new.deserialize(params['BandwidthAlert'])
+            @BandwidthAlert = BandwidthAlert.new
+            @BandwidthAlert.deserialize(params['BandwidthAlert'])
           end
           unless params['RangeOriginPull'].nil?
-            @RangeOriginPull = RangeOriginPull.new.deserialize(params['RangeOriginPull'])
+            @RangeOriginPull = RangeOriginPull.new
+            @RangeOriginPull.deserialize(params['RangeOriginPull'])
           end
           unless params['FollowRedirect'].nil?
-            @FollowRedirect = FollowRedirect.new.deserialize(params['FollowRedirect'])
+            @FollowRedirect = FollowRedirect.new
+            @FollowRedirect.deserialize(params['FollowRedirect'])
           end
           unless params['ErrorPage'].nil?
-            @ErrorPage = ErrorPage.new.deserialize(params['ErrorPage'])
+            @ErrorPage = ErrorPage.new
+            @ErrorPage.deserialize(params['ErrorPage'])
           end
           unless params['RequestHeader'].nil?
-            @RequestHeader = RequestHeader.new.deserialize(params['RequestHeader'])
+            @RequestHeader = RequestHeader.new
+            @RequestHeader.deserialize(params['RequestHeader'])
           end
           unless params['ResponseHeader'].nil?
-            @ResponseHeader = ResponseHeader.new.deserialize(params['ResponseHeader'])
+            @ResponseHeader = ResponseHeader.new
+            @ResponseHeader.deserialize(params['ResponseHeader'])
           end
           unless params['DownstreamCapping'].nil?
-            @DownstreamCapping = DownstreamCapping.new.deserialize(params['DownstreamCapping'])
+            @DownstreamCapping = DownstreamCapping.new
+            @DownstreamCapping.deserialize(params['DownstreamCapping'])
           end
           unless params['CacheKey'].nil?
-            @CacheKey = CacheKey.new.deserialize(params['CacheKey'])
+            @CacheKey = CacheKey.new
+            @CacheKey.deserialize(params['CacheKey'])
           end
           unless params['ResponseHeaderCache'].nil?
-            @ResponseHeaderCache = ResponseHeaderCache.new.deserialize(params['ResponseHeaderCache'])
+            @ResponseHeaderCache = ResponseHeaderCache.new
+            @ResponseHeaderCache.deserialize(params['ResponseHeaderCache'])
           end
           unless params['VideoSeek'].nil?
-            @VideoSeek = VideoSeek.new.deserialize(params['VideoSeek'])
+            @VideoSeek = VideoSeek.new
+            @VideoSeek.deserialize(params['VideoSeek'])
           end
           unless params['Cache'].nil?
-            @Cache = Cache.new.deserialize(params['Cache'])
+            @Cache = Cache.new
+            @Cache.deserialize(params['Cache'])
           end
           unless params['OriginPullOptimization'].nil?
-            @OriginPullOptimization = OriginPullOptimization.new.deserialize(params['OriginPullOptimization'])
+            @OriginPullOptimization = OriginPullOptimization.new
+            @OriginPullOptimization.deserialize(params['OriginPullOptimization'])
           end
           unless params['Https'].nil?
-            @Https = Https.new.deserialize(params['Https'])
+            @Https = Https.new
+            @Https.deserialize(params['Https'])
           end
           unless params['Authentication'].nil?
-            @Authentication = Authentication.new.deserialize(params['Authentication'])
+            @Authentication = Authentication.new
+            @Authentication.deserialize(params['Authentication'])
           end
           unless params['Seo'].nil?
-            @Seo = Seo.new.deserialize(params['Seo'])
+            @Seo = Seo.new
+            @Seo.deserialize(params['Seo'])
           end
           @Disable = params['Disable']
           unless params['ForceRedirect'].nil?
-            @ForceRedirect = ForceRedirect.new.deserialize(params['ForceRedirect'])
+            @ForceRedirect = ForceRedirect.new
+            @ForceRedirect.deserialize(params['ForceRedirect'])
           end
           unless params['Referer'].nil?
-            @Referer = Referer.new.deserialize(params['Referer'])
+            @Referer = Referer.new
+            @Referer.deserialize(params['Referer'])
           end
           unless params['MaxAge'].nil?
-            @MaxAge = MaxAge.new.deserialize(params['MaxAge'])
+            @MaxAge = MaxAge.new
+            @MaxAge.deserialize(params['MaxAge'])
           end
           unless params['Ipv6'].nil?
-            @Ipv6 = Ipv6.new.deserialize(params['Ipv6'])
+            @Ipv6 = Ipv6.new
+            @Ipv6.deserialize(params['Ipv6'])
           end
           unless params['Compatibility'].nil?
-            @Compatibility = Compatibility.new.deserialize(params['Compatibility'])
+            @Compatibility = Compatibility.new
+            @Compatibility.deserialize(params['Compatibility'])
           end
           unless params['SpecificConfig'].nil?
-            @SpecificConfig = SpecificConfig.new.deserialize(params['SpecificConfig'])
+            @SpecificConfig = SpecificConfig.new
+            @SpecificConfig.deserialize(params['SpecificConfig'])
           end
           @Area = params['Area']
           @Readonly = params['Readonly']
           unless params['OriginPullTimeout'].nil?
-            @OriginPullTimeout = OriginPullTimeout.new.deserialize(params['OriginPullTimeout'])
+            @OriginPullTimeout = OriginPullTimeout.new
+            @OriginPullTimeout.deserialize(params['OriginPullTimeout'])
           end
           unless params['AwsPrivateAccess'].nil?
-            @AwsPrivateAccess = AwsPrivateAccess.new.deserialize(params['AwsPrivateAccess'])
+            @AwsPrivateAccess = AwsPrivateAccess.new
+            @AwsPrivateAccess.deserialize(params['AwsPrivateAccess'])
           end
           unless params['SecurityConfig'].nil?
-            @SecurityConfig = SecurityConfig.new.deserialize(params['SecurityConfig'])
+            @SecurityConfig = SecurityConfig.new
+            @SecurityConfig.deserialize(params['SecurityConfig'])
           end
           unless params['ImageOptimization'].nil?
-            @ImageOptimization = ImageOptimization.new.deserialize(params['ImageOptimization'])
+            @ImageOptimization = ImageOptimization.new
+            @ImageOptimization.deserialize(params['ImageOptimization'])
           end
           unless params['UserAgentFilter'].nil?
-            @UserAgentFilter = UserAgentFilter.new.deserialize(params['UserAgentFilter'])
+            @UserAgentFilter = UserAgentFilter.new
+            @UserAgentFilter.deserialize(params['UserAgentFilter'])
           end
           unless params['AccessControl'].nil?
-            @AccessControl = AccessControl.new.deserialize(params['AccessControl'])
+            @AccessControl = AccessControl.new
+            @AccessControl.deserialize(params['AccessControl'])
           end
           @Advance = params['Advance']
           unless params['UrlRedirect'].nil?
-            @UrlRedirect = UrlRedirect.new.deserialize(params['UrlRedirect'])
+            @UrlRedirect = UrlRedirect.new
+            @UrlRedirect.deserialize(params['UrlRedirect'])
           end
           @AccessPort = params['AccessPort']
           unless params['Tag'].nil?
             @Tag = []
             params['Tag'].each do |i|
-              @Tag << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
             end
           end
           unless params['AdvancedAuthentication'].nil?
-            @AdvancedAuthentication = AdvancedAuthentication.new.deserialize(params['AdvancedAuthentication'])
+            @AdvancedAuthentication = AdvancedAuthentication.new
+            @AdvancedAuthentication.deserialize(params['AdvancedAuthentication'])
           end
           unless params['OriginAuthentication'].nil?
-            @OriginAuthentication = OriginAuthentication.new.deserialize(params['OriginAuthentication'])
+            @OriginAuthentication = OriginAuthentication.new
+            @OriginAuthentication.deserialize(params['OriginAuthentication'])
           end
           unless params['Ipv6Access'].nil?
-            @Ipv6Access = Ipv6Access.new.deserialize(params['Ipv6Access'])
+            @Ipv6Access = Ipv6Access.new
+            @Ipv6Access.deserialize(params['Ipv6Access'])
           end
           unless params['AdvanceSet'].nil?
             @AdvanceSet = []
             params['AdvanceSet'].each do |i|
-              @AdvanceSet << AdvanceConfig.new.deserialize(i)
+              advanceconfig_tmp = AdvanceConfig.new
+              advanceconfig_tmp.deserialize(i)
+              @AdvanceSet << advanceconfig_tmp
             end
           end
           unless params['OfflineCache'].nil?
-            @OfflineCache = OfflineCache.new.deserialize(params['OfflineCache'])
+            @OfflineCache = OfflineCache.new
+            @OfflineCache.deserialize(params['OfflineCache'])
           end
           unless params['OriginCombine'].nil?
-            @OriginCombine = OriginCombine.new.deserialize(params['OriginCombine'])
+            @OriginCombine = OriginCombine.new
+            @OriginCombine.deserialize(params['OriginCombine'])
           end
           unless params['PostMaxSize'].nil?
-            @PostMaxSize = PostSize.new.deserialize(params['PostMaxSize'])
+            @PostMaxSize = PostSize.new
+            @PostMaxSize.deserialize(params['PostMaxSize'])
           end
           unless params['Quic'].nil?
-            @Quic = Quic.new.deserialize(params['Quic'])
+            @Quic = Quic.new
+            @Quic.deserialize(params['Quic'])
           end
         end
       end
@@ -4426,7 +4613,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << DiagnoseUnit.new.deserialize(i)
+              diagnoseunit_tmp = DiagnoseUnit.new
+              diagnoseunit_tmp.deserialize(i)
+              @Data << diagnoseunit_tmp
             end
           end
           @Status = params['Status']
@@ -4478,7 +4667,9 @@ module TencentCloud
           unless params['ClientList'].nil?
             @ClientList = []
             params['ClientList'].each do |i|
-              @ClientList << DiagnoseList.new.deserialize(i)
+              diagnoselist_tmp = DiagnoseList.new
+              diagnoselist_tmp.deserialize(i)
+              @ClientList << diagnoselist_tmp
             end
           end
           @Area = params['Area']
@@ -4524,7 +4715,9 @@ module TencentCloud
           unless params['ClientInfo'].nil?
             @ClientInfo = []
             params['ClientInfo'].each do |i|
-              @ClientInfo << ClientInfo.new.deserialize(i)
+              clientinfo_tmp = ClientInfo.new
+              clientinfo_tmp.deserialize(i)
+              @ClientInfo << clientinfo_tmp
             end
           end
           @FinalDiagnose = params['FinalDiagnose']
@@ -4598,7 +4791,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['CacheOptResult'].nil?
-            @CacheOptResult = CacheOptResult.new.deserialize(params['CacheOptResult'])
+            @CacheOptResult = CacheOptResult.new
+            @CacheOptResult.deserialize(params['CacheOptResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -4816,7 +5010,9 @@ module TencentCloud
           unless params['CappingRules'].nil?
             @CappingRules = []
             params['CappingRules'].each do |i|
-              @CappingRules << CappingRule.new.deserialize(i)
+              cappingrule_tmp = CappingRule.new
+              cappingrule_tmp.deserialize(i)
+              @CappingRules << cappingrule_tmp
             end
           end
         end
@@ -4895,7 +5091,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['CacheOptResult'].nil?
-            @CacheOptResult = CacheOptResult.new.deserialize(params['CacheOptResult'])
+            @CacheOptResult = CacheOptResult.new
+            @CacheOptResult.deserialize(params['CacheOptResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -4964,7 +5161,9 @@ module TencentCloud
           unless params['PageRules'].nil?
             @PageRules = []
             params['PageRules'].each do |i|
-              @PageRules << ErrorPageRule.new.deserialize(i)
+              errorpagerule_tmp = ErrorPageRule.new
+              errorpagerule_tmp.deserialize(i)
+              @PageRules << errorpagerule_tmp
             end
           end
         end
@@ -5113,7 +5312,9 @@ module TencentCloud
           unless params['UrlRecordList'].nil?
             @UrlRecordList = []
             params['UrlRecordList'].each do |i|
-              @UrlRecordList << UrlRecord.new.deserialize(i)
+              urlrecord_tmp = UrlRecord.new
+              urlrecord_tmp.deserialize(i)
+              @UrlRecordList << urlrecord_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -5332,15 +5533,18 @@ module TencentCloud
           @OcspStapling = params['OcspStapling']
           @VerifyClient = params['VerifyClient']
           unless params['CertInfo'].nil?
-            @CertInfo = ServerCert.new.deserialize(params['CertInfo'])
+            @CertInfo = ServerCert.new
+            @CertInfo.deserialize(params['CertInfo'])
           end
           unless params['ClientCertInfo'].nil?
-            @ClientCertInfo = ClientCert.new.deserialize(params['ClientCertInfo'])
+            @ClientCertInfo = ClientCert.new
+            @ClientCertInfo.deserialize(params['ClientCertInfo'])
           end
           @Spdy = params['Spdy']
           @SslStatus = params['SslStatus']
           unless params['Hsts'].nil?
-            @Hsts = Hsts.new.deserialize(params['Hsts'])
+            @Hsts = Hsts.new
+            @Hsts.deserialize(params['Hsts'])
           end
           @TlsVersion = params['TlsVersion']
         end
@@ -5368,13 +5572,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['WebpAdapter'].nil?
-            @WebpAdapter = WebpAdapter.new.deserialize(params['WebpAdapter'])
+            @WebpAdapter = WebpAdapter.new
+            @WebpAdapter.deserialize(params['WebpAdapter'])
           end
           unless params['TpgAdapter'].nil?
-            @TpgAdapter = TpgAdapter.new.deserialize(params['TpgAdapter'])
+            @TpgAdapter = TpgAdapter.new
+            @TpgAdapter.deserialize(params['TpgAdapter'])
           end
           unless params['GuetzliAdapter'].nil?
-            @GuetzliAdapter = GuetzliAdapter.new.deserialize(params['GuetzliAdapter'])
+            @GuetzliAdapter = GuetzliAdapter.new
+            @GuetzliAdapter.deserialize(params['GuetzliAdapter'])
           end
         end
       end
@@ -5415,7 +5622,9 @@ module TencentCloud
           unless params['FilterRules'].nil?
             @FilterRules = []
             params['FilterRules'].each do |i|
-              @FilterRules << IpFilterPathRule.new.deserialize(i)
+              ipfilterpathrule_tmp = IpFilterPathRule.new
+              ipfilterpathrule_tmp.deserialize(i)
+              @FilterRules << ipfilterpathrule_tmp
             end
           end
         end
@@ -5605,7 +5814,8 @@ module TencentCloud
           @FullUrlCache = params['FullUrlCache']
           @IgnoreCase = params['IgnoreCase']
           unless params['QueryString'].nil?
-            @QueryString = RuleQueryString.new.deserialize(params['QueryString'])
+            @QueryString = RuleQueryString.new
+            @QueryString.deserialize(params['QueryString'])
           end
           @RuleTag = params['RuleTag']
         end
@@ -5647,12 +5857,15 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Logset'].nil?
-            @Logset = LogSetInfo.new.deserialize(params['Logset'])
+            @Logset = LogSetInfo.new
+            @Logset.deserialize(params['Logset'])
           end
           unless params['Topics'].nil?
             @Topics = []
             params['Topics'].each do |i|
-              @Topics << TopicInfo.new.deserialize(i)
+              topicinfo_tmp = TopicInfo.new
+              topicinfo_tmp.deserialize(i)
+              @Topics << topicinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5724,7 +5937,9 @@ module TencentCloud
           unless params['DomainAreaConfigs'].nil?
             @DomainAreaConfigs = []
             params['DomainAreaConfigs'].each do |i|
-              @DomainAreaConfigs << DomainAreaConfig.new.deserialize(i)
+              domainareaconfig_tmp = DomainAreaConfig.new
+              domainareaconfig_tmp.deserialize(i)
+              @DomainAreaConfigs << domainareaconfig_tmp
             end
           end
           @TopicName = params['TopicName']
@@ -5771,7 +5986,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << DiagnoseInfo.new.deserialize(i)
+              diagnoseinfo_tmp = DiagnoseInfo.new
+              diagnoseinfo_tmp.deserialize(i)
+              @Data << diagnoseinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5825,7 +6042,9 @@ module TencentCloud
           unless params['DomainList'].nil?
             @DomainList = []
             params['DomainList'].each do |i|
-              @DomainList << ScdnDomain.new.deserialize(i)
+              scdndomain_tmp = ScdnDomain.new
+              scdndomain_tmp.deserialize(i)
+              @DomainList << scdndomain_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -5874,7 +6093,9 @@ module TencentCloud
           unless params['TaskList'].nil?
             @TaskList = []
             params['TaskList'].each do |i|
-              @TaskList << ScdnLogTaskDetail.new.deserialize(i)
+              scdnlogtaskdetail_tmp = ScdnLogTaskDetail.new
+              scdnlogtaskdetail_tmp.deserialize(i)
+              @TaskList << scdnlogtaskdetail_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -5983,7 +6204,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              @Data << TopData.new.deserialize(i)
+              topdata_tmp = TopData.new
+              topdata_tmp.deserialize(i)
+              @Data << topdata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6147,74 +6370,97 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Authentication'].nil?
-            @Authentication = Authentication.new.deserialize(params['Authentication'])
+            @Authentication = Authentication.new
+            @Authentication.deserialize(params['Authentication'])
           end
           unless params['BandwidthAlert'].nil?
-            @BandwidthAlert = BandwidthAlert.new.deserialize(params['BandwidthAlert'])
+            @BandwidthAlert = BandwidthAlert.new
+            @BandwidthAlert.deserialize(params['BandwidthAlert'])
           end
           unless params['Cache'].nil?
-            @Cache = Cache.new.deserialize(params['Cache'])
+            @Cache = Cache.new
+            @Cache.deserialize(params['Cache'])
           end
           unless params['CacheKey'].nil?
-            @CacheKey = CacheKey.new.deserialize(params['CacheKey'])
+            @CacheKey = CacheKey.new
+            @CacheKey.deserialize(params['CacheKey'])
           end
           unless params['Compression'].nil?
-            @Compression = Compression.new.deserialize(params['Compression'])
+            @Compression = Compression.new
+            @Compression.deserialize(params['Compression'])
           end
           unless params['DownstreamCapping'].nil?
-            @DownstreamCapping = DownstreamCapping.new.deserialize(params['DownstreamCapping'])
+            @DownstreamCapping = DownstreamCapping.new
+            @DownstreamCapping.deserialize(params['DownstreamCapping'])
           end
           unless params['ErrorPage'].nil?
-            @ErrorPage = ErrorPage.new.deserialize(params['ErrorPage'])
+            @ErrorPage = ErrorPage.new
+            @ErrorPage.deserialize(params['ErrorPage'])
           end
           unless params['FollowRedirect'].nil?
-            @FollowRedirect = FollowRedirect.new.deserialize(params['FollowRedirect'])
+            @FollowRedirect = FollowRedirect.new
+            @FollowRedirect.deserialize(params['FollowRedirect'])
           end
           unless params['ForceRedirect'].nil?
-            @ForceRedirect = ForceRedirect.new.deserialize(params['ForceRedirect'])
+            @ForceRedirect = ForceRedirect.new
+            @ForceRedirect.deserialize(params['ForceRedirect'])
           end
           unless params['Https'].nil?
-            @Https = Https.new.deserialize(params['Https'])
+            @Https = Https.new
+            @Https.deserialize(params['Https'])
           end
           unless params['IpFilter'].nil?
-            @IpFilter = IpFilter.new.deserialize(params['IpFilter'])
+            @IpFilter = IpFilter.new
+            @IpFilter.deserialize(params['IpFilter'])
           end
           unless params['IpFreqLimit'].nil?
-            @IpFreqLimit = IpFreqLimit.new.deserialize(params['IpFreqLimit'])
+            @IpFreqLimit = IpFreqLimit.new
+            @IpFreqLimit.deserialize(params['IpFreqLimit'])
           end
           unless params['MaxAge'].nil?
-            @MaxAge = MaxAge.new.deserialize(params['MaxAge'])
+            @MaxAge = MaxAge.new
+            @MaxAge.deserialize(params['MaxAge'])
           end
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           unless params['OriginPullOptimization'].nil?
-            @OriginPullOptimization = OriginPullOptimization.new.deserialize(params['OriginPullOptimization'])
+            @OriginPullOptimization = OriginPullOptimization.new
+            @OriginPullOptimization.deserialize(params['OriginPullOptimization'])
           end
           unless params['RangeOriginPull'].nil?
-            @RangeOriginPull = RangeOriginPull.new.deserialize(params['RangeOriginPull'])
+            @RangeOriginPull = RangeOriginPull.new
+            @RangeOriginPull.deserialize(params['RangeOriginPull'])
           end
           unless params['Referer'].nil?
-            @Referer = Referer.new.deserialize(params['Referer'])
+            @Referer = Referer.new
+            @Referer.deserialize(params['Referer'])
           end
           unless params['RequestHeader'].nil?
-            @RequestHeader = RequestHeader.new.deserialize(params['RequestHeader'])
+            @RequestHeader = RequestHeader.new
+            @RequestHeader.deserialize(params['RequestHeader'])
           end
           unless params['ResponseHeader'].nil?
-            @ResponseHeader = ResponseHeader.new.deserialize(params['ResponseHeader'])
+            @ResponseHeader = ResponseHeader.new
+            @ResponseHeader.deserialize(params['ResponseHeader'])
           end
           unless params['ResponseHeaderCache'].nil?
-            @ResponseHeaderCache = ResponseHeaderCache.new.deserialize(params['ResponseHeaderCache'])
+            @ResponseHeaderCache = ResponseHeaderCache.new
+            @ResponseHeaderCache.deserialize(params['ResponseHeaderCache'])
           end
           unless params['Seo'].nil?
-            @Seo = Seo.new.deserialize(params['Seo'])
+            @Seo = Seo.new
+            @Seo.deserialize(params['Seo'])
           end
           @ServiceType = params['ServiceType']
           unless params['StatusCodeCache'].nil?
-            @StatusCodeCache = StatusCodeCache.new.deserialize(params['StatusCodeCache'])
+            @StatusCodeCache = StatusCodeCache.new
+            @StatusCodeCache.deserialize(params['StatusCodeCache'])
           end
           unless params['VideoSeek'].nil?
-            @VideoSeek = VideoSeek.new.deserialize(params['VideoSeek'])
+            @VideoSeek = VideoSeek.new
+            @VideoSeek.deserialize(params['VideoSeek'])
           end
         end
       end
@@ -6246,7 +6492,9 @@ module TencentCloud
           unless params['DomainAreaConfigs'].nil?
             @DomainAreaConfigs = []
             params['DomainAreaConfigs'].each do |i|
-              @DomainAreaConfigs << DomainAreaConfig.new.deserialize(i)
+              domainareaconfig_tmp = DomainAreaConfig.new
+              domainareaconfig_tmp.deserialize(i)
+              @DomainAreaConfigs << domainareaconfig_tmp
             end
           end
         end
@@ -6311,7 +6559,9 @@ module TencentCloud
           unless params['MaxAgeRules'].nil?
             @MaxAgeRules = []
             params['MaxAgeRules'].each do |i|
-              @MaxAgeRules << MaxAgeRule.new.deserialize(i)
+              maxagerule_tmp = MaxAgeRule.new
+              maxagerule_tmp.deserialize(i)
+              @MaxAgeRules << maxagerule_tmp
             end
           end
         end
@@ -6513,13 +6763,17 @@ module TencentCloud
           unless params['PathRules'].nil?
             @PathRules = []
             params['PathRules'].each do |i|
-              @PathRules << PathRule.new.deserialize(i)
+              pathrule_tmp = PathRule.new
+              pathrule_tmp.deserialize(i)
+              @PathRules << pathrule_tmp
             end
           end
           unless params['PathBasedOrigin'].nil?
             @PathBasedOrigin = []
             params['PathBasedOrigin'].each do |i|
-              @PathBasedOrigin << PathBasedOriginRule.new.deserialize(i)
+              pathbasedoriginrule_tmp = PathBasedOriginRule.new
+              pathbasedoriginrule_tmp.deserialize(i)
+              @PathBasedOrigin << pathbasedoriginrule_tmp
             end
           end
         end
@@ -6544,7 +6798,8 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           unless params['TypeA'].nil?
-            @TypeA = OriginAuthenticationTypeA.new.deserialize(params['TypeA'])
+            @TypeA = OriginAuthenticationTypeA.new
+            @TypeA.deserialize(params['TypeA'])
           end
         end
       end
@@ -6757,74 +7012,97 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Authentication'].nil?
-            @Authentication = Authentication.new.deserialize(params['Authentication'])
+            @Authentication = Authentication.new
+            @Authentication.deserialize(params['Authentication'])
           end
           unless params['BandwidthAlert'].nil?
-            @BandwidthAlert = BandwidthAlert.new.deserialize(params['BandwidthAlert'])
+            @BandwidthAlert = BandwidthAlert.new
+            @BandwidthAlert.deserialize(params['BandwidthAlert'])
           end
           unless params['Cache'].nil?
-            @Cache = Cache.new.deserialize(params['Cache'])
+            @Cache = Cache.new
+            @Cache.deserialize(params['Cache'])
           end
           unless params['CacheKey'].nil?
-            @CacheKey = CacheKey.new.deserialize(params['CacheKey'])
+            @CacheKey = CacheKey.new
+            @CacheKey.deserialize(params['CacheKey'])
           end
           unless params['Compression'].nil?
-            @Compression = Compression.new.deserialize(params['Compression'])
+            @Compression = Compression.new
+            @Compression.deserialize(params['Compression'])
           end
           unless params['DownstreamCapping'].nil?
-            @DownstreamCapping = DownstreamCapping.new.deserialize(params['DownstreamCapping'])
+            @DownstreamCapping = DownstreamCapping.new
+            @DownstreamCapping.deserialize(params['DownstreamCapping'])
           end
           unless params['ErrorPage'].nil?
-            @ErrorPage = ErrorPage.new.deserialize(params['ErrorPage'])
+            @ErrorPage = ErrorPage.new
+            @ErrorPage.deserialize(params['ErrorPage'])
           end
           unless params['FollowRedirect'].nil?
-            @FollowRedirect = FollowRedirect.new.deserialize(params['FollowRedirect'])
+            @FollowRedirect = FollowRedirect.new
+            @FollowRedirect.deserialize(params['FollowRedirect'])
           end
           unless params['ForceRedirect'].nil?
-            @ForceRedirect = ForceRedirect.new.deserialize(params['ForceRedirect'])
+            @ForceRedirect = ForceRedirect.new
+            @ForceRedirect.deserialize(params['ForceRedirect'])
           end
           unless params['Https'].nil?
-            @Https = Https.new.deserialize(params['Https'])
+            @Https = Https.new
+            @Https.deserialize(params['Https'])
           end
           unless params['IpFilter'].nil?
-            @IpFilter = IpFilter.new.deserialize(params['IpFilter'])
+            @IpFilter = IpFilter.new
+            @IpFilter.deserialize(params['IpFilter'])
           end
           unless params['IpFreqLimit'].nil?
-            @IpFreqLimit = IpFreqLimit.new.deserialize(params['IpFreqLimit'])
+            @IpFreqLimit = IpFreqLimit.new
+            @IpFreqLimit.deserialize(params['IpFreqLimit'])
           end
           unless params['MaxAge'].nil?
-            @MaxAge = MaxAge.new.deserialize(params['MaxAge'])
+            @MaxAge = MaxAge.new
+            @MaxAge.deserialize(params['MaxAge'])
           end
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           unless params['OriginPullOptimization'].nil?
-            @OriginPullOptimization = OriginPullOptimization.new.deserialize(params['OriginPullOptimization'])
+            @OriginPullOptimization = OriginPullOptimization.new
+            @OriginPullOptimization.deserialize(params['OriginPullOptimization'])
           end
           unless params['RangeOriginPull'].nil?
-            @RangeOriginPull = RangeOriginPull.new.deserialize(params['RangeOriginPull'])
+            @RangeOriginPull = RangeOriginPull.new
+            @RangeOriginPull.deserialize(params['RangeOriginPull'])
           end
           unless params['Referer'].nil?
-            @Referer = Referer.new.deserialize(params['Referer'])
+            @Referer = Referer.new
+            @Referer.deserialize(params['Referer'])
           end
           unless params['RequestHeader'].nil?
-            @RequestHeader = RequestHeader.new.deserialize(params['RequestHeader'])
+            @RequestHeader = RequestHeader.new
+            @RequestHeader.deserialize(params['RequestHeader'])
           end
           unless params['ResponseHeader'].nil?
-            @ResponseHeader = ResponseHeader.new.deserialize(params['ResponseHeader'])
+            @ResponseHeader = ResponseHeader.new
+            @ResponseHeader.deserialize(params['ResponseHeader'])
           end
           unless params['ResponseHeaderCache'].nil?
-            @ResponseHeaderCache = ResponseHeaderCache.new.deserialize(params['ResponseHeaderCache'])
+            @ResponseHeaderCache = ResponseHeaderCache.new
+            @ResponseHeaderCache.deserialize(params['ResponseHeaderCache'])
           end
           unless params['Seo'].nil?
-            @Seo = Seo.new.deserialize(params['Seo'])
+            @Seo = Seo.new
+            @Seo.deserialize(params['Seo'])
           end
           @ServiceType = params['ServiceType']
           unless params['StatusCodeCache'].nil?
-            @StatusCodeCache = StatusCodeCache.new.deserialize(params['StatusCodeCache'])
+            @StatusCodeCache = StatusCodeCache.new
+            @StatusCodeCache.deserialize(params['StatusCodeCache'])
           end
           unless params['VideoSeek'].nil?
-            @VideoSeek = VideoSeek.new.deserialize(params['VideoSeek'])
+            @VideoSeek = VideoSeek.new
+            @VideoSeek.deserialize(params['VideoSeek'])
           end
         end
       end
@@ -6912,7 +7190,9 @@ module TencentCloud
           unless params['RequestHeaders'].nil?
             @RequestHeaders = []
             params['RequestHeaders'].each do |i|
-              @RequestHeaders << HttpHeaderRule.new.deserialize(i)
+              httpheaderrule_tmp = HttpHeaderRule.new
+              httpheaderrule_tmp.deserialize(i)
+              @RequestHeaders << httpheaderrule_tmp
             end
           end
         end
@@ -7301,7 +7581,9 @@ module TencentCloud
           unless params['RefererRules'].nil?
             @RefererRules = []
             params['RefererRules'].each do |i|
-              @RefererRules << RefererRule.new.deserialize(i)
+              refererrule_tmp = RefererRule.new
+              refererrule_tmp.deserialize(i)
+              @RefererRules << refererrule_tmp
             end
           end
         end
@@ -7429,7 +7711,9 @@ module TencentCloud
           unless params['HeaderRules'].nil?
             @HeaderRules = []
             params['HeaderRules'].each do |i|
-              @HeaderRules << HttpHeaderPathRule.new.deserialize(i)
+              httpheaderpathrule_tmp = HttpHeaderPathRule.new
+              httpheaderpathrule_tmp.deserialize(i)
+              @HeaderRules << httpheaderpathrule_tmp
             end
           end
         end
@@ -7458,7 +7742,9 @@ module TencentCloud
           unless params['BillingData'].nil?
             @BillingData = []
             params['BillingData'].each do |i|
-              @BillingData << CdnData.new.deserialize(i)
+              cdndata_tmp = CdnData.new
+              cdndata_tmp.deserialize(i)
+              @BillingData << cdndata_tmp
             end
           end
         end
@@ -7487,7 +7773,9 @@ module TencentCloud
           unless params['CdnData'].nil?
             @CdnData = []
             params['CdnData'].each do |i|
-              @CdnData << CdnData.new.deserialize(i)
+              cdndata_tmp = CdnData.new
+              cdndata_tmp.deserialize(i)
+              @CdnData << cdndata_tmp
             end
           end
         end
@@ -7516,7 +7804,9 @@ module TencentCloud
           unless params['OriginData'].nil?
             @OriginData = []
             params['OriginData'].each do |i|
-              @OriginData << CdnData.new.deserialize(i)
+              cdndata_tmp = CdnData.new
+              cdndata_tmp.deserialize(i)
+              @OriginData << cdndata_tmp
             end
           end
         end
@@ -7544,7 +7834,9 @@ module TencentCloud
           unless params['HeaderRules'].nil?
             @HeaderRules = []
             params['HeaderRules'].each do |i|
-              @HeaderRules << HttpHeaderPathRule.new.deserialize(i)
+              httpheaderpathrule_tmp = HttpHeaderPathRule.new
+              httpheaderpathrule_tmp.deserialize(i)
+              @HeaderRules << httpheaderpathrule_tmp
             end
           end
         end
@@ -7626,7 +7918,8 @@ module TencentCloud
           @RulePaths = params['RulePaths']
           @RuleType = params['RuleType']
           unless params['CacheConfig'].nil?
-            @CacheConfig = RuleCacheConfig.new.deserialize(params['CacheConfig'])
+            @CacheConfig = RuleCacheConfig.new
+            @CacheConfig.deserialize(params['CacheConfig'])
           end
         end
       end
@@ -7653,13 +7946,16 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Cache'].nil?
-            @Cache = CacheConfigCache.new.deserialize(params['Cache'])
+            @Cache = CacheConfigCache.new
+            @Cache.deserialize(params['Cache'])
           end
           unless params['NoCache'].nil?
-            @NoCache = CacheConfigNoCache.new.deserialize(params['NoCache'])
+            @NoCache = CacheConfigNoCache.new
+            @NoCache.deserialize(params['NoCache'])
           end
           unless params['FollowOrigin'].nil?
-            @FollowOrigin = CacheConfigFollowOrigin.new.deserialize(params['FollowOrigin'])
+            @FollowOrigin = CacheConfigFollowOrigin.new
+            @FollowOrigin.deserialize(params['FollowOrigin'])
           end
         end
       end
@@ -7715,11 +8011,14 @@ module TencentCloud
           unless params['ScriptData'].nil?
             @ScriptData = []
             params['ScriptData'].each do |i|
-              @ScriptData << ScdnAclGroup.new.deserialize(i)
+              scdnaclgroup_tmp = ScdnAclGroup.new
+              scdnaclgroup_tmp.deserialize(i)
+              @ScriptData << scdnaclgroup_tmp
             end
           end
           unless params['ErrorPage'].nil?
-            @ErrorPage = ScdnErrorPage.new.deserialize(params['ErrorPage'])
+            @ErrorPage = ScdnErrorPage.new
+            @ErrorPage.deserialize(params['ErrorPage'])
           end
         end
       end
@@ -7749,7 +8048,9 @@ module TencentCloud
           unless params['Configure'].nil?
             @Configure = []
             params['Configure'].each do |i|
-              @Configure << ScdnAclRule.new.deserialize(i)
+              scdnaclrule_tmp = ScdnAclRule.new
+              scdnaclrule_tmp.deserialize(i)
+              @Configure << scdnaclrule_tmp
             end
           end
           @Result = params['Result']
@@ -7805,13 +8106,17 @@ module TencentCloud
           unless params['BotCookie'].nil?
             @BotCookie = []
             params['BotCookie'].each do |i|
-              @BotCookie << BotCookie.new.deserialize(i)
+              botcookie_tmp = BotCookie.new
+              botcookie_tmp.deserialize(i)
+              @BotCookie << botcookie_tmp
             end
           end
           unless params['BotJavaScript'].nil?
             @BotJavaScript = []
             params['BotJavaScript'].each do |i|
-              @BotJavaScript << BotJavaScript.new.deserialize(i)
+              botjavascript_tmp = BotJavaScript.new
+              botjavascript_tmp.deserialize(i)
+              @BotJavaScript << botjavascript_tmp
             end
           end
         end
@@ -7896,7 +8201,9 @@ module TencentCloud
           unless params['Rules'].nil?
             @Rules = []
             params['Rules'].each do |i|
-              @Rules << ScdnCCRules.new.deserialize(i)
+              scdnccrules_tmp = ScdnCCRules.new
+              scdnccrules_tmp.deserialize(i)
+              @Rules << scdnccrules_tmp
             end
           end
         end
@@ -8104,7 +8411,9 @@ module TencentCloud
           unless params['Conditions'].nil?
             @Conditions = []
             params['Conditions'].each do |i|
-              @Conditions << ScdnEventLogConditions.new.deserialize(i)
+              scdneventlogconditions_tmp = ScdnEventLogConditions.new
+              scdneventlogconditions_tmp.deserialize(i)
+              @Conditions << scdneventlogconditions_tmp
             end
           end
           @Area = params['Area']
@@ -8231,20 +8540,25 @@ module TencentCloud
           @Switch = params['Switch']
           @Mode = params['Mode']
           unless params['ErrorPage'].nil?
-            @ErrorPage = ScdnErrorPage.new.deserialize(params['ErrorPage'])
+            @ErrorPage = ScdnErrorPage.new
+            @ErrorPage.deserialize(params['ErrorPage'])
           end
           @WebShellSwitch = params['WebShellSwitch']
           unless params['Rules'].nil?
             @Rules = []
             params['Rules'].each do |i|
-              @Rules << ScdnWafRule.new.deserialize(i)
+              scdnwafrule_tmp = ScdnWafRule.new
+              scdnwafrule_tmp.deserialize(i)
+              @Rules << scdnwafrule_tmp
             end
           end
           @Level = params['Level']
           unless params['SubRuleSwitch'].nil?
             @SubRuleSwitch = []
             params['SubRuleSwitch'].each do |i|
-              @SubRuleSwitch << WafSubRuleStatus.new.deserialize(i)
+              wafsubrulestatus_tmp = WafSubRuleStatus.new
+              wafsubrulestatus_tmp.deserialize(i)
+              @SubRuleSwitch << wafsubrulestatus_tmp
             end
           end
         end
@@ -8351,7 +8665,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Logs'].nil?
-            @Logs = ClsSearchLogs.new.deserialize(params['Logs'])
+            @Logs = ClsSearchLogs.new
+            @Logs.deserialize(params['Logs'])
           end
           @RequestId = params['RequestId']
         end
@@ -8500,7 +8815,9 @@ module TencentCloud
           unless params['CacheRules'].nil?
             @CacheRules = []
             params['CacheRules'].each do |i|
-              @CacheRules << SimpleCacheRule.new.deserialize(i)
+              simplecacherule_tmp = SimpleCacheRule.new
+              simplecacherule_tmp.deserialize(i)
+              @CacheRules << simplecacherule_tmp
             end
           end
           @FollowOrigin = params['FollowOrigin']
@@ -8508,7 +8825,8 @@ module TencentCloud
           @IgnoreSetCookie = params['IgnoreSetCookie']
           @CompareMaxAge = params['CompareMaxAge']
           unless params['Revalidate'].nil?
-            @Revalidate = Revalidate.new.deserialize(params['Revalidate'])
+            @Revalidate = Revalidate.new
+            @Revalidate.deserialize(params['Revalidate'])
           end
         end
       end
@@ -8589,10 +8907,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Mainland'].nil?
-            @Mainland = MainlandConfig.new.deserialize(params['Mainland'])
+            @Mainland = MainlandConfig.new
+            @Mainland.deserialize(params['Mainland'])
           end
           unless params['Overseas'].nil?
-            @Overseas = OverseaConfig.new.deserialize(params['Overseas'])
+            @Overseas = OverseaConfig.new
+            @Overseas.deserialize(params['Overseas'])
           end
         end
       end
@@ -8689,7 +9009,9 @@ module TencentCloud
           unless params['CacheRules'].nil?
             @CacheRules = []
             params['CacheRules'].each do |i|
-              @CacheRules << StatusCodeCacheRule.new.deserialize(i)
+              statuscodecacherule_tmp = StatusCodeCacheRule.new
+              statuscodecacherule_tmp.deserialize(i)
+              @CacheRules << statuscodecacherule_tmp
             end
           end
         end
@@ -8874,7 +9196,9 @@ module TencentCloud
           unless params['DetailData'].nil?
             @DetailData = []
             params['DetailData'].each do |i|
-              @DetailData << TopDetailData.new.deserialize(i)
+              topdetaildata_tmp = TopDetailData.new
+              topdetaildata_tmp.deserialize(i)
+              @DetailData << topdetaildata_tmp
             end
           end
         end
@@ -9160,112 +9484,147 @@ module TencentCloud
           @Domain = params['Domain']
           @ProjectId = params['ProjectId']
           unless params['Origin'].nil?
-            @Origin = Origin.new.deserialize(params['Origin'])
+            @Origin = Origin.new
+            @Origin.deserialize(params['Origin'])
           end
           unless params['IpFilter'].nil?
-            @IpFilter = IpFilter.new.deserialize(params['IpFilter'])
+            @IpFilter = IpFilter.new
+            @IpFilter.deserialize(params['IpFilter'])
           end
           unless params['IpFreqLimit'].nil?
-            @IpFreqLimit = IpFreqLimit.new.deserialize(params['IpFreqLimit'])
+            @IpFreqLimit = IpFreqLimit.new
+            @IpFreqLimit.deserialize(params['IpFreqLimit'])
           end
           unless params['StatusCodeCache'].nil?
-            @StatusCodeCache = StatusCodeCache.new.deserialize(params['StatusCodeCache'])
+            @StatusCodeCache = StatusCodeCache.new
+            @StatusCodeCache.deserialize(params['StatusCodeCache'])
           end
           unless params['Compression'].nil?
-            @Compression = Compression.new.deserialize(params['Compression'])
+            @Compression = Compression.new
+            @Compression.deserialize(params['Compression'])
           end
           unless params['BandwidthAlert'].nil?
-            @BandwidthAlert = BandwidthAlert.new.deserialize(params['BandwidthAlert'])
+            @BandwidthAlert = BandwidthAlert.new
+            @BandwidthAlert.deserialize(params['BandwidthAlert'])
           end
           unless params['RangeOriginPull'].nil?
-            @RangeOriginPull = RangeOriginPull.new.deserialize(params['RangeOriginPull'])
+            @RangeOriginPull = RangeOriginPull.new
+            @RangeOriginPull.deserialize(params['RangeOriginPull'])
           end
           unless params['FollowRedirect'].nil?
-            @FollowRedirect = FollowRedirect.new.deserialize(params['FollowRedirect'])
+            @FollowRedirect = FollowRedirect.new
+            @FollowRedirect.deserialize(params['FollowRedirect'])
           end
           unless params['ErrorPage'].nil?
-            @ErrorPage = ErrorPage.new.deserialize(params['ErrorPage'])
+            @ErrorPage = ErrorPage.new
+            @ErrorPage.deserialize(params['ErrorPage'])
           end
           unless params['RequestHeader'].nil?
-            @RequestHeader = RequestHeader.new.deserialize(params['RequestHeader'])
+            @RequestHeader = RequestHeader.new
+            @RequestHeader.deserialize(params['RequestHeader'])
           end
           unless params['ResponseHeader'].nil?
-            @ResponseHeader = ResponseHeader.new.deserialize(params['ResponseHeader'])
+            @ResponseHeader = ResponseHeader.new
+            @ResponseHeader.deserialize(params['ResponseHeader'])
           end
           unless params['DownstreamCapping'].nil?
-            @DownstreamCapping = DownstreamCapping.new.deserialize(params['DownstreamCapping'])
+            @DownstreamCapping = DownstreamCapping.new
+            @DownstreamCapping.deserialize(params['DownstreamCapping'])
           end
           unless params['CacheKey'].nil?
-            @CacheKey = CacheKey.new.deserialize(params['CacheKey'])
+            @CacheKey = CacheKey.new
+            @CacheKey.deserialize(params['CacheKey'])
           end
           unless params['ResponseHeaderCache'].nil?
-            @ResponseHeaderCache = ResponseHeaderCache.new.deserialize(params['ResponseHeaderCache'])
+            @ResponseHeaderCache = ResponseHeaderCache.new
+            @ResponseHeaderCache.deserialize(params['ResponseHeaderCache'])
           end
           unless params['VideoSeek'].nil?
-            @VideoSeek = VideoSeek.new.deserialize(params['VideoSeek'])
+            @VideoSeek = VideoSeek.new
+            @VideoSeek.deserialize(params['VideoSeek'])
           end
           unless params['Cache'].nil?
-            @Cache = Cache.new.deserialize(params['Cache'])
+            @Cache = Cache.new
+            @Cache.deserialize(params['Cache'])
           end
           unless params['OriginPullOptimization'].nil?
-            @OriginPullOptimization = OriginPullOptimization.new.deserialize(params['OriginPullOptimization'])
+            @OriginPullOptimization = OriginPullOptimization.new
+            @OriginPullOptimization.deserialize(params['OriginPullOptimization'])
           end
           unless params['Https'].nil?
-            @Https = Https.new.deserialize(params['Https'])
+            @Https = Https.new
+            @Https.deserialize(params['Https'])
           end
           unless params['Authentication'].nil?
-            @Authentication = Authentication.new.deserialize(params['Authentication'])
+            @Authentication = Authentication.new
+            @Authentication.deserialize(params['Authentication'])
           end
           unless params['Seo'].nil?
-            @Seo = Seo.new.deserialize(params['Seo'])
+            @Seo = Seo.new
+            @Seo.deserialize(params['Seo'])
           end
           unless params['ForceRedirect'].nil?
-            @ForceRedirect = ForceRedirect.new.deserialize(params['ForceRedirect'])
+            @ForceRedirect = ForceRedirect.new
+            @ForceRedirect.deserialize(params['ForceRedirect'])
           end
           unless params['Referer'].nil?
-            @Referer = Referer.new.deserialize(params['Referer'])
+            @Referer = Referer.new
+            @Referer.deserialize(params['Referer'])
           end
           unless params['MaxAge'].nil?
-            @MaxAge = MaxAge.new.deserialize(params['MaxAge'])
+            @MaxAge = MaxAge.new
+            @MaxAge.deserialize(params['MaxAge'])
           end
           @ServiceType = params['ServiceType']
           unless params['SpecificConfig'].nil?
-            @SpecificConfig = SpecificConfig.new.deserialize(params['SpecificConfig'])
+            @SpecificConfig = SpecificConfig.new
+            @SpecificConfig.deserialize(params['SpecificConfig'])
           end
           @Area = params['Area']
           unless params['OriginPullTimeout'].nil?
-            @OriginPullTimeout = OriginPullTimeout.new.deserialize(params['OriginPullTimeout'])
+            @OriginPullTimeout = OriginPullTimeout.new
+            @OriginPullTimeout.deserialize(params['OriginPullTimeout'])
           end
           unless params['AwsPrivateAccess'].nil?
-            @AwsPrivateAccess = AwsPrivateAccess.new.deserialize(params['AwsPrivateAccess'])
+            @AwsPrivateAccess = AwsPrivateAccess.new
+            @AwsPrivateAccess.deserialize(params['AwsPrivateAccess'])
           end
           unless params['UserAgentFilter'].nil?
-            @UserAgentFilter = UserAgentFilter.new.deserialize(params['UserAgentFilter'])
+            @UserAgentFilter = UserAgentFilter.new
+            @UserAgentFilter.deserialize(params['UserAgentFilter'])
           end
           unless params['AccessControl'].nil?
-            @AccessControl = AccessControl.new.deserialize(params['AccessControl'])
+            @AccessControl = AccessControl.new
+            @AccessControl.deserialize(params['AccessControl'])
           end
           unless params['UrlRedirect'].nil?
-            @UrlRedirect = UrlRedirect.new.deserialize(params['UrlRedirect'])
+            @UrlRedirect = UrlRedirect.new
+            @UrlRedirect.deserialize(params['UrlRedirect'])
           end
           @AccessPort = params['AccessPort']
           unless params['AdvancedAuthentication'].nil?
-            @AdvancedAuthentication = AdvancedAuthentication.new.deserialize(params['AdvancedAuthentication'])
+            @AdvancedAuthentication = AdvancedAuthentication.new
+            @AdvancedAuthentication.deserialize(params['AdvancedAuthentication'])
           end
           unless params['OriginAuthentication'].nil?
-            @OriginAuthentication = OriginAuthentication.new.deserialize(params['OriginAuthentication'])
+            @OriginAuthentication = OriginAuthentication.new
+            @OriginAuthentication.deserialize(params['OriginAuthentication'])
           end
           unless params['Ipv6Access'].nil?
-            @Ipv6Access = Ipv6Access.new.deserialize(params['Ipv6Access'])
+            @Ipv6Access = Ipv6Access.new
+            @Ipv6Access.deserialize(params['Ipv6Access'])
           end
           unless params['OfflineCache'].nil?
-            @OfflineCache = OfflineCache.new.deserialize(params['OfflineCache'])
+            @OfflineCache = OfflineCache.new
+            @OfflineCache.deserialize(params['OfflineCache'])
           end
           unless params['OriginCombine'].nil?
-            @OriginCombine = OriginCombine.new.deserialize(params['OriginCombine'])
+            @OriginCombine = OriginCombine.new
+            @OriginCombine.deserialize(params['OriginCombine'])
           end
           unless params['Quic'].nil?
-            @Quic = Quic.new.deserialize(params['Quic'])
+            @Quic = Quic.new
+            @Quic.deserialize(params['Quic'])
           end
         end
       end
@@ -9309,13 +9668,16 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           unless params['WebpAdapter'].nil?
-            @WebpAdapter = WebpAdapter.new.deserialize(params['WebpAdapter'])
+            @WebpAdapter = WebpAdapter.new
+            @WebpAdapter.deserialize(params['WebpAdapter'])
           end
           unless params['TpgAdapter'].nil?
-            @TpgAdapter = TpgAdapter.new.deserialize(params['TpgAdapter'])
+            @TpgAdapter = TpgAdapter.new
+            @TpgAdapter.deserialize(params['TpgAdapter'])
           end
           unless params['GuetzliAdapter'].nil?
-            @GuetzliAdapter = GuetzliAdapter.new.deserialize(params['GuetzliAdapter'])
+            @GuetzliAdapter = GuetzliAdapter.new
+            @GuetzliAdapter.deserialize(params['GuetzliAdapter'])
           end
         end
       end
@@ -9401,19 +9763,24 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           unless params['Waf'].nil?
-            @Waf = ScdnWafConfig.new.deserialize(params['Waf'])
+            @Waf = ScdnWafConfig.new
+            @Waf.deserialize(params['Waf'])
           end
           unless params['Acl'].nil?
-            @Acl = ScdnAclConfig.new.deserialize(params['Acl'])
+            @Acl = ScdnAclConfig.new
+            @Acl.deserialize(params['Acl'])
           end
           unless params['CC'].nil?
-            @CC = ScdnConfig.new.deserialize(params['CC'])
+            @CC = ScdnConfig.new
+            @CC.deserialize(params['CC'])
           end
           unless params['Ddos'].nil?
-            @Ddos = ScdnDdosConfig.new.deserialize(params['Ddos'])
+            @Ddos = ScdnDdosConfig.new
+            @Ddos.deserialize(params['Ddos'])
           end
           unless params['Bot'].nil?
-            @Bot = ScdnBotConfig.new.deserialize(params['Bot'])
+            @Bot = ScdnBotConfig.new
+            @Bot.deserialize(params['Bot'])
           end
         end
       end
@@ -9492,7 +9859,9 @@ module TencentCloud
           unless params['PathRules'].nil?
             @PathRules = []
             params['PathRules'].each do |i|
-              @PathRules << UrlRedirectRule.new.deserialize(i)
+              urlredirectrule_tmp = UrlRedirectRule.new
+              urlredirectrule_tmp.deserialize(i)
+              @PathRules << urlredirectrule_tmp
             end
           end
         end
@@ -9548,7 +9917,9 @@ module TencentCloud
           unless params['FilterRules'].nil?
             @FilterRules = []
             params['FilterRules'].each do |i|
-              @FilterRules << UserAgentFilterRule.new.deserialize(i)
+              useragentfilterrule_tmp = UserAgentFilterRule.new
+              useragentfilterrule_tmp.deserialize(i)
+              @FilterRules << useragentfilterrule_tmp
             end
           end
         end

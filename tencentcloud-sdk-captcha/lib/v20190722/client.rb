@@ -20,9 +20,13 @@ module TencentCloud
   module Captcha
     module V20190722
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-07-22'
-        @@endpoint = 'captcha.tencentcloudapi.com'
-        @@sdk_version = 'CAPTCHA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-07-22'
+            api_endpoint = 'captcha.tencentcloudapi.com'
+            sdk_version = 'CAPTCHA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 查询安全验证码应用APPId信息

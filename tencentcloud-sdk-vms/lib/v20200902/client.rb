@@ -20,9 +20,13 @@ module TencentCloud
   module Vms
     module V20200902
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-09-02'
-        @@endpoint = 'vms.tencentcloudapi.com'
-        @@sdk_version = 'VMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-09-02'
+            api_endpoint = 'vms.tencentcloudapi.com'
+            sdk_version = 'VMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 给用户发语音验证码（仅支持数字）。

@@ -309,7 +309,8 @@ module TencentCloud
           @Alias = params['Alias']
           @Status = params['Status']
           unless params['CertificateExtra'].nil?
-            @CertificateExtra = CertificateExtra.new.deserialize(params['CertificateExtra'])
+            @CertificateExtra = CertificateExtra.new
+            @CertificateExtra.deserialize(params['CertificateExtra'])
           end
           @VulnerabilityStatus = params['VulnerabilityStatus']
           @StatusMsg = params['StatusMsg']
@@ -328,14 +329,17 @@ module TencentCloud
           @IsVulnerability = params['IsVulnerability']
           @RenewAble = params['RenewAble']
           unless params['ProjectInfo'].nil?
-            @ProjectInfo = ProjectInfo.new.deserialize(params['ProjectInfo'])
+            @ProjectInfo = ProjectInfo.new
+            @ProjectInfo.deserialize(params['ProjectInfo'])
           end
           @BoundResource = params['BoundResource']
           @Deployable = params['Deployable']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tags.new.deserialize(i)
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
             end
           end
         end
@@ -803,12 +807,14 @@ module TencentCloud
           @InsertTime = params['InsertTime']
           @OrderId = params['OrderId']
           unless params['CertificateExtra'].nil?
-            @CertificateExtra = CertificateExtra.new.deserialize(params['CertificateExtra'])
+            @CertificateExtra = CertificateExtra.new
+            @CertificateExtra.deserialize(params['CertificateExtra'])
           end
           @CertificatePrivateKey = params['CertificatePrivateKey']
           @CertificatePublicKey = params['CertificatePublicKey']
           unless params['DvAuthDetail'].nil?
-            @DvAuthDetail = DvAuthDetail.new.deserialize(params['DvAuthDetail'])
+            @DvAuthDetail = DvAuthDetail.new
+            @DvAuthDetail.deserialize(params['DvAuthDetail'])
           end
           @VulnerabilityReport = params['VulnerabilityReport']
           @CertificateId = params['CertificateId']
@@ -820,14 +826,17 @@ module TencentCloud
           @IsDv = params['IsDv']
           @IsVulnerability = params['IsVulnerability']
           unless params['SubmittedData'].nil?
-            @SubmittedData = SubmittedData.new.deserialize(params['SubmittedData'])
+            @SubmittedData = SubmittedData.new
+            @SubmittedData.deserialize(params['SubmittedData'])
           end
           @RenewAble = params['RenewAble']
           @Deployable = params['Deployable']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tags.new.deserialize(i)
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -889,7 +898,9 @@ module TencentCloud
           unless params['OperateLogs'].nil?
             @OperateLogs = []
             params['OperateLogs'].each do |i|
-              @OperateLogs << OperationLog.new.deserialize(i)
+              operationlog_tmp = OperationLog.new
+              operationlog_tmp.deserialize(i)
+              @OperateLogs << operationlog_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1070,10 +1081,12 @@ module TencentCloud
           @InsertTime = params['InsertTime']
           @OrderId = params['OrderId']
           unless params['CertificateExtra'].nil?
-            @CertificateExtra = CertificateExtra.new.deserialize(params['CertificateExtra'])
+            @CertificateExtra = CertificateExtra.new
+            @CertificateExtra.deserialize(params['CertificateExtra'])
           end
           unless params['DvAuthDetail'].nil?
-            @DvAuthDetail = DvAuthDetail.new.deserialize(params['DvAuthDetail'])
+            @DvAuthDetail = DvAuthDetail.new
+            @DvAuthDetail.deserialize(params['DvAuthDetail'])
           end
           @VulnerabilityReport = params['VulnerabilityReport']
           @CertificateId = params['CertificateId']
@@ -1086,13 +1099,16 @@ module TencentCloud
           @IsVulnerability = params['IsVulnerability']
           @RenewAble = params['RenewAble']
           unless params['SubmittedData'].nil?
-            @SubmittedData = SubmittedData.new.deserialize(params['SubmittedData'])
+            @SubmittedData = SubmittedData.new
+            @SubmittedData.deserialize(params['SubmittedData'])
           end
           @Deployable = params['Deployable']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tags.new.deserialize(i)
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1167,7 +1183,9 @@ module TencentCloud
           unless params['Certificates'].nil?
             @Certificates = []
             params['Certificates'].each do |i|
-              @Certificates << Certificates.new.deserialize(i)
+              certificates_tmp = Certificates.new
+              certificates_tmp.deserialize(i)
+              @Certificates << certificates_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1282,7 +1300,8 @@ module TencentCloud
           @ContactMail = params['ContactMail']
           @ManagerDepartment = params['ManagerDepartment']
           unless params['CompanyInfo'].nil?
-            @CompanyInfo = CompanyInfo.new.deserialize(params['CompanyInfo'])
+            @CompanyInfo = CompanyInfo.new
+            @CompanyInfo.deserialize(params['CompanyInfo'])
           end
           @CompanyId = params['CompanyId']
           @ManagerId = params['ManagerId']
@@ -1354,7 +1373,9 @@ module TencentCloud
           unless params['Managers'].nil?
             @Managers = []
             params['Managers'].each do |i|
-              @Managers << ManagerInfo.new.deserialize(i)
+              managerinfo_tmp = ManagerInfo.new
+              managerinfo_tmp.deserialize(i)
+              @Managers << managerinfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -1445,7 +1466,9 @@ module TencentCloud
           unless params['DvAuths'].nil?
             @DvAuths = []
             params['DvAuths'].each do |i|
-              @DvAuths << DvAuths.new.deserialize(i)
+              dvauths_tmp = DvAuths.new
+              dvauths_tmp.deserialize(i)
+              @DvAuths << dvauths_tmp
             end
           end
         end
@@ -1808,7 +1831,9 @@ module TencentCloud
           unless params['RevokeDomainValidateAuths'].nil?
             @RevokeDomainValidateAuths = []
             params['RevokeDomainValidateAuths'].each do |i|
-              @RevokeDomainValidateAuths << RevokeDomainValidateAuths.new.deserialize(i)
+              revokedomainvalidateauths_tmp = RevokeDomainValidateAuths.new
+              revokedomainvalidateauths_tmp.deserialize(i)
+              @RevokeDomainValidateAuths << revokedomainvalidateauths_tmp
             end
           end
           @RequestId = params['RequestId']

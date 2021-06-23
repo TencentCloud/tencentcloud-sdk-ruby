@@ -20,9 +20,13 @@ module TencentCloud
   module Cwp
     module V20180228
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-02-28'
-        @@endpoint = 'cwp.tencentcloudapi.com'
-        @@sdk_version = 'CWP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-02-28'
+            api_endpoint = 'cwp.tencentcloudapi.com'
+            sdk_version = 'CWP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口用于新增异地登录白名单规则。

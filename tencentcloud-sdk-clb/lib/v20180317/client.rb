@@ -20,9 +20,13 @@ module TencentCloud
   module Clb
     module V20180317
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-17'
-        @@endpoint = 'clb.tencentcloudapi.com'
-        @@sdk_version = 'CLB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-17'
+            api_endpoint = 'clb.tencentcloudapi.com'
+            sdk_version = 'CLB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口(AssociateTargetGroups)用来将目标组绑定到负载均衡的监听器（四层协议）或转发规则（七层协议）上。

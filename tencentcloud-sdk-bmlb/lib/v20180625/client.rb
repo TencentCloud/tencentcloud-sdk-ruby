@@ -20,9 +20,13 @@ module TencentCloud
   module Bmlb
     module V20180625
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-06-25'
-        @@endpoint = 'bmlb.tencentcloudapi.com'
-        @@sdk_version = 'BMLB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-06-25'
+            api_endpoint = 'bmlb.tencentcloudapi.com'
+            sdk_version = 'BMLB_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 绑定黑石服务器到四层监听器。服务器包括物理服务器、虚拟机以及半托管机器。

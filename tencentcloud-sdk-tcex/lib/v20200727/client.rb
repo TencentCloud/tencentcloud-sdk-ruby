@@ -20,9 +20,13 @@ module TencentCloud
   module Tcex
     module V20200727
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-07-27'
-        @@endpoint = 'tcex.tencentcloudapi.com'
-        @@sdk_version = 'TCEX_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-07-27'
+            api_endpoint = 'tcex.tencentcloudapi.com'
+            sdk_version = 'TCEX_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。

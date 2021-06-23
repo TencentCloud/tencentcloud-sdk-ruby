@@ -94,7 +94,9 @@ module TencentCloud
           unless params['InstanceList'].nil?
             @InstanceList = []
             params['InstanceList'].each do |i|
-              @InstanceList << InstanceListInfo.new.deserialize(i)
+              instancelistinfo_tmp = InstanceListInfo.new
+              instancelistinfo_tmp.deserialize(i)
+              @InstanceList << instancelistinfo_tmp
             end
           end
           @TotalNum = params['TotalNum']
@@ -186,7 +188,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << TagInfo.new.deserialize(i)
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
             end
           end
           @AddTimeStamp = params['AddTimeStamp']

@@ -20,9 +20,13 @@ module TencentCloud
   module Cr
     module V20180321
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-21'
-        @@endpoint = 'cr.tencentcloudapi.com'
-        @@sdk_version = 'CR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-21'
+            api_endpoint = 'cr.tencentcloudapi.com'
+            sdk_version = 'CR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。

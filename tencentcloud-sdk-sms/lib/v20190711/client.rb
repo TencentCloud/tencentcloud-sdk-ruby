@@ -20,9 +20,13 @@ module TencentCloud
   module Sms
     module V20190711
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-07-11'
-        @@endpoint = 'sms.tencentcloudapi.com'
-        @@sdk_version = 'SMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-07-11'
+            api_endpoint = 'sms.tencentcloudapi.com'
+            sdk_version = 'SMS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 1. 添加短信签名，申请之前请先认真参阅 [腾讯云短信签名审核标准](https://cloud.tencent.com/document/product/382/39022)。

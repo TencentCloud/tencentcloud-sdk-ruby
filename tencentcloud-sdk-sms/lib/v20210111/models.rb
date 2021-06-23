@@ -116,7 +116,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['AddSignStatus'].nil?
-            @AddSignStatus = AddSignStatus.new.deserialize(params['AddSignStatus'])
+            @AddSignStatus = AddSignStatus.new
+            @AddSignStatus.deserialize(params['AddSignStatus'])
           end
           @RequestId = params['RequestId']
         end
@@ -172,7 +173,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['AddTemplateStatus'].nil?
-            @AddTemplateStatus = AddTemplateStatus.new.deserialize(params['AddTemplateStatus'])
+            @AddTemplateStatus = AddTemplateStatus.new
+            @AddTemplateStatus.deserialize(params['AddTemplateStatus'])
           end
           @RequestId = params['RequestId']
         end
@@ -293,7 +295,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['CallbackStatusStatistics'].nil?
-            @CallbackStatusStatistics = CallbackStatusStatistics.new.deserialize(params['CallbackStatusStatistics'])
+            @CallbackStatusStatistics = CallbackStatusStatistics.new
+            @CallbackStatusStatistics.deserialize(params['CallbackStatusStatistics'])
           end
           @RequestId = params['RequestId']
         end
@@ -351,7 +354,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DeleteSignStatus'].nil?
-            @DeleteSignStatus = DeleteSignStatus.new.deserialize(params['DeleteSignStatus'])
+            @DeleteSignStatus = DeleteSignStatus.new
+            @DeleteSignStatus.deserialize(params['DeleteSignStatus'])
           end
           @RequestId = params['RequestId']
         end
@@ -389,7 +393,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['DeleteTemplateStatus'].nil?
-            @DeleteTemplateStatus = DeleteTemplateStatus.new.deserialize(params['DeleteTemplateStatus'])
+            @DeleteTemplateStatus = DeleteTemplateStatus.new
+            @DeleteTemplateStatus.deserialize(params['DeleteTemplateStatus'])
           end
           @RequestId = params['RequestId']
         end
@@ -493,7 +498,9 @@ module TencentCloud
           unless params['DescribeSignListStatusSet'].nil?
             @DescribeSignListStatusSet = []
             params['DescribeSignListStatusSet'].each do |i|
-              @DescribeSignListStatusSet << DescribeSignListStatus.new.deserialize(i)
+              describesignliststatus_tmp = DescribeSignListStatus.new
+              describesignliststatus_tmp.deserialize(i)
+              @DescribeSignListStatusSet << describesignliststatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -541,7 +548,9 @@ module TencentCloud
           unless params['DescribeTemplateStatusSet'].nil?
             @DescribeTemplateStatusSet = []
             params['DescribeTemplateStatusSet'].each do |i|
-              @DescribeTemplateStatusSet << DescribeTemplateListStatus.new.deserialize(i)
+              describetemplateliststatus_tmp = DescribeTemplateListStatus.new
+              describetemplateliststatus_tmp.deserialize(i)
+              @DescribeTemplateStatusSet << describetemplateliststatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -691,7 +700,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ModifySignStatus'].nil?
-            @ModifySignStatus = ModifySignStatus.new.deserialize(params['ModifySignStatus'])
+            @ModifySignStatus = ModifySignStatus.new
+            @ModifySignStatus.deserialize(params['ModifySignStatus'])
           end
           @RequestId = params['RequestId']
         end
@@ -751,7 +761,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['ModifyTemplateStatus'].nil?
-            @ModifyTemplateStatus = ModifyTemplateStatus.new.deserialize(params['ModifyTemplateStatus'])
+            @ModifyTemplateStatus = ModifyTemplateStatus.new
+            @ModifyTemplateStatus.deserialize(params['ModifyTemplateStatus'])
           end
           @RequestId = params['RequestId']
         end
@@ -869,7 +880,9 @@ module TencentCloud
           unless params['PullSmsReplyStatusSet'].nil?
             @PullSmsReplyStatusSet = []
             params['PullSmsReplyStatusSet'].each do |i|
-              @PullSmsReplyStatusSet << PullSmsReplyStatus.new.deserialize(i)
+              pullsmsreplystatus_tmp = PullSmsReplyStatus.new
+              pullsmsreplystatus_tmp.deserialize(i)
+              @PullSmsReplyStatusSet << pullsmsreplystatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -914,7 +927,9 @@ module TencentCloud
           unless params['PullSmsReplyStatusSet'].nil?
             @PullSmsReplyStatusSet = []
             params['PullSmsReplyStatusSet'].each do |i|
-              @PullSmsReplyStatusSet << PullSmsReplyStatus.new.deserialize(i)
+              pullsmsreplystatus_tmp = PullSmsReplyStatus.new
+              pullsmsreplystatus_tmp.deserialize(i)
+              @PullSmsReplyStatusSet << pullsmsreplystatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1017,7 +1032,9 @@ module TencentCloud
           unless params['PullSmsSendStatusSet'].nil?
             @PullSmsSendStatusSet = []
             params['PullSmsSendStatusSet'].each do |i|
-              @PullSmsSendStatusSet << PullSmsSendStatus.new.deserialize(i)
+              pullsmssendstatus_tmp = PullSmsSendStatus.new
+              pullsmssendstatus_tmp.deserialize(i)
+              @PullSmsSendStatusSet << pullsmssendstatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1062,7 +1079,9 @@ module TencentCloud
           unless params['PullSmsSendStatusSet'].nil?
             @PullSmsSendStatusSet = []
             params['PullSmsSendStatusSet'].each do |i|
-              @PullSmsSendStatusSet << PullSmsSendStatus.new.deserialize(i)
+              pullsmssendstatus_tmp = PullSmsSendStatus.new
+              pullsmssendstatus_tmp.deserialize(i)
+              @PullSmsSendStatusSet << pullsmssendstatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1134,7 +1153,9 @@ module TencentCloud
           unless params['SendStatusSet'].nil?
             @SendStatusSet = []
             params['SendStatusSet'].each do |i|
-              @SendStatusSet << SendStatus.new.deserialize(i)
+              sendstatus_tmp = SendStatus.new
+              sendstatus_tmp.deserialize(i)
+              @SendStatusSet << sendstatus_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1256,7 +1277,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['SendStatusStatistics'].nil?
-            @SendStatusStatistics = SendStatusStatistics.new.deserialize(params['SendStatusStatistics'])
+            @SendStatusStatistics = SendStatusStatistics.new
+            @SendStatusStatistics.deserialize(params['SendStatusStatistics'])
           end
           @RequestId = params['RequestId']
         end
@@ -1354,7 +1376,9 @@ module TencentCloud
           unless params['SmsPackagesStatisticsSet'].nil?
             @SmsPackagesStatisticsSet = []
             params['SmsPackagesStatisticsSet'].each do |i|
-              @SmsPackagesStatisticsSet << SmsPackagesStatistics.new.deserialize(i)
+              smspackagesstatistics_tmp = SmsPackagesStatistics.new
+              smspackagesstatistics_tmp.deserialize(i)
+              @SmsPackagesStatisticsSet << smspackagesstatistics_tmp
             end
           end
           @RequestId = params['RequestId']

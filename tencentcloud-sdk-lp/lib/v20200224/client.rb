@@ -20,9 +20,13 @@ module TencentCloud
   module Lp
     module V20200224
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-02-24'
-        @@endpoint = 'lp.tencentcloudapi.com'
-        @@sdk_version = 'LP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-02-24'
+            api_endpoint = 'lp.tencentcloudapi.com'
+            sdk_version = 'LP_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 登录保护服务（LoginProtection，LP）针对网站和 APP 的用户登录场景，实时检测是否存在盗号、撞库等恶意登录行为，帮助开发者发现异常登录，降低恶意用户登录给业务带来的风险。

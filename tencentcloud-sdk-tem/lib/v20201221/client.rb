@@ -20,9 +20,13 @@ module TencentCloud
   module Tem
     module V20201221
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-12-21'
-        @@endpoint = 'tem.tencentcloudapi.com'
-        @@sdk_version = 'TEM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-12-21'
+            api_endpoint = 'tem.tencentcloudapi.com'
+            sdk_version = 'TEM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 生成Cos临时秘钥

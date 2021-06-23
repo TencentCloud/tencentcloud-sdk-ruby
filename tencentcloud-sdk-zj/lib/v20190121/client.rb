@@ -20,9 +20,13 @@ module TencentCloud
   module Zj
     module V20190121
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-01-21'
-        @@endpoint = 'zj.tencentcloudapi.com'
-        @@sdk_version = 'ZJ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-01-21'
+            api_endpoint = 'zj.tencentcloudapi.com'
+            sdk_version = 'ZJ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 添加短信人群包信息

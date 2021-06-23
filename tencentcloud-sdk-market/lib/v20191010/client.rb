@@ -20,9 +20,13 @@ module TencentCloud
   module Market
     module V20191010
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-10-10'
-        @@endpoint = 'market.tencentcloudapi.com'
-        @@sdk_version = 'MARKET_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-10-10'
+            api_endpoint = 'market.tencentcloudapi.com'
+            sdk_version = 'MARKET_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息

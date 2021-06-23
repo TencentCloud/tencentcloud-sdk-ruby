@@ -20,9 +20,13 @@ module TencentCloud
   module Cls
     module V20201016
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-10-16'
-        @@endpoint = 'cls.tencentcloudapi.com'
-        @@sdk_version = 'CLS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-10-16'
+            api_endpoint = 'cls.tencentcloudapi.com'
+            sdk_version = 'CLS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口用于创建告警策略。

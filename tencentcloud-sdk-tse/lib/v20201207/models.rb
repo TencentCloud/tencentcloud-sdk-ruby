@@ -130,7 +130,9 @@ module TencentCloud
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
-              @Filters << Filter.new.deserialize(i)
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
             end
           end
           @Limit = params['Limit']
@@ -160,7 +162,9 @@ module TencentCloud
           unless params['Content'].nil?
             @Content = []
             params['Content'].each do |i|
-              @Content << SREInstance.new.deserialize(i)
+              sreinstance_tmp = SREInstance.new
+              sreinstance_tmp.deserialize(i)
+              @Content << sreinstance_tmp
             end
           end
           @RequestId = params['RequestId']

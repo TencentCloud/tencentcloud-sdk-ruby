@@ -20,9 +20,13 @@ module TencentCloud
   module Tbaas
     module V20180416
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-04-16'
-        @@endpoint = 'tbaas.tencentcloudapi.com'
-        @@sdk_version = 'TBAAS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-04-16'
+            api_endpoint = 'tbaas.tencentcloudapi.com'
+            sdk_version = 'TBAAS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 申请用户证书

@@ -20,9 +20,13 @@ module TencentCloud
   module Ic
     module V20190307
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-03-07'
-        @@endpoint = 'ic.tencentcloudapi.com'
-        @@sdk_version = 'IC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-03-07'
+            api_endpoint = 'ic.tencentcloudapi.com'
+            sdk_version = 'IC_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 根据应用id查询物联卡应用详情

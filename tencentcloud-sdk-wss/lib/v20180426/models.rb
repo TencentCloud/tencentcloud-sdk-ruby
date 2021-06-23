@@ -119,7 +119,9 @@ module TencentCloud
           unless params['CertificateSet'].nil?
             @CertificateSet = []
             params['CertificateSet'].each do |i|
-              @CertificateSet << SSLCertificate.new.deserialize(i)
+              sslcertificate_tmp = SSLCertificate.new
+              sslcertificate_tmp.deserialize(i)
+              @CertificateSet << sslcertificate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -256,7 +258,8 @@ module TencentCloud
           @ValidityPeriod = params['ValidityPeriod']
           @InsertTime = params['InsertTime']
           unless params['ProjectInfo'].nil?
-            @ProjectInfo = SSLProjectInfo.new.deserialize(params['ProjectInfo'])
+            @ProjectInfo = SSLProjectInfo.new
+            @ProjectInfo.deserialize(params['ProjectInfo'])
           end
           @Id = params['Id']
           @SubjectAltName = params['SubjectAltName']

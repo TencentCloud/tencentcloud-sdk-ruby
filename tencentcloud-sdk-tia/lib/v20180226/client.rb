@@ -20,9 +20,13 @@ module TencentCloud
   module Tia
     module V20180226
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-02-26'
-        @@endpoint = 'tia.tencentcloudapi.com'
-        @@sdk_version = 'TIA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-02-26'
+            api_endpoint = 'tia.tencentcloudapi.com'
+            sdk_version = 'TIA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建训练任务

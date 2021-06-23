@@ -20,9 +20,13 @@ module TencentCloud
   module Monitor
     module V20180724
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-07-24'
-        @@endpoint = 'monitor.tencentcloudapi.com'
-        @@sdk_version = 'MONITOR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-07-24'
+            api_endpoint = 'monitor.tencentcloudapi.com'
+            sdk_version = 'MONITOR_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 将告警策略绑定到特定对象

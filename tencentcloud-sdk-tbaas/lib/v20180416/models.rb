@@ -272,7 +272,9 @@ module TencentCloud
           unless params['PeerList'].nil?
             @PeerList = []
             params['PeerList'].each do |i|
-              @PeerList << PeerDetailForUser.new.deserialize(i)
+              peerdetailforuser_tmp = PeerDetailForUser.new
+              peerdetailforuser_tmp.deserialize(i)
+              @PeerList << peerdetailforuser_tmp
             end
           end
         end
@@ -300,7 +302,9 @@ module TencentCloud
           unless params['GroupList'].nil?
             @GroupList = []
             params['GroupList'].each do |i|
-              @GroupList << GroupDetailForUser.new.deserialize(i)
+              groupdetailforuser_tmp = GroupDetailForUser.new
+              groupdetailforuser_tmp.deserialize(i)
+              @GroupList << groupdetailforuser_tmp
             end
           end
           @ClusterName = params['ClusterName']
@@ -673,7 +677,9 @@ module TencentCloud
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
-              @List << BcosBlockObj.new.deserialize(i)
+              bcosblockobj_tmp = BcosBlockObj.new
+              bcosblockobj_tmp.deserialize(i)
+              @List << bcosblockobj_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -782,7 +788,9 @@ module TencentCloud
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
-              @List << BcosTransInfo.new.deserialize(i)
+              bcostransinfo_tmp = BcosTransInfo.new
+              bcostransinfo_tmp.deserialize(i)
+              @List << bcostransinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -851,7 +859,9 @@ module TencentCloud
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
-              @List << BcosBlockObj.new.deserialize(i)
+              bcosblockobj_tmp = BcosBlockObj.new
+              bcosblockobj_tmp.deserialize(i)
+              @List << bcosblockobj_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -928,7 +938,9 @@ module TencentCloud
           unless params['BlockList'].nil?
             @BlockList = []
             params['BlockList'].each do |i|
-              @BlockList << Block.new.deserialize(i)
+              block_tmp = Block.new
+              block_tmp.deserialize(i)
+              @BlockList << block_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1001,7 +1013,9 @@ module TencentCloud
           unless params['TransactionList'].nil?
             @TransactionList = []
             params['TransactionList'].each do |i|
-              @TransactionList << TransactionItem.new.deserialize(i)
+              transactionitem_tmp = TransactionItem.new
+              transactionitem_tmp.deserialize(i)
+              @TransactionList << transactionitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1078,7 +1092,9 @@ module TencentCloud
           unless params['CompileLogList'].nil?
             @CompileLogList = []
             params['CompileLogList'].each do |i|
-              @CompileLogList << LogDetailForUser.new.deserialize(i)
+              logdetailforuser_tmp = LogDetailForUser.new
+              logdetailforuser_tmp.deserialize(i)
+              @CompileLogList << logdetailforuser_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1223,7 +1239,9 @@ module TencentCloud
           unless params['ChaincodeLogList'].nil?
             @ChaincodeLogList = []
             params['ChaincodeLogList'].each do |i|
-              @ChaincodeLogList << LogDetailForUser.new.deserialize(i)
+              logdetailforuser_tmp = LogDetailForUser.new
+              logdetailforuser_tmp.deserialize(i)
+              @ChaincodeLogList << logdetailforuser_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1288,7 +1306,9 @@ module TencentCloud
           unless params['ChannelList'].nil?
             @ChannelList = []
             params['ChannelList'].each do |i|
-              @ChannelList << ChannelDetailForUser.new.deserialize(i)
+              channeldetailforuser_tmp = ChannelDetailForUser.new
+              channeldetailforuser_tmp.deserialize(i)
+              @ChannelList << channeldetailforuser_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1345,7 +1365,9 @@ module TencentCloud
           unless params['ClusterList'].nil?
             @ClusterList = []
             params['ClusterList'].each do |i|
-              @ClusterList << ClusterDetailForUser.new.deserialize(i)
+              clusterdetailforuser_tmp = ClusterDetailForUser.new
+              clusterdetailforuser_tmp.deserialize(i)
+              @ClusterList << clusterdetailforuser_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1606,7 +1628,9 @@ module TencentCloud
           unless params['TransactionList'].nil?
             @TransactionList = []
             params['TransactionList'].each do |i|
-              @TransactionList << TransactionItem.new.deserialize(i)
+              transactionitem_tmp = TransactionItem.new
+              transactionitem_tmp.deserialize(i)
+              @TransactionList << transactionitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1675,7 +1699,9 @@ module TencentCloud
           unless params['PeerLogList'].nil?
             @PeerLogList = []
             params['PeerLogList'].each do |i|
-              @PeerLogList << LogDetailForUser.new.deserialize(i)
+              logdetailforuser_tmp = LogDetailForUser.new
+              logdetailforuser_tmp.deserialize(i)
+              @PeerLogList << logdetailforuser_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1792,7 +1818,9 @@ module TencentCloud
           unless params['List'].nil?
             @List = []
             params['List'].each do |i|
-              @List << BcosTransInfo.new.deserialize(i)
+              bcostransinfo_tmp = BcosTransInfo.new
+              bcostransinfo_tmp.deserialize(i)
+              @List << bcostransinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1905,7 +1933,9 @@ module TencentCloud
           unless params['EndorserOrgList'].nil?
             @EndorserOrgList = []
             params['EndorserOrgList'].each do |i|
-              @EndorserOrgList << EndorserGroup.new.deserialize(i)
+              endorsergroup_tmp = EndorserGroup.new
+              endorsergroup_tmp.deserialize(i)
+              @EndorserOrgList << endorsergroup_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2107,7 +2137,9 @@ module TencentCloud
           unless params['Peers'].nil?
             @Peers = []
             params['Peers'].each do |i|
-              @Peers << PeerSet.new.deserialize(i)
+              peerset_tmp = PeerSet.new
+              peerset_tmp.deserialize(i)
+              @Peers << peerset_tmp
             end
           end
           @FuncName = params['FuncName']
@@ -2241,7 +2273,9 @@ module TencentCloud
           unless params['Peers'].nil?
             @Peers = []
             params['Peers'].each do |i|
-              @Peers << PeerSet.new.deserialize(i)
+              peerset_tmp = PeerSet.new
+              peerset_tmp.deserialize(i)
+              @Peers << peerset_tmp
             end
           end
           @FuncName = params['FuncName']

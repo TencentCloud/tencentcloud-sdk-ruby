@@ -20,9 +20,13 @@ module TencentCloud
   module Tiia
     module V20190529
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-05-29'
-        @@endpoint = 'tiia.tencentcloudapi.com'
-        @@sdk_version = 'TIIA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-05-29'
+            api_endpoint = 'tiia.tencentcloudapi.com'
+            sdk_version = 'TIIA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 评估输入图片在视觉上的质量，从多个方面评估，并同时给出综合的、客观的清晰度评分，和主观的美观度评分。

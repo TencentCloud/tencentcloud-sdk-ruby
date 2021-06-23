@@ -20,9 +20,13 @@ module TencentCloud
   module Yunjing
     module V20180228
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-02-28'
-        @@endpoint = 'yunjing.tencentcloudapi.com'
-        @@sdk_version = 'YUNJING_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-02-28'
+            api_endpoint = 'yunjing.tencentcloudapi.com'
+            sdk_version = 'YUNJING_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（AddLoginWhiteList）用于添加白名单规则

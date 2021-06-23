@@ -20,9 +20,13 @@ module TencentCloud
   module Privatedns
     module V20201028
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2020-10-28'
-        @@endpoint = 'privatedns.tencentcloudapi.com'
-        @@sdk_version = 'PRIVATEDNS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2020-10-28'
+            api_endpoint = 'privatedns.tencentcloudapi.com'
+            sdk_version = 'PRIVATEDNS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 创建私有域

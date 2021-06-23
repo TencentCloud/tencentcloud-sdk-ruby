@@ -20,9 +20,13 @@ module TencentCloud
   module Aai
     module V20180522
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-05-22'
-        @@endpoint = 'aai.tencentcloudapi.com'
-        @@sdk_version = 'AAI_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-05-22'
+            api_endpoint = 'aai.tencentcloudapi.com'
+            sdk_version = 'AAI_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。

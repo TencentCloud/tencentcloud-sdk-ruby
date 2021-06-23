@@ -20,9 +20,13 @@ module TencentCloud
   module As
     module V20180419
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-04-19'
-        @@endpoint = 'as.tencentcloudapi.com'
-        @@sdk_version = 'AS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-04-19'
+            api_endpoint = 'as.tencentcloudapi.com'
+            sdk_version = 'AS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（AttachInstances）用于将 CVM 实例添加到伸缩组。

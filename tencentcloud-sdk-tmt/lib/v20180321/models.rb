@@ -32,7 +32,9 @@ module TencentCloud
           unless params['Value'].nil?
             @Value = []
             params['Value'].each do |i|
-              @Value << ItemValue.new.deserialize(i)
+              itemvalue_tmp = ItemValue.new
+              itemvalue_tmp.deserialize(i)
+              @Value << itemvalue_tmp
             end
           end
         end
@@ -116,7 +118,8 @@ module TencentCloud
           @Source = params['Source']
           @Target = params['Target']
           unless params['ImageRecord'].nil?
-            @ImageRecord = ImageRecord.new.deserialize(params['ImageRecord'])
+            @ImageRecord = ImageRecord.new
+            @ImageRecord.deserialize(params['ImageRecord'])
           end
           @RequestId = params['RequestId']
         end

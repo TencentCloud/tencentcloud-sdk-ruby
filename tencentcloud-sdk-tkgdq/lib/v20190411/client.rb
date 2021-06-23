@@ -20,9 +20,13 @@ module TencentCloud
   module Tkgdq
     module V20190411
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2019-04-11'
-        @@endpoint = 'tkgdq.tencentcloudapi.com'
-        @@sdk_version = 'TKGDQ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2019-04-11'
+            api_endpoint = 'tkgdq.tencentcloudapi.com'
+            sdk_version = 'TKGDQ_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 输入实体名称，返回实体相关的信息如实体别名、实体英文名、实体详细信息、相关实体等

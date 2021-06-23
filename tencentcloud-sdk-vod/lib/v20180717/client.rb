@@ -20,9 +20,13 @@ module TencentCloud
   module Vod
     module V20180717
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-07-17'
-        @@endpoint = 'vod.tencentcloudapi.com'
-        @@sdk_version = 'VOD_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-07-17'
+            api_endpoint = 'vod.tencentcloudapi.com'
+            sdk_version = 'VOD_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # * 我们强烈建议您使用云点播提供的 [服务端上传 SDK](/document/product/266/9759#1.-.E5.8F.91.E8.B5.B7.E4.B8.8A.E4.BC.A0) 来上传文件。直接调用 API 进行上传的难度和工作量都显著大于使用 SDK。

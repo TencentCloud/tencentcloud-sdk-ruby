@@ -56,7 +56,9 @@ module TencentCloud
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
-              @Tags << Tag.new.deserialize(i)
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -473,7 +475,9 @@ module TencentCloud
           unless params['Versions'].nil?
             @Versions = []
             params['Versions'].each do |i|
-              @Versions << VersionInfo.new.deserialize(i)
+              versioninfo_tmp = VersionInfo.new
+              versioninfo_tmp.deserialize(i)
+              @Versions << versioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -515,7 +519,9 @@ module TencentCloud
           unless params['TagFilters'].nil?
             @TagFilters = []
             params['TagFilters'].each do |i|
-              @TagFilters << TagFilter.new.deserialize(i)
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
             end
           end
         end
@@ -543,7 +549,9 @@ module TencentCloud
           unless params['SecretMetadatas'].nil?
             @SecretMetadatas = []
             params['SecretMetadatas'].each do |i|
-              @SecretMetadatas << SecretMetadata.new.deserialize(i)
+              secretmetadata_tmp = SecretMetadata.new
+              secretmetadata_tmp.deserialize(i)
+              @SecretMetadatas << secretmetadata_tmp
             end
           end
           @RequestId = params['RequestId']

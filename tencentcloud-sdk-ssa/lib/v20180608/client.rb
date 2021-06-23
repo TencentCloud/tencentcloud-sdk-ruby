@@ -20,9 +20,13 @@ module TencentCloud
   module Ssa
     module V20180608
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-06-08'
-        @@endpoint = 'ssa.tencentcloudapi.com'
-        @@sdk_version = 'SSA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-06-08'
+            api_endpoint = 'ssa.tencentcloudapi.com'
+            sdk_version = 'SSA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 资产安全页资产详情

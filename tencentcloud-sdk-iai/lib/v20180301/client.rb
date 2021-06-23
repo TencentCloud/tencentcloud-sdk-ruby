@@ -20,9 +20,13 @@ module TencentCloud
   module Iai
     module V20180301
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-01'
-        @@endpoint = 'iai.tencentcloudapi.com'
-        @@sdk_version = 'IAI_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-01'
+            api_endpoint = 'iai.tencentcloudapi.com'
+            sdk_version = 'IAI_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 对请求图片进行五官定位（也称人脸关键点定位），获得人脸的精准信息，返回多达888点关键信息，对五官和脸部轮廓进行精确定位。

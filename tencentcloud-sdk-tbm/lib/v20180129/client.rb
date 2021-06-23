@@ -20,9 +20,13 @@ module TencentCloud
   module Tbm
     module V20180129
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-01-29'
-        @@endpoint = 'tbm.tencentcloudapi.com'
-        @@sdk_version = 'TBM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-01-29'
+            api_endpoint = 'tbm.tencentcloudapi.com'
+            sdk_version = 'TBM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌好评与差评评价条数，按天输出结果。

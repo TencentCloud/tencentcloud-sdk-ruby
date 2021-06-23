@@ -84,7 +84,9 @@ module TencentCloud
           unless params['Staffs'].nil?
             @Staffs = []
             params['Staffs'].each do |i|
-              @Staffs << SeatUserInfo.new.deserialize(i)
+              seatuserinfo_tmp = SeatUserInfo.new
+              seatuserinfo_tmp.deserialize(i)
+              @Staffs << seatuserinfo_tmp
             end
           end
         end
@@ -164,7 +166,9 @@ module TencentCloud
           unless params['Messages'].nil?
             @Messages = []
             params['Messages'].each do |i|
-              @Messages << MessageBody.new.deserialize(i)
+              messagebody_tmp = MessageBody.new
+              messagebody_tmp.deserialize(i)
+              @Messages << messagebody_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -233,7 +237,9 @@ module TencentCloud
           unless params['IMCdrs'].nil?
             @IMCdrs = []
             params['IMCdrs'].each do |i|
-              @IMCdrs << IMCdrInfo.new.deserialize(i)
+              imcdrinfo_tmp = IMCdrInfo.new
+              imcdrinfo_tmp.deserialize(i)
+              @IMCdrs << imcdrinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -286,7 +292,9 @@ module TencentCloud
           unless params['Sessions'].nil?
             @Sessions = []
             params['Sessions'].each do |i|
-              @Sessions << PSTNSessionInfo.new.deserialize(i)
+              pstnsessioninfo_tmp = PSTNSessionInfo.new
+              pstnsessioninfo_tmp.deserialize(i)
+              @Sessions << pstnsessioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -339,7 +347,9 @@ module TencentCloud
           unless params['SeatUsers'].nil?
             @SeatUsers = []
             params['SeatUsers'].each do |i|
-              @SeatUsers << SeatUserInfo.new.deserialize(i)
+              seatuserinfo_tmp = SeatUserInfo.new
+              seatuserinfo_tmp.deserialize(i)
+              @SeatUsers << seatuserinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -400,7 +410,9 @@ module TencentCloud
           unless params['SkillGroupList'].nil?
             @SkillGroupList = []
             params['SkillGroupList'].each do |i|
-              @SkillGroupList << SkillGroupInfoItem.new.deserialize(i)
+              skillgroupinfoitem_tmp = SkillGroupInfoItem.new
+              skillgroupinfoitem_tmp.deserialize(i)
+              @SkillGroupList << skillgroupinfoitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -461,7 +473,9 @@ module TencentCloud
           unless params['StaffList'].nil?
             @StaffList = []
             params['StaffList'].each do |i|
-              @StaffList << StaffInfo.new.deserialize(i)
+              staffinfo_tmp = StaffInfo.new
+              staffinfo_tmp.deserialize(i)
+              @StaffList << staffinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -586,7 +600,9 @@ module TencentCloud
           unless params['TelCdrs'].nil?
             @TelCdrs = []
             params['TelCdrs'].each do |i|
-              @TelCdrs << TelCdrInfo.new.deserialize(i)
+              telcdrinfo_tmp = TelCdrInfo.new
+              telcdrinfo_tmp.deserialize(i)
+              @TelCdrs << telcdrinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -629,7 +645,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Session'].nil?
-            @Session = PSTNSession.new.deserialize(params['Session'])
+            @Session = PSTNSession.new
+            @Session.deserialize(params['Session'])
           end
           @RequestId = params['RequestId']
         end
@@ -740,7 +757,9 @@ module TencentCloud
           unless params['Messages'].nil?
             @Messages = []
             params['Messages'].each do |i|
-              @Messages << Message.new.deserialize(i)
+              message_tmp = Message.new
+              message_tmp.deserialize(i)
+              @Messages << message_tmp
             end
           end
         end
@@ -1120,7 +1139,9 @@ module TencentCloud
           unless params['SkillGroupList'].nil?
             @SkillGroupList = []
             params['SkillGroupList'].each do |i|
-              @SkillGroupList << SkillGroupItem.new.deserialize(i)
+              skillgroupitem_tmp = SkillGroupItem.new
+              skillgroupitem_tmp.deserialize(i)
+              @SkillGroupList << skillgroupitem_tmp
             end
           end
           @LastModifyTimestamp = params['LastModifyTimestamp']
@@ -1272,7 +1293,8 @@ module TencentCloud
           @Duration = params['Duration']
           @RecordURL = params['RecordURL']
           unless params['SeatUser'].nil?
-            @SeatUser = SeatUserInfo.new.deserialize(params['SeatUser'])
+            @SeatUser = SeatUserInfo.new
+            @SeatUser.deserialize(params['SeatUser'])
           end
           @EndStatus = params['EndStatus']
           @SkillGroup = params['SkillGroup']
@@ -1286,7 +1308,9 @@ module TencentCloud
           unless params['ServeParticipants'].nil?
             @ServeParticipants = []
             params['ServeParticipants'].each do |i|
-              @ServeParticipants << ServeParticipant.new.deserialize(i)
+              serveparticipant_tmp = ServeParticipant.new
+              serveparticipant_tmp.deserialize(i)
+              @ServeParticipants << serveparticipant_tmp
             end
           end
           @SkillGroupId = params['SkillGroupId']
@@ -1296,7 +1320,9 @@ module TencentCloud
           unless params['PostIVRKeyPressed'].nil?
             @PostIVRKeyPressed = []
             params['PostIVRKeyPressed'].each do |i|
-              @PostIVRKeyPressed << IVRKeyPressedElement.new.deserialize(i)
+              ivrkeypressedelement_tmp = IVRKeyPressedElement.new
+              ivrkeypressedelement_tmp.deserialize(i)
+              @PostIVRKeyPressed << ivrkeypressedelement_tmp
             end
           end
           @QueuedSkillGroupId = params['QueuedSkillGroupId']

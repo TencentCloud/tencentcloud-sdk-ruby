@@ -20,9 +20,13 @@ module TencentCloud
   module Mna
     module V20210119
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2021-01-19'
-        @@endpoint = 'mna.tencentcloudapi.com'
-        @@sdk_version = 'MNA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2021-01-19'
+            api_endpoint = 'mna.tencentcloudapi.com'
+            sdk_version = 'MNA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 移动网络发起Qos加速过程

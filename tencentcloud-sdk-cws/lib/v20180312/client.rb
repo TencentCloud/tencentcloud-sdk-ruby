@@ -20,9 +20,13 @@ module TencentCloud
   module Cws
     module V20180312
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-03-12'
-        @@endpoint = 'cws.tencentcloudapi.com'
-        @@sdk_version = 'CWS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-03-12'
+            api_endpoint = 'cws.tencentcloudapi.com'
+            sdk_version = 'CWS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。

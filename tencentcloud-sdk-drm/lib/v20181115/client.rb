@@ -20,9 +20,13 @@ module TencentCloud
   module Drm
     module V20181115
       class Client < TencentCloud::Common::AbstractClient
-        @@api_version = '2018-11-15'
-        @@endpoint = 'drm.tencentcloudapi.com'
-        @@sdk_version = 'DRM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+
+        def initialize(credential, region, profile = nil)
+            api_version = '2018-11-15'
+            api_endpoint = 'drm.tencentcloudapi.com'
+            sdk_version = 'DRM_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            super(credential, region, api_version, api_endpoint, sdk_version, profile)
+        end
 
 
         # 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。

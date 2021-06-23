@@ -102,7 +102,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = CreateTtsTaskRespData.new.deserialize(params['Data'])
+            @Data = CreateTtsTaskRespData.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -172,7 +173,8 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DescribeTtsTaskStatusRespData.new.deserialize(params['Data'])
+            @Data = DescribeTtsTaskStatusRespData.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
