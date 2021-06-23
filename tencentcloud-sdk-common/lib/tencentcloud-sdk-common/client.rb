@@ -12,14 +12,14 @@ module TencentCloud
     class AbstractClient
       include Log
 
-      @@api_version = ''
-      @@endpoint = ''
-      @@sdk_version = '1.0.101'
-      def initialize(credential, region, profile = nil)
+      def initialize(credential, region, api_version, api_endpoint, sdk_version, profile = nil)
         raise TencentCloudSDKException.new('InvalidCredential', 'Credential is None or invalid') unless credential
 
         @credential = credential
         @region = region
+        @api_version = api_version
+        @endpoint = api_endpoint
+        @sdk_version = sdk_version
         @profile = profile || ClientProfile.new
         @request = ApiRequset.new(@profile.http_profile.scheme, endpoint, nil, @profile.http_profile.req_timeout, @profile.http_profile.proxy)
       end
@@ -43,7 +43,7 @@ module TencentCloud
       FORM_URLENCODED_CONTENT = 'application/x-www-form-urlencoded'
 
       def endpoint
-        @profile.http_profile.endpoint || @@endpoint
+        @profile.http_profile.endpoint || @endpoint
       end
 
       def build_req(action, params, req, options = {})
@@ -59,10 +59,10 @@ module TencentCloud
       def build_req_with_v1_signature(action, params, req)
         params = AbstractModel.format_params(nil, params)
         params['Action'] = action
-        params['RequestClient'] = "SDK_RUBY_#{@@sdk_version}"
+        params['RequestClient'] = "SDK_RUBY_#{@sdk_version}"
         params['Nonce'] = Random.rand(1..1 << 32)
         params['Timestamp'] = Time.now.to_i
-        params['Version'] = @@api_version
+        params['Version'] = @api_version
         params['Region'] = @region
         params['Token'] = @credential.token if @credential.token
         params['SecretId'] = @credential.secret_id
@@ -82,7 +82,7 @@ module TencentCloud
         req.header['Host'] = endpoint
         req.header['X-TC-Action'] = action
         req.header['X-TC-Timestamp'] = timestamp
-        req.header['X-TC-Version'] = @@api_version
+        req.header['X-TC-Version'] = @api_version
         req.header['X-TC-Region'] = @region
         req.header['X-TC-Language'] = @profile.language
         req.header['X-TC-Token'] = @credential.token if @credential.token
