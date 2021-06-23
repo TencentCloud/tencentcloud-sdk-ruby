@@ -145,6 +145,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 废弃接口下架
+
         # 获取坐席用户列表（废弃）
 
         # @param request: Request instance for DescribeSeatUserList.

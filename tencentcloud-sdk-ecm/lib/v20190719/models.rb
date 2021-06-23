@@ -4222,23 +4222,23 @@ module TencentCloud
         end
       end
 
-      # 过滤器Filter;由Name和ValueSet组成，是string的key和字符串数组的value
+      # 描述键值对过滤器，用于条件过滤查询。
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤字段名称
-        # @type Name: String
-        # @param Values: 过滤字段内容数组
+        # @param Values: 一个或者多个过滤值。
         # @type Values: Array
+        # @param Name: 过滤键的名称。
+        # @type Name: String
 
-        attr_accessor :Name, :Values
+        attr_accessor :Values, :Name
         
-        def initialize(name=nil, values=nil)
-          @Name = name
+        def initialize(values=nil, name=nil)
           @Values = values
+          @Name = name
         end
 
         def deserialize(params)
-          @Name = params['Name']
           @Values = params['Values']
+          @Name = params['Name']
         end
       end
 

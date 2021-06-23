@@ -3028,19 +3028,23 @@ module TencentCloud
         # overseas: 海外节点
         # global: 全球节点
         # @type Area: String
+        # @param Segment: 是否以IP段的格式返回。
+        # @type Segment: Boolean
 
-        attr_accessor :Domain, :Layer, :Area
+        attr_accessor :Domain, :Layer, :Area, :Segment
         
-        def initialize(domain=nil, layer=nil, area=nil)
+        def initialize(domain=nil, layer=nil, area=nil, segment=nil)
           @Domain = domain
           @Layer = layer
           @Area = area
+          @Segment = segment
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @Layer = params['Layer']
           @Area = params['Area']
+          @Segment = params['Segment']
         end
       end
 
@@ -4858,15 +4862,19 @@ module TencentCloud
       class EnableCachesRequest < TencentCloud::Common::AbstractModel
         # @param Urls: 解封 URL 列表
         # @type Urls: Array
+        # @param Date: URL封禁日期
+        # @type Date: String
 
-        attr_accessor :Urls
+        attr_accessor :Urls, :Date
         
-        def initialize(urls=nil)
+        def initialize(urls=nil, date=nil)
           @Urls = urls
+          @Date = date
         end
 
         def deserialize(params)
           @Urls = params['Urls']
+          @Date = params['Date']
         end
       end
 

@@ -423,6 +423,31 @@ module TencentCloud
         end
       end
 
+      # 使用证书的规则集合
+      class CertIdInsL7Rules < TencentCloud::Common::AbstractModel
+        # @param L7Rules: 使用证书的规则列表
+        # @type L7Rules: Array
+        # @param CertId: 证书ID
+        # @type CertId: String
+
+        attr_accessor :L7Rules, :CertId
+        
+        def initialize(l7rules=nil, certid=nil)
+          @L7Rules = l7rules
+          @CertId = certid
+        end
+
+        def deserialize(params)
+          unless params['L7Rules'].nil?
+            @L7Rules = []
+            params['L7Rules'].each do |i|
+              @L7Rules << InsL7Rules.new.deserialize(i)
+            end
+          end
+          @CertId = params['CertId']
+        end
+      end
+
       # CreateBlackWhiteIpList请求参数结构体
       class CreateBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID
@@ -652,6 +677,39 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateL7RuleCerts请求参数结构体
+      class CreateL7RuleCertsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateL7RuleCerts返回参数结构体
+      class CreateL7RuleCertsResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功码
+        # @type Success: :class:`Tencentcloud::Antiddos.v20200309.models.SuccessCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = SuccessCode.new.deserialize(params['Success'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1336,6 +1394,42 @@ module TencentCloud
             @DefaultAlarmConfigList = []
             params['DefaultAlarmConfigList'].each do |i|
               @DefaultAlarmConfigList << DefaultAlarmThreshold.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeL7RulesBySSLCertId请求参数结构体
+      class DescribeL7RulesBySSLCertIdRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeL7RulesBySSLCertId返回参数结构体
+      class DescribeL7RulesBySSLCertIdResponse < TencentCloud::Common::AbstractModel
+        # @param CertSet: 证书规则集合
+        # @type CertSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertSet, :RequestId
+        
+        def initialize(certset=nil, requestid=nil)
+          @CertSet = certset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CertSet'].nil?
+            @CertSet = []
+            params['CertSet'].each do |i|
+              @CertSet << CertIdInsL7Rules.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
@@ -2336,6 +2430,46 @@ module TencentCloud
         end
       end
 
+      # 实例7层规则
+      class InsL7Rules < TencentCloud::Common::AbstractModel
+        # @param Status: 规则状态，0: 正常运行中, 1: 配置规则中(配置生效中), 2: 配置规则失败（配置生效失败）, 3: 删除规则中(删除生效中), 5: 删除规则失败(删除失败), 6: 等待添加规则, 7: 等待删除规则, 8: 等待上传证书, 9: 规则对应的资源不存在，被隔离, 10:等待修改规则, 11:配置修改中
+        # @type Status: Integer
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param InsId: 实例ID
+        # @type InsId: String
+        # @param AppId: 用户AppID
+        # @type AppId: String
+        # @param VirtualPort: 高防端口
+        # @type VirtualPort: String
+        # @param SSLId: 证书ID
+        # @type SSLId: String
+
+        attr_accessor :Status, :Domain, :Protocol, :InsId, :AppId, :VirtualPort, :SSLId
+        
+        def initialize(status=nil, domain=nil, protocol=nil, insid=nil, appid=nil, virtualport=nil, sslid=nil)
+          @Status = status
+          @Domain = domain
+          @Protocol = protocol
+          @InsId = insid
+          @AppId = appid
+          @VirtualPort = virtualport
+          @SSLId = sslid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          @InsId = params['InsId']
+          @AppId = params['AppId']
+          @VirtualPort = params['VirtualPort']
+          @SSLId = params['SSLId']
+        end
+      end
+
       # 资源实例IP信息
       class InstanceRelation < TencentCloud::Common::AbstractModel
         # @param EipList: 资源实例的IP
@@ -3124,6 +3258,26 @@ module TencentCloud
           @ForwardRulesLimit = params['ForwardRulesLimit']
           @AutoRenewFlag = params['AutoRenewFlag']
           @CurDeadline = params['CurDeadline']
+        end
+      end
+
+      # 操作返回码，只用于返回成功的情况
+      class SuccessCode < TencentCloud::Common::AbstractModel
+        # @param Message: 描述
+        # @type Message: String
+        # @param Code: 成功/错误码
+        # @type Code: String
+
+        attr_accessor :Message, :Code
+        
+        def initialize(message=nil, code=nil)
+          @Message = message
+          @Code = code
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @Code = params['Code']
         end
       end
 

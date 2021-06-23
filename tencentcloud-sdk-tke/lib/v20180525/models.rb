@@ -981,6 +981,26 @@ module TencentCloud
         end
       end
 
+      # 集群中控制器的状态描述
+      class ControllerStatus < TencentCloud::Common::AbstractModel
+        # @param Name: 控制器的名字
+        # @type Name: String
+        # @param Enabled: 控制器是否开启
+        # @type Enabled: Boolean
+
+        attr_accessor :Name, :Enabled
+        
+        def initialize(name=nil, enabled=nil)
+          @Name = name
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Enabled = params['Enabled']
+        end
+      end
+
       # CreateClusterAsGroup请求参数结构体
       class CreateClusterAsGroupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -2295,6 +2315,47 @@ module TencentCloud
             @CommonNames = []
             params['CommonNames'].each do |i|
               @CommonNames << CommonName.new.deserialize(i)
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterControllers请求参数结构体
+      class DescribeClusterControllersRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterControllers返回参数结构体
+      class DescribeClusterControllersResponse < TencentCloud::Common::AbstractModel
+        # @param ControllerStatusSet: 描述集群中各个控制器的状态
+        # @type ControllerStatusSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ControllerStatusSet, :RequestId
+        
+        def initialize(controllerstatusset=nil, requestid=nil)
+          @ControllerStatusSet = controllerstatusset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ControllerStatusSet'].nil?
+            @ControllerStatusSet = []
+            params['ControllerStatusSet'].each do |i|
+              @ControllerStatusSet << ControllerStatus.new.deserialize(i)
             end
           end
           @RequestId = params['RequestId']
