@@ -3852,16 +3852,22 @@ module TencentCloud
         # @type Protocol: String
         # @param NetType: 网络类型（'INNER' 或 'OUTER'）。
         # @type NetType: String
+        # @param IsForcedHttps: 是否将HTTP请求强制跳转 HTTPS，默认为false。参数为 true时，API网关会将所有使用该自定义域名的 HTTP 协议的请求重定向至 HTTPS 协议进行转发。
+        # @type IsForcedHttps: Boolean
+        # @param RegistrationStatus: 域名备案注册状态
+        # @type RegistrationStatus: Boolean
 
-        attr_accessor :DomainName, :Status, :CertificateId, :IsDefaultMapping, :Protocol, :NetType
+        attr_accessor :DomainName, :Status, :CertificateId, :IsDefaultMapping, :Protocol, :NetType, :IsForcedHttps, :RegistrationStatus
         
-        def initialize(domainname=nil, status=nil, certificateid=nil, isdefaultmapping=nil, protocol=nil, nettype=nil)
+        def initialize(domainname=nil, status=nil, certificateid=nil, isdefaultmapping=nil, protocol=nil, nettype=nil, isforcedhttps=nil, registrationstatus=nil)
           @DomainName = domainname
           @Status = status
           @CertificateId = certificateid
           @IsDefaultMapping = isdefaultmapping
           @Protocol = protocol
           @NetType = nettype
+          @IsForcedHttps = isforcedhttps
+          @RegistrationStatus = registrationstatus
         end
 
         def deserialize(params)
@@ -3871,6 +3877,8 @@ module TencentCloud
           @IsDefaultMapping = params['IsDefaultMapping']
           @Protocol = params['Protocol']
           @NetType = params['NetType']
+          @IsForcedHttps = params['IsForcedHttps']
+          @RegistrationStatus = params['RegistrationStatus']
         end
       end
 

@@ -39,10 +39,14 @@ module TencentCloud
         # @type COSBucket: String
         # @param LogCollect: 是否采集作业日志
         # @type LogCollect: Boolean
+        # @param JobManagerSpec: JobManager规格
+        # @type JobManagerSpec: Float
+        # @param TaskManagerSpec: TaskManager规格
+        # @type TaskManagerSpec: Float
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -53,6 +57,8 @@ module TencentCloud
           @AutoDelete = autodelete
           @COSBucket = cosbucket
           @LogCollect = logcollect
+          @JobManagerSpec = jobmanagerspec
+          @TaskManagerSpec = taskmanagerspec
         end
 
         def deserialize(params)
@@ -80,6 +86,8 @@ module TencentCloud
           @AutoDelete = params['AutoDelete']
           @COSBucket = params['COSBucket']
           @LogCollect = params['LogCollect']
+          @JobManagerSpec = params['JobManagerSpec']
+          @TaskManagerSpec = params['TaskManagerSpec']
         end
       end
 
@@ -840,10 +848,16 @@ module TencentCloud
         # @param MaxParallelism: 作业的最大并行度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxParallelism: Integer
+        # @param JobManagerSpec: JobManager规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobManagerSpec: Float
+        # @param TaskManagerSpec: TaskManager规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskManagerSpec: Float
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec
         
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -858,6 +872,8 @@ module TencentCloud
           @COSBucket = cosbucket
           @LogCollect = logcollect
           @MaxParallelism = maxparallelism
+          @JobManagerSpec = jobmanagerspec
+          @TaskManagerSpec = taskmanagerspec
         end
 
         def deserialize(params)
@@ -889,6 +905,8 @@ module TencentCloud
           @COSBucket = params['COSBucket']
           @LogCollect = params['LogCollect']
           @MaxParallelism = params['MaxParallelism']
+          @JobManagerSpec = params['JobManagerSpec']
+          @TaskManagerSpec = params['TaskManagerSpec']
         end
       end
 
@@ -915,7 +933,7 @@ module TencentCloud
         # @param Name: 作业名字
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param JobType: 作业类型
+        # @param JobType: 作业类型，1：sql作业，2：Jar作业
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobType: Integer
         # @param Status: 作业状态，1：未初始化，2：未发布，3：操作中，4：运行中，5：停止，6：暂停，-1：故障
@@ -975,10 +993,13 @@ module TencentCloud
         # @param ClusterStatus: 作业所在集群状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStatus: Integer
+        # @param RunningCu: 细粒度下的运行的CU数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningCu: Float
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu
         
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -1006,6 +1027,7 @@ module TencentCloud
           @WebUIUrl = webuiurl
           @SchedulerType = schedulertype
           @ClusterStatus = clusterstatus
+          @RunningCu = runningcu
         end
 
         def deserialize(params)
@@ -1036,6 +1058,7 @@ module TencentCloud
           @WebUIUrl = params['WebUIUrl']
           @SchedulerType = params['SchedulerType']
           @ClusterStatus = params['ClusterStatus']
+          @RunningCu = params['RunningCu']
         end
       end
 

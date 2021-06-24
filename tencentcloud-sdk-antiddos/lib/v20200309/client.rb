@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
+
+        # @param request: Request instance for CreateBoundIP.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::CreateBoundIPRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::CreateBoundIPResponse`
+        def CreateBoundIP(request)
+          body = send_request('CreateBoundIP', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBoundIPResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 设置DDoS防护的AI防护开关
 
         # @param request: Request instance for CreateDDoSAI.

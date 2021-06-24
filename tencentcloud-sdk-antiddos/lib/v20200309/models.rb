@@ -440,6 +440,38 @@ module TencentCloud
         end
       end
 
+      # 高防包绑定IP对象
+      class BoundIpInfo < TencentCloud::Common::AbstractModel
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param BizType: 绑定的产品分类，取值[public（CVM、CLB产品），bm（黑石产品），eni（弹性网卡），vpngw（VPN网关）， natgw（NAT网关），waf（Web应用安全产品），fpc（金融产品），gaap（GAAP产品）, other(托管IP)]
+        # @type BizType: String
+        # @param InstanceId: IP所属的资源实例ID，当绑定新IP时必须填写此字段；例如是弹性网卡的IP，则InstanceId填写弹性网卡的ID(eni-*); 如果绑定的是托管IP没有对应的资源实例ID，请填写"none";
+        # @type InstanceId: String
+        # @param DeviceType: 产品分类下的子类型，取值[cvm（CVM），lb（负载均衡器），eni（弹性网卡），vpngw（VPN），natgw（NAT），waf（WAF），fpc（金融），gaap（GAAP），other（托管IP），eip（黑石弹性IP）]
+        # @type DeviceType: String
+        # @param IspCode: 运营商，0：电信；1：联通；2：移动；5：BGP
+        # @type IspCode: Integer
+
+        attr_accessor :Ip, :BizType, :InstanceId, :DeviceType, :IspCode
+        
+        def initialize(ip=nil, biztype=nil, instanceid=nil, devicetype=nil, ispcode=nil)
+          @Ip = ip
+          @BizType = biztype
+          @InstanceId = instanceid
+          @DeviceType = devicetype
+          @IspCode = ispcode
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @BizType = params['BizType']
+          @InstanceId = params['InstanceId']
+          @DeviceType = params['DeviceType']
+          @IspCode = params['IspCode']
+        end
+      end
+
       # 使用证书的规则集合
       class CertIdInsL7Rules < TencentCloud::Common::AbstractModel
         # @param L7Rules: 使用证书的规则列表
@@ -503,6 +535,75 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBoundIP请求参数结构体
+      class CreateBoundIPRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包）
+        # @type Business: String
+        # @param Id: 资源实例ID
+        # @type Id: String
+        # @param BoundDevList: 绑定到资源实例的IP数组，当资源实例为高防包(独享包)时，数组只允许填1个IP；当没有要绑定的IP时可以为空数组；但是BoundDevList和UnBoundDevList至少有一个不为空；
+        # @type BoundDevList: Array
+        # @param UnBoundDevList: 与资源实例解绑的IP数组，当资源实例为高防包(独享包)时，数组只允许填1个IP；当没有要解绑的IP时可以为空数组；但是BoundDevList和UnBoundDevList至少有一个不为空；
+        # @type UnBoundDevList: Array
+        # @param CopyPolicy: 已弃用，不填
+        # @type CopyPolicy: String
+
+        attr_accessor :Business, :Id, :BoundDevList, :UnBoundDevList, :CopyPolicy
+        
+        def initialize(business=nil, id=nil, bounddevlist=nil, unbounddevlist=nil, copypolicy=nil)
+          @Business = business
+          @Id = id
+          @BoundDevList = bounddevlist
+          @UnBoundDevList = unbounddevlist
+          @CopyPolicy = copypolicy
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Id = params['Id']
+          unless params['BoundDevList'].nil?
+            @BoundDevList = []
+            params['BoundDevList'].each do |i|
+              boundipinfo_tmp = BoundIpInfo.new
+              boundipinfo_tmp.deserialize(i)
+              @BoundDevList << boundipinfo_tmp
+            end
+          end
+          unless params['UnBoundDevList'].nil?
+            @UnBoundDevList = []
+            params['UnBoundDevList'].each do |i|
+              boundipinfo_tmp = BoundIpInfo.new
+              boundipinfo_tmp.deserialize(i)
+              @UnBoundDevList << boundipinfo_tmp
+            end
+          end
+          @CopyPolicy = params['CopyPolicy']
+        end
+      end
+
+      # CreateBoundIP返回参数结构体
+      class CreateBoundIPResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功码
+        # @type Success: :class:`Tencentcloud::Antiddos.v20200309.models.SuccessCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = SuccessCode.new
+            @Success.deserialize(params['Success'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -707,12 +808,28 @@ module TencentCloud
 
       # CreateL7RuleCerts请求参数结构体
       class CreateL7RuleCertsRequest < TencentCloud::Common::AbstractModel
+        # @param CertId: SSL证书ID
+        # @type CertId: String
+        # @param L7Rules: L7域名转发规则列表
+        # @type L7Rules: Array
 
+        attr_accessor :CertId, :L7Rules
         
-        def initialize()
+        def initialize(certid=nil, l7rules=nil)
+          @CertId = certid
+          @L7Rules = l7rules
         end
 
         def deserialize(params)
+          @CertId = params['CertId']
+          unless params['L7Rules'].nil?
+            @L7Rules = []
+            params['L7Rules'].each do |i|
+              insl7rules_tmp = InsL7Rules.new
+              insl7rules_tmp.deserialize(i)
+              @L7Rules << insl7rules_tmp
+            end
+          end
         end
       end
 
@@ -1447,12 +1564,21 @@ module TencentCloud
 
       # DescribeL7RulesBySSLCertId请求参数结构体
       class DescribeL7RulesBySSLCertIdRequest < TencentCloud::Common::AbstractModel
+        # @param Status: 域名状态，可取bindable, binded, opened, closed, all，all表示全部状态
+        # @type Status: String
+        # @param CertIds: 证书ID列表
+        # @type CertIds: Array
 
+        attr_accessor :Status, :CertIds
         
-        def initialize()
+        def initialize(status=nil, certids=nil)
+          @Status = status
+          @CertIds = certids
         end
 
         def deserialize(params)
+          @Status = params['Status']
+          @CertIds = params['CertIds']
         end
       end
 
