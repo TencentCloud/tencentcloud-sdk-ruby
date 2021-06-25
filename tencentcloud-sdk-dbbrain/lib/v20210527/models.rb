@@ -652,7 +652,7 @@ module TencentCloud
         # @type TaskStatuses: String
         # @param Offset: 偏移量，默认0。
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20。
+        # @param Limit: 返回数量，默认20，最大值为100。
         # @type Limit: Integer
         # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         # @type Product: String
@@ -779,7 +779,7 @@ module TencentCloud
         # @type Product: String
         # @param Offset: 分页参数，偏移量。
         # @type Offset: Integer
-        # @param Limit: 分页参数，分页值。
+        # @param Limit: 分页参数，分页值，最大值为100。
         # @type Limit: Integer
         # @param InstanceNames: 根据实例名称条件查询。
         # @type InstanceNames: Array
@@ -958,6 +958,89 @@ module TencentCloud
         end
       end
 
+      # DescribeMySqlProcessList请求参数结构体
+      class DescribeMySqlProcessListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ID: 线程的ID，用于筛选线程列表。
+        # @type ID: Integer
+        # @param User: 线程的操作账号名，用于筛选线程列表。
+        # @type User: String
+        # @param Host: 线程的操作主机地址，用于筛选线程列表。
+        # @type Host: String
+        # @param DB: 线程的操作数据库，用于筛选线程列表。
+        # @type DB: String
+        # @param State: 线程的操作状态，用于筛选线程列表。
+        # @type State: String
+        # @param Command: 线程的执行类型，用于筛选线程列表。
+        # @type Command: String
+        # @param Time: 线程的操作时长最小值，单位秒，用于筛选操作时长大于该值的线程列表。
+        # @type Time: Integer
+        # @param Info: 线程的操作语句，用于筛选线程列表。
+        # @type Info: String
+        # @param Limit: 返回数量，默认20。
+        # @type Limit: Integer
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :ID, :User, :Host, :DB, :State, :Command, :Time, :Info, :Limit, :Product
+        
+        def initialize(instanceid=nil, id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil, limit=nil, product=nil)
+          @InstanceId = instanceid
+          @ID = id
+          @User = user
+          @Host = host
+          @DB = db
+          @State = state
+          @Command = command
+          @Time = time
+          @Info = info
+          @Limit = limit
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ID = params['ID']
+          @User = params['User']
+          @Host = params['Host']
+          @DB = params['DB']
+          @State = params['State']
+          @Command = params['Command']
+          @Time = params['Time']
+          @Info = params['Info']
+          @Limit = params['Limit']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeMySqlProcessList返回参数结构体
+      class DescribeMySqlProcessListResponse < TencentCloud::Common::AbstractModel
+        # @param ProcessList: 实时线程列表。
+        # @type ProcessList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProcessList, :RequestId
+        
+        def initialize(processlist=nil, requestid=nil)
+          @ProcessList = processlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProcessList'].nil?
+            @ProcessList = []
+            params['ProcessList'].each do |i|
+              mysqlprocess_tmp = MySqlProcess.new
+              mysqlprocess_tmp.deserialize(i)
+              @ProcessList << mysqlprocess_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityAuditLogDownloadUrls请求参数结构体
       class DescribeSecurityAuditLogDownloadUrlsRequest < TencentCloud::Common::AbstractModel
         # @param SecAuditGroupId: 安全审计组Id。
@@ -1012,7 +1095,7 @@ module TencentCloud
         # @type AsyncRequestIds: Array
         # @param Offset: 偏移量，默认0。
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20。
+        # @param Limit: 返回数量，默认20，最大值为100。
         # @type Limit: Integer
 
         attr_accessor :SecAuditGroupId, :Product, :AsyncRequestIds, :Offset, :Limit
@@ -1139,9 +1222,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 截止时间，如“2019-09-10 12:13:14”，截止时间与开始时间的间隔最大可为7天。
         # @type EndTime: String
-        # @param SortBy: 排序键，目前支持 QueryTime,ExecTimes,RowsSent,LockTime以及RowsExamined 等排序键。
+        # @param SortBy: 排序键，目前支持 QueryTime,ExecTimes,RowsSent,LockTime以及RowsExamined 等排序键，默认为QueryTime。
         # @type SortBy: String
-        # @param OrderBy: 排序方式，支持ASC（升序）以及DESC（降序）。
+        # @param OrderBy: 排序方式，支持ASC（升序）以及DESC（降序），默认为DESC。
         # @type OrderBy: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
@@ -2084,7 +2167,7 @@ module TencentCloud
 
       # ModifyDiagDBInstanceConf请求参数结构体
       class ModifyDiagDBInstanceConfRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceConfs: 巡检开关。
+        # @param InstanceConfs: 实例配置，包括巡检、概览开关等。
         # @type InstanceConfs: :class:`Tencentcloud::Dbbrain.v20210527.models.InstanceConfs`
         # @param Regions: 生效实例地域，取值为"All"，代表全地域。
         # @type Regions: String
@@ -2230,6 +2313,50 @@ module TencentCloud
             end
           end
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 关系型数据库线程
+      class MySqlProcess < TencentCloud::Common::AbstractModel
+        # @param ID: 线程ID。
+        # @type ID: String
+        # @param User: 线程的操作账号名。
+        # @type User: String
+        # @param Host: 线程的操作主机地址。
+        # @type Host: String
+        # @param DB: 线程的操作数据库。
+        # @type DB: String
+        # @param State: 线程的操作状态。
+        # @type State: String
+        # @param Command: 线程的执行类型。
+        # @type Command: String
+        # @param Time: 线程的操作时长，单位秒。
+        # @type Time: String
+        # @param Info: 线程的操作语句。
+        # @type Info: String
+
+        attr_accessor :ID, :User, :Host, :DB, :State, :Command, :Time, :Info
+        
+        def initialize(id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil)
+          @ID = id
+          @User = user
+          @Host = host
+          @DB = db
+          @State = state
+          @Command = command
+          @Time = time
+          @Info = info
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @User = params['User']
+          @Host = params['Host']
+          @DB = params['DB']
+          @State = params['State']
+          @Command = params['Command']
+          @Time = params['Time']
+          @Info = params['Info']
         end
       end
 
@@ -2492,11 +2619,11 @@ module TencentCloud
 
       # 慢日志TopSql
       class SlowLogTopSqlItem < TencentCloud::Common::AbstractModel
-        # @param LockTime: sql总锁等待时间
+        # @param LockTime: sql总锁等待时间，单位秒
         # @type LockTime: Float
-        # @param LockTimeMax: 最大锁等待时间
+        # @param LockTimeMax: 最大锁等待时间，单位秒
         # @type LockTimeMax: Float
-        # @param LockTimeMin: 最小锁等待时间
+        # @param LockTimeMin: 最小锁等待时间，单位秒
         # @type LockTimeMin: Float
         # @param RowsExamined: 总扫描行数
         # @type RowsExamined: Integer
@@ -2504,11 +2631,11 @@ module TencentCloud
         # @type RowsExaminedMax: Integer
         # @param RowsExaminedMin: 最小扫描行数
         # @type RowsExaminedMin: Integer
-        # @param QueryTime: 总耗时
+        # @param QueryTime: 总耗时，单位秒
         # @type QueryTime: Float
-        # @param QueryTimeMax: 最大执行时间
+        # @param QueryTimeMax: 最大执行时间，单位秒
         # @type QueryTimeMax: Float
-        # @param QueryTimeMin: 最小执行时间
+        # @param QueryTimeMin: 最小执行时间，单位秒
         # @type QueryTimeMin: Float
         # @param RowsSent: 总返回行数
         # @type RowsSent: Integer
@@ -2524,19 +2651,19 @@ module TencentCloud
         # @type SqlText: String
         # @param Schema: 数据库名
         # @type Schema: String
-        # @param QueryTimeRatio: 总耗时占比
+        # @param QueryTimeRatio: 总耗时占比，单位%
         # @type QueryTimeRatio: Float
-        # @param LockTimeRatio: sql总锁等待时间占比
+        # @param LockTimeRatio: sql总锁等待时间占比，单位%
         # @type LockTimeRatio: Float
-        # @param RowsExaminedRatio: 总扫描行数占比
+        # @param RowsExaminedRatio: 总扫描行数占比，单位%
         # @type RowsExaminedRatio: Float
-        # @param RowsSentRatio: 总返回行数占比
+        # @param RowsSentRatio: 总返回行数占比，单位%
         # @type RowsSentRatio: Float
-        # @param QueryTimeAvg: 平均执行时间
+        # @param QueryTimeAvg: 平均执行时间，单位秒
         # @type QueryTimeAvg: Float
         # @param RowsSentAvg: 平均返回行数
         # @type RowsSentAvg: Float
-        # @param LockTimeAvg: 平均锁等待时间
+        # @param LockTimeAvg: 平均锁等待时间，单位秒
         # @type LockTimeAvg: Float
         # @param RowsExaminedAvg: 平均扫描行数
         # @type RowsExaminedAvg: Float

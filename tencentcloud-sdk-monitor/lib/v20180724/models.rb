@@ -901,10 +901,14 @@ module TencentCloud
         # @type NoticeIds: Array
         # @param TriggerTasks: 触发任务列表
         # @type TriggerTasks: Array
+        # @param Filter: 全局过滤条件
+        # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyFilter`
+        # @param GroupBy: 聚合维度列表，指定按哪些维度 key 来做 group by
+        # @type GroupBy: Array
 
-        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks
+        attr_accessor :Module, :PolicyName, :MonitorType, :Namespace, :Remark, :Enable, :ProjectId, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :TriggerTasks, :Filter, :GroupBy
         
-        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil)
+        def initialize(_module=nil, policyname=nil, monitortype=nil, namespace=nil, remark=nil, enable=nil, projectid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, triggertasks=nil, filter=nil, groupby=nil)
           @Module = _module
           @PolicyName = policyname
           @MonitorType = monitortype
@@ -917,6 +921,8 @@ module TencentCloud
           @EventCondition = eventcondition
           @NoticeIds = noticeids
           @TriggerTasks = triggertasks
+          @Filter = filter
+          @GroupBy = groupby
         end
 
         def deserialize(params)
@@ -945,6 +951,11 @@ module TencentCloud
               @TriggerTasks << alarmpolicytriggertask_tmp
             end
           end
+          unless params['Filter'].nil?
+            @Filter = AlarmPolicyFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @GroupBy = params['GroupBy']
         end
       end
 
@@ -1662,17 +1673,21 @@ module TencentCloud
         # @type Module: String
         # @param Namespace: 告警策略类型，由 DescribeAllNamespaces 获得，例如 cvm_device
         # @type Namespace: String
+        # @param MonitorType: 监控类型，如 MT_QCE。如果不填默认为 MT_QCE。
+        # @type MonitorType: String
 
-        attr_accessor :Module, :Namespace
+        attr_accessor :Module, :Namespace, :MonitorType
         
-        def initialize(_module=nil, namespace=nil)
+        def initialize(_module=nil, namespace=nil, monitortype=nil)
           @Module = _module
           @Namespace = namespace
+          @MonitorType = monitortype
         end
 
         def deserialize(params)
           @Module = params['Module']
           @Namespace = params['Namespace']
+          @MonitorType = params['MonitorType']
         end
       end
 
@@ -4986,15 +5001,21 @@ module TencentCloud
         # @type Condition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyCondition`
         # @param EventCondition: 事件触发条件
         # @type EventCondition: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyEventCondition`
+        # @param Filter: 全局过滤条件
+        # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmPolicyFilter`
+        # @param GroupBy: 聚合维度列表，指定按哪些维度 key 来做 group by
+        # @type GroupBy: Array
 
-        attr_accessor :Module, :PolicyId, :ConditionTemplateId, :Condition, :EventCondition
+        attr_accessor :Module, :PolicyId, :ConditionTemplateId, :Condition, :EventCondition, :Filter, :GroupBy
         
-        def initialize(_module=nil, policyid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil)
+        def initialize(_module=nil, policyid=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, filter=nil, groupby=nil)
           @Module = _module
           @PolicyId = policyid
           @ConditionTemplateId = conditiontemplateid
           @Condition = condition
           @EventCondition = eventcondition
+          @Filter = filter
+          @GroupBy = groupby
         end
 
         def deserialize(params)
@@ -5009,6 +5030,11 @@ module TencentCloud
             @EventCondition = AlarmPolicyEventCondition.new
             @EventCondition.deserialize(params['EventCondition'])
           end
+          unless params['Filter'].nil?
+            @Filter = AlarmPolicyFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @GroupBy = params['GroupBy']
         end
       end
 

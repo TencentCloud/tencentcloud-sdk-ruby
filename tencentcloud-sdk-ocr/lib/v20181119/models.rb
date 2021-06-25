@@ -204,10 +204,12 @@ module TencentCloud
         # @type EnableReshootCheck: Boolean
         # @param EnableBorderCheck: 边框遮挡检测开关，如果输入的图片是银行卡边框被遮挡则返回告警，默认false。
         # @type EnableBorderCheck: Boolean
+        # @param EnableQualityValue: 是否返回图片质量分数（图片质量分数是评价一个图片的模糊程度的标准），默认false。
+        # @type EnableQualityValue: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :RetBorderCutImage, :RetCardNoImage, :EnableCopyCheck, :EnableReshootCheck, :EnableBorderCheck
+        attr_accessor :ImageBase64, :ImageUrl, :RetBorderCutImage, :RetCardNoImage, :EnableCopyCheck, :EnableReshootCheck, :EnableBorderCheck, :EnableQualityValue
         
-        def initialize(imagebase64=nil, imageurl=nil, retbordercutimage=nil, retcardnoimage=nil, enablecopycheck=nil, enablereshootcheck=nil, enablebordercheck=nil)
+        def initialize(imagebase64=nil, imageurl=nil, retbordercutimage=nil, retcardnoimage=nil, enablecopycheck=nil, enablereshootcheck=nil, enablebordercheck=nil, enablequalityvalue=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @RetBorderCutImage = retbordercutimage
@@ -215,6 +217,7 @@ module TencentCloud
           @EnableCopyCheck = enablecopycheck
           @EnableReshootCheck = enablereshootcheck
           @EnableBorderCheck = enablebordercheck
+          @EnableQualityValue = enablequalityvalue
         end
 
         def deserialize(params)
@@ -225,6 +228,7 @@ module TencentCloud
           @EnableCopyCheck = params['EnableCopyCheck']
           @EnableReshootCheck = params['EnableReshootCheck']
           @EnableBorderCheck = params['EnableBorderCheck']
+          @EnableQualityValue = params['EnableQualityValue']
         end
       end
 
@@ -255,12 +259,15 @@ module TencentCloud
         # （告警码可以同时存在多个）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarningCode: Array
+        # @param QualityValue: 图片质量分数，请求enable_quality_value时返回（取值范围：0-100，分数越低越模糊，建议阈值≥50）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityValue: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CardNo, :BankInfo, :ValidDate, :CardType, :CardName, :BorderCutImage, :CardNoImage, :WarningCode, :RequestId
+        attr_accessor :CardNo, :BankInfo, :ValidDate, :CardType, :CardName, :BorderCutImage, :CardNoImage, :WarningCode, :QualityValue, :RequestId
         
-        def initialize(cardno=nil, bankinfo=nil, validdate=nil, cardtype=nil, cardname=nil, bordercutimage=nil, cardnoimage=nil, warningcode=nil, requestid=nil)
+        def initialize(cardno=nil, bankinfo=nil, validdate=nil, cardtype=nil, cardname=nil, bordercutimage=nil, cardnoimage=nil, warningcode=nil, qualityvalue=nil, requestid=nil)
           @CardNo = cardno
           @BankInfo = bankinfo
           @ValidDate = validdate
@@ -269,6 +276,7 @@ module TencentCloud
           @BorderCutImage = bordercutimage
           @CardNoImage = cardnoimage
           @WarningCode = warningcode
+          @QualityValue = qualityvalue
           @RequestId = requestid
         end
 
@@ -281,6 +289,7 @@ module TencentCloud
           @BorderCutImage = params['BorderCutImage']
           @CardNoImage = params['CardNoImage']
           @WarningCode = params['WarningCode']
+          @QualityValue = params['QualityValue']
           @RequestId = params['RequestId']
         end
       end
@@ -1297,14 +1306,17 @@ module TencentCloud
         # @param EnableCandWord: 候选字开关，开启可返回识别时多个可能的候选字（每个候选字对应其置信度）。
         # 该参数默认值为false。
         # @type EnableCandWord: Boolean
+        # @param Preprocess: 预处理开关，功能是检测图片倾斜的角度，将原本倾斜的图片矫正。该参数默认值为true。
+        # @type Preprocess: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :EnableCoordPoint, :EnableCandWord
+        attr_accessor :ImageBase64, :ImageUrl, :EnableCoordPoint, :EnableCandWord, :Preprocess
         
-        def initialize(imagebase64=nil, imageurl=nil, enablecoordpoint=nil, enablecandword=nil)
+        def initialize(imagebase64=nil, imageurl=nil, enablecoordpoint=nil, enablecandword=nil, preprocess=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @EnableCoordPoint = enablecoordpoint
           @EnableCandWord = enablecandword
+          @Preprocess = preprocess
         end
 
         def deserialize(params)
@@ -1312,6 +1324,7 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @EnableCoordPoint = params['EnableCoordPoint']
           @EnableCandWord = params['EnableCandWord']
+          @Preprocess = params['Preprocess']
         end
       end
 

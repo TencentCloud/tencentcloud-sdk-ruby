@@ -365,7 +365,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
+        # 【该接口将逐步下线，请切换使用升级版本DescribeClientBalanceNew】为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额.
 
         # @param request: Request instance for DescribeClientBalance.
         # @type request: :class:`Tencentcloud::partners::V20180321::DescribeClientBalanceRequest`
@@ -375,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClientBalanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
+
+        # @param request: Request instance for DescribeClientBalanceNew.
+        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeClientBalanceNewRequest`
+        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeClientBalanceNewResponse`
+        def DescribeClientBalanceNew(request)
+          body = send_request('DescribeClientBalanceNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClientBalanceNewResponse.new
             model.deserialize(response['Response'])
             model
           else

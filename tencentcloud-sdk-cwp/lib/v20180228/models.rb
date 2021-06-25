@@ -3817,7 +3817,7 @@ module TencentCloud
       class DescribeMalwaresResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 木马总数。
         # @type TotalCount: Integer
-        # @param Malwares: Malware数组。
+        # @param Malwares: 木马相关信息。
         # @type Malwares: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4622,9 +4622,9 @@ module TencentCloud
         # <li>MergeBeginTime - String - 是否必填：否 - 最近访问开始时间</li>
         # <li>MergeEndTime - String - 是否必填：否 - 最近访问结束时间</li>
         # @type Filters: Array
-        # @param Order: 排序方式
+        # @param Order: 排序方式：根据请求次数排序：asc-升序/desc-降序
         # @type Order: String
-        # @param By: 排序字段
+        # @param By: 排序字段：AccessCount-请求次数
         # @type By: String
 
         attr_accessor :Limit, :Offset, :Filters, :Order, :By
@@ -4682,7 +4682,7 @@ module TencentCloud
 
       # DescribeScanMalwareSchedule返回参数结构体
       class DescribeScanMalwareScheduleResponse < TencentCloud::Common::AbstractModel
-        # @param Schedule: 扫描进度
+        # @param Schedule: 扫描进度（单位：%）
         # @type Schedule: Integer
         # @param RiskFileNumber: 风险文件数,当进度满了以后才有该值
         # @type RiskFileNumber: Integer
@@ -8279,7 +8279,7 @@ module TencentCloud
 
       # RecoverMalwares请求参数结构体
       class RecoverMalwaresRequest < TencentCloud::Common::AbstractModel
-        # @param Ids: 木马Id数组,单次最大删除不能超过200条
+        # @param Ids: 木马Id数组（单次最大恢复不超过100条）
         # @type Ids: Array
 
         attr_accessor :Ids
@@ -8984,7 +8984,7 @@ module TencentCloud
 
       # TrustMalwares请求参数结构体
       class TrustMalwaresRequest < TencentCloud::Common::AbstractModel
-        # @param Ids: 木马ID数组。
+        # @param Ids: 木马ID数组（单次不超过的最大条数：100）
         # @type Ids: Array
 
         attr_accessor :Ids

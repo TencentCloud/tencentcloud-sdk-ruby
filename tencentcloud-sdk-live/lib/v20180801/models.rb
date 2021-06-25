@@ -4557,7 +4557,7 @@ module TencentCloud
         # @type StreamName: String
         # @param DayTime: 查询时间，北京时间，
         # 格式：yyyymmdd。
-        # 注意：支持查询近1个月内某天的详细数据。
+        # 注意：支持查询近1个月内某天的详细数据，截止到昨天。
         # @type DayTime: String
         # @param PageNum: 页数，默认1，
         # 不超过100页。
@@ -4571,7 +4571,7 @@ module TencentCloud
         # @type StartDayTime: String
         # @param EndDayTime: 结束天时间，北京时间，
         # 格式：yyyymmdd。
-        # 注意：支持查询近1个月内的详细数据，注意DayTime 与（StartDayTime，EndDayTime）必须要传一个，如果都传，会以DayTime为准 。
+        # 注意：支持查询近1个月内的详细数据，截止到昨天，注意DayTime 与（StartDayTime，EndDayTime）必须要传一个，如果都传，会以DayTime为准 。
         # @type EndDayTime: String
 
         attr_accessor :PushDomain, :StreamName, :DayTime, :PageNum, :PageSize, :StartDayTime, :EndDayTime
@@ -8139,11 +8139,11 @@ module TencentCloud
       class RecordParam < TencentCloud::Common::AbstractModel
         # @param RecordInterval: 录制间隔。
         # 单位秒，默认：1800。
-        # 取值范围：300-7200。
+        # 取值范围：60-7200。
         # 此参数对 HLS 无效，当录制 HLS 时从推流到断流生成一个文件。
         # @type RecordInterval: Integer
         # @param StorageTime: 录制存储时长。
-        # 单位秒，取值范围： 0 - 93312000。
+        # 单位秒，取值范围： 0 - 1500天。
         # 0：表示永久存储。
         # @type StorageTime: Integer
         # @param Enable: 是否开启当前格式录制，默认值为0，0：否， 1：是。
@@ -8170,15 +8170,29 @@ module TencentCloud
 
         # 若未设置默认录制文件名为{StreamID}_{StartYear}-{StartMonth}-{StartDay}-{StartHour}-{StartMinute}-{StartSecond}_{EndYear}-{EndMonth}-{EndDay}-{EndHour}-{EndMinute}-{EndSecond}
         # @type VodFileName: String
+        # @param Procedure: 任务流
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Procedure: String
+        # @param StorageMode: 视频存储策略。
+        # normal：标准存储。
+        # cold：低频存储。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageMode: String
+        # @param ClassId: 点播应用分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassId: Integer
 
-        attr_accessor :RecordInterval, :StorageTime, :Enable, :VodSubAppId, :VodFileName
+        attr_accessor :RecordInterval, :StorageTime, :Enable, :VodSubAppId, :VodFileName, :Procedure, :StorageMode, :ClassId
         
-        def initialize(recordinterval=nil, storagetime=nil, enable=nil, vodsubappid=nil, vodfilename=nil)
+        def initialize(recordinterval=nil, storagetime=nil, enable=nil, vodsubappid=nil, vodfilename=nil, procedure=nil, storagemode=nil, classid=nil)
           @RecordInterval = recordinterval
           @StorageTime = storagetime
           @Enable = enable
           @VodSubAppId = vodsubappid
           @VodFileName = vodfilename
+          @Procedure = procedure
+          @StorageMode = storagemode
+          @ClassId = classid
         end
 
         def deserialize(params)
@@ -8187,6 +8201,9 @@ module TencentCloud
           @Enable = params['Enable']
           @VodSubAppId = params['VodSubAppId']
           @VodFileName = params['VodFileName']
+          @Procedure = params['Procedure']
+          @StorageMode = params['StorageMode']
+          @ClassId = params['ClassId']
         end
       end
 

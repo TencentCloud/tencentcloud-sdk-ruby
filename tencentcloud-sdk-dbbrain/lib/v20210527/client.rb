@@ -413,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询关系型数据库的实时线程列表。
+
+        # @param request: Request instance for DescribeMySqlProcessList.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeMySqlProcessListRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeMySqlProcessListResponse`
+        def DescribeMySqlProcessList(request)
+          body = send_request('DescribeMySqlProcessList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMySqlProcessListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
 
         # @param request: Request instance for DescribeSecurityAuditLogDownloadUrls.

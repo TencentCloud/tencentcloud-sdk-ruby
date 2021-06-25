@@ -179,7 +179,7 @@ module TencentCloud
         # @type Phone: String
         # @param HasOverdueBill: 0表示不欠费，1表示欠费
         # @type HasOverdueBill: Integer
-        # @param Status: 1:待代理商审核;2:待腾讯云审核
+        # @param Status: 1:待代理商审核;2:待腾讯云审核4:待腾讯云渠道审批
         # @type Status: Integer
         # @param SalesUin: 业务员ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -187,10 +187,13 @@ module TencentCloud
         # @param SalesName: 业务员姓名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SalesName: String
+        # @param ClientName: 客户名称，此字段和控制台返回一致。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientName: String
 
-        attr_accessor :Uin, :ClientUin, :ApplyTime, :ClientFlag, :Mail, :Phone, :HasOverdueBill, :Status, :SalesUin, :SalesName
+        attr_accessor :Uin, :ClientUin, :ApplyTime, :ClientFlag, :Mail, :Phone, :HasOverdueBill, :Status, :SalesUin, :SalesName, :ClientName
         
-        def initialize(uin=nil, clientuin=nil, applytime=nil, clientflag=nil, mail=nil, phone=nil, hasoverduebill=nil, status=nil, salesuin=nil, salesname=nil)
+        def initialize(uin=nil, clientuin=nil, applytime=nil, clientflag=nil, mail=nil, phone=nil, hasoverduebill=nil, status=nil, salesuin=nil, salesname=nil, clientname=nil)
           @Uin = uin
           @ClientUin = clientuin
           @ApplyTime = applytime
@@ -201,6 +204,7 @@ module TencentCloud
           @Status = status
           @SalesUin = salesuin
           @SalesName = salesname
+          @ClientName = clientname
         end
 
         def deserialize(params)
@@ -214,6 +218,7 @@ module TencentCloud
           @Status = params['Status']
           @SalesUin = params['SalesUin']
           @SalesName = params['SalesName']
+          @ClientName = params['ClientName']
         end
       end
 
@@ -293,10 +298,16 @@ module TencentCloud
         # @param ProductInfo: 产品详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductInfo: Array
+        # @param PaymentMethod: 付款方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentMethod: String
+        # @param UpdateTime: 订单更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
 
-        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo
+        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo, :PaymentMethod, :UpdateTime
         
-        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil)
+        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil, paymentmethod=nil, updatetime=nil)
           @DealId = dealid
           @DealName = dealname
           @GoodsCategoryId = goodscategoryid
@@ -323,6 +334,8 @@ module TencentCloud
           @ActivityId = activityid
           @OverdueTime = overduetime
           @ProductInfo = productinfo
+          @PaymentMethod = paymentmethod
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -362,6 +375,8 @@ module TencentCloud
               @ProductInfo << productinfoelem_tmp
             end
           end
+          @PaymentMethod = params['PaymentMethod']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -441,10 +456,16 @@ module TencentCloud
         # @param ProductInfo: 产品详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductInfo: Array
+        # @param PaymentMethod: 付款方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaymentMethod: String
+        # @param UpdateTime: 订单更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
 
-        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo
+        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo, :PaymentMethod, :UpdateTime
         
-        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil)
+        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil, paymentmethod=nil, updatetime=nil)
           @DealId = dealid
           @DealName = dealname
           @GoodsCategoryId = goodscategoryid
@@ -471,6 +492,8 @@ module TencentCloud
           @ActivityId = activityid
           @OverdueTime = overduetime
           @ProductInfo = productinfo
+          @PaymentMethod = paymentmethod
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -510,6 +533,8 @@ module TencentCloud
               @ProductInfo << productinfoelem_tmp
             end
           end
+          @PaymentMethod = params['PaymentMethod']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -739,33 +764,41 @@ module TencentCloud
 
       # 订单价格详情
       class DealGoodsPriceElem < TencentCloud::Common::AbstractModel
-        # @param RealTotalCost: 实付金额
+        # @param RealTotalCost: 实付金额（单位：分）
         # @type RealTotalCost: Integer
+        # @param OriginalTotalCost: 订单实际金额（不含折扣，单位：分）
+        # @type OriginalTotalCost: Integer
 
-        attr_accessor :RealTotalCost
+        attr_accessor :RealTotalCost, :OriginalTotalCost
         
-        def initialize(realtotalcost=nil)
+        def initialize(realtotalcost=nil, originaltotalcost=nil)
           @RealTotalCost = realtotalcost
+          @OriginalTotalCost = originaltotalcost
         end
 
         def deserialize(params)
           @RealTotalCost = params['RealTotalCost']
+          @OriginalTotalCost = params['OriginalTotalCost']
         end
       end
 
       # 订单价格详情
       class DealGoodsPriceNewElem < TencentCloud::Common::AbstractModel
-        # @param RealTotalCost: 实付金额
+        # @param RealTotalCost: 实付金额（单位：分）
         # @type RealTotalCost: Integer
+        # @param OriginalTotalCost: 原始金额（不含折扣，单位：分）
+        # @type OriginalTotalCost: Integer
 
-        attr_accessor :RealTotalCost
+        attr_accessor :RealTotalCost, :OriginalTotalCost
         
-        def initialize(realtotalcost=nil)
+        def initialize(realtotalcost=nil, originaltotalcost=nil)
           @RealTotalCost = realtotalcost
+          @OriginalTotalCost = originaltotalcost
         end
 
         def deserialize(params)
           @RealTotalCost = params['RealTotalCost']
+          @OriginalTotalCost = params['OriginalTotalCost']
         end
       end
 
@@ -1512,6 +1545,46 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClientBalanceNew请求参数结构体
+      class DescribeClientBalanceNewRequest < TencentCloud::Common::AbstractModel
+        # @param ClientUin: 客户(代客)账号ID
+        # @type ClientUin: String
+
+        attr_accessor :ClientUin
+        
+        def initialize(clientuin=nil)
+          @ClientUin = clientuin
+        end
+
+        def deserialize(params)
+          @ClientUin = params['ClientUin']
+        end
+      end
+
+      # DescribeClientBalanceNew返回参数结构体
+      class DescribeClientBalanceNewResponse < TencentCloud::Common::AbstractModel
+        # @param Balance: 账户可用余额，单位分 （可用余额 = 现金余额 + 赠送金余额 - 欠费金额 - 冻结金额）
+        # @type Balance: Integer
+        # @param Cash: 账户现金余额，单位分
+        # @type Cash: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Balance, :Cash, :RequestId
+        
+        def initialize(balance=nil, cash=nil, requestid=nil)
+          @Balance = balance
+          @Cash = cash
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Balance = params['Balance']
+          @Cash = params['Cash']
           @RequestId = params['RequestId']
         end
       end
