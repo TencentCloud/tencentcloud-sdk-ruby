@@ -1612,16 +1612,22 @@ module TencentCloud
         # @type NeedRecordNum: Integer
         # @param ActionType: 查询交易类型。如 按量计费日结，按量计费小时结 等
         # @type ActionType: String
+        # @param ResourceId: 查询指定资源信息
+        # @type ResourceId: String
+        # @param PayMode: 付费模式 prePay/postPay
+        # @type PayMode: String
 
-        attr_accessor :Offset, :Limit, :PeriodType, :Month, :NeedRecordNum, :ActionType
+        attr_accessor :Offset, :Limit, :PeriodType, :Month, :NeedRecordNum, :ActionType, :ResourceId, :PayMode
         
-        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, needrecordnum=nil, actiontype=nil)
+        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil)
           @Offset = offset
           @Limit = limit
           @PeriodType = periodtype
           @Month = month
           @NeedRecordNum = needrecordnum
           @ActionType = actiontype
+          @ResourceId = resourceid
+          @PayMode = paymode
         end
 
         def deserialize(params)
@@ -1631,6 +1637,8 @@ module TencentCloud
           @Month = params['Month']
           @NeedRecordNum = params['NeedRecordNum']
           @ActionType = params['ActionType']
+          @ResourceId = params['ResourceId']
+          @PayMode = params['PayMode']
         end
       end
 

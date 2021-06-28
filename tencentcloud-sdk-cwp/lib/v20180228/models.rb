@@ -4655,16 +4655,32 @@ module TencentCloud
 
       # DescribeRiskDnsList返回参数结构体
       class DescribeRiskDnsListResponse < TencentCloud::Common::AbstractModel
+        # @param RiskDnsList: 恶意请求列表数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskDnsList: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RiskDnsList, :TotalCount, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(riskdnslist=nil, totalcount=nil, requestid=nil)
+          @RiskDnsList = riskdnslist
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['RiskDnsList'].nil?
+            @RiskDnsList = []
+            params['RiskDnsList'].each do |i|
+              riskdnslist_tmp = RiskDnsList.new
+              riskdnslist_tmp.deserialize(i)
+              @RiskDnsList << riskdnslist_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -8561,6 +8577,98 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Hostip = params['Hostip']
+        end
+      end
+
+      # 恶意请求列表
+      class RiskDnsList < TencentCloud::Common::AbstractModel
+        # @param Url: 对外访问域名
+        # @type Url: String
+        # @param AccessCount: 访问次数
+        # @type AccessCount: Integer
+        # @param ProcessName: 进程名
+        # @type ProcessName: String
+        # @param ProcessMd5: 进程MD5
+        # @type ProcessMd5: String
+        # @param GlobalRuleId: 是否为全局规则，0否，1是
+        # @type GlobalRuleId: Integer
+        # @param UserRuleId: 用户规则id
+        # @type UserRuleId: Integer
+        # @param Status: 状态；0-待处理，2-已加白，3-非信任状态
+        # @type Status: Integer
+        # @param CreateTime: 首次访问时间
+        # @type CreateTime: String
+        # @param MergeTime: 最近访问时间
+        # @type MergeTime: String
+        # @param Quuid: 唯一 Quuid
+        # @type Quuid: String
+        # @param HostIp: 主机ip
+        # @type HostIp: String
+        # @param Alias: 别名
+        # @type Alias: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param Id: 唯一ID
+        # @type Id: Integer
+        # @param Reference: 参考
+        # @type Reference: String
+        # @param CmdLine: 命令行
+        # @type CmdLine: String
+        # @param Pid: 进程号
+        # @type Pid: Integer
+        # @param Uuid: 唯一UUID
+        # @type Uuid: String
+        # @param SuggestScheme: 建议方案
+        # @type SuggestScheme: String
+        # @param Tags: 标签特性
+        # @type Tags: Array
+
+        attr_accessor :Url, :AccessCount, :ProcessName, :ProcessMd5, :GlobalRuleId, :UserRuleId, :Status, :CreateTime, :MergeTime, :Quuid, :HostIp, :Alias, :Description, :Id, :Reference, :CmdLine, :Pid, :Uuid, :SuggestScheme, :Tags
+        
+        def initialize(url=nil, accesscount=nil, processname=nil, processmd5=nil, globalruleid=nil, userruleid=nil, status=nil, createtime=nil, mergetime=nil, quuid=nil, hostip=nil, _alias=nil, description=nil, id=nil, reference=nil, cmdline=nil, pid=nil, uuid=nil, suggestscheme=nil, tags=nil)
+          @Url = url
+          @AccessCount = accesscount
+          @ProcessName = processname
+          @ProcessMd5 = processmd5
+          @GlobalRuleId = globalruleid
+          @UserRuleId = userruleid
+          @Status = status
+          @CreateTime = createtime
+          @MergeTime = mergetime
+          @Quuid = quuid
+          @HostIp = hostip
+          @Alias = _alias
+          @Description = description
+          @Id = id
+          @Reference = reference
+          @CmdLine = cmdline
+          @Pid = pid
+          @Uuid = uuid
+          @SuggestScheme = suggestscheme
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @AccessCount = params['AccessCount']
+          @ProcessName = params['ProcessName']
+          @ProcessMd5 = params['ProcessMd5']
+          @GlobalRuleId = params['GlobalRuleId']
+          @UserRuleId = params['UserRuleId']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @MergeTime = params['MergeTime']
+          @Quuid = params['Quuid']
+          @HostIp = params['HostIp']
+          @Alias = params['Alias']
+          @Description = params['Description']
+          @Id = params['Id']
+          @Reference = params['Reference']
+          @CmdLine = params['CmdLine']
+          @Pid = params['Pid']
+          @Uuid = params['Uuid']
+          @SuggestScheme = params['SuggestScheme']
+          @Tags = params['Tags']
         end
       end
 

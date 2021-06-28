@@ -271,10 +271,13 @@ module TencentCloud
         # @param ProductId: 集群版本Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: Integer
+        # @param Zone: 地区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
 
-        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId
+        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone
         
-        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil)
+        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil)
           @Id = id
           @ClusterId = clusterid
           @Ftitle = ftitle
@@ -304,6 +307,7 @@ module TencentCloud
           @ServiceClass = serviceclass
           @AliasInfo = aliasinfo
           @ProductId = productid
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -346,6 +350,7 @@ module TencentCloud
           @ServiceClass = params['ServiceClass']
           @AliasInfo = params['AliasInfo']
           @ProductId = params['ProductId']
+          @Zone = params['Zone']
         end
       end
 
@@ -1092,10 +1097,16 @@ module TencentCloud
         # @param CbsEncrypt: 是否开启Cbs加密
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CbsEncrypt: Integer
+        # @param ApplicationRole: 自定义应用角色。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationRole: String
+        # @param SecurityGroups: 安全组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroups: Array
 
-        attr_accessor :SoftInfo, :MasterNodeSize, :CoreNodeSize, :TaskNodeSize, :ComNodeSize, :MasterResource, :CoreResource, :TaskResource, :ComResource, :OnCos, :ChargeType, :RouterNodeSize, :SupportHA, :SecurityOn, :SecurityGroup, :CbsEncrypt
+        attr_accessor :SoftInfo, :MasterNodeSize, :CoreNodeSize, :TaskNodeSize, :ComNodeSize, :MasterResource, :CoreResource, :TaskResource, :ComResource, :OnCos, :ChargeType, :RouterNodeSize, :SupportHA, :SecurityOn, :SecurityGroup, :CbsEncrypt, :ApplicationRole, :SecurityGroups
         
-        def initialize(softinfo=nil, masternodesize=nil, corenodesize=nil, tasknodesize=nil, comnodesize=nil, masterresource=nil, coreresource=nil, taskresource=nil, comresource=nil, oncos=nil, chargetype=nil, routernodesize=nil, supportha=nil, securityon=nil, securitygroup=nil, cbsencrypt=nil)
+        def initialize(softinfo=nil, masternodesize=nil, corenodesize=nil, tasknodesize=nil, comnodesize=nil, masterresource=nil, coreresource=nil, taskresource=nil, comresource=nil, oncos=nil, chargetype=nil, routernodesize=nil, supportha=nil, securityon=nil, securitygroup=nil, cbsencrypt=nil, applicationrole=nil, securitygroups=nil)
           @SoftInfo = softinfo
           @MasterNodeSize = masternodesize
           @CoreNodeSize = corenodesize
@@ -1112,6 +1123,8 @@ module TencentCloud
           @SecurityOn = securityon
           @SecurityGroup = securitygroup
           @CbsEncrypt = cbsencrypt
+          @ApplicationRole = applicationrole
+          @SecurityGroups = securitygroups
         end
 
         def deserialize(params)
@@ -1143,6 +1156,8 @@ module TencentCloud
           @SecurityOn = params['SecurityOn']
           @SecurityGroup = params['SecurityGroup']
           @CbsEncrypt = params['CbsEncrypt']
+          @ApplicationRole = params['ApplicationRole']
+          @SecurityGroups = params['SecurityGroups']
         end
       end
 

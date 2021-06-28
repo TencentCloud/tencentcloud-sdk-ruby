@@ -1721,15 +1721,19 @@ module TencentCloud
         # @param MountTarget: 挂载目录
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountTarget: String
+        # @param DiskPartition: 挂载设备名或分区名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskPartition: String
 
-        attr_accessor :DiskType, :FileSystem, :DiskSize, :AutoFormatAndMount, :MountTarget
+        attr_accessor :DiskType, :FileSystem, :DiskSize, :AutoFormatAndMount, :MountTarget, :DiskPartition
         
-        def initialize(disktype=nil, filesystem=nil, disksize=nil, autoformatandmount=nil, mounttarget=nil)
+        def initialize(disktype=nil, filesystem=nil, disksize=nil, autoformatandmount=nil, mounttarget=nil, diskpartition=nil)
           @DiskType = disktype
           @FileSystem = filesystem
           @DiskSize = disksize
           @AutoFormatAndMount = autoformatandmount
           @MountTarget = mounttarget
+          @DiskPartition = diskpartition
         end
 
         def deserialize(params)
@@ -1738,6 +1742,7 @@ module TencentCloud
           @DiskSize = params['DiskSize']
           @AutoFormatAndMount = params['AutoFormatAndMount']
           @MountTarget = params['MountTarget']
+          @DiskPartition = params['DiskPartition']
         end
       end
 
