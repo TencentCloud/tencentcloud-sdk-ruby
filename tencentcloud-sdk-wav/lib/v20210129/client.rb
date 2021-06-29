@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 企业可通过此接口将企业主体对应的外部联系人id转换为乐销车应用主体对应的外部联系人。
+
+        # @param request: Request instance for QueryExternalUserMappingInfo.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryExternalUserMappingInfoRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryExternalUserMappingInfoResponse`
+        def QueryExternalUserMappingInfo(request)
+          body = send_request('QueryExternalUserMappingInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryExternalUserMappingInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询小程序码列表接口
 
         # @param request: Request instance for QueryMiniAppCodeList.

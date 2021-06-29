@@ -571,6 +571,27 @@ module TencentCloud
         end
       end
 
+      # 外部联系人映射信息
+      class ExternalUserMappingInfo < TencentCloud::Common::AbstractModel
+        # @param CorpExternalUserId: 企业主体对应的外部联系人userId
+        # @type CorpExternalUserId: String
+        # @param ExternalUserId: 乐销车应用主体对应的外部联系人, 当不存在好友关系时，该字段值为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalUserId: String
+
+        attr_accessor :CorpExternalUserId, :ExternalUserId
+        
+        def initialize(corpexternaluserid=nil, externaluserid=nil)
+          @CorpExternalUserId = corpexternaluserid
+          @ExternalUserId = externaluserid
+        end
+
+        def deserialize(params)
+          @CorpExternalUserId = params['CorpExternalUserId']
+          @ExternalUserId = params['ExternalUserId']
+        end
+      end
+
       # 添加了此外部联系人的企业成员信息
       class FollowUser < TencentCloud::Common::AbstractModel
         # @param UserId: 添加了此外部联系人的企业成员userid
@@ -1099,6 +1120,50 @@ module TencentCloud
             end
           end
           @NextCursor = params['NextCursor']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryExternalUserMappingInfo请求参数结构体
+      class QueryExternalUserMappingInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CorpExternalUserIdList: 企业主体对应的外部联系人id列表，列表长度限制最大为50。
+        # @type CorpExternalUserIdList: Array
+
+        attr_accessor :CorpExternalUserIdList
+        
+        def initialize(corpexternaluseridlist=nil)
+          @CorpExternalUserIdList = corpexternaluseridlist
+        end
+
+        def deserialize(params)
+          @CorpExternalUserIdList = params['CorpExternalUserIdList']
+        end
+      end
+
+      # QueryExternalUserMappingInfo返回参数结构体
+      class QueryExternalUserMappingInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ExternalUserIdMapping: 外部联系人映射信息, 只返回映射成功的记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalUserIdMapping: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExternalUserIdMapping, :RequestId
+        
+        def initialize(externaluseridmapping=nil, requestid=nil)
+          @ExternalUserIdMapping = externaluseridmapping
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ExternalUserIdMapping'].nil?
+            @ExternalUserIdMapping = []
+            params['ExternalUserIdMapping'].each do |i|
+              externalusermappinginfo_tmp = ExternalUserMappingInfo.new
+              externalusermappinginfo_tmp.deserialize(i)
+              @ExternalUserIdMapping << externalusermappinginfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

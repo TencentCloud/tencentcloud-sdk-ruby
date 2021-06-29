@@ -83,10 +83,14 @@ module TencentCloud
         # @type CompressFileType: String
         # @param ExtraData: 内部参数
         # @type ExtraData: String
+        # @param Priority: 文档转码优先级，支持填入以下值：<br/>
+        # - low: 低优先级转码，能支持500MB（下载超时时间10分钟）以及2000页文档，但资源有限可能会有比较长时间的排队，请酌情使用该功能。<br/>
+        # - 不填表示正常优先级转码，支持200MB文件（下载超时时间2分钟），500页以内的文档进行转码
+        # @type Priority: String
 
-        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType, :ExtraData
+        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType, :ExtraData, :Priority
         
-        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil, extradata=nil)
+        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil, extradata=nil, priority=nil)
           @SdkAppId = sdkappid
           @Url = url
           @IsStaticPPT = isstaticppt
@@ -94,6 +98,7 @@ module TencentCloud
           @ThumbnailResolution = thumbnailresolution
           @CompressFileType = compressfiletype
           @ExtraData = extradata
+          @Priority = priority
         end
 
         def deserialize(params)
@@ -104,6 +109,7 @@ module TencentCloud
           @ThumbnailResolution = params['ThumbnailResolution']
           @CompressFileType = params['CompressFileType']
           @ExtraData = params['ExtraData']
+          @Priority = params['Priority']
         end
       end
 

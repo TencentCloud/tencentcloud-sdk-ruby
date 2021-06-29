@@ -1020,6 +1020,74 @@ module TencentCloud
         end
       end
 
+      # ModifyUserInfo请求参数结构体
+      class ModifyUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param UserName: 用户名，长度限制：32个字符。 Username 和 UserId 需选择一个作为搜索条件；如两个条件同时使用则默认使用Username作为搜索条件。
+        # @type UserName: String
+        # @param DisplayName: 昵称，长度限制：64个字符。 默认与用户名相同。
+        # @type DisplayName: String
+        # @param Description: 用户备注，长度限制：512个字符。
+        # @type Description: String
+        # @param UserGroupIds: 用户所属用户组ID列表。
+        # @type UserGroupIds: Array
+        # @param UserId: 用户 id。 Username 和 UserId 需选择一个作为搜索条件；如两个条件同时使用则默认使用Username作为搜索条件。
+        # @type UserId: String
+        # @param Phone: 用户手机号。
+        # @type Phone: String
+        # @param ExpirationTime: 用户过期时间，遵循 ISO 8601 标准。
+        # @type ExpirationTime: String
+        # @param Password: 用户密码， 需要符合密码策略的配置。
+        # @type Password: String
+        # @param Email: 用户邮箱。
+        # @type Email: String
+        # @param PwdNeedReset: 密码是否需要重置，为空默认为false不需要重置密码。
+        # @type PwdNeedReset: Boolean
+
+        attr_accessor :UserName, :DisplayName, :Description, :UserGroupIds, :UserId, :Phone, :ExpirationTime, :Password, :Email, :PwdNeedReset
+        
+        def initialize(username=nil, displayname=nil, description=nil, usergroupids=nil, userid=nil, phone=nil, expirationtime=nil, password=nil, email=nil, pwdneedreset=nil)
+          @UserName = username
+          @DisplayName = displayname
+          @Description = description
+          @UserGroupIds = usergroupids
+          @UserId = userid
+          @Phone = phone
+          @ExpirationTime = expirationtime
+          @Password = password
+          @Email = email
+          @PwdNeedReset = pwdneedreset
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @UserGroupIds = params['UserGroupIds']
+          @UserId = params['UserId']
+          @Phone = params['Phone']
+          @ExpirationTime = params['ExpirationTime']
+          @Password = params['Password']
+          @Email = params['Email']
+          @PwdNeedReset = params['PwdNeedReset']
+        end
+      end
+
+      # ModifyUserInfo返回参数结构体
+      class ModifyUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 当前机构节点下的子节点列表
       class OrgNodeChildInfo < TencentCloud::Common::AbstractModel
         # @param DisplayName: 机构节点展示名称，长度限制：64个字符。 默认与机构名相同。
