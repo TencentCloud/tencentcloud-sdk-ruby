@@ -7,8 +7,6 @@ module TencentCloud
   module Common
     # common http request class
     class ApiRequset
-      attr_accessor :timeout, :scheme
-
       def initialize(scheme, host, port = nil, timeout = 60, proxy = nil)
         port = 443 if scheme == 'https'
         if proxy.nil?
@@ -18,7 +16,7 @@ module TencentCloud
           @conn = Net::HTTP.new(host, port, p.host, p.port, p.user, p.pass)
         end
         @conn.use_ssl = scheme == 'https'
-        @timeout = timeout
+        @conn.read_timeout = timeout
       end
 
       def send_request(request, keep_alive = false)
