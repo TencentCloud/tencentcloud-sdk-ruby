@@ -2614,7 +2614,7 @@ module TencentCloud
         # "ctcc"：电信线路IP
         # "cucc"：联通线路IP
         # "cmcc"：移动线路IP
-        # "abroad"：海外线路IP
+        # "abroad"：境外线路IP
         # ]
         # @type Type: String
         # @param Eip: 线路IP
