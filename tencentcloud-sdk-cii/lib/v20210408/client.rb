@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 基于提供的客户及保单信息，启动结构化识别任务。
+        # 本接口(CreateStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
 
         # @param request: Request instance for CreateStructureTask.
         # @type request: :class:`Tencentcloud::cii::V20210408::CreateStructureTaskRequest`
@@ -63,6 +63,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeStructCompareDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeStructureResult)用于查询结构化结果接口
+
+        # @param request: Request instance for DescribeStructureResult.
+        # @type request: :class:`Tencentcloud::cii::V20210408::DescribeStructureResultRequest`
+        # @rtype: :class:`Tencentcloud::cii::V20210408::DescribeStructureResultResponse`
+        def DescribeStructureResult(request)
+          body = send_request('DescribeStructureResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStructureResultResponse.new
             model.deserialize(response['Response'])
             model
           else

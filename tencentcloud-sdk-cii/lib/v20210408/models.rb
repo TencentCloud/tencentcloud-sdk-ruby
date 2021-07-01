@@ -114,15 +114,18 @@ module TencentCloud
         # LifeInsurance：寿险
         # AccidentInsurance：意外险
         # @type InsuranceTypes: Array
+        # @param CallbackUrl: 回调地址，接收Post请求传送结果
+        # @type CallbackUrl: String
 
-        attr_accessor :ServiceType, :TaskInfos, :PolicyId, :TriggerType, :InsuranceTypes
+        attr_accessor :ServiceType, :TaskInfos, :PolicyId, :TriggerType, :InsuranceTypes, :CallbackUrl
         
-        def initialize(servicetype=nil, taskinfos=nil, policyid=nil, triggertype=nil, insurancetypes=nil)
+        def initialize(servicetype=nil, taskinfos=nil, policyid=nil, triggertype=nil, insurancetypes=nil, callbackurl=nil)
           @ServiceType = servicetype
           @TaskInfos = taskinfos
           @PolicyId = policyid
           @TriggerType = triggertype
           @InsuranceTypes = insurancetypes
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
@@ -138,12 +141,13 @@ module TencentCloud
           @PolicyId = params['PolicyId']
           @TriggerType = params['TriggerType']
           @InsuranceTypes = params['InsuranceTypes']
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 
       # CreateStructureTask返回参数结构体
       class CreateStructureTaskResponse < TencentCloud::Common::AbstractModel
-        # @param MainTaskId: 创建的主任务号
+        # @param MainTaskId: 创建的主任务号，用于查询结果
         # @type MainTaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -261,6 +265,56 @@ module TencentCloud
         end
       end
 
+      # DescribeStructureResult请求参数结构体
+      class DescribeStructureResultRequest < TencentCloud::Common::AbstractModel
+        # @param MainTaskId: 创建任务时返回的主任务ID
+        # @type MainTaskId: String
+
+        attr_accessor :MainTaskId
+        
+        def initialize(maintaskid=nil)
+          @MainTaskId = maintaskid
+        end
+
+        def deserialize(params)
+          @MainTaskId = params['MainTaskId']
+        end
+      end
+
+      # DescribeStructureResult返回参数结构体
+      class DescribeStructureResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 结果状态：
+        # 0：返回成功
+        # 1：结果未生成
+        # 2：结果生成失败
+        # @type Status: Integer
+        # @param Results: 结构化结果
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Results, :RequestId
+        
+        def initialize(status=nil, results=nil, requestid=nil)
+          @Status = status
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              structureresultobject_tmp = StructureResultObject.new
+              structureresultobject_tmp.deserialize(i)
+              @Results << structureresultobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStructureTaskResult请求参数结构体
       class DescribeStructureTaskResultRequest < TencentCloud::Common::AbstractModel
         # @param MainTaskId: 结构化任务ID
@@ -357,6 +411,30 @@ module TencentCloud
           @SubTaskId = params['SubTaskId']
           @TaskName = params['TaskName']
           @TaskType = params['TaskType']
+        end
+      end
+
+      # 结构化结果
+      class StructureResultObject < TencentCloud::Common::AbstractModel
+        # @param Code: 0表示正常返回
+        # @type Code: Integer
+        # @param TaskType: 报告类型
+        # @type TaskType: String
+        # @param StructureResult: 结构化结果
+        # @type StructureResult: String
+
+        attr_accessor :Code, :TaskType, :StructureResult
+        
+        def initialize(code=nil, tasktype=nil, structureresult=nil)
+          @Code = code
+          @TaskType = tasktype
+          @StructureResult = structureresult
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @TaskType = params['TaskType']
+          @StructureResult = params['StructureResult']
         end
       end
 

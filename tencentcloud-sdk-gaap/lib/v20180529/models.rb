@@ -489,15 +489,18 @@ module TencentCloud
         # @type Concurrent: Integer
         # @param GroupId: 如果在通道组下创建通道，需要填写通道组的ID
         # @type GroupId: String
+        # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
+        # @type IPAddressVersion: String
 
-        attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId
+        attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion
         
-        def initialize(accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, groupid=nil)
+        def initialize(accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, groupid=nil, ipaddressversion=nil)
           @AccessRegion = accessregion
           @RealServerRegion = realserverregion
           @Bandwidth = bandwidth
           @Concurrent = concurrent
           @GroupId = groupid
+          @IPAddressVersion = ipaddressversion
         end
 
         def deserialize(params)
@@ -506,6 +509,7 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @Concurrent = params['Concurrent']
           @GroupId = params['GroupId']
+          @IPAddressVersion = params['IPAddressVersion']
         end
       end
 
@@ -1033,15 +1037,18 @@ module TencentCloud
         # @type TagSet: Array
         # @param AccessRegionSet: 加速地域列表，包括加速地域名，及该地域对应的带宽和并发配置。
         # @type AccessRegionSet: Array
+        # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
+        # @type IPAddressVersion: String
 
-        attr_accessor :ProjectId, :GroupName, :RealServerRegion, :TagSet, :AccessRegionSet
+        attr_accessor :ProjectId, :GroupName, :RealServerRegion, :TagSet, :AccessRegionSet, :IPAddressVersion
         
-        def initialize(projectid=nil, groupname=nil, realserverregion=nil, tagset=nil, accessregionset=nil)
+        def initialize(projectid=nil, groupname=nil, realserverregion=nil, tagset=nil, accessregionset=nil, ipaddressversion=nil)
           @ProjectId = projectid
           @GroupName = groupname
           @RealServerRegion = realserverregion
           @TagSet = tagset
           @AccessRegionSet = accessregionset
+          @IPAddressVersion = ipaddressversion
         end
 
         def deserialize(params)
@@ -1064,6 +1071,7 @@ module TencentCloud
               @AccessRegionSet << accessconfiguration_tmp
             end
           end
+          @IPAddressVersion = params['IPAddressVersion']
         end
       end
 
@@ -1113,10 +1121,12 @@ module TencentCloud
         # @type ClonedProxyId: String
         # @param BillingType: 计费方式 (0:按带宽计费，1:按流量计费 默认按带宽计费）
         # @type BillingType: Integer
+        # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
+        # @type IPAddressVersion: String
 
-        attr_accessor :ProjectId, :ProxyName, :AccessRegion, :Bandwidth, :Concurrent, :RealServerRegion, :ClientToken, :GroupId, :TagSet, :ClonedProxyId, :BillingType
+        attr_accessor :ProjectId, :ProxyName, :AccessRegion, :Bandwidth, :Concurrent, :RealServerRegion, :ClientToken, :GroupId, :TagSet, :ClonedProxyId, :BillingType, :IPAddressVersion
         
-        def initialize(projectid=nil, proxyname=nil, accessregion=nil, bandwidth=nil, concurrent=nil, realserverregion=nil, clienttoken=nil, groupid=nil, tagset=nil, clonedproxyid=nil, billingtype=nil)
+        def initialize(projectid=nil, proxyname=nil, accessregion=nil, bandwidth=nil, concurrent=nil, realserverregion=nil, clienttoken=nil, groupid=nil, tagset=nil, clonedproxyid=nil, billingtype=nil, ipaddressversion=nil)
           @ProjectId = projectid
           @ProxyName = proxyname
           @AccessRegion = accessregion
@@ -1128,6 +1138,7 @@ module TencentCloud
           @TagSet = tagset
           @ClonedProxyId = clonedproxyid
           @BillingType = billingtype
+          @IPAddressVersion = ipaddressversion
         end
 
         def deserialize(params)
@@ -1149,6 +1160,7 @@ module TencentCloud
           end
           @ClonedProxyId = params['ClonedProxyId']
           @BillingType = params['BillingType']
+          @IPAddressVersion = params['IPAddressVersion']
         end
       end
 
@@ -1361,10 +1373,14 @@ module TencentCloud
         # @type ClientIPMethod: Integer
         # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
         # @type FailoverSwitch: Integer
+        # @param HealthyThreshold: 健康阈值，表示连续检查成功多少次后认定源站健康。范围为1到10
+        # @type HealthyThreshold: Integer
+        # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败多少次数后认为源站不健康。范围为1到10
+        # @type UnhealthyThreshold: Integer
 
-        attr_accessor :ListenerName, :Ports, :Scheduler, :HealthCheck, :RealServerType, :ProxyId, :GroupId, :DelayLoop, :ConnectTimeout, :RealServerPorts, :ClientIPMethod, :FailoverSwitch
+        attr_accessor :ListenerName, :Ports, :Scheduler, :HealthCheck, :RealServerType, :ProxyId, :GroupId, :DelayLoop, :ConnectTimeout, :RealServerPorts, :ClientIPMethod, :FailoverSwitch, :HealthyThreshold, :UnhealthyThreshold
         
-        def initialize(listenername=nil, ports=nil, scheduler=nil, healthcheck=nil, realservertype=nil, proxyid=nil, groupid=nil, delayloop=nil, connecttimeout=nil, realserverports=nil, clientipmethod=nil, failoverswitch=nil)
+        def initialize(listenername=nil, ports=nil, scheduler=nil, healthcheck=nil, realservertype=nil, proxyid=nil, groupid=nil, delayloop=nil, connecttimeout=nil, realserverports=nil, clientipmethod=nil, failoverswitch=nil, healthythreshold=nil, unhealthythreshold=nil)
           @ListenerName = listenername
           @Ports = ports
           @Scheduler = scheduler
@@ -1377,6 +1393,8 @@ module TencentCloud
           @RealServerPorts = realserverports
           @ClientIPMethod = clientipmethod
           @FailoverSwitch = failoverswitch
+          @HealthyThreshold = healthythreshold
+          @UnhealthyThreshold = unhealthythreshold
         end
 
         def deserialize(params)
@@ -1392,6 +1410,8 @@ module TencentCloud
           @RealServerPorts = params['RealServerPorts']
           @ClientIPMethod = params['ClientIPMethod']
           @FailoverSwitch = params['FailoverSwitch']
+          @HealthyThreshold = params['HealthyThreshold']
+          @UnhealthyThreshold = params['UnhealthyThreshold']
         end
       end
 
@@ -1787,15 +1807,19 @@ module TencentCloud
       class DescribeAccessRegionsByDestRegionRequest < TencentCloud::Common::AbstractModel
         # @param DestRegion: 源站区域：接口DescribeDestRegions返回DestRegionSet中的RegionId字段值
         # @type DestRegion: String
+        # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
+        # @type IPAddressVersion: String
 
-        attr_accessor :DestRegion
+        attr_accessor :DestRegion, :IPAddressVersion
         
-        def initialize(destregion=nil)
+        def initialize(destregion=nil, ipaddressversion=nil)
           @DestRegion = destregion
+          @IPAddressVersion = ipaddressversion
         end
 
         def deserialize(params)
           @DestRegion = params['DestRegion']
+          @IPAddressVersion = params['IPAddressVersion']
         end
       end
 
@@ -2535,6 +2559,7 @@ module TencentCloud
         # AccessRegion - String - 是否必填：否 - （过滤条件）按照接入地域过滤。
         # RealServerRegion - String - 是否必填：否 - （过滤条件）按照源站地域过滤。
         # GroupId - String - 是否必填：否 - （过滤条件）按照通道组ID过滤。
+        # IPAddressVersion - String - 是否必填：否 - （过滤条件）按照IP版本过滤。
         # @type Filters: Array
         # @param ProxyIds: （新参数，替代InstanceIds）按照一个或者多个实例ID查询。每次请求的实例的上限为100。参数不支持同时指定InstanceIds和Filters。
         # @type ProxyIds: Array
@@ -3214,12 +3239,17 @@ module TencentCloud
 
       # DescribeRegionAndPrice请求参数结构体
       class DescribeRegionAndPriceRequest < TencentCloud::Common::AbstractModel
+        # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
+        # @type IPAddressVersion: String
 
+        attr_accessor :IPAddressVersion
         
-        def initialize()
+        def initialize(ipaddressversion=nil)
+          @IPAddressVersion = ipaddressversion
         end
 
         def deserialize(params)
+          @IPAddressVersion = params['IPAddressVersion']
         end
       end
 
@@ -4271,10 +4301,12 @@ module TencentCloud
         # @type Concurrent: Integer
         # @param BillingType: 计费方式，0表示按带宽计费，1表示按流量计费。默认按带宽计费
         # @type BillingType: Integer
+        # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
+        # @type IPAddressVersion: String
 
-        attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType
+        attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType, :IPAddressVersion
         
-        def initialize(accessregion=nil, bandwidth=nil, destregion=nil, concurrency=nil, realserverregion=nil, concurrent=nil, billingtype=nil)
+        def initialize(accessregion=nil, bandwidth=nil, destregion=nil, concurrency=nil, realserverregion=nil, concurrent=nil, billingtype=nil, ipaddressversion=nil)
           @AccessRegion = accessregion
           @Bandwidth = bandwidth
           @DestRegion = destregion
@@ -4282,6 +4314,7 @@ module TencentCloud
           @RealServerRegion = realserverregion
           @Concurrent = concurrent
           @BillingType = billingtype
+          @IPAddressVersion = ipaddressversion
         end
 
         def deserialize(params)
@@ -4292,6 +4325,7 @@ module TencentCloud
           @RealServerRegion = params['RealServerRegion']
           @Concurrent = params['Concurrent']
           @BillingType = params['BillingType']
+          @IPAddressVersion = params['IPAddressVersion']
         end
       end
 
@@ -5063,10 +5097,14 @@ module TencentCloud
         # @type HealthCheck: Integer
         # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
         # @type FailoverSwitch: Integer
+        # @param HealthyThreshold: 健康阈值，表示连续检查成功多少次数后认定源站健康。范围为1到10
+        # @type HealthyThreshold: Integer
+        # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败次数后认定源站不健康。范围为1到10
+        # @type UnhealthyThreshold: Integer
 
-        attr_accessor :ListenerId, :GroupId, :ProxyId, :ListenerName, :Scheduler, :DelayLoop, :ConnectTimeout, :HealthCheck, :FailoverSwitch
+        attr_accessor :ListenerId, :GroupId, :ProxyId, :ListenerName, :Scheduler, :DelayLoop, :ConnectTimeout, :HealthCheck, :FailoverSwitch, :HealthyThreshold, :UnhealthyThreshold
         
-        def initialize(listenerid=nil, groupid=nil, proxyid=nil, listenername=nil, scheduler=nil, delayloop=nil, connecttimeout=nil, healthcheck=nil, failoverswitch=nil)
+        def initialize(listenerid=nil, groupid=nil, proxyid=nil, listenername=nil, scheduler=nil, delayloop=nil, connecttimeout=nil, healthcheck=nil, failoverswitch=nil, healthythreshold=nil, unhealthythreshold=nil)
           @ListenerId = listenerid
           @GroupId = groupid
           @ProxyId = proxyid
@@ -5076,6 +5114,8 @@ module TencentCloud
           @ConnectTimeout = connecttimeout
           @HealthCheck = healthcheck
           @FailoverSwitch = failoverswitch
+          @HealthyThreshold = healthythreshold
+          @UnhealthyThreshold = unhealthythreshold
         end
 
         def deserialize(params)
@@ -5088,6 +5128,8 @@ module TencentCloud
           @ConnectTimeout = params['ConnectTimeout']
           @HealthCheck = params['HealthCheck']
           @FailoverSwitch = params['FailoverSwitch']
+          @HealthyThreshold = params['HealthyThreshold']
+          @UnhealthyThreshold = params['UnhealthyThreshold']
         end
       end
 
@@ -5367,10 +5409,13 @@ module TencentCloud
         # @param ClientIPMethod: 通道获取客户端IP的方式，0表示TOA，1表示Proxy Protocol
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIPMethod: Array
+        # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPAddressVersion: String
 
-        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod
+        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion
         
-        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil)
+        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil, ipaddressversion=nil)
           @CreateTime = createtime
           @ProjectId = projectid
           @ProxyNum = proxynum
@@ -5387,6 +5432,7 @@ module TencentCloud
           @PolicyId = policyid
           @Version = version
           @ClientIPMethod = clientipmethod
+          @IPAddressVersion = ipaddressversion
         end
 
         def deserialize(params)
@@ -5416,6 +5462,7 @@ module TencentCloud
           @PolicyId = params['PolicyId']
           @Version = params['Version']
           @ClientIPMethod = params['ClientIPMethod']
+          @IPAddressVersion = params['IPAddressVersion']
         end
       end
 
@@ -5587,10 +5634,13 @@ module TencentCloud
         # @param ClientIPMethod: 通道获取客户端IP的方式，0表示TOA，1表示Proxy Protocol
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIPMethod: Array
+        # @param IPAddressVersion: IP版本：IPv4、IPv6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPAddressVersion: String
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion
         
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -5618,6 +5668,7 @@ module TencentCloud
           @ModifyConfigTime = modifyconfigtime
           @ProxyType = proxytype
           @ClientIPMethod = clientipmethod
+          @IPAddressVersion = ipaddressversion
         end
 
         def deserialize(params)
@@ -5661,6 +5712,7 @@ module TencentCloud
           @ModifyConfigTime = params['ModifyConfigTime']
           @ProxyType = params['ProxyType']
           @ClientIPMethod = params['ClientIPMethod']
+          @IPAddressVersion = params['IPAddressVersion']
         end
       end
 
@@ -6211,10 +6263,16 @@ module TencentCloud
         # @param ClientIPMethod: 监听器获取客户端 IP 的方式，0表示TOA, 1表示Proxy Protocol
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClientIPMethod: Integer
+        # @param HealthyThreshold: 健康阈值，表示连续检查成功多少次后认定源站健康。范围为1到10
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthyThreshold: Integer
+        # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败多少次数后认为源站不健康。范围为1到10
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnhealthyThreshold: Integer
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :ConnectTimeout, :DelayLoop, :HealthCheck, :BindStatus, :RealServerSet, :CreateTime, :ClientIPMethod
+        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :ConnectTimeout, :DelayLoop, :HealthCheck, :BindStatus, :RealServerSet, :CreateTime, :ClientIPMethod, :HealthyThreshold, :UnhealthyThreshold
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, connecttimeout=nil, delayloop=nil, healthcheck=nil, bindstatus=nil, realserverset=nil, createtime=nil, clientipmethod=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, connecttimeout=nil, delayloop=nil, healthcheck=nil, bindstatus=nil, realserverset=nil, createtime=nil, clientipmethod=nil, healthythreshold=nil, unhealthythreshold=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -6230,6 +6288,8 @@ module TencentCloud
           @RealServerSet = realserverset
           @CreateTime = createtime
           @ClientIPMethod = clientipmethod
+          @HealthyThreshold = healthythreshold
+          @UnhealthyThreshold = unhealthythreshold
         end
 
         def deserialize(params)
@@ -6255,6 +6315,8 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @ClientIPMethod = params['ClientIPMethod']
+          @HealthyThreshold = params['HealthyThreshold']
+          @UnhealthyThreshold = params['UnhealthyThreshold']
         end
       end
 
