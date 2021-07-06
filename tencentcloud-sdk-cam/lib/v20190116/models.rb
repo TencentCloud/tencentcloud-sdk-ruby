@@ -2212,6 +2212,115 @@ module TencentCloud
         end
       end
 
+      # ListGrantServiceAccessAction节点
+      class ListGrantServiceAccessActionNode < TencentCloud::Common::AbstractModel
+        # @param Name: 接口名
+        # @type Name: String
+        # @param Description: 接口描述
+        # @type Description: String
+
+        attr_accessor :Name, :Description
+        
+        def initialize(name=nil, description=nil)
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # 用于ListPoliciesGrantingServiceAccess接口的List节点
+      class ListGrantServiceAccessNode < TencentCloud::Common::AbstractModel
+        # @param Service: 服务
+        # @type Service: :class:`Tencentcloud::Cam.v20190116.models.ListGrantServiceAccessService`
+        # @param Action: 接口信息
+        # @type Action: Array
+        # @param Policy: 授权的策略
+        # @type Policy: Array
+
+        attr_accessor :Service, :Action, :Policy
+        
+        def initialize(service=nil, action=nil, policy=nil)
+          @Service = service
+          @Action = action
+          @Policy = policy
+        end
+
+        def deserialize(params)
+          unless params['Service'].nil?
+            @Service = ListGrantServiceAccessService.new
+            @Service.deserialize(params['Service'])
+          end
+          unless params['Action'].nil?
+            @Action = []
+            params['Action'].each do |i|
+              listgrantserviceaccessactionnode_tmp = ListGrantServiceAccessActionNode.new
+              listgrantserviceaccessactionnode_tmp.deserialize(i)
+              @Action << listgrantserviceaccessactionnode_tmp
+            end
+          end
+          unless params['Policy'].nil?
+            @Policy = []
+            params['Policy'].each do |i|
+              listgrantserviceaccesspolicy_tmp = ListGrantServiceAccessPolicy.new
+              listgrantserviceaccesspolicy_tmp.deserialize(i)
+              @Policy << listgrantserviceaccesspolicy_tmp
+            end
+          end
+        end
+      end
+
+      # 用于ListPoliciesGrantingServiceAccess接口的Policy节点
+      class ListGrantServiceAccessPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID
+        # @type PolicyId: String
+        # @param PolicyName: 策略名
+        # @type PolicyName: String
+        # @param PolicyType: 策略类型: Custom自定义策略，Presetting预设策略
+        # @type PolicyType: String
+        # @param PolicyDescription: 策略描述
+        # @type PolicyDescription: String
+
+        attr_accessor :PolicyId, :PolicyName, :PolicyType, :PolicyDescription
+        
+        def initialize(policyid=nil, policyname=nil, policytype=nil, policydescription=nil)
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @PolicyType = policytype
+          @PolicyDescription = policydescription
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @PolicyType = params['PolicyType']
+          @PolicyDescription = params['PolicyDescription']
+        end
+      end
+
+      # 用于ListPoliciesGrantingServiceAccess接口的Service节点
+      class ListGrantServiceAccessService < TencentCloud::Common::AbstractModel
+        # @param ServiceType: 服务
+        # @type ServiceType: String
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+
+        attr_accessor :ServiceType, :ServiceName
+        
+        def initialize(servicetype=nil, servicename=nil)
+          @ServiceType = servicetype
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
       # ListGroupsForUser请求参数结构体
       class ListGroupsForUserRequest < TencentCloud::Common::AbstractModel
         # @param Uid: 子用户 UID
@@ -2320,6 +2429,61 @@ module TencentCloud
               groupinfo_tmp = GroupInfo.new
               groupinfo_tmp.deserialize(i)
               @GroupInfo << groupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListPoliciesGrantingServiceAccess请求参数结构体
+      class ListPoliciesGrantingServiceAccessRequest < TencentCloud::Common::AbstractModel
+        # @param TargetUin: 子账号uin，与RoleId、GroupId三选一必传
+        # @type TargetUin: Integer
+        # @param RoleId: 角色ID，与TargetUin、GroupId三选一必传
+        # @type RoleId: Integer
+        # @param GroupId: 用户组ID，与TargetUin、RoleId三选一必传
+        # @type GroupId: Integer
+        # @param ServiceType: 服务名，查看服务授权接口详情时需传该字段
+        # @type ServiceType: String
+
+        attr_accessor :TargetUin, :RoleId, :GroupId, :ServiceType
+        
+        def initialize(targetuin=nil, roleid=nil, groupid=nil, servicetype=nil)
+          @TargetUin = targetuin
+          @RoleId = roleid
+          @GroupId = groupid
+          @ServiceType = servicetype
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+          @RoleId = params['RoleId']
+          @GroupId = params['GroupId']
+          @ServiceType = params['ServiceType']
+        end
+      end
+
+      # ListPoliciesGrantingServiceAccess返回参数结构体
+      class ListPoliciesGrantingServiceAccessResponse < TencentCloud::Common::AbstractModel
+        # @param List: 列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+        
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              listgrantserviceaccessnode_tmp = ListGrantServiceAccessNode.new
+              listgrantserviceaccessnode_tmp.deserialize(i)
+              @List << listgrantserviceaccessnode_tmp
             end
           end
           @RequestId = params['RequestId']

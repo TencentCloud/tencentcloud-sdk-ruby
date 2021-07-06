@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建镜像不可变规则
+
+        # @param request: Request instance for CreateImmutableTagRules.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::CreateImmutableTagRulesRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::CreateImmutableTagRulesResponse`
+        def CreateImmutableTagRules(request)
+          body = send_request('CreateImmutableTagRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImmutableTagRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建实例
 
         # @param request: Request instance for CreateInstance.
@@ -591,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteImagePersonalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        #  删除镜像不可变规则
+
+        # @param request: Request instance for DeleteImmutableTagRules.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DeleteImmutableTagRulesRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DeleteImmutableTagRulesResponse`
+        def DeleteImmutableTagRules(request)
+          body = send_request('DeleteImmutableTagRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteImmutableTagRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1119,6 +1167,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeImagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出镜像不可变规则
+
+        # @param request: Request instance for DescribeImmutableTagRules.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeImmutableTagRulesRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeImmutableTagRulesResponse`
+        def DescribeImmutableTagRules(request)
+          body = send_request('DescribeImmutableTagRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImmutableTagRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1791,6 +1863,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyApplicationTriggerPersonalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新镜像不可变规则
+
+        # @param request: Request instance for ModifyImmutableTagRules.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::ModifyImmutableTagRulesRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::ModifyImmutableTagRulesResponse`
+        def ModifyImmutableTagRules(request)
+          body = send_request('ModifyImmutableTagRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyImmutableTagRulesResponse.new
             model.deserialize(response['Response'])
             model
           else

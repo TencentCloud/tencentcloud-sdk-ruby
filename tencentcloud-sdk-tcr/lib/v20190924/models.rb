@@ -321,6 +321,49 @@ module TencentCloud
         end
       end
 
+      # CreateImmutableTagRules请求参数结构体
+      class CreateImmutableTagRulesRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例 Id
+        # @type RegistryId: String
+        # @param NamespaceName: 命名空间
+        # @type NamespaceName: String
+        # @param Rule: 规则
+        # @type Rule: :class:`Tencentcloud::Tcr.v20190924.models.ImmutableTagRule`
+
+        attr_accessor :RegistryId, :NamespaceName, :Rule
+        
+        def initialize(registryid=nil, namespacename=nil, rule=nil)
+          @RegistryId = registryid
+          @NamespaceName = namespacename
+          @Rule = rule
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceName = params['NamespaceName']
+          unless params['Rule'].nil?
+            @Rule = ImmutableTagRule.new
+            @Rule.deserialize(params['Rule'])
+          end
+        end
+      end
+
+      # CreateImmutableTagRules返回参数结构体
+      class CreateImmutableTagRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param RegistryName: 企业版实例名称
@@ -1097,6 +1140,46 @@ module TencentCloud
 
       # DeleteImage返回参数结构体
       class DeleteImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteImmutableTagRules请求参数结构体
+      class DeleteImmutableTagRulesRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例 Id
+        # @type RegistryId: String
+        # @param NamespaceName: 命名空间
+        # @type NamespaceName: String
+        # @param RuleId: 规则 Id
+        # @type RuleId: Integer
+
+        attr_accessor :RegistryId, :NamespaceName, :RuleId
+        
+        def initialize(registryid=nil, namespacename=nil, ruleid=nil)
+          @RegistryId = registryid
+          @NamespaceName = namespacename
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceName = params['NamespaceName']
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DeleteImmutableTagRules返回参数结构体
+      class DeleteImmutableTagRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2114,6 +2197,59 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImmutableTagRules请求参数结构体
+      class DescribeImmutableTagRulesRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例 Id
+        # @type RegistryId: String
+
+        attr_accessor :RegistryId
+        
+        def initialize(registryid=nil)
+          @RegistryId = registryid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+        end
+      end
+
+      # DescribeImmutableTagRules返回参数结构体
+      class DescribeImmutableTagRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Rules: 规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+        # @param EmptyNs: 未创建规则的命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EmptyNs: Array
+        # @param Total: 规则总量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rules, :EmptyNs, :Total, :RequestId
+        
+        def initialize(rules=nil, emptyns=nil, total=nil, requestid=nil)
+          @Rules = rules
+          @EmptyNs = emptyns
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              immutabletagrule_tmp = ImmutableTagRule.new
+              immutabletagrule_tmp.deserialize(i)
+              @Rules << immutabletagrule_tmp
+            end
+          end
+          @EmptyNs = params['EmptyNs']
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -3499,6 +3635,46 @@ module TencentCloud
         end
       end
 
+      # 镜像 tag 不可变规则
+      class ImmutableTagRule < TencentCloud::Common::AbstractModel
+        # @param RepositoryPattern: 仓库匹配规则
+        # @type RepositoryPattern: String
+        # @param TagPattern: Tag 匹配规则
+        # @type TagPattern: String
+        # @param RepositoryDecoration: repoMatches或repoExcludes
+        # @type RepositoryDecoration: String
+        # @param TagDecoration: matches或excludes
+        # @type TagDecoration: String
+        # @param Disabled: 禁用规则
+        # @type Disabled: Boolean
+        # @param RuleId: 规则 Id
+        # @type RuleId: Integer
+        # @param NsName: 命名空间
+        # @type NsName: String
+
+        attr_accessor :RepositoryPattern, :TagPattern, :RepositoryDecoration, :TagDecoration, :Disabled, :RuleId, :NsName
+        
+        def initialize(repositorypattern=nil, tagpattern=nil, repositorydecoration=nil, tagdecoration=nil, disabled=nil, ruleid=nil, nsname=nil)
+          @RepositoryPattern = repositorypattern
+          @TagPattern = tagpattern
+          @RepositoryDecoration = repositorydecoration
+          @TagDecoration = tagdecoration
+          @Disabled = disabled
+          @RuleId = ruleid
+          @NsName = nsname
+        end
+
+        def deserialize(params)
+          @RepositoryPattern = params['RepositoryPattern']
+          @TagPattern = params['TagPattern']
+          @RepositoryDecoration = params['RepositoryDecoration']
+          @TagDecoration = params['TagDecoration']
+          @Disabled = params['Disabled']
+          @RuleId = params['RuleId']
+          @NsName = params['NsName']
+        end
+      end
+
       # 共享镜像仓库用户配额
       class Limit < TencentCloud::Common::AbstractModel
         # @param Username: 用户名
@@ -3760,6 +3936,53 @@ module TencentCloud
 
       # ModifyApplicationTriggerPersonal返回参数结构体
       class ModifyApplicationTriggerPersonalResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyImmutableTagRules请求参数结构体
+      class ModifyImmutableTagRulesRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例 Id
+        # @type RegistryId: String
+        # @param NamespaceName: 命名空间
+        # @type NamespaceName: String
+        # @param RuleId: 规则 Id
+        # @type RuleId: Integer
+        # @param Rule: 规则
+        # @type Rule: :class:`Tencentcloud::Tcr.v20190924.models.ImmutableTagRule`
+
+        attr_accessor :RegistryId, :NamespaceName, :RuleId, :Rule
+        
+        def initialize(registryid=nil, namespacename=nil, ruleid=nil, rule=nil)
+          @RegistryId = registryid
+          @NamespaceName = namespacename
+          @RuleId = ruleid
+          @Rule = rule
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @NamespaceName = params['NamespaceName']
+          @RuleId = params['RuleId']
+          unless params['Rule'].nil?
+            @Rule = ImmutableTagRule.new
+            @Rule.deserialize(params['Rule'])
+          end
+        end
+      end
+
+      # ModifyImmutableTagRules返回参数结构体
+      class ModifyImmutableTagRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

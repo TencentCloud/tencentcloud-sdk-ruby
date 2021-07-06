@@ -3880,10 +3880,12 @@ module TencentCloud
         # @type PublicAccess: Integer
         # @param OpenAccessTypes: OA PUBLIC MINIAPP VPC
         # @type OpenAccessTypes: Array
+        # @param IsCreatePath: 是否创建Path 0未传默认创建 1创建 2不创建
+        # @type IsCreatePath: Integer
 
-        attr_accessor :EnvId, :ServiceName, :IsPublic, :ImageRepo, :Remark, :EsInfo, :LogType, :OperatorRemark, :Source, :VpcInfo, :PublicAccess, :OpenAccessTypes
+        attr_accessor :EnvId, :ServiceName, :IsPublic, :ImageRepo, :Remark, :EsInfo, :LogType, :OperatorRemark, :Source, :VpcInfo, :PublicAccess, :OpenAccessTypes, :IsCreatePath
         
-        def initialize(envid=nil, servicename=nil, ispublic=nil, imagerepo=nil, remark=nil, esinfo=nil, logtype=nil, operatorremark=nil, source=nil, vpcinfo=nil, publicaccess=nil, openaccesstypes=nil)
+        def initialize(envid=nil, servicename=nil, ispublic=nil, imagerepo=nil, remark=nil, esinfo=nil, logtype=nil, operatorremark=nil, source=nil, vpcinfo=nil, publicaccess=nil, openaccesstypes=nil, iscreatepath=nil)
           @EnvId = envid
           @ServiceName = servicename
           @IsPublic = ispublic
@@ -3896,6 +3898,7 @@ module TencentCloud
           @VpcInfo = vpcinfo
           @PublicAccess = publicaccess
           @OpenAccessTypes = openaccesstypes
+          @IsCreatePath = iscreatepath
         end
 
         def deserialize(params)
@@ -3917,6 +3920,7 @@ module TencentCloud
           end
           @PublicAccess = params['PublicAccess']
           @OpenAccessTypes = params['OpenAccessTypes']
+          @IsCreatePath = params['IsCreatePath']
         end
       end
 

@@ -1310,7 +1310,7 @@ module TencentCloud
         # @type SortType: String
         # @param Offset: 偏移量，默认值为0。
         # @type Offset: Integer
-        # @param Limit: 限制数量，当前Limit最大支持3000。默认值为3000。
+        # @param Limit: 限制数量，当前Limit最大支持3000。默认值为100。
         # @type Limit: Integer
 
         attr_accessor :Domain, :DomainId, :Subdomain, :RecordType, :RecordLine, :RecordLineId, :GroupId, :Keyword, :SortField, :SortType, :Offset, :Limit

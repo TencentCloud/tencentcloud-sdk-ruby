@@ -17,6 +17,46 @@
 module TencentCloud
   module Ccc
     module V20200210
+      # BindStaffSkillGroupList请求参数结构体
+      class BindStaffSkillGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例ID
+        # @type SdkAppId: Integer
+        # @param StaffEmail: 坐席邮箱
+        # @type StaffEmail: String
+        # @param SkillGroupList: 绑定技能组列表
+        # @type SkillGroupList: Array
+
+        attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList
+        
+        def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil)
+          @SdkAppId = sdkappid
+          @StaffEmail = staffemail
+          @SkillGroupList = skillgrouplist
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StaffEmail = params['StaffEmail']
+          @SkillGroupList = params['SkillGroupList']
+        end
+      end
+
+      # BindStaffSkillGroupList返回参数结构体
+      class BindStaffSkillGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSDKLoginToken请求参数结构体
       class CreateSDKLoginTokenRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID。
@@ -94,16 +134,69 @@ module TencentCloud
 
       # CreateStaff返回参数结构体
       class CreateStaffResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorStaffList: 错误坐席列表及错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorStaffList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ErrorStaffList, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(errorstafflist=nil, requestid=nil)
+          @ErrorStaffList = errorstafflist
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['ErrorStaffList'].nil?
+            @ErrorStaffList = []
+            params['ErrorStaffList'].each do |i|
+              errstaffitem_tmp = ErrStaffItem.new
+              errstaffitem_tmp.deserialize(i)
+              @ErrorStaffList << errstaffitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteStaff请求参数结构体
+      class DeleteStaffRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例ID
+        # @type SdkAppId: Integer
+        # @param StaffList: 待删除客服邮箱列表
+        # @type StaffList: Array
+
+        attr_accessor :SdkAppId, :StaffList
+        
+        def initialize(sdkappid=nil, stafflist=nil)
+          @SdkAppId = sdkappid
+          @StaffList = stafflist
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StaffList = params['StaffList']
+        end
+      end
+
+      # DeleteStaff返回参数结构体
+      class DeleteStaffResponse < TencentCloud::Common::AbstractModel
+        # @param OnlineStaffList: 无法删除的状态为在线的客服列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlineStaffList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OnlineStaffList, :RequestId
+        
+        def initialize(onlinestafflist=nil, requestid=nil)
+          @OnlineStaffList = onlinestafflist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OnlineStaffList = params['OnlineStaffList']
           @RequestId = params['RequestId']
         end
       end
@@ -649,6 +742,30 @@ module TencentCloud
             @Session.deserialize(params['Session'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量添加客服时，返回出错客服的像个信息
+      class ErrStaffItem < TencentCloud::Common::AbstractModel
+        # @param StaffEmail: 坐席邮箱地址
+        # @type StaffEmail: String
+        # @param Code: 错误码
+        # @type Code: String
+        # @param Message: 错误描述
+        # @type Message: String
+
+        attr_accessor :StaffEmail, :Code, :Message
+        
+        def initialize(staffemail=nil, code=nil, message=nil)
+          @StaffEmail = staffemail
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @StaffEmail = params['StaffEmail']
+          @Code = params['Code']
+          @Message = params['Message']
         end
       end
 
@@ -1327,6 +1444,46 @@ module TencentCloud
           end
           @QueuedSkillGroupId = params['QueuedSkillGroupId']
           @SessionId = params['SessionId']
+        end
+      end
+
+      # UnbindStaffSkillGroupList请求参数结构体
+      class UnbindStaffSkillGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例ID
+        # @type SdkAppId: Integer
+        # @param StaffEmail: 客服邮箱
+        # @type StaffEmail: String
+        # @param SkillGroupList: 解绑技能组列表
+        # @type SkillGroupList: Array
+
+        attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList
+        
+        def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil)
+          @SdkAppId = sdkappid
+          @StaffEmail = staffemail
+          @SkillGroupList = skillgrouplist
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StaffEmail = params['StaffEmail']
+          @SkillGroupList = params['SkillGroupList']
+        end
+      end
+
+      # UnbindStaffSkillGroupList返回参数结构体
+      class UnbindStaffSkillGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

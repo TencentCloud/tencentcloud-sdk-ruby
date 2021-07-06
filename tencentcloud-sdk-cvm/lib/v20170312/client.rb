@@ -1171,6 +1171,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (InquiryPriceTerminateInstances) 用于退还实例询价。
+
+        # * 查询退还实例可以返还的费用。
+        # * 支持批量操作，每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定[错误码](#4.-.E9.94.99.E8.AF.AF.E7.A0.81)返回。
+
+        # @param request: Request instance for InquiryPriceTerminateInstances.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::InquiryPriceTerminateInstancesRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::InquiryPriceTerminateInstancesResponse`
+        def InquiryPriceTerminateInstances(request)
+          body = send_request('InquiryPriceTerminateInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquiryPriceTerminateInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
 
         # @param request: Request instance for ModifyDisasterRecoverGroupAttribute.

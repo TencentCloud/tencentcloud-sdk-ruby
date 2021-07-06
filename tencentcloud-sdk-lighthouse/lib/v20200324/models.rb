@@ -831,14 +831,17 @@ module TencentCloud
         # 必选：否
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 BundleIds 和 Filters。
         # @type Filters: Array
+        # @param Zones: 可用区列表。默认为全部可用区。
+        # @type Zones: Array
 
-        attr_accessor :BundleIds, :Offset, :Limit, :Filters
+        attr_accessor :BundleIds, :Offset, :Limit, :Filters, :Zones
         
-        def initialize(bundleids=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(bundleids=nil, offset=nil, limit=nil, filters=nil, zones=nil)
           @BundleIds = bundleids
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -853,6 +856,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Zones = params['Zones']
         end
       end
 
@@ -2201,10 +2205,12 @@ module TencentCloud
         # @type Platform: String
         # @param OsName: 操作系统名称。
         # @type OsName: String
+        # @param Zone: 可用区。
+        # @type Zone: String
 
-        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName
+        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone
         
-        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil)
+        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil)
           @InstanceId = instanceid
           @BundleId = bundleid
           @BlueprintId = blueprintid
@@ -2229,6 +2235,7 @@ module TencentCloud
           @PlatformType = platformtype
           @Platform = platform
           @OsName = osname
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -2265,6 +2272,7 @@ module TencentCloud
           @PlatformType = params['PlatformType']
           @Platform = params['Platform']
           @OsName = params['OsName']
+          @Zone = params['Zone']
         end
       end
 

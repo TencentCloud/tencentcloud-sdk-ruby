@@ -3034,6 +3034,38 @@ module TencentCloud
         end
       end
 
+      # InquiryPriceTerminateInstances请求参数结构体
+      class InquiryPriceTerminateInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+        
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # InquiryPriceTerminateInstances返回参数结构体
+      class InquiryPriceTerminateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述实例的信息
       class Instance < TencentCloud::Common::AbstractModel
         # @param Placement: 实例所在的位置。

@@ -1109,6 +1109,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取所有已授权服务
+
+        # @param request: Request instance for ListPoliciesGrantingServiceAccess.
+        # @type request: :class:`Tencentcloud::cam::V20190116::ListPoliciesGrantingServiceAccessRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::ListPoliciesGrantingServiceAccessResponse`
+        def ListPoliciesGrantingServiceAccess(request)
+          body = send_request('ListPoliciesGrantingServiceAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListPoliciesGrantingServiceAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（ListPolicyVersions）用于获取策略版本列表
 
         # @param request: Request instance for ListPolicyVersions.

@@ -653,13 +653,14 @@ module TencentCloud
 
       # DescribeResources请求参数结构体
       class DescribeResourcesRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceIds: 需要查询的资源ID数组
+        # @param ResourceIds: 需要查询的资源ID数组，数量不超过100个。如果填写了该参数则忽略Filters参数。
         # @type ResourceIds: Array
         # @param Offset: 偏移量，仅当设置 Limit 参数时有效
         # @type Offset: Integer
         # @param Limit: 条数限制。如果不填，默认返回 20 条
         # @type Limit: Integer
-        # @param Filters: 查询资源配置列表， 如果不填写，返回该ResourceId下所有作业配置列表
+        # @param Filters: <li><strong>ResourceName</strong></li>
+        # <p style="padding-left: 30px;">按照资源名字过滤，支持模糊过滤。传入的过滤名字不超过5个</p><p style="padding-left: 30px;">类型: String</p><p style="padding-left: 30px;">必选: 否</p>
         # @type Filters: Array
 
         attr_accessor :ResourceIds, :Offset, :Limit, :Filters
@@ -1223,7 +1224,7 @@ module TencentCloud
 
       # 资源位置描述
       class ResourceLoc < TencentCloud::Common::AbstractModel
-        # @param StorageType: 资源位置的存储类型，目前只支持COS
+        # @param StorageType: 资源位置的存储类型，目前只支持1:COS
         # @type StorageType: Integer
         # @param Param: 描述资源位置的json
         # @type Param: :class:`Tencentcloud::Oceanus.v20190422.models.ResourceLocParam`
