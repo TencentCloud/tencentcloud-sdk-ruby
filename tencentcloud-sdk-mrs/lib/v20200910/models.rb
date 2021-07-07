@@ -1347,10 +1347,13 @@ module TencentCloud
         # @param Normal: 是否正常
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Normal: Boolean
+        # @param ItemString: 项目原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ItemString: String
 
-        attr_accessor :Code, :Scode, :Name, :Sname, :Result, :Unit, :Range, :Arrow, :Normal
+        attr_accessor :Code, :Scode, :Name, :Sname, :Result, :Unit, :Range, :Arrow, :Normal, :ItemString
         
-        def initialize(code=nil, scode=nil, name=nil, sname=nil, result=nil, unit=nil, range=nil, arrow=nil, normal=nil)
+        def initialize(code=nil, scode=nil, name=nil, sname=nil, result=nil, unit=nil, range=nil, arrow=nil, normal=nil, itemstring=nil)
           @Code = code
           @Scode = scode
           @Name = name
@@ -1360,6 +1363,7 @@ module TencentCloud
           @Range = range
           @Arrow = arrow
           @Normal = normal
+          @ItemString = itemstring
         end
 
         def deserialize(params)
@@ -1372,6 +1376,7 @@ module TencentCloud
           @Range = params['Range']
           @Arrow = params['Arrow']
           @Normal = params['Normal']
+          @ItemString = params['ItemString']
         end
       end
 

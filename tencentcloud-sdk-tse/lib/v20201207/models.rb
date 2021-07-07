@@ -93,18 +93,22 @@ module TencentCloud
       class DescribeSREInstanceAccessAddressResponse < TencentCloud::Common::AbstractModel
         # @param IntranetAddress: 内网访问地址
         # @type IntranetAddress: String
+        # @param InternetAddress: 公网访问地址
+        # @type InternetAddress: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IntranetAddress, :RequestId
+        attr_accessor :IntranetAddress, :InternetAddress, :RequestId
         
-        def initialize(intranetaddress=nil, requestid=nil)
+        def initialize(intranetaddress=nil, internetaddress=nil, requestid=nil)
           @IntranetAddress = intranetaddress
+          @InternetAddress = internetaddress
           @RequestId = requestid
         end
 
         def deserialize(params)
           @IntranetAddress = params['IntranetAddress']
+          @InternetAddress = params['InternetAddress']
           @RequestId = params['RequestId']
         end
       end

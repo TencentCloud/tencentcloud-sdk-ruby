@@ -17,6 +17,94 @@
 module TencentCloud
   module Iotvideo
     module V20201215
+      # AI模型申请信息
+      class AIModelApplication < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param Status: 申请状态：1-已申请；2-已取消；3-已拒绝；4-已通过
+        # @type Status: Integer
+
+        attr_accessor :ProductId, :ProductName, :Status
+        
+        def initialize(productid=nil, productname=nil, status=nil)
+          @ProductId = productid
+          @ProductName = productname
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ProductName = params['ProductName']
+          @Status = params['Status']
+        end
+      end
+
+      # AI模型信息
+      class AIModelInfo < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param Status: 申请状态：1-已申请；2-已取消；3-已拒绝；4-已通过
+        # @type Status: Integer
+        # @param Total: 可调用数量
+        # @type Total: Integer
+        # @param Used: 已调用数量
+        # @type Used: Integer
+        # @param ApplyTime: 申请时间
+        # @type ApplyTime: Integer
+        # @param ApprovalTime: 审批通过时间
+        # @type ApprovalTime: Integer
+
+        attr_accessor :ProductId, :ProductName, :Status, :Total, :Used, :ApplyTime, :ApprovalTime
+        
+        def initialize(productid=nil, productname=nil, status=nil, total=nil, used=nil, applytime=nil, approvaltime=nil)
+          @ProductId = productid
+          @ProductName = productname
+          @Status = status
+          @Total = total
+          @Used = used
+          @ApplyTime = applytime
+          @ApprovalTime = approvaltime
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ProductName = params['ProductName']
+          @Status = params['Status']
+          @Total = params['Total']
+          @Used = params['Used']
+          @ApplyTime = params['ApplyTime']
+          @ApprovalTime = params['ApprovalTime']
+        end
+      end
+
+      # AI模型资源使用信息
+      class AIModelUsageInfo < TencentCloud::Common::AbstractModel
+        # @param CreateTime: 开通时间
+        # @type CreateTime: Integer
+        # @param Total: 资源总量
+        # @type Total: Integer
+        # @param Used: 已使用资源数量
+        # @type Used: Integer
+
+        attr_accessor :CreateTime, :Total, :Used
+        
+        def initialize(createtime=nil, total=nil, used=nil)
+          @CreateTime = createtime
+          @Total = total
+          @Used = used
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @Total = params['Total']
+          @Used = params['Used']
+        end
+      end
+
       # 查询设备历史
       class ActionHistory < TencentCloud::Common::AbstractModel
         # @param DeviceName: 设备名称
@@ -68,6 +156,42 @@ module TencentCloud
           @Calling = params['Calling']
           @ClientToken = params['ClientToken']
           @Status = params['Status']
+        end
+      end
+
+      # ApplyAIModel请求参数结构体
+      class ApplyAIModelRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: AI模型ID
+        # @type ModelId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ModelId, :ProductId
+        
+        def initialize(modelid=nil, productid=nil)
+          @ModelId = modelid
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # ApplyAIModel返回参数结构体
+      class ApplyAIModelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -167,6 +291,42 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CancelAIModelApplication请求参数结构体
+      class CancelAIModelApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: AI模型ID
+        # @type ModelId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ModelId, :ProductId
+        
+        def initialize(modelid=nil, productid=nil)
+          @ModelId = modelid
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # CancelAIModelApplication返回参数结构体
+      class CancelAIModelApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -404,6 +564,54 @@ module TencentCloud
         end
       end
 
+      # CreateAIDetection请求参数结构体
+      class CreateAIDetectionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ModelId: AI模型ID
+        # @type ModelId: String
+        # @param StartTime: 图片上传的开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 图片上传的结束时间
+        # @type EndTime: Integer
+
+        attr_accessor :ProductId, :DeviceName, :ModelId, :StartTime, :EndTime
+        
+        def initialize(productid=nil, devicename=nil, modelid=nil, starttime=nil, endtime=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ModelId = modelid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ModelId = params['ModelId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # CreateAIDetection返回参数结构体
+      class CreateAIDetectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBatch请求参数结构体
       class CreateBatchRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -444,6 +652,70 @@ module TencentCloud
 
         def deserialize(params)
           @BatchId = params['BatchId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCOSCredentials请求参数结构体
+      class CreateCOSCredentialsRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+        
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # CreateCOSCredentials返回参数结构体
+      class CreateCOSCredentialsResponse < TencentCloud::Common::AbstractModel
+        # @param StorageBucket: COS存储桶名称
+        # @type StorageBucket: String
+        # @param StorageRegion: COS存储桶区域
+        # @type StorageRegion: String
+        # @param StoragePath: COS存储桶路径
+        # @type StoragePath: String
+        # @param SecretID: COS上传用的SecretID
+        # @type SecretID: String
+        # @param SecretKey: COS上传用的SecretKey
+        # @type SecretKey: String
+        # @param Token: COS上传用的Token
+        # @type Token: String
+        # @param ExpiredTime: 密钥信息过期时间
+        # @type ExpiredTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StorageBucket, :StorageRegion, :StoragePath, :SecretID, :SecretKey, :Token, :ExpiredTime, :RequestId
+        
+        def initialize(storagebucket=nil, storageregion=nil, storagepath=nil, secretid=nil, secretkey=nil, token=nil, expiredtime=nil, requestid=nil)
+          @StorageBucket = storagebucket
+          @StorageRegion = storageregion
+          @StoragePath = storagepath
+          @SecretID = secretid
+          @SecretKey = secretkey
+          @Token = token
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StorageBucket = params['StorageBucket']
+          @StorageRegion = params['StorageRegion']
+          @StoragePath = params['StoragePath']
+          @SecretID = params['SecretID']
+          @SecretKey = params['SecretKey']
+          @Token = params['Token']
+          @ExpiredTime = params['ExpiredTime']
           @RequestId = params['RequestId']
         end
       end
@@ -897,6 +1169,248 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIModelApplications请求参数结构体
+      class DescribeAIModelApplicationsRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param Limit: 分页的大小，最大100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，Offset从0开始
+        # @type Offset: Integer
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ModelId, :Limit, :Offset, :ProductId
+        
+        def initialize(modelid=nil, limit=nil, offset=nil, productid=nil)
+          @ModelId = modelid
+          @Limit = limit
+          @Offset = offset
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # DescribeAIModelApplications返回参数结构体
+      class DescribeAIModelApplicationsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 申请记录数量
+        # @type TotalCount: Integer
+        # @param Applications: 申请记录数组
+        # @type Applications: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Applications, :RequestId
+        
+        def initialize(totalcount=nil, applications=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Applications = applications
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Applications'].nil?
+            @Applications = []
+            params['Applications'].each do |i|
+              aimodelapplication_tmp = AIModelApplication.new
+              aimodelapplication_tmp.deserialize(i)
+              @Applications << aimodelapplication_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIModelChannel请求参数结构体
+      class DescribeAIModelChannelRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ModelId, :ProductId
+        
+        def initialize(modelid=nil, productid=nil)
+          @ModelId = modelid
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # DescribeAIModelChannel返回参数结构体
+      class DescribeAIModelChannelResponse < TencentCloud::Common::AbstractModel
+        # @param Type: 推送类型。ckafka：消息队列；forward：http/https推送
+        # @type Type: String
+        # @param ForwardAddress: 第三方推送地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardAddress: String
+        # @param ForwardKey: 第三方推送密钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardKey: String
+        # @param CKafkaRegion: ckafka地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CKafkaRegion: String
+        # @param CKafkaInstance: ckafka实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CKafkaInstance: String
+        # @param CKafkaTopic: ckafka订阅主题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CKafkaTopic: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :ForwardAddress, :ForwardKey, :CKafkaRegion, :CKafkaInstance, :CKafkaTopic, :RequestId
+        
+        def initialize(type=nil, forwardaddress=nil, forwardkey=nil, ckafkaregion=nil, ckafkainstance=nil, ckafkatopic=nil, requestid=nil)
+          @Type = type
+          @ForwardAddress = forwardaddress
+          @ForwardKey = forwardkey
+          @CKafkaRegion = ckafkaregion
+          @CKafkaInstance = ckafkainstance
+          @CKafkaTopic = ckafkatopic
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @ForwardAddress = params['ForwardAddress']
+          @ForwardKey = params['ForwardKey']
+          @CKafkaRegion = params['CKafkaRegion']
+          @CKafkaInstance = params['CKafkaInstance']
+          @CKafkaTopic = params['CKafkaTopic']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIModelUsage请求参数结构体
+      class DescribeAIModelUsageRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param Offset: 偏移量，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页的大小，最大100
+        # @type Limit: Integer
+
+        attr_accessor :ModelId, :ProductId, :Offset, :Limit
+        
+        def initialize(modelid=nil, productid=nil, offset=nil, limit=nil)
+          @ModelId = modelid
+          @ProductId = productid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ProductId = params['ProductId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAIModelUsage返回参数结构体
+      class DescribeAIModelUsageResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: AI模型资源包总量
+        # @type TotalCount: Integer
+        # @param UsageInfo: AI模型资源包信息数组
+        # @type UsageInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :UsageInfo, :RequestId
+        
+        def initialize(totalcount=nil, usageinfo=nil, requestid=nil)
+          @TotalCount = totalcount
+          @UsageInfo = usageinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['UsageInfo'].nil?
+            @UsageInfo = []
+            params['UsageInfo'].each do |i|
+              aimodelusageinfo_tmp = AIModelUsageInfo.new
+              aimodelusageinfo_tmp.deserialize(i)
+              @UsageInfo << aimodelusageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIModels请求参数结构体
+      class DescribeAIModelsRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param Status: 申请状态：1-已申请；2-已取消；3-已拒绝；4-已通过
+        # @type Status: Integer
+        # @param Offset: 偏移量，Offset从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页的大小，最大100
+        # @type Limit: Integer
+
+        attr_accessor :ModelId, :Status, :Offset, :Limit
+        
+        def initialize(modelid=nil, status=nil, offset=nil, limit=nil)
+          @ModelId = modelid
+          @Status = status
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAIModels返回参数结构体
+      class DescribeAIModelsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: AI模型数量
+        # @type TotalCount: Integer
+        # @param Models: AI模型信息数组
+        # @type Models: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Models, :RequestId
+        
+        def initialize(totalcount=nil, models=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Models = models
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Models'].nil?
+            @Models = []
+            params['Models'].each do |i|
+              aimodelinfo_tmp = AIModelInfo.new
+              aimodelinfo_tmp.deserialize(i)
+              @Models << aimodelinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3343,6 +3857,42 @@ module TencentCloud
         end
       end
 
+      # ReportAliveDevice请求参数结构体
+      class ReportAliveDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+        
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # ReportAliveDevice返回参数结构体
+      class ReportAliveDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetCloudStorage请求参数结构体
       class ResetCloudStorageRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -3561,6 +4111,71 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateAIModelChannel请求参数结构体
+      class UpdateAIModelChannelRequest < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # @type ModelId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param Type: 推送类型。ckafka：消息队列；forward：http/https推送
+        # @type Type: String
+        # @param ForwardAddress: 第三方推送地址
+        # @type ForwardAddress: String
+        # @param ForwardKey: 第三方推送密钥，不填写则腾讯云自动生成。
+        # @type ForwardKey: String
+        # @param CKafkaRegion: ckafka地域
+        # @type CKafkaRegion: String
+        # @param CKafkaInstance: ckafka实例
+        # @type CKafkaInstance: String
+        # @param CKafkaTopic: ckafka订阅主题
+        # @type CKafkaTopic: String
+
+        attr_accessor :ModelId, :ProductId, :Type, :ForwardAddress, :ForwardKey, :CKafkaRegion, :CKafkaInstance, :CKafkaTopic
+        
+        def initialize(modelid=nil, productid=nil, type=nil, forwardaddress=nil, forwardkey=nil, ckafkaregion=nil, ckafkainstance=nil, ckafkatopic=nil)
+          @ModelId = modelid
+          @ProductId = productid
+          @Type = type
+          @ForwardAddress = forwardaddress
+          @ForwardKey = forwardkey
+          @CKafkaRegion = ckafkaregion
+          @CKafkaInstance = ckafkainstance
+          @CKafkaTopic = ckafkatopic
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ProductId = params['ProductId']
+          @Type = params['Type']
+          @ForwardAddress = params['ForwardAddress']
+          @ForwardKey = params['ForwardKey']
+          @CKafkaRegion = params['CKafkaRegion']
+          @CKafkaInstance = params['CKafkaInstance']
+          @CKafkaTopic = params['CKafkaTopic']
+        end
+      end
+
+      # UpdateAIModelChannel返回参数结构体
+      class UpdateAIModelChannelResponse < TencentCloud::Common::AbstractModel
+        # @param ForwardKey: 第三方推送密钥，如果选择自动生成则会返回此字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ForwardKey, :RequestId
+        
+        def initialize(forwardkey=nil, requestid=nil)
+          @ForwardKey = forwardkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ForwardKey = params['ForwardKey']
           @RequestId = params['RequestId']
         end
       end

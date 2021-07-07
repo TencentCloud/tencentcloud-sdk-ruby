@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口可以对入侵检测-文件查杀扫描检测
+
+        # @param request: Request instance for CreateScanMalwareSetting.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::CreateScanMalwareSettingRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::CreateScanMalwareSettingResponse`
+        def CreateScanMalwareSetting(request)
+          body = send_request('CreateScanMalwareSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateScanMalwareSettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加历史搜索记录
 
         # @param request: Request instance for CreateSearchLog.
@@ -1517,6 +1541,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询定时扫描配置
+
+        # @param request: Request instance for DescribeMalwareTimingScanSetting.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeMalwareTimingScanSettingRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeMalwareTimingScanSettingResponse`
+        def DescribeMalwareTimingScanSetting(request)
+          body = send_request('DescribeMalwareTimingScanSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMalwareTimingScanSettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeMalwares）用于获取木马事件列表。
 
         # @param request: Request instance for DescribeMalwares.
@@ -1887,6 +1935,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeScanMalwareScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeScanTaskDetails 查询扫描任务详情 , 可以查询扫描进度信息/异常;
+
+        # @param request: Request instance for DescribeScanTaskDetails.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeScanTaskDetailsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeScanTaskDetailsResponse`
+        def DescribeScanTaskDetails(request)
+          body = send_request('DescribeScanTaskDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScanTaskDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询定期检测的配置
+
+        # @param request: Request instance for DescribeScanVulSetting.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeScanVulSettingRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeScanVulSettingResponse`
+        def DescribeScanVulSetting(request)
+          body = send_request('DescribeScanVulSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScanVulSettingResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2367,6 +2463,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EditBashRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新增或修改高危命令规则
+
+        # @param request: Request instance for EditBashRules.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::EditBashRulesRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::EditBashRulesResponse`
+        def EditBashRules(request)
+          body = send_request('EditBashRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EditBashRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3077,7 +3197,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 漏洞管理 - 一键检测
+        #  一键检测
 
         # @param request: Request instance for ScanVul.
         # @type request: :class:`Tencentcloud::cwp::V20180228::ScanVulRequest`
@@ -3087,6 +3207,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ScanVulResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 漏洞管理-重新检测接口
+
+        # @param request: Request instance for ScanVulAgain.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ScanVulAgainRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ScanVulAgainResponse`
+        def ScanVulAgain(request)
+          body = send_request('ScanVulAgain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScanVulAgainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 定期扫描漏洞设置
+
+        # @param request: Request instance for ScanVulSetting.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ScanVulSettingRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ScanVulSettingResponse`
+        def ScanVulSetting(request)
+          body = send_request('ScanVulSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ScanVulSettingResponse.new
             model.deserialize(response['Response'])
             model
           else

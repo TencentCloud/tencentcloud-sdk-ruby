@@ -645,10 +645,12 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNumber: 分页页码，从 0 开始
         # @type PageNumber: Integer
+        # @param Phones: 按手机号筛选
+        # @type Phones: Array
 
-        attr_accessor :StartTimeStamp, :EndTimeStamp, :Limit, :Offset, :InstanceId, :SdkAppId, :PageSize, :PageNumber
+        attr_accessor :StartTimeStamp, :EndTimeStamp, :Limit, :Offset, :InstanceId, :SdkAppId, :PageSize, :PageNumber, :Phones
         
-        def initialize(starttimestamp=nil, endtimestamp=nil, limit=nil, offset=nil, instanceid=nil, sdkappid=nil, pagesize=nil, pagenumber=nil)
+        def initialize(starttimestamp=nil, endtimestamp=nil, limit=nil, offset=nil, instanceid=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil)
           @StartTimeStamp = starttimestamp
           @EndTimeStamp = endtimestamp
           @Limit = limit
@@ -657,6 +659,7 @@ module TencentCloud
           @SdkAppId = sdkappid
           @PageSize = pagesize
           @PageNumber = pagenumber
+          @Phones = phones
         end
 
         def deserialize(params)
@@ -668,6 +671,7 @@ module TencentCloud
           @SdkAppId = params['SdkAppId']
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
+          @Phones = params['Phones']
         end
       end
 

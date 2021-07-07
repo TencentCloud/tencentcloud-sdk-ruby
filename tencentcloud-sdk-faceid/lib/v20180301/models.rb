@@ -299,6 +299,46 @@ module TencentCloud
         end
       end
 
+      # CheckEidTokenStatus请求参数结构体
+      class CheckEidTokenStatusRequest < TencentCloud::Common::AbstractModel
+        # @param EidToken: E证通流程的唯一标识，调用GetEidToken接口时生成。
+        # @type EidToken: String
+
+        attr_accessor :EidToken
+        
+        def initialize(eidtoken=nil)
+          @EidToken = eidtoken
+        end
+
+        def deserialize(params)
+          @EidToken = params['EidToken']
+        end
+      end
+
+      # CheckEidTokenStatus返回参数结构体
+      class CheckEidTokenStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 枚举：
+        # init：token未验证
+        # doing: 验证中
+        # finished: 验证完成
+        # timeout: token已超时
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckIdCardInformation请求参数结构体
       class CheckIdCardInformationRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 身份证人像面的 Base64 值
@@ -1167,7 +1207,7 @@ module TencentCloud
 
       # GetEidResult请求参数结构体
       class GetEidResultRequest < TencentCloud::Common::AbstractModel
-        # @param EidToken: 人脸核身流程的标识，调用GetEidToken接口时生成的。
+        # @param EidToken: E证通流程的唯一标识，调用GetEidToken接口时生成。
         # @type EidToken: String
         # @param InfoType: 指定拉取的结果信息，取值（0：全部；1：文本类；2：身份证信息；3：最佳截图信息）。
         # 如 13表示拉取文本类、最佳截图信息。
@@ -1274,15 +1314,18 @@ module TencentCloud
         # @type Extra: String
         # @param Config: 小程序模式配置，包括如何传入姓名身份证的配置。
         # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.GetEidTokenConfig`
+        # @param RedirectUrl: 最长长度1024位。用户从Url中进入核身认证结束后重定向的回调链接地址。EidToken会在该链接的query参数中。
+        # @type RedirectUrl: String
 
-        attr_accessor :MerchantId, :IdCard, :Name, :Extra, :Config
+        attr_accessor :MerchantId, :IdCard, :Name, :Extra, :Config, :RedirectUrl
         
-        def initialize(merchantid=nil, idcard=nil, name=nil, extra=nil, config=nil)
+        def initialize(merchantid=nil, idcard=nil, name=nil, extra=nil, config=nil, redirecturl=nil)
           @MerchantId = merchantid
           @IdCard = idcard
           @Name = name
           @Extra = extra
           @Config = config
+          @RedirectUrl = redirecturl
         end
 
         def deserialize(params)
@@ -1294,26 +1337,31 @@ module TencentCloud
             @Config = GetEidTokenConfig.new
             @Config.deserialize(params['Config'])
           end
+          @RedirectUrl = params['RedirectUrl']
         end
       end
 
       # GetEidToken返回参数结构体
       class GetEidTokenResponse < TencentCloud::Common::AbstractModel
-        # @param EidToken: 一次核身流程的标识，有效时间为7,200秒；
+        # @param EidToken: 一次核身流程的标识，有效时间为600秒；
         # 完成核身后，可用该标识获取验证结果信息。
         # @type EidToken: String
+        # @param Url: 发起核身流程的URL，用于H5场景核身。
+        # @type Url: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EidToken, :RequestId
+        attr_accessor :EidToken, :Url, :RequestId
         
-        def initialize(eidtoken=nil, requestid=nil)
+        def initialize(eidtoken=nil, url=nil, requestid=nil)
           @EidToken = eidtoken
+          @Url = url
           @RequestId = requestid
         end
 
         def deserialize(params)
           @EidToken = params['EidToken']
+          @Url = params['Url']
           @RequestId = params['RequestId']
         end
       end

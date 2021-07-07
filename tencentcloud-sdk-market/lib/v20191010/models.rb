@@ -82,48 +82,6 @@ module TencentCloud
         end
       end
 
-      # GetCateTree请求参数结构体
-      class GetCateTreeRequest < TencentCloud::Common::AbstractModel
-        # @param CateId: 分类ID
-        # @type CateId: Integer
-
-        attr_accessor :CateId
-        
-        def initialize(cateid=nil)
-          @CateId = cateid
-        end
-
-        def deserialize(params)
-          @CateId = params['CateId']
-        end
-      end
-
-      # GetCateTree返回参数结构体
-      class GetCateTreeResponse < TencentCloud::Common::AbstractModel
-        # @param CateId: 分类ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CateId: Integer
-        # @param Name: 分类名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Name: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CateId, :Name, :RequestId
-        
-        def initialize(cateid=nil, name=nil, requestid=nil)
-          @CateId = cateid
-          @Name = name
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CateId = params['CateId']
-          @Name = params['Name']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # GetUsagePlanUsageAmount请求参数结构体
       class GetUsagePlanUsageAmountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 用于查询实例的Id

@@ -1688,6 +1688,57 @@ module TencentCloud
         end
       end
 
+      # CreatePlugin请求参数结构体
+      class CreatePluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginName: 用户自定义的插件名称。最长50个字符，支持 a-z,A-Z,0-9,_, 必须字母开头，字母或者数字结尾。
+        # @type PluginName: String
+        # @param PluginType: 插件类型。目前支持IPControl。
+        # @type PluginType: String
+        # @param PluginData: 插件定义语句，支持json。
+        # @type PluginData: String
+        # @param Description: 插件描述，限定200字以内。
+        # @type Description: String
+
+        attr_accessor :PluginName, :PluginType, :PluginData, :Description
+        
+        def initialize(pluginname=nil, plugintype=nil, plugindata=nil, description=nil)
+          @PluginName = pluginname
+          @PluginType = plugintype
+          @PluginData = plugindata
+          @Description = description
+        end
+
+        def deserialize(params)
+          @PluginName = params['PluginName']
+          @PluginType = params['PluginType']
+          @PluginData = params['PluginData']
+          @Description = params['Description']
+        end
+      end
+
+      # CreatePlugin返回参数结构体
+      class CreatePluginResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 新建的插件详情。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.Plugin`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = Plugin.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateService请求参数结构体
       class CreateServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceName: 用户自定义的服务名称。

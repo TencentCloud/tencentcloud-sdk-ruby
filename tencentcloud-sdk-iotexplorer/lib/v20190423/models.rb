@@ -1292,10 +1292,16 @@ module TencentCloud
         # @param NwkSKey: LoRaWAN 网络会话密钥
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NwkSKey: String
+        # @param CreateUserId: 创建人Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUserId: Integer
+        # @param CreatorNickName: 创建人昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorNickName: String
 
-        attr_accessor :DeviceName, :Status, :DevicePsk, :FirstOnlineTime, :LoginTime, :CreateTime, :Version, :DeviceCert, :LogLevel, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey
+        attr_accessor :DeviceName, :Status, :DevicePsk, :FirstOnlineTime, :LoginTime, :CreateTime, :Version, :DeviceCert, :LogLevel, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey, :CreateUserId, :CreatorNickName
         
-        def initialize(devicename=nil, status=nil, devicepsk=nil, firstonlinetime=nil, logintime=nil, createtime=nil, version=nil, devicecert=nil, loglevel=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil)
+        def initialize(devicename=nil, status=nil, devicepsk=nil, firstonlinetime=nil, logintime=nil, createtime=nil, version=nil, devicecert=nil, loglevel=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil, createuserid=nil, creatornickname=nil)
           @DeviceName = devicename
           @Status = status
           @DevicePsk = devicepsk
@@ -1310,6 +1316,8 @@ module TencentCloud
           @DevEUI = deveui
           @AppSKey = appskey
           @NwkSKey = nwkskey
+          @CreateUserId = createuserid
+          @CreatorNickName = creatornickname
         end
 
         def deserialize(params)
@@ -1327,6 +1335,8 @@ module TencentCloud
           @DevEUI = params['DevEUI']
           @AppSKey = params['AppSKey']
           @NwkSKey = params['NwkSKey']
+          @CreateUserId = params['CreateUserId']
+          @CreatorNickName = params['CreatorNickName']
         end
       end
 
@@ -1459,10 +1469,16 @@ module TencentCloud
         # @param FwType: 固件升级模块
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwType: String
+        # @param CreateUserId: 创建者子 uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUserId: Integer
+        # @param CreatorNickName: 创建者昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorNickName: String
 
-        attr_accessor :Version, :Md5sum, :CreateTime, :ProductName, :Name, :Description, :ProductId, :FwType
+        attr_accessor :Version, :Md5sum, :CreateTime, :ProductName, :Name, :Description, :ProductId, :FwType, :CreateUserId, :CreatorNickName
         
-        def initialize(version=nil, md5sum=nil, createtime=nil, productname=nil, name=nil, description=nil, productid=nil, fwtype=nil)
+        def initialize(version=nil, md5sum=nil, createtime=nil, productname=nil, name=nil, description=nil, productid=nil, fwtype=nil, createuserid=nil, creatornickname=nil)
           @Version = version
           @Md5sum = md5sum
           @CreateTime = createtime
@@ -1471,6 +1487,8 @@ module TencentCloud
           @Description = description
           @ProductId = productid
           @FwType = fwtype
+          @CreateUserId = createuserid
+          @CreatorNickName = creatornickname
         end
 
         def deserialize(params)
@@ -1482,6 +1500,8 @@ module TencentCloud
           @Description = params['Description']
           @ProductId = params['ProductId']
           @FwType = params['FwType']
+          @CreateUserId = params['CreateUserId']
+          @CreatorNickName = params['CreatorNickName']
         end
       end
 
@@ -2476,10 +2496,16 @@ module TencentCloud
         # @param EnableProductScript: 是否使用脚本进行二进制转json功能 可以取值 true / false
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableProductScript: String
+        # @param CreateUserId: 创建人 UinId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUserId: Integer
+        # @param CreatorNickName: 创建者昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorNickName: String
 
-        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript
+        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName
         
-        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil)
+        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil)
           @ProductId = productid
           @ProductName = productname
           @CategoryId = categoryid
@@ -2495,6 +2521,8 @@ module TencentCloud
           @ProjectId = projectid
           @ModuleId = moduleid
           @EnableProductScript = enableproductscript
+          @CreateUserId = createuserid
+          @CreatorNickName = creatornickname
         end
 
         def deserialize(params)
@@ -2513,6 +2541,8 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @ModuleId = params['ModuleId']
           @EnableProductScript = params['EnableProductScript']
+          @CreateUserId = params['CreateUserId']
+          @CreatorNickName = params['CreatorNickName']
         end
       end
 

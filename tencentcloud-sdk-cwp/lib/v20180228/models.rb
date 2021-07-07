@@ -270,7 +270,7 @@ module TencentCloud
 
       # 高危命令数据
       class BashEvent < TencentCloud::Common::AbstractModel
-        # @param Id: ID
+        # @param Id: 数据ID
         # @type Id: Integer
         # @param Uuid: 云镜ID
         # @type Uuid: String
@@ -288,18 +288,36 @@ module TencentCloud
         # @type RuleId: Integer
         # @param RuleName: 规则名称
         # @type RuleName: String
-        # @param RuleLevel: 规则等级
+        # @param RuleLevel: 规则等级：1-高 2-中 3-低
         # @type RuleLevel: Integer
-        # @param Status: 处理状态
+        # @param Status: 处理状态： 0 = 待处理 1= 已处理, 2 = 已加白
         # @type Status: Integer
         # @param CreateTime: 发生时间
         # @type CreateTime: String
         # @param MachineName: 主机名
         # @type MachineName: String
+        # @param DetectBy: 0: bash日志 1: 实时监控(雷霆版)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectBy: Integer
+        # @param Pid: 进程id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pid: String
+        # @param Exe: 进程名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exe: String
+        # @param ModifyTime: 处理时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param RuleCategory: 规则类别  0=系统规则，1=用户规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleCategory: Integer
+        # @param RegexBashCmd: 自动生成的正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegexBashCmd: String
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :User, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :User, :Platform, :BashCmd, :RuleId, :RuleName, :RuleLevel, :Status, :CreateTime, :MachineName, :DetectBy, :Pid, :Exe, :ModifyTime, :RuleCategory, :RegexBashCmd
         
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, user=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, user=nil, platform=nil, bashcmd=nil, ruleid=nil, rulename=nil, rulelevel=nil, status=nil, createtime=nil, machinename=nil, detectby=nil, pid=nil, exe=nil, modifytime=nil, rulecategory=nil, regexbashcmd=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -313,6 +331,12 @@ module TencentCloud
           @Status = status
           @CreateTime = createtime
           @MachineName = machinename
+          @DetectBy = detectby
+          @Pid = pid
+          @Exe = exe
+          @ModifyTime = modifytime
+          @RuleCategory = rulecategory
+          @RegexBashCmd = regexbashcmd
         end
 
         def deserialize(params)
@@ -329,6 +353,12 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @MachineName = params['MachineName']
+          @DetectBy = params['DetectBy']
+          @Pid = params['Pid']
+          @Exe = params['Exe']
+          @ModifyTime = params['ModifyTime']
+          @RuleCategory = params['RuleCategory']
+          @RegexBashCmd = params['RegexBashCmd']
         end
       end
 
@@ -340,7 +370,7 @@ module TencentCloud
         # @type Uuid: String
         # @param Name: 规则名称
         # @type Name: String
-        # @param Level: 危险等级(1: 高危 2:中危 3: 低危)
+        # @param Level: 危险等级(0 ：无 1: 高危 2:中危 3: 低危)
         # @type Level: Integer
         # @param Rule: 正则表达式
         # @type Rule: String
@@ -358,10 +388,19 @@ module TencentCloud
         # @type ModifyTime: String
         # @param Hostip: 主机IP
         # @type Hostip: String
+        # @param Uuids: 生效服务器的uuid数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuids: Array
+        # @param White: 0=黑名单 1=白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type White: Integer
+        # @param DealOldEvents: 是否处理之前的事件 0: 不处理 1:处理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealOldEvents: Integer
 
-        attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip
+        attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents
         
-        def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil)
+        def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil)
           @Id = id
           @Uuid = uuid
           @Name = name
@@ -374,6 +413,9 @@ module TencentCloud
           @CreateTime = createtime
           @ModifyTime = modifytime
           @Hostip = hostip
+          @Uuids = uuids
+          @White = white
+          @DealOldEvents = dealoldevents
         end
 
         def deserialize(params)
@@ -389,6 +431,9 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Hostip = params['Hostip']
+          @Uuids = params['Uuids']
+          @White = params['White']
+          @DealOldEvents = params['DealOldEvents']
         end
       end
 
@@ -864,6 +909,50 @@ module TencentCloud
 
       # CreateProtectServer返回参数结构体
       class CreateProtectServerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateScanMalwareSetting请求参数结构体
+      class CreateScanMalwareSettingRequest < TencentCloud::Common::AbstractModel
+        # @param ScanPattern: 扫描模式 0 全盘扫描, 1 快速扫描
+        # @type ScanPattern: Integer
+        # @param HostType: 服务器分类：1:专业版服务器；2:自选服务器
+        # @type HostType: Integer
+        # @param QuuidList: 自选服务器时生效，主机quuid的string数组
+        # @type QuuidList: Array
+        # @param TimeoutPeriod: 超时时间单位 秒
+        # @type TimeoutPeriod: Integer
+
+        attr_accessor :ScanPattern, :HostType, :QuuidList, :TimeoutPeriod
+        
+        def initialize(scanpattern=nil, hosttype=nil, quuidlist=nil, timeoutperiod=nil)
+          @ScanPattern = scanpattern
+          @HostType = hosttype
+          @QuuidList = quuidlist
+          @TimeoutPeriod = timeoutperiod
+        end
+
+        def deserialize(params)
+          @ScanPattern = params['ScanPattern']
+          @HostType = params['HostType']
+          @QuuidList = params['QuuidList']
+          @TimeoutPeriod = params['TimeoutPeriod']
+        end
+      end
+
+      # CreateScanMalwareSetting返回参数结构体
+      class CreateScanMalwareSettingResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3571,16 +3660,71 @@ module TencentCloud
 
       # DescribeMachineRegions返回参数结构体
       class DescribeMachineRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param CVM: CVM 云服务器地域列表
+        # @type CVM: Array
+        # @param BM: BM 黑石机器地域列表
+        # @type BM: Array
+        # @param LH: LH 轻量应用服务器地域列表
+        # @type LH: Array
+        # @param ECM: ECM 边缘计算服务器地域列表
+        # @type ECM: Array
+        # @param Other: Other 混合云地域列表
+        # @type Other: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :CVM, :BM, :LH, :ECM, :Other, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(cvm=nil, bm=nil, lh=nil, ecm=nil, other=nil, requestid=nil)
+          @CVM = cvm
+          @BM = bm
+          @LH = lh
+          @ECM = ecm
+          @Other = other
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['CVM'].nil?
+            @CVM = []
+            params['CVM'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @CVM << regioninfo_tmp
+            end
+          end
+          unless params['BM'].nil?
+            @BM = []
+            params['BM'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @BM << regioninfo_tmp
+            end
+          end
+          unless params['LH'].nil?
+            @LH = []
+            params['LH'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @LH << regioninfo_tmp
+            end
+          end
+          unless params['ECM'].nil?
+            @ECM = []
+            params['ECM'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @ECM << regioninfo_tmp
+            end
+          end
+          unless params['Other'].nil?
+            @Other = []
+            params['Other'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @Other << regioninfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3771,6 +3915,82 @@ module TencentCloud
             @MalwareInfo = MalwareInfo.new
             @MalwareInfo.deserialize(params['MalwareInfo'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMalwareTimingScanSetting请求参数结构体
+      class DescribeMalwareTimingScanSettingRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeMalwareTimingScanSetting返回参数结构体
+      class DescribeMalwareTimingScanSettingResponse < TencentCloud::Common::AbstractModel
+        # @param CheckPattern: 检测模式 0 全盘检测  1快速检测
+        # @type CheckPattern: Integer
+        # @param StartTime: 检测周期 开始时间
+        # @type StartTime: String
+        # @param EndTime: 检测周期 超时结束时间
+        # @type EndTime: String
+        # @param IsGlobal: 是否全部服务器 1 全部 2 自选
+        # @type IsGlobal: Integer
+        # @param QuuidList: 自选服务器时必须 主机quuid的string数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuuidList: Array
+        # @param MonitoringPattern: 监控模式 0 标准 1深度
+        # @type MonitoringPattern: Integer
+        # @param Cycle: 周期 1每天
+        # @type Cycle: Integer
+        # @param EnableScan: 定时检测开关 0 关闭1 开启
+        # @type EnableScan: Integer
+        # @param Id: 唯一ID
+        # @type Id: Integer
+        # @param RealTimeMonitoring: 实时监控0 关闭 1开启
+        # @type RealTimeMonitoring: Integer
+        # @param AutoIsolation: 是否自动隔离
+        # @type AutoIsolation: Integer
+        # @param ClickTimeout: 一键扫描超时
+        # @type ClickTimeout: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :RequestId
+        
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, requestid=nil)
+          @CheckPattern = checkpattern
+          @StartTime = starttime
+          @EndTime = endtime
+          @IsGlobal = isglobal
+          @QuuidList = quuidlist
+          @MonitoringPattern = monitoringpattern
+          @Cycle = cycle
+          @EnableScan = enablescan
+          @Id = id
+          @RealTimeMonitoring = realtimemonitoring
+          @AutoIsolation = autoisolation
+          @ClickTimeout = clicktimeout
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CheckPattern = params['CheckPattern']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @IsGlobal = params['IsGlobal']
+          @QuuidList = params['QuuidList']
+          @MonitoringPattern = params['MonitoringPattern']
+          @Cycle = params['Cycle']
+          @EnableScan = params['EnableScan']
+          @Id = params['Id']
+          @RealTimeMonitoring = params['RealTimeMonitoring']
+          @AutoIsolation = params['AutoIsolation']
+          @ClickTimeout = params['ClickTimeout']
           @RequestId = params['RequestId']
         end
       end
@@ -4724,6 +4944,198 @@ module TencentCloud
           @RiskFileNumber = params['RiskFileNumber']
           @IsSchedule = params['IsSchedule']
           @ScanStatus = params['ScanStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScanTaskDetails请求参数结构体
+      class DescribeScanTaskDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param ModuleType: 模块类型 当前提供 Malware 木马 , Vul 漏洞 , Baseline 基线
+        # @type ModuleType: String
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+        # @param Limit: 需要返回的数量，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :ModuleType, :TaskId, :Filters, :Limit, :Offset
+        
+        def initialize(moduletype=nil, taskid=nil, filters=nil, limit=nil, offset=nil)
+          @ModuleType = moduletype
+          @TaskId = taskid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ModuleType = params['ModuleType']
+          @TaskId = params['TaskId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeScanTaskDetails返回参数结构体
+      class DescribeScanTaskDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param ScanTaskDetailList: 扫描任务信息列表
+        # @type ScanTaskDetailList: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param ScanMachineCount: 扫描机器总数
+        # @type ScanMachineCount: Integer
+        # @param RiskMachineCount: 发现风险机器数
+        # @type RiskMachineCount: Integer
+        # @param ScanBeginTime: 扫描开始时间
+        # @type ScanBeginTime: String
+        # @param ScanEndTime: 扫描结束时间
+        # @type ScanEndTime: String
+        # @param ScanTime: 检测时间
+        # @type ScanTime: Integer
+        # @param ScanProgress: 扫描进度
+        # @type ScanProgress: Integer
+        # @param ScanLeftTime: 扫描剩余时间
+        # @type ScanLeftTime: Integer
+        # @param ScanContent: 扫描内容
+        # @type ScanContent: Array
+        # @param VulInfo: 漏洞信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulInfo: Array
+        # @param RiskEventCount: 风险事件个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskEventCount: Integer
+        # @param Type: 0一键检测 1定时检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param StoppingAll: 任务是否全部正在被停止 ture是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoppingAll: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScanTaskDetailList, :TotalCount, :ScanMachineCount, :RiskMachineCount, :ScanBeginTime, :ScanEndTime, :ScanTime, :ScanProgress, :ScanLeftTime, :ScanContent, :VulInfo, :RiskEventCount, :Type, :StoppingAll, :RequestId
+        
+        def initialize(scantaskdetaillist=nil, totalcount=nil, scanmachinecount=nil, riskmachinecount=nil, scanbegintime=nil, scanendtime=nil, scantime=nil, scanprogress=nil, scanlefttime=nil, scancontent=nil, vulinfo=nil, riskeventcount=nil, type=nil, stoppingall=nil, requestid=nil)
+          @ScanTaskDetailList = scantaskdetaillist
+          @TotalCount = totalcount
+          @ScanMachineCount = scanmachinecount
+          @RiskMachineCount = riskmachinecount
+          @ScanBeginTime = scanbegintime
+          @ScanEndTime = scanendtime
+          @ScanTime = scantime
+          @ScanProgress = scanprogress
+          @ScanLeftTime = scanlefttime
+          @ScanContent = scancontent
+          @VulInfo = vulinfo
+          @RiskEventCount = riskeventcount
+          @Type = type
+          @StoppingAll = stoppingall
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ScanTaskDetailList'].nil?
+            @ScanTaskDetailList = []
+            params['ScanTaskDetailList'].each do |i|
+              scantaskdetails_tmp = ScanTaskDetails.new
+              scantaskdetails_tmp.deserialize(i)
+              @ScanTaskDetailList << scantaskdetails_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @ScanMachineCount = params['ScanMachineCount']
+          @RiskMachineCount = params['RiskMachineCount']
+          @ScanBeginTime = params['ScanBeginTime']
+          @ScanEndTime = params['ScanEndTime']
+          @ScanTime = params['ScanTime']
+          @ScanProgress = params['ScanProgress']
+          @ScanLeftTime = params['ScanLeftTime']
+          @ScanContent = params['ScanContent']
+          unless params['VulInfo'].nil?
+            @VulInfo = []
+            params['VulInfo'].each do |i|
+              vuldetailinfo_tmp = VulDetailInfo.new
+              vuldetailinfo_tmp.deserialize(i)
+              @VulInfo << vuldetailinfo_tmp
+            end
+          end
+          @RiskEventCount = params['RiskEventCount']
+          @Type = params['Type']
+          @StoppingAll = params['StoppingAll']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScanVulSetting请求参数结构体
+      class DescribeScanVulSettingRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeScanVulSetting返回参数结构体
+      class DescribeScanVulSettingResponse < TencentCloud::Common::AbstractModel
+        # @param VulCategories: 漏洞类型：1: web应用漏洞 2:系统组件漏洞 (多选英文逗号分隔)
+        # @type VulCategories: String
+        # @param VulLevels: 危害等级：1-低危；2-中危；3-高危；4-严重 (多选英文逗号分隔)
+        # @type VulLevels: String
+        # @param TimerInterval: 定期检测间隔时间（天）
+        # @type TimerInterval: Integer
+        # @param TimerTime: 定期检测时间
+        # @type TimerTime: String
+        # @param VulEmergency: 是否紧急漏洞
+        # @type VulEmergency: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EnableScan: 是否开启
+        # @type EnableScan: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param ClickTimeout: 一键扫描超时时长
+        # @type ClickTimeout: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VulCategories, :VulLevels, :TimerInterval, :TimerTime, :VulEmergency, :StartTime, :EnableScan, :EndTime, :ClickTimeout, :RequestId
+        
+        def initialize(vulcategories=nil, vullevels=nil, timerinterval=nil, timertime=nil, vulemergency=nil, starttime=nil, enablescan=nil, endtime=nil, clicktimeout=nil, requestid=nil)
+          @VulCategories = vulcategories
+          @VulLevels = vullevels
+          @TimerInterval = timerinterval
+          @TimerTime = timertime
+          @VulEmergency = vulemergency
+          @StartTime = starttime
+          @EnableScan = enablescan
+          @EndTime = endtime
+          @ClickTimeout = clicktimeout
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VulCategories = params['VulCategories']
+          @VulLevels = params['VulLevels']
+          @TimerInterval = params['TimerInterval']
+          @TimerTime = params['TimerTime']
+          @VulEmergency = params['VulEmergency']
+          @StartTime = params['StartTime']
+          @EnableScan = params['EnableScan']
+          @EndTime = params['EndTime']
+          @ClickTimeout = params['ClickTimeout']
           @RequestId = params['RequestId']
         end
       end
@@ -5948,6 +6360,74 @@ module TencentCloud
 
       # EditBashRule返回参数结构体
       class EditBashRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EditBashRules请求参数结构体
+      class EditBashRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Rule: 正则表达式
+        # @type Rule: String
+        # @param Id: 规则ID（新增时不填）
+        # @type Id: Integer
+        # @param Uuids: 客户端ID数组
+        # @type Uuids: Array
+        # @param HostIp: 主机IP
+        # @type HostIp: String
+        # @param Level: 危险等级(0:无，1: 高危 2:中危 3: 低危)
+        # @type Level: Integer
+        # @param IsGlobal: 是否全局规则(默认否)
+        # @type IsGlobal: Integer
+        # @param White: 0=黑名单， 1=白名单
+        # @type White: Integer
+        # @param EventId: 事件列表点击“加入白名单”时,需要传EventId 事件的id
+        # @type EventId: Integer
+        # @param DealOldEvents: 是否处理旧事件为白名单 0=不处理 1=处理
+        # @type DealOldEvents: Integer
+
+        attr_accessor :Name, :Rule, :Id, :Uuids, :HostIp, :Level, :IsGlobal, :White, :EventId, :DealOldEvents
+        
+        def initialize(name=nil, rule=nil, id=nil, uuids=nil, hostip=nil, level=nil, isglobal=nil, white=nil, eventid=nil, dealoldevents=nil)
+          @Name = name
+          @Rule = rule
+          @Id = id
+          @Uuids = uuids
+          @HostIp = hostip
+          @Level = level
+          @IsGlobal = isglobal
+          @White = white
+          @EventId = eventid
+          @DealOldEvents = dealoldevents
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Rule = params['Rule']
+          @Id = params['Id']
+          @Uuids = params['Uuids']
+          @HostIp = params['HostIp']
+          @Level = params['Level']
+          @IsGlobal = params['IsGlobal']
+          @White = params['White']
+          @EventId = params['EventId']
+          @DealOldEvents = params['DealOldEvents']
+        end
+      end
+
+      # EditBashRules返回参数结构体
+      class EditBashRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7634,10 +8114,12 @@ module TencentCloud
         # @type RealTimeMonitoring: Integer
         # @param QuuidList: 自选服务器时必须 主机quuid的string数组
         # @type QuuidList: Array
+        # @param AutoIsolation: 是否自动隔离 1隔离 0 不隔离
+        # @type AutoIsolation: Integer
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation
         
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -7647,6 +8129,7 @@ module TencentCloud
           @Cycle = cycle
           @RealTimeMonitoring = realtimemonitoring
           @QuuidList = quuidlist
+          @AutoIsolation = autoisolation
         end
 
         def deserialize(params)
@@ -7659,6 +8142,7 @@ module TencentCloud
           @Cycle = params['Cycle']
           @RealTimeMonitoring = params['RealTimeMonitoring']
           @QuuidList = params['QuuidList']
+          @AutoIsolation = params['AutoIsolation']
         end
       end
 
@@ -8672,6 +9156,102 @@ module TencentCloud
         end
       end
 
+      # 扫描任务详情列表信息
+      class ScanTaskDetails < TencentCloud::Common::AbstractModel
+        # @param HostIp: 服务器IP
+        # @type HostIp: String
+        # @param HostName: 服务器名称
+        # @type HostName: String
+        # @param OsName: 操作系统
+        # @type OsName: String
+        # @param RiskNum: 风险数量
+        # @type RiskNum: Integer
+        # @param ScanBeginTime: 扫描开始时间
+        # @type ScanBeginTime: String
+        # @param ScanEndTime: 扫描结束时间
+        # @type ScanEndTime: String
+        # @param Uuid: 唯一Uuid
+        # @type Uuid: String
+        # @param Quuid: 唯一Quuid
+        # @type Quuid: String
+        # @param Status: 状态码
+        # @type Status: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param Id: id唯一
+        # @type Id: Integer
+        # @param FailType: 失败详情
+        # @type FailType: Integer
+
+        attr_accessor :HostIp, :HostName, :OsName, :RiskNum, :ScanBeginTime, :ScanEndTime, :Uuid, :Quuid, :Status, :Description, :Id, :FailType
+        
+        def initialize(hostip=nil, hostname=nil, osname=nil, risknum=nil, scanbegintime=nil, scanendtime=nil, uuid=nil, quuid=nil, status=nil, description=nil, id=nil, failtype=nil)
+          @HostIp = hostip
+          @HostName = hostname
+          @OsName = osname
+          @RiskNum = risknum
+          @ScanBeginTime = scanbegintime
+          @ScanEndTime = scanendtime
+          @Uuid = uuid
+          @Quuid = quuid
+          @Status = status
+          @Description = description
+          @Id = id
+          @FailType = failtype
+        end
+
+        def deserialize(params)
+          @HostIp = params['HostIp']
+          @HostName = params['HostName']
+          @OsName = params['OsName']
+          @RiskNum = params['RiskNum']
+          @ScanBeginTime = params['ScanBeginTime']
+          @ScanEndTime = params['ScanEndTime']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @Status = params['Status']
+          @Description = params['Description']
+          @Id = params['Id']
+          @FailType = params['FailType']
+        end
+      end
+
+      # ScanVulAgain请求参数结构体
+      class ScanVulAgainRequest < TencentCloud::Common::AbstractModel
+        # @param EventIds: 漏洞事件id串，多个用英文逗号分隔
+        # @type EventIds: String
+        # @param Uuids: 重新检查的机器uuid,多个逗号分隔
+        # @type Uuids: String
+
+        attr_accessor :EventIds, :Uuids
+        
+        def initialize(eventids=nil, uuids=nil)
+          @EventIds = eventids
+          @Uuids = uuids
+        end
+
+        def deserialize(params)
+          @EventIds = params['EventIds']
+          @Uuids = params['Uuids']
+        end
+      end
+
+      # ScanVulAgain返回参数结构体
+      class ScanVulAgainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ScanVul请求参数结构体
       class ScanVulRequest < TencentCloud::Common::AbstractModel
         # @param VulCategories: 漏洞类型：1: web应用漏洞 2:系统组件漏洞 (多选英文;分隔)
@@ -8684,15 +9264,21 @@ module TencentCloud
         # @type QuuidList: Array
         # @param VulEmergency: 是否是应急漏洞 0 否 1 是
         # @type VulEmergency: Integer
+        # @param TimeoutPeriod: 超时时长 单位秒
+        # @type TimeoutPeriod: Integer
+        # @param VulIds: 需要扫描的漏洞id
+        # @type VulIds: Array
 
-        attr_accessor :VulCategories, :VulLevels, :HostType, :QuuidList, :VulEmergency
+        attr_accessor :VulCategories, :VulLevels, :HostType, :QuuidList, :VulEmergency, :TimeoutPeriod, :VulIds
         
-        def initialize(vulcategories=nil, vullevels=nil, hosttype=nil, quuidlist=nil, vulemergency=nil)
+        def initialize(vulcategories=nil, vullevels=nil, hosttype=nil, quuidlist=nil, vulemergency=nil, timeoutperiod=nil, vulids=nil)
           @VulCategories = vulcategories
           @VulLevels = vullevels
           @HostType = hosttype
           @QuuidList = quuidlist
           @VulEmergency = vulemergency
+          @TimeoutPeriod = timeoutperiod
+          @VulIds = vulids
         end
 
         def deserialize(params)
@@ -8701,6 +9287,8 @@ module TencentCloud
           @HostType = params['HostType']
           @QuuidList = params['QuuidList']
           @VulEmergency = params['VulEmergency']
+          @TimeoutPeriod = params['TimeoutPeriod']
+          @VulIds = params['VulIds']
         end
       end
 
@@ -8721,6 +9309,66 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ScanVulSetting请求参数结构体
+      class ScanVulSettingRequest < TencentCloud::Common::AbstractModel
+        # @param TimerInterval: 定期检测间隔时间（天）
+        # @type TimerInterval: Integer
+        # @param VulCategories: 漏洞类型：1: web应用漏洞 2:系统组件漏洞, 以数组方式传参[1,2]
+        # @type VulCategories: Array
+        # @param VulLevels: 危害等级：1-低危；2-中危；3-高危；4-严重,以数组方式传参[1,2,3]
+        # @type VulLevels: Array
+        # @param TimerTime: 定期检测时间
+        # @type TimerTime: String
+        # @param VulEmergency: 是否是应急漏洞 0 否 1 是
+        # @type VulEmergency: Integer
+        # @param StartTime: 扫描开始时间
+        # @type StartTime: String
+        # @param EndTime: 扫描结束时间
+        # @type EndTime: String
+        # @param EnableScan: 是否开启扫描 1开启 0不开启
+        # @type EnableScan: Integer
+
+        attr_accessor :TimerInterval, :VulCategories, :VulLevels, :TimerTime, :VulEmergency, :StartTime, :EndTime, :EnableScan
+        
+        def initialize(timerinterval=nil, vulcategories=nil, vullevels=nil, timertime=nil, vulemergency=nil, starttime=nil, endtime=nil, enablescan=nil)
+          @TimerInterval = timerinterval
+          @VulCategories = vulcategories
+          @VulLevels = vullevels
+          @TimerTime = timertime
+          @VulEmergency = vulemergency
+          @StartTime = starttime
+          @EndTime = endtime
+          @EnableScan = enablescan
+        end
+
+        def deserialize(params)
+          @TimerInterval = params['TimerInterval']
+          @VulCategories = params['VulCategories']
+          @VulLevels = params['VulLevels']
+          @TimerTime = params['TimerTime']
+          @VulEmergency = params['VulEmergency']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @EnableScan = params['EnableScan']
+        end
+      end
+
+      # ScanVulSetting返回参数结构体
+      class ScanVulSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -9321,6 +9969,62 @@ module TencentCloud
           @LastScanTime = params['LastScanTime']
           @ImpactedHostNum = params['ImpactedHostNum']
           @VulStatus = params['VulStatus']
+        end
+      end
+
+      # 漏洞详细信息
+      class VulDetailInfo < TencentCloud::Common::AbstractModel
+        # @param VulId: 漏洞ID
+        # @type VulId: Integer
+        # @param Level: 漏洞级别
+        # @type Level: Integer
+        # @param Name: 漏洞名称
+        # @type Name: String
+        # @param CveId: cve编号
+        # @type CveId: String
+        # @param VulCategory: 漏洞分类
+        # @type VulCategory: Integer
+        # @param Descript: 漏洞描述
+        # @type Descript: String
+        # @param Fix: 修复建议
+        # @type Fix: String
+        # @param Reference: 参考链接
+        # @type Reference: String
+        # @param CvssScore: CVSS评分
+        # @type CvssScore: Float
+        # @param Cvss: CVSS详情
+        # @type Cvss: String
+        # @param PublishTime: 发布时间
+        # @type PublishTime: String
+
+        attr_accessor :VulId, :Level, :Name, :CveId, :VulCategory, :Descript, :Fix, :Reference, :CvssScore, :Cvss, :PublishTime
+        
+        def initialize(vulid=nil, level=nil, name=nil, cveid=nil, vulcategory=nil, descript=nil, fix=nil, reference=nil, cvssscore=nil, cvss=nil, publishtime=nil)
+          @VulId = vulid
+          @Level = level
+          @Name = name
+          @CveId = cveid
+          @VulCategory = vulcategory
+          @Descript = descript
+          @Fix = fix
+          @Reference = reference
+          @CvssScore = cvssscore
+          @Cvss = cvss
+          @PublishTime = publishtime
+        end
+
+        def deserialize(params)
+          @VulId = params['VulId']
+          @Level = params['Level']
+          @Name = params['Name']
+          @CveId = params['CveId']
+          @VulCategory = params['VulCategory']
+          @Descript = params['Descript']
+          @Fix = params['Fix']
+          @Reference = params['Reference']
+          @CvssScore = params['CvssScore']
+          @Cvss = params['Cvss']
+          @PublishTime = params['PublishTime']
         end
       end
 

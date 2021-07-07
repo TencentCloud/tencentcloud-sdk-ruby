@@ -53,30 +53,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取分类名称
-
-        # @param request: Request instance for GetCateTree.
-        # @type request: :class:`Tencentcloud::market::V20191010::GetCateTreeRequest`
-        # @rtype: :class:`Tencentcloud::market::V20191010::GetCateTreeResponse`
-        def GetCateTree(request)
-          body = send_request('GetCateTree', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetCateTreeResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 该接口可以根据InstanceId查询实例的api的使用情况。
 
         # @param request: Request instance for GetUsagePlanUsageAmount.

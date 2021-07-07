@@ -363,6 +363,70 @@ module TencentCloud
         end
       end
 
+      # 独立网关云托管服务配置信息
+      class CloudBaseRunForGatewayConf < TencentCloud::Common::AbstractModel
+        # @param IsZero: 是否缩容到0
+        # @type IsZero: Boolean
+        # @param Weight: 按百分比灰度的权重
+        # @type Weight: Integer
+        # @param GrayKey: 按请求/header参数的灰度Key
+        # @type GrayKey: String
+        # @param GrayValue: 按请求/header参数的灰度Value
+        # @type GrayValue: String
+        # @param IsDefault: 是否为默认版本(按请求/header参数)
+        # @type IsDefault: Boolean
+        # @param AccessType: 访问权限，对应二进制分多段，vpc内网｜公网｜oa
+        # @type AccessType: Integer
+        # @param URLs: 访问的URL（域名＋路径）列表
+        # @type URLs: Array
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerName: 服务名称
+        # @type ServerName: String
+        # @param VersionName: 版本名称
+        # @type VersionName: String
+        # @param GrayType: 灰度类型：FLOW(权重), URL_PARAMS/HEAD_PARAMS
+        # @type GrayType: String
+        # @param LbAddr: CLB的IP:Port
+        # @type LbAddr: String
+        # @param ConfigType: 0:http访问服务配置信息, 1: 服务域名
+        # @type ConfigType: Integer
+
+        attr_accessor :IsZero, :Weight, :GrayKey, :GrayValue, :IsDefault, :AccessType, :URLs, :EnvId, :ServerName, :VersionName, :GrayType, :LbAddr, :ConfigType
+        
+        def initialize(iszero=nil, weight=nil, graykey=nil, grayvalue=nil, isdefault=nil, accesstype=nil, urls=nil, envid=nil, servername=nil, versionname=nil, graytype=nil, lbaddr=nil, configtype=nil)
+          @IsZero = iszero
+          @Weight = weight
+          @GrayKey = graykey
+          @GrayValue = grayvalue
+          @IsDefault = isdefault
+          @AccessType = accesstype
+          @URLs = urls
+          @EnvId = envid
+          @ServerName = servername
+          @VersionName = versionname
+          @GrayType = graytype
+          @LbAddr = lbaddr
+          @ConfigType = configtype
+        end
+
+        def deserialize(params)
+          @IsZero = params['IsZero']
+          @Weight = params['Weight']
+          @GrayKey = params['GrayKey']
+          @GrayValue = params['GrayValue']
+          @IsDefault = params['IsDefault']
+          @AccessType = params['AccessType']
+          @URLs = params['URLs']
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @VersionName = params['VersionName']
+          @GrayType = params['GrayType']
+          @LbAddr = params['LbAddr']
+          @ConfigType = params['ConfigType']
+        end
+      end
+
       # CloudBaseRun 镜像信息
       class CloudBaseRunImageInfo < TencentCloud::Common::AbstractModel
         # @param RepositoryName: 镜像仓库名称
@@ -551,6 +615,46 @@ module TencentCloud
               @VolumeMountInfos << cloudbaserunvolumemount_tmp
             end
           end
+        end
+      end
+
+      # 版本流量占比
+      class CloudBaseRunVersionFlowItem < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+        # @param FlowRatio: 流量占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowRatio: Integer
+        # @param UrlParam: 流量参数键值对（URL参数/HEADERS参数）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UrlParam: :class:`Tencentcloud::Tcb.v20180608.models.ObjectKV`
+        # @param Priority: 优先级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param IsDefaultPriority: 是否是默认兜底版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefaultPriority: Boolean
+
+        attr_accessor :VersionName, :FlowRatio, :UrlParam, :Priority, :IsDefaultPriority
+        
+        def initialize(versionname=nil, flowratio=nil, urlparam=nil, priority=nil, isdefaultpriority=nil)
+          @VersionName = versionname
+          @FlowRatio = flowratio
+          @UrlParam = urlparam
+          @Priority = priority
+          @IsDefaultPriority = isdefaultpriority
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @FlowRatio = params['FlowRatio']
+          unless params['UrlParam'].nil?
+            @UrlParam = ObjectKV.new
+            @UrlParam.deserialize(params['UrlParam'])
+          end
+          @Priority = params['Priority']
+          @IsDefaultPriority = params['IsDefaultPriority']
         end
       end
 
@@ -2065,6 +2169,59 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunConfForGateWay请求参数结构体
+      class DescribeCloudBaseRunConfForGateWayRequest < TencentCloud::Common::AbstractModel
+        # @param EnvID: 环境ID
+        # @type EnvID: String
+        # @param VpcID: vpc信息
+        # @type VpcID: String
+
+        attr_accessor :EnvID, :VpcID
+        
+        def initialize(envid=nil, vpcid=nil)
+          @EnvID = envid
+          @VpcID = vpcid
+        end
+
+        def deserialize(params)
+          @EnvID = params['EnvID']
+          @VpcID = params['VpcID']
+        end
+      end
+
+      # DescribeCloudBaseRunConfForGateWay返回参数结构体
+      class DescribeCloudBaseRunConfForGateWayResponse < TencentCloud::Common::AbstractModel
+        # @param LastUpTime: 最近更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpTime: String
+        # @param Data: 配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LastUpTime, :Data, :RequestId
+        
+        def initialize(lastuptime=nil, data=nil, requestid=nil)
+          @LastUpTime = lastuptime
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LastUpTime = params['LastUpTime']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cloudbaserunforgatewayconf_tmp = CloudBaseRunForGatewayConf.new
+              cloudbaserunforgatewayconf_tmp.deserialize(i)
+              @Data << cloudbaserunforgatewayconf_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3882,10 +4039,12 @@ module TencentCloud
         # @type OpenAccessTypes: Array
         # @param IsCreatePath: 是否创建Path 0未传默认创建 1创建 2不创建
         # @type IsCreatePath: Integer
+        # @param ServerPath: 指定创建路径（如不存在，则创建。存在，则忽略）
+        # @type ServerPath: String
 
-        attr_accessor :EnvId, :ServiceName, :IsPublic, :ImageRepo, :Remark, :EsInfo, :LogType, :OperatorRemark, :Source, :VpcInfo, :PublicAccess, :OpenAccessTypes, :IsCreatePath
+        attr_accessor :EnvId, :ServiceName, :IsPublic, :ImageRepo, :Remark, :EsInfo, :LogType, :OperatorRemark, :Source, :VpcInfo, :PublicAccess, :OpenAccessTypes, :IsCreatePath, :ServerPath
         
-        def initialize(envid=nil, servicename=nil, ispublic=nil, imagerepo=nil, remark=nil, esinfo=nil, logtype=nil, operatorremark=nil, source=nil, vpcinfo=nil, publicaccess=nil, openaccesstypes=nil, iscreatepath=nil)
+        def initialize(envid=nil, servicename=nil, ispublic=nil, imagerepo=nil, remark=nil, esinfo=nil, logtype=nil, operatorremark=nil, source=nil, vpcinfo=nil, publicaccess=nil, openaccesstypes=nil, iscreatepath=nil, serverpath=nil)
           @EnvId = envid
           @ServiceName = servicename
           @IsPublic = ispublic
@@ -3899,6 +4058,7 @@ module TencentCloud
           @PublicAccess = publicaccess
           @OpenAccessTypes = openaccesstypes
           @IsCreatePath = iscreatepath
+          @ServerPath = serverpath
         end
 
         def deserialize(params)
@@ -3921,6 +4081,7 @@ module TencentCloud
           @PublicAccess = params['PublicAccess']
           @OpenAccessTypes = params['OpenAccessTypes']
           @IsCreatePath = params['IsCreatePath']
+          @ServerPath = params['ServerPath']
         end
       end
 
@@ -4190,6 +4351,66 @@ module TencentCloud
         end
       end
 
+      # ModifyCloudBaseRunServerFlowConf请求参数结构体
+      class ModifyCloudBaseRunServerFlowConfRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerName: 服务名称
+        # @type ServerName: String
+        # @param VersionFlowItems: 流量占比
+        # @type VersionFlowItems: Array
+        # @param TrafficType: 流量类型（URL_PARAMS / FLOW / HEADERS)
+        # @type TrafficType: String
+        # @param OperatorRemark: 操作备注
+        # @type OperatorRemark: String
+
+        attr_accessor :EnvId, :ServerName, :VersionFlowItems, :TrafficType, :OperatorRemark
+        
+        def initialize(envid=nil, servername=nil, versionflowitems=nil, traffictype=nil, operatorremark=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @VersionFlowItems = versionflowitems
+          @TrafficType = traffictype
+          @OperatorRemark = operatorremark
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          unless params['VersionFlowItems'].nil?
+            @VersionFlowItems = []
+            params['VersionFlowItems'].each do |i|
+              cloudbaserunversionflowitem_tmp = CloudBaseRunVersionFlowItem.new
+              cloudbaserunversionflowitem_tmp.deserialize(i)
+              @VersionFlowItems << cloudbaserunversionflowitem_tmp
+            end
+          end
+          @TrafficType = params['TrafficType']
+          @OperatorRemark = params['OperatorRemark']
+        end
+      end
+
+      # ModifyCloudBaseRunServerFlowConf返回参数结构体
+      class ModifyCloudBaseRunServerFlowConfResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果，succ代表成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDatabaseACL请求参数结构体
       class ModifyDatabaseACLRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -4309,6 +4530,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Key-Value类型，模拟的 object 类型
+      class ObjectKV < TencentCloud::Common::AbstractModel
+        # @param Key: object 的 key
+        # @type Key: String
+        # @param Value: object key 对应的 value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
