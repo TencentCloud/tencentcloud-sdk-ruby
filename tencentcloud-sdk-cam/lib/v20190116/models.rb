@@ -1667,27 +1667,43 @@ module TencentCloud
 
       # GetSecurityLastUsed请求参数结构体
       class GetSecurityLastUsedRequest < TencentCloud::Common::AbstractModel
+        # @param SecretIdList: 查询密钥ID列表
+        # @type SecretIdList: Array
 
+        attr_accessor :SecretIdList
         
-        def initialize()
+        def initialize(secretidlist=nil)
+          @SecretIdList = secretidlist
         end
 
         def deserialize(params)
+          @SecretIdList = params['SecretIdList']
         end
       end
 
       # GetSecurityLastUsed返回参数结构体
       class GetSecurityLastUsedResponse < TencentCloud::Common::AbstractModel
+        # @param SecretIdLastUsedRows: 密钥ID最近访问列表
+        # @type SecretIdLastUsedRows: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SecretIdLastUsedRows, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(secretidlastusedrows=nil, requestid=nil)
+          @SecretIdLastUsedRows = secretidlastusedrows
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['SecretIdLastUsedRows'].nil?
+            @SecretIdLastUsedRows = []
+            params['SecretIdLastUsedRows'].each do |i|
+              secretidlastused_tmp = SecretIdLastUsed.new
+              secretidlastused_tmp.deserialize(i)
+              @SecretIdLastUsedRows << secretidlastused_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3162,6 +3178,27 @@ module TencentCloud
           @Description = params['Description']
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # 密钥最后使用时间
+      class SecretIdLastUsed < TencentCloud::Common::AbstractModel
+        # @param SecretId: 密钥ID
+        # @type SecretId: String
+        # @param LastUsedDate: 最后访问日期(有1天延迟)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUsedDate: String
+
+        attr_accessor :SecretId, :LastUsedDate
+        
+        def initialize(secretid=nil, lastuseddate=nil)
+          @SecretId = secretid
+          @LastUsedDate = lastuseddate
+        end
+
+        def deserialize(params)
+          @SecretId = params['SecretId']
+          @LastUsedDate = params['LastUsedDate']
         end
       end
 

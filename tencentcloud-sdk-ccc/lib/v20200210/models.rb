@@ -160,6 +160,54 @@ module TencentCloud
         end
       end
 
+      # CreateUserSig请求参数结构体
+      class CreateUserSigRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID
+        # @type SdkAppId: Integer
+        # @param Uid: 用户 ID
+        # @type Uid: String
+        # @param ExpiredTime: 有效期，单位秒，不超过 1 小时
+        # @type ExpiredTime: Integer
+        # @param ClientData: 用户签名数据
+        # @type ClientData: String
+
+        attr_accessor :SdkAppId, :Uid, :ExpiredTime, :ClientData
+        
+        def initialize(sdkappid=nil, uid=nil, expiredtime=nil, clientdata=nil)
+          @SdkAppId = sdkappid
+          @Uid = uid
+          @ExpiredTime = expiredtime
+          @ClientData = clientdata
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Uid = params['Uid']
+          @ExpiredTime = params['ExpiredTime']
+          @ClientData = params['ClientData']
+        end
+      end
+
+      # CreateUserSig返回参数结构体
+      class CreateUserSigResponse < TencentCloud::Common::AbstractModel
+        # @param UserSig: 签名结果
+        # @type UserSig: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserSig, :RequestId
+        
+        def initialize(usersig=nil, requestid=nil)
+          @UserSig = usersig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserSig = params['UserSig']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteStaff请求参数结构体
       class DeleteStaffRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 实例ID

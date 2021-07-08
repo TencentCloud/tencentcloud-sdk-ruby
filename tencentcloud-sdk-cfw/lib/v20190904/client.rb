@@ -221,6 +221,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeBlockByIpTimesList 告警中心阻断ip折线图
+
+        # @param request: Request instance for DescribeBlockByIpTimesList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeBlockByIpTimesListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeBlockByIpTimesListResponse`
+        def DescribeBlockByIpTimesList(request)
+          body = send_request('DescribeBlockByIpTimesList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBlockByIpTimesListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeBlockStaticList 告警中心柱形图
+
+        # @param request: Request instance for DescribeBlockStaticList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeBlockStaticListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeBlockStaticListResponse`
+        def DescribeBlockStaticList(request)
+          body = send_request('DescribeBlockStaticList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBlockStaticListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询防火墙弹性公网ip
 
         # @param request: Request instance for DescribeCfwEips.
@@ -389,6 +437,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeTLogInfo告警中心概况
+
+        # @param request: Request instance for DescribeTLogInfo.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeTLogInfoRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeTLogInfoResponse`
+        def DescribeTLogInfo(request)
+          body = send_request('DescribeTLogInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTLogInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeTLogIpList告警中心ip柱形图
+
+        # @param request: Request instance for DescribeTLogIpList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeTLogIpListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeTLogIpListResponse`
+        def DescribeTLogIpList(request)
+          body = send_request('DescribeTLogIpList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTLogIpListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询规则表状态
 
         # @param request: Request instance for DescribeTableStatus.
@@ -399,6 +495,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTableStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeUnHandleEventTabList 告警中心伪攻击链事件未处置接口
+
+        # @param request: Request instance for DescribeUnHandleEventTabList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeUnHandleEventTabListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeUnHandleEventTabListResponse`
+        def DescribeUnHandleEventTabList(request)
+          body = send_request('DescribeUnHandleEventTabList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUnHandleEventTabListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -546,6 +666,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBlockIgnoreListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # ModifyBlockTop取消置顶接口
+
+        # @param request: Request instance for ModifyBlockTop.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyBlockTopRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyBlockTopResponse`
+        def ModifyBlockTop(request)
+          body = send_request('ModifyBlockTop', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBlockTopResponse.new
             model.deserialize(response['Response'])
             model
           else

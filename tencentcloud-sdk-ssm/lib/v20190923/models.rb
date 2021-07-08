@@ -17,6 +17,127 @@
 module TencentCloud
   module Ssm
     module V20190923
+      # CreateProductSecret请求参数结构体
+      class CreateProductSecretRequest < TencentCloud::Common::AbstractModel
+        # @param SecretName: 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。
+        # @type SecretName: String
+        # @param UserNamePrefix: 用户账号名前缀，由用户自行指定，长度限定在8个字符以内，
+        # 可选字符集包括：
+        # 数字字符：[0, 9]，
+        # 小写字符：[a, z]，
+        # 大写字符：[A, Z]，
+        # 特殊字符(全英文符号)：下划线(_)，
+        # 前缀必须以大写或小写字母开头。
+        # @type UserNamePrefix: String
+        # @param ProductName: 凭据所绑定的云产品名称，如Mysql，可以通过DescribeSupportedProducts接口获取所支持的云产品名称。
+        # @type ProductName: String
+        # @param InstanceID: 云产品实例ID。
+        # @type InstanceID: String
+        # @param Domains: 账号的域名，IP形式，支持填入%。
+        # @type Domains: Array
+        # @param PrivilegesList: 将凭据与云产品实例绑定时，需要授予的权限列表。
+        # @type PrivilegesList: Array
+        # @param Description: 描述信息，用于详细描述用途等，最大支持2048字节。
+        # @type Description: String
+        # @param KmsKeyId: 指定对凭据进行加密的KMS CMK。
+        # 如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。
+        # 您也可以指定在同region 下自行创建的KMS CMK进行加密。
+        # @type KmsKeyId: String
+        # @param Tags: 标签列表。
+        # @type Tags: Array
+        # @param RotationBeginTime: 用户自定义的开始轮转时间，格式：2006-01-02 15:04:05。
+        # 当EnableRotation为True时，此参数必填。
+        # @type RotationBeginTime: String
+        # @param EnableRotation: 是否开启轮转
+        # True -- 开启
+        # False -- 不开启
+        # 如果不指定，默认为False。
+        # @type EnableRotation: Boolean
+        # @param RotationFrequency: 轮转周期，以天为单位，默认为1天。
+        # @type RotationFrequency: Integer
+
+        attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency
+        
+        def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil)
+          @SecretName = secretname
+          @UserNamePrefix = usernameprefix
+          @ProductName = productname
+          @InstanceID = instanceid
+          @Domains = domains
+          @PrivilegesList = privilegeslist
+          @Description = description
+          @KmsKeyId = kmskeyid
+          @Tags = tags
+          @RotationBeginTime = rotationbegintime
+          @EnableRotation = enablerotation
+          @RotationFrequency = rotationfrequency
+        end
+
+        def deserialize(params)
+          @SecretName = params['SecretName']
+          @UserNamePrefix = params['UserNamePrefix']
+          @ProductName = params['ProductName']
+          @InstanceID = params['InstanceID']
+          @Domains = params['Domains']
+          unless params['PrivilegesList'].nil?
+            @PrivilegesList = []
+            params['PrivilegesList'].each do |i|
+              productprivilegeunit_tmp = ProductPrivilegeUnit.new
+              productprivilegeunit_tmp.deserialize(i)
+              @PrivilegesList << productprivilegeunit_tmp
+            end
+          end
+          @Description = params['Description']
+          @KmsKeyId = params['KmsKeyId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @RotationBeginTime = params['RotationBeginTime']
+          @EnableRotation = params['EnableRotation']
+          @RotationFrequency = params['RotationFrequency']
+        end
+      end
+
+      # CreateProductSecret返回参数结构体
+      class CreateProductSecretResponse < TencentCloud::Common::AbstractModel
+        # @param SecretName: 创建的凭据名称。
+        # @type SecretName: String
+        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagCode: Integer
+        # @param TagMsg: 标签操作的返回信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagMsg: String
+        # @param FlowID: 创建云产品凭据异步任务ID号。
+        # @type FlowID: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecretName, :TagCode, :TagMsg, :FlowID, :RequestId
+        
+        def initialize(secretname=nil, tagcode=nil, tagmsg=nil, flowid=nil, requestid=nil)
+          @SecretName = secretname
+          @TagCode = tagcode
+          @TagMsg = tagmsg
+          @FlowID = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SecretName = params['SecretName']
+          @TagCode = params['TagCode']
+          @TagMsg = params['TagMsg']
+          @FlowID = params['FlowID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSecret请求参数结构体
       class CreateSecretRequest < TencentCloud::Common::AbstractModel
         # @param SecretName: 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。
@@ -186,6 +307,137 @@ module TencentCloud
         end
       end
 
+      # DescribeAsyncRequestInfo请求参数结构体
+      class DescribeAsyncRequestInfoRequest < TencentCloud::Common::AbstractModel
+        # @param FlowID: 异步任务ID号。
+        # @type FlowID: Integer
+
+        attr_accessor :FlowID
+        
+        def initialize(flowid=nil)
+          @FlowID = flowid
+        end
+
+        def deserialize(params)
+          @FlowID = params['FlowID']
+        end
+      end
+
+      # DescribeAsyncRequestInfo返回参数结构体
+      class DescribeAsyncRequestInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TaskStatus: 0:处理中，1:处理成功，2:处理失败
+        # @type TaskStatus: Integer
+        # @param Description: 任务描述信息。
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskStatus, :Description, :RequestId
+        
+        def initialize(taskstatus=nil, description=nil, requestid=nil)
+          @TaskStatus = taskstatus
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskStatus = params['TaskStatus']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRotationDetail请求参数结构体
+      class DescribeRotationDetailRequest < TencentCloud::Common::AbstractModel
+        # @param SecretName: 指定需要获取凭据轮转详细信息的凭据名称。
+        # @type SecretName: String
+
+        attr_accessor :SecretName
+        
+        def initialize(secretname=nil)
+          @SecretName = secretname
+        end
+
+        def deserialize(params)
+          @SecretName = params['SecretName']
+        end
+      end
+
+      # DescribeRotationDetail返回参数结构体
+      class DescribeRotationDetailResponse < TencentCloud::Common::AbstractModel
+        # @param EnableRotation: 否允许轮转，True表示开启轮转，False表示禁止轮转。
+        # @type EnableRotation: Boolean
+        # @param Frequency: 轮转的频率，以天为单位，默认为1天。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Frequency: Integer
+        # @param LatestRotateTime: 最近一次轮转的时间，显式可见的时间字符串，格式 2006-01-02 15:04:05。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestRotateTime: String
+        # @param NextRotateBeginTime: 下一次开始轮转的时间，显式可见的时间字符串，格式 2006-01-02 15:04:05。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextRotateBeginTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnableRotation, :Frequency, :LatestRotateTime, :NextRotateBeginTime, :RequestId
+        
+        def initialize(enablerotation=nil, frequency=nil, latestrotatetime=nil, nextrotatebegintime=nil, requestid=nil)
+          @EnableRotation = enablerotation
+          @Frequency = frequency
+          @LatestRotateTime = latestrotatetime
+          @NextRotateBeginTime = nextrotatebegintime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnableRotation = params['EnableRotation']
+          @Frequency = params['Frequency']
+          @LatestRotateTime = params['LatestRotateTime']
+          @NextRotateBeginTime = params['NextRotateBeginTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRotationHistory请求参数结构体
+      class DescribeRotationHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param SecretName: 指定需要获取凭据轮转历史的凭据名称。
+        # @type SecretName: String
+
+        attr_accessor :SecretName
+        
+        def initialize(secretname=nil)
+          @SecretName = secretname
+        end
+
+        def deserialize(params)
+          @SecretName = params['SecretName']
+        end
+      end
+
+      # DescribeRotationHistory返回参数结构体
+      class DescribeRotationHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param VersionIDs: 版本号列表。
+        # @type VersionIDs: Array
+        # @param TotalCount: 版本号个数，可以给用户展示的版本号个数上限为10个。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VersionIDs, :TotalCount, :RequestId
+        
+        def initialize(versionids=nil, totalcount=nil, requestid=nil)
+          @VersionIDs = versionids
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VersionIDs = params['VersionIDs']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecret请求参数结构体
       class DescribeSecretRequest < TencentCloud::Common::AbstractModel
         # @param SecretName: 指定需要获取凭据详细信息的凭据名称。
@@ -212,18 +464,33 @@ module TencentCloud
         # @type KmsKeyId: String
         # @param CreateUin: 创建者UIN。
         # @type CreateUin: Integer
-        # @param Status: 凭据状态：Enabled、Disabled、PendingDelete
+        # @param Status: 凭据状态：Enabled、Disabled、PendingDelete, Creating, Failed。
         # @type Status: String
         # @param DeleteTime: 删除日期，uinx 时间戳，非计划删除状态的凭据为0。
         # @type DeleteTime: Integer
         # @param CreateTime: 创建日期。
         # @type CreateTime: Integer
+        # @param SecretType: 0 --  用户自定义凭据类型；1 -- 云产品凭据类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretType: Integer
+        # @param ProductName: 云产品名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param ResourceID: 云产品实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceID: String
+        # @param RotationStatus: 是否开启轮转：True -- 开启轮转；False -- 禁止轮转。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationStatus: Boolean
+        # @param RotationFrequency: 轮转周期，默认以天为单位。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationFrequency: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :RequestId
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :RequestId
         
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, requestid=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, requestid=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -231,6 +498,11 @@ module TencentCloud
           @Status = status
           @DeleteTime = deletetime
           @CreateTime = createtime
+          @SecretType = secrettype
+          @ProductName = productname
+          @ResourceID = resourceid
+          @RotationStatus = rotationstatus
+          @RotationFrequency = rotationfrequency
           @RequestId = requestid
         end
 
@@ -242,6 +514,46 @@ module TencentCloud
           @Status = params['Status']
           @DeleteTime = params['DeleteTime']
           @CreateTime = params['CreateTime']
+          @SecretType = params['SecretType']
+          @ProductName = params['ProductName']
+          @ResourceID = params['ResourceID']
+          @RotationStatus = params['RotationStatus']
+          @RotationFrequency = params['RotationFrequency']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSupportedProducts请求参数结构体
+      class DescribeSupportedProductsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSupportedProducts返回参数结构体
+      class DescribeSupportedProductsResponse < TencentCloud::Common::AbstractModel
+        # @param Products: 支持的产品列表。
+        # @type Products: Array
+        # @param TotalCount: 支持的产品个数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Products, :TotalCount, :RequestId
+        
+        def initialize(products=nil, totalcount=nil, requestid=nil)
+          @Products = products
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Products = params['Products']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -354,6 +666,7 @@ module TencentCloud
         # @param SecretName: 指定凭据的名称。
         # @type SecretName: String
         # @param VersionId: 指定对应凭据的版本号。
+        # 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
         # @type VersionId: String
 
         attr_accessor :SecretName, :VersionId
@@ -375,9 +688,11 @@ module TencentCloud
         # @type SecretName: String
         # @param VersionId: 该凭据对应的版本号。
         # @type VersionId: String
-        # @param SecretBinary: 在创建凭据(CreateSecret)时，如果指定的是二进制数据，则该字段为返回结果，并且使用base64进行编码，应用方需要进行base64解码后获取原始数据。SecretBinary和SecretString只有一个不为空。
+        # @param SecretBinary: 在创建凭据(CreateSecret)时，如果指定的是二进制数据，则该字段为返回结果，并且使用base64进行编码，应用方需要进行base64解码后获取原始数据。
+        # SecretBinary和SecretString只有一个不为空。
         # @type SecretBinary: String
-        # @param SecretString: 在创建凭据(CreateSecret)时，如果指定的是普通文本数据，则该字段为返回结果。SecretBinary和SecretString只有一个不为空。
+        # @param SecretString: 在创建凭据(CreateSecret)时，如果指定的是普通文本数据，则该字段为返回结果。
+        # SecretBinary和SecretString只有一个不为空。
         # @type SecretString: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -492,22 +807,34 @@ module TencentCloud
         # @type Limit: Integer
         # @param OrderType: 根据创建时间的排序方式，0或者不设置则使用降序排序， 1 表示升序排序。
         # @type OrderType: Integer
-        # @param State: 根据凭据状态进行过滤，默认为0表示查询全部，1 表示查询Enabed 凭据列表，2表示查询Disabled 凭据列表， 3 表示查询PendingDelete 凭据列表。
+        # @param State: 根据凭据状态进行过滤。
+        # 默认为0表示查询全部。
+        # 1 --  表示查询Enabled 凭据列表。
+        # 2 --  表示查询Disabled 凭据列表。
+        # 3 --  表示查询PendingDelete 凭据列表。
+        # 4 --  表示PendingCreate。
+        # 5 --  表示CreateFailed。
+        # 其中状态PendingCreate和CreateFailed只有在SecretType为云产品凭据时生效
         # @type State: Integer
         # @param SearchSecretName: 根据凭据名称进行过滤，为空表示不过滤。
         # @type SearchSecretName: String
-        # @param TagFilters: 标签过滤条件
+        # @param TagFilters: 标签过滤条件。
         # @type TagFilters: Array
+        # @param SecretType: 0  -- 表示用户自定义凭据，默认为0。
+        # 1  -- 表示用户云产品凭据。
+        # 这个参数只能在云产品凭据(1)和用户自定义凭据(0)中二选一。
+        # @type SecretType: Integer
 
-        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters
+        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType
         
-        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil)
+        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil, secrettype=nil)
           @Offset = offset
           @Limit = limit
           @OrderType = ordertype
           @State = state
           @SearchSecretName = searchsecretname
           @TagFilters = tagfilters
+          @SecretType = secrettype
         end
 
         def deserialize(params)
@@ -524,6 +851,7 @@ module TencentCloud
               @TagFilters << tagfilter_tmp
             end
           end
+          @SecretType = params['SecretType']
         end
       end
 
@@ -558,13 +886,71 @@ module TencentCloud
         end
       end
 
+      # 凭据关联产品时被赋予的权限
+      class ProductPrivilegeUnit < TencentCloud::Common::AbstractModel
+        # @param PrivilegeName: 权限名称，当前可选：
+        # GlobalPrivileges
+        # DatabasePrivileges
+        # TablePrivileges
+        # ColumnPrivileges
+
+        # 当权限为DatabasePrivileges时，必须通过参数Database指定数据库名；
+
+        # 当权限为TablePrivileges时，必须通过参数Database和TableName指定数据库名以及数据库中的表名；
+
+        # 当权限为ColumnPrivileges时，必须通过参数Database、TableName和CoulmnName指定数据库、数据库中的表名以及表中的列名。
+        # @type PrivilegeName: String
+        # @param Privileges: 权限列表。
+        # 对于Mysql产品来说，可选权限值为：
+
+        # 1. GlobalPrivileges 中权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "PROCESS", "DROP","REFERENCES","INDEX","ALTER","SHOW DATABASES","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER"。
+        # 注意，不传该参数表示清除该权限。
+
+        # 2. DatabasePrivileges 权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "DROP","REFERENCES","INDEX","ALTER","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER"。
+        # 注意，不传该参数表示清除该权限。
+
+        # 3. TablePrivileges 权限的可选值为：权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "DROP","REFERENCES","INDEX","ALTER","CREATE VIEW","SHOW VIEW", "TRIGGER"。
+        # 注意，不传该参数表示清除该权限。
+
+        # 4. ColumnPrivileges 权限的可选值为："SELECT","INSERT","UPDATE","REFERENCES"。
+        # 注意，不传该参数表示清除该权限。
+        # @type Privileges: Array
+        # @param Database: 仅当PrivilegeName为DatabasePrivileges时这个值才有效。
+        # @type Database: String
+        # @param TableName: 仅当PrivilegeName为TablePrivileges时这个值才有效，并且此时需要填充Database显式指明所在的数据库实例。
+        # @type TableName: String
+        # @param ColumnName: 仅当PrivilegeName为ColumnPrivileges时这个值才生效，并且此时必须填充：
+        # Database - 显式指明所在的数据库实例。
+        # TableName - 显式指明所在表
+        # @type ColumnName: String
+
+        attr_accessor :PrivilegeName, :Privileges, :Database, :TableName, :ColumnName
+        
+        def initialize(privilegename=nil, privileges=nil, database=nil, tablename=nil, columnname=nil)
+          @PrivilegeName = privilegename
+          @Privileges = privileges
+          @Database = database
+          @TableName = tablename
+          @ColumnName = columnname
+        end
+
+        def deserialize(params)
+          @PrivilegeName = params['PrivilegeName']
+          @Privileges = params['Privileges']
+          @Database = params['Database']
+          @TableName = params['TableName']
+          @ColumnName = params['ColumnName']
+        end
+      end
+
       # PutSecretValue请求参数结构体
       class PutSecretValueRequest < TencentCloud::Common::AbstractModel
         # @param SecretName: 指定需要增加版本的凭据名称。
         # @type SecretName: String
         # @param VersionId: 指定新增加的版本号，最长64 字节，使用字母、数字或者 - _ . 的组合并且以字母或数字开头。
         # @type VersionId: String
-        # @param SecretBinary: 二进制凭据信息，使用base64编码。SecretBinary 和 SecretString 必须且只能设置一个。
+        # @param SecretBinary: 二进制凭据信息，使用base64编码。
+        # SecretBinary 和 SecretString 必须且只能设置一个。
         # @type SecretBinary: String
         # @param SecretString: 文本类型凭据信息明文（不需要进行base64编码），SecretBinary 和 SecretString 必须且只能设置一个。
         # @type SecretString: String
@@ -646,28 +1032,76 @@ module TencentCloud
         end
       end
 
+      # RotateProductSecret请求参数结构体
+      class RotateProductSecretRequest < TencentCloud::Common::AbstractModel
+        # @param SecretName: 需要轮转的凭据名。
+        # @type SecretName: String
+
+        attr_accessor :SecretName
+        
+        def initialize(secretname=nil)
+          @SecretName = secretname
+        end
+
+        def deserialize(params)
+          @SecretName = params['SecretName']
+        end
+      end
+
+      # RotateProductSecret返回参数结构体
+      class RotateProductSecretResponse < TencentCloud::Common::AbstractModel
+        # @param FlowID: 轮转异步任务ID号。
+        # @type FlowID: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowID, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowID = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowID = params['FlowID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 凭据的基础信息
       class SecretMetadata < TencentCloud::Common::AbstractModel
-        # @param SecretName: 凭据名称。
+        # @param SecretName: 凭据名称
         # @type SecretName: String
-        # @param Description: 凭据的描述信息。
+        # @param Description: 凭据的描述信息
         # @type Description: String
-        # @param KmsKeyId: 用于加密凭据的KMS KeyId。
+        # @param KmsKeyId: 用于加密凭据的KMS KeyId
         # @type KmsKeyId: String
-        # @param CreateUin: 创建者UIN。
+        # @param CreateUin: 创建者UIN
         # @type CreateUin: Integer
-        # @param Status: 凭据状态：Enabled、Disabled、PendingDelete
+        # @param Status: 凭据状态：Enabled、Disabled、PendingDelete、Creating、Failed
         # @type Status: String
-        # @param DeleteTime: 凭据删除日期，对于status为PendingDelete 的有效，unix时间戳。
+        # @param DeleteTime: 凭据删除日期，对于status为PendingDelete 的有效，unix时间戳
         # @type DeleteTime: Integer
-        # @param CreateTime: 凭据创建时间，unix时间戳。
+        # @param CreateTime: 凭据创建时间，unix时间戳
         # @type CreateTime: Integer
-        # @param KmsKeyType: 用于加密凭据的KMS CMK类型，DEFAULT 表示SecretsManager 创建的默认密钥， CUSTOMER 表示用户指定的密钥。
+        # @param KmsKeyType: 用于加密凭据的KMS CMK类型，DEFAULT 表示SecretsManager 创建的默认密钥， CUSTOMER 表示用户指定的密钥
         # @type KmsKeyType: String
+        # @param RotationStatus: 1:--开启轮转；0--禁止轮转
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationStatus: Integer
+        # @param NextRotationTime: 下一次轮转开始时间，uinx 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextRotationTime: Integer
+        # @param SecretType: 0 -- 用户自定义凭据；1 -- 云产品凭据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretType: Integer
+        # @param ProductName: 云产品名称，仅在SecretType为1，即凭据类型为云产品凭据时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName
         
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -676,6 +1110,10 @@ module TencentCloud
           @DeleteTime = deletetime
           @CreateTime = createtime
           @KmsKeyType = kmskeytype
+          @RotationStatus = rotationstatus
+          @NextRotationTime = nextrotationtime
+          @SecretType = secrettype
+          @ProductName = productname
         end
 
         def deserialize(params)
@@ -687,6 +1125,10 @@ module TencentCloud
           @DeleteTime = params['DeleteTime']
           @CreateTime = params['CreateTime']
           @KmsKeyType = params['KmsKeyType']
+          @RotationStatus = params['RotationStatus']
+          @NextRotationTime = params['NextRotationTime']
+          @SecretType = params['SecretType']
+          @ProductName = params['ProductName']
         end
       end
 
@@ -770,15 +1212,63 @@ module TencentCloud
         end
       end
 
+      # UpdateRotationStatus请求参数结构体
+      class UpdateRotationStatusRequest < TencentCloud::Common::AbstractModel
+        # @param SecretName: 云产品凭据名称。
+        # @type SecretName: String
+        # @param EnableRotation: 是否开启轮转。
+        # True -- 开启轮转；
+        # False -- 禁止轮转。
+        # @type EnableRotation: Boolean
+        # @param Frequency: 轮转周期，以天为单位，最小为30天，最大为365天。
+        # @type Frequency: Integer
+        # @param RotationBeginTime: 用户设置的期望开始轮转时间，格式为：2006-01-02 15:04:05。
+        # 当EnableRotation为True时，如果不填RotationBeginTime，则默认填充为当前时间。
+        # @type RotationBeginTime: String
+
+        attr_accessor :SecretName, :EnableRotation, :Frequency, :RotationBeginTime
+        
+        def initialize(secretname=nil, enablerotation=nil, frequency=nil, rotationbegintime=nil)
+          @SecretName = secretname
+          @EnableRotation = enablerotation
+          @Frequency = frequency
+          @RotationBeginTime = rotationbegintime
+        end
+
+        def deserialize(params)
+          @SecretName = params['SecretName']
+          @EnableRotation = params['EnableRotation']
+          @Frequency = params['Frequency']
+          @RotationBeginTime = params['RotationBeginTime']
+        end
+      end
+
+      # UpdateRotationStatus返回参数结构体
+      class UpdateRotationStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateSecret请求参数结构体
       class UpdateSecretRequest < TencentCloud::Common::AbstractModel
         # @param SecretName: 指定需要更新凭据内容的名称。
         # @type SecretName: String
         # @param VersionId: 指定需要更新凭据内容的版本号。
         # @type VersionId: String
-        # @param SecretBinary: 新的凭据内容为二进制的场景使用该字段，并使用base64进行编码。SecretBinary 和 SecretString 只能一个不为空。
+        # @param SecretBinary: 新的凭据内容为二进制的场景使用该字段，并使用base64进行编码。
+        # SecretBinary 和 SecretString 只能一个不为空。
         # @type SecretBinary: String
-        # @param SecretString: 新的凭据内容为文本的场景使用该字段，不需要base64编码。SecretBinary 和 SecretString 只能一个不为空。
+        # @param SecretString: 新的凭据内容为文本的场景使用该字段，不需要base64编码SecretBinary 和 SecretString 只能一个不为空。
         # @type SecretString: String
 
         attr_accessor :SecretName, :VersionId, :SecretBinary, :SecretString

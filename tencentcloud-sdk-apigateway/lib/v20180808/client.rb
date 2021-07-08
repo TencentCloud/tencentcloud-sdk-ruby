@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 绑定插件到API上。
+
+        # @param request: Request instance for AttachPlugin.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::AttachPluginRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::AttachPluginResponse`
+        def AttachPlugin(request)
+          body = send_request('AttachPlugin', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachPluginResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（BindEnvironment）用于绑定使用计划到服务或API。
         # 用户在发布服务到某个环境中后，如果 API 需要鉴权，还需要绑定使用计划才能进行调用，此接口用户将使用计划绑定到特定环境。
         # 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
@@ -419,6 +443,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除API网关插件
+
+        # @param request: Request instance for DeletePlugin.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DeletePluginRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DeletePluginResponse`
+        def DeletePlugin(request)
+          body = send_request('DeletePlugin', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePluginResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteService）用于删除 API 网关中某个服务。
 
         # @param request: Request instance for DeleteService.
@@ -552,6 +600,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAPIDocsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 展示插件相关的API列表，包括已绑定的和未绑定的API信息。
+
+        # @param request: Request instance for DescribeAllPluginApis.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeAllPluginApisRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeAllPluginApisResponse`
+        def DescribeAllPluginApis(request)
+          body = send_request('DescribeAllPluginApis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllPluginApisResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -795,6 +867,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLogSearchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 展示插件详情，支持按照插件ID进行。
+
+        # @param request: Request instance for DescribePlugin.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribePluginRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribePluginResponse`
+        def DescribePlugin(request)
+          body = send_request('DescribePlugin', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePluginResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定插件下绑定的API信息
+
+        # @param request: Request instance for DescribePluginApis.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribePluginApisRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribePluginApisResponse`
+        def DescribePluginApis(request)
+          body = send_request('DescribePluginApis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePluginApisResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1152,6 +1272,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 解除插件与API绑定
+
+        # @param request: Request instance for DetachPlugin.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DetachPluginRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DetachPluginResponse`
+        def DetachPlugin(request)
+          body = send_request('DetachPlugin', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetachPluginResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DisableApiKey）用于禁用一对 API 密钥。
 
         # @param request: Request instance for DisableApiKey.
@@ -1330,6 +1474,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyIPStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改API网关插件。
+
+        # @param request: Request instance for ModifyPlugin.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::ModifyPluginRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::ModifyPluginResponse`
+        def ModifyPlugin(request)
+          body = send_request('ModifyPlugin', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPluginResponse.new
             model.deserialize(response['Response'])
             model
           else

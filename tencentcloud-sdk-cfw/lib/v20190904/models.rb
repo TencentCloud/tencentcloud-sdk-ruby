@@ -664,6 +664,128 @@ module TencentCloud
         end
       end
 
+      # DescribeBlockByIpTimesList请求参数结构体
+      class DescribeBlockByIpTimesListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Ip: ip查询条件
+        # @type Ip: String
+        # @param Zone: 地域
+        # @type Zone: String
+        # @param Direction: 方向
+        # @type Direction: String
+        # @param Source: 来源
+        # @type Source: String
+
+        attr_accessor :StartTime, :EndTime, :Ip, :Zone, :Direction, :Source
+        
+        def initialize(starttime=nil, endtime=nil, ip=nil, zone=nil, direction=nil, source=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Ip = ip
+          @Zone = zone
+          @Direction = direction
+          @Source = source
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Ip = params['Ip']
+          @Zone = params['Zone']
+          @Direction = params['Direction']
+          @Source = params['Source']
+        end
+      end
+
+      # DescribeBlockByIpTimesList返回参数结构体
+      class DescribeBlockByIpTimesListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              ipstatic_tmp = IpStatic.new
+              ipstatic_tmp.deserialize(i)
+              @Data << ipstatic_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBlockStaticList请求参数结构体
+      class DescribeBlockStaticListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param QueryType: 类型
+        # @type QueryType: String
+        # @param Top: top数
+        # @type Top: Integer
+        # @param SearchValue: 查询条件
+        # @type SearchValue: String
+
+        attr_accessor :StartTime, :EndTime, :QueryType, :Top, :SearchValue
+        
+        def initialize(starttime=nil, endtime=nil, querytype=nil, top=nil, searchvalue=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @QueryType = querytype
+          @Top = top
+          @SearchValue = searchvalue
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QueryType = params['QueryType']
+          @Top = params['Top']
+          @SearchValue = params['SearchValue']
+        end
+      end
+
+      # DescribeBlockStaticList返回参数结构体
+      class DescribeBlockStaticListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              staticinfo_tmp = StaticInfo.new
+              staticinfo_tmp.deserialize(i)
+              @Data << staticinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCfwEips请求参数结构体
       class DescribeCfwEipsRequest < TencentCloud::Common::AbstractModel
         # @param Mode: 0：cfw新增模式，1：cfw接入模式
@@ -1094,6 +1216,116 @@ module TencentCloud
         end
       end
 
+      # DescribeTLogInfo请求参数结构体
+      class DescribeTLogInfoRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param QueryType: 类型 1 告警 2阻断
+        # @type QueryType: String
+        # @param SearchValue: 查询条件
+        # @type SearchValue: String
+
+        attr_accessor :StartTime, :EndTime, :QueryType, :SearchValue
+        
+        def initialize(starttime=nil, endtime=nil, querytype=nil, searchvalue=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @QueryType = querytype
+          @SearchValue = searchvalue
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QueryType = params['QueryType']
+          @SearchValue = params['SearchValue']
+        end
+      end
+
+      # DescribeTLogInfo返回参数结构体
+      class DescribeTLogInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.TLogInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TLogInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTLogIpList请求参数结构体
+      class DescribeTLogIpListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param QueryType: 类型 1 告警 2阻断
+        # @type QueryType: String
+        # @param Top: top数
+        # @type Top: Integer
+        # @param SearchValue: 查询条件
+        # @type SearchValue: String
+
+        attr_accessor :StartTime, :EndTime, :QueryType, :Top, :SearchValue
+        
+        def initialize(starttime=nil, endtime=nil, querytype=nil, top=nil, searchvalue=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @QueryType = querytype
+          @Top = top
+          @SearchValue = searchvalue
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QueryType = params['QueryType']
+          @Top = params['Top']
+          @SearchValue = params['SearchValue']
+        end
+      end
+
+      # DescribeTLogIpList返回参数结构体
+      class DescribeTLogIpListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据集合
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              staticinfo_tmp = StaticInfo.new
+              staticinfo_tmp.deserialize(i)
+              @Data << staticinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTableStatus请求参数结构体
       class DescribeTableStatusRequest < TencentCloud::Common::AbstractModel
         # @param EdgeId: EdgeId值两个vpc间的边id vpc填Edgeid，不要填Area；
@@ -1139,6 +1371,62 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUnHandleEventTabList请求参数结构体
+      class DescribeUnHandleEventTabListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param AssetID: 查询示例ID
+        # @type AssetID: String
+
+        attr_accessor :StartTime, :EndTime, :AssetID
+        
+        def initialize(starttime=nil, endtime=nil, assetid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @AssetID = assetid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AssetID = params['AssetID']
+        end
+      end
+
+      # DescribeUnHandleEventTabList返回参数结构体
+      class DescribeUnHandleEventTabListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 租户伪攻击链未处置事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.UnHandleEvent`
+        # @param ReturnCode: 错误码，0成功 非0错误
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 返回信息 success成功
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :ReturnCode, :ReturnMsg, :RequestId
+        
+        def initialize(data=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @Data = data
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UnHandleEvent.new
+            @Data.deserialize(params['Data'])
+          end
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -1246,6 +1534,26 @@ module TencentCloud
           @IP = params['IP']
           @Direction = params['Direction']
           @Domain = params['Domain']
+        end
+      end
+
+      # 统计折线图通用结构体
+      class IpStatic < TencentCloud::Common::AbstractModel
+        # @param Num: 值
+        # @type Num: Integer
+        # @param StatTime: 折线图横坐标时间
+        # @type StatTime: String
+
+        attr_accessor :Num, :StatTime
+        
+        def initialize(num=nil, stattime=nil)
+          @Num = num
+          @StatTime = stattime
+        end
+
+        def deserialize(params)
+          @Num = params['Num']
+          @StatTime = params['StatTime']
         end
       end
 
@@ -1469,6 +1777,42 @@ module TencentCloud
         def deserialize(params)
           @ReturnMsg = params['ReturnMsg']
           @ReturnCode = params['ReturnCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBlockTop请求参数结构体
+      class ModifyBlockTopRequest < TencentCloud::Common::AbstractModel
+        # @param UniqueId: 记录id
+        # @type UniqueId: String
+        # @param OpeType: 操作类型 1 置顶 0取消
+        # @type OpeType: String
+
+        attr_accessor :UniqueId, :OpeType
+        
+        def initialize(uniqueid=nil, opetype=nil)
+          @UniqueId = uniqueid
+          @OpeType = opetype
+        end
+
+        def deserialize(params)
+          @UniqueId = params['UniqueId']
+          @OpeType = params['OpeType']
+        end
+      end
+
+      # ModifyBlockTop返回参数结构体
+      class ModifyBlockTopResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2120,6 +2464,43 @@ module TencentCloud
         end
       end
 
+      # StaticInfo 告警柱形图统计信息
+
+      class StaticInfo < TencentCloud::Common::AbstractModel
+        # @param Num: 数
+        # @type Num: Integer
+        # @param Port: 端口
+        # @type Port: String
+        # @param Ip: ip信息
+        # @type Ip: String
+        # @param Address: 地址
+        # @type Address: String
+        # @param InsID: 资产id
+        # @type InsID: String
+        # @param InsName: 资产名称
+        # @type InsName: String
+
+        attr_accessor :Num, :Port, :Ip, :Address, :InsID, :InsName
+        
+        def initialize(num=nil, port=nil, ip=nil, address=nil, insid=nil, insname=nil)
+          @Num = num
+          @Port = port
+          @Ip = ip
+          @Address = address
+          @InsID = insid
+          @InsName = insname
+        end
+
+        def deserialize(params)
+          @Num = params['Num']
+          @Port = params['Port']
+          @Ip = params['Ip']
+          @Address = params['Address']
+          @InsID = params['InsID']
+          @InsName = params['InsName']
+        end
+      end
+
       # 防火墙开关列表对象
       class SwitchListsData < TencentCloud::Common::AbstractModel
         # @param PublicIp: 公网IP
@@ -2191,6 +2572,97 @@ module TencentCloud
           @LastTime = params['LastTime']
           @ScanMode = params['ScanMode']
           @ScanStatus = params['ScanStatus']
+        end
+      end
+
+      # 告警中心概览数据
+      class TLogInfo < TencentCloud::Common::AbstractModel
+        # @param OutNum: 失陷主机
+        # @type OutNum: Integer
+        # @param HandleNum: 待处置告警
+        # @type HandleNum: Integer
+        # @param VulNum: 漏洞攻击
+        # @type VulNum: Integer
+        # @param NetworkNum: 网络探测
+        # @type NetworkNum: Integer
+        # @param BanNum: 封禁列表
+        # @type BanNum: Integer
+        # @param BruteForceNum: 暴力破解
+        # @type BruteForceNum: Integer
+
+        attr_accessor :OutNum, :HandleNum, :VulNum, :NetworkNum, :BanNum, :BruteForceNum
+        
+        def initialize(outnum=nil, handlenum=nil, vulnum=nil, networknum=nil, bannum=nil, bruteforcenum=nil)
+          @OutNum = outnum
+          @HandleNum = handlenum
+          @VulNum = vulnum
+          @NetworkNum = networknum
+          @BanNum = bannum
+          @BruteForceNum = bruteforcenum
+        end
+
+        def deserialize(params)
+          @OutNum = params['OutNum']
+          @HandleNum = params['HandleNum']
+          @VulNum = params['VulNum']
+          @NetworkNum = params['NetworkNum']
+          @BanNum = params['BanNum']
+          @BruteForceNum = params['BruteForceNum']
+        end
+      end
+
+      # 未处置事件详情
+      class UnHandleEvent < TencentCloud::Common::AbstractModel
+        # @param EventTableListStruct: 伪攻击链类型
+        # @type EventTableListStruct: Array
+        # @param BaseLineUser: 1 是  0否
+        # @type BaseLineUser: Integer
+        # @param BaseLineInSwitch: 1 打开 0 关闭
+        # @type BaseLineInSwitch: Integer
+        # @param BaseLineOutSwitch: 1 打开 0 关闭
+        # @type BaseLineOutSwitch: Integer
+
+        attr_accessor :EventTableListStruct, :BaseLineUser, :BaseLineInSwitch, :BaseLineOutSwitch
+        
+        def initialize(eventtableliststruct=nil, baselineuser=nil, baselineinswitch=nil, baselineoutswitch=nil)
+          @EventTableListStruct = eventtableliststruct
+          @BaseLineUser = baselineuser
+          @BaseLineInSwitch = baselineinswitch
+          @BaseLineOutSwitch = baselineoutswitch
+        end
+
+        def deserialize(params)
+          unless params['EventTableListStruct'].nil?
+            @EventTableListStruct = []
+            params['EventTableListStruct'].each do |i|
+              unhandleeventdetail_tmp = UnHandleEventDetail.new
+              unhandleeventdetail_tmp.deserialize(i)
+              @EventTableListStruct << unhandleeventdetail_tmp
+            end
+          end
+          @BaseLineUser = params['BaseLineUser']
+          @BaseLineInSwitch = params['BaseLineInSwitch']
+          @BaseLineOutSwitch = params['BaseLineOutSwitch']
+        end
+      end
+
+      # 未处置事件信息汇总
+      class UnHandleEventDetail < TencentCloud::Common::AbstractModel
+        # @param EventName: 安全事件名称
+        # @type EventName: String
+        # @param Total: 未处置事件数量
+        # @type Total: Integer
+
+        attr_accessor :EventName, :Total
+        
+        def initialize(eventname=nil, total=nil)
+          @EventName = eventname
+          @Total = total
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @Total = params['Total']
         end
       end
 

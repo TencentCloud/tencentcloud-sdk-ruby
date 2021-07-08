@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
+
+        # @param request: Request instance for CopyProject.
+        # @type request: :class:`Tencentcloud::cme::V20191029::CopyProjectRequest`
+        # @rtype: :class:`Tencentcloud::cme::V20191029::CopyProjectResponse`
+        def CopyProject(request)
+          body = send_request('CopyProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CopyProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新增分类，用于管理素材。分类层数不能超过20。
 
         # @param request: Request instance for CreateClass.

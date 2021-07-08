@@ -326,7 +326,7 @@ module TencentCloud
         # @type ActivityId: Integer
         # @param Name: 实例名。
         # @type Name: String
-        # @param NeedSupportIpv6: 是否需要支持Ipv6，1：是，0：否。
+        # @param NeedSupportIpv6: 是否需要支持Ipv6，1：是，0：否（默认）。
         # @type NeedSupportIpv6: Integer
         # @param TagList: 实例需要绑定的Tag信息，默认为空。
         # @type TagList: Array

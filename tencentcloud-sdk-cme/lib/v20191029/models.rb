@@ -349,6 +349,61 @@ module TencentCloud
         end
       end
 
+      # CopyProject请求参数结构体
+      class CopyProjectRequest < TencentCloud::Common::AbstractModel
+        # @param Platform: 平台名称，指定访问的平台。
+        # @type Platform: String
+        # @param ProjectId: 被复制的项目 ID。
+        # @type ProjectId: String
+        # @param Name: 复制后的项目名称，不填为原项目名称+"(副本)"。
+        # @type Name: String
+        # @param Owner: 复制后的项目归属者，不填为原项目归属者。
+        # @type Owner: :class:`Tencentcloud::Cme.v20191029.models.Entity`
+        # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+        # @type Operator: String
+
+        attr_accessor :Platform, :ProjectId, :Name, :Owner, :Operator
+        
+        def initialize(platform=nil, projectid=nil, name=nil, owner=nil, operator=nil)
+          @Platform = platform
+          @ProjectId = projectid
+          @Name = name
+          @Owner = owner
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Platform = params['Platform']
+          @ProjectId = params['ProjectId']
+          @Name = params['Name']
+          unless params['Owner'].nil?
+            @Owner = Entity.new
+            @Owner.deserialize(params['Owner'])
+          end
+          @Operator = params['Operator']
+        end
+      end
+
+      # CopyProject返回参数结构体
+      class CopyProjectResponse < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 复制后的项目 ID。
+        # @type ProjectId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProjectId, :RequestId
+        
+        def initialize(projectid=nil, requestid=nil)
+          @ProjectId = projectid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # COS 发布信息。
       class CosPublishInputInfo < TencentCloud::Common::AbstractModel
         # @param Bucket: 发布生成的对象存储文件所在的 COS Bucket 名，如 TopRankVideo-125xxx88。

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建云产品凭据
+
+        # @param request: Request instance for CreateProductSecret.
+        # @type request: :class:`Tencentcloud::ssm::V20190923::CreateProductSecretRequest`
+        # @rtype: :class:`Tencentcloud::ssm::V20190923::CreateProductSecretResponse`
+        def CreateProductSecret(request)
+          body = send_request('CreateProductSecret', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProductSecretResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
 
         # @param request: Request instance for CreateSecret.
@@ -78,6 +102,7 @@ module TencentCloud
         end
 
         # 该接口用于直接删除指定凭据下的单个版本凭据，删除操作立即生效，对所有状态下的凭据版本都可以删除。
+        # 本接口仅适用于用户自定义凭据，本接口不能对云产品凭据进行操作。
 
         # @param request: Request instance for DeleteSecretVersion.
         # @type request: :class:`Tencentcloud::ssm::V20190923::DeleteSecretVersionRequest`
@@ -87,6 +112,80 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSecretVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询异步任务的执行结果
+
+        # @param request: Request instance for DescribeAsyncRequestInfo.
+        # @type request: :class:`Tencentcloud::ssm::V20190923::DescribeAsyncRequestInfoRequest`
+        # @rtype: :class:`Tencentcloud::ssm::V20190923::DescribeAsyncRequestInfoResponse`
+        def DescribeAsyncRequestInfo(request)
+          body = send_request('DescribeAsyncRequestInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAsyncRequestInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询凭据轮转策略详情。
+        # 本接口只适用于云产品凭据。
+
+        # @param request: Request instance for DescribeRotationDetail.
+        # @type request: :class:`Tencentcloud::ssm::V20190923::DescribeRotationDetailRequest`
+        # @rtype: :class:`Tencentcloud::ssm::V20190923::DescribeRotationDetailResponse`
+        def DescribeRotationDetail(request)
+          body = send_request('DescribeRotationDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRotationDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询凭据轮转历史版本。
+        # 本接口仅适用于云产品凭据。
+
+        # @param request: Request instance for DescribeRotationHistory.
+        # @type request: :class:`Tencentcloud::ssm::V20190923::DescribeRotationHistoryRequest`
+        # @rtype: :class:`Tencentcloud::ssm::V20190923::DescribeRotationHistoryResponse`
+        def DescribeRotationHistory(request)
+          body = send_request('DescribeRotationHistory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRotationHistoryResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -111,6 +210,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSecretResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询支持的云产品列表
+
+        # @param request: Request instance for DescribeSupportedProducts.
+        # @type request: :class:`Tencentcloud::ssm::V20190923::DescribeSupportedProductsRequest`
+        # @rtype: :class:`Tencentcloud::ssm::V20190923::DescribeSupportedProductsResponse`
+        def DescribeSupportedProducts(request)
+          body = send_request('DescribeSupportedProducts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSupportedProductsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -197,7 +320,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取指定凭据名称和版本的凭据明文信息，只能获取启用状态的凭据明文。
+        # 对于用户自定义凭据，通过指定凭据名称和版本来获取凭据的明文信息；
+        # 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
 
         # @param request: Request instance for GetSecretValue.
         # @type request: :class:`Tencentcloud::ssm::V20190923::GetSecretValueRequest`
@@ -294,6 +418,7 @@ module TencentCloud
         end
 
         # 该接口在指定名称的凭据下增加新版本的凭据内容，一个凭据下最多可以支持10个版本。只能对处于Enabled 和 Disabled 状态的凭据添加新的版本。
+        # 本接口仅适用于用户自定义凭据，对云产品凭据不能操作。
 
         # @param request: Request instance for PutSecretValue.
         # @type request: :class:`Tencentcloud::ssm::V20190923::PutSecretValueRequest`
@@ -341,6 +466,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 轮转云产品凭据。该接口仅适用于处于Enabled状态的云产品凭据，对于其他状态的云产品凭据或用户自定义凭据不适用。
+
+        # @param request: Request instance for RotateProductSecret.
+        # @type request: :class:`Tencentcloud::ssm::V20190923::RotateProductSecretRequest`
+        # @rtype: :class:`Tencentcloud::ssm::V20190923::RotateProductSecretResponse`
+        def RotateProductSecret(request)
+          body = send_request('RotateProductSecret', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RotateProductSecretResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
 
         # @param request: Request instance for UpdateDescription.
@@ -365,7 +514,35 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置云产品凭据轮转策略，可以设置：
+        # 是否开启轮转
+        # 轮转周期
+        # 轮转开始时间
+
+        # @param request: Request instance for UpdateRotationStatus.
+        # @type request: :class:`Tencentcloud::ssm::V20190923::UpdateRotationStatusRequest`
+        # @rtype: :class:`Tencentcloud::ssm::V20190923::UpdateRotationStatusResponse`
+        def UpdateRotationStatus(request)
+          body = send_request('UpdateRotationStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateRotationStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于更新指定凭据名称和版本号的内容，调用该接口会对新的凭据内容加密后覆盖旧的内容。仅允许更新Enabled 和 Disabled 状态的凭据。
+        # 本接口仅适用于用户自定义凭据，不能对云产品凭据操作。
 
         # @param request: Request instance for UpdateSecret.
         # @type request: :class:`Tencentcloud::ssm::V20190923::UpdateSecretRequest`

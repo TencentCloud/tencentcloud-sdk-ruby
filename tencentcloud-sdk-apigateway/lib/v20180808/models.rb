@@ -633,6 +633,33 @@ module TencentCloud
         end
       end
 
+      # 插件相关的API列表信息。
+      class ApiInfoSummary < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 插件相关的API总数。
+        # @type TotalCount: Integer
+        # @param ApiSet: 插件相关的API信息。
+        # @type ApiSet: Array
+
+        attr_accessor :TotalCount, :ApiSet
+        
+        def initialize(totalcount=nil, apiset=nil)
+          @TotalCount = totalcount
+          @ApiSet = apiset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ApiSet'].nil?
+            @ApiSet = []
+            params['ApiSet'].each do |i|
+              availableapiinfo_tmp = AvailableApiInfo.new
+              availableapiinfo_tmp.deserialize(i)
+              @ApiSet << availableapiinfo_tmp
+            end
+          end
+        end
+      end
+
       # 密钥详情
       class ApiKey < TencentCloud::Common::AbstractModel
         # @param AccessKeyId: 创建的 API 密钥 ID 。
@@ -865,6 +892,54 @@ module TencentCloud
         end
       end
 
+      # AttachPlugin请求参数结构体
+      class AttachPluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: 绑定的API网关插件ID。
+        # @type PluginId: String
+        # @param ServiceId: 要操作的服务ID。
+        # @type ServiceId: String
+        # @param EnvironmentName: 要操作API的环境。
+        # @type EnvironmentName: String
+        # @param ApiIds: 要绑定的API列表。
+        # @type ApiIds: Array
+
+        attr_accessor :PluginId, :ServiceId, :EnvironmentName, :ApiIds
+        
+        def initialize(pluginid=nil, serviceid=nil, environmentname=nil, apiids=nil)
+          @PluginId = pluginid
+          @ServiceId = serviceid
+          @EnvironmentName = environmentname
+          @ApiIds = apiids
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @ServiceId = params['ServiceId']
+          @EnvironmentName = params['EnvironmentName']
+          @ApiIds = params['ApiIds']
+        end
+      end
+
+      # AttachPlugin返回参数结构体
+      class AttachPluginResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 绑定操作是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 插件绑定的API信息
       class AttachedApiInfo < TencentCloud::Common::AbstractModel
         # @param ServiceId: API所在服务ID。
@@ -908,6 +983,75 @@ module TencentCloud
           @ApiDesc = params['ApiDesc']
           @Environment = params['Environment']
           @AttachedTime = params['AttachedTime']
+        end
+      end
+
+      # 插件绑定的API列表
+      class AttachedApiSummary < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 插件绑定的API数量。
+        # @type TotalCount: Integer
+        # @param AttachedApis: 插件绑定的API信息。
+        # @type AttachedApis: Array
+
+        attr_accessor :TotalCount, :AttachedApis
+        
+        def initialize(totalcount=nil, attachedapis=nil)
+          @TotalCount = totalcount
+          @AttachedApis = attachedapis
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AttachedApis'].nil?
+            @AttachedApis = []
+            params['AttachedApis'].each do |i|
+              attachedapiinfo_tmp = AttachedApiInfo.new
+              attachedapiinfo_tmp.deserialize(i)
+              @AttachedApis << attachedapiinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 插件相关的API信息。
+      class AvailableApiInfo < TencentCloud::Common::AbstractModel
+        # @param ApiId: API ID。
+        # @type ApiId: String
+        # @param ApiName: API名称。
+        # @type ApiName: String
+        # @param ApiType: API类型。
+        # @type ApiType: String
+        # @param Path: API路径。
+        # @type Path: String
+        # @param Method: API方法。
+        # @type Method: String
+        # @param AttachedOtherPlugin: API是否绑定其他插件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachedOtherPlugin: Boolean
+        # @param IsAttached: API是否绑定当前插件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAttached: Boolean
+
+        attr_accessor :ApiId, :ApiName, :ApiType, :Path, :Method, :AttachedOtherPlugin, :IsAttached
+        
+        def initialize(apiid=nil, apiname=nil, apitype=nil, path=nil, method=nil, attachedotherplugin=nil, isattached=nil)
+          @ApiId = apiid
+          @ApiName = apiname
+          @ApiType = apitype
+          @Path = path
+          @Method = method
+          @AttachedOtherPlugin = attachedotherplugin
+          @IsAttached = isattached
+        end
+
+        def deserialize(params)
+          @ApiId = params['ApiId']
+          @ApiName = params['ApiName']
+          @ApiType = params['ApiType']
+          @Path = params['Path']
+          @Method = params['Method']
+          @AttachedOtherPlugin = params['AttachedOtherPlugin']
+          @IsAttached = params['IsAttached']
         end
       end
 
@@ -2054,6 +2198,42 @@ module TencentCloud
         end
       end
 
+      # DeletePlugin请求参数结构体
+      class DeletePluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: 要删除的API网关插件的ID。
+        # @type PluginId: String
+
+        attr_accessor :PluginId
+        
+        def initialize(pluginid=nil)
+          @PluginId = pluginid
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+        end
+      end
+
+      # DeletePlugin返回参数结构体
+      class DeletePluginResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 删除操作是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteService请求参数结构体
       class DeleteServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 待删除服务的唯一 ID。
@@ -2405,6 +2585,61 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = APIDocs.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAllPluginApis请求参数结构体
+      class DescribeAllPluginApisRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 要查询的服务ID。
+        # @type ServiceId: String
+        # @param PluginId: 要查询的插件ID。
+        # @type PluginId: String
+        # @param EnvironmentName: 环境信息。
+        # @type EnvironmentName: String
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+
+        attr_accessor :ServiceId, :PluginId, :EnvironmentName, :Limit, :Offset
+        
+        def initialize(serviceid=nil, pluginid=nil, environmentname=nil, limit=nil, offset=nil)
+          @ServiceId = serviceid
+          @PluginId = pluginid
+          @EnvironmentName = environmentname
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @PluginId = params['PluginId']
+          @EnvironmentName = params['EnvironmentName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeAllPluginApis返回参数结构体
+      class DescribeAllPluginApisResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 插件相关API的列表。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiInfoSummary`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ApiInfoSummary.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -3019,6 +3254,100 @@ module TencentCloud
           @ConText = params['ConText']
           @LogSet = params['LogSet']
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePluginApis请求参数结构体
+      class DescribePluginApisRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: 查询的插件ID。
+        # @type PluginId: String
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+
+        attr_accessor :PluginId, :Limit, :Offset
+        
+        def initialize(pluginid=nil, limit=nil, offset=nil)
+          @PluginId = pluginid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePluginApis返回参数结构体
+      class DescribePluginApisResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 插件绑定的API列表信息。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.AttachedApiSummary`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AttachedApiSummary.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePlugin请求参数结构体
+      class DescribePluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: 要查询的插件ID。
+        # @type PluginId: String
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+
+        attr_accessor :PluginId, :Limit, :Offset
+        
+        def initialize(pluginid=nil, limit=nil, offset=nil)
+          @PluginId = pluginid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePlugin返回参数结构体
+      class DescribePluginResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 插件详情。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.Plugin`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = Plugin.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3828,6 +4157,54 @@ module TencentCloud
             @Result = UsagePlansStatus.new
             @Result.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DetachPlugin请求参数结构体
+      class DetachPluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: 要解绑的API网关插件ID。
+        # @type PluginId: String
+        # @param ServiceId: 要操作的服务ID。
+        # @type ServiceId: String
+        # @param EnvironmentName: 要操作API的环境。
+        # @type EnvironmentName: String
+        # @param ApiId: 要解绑的API ID。
+        # @type ApiId: String
+
+        attr_accessor :PluginId, :ServiceId, :EnvironmentName, :ApiId
+        
+        def initialize(pluginid=nil, serviceid=nil, environmentname=nil, apiid=nil)
+          @PluginId = pluginid
+          @ServiceId = serviceid
+          @EnvironmentName = environmentname
+          @ApiId = apiid
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @ServiceId = params['ServiceId']
+          @EnvironmentName = params['EnvironmentName']
+          @ApiId = params['ApiId']
+        end
+      end
+
+      # DetachPlugin返回参数结构体
+      class DetachPluginResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 解绑操作是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -4882,6 +5259,54 @@ module TencentCloud
       class ModifyIPStrategyResponse < TencentCloud::Common::AbstractModel
         # @param Result: 修改操作是否成功。
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPlugin请求参数结构体
+      class ModifyPluginRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: 要修改的插件ID。
+        # @type PluginId: String
+        # @param PluginName: 要修改的API网关插件名称。最长50个字符，支持 a-z,A-Z,0-9,_, 必须字母开头，字母或者数字结尾。
+        # @type PluginName: String
+        # @param Description: 要修改的插件描述，限定200字以内。
+        # @type Description: String
+        # @param PluginData: 要修改的插件定义语句，支持json。
+        # @type PluginData: String
+
+        attr_accessor :PluginId, :PluginName, :Description, :PluginData
+        
+        def initialize(pluginid=nil, pluginname=nil, description=nil, plugindata=nil)
+          @PluginId = pluginid
+          @PluginName = pluginname
+          @Description = description
+          @PluginData = plugindata
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @PluginName = params['PluginName']
+          @Description = params['Description']
+          @PluginData = params['PluginData']
+        end
+      end
+
+      # ModifyPlugin返回参数结构体
+      class ModifyPluginResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 修改操作是否成功。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
