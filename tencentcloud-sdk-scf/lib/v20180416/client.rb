@@ -564,6 +564,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        #  SCF同步调用函数接口
+
+        # @param request: Request instance for InvokeFunction.
+        # @type request: :class:`Tencentcloud::scf::V20180416::InvokeFunctionRequest`
+        # @rtype: :class:`Tencentcloud::scf::V20180416::InvokeFunctionResponse`
+        def InvokeFunction(request)
+          body = send_request('InvokeFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InvokeFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 返回一个函数下的全部别名，可以根据特定函数版本过滤。
 
         # @param request: Request instance for ListAliases.

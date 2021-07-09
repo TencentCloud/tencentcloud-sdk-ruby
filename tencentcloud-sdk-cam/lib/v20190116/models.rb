@@ -3413,7 +3413,7 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UserType: 用户类型(1:主账号;2:子用户;3:企业微信子用户;4:协作者;5:消息接收人)
+        # @param UserType: 用户类型(2:子用户;3:企业微信子用户;4:协作者;5:消息接收人)
         # @type UserType: Integer
         # @param LastLoginIp: 最近登录IP
         # @type LastLoginIp: String

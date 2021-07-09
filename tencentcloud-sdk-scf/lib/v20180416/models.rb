@@ -1987,6 +1987,65 @@ module TencentCloud
         end
       end
 
+      # InvokeFunction请求参数结构体
+      class InvokeFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param Qualifier: 触发函数的版本号或别名
+        # @type Qualifier: String
+        # @param Event: 运行函数时的参数，以json格式传入，最大支持的参数长度是 1M
+        # @type Event: String
+        # @param LogType: 同步调用时指定该字段，返回值会包含4K的日志，可选值为None和Tail，默认值为None。当该值为Tail时，返回参数中的Log字段会包含对应的函数执行日志
+        # @type LogType: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param RoutingKey: 函数灰度流量控制调用，以json格式传入，例如{"k":"v"}，注意kv都需要是字符串类型，最大支持的参数长度是1024字节
+        # @type RoutingKey: String
+
+        attr_accessor :FunctionName, :Qualifier, :Event, :LogType, :Namespace, :RoutingKey
+        
+        def initialize(functionname=nil, qualifier=nil, event=nil, logtype=nil, namespace=nil, routingkey=nil)
+          @FunctionName = functionname
+          @Qualifier = qualifier
+          @Event = event
+          @LogType = logtype
+          @Namespace = namespace
+          @RoutingKey = routingkey
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @Qualifier = params['Qualifier']
+          @Event = params['Event']
+          @LogType = params['LogType']
+          @Namespace = params['Namespace']
+          @RoutingKey = params['RoutingKey']
+        end
+      end
+
+      # InvokeFunction返回参数结构体
+      class InvokeFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 函数执行结果
+        # @type Result: :class:`Tencentcloud::Scf.v20180416.models.Result`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = Result.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Invoke请求参数结构体
       class InvokeRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 函数名称

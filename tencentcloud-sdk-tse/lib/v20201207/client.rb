@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于查询微服务注册中心实例列表
+        # 用于查询微服务引擎实例列表
 
         # @param request: Request instance for DescribeSREInstances.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeSREInstancesRequest`

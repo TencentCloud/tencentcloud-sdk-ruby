@@ -460,15 +460,19 @@ module TencentCloud
       class DeleteSnapshotsRequest < TencentCloud::Common::AbstractModel
         # @param SnapshotIds: 要删除的快照ID列表，可通过[DescribeSnapshots](/document/product/362/15647)查询。
         # @type SnapshotIds: Array
+        # @param DeleteBindImages: 是否强制删除快照关联的镜像
+        # @type DeleteBindImages: Boolean
 
-        attr_accessor :SnapshotIds
+        attr_accessor :SnapshotIds, :DeleteBindImages
         
-        def initialize(snapshotids=nil)
+        def initialize(snapshotids=nil, deletebindimages=nil)
           @SnapshotIds = snapshotids
+          @DeleteBindImages = deletebindimages
         end
 
         def deserialize(params)
           @SnapshotIds = params['SnapshotIds']
+          @DeleteBindImages = params['DeleteBindImages']
         end
       end
 

@@ -1583,17 +1583,22 @@ module TencentCloud
         # @type CaseSensitive: Boolean
         # @param Tokenizer: 全文索引的分词符，字符串中每个字符代表一个分词符
         # @type Tokenizer: String
+        # @param ContainZH: 是否包含中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainZH: Boolean
 
-        attr_accessor :CaseSensitive, :Tokenizer
+        attr_accessor :CaseSensitive, :Tokenizer, :ContainZH
         
-        def initialize(casesensitive=nil, tokenizer=nil)
+        def initialize(casesensitive=nil, tokenizer=nil, containzh=nil)
           @CaseSensitive = casesensitive
           @Tokenizer = tokenizer
+          @ContainZH = containzh
         end
 
         def deserialize(params)
           @CaseSensitive = params['CaseSensitive']
           @Tokenizer = params['Tokenizer']
+          @ContainZH = params['ContainZH']
         end
       end
 
@@ -2154,7 +2159,7 @@ module TencentCloud
       class ModifyIndexRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID
         # @type TopicId: String
-        # @param Status: 是否生效
+        # @param Status: 默认不生效
         # @type Status: Boolean
         # @param Rule: 索引规则，Rule和Effective两个必须有一个参数存在
         # @type Rule: :class:`Tencentcloud::Cls.v20201016.models.RuleInfo`
@@ -2761,19 +2766,24 @@ module TencentCloud
         # @type Tokenizer: String
         # @param SqlFlag: 字段是否开启分析功能
         # @type SqlFlag: Boolean
+        # @param ContainZH: 是否包含中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainZH: Boolean
 
-        attr_accessor :Type, :Tokenizer, :SqlFlag
+        attr_accessor :Type, :Tokenizer, :SqlFlag, :ContainZH
         
-        def initialize(type=nil, tokenizer=nil, sqlflag=nil)
+        def initialize(type=nil, tokenizer=nil, sqlflag=nil, containzh=nil)
           @Type = type
           @Tokenizer = tokenizer
           @SqlFlag = sqlflag
+          @ContainZH = containzh
         end
 
         def deserialize(params)
           @Type = params['Type']
           @Tokenizer = params['Tokenizer']
           @SqlFlag = params['SqlFlag']
+          @ContainZH = params['ContainZH']
         end
       end
 

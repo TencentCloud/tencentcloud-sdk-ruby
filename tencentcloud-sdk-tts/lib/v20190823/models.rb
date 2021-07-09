@@ -40,10 +40,12 @@ module TencentCloud
         # @type Codec: String
         # @param CallbackUrl: 回调 URL，用户自行搭建的用于接收识别结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。[回调说明](https://cloud.tencent.com/document/product/1073/55746)
         # @type CallbackUrl: String
+        # @param VoiceoverDialogueSplit: 旁白与对白文本解析，分别合成相应风格（仅适用于旁对白音色），默认 false
+        # @type VoiceoverDialogueSplit: Boolean
 
-        attr_accessor :Text, :ModelType, :Volume, :Speed, :ProjectId, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :CallbackUrl
+        attr_accessor :Text, :ModelType, :Volume, :Speed, :ProjectId, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :CallbackUrl, :VoiceoverDialogueSplit
         
-        def initialize(text=nil, modeltype=nil, volume=nil, speed=nil, projectid=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, callbackurl=nil)
+        def initialize(text=nil, modeltype=nil, volume=nil, speed=nil, projectid=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, callbackurl=nil, voiceoverdialoguesplit=nil)
           @Text = text
           @ModelType = modeltype
           @Volume = volume
@@ -54,6 +56,7 @@ module TencentCloud
           @SampleRate = samplerate
           @Codec = codec
           @CallbackUrl = callbackurl
+          @VoiceoverDialogueSplit = voiceoverdialoguesplit
         end
 
         def deserialize(params)
@@ -67,6 +70,7 @@ module TencentCloud
           @SampleRate = params['SampleRate']
           @Codec = params['Codec']
           @CallbackUrl = params['CallbackUrl']
+          @VoiceoverDialogueSplit = params['VoiceoverDialogueSplit']
         end
       end
 

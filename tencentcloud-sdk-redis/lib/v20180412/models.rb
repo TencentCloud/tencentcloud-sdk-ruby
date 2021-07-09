@@ -3634,6 +3634,52 @@ module TencentCloud
         end
       end
 
+      # KillMasterGroup请求参数结构体
+      class KillMasterGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Password: 1.长度8-30位,推荐使用12位以上的密码
+        # 2.不能以"/"开头
+        # 3.至少包含两项
+        #     a.小写字母a-z
+        #     b.大写字母A-Z
+        #     c.数字0-9
+        #     d.()`~!@#$%^&*-+=_|{}[]:;<>,.?/
+        # @type Password: String
+
+        attr_accessor :InstanceId, :Password
+        
+        def initialize(instanceid=nil, password=nil)
+          @InstanceId = instanceid
+          @Password = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Password = params['Password']
+        end
+      end
+
+      # KillMasterGroup返回参数结构体
+      class KillMasterGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ManualBackupInstance请求参数结构体
       class ManualBackupInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 待操作的实例ID，可通过 DescribeInstance接口返回值中的 InstanceId 获取。

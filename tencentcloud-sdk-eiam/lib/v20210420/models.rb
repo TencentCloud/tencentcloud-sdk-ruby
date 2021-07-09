@@ -246,53 +246,6 @@ module TencentCloud
         end
       end
 
-      # DecribePublicKey请求参数结构体
-      class DecribePublicKeyRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID，是应用的全局唯一标识。
-        # @type ApplicationId: String
-
-        attr_accessor :ApplicationId
-        
-        def initialize(applicationid=nil)
-          @ApplicationId = applicationid
-        end
-
-        def deserialize(params)
-          @ApplicationId = params['ApplicationId']
-        end
-      end
-
-      # DecribePublicKey返回参数结构体
-      class DecribePublicKeyResponse < TencentCloud::Common::AbstractModel
-        # @param PublicKey: jwt验证签名所用的公钥信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PublicKey: String
-        # @param KeyId: jwt的密钥id。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type KeyId: String
-        # @param ApplicationId: 应用ID，是应用的全局唯一标识。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ApplicationId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :PublicKey, :KeyId, :ApplicationId, :RequestId
-        
-        def initialize(publickey=nil, keyid=nil, applicationid=nil, requestid=nil)
-          @PublicKey = publickey
-          @KeyId = keyid
-          @ApplicationId = applicationid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @PublicKey = params['PublicKey']
-          @KeyId = params['KeyId']
-          @ApplicationId = params['ApplicationId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteOrgNode请求参数结构体
       class DeleteOrgNodeRequest < TencentCloud::Common::AbstractModel
         # @param OrgNodeId: 机构节点ID，是机构节点的全局唯一标识。

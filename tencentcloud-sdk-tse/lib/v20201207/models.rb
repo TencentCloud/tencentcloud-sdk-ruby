@@ -121,13 +121,16 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 翻页单页偏移量，默认值0
         # @type Offset: Integer
+        # @param QueryType: 查询类型
+        # @type QueryType: String
 
-        attr_accessor :Filters, :Limit, :Offset
+        attr_accessor :Filters, :Limit, :Offset, :QueryType
         
-        def initialize(filters=nil, limit=nil, offset=nil)
+        def initialize(filters=nil, limit=nil, offset=nil, querytype=nil)
           @Filters = filters
           @Limit = limit
           @Offset = offset
+          @QueryType = querytype
         end
 
         def deserialize(params)
@@ -141,6 +144,7 @@ module TencentCloud
           end
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @QueryType = params['QueryType']
         end
       end
 
@@ -172,6 +176,49 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 环境具体信息
+      class EnvInfo < TencentCloud::Common::AbstractModel
+        # @param EnvName: 环境名称
+        # @type EnvName: String
+        # @param VpcInfos: 环境对应的网络信息
+        # @type VpcInfos: Array
+        # @param StorageCapacity: 云硬盘容量
+        # @type StorageCapacity: Integer
+        # @param Status: 运行状态
+        # @type Status: String
+        # @param AdminServiceIp: Admin service 访问地址
+        # @type AdminServiceIp: String
+        # @param ConfigServiceIp: Config service访问地址
+        # @type ConfigServiceIp: String
+
+        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp
+        
+        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil)
+          @EnvName = envname
+          @VpcInfos = vpcinfos
+          @StorageCapacity = storagecapacity
+          @Status = status
+          @AdminServiceIp = adminserviceip
+          @ConfigServiceIp = configserviceip
+        end
+
+        def deserialize(params)
+          @EnvName = params['EnvName']
+          unless params['VpcInfos'].nil?
+            @VpcInfos = []
+            params['VpcInfos'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcInfos << vpcinfo_tmp
+            end
+          end
+          @StorageCapacity = params['StorageCapacity']
+          @Status = params['Status']
+          @AdminServiceIp = params['AdminServiceIp']
+          @ConfigServiceIp = params['ConfigServiceIp']
         end
       end
 
@@ -292,10 +339,13 @@ module TencentCloud
         # @param CreateTime: 集群创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param EnvInfos: 环境配置信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvInfos: Array
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -311,6 +361,7 @@ module TencentCloud
           @Paymode = paymode
           @EKSClusterID = eksclusterid
           @CreateTime = createtime
+          @EnvInfos = envinfos
         end
 
         def deserialize(params)
@@ -329,6 +380,34 @@ module TencentCloud
           @Paymode = params['Paymode']
           @EKSClusterID = params['EKSClusterID']
           @CreateTime = params['CreateTime']
+          unless params['EnvInfos'].nil?
+            @EnvInfos = []
+            params['EnvInfos'].each do |i|
+              envinfo_tmp = EnvInfo.new
+              envinfo_tmp.deserialize(i)
+              @EnvInfos << envinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 私有网络信息
+      class VpcInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: Vpc Id
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+
+        attr_accessor :VpcId, :SubnetId
+        
+        def initialize(vpcid=nil, subnetid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 
