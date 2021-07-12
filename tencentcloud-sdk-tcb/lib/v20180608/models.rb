@@ -1831,6 +1831,63 @@ module TencentCloud
         end
       end
 
+      # DeleteCloudBaseRunServerVersion请求参数结构体
+      class DeleteCloudBaseRunServerVersionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerName: 服务名称
+        # @type ServerName: String
+        # @param VersionName: 版本名称
+        # @type VersionName: String
+        # @param IsDeleteServer: 是否删除服务，只有最后一个版本的时候，才生效。
+        # @type IsDeleteServer: Boolean
+        # @param IsDeleteImage: 只有删除服务的时候，才会起作用
+        # @type IsDeleteImage: Boolean
+        # @param OperatorRemark: 操作备注
+        # @type OperatorRemark: String
+
+        attr_accessor :EnvId, :ServerName, :VersionName, :IsDeleteServer, :IsDeleteImage, :OperatorRemark
+        
+        def initialize(envid=nil, servername=nil, versionname=nil, isdeleteserver=nil, isdeleteimage=nil, operatorremark=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @VersionName = versionname
+          @IsDeleteServer = isdeleteserver
+          @IsDeleteImage = isdeleteimage
+          @OperatorRemark = operatorremark
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @VersionName = params['VersionName']
+          @IsDeleteServer = params['IsDeleteServer']
+          @IsDeleteImage = params['IsDeleteImage']
+          @OperatorRemark = params['OperatorRemark']
+        end
+      end
+
+      # DeleteCloudBaseRunServerVersion返回参数结构体
+      class DeleteCloudBaseRunServerVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果，succ为成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteEndUser请求参数结构体
       class DeleteEndUserRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID

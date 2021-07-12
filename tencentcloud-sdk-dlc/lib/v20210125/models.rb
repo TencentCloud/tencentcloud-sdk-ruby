@@ -17,6 +17,162 @@
 module TencentCloud
   module Dlc
     module V20210125
+      # AddUsersToWorkGroup请求参数结构体
+      class AddUsersToWorkGroupRequest < TencentCloud::Common::AbstractModel
+        # @param AddInfo: 要操作的工作组和用户信息
+        # @type AddInfo: :class:`Tencentcloud::Dlc.v20210125.models.UserIdSetOfWorkGroupId`
+
+        attr_accessor :AddInfo
+        
+        def initialize(addinfo=nil)
+          @AddInfo = addinfo
+        end
+
+        def deserialize(params)
+          unless params['AddInfo'].nil?
+            @AddInfo = UserIdSetOfWorkGroupId.new
+            @AddInfo.deserialize(params['AddInfo'])
+          end
+        end
+      end
+
+      # AddUsersToWorkGroup返回参数结构体
+      class AddUsersToWorkGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AttachUserPolicy请求参数结构体
+      class AttachUserPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户Id，和CAM侧Uin匹配
+        # @type UserId: String
+        # @param PolicySet: 鉴权策略集合
+        # @type PolicySet: Array
+
+        attr_accessor :UserId, :PolicySet
+        
+        def initialize(userid=nil, policyset=nil)
+          @UserId = userid
+          @PolicySet = policyset
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @PolicySet << policy_tmp
+            end
+          end
+        end
+      end
+
+      # AttachUserPolicy返回参数结构体
+      class AttachUserPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AttachWorkGroupPolicy请求参数结构体
+      class AttachWorkGroupPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 工作组Id
+        # @type WorkGroupId: Integer
+        # @param PolicySet: 要绑定的策略集合
+        # @type PolicySet: Array
+
+        attr_accessor :WorkGroupId, :PolicySet
+        
+        def initialize(workgroupid=nil, policyset=nil)
+          @WorkGroupId = workgroupid
+          @PolicySet = policyset
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @PolicySet << policy_tmp
+            end
+          end
+        end
+      end
+
+      # AttachWorkGroupPolicy返回参数结构体
+      class AttachWorkGroupPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BindWorkGroupsToUser请求参数结构体
+      class BindWorkGroupsToUserRequest < TencentCloud::Common::AbstractModel
+        # @param AddInfo: 绑定的用户和工作组信息
+        # @type AddInfo: :class:`Tencentcloud::Dlc.v20210125.models.WorkGroupIdSetOfUserId`
+
+        attr_accessor :AddInfo
+        
+        def initialize(addinfo=nil)
+          @AddInfo = addinfo
+        end
+
+        def deserialize(params)
+          unless params['AddInfo'].nil?
+            @AddInfo = WorkGroupIdSetOfUserId.new
+            @AddInfo.deserialize(params['AddInfo'])
+          end
+        end
+      end
+
+      # BindWorkGroupsToUser返回参数结构体
+      class BindWorkGroupsToUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CSV类型数据格式
       class CSV < TencentCloud::Common::AbstractModel
         # @param CodeCompress: 压缩格式，["Snappy", "Gzip", "None"选一]。
@@ -71,6 +227,38 @@ module TencentCloud
           @Escape = params['Escape']
           @Quote = params['Quote']
           @Separator = params['Separator']
+        end
+      end
+
+      # CancelTask请求参数结构体
+      class CancelTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id，全局唯一
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # CancelTask返回参数结构体
+      class CancelTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -312,6 +500,104 @@ module TencentCloud
         end
       end
 
+      # CreateUser请求参数结构体
+      class CreateUserRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户Id，当前主账号的子账号Uin，和CAM侧匹配
+        # @type UserId: String
+        # @param UserDescription: 用户描述
+        # @type UserDescription: String
+        # @param PolicySet: 绑定到用户的权限集合
+        # @type PolicySet: Array
+
+        attr_accessor :UserId, :UserDescription, :PolicySet
+        
+        def initialize(userid=nil, userdescription=nil, policyset=nil)
+          @UserId = userid
+          @UserDescription = userdescription
+          @PolicySet = policyset
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserDescription = params['UserDescription']
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @PolicySet << policy_tmp
+            end
+          end
+        end
+      end
+
+      # CreateUser返回参数结构体
+      class CreateUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateWorkGroup请求参数结构体
+      class CreateWorkGroupRequest < TencentCloud::Common::AbstractModel
+        # @param WorkGroupName: 工作组名称
+        # @type WorkGroupName: String
+        # @param WorkGroupDescription: 工作组描述
+        # @type WorkGroupDescription: String
+        # @param PolicySet: 工作组绑定的鉴权策略集合
+        # @type PolicySet: Array
+
+        attr_accessor :WorkGroupName, :WorkGroupDescription, :PolicySet
+        
+        def initialize(workgroupname=nil, workgroupdescription=nil, policyset=nil)
+          @WorkGroupName = workgroupname
+          @WorkGroupDescription = workgroupdescription
+          @PolicySet = policyset
+        end
+
+        def deserialize(params)
+          @WorkGroupName = params['WorkGroupName']
+          @WorkGroupDescription = params['WorkGroupDescription']
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @PolicySet << policy_tmp
+            end
+          end
+        end
+      end
+
+      # CreateWorkGroup返回参数结构体
+      class CreateWorkGroupResponse < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 工作组Id，全局唯一
+        # @type WorkGroupId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkGroupId, :RequestId
+        
+        def initialize(workgroupid=nil, requestid=nil)
+          @WorkGroupId = workgroupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据表数据格式。
       class DataFormat < TencentCloud::Common::AbstractModel
         # @param TextFile: 文本格式，TextFile。
@@ -484,6 +770,105 @@ module TencentCloud
         end
       end
 
+      # DeleteUser请求参数结构体
+      class DeleteUserRequest < TencentCloud::Common::AbstractModel
+        # @param UserIds: 需要删除的用户的Id
+        # @type UserIds: Array
+
+        attr_accessor :UserIds
+        
+        def initialize(userids=nil)
+          @UserIds = userids
+        end
+
+        def deserialize(params)
+          @UserIds = params['UserIds']
+        end
+      end
+
+      # DeleteUser返回参数结构体
+      class DeleteUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUsersFromWorkGroup请求参数结构体
+      class DeleteUsersFromWorkGroupRequest < TencentCloud::Common::AbstractModel
+        # @param AddInfo: 要删除的用户信息
+        # @type AddInfo: :class:`Tencentcloud::Dlc.v20210125.models.UserIdSetOfWorkGroupId`
+
+        attr_accessor :AddInfo
+        
+        def initialize(addinfo=nil)
+          @AddInfo = addinfo
+        end
+
+        def deserialize(params)
+          unless params['AddInfo'].nil?
+            @AddInfo = UserIdSetOfWorkGroupId.new
+            @AddInfo.deserialize(params['AddInfo'])
+          end
+        end
+      end
+
+      # DeleteUsersFromWorkGroup返回参数结构体
+      class DeleteUsersFromWorkGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteWorkGroup请求参数结构体
+      class DeleteWorkGroupRequest < TencentCloud::Common::AbstractModel
+        # @param WorkGroupIds: 要删除的工作组Id集合
+        # @type WorkGroupIds: Array
+
+        attr_accessor :WorkGroupIds
+        
+        def initialize(workgroupids=nil)
+          @WorkGroupIds = workgroupids
+        end
+
+        def deserialize(params)
+          @WorkGroupIds = params['WorkGroupIds']
+        end
+      end
+
+      # DeleteWorkGroup返回参数结构体
+      class DeleteWorkGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDatabases请求参数结构体
       class DescribeDatabasesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，默认为10，最大值为100。
@@ -612,6 +997,38 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStoreLocation请求参数结构体
+      class DescribeStoreLocationRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeStoreLocation返回参数结构体
+      class DescribeStoreLocationResponse < TencentCloud::Common::AbstractModel
+        # @param StoreLocation: 返回用户设置的结果存储位置路径，如果未设置则返回空字符串：""
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoreLocation: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StoreLocation, :RequestId
+        
+        def initialize(storelocation=nil, requestid=nil)
+          @StoreLocation = storelocation
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StoreLocation = params['StoreLocation']
           @RequestId = params['RequestId']
         end
       end
@@ -816,6 +1233,69 @@ module TencentCloud
         end
       end
 
+      # DescribeUsers请求参数结构体
+      class DescribeUsersRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 查询的用户Id，和CAM侧Uin匹配
+        # @type UserId: String
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认20，最大值100
+        # @type Limit: Integer
+        # @param SortBy: 排序字段，支持如下字段类型，create-time
+        # @type SortBy: String
+        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc
+        # @type Sorting: String
+
+        attr_accessor :UserId, :Offset, :Limit, :SortBy, :Sorting
+        
+        def initialize(userid=nil, offset=nil, limit=nil, sortby=nil, sorting=nil)
+          @UserId = userid
+          @Offset = offset
+          @Limit = limit
+          @SortBy = sortby
+          @Sorting = sorting
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+        end
+      end
+
+      # DescribeUsers返回参数结构体
+      class DescribeUsersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 用户总数
+        # @type TotalCount: Integer
+        # @param UserSet: 用户集合
+        # @type UserSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :UserSet, :RequestId
+        
+        def initialize(totalcount=nil, userset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @UserSet = userset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['UserSet'].nil?
+            @UserSet = []
+            params['UserSet'].each do |i|
+              userinfo_tmp = UserInfo.new
+              userinfo_tmp.deserialize(i)
+              @UserSet << userinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeViews请求参数结构体
       class DescribeViewsRequest < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 列出该数据库下所属数据表。
@@ -888,6 +1368,166 @@ module TencentCloud
         end
       end
 
+      # DescribeWorkGroups请求参数结构体
+      class DescribeWorkGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 查询的工作组Id
+        # @type WorkGroupId: Integer
+        # @param Filters: 过滤条件，当前仅支持按照工作组名称进行模糊搜索。Key为workgroup-name
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认20，最大值100
+        # @type Limit: Integer
+        # @param SortBy: 排序字段，支持如下字段类型，create-time
+        # @type SortBy: String
+        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc
+        # @type Sorting: String
+
+        attr_accessor :WorkGroupId, :Filters, :Offset, :Limit, :SortBy, :Sorting
+        
+        def initialize(workgroupid=nil, filters=nil, offset=nil, limit=nil, sortby=nil, sorting=nil)
+          @WorkGroupId = workgroupid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @SortBy = sortby
+          @Sorting = sorting
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+        end
+      end
+
+      # DescribeWorkGroups返回参数结构体
+      class DescribeWorkGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 工作组总数
+        # @type TotalCount: Integer
+        # @param WorkGroupSet: 工作组信息集合
+        # @type WorkGroupSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :WorkGroupSet, :RequestId
+        
+        def initialize(totalcount=nil, workgroupset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @WorkGroupSet = workgroupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['WorkGroupSet'].nil?
+            @WorkGroupSet = []
+            params['WorkGroupSet'].each do |i|
+              workgroupinfo_tmp = WorkGroupInfo.new
+              workgroupinfo_tmp.deserialize(i)
+              @WorkGroupSet << workgroupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DetachUserPolicy请求参数结构体
+      class DetachUserPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户Id，和CAM侧Uin匹配
+        # @type UserId: String
+        # @param PolicySet: 解绑的权限集合
+        # @type PolicySet: Array
+
+        attr_accessor :UserId, :PolicySet
+        
+        def initialize(userid=nil, policyset=nil)
+          @UserId = userid
+          @PolicySet = policyset
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @PolicySet << policy_tmp
+            end
+          end
+        end
+      end
+
+      # DetachUserPolicy返回参数结构体
+      class DetachUserPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DetachWorkGroupPolicy请求参数结构体
+      class DetachWorkGroupPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 工作组Id
+        # @type WorkGroupId: Integer
+        # @param PolicySet: 解绑的权限集合
+        # @type PolicySet: Array
+
+        attr_accessor :WorkGroupId, :PolicySet
+        
+        def initialize(workgroupid=nil, policyset=nil)
+          @WorkGroupId = workgroupid
+          @PolicySet = policyset
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @PolicySet << policy_tmp
+            end
+          end
+        end
+      end
+
+      # DetachWorkGroupPolicy返回参数结构体
+      class DetachWorkGroupPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SQL语句对象
       class Execution < TencentCloud::Common::AbstractModel
         # @param SQL: 自动生成SQL语句。
@@ -946,6 +1586,78 @@ module TencentCloud
         end
       end
 
+      # ModifyUser请求参数结构体
+      class ModifyUserRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户Id，和CAM侧Uin匹配
+        # @type UserId: String
+        # @param UserDescription: 用户描述
+        # @type UserDescription: String
+
+        attr_accessor :UserId, :UserDescription
+        
+        def initialize(userid=nil, userdescription=nil)
+          @UserId = userid
+          @UserDescription = userdescription
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserDescription = params['UserDescription']
+        end
+      end
+
+      # ModifyUser返回参数结构体
+      class ModifyUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyWorkGroup请求参数结构体
+      class ModifyWorkGroupRequest < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 工作组Id
+        # @type WorkGroupId: Integer
+        # @param WorkGroupDescription: 工作组描述
+        # @type WorkGroupDescription: String
+
+        attr_accessor :WorkGroupId, :WorkGroupDescription
+        
+        def initialize(workgroupid=nil, workgroupdescription=nil)
+          @WorkGroupId = workgroupid
+          @WorkGroupDescription = workgroupdescription
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          @WorkGroupDescription = params['WorkGroupDescription']
+        end
+      end
+
+      # ModifyWorkGroup返回参数结构体
+      class ModifyWorkGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据格式其它类型。
       class Other < TencentCloud::Common::AbstractModel
         # @param Format: 枚举类型，默认值为Json，可选值为[Json, Parquet, ORC, AVRD]之一。
@@ -983,6 +1695,34 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @Comment = params['Comment']
+        end
+      end
+
+      # 权限对象
+      class Policy < TencentCloud::Common::AbstractModel
+        # @param Catalog: 需要授权的数据源名称，*代表拥有全部数据源权限
+        # @type Catalog: String
+        # @param Database: 需要授权的数据库名称，*代表拥有全部数据库名称
+        # @type Database: String
+        # @param Table: 需要授权的表名称，*代表拥有全部表权限
+        # @type Table: String
+        # @param Operation: 授权的操作，当前只支持“ALL”
+        # @type Operation: String
+
+        attr_accessor :Catalog, :Database, :Table, :Operation
+        
+        def initialize(catalog=nil, database=nil, table=nil, operation=nil)
+          @Catalog = catalog
+          @Database = database
+          @Table = table
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @Catalog = params['Catalog']
+          @Database = params['Database']
+          @Table = params['Table']
+          @Operation = params['Operation']
         end
       end
 
@@ -1351,6 +2091,148 @@ module TencentCloud
         end
       end
 
+      # UnbindWorkGroupsFromUser请求参数结构体
+      class UnbindWorkGroupsFromUserRequest < TencentCloud::Common::AbstractModel
+        # @param AddInfo: 解绑的工作组Id和用户Id的关联关系
+        # @type AddInfo: :class:`Tencentcloud::Dlc.v20210125.models.WorkGroupIdSetOfUserId`
+
+        attr_accessor :AddInfo
+        
+        def initialize(addinfo=nil)
+          @AddInfo = addinfo
+        end
+
+        def deserialize(params)
+          unless params['AddInfo'].nil?
+            @AddInfo = WorkGroupIdSetOfUserId.new
+            @AddInfo.deserialize(params['AddInfo'])
+          end
+        end
+      end
+
+      # UnbindWorkGroupsFromUser返回参数结构体
+      class UnbindWorkGroupsFromUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 绑定到同一个工作组的用户Id的集合
+      class UserIdSetOfWorkGroupId < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 工作组Id
+        # @type WorkGroupId: Integer
+        # @param UserIds: 用户Id集合，和CAM侧Uin匹配
+        # @type UserIds: Array
+
+        attr_accessor :WorkGroupId, :UserIds
+        
+        def initialize(workgroupid=nil, userids=nil)
+          @WorkGroupId = workgroupid
+          @UserIds = userids
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          @UserIds = params['UserIds']
+        end
+      end
+
+      # 授权用户信息
+      class UserInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户Id，和CAM侧Uin匹配
+        # @type UserId: String
+        # @param UserDescription: 用户描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDescription: String
+        # @param PolicySet: 单独给用户绑定的权限集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicySet: Array
+        # @param Creator: 创建者
+        # @type Creator: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param WorkGroupSet: 关联的工作组集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupSet: Array
+        # @param IsOwner: 是否是管理员账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOwner: Boolean
+
+        attr_accessor :UserId, :UserDescription, :PolicySet, :Creator, :CreateTime, :WorkGroupSet, :IsOwner
+        
+        def initialize(userid=nil, userdescription=nil, policyset=nil, creator=nil, createtime=nil, workgroupset=nil, isowner=nil)
+          @UserId = userid
+          @UserDescription = userdescription
+          @PolicySet = policyset
+          @Creator = creator
+          @CreateTime = createtime
+          @WorkGroupSet = workgroupset
+          @IsOwner = isowner
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserDescription = params['UserDescription']
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @PolicySet << policy_tmp
+            end
+          end
+          @Creator = params['Creator']
+          @CreateTime = params['CreateTime']
+          unless params['WorkGroupSet'].nil?
+            @WorkGroupSet = []
+            params['WorkGroupSet'].each do |i|
+              workgroupmessage_tmp = WorkGroupMessage.new
+              workgroupmessage_tmp.deserialize(i)
+              @WorkGroupSet << workgroupmessage_tmp
+            end
+          end
+          @IsOwner = params['IsOwner']
+        end
+      end
+
+      # 用户部分信息
+      class UserMessage < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户Id，和CAM侧Uin匹配
+        # @type UserId: String
+        # @param UserDescription: 用户描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDescription: String
+        # @param Creator: 创建者
+        # @type Creator: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :UserId, :UserDescription, :Creator, :CreateTime
+        
+        def initialize(userid=nil, userdescription=nil, creator=nil, createtime=nil)
+          @UserId = userid
+          @UserDescription = userdescription
+          @Creator = creator
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserDescription = params['UserDescription']
+          @Creator = params['Creator']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 视图基本配置信息
       class ViewBaseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 该视图所属数据库名字
@@ -1419,6 +2301,120 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # 同一个用户绑定的工作组集合
+      class WorkGroupIdSetOfUserId < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户Id，和CAM侧Uin匹配
+        # @type UserId: String
+        # @param WorkGroupIds: 工作组Id集合
+        # @type WorkGroupIds: Array
+
+        attr_accessor :UserId, :WorkGroupIds
+        
+        def initialize(userid=nil, workgroupids=nil)
+          @UserId = userid
+          @WorkGroupIds = workgroupids
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @WorkGroupIds = params['WorkGroupIds']
+        end
+      end
+
+      # 工作组信息
+      class WorkGroupInfo < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 工作组Id
+        # @type WorkGroupId: Integer
+        # @param WorkGroupName: 工作组名称
+        # @type WorkGroupName: String
+        # @param WorkGroupDescription: 工作组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupDescription: String
+        # @param UserNum: 工作组关联的用户数量
+        # @type UserNum: Integer
+        # @param UserSet: 工作组关联的用户集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserSet: Array
+        # @param PolicySet: 工作组绑定的权限集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicySet: Array
+        # @param Creator: 创建者
+        # @type Creator: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :WorkGroupId, :WorkGroupName, :WorkGroupDescription, :UserNum, :UserSet, :PolicySet, :Creator, :CreateTime
+        
+        def initialize(workgroupid=nil, workgroupname=nil, workgroupdescription=nil, usernum=nil, userset=nil, policyset=nil, creator=nil, createtime=nil)
+          @WorkGroupId = workgroupid
+          @WorkGroupName = workgroupname
+          @WorkGroupDescription = workgroupdescription
+          @UserNum = usernum
+          @UserSet = userset
+          @PolicySet = policyset
+          @Creator = creator
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          @WorkGroupName = params['WorkGroupName']
+          @WorkGroupDescription = params['WorkGroupDescription']
+          @UserNum = params['UserNum']
+          unless params['UserSet'].nil?
+            @UserSet = []
+            params['UserSet'].each do |i|
+              usermessage_tmp = UserMessage.new
+              usermessage_tmp.deserialize(i)
+              @UserSet << usermessage_tmp
+            end
+          end
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @PolicySet << policy_tmp
+            end
+          end
+          @Creator = params['Creator']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 工作组部分信息
+      class WorkGroupMessage < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 工作组Id
+        # @type WorkGroupId: Integer
+        # @param WorkGroupName: 工作组名称
+        # @type WorkGroupName: String
+        # @param WorkGroupDescription: 工作组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupDescription: String
+        # @param Creator: 创建者
+        # @type Creator: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :WorkGroupId, :WorkGroupName, :WorkGroupDescription, :Creator, :CreateTime
+        
+        def initialize(workgroupid=nil, workgroupname=nil, workgroupdescription=nil, creator=nil, createtime=nil)
+          @WorkGroupId = workgroupid
+          @WorkGroupName = workgroupname
+          @WorkGroupDescription = workgroupdescription
+          @Creator = creator
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          @WorkGroupName = params['WorkGroupName']
+          @WorkGroupDescription = params['WorkGroupDescription']
+          @Creator = params['Creator']
+          @CreateTime = params['CreateTime']
         end
       end
 

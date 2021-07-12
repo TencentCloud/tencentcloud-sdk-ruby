@@ -341,12 +341,15 @@ module TencentCloud
         # @param ReplayUrl: 回放URL，需配合信令播放器使用。此字段仅适用于`视频生成模式`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplayUrl: String
+        # @param Interrupts: 视频流在录制过程中断流次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interrupts: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FinishReason, :TaskId, :Status, :RoomId, :GroupId, :RecordUserId, :RecordStartTime, :RecordStopTime, :TotalTime, :ExceptionCnt, :OmittedDurations, :VideoInfos, :ReplayUrl, :RequestId
+        attr_accessor :FinishReason, :TaskId, :Status, :RoomId, :GroupId, :RecordUserId, :RecordStartTime, :RecordStopTime, :TotalTime, :ExceptionCnt, :OmittedDurations, :VideoInfos, :ReplayUrl, :Interrupts, :RequestId
         
-        def initialize(finishreason=nil, taskid=nil, status=nil, roomid=nil, groupid=nil, recorduserid=nil, recordstarttime=nil, recordstoptime=nil, totaltime=nil, exceptioncnt=nil, omitteddurations=nil, videoinfos=nil, replayurl=nil, requestid=nil)
+        def initialize(finishreason=nil, taskid=nil, status=nil, roomid=nil, groupid=nil, recorduserid=nil, recordstarttime=nil, recordstoptime=nil, totaltime=nil, exceptioncnt=nil, omitteddurations=nil, videoinfos=nil, replayurl=nil, interrupts=nil, requestid=nil)
           @FinishReason = finishreason
           @TaskId = taskid
           @Status = status
@@ -360,6 +363,7 @@ module TencentCloud
           @OmittedDurations = omitteddurations
           @VideoInfos = videoinfos
           @ReplayUrl = replayurl
+          @Interrupts = interrupts
           @RequestId = requestid
         end
 
@@ -391,6 +395,14 @@ module TencentCloud
             end
           end
           @ReplayUrl = params['ReplayUrl']
+          unless params['Interrupts'].nil?
+            @Interrupts = []
+            params['Interrupts'].each do |i|
+              interrupt_tmp = Interrupt.new
+              interrupt_tmp.deserialize(i)
+              @Interrupts << interrupt_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -839,6 +851,28 @@ module TencentCloud
           @IMSyncTime = params['IMSyncTime']
           @Backup = params['Backup']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实时录制中出现的用户视频流断流次数统计
+      class Interrupt < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param Count: 视频流断流次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :UserId, :Count
+        
+        def initialize(userid=nil, count=nil)
+          @UserId = userid
+          @Count = count
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Count = params['Count']
         end
       end
 

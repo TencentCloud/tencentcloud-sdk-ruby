@@ -296,13 +296,13 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param Cpu: 普通实例Cpu核数
         # @type Cpu: Integer
-        # @param Memory: 普通实例内存
+        # @param Memory: 普通实例内存,单位G
         # @type Memory: Integer
-        # @param Storage: 存储
+        # @param Storage: 存储大小，单位G
         # @type Storage: Integer
         # @param ClusterName: 集群名称
         # @type ClusterName: String
-        # @param AdminPassword: 账号密码(8-64个字符，至少包含字母、数字、字符（支持的字符：_+-&=!@#$%^*()~）中的两种)
+        # @param AdminPassword: 账号密码(8-64个字符，包含大小写英文字母、数字和符号~!@#$%^&*_-+=`|\(){}[]:;'<>,.?/中的任意三种)
         # @type AdminPassword: String
         # @param Port: 端口，默认5432
         # @type Port: Integer
@@ -324,6 +324,7 @@ module TencentCloud
         # @param ExpectTimeThresh: 时间点回档，指定时间允许范围
         # @type ExpectTimeThresh: Integer
         # @param StorageLimit: 普通实例存储上限，单位GB
+        # 当DbType为MYSQL，且存储计费模式为预付费时，该参数需不大于cpu与memory对应存储规格上限
         # @type StorageLimit: Integer
         # @param InstanceCount: 实例数量
         # @type InstanceCount: Integer
@@ -360,10 +361,14 @@ module TencentCloud
         # @param AutoPauseDelay: 当DbMode为SEVERLESS时，指定集群自动暂停的延迟，单位秒，可选范围[600,691200]
         # 默认值:600
         # @type AutoPauseDelay: Integer
+        # @param StoragePayMode: 集群存储计费模式，按量计费：0，包年包月：1。默认按量计费
+        # 当DbType为MYSQL时，在集群计算计费模式为后付费（包括DbMode为SERVERLESS）时，存储计费模式仅可为按量计费
+        # 回档与克隆均不支持包年包月存储
+        # @type StoragePayMode: Integer
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :InstanceCount, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay
+        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :InstanceCount, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode
         
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, instancecount=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil)
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, instancecount=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil)
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -397,6 +402,7 @@ module TencentCloud
           @MaxCpu = maxcpu
           @AutoPause = autopause
           @AutoPauseDelay = autopausedelay
+          @StoragePayMode = storagepaymode
         end
 
         def deserialize(params)
@@ -440,6 +446,7 @@ module TencentCloud
           @MaxCpu = params['MaxCpu']
           @AutoPause = params['AutoPause']
           @AutoPauseDelay = params['AutoPauseDelay']
+          @StoragePayMode = params['StoragePayMode']
         end
       end
 
@@ -544,10 +551,20 @@ module TencentCloud
         # resume
         # pause
         # @type ServerlessStatus: String
+        # @param Storage: 集群预付费存储值大小
+        # @type Storage: Integer
+        # @param StorageId: 集群存储为预付费时的存储ID，用于预付费存储变配
+        # @type StorageId: String
+        # @param StoragePayMode: 集群存储付费模式。0-按量计费，1-包年包月
+        # @type StoragePayMode: Integer
+        # @param MinStorageSize: 集群计算规格对应的最小存储值
+        # @type MinStorageSize: Integer
+        # @param MaxStorageSize: 集群计算规格对应的最大存储值
+        # @type MaxStorageSize: Integer
 
-        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus
+        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize
         
-        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil)
+        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil)
           @Status = status
           @UpdateTime = updatetime
           @Zone = zone
@@ -576,6 +593,11 @@ module TencentCloud
           @ResourceTags = resourcetags
           @DbMode = dbmode
           @ServerlessStatus = serverlessstatus
+          @Storage = storage
+          @StorageId = storageid
+          @StoragePayMode = storagepaymode
+          @MinStorageSize = minstoragesize
+          @MaxStorageSize = maxstoragesize
         end
 
         def deserialize(params)
@@ -621,6 +643,11 @@ module TencentCloud
           end
           @DbMode = params['DbMode']
           @ServerlessStatus = params['ServerlessStatus']
+          @Storage = params['Storage']
+          @StorageId = params['StorageId']
+          @StoragePayMode = params['StoragePayMode']
+          @MinStorageSize = params['MinStorageSize']
+          @MaxStorageSize = params['MaxStorageSize']
         end
       end
 
@@ -841,10 +868,16 @@ module TencentCloud
         # resume
         # pause
         # @type ServerlessStatus: String
+        # @param StoragePayMode: 存储付费类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoragePayMode: Integer
+        # @param StorageId: 预付费存储Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageId: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StoragePayMode, :StorageId
         
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storagepaymode=nil, storageid=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -885,6 +918,8 @@ module TencentCloud
           @MinCpu = mincpu
           @MaxCpu = maxcpu
           @ServerlessStatus = serverlessstatus
+          @StoragePayMode = storagepaymode
+          @StorageId = storageid
         end
 
         def deserialize(params)
@@ -928,6 +963,8 @@ module TencentCloud
           @MinCpu = params['MinCpu']
           @MaxCpu = params['MaxCpu']
           @ServerlessStatus = params['ServerlessStatus']
+          @StoragePayMode = params['StoragePayMode']
+          @StorageId = params['StorageId']
         end
       end
 
@@ -995,10 +1032,18 @@ module TencentCloud
         # @type CynosVersion: String
         # @param RenewFlag: 续费标志
         # @type RenewFlag: Integer
+        # @param MinCpu: serverless实例cpu下限
+        # @type MinCpu: Float
+        # @param MaxCpu: serverless实例cpu上限
+        # @type MaxCpu: Float
+        # @param ServerlessStatus: serverless实例状态, 可能值：
+        # resume
+        # pause
+        # @type ServerlessStatus: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus
         
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -1030,6 +1075,9 @@ module TencentCloud
           @Charset = charset
           @CynosVersion = cynosversion
           @RenewFlag = renewflag
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+          @ServerlessStatus = serverlessstatus
         end
 
         def deserialize(params)
@@ -1064,6 +1112,9 @@ module TencentCloud
           @Charset = params['Charset']
           @CynosVersion = params['CynosVersion']
           @RenewFlag = params['RenewFlag']
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+          @ServerlessStatus = params['ServerlessStatus']
         end
       end
 
@@ -1260,19 +1311,24 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 备份文件列表起始
         # @type Offset: Integer
+        # @param DbType: 数据库类型，取值范围:
+        # <li> MYSQL </li>
+        # @type DbType: String
 
-        attr_accessor :ClusterId, :Limit, :Offset
+        attr_accessor :ClusterId, :Limit, :Offset, :DbType
         
-        def initialize(clusterid=nil, limit=nil, offset=nil)
+        def initialize(clusterid=nil, limit=nil, offset=nil, dbtype=nil)
           @ClusterId = clusterid
           @Limit = limit
           @Offset = offset
+          @DbType = dbtype
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @DbType = params['DbType']
         end
       end
 
@@ -1772,7 +1828,7 @@ module TencentCloud
 
       # DescribeResourcesByDealName请求参数结构体
       class DescribeResourcesByDealNameRequest < TencentCloud::Common::AbstractModel
-        # @param DealName: 计费订单id
+        # @param DealName: 计费订单id（如果计费还没回调业务发货，可能出现错误码InvalidParameterValue.DealNameNotFound，这种情况需要业务重试DescribeResourcesByDealName接口直到成功）
         # @type DealName: String
 
         attr_accessor :DealName

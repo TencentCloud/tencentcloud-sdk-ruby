@@ -29,6 +29,126 @@ module TencentCloud
         end
 
 
+        # 添加用户到工作组
+
+        # @param request: Request instance for AddUsersToWorkGroup.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AddUsersToWorkGroupRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AddUsersToWorkGroupResponse`
+        def AddUsersToWorkGroup(request)
+          body = send_request('AddUsersToWorkGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddUsersToWorkGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 绑定鉴权策略到用户
+
+        # @param request: Request instance for AttachUserPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AttachUserPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AttachUserPolicyResponse`
+        def AttachUserPolicy(request)
+          body = send_request('AttachUserPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachUserPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 绑定鉴权策略到工作组
+
+        # @param request: Request instance for AttachWorkGroupPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AttachWorkGroupPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AttachWorkGroupPolicyResponse`
+        def AttachWorkGroupPolicy(request)
+          body = send_request('AttachWorkGroupPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachWorkGroupPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 绑定工作组到用户
+
+        # @param request: Request instance for BindWorkGroupsToUser.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::BindWorkGroupsToUserRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::BindWorkGroupsToUserResponse`
+        def BindWorkGroupsToUser(request)
+          body = send_request('BindWorkGroupsToUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindWorkGroupsToUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 取消任务执行
+
+        # @param request: Request instance for CancelTask.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CancelTaskRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CancelTaskResponse`
+        def CancelTask(request)
+          body = send_request('CancelTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateDatabase）用于生成建库SQL语句。
 
         # @param request: Request instance for CreateDatabase.
@@ -149,6 +269,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用户
+
+        # @param request: Request instance for CreateUser.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateUserRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateUserResponse`
+        def CreateUser(request)
+          body = send_request('CreateUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建工作组
+
+        # @param request: Request instance for CreateWorkGroup.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateWorkGroupRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateWorkGroupResponse`
+        def CreateWorkGroup(request)
+          body = send_request('CreateWorkGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWorkGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（DeleteScript）用于删除sql脚本。
 
         # @param request: Request instance for DeleteScript.
@@ -159,6 +327,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteScriptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户
+
+        # @param request: Request instance for DeleteUser.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteUserRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteUserResponse`
+        def DeleteUser(request)
+          body = send_request('DeleteUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 从工作组中删除用户
+
+        # @param request: Request instance for DeleteUsersFromWorkGroup.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteUsersFromWorkGroupRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteUsersFromWorkGroupResponse`
+        def DeleteUsersFromWorkGroup(request)
+          body = send_request('DeleteUsersFromWorkGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUsersFromWorkGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除工作组
+
+        # @param request: Request instance for DeleteWorkGroup.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteWorkGroupRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteWorkGroupResponse`
+        def DeleteWorkGroup(request)
+          body = send_request('DeleteWorkGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWorkGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -207,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeScriptsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询计算结果存储位置。
+
+        # @param request: Request instance for DescribeStoreLocation.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeStoreLocationRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeStoreLocationResponse`
+        def DescribeStoreLocation(request)
+          body = send_request('DescribeStoreLocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStoreLocationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -293,6 +557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取用户列表信息
+
+        # @param request: Request instance for DescribeUsers.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeUsersRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeUsersResponse`
+        def DescribeUsers(request)
+          body = send_request('DescribeUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeViews）用于查询数据视图列表。
 
         # @param request: Request instance for DescribeViews.
@@ -303,6 +591,150 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeViewsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取工作组列表
+
+        # @param request: Request instance for DescribeWorkGroups.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeWorkGroupsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeWorkGroupsResponse`
+        def DescribeWorkGroups(request)
+          body = send_request('DescribeWorkGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解绑用户鉴权策略
+
+        # @param request: Request instance for DetachUserPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DetachUserPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DetachUserPolicyResponse`
+        def DetachUserPolicy(request)
+          body = send_request('DetachUserPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetachUserPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解绑工作组鉴权策略
+
+        # @param request: Request instance for DetachWorkGroupPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DetachWorkGroupPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DetachWorkGroupPolicyResponse`
+        def DetachWorkGroupPolicy(request)
+          body = send_request('DetachWorkGroupPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetachWorkGroupPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户信息
+
+        # @param request: Request instance for ModifyUser.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ModifyUserRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ModifyUserResponse`
+        def ModifyUser(request)
+          body = send_request('ModifyUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改工作组信息
+
+        # @param request: Request instance for ModifyWorkGroup.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ModifyWorkGroupRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ModifyWorkGroupResponse`
+        def ModifyWorkGroup(request)
+          body = send_request('ModifyWorkGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWorkGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解绑用户上的用户组
+
+        # @param request: Request instance for UnbindWorkGroupsFromUser.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::UnbindWorkGroupsFromUserRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::UnbindWorkGroupsFromUserResponse`
+        def UnbindWorkGroupsFromUser(request)
+          body = send_request('UnbindWorkGroupsFromUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindWorkGroupsFromUserResponse.new
             model.deserialize(response['Response'])
             model
           else
