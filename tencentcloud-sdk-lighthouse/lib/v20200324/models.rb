@@ -3345,17 +3345,21 @@ module TencentCloud
         # @type Zone: String
         # @param ZoneName: 可用区中文名称
         # @type ZoneName: String
+        # @param InstanceDisplayLabel: 实例购买页可用区展示标签
+        # @type InstanceDisplayLabel: String
 
-        attr_accessor :Zone, :ZoneName
+        attr_accessor :Zone, :ZoneName, :InstanceDisplayLabel
         
-        def initialize(zone=nil, zonename=nil)
+        def initialize(zone=nil, zonename=nil, instancedisplaylabel=nil)
           @Zone = zone
           @ZoneName = zonename
+          @InstanceDisplayLabel = instancedisplaylabel
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @ZoneName = params['ZoneName']
+          @InstanceDisplayLabel = params['InstanceDisplayLabel']
         end
       end
 

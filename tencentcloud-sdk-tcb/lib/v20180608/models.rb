@@ -1801,17 +1801,21 @@ module TencentCloud
         # @type EnvId: String
         # @param ProjectName: 项目名
         # @type ProjectName: String
+        # @param KeepResource: 是否保留资源
+        # @type KeepResource: Boolean
 
-        attr_accessor :EnvId, :ProjectName
+        attr_accessor :EnvId, :ProjectName, :KeepResource
         
-        def initialize(envid=nil, projectname=nil)
+        def initialize(envid=nil, projectname=nil, keepresource=nil)
           @EnvId = envid
           @ProjectName = projectname
+          @KeepResource = keepresource
         end
 
         def deserialize(params)
           @EnvId = params['EnvId']
           @ProjectName = params['ProjectName']
+          @KeepResource = params['KeepResource']
         end
       end
 
@@ -3179,12 +3183,20 @@ module TencentCloud
         # @type MaxFreeTrialNum: Integer
         # @param CurrentFreeTrialNum: 微信网关体验版已购买月份数
         # @type CurrentFreeTrialNum: Integer
+        # @param ChangePayTotal: 转支付限额总数
+        # @type ChangePayTotal: Integer
+        # @param CurrentChangePayTotal: 当前已用转支付次数
+        # @type CurrentChangePayTotal: Integer
+        # @param ChangePayMonthly: 转支付每月限额
+        # @type ChangePayMonthly: Integer
+        # @param CurrentChangePayMonthly: 本月已用转支付额度
+        # @type CurrentChangePayMonthly: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MaxEnvNum, :CurrentEnvNum, :MaxFreeEnvNum, :CurrentFreeEnvNum, :MaxDeleteTotal, :CurrentDeleteTotal, :MaxDeleteMonthly, :CurrentDeleteMonthly, :MaxFreeTrialNum, :CurrentFreeTrialNum, :RequestId
+        attr_accessor :MaxEnvNum, :CurrentEnvNum, :MaxFreeEnvNum, :CurrentFreeEnvNum, :MaxDeleteTotal, :CurrentDeleteTotal, :MaxDeleteMonthly, :CurrentDeleteMonthly, :MaxFreeTrialNum, :CurrentFreeTrialNum, :ChangePayTotal, :CurrentChangePayTotal, :ChangePayMonthly, :CurrentChangePayMonthly, :RequestId
         
-        def initialize(maxenvnum=nil, currentenvnum=nil, maxfreeenvnum=nil, currentfreeenvnum=nil, maxdeletetotal=nil, currentdeletetotal=nil, maxdeletemonthly=nil, currentdeletemonthly=nil, maxfreetrialnum=nil, currentfreetrialnum=nil, requestid=nil)
+        def initialize(maxenvnum=nil, currentenvnum=nil, maxfreeenvnum=nil, currentfreeenvnum=nil, maxdeletetotal=nil, currentdeletetotal=nil, maxdeletemonthly=nil, currentdeletemonthly=nil, maxfreetrialnum=nil, currentfreetrialnum=nil, changepaytotal=nil, currentchangepaytotal=nil, changepaymonthly=nil, currentchangepaymonthly=nil, requestid=nil)
           @MaxEnvNum = maxenvnum
           @CurrentEnvNum = currentenvnum
           @MaxFreeEnvNum = maxfreeenvnum
@@ -3195,6 +3207,10 @@ module TencentCloud
           @CurrentDeleteMonthly = currentdeletemonthly
           @MaxFreeTrialNum = maxfreetrialnum
           @CurrentFreeTrialNum = currentfreetrialnum
+          @ChangePayTotal = changepaytotal
+          @CurrentChangePayTotal = currentchangepaytotal
+          @ChangePayMonthly = changepaymonthly
+          @CurrentChangePayMonthly = currentchangepaymonthly
           @RequestId = requestid
         end
 
@@ -3209,6 +3225,10 @@ module TencentCloud
           @CurrentDeleteMonthly = params['CurrentDeleteMonthly']
           @MaxFreeTrialNum = params['MaxFreeTrialNum']
           @CurrentFreeTrialNum = params['CurrentFreeTrialNum']
+          @ChangePayTotal = params['ChangePayTotal']
+          @CurrentChangePayTotal = params['CurrentChangePayTotal']
+          @ChangePayMonthly = params['ChangePayMonthly']
+          @CurrentChangePayMonthly = params['CurrentChangePayMonthly']
           @RequestId = params['RequestId']
         end
       end

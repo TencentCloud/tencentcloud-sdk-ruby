@@ -23,17 +23,24 @@ module TencentCloud
         # @type Name: String
         # @param BankCard: 银行卡
         # @type BankCard: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、银行卡号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :Name, :BankCard
+        attr_accessor :Name, :BankCard, :Encryption
         
-        def initialize(name=nil, bankcard=nil)
+        def initialize(name=nil, bankcard=nil, encryption=nil)
           @Name = name
           @BankCard = bankcard
+          @Encryption = encryption
         end
 
         def deserialize(params)
           @Name = params['Name']
           @BankCard = params['BankCard']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 
@@ -249,15 +256,22 @@ module TencentCloud
       class CheckBankCardInformationRequest < TencentCloud::Common::AbstractModel
         # @param BankCard: 银行卡号。
         # @type BankCard: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（银行卡号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :BankCard
+        attr_accessor :BankCard, :Encryption
         
-        def initialize(bankcard=nil)
+        def initialize(bankcard=nil, encryption=nil)
           @BankCard = bankcard
+          @Encryption = encryption
         end
 
         def deserialize(params)
           @BankCard = params['BankCard']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 
@@ -366,19 +380,24 @@ module TencentCloud
         # API 3.0 Explorer 设置方式参考：
         # Config = {"CopyWarn":true,"ReshootWarn":true}
         # @type Config: String
+        # @param IsEncrypt: 是否需要对返回中的敏感信息进行加密。默认false。
+        # 其中敏感信息包括：Response.IdNum、Response.Name
+        # @type IsEncrypt: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :Config
+        attr_accessor :ImageBase64, :ImageUrl, :Config, :IsEncrypt
         
-        def initialize(imagebase64=nil, imageurl=nil, config=nil)
+        def initialize(imagebase64=nil, imageurl=nil, config=nil, isencrypt=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Config = config
+          @IsEncrypt = isencrypt
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @Config = params['Config']
+          @IsEncrypt = params['IsEncrypt']
         end
       end
 
@@ -417,12 +436,15 @@ module TencentCloud
         # @type Warnings: String
         # @param Quality: 图片质量分数，当请求Config中配置图片模糊告警该参数才有意义，取值范围（0～100），目前默认阈值是50分，低于50分会触发模糊告警。
         # @type Quality: Float
+        # @param Encryption: 敏感数据加密信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Sim, :Result, :Description, :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Portrait, :Warnings, :Quality, :RequestId
+        attr_accessor :Sim, :Result, :Description, :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Portrait, :Warnings, :Quality, :Encryption, :RequestId
         
-        def initialize(sim=nil, result=nil, description=nil, name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, portrait=nil, warnings=nil, quality=nil, requestid=nil)
+        def initialize(sim=nil, result=nil, description=nil, name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, portrait=nil, warnings=nil, quality=nil, encryption=nil, requestid=nil)
           @Sim = sim
           @Result = result
           @Description = description
@@ -435,6 +457,7 @@ module TencentCloud
           @Portrait = portrait
           @Warnings = warnings
           @Quality = quality
+          @Encryption = encryption
           @RequestId = requestid
         end
 
@@ -451,6 +474,10 @@ module TencentCloud
           @Portrait = params['Portrait']
           @Warnings = params['Warnings']
           @Quality = params['Quality']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -461,17 +488,24 @@ module TencentCloud
         # @type Mobile: String
         # @param Name: 姓名
         # @type Name: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :Mobile, :Name
+        attr_accessor :Mobile, :Name, :Encryption
         
-        def initialize(mobile=nil, name=nil)
+        def initialize(mobile=nil, name=nil, encryption=nil)
           @Mobile = mobile
           @Name = name
+          @Encryption = encryption
         end
 
         def deserialize(params)
           @Mobile = params['Mobile']
           @Name = params['Name']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 
@@ -1729,17 +1763,24 @@ module TencentCloud
         # @type IdCard: String
         # @param Name: 姓名
         # @type Name: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :IdCard, :Name
+        attr_accessor :IdCard, :Name, :Encryption
         
-        def initialize(idcard=nil, name=nil)
+        def initialize(idcard=nil, name=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
+          @Encryption = encryption
         end
 
         def deserialize(params)
           @IdCard = params['IdCard']
           @Name = params['Name']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 
@@ -1787,14 +1828,17 @@ module TencentCloud
         # @type ImageBase64: String
         # @param Optional: 本接口不需要传递此参数。
         # @type Optional: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :IdCard, :Name, :ImageBase64, :Optional
+        attr_accessor :IdCard, :Name, :ImageBase64, :Optional, :Encryption
         
-        def initialize(idcard=nil, name=nil, imagebase64=nil, optional=nil)
+        def initialize(idcard=nil, name=nil, imagebase64=nil, optional=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
           @ImageBase64 = imagebase64
           @Optional = optional
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -1802,6 +1846,10 @@ module TencentCloud
           @Name = params['Name']
           @ImageBase64 = params['ImageBase64']
           @Optional = params['Optional']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 
@@ -1934,16 +1982,19 @@ module TencentCloud
         # "BestFrameNum": 2  //需要返回多张最佳截图，取值范围2-10
         # }
         # @type Optional: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :IdCard, :Name, :VideoBase64, :LivenessType, :ValidateData, :Optional
+        attr_accessor :IdCard, :Name, :VideoBase64, :LivenessType, :ValidateData, :Optional, :Encryption
         
-        def initialize(idcard=nil, name=nil, videobase64=nil, livenesstype=nil, validatedata=nil, optional=nil)
+        def initialize(idcard=nil, name=nil, videobase64=nil, livenesstype=nil, validatedata=nil, optional=nil, encryption=nil)
           @IdCard = idcard
           @Name = name
           @VideoBase64 = videobase64
           @LivenessType = livenesstype
           @ValidateData = validatedata
           @Optional = optional
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -1953,6 +2004,10 @@ module TencentCloud
           @LivenessType = params['LivenessType']
           @ValidateData = params['ValidateData']
           @Optional = params['Optional']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 

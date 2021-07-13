@@ -1745,9 +1745,9 @@ module TencentCloud
       class DeleteIncrementalMigrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 目标实例ID
         # @type InstanceId: String
-        # @param BackupMigrationId: 备份导入任务ID
+        # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
         # @type BackupMigrationId: String
-        # @param IncrementalMigrationId: 增量备份导入任务ID
+        # @param IncrementalMigrationId: 增量备份导入任务ID，由CreateIncrementalMigration接口返回
         # @type IncrementalMigrationId: String
 
         attr_accessor :InstanceId, :BackupMigrationId, :IncrementalMigrationId
@@ -2063,13 +2063,13 @@ module TencentCloud
         # @type RecoveryType: String
         # @param UploadType: COS_URL-备份放在用户的对象存储上，提供URL。COS_UPLOAD-备份放在业务的对象存储上，用户上传
         # @type UploadType: String
-        # @param Limit: 分页，页大小
+        # @param Limit: 分页，页大小，默认值：100
         # @type Limit: Integer
-        # @param Offset: 分页，页数
+        # @param Offset: 分页，页数，默认值：0
         # @type Offset: Integer
-        # @param OrderBy: 排序字段，name,createTime,startTime,endTime
+        # @param OrderBy: 排序字段，name；createTime；startTime；endTime，默认按照createTime递增排序。
         # @type OrderBy: String
-        # @param OrderByType: 排序方式，desc,asc
+        # @param OrderByType: 排序方式，desc-递减排序，asc-递增排序。默认按照asc排序，且在OrderBy为有效值时，本参数有效
         # @type OrderByType: String
 
         attr_accessor :InstanceId, :BackupMigrationId, :MigrationName, :BackupFileName, :StatusSet, :RecoveryType, :UploadType, :Limit, :Offset, :OrderBy, :OrderByType
@@ -2599,15 +2599,15 @@ module TencentCloud
         # @type BackupFileName: String
         # @param StatusSet: 导入任务状态集合
         # @type StatusSet: Array
-        # @param Limit: 分页，页大小
+        # @param Limit: 分页，页大小，默认值：100
         # @type Limit: Integer
-        # @param Offset: 分页，页数
+        # @param Offset: 分页，页数，默认值：0
         # @type Offset: Integer
-        # @param OrderBy: 排序字段，name,createTime,startTime,endTime
+        # @param OrderBy: 排序字段，name；createTime；startTime；endTime，默认按照createTime递增排序。
         # @type OrderBy: String
-        # @param OrderByType: 排序方式，desc,asc
+        # @param OrderByType: 排序方式，desc-递减排序，asc-递增排序。默认按照asc排序，且在OrderBy为有效值时，本参数有效
         # @type OrderByType: String
-        # @param IncrementalMigrationId: 增量备份导入任务ID
+        # @param IncrementalMigrationId: 增量备份导入任务ID，由CreateIncrementalMigration接口返回
         # @type IncrementalMigrationId: String
 
         attr_accessor :BackupMigrationId, :InstanceId, :BackupFileName, :StatusSet, :Limit, :Offset, :OrderBy, :OrderByType, :IncrementalMigrationId
@@ -4844,9 +4844,9 @@ module TencentCloud
         # @type InstanceId: String
         # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
         # @type BackupMigrationId: String
-        # @param IncrementalMigrationId: 增量导入任务ID
+        # @param IncrementalMigrationId: 增量导入任务ID，由CreateIncrementalMigration接口返回
         # @type IncrementalMigrationId: String
-        # @param IsRecovery: 是否需要恢复，NO-不需要，YES-需要
+        # @param IsRecovery: 是否需要恢复，NO-不需要，YES-需要，默认不修改增量备份导入任务是否需要恢复的属性。
         # @type IsRecovery: String
         # @param BackupFiles: UploadType是COS_URL时这里时URL，COS_UPLOAD这里填备份文件的名字；只支持1个备份文件，但1个备份文件内可包含多个库
         # @type BackupFiles: Array

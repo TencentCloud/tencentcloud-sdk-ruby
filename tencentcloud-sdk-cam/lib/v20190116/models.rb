@@ -1148,6 +1148,54 @@ module TencentCloud
         end
       end
 
+      # DescribeSafeAuthFlagIntl请求参数结构体
+      class DescribeSafeAuthFlagIntlRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSafeAuthFlagIntl返回参数结构体
+      class DescribeSafeAuthFlagIntlResponse < TencentCloud::Common::AbstractModel
+        # @param LoginFlag: 登录保护设置
+        # @type LoginFlag: :class:`Tencentcloud::Cam.v20190116.models.LoginActionFlagIntl`
+        # @param ActionFlag: 敏感操作保护设置
+        # @type ActionFlag: :class:`Tencentcloud::Cam.v20190116.models.LoginActionFlagIntl`
+        # @param OffsiteFlag: 异地登录保护设置
+        # @type OffsiteFlag: :class:`Tencentcloud::Cam.v20190116.models.OffsiteFlag`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoginFlag, :ActionFlag, :OffsiteFlag, :RequestId
+        
+        def initialize(loginflag=nil, actionflag=nil, offsiteflag=nil, requestid=nil)
+          @LoginFlag = loginflag
+          @ActionFlag = actionflag
+          @OffsiteFlag = offsiteflag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LoginFlag'].nil?
+            @LoginFlag = LoginActionFlagIntl.new
+            @LoginFlag.deserialize(params['LoginFlag'])
+          end
+          unless params['ActionFlag'].nil?
+            @ActionFlag = LoginActionFlagIntl.new
+            @ActionFlag.deserialize(params['ActionFlag'])
+          end
+          unless params['OffsiteFlag'].nil?
+            @OffsiteFlag = OffsiteFlag.new
+            @OffsiteFlag.deserialize(params['OffsiteFlag'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSafeAuthFlag请求参数结构体
       class DescribeSafeAuthFlagRequest < TencentCloud::Common::AbstractModel
 
@@ -1351,6 +1399,57 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetAccountSummary请求参数结构体
+      class GetAccountSummaryRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetAccountSummary返回参数结构体
+      class GetAccountSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param Policies: 策略数
+        # @type Policies: Integer
+        # @param Roles: 角色数
+        # @type Roles: Integer
+        # @param Idps: 身份提供商数
+        # @type Idps: Integer
+        # @param User: 子账户数
+        # @type User: Integer
+        # @param Group: 分组数
+        # @type Group: Integer
+        # @param Member: 分组用户总数
+        # @type Member: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :RequestId
+        
+        def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, requestid=nil)
+          @Policies = policies
+          @Roles = roles
+          @Idps = idps
+          @User = user
+          @Group = group
+          @Member = member
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Policies = params['Policies']
+          @Roles = params['Roles']
+          @Idps = params['Idps']
+          @User = params['User']
+          @Group = params['Group']
+          @Member = params['Member']
           @RequestId = params['RequestId']
         end
       end
@@ -2865,6 +2964,42 @@ module TencentCloud
           @Stoken = params['Stoken']
           @Wechat = params['Wechat']
           @Custom = params['Custom']
+        end
+      end
+
+      # 登录和敏感操作flag
+      class LoginActionFlagIntl < TencentCloud::Common::AbstractModel
+        # @param Phone: 手机
+        # @type Phone: Integer
+        # @param Token: 硬token
+        # @type Token: Integer
+        # @param Stoken: 软token
+        # @type Stoken: Integer
+        # @param Wechat: 微信
+        # @type Wechat: Integer
+        # @param Custom: 自定义
+        # @type Custom: Integer
+        # @param Mail: 邮件
+        # @type Mail: Integer
+
+        attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom, :Mail
+        
+        def initialize(phone=nil, token=nil, stoken=nil, wechat=nil, custom=nil, mail=nil)
+          @Phone = phone
+          @Token = token
+          @Stoken = stoken
+          @Wechat = wechat
+          @Custom = custom
+          @Mail = mail
+        end
+
+        def deserialize(params)
+          @Phone = params['Phone']
+          @Token = params['Token']
+          @Stoken = params['Stoken']
+          @Wechat = params['Wechat']
+          @Custom = params['Custom']
+          @Mail = params['Mail']
         end
       end
 

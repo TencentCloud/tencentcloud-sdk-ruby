@@ -19,9 +19,9 @@ module TencentCloud
     module V20210527
       # AddUserContact请求参数结构体
       class AddUserContactRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 联系人姓名，大小写字母+数字+下划线，最小 2 位最大 60 位的长度， 不能以"_"开头，且联系人名保持唯一。
+        # @param Name: 联系人姓名，由中英文、数字、空格、!@#$%^&*()_+-=（）组成，不能以下划线开头，长度在20以内。
         # @type Name: String
-        # @param ContactInfo: 邮箱地址，大小写字母、数字及下划线组成， 不能以"_"开头。
+        # @param ContactInfo: 邮箱地址，支持大小写字母、数字、下划线及@字符， 不能以下划线开头，邮箱地址不可重复。
         # @type ContactInfo: String
         # @param Product: 服务产品类型，固定值："mysql"。
         # @type Product: String
@@ -528,9 +528,9 @@ module TencentCloud
         # @type DiagType: String
         # @param EventId: 事件 ID 。
         # @type EventId: Integer
-        # @param Explanation: 事件详情。
+        # @param Explanation: 诊断事件详情，若无附加解释信息则输出为空。
         # @type Explanation: String
-        # @param Outline: 概要。
+        # @param Outline: 诊断概要。
         # @type Outline: String
         # @param Problem: 诊断出的问题。
         # @type Problem: String
@@ -538,7 +538,7 @@ module TencentCloud
         # @type Severity: Integer
         # @param StartTime: 开始时间
         # @type StartTime: String
-        # @param Suggestions: 建议。
+        # @param Suggestions: 诊断建议，若无建议则输出为空。
         # @type Suggestions: String
         # @param Metric: 保留字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -850,7 +850,7 @@ module TencentCloud
       class DescribeHealthScoreRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 需要获取健康得分的实例ID。
         # @type InstanceId: String
-        # @param Time: 获取健康得分的时间。
+        # @param Time: 获取健康得分的时间，时间格式如：2019-09-10 12:13:14。
         # @type Time: String
         # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         # @type Product: String
@@ -1629,9 +1629,9 @@ module TencentCloud
 
       # DescribeUserSqlAdvice返回参数结构体
       class DescribeUserSqlAdviceResponse < TencentCloud::Common::AbstractModel
-        # @param Advices: SQL优化建议，可解析为JSON数组。
+        # @param Advices: SQL优化建议，可解析为JSON数组，无需优化时输出为空。
         # @type Advices: String
-        # @param Comments: SQL优化建议备注，可解析为String数组。
+        # @param Comments: SQL优化建议备注，可解析为String数组，无需优化时输出为空。
         # @type Comments: String
         # @param SqlText: SQL语句。
         # @type SqlText: String
@@ -1639,9 +1639,9 @@ module TencentCloud
         # @type Schema: String
         # @param Tables: 相关表的DDL信息，可解析为JSON数组。
         # @type Tables: String
-        # @param SqlPlan: SQL执行计划，可解析为JSON。
+        # @param SqlPlan: SQL执行计划，可解析为JSON，无需优化时输出为空。
         # @type SqlPlan: String
-        # @param Cost: SQL优化后的成本节约详情，可解析为JSON。
+        # @param Cost: SQL优化后的成本节约详情，可解析为JSON，无需优化时输出为空。
         # @type Cost: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1679,22 +1679,20 @@ module TencentCloud
         # @type EndTime: String
         # @param StartTime: 开始时间。
         # @type StartTime: String
-        # @param EventId: 事件 ID 。
+        # @param EventId: 事件唯一ID 。
         # @type EventId: Integer
         # @param Severity: 严重程度。严重程度分为5级，按影响程度从高至低分别为：1：致命，2：严重，3：告警，4：提示，5：健康。
         # @type Severity: Integer
-        # @param Outline: 概要。
+        # @param Outline: 诊断概要。
         # @type Outline: String
-        # @param DiagItem: 诊断项。
+        # @param DiagItem: 诊断项说明。
         # @type DiagItem: String
         # @param InstanceId: 实例 ID 。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param Metric: 保留字段
+        # @param Metric: 保留字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metric: String
-        # @param Region: 地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Region: 地域。
         # @type Region: String
 
         attr_accessor :DiagType, :EndTime, :StartTime, :EventId, :Severity, :Outline, :DiagItem, :InstanceId, :Metric, :Region
@@ -2833,10 +2831,10 @@ module TencentCloud
         # @param ProfileId: 配置的id。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileId: String
-        # @param ProfileType: 配置类型。
+        # @param ProfileType: 配置类型，支持值包括："dbScan_mail_configuration" - 数据库巡检邮件配置，"scheduler_mail_configuration" - 定期生成邮件配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileType: String
-        # @param ProfileLevel: 配置级别，"User"或"Instance"。
+        # @param ProfileLevel: 配置级别，支持值包括："User" - 用户级别，"Instance" - 实例级别，其中数据库巡检邮件配置为用户级别，定期生成邮件配置为实例级别。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileLevel: String
         # @param ProfileName: 配置名称。

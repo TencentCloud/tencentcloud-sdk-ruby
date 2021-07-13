@@ -23,7 +23,7 @@ module TencentCloud
         # @type EvidenceName: String
         # @param FileContent: 数据Base64编码，大小不超过5M
         # @type FileContent: String
-        # @param FileName: 对应数据Base64文件名称
+        # @param FileName: 带后缀的文件名称，如music.mp3
         # @type FileName: String
         # @param EvidenceHash: 文件hash
         # @type EvidenceHash: String
@@ -145,7 +145,7 @@ module TencentCloud
         # @type EvidenceName: String
         # @param FileContent: 数据Base64编码，大小不超过5M
         # @type FileContent: String
-        # @param FileName: 对应数据Base64文件名称
+        # @param FileName: 带后缀的文件名称，如 test.doc
         # @type FileName: String
         # @param EvidenceHash: 文件hash
         # @type EvidenceHash: String
@@ -361,7 +361,7 @@ module TencentCloud
         # @type EvidenceName: String
         # @param FileContent: 数据Base64编码，大小不超过5M
         # @type FileContent: String
-        # @param FileName: 对应数据Base64文件名称 test.png
+        # @param FileName: 带后缀的文件名称，如 test.png
         # @type FileName: String
         # @param EvidenceHash: 文件hash
         # @type EvidenceHash: String
@@ -426,7 +426,7 @@ module TencentCloud
         # @type EvidenceName: String
         # @param FileContent: 数据Base64编码，大小不超过5M
         # @type FileContent: String
-        # @param FileName: 对应数据Base64文件名称
+        # @param FileName: 带后缀的文件名称，如music.mkv
         # @type FileName: String
         # @param EvidenceHash: 文件hash
         # @type EvidenceHash: String

@@ -605,6 +605,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询安全设置(国际站)
+
+        # @param request: Request instance for DescribeSafeAuthFlagIntl.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DescribeSafeAuthFlagIntlRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DescribeSafeAuthFlagIntlResponse`
+        def DescribeSafeAuthFlagIntl(request)
+          body = send_request('DescribeSafeAuthFlagIntl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSafeAuthFlagIntlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过子用户UIN列表查询子用户
 
         # @param request: Request instance for DescribeSubAccounts.
@@ -687,6 +711,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DetachUserPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询账户摘要
+
+        # @param request: Request instance for GetAccountSummary.
+        # @type request: :class:`Tencentcloud::cam::V20190116::GetAccountSummaryRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::GetAccountSummaryResponse`
+        def GetAccountSummary(request)
+          body = send_request('GetAccountSummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAccountSummaryResponse.new
             model.deserialize(response['Response'])
             model
           else

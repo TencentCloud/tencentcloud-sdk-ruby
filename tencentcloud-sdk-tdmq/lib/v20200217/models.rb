@@ -2445,10 +2445,13 @@ module TencentCloud
         # @type NamespaceId: String
         # @param NamespaceName: 命名空间名称
         # @type NamespaceName: String
+        # @param TopicNum: Topic数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNum: Integer
 
-        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName
+        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum
         
-        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil)
+        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil, topicnum=nil)
           @EnvironmentId = environmentid
           @Remark = remark
           @MsgTTL = msgttl
@@ -2456,6 +2459,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @NamespaceId = namespaceid
           @NamespaceName = namespacename
+          @TopicNum = topicnum
         end
 
         def deserialize(params)
@@ -2466,6 +2470,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @NamespaceId = params['NamespaceId']
           @NamespaceName = params['NamespaceName']
+          @TopicNum = params['TopicNum']
         end
       end
 
