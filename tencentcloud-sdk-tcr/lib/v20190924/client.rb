@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于校验企业版实例信息
+
+        # @param request: Request instance for CheckInstance.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::CheckInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::CheckInstanceResponse`
+        def CheckInstance(request)
+          body = send_request('CheckInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 检查待创建的实例名称是否符合规范
 
         # @param request: Request instance for CheckInstanceName.

@@ -800,7 +800,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询扩容的价格。
+        # 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询变配的价格。
 
         # @param request: Request instance for DescribeUpgradePrice.
         # @type request: :class:`Tencentcloud::mariadb::V20170312::DescribeUpgradePriceRequest`

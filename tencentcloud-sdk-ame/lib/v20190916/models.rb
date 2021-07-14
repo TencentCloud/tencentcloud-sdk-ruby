@@ -816,16 +816,19 @@ module TencentCloud
         # @type ComposerSet: Array
         # @param TagSet: 标签列表
         # @type TagSet: Array
+        # @param Duration: 歌曲时长
+        # @type Duration: Integer
 
-        attr_accessor :MusicId, :Name, :SingerSet, :LyricistSet, :ComposerSet, :TagSet
+        attr_accessor :MusicId, :Name, :SingerSet, :LyricistSet, :ComposerSet, :TagSet, :Duration
         
-        def initialize(musicid=nil, name=nil, singerset=nil, lyricistset=nil, composerset=nil, tagset=nil)
+        def initialize(musicid=nil, name=nil, singerset=nil, lyricistset=nil, composerset=nil, tagset=nil, duration=nil)
           @MusicId = musicid
           @Name = name
           @SingerSet = singerset
           @LyricistSet = lyricistset
           @ComposerSet = composerset
           @TagSet = tagset
+          @Duration = duration
         end
 
         def deserialize(params)
@@ -835,6 +838,7 @@ module TencentCloud
           @LyricistSet = params['LyricistSet']
           @ComposerSet = params['ComposerSet']
           @TagSet = params['TagSet']
+          @Duration = params['Duration']
         end
       end
 

@@ -213,6 +213,46 @@ module TencentCloud
         end
       end
 
+      # CheckInstance请求参数结构体
+      class CheckInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 待检测的实例Id
+        # @type RegistryId: String
+
+        attr_accessor :RegistryId
+        
+        def initialize(registryid=nil)
+          @RegistryId = registryid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+        end
+      end
+
+      # CheckInstance返回参数结构体
+      class CheckInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param IsValidated: 检查结果，true为合法，false为非法
+        # @type IsValidated: Boolean
+        # @param RegionId: 实例所在的RegionId
+        # @type RegionId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsValidated, :RegionId, :RequestId
+        
+        def initialize(isvalidated=nil, regionid=nil, requestid=nil)
+          @IsValidated = isvalidated
+          @RegionId = regionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsValidated = params['IsValidated']
+          @RegionId = params['RegionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateApplicationTriggerPersonal请求参数结构体
       class CreateApplicationTriggerPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 触发器关联的镜像仓库，library/test格式
@@ -3839,15 +3879,18 @@ module TencentCloud
         # @type Description: String
         # @param DestinationRegionId: 目标实例的地域ID，如广州是1
         # @type DestinationRegionId: Integer
+        # @param PeerReplicationOption: 开启跨主账号实例同步配置项
+        # @type PeerReplicationOption: :class:`Tencentcloud::Tcr.v20190924.models.PeerReplicationOption`
 
-        attr_accessor :SourceRegistryId, :DestinationRegistryId, :Rule, :Description, :DestinationRegionId
+        attr_accessor :SourceRegistryId, :DestinationRegistryId, :Rule, :Description, :DestinationRegionId, :PeerReplicationOption
         
-        def initialize(sourceregistryid=nil, destinationregistryid=nil, rule=nil, description=nil, destinationregionid=nil)
+        def initialize(sourceregistryid=nil, destinationregistryid=nil, rule=nil, description=nil, destinationregionid=nil, peerreplicationoption=nil)
           @SourceRegistryId = sourceregistryid
           @DestinationRegistryId = destinationregistryid
           @Rule = rule
           @Description = description
           @DestinationRegionId = destinationregionid
+          @PeerReplicationOption = peerreplicationoption
         end
 
         def deserialize(params)
@@ -3859,6 +3902,10 @@ module TencentCloud
           end
           @Description = params['Description']
           @DestinationRegionId = params['DestinationRegionId']
+          unless params['PeerReplicationOption'].nil?
+            @PeerReplicationOption = PeerReplicationOption.new
+            @PeerReplicationOption.deserialize(params['PeerReplicationOption'])
+          end
         end
       end
 
@@ -4451,6 +4498,30 @@ module TencentCloud
         def deserialize(params)
           @IsExist = params['IsExist']
           @IsPreserved = params['IsPreserved']
+        end
+      end
+
+      # 跨主账号实例同步参数
+      class PeerReplicationOption < TencentCloud::Common::AbstractModel
+        # @param PeerRegistryUin: 待同步实例的uin
+        # @type PeerRegistryUin: String
+        # @param PeerRegistryToken: 待同步实例的访问永久Token
+        # @type PeerRegistryToken: String
+        # @param EnablePeerReplication: 是否开启跨主账号实例同步
+        # @type EnablePeerReplication: Boolean
+
+        attr_accessor :PeerRegistryUin, :PeerRegistryToken, :EnablePeerReplication
+        
+        def initialize(peerregistryuin=nil, peerregistrytoken=nil, enablepeerreplication=nil)
+          @PeerRegistryUin = peerregistryuin
+          @PeerRegistryToken = peerregistrytoken
+          @EnablePeerReplication = enablepeerreplication
+        end
+
+        def deserialize(params)
+          @PeerRegistryUin = params['PeerRegistryUin']
+          @PeerRegistryToken = params['PeerRegistryToken']
+          @EnablePeerReplication = params['EnablePeerReplication']
         end
       end
 

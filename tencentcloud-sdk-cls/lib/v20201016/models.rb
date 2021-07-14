@@ -2719,10 +2719,13 @@ module TencentCloud
         # @param StorageType: 日主题的存储类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: String
+        # @param Period: 生命周期，单位为天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period
         
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
@@ -2734,6 +2737,7 @@ module TencentCloud
           @AutoSplit = autosplit
           @MaxSplitPartitions = maxsplitpartitions
           @StorageType = storagetype
+          @Period = period
         end
 
         def deserialize(params)
@@ -2755,6 +2759,7 @@ module TencentCloud
           @AutoSplit = params['AutoSplit']
           @MaxSplitPartitions = params['MaxSplitPartitions']
           @StorageType = params['StorageType']
+          @Period = params['Period']
         end
       end
 

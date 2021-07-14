@@ -81,10 +81,12 @@ module TencentCloud
         # @type CreatedBy: String
         # @param Tags: 命令关联的标签列表。
         # @type Tags: Array
+        # @param Username: 在实例上执行命令的用户名。
+        # @type Username: String
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :FormattedDescription, :CreatedBy, :Tags
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :FormattedDescription, :CreatedBy, :Tags, :Username
         
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, formatteddescription=nil, createdby=nil, tags=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, formatteddescription=nil, createdby=nil, tags=nil, username=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -99,6 +101,7 @@ module TencentCloud
           @FormattedDescription = formatteddescription
           @CreatedBy = createdby
           @Tags = tags
+          @Username = username
         end
 
         def deserialize(params)
@@ -123,6 +126,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @Username = params['Username']
         end
       end
 
@@ -136,14 +140,17 @@ module TencentCloud
         # @type Timeout: Integer
         # @param WorkingDirectory: 执行路径。
         # @type WorkingDirectory: String
+        # @param Username: 执行用户。
+        # @type Username: String
 
-        attr_accessor :Content, :CommandType, :Timeout, :WorkingDirectory
+        attr_accessor :Content, :CommandType, :Timeout, :WorkingDirectory, :Username
         
-        def initialize(content=nil, commandtype=nil, timeout=nil, workingdirectory=nil)
+        def initialize(content=nil, commandtype=nil, timeout=nil, workingdirectory=nil, username=nil)
           @Content = content
           @CommandType = commandtype
           @Timeout = timeout
           @WorkingDirectory = workingdirectory
+          @Username = username
         end
 
         def deserialize(params)
@@ -151,6 +158,7 @@ module TencentCloud
           @CommandType = params['CommandType']
           @Timeout = params['Timeout']
           @WorkingDirectory = params['WorkingDirectory']
+          @Username = params['Username']
         end
       end
 
@@ -180,10 +188,13 @@ module TencentCloud
         # @type DefaultParameters: String
         # @param Tags: 为命令关联的标签，列表长度不超过10。
         # @type Tags: Array
+        # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在Linux实例中以root用户执行命令。
+        # @type Username: String
 
-        attr_accessor :CommandName, :Content, :Description, :CommandType, :WorkingDirectory, :Timeout, :EnableParameter, :DefaultParameters, :Tags
+        attr_accessor :CommandName, :Content, :Description, :CommandType, :WorkingDirectory, :Timeout, :EnableParameter, :DefaultParameters, :Tags, :Username
         
-        def initialize(commandname=nil, content=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, enableparameter=nil, defaultparameters=nil, tags=nil)
+        def initialize(commandname=nil, content=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, enableparameter=nil, defaultparameters=nil, tags=nil, username=nil)
           @CommandName = commandname
           @Content = content
           @Description = description
@@ -193,6 +204,7 @@ module TencentCloud
           @EnableParameter = enableparameter
           @DefaultParameters = defaultparameters
           @Tags = tags
+          @Username = username
         end
 
         def deserialize(params)
@@ -212,6 +224,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @Username = params['Username']
         end
       end
 
@@ -652,10 +665,12 @@ module TencentCloud
         # @type DefaultParameters: String
         # @param InstanceKind: 执行命令的实例类型，取值范围：CVM、LIGHTHOUSE。
         # @type InstanceKind: String
+        # @param Username: 在实例上执行命令时使用的用户名。
+        # @type Username: String
 
-        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind
+        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username
         
-        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil)
+        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil)
           @InvocationId = invocationid
           @CommandId = commandid
           @InvocationStatus = invocationstatus
@@ -668,6 +683,7 @@ module TencentCloud
           @Parameters = parameters
           @DefaultParameters = defaultparameters
           @InstanceKind = instancekind
+          @Username = username
         end
 
         def deserialize(params)
@@ -690,6 +706,7 @@ module TencentCloud
           @Parameters = params['Parameters']
           @DefaultParameters = params['DefaultParameters']
           @InstanceKind = params['InstanceKind']
+          @Username = params['Username']
         end
       end
 
@@ -809,19 +826,24 @@ module TencentCloud
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type Parameters: String
+        # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。若不填，默认以 Command 配置的 Username 执行。
+        # @type Username: String
 
-        attr_accessor :CommandId, :InstanceIds, :Parameters
+        attr_accessor :CommandId, :InstanceIds, :Parameters, :Username
         
-        def initialize(commandid=nil, instanceids=nil, parameters=nil)
+        def initialize(commandid=nil, instanceids=nil, parameters=nil, username=nil)
           @CommandId = commandid
           @InstanceIds = instanceids
           @Parameters = parameters
+          @Username = username
         end
 
         def deserialize(params)
           @CommandId = params['CommandId']
           @InstanceIds = params['InstanceIds']
           @Parameters = params['Parameters']
+          @Username = params['Username']
         end
       end
 
@@ -868,10 +890,13 @@ module TencentCloud
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
+        # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在Linux实例中以root用户执行命令。
+        # @type Username: String
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :DefaultParameters
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :DefaultParameters, :Username
         
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, defaultparameters=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, defaultparameters=nil, username=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -880,6 +905,7 @@ module TencentCloud
           @WorkingDirectory = workingdirectory
           @Timeout = timeout
           @DefaultParameters = defaultparameters
+          @Username = username
         end
 
         def deserialize(params)
@@ -891,6 +917,7 @@ module TencentCloud
           @WorkingDirectory = params['WorkingDirectory']
           @Timeout = params['Timeout']
           @DefaultParameters = params['DefaultParameters']
+          @Username = params['Username']
         end
       end
 
@@ -1025,10 +1052,13 @@ module TencentCloud
         # @type Parameters: String
         # @param Tags: 如果保存命令，可为命令设置标签。列表长度不超过10。
         # @type Tags: Array
+        # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
+        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。默认情况下，在Linux实例中以root用户执行命令。
+        # @type Username: String
 
-        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :Parameters, :Tags
+        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :Parameters, :Tags, :Username
         
-        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, parameters=nil, tags=nil)
+        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, parameters=nil, tags=nil, username=nil)
           @Content = content
           @InstanceIds = instanceids
           @CommandName = commandname
@@ -1041,6 +1071,7 @@ module TencentCloud
           @DefaultParameters = defaultparameters
           @Parameters = parameters
           @Tags = tags
+          @Username = username
         end
 
         def deserialize(params)
@@ -1063,6 +1094,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @Username = params['Username']
         end
       end
 

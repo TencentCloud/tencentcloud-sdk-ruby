@@ -488,7 +488,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDCDBUpgradePrice）用于查询升级分布式数据库实例价格。
+        # 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
 
         # @param request: Request instance for DescribeDCDBUpgradePrice.
         # @type request: :class:`Tencentcloud::dcdb::V20180411::DescribeDCDBUpgradePriceRequest`

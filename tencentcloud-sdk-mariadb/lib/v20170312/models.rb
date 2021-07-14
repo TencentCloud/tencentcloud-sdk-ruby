@@ -887,10 +887,24 @@ module TencentCloud
         # @type DcnFlag: Integer
         # @param DcnStatus: 实例DCN状态，0-无，1-创建中，2-同步中，3-已断开
         # @type DcnStatus: Integer
+        # @param Cpu: 实例CPU核数
+        # @type Cpu: Integer
+        # @param Memory: 实例内存大小，单位 GB
+        # @type Memory: Integer
+        # @param Storage: 实例存储大小，单位 GB
+        # @type Storage: Integer
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+        # @param CreateTime: 实例创建时间，格式为 2006-01-02 15:04:05
+        # @type CreateTime: String
+        # @param PeriodEndTime: 实例到期时间，格式为 2006-01-02 15:04:05
+        # @type PeriodEndTime: String
+        # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
+        # @type InstanceType: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :Vip, :Vipv6, :Vport, :Status, :StatusDesc, :DcnFlag, :DcnStatus
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :Vip, :Vipv6, :Vport, :Status, :StatusDesc, :DcnFlag, :DcnStatus, :Cpu, :Memory, :Storage, :PayMode, :CreateTime, :PeriodEndTime, :InstanceType
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, vip=nil, vipv6=nil, vport=nil, status=nil, statusdesc=nil, dcnflag=nil, dcnstatus=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, vip=nil, vipv6=nil, vport=nil, status=nil, statusdesc=nil, dcnflag=nil, dcnstatus=nil, cpu=nil, memory=nil, storage=nil, paymode=nil, createtime=nil, periodendtime=nil, instancetype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -902,6 +916,13 @@ module TencentCloud
           @StatusDesc = statusdesc
           @DcnFlag = dcnflag
           @DcnStatus = dcnstatus
+          @Cpu = cpu
+          @Memory = memory
+          @Storage = storage
+          @PayMode = paymode
+          @CreateTime = createtime
+          @PeriodEndTime = periodendtime
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -916,6 +937,13 @@ module TencentCloud
           @StatusDesc = params['StatusDesc']
           @DcnFlag = params['DcnFlag']
           @DcnStatus = params['DcnStatus']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @PayMode = params['PayMode']
+          @CreateTime = params['CreateTime']
+          @PeriodEndTime = params['PeriodEndTime']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -2469,20 +2497,24 @@ module TencentCloud
         # @type OriginalPrice: Integer
         # @param Price: 实际价格，单位：分。受折扣等影响，可能和原价不同。
         # @type Price: Integer
+        # @param Formula: 变配明细计算公式
+        # @type Formula: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OriginalPrice, :Price, :RequestId
+        attr_accessor :OriginalPrice, :Price, :Formula, :RequestId
         
-        def initialize(originalprice=nil, price=nil, requestid=nil)
+        def initialize(originalprice=nil, price=nil, formula=nil, requestid=nil)
           @OriginalPrice = originalprice
           @Price = price
+          @Formula = formula
           @RequestId = requestid
         end
 
         def deserialize(params)
           @OriginalPrice = params['OriginalPrice']
           @Price = params['Price']
+          @Formula = params['Formula']
           @RequestId = params['RequestId']
         end
       end

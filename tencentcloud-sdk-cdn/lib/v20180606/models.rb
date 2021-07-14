@@ -8029,18 +8029,22 @@ module TencentCloud
         # @type RuleName: String
         # @param Configure: 具体配置
         # @type Configure: Array
-        # @param Result: 规则行为，一般为refuse
+        # @param Result: 规则行为，一般为refuse，重定向redirect
         # @type Result: String
         # @param Status: 规则是否生效中active|inactive
         # @type Status: String
+        # @param ErrorPage: 错误页面配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorPage: :class:`Tencentcloud::Cdn.v20180606.models.ScdnErrorPage`
 
-        attr_accessor :RuleName, :Configure, :Result, :Status
+        attr_accessor :RuleName, :Configure, :Result, :Status, :ErrorPage
         
-        def initialize(rulename=nil, configure=nil, result=nil, status=nil)
+        def initialize(rulename=nil, configure=nil, result=nil, status=nil, errorpage=nil)
           @RuleName = rulename
           @Configure = configure
           @Result = result
           @Status = status
+          @ErrorPage = errorpage
         end
 
         def deserialize(params)
@@ -8055,6 +8059,10 @@ module TencentCloud
           end
           @Result = params['Result']
           @Status = params['Status']
+          unless params['ErrorPage'].nil?
+            @ErrorPage = ScdnErrorPage.new
+            @ErrorPage.deserialize(params['ErrorPage'])
+          end
         end
       end
 

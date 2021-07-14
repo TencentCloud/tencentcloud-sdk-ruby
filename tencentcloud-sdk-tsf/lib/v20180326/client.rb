@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建文件配置项
+
+        # @param request: Request instance for CreateFileConfig.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::CreateFileConfigRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::CreateFileConfigResponse`
+        def CreateFileConfig(request)
+          body = send_request('CreateFileConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFileConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量导入API至api分组(也支持新建API到分组)
 
         # @param request: Request instance for CreateGatewayApi.
@@ -1649,6 +1673,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEnabledUnitRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询文件配置项列表
+
+        # @param request: Request instance for DescribeFileConfigs.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeFileConfigsRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeFileConfigsResponse`
+        def DescribeFileConfigs(request)
+          body = send_request('DescribeFileConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFileConfigsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3355,6 +3403,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReleaseConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 发布文件配置
+
+        # @param request: Request instance for ReleaseFileConfig.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::ReleaseFileConfigRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::ReleaseFileConfigResponse`
+        def ReleaseFileConfig(request)
+          body = send_request('ReleaseFileConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReleaseFileConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

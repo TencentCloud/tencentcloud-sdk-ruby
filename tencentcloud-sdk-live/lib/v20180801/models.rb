@@ -373,10 +373,10 @@ module TencentCloud
         # @type Description: String
         # @param StreamBeginNotifyUrl: 开播回调 URL。
         # @type StreamBeginNotifyUrl: String
+        # @param StreamMixNotifyUrl: 混流回调 URL。(参数已弃用)。
+        # @type StreamMixNotifyUrl: String
         # @param StreamEndNotifyUrl: 断流回调 URL。
         # @type StreamEndNotifyUrl: String
-        # @param StreamMixNotifyUrl: 混流回调 URL。
-        # @type StreamMixNotifyUrl: String
         # @param RecordNotifyUrl: 录制回调 URL。
         # @type RecordNotifyUrl: String
         # @param SnapshotNotifyUrl: 截图回调 URL。
@@ -386,15 +386,15 @@ module TencentCloud
         # @param CallbackKey: 回调的鉴权 key。
         # @type CallbackKey: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :StreamMixNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey
+        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamMixNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey
         
-        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, streammixnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streammixnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
           @StreamBeginNotifyUrl = streambeginnotifyurl
-          @StreamEndNotifyUrl = streamendnotifyurl
           @StreamMixNotifyUrl = streammixnotifyurl
+          @StreamEndNotifyUrl = streamendnotifyurl
           @RecordNotifyUrl = recordnotifyurl
           @SnapshotNotifyUrl = snapshotnotifyurl
           @PornCensorshipNotifyUrl = porncensorshipnotifyurl
@@ -406,8 +406,8 @@ module TencentCloud
           @TemplateName = params['TemplateName']
           @Description = params['Description']
           @StreamBeginNotifyUrl = params['StreamBeginNotifyUrl']
-          @StreamEndNotifyUrl = params['StreamEndNotifyUrl']
           @StreamMixNotifyUrl = params['StreamMixNotifyUrl']
+          @StreamEndNotifyUrl = params['StreamEndNotifyUrl']
           @RecordNotifyUrl = params['RecordNotifyUrl']
           @SnapshotNotifyUrl = params['SnapshotNotifyUrl']
           @PornCensorshipNotifyUrl = params['PornCensorshipNotifyUrl']
@@ -8936,15 +8936,23 @@ module TencentCloud
       class UnBindLiveDomainCertRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 播放域名。
         # @type DomainName: String
+        # @param Type: 枚举值：
+        # gray: 解绑灰度规则
+        # formal(默认): 解绑正式规则
 
-        attr_accessor :DomainName
+        # 不传则为formal
+        # @type Type: String
+
+        attr_accessor :DomainName, :Type
         
-        def initialize(domainname=nil)
+        def initialize(domainname=nil, type=nil)
           @DomainName = domainname
+          @Type = type
         end
 
         def deserialize(params)
           @DomainName = params['DomainName']
+          @Type = params['Type']
         end
       end
 

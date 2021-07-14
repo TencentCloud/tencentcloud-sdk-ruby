@@ -2439,6 +2439,79 @@ module TencentCloud
         end
       end
 
+      # CreateFileConfig请求参数结构体
+      class CreateFileConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigName: 配置项名称
+        # @type ConfigName: String
+        # @param ConfigVersion: 配置项版本
+        # @type ConfigVersion: String
+        # @param ConfigFileName: 配置项文件名
+        # @type ConfigFileName: String
+        # @param ConfigFileValue: 配置项文件内容（原始内容编码需要 utf-8 格式，如果 ConfigFileCode 为 gbk，后台会进行转换）
+        # @type ConfigFileValue: String
+        # @param ApplicationId: 配置项关联应用ID
+        # @type ApplicationId: String
+        # @param ConfigFilePath: 发布路径
+        # @type ConfigFilePath: String
+        # @param ConfigVersionDesc: 配置项版本描述
+        # @type ConfigVersionDesc: String
+        # @param ConfigFileCode: 配置项文件编码，utf-8 或 gbk。注：如果选择 gbk，需要新版本 tsf-consul-template （公有云虚拟机需要使用 1.32 tsf-agent，容器需要从文档中获取最新的 tsf-consul-template-docker.tar.gz）的支持
+        # @type ConfigFileCode: String
+        # @param ConfigPostCmd: 后置命令
+        # @type ConfigPostCmd: String
+        # @param EncodeWithBase64: Base64编码的配置项
+        # @type EncodeWithBase64: Boolean
+
+        attr_accessor :ConfigName, :ConfigVersion, :ConfigFileName, :ConfigFileValue, :ApplicationId, :ConfigFilePath, :ConfigVersionDesc, :ConfigFileCode, :ConfigPostCmd, :EncodeWithBase64
+        
+        def initialize(configname=nil, configversion=nil, configfilename=nil, configfilevalue=nil, applicationid=nil, configfilepath=nil, configversiondesc=nil, configfilecode=nil, configpostcmd=nil, encodewithbase64=nil)
+          @ConfigName = configname
+          @ConfigVersion = configversion
+          @ConfigFileName = configfilename
+          @ConfigFileValue = configfilevalue
+          @ApplicationId = applicationid
+          @ConfigFilePath = configfilepath
+          @ConfigVersionDesc = configversiondesc
+          @ConfigFileCode = configfilecode
+          @ConfigPostCmd = configpostcmd
+          @EncodeWithBase64 = encodewithbase64
+        end
+
+        def deserialize(params)
+          @ConfigName = params['ConfigName']
+          @ConfigVersion = params['ConfigVersion']
+          @ConfigFileName = params['ConfigFileName']
+          @ConfigFileValue = params['ConfigFileValue']
+          @ApplicationId = params['ApplicationId']
+          @ConfigFilePath = params['ConfigFilePath']
+          @ConfigVersionDesc = params['ConfigVersionDesc']
+          @ConfigFileCode = params['ConfigFileCode']
+          @ConfigPostCmd = params['ConfigPostCmd']
+          @EncodeWithBase64 = params['EncodeWithBase64']
+        end
+      end
+
+      # CreateFileConfig返回参数结构体
+      class CreateFileConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: true：创建成功；false：创建失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGatewayApi请求参数结构体
       class CreateGatewayApiRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: API 分组ID
@@ -5303,6 +5376,70 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = UnitRule.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFileConfigs请求参数结构体
+      class DescribeFileConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置项ID
+        # @type ConfigId: String
+        # @param ConfigIdList: 配置项ID列表
+        # @type ConfigIdList: Array
+        # @param ConfigName: 配置项名称
+        # @type ConfigName: String
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param ConfigVersion: 配置项版本
+        # @type ConfigVersion: String
+
+        attr_accessor :ConfigId, :ConfigIdList, :ConfigName, :ApplicationId, :Offset, :Limit, :ConfigVersion
+        
+        def initialize(configid=nil, configidlist=nil, configname=nil, applicationid=nil, offset=nil, limit=nil, configversion=nil)
+          @ConfigId = configid
+          @ConfigIdList = configidlist
+          @ConfigName = configname
+          @ApplicationId = applicationid
+          @Offset = offset
+          @Limit = limit
+          @ConfigVersion = configversion
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @ConfigIdList = params['ConfigIdList']
+          @ConfigName = params['ConfigName']
+          @ApplicationId = params['ApplicationId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ConfigVersion = params['ConfigVersion']
+        end
+      end
+
+      # DescribeFileConfigs返回参数结构体
+      class DescribeFileConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 文件配置项列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageFileConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageFileConfig.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -8187,6 +8324,98 @@ module TencentCloud
 
         def deserialize(params)
           @FieldPath = params['FieldPath']
+        end
+      end
+
+      # 文件配置项
+      class FileConfig < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置项ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigId: String
+        # @param ConfigName: 配置项名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigName: String
+        # @param ConfigVersion: 配置项版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigVersion: String
+        # @param ConfigVersionDesc: 配置项版本描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigVersionDesc: String
+        # @param ConfigFileName: 配置项文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileName: String
+        # @param ConfigFileValue: 配置项文件内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileValue: String
+        # @param ConfigFileCode: 配置项文件编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileCode: String
+        # @param CreationTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationTime: String
+        # @param ApplicationId: 配置项归属应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param DeleteFlag: 删除标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteFlag: Boolean
+        # @param ConfigVersionCount: 配置项版本数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigVersionCount: Integer
+        # @param LastUpdateTime: 配置项最后更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: String
+        # @param ConfigFilePath: 发布路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFilePath: String
+        # @param ConfigPostCmd: 后置命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigPostCmd: String
+        # @param ConfigFileValueLength: 配置项文件长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileValueLength: Integer
+
+        attr_accessor :ConfigId, :ConfigName, :ConfigVersion, :ConfigVersionDesc, :ConfigFileName, :ConfigFileValue, :ConfigFileCode, :CreationTime, :ApplicationId, :ApplicationName, :DeleteFlag, :ConfigVersionCount, :LastUpdateTime, :ConfigFilePath, :ConfigPostCmd, :ConfigFileValueLength
+        
+        def initialize(configid=nil, configname=nil, configversion=nil, configversiondesc=nil, configfilename=nil, configfilevalue=nil, configfilecode=nil, creationtime=nil, applicationid=nil, applicationname=nil, deleteflag=nil, configversioncount=nil, lastupdatetime=nil, configfilepath=nil, configpostcmd=nil, configfilevaluelength=nil)
+          @ConfigId = configid
+          @ConfigName = configname
+          @ConfigVersion = configversion
+          @ConfigVersionDesc = configversiondesc
+          @ConfigFileName = configfilename
+          @ConfigFileValue = configfilevalue
+          @ConfigFileCode = configfilecode
+          @CreationTime = creationtime
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @DeleteFlag = deleteflag
+          @ConfigVersionCount = configversioncount
+          @LastUpdateTime = lastupdatetime
+          @ConfigFilePath = configfilepath
+          @ConfigPostCmd = configpostcmd
+          @ConfigFileValueLength = configfilevaluelength
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @ConfigName = params['ConfigName']
+          @ConfigVersion = params['ConfigVersion']
+          @ConfigVersionDesc = params['ConfigVersionDesc']
+          @ConfigFileName = params['ConfigFileName']
+          @ConfigFileValue = params['ConfigFileValue']
+          @ConfigFileCode = params['ConfigFileCode']
+          @CreationTime = params['CreationTime']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @DeleteFlag = params['DeleteFlag']
+          @ConfigVersionCount = params['ConfigVersionCount']
+          @LastUpdateTime = params['LastUpdateTime']
+          @ConfigFilePath = params['ConfigFilePath']
+          @ConfigPostCmd = params['ConfigPostCmd']
+          @ConfigFileValueLength = params['ConfigFileValueLength']
         end
       end
 
@@ -11187,6 +11416,51 @@ module TencentCloud
         end
       end
 
+      # ReleaseFileConfig请求参数结构体
+      class ReleaseFileConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 配置ID
+        # @type ConfigId: String
+        # @param GroupId: 部署组ID
+        # @type GroupId: String
+        # @param ReleaseDesc: 发布描述
+        # @type ReleaseDesc: String
+
+        attr_accessor :ConfigId, :GroupId, :ReleaseDesc
+        
+        def initialize(configid=nil, groupid=nil, releasedesc=nil)
+          @ConfigId = configid
+          @GroupId = groupid
+          @ReleaseDesc = releasedesc
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @GroupId = params['GroupId']
+          @ReleaseDesc = params['ReleaseDesc']
+        end
+      end
+
+      # ReleaseFileConfig返回参数结构体
+      class ReleaseFileConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 发布结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReleasePublicConfig请求参数结构体
       class ReleasePublicConfigRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 配置ID
@@ -13011,6 +13285,35 @@ module TencentCloud
               containerevent_tmp = ContainerEvent.new
               containerevent_tmp.deserialize(i)
               @Content << containerevent_tmp
+            end
+          end
+        end
+      end
+
+      # 文件配置项列表
+      class TsfPageFileConfig < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 文件配置数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              fileconfig_tmp = FileConfig.new
+              fileconfig_tmp.deserialize(i)
+              @Content << fileconfig_tmp
             end
           end
         end

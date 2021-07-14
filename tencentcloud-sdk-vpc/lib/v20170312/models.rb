@@ -13608,10 +13608,19 @@ module TencentCloud
         # @param SecurityGroupSet: NAT网关绑定的安全组列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroupSet: Array
+        # @param SourceIpTranslationNatRuleSet: NAT网关的SNAT转发规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceIpTranslationNatRuleSet: Array
+        # @param IsExclusive: 是否独享型NAT。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsExclusive: Boolean
+        # @param ExclusiveGatewayBandwidth: 独享型NAT所在的网关集群的带宽(单位:Mbps)，当IsExclusive为false时无此字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExclusiveGatewayBandwidth: Integer
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet
+        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth
         
-        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @CreatedTime = createdtime
@@ -13627,6 +13636,9 @@ module TencentCloud
           @SubnetId = subnetid
           @TagSet = tagset
           @SecurityGroupSet = securitygroupset
+          @SourceIpTranslationNatRuleSet = sourceiptranslationnatruleset
+          @IsExclusive = isexclusive
+          @ExclusiveGatewayBandwidth = exclusivegatewaybandwidth
         end
 
         def deserialize(params)
@@ -13666,6 +13678,16 @@ module TencentCloud
             end
           end
           @SecurityGroupSet = params['SecurityGroupSet']
+          unless params['SourceIpTranslationNatRuleSet'].nil?
+            @SourceIpTranslationNatRuleSet = []
+            params['SourceIpTranslationNatRuleSet'].each do |i|
+              sourceiptranslationnatrule_tmp = SourceIpTranslationNatRule.new
+              sourceiptranslationnatrule_tmp.deserialize(i)
+              @SourceIpTranslationNatRuleSet << sourceiptranslationnatrule_tmp
+            end
+          end
+          @IsExclusive = params['IsExclusive']
+          @ExclusiveGatewayBandwidth = params['ExclusiveGatewayBandwidth']
         end
       end
 

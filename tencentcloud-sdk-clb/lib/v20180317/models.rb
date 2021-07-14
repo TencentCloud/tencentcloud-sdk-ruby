@@ -3937,10 +3937,13 @@ module TencentCloud
         # @param LoadBalancerPassToTarget: 负载均衡安全组上移特性是否开启标识。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerPassToTarget: Integer
+        # @param TargetHealth: 后端目标健康状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetHealth: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -3973,6 +3976,7 @@ module TencentCloud
           @Isolation = isolation
           @SecurityGroup = securitygroup
           @LoadBalancerPassToTarget = loadbalancerpasstotarget
+          @TargetHealth = targethealth
         end
 
         def deserialize(params)
@@ -4024,6 +4028,7 @@ module TencentCloud
           @Isolation = params['Isolation']
           @SecurityGroup = params['SecurityGroup']
           @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
+          @TargetHealth = params['TargetHealth']
         end
       end
 
