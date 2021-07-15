@@ -136,6 +136,159 @@ module TencentCloud
         end
       end
 
+      # 应用绑定的Api信息
+      class ApiAppApiInfo < TencentCloud::Common::AbstractModel
+        # @param ApiAppName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiAppName: String
+        # @param ApiAppId: 应用ID
+        # @type ApiAppId: String
+        # @param ApiId: Api的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiId: String
+        # @param ApiName: Api名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiName: String
+        # @param ServiceId: 服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+        # @param AuthorizedTime: 授权绑定时间，按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizedTime: String
+        # @param ApiRegion: Api所属地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiRegion: String
+        # @param EnvironmentName: 授权绑定的环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentName: String
+
+        attr_accessor :ApiAppName, :ApiAppId, :ApiId, :ApiName, :ServiceId, :AuthorizedTime, :ApiRegion, :EnvironmentName
+        
+        def initialize(apiappname=nil, apiappid=nil, apiid=nil, apiname=nil, serviceid=nil, authorizedtime=nil, apiregion=nil, environmentname=nil)
+          @ApiAppName = apiappname
+          @ApiAppId = apiappid
+          @ApiId = apiid
+          @ApiName = apiname
+          @ServiceId = serviceid
+          @AuthorizedTime = authorizedtime
+          @ApiRegion = apiregion
+          @EnvironmentName = environmentname
+        end
+
+        def deserialize(params)
+          @ApiAppName = params['ApiAppName']
+          @ApiAppId = params['ApiAppId']
+          @ApiId = params['ApiId']
+          @ApiName = params['ApiName']
+          @ServiceId = params['ServiceId']
+          @AuthorizedTime = params['AuthorizedTime']
+          @ApiRegion = params['ApiRegion']
+          @EnvironmentName = params['EnvironmentName']
+        end
+      end
+
+      # 应用信息集
+      class ApiAppApiInfos < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数量
+        # @type TotalCount: Integer
+        # @param ApiAppApiSet: 应用绑定的Api信息数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiAppApiSet: Array
+
+        attr_accessor :TotalCount, :ApiAppApiSet
+        
+        def initialize(totalcount=nil, apiappapiset=nil)
+          @TotalCount = totalcount
+          @ApiAppApiSet = apiappapiset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ApiAppApiSet'].nil?
+            @ApiAppApiSet = []
+            params['ApiAppApiSet'].each do |i|
+              apiappapiinfo_tmp = ApiAppApiInfo.new
+              apiappapiinfo_tmp.deserialize(i)
+              @ApiAppApiSet << apiappapiinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 应用信息
+      class ApiAppInfo < TencentCloud::Common::AbstractModel
+        # @param ApiAppName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiAppName: String
+        # @param ApiAppId: 应用ID
+        # @type ApiAppId: String
+        # @param ApiAppSecret: 应用SECRET
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiAppSecret: String
+        # @param ApiAppDesc: 应用描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiAppDesc: String
+        # @param CreatedTime: 创建时间，按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param ModifiedTime: 修改时间，按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifiedTime: String
+        # @param ApiAppKey: 应用KEY
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiAppKey: String
+
+        attr_accessor :ApiAppName, :ApiAppId, :ApiAppSecret, :ApiAppDesc, :CreatedTime, :ModifiedTime, :ApiAppKey
+        
+        def initialize(apiappname=nil, apiappid=nil, apiappsecret=nil, apiappdesc=nil, createdtime=nil, modifiedtime=nil, apiappkey=nil)
+          @ApiAppName = apiappname
+          @ApiAppId = apiappid
+          @ApiAppSecret = apiappsecret
+          @ApiAppDesc = apiappdesc
+          @CreatedTime = createdtime
+          @ModifiedTime = modifiedtime
+          @ApiAppKey = apiappkey
+        end
+
+        def deserialize(params)
+          @ApiAppName = params['ApiAppName']
+          @ApiAppId = params['ApiAppId']
+          @ApiAppSecret = params['ApiAppSecret']
+          @ApiAppDesc = params['ApiAppDesc']
+          @CreatedTime = params['CreatedTime']
+          @ModifiedTime = params['ModifiedTime']
+          @ApiAppKey = params['ApiAppKey']
+        end
+      end
+
+      # 应用信息集
+      class ApiAppInfos < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 应用数量
+        # @type TotalCount: Integer
+        # @param ApiAppSet: 应用信息数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiAppSet: Array
+
+        attr_accessor :TotalCount, :ApiAppSet
+        
+        def initialize(totalcount=nil, apiappset=nil)
+          @TotalCount = totalcount
+          @ApiAppSet = apiappset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ApiAppSet'].nil?
+            @ApiAppSet = []
+            params['ApiAppSet'].each do |i|
+              apiappinfo_tmp = ApiAppInfo.new
+              apiappinfo_tmp.deserialize(i)
+              @ApiAppSet << apiappinfo_tmp
+            end
+          end
+        end
+      end
+
       # api环境绑定策略
       class ApiEnvironmentStrategy < TencentCloud::Common::AbstractModel
         # @param ApiId: API唯一ID。
@@ -1082,6 +1235,55 @@ module TencentCloud
         end
       end
 
+      # BindApiApp请求参数结构体
+      class BindApiAppRequest < TencentCloud::Common::AbstractModel
+        # @param ApiAppId: 待绑定的应用唯一 ID 。
+        # @type ApiAppId: String
+        # @param Environment: 待绑定的环境。
+        # @type Environment: String
+        # @param ServiceId: 待绑定的服务唯一 ID。
+        # @type ServiceId: String
+        # @param ApiId: 待绑定的API唯一ID。
+        # @type ApiId: String
+
+        attr_accessor :ApiAppId, :Environment, :ServiceId, :ApiId
+        
+        def initialize(apiappid=nil, environment=nil, serviceid=nil, apiid=nil)
+          @ApiAppId = apiappid
+          @Environment = environment
+          @ServiceId = serviceid
+          @ApiId = apiid
+        end
+
+        def deserialize(params)
+          @ApiAppId = params['ApiAppId']
+          @Environment = params['Environment']
+          @ServiceId = params['ServiceId']
+          @ApiId = params['ApiId']
+        end
+      end
+
+      # BindApiApp返回参数结构体
+      class BindApiAppResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 绑定操作是否成功。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindEnvironment请求参数结构体
       class BindEnvironmentRequest < TencentCloud::Common::AbstractModel
         # @param UsagePlanIds: 待绑定的使用计划唯一 ID 列表。
@@ -1410,6 +1612,50 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = APIDoc.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateApiApp请求参数结构体
+      class CreateApiAppRequest < TencentCloud::Common::AbstractModel
+        # @param ApiAppName: 用户自定义应用名称。
+        # @type ApiAppName: String
+        # @param ApiAppDesc: 应用描述
+        # @type ApiAppDesc: String
+
+        attr_accessor :ApiAppName, :ApiAppDesc
+        
+        def initialize(apiappname=nil, apiappdesc=nil)
+          @ApiAppName = apiappname
+          @ApiAppDesc = apiappdesc
+        end
+
+        def deserialize(params)
+          @ApiAppName = params['ApiAppName']
+          @ApiAppDesc = params['ApiAppDesc']
+        end
+      end
+
+      # CreateApiApp返回参数结构体
+      class CreateApiAppResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 新增的应用详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiAppInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ApiAppInfo.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -2079,6 +2325,43 @@ module TencentCloud
         end
       end
 
+      # DeleteApiApp请求参数结构体
+      class DeleteApiAppRequest < TencentCloud::Common::AbstractModel
+        # @param ApiAppId: 应用唯一 ID。
+        # @type ApiAppId: String
+
+        attr_accessor :ApiAppId
+        
+        def initialize(apiappid=nil)
+          @ApiAppId = apiappid
+        end
+
+        def deserialize(params)
+          @ApiAppId = params['ApiAppId']
+        end
+      end
+
+      # DeleteApiApp返回参数结构体
+      class DeleteApiAppResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 删除操作是否成功。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteApiKey请求参数结构体
       class DeleteApiKeyRequest < TencentCloud::Common::AbstractModel
         # @param AccessKeyId: 待删除的密钥 ID。
@@ -2640,6 +2923,223 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = ApiInfoSummary.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiAppBindApisStatus请求参数结构体
+      class DescribeApiAppBindApisStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ApiAppId: 应用ID
+        # @type ApiAppId: String
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。支持ApiId、ApiName、ServiceId、Environment 、KeyWord（ 可以匹配name或者ID）。
+        # @type Filters: Array
+
+        attr_accessor :ApiAppId, :Limit, :Offset, :Filters
+        
+        def initialize(apiappid=nil, limit=nil, offset=nil, filters=nil)
+          @ApiAppId = apiappid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ApiAppId = params['ApiAppId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeApiAppBindApisStatus返回参数结构体
+      class DescribeApiAppBindApisStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 应用绑定的Api列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiAppApiInfos`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ApiAppApiInfos.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiApp请求参数结构体
+      class DescribeApiAppRequest < TencentCloud::Common::AbstractModel
+        # @param ApiAppId: 应用ID。
+        # @type ApiAppId: String
+
+        attr_accessor :ApiAppId
+        
+        def initialize(apiappid=nil)
+          @ApiAppId = apiappid
+        end
+
+        def deserialize(params)
+          @ApiAppId = params['ApiAppId']
+        end
+      end
+
+      # DescribeApiApp返回参数结构体
+      class DescribeApiAppResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 应用详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiAppInfos`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ApiAppInfos.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiAppsStatus请求参数结构体
+      class DescribeApiAppsStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。支持ApiAppId、ApiAppName、KeyWord（ 可以匹配name或者ID）。
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeApiAppsStatus返回参数结构体
+      class DescribeApiAppsStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 应用列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiAppInfos`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ApiAppInfos.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiBindApiAppsStatus请求参数结构体
+      class DescribeApiBindApiAppsStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param ApiIds: Api的ID的数组
+        # @type ApiIds: Array
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。支持ApiAppId、Environment、KeyWord（ 可以匹配name或者ID）。
+        # @type Filters: Array
+
+        attr_accessor :ServiceId, :ApiIds, :Limit, :Offset, :Filters
+        
+        def initialize(serviceid=nil, apiids=nil, limit=nil, offset=nil, filters=nil)
+          @ServiceId = serviceid
+          @ApiIds = apiids
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ApiIds = params['ApiIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeApiBindApiAppsStatus返回参数结构体
+      class DescribeApiBindApiAppsStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 应用绑定的Api列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiAppApiInfos`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ApiAppApiInfos.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -3561,6 +4061,161 @@ module TencentCloud
           unless params['Result'].nil?
             @Result = ServiceEnvironmentStrategyStatus.new
             @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeServiceForApiApp请求参数结构体
+      class DescribeServiceForApiAppRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 待查询的服务唯一 ID。
+        # @type ServiceId: String
+        # @param ApiRegion: 服务所属的地域
+        # @type ApiRegion: String
+
+        attr_accessor :ServiceId, :ApiRegion
+        
+        def initialize(serviceid=nil, apiregion=nil)
+          @ServiceId = serviceid
+          @ApiRegion = apiregion
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ApiRegion = params['ApiRegion']
+        end
+      end
+
+      # DescribeServiceForApiApp返回参数结构体
+      class DescribeServiceForApiAppResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务唯一ID。
+        # @type ServiceId: String
+        # @param AvailableEnvironments: 服务 环境列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableEnvironments: Array
+        # @param ServiceName: 服务名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param ServiceDesc: 服务描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceDesc: String
+        # @param Protocol: 服务支持协议，可选值为http、https、http&https。
+        # @type Protocol: String
+        # @param CreatedTime: 服务创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param ModifiedTime: 服务修改时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifiedTime: String
+        # @param ExclusiveSetName: 独立集群名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExclusiveSetName: String
+        # @param NetTypes: 网络类型列表，INNER为内网访问，OUTER为外网访问。
+        # @type NetTypes: Array
+        # @param InternalSubDomain: 内网访问子域名。
+        # @type InternalSubDomain: String
+        # @param OuterSubDomain: 外网访问子域名。
+        # @type OuterSubDomain: String
+        # @param InnerHttpPort: 内网访问http服务端口号。
+        # @type InnerHttpPort: Integer
+        # @param InnerHttpsPort: 内网访问https端口号。
+        # @type InnerHttpsPort: Integer
+        # @param ApiTotalCount: API总数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiTotalCount: Integer
+        # @param ApiIdStatusSet: API列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiIdStatusSet: Array
+        # @param UsagePlanTotalCount: 使用计划总数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsagePlanTotalCount: Integer
+        # @param UsagePlanList: 使用计划数组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsagePlanList: Array
+        # @param IpVersion: IP版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpVersion: String
+        # @param UserType: 此服务的用户类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserType: String
+        # @param SetId: 预留字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetId: Integer
+        # @param Tags: 服务绑定的标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :ExclusiveSetName, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :RequestId
+        
+        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, exclusivesetname=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, requestid=nil)
+          @ServiceId = serviceid
+          @AvailableEnvironments = availableenvironments
+          @ServiceName = servicename
+          @ServiceDesc = servicedesc
+          @Protocol = protocol
+          @CreatedTime = createdtime
+          @ModifiedTime = modifiedtime
+          @ExclusiveSetName = exclusivesetname
+          @NetTypes = nettypes
+          @InternalSubDomain = internalsubdomain
+          @OuterSubDomain = outersubdomain
+          @InnerHttpPort = innerhttpport
+          @InnerHttpsPort = innerhttpsport
+          @ApiTotalCount = apitotalcount
+          @ApiIdStatusSet = apiidstatusset
+          @UsagePlanTotalCount = usageplantotalcount
+          @UsagePlanList = usageplanlist
+          @IpVersion = ipversion
+          @UserType = usertype
+          @SetId = setid
+          @Tags = tags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @AvailableEnvironments = params['AvailableEnvironments']
+          @ServiceName = params['ServiceName']
+          @ServiceDesc = params['ServiceDesc']
+          @Protocol = params['Protocol']
+          @CreatedTime = params['CreatedTime']
+          @ModifiedTime = params['ModifiedTime']
+          @ExclusiveSetName = params['ExclusiveSetName']
+          @NetTypes = params['NetTypes']
+          @InternalSubDomain = params['InternalSubDomain']
+          @OuterSubDomain = params['OuterSubDomain']
+          @InnerHttpPort = params['InnerHttpPort']
+          @InnerHttpsPort = params['InnerHttpsPort']
+          @ApiTotalCount = params['ApiTotalCount']
+          unless params['ApiIdStatusSet'].nil?
+            @ApiIdStatusSet = []
+            params['ApiIdStatusSet'].each do |i|
+              apiidstatus_tmp = ApiIdStatus.new
+              apiidstatus_tmp.deserialize(i)
+              @ApiIdStatusSet << apiidstatus_tmp
+            end
+          end
+          @UsagePlanTotalCount = params['UsagePlanTotalCount']
+          unless params['UsagePlanList'].nil?
+            @UsagePlanList = []
+            params['UsagePlanList'].each do |i|
+              usageplan_tmp = UsagePlan.new
+              usageplan_tmp.deserialize(i)
+              @UsagePlanList << usageplan_tmp
+            end
+          end
+          @IpVersion = params['IpVersion']
+          @UserType = params['UserType']
+          @SetId = params['SetId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -4847,6 +5502,51 @@ module TencentCloud
             @Result = APIDoc.new
             @Result.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyApiApp请求参数结构体
+      class ModifyApiAppRequest < TencentCloud::Common::AbstractModel
+        # @param ApiAppId: 应用唯一 ID。
+        # @type ApiAppId: String
+        # @param ApiAppName: 修改的应用名称
+        # @type ApiAppName: String
+        # @param ApiAppDesc: 修改的应用描述
+        # @type ApiAppDesc: String
+
+        attr_accessor :ApiAppId, :ApiAppName, :ApiAppDesc
+        
+        def initialize(apiappid=nil, apiappname=nil, apiappdesc=nil)
+          @ApiAppId = apiappid
+          @ApiAppName = apiappname
+          @ApiAppDesc = apiappdesc
+        end
+
+        def deserialize(params)
+          @ApiAppId = params['ApiAppId']
+          @ApiAppName = params['ApiAppName']
+          @ApiAppDesc = params['ApiAppDesc']
+        end
+      end
+
+      # ModifyApiApp返回参数结构体
+      class ModifyApiAppResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 修改操作是否成功。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -6657,6 +7357,100 @@ module TencentCloud
       # UnReleaseService返回参数结构体
       class UnReleaseServiceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 下线操作是否成功。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnbindApiApp请求参数结构体
+      class UnbindApiAppRequest < TencentCloud::Common::AbstractModel
+        # @param ApiAppId: 待绑定的应用唯一 ID 。
+        # @type ApiAppId: String
+        # @param Environment: 待绑定的环境。
+        # @type Environment: String
+        # @param ServiceId: 待绑定的服务唯一 ID。
+        # @type ServiceId: String
+        # @param ApiId: 待绑定的API唯一ID。
+        # @type ApiId: String
+
+        attr_accessor :ApiAppId, :Environment, :ServiceId, :ApiId
+        
+        def initialize(apiappid=nil, environment=nil, serviceid=nil, apiid=nil)
+          @ApiAppId = apiappid
+          @Environment = environment
+          @ServiceId = serviceid
+          @ApiId = apiid
+        end
+
+        def deserialize(params)
+          @ApiAppId = params['ApiAppId']
+          @Environment = params['Environment']
+          @ServiceId = params['ServiceId']
+          @ApiId = params['ApiId']
+        end
+      end
+
+      # UnbindApiApp返回参数结构体
+      class UnbindApiAppResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 解除绑定操作是否成功。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateApiAppKey请求参数结构体
+      class UpdateApiAppKeyRequest < TencentCloud::Common::AbstractModel
+        # @param ApiAppId: 应用唯一 ID。
+        # @type ApiAppId: String
+        # @param ApiAppKey: 应用的Key。
+        # @type ApiAppKey: String
+        # @param ApiAppSecret: 应用的Secret。
+        # @type ApiAppSecret: String
+
+        attr_accessor :ApiAppId, :ApiAppKey, :ApiAppSecret
+        
+        def initialize(apiappid=nil, apiappkey=nil, apiappsecret=nil)
+          @ApiAppId = apiappid
+          @ApiAppKey = apiappkey
+          @ApiAppSecret = apiappsecret
+        end
+
+        def deserialize(params)
+          @ApiAppId = params['ApiAppId']
+          @ApiAppKey = params['ApiAppKey']
+          @ApiAppSecret = params['ApiAppSecret']
+        end
+      end
+
+      # UpdateApiAppKey返回参数结构体
+      class UpdateApiAppKeyResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 更新操作是否成功。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

@@ -5954,7 +5954,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param NodePoolId: 节点池id
         # @type NodePoolId: String
-        # @param InstanceIds: 节点id列表
+        # @param InstanceIds: 节点id列表，一次最多支持100台
         # @type InstanceIds: Array
 
         attr_accessor :ClusterId, :NodePoolId, :InstanceIds

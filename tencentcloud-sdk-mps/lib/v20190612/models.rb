@@ -5832,6 +5832,22 @@ module TencentCloud
         end
       end
 
+      # 编辑视频的结果文件输出配置。
+      class EditMediaOutputConfig < TencentCloud::Common::AbstractModel
+        # @param Container: 封装格式，可选值：mp4、hls、mov、flv、avi。默认是 mp4。
+        # @type Container: String
+
+        attr_accessor :Container
+        
+        def initialize(container=nil)
+          @Container = container
+        end
+
+        def deserialize(params)
+          @Container = params['Container']
+        end
+      end
+
       # EditMedia请求参数结构体
       class EditMediaRequest < TencentCloud::Common::AbstractModel
         # @param FileInfos: 输入的视频文件信息。
@@ -5840,6 +5856,8 @@ module TencentCloud
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param OutputObjectPath: 视频处理输出文件的目标路径。
         # @type OutputObjectPath: String
+        # @param OutputConfig: 编辑后生成的文件配置。
+        # @type OutputConfig: :class:`Tencentcloud::Mps.v20190612.models.EditMediaOutputConfig`
         # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
         # @param TasksPriority: 任务优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
@@ -5849,12 +5867,13 @@ module TencentCloud
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
 
-        attr_accessor :FileInfos, :OutputStorage, :OutputObjectPath, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext
+        attr_accessor :FileInfos, :OutputStorage, :OutputObjectPath, :OutputConfig, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext
         
-        def initialize(fileinfos=nil, outputstorage=nil, outputobjectpath=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(fileinfos=nil, outputstorage=nil, outputobjectpath=nil, outputconfig=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil)
           @FileInfos = fileinfos
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
+          @OutputConfig = outputconfig
           @TaskNotifyConfig = tasknotifyconfig
           @TasksPriority = taskspriority
           @SessionId = sessionid
@@ -5875,6 +5894,10 @@ module TencentCloud
             @OutputStorage.deserialize(params['OutputStorage'])
           end
           @OutputObjectPath = params['OutputObjectPath']
+          unless params['OutputConfig'].nil?
+            @OutputConfig = EditMediaOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
           unless params['TaskNotifyConfig'].nil?
             @TaskNotifyConfig = TaskNotifyConfig.new
             @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])

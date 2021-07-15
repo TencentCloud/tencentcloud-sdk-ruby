@@ -482,10 +482,20 @@ module TencentCloud
         # @type EksService: :class:`Tencentcloud::Tem.v20201221.models.EksService`
         # @param VersionId: 要回滚到的历史版本id
         # @type VersionId: String
+        # @param PostStart: 启动后执行的脚本
+        # @type PostStart: String
+        # @param PreStop: 停止前执行的脚本
+        # @type PreStop: String
+        # @param DeployStrategyConf: 分批发布策略配置
+        # @type DeployStrategyConf: :class:`Tencentcloud::Tem.v20201221.models.DeployStrategyConf`
+        # @param Liveness: 存活探针配置
+        # @type Liveness: :class:`Tencentcloud::Tem.v20201221.models.HealthCheckConfig`
+        # @param Readiness: 就绪探针配置
+        # @type Readiness: :class:`Tencentcloud::Tem.v20201221.models.HealthCheckConfig`
 
-        attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :PortMappings, :UseRegistryDefaultConfig, :SettingConfs, :EksService, :VersionId
+        attr_accessor :ServiceId, :ContainerPort, :InitPodNum, :CpuSpec, :MemorySpec, :NamespaceId, :ImgRepo, :VersionDesc, :JvmOpts, :EsInfo, :EnvConf, :LogConfs, :StorageConfs, :StorageMountConfs, :DeployMode, :DeployVersion, :PkgName, :JdkVersion, :SecurityGroupIds, :LogOutputConf, :SourceChannel, :Description, :ImageCommand, :ImageArgs, :PortMappings, :UseRegistryDefaultConfig, :SettingConfs, :EksService, :VersionId, :PostStart, :PreStop, :DeployStrategyConf, :Liveness, :Readiness
         
-        def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, portmappings=nil, useregistrydefaultconfig=nil, settingconfs=nil, eksservice=nil, versionid=nil)
+        def initialize(serviceid=nil, containerport=nil, initpodnum=nil, cpuspec=nil, memoryspec=nil, namespaceid=nil, imgrepo=nil, versiondesc=nil, jvmopts=nil, esinfo=nil, envconf=nil, logconfs=nil, storageconfs=nil, storagemountconfs=nil, deploymode=nil, deployversion=nil, pkgname=nil, jdkversion=nil, securitygroupids=nil, logoutputconf=nil, sourcechannel=nil, description=nil, imagecommand=nil, imageargs=nil, portmappings=nil, useregistrydefaultconfig=nil, settingconfs=nil, eksservice=nil, versionid=nil, poststart=nil, prestop=nil, deploystrategyconf=nil, liveness=nil, readiness=nil)
           @ServiceId = serviceid
           @ContainerPort = containerport
           @InitPodNum = initpodnum
@@ -515,6 +525,11 @@ module TencentCloud
           @SettingConfs = settingconfs
           @EksService = eksservice
           @VersionId = versionid
+          @PostStart = poststart
+          @PreStop = prestop
+          @DeployStrategyConf = deploystrategyconf
+          @Liveness = liveness
+          @Readiness = readiness
         end
 
         def deserialize(params)
@@ -591,6 +606,20 @@ module TencentCloud
             @EksService.deserialize(params['EksService'])
           end
           @VersionId = params['VersionId']
+          @PostStart = params['PostStart']
+          @PreStop = params['PreStop']
+          unless params['DeployStrategyConf'].nil?
+            @DeployStrategyConf = DeployStrategyConf.new
+            @DeployStrategyConf.deserialize(params['DeployStrategyConf'])
+          end
+          unless params['Liveness'].nil?
+            @Liveness = HealthCheckConfig.new
+            @Liveness.deserialize(params['Liveness'])
+          end
+          unless params['Readiness'].nil?
+            @Readiness = HealthCheckConfig.new
+            @Readiness.deserialize(params['Readiness'])
+          end
         end
       end
 
@@ -611,6 +640,34 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 分批发布策略配置
+      class DeployStrategyConf < TencentCloud::Common::AbstractModel
+        # @param TotalBatchCount: 总分批数
+        # @type TotalBatchCount: Integer
+        # @param BetaBatchNum: beta分批实例数
+        # @type BetaBatchNum: Integer
+        # @param DeployStrategyType: 分批策略：0-全自动，1-全手动，beta分批一定是手动的，这里的策略指定的是剩余批次
+        # @type DeployStrategyType: Integer
+        # @param BatchInterval: 每批暂停间隔
+        # @type BatchInterval: Integer
+
+        attr_accessor :TotalBatchCount, :BetaBatchNum, :DeployStrategyType, :BatchInterval
+        
+        def initialize(totalbatchcount=nil, betabatchnum=nil, deploystrategytype=nil, batchinterval=nil)
+          @TotalBatchCount = totalbatchcount
+          @BetaBatchNum = betabatchnum
+          @DeployStrategyType = deploystrategytype
+          @BatchInterval = batchinterval
+        end
+
+        def deserialize(params)
+          @TotalBatchCount = params['TotalBatchCount']
+          @BetaBatchNum = params['BetaBatchNum']
+          @DeployStrategyType = params['DeployStrategyType']
+          @BatchInterval = params['BatchInterval']
         end
       end
 
@@ -1081,6 +1138,50 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 健康检查配置
+      class HealthCheckConfig < TencentCloud::Common::AbstractModel
+        # @param Type: 支持的健康检查类型，如 HttpGet，TcpSocket，Exec
+        # @type Type: String
+        # @param Protocol: 仅当健康检查类型为 HttpGet 时有效，表示协议类型，如 HTTP，HTTPS
+        # @type Protocol: String
+        # @param Path: 仅当健康检查类型为 HttpGet 时有效，表示请求路径
+        # @type Path: String
+        # @param Exec: 仅当健康检查类型为 Exec 时有效，表示执行的脚本内容
+        # @type Exec: String
+        # @param Port: 仅当健康检查类型为 HttpGet\TcpSocket 时有效，表示请求路径
+        # @type Port: Integer
+        # @param InitialDelaySeconds: 检查延迟开始时间，单位为秒，默认为 0
+        # @type InitialDelaySeconds: Integer
+        # @param TimeoutSeconds: 超时时间，单位为秒，默认为 1
+        # @type TimeoutSeconds: Integer
+        # @param PeriodSeconds: 间隔时间，单位为秒，默认为 10
+        # @type PeriodSeconds: Integer
+
+        attr_accessor :Type, :Protocol, :Path, :Exec, :Port, :InitialDelaySeconds, :TimeoutSeconds, :PeriodSeconds
+        
+        def initialize(type=nil, protocol=nil, path=nil, exec=nil, port=nil, initialdelayseconds=nil, timeoutseconds=nil, periodseconds=nil)
+          @Type = type
+          @Protocol = protocol
+          @Path = path
+          @Exec = exec
+          @Port = port
+          @InitialDelaySeconds = initialdelayseconds
+          @TimeoutSeconds = timeoutseconds
+          @PeriodSeconds = periodseconds
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Protocol = params['Protocol']
+          @Path = params['Path']
+          @Exec = params['Exec']
+          @Port = params['Port']
+          @InitialDelaySeconds = params['InitialDelaySeconds']
+          @TimeoutSeconds = params['TimeoutSeconds']
+          @PeriodSeconds = params['PeriodSeconds']
         end
       end
 
@@ -1645,10 +1746,13 @@ module TencentCloud
         # @param DeployVersion: 部署版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployVersion: String
+        # @param RestartCount: 重启次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RestartCount: Integer
 
-        attr_accessor :Webshell, :PodId, :Status, :CreateTime, :PodIp, :Zone, :DeployVersion
+        attr_accessor :Webshell, :PodId, :Status, :CreateTime, :PodIp, :Zone, :DeployVersion, :RestartCount
         
-        def initialize(webshell=nil, podid=nil, status=nil, createtime=nil, podip=nil, zone=nil, deployversion=nil)
+        def initialize(webshell=nil, podid=nil, status=nil, createtime=nil, podip=nil, zone=nil, deployversion=nil, restartcount=nil)
           @Webshell = webshell
           @PodId = podid
           @Status = status
@@ -1656,6 +1760,7 @@ module TencentCloud
           @PodIp = podip
           @Zone = zone
           @DeployVersion = deployversion
+          @RestartCount = restartcount
         end
 
         def deserialize(params)
@@ -1666,6 +1771,7 @@ module TencentCloud
           @PodIp = params['PodIp']
           @Zone = params['Zone']
           @DeployVersion = params['DeployVersion']
+          @RestartCount = params['RestartCount']
         end
       end
 

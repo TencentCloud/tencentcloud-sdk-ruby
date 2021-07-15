@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（BindApiApp）用于绑定应用到API。
+
+        # @param request: Request instance for BindApiApp.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::BindApiAppRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::BindApiAppResponse`
+        def BindApiApp(request)
+          body = send_request('BindApiApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindApiAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（BindEnvironment）用于绑定使用计划到服务或API。
         # 用户在发布服务到某个环境中后，如果 API 需要鉴权，还需要绑定使用计划才能进行调用，此接口用户将使用计划绑定到特定环境。
         # 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
@@ -225,6 +249,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateApiApp）用于创建应用。
+
+        # @param request: Request instance for CreateApiApp.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::CreateApiAppRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::CreateApiAppResponse`
+        def CreateApiApp(request)
+          body = send_request('CreateApiApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateApiAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateApiKey）用于创建一对新的 API 密钥。
 
         # @param request: Request instance for CreateApiKey.
@@ -381,6 +429,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteApiApp）用于删除已经创建的应用。
+
+        # @param request: Request instance for DeleteApiApp.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DeleteApiAppRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DeleteApiAppResponse`
+        def DeleteApiApp(request)
+          body = send_request('DeleteApiApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteApiAppResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -648,6 +720,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeApiApp）用于根据应用ID搜索应用。
+
+        # @param request: Request instance for DescribeApiApp.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeApiAppRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeApiAppResponse`
+        def DescribeApiApp(request)
+          body = send_request('DescribeApiApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
+
+        # @param request: Request instance for DescribeApiAppBindApisStatus.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeApiAppBindApisStatusRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeApiAppBindApisStatusResponse`
+        def DescribeApiAppBindApisStatus(request)
+          body = send_request('DescribeApiAppBindApisStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiAppBindApisStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeApiAppsStatus）查询应用列表。
+
+        # @param request: Request instance for DescribeApiAppsStatus.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeApiAppsStatusRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeApiAppsStatusResponse`
+        def DescribeApiAppsStatus(request)
+          body = send_request('DescribeApiAppsStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiAppsStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
+
+        # @param request: Request instance for DescribeApiBindApiAppsStatus.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeApiBindApiAppsStatusRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeApiBindApiAppsStatusResponse`
+        def DescribeApiBindApiAppsStatus(request)
+          body = send_request('DescribeApiBindApiAppsStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiBindApiAppsStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1050,6 +1218,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeServiceForApiApp）用于应用使用者查询一个服务的详细信息、包括服务的描述、域名、协议等信息。
+
+        # @param request: Request instance for DescribeServiceForApiApp.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeServiceForApiAppRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeServiceForApiAppResponse`
+        def DescribeServiceForApiApp(request)
+          body = send_request('DescribeServiceForApiApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServiceForApiAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
         # 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
 
@@ -1416,6 +1608,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyApiApp）用于修改已经创建的应用。
+
+        # @param request: Request instance for ModifyApiApp.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::ModifyApiAppRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::ModifyApiAppResponse`
+        def ModifyApiApp(request)
+          body = send_request('ModifyApiApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApiAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyApiEnvironmentStrategy）用于修改API限流策略
 
         # @param request: Request instance for ModifyApiEnvironmentStrategy.
@@ -1765,6 +1981,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnReleaseServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UnbindApiApp）用于解除应用和API绑定。
+
+        # @param request: Request instance for UnbindApiApp.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::UnbindApiAppRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::UnbindApiAppResponse`
+        def UnbindApiApp(request)
+          body = send_request('UnbindApiApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindApiAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpdateApiAppKey）用于更新应用秘钥。
+
+        # @param request: Request instance for UpdateApiAppKey.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::UpdateApiAppKeyRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::UpdateApiAppKeyResponse`
+        def UpdateApiAppKey(request)
+          body = send_request('UpdateApiAppKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateApiAppKeyResponse.new
             model.deserialize(response['Response'])
             model
           else

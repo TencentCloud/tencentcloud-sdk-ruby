@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # DescribeBlockByIpTimesList 告警中心阻断ip折线图
+        # DescribeBlockByIpTimesList 告警中心阻断IP折线图
 
         # @param request: Request instance for DescribeBlockByIpTimesList.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeBlockByIpTimesListRequest`
@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询防火墙弹性公网ip
+        # 查询防火墙弹性公网IP
 
         # @param request: Request instance for DescribeCfwEips.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCfwEipsRequest`
@@ -461,7 +461,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # DescribeTLogIpList告警中心ip柱形图
+        # DescribeTLogIpList告警中心IP柱形图
 
         # @param request: Request instance for DescribeTLogIpList.
         # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeTLogIpListRequest`

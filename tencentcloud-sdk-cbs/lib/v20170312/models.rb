@@ -285,68 +285,62 @@ module TencentCloud
 
       # CreateDisks请求参数结构体
       class CreateDisksRequest < TencentCloud::Common::AbstractModel
-        # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘<br><li>CLOUD_TSSD：表示极速型SSD云硬盘。
-        # @type DiskType: String
-        # @param DiskChargeType: 云硬盘计费类型。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>CDCPAID：独享集群付费<br>各类型价格请参考云硬盘[价格总览](/document/product/362/2413)。
-        # @type DiskChargeType: String
         # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目。若不指定项目，将在默认项目下进行创建。
         # @type Placement: :class:`Tencentcloud::Cbs.v20170312.models.Placement`
+        # @param DiskChargeType: 云硬盘计费类型。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>CDCPAID：独享集群付费<br>各类型价格请参考云硬盘[价格总览](/document/product/362/2413)。
+        # @type DiskChargeType: String
+        # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘<br><li>CLOUD_TSSD：表示极速型SSD云硬盘。
+        # @type DiskType: String
         # @param DiskName: 云盘显示名称。不传则默认为“未命名”。最大长度不能超60个字节。
         # @type DiskName: String
-        # @param DiskCount: 创建云硬盘数量，不传则默认为1。单次请求最多可创建的云盘数有限制，具体参见[云硬盘使用限制](https://cloud.tencent.com/doc/product/362/5145)。
-        # @type DiskCount: Integer
-        # @param DiskChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。<br>创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
-        # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.DiskChargePrepaid`
-        # @param DiskSize: 云硬盘大小，单位为GB。<br><li>如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小<br><li>如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小<br><li>云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
-        # @type DiskSize: Integer
+        # @param Tags: 云盘绑定的标签。
+        # @type Tags: Array
         # @param SnapshotId: 快照ID，如果传入则根据此快照创建云硬盘，快照类型必须为数据盘快照，可通过[DescribeSnapshots](/document/product/362/15647)接口查询快照，见输出参数DiskUsage解释。
         # @type SnapshotId: String
+        # @param DiskCount: 创建云硬盘数量，不传则默认为1。单次请求最多可创建的云盘数有限制，具体参见[云硬盘使用限制](https://cloud.tencent.com/doc/product/362/5145)。
+        # @type DiskCount: Integer
+        # @param ThroughputPerformance: 可选参数。使用此参数可给云硬盘购买额外的性能。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
+        # @type ThroughputPerformance: Integer
+        # @param DiskSize: 云硬盘大小，单位为GB。<br><li>如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小<br><li>如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小<br><li>云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
+        # @type DiskSize: Integer
+        # @param Shareable: 可选参数，默认为False。传入True时，云盘将创建为共享型云盘。
+        # @type Shareable: Boolean
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
         # @param Encrypt: 传入该参数用于创建加密云盘，取值固定为ENCRYPT。
         # @type Encrypt: String
-        # @param Tags: 云盘绑定的标签。
-        # @type Tags: Array
-        # @param Shareable: 可选参数，默认为False。传入True时，云盘将创建为共享型云盘。
-        # @type Shareable: Boolean
-        # @param ThroughputPerformance: 可选参数。使用此参数可给云硬盘购买额外的性能。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
-        # @type ThroughputPerformance: Integer
+        # @param DiskChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。<br>创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
+        # @type DiskChargePrepaid: :class:`Tencentcloud::Cbs.v20170312.models.DiskChargePrepaid`
+        # @param DeleteSnapshot: 销毁云盘时删除关联的非永久快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁。
+        # @type DeleteSnapshot: Integer
 
-        attr_accessor :DiskType, :DiskChargeType, :Placement, :DiskName, :DiskCount, :DiskChargePrepaid, :DiskSize, :SnapshotId, :ClientToken, :Encrypt, :Tags, :Shareable, :ThroughputPerformance
+        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :SnapshotId, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :DiskChargePrepaid, :DeleteSnapshot
         
-        def initialize(disktype=nil, diskchargetype=nil, placement=nil, diskname=nil, diskcount=nil, diskchargeprepaid=nil, disksize=nil, snapshotid=nil, clienttoken=nil, encrypt=nil, tags=nil, shareable=nil, throughputperformance=nil)
-          @DiskType = disktype
-          @DiskChargeType = diskchargetype
+        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, snapshotid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, diskchargeprepaid=nil, deletesnapshot=nil)
           @Placement = placement
+          @DiskChargeType = diskchargetype
+          @DiskType = disktype
           @DiskName = diskname
-          @DiskCount = diskcount
-          @DiskChargePrepaid = diskchargeprepaid
-          @DiskSize = disksize
+          @Tags = tags
           @SnapshotId = snapshotid
+          @DiskCount = diskcount
+          @ThroughputPerformance = throughputperformance
+          @DiskSize = disksize
+          @Shareable = shareable
           @ClientToken = clienttoken
           @Encrypt = encrypt
-          @Tags = tags
-          @Shareable = shareable
-          @ThroughputPerformance = throughputperformance
+          @DiskChargePrepaid = diskchargeprepaid
+          @DeleteSnapshot = deletesnapshot
         end
 
         def deserialize(params)
-          @DiskType = params['DiskType']
-          @DiskChargeType = params['DiskChargeType']
           unless params['Placement'].nil?
             @Placement = Placement.new
             @Placement.deserialize(params['Placement'])
           end
+          @DiskChargeType = params['DiskChargeType']
+          @DiskType = params['DiskType']
           @DiskName = params['DiskName']
-          @DiskCount = params['DiskCount']
-          unless params['DiskChargePrepaid'].nil?
-            @DiskChargePrepaid = DiskChargePrepaid.new
-            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
-          end
-          @DiskSize = params['DiskSize']
-          @SnapshotId = params['SnapshotId']
-          @ClientToken = params['ClientToken']
-          @Encrypt = params['Encrypt']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -355,8 +349,18 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
-          @Shareable = params['Shareable']
+          @SnapshotId = params['SnapshotId']
+          @DiskCount = params['DiskCount']
           @ThroughputPerformance = params['ThroughputPerformance']
+          @DiskSize = params['DiskSize']
+          @Shareable = params['Shareable']
+          @ClientToken = params['ClientToken']
+          @Encrypt = params['Encrypt']
+          unless params['DiskChargePrepaid'].nil?
+            @DiskChargePrepaid = DiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
+          end
+          @DeleteSnapshot = params['DeleteSnapshot']
         end
       end
 

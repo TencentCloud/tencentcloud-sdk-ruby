@@ -4984,14 +4984,20 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页条数，默认为20
         # @type Limit: Integer
+        # @param OrderBy: 按时间排序：creation_time；按名称排序：config_name
+        # @type OrderBy: String
+        # @param OrderType: 升序传 0，降序传 1
+        # @type OrderType: Integer
 
-        attr_accessor :ApplicationId, :SearchWord, :Offset, :Limit
+        attr_accessor :ApplicationId, :SearchWord, :Offset, :Limit, :OrderBy, :OrderType
         
-        def initialize(applicationid=nil, searchword=nil, offset=nil, limit=nil)
+        def initialize(applicationid=nil, searchword=nil, offset=nil, limit=nil, orderby=nil, ordertype=nil)
           @ApplicationId = applicationid
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
+          @OrderBy = orderby
+          @OrderType = ordertype
         end
 
         def deserialize(params)
@@ -4999,6 +5005,8 @@ module TencentCloud
           @SearchWord = params['SearchWord']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
         end
       end
 
@@ -6755,19 +6763,27 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页条数，默认为20
         # @type Limit: Integer
+        # @param OrderBy: 按时间排序：creation_time；按名称排序：config_name
+        # @type OrderBy: String
+        # @param OrderType: 升序传 0，降序传 1
+        # @type OrderType: Integer
 
-        attr_accessor :SearchWord, :Offset, :Limit
+        attr_accessor :SearchWord, :Offset, :Limit, :OrderBy, :OrderType
         
-        def initialize(searchword=nil, offset=nil, limit=nil)
+        def initialize(searchword=nil, offset=nil, limit=nil, orderby=nil, ordertype=nil)
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
+          @OrderBy = orderby
+          @OrderType = ordertype
         end
 
         def deserialize(params)
           @SearchWord = params['SearchWord']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @OrderType = params['OrderType']
         end
       end
 
@@ -12136,13 +12152,25 @@ module TencentCloud
         # @param SubnetId: 子网ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetId: String
+        # @param DisableService: 是否创建 k8s service，默认为 false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisableService: Boolean
+        # @param HeadlessService: service 是否为 headless 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadlessService: Boolean
+        # @param AllowDeleteService: 当为 true 且 DisableService 也为 true 时，会删除之前创建的 service，请小心使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowDeleteService: Boolean
 
-        attr_accessor :AccessType, :ProtocolPorts, :SubnetId
+        attr_accessor :AccessType, :ProtocolPorts, :SubnetId, :DisableService, :HeadlessService, :AllowDeleteService
         
-        def initialize(accesstype=nil, protocolports=nil, subnetid=nil)
+        def initialize(accesstype=nil, protocolports=nil, subnetid=nil, disableservice=nil, headlessservice=nil, allowdeleteservice=nil)
           @AccessType = accesstype
           @ProtocolPorts = protocolports
           @SubnetId = subnetid
+          @DisableService = disableservice
+          @HeadlessService = headlessservice
+          @AllowDeleteService = allowdeleteservice
         end
 
         def deserialize(params)
@@ -12156,6 +12184,9 @@ module TencentCloud
             end
           end
           @SubnetId = params['SubnetId']
+          @DisableService = params['DisableService']
+          @HeadlessService = params['HeadlessService']
+          @AllowDeleteService = params['AllowDeleteService']
         end
       end
 

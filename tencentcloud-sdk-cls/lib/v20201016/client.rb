@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 应用采集配置到指定机器组
+
+        # @param request: Request instance for ApplyConfigToMachineGroup.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ApplyConfigToMachineGroupRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ApplyConfigToMachineGroupResponse`
+        def ApplyConfigToMachineGroup(request)
+          body = send_request('ApplyConfigToMachineGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyConfigToMachineGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建告警策略。
 
         # @param request: Request instance for CreateAlarm.
@@ -77,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建采集规则配置
+
+        # @param request: Request instance for CreateConfig.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateConfigRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateConfigResponse`
+        def CreateConfig(request)
+          body = send_request('CreateConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建日志导出
 
         # @param request: Request instance for CreateExport.
@@ -111,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于创建日志集，返回新创建的日志集的 ID。
+
+        # @param request: Request instance for CreateLogset.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateLogsetRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateLogsetResponse`
+        def CreateLogset(request)
+          body = send_request('CreateLogset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLogsetResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -221,6 +293,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除采集规则配置
+
+        # @param request: Request instance for DeleteConfig.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteConfigRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteConfigResponse`
+        def DeleteConfig(request)
+          body = send_request('DeleteConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除应用到机器组的采集配置
+
+        # @param request: Request instance for DeleteConfigFromMachineGroup.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteConfigFromMachineGroupRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteConfigFromMachineGroupResponse`
+        def DeleteConfigFromMachineGroup(request)
+          body = send_request('DeleteConfigFromMachineGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConfigFromMachineGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除日志导出
 
         # @param request: Request instance for DeleteExport.
@@ -255,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除日志集。
+
+        # @param request: Request instance for DeleteLogset.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteLogsetRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteLogsetResponse`
+        def DeleteLogset(request)
+          body = send_request('DeleteLogset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLogsetResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,6 +509,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取采集规则配置所绑定的机器组
+
+        # @param request: Request instance for DescribeConfigMachineGroups.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeConfigMachineGroupsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeConfigMachineGroupsResponse`
+        def DescribeConfigMachineGroups(request)
+          body = send_request('DescribeConfigMachineGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConfigMachineGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取采集规则配置
+
+        # @param request: Request instance for DescribeConfigs.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeConfigsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeConfigsResponse`
+        def DescribeConfigs(request)
+          body = send_request('DescribeConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取日志导出列表
 
         # @param request: Request instance for DescribeExports.
@@ -423,6 +615,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLogContextResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取日志集信息列表。
+
+        # @param request: Request instance for DescribeLogsets.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeLogsetsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeLogsetsResponse`
+        def DescribeLogsets(request)
+          body = send_request('DescribeLogsets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogsetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取机器组绑定的采集规则配置
+
+        # @param request: Request instance for DescribeMachineGroupConfigs.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeMachineGroupConfigsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeMachineGroupConfigsResponse`
+        def DescribeMachineGroupConfigs(request)
+          body = send_request('DescribeMachineGroupConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMachineGroupConfigsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -629,6 +869,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改采集规则配置
+
+        # @param request: Request instance for ModifyConfig.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyConfigRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyConfigResponse`
+        def ModifyConfig(request)
+          body = send_request('ModifyConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改索引配置
 
         # @param request: Request instance for ModifyIndex.
@@ -639,6 +903,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改日志集信息
+
+        # @param request: Request instance for ModifyLogset.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyLogsetRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyLogsetResponse`
+        def ModifyLogset(request)
+          body = send_request('ModifyLogset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLogsetResponse.new
             model.deserialize(response['Response'])
             model
           else
