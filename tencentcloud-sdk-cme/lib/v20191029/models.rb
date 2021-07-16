@@ -1904,6 +1904,8 @@ module TencentCloud
         # @type ExportDestination: String
         # @param TrackData: 在线编辑轨道数据。轨道数据相关介绍，请查看 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225)。
         # @type TrackData: String
+        # @param CoverData: 视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
+        # @type CoverData: String
         # @param CMEExportInfo: 导出的云剪素材信息。指定 ExportDestination = CME 时有效。
         # @type CMEExportInfo: :class:`Tencentcloud::Cme.v20191029.models.CMEExportInfo`
         # @param VODExportInfo: 导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
@@ -1911,13 +1913,14 @@ module TencentCloud
         # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验导出操作权限。
         # @type Operator: String
 
-        attr_accessor :Platform, :Definition, :ExportDestination, :TrackData, :CMEExportInfo, :VODExportInfo, :Operator
+        attr_accessor :Platform, :Definition, :ExportDestination, :TrackData, :CoverData, :CMEExportInfo, :VODExportInfo, :Operator
         
-        def initialize(platform=nil, definition=nil, exportdestination=nil, trackdata=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
+        def initialize(platform=nil, definition=nil, exportdestination=nil, trackdata=nil, coverdata=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
           @Platform = platform
           @Definition = definition
           @ExportDestination = exportdestination
           @TrackData = trackdata
+          @CoverData = coverdata
           @CMEExportInfo = cmeexportinfo
           @VODExportInfo = vodexportinfo
           @Operator = operator
@@ -1928,6 +1931,7 @@ module TencentCloud
           @Definition = params['Definition']
           @ExportDestination = params['ExportDestination']
           @TrackData = params['TrackData']
+          @CoverData = params['CoverData']
           unless params['CMEExportInfo'].nil?
             @CMEExportInfo = CMEExportInfo.new
             @CMEExportInfo.deserialize(params['CMEExportInfo'])

@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建新的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
+
+        # @param request: Request instance for CreateShipper.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateShipperRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateShipperResponse`
+        def CreateShipper(request)
+          body = send_request('CreateShipper', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateShipperResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于创建日志主题。
 
         # @param request: Request instance for CreateTopic.
@@ -423,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteMachineGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除投递规则
+
+        # @param request: Request instance for DeleteShipper.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteShipperRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteShipperResponse`
+        def DeleteShipper(request)
+          body = send_request('DeleteShipper', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteShipperResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -749,6 +797,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取投递任务列表
+
+        # @param request: Request instance for DescribeShipperTasks.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeShipperTasksRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeShipperTasksResponse`
+        def DescribeShipperTasks(request)
+          body = send_request('DescribeShipperTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeShipperTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取投递规则信息列表
+
+        # @param request: Request instance for DescribeShippers.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeShippersRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeShippersResponse`
+        def DescribeShippers(request)
+          body = send_request('DescribeShippers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeShippersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         #  本接口用于获取日志主题列表，支持分页
 
         # @param request: Request instance for DescribeTopics.
@@ -965,6 +1061,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
+
+        # @param request: Request instance for ModifyShipper.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyShipperRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyShipperResponse`
+        def ModifyShipper(request)
+          body = send_request('ModifyShipper', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyShipperResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改日志主题。
 
         # @param request: Request instance for ModifyTopic.
@@ -975,6 +1095,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重试失败的投递任务
+
+        # @param request: Request instance for RetryShipperTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::RetryShipperTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::RetryShipperTaskResponse`
+        def RetryShipperTask(request)
+          body = send_request('RetryShipperTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RetryShipperTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

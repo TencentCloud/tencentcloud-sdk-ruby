@@ -59,6 +59,46 @@ module TencentCloud
         end
       end
 
+      # ApplyParamsTemplate请求参数结构体
+      class ApplyParamsTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+        # @param TemplateId: 应用的参数模板ID
+        # @type TemplateId: String
+
+        attr_accessor :InstanceIds, :TemplateId
+        
+        def initialize(instanceids=nil, templateid=nil)
+          @InstanceIds = instanceids
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # ApplyParamsTemplate返回参数结构体
+      class ApplyParamsTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 任务ID
+        # @type TaskIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskIds, :RequestId
+        
+        def initialize(taskids=nil, requestid=nil)
+          @TaskIds = taskids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssociateSecurityGroups请求参数结构体
       class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称：mariadb,cdb,cynosdb,dcdb,redis,mongodb 等。
@@ -359,8 +399,6 @@ module TencentCloud
 
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 实例所属的可用区ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
-        # @type ZoneId: Integer
         # @param TypeId: 实例类型：2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)。
         # @type TypeId: Integer
         # @param MemSize: 内存容量，单位为MB， 数值需为1024的整数倍，具体规格以 [查询产品售卖规格](https://cloud.tencent.com/document/api/239/30600) 返回的规格为准。
@@ -372,6 +410,8 @@ module TencentCloud
         # @type Period: Integer
         # @param BillingMode: 付费方式:0-按量计费，1-包年包月。
         # @type BillingMode: Integer
+        # @param ZoneId: 实例所属的可用区ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
+        # @type ZoneId: Integer
         # @param Password: 实例密码，当输入参数NoAuth为true且使用私有网络VPC时，Password为非必填，否则Password为必填参数。
         # 当实例类型TypeId为Redis2.8、4.0和5.0时，其密码格式为：8-30个字符，至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种，不能以"/"开头；
         # 当实例类型TypeId为CKV 3.2时，其密码格式为：8-30个字符，必须包含字母和数字 且 不包含其他字符。
@@ -402,16 +442,20 @@ module TencentCloud
         # @type NodeSet: Array
         # @param ResourceTags: 购买实例绑定标签
         # @type ResourceTags: Array
+        # @param ZoneName: 实例所属的可用区名称，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
+        # @type ZoneName: String
+        # @param TemplateId: 创建实例需要应用的参数模板ID，不传则应用默认的参数模板
+        # @type TemplateId: String
 
-        attr_accessor :ZoneId, :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth, :NodeSet, :ResourceTags
+        attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :Password, :VpcId, :SubnetId, :ProjectId, :AutoRenew, :SecurityGroupIdList, :VPort, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :InstanceName, :NoAuth, :NodeSet, :ResourceTags, :ZoneName, :TemplateId
         
-        def initialize(zoneid=nil, typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, password=nil, vpcid=nil, subnetid=nil, projectid=nil, autorenew=nil, securitygroupidlist=nil, vport=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, instancename=nil, noauth=nil, nodeset=nil, resourcetags=nil)
-          @ZoneId = zoneid
+        def initialize(typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, zoneid=nil, password=nil, vpcid=nil, subnetid=nil, projectid=nil, autorenew=nil, securitygroupidlist=nil, vport=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, instancename=nil, noauth=nil, nodeset=nil, resourcetags=nil, zonename=nil, templateid=nil)
           @TypeId = typeid
           @MemSize = memsize
           @GoodsNum = goodsnum
           @Period = period
           @BillingMode = billingmode
+          @ZoneId = zoneid
           @Password = password
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -426,15 +470,17 @@ module TencentCloud
           @NoAuth = noauth
           @NodeSet = nodeset
           @ResourceTags = resourcetags
+          @ZoneName = zonename
+          @TemplateId = templateid
         end
 
         def deserialize(params)
-          @ZoneId = params['ZoneId']
           @TypeId = params['TypeId']
           @MemSize = params['MemSize']
           @GoodsNum = params['GoodsNum']
           @Period = params['Period']
           @BillingMode = params['BillingMode']
+          @ZoneId = params['ZoneId']
           @Password = params['Password']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
@@ -463,6 +509,8 @@ module TencentCloud
               @ResourceTags << resourcetag_tmp
             end
           end
+          @ZoneName = params['ZoneName']
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -486,6 +534,65 @@ module TencentCloud
         def deserialize(params)
           @DealId = params['DealId']
           @InstanceIds = params['InstanceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateParamTemplate请求参数结构体
+      class CreateParamTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 参数模板名称。
+        # @type Name: String
+        # @param Description: 参数模板描述。
+        # @type Description: String
+        # @param ProductType: 产品类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）。创建模板时必填，从源模板复制则不需要传入该参数。
+        # @type ProductType: Integer
+        # @param TemplateId: 源参数模板 ID。
+        # @type TemplateId: String
+        # @param ParamList: 参数列表。
+        # @type ParamList: Array
+
+        attr_accessor :Name, :Description, :ProductType, :TemplateId, :ParamList
+        
+        def initialize(name=nil, description=nil, producttype=nil, templateid=nil, paramlist=nil)
+          @Name = name
+          @Description = description
+          @ProductType = producttype
+          @TemplateId = templateid
+          @ParamList = paramlist
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @ProductType = params['ProductType']
+          @TemplateId = params['TemplateId']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              instanceparam_tmp = InstanceParam.new
+              instanceparam_tmp.deserialize(i)
+              @ParamList << instanceparam_tmp
+            end
+          end
+        end
+      end
+
+      # CreateParamTemplate返回参数结构体
+      class CreateParamTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板 ID。
+        # @type TemplateId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+        
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
           @RequestId = params['RequestId']
         end
       end
@@ -556,6 +663,38 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteParamTemplate请求参数结构体
+      class DeleteParamTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板 ID。
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteParamTemplate返回参数结构体
+      class DeleteParamTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1998,6 +2137,124 @@ module TencentCloud
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeParamTemplateInfo请求参数结构体
+      class DescribeParamTemplateInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板 ID。
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+        
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeParamTemplateInfo返回参数结构体
+      class DescribeParamTemplateInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例参数个数
+        # @type TotalCount: Integer
+        # @param TemplateId: 参数模板 ID。
+        # @type TemplateId: String
+        # @param Name: 参数模板名称。
+        # @type Name: String
+        # @param ProductType: 产品类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        # @type ProductType: Integer
+        # @param Description: 参数模板描述
+        # @type Description: String
+        # @param Items: 参数详情
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TemplateId, :Name, :ProductType, :Description, :Items, :RequestId
+        
+        def initialize(totalcount=nil, templateid=nil, name=nil, producttype=nil, description=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TemplateId = templateid
+          @Name = name
+          @ProductType = producttype
+          @Description = description
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @TemplateId = params['TemplateId']
+          @Name = params['Name']
+          @ProductType = params['ProductType']
+          @Description = params['Description']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              parameterdetail_tmp = ParameterDetail.new
+              parameterdetail_tmp.deserialize(i)
+              @Items << parameterdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeParamTemplates请求参数结构体
+      class DescribeParamTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param ProductTypes: 产品类型数组。产品类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        # @type ProductTypes: Array
+        # @param TemplateNames: 模板名称数组。
+        # @type TemplateNames: Array
+        # @param TemplateIds: 模板ID数组。
+        # @type TemplateIds: Array
+
+        attr_accessor :ProductTypes, :TemplateNames, :TemplateIds
+        
+        def initialize(producttypes=nil, templatenames=nil, templateids=nil)
+          @ProductTypes = producttypes
+          @TemplateNames = templatenames
+          @TemplateIds = templateids
+        end
+
+        def deserialize(params)
+          @ProductTypes = params['ProductTypes']
+          @TemplateNames = params['TemplateNames']
+          @TemplateIds = params['TemplateIds']
+        end
+      end
+
+      # DescribeParamTemplates返回参数结构体
+      class DescribeParamTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 该用户的参数模板数量。
+        # @type TotalCount: Integer
+        # @param Items: 参数模板详情。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              paramtemplateinfo_tmp = ParamTemplateInfo.new
+              paramtemplateinfo_tmp.deserialize(i)
+              @Items << paramtemplateinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4185,6 +4442,57 @@ module TencentCloud
         end
       end
 
+      # ModifyParamTemplate请求参数结构体
+      class ModifyParamTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 源参数模板 ID。
+        # @type TemplateId: String
+        # @param Name: 参数模板名称。
+        # @type Name: String
+        # @param Description: 参数模板描述。
+        # @type Description: String
+        # @param ParamList: 参数列表。
+        # @type ParamList: Array
+
+        attr_accessor :TemplateId, :Name, :Description, :ParamList
+        
+        def initialize(templateid=nil, name=nil, description=nil, paramlist=nil)
+          @TemplateId = templateid
+          @Name = name
+          @Description = description
+          @ParamList = paramlist
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              instanceparam_tmp = InstanceParam.new
+              instanceparam_tmp.deserialize(i)
+              @ParamList << instanceparam_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyParamTemplate返回参数结构体
+      class ModifyParamTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 安全组出站规则
       class Outbound < TencentCloud::Common::AbstractModel
         # @param Action: 策略，ACCEPT或者DROP。
@@ -4226,6 +4534,85 @@ module TencentCloud
           @PortRange = params['PortRange']
           @ServiceModule = params['ServiceModule']
           @Id = params['Id']
+        end
+      end
+
+      # 参数模板信息
+      class ParamTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板ID
+        # @type TemplateId: String
+        # @param Name: 参数模板名称
+        # @type Name: String
+        # @param Description: 参数模板描述
+        # @type Description: String
+        # @param ProductType: 产品类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        # @type ProductType: Integer
+
+        attr_accessor :TemplateId, :Name, :Description, :ProductType
+        
+        def initialize(templateid=nil, name=nil, description=nil, producttype=nil)
+          @TemplateId = templateid
+          @Name = name
+          @Description = description
+          @ProductType = producttype
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ProductType = params['ProductType']
+        end
+      end
+
+      # Redis参数模板参数详情
+      class ParameterDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称
+        # @type Name: String
+        # @param ParamType: 参数类型
+        # @type ParamType: String
+        # @param Default: 参数默认值
+        # @type Default: String
+        # @param Description: 参数描述
+        # @type Description: String
+        # @param CurrentValue: 参数当前值
+        # @type CurrentValue: String
+        # @param NeedReboot: 修改参数后，是否需要重启数据库以使参数生效。可能的值包括：0-不需要重启；1-需要重启
+        # @type NeedReboot: Integer
+        # @param Max: 参数允许的最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Max: String
+        # @param Min: 参数允许的最小值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Min: String
+        # @param EnumValue: 参数的可选枚举值。如果为非枚举参数，则为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnumValue: Array
+
+        attr_accessor :Name, :ParamType, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue
+        
+        def initialize(name=nil, paramtype=nil, default=nil, description=nil, currentvalue=nil, needreboot=nil, max=nil, min=nil, enumvalue=nil)
+          @Name = name
+          @ParamType = paramtype
+          @Default = default
+          @Description = description
+          @CurrentValue = currentvalue
+          @NeedReboot = needreboot
+          @Max = max
+          @Min = min
+          @EnumValue = enumvalue
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ParamType = params['ParamType']
+          @Default = params['Default']
+          @Description = params['Description']
+          @CurrentValue = params['CurrentValue']
+          @NeedReboot = params['NeedReboot']
+          @Max = params['Max']
+          @Min = params['Min']
+          @EnumValue = params['EnumValue']
         end
       end
 
@@ -4450,23 +4837,27 @@ module TencentCloud
       class RedisNodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeType: 节点类型，0 为主节点，1 为副本节点
         # @type NodeType: Integer
-        # @param ZoneId: 主节点或者副本节点的可用区ID
-        # @type ZoneId: Integer
         # @param NodeId: 主节点或者副本节点的ID，创建时不需要传递此参数。
         # @type NodeId: Integer
+        # @param ZoneId: 主节点或者副本节点的可用区ID
+        # @type ZoneId: Integer
+        # @param ZoneName: 主节点或者副本节点的可用区名称
+        # @type ZoneName: String
 
-        attr_accessor :NodeType, :ZoneId, :NodeId
+        attr_accessor :NodeType, :NodeId, :ZoneId, :ZoneName
         
-        def initialize(nodetype=nil, zoneid=nil, nodeid=nil)
+        def initialize(nodetype=nil, nodeid=nil, zoneid=nil, zonename=nil)
           @NodeType = nodetype
-          @ZoneId = zoneid
           @NodeId = nodeid
+          @ZoneId = zoneid
+          @ZoneName = zonename
         end
 
         def deserialize(params)
           @NodeType = params['NodeType']
-          @ZoneId = params['ZoneId']
           @NodeId = params['NodeId']
+          @ZoneId = params['ZoneId']
+          @ZoneName = params['ZoneName']
         end
       end
 

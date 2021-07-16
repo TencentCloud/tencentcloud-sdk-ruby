@@ -295,6 +295,22 @@ module TencentCloud
         end
       end
 
+      # 投递日志的压缩配置
+      class CompressInfo < TencentCloud::Common::AbstractModel
+        # @param Format: 压缩格式，支持gzip、lzop和none不压缩
+        # @type Format: String
+
+        attr_accessor :Format
+        
+        def initialize(format=nil)
+          @Format = format
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+        end
+      end
+
       # 采集规则配置信息
       class ConfigInfo < TencentCloud::Common::AbstractModel
         # @param ConfigId: 采集规则配置ID
@@ -302,7 +318,7 @@ module TencentCloud
         # @param LogFormat: 日志格式化方式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogFormat: String
-        # @param Path: 通配符日志采集路径列表，以/**/分隔文件目录和文件名
+        # @param Path: 日志采集路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
@@ -356,6 +372,38 @@ module TencentCloud
           @Output = params['Output']
           @UpdateTime = params['UpdateTime']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 投递日志的内容格式配置
+      class ContentInfo < TencentCloud::Common::AbstractModel
+        # @param Format: 内容格式，支持json、csv
+        # @type Format: String
+        # @param Csv: csv格式内容描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Csv: :class:`Tencentcloud::Cls.v20201016.models.CsvInfo`
+        # @param Json: json格式内容描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Json: :class:`Tencentcloud::Cls.v20201016.models.JsonInfo`
+
+        attr_accessor :Format, :Csv, :Json
+        
+        def initialize(format=nil, csv=nil, json=nil)
+          @Format = format
+          @Csv = csv
+          @Json = json
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+          unless params['Csv'].nil?
+            @Csv = CsvInfo.new
+            @Csv.deserialize(params['Csv'])
+          end
+          unless params['Json'].nil?
+            @Json = JsonInfo.new
+            @Json.deserialize(params['Json'])
+          end
         end
       end
 
@@ -504,7 +552,7 @@ module TencentCloud
         # @type Name: String
         # @param Output: 采集配置所属日志主题ID即TopicId
         # @type Output: String
-        # @param Path: 通配符日志采集路径列表，以/**/分隔文件目录和文件名
+        # @param Path: 日志采集路径,包含文件名
         # @type Path: String
         # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
         # @type LogType: String
@@ -784,6 +832,91 @@ module TencentCloud
         end
       end
 
+      # CreateShipper请求参数结构体
+      class CreateShipperRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 创建的投递规则所属的日志主题ID
+        # @type TopicId: String
+        # @param Bucket: 创建的投递规则投递的bucket
+        # @type Bucket: String
+        # @param Prefix: 创建的投递规则投递目录的前缀
+        # @type Prefix: String
+        # @param ShipperName: 投递规则的名字
+        # @type ShipperName: String
+        # @param Interval: 投递的时间间隔，单位 秒，默认300，范围 300-900
+        # @type Interval: Integer
+        # @param MaxSize: 投递的文件的最大值，单位 MB，默认256，范围 100-256
+        # @type MaxSize: Integer
+        # @param FilterRules: 投递日志的过滤规则，匹配的日志进行投递，各rule之间是and关系，最多5个，数组为空则表示不过滤而全部投递
+        # @type FilterRules: Array
+        # @param Partition: 投递日志的分区规则，支持strftime的时间格式表示
+        # @type Partition: String
+        # @param Compress: 投递日志的压缩配置
+        # @type Compress: :class:`Tencentcloud::Cls.v20201016.models.CompressInfo`
+        # @param Content: 投递日志的内容格式配置
+        # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
+
+        attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content
+        
+        def initialize(topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil)
+          @TopicId = topicid
+          @Bucket = bucket
+          @Prefix = prefix
+          @ShipperName = shippername
+          @Interval = interval
+          @MaxSize = maxsize
+          @FilterRules = filterrules
+          @Partition = partition
+          @Compress = compress
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Bucket = params['Bucket']
+          @Prefix = params['Prefix']
+          @ShipperName = params['ShipperName']
+          @Interval = params['Interval']
+          @MaxSize = params['MaxSize']
+          unless params['FilterRules'].nil?
+            @FilterRules = []
+            params['FilterRules'].each do |i|
+              filterruleinfo_tmp = FilterRuleInfo.new
+              filterruleinfo_tmp.deserialize(i)
+              @FilterRules << filterruleinfo_tmp
+            end
+          end
+          @Partition = params['Partition']
+          unless params['Compress'].nil?
+            @Compress = CompressInfo.new
+            @Compress.deserialize(params['Compress'])
+          end
+          unless params['Content'].nil?
+            @Content = ContentInfo.new
+            @Content.deserialize(params['Content'])
+          end
+        end
+      end
+
+      # CreateShipper返回参数结构体
+      class CreateShipperResponse < TencentCloud::Common::AbstractModel
+        # @param ShipperId: 投递规则ID
+        # @type ShipperId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ShipperId, :RequestId
+        
+        def initialize(shipperid=nil, requestid=nil)
+          @ShipperId = shipperid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ShipperId = params['ShipperId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集ID
@@ -852,6 +985,39 @@ module TencentCloud
         def deserialize(params)
           @TopicId = params['TopicId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # csv内容描述
+      class CsvInfo < TencentCloud::Common::AbstractModel
+        # @param PrintKey: csv首行是否打印key
+        # @type PrintKey: Boolean
+        # @param Keys: 每列key的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keys: Array
+        # @param Delimiter: 各字段间的分隔符
+        # @type Delimiter: String
+        # @param EscapeChar: 若字段内容中包含分隔符，则使用该转义符包裹改字段，只能填写单引号、双引号、空字符串
+        # @type EscapeChar: String
+        # @param NonExistingField: 对于上面指定的不存在字段使用该内容填充
+        # @type NonExistingField: String
+
+        attr_accessor :PrintKey, :Keys, :Delimiter, :EscapeChar, :NonExistingField
+        
+        def initialize(printkey=nil, keys=nil, delimiter=nil, escapechar=nil, nonexistingfield=nil)
+          @PrintKey = printkey
+          @Keys = keys
+          @Delimiter = delimiter
+          @EscapeChar = escapechar
+          @NonExistingField = nonexistingfield
+        end
+
+        def deserialize(params)
+          @PrintKey = params['PrintKey']
+          @Keys = params['Keys']
+          @Delimiter = params['Delimiter']
+          @EscapeChar = params['EscapeChar']
+          @NonExistingField = params['NonExistingField']
         end
       end
 
@@ -1101,6 +1267,38 @@ module TencentCloud
 
       # DeleteMachineGroup返回参数结构体
       class DeleteMachineGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteShipper请求参数结构体
+      class DeleteShipperRequest < TencentCloud::Common::AbstractModel
+        # @param ShipperId: 投递规则ID
+        # @type ShipperId: String
+
+        attr_accessor :ShipperId
+        
+        def initialize(shipperid=nil)
+          @ShipperId = shipperid
+        end
+
+        def deserialize(params)
+          @ShipperId = params['ShipperId']
+        end
+      end
+
+      # DeleteShipper返回参数结构体
+      class DeleteShipperResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1974,6 +2172,143 @@ module TencentCloud
         end
       end
 
+      # DescribeShipperTasks请求参数结构体
+      class DescribeShipperTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ShipperId: 投递规则ID
+        # @type ShipperId: String
+        # @param StartTime: 查询的开始时间戳，支持最近3天的查询， 毫秒
+        # @type StartTime: Integer
+        # @param EndTime: 查询的结束时间戳， 毫秒
+        # @type EndTime: Integer
+
+        attr_accessor :ShipperId, :StartTime, :EndTime
+        
+        def initialize(shipperid=nil, starttime=nil, endtime=nil)
+          @ShipperId = shipperid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ShipperId = params['ShipperId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeShipperTasks返回参数结构体
+      class DescribeShipperTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 投递任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :RequestId
+        
+        def initialize(tasks=nil, requestid=nil)
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              shippertaskinfo_tmp = ShipperTaskInfo.new
+              shippertaskinfo_tmp.deserialize(i)
+              @Tasks << shippertaskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeShippers请求参数结构体
+      class DescribeShippersRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <br><li> shipperName
+
+        # 按照【投递规则名称】进行过滤。
+        # 类型：String
+
+        # 必选：否
+
+        # <br><li> shipperId
+
+        # 按照【投递规则ID】进行过滤。
+        # 类型：String
+
+        # 必选：否
+
+        # <br><li> topicId
+
+        # 按照【日志主题】进行过滤。
+
+        # 类型：String
+
+        # 必选：否
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为5。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 分页单页的限制数目，默认值为20，最大值100
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+        
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeShippers返回参数结构体
+      class DescribeShippersResponse < TencentCloud::Common::AbstractModel
+        # @param Shippers: 投递规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Shippers: Array
+        # @param TotalCount: 本次查询获取到的总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Shippers, :TotalCount, :RequestId
+        
+        def initialize(shippers=nil, totalcount=nil, requestid=nil)
+          @Shippers = shippers
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Shippers'].nil?
+            @Shippers = []
+            params['Shippers'].each do |i|
+              shipperinfo_tmp = ShipperInfo.new
+              shipperinfo_tmp.deserialize(i)
+              @Shippers << shipperinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopics请求参数结构体
       class DescribeTopicsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <br><li> topicName
@@ -2255,6 +2590,30 @@ module TencentCloud
         end
       end
 
+      # 投递日志的过滤规则
+      class FilterRuleInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 过滤规则Key
+        # @type Key: String
+        # @param Regex: 过滤规则
+        # @type Regex: String
+        # @param Value: 过滤规则Value
+        # @type Value: String
+
+        attr_accessor :Key, :Regex, :Value
+        
+        def initialize(key=nil, regex=nil, value=nil)
+          @Key = key
+          @Regex = regex
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Regex = params['Regex']
+          @Value = params['Value']
+        end
+      end
+
       # 全文索引配置
       class FullTextInfo < TencentCloud::Common::AbstractModel
         # @param CaseSensitive: 是否大小写敏感
@@ -2370,6 +2729,27 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # JSON类型描述
+      class JsonInfo < TencentCloud::Common::AbstractModel
+        # @param EnableTag: 启用标志
+        # @type EnableTag: Boolean
+        # @param MetaFields: 元数据信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaFields: Array
+
+        attr_accessor :EnableTag, :MetaFields
+        
+        def initialize(enabletag=nil, metafields=nil)
+          @EnableTag = enabletag
+          @MetaFields = metafields
+        end
+
+        def deserialize(params)
+          @EnableTag = params['EnableTag']
+          @MetaFields = params['MetaFields']
         end
       end
 
@@ -2903,7 +3283,7 @@ module TencentCloud
         # @type ConfigId: String
         # @param Name: 采集规则配置名称
         # @type Name: String
-        # @param Path: 通配符日志采集路径列表，以/**/分隔文件目录和文件名
+        # @param Path: 日志采集路径，包含文件名
         # @type Path: String
         # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
         # @type LogType: String
@@ -3123,6 +3503,91 @@ module TencentCloud
         end
       end
 
+      # ModifyShipper请求参数结构体
+      class ModifyShipperRequest < TencentCloud::Common::AbstractModel
+        # @param ShipperId: 投递规则ID
+        # @type ShipperId: String
+        # @param Bucket: 投递规则投递的新的bucket
+        # @type Bucket: String
+        # @param Prefix: 投递规则投递的新的目录前缀
+        # @type Prefix: String
+        # @param Status: 投递规则的开关状态
+        # @type Status: Boolean
+        # @param ShipperName: 投递规则的名字
+        # @type ShipperName: String
+        # @param Interval: 投递的时间间隔，单位 秒，默认300，范围 300-900
+        # @type Interval: Integer
+        # @param MaxSize: 投递的文件的最大值，单位 MB，默认256，范围 100-256
+        # @type MaxSize: Integer
+        # @param FilterRules: 投递日志的过滤规则，匹配的日志进行投递，各rule之间是and关系，最多5个，数组为空则表示不过滤而全部投递
+        # @type FilterRules: Array
+        # @param Partition: 投递日志的分区规则，支持strftime的时间格式表示
+        # @type Partition: String
+        # @param Compress: 投递日志的压缩配置
+        # @type Compress: :class:`Tencentcloud::Cls.v20201016.models.CompressInfo`
+        # @param Content: 投递日志的内容格式配置
+        # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
+
+        attr_accessor :ShipperId, :Bucket, :Prefix, :Status, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content
+        
+        def initialize(shipperid=nil, bucket=nil, prefix=nil, status=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil)
+          @ShipperId = shipperid
+          @Bucket = bucket
+          @Prefix = prefix
+          @Status = status
+          @ShipperName = shippername
+          @Interval = interval
+          @MaxSize = maxsize
+          @FilterRules = filterrules
+          @Partition = partition
+          @Compress = compress
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ShipperId = params['ShipperId']
+          @Bucket = params['Bucket']
+          @Prefix = params['Prefix']
+          @Status = params['Status']
+          @ShipperName = params['ShipperName']
+          @Interval = params['Interval']
+          @MaxSize = params['MaxSize']
+          unless params['FilterRules'].nil?
+            @FilterRules = []
+            params['FilterRules'].each do |i|
+              filterruleinfo_tmp = FilterRuleInfo.new
+              filterruleinfo_tmp.deserialize(i)
+              @FilterRules << filterruleinfo_tmp
+            end
+          end
+          @Partition = params['Partition']
+          unless params['Compress'].nil?
+            @Compress = CompressInfo.new
+            @Compress.deserialize(params['Compress'])
+          end
+          unless params['Content'].nil?
+            @Content = ContentInfo.new
+            @Content.deserialize(params['Content'])
+          end
+        end
+      end
+
+      # ModifyShipper返回参数结构体
+      class ModifyShipperResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID
@@ -3285,6 +3750,42 @@ module TencentCloud
           @ExclusiveEndKey = params['ExclusiveEndKey']
           @CreateTime = params['CreateTime']
           @LastWriteTime = params['LastWriteTime']
+        end
+      end
+
+      # RetryShipperTask请求参数结构体
+      class RetryShipperTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ShipperId: 投递规则ID
+        # @type ShipperId: String
+        # @param TaskId: 投递任务ID
+        # @type TaskId: String
+
+        attr_accessor :ShipperId, :TaskId
+        
+        def initialize(shipperid=nil, taskid=nil)
+          @ShipperId = shipperid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @ShipperId = params['ShipperId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # RetryShipperTask返回参数结构体
+      class RetryShipperTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3472,6 +3973,134 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 投递规则
+      class ShipperInfo < TencentCloud::Common::AbstractModel
+        # @param ShipperId: 投递规则ID
+        # @type ShipperId: String
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param Bucket: 投递的bucket地址
+        # @type Bucket: String
+        # @param Prefix: 投递的前缀目录
+        # @type Prefix: String
+        # @param ShipperName: 投递规则的名字
+        # @type ShipperName: String
+        # @param Interval: 投递的时间间隔，单位 秒
+        # @type Interval: Integer
+        # @param MaxSize: 投递的文件的最大值，单位 MB
+        # @type MaxSize: Integer
+        # @param Status: 是否生效
+        # @type Status: Boolean
+        # @param FilterRules: 投递日志的过滤规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterRules: Array
+        # @param Partition: 投递日志的分区规则，支持strftime的时间格式表示
+        # @type Partition: String
+        # @param Compress: 投递日志的压缩配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Compress: :class:`Tencentcloud::Cls.v20201016.models.CompressInfo`
+        # @param Content: 投递日志的内容格式配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
+        # @param CreateTime: 投递日志的创建时间
+        # @type CreateTime: String
+
+        attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime
+        
+        def initialize(shipperid=nil, topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, status=nil, filterrules=nil, partition=nil, compress=nil, content=nil, createtime=nil)
+          @ShipperId = shipperid
+          @TopicId = topicid
+          @Bucket = bucket
+          @Prefix = prefix
+          @ShipperName = shippername
+          @Interval = interval
+          @MaxSize = maxsize
+          @Status = status
+          @FilterRules = filterrules
+          @Partition = partition
+          @Compress = compress
+          @Content = content
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ShipperId = params['ShipperId']
+          @TopicId = params['TopicId']
+          @Bucket = params['Bucket']
+          @Prefix = params['Prefix']
+          @ShipperName = params['ShipperName']
+          @Interval = params['Interval']
+          @MaxSize = params['MaxSize']
+          @Status = params['Status']
+          unless params['FilterRules'].nil?
+            @FilterRules = []
+            params['FilterRules'].each do |i|
+              filterruleinfo_tmp = FilterRuleInfo.new
+              filterruleinfo_tmp.deserialize(i)
+              @FilterRules << filterruleinfo_tmp
+            end
+          end
+          @Partition = params['Partition']
+          unless params['Compress'].nil?
+            @Compress = CompressInfo.new
+            @Compress.deserialize(params['Compress'])
+          end
+          unless params['Content'].nil?
+            @Content = ContentInfo.new
+            @Content.deserialize(params['Content'])
+          end
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 投递任务信息
+      class ShipperTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 投递任务ID
+        # @type TaskId: String
+        # @param ShipperId: 投递信息ID
+        # @type ShipperId: String
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param RangeStart: 本批投递的日志的开始时间戳，毫秒
+        # @type RangeStart: Integer
+        # @param RangeEnd: 本批投递的日志的结束时间戳， 毫秒
+        # @type RangeEnd: Integer
+        # @param StartTime: 本次投递任务的开始时间戳， 毫秒
+        # @type StartTime: Integer
+        # @param EndTime: 本次投递任务的结束时间戳， 毫秒
+        # @type EndTime: Integer
+        # @param Status: 本次投递的结果，"success","running","failed"
+        # @type Status: String
+        # @param Message: 结果的详细信息
+        # @type Message: String
+
+        attr_accessor :TaskId, :ShipperId, :TopicId, :RangeStart, :RangeEnd, :StartTime, :EndTime, :Status, :Message
+        
+        def initialize(taskid=nil, shipperid=nil, topicid=nil, rangestart=nil, rangeend=nil, starttime=nil, endtime=nil, status=nil, message=nil)
+          @TaskId = taskid
+          @ShipperId = shipperid
+          @TopicId = topicid
+          @RangeStart = rangestart
+          @RangeEnd = rangeend
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @Message = message
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ShipperId = params['ShipperId']
+          @TopicId = params['TopicId']
+          @RangeStart = params['RangeStart']
+          @RangeEnd = params['RangeEnd']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @Message = params['Message']
         end
       end
 

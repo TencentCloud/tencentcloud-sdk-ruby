@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 应用参数模板到实例
+
+        # @param request: Request instance for ApplyParamsTemplate.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ApplyParamsTemplateRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ApplyParamsTemplateResponse`
+        def ApplyParamsTemplate(request)
+          body = send_request('ApplyParamsTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyParamsTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
 
         # @param request: Request instance for AssociateSecurityGroups.
@@ -173,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建参数模板
+
+        # @param request: Request instance for CreateParamTemplate.
+        # @type request: :class:`Tencentcloud::redis::V20180412::CreateParamTemplateRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::CreateParamTemplateResponse`
+        def CreateParamTemplate(request)
+          body = send_request('CreateParamTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除实例子账号
 
         # @param request: Request instance for DeleteInstanceAccount.
@@ -183,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteInstanceAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除参数模板
+
+        # @param request: Request instance for DeleteParamTemplate.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DeleteParamTemplateRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DeleteParamTemplateResponse`
+        def DeleteParamTemplate(request)
+          body = send_request('DeleteParamTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteParamTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -759,6 +831,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMaintenanceWindowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询参数模板详情
+
+        # @param request: Request instance for DescribeParamTemplateInfo.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeParamTemplateInfoRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeParamTemplateInfoResponse`
+        def DescribeParamTemplateInfo(request)
+          body = send_request('DescribeParamTemplateInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeParamTemplateInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询参数模板列表
+
+        # @param request: Request instance for DescribeParamTemplates.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeParamTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeParamTemplatesResponse`
+        def DescribeParamTemplates(request)
+          body = send_request('DescribeParamTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeParamTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1407,6 +1527,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNetworkConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改参数模板
+
+        # @param request: Request instance for ModifyParamTemplate.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyParamTemplateRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyParamTemplateResponse`
+        def ModifyParamTemplate(request)
+          body = send_request('ModifyParamTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyParamTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

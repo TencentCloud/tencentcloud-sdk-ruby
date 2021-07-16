@@ -3233,6 +3233,62 @@ module TencentCloud
         end
       end
 
+      # DescribeEnvPostpaidDeduct请求参数结构体
+      class DescribeEnvPostpaidDeductRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceTypes: 资源方列表
+        # @type ResourceTypes: Array
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param StartTime: 查询开始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+
+        attr_accessor :ResourceTypes, :EnvId, :StartTime, :EndTime
+        
+        def initialize(resourcetypes=nil, envid=nil, starttime=nil, endtime=nil)
+          @ResourceTypes = resourcetypes
+          @EnvId = envid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ResourceTypes = params['ResourceTypes']
+          @EnvId = params['EnvId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeEnvPostpaidDeduct返回参数结构体
+      class DescribeEnvPostpaidDeductResponse < TencentCloud::Common::AbstractModel
+        # @param PostPaidEnvDeductInfoList: 指标抵扣详情列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostPaidEnvDeductInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PostPaidEnvDeductInfoList, :RequestId
+        
+        def initialize(postpaidenvdeductinfolist=nil, requestid=nil)
+          @PostPaidEnvDeductInfoList = postpaidenvdeductinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PostPaidEnvDeductInfoList'].nil?
+            @PostPaidEnvDeductInfoList = []
+            params['PostPaidEnvDeductInfoList'].each do |i|
+              postpaidenvdeductinfo_tmp = PostPaidEnvDeductInfo.new
+              postpaidenvdeductinfo_tmp.deserialize(i)
+              @PostPaidEnvDeductInfoList << postpaidenvdeductinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnvs请求参数结构体
       class DescribeEnvsRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID，如果传了这个参数则只返回该环境的相关信息
@@ -3628,6 +3684,58 @@ module TencentCloud
               smsfreequota_tmp = SmsFreeQuota.new
               smsfreequota_tmp.deserialize(i)
               @SmsFreeQuotaList << smsfreequota_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSpecialCostItems请求参数结构体
+      class DescribeSpecialCostItemsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param StartTime: 查询开始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+
+        attr_accessor :EnvId, :StartTime, :EndTime
+        
+        def initialize(envid=nil, starttime=nil, endtime=nil)
+          @EnvId = envid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeSpecialCostItems返回参数结构体
+      class DescribeSpecialCostItemsResponse < TencentCloud::Common::AbstractModel
+        # @param SpecialCostItems: 1分钱抵扣详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecialCostItems: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpecialCostItems, :RequestId
+        
+        def initialize(specialcostitems=nil, requestid=nil)
+          @SpecialCostItems = specialcostitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SpecialCostItems'].nil?
+            @SpecialCostItems = []
+            params['SpecialCostItems'].each do |i|
+              specialcostitem_tmp = SpecialCostItem.new
+              specialcostitem_tmp.deserialize(i)
+              @SpecialCostItems << specialcostitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4770,6 +4878,48 @@ module TencentCloud
         end
       end
 
+      # 后付费计费详情
+      class PostPaidEnvDeductInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源方
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param MetricName: 指标名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param ResQuota: 按量计费详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResQuota: Float
+        # @param PkgQuota: 资源包抵扣详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PkgQuota: Float
+        # @param FreeQuota: 免费额度抵扣详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreeQuota: Float
+        # @param EnvId: 环境id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvId: String
+
+        attr_accessor :ResourceType, :MetricName, :ResQuota, :PkgQuota, :FreeQuota, :EnvId
+        
+        def initialize(resourcetype=nil, metricname=nil, resquota=nil, pkgquota=nil, freequota=nil, envid=nil)
+          @ResourceType = resourcetype
+          @MetricName = metricname
+          @ResQuota = resquota
+          @PkgQuota = pkgquota
+          @FreeQuota = freequota
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @MetricName = params['MetricName']
+          @ResQuota = params['ResQuota']
+          @PkgQuota = params['PkgQuota']
+          @FreeQuota = params['FreeQuota']
+          @EnvId = params['EnvId']
+        end
+      end
+
       # 按量付费免费配额信息
       class PostpayEnvQuota < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型
@@ -5053,6 +5203,38 @@ module TencentCloud
           @CycleStart = params['CycleStart']
           @CycleEnd = params['CycleEnd']
           @TodayUsedQuota = params['TodayUsedQuota']
+        end
+      end
+
+      # 1分钱计费详情
+      class SpecialCostItem < TencentCloud::Common::AbstractModel
+        # @param ReportDate: 上报日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportDate: String
+        # @param Uin: 腾讯云uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param EnvId: 资源id:环境id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvId: String
+        # @param Status: 上报任务状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :ReportDate, :Uin, :EnvId, :Status
+        
+        def initialize(reportdate=nil, uin=nil, envid=nil, status=nil)
+          @ReportDate = reportdate
+          @Uin = uin
+          @EnvId = envid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ReportDate = params['ReportDate']
+          @Uin = params['Uin']
+          @EnvId = params['EnvId']
+          @Status = params['Status']
         end
       end
 
