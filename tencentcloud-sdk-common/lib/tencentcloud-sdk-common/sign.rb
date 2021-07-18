@@ -39,7 +39,7 @@ module TencentCloud
           ].join("\n")
           service = endpoint.split('.')[0]
 
-          date = Time.at(timestamp).strftime('%Y-%m-%d')
+          date = Time.at(timestamp).utc.strftime('%Y-%m-%d')
           credential_scope = date + '/' + service + '/' + 'tc3_request'
           algorithm = 'TC3-HMAC-SHA256'
           hashed_request_payload = Digest::SHA256.hexdigest(canonical_request)
