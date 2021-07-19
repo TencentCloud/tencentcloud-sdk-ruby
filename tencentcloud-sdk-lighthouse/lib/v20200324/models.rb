@@ -89,6 +89,38 @@ module TencentCloud
         end
       end
 
+      # AttachCcn请求参数结构体
+      class AttachCcnRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网实例ID。
+        # @type CcnId: String
+
+        attr_accessor :CcnId
+        
+        def initialize(ccnid=nil)
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+        end
+      end
+
+      # AttachCcn返回参数结构体
+      class AttachCcnResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了镜像信息。
       class Blueprint < TencentCloud::Common::AbstractModel
         # @param BlueprintId: 镜像 ID  ，是 Blueprint 的唯一标识。
@@ -301,6 +333,49 @@ module TencentCloud
           @BundleSalesState = params['BundleSalesState']
           @BundleType = params['BundleType']
           @BundleDisplayLabel = params['BundleDisplayLabel']
+        end
+      end
+
+      # 云联网关联的实例列表。
+      class CcnAttachedInstance < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID。
+        # @type CcnId: String
+        # @param CidrBlock: 关联实例CIDR。
+        # @type CidrBlock: Array
+        # @param State: 关联实例状态：
+
+        # •  PENDING：申请中
+        # •  ACTIVE：已连接
+        # •  EXPIRED：已过期
+        # •  REJECTED：已拒绝
+        # •  DELETED：已删除
+        # •  FAILED：失败的（2小时后将异步强制解关联）
+        # •  ATTACHING：关联中
+        # •  DETACHING：解关联中
+        # •  DETACHFAILED：解关联失败（2小时后将异步强制解关联）
+        # @type State: String
+        # @param AttachedTime: 关联时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachedTime: String
+        # @param Description: 备注
+        # @type Description: String
+
+        attr_accessor :CcnId, :CidrBlock, :State, :AttachedTime, :Description
+        
+        def initialize(ccnid=nil, cidrblock=nil, state=nil, attachedtime=nil, description=nil)
+          @CcnId = ccnid
+          @CidrBlock = cidrblock
+          @State = state
+          @AttachedTime = attachedtime
+          @Description = description
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @CidrBlock = params['CidrBlock']
+          @State = params['State']
+          @AttachedTime = params['AttachedTime']
+          @Description = params['Description']
         end
       end
 
@@ -887,6 +962,45 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcnAttachedInstances请求参数结构体
+      class DescribeCcnAttachedInstancesRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCcnAttachedInstances返回参数结构体
+      class DescribeCcnAttachedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param CcnAttachedInstanceSet: 云联网关联的实例列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnAttachedInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CcnAttachedInstanceSet, :RequestId
+        
+        def initialize(ccnattachedinstanceset=nil, requestid=nil)
+          @CcnAttachedInstanceSet = ccnattachedinstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CcnAttachedInstanceSet'].nil?
+            @CcnAttachedInstanceSet = []
+            params['CcnAttachedInstanceSet'].each do |i|
+              ccnattachedinstance_tmp = CcnAttachedInstance.new
+              ccnattachedinstance_tmp.deserialize(i)
+              @CcnAttachedInstanceSet << ccnattachedinstance_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1757,6 +1871,38 @@ module TencentCloud
               @ZoneInfoSet << zoneinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DetachCcn请求参数结构体
+      class DetachCcnRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网实例ID。
+        # @type CcnId: String
+
+        attr_accessor :CcnId
+        
+        def initialize(ccnid=nil)
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+        end
+      end
+
+      # DetachCcn返回参数结构体
+      class DetachCcnResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2895,6 +3041,38 @@ module TencentCloud
           @RegionName = params['RegionName']
           @RegionState = params['RegionState']
           @IsChinaMainland = params['IsChinaMainland']
+        end
+      end
+
+      # ResetAttachCcn请求参数结构体
+      class ResetAttachCcnRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网实例ID。
+        # @type CcnId: String
+
+        attr_accessor :CcnId
+        
+        def initialize(ccnid=nil)
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+        end
+      end
+
+      # ResetAttachCcn返回参数结构体
+      class ResetAttachCcnResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

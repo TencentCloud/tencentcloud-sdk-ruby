@@ -86,6 +86,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (AttachCcn) 用于建立与云联网的关联。
+
+        # @param request: Request instance for AttachCcn.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::AttachCcnRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::AttachCcnResponse`
+        def AttachCcn(request)
+          body = send_request('AttachCcn', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachCcnResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateBlueprint) 用于创建镜像。
 
         # @param request: Request instance for CreateBlueprint.
@@ -380,6 +404,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBundlesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeCcnAttachedInstances) 用于查询云联网关联的实例信息。
+
+        # @param request: Request instance for DescribeCcnAttachedInstances.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeCcnAttachedInstancesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeCcnAttachedInstancesResponse`
+        def DescribeCcnAttachedInstances(request)
+          body = send_request('DescribeCcnAttachedInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCcnAttachedInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -788,6 +836,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (AttachCcn) 用于解除与云联网的关联。
+
+        # @param request: Request instance for DetachCcn.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DetachCcnRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DetachCcnResponse`
+        def DetachCcn(request)
+          body = send_request('DetachCcn', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DetachCcnResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DisassociateInstancesKeyPairs）用于解除实例与指定密钥对的绑定关系。
 
         # * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后解绑。
@@ -1126,6 +1198,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RebootInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
+
+        # @param request: Request instance for ResetAttachCcn.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ResetAttachCcnRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ResetAttachCcnResponse`
+        def ResetAttachCcn(request)
+          body = send_request('ResetAttachCcn', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetAttachCcnResponse.new
             model.deserialize(response['Response'])
             model
           else

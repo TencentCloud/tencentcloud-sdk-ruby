@@ -743,10 +743,12 @@ module TencentCloud
         # @type UpdatedTime: String
         # @param CommandDocument: 执行任务所执行的命令详情。
         # @type CommandDocument: :class:`Tencentcloud::Tat.v20201028.models.CommandDocument`
+        # @param ErrorInfo: 执行任务失败时的错误信息。
+        # @type ErrorInfo: String
 
-        attr_accessor :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :InstanceId, :TaskResult, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :CommandDocument
+        attr_accessor :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :InstanceId, :TaskResult, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :CommandDocument, :ErrorInfo
         
-        def initialize(invocationid=nil, invocationtaskid=nil, commandid=nil, taskstatus=nil, instanceid=nil, taskresult=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, commanddocument=nil)
+        def initialize(invocationid=nil, invocationtaskid=nil, commandid=nil, taskstatus=nil, instanceid=nil, taskresult=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, commanddocument=nil, errorinfo=nil)
           @InvocationId = invocationid
           @InvocationTaskId = invocationtaskid
           @CommandId = commandid
@@ -758,6 +760,7 @@ module TencentCloud
           @CreatedTime = createdtime
           @UpdatedTime = updatedtime
           @CommandDocument = commanddocument
+          @ErrorInfo = errorinfo
         end
 
         def deserialize(params)
@@ -778,6 +781,7 @@ module TencentCloud
             @CommandDocument = CommandDocument.new
             @CommandDocument.deserialize(params['CommandDocument'])
           end
+          @ErrorInfo = params['ErrorInfo']
         end
       end
 
