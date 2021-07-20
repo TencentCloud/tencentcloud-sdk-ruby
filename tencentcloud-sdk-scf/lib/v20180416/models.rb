@@ -88,7 +88,7 @@ module TencentCloud
         # @type InvokeType: String
         # @param Qualifier: 函数版本
         # @type Qualifier: String
-        # @param Status: 事件状态
+        # @param Status: 事件状态，RUNNING 表示运行中, FINISHED 表示调用成功, ABORTED 表示调用终止, FAILED 表示调用失败
         # @type Status: String
         # @param StartTime: 调用开始时间，格式: "%Y-%m-%d %H:%M:%S.%f"
         # @type StartTime: String

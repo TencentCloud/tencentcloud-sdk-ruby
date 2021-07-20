@@ -1133,10 +1133,14 @@ module TencentCloud
         # @type CertificateStatus: Array
         # @param Deployable: 是否可部署，可选值：1 = 可部署，0 =  不可部署。
         # @type Deployable: Integer
+        # @param Upload: 是否筛选上传托管的 1筛选，0不筛选
+        # @type Upload: Integer
+        # @param Renew: 是否筛选可续期证书 1筛选 0不筛选
+        # @type Renew: Integer
 
-        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable
+        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew
         
-        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil)
+        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil)
           @Offset = offset
           @Limit = limit
           @SearchKey = searchkey
@@ -1145,6 +1149,8 @@ module TencentCloud
           @ExpirationSort = expirationsort
           @CertificateStatus = certificatestatus
           @Deployable = deployable
+          @Upload = upload
+          @Renew = renew
         end
 
         def deserialize(params)
@@ -1156,6 +1162,8 @@ module TencentCloud
           @ExpirationSort = params['ExpirationSort']
           @CertificateStatus = params['CertificateStatus']
           @Deployable = params['Deployable']
+          @Upload = params['Upload']
+          @Renew = params['Renew']
         end
       end
 
