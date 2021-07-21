@@ -175,10 +175,22 @@ module TencentCloud
         # @type MessageRetentionTime: Integer
         # @param MaxStorageCapacity: 最大存储容量
         # @type MaxStorageCapacity: Integer
+        # @param Version: 集群版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param PublicEndPoint: 公网访问接入点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicEndPoint: String
+        # @param VpcEndPoint: VPC访问接入点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcEndPoint: String
+        # @param NamespaceNum: 命名空间数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceNum: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity
+        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum
         
-        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -192,6 +204,10 @@ module TencentCloud
           @MaxQps = maxqps
           @MessageRetentionTime = messageretentiontime
           @MaxStorageCapacity = maxstoragecapacity
+          @Version = version
+          @PublicEndPoint = publicendpoint
+          @VpcEndPoint = vpcendpoint
+          @NamespaceNum = namespacenum
         end
 
         def deserialize(params)
@@ -208,6 +224,10 @@ module TencentCloud
           @MaxQps = params['MaxQps']
           @MessageRetentionTime = params['MessageRetentionTime']
           @MaxStorageCapacity = params['MaxStorageCapacity']
+          @Version = params['Version']
+          @PublicEndPoint = params['PublicEndPoint']
+          @VpcEndPoint = params['VpcEndPoint']
+          @NamespaceNum = params['NamespaceNum']
         end
       end
 

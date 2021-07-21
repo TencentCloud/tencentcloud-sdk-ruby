@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建白板板书生成任务, 在任务结束后，如果提供了回调地址，将通过回调地址通知板书生成结果
+
+        # @param request: Request instance for CreateSnapshotTask.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::CreateSnapshotTaskRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::CreateSnapshotTaskResponse`
+        def CreateSnapshotTask(request)
+          body = send_request('CreateSnapshotTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSnapshotTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建一个文档转码任务
 
         # @param request: Request instance for CreateTranscode.
@@ -135,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeQualityMetricsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取指定白板板书生成任务信息
+
+        # @param request: Request instance for DescribeSnapshotTask.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::DescribeSnapshotTaskRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::DescribeSnapshotTaskResponse`
+        def DescribeSnapshotTask(request)
+          body = send_request('DescribeSnapshotTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSnapshotTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -529,6 +529,42 @@ module TencentCloud
         end
       end
 
+      # ModifyAccessPeriod请求参数结构体
+      class ModifyAccessPeriodRequest < TencentCloud::Common::AbstractModel
+        # @param Period: 访问日志保存期限，范围为[1, 30]
+        # @type Period: Integer
+        # @param TopicId: 日志主题
+        # @type TopicId: String
+
+        attr_accessor :Period, :TopicId
+        
+        def initialize(period=nil, topicid=nil)
+          @Period = period
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # ModifyAccessPeriod返回参数结构体
+      class ModifyAccessPeriodResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyCustomRuleStatus请求参数结构体
       class ModifyCustomRuleStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

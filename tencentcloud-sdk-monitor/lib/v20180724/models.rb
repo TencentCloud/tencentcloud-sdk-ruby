@@ -2747,8 +2747,10 @@ module TencentCloud
       class DescribeBindingPolicyObjectListRequest < TencentCloud::Common::AbstractModel
         # @param Module: 固定值，为"monitor"
         # @type Module: String
-        # @param GroupId: 策略组id
+        # @param GroupId: 策略组id，如果有形如 policy-xxxx 的 id，请填到 PolicyId 字段中，本字段填 0
         # @type GroupId: Integer
+        # @param PolicyId: 告警策略id，形如 policy-xxxx，如果填入，则GroupId可以填0
+        # @type PolicyId: String
         # @param Limit: 分页参数，每页返回的数量，取值1~100，默认20
         # @type Limit: Integer
         # @param Offset: 分页参数，页偏移量，从0开始计数，默认0
@@ -2756,11 +2758,12 @@ module TencentCloud
         # @param Dimensions: 筛选对象的维度信息
         # @type Dimensions: Array
 
-        attr_accessor :Module, :GroupId, :Limit, :Offset, :Dimensions
+        attr_accessor :Module, :GroupId, :PolicyId, :Limit, :Offset, :Dimensions
         
-        def initialize(_module=nil, groupid=nil, limit=nil, offset=nil, dimensions=nil)
+        def initialize(_module=nil, groupid=nil, policyid=nil, limit=nil, offset=nil, dimensions=nil)
           @Module = _module
           @GroupId = groupid
+          @PolicyId = policyid
           @Limit = limit
           @Offset = offset
           @Dimensions = dimensions
@@ -2769,6 +2772,7 @@ module TencentCloud
         def deserialize(params)
           @Module = params['Module']
           @GroupId = params['GroupId']
+          @PolicyId = params['PolicyId']
           @Limit = params['Limit']
           @Offset = params['Offset']
           unless params['Dimensions'].nil?

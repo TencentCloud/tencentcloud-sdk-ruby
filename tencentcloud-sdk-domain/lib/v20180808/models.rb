@@ -1136,17 +1136,21 @@ module TencentCloud
         # @type Domains: Array
         # @param NewOwnerUin: 转入账户的uin。
         # @type NewOwnerUin: String
+        # @param TransferDns: 是否同时转移对应的 DNS 解析域名，默认false
+        # @type TransferDns: Boolean
 
-        attr_accessor :Domains, :NewOwnerUin
+        attr_accessor :Domains, :NewOwnerUin, :TransferDns
         
-        def initialize(domains=nil, newowneruin=nil)
+        def initialize(domains=nil, newowneruin=nil, transferdns=nil)
           @Domains = domains
           @NewOwnerUin = newowneruin
+          @TransferDns = transferdns
         end
 
         def deserialize(params)
           @Domains = params['Domains']
           @NewOwnerUin = params['NewOwnerUin']
+          @TransferDns = params['TransferDns']
         end
       end
 

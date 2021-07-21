@@ -833,14 +833,20 @@ module TencentCloud
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
         # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。若不填，默认以 Command 配置的 Username 执行。
         # @type Username: String
+        # @param WorkingDirectory: 命令执行路径, 默认以Command配置的WorkingDirectory执行。
+        # @type WorkingDirectory: String
+        # @param Timeout: 命令超时时间，取值范围[1, 86400]。默认以Command配置的Timeout执行。
+        # @type Timeout: Integer
 
-        attr_accessor :CommandId, :InstanceIds, :Parameters, :Username
+        attr_accessor :CommandId, :InstanceIds, :Parameters, :Username, :WorkingDirectory, :Timeout
         
-        def initialize(commandid=nil, instanceids=nil, parameters=nil, username=nil)
+        def initialize(commandid=nil, instanceids=nil, parameters=nil, username=nil, workingdirectory=nil, timeout=nil)
           @CommandId = commandid
           @InstanceIds = instanceids
           @Parameters = parameters
           @Username = username
+          @WorkingDirectory = workingdirectory
+          @Timeout = timeout
         end
 
         def deserialize(params)
@@ -848,6 +854,8 @@ module TencentCloud
           @InstanceIds = params['InstanceIds']
           @Parameters = params['Parameters']
           @Username = params['Username']
+          @WorkingDirectory = params['WorkingDirectory']
+          @Timeout = params['Timeout']
         end
       end
 

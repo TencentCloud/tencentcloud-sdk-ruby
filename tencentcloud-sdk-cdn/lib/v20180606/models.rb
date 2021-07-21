@@ -4801,13 +4801,17 @@ module TencentCloud
         # @param CacheOptResult: 提交结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheOptResult: :class:`Tencentcloud::Cdn.v20180606.models.CacheOptResult`
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CacheOptResult, :RequestId
+        attr_accessor :CacheOptResult, :TaskId, :RequestId
         
-        def initialize(cacheoptresult=nil, requestid=nil)
+        def initialize(cacheoptresult=nil, taskid=nil, requestid=nil)
           @CacheOptResult = cacheoptresult
+          @TaskId = taskid
           @RequestId = requestid
         end
 
@@ -4816,6 +4820,7 @@ module TencentCloud
             @CacheOptResult = CacheOptResult.new
             @CacheOptResult.deserialize(params['CacheOptResult'])
           end
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -5275,12 +5280,12 @@ module TencentCloud
 
       # GetDisableRecords请求参数结构体
       class GetDisableRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param Url: 指定 URL 查询
+        # @type Url: String
         # @param StartTime: 开始时间，如：2018-12-12 10:24:00。
         # @type StartTime: String
         # @param EndTime: 结束时间，如：2018-12-14 10:24:00。
         # @type EndTime: String
-        # @param Url: 指定 URL 查询
-        # @type Url: String
         # @param Status: URL 当前状态
         # disable：当前仍为禁用状态，访问返回 403
         # enable：当前为可用状态，已解禁，可正常访问
@@ -5289,25 +5294,29 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目，默认为20。
         # @type Limit: Integer
+        # @param TaskId: 任务ID，任务ID和起始时间需要至少填写一项。
+        # @type TaskId: String
 
-        attr_accessor :StartTime, :EndTime, :Url, :Status, :Offset, :Limit
+        attr_accessor :Url, :StartTime, :EndTime, :Status, :Offset, :Limit, :TaskId
         
-        def initialize(starttime=nil, endtime=nil, url=nil, status=nil, offset=nil, limit=nil)
+        def initialize(url=nil, starttime=nil, endtime=nil, status=nil, offset=nil, limit=nil, taskid=nil)
+          @Url = url
           @StartTime = starttime
           @EndTime = endtime
-          @Url = url
           @Status = status
           @Offset = offset
           @Limit = limit
+          @TaskId = taskid
         end
 
         def deserialize(params)
+          @Url = params['Url']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
-          @Url = params['Url']
           @Status = params['Status']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @TaskId = params['TaskId']
         end
       end
 

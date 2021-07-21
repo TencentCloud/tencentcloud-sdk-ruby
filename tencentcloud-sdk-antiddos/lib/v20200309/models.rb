@@ -2552,24 +2552,28 @@ module TencentCloud
 
       # 转发监听器
       class ForwardListener < TencentCloud::Common::AbstractModel
-        # @param FrontendPort: 转发监听端口，取值1~65535
+        # @param FrontendPort: 转发监听端口下限，取值1~65535
         # @type FrontendPort: Integer
         # @param ForwardProtocol: 转发协议，取值[
         # TCP
         # UDP
         # ]
         # @type ForwardProtocol: String
+        # @param FrontendPortEnd: 转发监听端口上限，取值1~65535
+        # @type FrontendPortEnd: Integer
 
-        attr_accessor :FrontendPort, :ForwardProtocol
+        attr_accessor :FrontendPort, :ForwardProtocol, :FrontendPortEnd
         
-        def initialize(frontendport=nil, forwardprotocol=nil)
+        def initialize(frontendport=nil, forwardprotocol=nil, frontendportend=nil)
           @FrontendPort = frontendport
           @ForwardProtocol = forwardprotocol
+          @FrontendPortEnd = frontendportend
         end
 
         def deserialize(params)
           @FrontendPort = params['FrontendPort']
           @ForwardProtocol = params['ForwardProtocol']
+          @FrontendPortEnd = params['FrontendPortEnd']
         end
       end
 
@@ -3033,7 +3037,7 @@ module TencentCloud
         # ]
         # @type MatchType: String
         # @param Str: 检测值，关键字符串或正则表达式,取值[
-        # 当检测类型为sunday时，请填写字符串或者16进制字节码，其中要填写16进制字节码时请以\x开头，例如\x313233对应的是字符串"123"的16进制字节码;
+        # 当检测类型为sunday时，请填写字符串或者16进制字节码，例如\x313233对应的是字符串"123"的16进制字节码;
         # 当检测类型为pcre时, 请填写正则表达式字符串;
         # ]
         # @type Str: String
@@ -3062,7 +3066,7 @@ module TencentCloud
         # ]
         # @type MatchType2: String
         # @param Str2: 第二个检测值，关键字符串或正则表达式,取值[
-        # 当检测类型为sunday时，请填写字符串或者16进制字节码，其中要填写16进制字节码时请以\x开头，例如\x313233对应的是字符串"123"的16进制字节码;
+        # 当检测类型为sunday时，请填写字符串或者16进制字节码，例如\x313233对应的是字符串"123"的16进制字节码;
         # 当检测类型为pcre时, 请填写正则表达式字符串;
         # ]
         # @type Str2: String
@@ -3509,6 +3513,42 @@ module TencentCloud
         end
       end
 
+      # SwitchWaterPrintConfig请求参数结构体
+      class SwitchWaterPrintConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID
+        # @type InstanceId: String
+        # @param OpenStatus: 水印开启/关闭状态，1表示开启；0表示关闭
+        # @type OpenStatus: Integer
+
+        attr_accessor :InstanceId, :OpenStatus
+        
+        def initialize(instanceid=nil, openstatus=nil)
+          @InstanceId = instanceid
+          @OpenStatus = openstatus
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @OpenStatus = params['OpenStatus']
+        end
+      end
+
+      # SwitchWaterPrintConfig返回参数结构体
+      class SwitchWaterPrintConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 水印防护配置
       class WaterPrintConfig < TencentCloud::Common::AbstractModel
         # @param Offset: 水印偏移量，取值范围[0, 100)
@@ -3522,14 +3562,20 @@ module TencentCloud
         # @type Listeners: Array
         # @param Keys: 水印添加成功后生成的水印密钥列表，一条水印最少1个密钥，最多2个密钥
         # @type Keys: Array
+        # @param Verify: 水印检查模式, 取值[
+        # checkall（普通模式）
+        # shortfpcheckall（精简模式）
+        # ]
+        # @type Verify: String
 
-        attr_accessor :Offset, :OpenStatus, :Listeners, :Keys
+        attr_accessor :Offset, :OpenStatus, :Listeners, :Keys, :Verify
         
-        def initialize(offset=nil, openstatus=nil, listeners=nil, keys=nil)
+        def initialize(offset=nil, openstatus=nil, listeners=nil, keys=nil, verify=nil)
           @Offset = offset
           @OpenStatus = openstatus
           @Listeners = listeners
           @Keys = keys
+          @Verify = verify
         end
 
         def deserialize(params)
@@ -3551,6 +3597,7 @@ module TencentCloud
               @Keys << waterprintkey_tmp
             end
           end
+          @Verify = params['Verify']
         end
       end
 

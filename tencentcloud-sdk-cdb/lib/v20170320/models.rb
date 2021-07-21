@@ -795,7 +795,7 @@ module TencentCloud
         # @type Password: String
         # @param Description: 备注信息。
         # @type Description: String
-        # @param MaxUserConnections: 新账户最大可用连接数。
+        # @param MaxUserConnections: 新账户最大可用连接数，默认值为10240，最大可设置值为10240。
         # @type MaxUserConnections: Integer
 
         attr_accessor :InstanceId, :Accounts, :Password, :Description, :MaxUserConnections
@@ -6000,7 +6000,7 @@ module TencentCloud
         # @type Accounts: Array
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param MaxUserConnections: 设置账户最大可用连接数。
+        # @param MaxUserConnections: 设置账户最大可用连接数，最大可设置值为10240。
         # @type MaxUserConnections: Integer
 
         attr_accessor :Accounts, :InstanceId, :MaxUserConnections

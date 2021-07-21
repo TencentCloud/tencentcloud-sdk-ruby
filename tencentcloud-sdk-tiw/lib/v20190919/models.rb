@@ -61,6 +61,64 @@ module TencentCloud
         end
       end
 
+      # CreateSnapshotTask请求参数结构体
+      class CreateSnapshotTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Whiteboard: 白板相关参数
+        # @type Whiteboard: :class:`Tencentcloud::Tiw.v20190919.models.SnapshotWhiteboard`
+        # @param SdkAppId: 白板房间SdkAppId
+        # @type SdkAppId: Integer
+        # @param RoomId: 白板房间号
+        # @type RoomId: Integer
+        # @param CallbackURL: 白板板书生成结果通知回调地址
+        # @type CallbackURL: String
+        # @param COS: 白板板书文件COS存储参数， 不填默认存储在公共存储桶，公共存储桶的数据仅保存3天
+        # @type COS: :class:`Tencentcloud::Tiw.v20190919.models.SnapshotCOS`
+
+        attr_accessor :Whiteboard, :SdkAppId, :RoomId, :CallbackURL, :COS
+        
+        def initialize(whiteboard=nil, sdkappid=nil, roomid=nil, callbackurl=nil, cos=nil)
+          @Whiteboard = whiteboard
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @CallbackURL = callbackurl
+          @COS = cos
+        end
+
+        def deserialize(params)
+          unless params['Whiteboard'].nil?
+            @Whiteboard = SnapshotWhiteboard.new
+            @Whiteboard.deserialize(params['Whiteboard'])
+          end
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @CallbackURL = params['CallbackURL']
+          unless params['COS'].nil?
+            @COS = SnapshotCOS.new
+            @COS.deserialize(params['COS'])
+          end
+        end
+      end
+
+      # CreateSnapshotTask返回参数结构体
+      class CreateSnapshotTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskID: 白板板书生成任务ID，只有任务创建成功的时候才会返回此字段
+        # @type TaskID: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskID, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskID = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTranscode请求参数结构体
       class CreateTranscodeRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
@@ -478,6 +536,72 @@ module TencentCloud
               timevalue_tmp.deserialize(i)
               @Content << timevalue_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSnapshotTask请求参数结构体
+      class DescribeSnapshotTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskID: 查询任务ID
+        # @type TaskID: String
+        # @param SdkAppId: 任务SdkAppId
+        # @type SdkAppId: Integer
+
+        attr_accessor :TaskID, :SdkAppId
+        
+        def initialize(taskid=nil, sdkappid=nil)
+          @TaskID = taskid
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DescribeSnapshotTask返回参数结构体
+      class DescribeSnapshotTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskID: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskID: String
+        # @param Status: 任务状态
+        # Running - 任务执行中
+        # Finished - 任务已结束
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param CreateTime: 任务创建时间，单位s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param FinishTime: 任务完成时间，单位s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: Integer
+        # @param Result: 任务结果信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tiw.v20190919.models.SnapshotResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskID, :Status, :CreateTime, :FinishTime, :Result, :RequestId
+        
+        def initialize(taskid=nil, status=nil, createtime=nil, finishtime=nil, result=nil, requestid=nil)
+          @TaskID = taskid
+          @Status = status
+          @CreateTime = createtime
+          @FinishTime = finishtime
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @FinishTime = params['FinishTime']
+          unless params['Result'].nil?
+            @Result = SnapshotResult.new
+            @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1386,6 +1510,94 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 板书文件存储cos参数
+      class SnapshotCOS < TencentCloud::Common::AbstractModel
+        # @param Uin: cos所在腾讯云帐号uin
+        # @type Uin: Integer
+        # @param Region: cos所在地区
+        # @type Region: String
+        # @param Bucket: cos存储桶名称
+        # @type Bucket: String
+        # @param TargetDir: 板书文件存储根目录
+        # @type TargetDir: String
+        # @param Domain: CDN加速域名
+        # @type Domain: String
+
+        attr_accessor :Uin, :Region, :Bucket, :TargetDir, :Domain
+        
+        def initialize(uin=nil, region=nil, bucket=nil, targetdir=nil, domain=nil)
+          @Uin = uin
+          @Region = region
+          @Bucket = bucket
+          @TargetDir = targetdir
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @Region = params['Region']
+          @Bucket = params['Bucket']
+          @TargetDir = params['TargetDir']
+          @Domain = params['Domain']
+        end
+      end
+
+      # 白板板书结果
+      class SnapshotResult < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 任务执行错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 任务执行错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param Total: 快照生成图片总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Snapshots: 快照图片链接列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Snapshots: Array
+
+        attr_accessor :ErrorCode, :ErrorMessage, :Total, :Snapshots
+        
+        def initialize(errorcode=nil, errormessage=nil, total=nil, snapshots=nil)
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @Total = total
+          @Snapshots = snapshots
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @Total = params['Total']
+          @Snapshots = params['Snapshots']
+        end
+      end
+
+      # 生成白板板书时的白板参数，例如白板宽高等
+      class SnapshotWhiteboard < TencentCloud::Common::AbstractModel
+        # @param Width: 白板宽度大小，默认为1280，有效取值范围[0，2560]
+        # @type Width: Integer
+        # @param Height: 白板高度大小，默认为720，有效取值范围[0，2560]
+        # @type Height: Integer
+        # @param InitParams: 白板初始化参数的JSON转义字符串，透传到白板 SDK
+        # @type InitParams: String
+
+        attr_accessor :Width, :Height, :InitParams
+        
+        def initialize(width=nil, height=nil, initparams=nil)
+          @Width = width
+          @Height = height
+          @InitParams = initparams
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @InitParams = params['InitParams']
         end
       end
 
