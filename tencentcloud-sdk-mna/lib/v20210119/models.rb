@@ -60,16 +60,19 @@ module TencentCloud
         # @type Duration: Integer
         # @param Capacity: 接口能力扩展，如果是电信用户，必须填充CTCC Token字段
         # @type Capacity: :class:`Tencentcloud::Mna.v20210119.models.Capacity`
+        # @param TemplateId: 应用模板ID
+        # @type TemplateId: String
 
-        attr_accessor :SrcAddressInfo, :DestAddressInfo, :QosMenu, :DeviceInfo, :Duration, :Capacity
+        attr_accessor :SrcAddressInfo, :DestAddressInfo, :QosMenu, :DeviceInfo, :Duration, :Capacity, :TemplateId
         
-        def initialize(srcaddressinfo=nil, destaddressinfo=nil, qosmenu=nil, deviceinfo=nil, duration=nil, capacity=nil)
+        def initialize(srcaddressinfo=nil, destaddressinfo=nil, qosmenu=nil, deviceinfo=nil, duration=nil, capacity=nil, templateid=nil)
           @SrcAddressInfo = srcaddressinfo
           @DestAddressInfo = destaddressinfo
           @QosMenu = qosmenu
           @DeviceInfo = deviceinfo
           @Duration = duration
           @Capacity = capacity
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -91,6 +94,7 @@ module TencentCloud
             @Capacity = Capacity.new
             @Capacity.deserialize(params['Capacity'])
           end
+          @TemplateId = params['TemplateId']
         end
       end
 

@@ -2396,6 +2396,42 @@ module TencentCloud
         end
       end
 
+      # ModifySwitchTimePeriod请求参数结构体
+      class ModifySwitchTimePeriodRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 处于等待切换状态中的实例ID
+        # @type DBInstanceId: String
+        # @param SwitchTag: 入参取值为 0 ，代表立即切换。
+        # @type SwitchTag: Integer
+
+        attr_accessor :DBInstanceId, :SwitchTag
+        
+        def initialize(dbinstanceid=nil, switchtag=nil)
+          @DBInstanceId = dbinstanceid
+          @SwitchTag = switchtag
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @SwitchTag = params['SwitchTag']
+        end
+      end
+
+      # ModifySwitchTimePeriod返回参数结构体
+      class ModifySwitchTimePeriodResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 单条SlowQuery信息
       class NormalQueryItem < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名
@@ -3269,16 +3305,25 @@ module TencentCloud
         # @type VoucherIds: Array
         # @param ActivityId: 活动ID
         # @type ActivityId: Integer
+        # @param SwitchTag: 指定实例配置完成变更后的切换时间，默认为 立即切换，入参为 0 ：立即切换 。1：指定时间切换。
+        # @type SwitchTag: Integer
+        # @param SwitchStartTime: 切换开始时间
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: 切换截止时间
+        # @type SwitchEndTime: String
 
-        attr_accessor :Memory, :Storage, :DBInstanceId, :AutoVoucher, :VoucherIds, :ActivityId
+        attr_accessor :Memory, :Storage, :DBInstanceId, :AutoVoucher, :VoucherIds, :ActivityId, :SwitchTag, :SwitchStartTime, :SwitchEndTime
         
-        def initialize(memory=nil, storage=nil, dbinstanceid=nil, autovoucher=nil, voucherids=nil, activityid=nil)
+        def initialize(memory=nil, storage=nil, dbinstanceid=nil, autovoucher=nil, voucherids=nil, activityid=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil)
           @Memory = memory
           @Storage = storage
           @DBInstanceId = dbinstanceid
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
           @ActivityId = activityid
+          @SwitchTag = switchtag
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
         end
 
         def deserialize(params)
@@ -3288,6 +3333,9 @@ module TencentCloud
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
           @ActivityId = params['ActivityId']
+          @SwitchTag = params['SwitchTag']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
         end
       end
 

@@ -1533,6 +1533,90 @@ module TencentCloud
         end
       end
 
+      # 数据库配置信息
+      class DbNormalDetail < TencentCloud::Common::AbstractModel
+        # @param IsSubscribed: 是否已订阅 0：否 1：是
+        # @type IsSubscribed: String
+        # @param CollationName: 数据库排序规则
+        # @type CollationName: String
+        # @param IsAutoCleanupOn: 开启CT之后是否自动清理 0：否 1：是
+        # @type IsAutoCleanupOn: String
+        # @param IsBrokerEnabled: 是否已启用代理  0：否 1：是
+        # @type IsBrokerEnabled: String
+        # @param IsCdcEnabled: 是否已开启/关闭CDC 0：关闭 1：开启
+        # @type IsCdcEnabled: String
+        # @param IsDbChainingOn: 是否已启用/ 禁用CT 0：禁用 1：启用
+        # @type IsDbChainingOn: String
+        # @param IsEncrypted: 是否加密 0：否 1：是
+        # @type IsEncrypted: String
+        # @param IsFulltextEnabled: 是否全文启用 0：否 1：是
+        # @type IsFulltextEnabled: String
+        # @param IsMirroring: 是否是镜像 0：否 1：是
+        # @type IsMirroring: String
+        # @param IsPublished: 是否已发布 0：否 1：是
+        # @type IsPublished: String
+        # @param IsReadCommittedSnapshotOn: 是否开启快照 0：否 1：是
+        # @type IsReadCommittedSnapshotOn: String
+        # @param IsTrustworthyOn: 是否可信任 0：否 1：是
+        # @type IsTrustworthyOn: String
+        # @param MirroringState: 镜像状态
+        # @type MirroringState: String
+        # @param Name: 数据库名称
+        # @type Name: String
+        # @param RecoveryModelDesc: 恢复模式
+        # @type RecoveryModelDesc: String
+        # @param RetentionPeriod: 保留天数
+        # @type RetentionPeriod: String
+        # @param StateDesc: 数据库状态
+        # @type StateDesc: String
+        # @param UserAccessDesc: 用户类型
+        # @type UserAccessDesc: String
+
+        attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc
+        
+        def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, isfulltextenabled=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil)
+          @IsSubscribed = issubscribed
+          @CollationName = collationname
+          @IsAutoCleanupOn = isautocleanupon
+          @IsBrokerEnabled = isbrokerenabled
+          @IsCdcEnabled = iscdcenabled
+          @IsDbChainingOn = isdbchainingon
+          @IsEncrypted = isencrypted
+          @IsFulltextEnabled = isfulltextenabled
+          @IsMirroring = ismirroring
+          @IsPublished = ispublished
+          @IsReadCommittedSnapshotOn = isreadcommittedsnapshoton
+          @IsTrustworthyOn = istrustworthyon
+          @MirroringState = mirroringstate
+          @Name = name
+          @RecoveryModelDesc = recoverymodeldesc
+          @RetentionPeriod = retentionperiod
+          @StateDesc = statedesc
+          @UserAccessDesc = useraccessdesc
+        end
+
+        def deserialize(params)
+          @IsSubscribed = params['IsSubscribed']
+          @CollationName = params['CollationName']
+          @IsAutoCleanupOn = params['IsAutoCleanupOn']
+          @IsBrokerEnabled = params['IsBrokerEnabled']
+          @IsCdcEnabled = params['IsCdcEnabled']
+          @IsDbChainingOn = params['IsDbChainingOn']
+          @IsEncrypted = params['IsEncrypted']
+          @IsFulltextEnabled = params['IsFulltextEnabled']
+          @IsMirroring = params['IsMirroring']
+          @IsPublished = params['IsPublished']
+          @IsReadCommittedSnapshotOn = params['IsReadCommittedSnapshotOn']
+          @IsTrustworthyOn = params['IsTrustworthyOn']
+          @MirroringState = params['MirroringState']
+          @Name = params['Name']
+          @RecoveryModelDesc = params['RecoveryModelDesc']
+          @RetentionPeriod = params['RetentionPeriod']
+          @StateDesc = params['StateDesc']
+          @UserAccessDesc = params['UserAccessDesc']
+        end
+      end
+
       # 数据库可回档时间范围信息
       class DbRollbackTimeInfo < TencentCloud::Common::AbstractModel
         # @param DBName: 数据库名称
@@ -2492,6 +2576,53 @@ module TencentCloud
               securitygroup_tmp = SecurityGroup.new
               securitygroup_tmp.deserialize(i)
               @SecurityGroupSet << securitygroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDBsNormal请求参数结构体
+      class DescribeDBsNormalRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如mssql-7vfv3rk3
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBsNormal返回参数结构体
+      class DescribeDBsNormalResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 表示当前实例下的数据库总个数
+        # @type TotalCount: Integer
+        # @param DBList: 返回数据库的详细配置信息，比如：数据库是否开启CDC、CT等
+        # @type DBList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DBList, :RequestId
+        
+        def initialize(totalcount=nil, dblist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DBList = dblist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DBList'].nil?
+            @DBList = []
+            params['DBList'].each do |i|
+              dbnormaldetail_tmp = DbNormalDetail.new
+              dbnormaldetail_tmp.deserialize(i)
+              @DBList << dbnormaldetail_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4834,6 +4965,138 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDatabaseCDC请求参数结构体
+      class ModifyDatabaseCDCRequest < TencentCloud::Common::AbstractModel
+        # @param DBNames: 数据库名数组
+        # @type DBNames: Array
+        # @param ModifyType: 开启、关闭数据库CDC功能 enable；开启，disable：关闭
+        # @type ModifyType: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :DBNames, :ModifyType, :InstanceId
+        
+        def initialize(dbnames=nil, modifytype=nil, instanceid=nil)
+          @DBNames = dbnames
+          @ModifyType = modifytype
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @DBNames = params['DBNames']
+          @ModifyType = params['ModifyType']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ModifyDatabaseCDC返回参数结构体
+      class ModifyDatabaseCDCResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDatabaseCT请求参数结构体
+      class ModifyDatabaseCTRequest < TencentCloud::Common::AbstractModel
+        # @param DBNames: 数据库名数组
+        # @type DBNames: Array
+        # @param ModifyType: 启用、禁用数据库CT功能 enable；启用，disable：禁用
+        # @type ModifyType: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ChangeRetentionDay: 启用CT时额外保留天数，默认保留3天，最小3天，最大30天
+        # @type ChangeRetentionDay: Integer
+
+        attr_accessor :DBNames, :ModifyType, :InstanceId, :ChangeRetentionDay
+        
+        def initialize(dbnames=nil, modifytype=nil, instanceid=nil, changeretentionday=nil)
+          @DBNames = dbnames
+          @ModifyType = modifytype
+          @InstanceId = instanceid
+          @ChangeRetentionDay = changeretentionday
+        end
+
+        def deserialize(params)
+          @DBNames = params['DBNames']
+          @ModifyType = params['ModifyType']
+          @InstanceId = params['InstanceId']
+          @ChangeRetentionDay = params['ChangeRetentionDay']
+        end
+      end
+
+      # ModifyDatabaseCT返回参数结构体
+      class ModifyDatabaseCTResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDatabaseMdf请求参数结构体
+      class ModifyDatabaseMdfRequest < TencentCloud::Common::AbstractModel
+        # @param DBNames: 数据库名数组
+        # @type DBNames: Array
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :DBNames, :InstanceId
+        
+        def initialize(dbnames=nil, instanceid=nil)
+          @DBNames = dbnames
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @DBNames = params['DBNames']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ModifyDatabaseMdf返回参数结构体
+      class ModifyDatabaseMdfResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+        
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end

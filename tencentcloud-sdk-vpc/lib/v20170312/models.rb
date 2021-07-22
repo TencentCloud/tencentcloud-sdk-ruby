@@ -9210,6 +9210,46 @@ module TencentCloud
         end
       end
 
+      # DescribeVpcTaskResult请求参数结构体
+      class DescribeVpcTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务请求返回的RequestId。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+        
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeVpcTaskResult返回参数结构体
+      class DescribeVpcTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 异步任务执行结果。结果：SUCCESS、FAILED、RUNNING。3者其中之一。其中SUCCESS表示任务执行成功，FAILED表示任务执行失败，RUNNING表示任务执行中。
+        # @type Status: String
+        # @param Output: 异步任务执行输出。
+        # @type Output: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Output, :RequestId
+        
+        def initialize(status=nil, output=nil, requestid=nil)
+          @Status = status
+          @Output = output
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Output = params['Output']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVpcs请求参数结构体
       class DescribeVpcsRequest < TencentCloud::Common::AbstractModel
         # @param VpcIds: VPC实例ID。形如：vpc-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpcIds和Filters。

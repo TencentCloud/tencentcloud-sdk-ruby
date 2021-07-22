@@ -749,6 +749,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 运营端获取命名空间bundle列表
+
+        # @param request: Request instance for DescribeNamespaceBundlesOpt.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeNamespaceBundlesOptRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeNamespaceBundlesOptResponse`
+        def DescribeNamespaceBundlesOpt(request)
+          body = send_request('DescribeNamespaceBundlesOpt', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNamespaceBundlesOptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 运营端获节点健康状态
+
+        # @param request: Request instance for DescribeNodeHealthOpt.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeNodeHealthOptRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeNodeHealthOptResponse`
+        def DescribeNodeHealthOpt(request)
+          body = send_request('DescribeNodeHealthOpt', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNodeHealthOptResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取生产者列表，仅显示在线的生产者
 
         # @param request: Request instance for DescribeProducers.

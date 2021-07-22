@@ -797,6 +797,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
+
+        # @param request: Request instance for DescribeDBsNormal.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBsNormalRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBsNormalResponse`
+        def DescribeDBsNormal(request)
+          body = send_request('DescribeDBsNormal', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBsNormalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeFlowStatus)用于查询流程状态。
 
         # @param request: Request instance for DescribeFlowStatus.
@@ -1623,6 +1647,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDBRemarkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
+
+        # @param request: Request instance for ModifyDatabaseCDC.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabaseCDCRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabaseCDCResponse`
+        def ModifyDatabaseCDC(request)
+          body = send_request('ModifyDatabaseCDC', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDatabaseCDCResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
+
+        # @param request: Request instance for ModifyDatabaseCT.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabaseCTRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabaseCTResponse`
+        def ModifyDatabaseCT(request)
+          body = send_request('ModifyDatabaseCT', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDatabaseCTResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
+
+        # @param request: Request instance for ModifyDatabaseMdf.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabaseMdfRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabaseMdfResponse`
+        def ModifyDatabaseMdf(request)
+          body = send_request('ModifyDatabaseMdf', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDatabaseMdfResponse.new
             model.deserialize(response['Response'])
             model
           else

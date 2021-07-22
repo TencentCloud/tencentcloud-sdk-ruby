@@ -49,6 +49,46 @@ module TencentCloud
         end
       end
 
+      # AddClusterCIDR请求参数结构体
+      class AddClusterCIDRRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterCIDRs: 增加的ClusterCIDR
+        # @type ClusterCIDRs: Array
+        # @param IgnoreClusterCIDRConflict: 是否忽略ClusterCIDR与VPC路由表的冲突
+        # @type IgnoreClusterCIDRConflict: Boolean
+
+        attr_accessor :ClusterId, :ClusterCIDRs, :IgnoreClusterCIDRConflict
+        
+        def initialize(clusterid=nil, clustercidrs=nil, ignoreclustercidrconflict=nil)
+          @ClusterId = clusterid
+          @ClusterCIDRs = clustercidrs
+          @IgnoreClusterCIDRConflict = ignoreclustercidrconflict
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterCIDRs = params['ClusterCIDRs']
+          @IgnoreClusterCIDRConflict = params['IgnoreClusterCIDRConflict']
+        end
+      end
+
+      # AddClusterCIDR返回参数结构体
+      class AddClusterCIDRResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddExistedInstances请求参数结构体
       class AddExistedInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -3800,6 +3840,38 @@ module TencentCloud
               @RouteTableConflictSet << routetableconflict_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableVpcCniNetworkType请求参数结构体
+      class DisableVpcCniNetworkTypeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DisableVpcCniNetworkType返回参数结构体
+      class DisableVpcCniNetworkTypeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

@@ -155,7 +155,7 @@ module TencentCloud
         end
 
         # 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。<br />
-        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口。
+        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
         # * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
         # * 可以指定`IPv6`地址申请，地址类型不能为主`IP`，`IPv6`地址暂时只支持作为辅助`IP`。
         # * 地址必须要在弹性网卡所在子网内，而且不能被占用。
@@ -1846,8 +1846,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）<br />
-        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
+        # 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。<br />
+        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
 
         # @param request: Request instance for DeleteHaVip.
         # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteHaVipRequest`
@@ -3911,6 +3911,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
+
+        # @param request: Request instance for DescribeVpcTaskResult.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeVpcTaskResultRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeVpcTaskResultResponse`
+        def DescribeVpcTaskResult(request)
+          body = send_request('DescribeVpcTaskResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVpcTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeVpcs）用于查询私有网络列表。
 
         # @param request: Request instance for DescribeVpcs.
@@ -4494,8 +4518,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（HaVipAssociateAddressIp）用于高可用虚拟IP（HAVIP）绑定弹性公网IP（EIP）<br />
-        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
+        # 本接口（HaVipAssociateAddressIp）用于高可用虚拟IP（HAVIP）绑定弹性公网IP（EIP）。<br />
+        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
 
         # @param request: Request instance for HaVipAssociateAddressIp.
         # @type request: :class:`Tencentcloud::vpc::V20170312::HaVipAssociateAddressIpRequest`
@@ -4519,8 +4543,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（HaVipDisassociateAddressIp）用于将高可用虚拟IP（HAVIP）已绑定的弹性公网IP（EIP）解除绑定<br />
-        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
+        # 本接口（HaVipDisassociateAddressIp）用于将高可用虚拟IP（HAVIP）已绑定的弹性公网IP（EIP）解除绑定。<br />
+        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
 
         # @param request: Request instance for HaVipDisassociateAddressIp.
         # @type request: :class:`Tencentcloud::vpc::V20170312::HaVipDisassociateAddressIpRequest`
@@ -6231,7 +6255,7 @@ module TencentCloud
         end
 
         # 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
-        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口。
+        # 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
 
         # @param request: Request instance for UnassignIpv6Addresses.
         # @type request: :class:`Tencentcloud::vpc::V20170312::UnassignIpv6AddressesRequest`

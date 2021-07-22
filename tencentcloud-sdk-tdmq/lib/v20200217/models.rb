@@ -78,6 +78,17 @@ module TencentCloud
         end
       end
 
+      # 运营端命名空间bundle实体
+      class BundleSetOpt < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # ClearCmqQueue请求参数结构体
       class ClearCmqQueueRequest < TencentCloud::Common::AbstractModel
         # @param QueueName: 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
@@ -2212,6 +2223,113 @@ module TencentCloud
               @EnvironmentSet << environment_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNamespaceBundlesOpt请求参数结构体
+      class DescribeNamespaceBundlesOptRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterName: 物理集群名
+        # @type ClusterName: String
+        # @param TenantId: 虚拟集群（租户）ID
+        # @type TenantId: String
+        # @param NamespaceName: 命名空间名
+        # @type NamespaceName: String
+        # @param NeedMetrics: 是否需要监控指标，若传false，则不需要传Limit和Offset分页参数
+        # @type NeedMetrics: Boolean
+        # @param Limit: 查询限制条数
+        # @type Limit: Integer
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+
+        attr_accessor :ClusterName, :TenantId, :NamespaceName, :NeedMetrics, :Limit, :Offset
+        
+        def initialize(clustername=nil, tenantid=nil, namespacename=nil, needmetrics=nil, limit=nil, offset=nil)
+          @ClusterName = clustername
+          @TenantId = tenantid
+          @NamespaceName = namespacename
+          @NeedMetrics = needmetrics
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ClusterName = params['ClusterName']
+          @TenantId = params['TenantId']
+          @NamespaceName = params['NamespaceName']
+          @NeedMetrics = params['NeedMetrics']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeNamespaceBundlesOpt返回参数结构体
+      class DescribeNamespaceBundlesOptResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录条数
+        # @type TotalCount: Integer
+        # @param BundleSet: bundle列表
+        # @type BundleSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BundleSet, :RequestId
+        
+        def initialize(totalcount=nil, bundleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BundleSet = bundleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BundleSet'].nil?
+            @BundleSet = []
+            params['BundleSet'].each do |i|
+              bundlesetopt_tmp = BundleSetOpt.new
+              bundlesetopt_tmp.deserialize(i)
+              @BundleSet << bundlesetopt_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNodeHealthOpt请求参数结构体
+      class DescribeNodeHealthOptRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 节点实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeNodeHealthOpt返回参数结构体
+      class DescribeNodeHealthOptResponse < TencentCloud::Common::AbstractModel
+        # @param NodeState: 0-异常；1-正常
+        # @type NodeState: Integer
+        # @param LatestHealthCheckTime: 最近一次健康检查的时间
+        # @type LatestHealthCheckTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NodeState, :LatestHealthCheckTime, :RequestId
+        
+        def initialize(nodestate=nil, latesthealthchecktime=nil, requestid=nil)
+          @NodeState = nodestate
+          @LatestHealthCheckTime = latesthealthchecktime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NodeState = params['NodeState']
+          @LatestHealthCheckTime = params['LatestHealthCheckTime']
           @RequestId = params['RequestId']
         end
       end

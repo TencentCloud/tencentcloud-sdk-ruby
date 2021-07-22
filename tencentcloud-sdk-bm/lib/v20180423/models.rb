@@ -1309,7 +1309,7 @@ module TencentCloud
       class DescribeDevicesRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 返回数量
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
         # @param DeviceClassCode: 机型ID，通过接口[查询设备型号(DescribeDeviceClass)](https://cloud.tencent.com/document/api/386/32911)查询
         # @type DeviceClassCode: String
@@ -1343,10 +1343,12 @@ module TencentCloud
         # @type OrderField: String
         # @param Order: 排序方式，取值：0:增序(默认)，1:降序
         # @type Order: Integer
+        # @param MaintainStatus: 按照维保方式过滤。可取值为 Maintain: 在保;  WillExpire: 即将过保; Expire: 已过保
+        # @type MaintainStatus: String
 
-        attr_accessor :Offset, :Limit, :DeviceClassCode, :InstanceIds, :WanIps, :LanIps, :Alias, :VagueIp, :DeadlineStartTime, :DeadlineEndTime, :AutoRenewFlag, :VpcId, :SubnetId, :Tags, :DeviceType, :IsLuckyDevice, :OrderField, :Order
+        attr_accessor :Offset, :Limit, :DeviceClassCode, :InstanceIds, :WanIps, :LanIps, :Alias, :VagueIp, :DeadlineStartTime, :DeadlineEndTime, :AutoRenewFlag, :VpcId, :SubnetId, :Tags, :DeviceType, :IsLuckyDevice, :OrderField, :Order, :MaintainStatus
         
-        def initialize(offset=nil, limit=nil, deviceclasscode=nil, instanceids=nil, wanips=nil, lanips=nil, _alias=nil, vagueip=nil, deadlinestarttime=nil, deadlineendtime=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, tags=nil, devicetype=nil, isluckydevice=nil, orderfield=nil, order=nil)
+        def initialize(offset=nil, limit=nil, deviceclasscode=nil, instanceids=nil, wanips=nil, lanips=nil, _alias=nil, vagueip=nil, deadlinestarttime=nil, deadlineendtime=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, tags=nil, devicetype=nil, isluckydevice=nil, orderfield=nil, order=nil, maintainstatus=nil)
           @Offset = offset
           @Limit = limit
           @DeviceClassCode = deviceclasscode
@@ -1365,6 +1367,7 @@ module TencentCloud
           @IsLuckyDevice = isluckydevice
           @OrderField = orderfield
           @Order = order
+          @MaintainStatus = maintainstatus
         end
 
         def deserialize(params)
@@ -1393,6 +1396,7 @@ module TencentCloud
           @IsLuckyDevice = params['IsLuckyDevice']
           @OrderField = params['OrderField']
           @Order = params['Order']
+          @MaintainStatus = params['MaintainStatus']
         end
       end
 
@@ -2460,10 +2464,16 @@ module TencentCloud
         # @type SubnetCidrBlock: String
         # @param IsLuckyDevice: 标识是否是竞价实例。0: 普通设备; 1: 竞价实例设备
         # @type IsLuckyDevice: Integer
+        # @param MaintainStatus: 标识机器维保状态。Maintain: 在保;  WillExpire: 即将过保; Expire: 已过保
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaintainStatus: String
+        # @param MaintainMessage: 维保信息描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaintainMessage: String
 
-        attr_accessor :InstanceId, :VpcId, :SubnetId, :DeviceStatus, :OperateStatus, :OsTypeId, :RaidId, :Alias, :AppId, :Zone, :WanIp, :LanIp, :DeliverTime, :Deadline, :AutoRenewFlag, :DeviceClassCode, :Tags, :CpmPayMode, :DhcpIp, :VpcName, :SubnetName, :VpcCidrBlock, :SubnetCidrBlock, :IsLuckyDevice
+        attr_accessor :InstanceId, :VpcId, :SubnetId, :DeviceStatus, :OperateStatus, :OsTypeId, :RaidId, :Alias, :AppId, :Zone, :WanIp, :LanIp, :DeliverTime, :Deadline, :AutoRenewFlag, :DeviceClassCode, :Tags, :CpmPayMode, :DhcpIp, :VpcName, :SubnetName, :VpcCidrBlock, :SubnetCidrBlock, :IsLuckyDevice, :MaintainStatus, :MaintainMessage
         
-        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, devicestatus=nil, operatestatus=nil, ostypeid=nil, raidid=nil, _alias=nil, appid=nil, zone=nil, wanip=nil, lanip=nil, delivertime=nil, deadline=nil, autorenewflag=nil, deviceclasscode=nil, tags=nil, cpmpaymode=nil, dhcpip=nil, vpcname=nil, subnetname=nil, vpccidrblock=nil, subnetcidrblock=nil, isluckydevice=nil)
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, devicestatus=nil, operatestatus=nil, ostypeid=nil, raidid=nil, _alias=nil, appid=nil, zone=nil, wanip=nil, lanip=nil, delivertime=nil, deadline=nil, autorenewflag=nil, deviceclasscode=nil, tags=nil, cpmpaymode=nil, dhcpip=nil, vpcname=nil, subnetname=nil, vpccidrblock=nil, subnetcidrblock=nil, isluckydevice=nil, maintainstatus=nil, maintainmessage=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -2488,6 +2498,8 @@ module TencentCloud
           @VpcCidrBlock = vpccidrblock
           @SubnetCidrBlock = subnetcidrblock
           @IsLuckyDevice = isluckydevice
+          @MaintainStatus = maintainstatus
+          @MaintainMessage = maintainmessage
         end
 
         def deserialize(params)
@@ -2522,6 +2534,8 @@ module TencentCloud
           @VpcCidrBlock = params['VpcCidrBlock']
           @SubnetCidrBlock = params['SubnetCidrBlock']
           @IsLuckyDevice = params['IsLuckyDevice']
+          @MaintainStatus = params['MaintainStatus']
+          @MaintainMessage = params['MaintainMessage']
         end
       end
 
