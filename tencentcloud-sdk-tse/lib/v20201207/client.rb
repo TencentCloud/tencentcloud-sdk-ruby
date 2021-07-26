@@ -29,30 +29,6 @@ module TencentCloud
         end
 
 
-        # 查看配置项
-
-        # @param request: Request instance for DescribeConfig.
-        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeConfigRequest`
-        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeConfigResponse`
-        def DescribeConfig(request)
-          body = send_request('DescribeConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询微服务注册引擎实例访问地址
 
         # @param request: Request instance for DescribeSREInstanceAccessAddress.
@@ -87,30 +63,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSREInstancesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 管理配置
-
-        # @param request: Request instance for ManageConfig.
-        # @type request: :class:`Tencentcloud::tse::V20201207::ManageConfigRequest`
-        # @rtype: :class:`Tencentcloud::tse::V20201207::ManageConfigResponse`
-        def ManageConfig(request)
-          body = send_request('ManageConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ManageConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

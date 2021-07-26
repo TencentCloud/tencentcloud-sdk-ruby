@@ -434,17 +434,22 @@ module TencentCloud
         # @param DealNames: 订单号列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
+        # @param InstanceId: 实例Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        attr_accessor :FlowId, :DealNames
+        attr_accessor :FlowId, :DealNames, :InstanceId
         
-        def initialize(flowid=nil, dealnames=nil)
+        def initialize(flowid=nil, dealnames=nil, instanceid=nil)
           @FlowId = flowid
           @DealNames = dealnames
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
           @DealNames = params['DealNames']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -468,10 +473,24 @@ module TencentCloud
         # @type ClusterId: Integer
         # @param RenewFlag: 预付费自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
         # @type RenewFlag: Integer
+        # @param KafkaVersion: 支持指定版本Kafka版本（0.10.2/1.1.1/2.4.2） 。指定专业版参数specificationsType=pro
+        # @type KafkaVersion: String
+        # @param SpecificationsType: 专业版必须填写 （专业版：profession、标准版：standard） 默认是standard。专业版填profession
+        # @type SpecificationsType: String
+        # @param DiskSize: 磁盘大小,专业版不填写默认最小磁盘,填写后根据磁盘带宽分区数弹性计算
+        # @type DiskSize: Integer
+        # @param BandWidth: 带宽,专业版不填写默认最小带宽,填写后根据磁盘带宽分区数弹性计算
+        # @type BandWidth: Integer
+        # @param Partition: 分区大小,专业版不填写默认最小分区数,填写后根据磁盘带宽分区数弹性计算
+        # @type Partition: Integer
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param DiskType: 磁盘类型（ssd填写CLOUD_SSD，sata填写CLOUD_BASIC）
+        # @type DiskType: String
 
-        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag
+        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType
         
-        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil)
+        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil)
           @InstanceName = instancename
           @ZoneId = zoneid
           @Period = period
@@ -481,6 +500,13 @@ module TencentCloud
           @MsgRetentionTime = msgretentiontime
           @ClusterId = clusterid
           @RenewFlag = renewflag
+          @KafkaVersion = kafkaversion
+          @SpecificationsType = specificationstype
+          @DiskSize = disksize
+          @BandWidth = bandwidth
+          @Partition = partition
+          @Tags = tags
+          @DiskType = disktype
         end
 
         def deserialize(params)
@@ -493,6 +519,20 @@ module TencentCloud
           @MsgRetentionTime = params['MsgRetentionTime']
           @ClusterId = params['ClusterId']
           @RenewFlag = params['RenewFlag']
+          @KafkaVersion = params['KafkaVersion']
+          @SpecificationsType = params['SpecificationsType']
+          @DiskSize = params['DiskSize']
+          @BandWidth = params['BandWidth']
+          @Partition = params['Partition']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @DiskType = params['DiskType']
         end
       end
 

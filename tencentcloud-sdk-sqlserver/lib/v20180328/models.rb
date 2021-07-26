@@ -2602,7 +2602,7 @@ module TencentCloud
       class DescribeDBsNormalResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 表示当前实例下的数据库总个数
         # @type TotalCount: Integer
-        # @param DBList: 返回数据库的详细配置信息，比如：数据库是否开启CDC、CT等
+        # @param DBList: 返回数据库的详细配置信息，例如：数据库是否开启CDC、CT等
         # @type DBList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

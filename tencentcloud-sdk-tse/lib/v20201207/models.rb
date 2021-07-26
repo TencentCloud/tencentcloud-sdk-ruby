@@ -17,62 +17,6 @@
 module TencentCloud
   module Tse
     module V20201207
-      # DescribeConfig请求参数结构体
-      class DescribeConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param Type: 配置中心类型（consul、zookeeper、apollo等）
-        # @type Type: String
-        # @param Key: 配置项的节点路径key
-        # @type Key: String
-
-        attr_accessor :InstanceId, :Type, :Key
-        
-        def initialize(instanceid=nil, type=nil, key=nil)
-          @InstanceId = instanceid
-          @Type = type
-          @Key = key
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @Type = params['Type']
-          @Key = params['Key']
-        end
-      end
-
-      # DescribeConfig返回参数结构体
-      class DescribeConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Key: 配置项或路径key
-        # @type Key: String
-        # @param Value: 配置项的值
-        # @type Value: String
-        # @param IsDir: 当前key是否为路径
-        # @type IsDir: Boolean
-        # @param List: 当前key下的子路径
-        # @type List: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Key, :Value, :IsDir, :List, :RequestId
-        
-        def initialize(key=nil, value=nil, isdir=nil, list=nil, requestid=nil)
-          @Key = key
-          @Value = value
-          @IsDir = isdir
-          @List = list
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Key = params['Key']
-          @Value = params['Value']
-          @IsDir = params['IsDir']
-          @List = params['List']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeSREInstanceAccessAddress请求参数结构体
       class DescribeSREInstanceAccessAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 注册引擎实例Id
@@ -239,64 +183,6 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
-        end
-      end
-
-      # ManageConfig请求参数结构体
-      class ManageConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param Type: 配置中心类型（consul、zookeeper、apollo等）
-        # @type Type: String
-        # @param Command: 请求命名 PUT GET DELETE
-        # @type Command: String
-        # @param Key: 配置的Key
-        # @type Key: String
-        # @param Value: 配置的Value
-        # @type Value: String
-
-        attr_accessor :InstanceId, :Type, :Command, :Key, :Value
-        
-        def initialize(instanceid=nil, type=nil, command=nil, key=nil, value=nil)
-          @InstanceId = instanceid
-          @Type = type
-          @Command = command
-          @Key = key
-          @Value = value
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @Type = params['Type']
-          @Command = params['Command']
-          @Key = params['Key']
-          @Value = params['Value']
-        end
-      end
-
-      # ManageConfig返回参数结构体
-      class ManageConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 对配置中心操作配置之后的返回值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: String
-        # @param OpResult: 操作是否成功
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OpResult: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :OpResult, :RequestId
-        
-        def initialize(result=nil, opresult=nil, requestid=nil)
-          @Result = result
-          @OpResult = opresult
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @OpResult = params['OpResult']
-          @RequestId = params['RequestId']
         end
       end
 
