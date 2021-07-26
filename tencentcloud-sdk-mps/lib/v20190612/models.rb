@@ -6230,6 +6230,40 @@ module TencentCloud
         end
       end
 
+      # 片头片尾参数
+      class HeadTailParameter < TencentCloud::Common::AbstractModel
+        # @param HeadSet: 片头列表。
+        # @type HeadSet: Array
+        # @param TailSet: 片尾列表。
+        # @type TailSet: Array
+
+        attr_accessor :HeadSet, :TailSet
+        
+        def initialize(headset=nil, tailset=nil)
+          @HeadSet = headset
+          @TailSet = tailset
+        end
+
+        def deserialize(params)
+          unless params['HeadSet'].nil?
+            @HeadSet = []
+            params['HeadSet'].each do |i|
+              mediainputinfo_tmp = MediaInputInfo.new
+              mediainputinfo_tmp.deserialize(i)
+              @HeadSet << mediainputinfo_tmp
+            end
+          end
+          unless params['TailSet'].nil?
+            @TailSet = []
+            params['TailSet'].each do |i|
+              mediainputinfo_tmp = MediaInputInfo.new
+              mediainputinfo_tmp.deserialize(i)
+              @TailSet << mediainputinfo_tmp
+            end
+          end
+        end
+      end
+
       # 对视频截雪碧图任务输入参数类型
       class ImageSpriteTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 雪碧图模板 ID。
@@ -11096,15 +11130,21 @@ module TencentCloud
         # @type TopicName: String
         # @param NotifyMode: 工作流通知的模式，可取值有 Finish 和 Change，不填代表 Finish。
         # @type NotifyMode: String
+        # @param NotifyType: 通知类型，默认CMQ，指定URL时HTTP回调推送到 NotifyUrl 指定的地址。
+        # @type NotifyType: String
+        # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
+        # @type NotifyUrl: String
 
-        attr_accessor :CmqModel, :CmqRegion, :QueueName, :TopicName, :NotifyMode
+        attr_accessor :CmqModel, :CmqRegion, :QueueName, :TopicName, :NotifyMode, :NotifyType, :NotifyUrl
         
-        def initialize(cmqmodel=nil, cmqregion=nil, queuename=nil, topicname=nil, notifymode=nil)
+        def initialize(cmqmodel=nil, cmqregion=nil, queuename=nil, topicname=nil, notifymode=nil, notifytype=nil, notifyurl=nil)
           @CmqModel = cmqmodel
           @CmqRegion = cmqregion
           @QueueName = queuename
           @TopicName = topicname
           @NotifyMode = notifymode
+          @NotifyType = notifytype
+          @NotifyUrl = notifyurl
         end
 
         def deserialize(params)
@@ -11113,6 +11153,8 @@ module TencentCloud
           @QueueName = params['QueueName']
           @TopicName = params['TopicName']
           @NotifyMode = params['NotifyMode']
+          @NotifyType = params['NotifyType']
+          @NotifyUrl = params['NotifyUrl']
         end
       end
 
@@ -11460,10 +11502,13 @@ module TencentCloud
         # @param ObjectNumberFormat: 转码后输出路径中的`{number}`变量的规则。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectNumberFormat: :class:`Tencentcloud::Mps.v20190612.models.NumberFormat`
+        # @param HeadTailParameter: 片头片尾参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadTailParameter: :class:`Tencentcloud::Mps.v20190612.models.HeadTailParameter`
 
-        attr_accessor :Definition, :RawParameter, :OverrideParameter, :WatermarkSet, :MosaicSet, :StartTimeOffset, :EndTimeOffset, :OutputStorage, :OutputObjectPath, :SegmentObjectName, :ObjectNumberFormat
+        attr_accessor :Definition, :RawParameter, :OverrideParameter, :WatermarkSet, :MosaicSet, :StartTimeOffset, :EndTimeOffset, :OutputStorage, :OutputObjectPath, :SegmentObjectName, :ObjectNumberFormat, :HeadTailParameter
         
-        def initialize(definition=nil, rawparameter=nil, overrideparameter=nil, watermarkset=nil, mosaicset=nil, starttimeoffset=nil, endtimeoffset=nil, outputstorage=nil, outputobjectpath=nil, segmentobjectname=nil, objectnumberformat=nil)
+        def initialize(definition=nil, rawparameter=nil, overrideparameter=nil, watermarkset=nil, mosaicset=nil, starttimeoffset=nil, endtimeoffset=nil, outputstorage=nil, outputobjectpath=nil, segmentobjectname=nil, objectnumberformat=nil, headtailparameter=nil)
           @Definition = definition
           @RawParameter = rawparameter
           @OverrideParameter = overrideparameter
@@ -11475,6 +11520,7 @@ module TencentCloud
           @OutputObjectPath = outputobjectpath
           @SegmentObjectName = segmentobjectname
           @ObjectNumberFormat = objectnumberformat
+          @HeadTailParameter = headtailparameter
         end
 
         def deserialize(params)
@@ -11514,6 +11560,10 @@ module TencentCloud
           unless params['ObjectNumberFormat'].nil?
             @ObjectNumberFormat = NumberFormat.new
             @ObjectNumberFormat.deserialize(params['ObjectNumberFormat'])
+          end
+          unless params['HeadTailParameter'].nil?
+            @HeadTailParameter = HeadTailParameter.new
+            @HeadTailParameter.deserialize(params['HeadTailParameter'])
           end
         end
       end

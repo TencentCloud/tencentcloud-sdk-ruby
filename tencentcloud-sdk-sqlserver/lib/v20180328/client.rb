@@ -869,6 +869,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
+
+        # @param request: Request instance for DescribeInstanceParamRecords.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeInstanceParamRecordsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeInstanceParamRecordsResponse`
+        def DescribeInstanceParamRecords(request)
+          body = send_request('DescribeInstanceParamRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceParamRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口（DescribeInstanceParams）用于查询实例的参数列表。
+
+        # @param request: Request instance for DescribeInstanceParams.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeInstanceParamsRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeInstanceParamsResponse`
+        def DescribeInstanceParams(request)
+          body = send_request('DescribeInstanceParams', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceParamsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
 
         # @param request: Request instance for DescribeMaintenanceSpan.
@@ -1743,6 +1791,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyIncrementalMigrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
+        # <b>注意</b>：如果修改的参数是需要<b>重启实例</b>的，那么实例将会按照WaitSwitch参数的设置(可能是立即执行也可能在可维护时间窗内自动执行)在执行参数修改时<b>重启实例</b>。
+        # 您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
+
+        # @param request: Request instance for ModifyInstanceParam.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyInstanceParamRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyInstanceParamResponse`
+        def ModifyInstanceParam(request)
+          body = send_request('ModifyInstanceParam', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceParamResponse.new
             model.deserialize(response['Response'])
             model
           else

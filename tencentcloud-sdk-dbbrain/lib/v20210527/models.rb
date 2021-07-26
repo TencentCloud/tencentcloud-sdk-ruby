@@ -1310,14 +1310,17 @@ module TencentCloud
         # @type EndTime: String
         # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         # @type Product: String
+        # @param Md5: SOL模板的MD5值
+        # @type Md5: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Product
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :Md5
         
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil, md5=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @Product = product
+          @Md5 = md5
         end
 
         def deserialize(params)
@@ -1325,6 +1328,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Product = params['Product']
+          @Md5 = params['Md5']
         end
       end
 
@@ -2665,10 +2669,12 @@ module TencentCloud
         # @type LockTimeAvg: Float
         # @param RowsExaminedAvg: 平均扫描行数
         # @type RowsExaminedAvg: Float
+        # @param Md5: SOL模板的MD5值
+        # @type Md5: String
 
-        attr_accessor :LockTime, :LockTimeMax, :LockTimeMin, :RowsExamined, :RowsExaminedMax, :RowsExaminedMin, :QueryTime, :QueryTimeMax, :QueryTimeMin, :RowsSent, :RowsSentMax, :RowsSentMin, :ExecTimes, :SqlTemplate, :SqlText, :Schema, :QueryTimeRatio, :LockTimeRatio, :RowsExaminedRatio, :RowsSentRatio, :QueryTimeAvg, :RowsSentAvg, :LockTimeAvg, :RowsExaminedAvg
+        attr_accessor :LockTime, :LockTimeMax, :LockTimeMin, :RowsExamined, :RowsExaminedMax, :RowsExaminedMin, :QueryTime, :QueryTimeMax, :QueryTimeMin, :RowsSent, :RowsSentMax, :RowsSentMin, :ExecTimes, :SqlTemplate, :SqlText, :Schema, :QueryTimeRatio, :LockTimeRatio, :RowsExaminedRatio, :RowsSentRatio, :QueryTimeAvg, :RowsSentAvg, :LockTimeAvg, :RowsExaminedAvg, :Md5
         
-        def initialize(locktime=nil, locktimemax=nil, locktimemin=nil, rowsexamined=nil, rowsexaminedmax=nil, rowsexaminedmin=nil, querytime=nil, querytimemax=nil, querytimemin=nil, rowssent=nil, rowssentmax=nil, rowssentmin=nil, exectimes=nil, sqltemplate=nil, sqltext=nil, schema=nil, querytimeratio=nil, locktimeratio=nil, rowsexaminedratio=nil, rowssentratio=nil, querytimeavg=nil, rowssentavg=nil, locktimeavg=nil, rowsexaminedavg=nil)
+        def initialize(locktime=nil, locktimemax=nil, locktimemin=nil, rowsexamined=nil, rowsexaminedmax=nil, rowsexaminedmin=nil, querytime=nil, querytimemax=nil, querytimemin=nil, rowssent=nil, rowssentmax=nil, rowssentmin=nil, exectimes=nil, sqltemplate=nil, sqltext=nil, schema=nil, querytimeratio=nil, locktimeratio=nil, rowsexaminedratio=nil, rowssentratio=nil, querytimeavg=nil, rowssentavg=nil, locktimeavg=nil, rowsexaminedavg=nil, md5=nil)
           @LockTime = locktime
           @LockTimeMax = locktimemax
           @LockTimeMin = locktimemin
@@ -2693,6 +2699,7 @@ module TencentCloud
           @RowsSentAvg = rowssentavg
           @LockTimeAvg = locktimeavg
           @RowsExaminedAvg = rowsexaminedavg
+          @Md5 = md5
         end
 
         def deserialize(params)
@@ -2720,6 +2727,7 @@ module TencentCloud
           @RowsSentAvg = params['RowsSentAvg']
           @LockTimeAvg = params['LockTimeAvg']
           @RowsExaminedAvg = params['RowsExaminedAvg']
+          @Md5 = params['Md5']
         end
       end
 

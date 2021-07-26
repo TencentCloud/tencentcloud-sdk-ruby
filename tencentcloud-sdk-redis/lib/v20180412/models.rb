@@ -139,6 +139,34 @@ module TencentCloud
         end
       end
 
+      # 备份文件下载信息
+      class BackupDownloadInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 备份文件名称
+        # @type FileName: String
+        # @param FileSize: 备份文件大小，单位B，如果为0，表示无效
+        # @type FileSize: Integer
+        # @param DownloadUrl: 备份文件外网下载地址（6小时）
+        # @type DownloadUrl: String
+        # @param InnerDownloadUrl: 备份文件内网下载地址（6小时）
+        # @type InnerDownloadUrl: String
+
+        attr_accessor :FileName, :FileSize, :DownloadUrl, :InnerDownloadUrl
+        
+        def initialize(filename=nil, filesize=nil, downloadurl=nil, innerdownloadurl=nil)
+          @FileName = filename
+          @FileSize = filesize
+          @DownloadUrl = downloadurl
+          @InnerDownloadUrl = innerdownloadurl
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @DownloadUrl = params['DownloadUrl']
+          @InnerDownloadUrl = params['InnerDownloadUrl']
+        end
+      end
+
       # 大Key详情
       class BigKeyInfo < TencentCloud::Common::AbstractModel
         # @param DB: 所属的database
@@ -769,20 +797,37 @@ module TencentCloud
         # @type DownloadUrl: Array
         # @param InnerDownloadUrl: 内网下载地址（6小时）
         # @type InnerDownloadUrl: Array
+        # @param Filenames: 文件名称（仅tendis实例有值）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Filenames: Array
+        # @param BackupInfos: 备份文件信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DownloadUrl, :InnerDownloadUrl, :RequestId
+        attr_accessor :DownloadUrl, :InnerDownloadUrl, :Filenames, :BackupInfos, :RequestId
         
-        def initialize(downloadurl=nil, innerdownloadurl=nil, requestid=nil)
+        def initialize(downloadurl=nil, innerdownloadurl=nil, filenames=nil, backupinfos=nil, requestid=nil)
           @DownloadUrl = downloadurl
           @InnerDownloadUrl = innerdownloadurl
+          @Filenames = filenames
+          @BackupInfos = backupinfos
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
           @InnerDownloadUrl = params['InnerDownloadUrl']
+          @Filenames = params['Filenames']
+          unless params['BackupInfos'].nil?
+            @BackupInfos = []
+            params['BackupInfos'].each do |i|
+              backupdownloadinfo_tmp = BackupDownloadInfo.new
+              backupdownloadinfo_tmp.deserialize(i)
+              @BackupInfos << backupdownloadinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2997,8 +3042,6 @@ module TencentCloud
 
       # InquiryPriceCreateInstance请求参数结构体
       class InquiryPriceCreateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 实例所属的可用区ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
-        # @type ZoneId: Integer
         # @param TypeId: 实例类型：2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)。
         # @type TypeId: Integer
         # @param MemSize: 内存容量，单位为MB， 数值需为1024的整数倍，具体规格以 [查询产品售卖规格](https://cloud.tencent.com/document/api/239/30600) 返回的规格为准。
@@ -3010,37 +3053,43 @@ module TencentCloud
         # @type Period: Integer
         # @param BillingMode: 付费方式:0-按量计费，1-包年包月。
         # @type BillingMode: Integer
+        # @param ZoneId: 实例所属的可用区ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
+        # @type ZoneId: Integer
         # @param RedisShardNum: 实例分片数量，Redis2.8主从版、CKV主从版和Redis2.8单机版、Redis4.0主从版不需要填写。
         # @type RedisShardNum: Integer
         # @param RedisReplicasNum: 实例副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
         # @type RedisReplicasNum: Integer
         # @param ReplicasReadonly: 是否支持副本只读，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
         # @type ReplicasReadonly: Boolean
+        # @param ZoneName: 实例所属的可用区名称，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
+        # @type ZoneName: String
 
-        attr_accessor :ZoneId, :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly
+        attr_accessor :TypeId, :MemSize, :GoodsNum, :Period, :BillingMode, :ZoneId, :RedisShardNum, :RedisReplicasNum, :ReplicasReadonly, :ZoneName
         
-        def initialize(zoneid=nil, typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil)
-          @ZoneId = zoneid
+        def initialize(typeid=nil, memsize=nil, goodsnum=nil, period=nil, billingmode=nil, zoneid=nil, redisshardnum=nil, redisreplicasnum=nil, replicasreadonly=nil, zonename=nil)
           @TypeId = typeid
           @MemSize = memsize
           @GoodsNum = goodsnum
           @Period = period
           @BillingMode = billingmode
+          @ZoneId = zoneid
           @RedisShardNum = redisshardnum
           @RedisReplicasNum = redisreplicasnum
           @ReplicasReadonly = replicasreadonly
+          @ZoneName = zonename
         end
 
         def deserialize(params)
-          @ZoneId = params['ZoneId']
           @TypeId = params['TypeId']
           @MemSize = params['MemSize']
           @GoodsNum = params['GoodsNum']
           @Period = params['Period']
           @BillingMode = params['BillingMode']
+          @ZoneId = params['ZoneId']
           @RedisShardNum = params['RedisShardNum']
           @RedisReplicasNum = params['RedisReplicasNum']
           @ReplicasReadonly = params['ReplicasReadonly']
+          @ZoneName = params['ZoneName']
         end
       end
 

@@ -3129,6 +3129,46 @@ module TencentCloud
         end
       end
 
+      # 画质重生子任务文字水印信息
+      class TextMarkInfoItem < TencentCloud::Common::AbstractModel
+        # @param Text: 文字内容。
+        # @type Text: String
+        # @param PosX: 文字水印X坐标。
+        # @type PosX: Integer
+        # @param PosY: 文字水印Y坐标。
+        # @type PosY: Integer
+        # @param FontSize: 文字大小
+        # @type FontSize: Integer
+        # @param FontFile: 字体，可选项：hei,song，simkai,arial；默认hei(黑体）。
+        # @type FontFile: String
+        # @param FontColor: 字体颜色，颜色见附录，不填默认black。
+        # @type FontColor: String
+        # @param FontAlpha: 文字透明度，可选值0-1。0：不透明，1：全透明。默认为0
+        # @type FontAlpha: Float
+
+        attr_accessor :Text, :PosX, :PosY, :FontSize, :FontFile, :FontColor, :FontAlpha
+        
+        def initialize(text=nil, posx=nil, posy=nil, fontsize=nil, fontfile=nil, fontcolor=nil, fontalpha=nil)
+          @Text = text
+          @PosX = posx
+          @PosY = posy
+          @FontSize = fontsize
+          @FontFile = fontfile
+          @FontColor = fontcolor
+          @FontAlpha = fontalpha
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @PosX = params['PosX']
+          @PosY = params['PosY']
+          @FontSize = params['FontSize']
+          @FontFile = params['FontFile']
+          @FontColor = params['FontColor']
+          @FontAlpha = params['FontAlpha']
+        end
+      end
+
       # 任务视频Url形式下载信息。
       class UrlInfo < TencentCloud::Common::AbstractModel
         # @param Url: 视频 URL。
@@ -3300,10 +3340,12 @@ module TencentCloud
         # @type VideoEnhance: :class:`Tencentcloud::Ie.v20200304.models.VideoEnhance`
         # @param HiddenMarkInfo: 数字水印参数信息。
         # @type HiddenMarkInfo: :class:`Tencentcloud::Ie.v20200304.models.HiddenMarkInfo`
+        # @param TextMarkInfo: 文本水印参数信息。
+        # @type TextMarkInfo: Array
 
-        attr_accessor :Fps, :Width, :Height, :LongSide, :ShortSide, :Bitrate, :Gop, :VideoCodec, :PicMarkInfo, :DarInfo, :Hdr, :VideoEnhance, :HiddenMarkInfo
+        attr_accessor :Fps, :Width, :Height, :LongSide, :ShortSide, :Bitrate, :Gop, :VideoCodec, :PicMarkInfo, :DarInfo, :Hdr, :VideoEnhance, :HiddenMarkInfo, :TextMarkInfo
         
-        def initialize(fps=nil, width=nil, height=nil, longside=nil, shortside=nil, bitrate=nil, gop=nil, videocodec=nil, picmarkinfo=nil, darinfo=nil, hdr=nil, videoenhance=nil, hiddenmarkinfo=nil)
+        def initialize(fps=nil, width=nil, height=nil, longside=nil, shortside=nil, bitrate=nil, gop=nil, videocodec=nil, picmarkinfo=nil, darinfo=nil, hdr=nil, videoenhance=nil, hiddenmarkinfo=nil, textmarkinfo=nil)
           @Fps = fps
           @Width = width
           @Height = height
@@ -3317,6 +3359,7 @@ module TencentCloud
           @Hdr = hdr
           @VideoEnhance = videoenhance
           @HiddenMarkInfo = hiddenmarkinfo
+          @TextMarkInfo = textmarkinfo
         end
 
         def deserialize(params)
@@ -3348,6 +3391,14 @@ module TencentCloud
           unless params['HiddenMarkInfo'].nil?
             @HiddenMarkInfo = HiddenMarkInfo.new
             @HiddenMarkInfo.deserialize(params['HiddenMarkInfo'])
+          end
+          unless params['TextMarkInfo'].nil?
+            @TextMarkInfo = []
+            params['TextMarkInfo'].each do |i|
+              textmarkinfoitem_tmp = TextMarkInfoItem.new
+              textmarkinfoitem_tmp.deserialize(i)
+              @TextMarkInfo << textmarkinfoitem_tmp
+            end
           end
         end
       end

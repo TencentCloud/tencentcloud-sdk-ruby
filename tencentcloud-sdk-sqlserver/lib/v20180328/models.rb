@@ -2799,6 +2799,108 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceParamRecords请求参数结构体
+      class DescribeInstanceParamRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：mssql-dj5i29c5n，与云数据库控制台页面中显示的实例 ID 相同，可使用 DescribeDBInstances 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @type InstanceId: String
+        # @param Offset: 分页，页数，默认0
+        # @type Offset: Integer
+        # @param Limit: 分页，页大小，默认20，最大不超过100
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit
+        
+        def initialize(instanceid=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInstanceParamRecords返回参数结构体
+      class DescribeInstanceParamRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的记录数
+        # @type TotalCount: Integer
+        # @param Items: 参数修改记录
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              paramrecord_tmp = ParamRecord.new
+              paramrecord_tmp.deserialize(i)
+              @Items << paramrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceParams请求参数结构体
+      class DescribeInstanceParamsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：mssql-dj5i29c5n，与云数据库控制台页面中显示的实例 ID 相同，可使用 DescribeDBInstances 接口获取，其值为输出参数中字段 InstanceId 的值。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceParams返回参数结构体
+      class DescribeInstanceParamsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例的参数总数
+        # @type TotalCount: Integer
+        # @param Items: 参数详情
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+        
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              parameterdetail_tmp = ParameterDetail.new
+              parameterdetail_tmp.deserialize(i)
+              @Items << parameterdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMaintenanceSpan请求参数结构体
       class DescribeMaintenanceSpanRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-k8voqdlz
@@ -5153,6 +5255,53 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceParam请求参数结构体
+      class ModifyInstanceParamRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例短 ID 列表
+        # @type InstanceIds: Array
+        # @param ParamList: 要修改的参数列表。每一个元素是 Name 和 CurrentValue 的组合。Name 是参数名，CurrentValue 是要修改的值。<b>注意</b>：如果修改的参数需要<b>重启</b>实例，那么您的实例将会在执行修改时<b>重启</b>。您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
+        # @type ParamList: Array
+        # @param WaitSwitch: 执行参数调整任务的方式，默认为 0。支持值包括：0 - 立刻执行，1 - 时间窗执行。
+        # @type WaitSwitch: Integer
+
+        attr_accessor :InstanceIds, :ParamList, :WaitSwitch
+        
+        def initialize(instanceids=nil, paramlist=nil, waitswitch=nil)
+          @InstanceIds = instanceids
+          @ParamList = paramlist
+          @WaitSwitch = waitswitch
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              parameter_tmp = Parameter.new
+              parameter_tmp.deserialize(i)
+              @ParamList << parameter_tmp
+            end
+          end
+          @WaitSwitch = params['WaitSwitch']
+        end
+      end
+
+      # ModifyInstanceParam返回参数结构体
+      class ModifyInstanceParamResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMaintenanceSpan请求参数结构体
       class ModifyMaintenanceSpanRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-k8voqdlz
@@ -5374,6 +5523,114 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例参数修改记录
+      class ParamRecord < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param OldValue: 参数修改前的值
+        # @type OldValue: String
+        # @param NewValue: 参数修改后的值
+        # @type NewValue: String
+        # @param Status: 参数修改状态，1-初始化等待被执行，2-执行成功，3-执行失败，4-参数修改中
+        # @type Status: Integer
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :Status, :ModifyTime
+        
+        def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, status=nil, modifytime=nil)
+          @InstanceId = instanceid
+          @ParamName = paramname
+          @OldValue = oldvalue
+          @NewValue = newvalue
+          @Status = status
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ParamName = params['ParamName']
+          @OldValue = params['OldValue']
+          @NewValue = params['NewValue']
+          @Status = params['Status']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # 数据库实例参数
+      class Parameter < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称
+        # @type Name: String
+        # @param CurrentValue: 参数值
+        # @type CurrentValue: String
+
+        attr_accessor :Name, :CurrentValue
+        
+        def initialize(name=nil, currentvalue=nil)
+          @Name = name
+          @CurrentValue = currentvalue
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @CurrentValue = params['CurrentValue']
+        end
+      end
+
+      # 实例参数的详细描述
+      class ParameterDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名称
+        # @type Name: String
+        # @param ParamType: 参数类型，integer-整型，enum-枚举型
+        # @type ParamType: String
+        # @param Default: 参数默认值
+        # @type Default: String
+        # @param Description: 参数描述
+        # @type Description: String
+        # @param CurrentValue: 参数当前值
+        # @type CurrentValue: String
+        # @param NeedReboot: 修改参数后，是否需要重启数据库以使参数生效，0-不需要重启，1-需要重启
+        # @type NeedReboot: Integer
+        # @param Max: 参数允许的最大值
+        # @type Max: Integer
+        # @param Min: 参数允许的最小值
+        # @type Min: Integer
+        # @param EnumValue: 参数允许的枚举类型
+        # @type EnumValue: Array
+        # @param Status: 参数状态 0-状态正常 1-在修改中
+        # @type Status: Integer
+
+        attr_accessor :Name, :ParamType, :Default, :Description, :CurrentValue, :NeedReboot, :Max, :Min, :EnumValue, :Status
+        
+        def initialize(name=nil, paramtype=nil, default=nil, description=nil, currentvalue=nil, needreboot=nil, max=nil, min=nil, enumvalue=nil, status=nil)
+          @Name = name
+          @ParamType = paramtype
+          @Default = default
+          @Description = description
+          @CurrentValue = currentvalue
+          @NeedReboot = needreboot
+          @Max = max
+          @Min = min
+          @EnumValue = enumvalue
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ParamType = params['ParamType']
+          @Default = params['Default']
+          @Description = params['Description']
+          @CurrentValue = params['CurrentValue']
+          @NeedReboot = params['NeedReboot']
+          @Max = params['Max']
+          @Min = params['Min']
+          @EnumValue = params['EnumValue']
+          @Status = params['Status']
         end
       end
 
