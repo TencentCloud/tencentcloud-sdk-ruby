@@ -17,6 +17,38 @@
 module TencentCloud
   module Tcb
     module V20180608
+      # 活动详情
+      class ActivityRecordItem < TencentCloud::Common::AbstractModel
+        # @param Uin: 用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param ActivityId: 活动id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActivityId: Integer
+        # @param Status: 自定义状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param SubStatus: 自定义子状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubStatus: String
+
+        attr_accessor :Uin, :ActivityId, :Status, :SubStatus
+        
+        def initialize(uin=nil, activityid=nil, status=nil, substatus=nil)
+          @Uin = uin
+          @ActivityId = activityid
+          @Status = status
+          @SubStatus = substatus
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @ActivityId = params['ActivityId']
+          @Status = params['Status']
+          @SubStatus = params['SubStatus']
+        end
+      end
+
       # 合法域名
       class AuthDomain < TencentCloud::Common::AbstractModel
         # @param Id: 域名ID
@@ -1960,6 +1992,61 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeActivityRecord请求参数结构体
+      class DescribeActivityRecordRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelToken: 渠道加密token
+        # @type ChannelToken: String
+        # @param Channel: 渠道来源，每个来源对应不同secretKey
+        # @type Channel: String
+        # @param ActivityIdList: 活动id列表
+        # @type ActivityIdList: Array
+        # @param Status: 过滤状态码
+        # @type Status: Integer
+
+        attr_accessor :ChannelToken, :Channel, :ActivityIdList, :Status
+        
+        def initialize(channeltoken=nil, channel=nil, activityidlist=nil, status=nil)
+          @ChannelToken = channeltoken
+          @Channel = channel
+          @ActivityIdList = activityidlist
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ChannelToken = params['ChannelToken']
+          @Channel = params['Channel']
+          @ActivityIdList = params['ActivityIdList']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeActivityRecord返回参数结构体
+      class DescribeActivityRecordResponse < TencentCloud::Common::AbstractModel
+        # @param ActivityRecords: 活动记录详情
+        # @type ActivityRecords: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivityRecords, :RequestId
+        
+        def initialize(activityrecords=nil, requestid=nil)
+          @ActivityRecords = activityrecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ActivityRecords'].nil?
+            @ActivityRecords = []
+            params['ActivityRecords'].each do |i|
+              activityrecorditem_tmp = ActivityRecordItem.new
+              activityrecorditem_tmp.deserialize(i)
+              @ActivityRecords << activityrecorditem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4972,6 +5059,54 @@ module TencentCloud
 
       # ReinstateEnv返回参数结构体
       class ReinstateEnvResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ReplaceActivityRecord请求参数结构体
+      class ReplaceActivityRecordRequest < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 活动id
+        # @type ActivityId: Integer
+        # @param Status: 状态码
+        # @type Status: Integer
+        # @param SubStatus: 自定义子状态
+        # @type SubStatus: String
+        # @param ChannelToken: 鉴权token
+        # @type ChannelToken: String
+        # @param Channel: 渠道名，不同渠道对应不同secretKey
+        # @type Channel: String
+
+        attr_accessor :ActivityId, :Status, :SubStatus, :ChannelToken, :Channel
+        
+        def initialize(activityid=nil, status=nil, substatus=nil, channeltoken=nil, channel=nil)
+          @ActivityId = activityid
+          @Status = status
+          @SubStatus = substatus
+          @ChannelToken = channeltoken
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @Status = params['Status']
+          @SubStatus = params['SubStatus']
+          @ChannelToken = params['ChannelToken']
+          @Channel = params['Channel']
+        end
+      end
+
+      # ReplaceActivityRecord返回参数结构体
+      class ReplaceActivityRecordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

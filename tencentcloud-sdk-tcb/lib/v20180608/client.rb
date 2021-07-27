@@ -389,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询活动记录信息
+
+        # @param request: Request instance for DescribeActivityRecord.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeActivityRecordRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeActivityRecordResponse`
+        def DescribeActivityRecord(request)
+          body = send_request('DescribeActivityRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeActivityRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取安全域名列表
 
         # @param request: Request instance for DescribeAuthDomains.
@@ -1290,6 +1314,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReinstateEnvResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新活动详情
+
+        # @param request: Request instance for ReplaceActivityRecord.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ReplaceActivityRecordRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ReplaceActivityRecordResponse`
+        def ReplaceActivityRecord(request)
+          body = send_request('ReplaceActivityRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReplaceActivityRecordResponse.new
             model.deserialize(response['Response'])
             model
           else

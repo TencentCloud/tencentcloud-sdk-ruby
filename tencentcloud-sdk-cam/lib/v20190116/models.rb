@@ -3452,10 +3452,19 @@ module TencentCloud
         # @param IsServiceLinkedPolicy: 是否是服务相关角色策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsServiceLinkedPolicy: Integer
+        # @param AttachEntityCount: 关联策略实体数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachEntityCount: Integer
+        # @param AttachEntityBoundaryCount: 关联权限边界实体数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachEntityBoundaryCount: Integer
+        # @param UpdateTime: 最后编辑时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
 
-        attr_accessor :PolicyId, :PolicyName, :AddTime, :Type, :Description, :CreateMode, :Attachments, :ServiceType, :IsAttached, :Deactived, :DeactivedDetail, :IsServiceLinkedPolicy
+        attr_accessor :PolicyId, :PolicyName, :AddTime, :Type, :Description, :CreateMode, :Attachments, :ServiceType, :IsAttached, :Deactived, :DeactivedDetail, :IsServiceLinkedPolicy, :AttachEntityCount, :AttachEntityBoundaryCount, :UpdateTime
         
-        def initialize(policyid=nil, policyname=nil, addtime=nil, type=nil, description=nil, createmode=nil, attachments=nil, servicetype=nil, isattached=nil, deactived=nil, deactiveddetail=nil, isservicelinkedpolicy=nil)
+        def initialize(policyid=nil, policyname=nil, addtime=nil, type=nil, description=nil, createmode=nil, attachments=nil, servicetype=nil, isattached=nil, deactived=nil, deactiveddetail=nil, isservicelinkedpolicy=nil, attachentitycount=nil, attachentityboundarycount=nil, updatetime=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @AddTime = addtime
@@ -3468,6 +3477,9 @@ module TencentCloud
           @Deactived = deactived
           @DeactivedDetail = deactiveddetail
           @IsServiceLinkedPolicy = isservicelinkedpolicy
+          @AttachEntityCount = attachentitycount
+          @AttachEntityBoundaryCount = attachentityboundarycount
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -3483,6 +3495,9 @@ module TencentCloud
           @Deactived = params['Deactived']
           @DeactivedDetail = params['DeactivedDetail']
           @IsServiceLinkedPolicy = params['IsServiceLinkedPolicy']
+          @AttachEntityCount = params['AttachEntityCount']
+          @AttachEntityBoundaryCount = params['AttachEntityBoundaryCount']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
