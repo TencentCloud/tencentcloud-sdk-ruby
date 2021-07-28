@@ -222,6 +222,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
+
+        # @param request: Request instance for CreateCustomHeader.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::CreateCustomHeaderRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::CreateCustomHeaderResponse`
+        def CreateCustomHeader(request)
+          body = send_request('CreateCustomHeader', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomHeaderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateDomain）用于创建HTTP/HTTPS监听器的访问域名，客户端请求通过访问该域名来请求后端业务。
         # 该接口仅支持version3.0的通道。
 
@@ -751,6 +775,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeBlackHeader）用于查询禁用的自定义header 名称
+
+        # @param request: Request instance for DescribeBlackHeader.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeBlackHeaderRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DescribeBlackHeaderResponse`
+        def DescribeBlackHeader(request)
+          body = send_request('DescribeBlackHeader', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBlackHeaderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeCertificateDetail）用于查询证书详情，包括证书ID，证书名字，证书类型，证书内容以及密钥等信息。
 
         # @param request: Request instance for DescribeCertificateDetail.
@@ -809,6 +857,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCountryAreaMappingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeCustomHeader）用于自定义header列表
+
+        # @param request: Request instance for DescribeCustomHeader.
+        # @type request: :class:`Tencentcloud::gaap::V20180529::DescribeCustomHeaderRequest`
+        # @rtype: :class:`Tencentcloud::gaap::V20180529::DescribeCustomHeaderResponse`
+        def DescribeCustomHeader(request)
+          body = send_request('DescribeCustomHeader', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomHeaderResponse.new
             model.deserialize(response['Response'])
             model
           else

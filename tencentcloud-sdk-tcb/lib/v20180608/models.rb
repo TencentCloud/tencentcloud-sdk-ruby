@@ -2004,16 +2004,19 @@ module TencentCloud
         # @type Channel: String
         # @param ActivityIdList: 活动id列表
         # @type ActivityIdList: Array
-        # @param Status: 过滤状态码
+        # @param Status: 过滤状态码，已废弃
         # @type Status: Integer
+        # @param Statuses: 状态码过滤数组，空数组时不过滤
+        # @type Statuses: Array
 
-        attr_accessor :ChannelToken, :Channel, :ActivityIdList, :Status
+        attr_accessor :ChannelToken, :Channel, :ActivityIdList, :Status, :Statuses
         
-        def initialize(channeltoken=nil, channel=nil, activityidlist=nil, status=nil)
+        def initialize(channeltoken=nil, channel=nil, activityidlist=nil, status=nil, statuses=nil)
           @ChannelToken = channeltoken
           @Channel = channel
           @ActivityIdList = activityidlist
           @Status = status
+          @Statuses = statuses
         end
 
         def deserialize(params)
@@ -2021,6 +2024,7 @@ module TencentCloud
           @Channel = params['Channel']
           @ActivityIdList = params['ActivityIdList']
           @Status = params['Status']
+          @Statuses = params['Statuses']
         end
       end
 

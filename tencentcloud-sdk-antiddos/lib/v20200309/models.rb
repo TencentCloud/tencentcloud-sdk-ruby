@@ -1469,6 +1469,49 @@ module TencentCloud
         end
       end
 
+      # DescribeBasicDeviceStatus请求参数结构体
+      class DescribeBasicDeviceStatusRequest < TencentCloud::Common::AbstractModel
+        # @param IpList: IP 资源列表
+        # @type IpList: Array
+
+        attr_accessor :IpList
+        
+        def initialize(iplist=nil)
+          @IpList = iplist
+        end
+
+        def deserialize(params)
+          @IpList = params['IpList']
+        end
+      end
+
+      # DescribeBasicDeviceStatus返回参数结构体
+      class DescribeBasicDeviceStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回资源及状态
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @Data << keyvalue_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBlackWhiteIpList请求参数结构体
       class DescribeBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源实例ID
@@ -2185,7 +2228,7 @@ module TencentCloud
         # @type FilterInstanceId: String
         # @param FilterIp: IP搜索
         # @type FilterIp: String
-        # @param FilterDomain: 域名搜索（查询域名与协议的CC防护阈值时使用）
+        # @param FilterDomain: 域名搜索(查询域名与协议的CC防护阈值时使用）
         # @type FilterDomain: String
         # @param FilterProtocol: 协议搜索(查询域名与协议的CC防护阈值时使用）
         # @type FilterProtocol: String
@@ -2694,6 +2737,26 @@ module TencentCloud
         def deserialize(params)
           @EipList = params['EipList']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # 字段值，K-V形式
+      class KeyValue < TencentCloud::Common::AbstractModel
+        # @param Key: 字段名称
+        # @type Key: String
+        # @param Value: 字段取值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

@@ -500,6 +500,57 @@ module TencentCloud
         end
       end
 
+      # CreateTasksInOrder请求参数结构体
+      class CreateTasksInOrderRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称。如果SQL语句中有数据库名称，优先使用SQL语句中的数据库，否则使用该参数指定的数据库。
+        # @type DatabaseName: String
+        # @param Tasks: SQL任务信息
+        # @type Tasks: :class:`Tencentcloud::Dlc.v20210125.models.TasksInfo`
+        # @param DatasourceConnectionName: 数据源名称，默认为COSDataCatalog
+        # @type DatasourceConnectionName: String
+
+        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName
+        
+        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil)
+          @DatabaseName = databasename
+          @Tasks = tasks
+          @DatasourceConnectionName = datasourceconnectionname
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          unless params['Tasks'].nil?
+            @Tasks = TasksInfo.new
+            @Tasks.deserialize(params['Tasks'])
+          end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+        end
+      end
+
+      # CreateTasksInOrder返回参数结构体
+      class CreateTasksInOrderResponse < TencentCloud::Common::AbstractModel
+        # @param BatchId: 本批次提交的任务的批次Id
+        # @type BatchId: String
+        # @param TaskIdSet: 任务Id集合，按照执行顺序排列
+        # @type TaskIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchId, :TaskIdSet, :RequestId
+        
+        def initialize(batchid=nil, taskidset=nil, requestid=nil)
+          @BatchId = batchid
+          @TaskIdSet = taskidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @TaskIdSet = params['TaskIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户Id，当前主账号的子账号Uin，和CAM侧匹配
@@ -2067,6 +2118,41 @@ module TencentCloud
           @Percentage = params['Percentage']
           @OutputMessage = params['OutputMessage']
           @TaskType = params['TaskType']
+        end
+      end
+
+      # 批量顺序执行任务集合
+      class TasksInfo < TencentCloud::Common::AbstractModel
+        # @param TaskType: 任务类型，SQLTask：SQL查询任务。SparkSQLTask：Spark SQL查询任务
+        # @type TaskType: String
+        # @param FailureTolerance: 容错策略。Proceed：前面任务出错/取消后继续执行后面的任务。Terminate：前面的任务出错/取消之后终止后面任务的执行，后面的任务全部标记为已取消。
+        # @type FailureTolerance: String
+        # @param SQL: base64加密后的SQL语句，用";"号分隔每个SQL语句，一次最多提交50个任务。严格按照前后顺序执行
+        # @type SQL: String
+        # @param Config: 任务的配置信息
+        # @type Config: Array
+
+        attr_accessor :TaskType, :FailureTolerance, :SQL, :Config
+        
+        def initialize(tasktype=nil, failuretolerance=nil, sql=nil, config=nil)
+          @TaskType = tasktype
+          @FailureTolerance = failuretolerance
+          @SQL = sql
+          @Config = config
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @FailureTolerance = params['FailureTolerance']
+          @SQL = params['SQL']
+          unless params['Config'].nil?
+            @Config = []
+            params['Config'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Config << kvpair_tmp
+            end
+          end
         end
       end
 

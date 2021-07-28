@@ -2012,6 +2012,77 @@ module TencentCloud
         end
       end
 
+      # CreateScdnDomain请求参数结构体
+      class CreateScdnDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Waf: Web 攻击防护（WAF）配置
+        # @type Waf: :class:`Tencentcloud::Cdn.v20180606.models.ScdnWafConfig`
+        # @param Acl: 自定义防护策略配置
+        # @type Acl: :class:`Tencentcloud::Cdn.v20180606.models.ScdnAclConfig`
+        # @param CC: CC 防护配置，目前 CC 防护默认开启
+        # @type CC: :class:`Tencentcloud::Cdn.v20180606.models.ScdnConfig`
+        # @param Ddos: DDOS 防护配置，目前 DDoS 防护默认开启
+        # @type Ddos: :class:`Tencentcloud::Cdn.v20180606.models.ScdnDdosConfig`
+        # @param Bot: BOT 防护配置
+        # @type Bot: :class:`Tencentcloud::Cdn.v20180606.models.ScdnBotConfig`
+
+        attr_accessor :Domain, :Waf, :Acl, :CC, :Ddos, :Bot
+        
+        def initialize(domain=nil, waf=nil, acl=nil, cc=nil, ddos=nil, bot=nil)
+          @Domain = domain
+          @Waf = waf
+          @Acl = acl
+          @CC = cc
+          @Ddos = ddos
+          @Bot = bot
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['Waf'].nil?
+            @Waf = ScdnWafConfig.new
+            @Waf.deserialize(params['Waf'])
+          end
+          unless params['Acl'].nil?
+            @Acl = ScdnAclConfig.new
+            @Acl.deserialize(params['Acl'])
+          end
+          unless params['CC'].nil?
+            @CC = ScdnConfig.new
+            @CC.deserialize(params['CC'])
+          end
+          unless params['Ddos'].nil?
+            @Ddos = ScdnDdosConfig.new
+            @Ddos.deserialize(params['Ddos'])
+          end
+          unless params['Bot'].nil?
+            @Bot = ScdnBotConfig.new
+            @Bot.deserialize(params['Bot'])
+          end
+        end
+      end
+
+      # CreateScdnDomain返回参数结构体
+      class CreateScdnDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建结果，Success表示成功
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateScdnFailedLogTask请求参数结构体
       class CreateScdnFailedLogTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 重试失败任务的taskID

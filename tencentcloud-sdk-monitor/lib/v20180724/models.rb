@@ -90,10 +90,13 @@ module TencentCloud
         # @param MetricsInfo: 指标信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricsInfo: Array
+        # @param Dimensions: 告警实例的维度信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dimensions: String
 
-        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists, :MetricsInfo
+        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists, :MetricsInfo, :Dimensions
         
-        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil, metricsinfo=nil)
+        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil, metricsinfo=nil, dimensions=nil)
           @AlarmId = alarmid
           @MonitorType = monitortype
           @Namespace = namespace
@@ -117,6 +120,7 @@ module TencentCloud
           @Region = region
           @PolicyExists = policyexists
           @MetricsInfo = metricsinfo
+          @Dimensions = dimensions
         end
 
         def deserialize(params)
@@ -157,6 +161,7 @@ module TencentCloud
               @MetricsInfo << alarmhistorymetric_tmp
             end
           end
+          @Dimensions = params['Dimensions']
         end
       end
 

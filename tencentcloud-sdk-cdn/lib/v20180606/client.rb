@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CreateScdnDomain 用于创建 SCDN 加速域名
+
+        # @param request: Request instance for CreateScdnDomain.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::CreateScdnDomainRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::CreateScdnDomainResponse`
+        def CreateScdnDomain(request)
+          body = send_request('CreateScdnDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateScdnDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # CreateScdnFailedLogTask 用于重试创建失败的事件日志任务
 
         # @param request: Request instance for CreateScdnFailedLogTask.

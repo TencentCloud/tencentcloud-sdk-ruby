@@ -5921,10 +5921,14 @@ module TencentCloud
         # ANONYMOUS: 匿名类型 USER_ID
         # 默认值为 USER_ID
         # @type UserType: String
+        # @param MigrateMode: 签约代扣穿透查询存量数据迁移模式
+        # @type MigrateMode: String
+        # @param ContractMethod: 签约方式
+        # @type ContractMethod: String
 
-        attr_accessor :MidasAppId, :UserId, :Channel, :ContractQueryMode, :MidasSignature, :MidasSecretId, :SubAppId, :OutContractCode, :ContractSceneId, :ChannelContractCode, :ExternalContractData, :MidasEnvironment, :UserType
+        attr_accessor :MidasAppId, :UserId, :Channel, :ContractQueryMode, :MidasSignature, :MidasSecretId, :SubAppId, :OutContractCode, :ContractSceneId, :ChannelContractCode, :ExternalContractData, :MidasEnvironment, :UserType, :MigrateMode, :ContractMethod
         
-        def initialize(midasappid=nil, userid=nil, channel=nil, contractquerymode=nil, midassignature=nil, midassecretid=nil, subappid=nil, outcontractcode=nil, contractsceneid=nil, channelcontractcode=nil, externalcontractdata=nil, midasenvironment=nil, usertype=nil)
+        def initialize(midasappid=nil, userid=nil, channel=nil, contractquerymode=nil, midassignature=nil, midassecretid=nil, subappid=nil, outcontractcode=nil, contractsceneid=nil, channelcontractcode=nil, externalcontractdata=nil, midasenvironment=nil, usertype=nil, migratemode=nil, contractmethod=nil)
           @MidasAppId = midasappid
           @UserId = userid
           @Channel = channel
@@ -5938,6 +5942,8 @@ module TencentCloud
           @ExternalContractData = externalcontractdata
           @MidasEnvironment = midasenvironment
           @UserType = usertype
+          @MigrateMode = migratemode
+          @ContractMethod = contractmethod
         end
 
         def deserialize(params)
@@ -5954,6 +5960,8 @@ module TencentCloud
           @ExternalContractData = params['ExternalContractData']
           @MidasEnvironment = params['MidasEnvironment']
           @UserType = params['UserType']
+          @MigrateMode = params['MigrateMode']
+          @ContractMethod = params['ContractMethod']
         end
       end
 
@@ -10047,10 +10055,14 @@ module TencentCloud
         # ANONYMOUS: 匿名类型 USER_ID
         # 默认值为 USER_ID
         # @type UserType: String
+        # @param ContractMethod: 签约方式
+        # @type ContractMethod: String
+        # @param MigrateMode: 签约代扣穿透查询存量数据迁移模式
+        # @type MigrateMode: String
 
-        attr_accessor :MidasAppId, :UserId, :Channel, :TerminateMode, :MidasSecretId, :MidasSignature, :SubAppId, :OutContractCode, :ContractSceneId, :ChannelContractCode, :ExternalContractData, :TerminationReason, :MidasEnvironment, :UserType
+        attr_accessor :MidasAppId, :UserId, :Channel, :TerminateMode, :MidasSecretId, :MidasSignature, :SubAppId, :OutContractCode, :ContractSceneId, :ChannelContractCode, :ExternalContractData, :TerminationReason, :MidasEnvironment, :UserType, :ContractMethod, :MigrateMode
         
-        def initialize(midasappid=nil, userid=nil, channel=nil, terminatemode=nil, midassecretid=nil, midassignature=nil, subappid=nil, outcontractcode=nil, contractsceneid=nil, channelcontractcode=nil, externalcontractdata=nil, terminationreason=nil, midasenvironment=nil, usertype=nil)
+        def initialize(midasappid=nil, userid=nil, channel=nil, terminatemode=nil, midassecretid=nil, midassignature=nil, subappid=nil, outcontractcode=nil, contractsceneid=nil, channelcontractcode=nil, externalcontractdata=nil, terminationreason=nil, midasenvironment=nil, usertype=nil, contractmethod=nil, migratemode=nil)
           @MidasAppId = midasappid
           @UserId = userid
           @Channel = channel
@@ -10065,6 +10077,8 @@ module TencentCloud
           @TerminationReason = terminationreason
           @MidasEnvironment = midasenvironment
           @UserType = usertype
+          @ContractMethod = contractmethod
+          @MigrateMode = migratemode
         end
 
         def deserialize(params)
@@ -10082,6 +10096,8 @@ module TencentCloud
           @TerminationReason = params['TerminationReason']
           @MidasEnvironment = params['MidasEnvironment']
           @UserType = params['UserType']
+          @ContractMethod = params['ContractMethod']
+          @MigrateMode = params['MigrateMode']
         end
       end
 

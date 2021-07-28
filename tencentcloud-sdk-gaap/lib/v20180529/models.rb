@@ -753,6 +753,49 @@ module TencentCloud
         end
       end
 
+      # CreateCustomHeader请求参数结构体
+      class CreateCustomHeaderRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则id
+        # @type RuleId: String
+        # @param Headers: 新增的header名称和内容列表， ‘’$remote_addr‘’会被解析替换成客户端ip，其他值原样透传到源站。
+        # @type Headers: Array
+
+        attr_accessor :RuleId, :Headers
+        
+        def initialize(ruleid=nil, headers=nil)
+          @RuleId = ruleid
+          @Headers = headers
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              httpheaderparam_tmp = HttpHeaderParam.new
+              httpheaderparam_tmp.deserialize(i)
+              @Headers << httpheaderparam_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCustomHeader返回参数结构体
+      class CreateCustomHeaderResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDomainErrorPageInfo请求参数结构体
       class CreateDomainErrorPageInfoRequest < TencentCloud::Common::AbstractModel
         # @param ListenerId: 监听器ID
@@ -1896,6 +1939,38 @@ module TencentCloud
         end
       end
 
+      # DescribeBlackHeader请求参数结构体
+      class DescribeBlackHeaderRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBlackHeader返回参数结构体
+      class DescribeBlackHeaderResponse < TencentCloud::Common::AbstractModel
+        # @param BlackHeaders: 禁用的自定义header列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlackHeaders: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BlackHeaders, :RequestId
+        
+        def initialize(blackheaders=nil, requestid=nil)
+          @BlackHeaders = blackheaders
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BlackHeaders = params['BlackHeaders']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCertificateDetail请求参数结构体
       class DescribeCertificateDetailRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书ID。
@@ -2029,6 +2104,50 @@ module TencentCloud
               countryareamap_tmp = CountryAreaMap.new
               countryareamap_tmp.deserialize(i)
               @CountryAreaMappingList << countryareamap_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomHeader请求参数结构体
+      class DescribeCustomHeaderRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCustomHeader返回参数结构体
+      class DescribeCustomHeaderResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: String
+        # @param Headers: 自定义header列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Headers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :Headers, :RequestId
+        
+        def initialize(ruleid=nil, headers=nil, requestid=nil)
+          @RuleId = ruleid
+          @Headers = headers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              httpheaderparam_tmp = HttpHeaderParam.new
+              httpheaderparam_tmp.deserialize(i)
+              @Headers << httpheaderparam_tmp
             end
           end
           @RequestId = params['RequestId']

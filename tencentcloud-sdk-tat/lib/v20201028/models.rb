@@ -667,10 +667,12 @@ module TencentCloud
         # @type InstanceKind: String
         # @param Username: 在实例上执行命令时使用的用户名。
         # @type Username: String
+        # @param InvocationSource: 调用来源。
+        # @type InvocationSource: String
 
-        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username
+        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username, :InvocationSource
         
-        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil)
+        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil, invocationsource=nil)
           @InvocationId = invocationid
           @CommandId = commandid
           @InvocationStatus = invocationstatus
@@ -684,6 +686,7 @@ module TencentCloud
           @DefaultParameters = defaultparameters
           @InstanceKind = instancekind
           @Username = username
+          @InvocationSource = invocationsource
         end
 
         def deserialize(params)
@@ -707,6 +710,7 @@ module TencentCloud
           @DefaultParameters = params['DefaultParameters']
           @InstanceKind = params['InstanceKind']
           @Username = params['Username']
+          @InvocationSource = params['InvocationSource']
         end
       end
 
@@ -745,10 +749,12 @@ module TencentCloud
         # @type CommandDocument: :class:`Tencentcloud::Tat.v20201028.models.CommandDocument`
         # @param ErrorInfo: 执行任务失败时的错误信息。
         # @type ErrorInfo: String
+        # @param InvocationSource: 调用来源。
+        # @type InvocationSource: String
 
-        attr_accessor :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :InstanceId, :TaskResult, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :CommandDocument, :ErrorInfo
+        attr_accessor :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :InstanceId, :TaskResult, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :CommandDocument, :ErrorInfo, :InvocationSource
         
-        def initialize(invocationid=nil, invocationtaskid=nil, commandid=nil, taskstatus=nil, instanceid=nil, taskresult=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, commanddocument=nil, errorinfo=nil)
+        def initialize(invocationid=nil, invocationtaskid=nil, commandid=nil, taskstatus=nil, instanceid=nil, taskresult=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, commanddocument=nil, errorinfo=nil, invocationsource=nil)
           @InvocationId = invocationid
           @InvocationTaskId = invocationtaskid
           @CommandId = commandid
@@ -761,6 +767,7 @@ module TencentCloud
           @UpdatedTime = updatedtime
           @CommandDocument = commanddocument
           @ErrorInfo = errorinfo
+          @InvocationSource = invocationsource
         end
 
         def deserialize(params)
@@ -782,6 +789,7 @@ module TencentCloud
             @CommandDocument.deserialize(params['CommandDocument'])
           end
           @ErrorInfo = params['ErrorInfo']
+          @InvocationSource = params['InvocationSource']
         end
       end
 
