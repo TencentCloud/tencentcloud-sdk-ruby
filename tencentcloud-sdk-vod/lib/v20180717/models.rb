@@ -1153,14 +1153,21 @@ module TencentCloud
       # 语音全文识别结果。
       class AiRecognitionTaskAsrFullTextResultOutput < TencentCloud::Common::AbstractModel
         # @param SegmentSet: 语音全文识别片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: 语音全文识别片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: 语音全文识别片段列表文件 URL 失效时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。。
+        # @type SegmentSetFileUrlExpireTime: String
         # @param SubtitleUrl: 字幕文件 Url。
         # @type SubtitleUrl: String
 
-        attr_accessor :SegmentSet, :SubtitleUrl
+        attr_accessor :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime, :SubtitleUrl
         
-        def initialize(segmentset=nil, subtitleurl=nil)
+        def initialize(segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil, subtitleurl=nil)
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
           @SubtitleUrl = subtitleurl
         end
 
@@ -1173,6 +1180,8 @@ module TencentCloud
               @SegmentSet << airecognitiontaskasrfulltextsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
           @SubtitleUrl = params['SubtitleUrl']
         end
       end
@@ -1294,12 +1303,19 @@ module TencentCloud
       # 语音关键词识别输出。
       class AiRecognitionTaskAsrWordsResultOutput < TencentCloud::Common::AbstractModel
         # @param ResultSet: 语音关键词识别结果集。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
         # @type ResultSet: Array
+        # @param ResultSetFileUrl: 语音关键词识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达ResultSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type ResultSetFileUrl: String
+        # @param ResultSetFileUrlExpireTime: 语音关键词识别结果集文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ResultSetFileUrlExpireTime: String
 
-        attr_accessor :ResultSet
+        attr_accessor :ResultSet, :ResultSetFileUrl, :ResultSetFileUrlExpireTime
         
-        def initialize(resultset=nil)
+        def initialize(resultset=nil, resultsetfileurl=nil, resultsetfileurlexpiretime=nil)
           @ResultSet = resultset
+          @ResultSetFileUrl = resultsetfileurl
+          @ResultSetFileUrlExpireTime = resultsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -1311,6 +1327,8 @@ module TencentCloud
               @ResultSet << airecognitiontaskasrwordsresultitem_tmp
             end
           end
+          @ResultSetFileUrl = params['ResultSetFileUrl']
+          @ResultSetFileUrlExpireTime = params['ResultSetFileUrlExpireTime']
         end
       end
 
@@ -1437,12 +1455,19 @@ module TencentCloud
       # 智能人脸识别输出。
       class AiRecognitionTaskFaceResultOutput < TencentCloud::Common::AbstractModel
         # @param ResultSet: 智能人脸识别结果集。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
         # @type ResultSet: Array
+        # @param ResultSetFileUrl: 智能人脸识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达ResultSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type ResultSetFileUrl: String
+        # @param ResultSetFileUrlExpireTime: 智能人脸识别结果集文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ResultSetFileUrlExpireTime: String
 
-        attr_accessor :ResultSet
+        attr_accessor :ResultSet, :ResultSetFileUrl, :ResultSetFileUrlExpireTime
         
-        def initialize(resultset=nil)
+        def initialize(resultset=nil, resultsetfileurl=nil, resultsetfileurlexpiretime=nil)
           @ResultSet = resultset
+          @ResultSetFileUrl = resultsetfileurl
+          @ResultSetFileUrlExpireTime = resultsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -1454,6 +1479,8 @@ module TencentCloud
               @ResultSet << airecognitiontaskfaceresultitem_tmp
             end
           end
+          @ResultSetFileUrl = params['ResultSetFileUrl']
+          @ResultSetFileUrlExpireTime = params['ResultSetFileUrlExpireTime']
         end
       end
 
@@ -1677,12 +1704,19 @@ module TencentCloud
       # 智能物体识别输出。
       class AiRecognitionTaskObjectResultOutput < TencentCloud::Common::AbstractModel
         # @param ResultSet: 智能物体识别结果集。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
         # @type ResultSet: Array
+        # @param ResultSetFileUrl: 智能物体识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达ResultSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type ResultSetFileUrl: String
+        # @param ResultSetFileUrlExpireTime: 智能物体识别结果集文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ResultSetFileUrlExpireTime: String
 
-        attr_accessor :ResultSet
+        attr_accessor :ResultSet, :ResultSetFileUrl, :ResultSetFileUrlExpireTime
         
-        def initialize(resultset=nil)
+        def initialize(resultset=nil, resultsetfileurl=nil, resultsetfileurlexpiretime=nil)
           @ResultSet = resultset
+          @ResultSetFileUrl = resultsetfileurl
+          @ResultSetFileUrlExpireTime = resultsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -1694,6 +1728,8 @@ module TencentCloud
               @ResultSet << airecognitiontaskobjectresultitem_tmp
             end
           end
+          @ResultSetFileUrl = params['ResultSetFileUrl']
+          @ResultSetFileUrlExpireTime = params['ResultSetFileUrlExpireTime']
         end
       end
 
@@ -1787,12 +1823,19 @@ module TencentCloud
       # 文本全文识别输出。
       class AiRecognitionTaskOcrFullTextResultOutput < TencentCloud::Common::AbstractModel
         # @param SegmentSet: 文本全文识别结果集。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: 文本全文识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: 文本全文识别结果集文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :SegmentSet
+        attr_accessor :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(segmentset=nil)
+        def initialize(segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -1804,6 +1847,8 @@ module TencentCloud
               @SegmentSet << airecognitiontaskocrfulltextsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 
@@ -1951,12 +1996,19 @@ module TencentCloud
       # 文本关键词识别输出。
       class AiRecognitionTaskOcrWordsResultOutput < TencentCloud::Common::AbstractModel
         # @param ResultSet: 文本关键词识别结果集。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
         # @type ResultSet: Array
+        # @param ResultSetFileUrl: 文本关键词识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达ResultSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type ResultSetFileUrl: String
+        # @param ResultSetFileUrlExpireTime: 文本关键词识别结果集文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ResultSetFileUrlExpireTime: String
 
-        attr_accessor :ResultSet
+        attr_accessor :ResultSet, :ResultSetFileUrl, :ResultSetFileUrlExpireTime
         
-        def initialize(resultset=nil)
+        def initialize(resultset=nil, resultsetfileurl=nil, resultsetfileurlexpiretime=nil)
           @ResultSet = resultset
+          @ResultSetFileUrl = resultsetfileurl
+          @ResultSetFileUrlExpireTime = resultsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -1968,6 +2020,8 @@ module TencentCloud
               @ResultSet << airecognitiontaskocrwordsresultitem_tmp
             end
           end
+          @ResultSetFileUrl = params['ResultSetFileUrl']
+          @ResultSetFileUrlExpireTime = params['ResultSetFileUrlExpireTime']
         end
       end
 
@@ -2062,12 +2116,19 @@ module TencentCloud
       # 视频拆条输出。
       class AiRecognitionTaskSegmentResultOutput < TencentCloud::Common::AbstractModel
         # @param SegmentSet: 视频拆条片段列表。
+        # <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         # @type SegmentSet: Array
+        # @param SegmentSetFileUrl: 视频拆条片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        # @type SegmentSetFileUrl: String
+        # @param SegmentSetFileUrlExpireTime: 视频拆条片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type SegmentSetFileUrlExpireTime: String
 
-        attr_accessor :SegmentSet
+        attr_accessor :SegmentSet, :SegmentSetFileUrl, :SegmentSetFileUrlExpireTime
         
-        def initialize(segmentset=nil)
+        def initialize(segmentset=nil, segmentsetfileurl=nil, segmentsetfileurlexpiretime=nil)
           @SegmentSet = segmentset
+          @SegmentSetFileUrl = segmentsetfileurl
+          @SegmentSetFileUrlExpireTime = segmentsetfileurlexpiretime
         end
 
         def deserialize(params)
@@ -2079,6 +2140,8 @@ module TencentCloud
               @SegmentSet << airecognitiontasksegmentsegmentitem_tmp
             end
           end
+          @SegmentSetFileUrl = params['SegmentSetFileUrl']
+          @SegmentSetFileUrlExpireTime = params['SegmentSetFileUrlExpireTime']
         end
       end
 

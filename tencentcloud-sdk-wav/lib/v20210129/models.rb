@@ -642,6 +642,53 @@ module TencentCloud
         end
       end
 
+      # license相关信息
+      class LicenseInfo < TencentCloud::Common::AbstractModel
+        # @param License: license编号
+        # @type License: String
+        # @param LicenseEdition: license版本；1-基础版，2-标准版，3-增值版
+        # @type LicenseEdition: Integer
+        # @param ResourceStartTime: 生效开始时间, 格式yyyy-MM-dd HH:mm:ss
+        # @type ResourceStartTime: String
+        # @param ResourceEndTime: 生效结束时间, 格式yyyy-MM-dd HH:mm:ss
+        # @type ResourceEndTime: String
+        # @param IsolationDeadline: 隔离截止时间, 格式yyyy-MM-dd HH:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolationDeadline: String
+        # @param DestroyTime: 资源计划销毁时间, 格式yyyy-MM-dd HH:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestroyTime: String
+        # @param Status: 资源状态，1.正常，2.隔离，3.销毁
+        # @type Status: Integer
+        # @param Extra: 扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+
+        attr_accessor :License, :LicenseEdition, :ResourceStartTime, :ResourceEndTime, :IsolationDeadline, :DestroyTime, :Status, :Extra
+        
+        def initialize(license=nil, licenseedition=nil, resourcestarttime=nil, resourceendtime=nil, isolationdeadline=nil, destroytime=nil, status=nil, extra=nil)
+          @License = license
+          @LicenseEdition = licenseedition
+          @ResourceStartTime = resourcestarttime
+          @ResourceEndTime = resourceendtime
+          @IsolationDeadline = isolationdeadline
+          @DestroyTime = destroytime
+          @Status = status
+          @Extra = extra
+        end
+
+        def deserialize(params)
+          @License = params['License']
+          @LicenseEdition = params['LicenseEdition']
+          @ResourceStartTime = params['ResourceStartTime']
+          @ResourceEndTime = params['ResourceEndTime']
+          @IsolationDeadline = params['IsolationDeadline']
+          @DestroyTime = params['DestroyTime']
+          @Status = params['Status']
+          @Extra = params['Extra']
+        end
+      end
+
       # 活动活码详情
       class LiveCodeDetail < TencentCloud::Common::AbstractModel
         # @param LiveCodeId: 活码id
@@ -1163,6 +1210,46 @@ module TencentCloud
               externalusermappinginfo_tmp.deserialize(i)
               @ExternalUserIdMapping << externalusermappinginfo_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryLicenseInfo请求参数结构体
+      class QueryLicenseInfoRequest < TencentCloud::Common::AbstractModel
+        # @param License: license编号
+        # @type License: String
+
+        attr_accessor :License
+        
+        def initialize(license=nil)
+          @License = license
+        end
+
+        def deserialize(params)
+          @License = params['License']
+        end
+      end
+
+      # QueryLicenseInfo返回参数结构体
+      class QueryLicenseInfoResponse < TencentCloud::Common::AbstractModel
+        # @param LicenseInfo: license响应信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseInfo: :class:`Tencentcloud::Wav.v20210129.models.LicenseInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LicenseInfo, :RequestId
+        
+        def initialize(licenseinfo=nil, requestid=nil)
+          @LicenseInfo = licenseinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LicenseInfo'].nil?
+            @LicenseInfo = LicenseInfo.new
+            @LicenseInfo.deserialize(params['LicenseInfo'])
           end
           @RequestId = params['RequestId']
         end

@@ -1330,10 +1330,16 @@ module TencentCloud
         # @type TagSet: Array
         # @param RoutePriorityFlag: 是否支持云联网路由优先级的功能。False：不支持，True：支持。
         # @type RoutePriorityFlag: Boolean
+        # @param RouteTableCount: 实例关联的路由表个数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteTableCount: Integer
+        # @param RouteTableFlag: 是否开启云联网多路由表特性。False：未开启，True：开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteTableFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag
         
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -1345,6 +1351,8 @@ module TencentCloud
           @BandwidthLimitType = bandwidthlimittype
           @TagSet = tagset
           @RoutePriorityFlag = routepriorityflag
+          @RouteTableCount = routetablecount
+          @RouteTableFlag = routetableflag
         end
 
         def deserialize(params)
@@ -1366,6 +1374,8 @@ module TencentCloud
             end
           end
           @RoutePriorityFlag = params['RoutePriorityFlag']
+          @RouteTableCount = params['RouteTableCount']
+          @RouteTableFlag = params['RouteTableFlag']
         end
       end
 
@@ -1407,10 +1417,16 @@ module TencentCloud
         # @type InstanceArea: String
         # @param Description: 备注
         # @type Description: String
+        # @param RouteTableId: 路由表ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteTableId: String
+        # @param RouteTableName: 路由表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteTableName: String
 
-        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :InstanceUin, :CidrBlock, :State, :AttachedTime, :CcnUin, :InstanceArea, :Description
+        attr_accessor :CcnId, :InstanceType, :InstanceId, :InstanceName, :InstanceRegion, :InstanceUin, :CidrBlock, :State, :AttachedTime, :CcnUin, :InstanceArea, :Description, :RouteTableId, :RouteTableName
         
-        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, cidrblock=nil, state=nil, attachedtime=nil, ccnuin=nil, instancearea=nil, description=nil)
+        def initialize(ccnid=nil, instancetype=nil, instanceid=nil, instancename=nil, instanceregion=nil, instanceuin=nil, cidrblock=nil, state=nil, attachedtime=nil, ccnuin=nil, instancearea=nil, description=nil, routetableid=nil, routetablename=nil)
           @CcnId = ccnid
           @InstanceType = instancetype
           @InstanceId = instanceid
@@ -1423,6 +1439,8 @@ module TencentCloud
           @CcnUin = ccnuin
           @InstanceArea = instancearea
           @Description = description
+          @RouteTableId = routetableid
+          @RouteTableName = routetablename
         end
 
         def deserialize(params)
@@ -1438,6 +1456,8 @@ module TencentCloud
           @CcnUin = params['CcnUin']
           @InstanceArea = params['InstanceArea']
           @Description = params['Description']
+          @RouteTableId = params['RouteTableId']
+          @RouteTableName = params['RouteTableName']
         end
       end
 
@@ -1500,14 +1520,18 @@ module TencentCloud
         # @type InstanceType: String
         # @param Description: 备注
         # @type Description: String
+        # @param RouteTableId: 实例关联的路由表ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteTableId: String
 
-        attr_accessor :InstanceId, :InstanceRegion, :InstanceType, :Description
+        attr_accessor :InstanceId, :InstanceRegion, :InstanceType, :Description, :RouteTableId
         
-        def initialize(instanceid=nil, instanceregion=nil, instancetype=nil, description=nil)
+        def initialize(instanceid=nil, instanceregion=nil, instancetype=nil, description=nil, routetableid=nil)
           @InstanceId = instanceid
           @InstanceRegion = instanceregion
           @InstanceType = instancetype
           @Description = description
+          @RouteTableId = routetableid
         end
 
         def deserialize(params)
@@ -1515,6 +1539,7 @@ module TencentCloud
           @InstanceRegion = params['InstanceRegion']
           @InstanceType = params['InstanceType']
           @Description = params['Description']
+          @RouteTableId = params['RouteTableId']
         end
       end
 
@@ -5767,7 +5792,7 @@ module TencentCloud
       class DescribeAssistantCidrRequest < TencentCloud::Common::AbstractModel
         # @param VpcIds: `VPC`实例`ID`数组。形如：[`vpc-6v2ht8q5`]
         # @type VpcIds: Array
-        # @param Filters: 过滤条件，参数不支持同时指定NetworkInterfaceIds和Filters。
+        # @param Filters: 过滤条件，参数不支持同时指定VpcIds和Filters。
         # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。

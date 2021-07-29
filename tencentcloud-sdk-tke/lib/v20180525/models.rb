@@ -3844,6 +3844,63 @@ module TencentCloud
         end
       end
 
+      # DescribeVpcCniPodLimits请求参数结构体
+      class DescribeVpcCniPodLimitsRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 查询的机型所在可用区，如：ap-guangzhou-3，默认为空，即不按可用区过滤信息
+        # @type Zone: String
+        # @param InstanceFamily: 查询的实例机型系列信息，如：S5，默认为空，即不按机型系列过滤信息
+        # @type InstanceFamily: String
+        # @param InstanceType: 查询的实例机型信息，如：S5.LARGE8，默认为空，即不按机型过滤信息
+        # @type InstanceType: String
+
+        attr_accessor :Zone, :InstanceFamily, :InstanceType
+        
+        def initialize(zone=nil, instancefamily=nil, instancetype=nil)
+          @Zone = zone
+          @InstanceFamily = instancefamily
+          @InstanceType = instancetype
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @InstanceFamily = params['InstanceFamily']
+          @InstanceType = params['InstanceType']
+        end
+      end
+
+      # DescribeVpcCniPodLimits返回参数结构体
+      class DescribeVpcCniPodLimitsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 机型数据数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param PodLimitsInstanceSet: 机型信息及其可支持的最大VPC-CNI模式Pod数量信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodLimitsInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PodLimitsInstanceSet, :RequestId
+        
+        def initialize(totalcount=nil, podlimitsinstanceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PodLimitsInstanceSet = podlimitsinstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PodLimitsInstanceSet'].nil?
+            @PodLimitsInstanceSet = []
+            params['PodLimitsInstanceSet'].each do |i|
+              podlimitsinstance_tmp = PodLimitsInstance.new
+              podlimitsinstance_tmp.deserialize(i)
+              @PodLimitsInstanceSet << podlimitsinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableVpcCniNetworkType请求参数结构体
       class DisableVpcCniNetworkTypeRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -5280,6 +5337,68 @@ module TencentCloud
           @AddToNodePool = params['AddToNodePool']
           @NodePoolId = params['NodePoolId']
           @InheritConfigurationFromNodePool = params['InheritConfigurationFromNodePool']
+        end
+      end
+
+      # 某机型可支持的最大 VPC-CNI 模式的 Pod 数量
+      class PodLimitsByType < TencentCloud::Common::AbstractModel
+        # @param TKERouteENINonStaticIP: TKE共享网卡非固定IP模式可支持的Pod数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TKERouteENINonStaticIP: Integer
+        # @param TKERouteENIStaticIP: TKE共享网卡固定IP模式可支持的Pod数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TKERouteENIStaticIP: Integer
+        # @param TKEDirectENI: TKE独立网卡模式可支持的Pod数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TKEDirectENI: Integer
+
+        attr_accessor :TKERouteENINonStaticIP, :TKERouteENIStaticIP, :TKEDirectENI
+        
+        def initialize(tkerouteeninonstaticip=nil, tkerouteenistaticip=nil, tkedirecteni=nil)
+          @TKERouteENINonStaticIP = tkerouteeninonstaticip
+          @TKERouteENIStaticIP = tkerouteenistaticip
+          @TKEDirectENI = tkedirecteni
+        end
+
+        def deserialize(params)
+          @TKERouteENINonStaticIP = params['TKERouteENINonStaticIP']
+          @TKERouteENIStaticIP = params['TKERouteENIStaticIP']
+          @TKEDirectENI = params['TKEDirectENI']
+        end
+      end
+
+      # 机型信息和其可支持的最大VPC-CNI模式Pod数量信息
+      class PodLimitsInstance < TencentCloud::Common::AbstractModel
+        # @param Zone: 机型所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param InstanceFamily: 机型所属机型族
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceFamily: String
+        # @param InstanceType: 实例机型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param PodLimits: 机型可支持的最大VPC-CNI模式Pod数量信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodLimits: :class:`Tencentcloud::Tke.v20180525.models.PodLimitsByType`
+
+        attr_accessor :Zone, :InstanceFamily, :InstanceType, :PodLimits
+        
+        def initialize(zone=nil, instancefamily=nil, instancetype=nil, podlimits=nil)
+          @Zone = zone
+          @InstanceFamily = instancefamily
+          @InstanceType = instancetype
+          @PodLimits = podlimits
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @InstanceFamily = params['InstanceFamily']
+          @InstanceType = params['InstanceType']
+          unless params['PodLimits'].nil?
+            @PodLimits = PodLimitsByType.new
+            @PodLimits.deserialize(params['PodLimits'])
+          end
         end
       end
 

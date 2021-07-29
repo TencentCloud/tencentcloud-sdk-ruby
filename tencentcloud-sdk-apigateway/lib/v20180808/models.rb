@@ -1808,10 +1808,12 @@ module TencentCloud
         # @type UserType: String
         # @param IsBase64Encoded: 是否打开Base64编码，只有后端是scf时才会生效。
         # @type IsBase64Encoded: Boolean
+        # @param ServiceScfFunctionType: scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
+        # @type ServiceScfFunctionType: String
 
-        attr_accessor :ServiceId, :ServiceType, :ServiceTimeout, :Protocol, :RequestConfig, :ApiName, :ApiDesc, :ApiType, :AuthType, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServices, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes, :TargetNamespaceId, :UserType, :IsBase64Encoded
+        attr_accessor :ServiceId, :ServiceType, :ServiceTimeout, :Protocol, :RequestConfig, :ApiName, :ApiDesc, :ApiType, :AuthType, :EnableCORS, :ConstantParameters, :RequestParameters, :ApiBusinessType, :ServiceMockReturnMessage, :MicroServices, :ServiceTsfLoadBalanceConf, :ServiceTsfHealthCheckConf, :TargetServices, :TargetServicesLoadBalanceConf, :TargetServicesHealthCheckConf, :ServiceScfFunctionName, :ServiceWebsocketRegisterFunctionName, :ServiceWebsocketCleanupFunctionName, :ServiceWebsocketTransportFunctionName, :ServiceScfFunctionNamespace, :ServiceScfFunctionQualifier, :ServiceWebsocketRegisterFunctionNamespace, :ServiceWebsocketRegisterFunctionQualifier, :ServiceWebsocketTransportFunctionNamespace, :ServiceWebsocketTransportFunctionQualifier, :ServiceWebsocketCleanupFunctionNamespace, :ServiceWebsocketCleanupFunctionQualifier, :ServiceScfIsIntegratedResponse, :IsDebugAfterCharge, :IsDeleteResponseErrorCodes, :ResponseType, :ResponseSuccessExample, :ResponseFailExample, :ServiceConfig, :AuthRelationApiId, :ServiceParameters, :OauthConfig, :ResponseErrorCodes, :TargetNamespaceId, :UserType, :IsBase64Encoded, :ServiceScfFunctionType
         
-        def initialize(serviceid=nil, servicetype=nil, servicetimeout=nil, protocol=nil, requestconfig=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservices=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil, targetnamespaceid=nil, usertype=nil, isbase64encoded=nil)
+        def initialize(serviceid=nil, servicetype=nil, servicetimeout=nil, protocol=nil, requestconfig=nil, apiname=nil, apidesc=nil, apitype=nil, authtype=nil, enablecors=nil, constantparameters=nil, requestparameters=nil, apibusinesstype=nil, servicemockreturnmessage=nil, microservices=nil, servicetsfloadbalanceconf=nil, servicetsfhealthcheckconf=nil, targetservices=nil, targetservicesloadbalanceconf=nil, targetserviceshealthcheckconf=nil, servicescffunctionname=nil, servicewebsocketregisterfunctionname=nil, servicewebsocketcleanupfunctionname=nil, servicewebsockettransportfunctionname=nil, servicescffunctionnamespace=nil, servicescffunctionqualifier=nil, servicewebsocketregisterfunctionnamespace=nil, servicewebsocketregisterfunctionqualifier=nil, servicewebsockettransportfunctionnamespace=nil, servicewebsockettransportfunctionqualifier=nil, servicewebsocketcleanupfunctionnamespace=nil, servicewebsocketcleanupfunctionqualifier=nil, servicescfisintegratedresponse=nil, isdebugaftercharge=nil, isdeleteresponseerrorcodes=nil, responsetype=nil, responsesuccessexample=nil, responsefailexample=nil, serviceconfig=nil, authrelationapiid=nil, serviceparameters=nil, oauthconfig=nil, responseerrorcodes=nil, targetnamespaceid=nil, usertype=nil, isbase64encoded=nil, servicescffunctiontype=nil)
           @ServiceId = serviceid
           @ServiceType = servicetype
           @ServiceTimeout = servicetimeout
@@ -1858,6 +1860,7 @@ module TencentCloud
           @TargetNamespaceId = targetnamespaceid
           @UserType = usertype
           @IsBase64Encoded = isbase64encoded
+          @ServiceScfFunctionType = servicescffunctiontype
         end
 
         def deserialize(params)
@@ -1967,6 +1970,7 @@ module TencentCloud
           @TargetNamespaceId = params['TargetNamespaceId']
           @UserType = params['UserType']
           @IsBase64Encoded = params['IsBase64Encoded']
+          @ServiceScfFunctionType = params['ServiceScfFunctionType']
         end
       end
 
@@ -2717,7 +2721,7 @@ module TencentCloud
         # @param IsDebugAfterCharge: 是否买后调试。（云市场预留字段）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDebugAfterCharge: Boolean
-        # @param AuthType: API 鉴权类型。取值为SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH。
+        # @param AuthType: API 鉴权类型。取值为SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH、EIAM。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthType: String
         # @param ApiBusinessType: OAUTH API的类型。当AuthType 为 OAUTH时该字段有效， 取值为NORMAL（业务API）和 OAUTH（授权API）。
@@ -3196,6 +3200,53 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = ApiEnvironmentStrategyStataus.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiForApiApp请求参数结构体
+      class DescribeApiForApiAppRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: API 所在的服务唯一 ID。
+        # @type ServiceId: String
+        # @param ApiId: API 接口唯一 ID。
+        # @type ApiId: String
+        # @param ApiRegion: Api所属地域
+        # @type ApiRegion: String
+
+        attr_accessor :ServiceId, :ApiId, :ApiRegion
+        
+        def initialize(serviceid=nil, apiid=nil, apiregion=nil)
+          @ServiceId = serviceid
+          @ApiId = apiid
+          @ApiRegion = apiregion
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @ApiId = params['ApiId']
+          @ApiRegion = params['ApiRegion']
+        end
+      end
+
+      # DescribeApiForApiApp返回参数结构体
+      class DescribeApiForApiAppResponse < TencentCloud::Common::AbstractModel
+        # @param Result: API 详情。
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ApiInfo.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -6718,9 +6769,9 @@ module TencentCloud
         end
       end
 
-      # ServiceConfig
+      # ServiceConfig配置
       class ServiceConfig < TencentCloud::Common::AbstractModel
-        # @param Product: 后端类型。启用vpc时生效，目前支持的类型为clb。
+        # @param Product: 后端类型。启用vpc时生效，目前支持的类型为clb和vpc通道
         # @type Product: String
         # @param UniqVpcId: vpc 的唯一ID。
         # @type UniqVpcId: String

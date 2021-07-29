@@ -1108,10 +1108,12 @@ module TencentCloud
         # @type ClusterId: String
         # @param AutoCreatePolicyTopic: 是否自动创建死信和重试主题，True 表示创建，False表示不创建，默认自动创建死信和重试主题。
         # @type AutoCreatePolicyTopic: Boolean
+        # @param PostFixPattern: 指定死信和重试主题名称规范，LEGACY表示历史命名规则，COMMUNITY表示Pulsar社区命名规范
+        # @type PostFixPattern: String
 
-        attr_accessor :EnvironmentId, :TopicName, :SubscriptionName, :IsIdempotent, :Remark, :ClusterId, :AutoCreatePolicyTopic
+        attr_accessor :EnvironmentId, :TopicName, :SubscriptionName, :IsIdempotent, :Remark, :ClusterId, :AutoCreatePolicyTopic, :PostFixPattern
         
-        def initialize(environmentid=nil, topicname=nil, subscriptionname=nil, isidempotent=nil, remark=nil, clusterid=nil, autocreatepolicytopic=nil)
+        def initialize(environmentid=nil, topicname=nil, subscriptionname=nil, isidempotent=nil, remark=nil, clusterid=nil, autocreatepolicytopic=nil, postfixpattern=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @SubscriptionName = subscriptionname
@@ -1119,6 +1121,7 @@ module TencentCloud
           @Remark = remark
           @ClusterId = clusterid
           @AutoCreatePolicyTopic = autocreatepolicytopic
+          @PostFixPattern = postfixpattern
         end
 
         def deserialize(params)
@@ -1129,6 +1132,7 @@ module TencentCloud
           @Remark = params['Remark']
           @ClusterId = params['ClusterId']
           @AutoCreatePolicyTopic = params['AutoCreatePolicyTopic']
+          @PostFixPattern = params['PostFixPattern']
         end
       end
 

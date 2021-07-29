@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateTask）用于创建sql查询任务。
+        # 本接口（CreateTask）用于创建sql查询任务。（推荐使用CreateTasks接口）
 
         # @param request: Request instance for CreateTask.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateTaskRequest`
@@ -269,7 +269,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 按顺序创建任务
+        # 批量创建任务
+
+        # @param request: Request instance for CreateTasks.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateTasksRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateTasksResponse`
+        def CreateTasks(request)
+          body = send_request('CreateTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 按顺序创建任务（已经废弃，后期不再维护，请使用接口CreateTasks）
 
         # @param request: Request instance for CreateTasksInOrder.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateTasksInOrderRequest`

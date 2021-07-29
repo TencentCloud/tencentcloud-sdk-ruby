@@ -3063,7 +3063,7 @@ module TencentCloud
         # @type LoginTime: Integer
         # @param DevicePsk: 设备密钥
         # @type DevicePsk: String
-        # @param EnableState: 设备启用状态
+        # @param EnableState: 设备启用状态 0为停用 1为可用
         # @type EnableState: Integer
         # @param ExpireTime: 设备过期时间
         # @type ExpireTime: Integer

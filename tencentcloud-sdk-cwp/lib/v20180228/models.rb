@@ -6143,19 +6143,23 @@ module TencentCloud
         # @type ProvinceId: Integer
         # @param CountryId: 国家ID，暂只支持国内：1。
         # @type CountryId: Integer
+        # @param Location: 位置名称
+        # @type Location: String
 
-        attr_accessor :CityId, :ProvinceId, :CountryId
+        attr_accessor :CityId, :ProvinceId, :CountryId, :Location
         
-        def initialize(cityid=nil, provinceid=nil, countryid=nil)
+        def initialize(cityid=nil, provinceid=nil, countryid=nil, location=nil)
           @CityId = cityid
           @ProvinceId = provinceid
           @CountryId = countryid
+          @Location = location
         end
 
         def deserialize(params)
           @CityId = params['CityId']
           @ProvinceId = params['ProvinceId']
           @CountryId = params['CountryId']
+          @Location = params['Location']
         end
       end
 

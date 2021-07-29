@@ -1445,6 +1445,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口查询当前用户和地域在指定可用区下的机型可支持的最大 TKE VPC-CNI 网络模式的 Pod 数量
+
+        # @param request: Request instance for DescribeVpcCniPodLimits.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeVpcCniPodLimitsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeVpcCniPodLimitsResponse`
+        def DescribeVpcCniPodLimits(request)
+          body = send_request('DescribeVpcCniPodLimits', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVpcCniPodLimitsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供给附加了VPC-CNI能力的Global-Route集群关闭VPC-CNI
 
         # @param request: Request instance for DisableVpcCniNetworkType.

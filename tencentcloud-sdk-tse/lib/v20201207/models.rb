@@ -39,20 +39,31 @@ module TencentCloud
         # @type IntranetAddress: String
         # @param InternetAddress: 公网访问地址
         # @type InternetAddress: String
+        # @param EnvAddressInfos: apollo多环境公网ip
+        # @type EnvAddressInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IntranetAddress, :InternetAddress, :RequestId
+        attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :RequestId
         
-        def initialize(intranetaddress=nil, internetaddress=nil, requestid=nil)
+        def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, requestid=nil)
           @IntranetAddress = intranetaddress
           @InternetAddress = internetaddress
+          @EnvAddressInfos = envaddressinfos
           @RequestId = requestid
         end
 
         def deserialize(params)
           @IntranetAddress = params['IntranetAddress']
           @InternetAddress = params['InternetAddress']
+          unless params['EnvAddressInfos'].nil?
+            @EnvAddressInfos = []
+            params['EnvAddressInfos'].each do |i|
+              envaddressinfo_tmp = EnvAddressInfo.new
+              envaddressinfo_tmp.deserialize(i)
+              @EnvAddressInfos << envaddressinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -123,6 +134,30 @@ module TencentCloud
         end
       end
 
+      # 多环境网络信息
+      class EnvAddressInfo < TencentCloud::Common::AbstractModel
+        # @param EnvName: 环境名
+        # @type EnvName: String
+        # @param EnableConfigInternet: 是否开启config公网
+        # @type EnableConfigInternet: Boolean
+        # @param ConfigInternetServiceIp: config公网ip
+        # @type ConfigInternetServiceIp: String
+
+        attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp
+        
+        def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil)
+          @EnvName = envname
+          @EnableConfigInternet = enableconfiginternet
+          @ConfigInternetServiceIp = configinternetserviceip
+        end
+
+        def deserialize(params)
+          @EnvName = params['EnvName']
+          @EnableConfigInternet = params['EnableConfigInternet']
+          @ConfigInternetServiceIp = params['ConfigInternetServiceIp']
+        end
+      end
+
       # 环境具体信息
       class EnvInfo < TencentCloud::Common::AbstractModel
         # @param EnvName: 环境名称
@@ -137,16 +172,22 @@ module TencentCloud
         # @type AdminServiceIp: String
         # @param ConfigServiceIp: Config service访问地址
         # @type ConfigServiceIp: String
+        # @param EnableConfigInternet: 是否开启config-server公网
+        # @type EnableConfigInternet: Boolean
+        # @param ConfigInternetServiceIp: config-server公网访问地址
+        # @type ConfigInternetServiceIp: String
 
-        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp
+        attr_accessor :EnvName, :VpcInfos, :StorageCapacity, :Status, :AdminServiceIp, :ConfigServiceIp, :EnableConfigInternet, :ConfigInternetServiceIp
         
-        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil)
+        def initialize(envname=nil, vpcinfos=nil, storagecapacity=nil, status=nil, adminserviceip=nil, configserviceip=nil, enableconfiginternet=nil, configinternetserviceip=nil)
           @EnvName = envname
           @VpcInfos = vpcinfos
           @StorageCapacity = storagecapacity
           @Status = status
           @AdminServiceIp = adminserviceip
           @ConfigServiceIp = configserviceip
+          @EnableConfigInternet = enableconfiginternet
+          @ConfigInternetServiceIp = configinternetserviceip
         end
 
         def deserialize(params)
@@ -163,6 +204,8 @@ module TencentCloud
           @Status = params['Status']
           @AdminServiceIp = params['AdminServiceIp']
           @ConfigServiceIp = params['ConfigServiceIp']
+          @EnableConfigInternet = params['EnableConfigInternet']
+          @ConfigInternetServiceIp = params['ConfigInternetServiceIp']
         end
       end
 
@@ -228,10 +271,16 @@ module TencentCloud
         # @param EnvInfos: 环境配置信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvInfos: Array
+        # @param EngineRegion: 引擎所在的区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineRegion: String
+        # @param EnableInternet: 注册引擎是否开启公网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableInternet: Boolean
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -248,6 +297,8 @@ module TencentCloud
           @EKSClusterID = eksclusterid
           @CreateTime = createtime
           @EnvInfos = envinfos
+          @EngineRegion = engineregion
+          @EnableInternet = enableinternet
         end
 
         def deserialize(params)
@@ -274,6 +325,8 @@ module TencentCloud
               @EnvInfos << envinfo_tmp
             end
           end
+          @EngineRegion = params['EngineRegion']
+          @EnableInternet = params['EnableInternet']
         end
       end
 

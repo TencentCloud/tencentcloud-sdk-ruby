@@ -54,7 +54,7 @@ module TencentCloud
 
       # AttachUserPolicy请求参数结构体
       class AttachUserPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户Id，和CAM侧Uin匹配
+        # @param UserId: 用户Id，和子用户uin相同，需要先使用CreateUser接口创建用户。可以使用DescribeUsers接口查看。
         # @type UserId: String
         # @param PolicySet: 鉴权策略集合
         # @type PolicySet: Array
@@ -551,11 +551,62 @@ module TencentCloud
         end
       end
 
+      # CreateTasks请求参数结构体
+      class CreateTasksRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称。如果SQL语句中有数据库名称，优先使用SQL语句中的数据库，否则使用该参数指定的数据库。
+        # @type DatabaseName: String
+        # @param Tasks: SQL任务信息
+        # @type Tasks: :class:`Tencentcloud::Dlc.v20210125.models.TasksInfo`
+        # @param DatasourceConnectionName: 数据源名称，默认为COSDataCatalog
+        # @type DatasourceConnectionName: String
+
+        attr_accessor :DatabaseName, :Tasks, :DatasourceConnectionName
+        
+        def initialize(databasename=nil, tasks=nil, datasourceconnectionname=nil)
+          @DatabaseName = databasename
+          @Tasks = tasks
+          @DatasourceConnectionName = datasourceconnectionname
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          unless params['Tasks'].nil?
+            @Tasks = TasksInfo.new
+            @Tasks.deserialize(params['Tasks'])
+          end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+        end
+      end
+
+      # CreateTasks返回参数结构体
+      class CreateTasksResponse < TencentCloud::Common::AbstractModel
+        # @param BatchId: 本批次提交的任务的批次Id
+        # @type BatchId: String
+        # @param TaskIdSet: 任务Id集合，按照执行顺序排列
+        # @type TaskIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchId, :TaskIdSet, :RequestId
+        
+        def initialize(batchid=nil, taskidset=nil, requestid=nil)
+          @BatchId = batchid
+          @TaskIdSet = taskidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @TaskIdSet = params['TaskIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户Id，当前主账号的子账号Uin，和CAM侧匹配
+        # @param UserId: 需要授权的子用户uin，可以通过腾讯云控制台右上角 → “账号信息” → “账号ID进行查看”。
         # @type UserId: String
-        # @param UserDescription: 用户描述
+        # @param UserDescription: 用户描述信息，方便区分不同用户
         # @type UserDescription: String
         # @param PolicySet: 绑定到用户的权限集合
         # @type PolicySet: Array
@@ -1286,7 +1337,7 @@ module TencentCloud
 
       # DescribeUsers请求参数结构体
       class DescribeUsersRequest < TencentCloud::Common::AbstractModel
-        # @param UserId: 查询的用户Id，和CAM侧Uin匹配
+        # @param UserId: 指定查询的子用户uin，用户需要通过CreateUser接口创建。
         # @type UserId: String
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
@@ -1318,9 +1369,9 @@ module TencentCloud
 
       # DescribeUsers返回参数结构体
       class DescribeUsersResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 用户总数
+        # @param TotalCount: 查询到的用户总数
         # @type TotalCount: Integer
-        # @param UserSet: 用户集合
+        # @param UserSet: 查询到的授权用户信息集合
         # @type UserSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1421,7 +1472,7 @@ module TencentCloud
 
       # DescribeWorkGroups请求参数结构体
       class DescribeWorkGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param WorkGroupId: 查询的工作组Id
+        # @param WorkGroupId: 查询的工作组Id，不填或填0表示不过滤。
         # @type WorkGroupId: Integer
         # @param Filters: 过滤条件，当前仅支持按照工作组名称进行模糊搜索。Key为workgroup-name
         # @type Filters: Array
@@ -1751,13 +1802,13 @@ module TencentCloud
 
       # 权限对象
       class Policy < TencentCloud::Common::AbstractModel
-        # @param Catalog: 需要授权的数据源名称，*代表拥有全部数据源权限
+        # @param Catalog: 需要授权的数据源名称，当前仅支持COSDataCatalog或者*
         # @type Catalog: String
-        # @param Database: 需要授权的数据库名称，*代表拥有全部数据库名称
+        # @param Database: 需要授权的数据库名，填*代表当前Catalog下所有数据库
         # @type Database: String
-        # @param Table: 需要授权的表名称，*代表拥有全部表权限
+        # @param Table: 需要授权的表名，填*代表当前Database下所有表
         # @type Table: String
-        # @param Operation: 授权的操作，当前只支持“ALL”
+        # @param Operation: 授权粒度，当前只支持ALL，即全部权限
         # @type Operation: String
 
         attr_accessor :Catalog, :Database, :Table, :Operation
@@ -2129,7 +2180,7 @@ module TencentCloud
         # @type FailureTolerance: String
         # @param SQL: base64加密后的SQL语句，用";"号分隔每个SQL语句，一次最多提交50个任务。严格按照前后顺序执行
         # @type SQL: String
-        # @param Config: 任务的配置信息
+        # @param Config: 任务的配置信息，当前仅支持SparkSQLTask任务。
         # @type Config: Array
 
         attr_accessor :TaskType, :FailureTolerance, :SQL, :Config
@@ -2234,17 +2285,17 @@ module TencentCloud
 
       # 授权用户信息
       class UserInfo < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户Id，和CAM侧Uin匹配
+        # @param UserId: 用户Id，和子用户uin相同
         # @type UserId: String
-        # @param UserDescription: 用户描述
+        # @param UserDescription: 用户描述信息，方便区分不同用户
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDescription: String
         # @param PolicySet: 单独给用户绑定的权限集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicySet: Array
-        # @param Creator: 创建者
+        # @param Creator: 当前用户的创建者
         # @type Creator: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间，格式如2021-07-28 16:19:32
         # @type CreateTime: String
         # @param WorkGroupSet: 关联的工作组集合
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2292,14 +2343,14 @@ module TencentCloud
 
       # 用户部分信息
       class UserMessage < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户Id，和CAM侧Uin匹配
+        # @param UserId: 用户Id，和CAM侧子用户Uin匹配
         # @type UserId: String
         # @param UserDescription: 用户描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDescription: String
-        # @param Creator: 创建者
+        # @param Creator: 当前用户的创建者
         # @type Creator: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 当前用户的创建时间，形如2021-07-28 16:19:32
         # @type CreateTime: String
 
         attr_accessor :UserId, :UserDescription, :Creator, :CreateTime
@@ -2412,7 +2463,7 @@ module TencentCloud
 
       # 工作组信息
       class WorkGroupInfo < TencentCloud::Common::AbstractModel
-        # @param WorkGroupId: 工作组Id
+        # @param WorkGroupId: 查询到的工作组唯一Id
         # @type WorkGroupId: Integer
         # @param WorkGroupName: 工作组名称
         # @type WorkGroupName: String
@@ -2427,9 +2478,9 @@ module TencentCloud
         # @param PolicySet: 工作组绑定的权限集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PolicySet: Array
-        # @param Creator: 创建者
+        # @param Creator: 工作组的创建人
         # @type Creator: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 工作组的创建时间，形如2021-07-28 16:19:32
         # @type CreateTime: String
 
         attr_accessor :WorkGroupId, :WorkGroupName, :WorkGroupDescription, :UserNum, :UserSet, :PolicySet, :Creator, :CreateTime
@@ -2473,7 +2524,7 @@ module TencentCloud
 
       # 工作组部分信息
       class WorkGroupMessage < TencentCloud::Common::AbstractModel
-        # @param WorkGroupId: 工作组Id
+        # @param WorkGroupId: 工作组唯一Id
         # @type WorkGroupId: Integer
         # @param WorkGroupName: 工作组名称
         # @type WorkGroupName: String
@@ -2482,7 +2533,7 @@ module TencentCloud
         # @type WorkGroupDescription: String
         # @param Creator: 创建者
         # @type Creator: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 工作组创建的时间，形如2021-07-28 16:19:32
         # @type CreateTime: String
 
         attr_accessor :WorkGroupId, :WorkGroupName, :WorkGroupDescription, :Creator, :CreateTime

@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 查询微服务注册引擎实例访问地址
+        # 查询引擎实例访问地址
 
         # @param request: Request instance for DescribeSREInstanceAccessAddress.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeSREInstanceAccessAddressRequest`
@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于查询微服务引擎实例列表
+        # 用于查询引擎实例列表
 
         # @param request: Request instance for DescribeSREInstances.
         # @type request: :class:`Tencentcloud::tse::V20201207::DescribeSREInstancesRequest`
