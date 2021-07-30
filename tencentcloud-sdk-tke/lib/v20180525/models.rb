@@ -1664,6 +1664,49 @@ module TencentCloud
         end
       end
 
+      # CreatePrometheusAlertRule请求参数结构体
+      class CreatePrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param AlertRule: 告警配置
+        # @type AlertRule: :class:`Tencentcloud::Tke.v20180525.models.PrometheusAlertRuleDetail`
+
+        attr_accessor :InstanceId, :AlertRule
+        
+        def initialize(instanceid=nil, alertrule=nil)
+          @InstanceId = instanceid
+          @AlertRule = alertrule
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['AlertRule'].nil?
+            @AlertRule = PrometheusAlertRuleDetail.new
+            @AlertRule.deserialize(params['AlertRule'])
+          end
+        end
+      end
+
+      # CreatePrometheusAlertRule返回参数结构体
+      class CreatePrometheusAlertRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 告警id
+        # @type Id: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+        
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrometheusDashboard请求参数结构体
       class CreatePrometheusDashboardRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -2130,6 +2173,42 @@ module TencentCloud
 
       # DeleteEKSCluster返回参数结构体
       class DeleteEKSClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusAlertRule请求参数结构体
+      class DeletePrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param AlertIds: 告警规则id列表
+        # @type AlertIds: Array
+
+        attr_accessor :InstanceId, :AlertIds
+        
+        def initialize(instanceid=nil, alertids=nil)
+          @InstanceId = instanceid
+          @AlertIds = alertids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AlertIds = params['AlertIds']
+        end
+      end
+
+      # DeletePrometheusAlertRule返回参数结构体
+      class DeletePrometheusAlertRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3506,6 +3585,75 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePrometheusInstance请求参数结构体
+      class DescribePrometheusInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribePrometheusInstance返回参数结构体
+      class DescribePrometheusInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param VpcId: 私有网络id
+        # @type VpcId: String
+        # @param SubnetId: 子网id
+        # @type SubnetId: String
+        # @param COSBucket: cos桶名称
+        # @type COSBucket: String
+        # @param QueryAddress: 数据查询地址
+        # @type QueryAddress: String
+        # @param Grafana: 实例中grafana相关的信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Grafana: :class:`Tencentcloud::Tke.v20180525.models.PrometheusGrafanaInfo`
+        # @param AlertManagerUrl: 用户自定义alertmanager
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertManagerUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Name, :VpcId, :SubnetId, :COSBucket, :QueryAddress, :Grafana, :AlertManagerUrl, :RequestId
+        
+        def initialize(instanceid=nil, name=nil, vpcid=nil, subnetid=nil, cosbucket=nil, queryaddress=nil, grafana=nil, alertmanagerurl=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @COSBucket = cosbucket
+          @QueryAddress = queryaddress
+          @Grafana = grafana
+          @AlertManagerUrl = alertmanagerurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @COSBucket = params['COSBucket']
+          @QueryAddress = params['QueryAddress']
+          unless params['Grafana'].nil?
+            @Grafana = PrometheusGrafanaInfo.new
+            @Grafana.deserialize(params['Grafana'])
+          end
+          @AlertManagerUrl = params['AlertManagerUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -5139,6 +5287,45 @@ module TencentCloud
         end
       end
 
+      # ModifyPrometheusAlertRule请求参数结构体
+      class ModifyPrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param AlertRule: 告警配置
+        # @type AlertRule: :class:`Tencentcloud::Tke.v20180525.models.PrometheusAlertRuleDetail`
+
+        attr_accessor :InstanceId, :AlertRule
+        
+        def initialize(instanceid=nil, alertrule=nil)
+          @InstanceId = instanceid
+          @AlertRule = alertrule
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['AlertRule'].nil?
+            @AlertRule = PrometheusAlertRuleDetail.new
+            @AlertRule.deserialize(params['AlertRule'])
+          end
+        end
+      end
+
+      # ModifyPrometheusAlertRule返回参数结构体
+      class ModifyPrometheusAlertRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPrometheusTemplate请求参数结构体
       class ModifyPrometheusTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
@@ -5606,6 +5793,41 @@ module TencentCloud
           @Name = params['Name']
           @Config = params['Config']
           @TemplateId = params['TemplateId']
+        end
+      end
+
+      # 托管prometheus中grafana的信息
+      class PrometheusGrafanaInfo < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否启用
+        # @type Enabled: Boolean
+        # @param Domain: 域名，只有开启外网访问才有效果
+        # @type Domain: String
+        # @param Address: 内网地址，或者外网地址
+        # @type Address: String
+        # @param Internet: 是否开启了外网访问
+        # close = 未开启外网访问
+        # opening = 正在开启外网访问
+        # open  = 已开启外网访问
+        # @type Internet: String
+        # @param AdminUser: grafana管理员用户名
+        # @type AdminUser: String
+
+        attr_accessor :Enabled, :Domain, :Address, :Internet, :AdminUser
+        
+        def initialize(enabled=nil, domain=nil, address=nil, internet=nil, adminuser=nil)
+          @Enabled = enabled
+          @Domain = domain
+          @Address = address
+          @Internet = internet
+          @AdminUser = adminuser
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Domain = params['Domain']
+          @Address = params['Address']
+          @Internet = params['Internet']
+          @AdminUser = params['AdminUser']
         end
       end
 

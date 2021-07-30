@@ -11068,8 +11068,8 @@ module TencentCloud
         # *注意：此字段暂不支持。
         # @type Status: String
         # @param StorageClass: 媒体文件的存储类别：
-        # <li>STANDARD：标准存储。</li>
-        # <li>STANDARD_IA：低频存储。</li>
+        # <li> STANDARD：标准存储。</li>
+        # <li> STANDARD_IA：低频存储。</li>
         # @type StorageClass: String
 
         attr_accessor :Name, :Description, :CreateTime, :UpdateTime, :ExpireTime, :ClassId, :ClassName, :ClassPath, :CoverUrl, :Type, :MediaUrl, :SourceInfo, :StorageRegion, :TagSet, :Vid, :Category, :Status, :StorageClass
@@ -12251,10 +12251,14 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.MediaTranscodeItem`
         # @param Progress: 转码进度，取值范围 [0-100] 。
         # @type Progress: Integer
+        # @param BeginProcessTime: 转码任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 转码任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type FinishTime: String
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
         
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
@@ -12262,6 +12266,8 @@ module TencentCloud
           @Input = input
           @Output = output
           @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -12278,6 +12284,8 @@ module TencentCloud
             @Output.deserialize(params['Output'])
           end
           @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 

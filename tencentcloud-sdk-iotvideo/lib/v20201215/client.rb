@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 绑定云存用户
+
+        # @param request: Request instance for BindCloudStorageUser.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::BindCloudStorageUserRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::BindCloudStorageUserResponse`
+        def BindCloudStorageUser(request)
+          body = send_request('BindCloudStorageUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindCloudStorageUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 取消AI模型申请
 
         # @param request: Request instance for CancelAIModelApplication.
@@ -255,6 +279,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateCloudStorageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建数据转发
+
+        # @param request: Request instance for CreateDataForward.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::CreateDataForwardRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::CreateDataForwardResponse`
+        def CreateDataForward(request)
+          body = send_request('CreateDataForward', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDataForwardResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -773,6 +821,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 拉取云存用户列表
+
+        # @param request: Request instance for DescribeCloudStorageUsers.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::DescribeCloudStorageUsersRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::DescribeCloudStorageUsersResponse`
+        def DescribeCloudStorageUsers(request)
+          body = send_request('DescribeCloudStorageUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取数据转发列表
+
+        # @param request: Request instance for DescribeDataForwardList.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::DescribeDataForwardListRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::DescribeDataForwardListResponse`
+        def DescribeDataForwardList(request)
+          body = send_request('DescribeDataForwardList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataForwardListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看设备详情
 
         # @param request: Request instance for DescribeDevice.
@@ -903,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceEventHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取设备上下线日志
+
+        # @param request: Request instance for DescribeDeviceStatusLog.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::DescribeDeviceStatusLogRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::DescribeDeviceStatusLogResponse`
+        def DescribeDeviceStatusLog(request)
+          body = send_request('DescribeDeviceStatusLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceStatusLogResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1181,6 +1301,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取设备sdk日志
+
+        # @param request: Request instance for DescribeSDKLog.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::DescribeSDKLogRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::DescribeSDKLogResponse`
+        def DescribeSDKLog(request)
+          body = send_request('DescribeSDKLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSDKLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于编辑固件信息
 
         # @param request: Request instance for EditFirmware.
@@ -1301,6 +1445,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 继承云存用户
+
+        # @param request: Request instance for InheritCloudStorageUser.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::InheritCloudStorageUserRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::InheritCloudStorageUserResponse`
+        def InheritCloudStorageUser(request)
+          body = send_request('InheritCloudStorageUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InheritCloudStorageUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ListFirmwares）用于获取固件列表
 
         # @param request: Request instance for ListFirmwares.
@@ -1325,6 +1493,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改数据转发
+
+        # @param request: Request instance for ModifyDataForward.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::ModifyDataForwardRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::ModifyDataForwardResponse`
+        def ModifyDataForward(request)
+          body = send_request('ModifyDataForward', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDataForwardResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置数据转发状态
+
+        # @param request: Request instance for ModifyDataForwardStatus.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::ModifyDataForwardStatusRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::ModifyDataForwardStatusResponse`
+        def ModifyDataForwardStatus(request)
+          body = send_request('ModifyDataForwardStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDataForwardStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改设备信息
 
         # @param request: Request instance for ModifyDevice.
@@ -1335,6 +1551,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新设备日志级别
+
+        # @param request: Request instance for ModifyDeviceLogLevel.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::ModifyDeviceLogLevelRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::ModifyDeviceLogLevelResponse`
+        def ModifyDeviceLogLevel(request)
+          body = send_request('ModifyDeviceLogLevel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceLogLevelResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1599,6 +1839,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UploadFirmwareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设备唤醒
+
+        # @param request: Request instance for WakeUpDevice.
+        # @type request: :class:`Tencentcloud::iotvideo::V20201215::WakeUpDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20201215::WakeUpDeviceResponse`
+        def WakeUpDevice(request)
+          body = send_request('WakeUpDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = WakeUpDeviceResponse.new
             model.deserialize(response['Response'])
             model
           else

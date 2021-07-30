@@ -89,6 +89,38 @@ module TencentCloud
         end
       end
 
+      # BindEnvGateway请求参数结构体
+      class BindEnvGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param SubEnvId: 子环境id
+        # @type SubEnvId: String
+
+        attr_accessor :SubEnvId
+        
+        def initialize(subenvid=nil)
+          @SubEnvId = subenvid
+        end
+
+        def deserialize(params)
+          @SubEnvId = params['SubEnvId']
+        end
+      end
+
+      # BindEnvGateway返回参数结构体
+      class BindEnvGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckTcbService请求参数结构体
       class CheckTcbServiceRequest < TencentCloud::Common::AbstractModel
 

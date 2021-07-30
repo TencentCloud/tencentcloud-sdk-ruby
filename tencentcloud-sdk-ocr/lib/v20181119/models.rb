@@ -1895,18 +1895,29 @@ module TencentCloud
         # @param LanguageType: 识别语言类型。
         # 支持自动识别语言类型，同时支持自选语言种类，默认中英文混合(zh)，各种语言均支持与英文混合的文字识别。
         # 可选值：
-        # zh\auto\jap\kor\
-        # spa\fre\ger\por\
-        # vie\may\rus\ita\
-        # hol\swe\fin\dan\
-        # nor\hun\tha\lat\ara
-        # 可选值分别表示：
-        # 中英文混合、自动识别、日语、韩语、
-        # 西班牙语、法语、德语、葡萄牙语、
-        # 越南语、马来语、俄语、意大利语、
-        # 荷兰语、瑞典语、芬兰语、丹麦语、
-        # 挪威语、匈牙利语、泰语、拉丁语系、
-        # 阿拉伯语。
+        # zh：中英混合
+        # zh_rare：支持英文、数字、中文生僻字、繁体字，特殊符号等
+        # auto：自动
+        # mix：混合语种
+        # jap：日语
+        # kor：韩语
+        # spa：西班牙语
+        # fre：法语
+        # ger：德语
+        # por：葡萄牙语
+        # vie：越语
+        # may：马来语
+        # rus：俄语
+        # ita：意大利语
+        # hol：荷兰语
+        # swe：瑞典语
+        # fin：芬兰语
+        # dan：丹麦语
+        # nor：挪威语
+        # hun：匈牙利语
+        # tha：泰语
+        # hi：印地语
+        # ara：阿拉伯语
         # @type LanguageType: String
         # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
         # @type IsPdf: Boolean
@@ -5684,16 +5695,32 @@ module TencentCloud
         # @type SeatCategory: String
         # @param ID: 身份证号
         # @type ID: String
-        # @param InvoiceType: 发票消费类型
+        # @param InvoiceType: 发票消费类型：交通
         # @type InvoiceType: String
         # @param SerialNumber: 序列号
         # @type SerialNumber: String
+        # @param AdditionalCost: 加收票价
+        # @type AdditionalCost: String
+        # @param HandlingFee: 手续费
+        # @type HandlingFee: String
+        # @param LegalAmount: 大写金额（票面有大写金额该字段才有值）
+        # @type LegalAmount: String
+        # @param TicketStation: 售票站
+        # @type TicketStation: String
+        # @param OriginalPrice: 原票价（一般有手续费的才有原始票价字段）
+        # @type OriginalPrice: String
+        # @param InvoiceStyle: 发票类型：火车票、火车票补票、火车票退票凭证
+        # @type InvoiceStyle: String
+        # @param ReceiptNumber: 收据号码
+        # @type ReceiptNumber: String
+        # @param IsReceipt: 仅供报销使用：1为是，0为否
+        # @type IsReceipt: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TicketNum, :StartStation, :DestinationStation, :Date, :TrainNum, :Seat, :Name, :Price, :SeatCategory, :ID, :InvoiceType, :SerialNumber, :RequestId
+        attr_accessor :TicketNum, :StartStation, :DestinationStation, :Date, :TrainNum, :Seat, :Name, :Price, :SeatCategory, :ID, :InvoiceType, :SerialNumber, :AdditionalCost, :HandlingFee, :LegalAmount, :TicketStation, :OriginalPrice, :InvoiceStyle, :ReceiptNumber, :IsReceipt, :RequestId
         
-        def initialize(ticketnum=nil, startstation=nil, destinationstation=nil, date=nil, trainnum=nil, seat=nil, name=nil, price=nil, seatcategory=nil, id=nil, invoicetype=nil, serialnumber=nil, requestid=nil)
+        def initialize(ticketnum=nil, startstation=nil, destinationstation=nil, date=nil, trainnum=nil, seat=nil, name=nil, price=nil, seatcategory=nil, id=nil, invoicetype=nil, serialnumber=nil, additionalcost=nil, handlingfee=nil, legalamount=nil, ticketstation=nil, originalprice=nil, invoicestyle=nil, receiptnumber=nil, isreceipt=nil, requestid=nil)
           @TicketNum = ticketnum
           @StartStation = startstation
           @DestinationStation = destinationstation
@@ -5706,6 +5733,14 @@ module TencentCloud
           @ID = id
           @InvoiceType = invoicetype
           @SerialNumber = serialnumber
+          @AdditionalCost = additionalcost
+          @HandlingFee = handlingfee
+          @LegalAmount = legalamount
+          @TicketStation = ticketstation
+          @OriginalPrice = originalprice
+          @InvoiceStyle = invoicestyle
+          @ReceiptNumber = receiptnumber
+          @IsReceipt = isreceipt
           @RequestId = requestid
         end
 
@@ -5722,6 +5757,14 @@ module TencentCloud
           @ID = params['ID']
           @InvoiceType = params['InvoiceType']
           @SerialNumber = params['SerialNumber']
+          @AdditionalCost = params['AdditionalCost']
+          @HandlingFee = params['HandlingFee']
+          @LegalAmount = params['LegalAmount']
+          @TicketStation = params['TicketStation']
+          @OriginalPrice = params['OriginalPrice']
+          @InvoiceStyle = params['InvoiceStyle']
+          @ReceiptNumber = params['ReceiptNumber']
+          @IsReceipt = params['IsReceipt']
           @RequestId = params['RequestId']
         end
       end

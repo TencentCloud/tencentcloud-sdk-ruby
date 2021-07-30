@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实名认证信息
+
+        # @param request: Request instance for DescribeGetAuthInfo.
+        # @type request: :class:`Tencentcloud::ba::V20200720::DescribeGetAuthInfoRequest`
+        # @rtype: :class:`Tencentcloud::ba::V20200720::DescribeGetAuthInfoResponse`
+        def DescribeGetAuthInfo(request)
+          body = send_request('DescribeGetAuthInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGetAuthInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
         # 只有指定的网站信息字段能被同步
 

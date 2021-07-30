@@ -53,6 +53,45 @@ module TencentCloud
         end
       end
 
+      # DescribeGetAuthInfo请求参数结构体
+      class DescribeGetAuthInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeGetAuthInfo返回参数结构体
+      class DescribeGetAuthInfoResponse < TencentCloud::Common::AbstractModel
+        # @param IsTenPayMasked: 实名认证状态：0未实名，1已实名
+        # @type IsTenPayMasked: String
+        # @param IsAuthenticated: 实名认证类型：0个人，1企业
+        # @type IsAuthenticated: String
+        # @param Type: 认证类型，个人0，企业1
+        # @type Type: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsTenPayMasked, :IsAuthenticated, :Type, :RequestId
+        
+        def initialize(istenpaymasked=nil, isauthenticated=nil, type=nil, requestid=nil)
+          @IsTenPayMasked = istenpaymasked
+          @IsAuthenticated = isauthenticated
+          @Type = type
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsTenPayMasked = params['IsTenPayMasked']
+          @IsAuthenticated = params['IsAuthenticated']
+          @Type = params['Type']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SyncIcpOrderWebInfo请求参数结构体
       class SyncIcpOrderWebInfoRequest < TencentCloud::Common::AbstractModel
         # @param IcpOrderId: 备案ICP订单号

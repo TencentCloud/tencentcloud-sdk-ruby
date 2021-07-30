@@ -155,10 +155,13 @@ module TencentCloud
         # @type SupportAutomationTools: Boolean
         # @param RequiredMemorySize: 镜像所需内存大小, 单位: GB
         # @type RequiredMemorySize: Integer
+        # @param ImageId: CVM镜像共享到轻量应用服务器轻量应用服务器后的CVM镜像ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageId: String
 
-        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize
+        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize, :ImageId
         
-        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil)
+        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil, imageid=nil)
           @BlueprintId = blueprintid
           @DisplayTitle = displaytitle
           @DisplayVersion = displayversion
@@ -174,6 +177,7 @@ module TencentCloud
           @BlueprintName = blueprintname
           @SupportAutomationTools = supportautomationtools
           @RequiredMemorySize = requiredmemorysize
+          @ImageId = imageid
         end
 
         def deserialize(params)
@@ -192,6 +196,7 @@ module TencentCloud
           @BlueprintName = params['BlueprintName']
           @SupportAutomationTools = params['SupportAutomationTools']
           @RequiredMemorySize = params['RequiredMemorySize']
+          @ImageId = params['ImageId']
         end
       end
 

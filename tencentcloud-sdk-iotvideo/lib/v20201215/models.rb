@@ -295,6 +295,46 @@ module TencentCloud
         end
       end
 
+      # BindCloudStorageUser请求参数结构体
+      class BindCloudStorageUserRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param UserId: 用户ID
+        # @type UserId: String
+
+        attr_accessor :ProductId, :DeviceName, :UserId
+        
+        def initialize(productid=nil, devicename=nil, userid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @UserId = params['UserId']
+        end
+      end
+
+      # BindCloudStorageUser返回参数结构体
+      class BindCloudStorageUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelAIModelApplication请求参数结构体
       class CancelAIModelApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ModelId: AI模型ID
@@ -379,7 +419,7 @@ module TencentCloud
       class CheckForwardAuthRequest < TencentCloud::Common::AbstractModel
         # @param Skey: 控制台Skey
         # @type Skey: String
-        # @param QueueType: 队列类型
+        # @param QueueType: 队列类型 0.CMQ  1.Ckafka
         # @type QueueType: Integer
 
         attr_accessor :Skey, :QueueType
@@ -405,7 +445,7 @@ module TencentCloud
         # @type Productid: String
         # @param ErrMsg: 错误消息
         # @type ErrMsg: String
-        # @param QueueType: 队列类型
+        # @param QueueType: 队列类型 0.CMQ  1.Ckafka
         # @type QueueType: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -503,6 +543,22 @@ module TencentCloud
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+        end
+      end
+
+      # 云存用户信息
+      class CloudStorageUserInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID
+        # @type UserId: String
+
+        attr_accessor :UserId
+        
+        def initialize(userid=nil)
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
         end
       end
 
@@ -778,6 +834,46 @@ module TencentCloud
         end
       end
 
+      # CreateDataForward请求参数结构体
+      class CreateDataForwardRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID。
+        # @type ProductId: String
+        # @param ForwardAddr: 转发地址。
+        # @type ForwardAddr: String
+        # @param DataChose: 1-数据信息转发 2-设备上下线状态转发 3-数据信息转发&设备上下线状态转发
+        # @type DataChose: Integer
+
+        attr_accessor :ProductId, :ForwardAddr, :DataChose
+        
+        def initialize(productid=nil, forwardaddr=nil, datachose=nil)
+          @ProductId = productid
+          @ForwardAddr = forwardaddr
+          @DataChose = datachose
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ForwardAddr = params['ForwardAddr']
+          @DataChose = params['DataChose']
+        end
+      end
+
+      # CreateDataForward返回参数结构体
+      class CreateDataForwardResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateForwardRule请求参数结构体
       class CreateForwardRuleRequest < TencentCloud::Common::AbstractModel
         # @param ProductID: 产品ID
@@ -788,7 +884,7 @@ module TencentCloud
         # @type Skey: String
         # @param QueueRegion: 队列区域
         # @type QueueRegion: String
-        # @param QueueType: 队列类型
+        # @param QueueType: 队列类型 0.CMQ  1.Ckafka
         # @type QueueType: Integer
         # @param Consecretid: 临时密钥
         # @type Consecretid: String
@@ -898,13 +994,13 @@ module TencentCloud
       class CreateProductRequest < TencentCloud::Common::AbstractModel
         # @param ProductName: 产品名称
         # @type ProductName: String
-        # @param DeviceType: 产品设备类型
+        # @param DeviceType: 产品设备类型 1.普通设备 2.NVR设备
         # @type DeviceType: Integer
         # @param ProductVaildYears: 产品有效期
         # @type ProductVaildYears: Integer
-        # @param Features: 设备功能码
+        # @param Features: 设备功能码 ypsxth音频双向通话 spdxth视频单向通话
         # @type Features: Array
-        # @param ChipOs: 设备操作系统
+        # @param ChipOs: 设备操作系统 android linux liteos
         # @type ChipOs: String
         # @param ChipManufactureId: 芯片厂商id
         # @type ChipManufactureId: String
@@ -912,7 +1008,7 @@ module TencentCloud
         # @type ChipId: String
         # @param ProductDescription: 产品描述信息
         # @type ProductDescription: String
-        # @param EncryptionType: 认证方式。2 PSK
+        # @param EncryptionType: 认证方式 只支持取值为2 psk认证
         # @type EncryptionType: Integer
 
         attr_accessor :ProductName, :DeviceType, :ProductVaildYears, :Features, :ChipOs, :ChipManufactureId, :ChipId, :ProductDescription, :EncryptionType
@@ -1002,6 +1098,43 @@ module TencentCloud
           @Url = params['Url']
           @FileName = params['FileName']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据转发描述
+      class DataForward < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID。
+        # @type ProductId: String
+        # @param ForwardAddr: 转发地址。
+        # @type ForwardAddr: String
+        # @param Status: 转发状态。
+        # @type Status: Integer
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: Integer
+        # @param DataChose: 1-数据信息转发 2-设备上下线状态转发 3-数据信息转发&设备上下线状态转发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataChose: Integer
+
+        attr_accessor :ProductId, :ForwardAddr, :Status, :CreateTime, :UpdateTime, :DataChose
+        
+        def initialize(productid=nil, forwardaddr=nil, status=nil, createtime=nil, updatetime=nil, datachose=nil)
+          @ProductId = productid
+          @ForwardAddr = forwardaddr
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @DataChose = datachose
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ForwardAddr = params['ForwardAddr']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @DataChose = params['DataChose']
         end
       end
 
@@ -1113,7 +1246,7 @@ module TencentCloud
         # @type QueueName: String
         # @param ProductID: 产品ID
         # @type ProductID: String
-        # @param Result: 删除结果
+        # @param Result: 删除结果 0成功 其他不成功
         # @type Result: Integer
         # @param ErrMsg: 错误消息
         # @type ErrMsg: String
@@ -1459,7 +1592,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页每页数量。
         # @type Limit: Integer
-        # @param Operation: 流水类型：All-全部类型；Recharge-充值；CreateOrder-新购。
+        # @param Operation: 流水类型：All-全部类型；Recharge-充值；CreateOrder-新购。默认为All
         # @type Operation: String
 
         attr_accessor :AccountType, :Offset, :Limit, :Operation
@@ -1649,17 +1782,21 @@ module TencentCloud
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
+        # @param UserId: 用户ID
+        # @type UserId: String
 
-        attr_accessor :ProductId, :DeviceName
+        attr_accessor :ProductId, :DeviceName, :UserId
         
-        def initialize(productid=nil, devicename=nil)
+        def initialize(productid=nil, devicename=nil, userid=nil)
           @ProductId = productid
           @DeviceName = devicename
+          @UserId = userid
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
+          @UserId = params['UserId']
         end
       end
 
@@ -1699,10 +1836,12 @@ module TencentCloud
         # @type Size: Integer
         # @param EventId: 事件标识符，可以用来指定查询特定的事件，如果不指定，则查询所有事件。
         # @type EventId: String
+        # @param UserId: 用户ID
+        # @type UserId: String
 
-        attr_accessor :ProductId, :DeviceName, :StartTime, :EndTime, :Context, :Size, :EventId
+        attr_accessor :ProductId, :DeviceName, :StartTime, :EndTime, :Context, :Size, :EventId, :UserId
         
-        def initialize(productid=nil, devicename=nil, starttime=nil, endtime=nil, context=nil, size=nil, eventid=nil)
+        def initialize(productid=nil, devicename=nil, starttime=nil, endtime=nil, context=nil, size=nil, eventid=nil, userid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @StartTime = starttime
@@ -1710,6 +1849,7 @@ module TencentCloud
           @Context = context
           @Size = size
           @EventId = eventid
+          @UserId = userid
         end
 
         def deserialize(params)
@@ -1720,6 +1860,7 @@ module TencentCloud
           @Context = params['Context']
           @Size = params['Size']
           @EventId = params['EventId']
+          @UserId = params['UserId']
         end
       end
 
@@ -1772,17 +1913,21 @@ module TencentCloud
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
+        # @param UserId: 云存用户ID
+        # @type UserId: String
 
-        attr_accessor :ProductId, :DeviceName
+        attr_accessor :ProductId, :DeviceName, :UserId
         
-        def initialize(productid=nil, devicename=nil)
+        def initialize(productid=nil, devicename=nil, userid=nil)
           @ProductId = productid
           @DeviceName = devicename
+          @UserId = userid
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
+          @UserId = params['UserId']
         end
       end
 
@@ -1796,16 +1941,20 @@ module TencentCloud
         # @type ExpireTime: Integer
         # @param ShiftDuration: 云存回看时长
         # @type ShiftDuration: Integer
+        # @param UserId: 云存用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :Type, :ExpireTime, :ShiftDuration, :RequestId
+        attr_accessor :Status, :Type, :ExpireTime, :ShiftDuration, :UserId, :RequestId
         
-        def initialize(status=nil, type=nil, expiretime=nil, shiftduration=nil, requestid=nil)
+        def initialize(status=nil, type=nil, expiretime=nil, shiftduration=nil, userid=nil, requestid=nil)
           @Status = status
           @Type = type
           @ExpireTime = expiretime
           @ShiftDuration = shiftduration
+          @UserId = userid
           @RequestId = requestid
         end
 
@@ -1814,6 +1963,7 @@ module TencentCloud
           @Type = params['Type']
           @ExpireTime = params['ExpireTime']
           @ShiftDuration = params['ShiftDuration']
+          @UserId = params['UserId']
           @RequestId = params['RequestId']
         end
       end
@@ -1870,19 +2020,31 @@ module TencentCloud
         # @type DeviceName: String
         # @param Date: 云存日期，例如"2020-01-05"
         # @type Date: String
+        # @param StartTime: 开始时间，unix时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间，unix时间
+        # @type EndTime: Integer
+        # @param UserId: 用户ID
+        # @type UserId: String
 
-        attr_accessor :ProductId, :DeviceName, :Date
+        attr_accessor :ProductId, :DeviceName, :Date, :StartTime, :EndTime, :UserId
         
-        def initialize(productid=nil, devicename=nil, date=nil)
+        def initialize(productid=nil, devicename=nil, date=nil, starttime=nil, endtime=nil, userid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Date = date
+          @StartTime = starttime
+          @EndTime = endtime
+          @UserId = userid
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
           @Date = params['Date']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UserId = params['UserId']
         end
       end
 
@@ -1909,6 +2071,109 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudStorageUsers请求参数结构体
+      class DescribeCloudStorageUsersRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Limit: 分页拉取数量
+        # @type Limit: Integer
+        # @param Offset: 分页拉取偏移
+        # @type Offset: Integer
+
+        attr_accessor :ProductId, :DeviceName, :Limit, :Offset
+        
+        def initialize(productid=nil, devicename=nil, limit=nil, offset=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCloudStorageUsers返回参数结构体
+      class DescribeCloudStorageUsersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 用户总数
+        # @type TotalCount: Integer
+        # @param Users: 用户信息
+        # @type Users: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Users, :RequestId
+        
+        def initialize(totalcount=nil, users=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Users = users
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              cloudstorageuserinfo_tmp = CloudStorageUserInfo.new
+              cloudstorageuserinfo_tmp.deserialize(i)
+              @Users << cloudstorageuserinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataForwardList请求参数结构体
+      class DescribeDataForwardListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductIds: 产品ID列表
+        # @type ProductIds: String
+
+        attr_accessor :ProductIds
+        
+        def initialize(productids=nil)
+          @ProductIds = productids
+        end
+
+        def deserialize(params)
+          @ProductIds = params['ProductIds']
+        end
+      end
+
+      # DescribeDataForwardList返回参数结构体
+      class DescribeDataForwardListResponse < TencentCloud::Common::AbstractModel
+        # @param DataForwardList: 数据转发列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataForwardList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataForwardList, :RequestId
+        
+        def initialize(dataforwardlist=nil, requestid=nil)
+          @DataForwardList = dataforwardlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataForwardList'].nil?
+            @DataForwardList = []
+            params['DataForwardList'].each do |i|
+              dataforward_tmp = DataForward.new
+              dataforward_tmp.deserialize(i)
+              @DataForwardList << dataforward_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeviceActionHistory请求参数结构体
       class DescribeDeviceActionHistoryRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品Id
@@ -1921,7 +2186,7 @@ module TencentCloud
         # @type MaxTime: Integer
         # @param ActionId: 动作Id
         # @type ActionId: String
-        # @param Limit: 查询条数
+        # @param Limit: 查询条数 默认为0 最大不超过500
         # @type Limit: Integer
         # @param Context: 游标，标识查询位置。
         # @type Context: String
@@ -1993,19 +2258,19 @@ module TencentCloud
 
       # DescribeDeviceCommLog请求参数结构体
       class DescribeDeviceCommLogRequest < TencentCloud::Common::AbstractModel
-        # @param MinTime: 开始时间
+        # @param MinTime: 开始时间 13位时间戳 单位毫秒
         # @type MinTime: Integer
-        # @param MaxTime: 结束时间
+        # @param MaxTime: 结束时间 13位时间戳 单位毫秒
         # @type MaxTime: Integer
         # @param ProductId: 产品ID
         # @type ProductId: String
         # @param DeviceName: 设备名称
         # @type DeviceName: String
-        # @param Limit: 返回条数
+        # @param Limit: 返回条数 默认为50
         # @type Limit: Integer
         # @param Context: 检索上下文
         # @type Context: String
-        # @param Type: 类型：shadow 下行，device 上行
+        # @param Type: 类型：shadow 下行，device 上行 默认为空则全部查询
         # @type Type: String
 
         attr_accessor :MinTime, :MaxTime, :ProductId, :DeviceName, :Limit, :Context, :Type
@@ -2310,18 +2575,22 @@ module TencentCloud
         # @type EnableState: Integer
         # @param ExpireTime: 设备过期时间
         # @type ExpireTime: Integer
+        # @param LogLevel: 设备的sdk日志等级，0：关闭，1：错误，2：告警，3：信息，4：调试
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogLevel: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeviceName, :Online, :LoginTime, :DevicePsk, :EnableState, :ExpireTime, :RequestId
+        attr_accessor :DeviceName, :Online, :LoginTime, :DevicePsk, :EnableState, :ExpireTime, :LogLevel, :RequestId
         
-        def initialize(devicename=nil, online=nil, logintime=nil, devicepsk=nil, enablestate=nil, expiretime=nil, requestid=nil)
+        def initialize(devicename=nil, online=nil, logintime=nil, devicepsk=nil, enablestate=nil, expiretime=nil, loglevel=nil, requestid=nil)
           @DeviceName = devicename
           @Online = online
           @LoginTime = logintime
           @DevicePsk = devicepsk
           @EnableState = enablestate
           @ExpireTime = expiretime
+          @LogLevel = loglevel
           @RequestId = requestid
         end
 
@@ -2332,6 +2601,86 @@ module TencentCloud
           @DevicePsk = params['DevicePsk']
           @EnableState = params['EnableState']
           @ExpireTime = params['ExpireTime']
+          @LogLevel = params['LogLevel']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceStatusLog请求参数结构体
+      class DescribeDeviceStatusLogRequest < TencentCloud::Common::AbstractModel
+        # @param MinTime: 开始时间（毫秒）
+        # @type MinTime: Integer
+        # @param MaxTime: 结束时间（毫秒）
+        # @type MaxTime: Integer
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Limit: 返回条数
+        # @type Limit: Integer
+        # @param Context: 检索上下文
+        # @type Context: String
+
+        attr_accessor :MinTime, :MaxTime, :ProductId, :DeviceName, :Limit, :Context
+        
+        def initialize(mintime=nil, maxtime=nil, productid=nil, devicename=nil, limit=nil, context=nil)
+          @MinTime = mintime
+          @MaxTime = maxtime
+          @ProductId = productid
+          @DeviceName = devicename
+          @Limit = limit
+          @Context = context
+        end
+
+        def deserialize(params)
+          @MinTime = params['MinTime']
+          @MaxTime = params['MaxTime']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Limit = params['Limit']
+          @Context = params['Context']
+        end
+      end
+
+      # DescribeDeviceStatusLog返回参数结构体
+      class DescribeDeviceStatusLogResponse < TencentCloud::Common::AbstractModel
+        # @param Listover: 数据是否已全部返回，true 表示数据全部返回，false 表示还有数据待返回，可将 Context 作为入参，继续查询返回结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Listover: Boolean
+        # @param Context: 检索上下文，当 ListOver 为false时，可以用此上下文，继续读取后续数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Context: String
+        # @param Results: 日志数据结果数组，返回对应时间点及取值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param TotalCount: 日志数据结果总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Listover, :Context, :Results, :TotalCount, :RequestId
+        
+        def initialize(listover=nil, context=nil, results=nil, totalcount=nil, requestid=nil)
+          @Listover = listover
+          @Context = context
+          @Results = results
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Listover = params['Listover']
+          @Context = params['Context']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              devicestatuslogitem_tmp = DeviceStatusLogItem.new
+              devicestatuslogitem_tmp.deserialize(i)
+              @Results << devicestatuslogitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2471,9 +2820,9 @@ module TencentCloud
         # @type FirmwareVersion: String
         # @param Filters: 筛选条件
         # @type Filters: Array
-        # @param Offset: 查询偏移量
+        # @param Offset: 查询偏移量 默认为0
         # @type Offset: Integer
-        # @param Limit: 查询的数量
+        # @param Limit: 查询的数量 默认为50
         # @type Limit: Integer
 
         attr_accessor :ProductID, :FirmwareVersion, :Filters, :Offset, :Limit
@@ -2824,9 +3173,9 @@ module TencentCloud
         # @type QueueName: String
         # @param ProductID: 产品ID
         # @type ProductID: String
-        # @param MsgType: 消息类型
+        # @param MsgType: 消息类型 1设备上报信息 2设备状态变化通知 3为全选
         # @type MsgType: Integer
-        # @param Result: 结果
+        # @param Result: 结果 2表示禁用 其他为成功
         # @type Result: Integer
         # @param RoleName: 角色名
         # @type RoleName: String
@@ -3009,6 +3358,77 @@ module TencentCloud
         end
       end
 
+      # DescribeSDKLog请求参数结构体
+      class DescribeSDKLogRequest < TencentCloud::Common::AbstractModel
+        # @param MinTime: 日志开始时间
+        # @type MinTime: Integer
+        # @param MaxTime: 日志结束时间
+        # @type MaxTime: Integer
+        # @param Keywords: 查询关键字，可以同时支持键值查询和文本查询，
+        # 例如，查询某key的值为value，并且包含某word的日志，该参数为：key:value word。
+        # 键值或文本可以包含多个，以空格隔开。
+        # 其中可以索引的key包括：productid、devicename、loglevel
+        # 一个典型的查询示例：productid:7JK1G72JNE devicename:name publish loglevel:WARN一个典型的查询示例：productid:ABCDE12345 devicename:test scene:SHADOW publish
+        # @type Keywords: String
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param MaxNum: 查询条数
+        # @type MaxNum: Integer
+
+        attr_accessor :MinTime, :MaxTime, :Keywords, :Context, :MaxNum
+        
+        def initialize(mintime=nil, maxtime=nil, keywords=nil, context=nil, maxnum=nil)
+          @MinTime = mintime
+          @MaxTime = maxtime
+          @Keywords = keywords
+          @Context = context
+          @MaxNum = maxnum
+        end
+
+        def deserialize(params)
+          @MinTime = params['MinTime']
+          @MaxTime = params['MaxTime']
+          @Keywords = params['Keywords']
+          @Context = params['Context']
+          @MaxNum = params['MaxNum']
+        end
+      end
+
+      # DescribeSDKLog返回参数结构体
+      class DescribeSDKLogResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 日志检索上下文
+        # @type Context: String
+        # @param Listover: 是否还有日志，如有仍有日志，下次查询的请求带上当前请求返回的Context
+        # @type Listover: Boolean
+        # @param Results: 日志列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :Listover, :Results, :RequestId
+        
+        def initialize(context=nil, listover=nil, results=nil, requestid=nil)
+          @Context = context
+          @Listover = listover
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @Listover = params['Listover']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              sdklogitem_tmp = SDKLogItem.new
+              sdklogitem_tmp.deserialize(i)
+              @Results << sdklogitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 设备通讯日志查询返回条目
       class DeviceCommLogItem < TencentCloud::Common::AbstractModel
         # @param Time: 时间
@@ -3086,6 +3506,30 @@ module TencentCloud
           @DevicePsk = params['DevicePsk']
           @EnableState = params['EnableState']
           @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # 设备上下线日志记录
+      class DeviceStatusLogItem < TencentCloud::Common::AbstractModel
+        # @param Time: 时间
+        # @type Time: String
+        # @param Type: 状态类型： Online 上线，Offline 下线
+        # @type Type: String
+        # @param Data: 日志信息
+        # @type Data: String
+
+        attr_accessor :Time, :Type, :Data
+        
+        def initialize(time=nil, type=nil, data=nil)
+          @Time = time
+          @Type = type
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Type = params['Type']
+          @Data = params['Data']
         end
       end
 
@@ -3356,7 +3800,7 @@ module TencentCloud
 
       # GetAllFirmwareVersion返回参数结构体
       class GetAllFirmwareVersionResponse < TencentCloud::Common::AbstractModel
-        # @param Version: 无
+        # @param Version: 固件可用版本列表
         # @type Version: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3450,6 +3894,50 @@ module TencentCloud
         end
       end
 
+      # InheritCloudStorageUser请求参数结构体
+      class InheritCloudStorageUserRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param UserId: 原始用户ID
+        # @type UserId: String
+        # @param ToUserId: 目标用户ID
+        # @type ToUserId: String
+
+        attr_accessor :ProductId, :DeviceName, :UserId, :ToUserId
+        
+        def initialize(productid=nil, devicename=nil, userid=nil, touserid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @UserId = userid
+          @ToUserId = touserid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @UserId = params['UserId']
+          @ToUserId = params['ToUserId']
+        end
+      end
+
+      # InheritCloudStorageUser返回参数结构体
+      class InheritCloudStorageUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListFirmwares请求参数结构体
       class ListFirmwaresRequest < TencentCloud::Common::AbstractModel
         # @param PageNum: 获取的页数
@@ -3516,6 +4004,122 @@ module TencentCloud
         end
       end
 
+      # ModifyDataForward请求参数结构体
+      class ModifyDataForwardRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID。
+        # @type ProductId: String
+        # @param ForwardAddr: 转发地址。
+        # @type ForwardAddr: String
+        # @param DataChose: 1-数据信息转发 2-设备上下线状态转发 3-数据信息转发&设备上下线状态转发
+        # @type DataChose: Integer
+
+        attr_accessor :ProductId, :ForwardAddr, :DataChose
+        
+        def initialize(productid=nil, forwardaddr=nil, datachose=nil)
+          @ProductId = productid
+          @ForwardAddr = forwardaddr
+          @DataChose = datachose
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @ForwardAddr = params['ForwardAddr']
+          @DataChose = params['DataChose']
+        end
+      end
+
+      # ModifyDataForward返回参数结构体
+      class ModifyDataForwardResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDataForwardStatus请求参数结构体
+      class ModifyDataForwardStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID。
+        # @type ProductId: String
+        # @param Status: 转发状态，1启用，0禁用。
+        # @type Status: Integer
+
+        attr_accessor :ProductId, :Status
+        
+        def initialize(productid=nil, status=nil)
+          @ProductId = productid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyDataForwardStatus返回参数结构体
+      class ModifyDataForwardStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDeviceLogLevel请求参数结构体
+      class ModifyDeviceLogLevelRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param LogLevel: 日志级别，0：关闭，1：错误，2：告警，3：信息，4：调试
+        # @type LogLevel: Integer
+
+        attr_accessor :ProductId, :DeviceName, :LogLevel
+        
+        def initialize(productid=nil, devicename=nil, loglevel=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @LogLevel = loglevel
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @LogLevel = params['LogLevel']
+        end
+      end
+
+      # ModifyDeviceLogLevel返回参数结构体
+      class ModifyDeviceLogLevelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDevice请求参数结构体
       class ModifyDeviceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 设备所属产品id
@@ -3566,7 +4170,7 @@ module TencentCloud
         # @type Skey: String
         # @param QueueRegion: 队列区域
         # @type QueueRegion: String
-        # @param QueueType: 队列类型
+        # @param QueueType: 队列类型 0.CMQ 1.CKafka
         # @type QueueType: Integer
         # @param Consecretid: 临时密钥
         # @type Consecretid: String
@@ -3618,7 +4222,7 @@ module TencentCloud
         # @type Result: Integer
         # @param ErrMsg: 错误信息
         # @type ErrMsg: String
-        # @param QueueType: 队列类型
+        # @param QueueType: 队列类型 0.CMQ 1.CKafka
         # @type QueueType: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3684,9 +4288,9 @@ module TencentCloud
       class ModifyProductRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品id
         # @type ProductId: String
-        # @param ProductName: 修改的产品名称
+        # @param ProductName: 修改的产品名称 （支持中文、英文、数字、下划线组合，最多不超过20个字符）
         # @type ProductName: String
-        # @param ProductDescription: 修改的产品描述
+        # @param ProductDescription: 修改的产品描述 （最多不超过128个字符）
         # @type ProductDescription: String
 
         attr_accessor :ProductId, :ProductName, :ProductDescription
@@ -3973,6 +4577,38 @@ module TencentCloud
         end
       end
 
+      # SDK日志项
+      class SDKLogItem < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param DateTime: 日志时间
+        # @type DateTime: String
+        # @param Content: 日志内容
+        # @type Content: String
+
+        attr_accessor :ProductID, :DeviceName, :Level, :DateTime, :Content
+        
+        def initialize(productid=nil, devicename=nil, level=nil, datetime=nil, content=nil)
+          @ProductID = productid
+          @DeviceName = devicename
+          @Level = level
+          @DateTime = datetime
+          @Content = content
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @DeviceName = params['DeviceName']
+          @Level = params['Level']
+          @DateTime = params['DateTime']
+          @Content = params['Content']
+        end
+      end
+
       # 搜索关键词
       class SearchKeyword < TencentCloud::Common::AbstractModel
         # @param Key: 搜索条件的Key
@@ -3997,7 +4633,7 @@ module TencentCloud
       class SetForwardAuthRequest < TencentCloud::Common::AbstractModel
         # @param Skey: 控制台Skey
         # @type Skey: String
-        # @param QueueType: 消息队列类型
+        # @param QueueType: 消息队列类型  0.CMQ 1.CKafka
         # @type QueueType: Integer
 
         attr_accessor :Skey, :QueueType
@@ -4023,7 +4659,7 @@ module TencentCloud
         # @type RoleName: String
         # @param RoleID: 角色ID
         # @type RoleID: Integer
-        # @param QueueType: 消息队列类型
+        # @param QueueType: 消息队列类型  0.CMQ 1.CKafka
         # @type QueueType: Integer
         # @param ErrMsg: 错误消息
         # @type ErrMsg: String
@@ -4337,6 +4973,42 @@ module TencentCloud
           @ProductDescription = params['ProductDescription']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # WakeUpDevice请求参数结构体
+      class WakeUpDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+        
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # WakeUpDevice返回参数结构体
+      class WakeUpDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

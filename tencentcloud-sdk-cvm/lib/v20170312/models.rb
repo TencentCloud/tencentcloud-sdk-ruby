@@ -5715,7 +5715,7 @@ module TencentCloud
         # <li> ap-seoul-2 </li>
         # <li> ap-chengdu-1 </li>
         # <li> ap-chengdu-2 </li>
-        # <li> ap-hongkong-1 </li>
+        # <li> ap-hongkong-1（售罄） </li>
         # <li> ap-hongkong-2 </li>
         # <li> ap-hongkong-3 </li>
         # <li> ap-shenzhen-fsi-1 </li>
@@ -5726,6 +5726,7 @@ module TencentCloud
         # <li> ap-guangzhou-3 </li>
         # <li> ap-guangzhou-4 </li>
         # <li> ap-guangzhou-6 </li>
+        # <li> ap-guangzhou-7 </li>
         # <li> ap-tokyo-1 </li>
         # <li> ap-tokyo-2 </li>
         # <li> ap-singapore-1 </li>
@@ -5735,6 +5736,7 @@ module TencentCloud
         # <li> ap-shanghai-fsi-2 </li>
         # <li> ap-shanghai-fsi-3 </li>
         # <li> ap-bangkok-1 </li>
+        # <li> ap-bangkok-2 </li>
         # <li> ap-shanghai-1（售罄） </li>
         # <li> ap-shanghai-2 </li>
         # <li> ap-shanghai-3 </li>
@@ -5759,7 +5761,6 @@ module TencentCloud
         # <li> na-ashburn-2 </li>
         # <li> ap-nanjing-1 </li>
         # <li> ap-nanjing-2 </li>
-        # <li> ap-jakarta-1 </li>
         # @type Zone: String
         # @param ZoneName: 可用区描述，例如，广州三区
         # @type ZoneName: String
