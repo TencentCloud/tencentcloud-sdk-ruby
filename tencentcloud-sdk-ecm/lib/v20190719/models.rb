@@ -9129,10 +9129,10 @@ module TencentCloud
 
       # 标签信息。
       class Tag < TencentCloud::Common::AbstractModel
-        # @param Key: 标签的键。
+        # @param Key: 标签健。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
-        # @param Value: 标签的值。
+        # @param Value: 标签值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 

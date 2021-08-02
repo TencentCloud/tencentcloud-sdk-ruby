@@ -660,6 +660,8 @@ module TencentCloud
       # 通用混流输入参数。
       class CommonMixInputParam < TencentCloud::Common::AbstractModel
         # @param InputStreamName: 输入流名称。80字节以内，仅含字母、数字以及下划线的字符串。
+        # 当LayoutParams.InputType=0(音视频)/4(纯音频)/5(纯视频)时，该值为需要混流的流名称。
+        # 当LayoutParams.InputType=2(图片)/3(画布)时，该值仅用作标识输入，可用类似Canvas1、Pictrue1的名称。
         # @type InputStreamName: String
         # @param LayoutParams: 输入流布局参数。
         # @type LayoutParams: :class:`Tencentcloud::Live.v20180801.models.CommonMixLayoutParams`
@@ -701,18 +703,18 @@ module TencentCloud
         # 4表示输入流为音频。
         # 5表示输入流为纯视频。
         # @type InputType: Integer
-        # @param ImageWidth: 输入画面在输出时的宽度。取值范围：
-        # 像素：[0，2000]
-        # 百分比：[0.01，0.99]
-        # 不填默认为输入流的宽度。
-        # 使用百分比时，期望输出为（百分比 * 背景宽）。
-        # @type ImageWidth: Float
         # @param ImageHeight: 输入画面在输出时的高度。取值范围：
         # 像素：[0，2000]
         # 百分比：[0.01，0.99]
         # 不填默认为输入流的高度。
         # 使用百分比时，期望输出为（百分比 * 背景高）。
         # @type ImageHeight: Float
+        # @param ImageWidth: 输入画面在输出时的宽度。取值范围：
+        # 像素：[0，2000]
+        # 百分比：[0.01，0.99]
+        # 不填默认为输入流的宽度。
+        # 使用百分比时，期望输出为（百分比 * 背景宽）。
+        # @type ImageWidth: Float
         # @param LocationX: 输入在输出画面的X偏移。取值范围：
         # 像素：[0，2000]
         # 百分比：[0.01，0.99]
@@ -740,13 +742,13 @@ module TencentCloud
         # @param WatermarkId: 当InputType为2(图片)时，该值是水印ID。
         # @type WatermarkId: Integer
 
-        attr_accessor :ImageLayer, :InputType, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :Color, :WatermarkId
+        attr_accessor :ImageLayer, :InputType, :ImageHeight, :ImageWidth, :LocationX, :LocationY, :Color, :WatermarkId
         
-        def initialize(imagelayer=nil, inputtype=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, color=nil, watermarkid=nil)
+        def initialize(imagelayer=nil, inputtype=nil, imageheight=nil, imagewidth=nil, locationx=nil, locationy=nil, color=nil, watermarkid=nil)
           @ImageLayer = imagelayer
           @InputType = inputtype
-          @ImageWidth = imagewidth
           @ImageHeight = imageheight
+          @ImageWidth = imagewidth
           @LocationX = locationx
           @LocationY = locationy
           @Color = color
@@ -756,8 +758,8 @@ module TencentCloud
         def deserialize(params)
           @ImageLayer = params['ImageLayer']
           @InputType = params['InputType']
-          @ImageWidth = params['ImageWidth']
           @ImageHeight = params['ImageHeight']
+          @ImageWidth = params['ImageWidth']
           @LocationX = params['LocationX']
           @LocationY = params['LocationY']
           @Color = params['Color']
@@ -1097,6 +1099,9 @@ module TencentCloud
         # SourceType 为点播（PullVodPushLive）可以填多个，上限30个。
         # 当前支持的文件格式：flv，mp4，hls。
         # 当前支持的拉流协议：http，https，rtmp。
+        # 注意：
+        # 1. 建议优先使用 flv 文件，对于 mp4 未交织好的文件轮播推流易产生卡顿，可通过点播转码进行重新交织后再轮播。
+        # 2. 拒绝内网域名等攻击性拉流地址，如有使用，则做账号封禁处理。
         # @type SourceUrls: Array
         # @param DomainName: 推流域名。
         # 将拉取过来的流推到该域名。
