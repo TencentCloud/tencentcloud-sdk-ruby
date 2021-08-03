@@ -2301,7 +2301,7 @@ module TencentCloud
 
       # DescribeAllNamespaces请求参数结构体
       class DescribeAllNamespacesRequest < TencentCloud::Common::AbstractModel
-        # @param SceneType: 根据使用场景过滤 "ST_DASHBOARD"=Dashboard类型 或 "ST_ALARM"=告警类型
+        # @param SceneType: 根据使用场景过滤 目前仅有"ST_ALARM"=告警类型
         # @type SceneType: String
         # @param Module: 固定值，为"monitor"
         # @type Module: String

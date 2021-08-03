@@ -165,6 +165,76 @@ module TencentCloud
         end
       end
 
+      # CreateStructureTaskTest请求参数结构体
+      class CreateStructureTaskTestRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceType: 服务类型
+        # Structured 仅结构化
+        # Underwrite 结构化+核保
+        # @type ServiceType: String
+        # @param TaskInfos: 创建任务时可以上传多个报告，后台生成多个识别子任务，子任务的详细信息
+        # @type TaskInfos: Array
+        # @param PolicyId: 保单号
+        # @type PolicyId: String
+        # @param TriggerType: 核保触发方式
+        # Auto 自动
+        # Manual 手动
+        # @type TriggerType: String
+        # @param InsuranceTypes: 险种，如果是体检报告类型，此参数是必填，类型说明如下：
+        # CriticalDiseaseInsurance:重疾险
+        # LifeInsurance：寿险
+        # AccidentInsurance：意外险
+        # @type InsuranceTypes: Array
+        # @param CallbackUrl: 回调地址，接收Post请求传送结果
+        # @type CallbackUrl: String
+
+        attr_accessor :ServiceType, :TaskInfos, :PolicyId, :TriggerType, :InsuranceTypes, :CallbackUrl
+        
+        def initialize(servicetype=nil, taskinfos=nil, policyid=nil, triggertype=nil, insurancetypes=nil, callbackurl=nil)
+          @ServiceType = servicetype
+          @TaskInfos = taskinfos
+          @PolicyId = policyid
+          @TriggerType = triggertype
+          @InsuranceTypes = insurancetypes
+          @CallbackUrl = callbackurl
+        end
+
+        def deserialize(params)
+          @ServiceType = params['ServiceType']
+          unless params['TaskInfos'].nil?
+            @TaskInfos = []
+            params['TaskInfos'].each do |i|
+              createstructuretaskinfo_tmp = CreateStructureTaskInfo.new
+              createstructuretaskinfo_tmp.deserialize(i)
+              @TaskInfos << createstructuretaskinfo_tmp
+            end
+          end
+          @PolicyId = params['PolicyId']
+          @TriggerType = params['TriggerType']
+          @InsuranceTypes = params['InsuranceTypes']
+          @CallbackUrl = params['CallbackUrl']
+        end
+      end
+
+      # CreateStructureTaskTest返回参数结构体
+      class CreateStructureTaskTestResponse < TencentCloud::Common::AbstractModel
+        # @param MainTaskId: 创建的主任务号，用于查询结果
+        # @type MainTaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MainTaskId, :RequestId
+        
+        def initialize(maintaskid=nil, requestid=nil)
+          @MainTaskId = maintaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MainTaskId = params['MainTaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStructCompareData请求参数结构体
       class DescribeStructCompareDataRequest < TencentCloud::Common::AbstractModel
         # @param MainTaskId: 主任务号
@@ -333,6 +403,57 @@ module TencentCloud
 
       # DescribeStructureTaskResult返回参数结构体
       class DescribeStructureTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 结果状态：
+        # 0：返回成功
+        # 1：结果未生成
+        # 2：结果生成失败
+        # @type Status: Integer
+        # @param Results: 结构化识别结果数组，每个数组元素对应一个图片的结构化结果，顺序和输入参数的ImageList或FileList对应。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Results, :RequestId
+        
+        def initialize(status=nil, results=nil, requestid=nil)
+          @Status = status
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              resultobject_tmp = ResultObject.new
+              resultobject_tmp.deserialize(i)
+              @Results << resultobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStructureTaskResultTest请求参数结构体
+      class DescribeStructureTaskResultTestRequest < TencentCloud::Common::AbstractModel
+        # @param MainTaskId: 结构化任务ID
+        # @type MainTaskId: String
+
+        attr_accessor :MainTaskId
+        
+        def initialize(maintaskid=nil)
+          @MainTaskId = maintaskid
+        end
+
+        def deserialize(params)
+          @MainTaskId = params['MainTaskId']
+        end
+      end
+
+      # DescribeStructureTaskResultTest返回参数结构体
+      class DescribeStructureTaskResultTestResponse < TencentCloud::Common::AbstractModel
         # @param Status: 结果状态：
         # 0：返回成功
         # 1：结果未生成

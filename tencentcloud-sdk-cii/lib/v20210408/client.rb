@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateStructureTaskTest)基于提供的客户及保单信息，创建并启动结构化识别任务。用于路由到测试环境。
+
+        # @param request: Request instance for CreateStructureTaskTest.
+        # @type request: :class:`Tencentcloud::cii::V20210408::CreateStructureTaskTestRequest`
+        # @rtype: :class:`Tencentcloud::cii::V20210408::CreateStructureTaskTestResponse`
+        def CreateStructureTaskTest(request)
+          body = send_request('CreateStructureTaskTest', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateStructureTaskTestResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
 
         # @param request: Request instance for DescribeStructCompareData.
@@ -111,6 +135,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeStructureTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 依据任务ID获取结构化结果接口，该接口用于路由到测试环境。
+
+        # @param request: Request instance for DescribeStructureTaskResultTest.
+        # @type request: :class:`Tencentcloud::cii::V20210408::DescribeStructureTaskResultTestRequest`
+        # @rtype: :class:`Tencentcloud::cii::V20210408::DescribeStructureTaskResultTestResponse`
+        def DescribeStructureTaskResultTest(request)
+          body = send_request('DescribeStructureTaskResultTest', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStructureTaskResultTestResponse.new
             model.deserialize(response['Response'])
             model
           else
