@@ -4251,6 +4251,33 @@ module TencentCloud
         end
       end
 
+      # UploadLog请求参数结构体
+      class UploadLogRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # UploadLog返回参数结构体
+      class UploadLogResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 需要开启键值索引的字段的索引描述信息
       class ValueInfo < TencentCloud::Common::AbstractModel
         # @param Type: 字段类型，目前支持的类型有：long、text、double

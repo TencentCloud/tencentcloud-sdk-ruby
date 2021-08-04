@@ -795,6 +795,78 @@ module TencentCloud
         end
       end
 
+      # DescribeCvmQuota请求参数结构体
+      class DescribeCvmQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: EMR集群ID
+        # @type ClusterId: String
+        # @param ZoneId: 区ID
+        # @type ZoneId: Integer
+
+        attr_accessor :ClusterId, :ZoneId
+        
+        def initialize(clusterid=nil, zoneid=nil)
+          @ClusterId = clusterid
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeCvmQuota返回参数结构体
+      class DescribeCvmQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param PostPaidQuotaSet: 后付费配额列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostPaidQuotaSet: Array
+        # @param SpotPaidQuotaSet: 竞价实例配额列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpotPaidQuotaSet: Array
+        # @param EksQuotaSet: eks配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EksQuotaSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PostPaidQuotaSet, :SpotPaidQuotaSet, :EksQuotaSet, :RequestId
+        
+        def initialize(postpaidquotaset=nil, spotpaidquotaset=nil, eksquotaset=nil, requestid=nil)
+          @PostPaidQuotaSet = postpaidquotaset
+          @SpotPaidQuotaSet = spotpaidquotaset
+          @EksQuotaSet = eksquotaset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PostPaidQuotaSet'].nil?
+            @PostPaidQuotaSet = []
+            params['PostPaidQuotaSet'].each do |i|
+              quotaentity_tmp = QuotaEntity.new
+              quotaentity_tmp.deserialize(i)
+              @PostPaidQuotaSet << quotaentity_tmp
+            end
+          end
+          unless params['SpotPaidQuotaSet'].nil?
+            @SpotPaidQuotaSet = []
+            params['SpotPaidQuotaSet'].each do |i|
+              quotaentity_tmp = QuotaEntity.new
+              quotaentity_tmp.deserialize(i)
+              @SpotPaidQuotaSet << quotaentity_tmp
+            end
+          end
+          unless params['EksQuotaSet'].nil?
+            @EksQuotaSet = []
+            params['EksQuotaSet'].each do |i|
+              podsalespec_tmp = PodSaleSpec.new
+              podsalespec_tmp.deserialize(i)
+              @EksQuotaSet << podsalespec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceRenewNodes请求参数结构体
       class DescribeInstanceRenewNodesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID,实例ID形如: emr-xxxxxxxx
@@ -2477,6 +2549,34 @@ module TencentCloud
         end
       end
 
+      # Pod资源售卖规格
+      class PodSaleSpec < TencentCloud::Common::AbstractModel
+        # @param NodeType: 可售卖的资源规格，仅为以下值:"TASK","CORE","MASTER","ROUTER"。
+        # @type NodeType: String
+        # @param Cpu: Cpu核数。
+        # @type Cpu: Integer
+        # @param Memory: 内存数量，单位为GB。
+        # @type Memory: Integer
+        # @param Number: 该规格资源可申请的最大数量。
+        # @type Number: Integer
+
+        attr_accessor :NodeType, :Cpu, :Memory, :Number
+        
+        def initialize(nodetype=nil, cpu=nil, memory=nil, number=nil)
+          @NodeType = nodetype
+          @Cpu = cpu
+          @Memory = memory
+          @Number = number
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Number = params['Number']
+        end
+      end
+
       # 扩容容器资源时的资源描述
       class PodSpec < TencentCloud::Common::AbstractModel
         # @param ResourceProviderIdentifier: 外部资源提供者的标识符，例如"cls-a1cd23fa"。
@@ -2547,6 +2647,42 @@ module TencentCloud
           end
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # 单个pod状态
+      class PodState < TencentCloud::Common::AbstractModel
+        # @param Name: pod的名称
+        # @type Name: String
+        # @param Uuid: pod uuid
+        # @type Uuid: String
+        # @param State: pod的状态
+        # @type State: String
+        # @param Reason: pod处于该状态原因
+        # @type Reason: String
+        # @param OwnerCluster: pod所属集群
+        # @type OwnerCluster: String
+        # @param Memory: pod内存大小
+        # @type Memory: Integer
+
+        attr_accessor :Name, :Uuid, :State, :Reason, :OwnerCluster, :Memory
+        
+        def initialize(name=nil, uuid=nil, state=nil, reason=nil, ownercluster=nil, memory=nil)
+          @Name = name
+          @Uuid = uuid
+          @State = state
+          @Reason = reason
+          @OwnerCluster = ownercluster
+          @Memory = memory
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Uuid = params['Uuid']
+          @State = params['State']
+          @Reason = params['Reason']
+          @OwnerCluster = params['OwnerCluster']
+          @Memory = params['Memory']
         end
       end
 
@@ -2731,6 +2867,38 @@ module TencentCloud
           end
           @DiskNum = params['DiskNum']
           @LocalDiskNum = params['LocalDiskNum']
+        end
+      end
+
+      # 获取CVM配额
+      class QuotaEntity < TencentCloud::Common::AbstractModel
+        # @param UsedQuota: 已使用配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedQuota: Integer
+        # @param RemainingQuota: 剩余配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainingQuota: Integer
+        # @param TotalQuota: 总配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalQuota: Integer
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+
+        attr_accessor :UsedQuota, :RemainingQuota, :TotalQuota, :Zone
+        
+        def initialize(usedquota=nil, remainingquota=nil, totalquota=nil, zone=nil)
+          @UsedQuota = usedquota
+          @RemainingQuota = remainingquota
+          @TotalQuota = totalquota
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @UsedQuota = params['UsedQuota']
+          @RemainingQuota = params['RemainingQuota']
+          @TotalQuota = params['TotalQuota']
+          @Zone = params['Zone']
         end
       end
 
@@ -3219,6 +3387,41 @@ module TencentCloud
           end
           @ActionOnFailure = params['ActionOnFailure']
           @User = params['User']
+        end
+      end
+
+      # SyncPodState请求参数结构体
+      class SyncPodStateRequest < TencentCloud::Common::AbstractModel
+        # @param Message: EmrService中pod状态信息
+        # @type Message: :class:`Tencentcloud::Emr.v20190103.models.PodState`
+
+        attr_accessor :Message
+        
+        def initialize(message=nil)
+          @Message = message
+        end
+
+        def deserialize(params)
+          unless params['Message'].nil?
+            @Message = PodState.new
+            @Message.deserialize(params['Message'])
+          end
+        end
+      end
+
+      # SyncPodState返回参数结构体
+      class SyncPodStateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

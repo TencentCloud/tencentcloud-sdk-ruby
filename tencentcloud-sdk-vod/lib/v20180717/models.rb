@@ -16344,6 +16344,9 @@ module TencentCloud
         # @param CreateTime: 匹配创建时间在此时间段内的文件。
         # <li>包含所指定的头尾时间点。</li>
         # @type CreateTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
+        # @param ExpireTime: 匹配过期时间在此时间段内的文件，无法检索到已过期文件。
+        # <li>包含所指定的头尾时间点。</li>
+        # @type ExpireTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
         # @param Sort: 排序方式。
         # <li>Sort.Field 可选 CreateTime 。</li>
         # <li>当 Text、 Names 或 Descriptions 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
@@ -16372,6 +16375,12 @@ module TencentCloud
         # @type StorageRegions: Array
         # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         # @type SubAppId: Integer
+        # @param StorageClasses: 存储类型数组。可选值有：
+        # <li> STANDARD：标准存储。</li>
+        # <li> STANDARD_IA：低频存储。</li>
+        # <li> ARCHIVE：归档存储。</li>
+        # <li> DEEP_ARCHIVE：深度归档存储。</li>
+        # @type StorageClasses: Array
         # @param Text: （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）
         # 搜索文本，模糊匹配媒体文件名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：64个字符。
         # @type Text: String
@@ -16397,9 +16406,9 @@ module TencentCloud
         # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
         # @type EndTime: String
 
-        attr_accessor :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :SubAppId, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
+        attr_accessor :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :Vids, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :SubAppId, :StorageClasses, :Text, :SourceType, :StreamId, :Vid, :StartTime, :EndTime
         
-        def initialize(fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, subappid=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
+        def initialize(fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, vids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, subappid=nil, storageclasses=nil, text=nil, sourcetype=nil, streamid=nil, vid=nil, starttime=nil, endtime=nil)
           @FileIds = fileids
           @Names = names
           @NamePrefixes = nameprefixes
@@ -16411,12 +16420,14 @@ module TencentCloud
           @StreamIds = streamids
           @Vids = vids
           @CreateTime = createtime
+          @ExpireTime = expiretime
           @Sort = sort
           @Offset = offset
           @Limit = limit
           @Filters = filters
           @StorageRegions = storageregions
           @SubAppId = subappid
+          @StorageClasses = storageclasses
           @Text = text
           @SourceType = sourcetype
           @StreamId = streamid
@@ -16440,6 +16451,10 @@ module TencentCloud
             @CreateTime = TimeRange.new
             @CreateTime.deserialize(params['CreateTime'])
           end
+          unless params['ExpireTime'].nil?
+            @ExpireTime = TimeRange.new
+            @ExpireTime.deserialize(params['ExpireTime'])
+          end
           unless params['Sort'].nil?
             @Sort = SortBy.new
             @Sort.deserialize(params['Sort'])
@@ -16449,6 +16464,7 @@ module TencentCloud
           @Filters = params['Filters']
           @StorageRegions = params['StorageRegions']
           @SubAppId = params['SubAppId']
+          @StorageClasses = params['StorageClasses']
           @Text = params['Text']
           @SourceType = params['SourceType']
           @StreamId = params['StreamId']

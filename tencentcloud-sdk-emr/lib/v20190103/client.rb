@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取账户的CVM配额
+
+        # @param request: Request instance for DescribeCvmQuota.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeCvmQuotaRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeCvmQuotaResponse`
+        def DescribeCvmQuota(request)
+          body = send_request('DescribeCvmQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCvmQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 预付费集群隔离后续费资源查询
 
         # @param request: Request instance for DescribeInstanceRenewNodes.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ScaleOutInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # EMR同步TKE中POD状态
+
+        # @param request: Request instance for SyncPodState.
+        # @type request: :class:`Tencentcloud::emr::V20190103::SyncPodStateRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::SyncPodStateResponse`
+        def SyncPodState(request)
+          body = send_request('SyncPodState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncPodStateResponse.new
             model.deserialize(response['Response'])
             model
           else

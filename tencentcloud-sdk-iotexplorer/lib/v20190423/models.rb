@@ -547,17 +547,21 @@ module TencentCloud
         # @type ProductId: String
         # @param DeviceName: 设备名称。
         # @type DeviceName: String
+        # @param ForceDelete: 是否删除绑定设备
+        # @type ForceDelete: Boolean
 
-        attr_accessor :ProductId, :DeviceName
+        attr_accessor :ProductId, :DeviceName, :ForceDelete
         
-        def initialize(productid=nil, devicename=nil)
+        def initialize(productid=nil, devicename=nil, forcedelete=nil)
           @ProductId = productid
           @DeviceName = devicename
+          @ForceDelete = forcedelete
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
+          @ForceDelete = params['ForceDelete']
         end
       end
 

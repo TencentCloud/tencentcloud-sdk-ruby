@@ -2643,15 +2643,18 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param InstanceRole: 节点角色, MASTER, WORKER, ETCD, MASTER_ETCD,ALL, 默认为WORKER。默认为WORKER类型。
         # @type InstanceRole: String
+        # @param Filters: 过滤条件列表；Name的可选值为nodepool-id、nodepool-instance-type；Name为nodepool-id表示根据节点池id过滤机器，Value的值为具体的节点池id，Name为nodepool-instance-type表示节点加入节点池的方式，Value的值为MANUALLY_ADDED（手动加入节点池）、AUTOSCALING_ADDED（伸缩组扩容方式加入节点池）、ALL（手动加入节点池 和 伸缩组扩容方式加入节点池）
+        # @type Filters: Array
 
-        attr_accessor :ClusterId, :Offset, :Limit, :InstanceIds, :InstanceRole
+        attr_accessor :ClusterId, :Offset, :Limit, :InstanceIds, :InstanceRole, :Filters
         
-        def initialize(clusterid=nil, offset=nil, limit=nil, instanceids=nil, instancerole=nil)
+        def initialize(clusterid=nil, offset=nil, limit=nil, instanceids=nil, instancerole=nil, filters=nil)
           @ClusterId = clusterid
           @Offset = offset
           @Limit = limit
           @InstanceIds = instanceids
           @InstanceRole = instancerole
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -2660,6 +2663,14 @@ module TencentCloud
           @Limit = params['Limit']
           @InstanceIds = params['InstanceIds']
           @InstanceRole = params['InstanceRole']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 

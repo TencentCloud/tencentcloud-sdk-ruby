@@ -885,15 +885,19 @@ module TencentCloud
         # @type Idle: String
         # @param ClusterName: 集群名称。
         # @type ClusterName: String
+        # @param Isp: 互联网服务供应商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Isp: String
 
-        attr_accessor :ClusterId, :Vip, :LoadBalancerId, :Idle, :ClusterName
+        attr_accessor :ClusterId, :Vip, :LoadBalancerId, :Idle, :ClusterName, :Isp
         
-        def initialize(clusterid=nil, vip=nil, loadbalancerid=nil, idle=nil, clustername=nil)
+        def initialize(clusterid=nil, vip=nil, loadbalancerid=nil, idle=nil, clustername=nil, isp=nil)
           @ClusterId = clusterid
           @Vip = vip
           @LoadBalancerId = loadbalancerid
           @Idle = idle
           @ClusterName = clustername
+          @Isp = isp
         end
 
         def deserialize(params)
@@ -902,6 +906,7 @@ module TencentCloud
           @LoadBalancerId = params['LoadBalancerId']
           @Idle = params['Idle']
           @ClusterName = params['ClusterName']
+          @Isp = params['Isp']
         end
       end
 

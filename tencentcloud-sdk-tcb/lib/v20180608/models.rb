@@ -89,6 +89,26 @@ module TencentCloud
         end
       end
 
+      # 网关服务信息
+      class BackendServiceInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param Status: 服务状态
+        # @type Status: String
+
+        attr_accessor :ServiceName, :Status
+        
+        def initialize(servicename=nil, status=nil)
+          @ServiceName = servicename
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @Status = params['Status']
+        end
+      end
+
       # BindEnvGateway请求参数结构体
       class BindEnvGatewayRequest < TencentCloud::Common::AbstractModel
         # @param SubEnvId: 子环境id
@@ -1683,6 +1703,62 @@ module TencentCloud
         def deserialize(params)
           @TranId = params['TranId']
           @EnvId = params['EnvId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateStandaloneGateway请求参数结构体
+      class CreateStandaloneGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param GatewayAlias: 网关名
+        # @type GatewayAlias: String
+        # @param VpcId: 私有网络ID
+        # @type VpcId: String
+        # @param SubnetIds: 子网ID
+        # @type SubnetIds: Array
+        # @param GatewayDesc: 网关描述
+        # @type GatewayDesc: String
+        # @param PackageVersion: 网关套餐版本
+        # @type PackageVersion: String
+
+        attr_accessor :EnvId, :GatewayAlias, :VpcId, :SubnetIds, :GatewayDesc, :PackageVersion
+        
+        def initialize(envid=nil, gatewayalias=nil, vpcid=nil, subnetids=nil, gatewaydesc=nil, packageversion=nil)
+          @EnvId = envid
+          @GatewayAlias = gatewayalias
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+          @GatewayDesc = gatewaydesc
+          @PackageVersion = packageversion
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GatewayAlias = params['GatewayAlias']
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+          @GatewayDesc = params['GatewayDesc']
+          @PackageVersion = params['PackageVersion']
+        end
+      end
+
+      # CreateStandaloneGateway返回参数结构体
+      class CreateStandaloneGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param GatewayName: 网关名称
+        # @type GatewayName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GatewayName, :RequestId
+        
+        def initialize(gatewayname=nil, requestid=nil)
+          @GatewayName = gatewayname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GatewayName = params['GatewayName']
           @RequestId = params['RequestId']
         end
       end
@@ -3865,6 +3941,112 @@ module TencentCloud
         end
       end
 
+      # DescribeStandaloneGatewayPackage请求参数结构体
+      class DescribeStandaloneGatewayPackageRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param PackageVersion: 套餐版本，包含starter、basic、advanced、enterprise
+        # @type PackageVersion: String
+
+        attr_accessor :EnvId, :PackageVersion
+        
+        def initialize(envid=nil, packageversion=nil)
+          @EnvId = envid
+          @PackageVersion = packageversion
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @PackageVersion = params['PackageVersion']
+        end
+      end
+
+      # DescribeStandaloneGatewayPackage返回参数结构体
+      class DescribeStandaloneGatewayPackageResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param StandaloneGatewayPackageList: 套餐详情
+        # @type StandaloneGatewayPackageList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :StandaloneGatewayPackageList, :RequestId
+        
+        def initialize(total=nil, standalonegatewaypackagelist=nil, requestid=nil)
+          @Total = total
+          @StandaloneGatewayPackageList = standalonegatewaypackagelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['StandaloneGatewayPackageList'].nil?
+            @StandaloneGatewayPackageList = []
+            params['StandaloneGatewayPackageList'].each do |i|
+              standalonegatewaypackageinfo_tmp = StandaloneGatewayPackageInfo.new
+              standalonegatewaypackageinfo_tmp.deserialize(i)
+              @StandaloneGatewayPackageList << standalonegatewaypackageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStandaloneGateway请求参数结构体
+      class DescribeStandaloneGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param GatewayName: 网关名称
+        # @type GatewayName: String
+        # @param GatewayAlias: 网关别名
+        # @type GatewayAlias: String
+
+        attr_accessor :EnvId, :GatewayName, :GatewayAlias
+        
+        def initialize(envid=nil, gatewayname=nil, gatewayalias=nil)
+          @EnvId = envid
+          @GatewayName = gatewayname
+          @GatewayAlias = gatewayalias
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GatewayName = params['GatewayName']
+          @GatewayAlias = params['GatewayAlias']
+        end
+      end
+
+      # DescribeStandaloneGateway返回参数结构体
+      class DescribeStandaloneGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param StandaloneGatewayList: 独立网关信息列表
+        # @type StandaloneGatewayList: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StandaloneGatewayList, :Total, :RequestId
+        
+        def initialize(standalonegatewaylist=nil, total=nil, requestid=nil)
+          @StandaloneGatewayList = standalonegatewaylist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StandaloneGatewayList'].nil?
+            @StandaloneGatewayList = []
+            params['StandaloneGatewayList'].each do |i|
+              standalonegatewayinfo_tmp = StandaloneGatewayInfo.new
+              standalonegatewayinfo_tmp.deserialize(i)
+              @StandaloneGatewayList << standalonegatewayinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeWxCloudBaseRunEnvs请求参数结构体
       class DescribeWxCloudBaseRunEnvsRequest < TencentCloud::Common::AbstractModel
         # @param WxAppId: wx应用Id
@@ -3984,6 +4166,50 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyStandaloneGateway请求参数结构体
+      class DestroyStandaloneGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param GatewayName: 网名名称
+        # @type GatewayName: String
+        # @param IsForce: 是否强制释放
+        # @type IsForce: Boolean
+
+        attr_accessor :EnvId, :GatewayName, :IsForce
+        
+        def initialize(envid=nil, gatewayname=nil, isforce=nil)
+          @EnvId = envid
+          @GatewayName = gatewayname
+          @IsForce = isforce
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GatewayName = params['GatewayName']
+          @IsForce = params['IsForce']
+        end
+      end
+
+      # DestroyStandaloneGateway返回参数结构体
+      class DestroyStandaloneGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 删除独立网关状态
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -5223,10 +5449,12 @@ module TencentCloud
         # @type OperatorRemark: String
         # @param ServerPath: 服务路径（只会第一次生效）
         # @type ServerPath: String
+        # @param IsUpdateCls: 是否更新Cls
+        # @type IsUpdateCls: Boolean
 
-        attr_accessor :EnvId, :VersionName, :UploadType, :RepositoryType, :FlowRatio, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :ContainerPort, :ServerName, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :IsRebuild, :InitialDelaySeconds, :MountVolumeInfo, :Rollback, :SnapshotName, :CustomLogs, :EnableUnion, :OperatorRemark, :ServerPath
+        attr_accessor :EnvId, :VersionName, :UploadType, :RepositoryType, :FlowRatio, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :ContainerPort, :ServerName, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :IsRebuild, :InitialDelaySeconds, :MountVolumeInfo, :Rollback, :SnapshotName, :CustomLogs, :EnableUnion, :OperatorRemark, :ServerPath, :IsUpdateCls
         
-        def initialize(envid=nil, versionname=nil, uploadtype=nil, repositorytype=nil, flowratio=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, containerport=nil, servername=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, isrebuild=nil, initialdelayseconds=nil, mountvolumeinfo=nil, rollback=nil, snapshotname=nil, customlogs=nil, enableunion=nil, operatorremark=nil, serverpath=nil)
+        def initialize(envid=nil, versionname=nil, uploadtype=nil, repositorytype=nil, flowratio=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, containerport=nil, servername=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, isrebuild=nil, initialdelayseconds=nil, mountvolumeinfo=nil, rollback=nil, snapshotname=nil, customlogs=nil, enableunion=nil, operatorremark=nil, serverpath=nil, isupdatecls=nil)
           @EnvId = envid
           @VersionName = versionname
           @UploadType = uploadtype
@@ -5259,6 +5487,7 @@ module TencentCloud
           @EnableUnion = enableunion
           @OperatorRemark = operatorremark
           @ServerPath = serverpath
+          @IsUpdateCls = isupdatecls
         end
 
         def deserialize(params)
@@ -5307,6 +5536,7 @@ module TencentCloud
           @EnableUnion = params['EnableUnion']
           @OperatorRemark = params['OperatorRemark']
           @ServerPath = params['ServerPath']
+          @IsUpdateCls = params['IsUpdateCls']
         end
       end
 
@@ -5409,6 +5639,85 @@ module TencentCloud
         end
       end
 
+      # 独立网关信息
+      class StandaloneGatewayInfo < TencentCloud::Common::AbstractModel
+        # @param GatewayName: 独立网关名称
+        # @type GatewayName: String
+        # @param CPU: CPU核心数
+        # @type CPU: Float
+        # @param Mem: 内存大小，单位MB
+        # @type Mem: Integer
+        # @param PackageVersion: 套餐包版本名称
+        # @type PackageVersion: String
+        # @param GatewayAlias: 网关别名
+        # @type GatewayAlias: String
+        # @param VpcId: 私有网络ID
+        # @type VpcId: String
+        # @param SubnetIds: 子网ID列表
+        # @type SubnetIds: Array
+        # @param GatewayDesc: 网关描述
+        # @type GatewayDesc: String
+        # @param GateWayStatus: 网关状态
+        # @type GateWayStatus: String
+        # @param ServiceInfo: 服务信息
+        # @type ServiceInfo: :class:`Tencentcloud::Tcb.v20180608.models.BackendServiceInfo`
+
+        attr_accessor :GatewayName, :CPU, :Mem, :PackageVersion, :GatewayAlias, :VpcId, :SubnetIds, :GatewayDesc, :GateWayStatus, :ServiceInfo
+        
+        def initialize(gatewayname=nil, cpu=nil, mem=nil, packageversion=nil, gatewayalias=nil, vpcid=nil, subnetids=nil, gatewaydesc=nil, gatewaystatus=nil, serviceinfo=nil)
+          @GatewayName = gatewayname
+          @CPU = cpu
+          @Mem = mem
+          @PackageVersion = packageversion
+          @GatewayAlias = gatewayalias
+          @VpcId = vpcid
+          @SubnetIds = subnetids
+          @GatewayDesc = gatewaydesc
+          @GateWayStatus = gatewaystatus
+          @ServiceInfo = serviceinfo
+        end
+
+        def deserialize(params)
+          @GatewayName = params['GatewayName']
+          @CPU = params['CPU']
+          @Mem = params['Mem']
+          @PackageVersion = params['PackageVersion']
+          @GatewayAlias = params['GatewayAlias']
+          @VpcId = params['VpcId']
+          @SubnetIds = params['SubnetIds']
+          @GatewayDesc = params['GatewayDesc']
+          @GateWayStatus = params['GateWayStatus']
+          unless params['ServiceInfo'].nil?
+            @ServiceInfo = BackendServiceInfo.new
+            @ServiceInfo.deserialize(params['ServiceInfo'])
+          end
+        end
+      end
+
+      # 小租户网关套餐配置
+      class StandaloneGatewayPackageInfo < TencentCloud::Common::AbstractModel
+        # @param CPU: CPU核心数
+        # @type CPU: Float
+        # @param Mem: 内存大小，单位MB
+        # @type Mem: Integer
+        # @param PackageVersion: 套餐包版本名称
+        # @type PackageVersion: String
+
+        attr_accessor :CPU, :Mem, :PackageVersion
+        
+        def initialize(cpu=nil, mem=nil, packageversion=nil)
+          @CPU = cpu
+          @Mem = mem
+          @PackageVersion = packageversion
+        end
+
+        def deserialize(params)
+          @CPU = params['CPU']
+          @Mem = params['Mem']
+          @PackageVersion = params['PackageVersion']
+        end
+      end
+
       # 静态CDN资源信息
       class StaticStorageInfo < TencentCloud::Common::AbstractModel
         # @param StaticDomain: 静态CDN域名
@@ -5492,6 +5801,94 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # TurnOffStandaloneGateway请求参数结构体
+      class TurnOffStandaloneGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param GatewayName: 网关名称
+        # @type GatewayName: String
+        # @param ServiceNameList: 服务名称列表
+        # @type ServiceNameList: Array
+
+        attr_accessor :EnvId, :GatewayName, :ServiceNameList
+        
+        def initialize(envid=nil, gatewayname=nil, servicenamelist=nil)
+          @EnvId = envid
+          @GatewayName = gatewayname
+          @ServiceNameList = servicenamelist
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GatewayName = params['GatewayName']
+          @ServiceNameList = params['ServiceNameList']
+        end
+      end
+
+      # TurnOffStandaloneGateway返回参数结构体
+      class TurnOffStandaloneGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 关闭独立网关状态
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TurnOnStandaloneGateway请求参数结构体
+      class TurnOnStandaloneGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param GatewayName: 网关名称
+        # @type GatewayName: String
+        # @param ServiceNameList: 服务名称列表
+        # @type ServiceNameList: Array
+
+        attr_accessor :EnvId, :GatewayName, :ServiceNameList
+        
+        def initialize(envid=nil, gatewayname=nil, servicenamelist=nil)
+          @EnvId = envid
+          @GatewayName = gatewayname
+          @ServiceNameList = servicenamelist
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @GatewayName = params['GatewayName']
+          @ServiceNameList = params['ServiceNameList']
+        end
+      end
+
+      # TurnOnStandaloneGateway返回参数结构体
+      class TurnOnStandaloneGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 小租户网关开启状态
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
         end
       end
 
