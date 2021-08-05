@@ -1735,6 +1735,61 @@ module TencentCloud
         end
       end
 
+      # ConfirmOrder请求参数结构体
+      class ConfirmOrderRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 分配给商户的AppId
+        # @type MerchantAppId: String
+        # @param OrderNo: 平台流水号。消费订单发起成功后，返回的平台唯一订单号。
+        # @type OrderNo: String
+
+        attr_accessor :MerchantAppId, :OrderNo
+        
+        def initialize(merchantappid=nil, orderno=nil)
+          @MerchantAppId = merchantappid
+          @OrderNo = orderno
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @OrderNo = params['OrderNo']
+        end
+      end
+
+      # ConfirmOrder返回参数结构体
+      class ConfirmOrderResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 分配给商户的AppId
+        # @type MerchantAppId: String
+        # @param OrderNo: 平台流水号。消费订单发起成功后，返回的平台唯一订单号。
+        # @type OrderNo: String
+        # @param Status: 订单确认状态。0-确认失败
+        # 1-确认成功
+        # 2-可疑状态
+        # @type Status: String
+        # @param Description: 订单确认状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantAppId, :OrderNo, :Status, :Description, :RequestId
+        
+        def initialize(merchantappid=nil, orderno=nil, status=nil, description=nil, requestid=nil)
+          @MerchantAppId = merchantappid
+          @OrderNo = orderno
+          @Status = status
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @OrderNo = params['OrderNo']
+          @Status = params['Status']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 合约信息
       class ContractInfo < TencentCloud::Common::AbstractModel
         # @param ChannelContractMerchantId: 米大师内部签约商户号
@@ -3131,6 +3186,127 @@ module TencentCloud
         end
       end
 
+      # CreateOrder请求参数结构体
+      class CreateOrderRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelCode: 渠道编号。ZSB2B：招商银行B2B。
+        # @type ChannelCode: String
+        # @param MerchantAppId: 进件成功后返给商户方的 AppId。
+        # @type MerchantAppId: String
+        # @param Amount: 交易金额。单位：元
+        # @type Amount: String
+        # @param TraceNo: 商户流水号。商户唯一订单号由字母或数字组成。
+        # @type TraceNo: String
+        # @param NotifyUrl: 通知地址。商户接收交易结果的通知地址。
+        # @type NotifyUrl: String
+        # @param ReturnUrl: 返回地址。支付成功后，页面将跳 转返回到商户的该地址。
+        # @type ReturnUrl: String
+
+        attr_accessor :ChannelCode, :MerchantAppId, :Amount, :TraceNo, :NotifyUrl, :ReturnUrl
+        
+        def initialize(channelcode=nil, merchantappid=nil, amount=nil, traceno=nil, notifyurl=nil, returnurl=nil)
+          @ChannelCode = channelcode
+          @MerchantAppId = merchantappid
+          @Amount = amount
+          @TraceNo = traceno
+          @NotifyUrl = notifyurl
+          @ReturnUrl = returnurl
+        end
+
+        def deserialize(params)
+          @ChannelCode = params['ChannelCode']
+          @MerchantAppId = params['MerchantAppId']
+          @Amount = params['Amount']
+          @TraceNo = params['TraceNo']
+          @NotifyUrl = params['NotifyUrl']
+          @ReturnUrl = params['ReturnUrl']
+        end
+      end
+
+      # CreateOrder返回参数结构体
+      class CreateOrderResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 进件成功后返给商户方的AppId。
+        # @type MerchantAppId: String
+        # @param TraceNo: 商户流水号，商户唯一订单号由字母或数字组成。
+        # @type TraceNo: String
+        # @param OrderNo: 平台流水号，若下单成功则返回。
+        # @type OrderNo: String
+        # @param PayUrl: 支付页面跳转地址，若下单成功则返回。
+        # @type PayUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantAppId, :TraceNo, :OrderNo, :PayUrl, :RequestId
+        
+        def initialize(merchantappid=nil, traceno=nil, orderno=nil, payurl=nil, requestid=nil)
+          @MerchantAppId = merchantappid
+          @TraceNo = traceno
+          @OrderNo = orderno
+          @PayUrl = payurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @TraceNo = params['TraceNo']
+          @OrderNo = params['OrderNo']
+          @PayUrl = params['PayUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePayMerchant请求参数结构体
+      class CreatePayMerchantRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformCode: 平台编号
+        # @type PlatformCode: String
+        # @param ChannelMerchantNo: 渠道方收款商户编号，由渠道方(银行)提 供。
+        # @type ChannelMerchantNo: String
+        # @param ChannelCheckFlag: 是否需要向渠道进行 商户信息验证 1:验证
+        # 0:不验证
+        # @type ChannelCheckFlag: String
+        # @param MerchantName: 收款商户名称
+        # @type MerchantName: String
+        # @param BusinessPayFlag: 是否开通 B2B 支付 1:开通 0:不开通 缺省:1
+        # @type BusinessPayFlag: String
+
+        attr_accessor :PlatformCode, :ChannelMerchantNo, :ChannelCheckFlag, :MerchantName, :BusinessPayFlag
+        
+        def initialize(platformcode=nil, channelmerchantno=nil, channelcheckflag=nil, merchantname=nil, businesspayflag=nil)
+          @PlatformCode = platformcode
+          @ChannelMerchantNo = channelmerchantno
+          @ChannelCheckFlag = channelcheckflag
+          @MerchantName = merchantname
+          @BusinessPayFlag = businesspayflag
+        end
+
+        def deserialize(params)
+          @PlatformCode = params['PlatformCode']
+          @ChannelMerchantNo = params['ChannelMerchantNo']
+          @ChannelCheckFlag = params['ChannelCheckFlag']
+          @MerchantName = params['MerchantName']
+          @BusinessPayFlag = params['BusinessPayFlag']
+        end
+      end
+
+      # CreatePayMerchant返回参数结构体
+      class CreatePayMerchantResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 分配给商户的 AppId。该 AppId 为后续各项 交易的商户标识。
+        # @type MerchantAppId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantAppId, :RequestId
+        
+        def initialize(merchantappid=nil, requestid=nil)
+          @MerchantAppId = merchantappid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建红票明细
       class CreateRedInvoiceItem < TencentCloud::Common::AbstractModel
         # @param OrderId: 订单号
@@ -4520,6 +4696,46 @@ module TencentCloud
             @AgentTaxPaymentBatch = AgentTaxPaymentBatch.new
             @AgentTaxPaymentBatch.deserialize(params['AgentTaxPaymentBatch'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMerchant请求参数结构体
+      class ModifyMerchantRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 进件成功后返给商户的AppId
+        # @type MerchantAppId: String
+        # @param MerchantName: 收款商户名称
+        # @type MerchantName: String
+        # @param BusinessPayFlag: B2B 支付标志。是否开通 B2B支付， 1:开通 0:不开通。
+        # @type BusinessPayFlag: String
+
+        attr_accessor :MerchantAppId, :MerchantName, :BusinessPayFlag
+        
+        def initialize(merchantappid=nil, merchantname=nil, businesspayflag=nil)
+          @MerchantAppId = merchantappid
+          @MerchantName = merchantname
+          @BusinessPayFlag = businesspayflag
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @MerchantName = params['MerchantName']
+          @BusinessPayFlag = params['BusinessPayFlag']
+        end
+      end
+
+      # ModifyMerchant返回参数结构体
+      class ModifyMerchantResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -6927,6 +7143,98 @@ module TencentCloud
         end
       end
 
+      # QueryMerchantOrder请求参数结构体
+      class QueryMerchantOrderRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 进件成功后返给商户方的AppId。
+        # @type MerchantAppId: String
+        # @param OrderNo: 平台流水号。平台唯一订单号。
+        # @type OrderNo: String
+
+        attr_accessor :MerchantAppId, :OrderNo
+        
+        def initialize(merchantappid=nil, orderno=nil)
+          @MerchantAppId = merchantappid
+          @OrderNo = orderno
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @OrderNo = params['OrderNo']
+        end
+      end
+
+      # QueryMerchantOrder返回参数结构体
+      class QueryMerchantOrderResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 进件成功后返给商户方的AppId。
+        # @type MerchantAppId: String
+        # @param OrderNo: 平台流水号。平台唯一订单号。
+        # @type OrderNo: String
+        # @param Status: 订单支付状态。0-下单失败 1-下单成功未支付 2-支付成功 3-支付失败 4-退款中 5-退款成功 6-退款失败 7-待付款 8-待确认。
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantAppId, :OrderNo, :Status, :RequestId
+        
+        def initialize(merchantappid=nil, orderno=nil, status=nil, requestid=nil)
+          @MerchantAppId = merchantappid
+          @OrderNo = orderno
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @OrderNo = params['OrderNo']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryMerchant请求参数结构体
+      class QueryMerchantRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 进件成功后返给商户方的 AppId
+        # @type MerchantAppId: String
+
+        attr_accessor :MerchantAppId
+        
+        def initialize(merchantappid=nil)
+          @MerchantAppId = merchantappid
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+        end
+      end
+
+      # QueryMerchant返回参数结构体
+      class QueryMerchantResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 分配给商户的 AppId，该 AppId 为后续各项 交易的商户标识。
+        # @type MerchantAppId: String
+        # @param MerchantName: 收款商户名称。
+        # @type MerchantName: String
+        # @param BusinessPayFlag: B2B 支付标志。是否开通 B2B 支付， 1:开通 0:不开通。
+        # @type BusinessPayFlag: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantAppId, :MerchantName, :BusinessPayFlag, :RequestId
+        
+        def initialize(merchantappid=nil, merchantname=nil, businesspayflag=nil, requestid=nil)
+          @MerchantAppId = merchantappid
+          @MerchantName = merchantname
+          @BusinessPayFlag = businesspayflag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @MerchantName = params['MerchantName']
+          @BusinessPayFlag = params['BusinessPayFlag']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询订单接口的出参，订单列表
       class QueryOrderOutOrderList < TencentCloud::Common::AbstractModel
         # @param MidasAppId: 聚鑫分配的支付主MidasAppId
@@ -8916,6 +9224,61 @@ module TencentCloud
           @RequestType = params['RequestType']
           @FrontSequenceNumber = params['FrontSequenceNumber']
           @ReservedMessage = params['ReservedMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RefundOrder请求参数结构体
+      class RefundOrderRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 进件成功后返给商户方的AppId
+        # @type MerchantAppId: String
+        # @param OrderNo: 平台流水号。消费订单发起成功后，返回的平台唯一订单号。
+        # @type OrderNo: String
+
+        attr_accessor :MerchantAppId, :OrderNo
+        
+        def initialize(merchantappid=nil, orderno=nil)
+          @MerchantAppId = merchantappid
+          @OrderNo = orderno
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @OrderNo = params['OrderNo']
+        end
+      end
+
+      # RefundOrder返回参数结构体
+      class RefundOrderResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 进件成功后返给商户方的AppId
+        # @type MerchantAppId: String
+        # @param OrderNo: 平台流水号。消费订单发起成功后，返回的平台唯一订单号。
+        # @type OrderNo: String
+        # @param Status: 订单退款状态。0-退款失败
+        # 1-退款成功
+        # 2-可疑状态
+        # @type Status: String
+        # @param Description: 订单退款状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantAppId, :OrderNo, :Status, :Description, :RequestId
+        
+        def initialize(merchantappid=nil, orderno=nil, status=nil, description=nil, requestid=nil)
+          @MerchantAppId = merchantappid
+          @OrderNo = orderno
+          @Status = status
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @OrderNo = params['OrderNo']
+          @Status = params['Status']
+          @Description = params['Description']
           @RequestId = params['RequestId']
         end
       end

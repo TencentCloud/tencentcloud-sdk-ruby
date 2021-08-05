@@ -3531,17 +3531,21 @@ module TencentCloud
         # @type TaskId: String
         # @param Operate: 操作
         # @type Operate: String
+        # @param OperateRemark: 打回操作的备注信息
+        # @type OperateRemark: String
 
-        attr_accessor :TaskId, :Operate
+        attr_accessor :TaskId, :Operate, :OperateRemark
         
-        def initialize(taskid=nil, operate=nil)
+        def initialize(taskid=nil, operate=nil, operateremark=nil)
           @TaskId = taskid
           @Operate = operate
+          @OperateRemark = operateremark
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @Operate = params['Operate']
+          @OperateRemark = params['OperateRemark']
         end
       end
 

@@ -426,10 +426,14 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param InitParams: 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
         # @type InitParams: Array
+        # @param DcnRegion: DCN源地域
+        # @type DcnRegion: String
+        # @param DcnInstanceId: DCN源实例ID
+        # @type DcnInstanceId: String
 
-        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Period, :Count, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :ProjectId, :DbVersionId, :InstanceName, :SecurityGroupIds, :AutoRenewFlag, :Ipv6Flag, :ResourceTags, :InitParams
+        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Period, :Count, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :ProjectId, :DbVersionId, :InstanceName, :SecurityGroupIds, :AutoRenewFlag, :Ipv6Flag, :ResourceTags, :InitParams, :DcnRegion, :DcnInstanceId
         
-        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, projectid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, autorenewflag=nil, ipv6flag=nil, resourcetags=nil, initparams=nil)
+        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, projectid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, autorenewflag=nil, ipv6flag=nil, resourcetags=nil, initparams=nil, dcnregion=nil, dcninstanceid=nil)
           @Zones = zones
           @NodeCount = nodecount
           @Memory = memory
@@ -448,6 +452,8 @@ module TencentCloud
           @Ipv6Flag = ipv6flag
           @ResourceTags = resourcetags
           @InitParams = initparams
+          @DcnRegion = dcnregion
+          @DcnInstanceId = dcninstanceid
         end
 
         def deserialize(params)
@@ -483,6 +489,8 @@ module TencentCloud
               @InitParams << dbparamvalue_tmp
             end
           end
+          @DcnRegion = params['DcnRegion']
+          @DcnInstanceId = params['DcnInstanceId']
         end
       end
 

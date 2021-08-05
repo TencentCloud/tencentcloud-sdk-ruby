@@ -3801,6 +3801,7 @@ module TencentCloud
         # fail：预热失败
         # done：预热成功
         # process：预热中
+        # invalid: 预热无效(源站返回4xx或5xx状态码)
         # @type Status: String
 
         attr_accessor :StartTime, :EndTime, :TaskId, :Keyword, :Offset, :Limit, :Area, :Status
@@ -7536,6 +7537,7 @@ module TencentCloud
         # fail：预热失败
         # done：预热成功
         # process：预热中
+        # invalid：预热无效(源站返回4xx或5xx状态码)
         # @type Status: String
         # @param Percent: 预热进度百分比
         # @type Percent: Integer

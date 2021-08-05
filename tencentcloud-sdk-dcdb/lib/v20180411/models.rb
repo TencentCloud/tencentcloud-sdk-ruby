@@ -432,10 +432,14 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param InitParams: 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
         # @type InitParams: Array
+        # @param DcnRegion: DCN源地域
+        # @type DcnRegion: String
+        # @param DcnInstanceId: DCN源实例ID
+        # @type DcnInstanceId: String
 
-        attr_accessor :Zones, :Period, :ShardMemory, :ShardStorage, :ShardNodeCount, :ShardCount, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :AutoVoucher, :VoucherIds, :SecurityGroupId, :InstanceName, :Ipv6Flag, :ResourceTags, :InitParams
+        attr_accessor :Zones, :Period, :ShardMemory, :ShardStorage, :ShardNodeCount, :ShardCount, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :AutoVoucher, :VoucherIds, :SecurityGroupId, :InstanceName, :Ipv6Flag, :ResourceTags, :InitParams, :DcnRegion, :DcnInstanceId
         
-        def initialize(zones=nil, period=nil, shardmemory=nil, shardstorage=nil, shardnodecount=nil, shardcount=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, autovoucher=nil, voucherids=nil, securitygroupid=nil, instancename=nil, ipv6flag=nil, resourcetags=nil, initparams=nil)
+        def initialize(zones=nil, period=nil, shardmemory=nil, shardstorage=nil, shardnodecount=nil, shardcount=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, autovoucher=nil, voucherids=nil, securitygroupid=nil, instancename=nil, ipv6flag=nil, resourcetags=nil, initparams=nil, dcnregion=nil, dcninstanceid=nil)
           @Zones = zones
           @Period = period
           @ShardMemory = shardmemory
@@ -454,6 +458,8 @@ module TencentCloud
           @Ipv6Flag = ipv6flag
           @ResourceTags = resourcetags
           @InitParams = initparams
+          @DcnRegion = dcnregion
+          @DcnInstanceId = dcninstanceid
         end
 
         def deserialize(params)
@@ -489,6 +495,8 @@ module TencentCloud
               @InitParams << dbparamvalue_tmp
             end
           end
+          @DcnRegion = params['DcnRegion']
+          @DcnInstanceId = params['DcnInstanceId']
         end
       end
 

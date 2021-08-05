@@ -363,6 +363,45 @@ module TencentCloud
         end
       end
 
+      # 消息记录
+      class ConsumerRecord < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名
+        # @type Topic: String
+        # @param Partition: 分区id
+        # @type Partition: Integer
+        # @param Offset: 位点
+        # @type Offset: Integer
+        # @param Key: 消息key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 消息value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Timestamp: 消息时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+
+        attr_accessor :Topic, :Partition, :Offset, :Key, :Value, :Timestamp
+        
+        def initialize(topic=nil, partition=nil, offset=nil, key=nil, value=nil, timestamp=nil)
+          @Topic = topic
+          @Partition = partition
+          @Offset = offset
+          @Key = key
+          @Value = value
+          @Timestamp = timestamp
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @Partition = params['Partition']
+          @Offset = params['Offset']
+          @Key = params['Key']
+          @Value = params['Value']
+          @Timestamp = params['Timestamp']
+        end
+      end
+
       # CreateAcl请求参数结构体
       class CreateAclRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id信息
@@ -1894,6 +1933,57 @@ module TencentCloud
           @DiskQuotaPercentage = params['DiskQuotaPercentage']
           @StepForwardPercentage = params['StepForwardPercentage']
           @BottomRetention = params['BottomRetention']
+        end
+      end
+
+      # FetchMessageByOffset请求参数结构体
+      class FetchMessageByOffsetRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param Topic: 主题名
+        # @type Topic: String
+        # @param Partition: 分区id
+        # @type Partition: Integer
+        # @param Offset: 位点信息
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Topic, :Partition, :Offset
+        
+        def initialize(instanceid=nil, topic=nil, partition=nil, offset=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Partition = partition
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @Partition = params['Partition']
+          @Offset = params['Offset']
+        end
+      end
+
+      # FetchMessageByOffset返回参数结构体
+      class FetchMessageByOffsetResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConsumerRecord`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ConsumerRecord.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

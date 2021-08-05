@@ -1078,6 +1078,34 @@ module TencentCloud
         end
       end
 
+      # cls日志信息
+      class ClsInfo < TencentCloud::Common::AbstractModel
+        # @param ClsRegion: cls所属地域
+        # @type ClsRegion: String
+        # @param ClsLogsetId: cls日志集ID
+        # @type ClsLogsetId: String
+        # @param ClsTopicId: cls日志主题ID
+        # @type ClsTopicId: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :ClsRegion, :ClsLogsetId, :ClsTopicId, :CreateTime
+        
+        def initialize(clsregion=nil, clslogsetid=nil, clstopicid=nil, createtime=nil)
+          @ClsRegion = clsregion
+          @ClsLogsetId = clslogsetid
+          @ClsTopicId = clstopicid
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ClsRegion = params['ClsRegion']
+          @ClsLogsetId = params['ClsLogsetId']
+          @ClsTopicId = params['ClsTopicId']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 云开发项目来源
       class CodeSource < TencentCloud::Common::AbstractModel
         # @param Type: 类型, 可能的枚举: "coding","package","package_url","github","gitlab","gitee","rawcode"
@@ -3052,6 +3080,97 @@ module TencentCloud
         end
       end
 
+      # DescribeCurveData请求参数结构体
+      class DescribeCurveDataRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param MetricName: <li> 指标名: </li>
+        # <li> StorageRead: 存储读请求次数 </li>
+        # <li> StorageWrite: 存储写请求次数 </li>
+        # <li> StorageCdnOriginFlux: CDN回源流量, 单位字节 </li>
+        # <li> CDNFlux: CDN回源流量, 单位字节 </li>
+        # <li> FunctionInvocation: 云函数调用次数 </li>
+        # <li> FunctionGBs: 云函数资源使用量, 单位Mb*Ms </li>
+        # <li> FunctionFlux: 云函数流量, 单位千字节(KB) </li>
+        # <li> FunctionError: 云函数调用错误次数 </li>
+        # <li> FunctionDuration: 云函数运行时间, 单位毫秒 </li>
+        # <li> DbRead: 数据库读请求数 </li>
+        # <li> DbWrite: 数据库写请求数 </li>
+        # <li> DbCostTime10ms: 数据库耗时在10ms~50ms请求数 </li>
+        # <li> DbCostTime50ms: 数据库耗时在50ms~100ms请求数 </li>
+        # <li> DbCostTime100ms: 数据库耗时在100ms以上请求数 </li>
+        # <li> TkeCpuRatio: 容器CPU占用率 </li>
+        # <li> TkeMemRatio: 容器内存占用率 </li>
+        # <li> TkeCpuUsed: 容器CPU使用量 </li>
+        # <li> TkeMemUsed: 容器内存使用量 </li>
+        # <li> TkeInvokeNum: 调用量 </li>
+        # @type MetricName: String
+        # @param StartTime: 开始时间，如2018-08-24 10:50:00, 开始时间需要早于结束时间至少五分钟(原因是因为目前统计粒度最小是5分钟).
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如2018-08-24 10:50:00, 结束时间需要晚于开始时间至少五分钟(原因是因为目前统计粒度最小是5分钟)..
+        # @type EndTime: String
+        # @param ResourceID: 资源ID, 目前仅对云函数、容器托管相关的指标有意义。云函数(FunctionInvocation, FunctionGBs, FunctionFlux, FunctionError, FunctionDuration)、容器托管（服务名称）, 如果想查询某个云函数的指标则在ResourceId中传入函数名; 如果只想查询整个namespace的指标, 则留空或不传.如果想查询数据库某个集合相关信息，传入集合名称
+        # @type ResourceID: String
+
+        attr_accessor :EnvId, :MetricName, :StartTime, :EndTime, :ResourceID
+        
+        def initialize(envid=nil, metricname=nil, starttime=nil, endtime=nil, resourceid=nil)
+          @EnvId = envid
+          @MetricName = metricname
+          @StartTime = starttime
+          @EndTime = endtime
+          @ResourceID = resourceid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @MetricName = params['MetricName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ResourceID = params['ResourceID']
+        end
+      end
+
+      # DescribeCurveData返回参数结构体
+      class DescribeCurveDataResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间, 会根据数据的统计周期进行取整.
+        # @type StartTime: String
+        # @param EndTime: 结束时间, 会根据数据的统计周期进行取整.
+        # @type EndTime: String
+        # @param MetricName: 指标名.
+        # @type MetricName: String
+        # @param Period: 统计周期(单位秒), 当时间区间为1天内, 统计周期为5分钟; 当时间区间选择为1天以上, 15天以下, 统计周期为1小时; 当时间区间选择为15天以上, 180天以下, 统计周期为1天.
+        # @type Period: Integer
+        # @param Values: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到.
+        # @type Values: Array
+        # @param Time: 时间数据, 标识监控数据Values中的点是哪个时间段上报的.
+        # @type Time: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :EndTime, :MetricName, :Period, :Values, :Time, :RequestId
+        
+        def initialize(starttime=nil, endtime=nil, metricname=nil, period=nil, values=nil, time=nil, requestid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricName = metricname
+          @Period = period
+          @Values = values
+          @Time = time
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricName = params['MetricName']
+          @Period = params['Period']
+          @Values = params['Values']
+          @Time = params['Time']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDatabaseACL请求参数结构体
       class DescribeDatabaseACLRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -4455,10 +4574,13 @@ module TencentCloud
         # @param Tags: 环境标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param CustomLogServices: 自定义日志服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomLogServices: Array
 
-        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags
+        attr_accessor :EnvId, :Source, :Alias, :CreateTime, :UpdateTime, :Status, :Databases, :Storages, :Functions, :PackageId, :PackageName, :LogServices, :StaticStorages, :IsAutoDegrade, :EnvChannel, :PayMode, :IsDefault, :Region, :Tags, :CustomLogServices
         
-        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil)
+        def initialize(envid=nil, source=nil, _alias=nil, createtime=nil, updatetime=nil, status=nil, databases=nil, storages=nil, functions=nil, packageid=nil, packagename=nil, logservices=nil, staticstorages=nil, isautodegrade=nil, envchannel=nil, paymode=nil, isdefault=nil, region=nil, tags=nil, customlogservices=nil)
           @EnvId = envid
           @Source = source
           @Alias = _alias
@@ -4478,6 +4600,7 @@ module TencentCloud
           @IsDefault = isdefault
           @Region = region
           @Tags = tags
+          @CustomLogServices = customlogservices
         end
 
         def deserialize(params)
@@ -4540,6 +4663,14 @@ module TencentCloud
               tag_tmp = Tag.new
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
+            end
+          end
+          unless params['CustomLogServices'].nil?
+            @CustomLogServices = []
+            params['CustomLogServices'].each do |i|
+              clsinfo_tmp = ClsInfo.new
+              clsinfo_tmp.deserialize(i)
+              @CustomLogServices << clsinfo_tmp
             end
           end
         end

@@ -1893,9 +1893,9 @@ module TencentCloud
         # @type DomainName: String
         # @param AppName: 推流路径。
         # @type AppName: String
-        # @param EndTime: 录制任务结束时间，Unix时间戳。设置时间必须大于StartTime，且EndTime - StartTime不能超过24小时。
+        # @param EndTime: 录制任务结束时间，Unix时间戳。设置时间必须大于StartTime及当前时间，且EndTime - StartTime不能超过24小时。
         # @type EndTime: Integer
-        # @param StartTime: 录制任务开始时间，Unix时间戳。如果不填表示立即启动录制。不超过从当前时间开始6天之内的时间。
+        # @param StartTime: 录制任务开始时间，Unix时间戳。如果不填表示立即启动录制。StartTime不能超过当前时间+6天。
         # @type StartTime: Integer
         # @param StreamType: 推流类型，默认0。取值：
         # 0-直播推流。
@@ -5376,6 +5376,92 @@ module TencentCloud
               pullstreamconfig_tmp = PullStreamConfig.new
               pullstreamconfig_tmp.deserialize(i)
               @PullStreamConfigs << pullstreamconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePushBandwidthAndFluxList请求参数结构体
+      class DescribePushBandwidthAndFluxListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间点，格式为 yyyy-mm-dd HH:MM:SS。
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，格式为 yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过31天。
+        # @type EndTime: String
+        # @param PushDomains: 域名，可以填多个，若不填，表示总体数据。
+        # @type PushDomains: Array
+        # @param MainlandOrOversea: 可选值：
+        # Mainland：查询中国大陆（境内）数据，
+        # Oversea：则查询国际/港澳台（境外）数据，
+        # 不填则默认查询全球地区（境内+境外）的数据。
+        # @type MainlandOrOversea: String
+        # @param Granularity: 数据粒度，支持如下粒度：
+        # 5：5分钟粒度，（跨度不支持超过1天），
+        # 60：1小时粒度（跨度不支持超过一个月），
+        # 1440：天粒度（跨度不支持超过一个月）。
+        # 默认值：5。
+        # @type Granularity: Integer
+
+        attr_accessor :StartTime, :EndTime, :PushDomains, :MainlandOrOversea, :Granularity
+        
+        def initialize(starttime=nil, endtime=nil, pushdomains=nil, mainlandoroversea=nil, granularity=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @PushDomains = pushdomains
+          @MainlandOrOversea = mainlandoroversea
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PushDomains = params['PushDomains']
+          @MainlandOrOversea = params['MainlandOrOversea']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribePushBandwidthAndFluxList返回参数结构体
+      class DescribePushBandwidthAndFluxListResponse < TencentCloud::Common::AbstractModel
+        # @param PeakBandwidthTime: 峰值带宽所在时间点，格式为 yyyy-mm-dd HH:MM:SS。
+        # @type PeakBandwidthTime: String
+        # @param PeakBandwidth: 峰值带宽，单位是 Mbps。
+        # @type PeakBandwidth: Float
+        # @param P95PeakBandwidthTime: 95峰值带宽所在时间点，格式为 yyyy-mm-dd HH:MM:SS。
+        # @type P95PeakBandwidthTime: String
+        # @param P95PeakBandwidth: 95峰值带宽，单位是 Mbps。
+        # @type P95PeakBandwidth: Float
+        # @param SumFlux: 总流量，单位是 MB。
+        # @type SumFlux: Float
+        # @param DataInfoList: 明细数据信息。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PeakBandwidthTime, :PeakBandwidth, :P95PeakBandwidthTime, :P95PeakBandwidth, :SumFlux, :DataInfoList, :RequestId
+        
+        def initialize(peakbandwidthtime=nil, peakbandwidth=nil, p95peakbandwidthtime=nil, p95peakbandwidth=nil, sumflux=nil, datainfolist=nil, requestid=nil)
+          @PeakBandwidthTime = peakbandwidthtime
+          @PeakBandwidth = peakbandwidth
+          @P95PeakBandwidthTime = p95peakbandwidthtime
+          @P95PeakBandwidth = p95peakbandwidth
+          @SumFlux = sumflux
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PeakBandwidthTime = params['PeakBandwidthTime']
+          @PeakBandwidth = params['PeakBandwidth']
+          @P95PeakBandwidthTime = params['P95PeakBandwidthTime']
+          @P95PeakBandwidth = params['P95PeakBandwidth']
+          @SumFlux = params['SumFlux']
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              billdatainfo_tmp = BillDataInfo.new
+              billdatainfo_tmp.deserialize(i)
+              @DataInfoList << billdatainfo_tmp
             end
           end
           @RequestId = params['RequestId']

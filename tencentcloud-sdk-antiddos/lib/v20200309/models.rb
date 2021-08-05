@@ -2760,6 +2760,127 @@ module TencentCloud
         end
       end
 
+      # L4规则回源列表
+      class L4RuleSource < TencentCloud::Common::AbstractModel
+        # @param Source: 回源IP或域名
+        # @type Source: String
+        # @param Weight: 权重值，取值[0,100]
+        # @type Weight: Integer
+
+        attr_accessor :Source, :Weight
+        
+        def initialize(source=nil, weight=nil)
+          @Source = source
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Weight = params['Weight']
+        end
+      end
+
+      # L7规则
+      class L7RuleEntry < TencentCloud::Common::AbstractModel
+        # @param KeepTime: 会话保持时间，单位秒
+        # @type KeepTime: Integer
+        # @param Domain: 转发域名
+        # @type Domain: String
+        # @param Protocol: 转发协议，取值[http, https]
+        # @type Protocol: String
+        # @param SourceType: 回源方式，取值[1(域名回源)，2(IP回源)]
+        # @type SourceType: Integer
+        # @param LbType: 负载均衡方式，取值[1(加权轮询)]
+        # @type LbType: Integer
+        # @param SourceList: 回源列表
+        # @type SourceList: Array
+        # @param KeepEnable: 会话保持开关，取值[0(会话保持关闭)，1(会话保持开启)]
+        # @type KeepEnable: Integer
+        # @param Status: 规则状态，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
+        # @type Status: Integer
+        # @param RuleId: 规则ID，当添加新规则时可以不用填写此字段；当修改或者删除规则时需要填写此字段；
+        # @type RuleId: String
+        # @param CCThreshold: HTTPS协议的CC防护阈值
+        # @type CCThreshold: Integer
+        # @param PrivateKey: 当证书来源为自有证书时，此字段必须填写证书密钥；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
+        # @type PrivateKey: String
+        # @param CCEnable: HTTPS协议的CC防护状态，取值[0(关闭), 1(开启)]
+        # @type CCEnable: Integer
+        # @param HttpsToHttpEnable: 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpsToHttpEnable: Integer
+        # @param CertType: 证书来源，当转发协议为https时必须填，取值[2(腾讯云托管证书)]，当转发协议为http时也可以填0
+        # @type CertType: Integer
+        # @param Cert: 当证书来源为自有证书时，此字段必须填写证书内容；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
+        # @type Cert: String
+        # @param CCLevel: HTTPS协议的CC防护等级
+        # @type CCLevel: String
+        # @param RuleName: 规则描述
+        # @type RuleName: String
+        # @param CCStatus: cc防护状态，取值[0(关闭), 1(开启)]
+        # @type CCStatus: Integer
+        # @param VirtualPort: 接入端口值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualPort: Integer
+        # @param SSLId: 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
+        # @type SSLId: String
+
+        attr_accessor :KeepTime, :Domain, :Protocol, :SourceType, :LbType, :SourceList, :KeepEnable, :Status, :RuleId, :CCThreshold, :PrivateKey, :CCEnable, :HttpsToHttpEnable, :CertType, :Cert, :CCLevel, :RuleName, :CCStatus, :VirtualPort, :SSLId
+        
+        def initialize(keeptime=nil, domain=nil, protocol=nil, sourcetype=nil, lbtype=nil, sourcelist=nil, keepenable=nil, status=nil, ruleid=nil, ccthreshold=nil, privatekey=nil, ccenable=nil, httpstohttpenable=nil, certtype=nil, cert=nil, cclevel=nil, rulename=nil, ccstatus=nil, virtualport=nil, sslid=nil)
+          @KeepTime = keeptime
+          @Domain = domain
+          @Protocol = protocol
+          @SourceType = sourcetype
+          @LbType = lbtype
+          @SourceList = sourcelist
+          @KeepEnable = keepenable
+          @Status = status
+          @RuleId = ruleid
+          @CCThreshold = ccthreshold
+          @PrivateKey = privatekey
+          @CCEnable = ccenable
+          @HttpsToHttpEnable = httpstohttpenable
+          @CertType = certtype
+          @Cert = cert
+          @CCLevel = cclevel
+          @RuleName = rulename
+          @CCStatus = ccstatus
+          @VirtualPort = virtualport
+          @SSLId = sslid
+        end
+
+        def deserialize(params)
+          @KeepTime = params['KeepTime']
+          @Domain = params['Domain']
+          @Protocol = params['Protocol']
+          @SourceType = params['SourceType']
+          @LbType = params['LbType']
+          unless params['SourceList'].nil?
+            @SourceList = []
+            params['SourceList'].each do |i|
+              l4rulesource_tmp = L4RuleSource.new
+              l4rulesource_tmp.deserialize(i)
+              @SourceList << l4rulesource_tmp
+            end
+          end
+          @KeepEnable = params['KeepEnable']
+          @Status = params['Status']
+          @RuleId = params['RuleId']
+          @CCThreshold = params['CCThreshold']
+          @PrivateKey = params['PrivateKey']
+          @CCEnable = params['CCEnable']
+          @HttpsToHttpEnable = params['HttpsToHttpEnable']
+          @CertType = params['CertType']
+          @Cert = params['Cert']
+          @CCLevel = params['CCLevel']
+          @RuleName = params['RuleName']
+          @CCStatus = params['CCStatus']
+          @VirtualPort = params['VirtualPort']
+          @SSLId = params['SSLId']
+        end
+      end
+
       # 4层转发规则
       class Layer4Rule < TencentCloud::Common::AbstractModel
         # @param BackendPort: 源站端口，取值1~65535
@@ -2996,6 +3117,56 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyL7RulesEdge请求参数结构体
+      class ModifyL7RulesEdgeRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（edge表示边界防护产品）
+        # @type Business: String
+        # @param Id: 资源ID
+        # @type Id: String
+        # @param Rule: 规则
+        # @type Rule: :class:`Tencentcloud::Antiddos.v20200309.models.L7RuleEntry`
+
+        attr_accessor :Business, :Id, :Rule
+        
+        def initialize(business=nil, id=nil, rule=nil)
+          @Business = business
+          @Id = id
+          @Rule = rule
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @Id = params['Id']
+          unless params['Rule'].nil?
+            @Rule = L7RuleEntry.new
+            @Rule.deserialize(params['Rule'])
+          end
+        end
+      end
+
+      # ModifyL7RulesEdge返回参数结构体
+      class ModifyL7RulesEdgeResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功码
+        # @type Success: :class:`Tencentcloud::Antiddos.v20200309.models.SuccessCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+        
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = SuccessCode.new
+            @Success.deserialize(params['Success'])
+          end
           @RequestId = params['RequestId']
         end
       end

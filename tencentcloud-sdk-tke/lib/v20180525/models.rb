@@ -4003,6 +4003,50 @@ module TencentCloud
         end
       end
 
+      # DescribeVersions请求参数结构体
+      class DescribeVersionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeVersions返回参数结构体
+      class DescribeVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 版本数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param VersionInstanceSet: 版本列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VersionInstanceSet, :RequestId
+        
+        def initialize(totalcount=nil, versioninstanceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VersionInstanceSet = versioninstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VersionInstanceSet'].nil?
+            @VersionInstanceSet = []
+            params['VersionInstanceSet'].each do |i|
+              versioninstance_tmp = VersionInstance.new
+              versioninstance_tmp.deserialize(i)
+              @VersionInstanceSet << versioninstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVpcCniPodLimits请求参数结构体
       class DescribeVpcCniPodLimitsRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 查询的机型所在可用区，如：ap-guangzhou-3，默认为空，即不按可用区过滤信息
@@ -7039,6 +7083,33 @@ module TencentCloud
             @LoginSettings.deserialize(params['LoginSettings'])
           end
           @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # 版本信息
+      class VersionInstance < TencentCloud::Common::AbstractModel
+        # @param Name: 版本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Version: 版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Remark: Remark
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :Name, :Version, :Remark
+        
+        def initialize(name=nil, version=nil, remark=nil)
+          @Name = name
+          @Version = version
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Version = params['Version']
+          @Remark = params['Remark']
         end
       end
 
