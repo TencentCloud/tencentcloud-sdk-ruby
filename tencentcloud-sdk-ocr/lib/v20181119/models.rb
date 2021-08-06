@@ -5769,6 +5769,114 @@ module TencentCloud
         end
       end
 
+      # 二手车销售统一发票信息
+      class UsedVehicleInvoiceInfo < TencentCloud::Common::AbstractModel
+        # @param TaxBureau: 所属税局
+        # @type TaxBureau: String
+        # @param Buyer: 买方单位/个人
+        # @type Buyer: String
+        # @param BuyerNo: 买方单位代码/身份证号码
+        # @type BuyerNo: String
+        # @param BuyerAddress: 买方单位/个人地址
+        # @type BuyerAddress: String
+        # @param BuyerTel: 买方单位电话
+        # @type BuyerTel: String
+        # @param Seller: 卖方单位/个人
+        # @type Seller: String
+        # @param SellerNo: 卖方单位代码/身份证号码
+        # @type SellerNo: String
+        # @param SellerAddress: 卖方单位/个人地址
+        # @type SellerAddress: String
+        # @param SellerTel: 卖方单位电话
+        # @type SellerTel: String
+        # @param VehicleLicenseNo: 车牌照号
+        # @type VehicleLicenseNo: String
+        # @param RegisterNo: 登记证号
+        # @type RegisterNo: String
+        # @param VehicleIdentifyNo: 车架号/车辆识别代码
+        # @type VehicleIdentifyNo: String
+        # @param ManagementOffice: 转入地车辆管理所名称
+        # @type ManagementOffice: String
+        # @param VehicleTotalPrice: 车价合计
+        # @type VehicleTotalPrice: String
+        # @param Auctioneer: 经营、拍卖单位
+        # @type Auctioneer: String
+        # @param AuctioneerAddress: 经营、拍卖单位地址
+        # @type AuctioneerAddress: String
+        # @param AuctioneerTaxpayerNum: 经营、拍卖单位纳税人识别号
+        # @type AuctioneerTaxpayerNum: String
+        # @param AuctioneerBankAccount: 经营、拍卖单位开户银行、账号
+        # @type AuctioneerBankAccount: String
+        # @param AuctioneerTel: 经营、拍卖单位电话
+        # @type AuctioneerTel: String
+        # @param Market: 二手车市场
+        # @type Market: String
+        # @param MarketTaxpayerNum: 二手车市场纳税人识别号
+        # @type MarketTaxpayerNum: String
+        # @param MarketAddress: 二手车市场地址
+        # @type MarketAddress: String
+        # @param MarketBankAccount: 二手车市场开户银行账号
+        # @type MarketBankAccount: String
+        # @param MarketTel: 二手车市场电话
+        # @type MarketTel: String
+
+        attr_accessor :TaxBureau, :Buyer, :BuyerNo, :BuyerAddress, :BuyerTel, :Seller, :SellerNo, :SellerAddress, :SellerTel, :VehicleLicenseNo, :RegisterNo, :VehicleIdentifyNo, :ManagementOffice, :VehicleTotalPrice, :Auctioneer, :AuctioneerAddress, :AuctioneerTaxpayerNum, :AuctioneerBankAccount, :AuctioneerTel, :Market, :MarketTaxpayerNum, :MarketAddress, :MarketBankAccount, :MarketTel
+        
+        def initialize(taxbureau=nil, buyer=nil, buyerno=nil, buyeraddress=nil, buyertel=nil, seller=nil, sellerno=nil, selleraddress=nil, sellertel=nil, vehiclelicenseno=nil, registerno=nil, vehicleidentifyno=nil, managementoffice=nil, vehicletotalprice=nil, auctioneer=nil, auctioneeraddress=nil, auctioneertaxpayernum=nil, auctioneerbankaccount=nil, auctioneertel=nil, market=nil, markettaxpayernum=nil, marketaddress=nil, marketbankaccount=nil, markettel=nil)
+          @TaxBureau = taxbureau
+          @Buyer = buyer
+          @BuyerNo = buyerno
+          @BuyerAddress = buyeraddress
+          @BuyerTel = buyertel
+          @Seller = seller
+          @SellerNo = sellerno
+          @SellerAddress = selleraddress
+          @SellerTel = sellertel
+          @VehicleLicenseNo = vehiclelicenseno
+          @RegisterNo = registerno
+          @VehicleIdentifyNo = vehicleidentifyno
+          @ManagementOffice = managementoffice
+          @VehicleTotalPrice = vehicletotalprice
+          @Auctioneer = auctioneer
+          @AuctioneerAddress = auctioneeraddress
+          @AuctioneerTaxpayerNum = auctioneertaxpayernum
+          @AuctioneerBankAccount = auctioneerbankaccount
+          @AuctioneerTel = auctioneertel
+          @Market = market
+          @MarketTaxpayerNum = markettaxpayernum
+          @MarketAddress = marketaddress
+          @MarketBankAccount = marketbankaccount
+          @MarketTel = markettel
+        end
+
+        def deserialize(params)
+          @TaxBureau = params['TaxBureau']
+          @Buyer = params['Buyer']
+          @BuyerNo = params['BuyerNo']
+          @BuyerAddress = params['BuyerAddress']
+          @BuyerTel = params['BuyerTel']
+          @Seller = params['Seller']
+          @SellerNo = params['SellerNo']
+          @SellerAddress = params['SellerAddress']
+          @SellerTel = params['SellerTel']
+          @VehicleLicenseNo = params['VehicleLicenseNo']
+          @RegisterNo = params['RegisterNo']
+          @VehicleIdentifyNo = params['VehicleIdentifyNo']
+          @ManagementOffice = params['ManagementOffice']
+          @VehicleTotalPrice = params['VehicleTotalPrice']
+          @Auctioneer = params['Auctioneer']
+          @AuctioneerAddress = params['AuctioneerAddress']
+          @AuctioneerTaxpayerNum = params['AuctioneerTaxpayerNum']
+          @AuctioneerBankAccount = params['AuctioneerBankAccount']
+          @AuctioneerTel = params['AuctioneerTel']
+          @Market = params['Market']
+          @MarketTaxpayerNum = params['MarketTaxpayerNum']
+          @MarketAddress = params['MarketAddress']
+          @MarketBankAccount = params['MarketBankAccount']
+          @MarketTel = params['MarketTel']
+        end
+      end
+
       # 增值税发票信息
       class VatInvoice < TencentCloud::Common::AbstractModel
         # @param Code: 发票代码
@@ -6129,13 +6237,19 @@ module TencentCloud
       class VatInvoiceVerifyResponse < TencentCloud::Common::AbstractModel
         # @param Invoice: 增值税发票信息，详情请点击左侧链接。
         # @type Invoice: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoice`
+        # @param VehicleInvoiceInfo: 机动车销售统一发票信息
+        # @type VehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.VehicleInvoiceInfo`
+        # @param UsedVehicleInvoiceInfo: 二手车销售统一发票信息
+        # @type UsedVehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.UsedVehicleInvoiceInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Invoice, :RequestId
+        attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :RequestId
         
-        def initialize(invoice=nil, requestid=nil)
+        def initialize(invoice=nil, vehicleinvoiceinfo=nil, usedvehicleinvoiceinfo=nil, requestid=nil)
           @Invoice = invoice
+          @VehicleInvoiceInfo = vehicleinvoiceinfo
+          @UsedVehicleInvoiceInfo = usedvehicleinvoiceinfo
           @RequestId = requestid
         end
 
@@ -6143,6 +6257,14 @@ module TencentCloud
           unless params['Invoice'].nil?
             @Invoice = VatInvoice.new
             @Invoice.deserialize(params['Invoice'])
+          end
+          unless params['VehicleInvoiceInfo'].nil?
+            @VehicleInvoiceInfo = VehicleInvoiceInfo.new
+            @VehicleInvoiceInfo.deserialize(params['VehicleInvoiceInfo'])
+          end
+          unless params['UsedVehicleInvoiceInfo'].nil?
+            @UsedVehicleInvoiceInfo = UsedVehicleInvoiceInfo.new
+            @UsedVehicleInvoiceInfo.deserialize(params['UsedVehicleInvoiceInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -6231,6 +6353,82 @@ module TencentCloud
           end
           @Angle = params['Angle']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 机动车销售统一发票信息
+      class VehicleInvoiceInfo < TencentCloud::Common::AbstractModel
+        # @param CarType: 车辆类型
+        # @type CarType: String
+        # @param PlateModel: 厂牌型号
+        # @type PlateModel: String
+        # @param ProduceAddress: 产地
+        # @type ProduceAddress: String
+        # @param CertificateNo: 合格证号
+        # @type CertificateNo: String
+        # @param ImportNo: 进口证明书号
+        # @type ImportNo: String
+        # @param VinNo: LSVCA2NP9HN0xxxxx
+        # @type VinNo: String
+        # @param PayTaxesNo: 完税证书号
+        # @type PayTaxesNo: String
+        # @param Tonnage: 吨位
+        # @type Tonnage: String
+        # @param LimitCount: 限乘人数
+        # @type LimitCount: String
+        # @param EngineNo: 发动机号码
+        # @type EngineNo: String
+        # @param BizCheckFormNo: 商检单号
+        # @type BizCheckFormNo: String
+        # @param TaxtationOrgCode: 主管税务机关代码
+        # @type TaxtationOrgCode: String
+        # @param TaxtationOrgName: 主管税务机关名称
+        # @type TaxtationOrgName: String
+        # @param MotorTaxRate: 税率
+        # @type MotorTaxRate: String
+        # @param MotorBankName: 开户行
+        # @type MotorBankName: String
+        # @param MotorBankAccount: 账号
+        # @type MotorBankAccount: String
+
+        attr_accessor :CarType, :PlateModel, :ProduceAddress, :CertificateNo, :ImportNo, :VinNo, :PayTaxesNo, :Tonnage, :LimitCount, :EngineNo, :BizCheckFormNo, :TaxtationOrgCode, :TaxtationOrgName, :MotorTaxRate, :MotorBankName, :MotorBankAccount
+        
+        def initialize(cartype=nil, platemodel=nil, produceaddress=nil, certificateno=nil, importno=nil, vinno=nil, paytaxesno=nil, tonnage=nil, limitcount=nil, engineno=nil, bizcheckformno=nil, taxtationorgcode=nil, taxtationorgname=nil, motortaxrate=nil, motorbankname=nil, motorbankaccount=nil)
+          @CarType = cartype
+          @PlateModel = platemodel
+          @ProduceAddress = produceaddress
+          @CertificateNo = certificateno
+          @ImportNo = importno
+          @VinNo = vinno
+          @PayTaxesNo = paytaxesno
+          @Tonnage = tonnage
+          @LimitCount = limitcount
+          @EngineNo = engineno
+          @BizCheckFormNo = bizcheckformno
+          @TaxtationOrgCode = taxtationorgcode
+          @TaxtationOrgName = taxtationorgname
+          @MotorTaxRate = motortaxrate
+          @MotorBankName = motorbankname
+          @MotorBankAccount = motorbankaccount
+        end
+
+        def deserialize(params)
+          @CarType = params['CarType']
+          @PlateModel = params['PlateModel']
+          @ProduceAddress = params['ProduceAddress']
+          @CertificateNo = params['CertificateNo']
+          @ImportNo = params['ImportNo']
+          @VinNo = params['VinNo']
+          @PayTaxesNo = params['PayTaxesNo']
+          @Tonnage = params['Tonnage']
+          @LimitCount = params['LimitCount']
+          @EngineNo = params['EngineNo']
+          @BizCheckFormNo = params['BizCheckFormNo']
+          @TaxtationOrgCode = params['TaxtationOrgCode']
+          @TaxtationOrgName = params['TaxtationOrgName']
+          @MotorTaxRate = params['MotorTaxRate']
+          @MotorBankName = params['MotorBankName']
+          @MotorBankAccount = params['MotorBankAccount']
         end
       end
 

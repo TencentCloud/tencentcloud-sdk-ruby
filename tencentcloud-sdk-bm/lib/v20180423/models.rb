@@ -3531,7 +3531,7 @@ module TencentCloud
         # @type TaskId: String
         # @param Operate: 操作
         # @type Operate: String
-        # @param OperateRemark: 打回操作的备注信息
+        # @param OperateRemark: 需要重新维修操作的备注信息，可提供返场维修原因，以便驻场快速针对问题定位解决。
         # @type OperateRemark: String
 
         attr_accessor :TaskId, :Operate, :OperateRemark

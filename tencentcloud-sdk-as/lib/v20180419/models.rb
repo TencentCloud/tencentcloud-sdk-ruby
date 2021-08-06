@@ -595,10 +595,16 @@ module TencentCloud
         # @param SpotMixedAllocationPolicy: 竞价混合模式下，各计费类型实例的分配策略。
         # 仅当 InstanceAllocationPolicy 取 SPOT_MIXED 时可用。
         # @type SpotMixedAllocationPolicy: :class:`Tencentcloud::As.v20180419.models.SpotMixedAllocationPolicy`
+        # @param CapacityRebalance: 容量重平衡功能，仅对伸缩组内的竞价实例有效。取值范围：
+        # <br><li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
+        # <br><li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。
 
-        attr_accessor :AutoScalingGroupName, :LaunchConfigurationId, :MaxSize, :MinSize, :VpcId, :DefaultCooldown, :DesiredCapacity, :LoadBalancerIds, :ProjectId, :ForwardLoadBalancers, :SubnetIds, :TerminationPolicies, :Zones, :RetryPolicy, :ZonesCheckPolicy, :Tags, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy
+        # 默认取 FALSE。
+        # @type CapacityRebalance: Boolean
+
+        attr_accessor :AutoScalingGroupName, :LaunchConfigurationId, :MaxSize, :MinSize, :VpcId, :DefaultCooldown, :DesiredCapacity, :LoadBalancerIds, :ProjectId, :ForwardLoadBalancers, :SubnetIds, :TerminationPolicies, :Zones, :RetryPolicy, :ZonesCheckPolicy, :Tags, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance
         
-        def initialize(autoscalinggroupname=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, vpcid=nil, defaultcooldown=nil, desiredcapacity=nil, loadbalancerids=nil, projectid=nil, forwardloadbalancers=nil, subnetids=nil, terminationpolicies=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, tags=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil)
+        def initialize(autoscalinggroupname=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, vpcid=nil, defaultcooldown=nil, desiredcapacity=nil, loadbalancerids=nil, projectid=nil, forwardloadbalancers=nil, subnetids=nil, terminationpolicies=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, tags=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil)
           @AutoScalingGroupName = autoscalinggroupname
           @LaunchConfigurationId = launchconfigurationid
           @MaxSize = maxsize
@@ -622,6 +628,7 @@ module TencentCloud
           @LoadBalancerHealthCheckGracePeriod = loadbalancerhealthcheckgraceperiod
           @InstanceAllocationPolicy = instanceallocationpolicy
           @SpotMixedAllocationPolicy = spotmixedallocationpolicy
+          @CapacityRebalance = capacityrebalance
         end
 
         def deserialize(params)
@@ -668,6 +675,7 @@ module TencentCloud
             @SpotMixedAllocationPolicy = SpotMixedAllocationPolicy.new
             @SpotMixedAllocationPolicy.deserialize(params['SpotMixedAllocationPolicy'])
           end
+          @CapacityRebalance = params['CapacityRebalance']
         end
       end
 
@@ -3005,10 +3013,14 @@ module TencentCloud
         # @param SpotMixedAllocationPolicy: 竞价混合模式下，各计费类型实例的分配策略。
         # 仅当 InstanceAllocationPolicy 取 SPOT_MIXED 时可用。
         # @type SpotMixedAllocationPolicy: :class:`Tencentcloud::As.v20180419.models.SpotMixedAllocationPolicy`
+        # @param CapacityRebalance: 容量重平衡功能，仅对伸缩组内的竞价实例有效。取值范围：
+        # <br><li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
+        # <br><li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。
+        # @type CapacityRebalance: Boolean
 
-        attr_accessor :AutoScalingGroupId, :AutoScalingGroupName, :DefaultCooldown, :DesiredCapacity, :LaunchConfigurationId, :MaxSize, :MinSize, :ProjectId, :SubnetIds, :TerminationPolicies, :VpcId, :Zones, :RetryPolicy, :ZonesCheckPolicy, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy
+        attr_accessor :AutoScalingGroupId, :AutoScalingGroupName, :DefaultCooldown, :DesiredCapacity, :LaunchConfigurationId, :MaxSize, :MinSize, :ProjectId, :SubnetIds, :TerminationPolicies, :VpcId, :Zones, :RetryPolicy, :ZonesCheckPolicy, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance
         
-        def initialize(autoscalinggroupid=nil, autoscalinggroupname=nil, defaultcooldown=nil, desiredcapacity=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, projectid=nil, subnetids=nil, terminationpolicies=nil, vpcid=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil)
+        def initialize(autoscalinggroupid=nil, autoscalinggroupname=nil, defaultcooldown=nil, desiredcapacity=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, projectid=nil, subnetids=nil, terminationpolicies=nil, vpcid=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @AutoScalingGroupName = autoscalinggroupname
           @DefaultCooldown = defaultcooldown
@@ -3030,6 +3042,7 @@ module TencentCloud
           @LoadBalancerHealthCheckGracePeriod = loadbalancerhealthcheckgraceperiod
           @InstanceAllocationPolicy = instanceallocationpolicy
           @SpotMixedAllocationPolicy = spotmixedallocationpolicy
+          @CapacityRebalance = capacityrebalance
         end
 
         def deserialize(params)
@@ -3060,6 +3073,7 @@ module TencentCloud
             @SpotMixedAllocationPolicy = SpotMixedAllocationPolicy.new
             @SpotMixedAllocationPolicy.deserialize(params['SpotMixedAllocationPolicy'])
           end
+          @CapacityRebalance = params['CapacityRebalance']
         end
       end
 

@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (AssociateDDoSEipLoadBalancer) 用于将高防弹性公网IP绑定到负载均衡指定内网 IP 上。
+
+        # @param request: Request instance for AssociateDDoSEipLoadBalancer.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::AssociateDDoSEipLoadBalancerRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::AssociateDDoSEipLoadBalancerResponse`
+        def AssociateDDoSEipLoadBalancer(request)
+          body = send_request('AssociateDDoSEipLoadBalancer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AssociateDDoSEipLoadBalancerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加DDoS防护的IP黑白名单
 
         # @param request: Request instance for CreateBlackWhiteIpList.

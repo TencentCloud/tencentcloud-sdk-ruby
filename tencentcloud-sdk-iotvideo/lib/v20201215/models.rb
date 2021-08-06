@@ -1000,7 +1000,7 @@ module TencentCloud
         # @type ProductVaildYears: Integer
         # @param Features: 设备功能码 ypsxth音频双向通话 spdxth视频单向通话
         # @type Features: Array
-        # @param ChipOs: 设备操作系统 android linux liteos
+        # @param ChipOs: 设备操作系统 Linux
         # @type ChipOs: String
         # @param ChipManufactureId: 芯片厂商id
         # @type ChipManufactureId: String

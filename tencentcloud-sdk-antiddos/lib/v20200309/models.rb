@@ -61,6 +61,50 @@ module TencentCloud
         end
       end
 
+      # AssociateDDoSEipLoadBalancer请求参数结构体
+      class AssociateDDoSEipLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。
+        # @type InstanceId: String
+        # @param Eip: 资源实例ID对应的高防弹性公网IP。
+        # @type Eip: String
+        # @param LoadBalancerID: 要绑定的负载均衡ID。负载均衡 ID 形如：lb-0000002i。可通过登录控制台查询，也可通过 DescribeLoadBalancers 接口返回值中的LoadBalancerId获取。
+        # @type LoadBalancerID: String
+        # @param LoadBalancerRegion: Clb所在地域，例如：ap-hongkong。
+        # @type LoadBalancerRegion: String
+
+        attr_accessor :InstanceId, :Eip, :LoadBalancerID, :LoadBalancerRegion
+        
+        def initialize(instanceid=nil, eip=nil, loadbalancerid=nil, loadbalancerregion=nil)
+          @InstanceId = instanceid
+          @Eip = eip
+          @LoadBalancerID = loadbalancerid
+          @LoadBalancerRegion = loadbalancerregion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Eip = params['Eip']
+          @LoadBalancerID = params['LoadBalancerID']
+          @LoadBalancerRegion = params['LoadBalancerRegion']
+        end
+      end
+
+      # AssociateDDoSEipLoadBalancer返回参数结构体
+      class AssociateDDoSEipLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 高防IP资产实例信息
       class BGPIPInstance < TencentCloud::Common::AbstractModel
         # @param InstanceDetail: 资产实例的详细信息

@@ -4773,6 +4773,68 @@ module TencentCloud
         end
       end
 
+      # DescribeLiveTranscodeTotalInfo请求参数结构体
+      class DescribeLiveTranscodeTotalInfoRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间，北京时间。
+        # 格式：yyyy-mm-dd HH:MM:SS。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，北京时间。
+        # 格式：yyyy-mm-dd HH:MM:SS。
+        # @type EndTime: String
+        # @param PushDomains: 推流域名列表，若不填，表示查询所有域名总体数据。
+        # 指定域名时返回1小时粒度数据。
+        # @type PushDomains: Array
+        # @param MainlandOrOversea: 可选值：
+        # Mainland：查询中国大陆（境内）数据，
+        # Oversea：则查询国际/港澳台（境外）数据，
+        # 默认：查询全球地区（境内+境外）的数据。
+        # @type MainlandOrOversea: String
+
+        attr_accessor :StartTime, :EndTime, :PushDomains, :MainlandOrOversea
+        
+        def initialize(starttime=nil, endtime=nil, pushdomains=nil, mainlandoroversea=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @PushDomains = pushdomains
+          @MainlandOrOversea = mainlandoroversea
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PushDomains = params['PushDomains']
+          @MainlandOrOversea = params['MainlandOrOversea']
+        end
+      end
+
+      # DescribeLiveTranscodeTotalInfo返回参数结构体
+      class DescribeLiveTranscodeTotalInfoResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 统计数据列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+        
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              transcodetotalinfo_tmp = TranscodeTotalInfo.new
+              transcodetotalinfo_tmp.deserialize(i)
+              @DataInfoList << transcodetotalinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLiveWatermark请求参数结构体
       class DescribeLiveWatermarkRequest < TencentCloud::Common::AbstractModel
         # @param WatermarkId: DescribeLiveWatermarks接口返回的水印 ID。
@@ -9022,6 +9084,41 @@ module TencentCloud
           @Bitrate = params['Bitrate']
           @Type = params['Type']
           @PushDomain = params['PushDomain']
+          @Resolution = params['Resolution']
+        end
+      end
+
+      # 转码总量数据
+      class TranscodeTotalInfo < TencentCloud::Common::AbstractModel
+        # @param Time: 时间点，北京时间，
+        # 示例：2019-03-01 00:00:00。
+        # @type Time: String
+        # @param Duration: 转码时长，单位：分钟。
+        # @type Duration: Integer
+        # @param ModuleCodec: 编码方式，带模块，
+        # 示例：
+        # liveprocessor_H264 =》直播转码-H264，
+        # liveprocessor_H265 =》 直播转码-H265，
+        # topspeed_H264 =》极速高清-H264，
+        # topspeed_H265 =》极速高清-H265。
+        # @type ModuleCodec: String
+        # @param Resolution: 分辨率，
+        # 示例：540*480。
+        # @type Resolution: String
+
+        attr_accessor :Time, :Duration, :ModuleCodec, :Resolution
+        
+        def initialize(time=nil, duration=nil, modulecodec=nil, resolution=nil)
+          @Time = time
+          @Duration = duration
+          @ModuleCodec = modulecodec
+          @Resolution = resolution
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Duration = params['Duration']
+          @ModuleCodec = params['ModuleCodec']
           @Resolution = params['Resolution']
         end
       end

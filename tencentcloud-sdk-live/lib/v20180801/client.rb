@@ -1893,6 +1893,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询转码总量数据，可查询近30天内数据。
+        # 注意：
+        # 如果是查询某一天内，则返回5分钟粒度数据；
+        # 如果是查询跨天或指定域名， 则返回1小时粒度数据。
+
+        # @param request: Request instance for DescribeLiveTranscodeTotalInfo.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveTranscodeTotalInfoRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveTranscodeTotalInfoResponse`
+        def DescribeLiveTranscodeTotalInfo(request)
+          body = send_request('DescribeLiveTranscodeTotalInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveTranscodeTotalInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取单个水印信息。
 
         # @param request: Request instance for DescribeLiveWatermark.
