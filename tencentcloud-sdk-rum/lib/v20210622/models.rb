@@ -85,6 +85,122 @@ module TencentCloud
         end
       end
 
+      # DescribeDataPerformancePage请求参数结构体
+      class DescribeDataPerformancePageRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Type: ["pagepv", "allcount"]
+        # @type Type: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param IsAbroad: 是否海外
+        # @type IsAbroad: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param CostType: 耗时计算方式
+        # @type CostType: String
+
+        attr_accessor :ID, :StartTime, :EndTime, :Type, :Level, :Isp, :Area, :NetType, :Platform, :Device, :VersionNum, :ExtFirst, :ExtSecond, :ExtThird, :IsAbroad, :Browser, :Os, :Engine, :Brand, :From, :CostType
+        
+        def initialize(id=nil, starttime=nil, endtime=nil, type=nil, level=nil, isp=nil, area=nil, nettype=nil, platform=nil, device=nil, versionnum=nil, extfirst=nil, extsecond=nil, extthird=nil, isabroad=nil, browser=nil, os=nil, engine=nil, brand=nil, from=nil, costtype=nil)
+          @ID = id
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+          @Level = level
+          @Isp = isp
+          @Area = area
+          @NetType = nettype
+          @Platform = platform
+          @Device = device
+          @VersionNum = versionnum
+          @ExtFirst = extfirst
+          @ExtSecond = extsecond
+          @ExtThird = extthird
+          @IsAbroad = isabroad
+          @Browser = browser
+          @Os = os
+          @Engine = engine
+          @Brand = brand
+          @From = from
+          @CostType = costtype
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @Level = params['Level']
+          @Isp = params['Isp']
+          @Area = params['Area']
+          @NetType = params['NetType']
+          @Platform = params['Platform']
+          @Device = params['Device']
+          @VersionNum = params['VersionNum']
+          @ExtFirst = params['ExtFirst']
+          @ExtSecond = params['ExtSecond']
+          @ExtThird = params['ExtThird']
+          @IsAbroad = params['IsAbroad']
+          @Browser = params['Browser']
+          @Os = params['Os']
+          @Engine = params['Engine']
+          @Brand = params['Brand']
+          @From = params['From']
+          @CostType = params['CostType']
+        end
+      end
+
+      # DescribeDataPerformancePage返回参数结构体
+      class DescribeDataPerformancePageResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

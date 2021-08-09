@@ -136,10 +136,13 @@ module TencentCloud
         # @param CertificationState: 实名认证 0:无 1:未实名 2:已实名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertificationState: Integer
+        # @param OtherData: 其他流量信息,流量分离统计其他流量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherData: Float
 
-        attr_accessor :Iccid, :Msisdn, :Imsi, :Imei, :Sdkappid, :Teleoperator, :CardStatus, :NetworkStatus, :ActivitedTime, :Type, :ProductId, :PoolId, :DataUsedInPeriod, :DataTotalInPeriod, :ProductExpiredTime, :Description, :CreatedTime, :ModifiedTime, :PreorderCnt, :IsActivated, :OrderId, :AutoRenew, :Remark, :AllowArrears, :NeedSms, :Provider, :CertificationState
+        attr_accessor :Iccid, :Msisdn, :Imsi, :Imei, :Sdkappid, :Teleoperator, :CardStatus, :NetworkStatus, :ActivitedTime, :Type, :ProductId, :PoolId, :DataUsedInPeriod, :DataTotalInPeriod, :ProductExpiredTime, :Description, :CreatedTime, :ModifiedTime, :PreorderCnt, :IsActivated, :OrderId, :AutoRenew, :Remark, :AllowArrears, :NeedSms, :Provider, :CertificationState, :OtherData
         
-        def initialize(iccid=nil, msisdn=nil, imsi=nil, imei=nil, sdkappid=nil, teleoperator=nil, cardstatus=nil, networkstatus=nil, activitedtime=nil, type=nil, productid=nil, poolid=nil, datausedinperiod=nil, datatotalinperiod=nil, productexpiredtime=nil, description=nil, createdtime=nil, modifiedtime=nil, preordercnt=nil, isactivated=nil, orderid=nil, autorenew=nil, remark=nil, allowarrears=nil, needsms=nil, provider=nil, certificationstate=nil)
+        def initialize(iccid=nil, msisdn=nil, imsi=nil, imei=nil, sdkappid=nil, teleoperator=nil, cardstatus=nil, networkstatus=nil, activitedtime=nil, type=nil, productid=nil, poolid=nil, datausedinperiod=nil, datatotalinperiod=nil, productexpiredtime=nil, description=nil, createdtime=nil, modifiedtime=nil, preordercnt=nil, isactivated=nil, orderid=nil, autorenew=nil, remark=nil, allowarrears=nil, needsms=nil, provider=nil, certificationstate=nil, otherdata=nil)
           @Iccid = iccid
           @Msisdn = msisdn
           @Imsi = imsi
@@ -167,6 +170,7 @@ module TencentCloud
           @NeedSms = needsms
           @Provider = provider
           @CertificationState = certificationstate
+          @OtherData = otherdata
         end
 
         def deserialize(params)
@@ -197,6 +201,7 @@ module TencentCloud
           @NeedSms = params['NeedSms']
           @Provider = params['Provider']
           @CertificationState = params['CertificationState']
+          @OtherData = params['OtherData']
         end
       end
 
