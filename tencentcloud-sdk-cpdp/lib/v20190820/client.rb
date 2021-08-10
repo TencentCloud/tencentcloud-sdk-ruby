@@ -1309,6 +1309,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云鉴-查询对账单下载地址的接口
+
+        # @param request: Request instance for QueryDownloadBillURL.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryDownloadBillURLRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryDownloadBillURLResponse`
+        def QueryDownloadBillURL(request)
+          body = send_request('QueryDownloadBillURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryDownloadBillURLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 跨境-查询汇率
 
         # @param request: Request instance for QueryExchangeRate.

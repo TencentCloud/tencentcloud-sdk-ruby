@@ -17,6 +17,288 @@
 module TencentCloud
   module Waf
     module V20180125
+      # DescribeAccessIndex
+      class AccessFullTextInfo < TencentCloud::Common::AbstractModel
+        # @param CaseSensitive: 是否大小写敏感
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaseSensitive: Boolean
+        # @param Tokenizer: 全文索引的分词符，字符串中每个字符代表一个分词符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tokenizer: String
+        # @param ContainZH: 是否包含中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainZH: Boolean
+
+        attr_accessor :CaseSensitive, :Tokenizer, :ContainZH
+        
+        def initialize(casesensitive=nil, tokenizer=nil, containzh=nil)
+          @CaseSensitive = casesensitive
+          @Tokenizer = tokenizer
+          @ContainZH = containzh
+        end
+
+        def deserialize(params)
+          @CaseSensitive = params['CaseSensitive']
+          @Tokenizer = params['Tokenizer']
+          @ContainZH = params['ContainZH']
+        end
+      end
+
+      # 用于 DescribeAccessIndex 的出参
+      class AccessKeyValueInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 需要配置键值或者元字段索引的字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 字段的索引描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: :class:`Tencentcloud::Waf.v20180125.models.AccessValueInfo`
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          unless params['Value'].nil?
+            @Value = AccessValueInfo.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # 单条日志数据描述
+      class AccessLogInfo < TencentCloud::Common::AbstractModel
+        # @param Time: 日志时间，单位ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: Integer
+        # @param TopicId: 日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param TopicName: 日志主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param Source: 日志来源IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param FileName: 日志文件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param PkgId: 日志上报请求包的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PkgId: String
+        # @param PkgLogId: 请求包内日志的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PkgLogId: String
+        # @param LogJson: 日志内容的Json序列化字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogJson: String
+
+        attr_accessor :Time, :TopicId, :TopicName, :Source, :FileName, :PkgId, :PkgLogId, :LogJson
+        
+        def initialize(time=nil, topicid=nil, topicname=nil, source=nil, filename=nil, pkgid=nil, pkglogid=nil, logjson=nil)
+          @Time = time
+          @TopicId = topicid
+          @TopicName = topicname
+          @Source = source
+          @FileName = filename
+          @PkgId = pkgid
+          @PkgLogId = pkglogid
+          @LogJson = logjson
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @Source = params['Source']
+          @FileName = params['FileName']
+          @PkgId = params['PkgId']
+          @PkgLogId = params['PkgLogId']
+          @LogJson = params['LogJson']
+        end
+      end
+
+      # 日志KeyValue对
+      class AccessLogItem < TencentCloud::Common::AbstractModel
+        # @param Key: 日记Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 日志Value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 日志KeyValue对数组，用于搜索访问日志
+      class AccessLogItems < TencentCloud::Common::AbstractModel
+        # @param Data: 分析结果返回的KV数据对
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+
+        attr_accessor :Data
+        
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              accesslogitem_tmp = AccessLogItem.new
+              accesslogitem_tmp.deserialize(i)
+              @Data << accesslogitem_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAccessIndex接口的出参数
+      class AccessRuleInfo < TencentCloud::Common::AbstractModel
+        # @param FullText: 全文索引配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullText: :class:`Tencentcloud::Waf.v20180125.models.AccessFullTextInfo`
+        # @param KeyValue: 键值索引配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyValue: :class:`Tencentcloud::Waf.v20180125.models.AccessRuleKeyValueInfo`
+        # @param Tag: 元字段索引配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: :class:`Tencentcloud::Waf.v20180125.models.AccessRuleTagInfo`
+
+        attr_accessor :FullText, :KeyValue, :Tag
+        
+        def initialize(fulltext=nil, keyvalue=nil, tag=nil)
+          @FullText = fulltext
+          @KeyValue = keyvalue
+          @Tag = tag
+        end
+
+        def deserialize(params)
+          unless params['FullText'].nil?
+            @FullText = AccessFullTextInfo.new
+            @FullText.deserialize(params['FullText'])
+          end
+          unless params['KeyValue'].nil?
+            @KeyValue = AccessRuleKeyValueInfo.new
+            @KeyValue.deserialize(params['KeyValue'])
+          end
+          unless params['Tag'].nil?
+            @Tag = AccessRuleTagInfo.new
+            @Tag.deserialize(params['Tag'])
+          end
+        end
+      end
+
+      # DescribeAccessIndex接口的出参
+      class AccessRuleKeyValueInfo < TencentCloud::Common::AbstractModel
+        # @param CaseSensitive: 是否大小写敏感
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaseSensitive: Boolean
+        # @param KeyValues: 需要建立索引的键值对信息；最大只能配置100个键值对
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyValues: Array
+
+        attr_accessor :CaseSensitive, :KeyValues
+        
+        def initialize(casesensitive=nil, keyvalues=nil)
+          @CaseSensitive = casesensitive
+          @KeyValues = keyvalues
+        end
+
+        def deserialize(params)
+          @CaseSensitive = params['CaseSensitive']
+          unless params['KeyValues'].nil?
+            @KeyValues = []
+            params['KeyValues'].each do |i|
+              accesskeyvalueinfo_tmp = AccessKeyValueInfo.new
+              accesskeyvalueinfo_tmp.deserialize(i)
+              @KeyValues << accesskeyvalueinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAccessIndex接口的出参
+      class AccessRuleTagInfo < TencentCloud::Common::AbstractModel
+        # @param CaseSensitive: 是否大小写敏感
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaseSensitive: Boolean
+        # @param KeyValues: 标签索引配置中的字段信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyValues: Array
+
+        attr_accessor :CaseSensitive, :KeyValues
+        
+        def initialize(casesensitive=nil, keyvalues=nil)
+          @CaseSensitive = casesensitive
+          @KeyValues = keyvalues
+        end
+
+        def deserialize(params)
+          @CaseSensitive = params['CaseSensitive']
+          unless params['KeyValues'].nil?
+            @KeyValues = []
+            params['KeyValues'].each do |i|
+              accesskeyvalueinfo_tmp = AccessKeyValueInfo.new
+              accesskeyvalueinfo_tmp.deserialize(i)
+              @KeyValues << accesskeyvalueinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 用于DescribeAccessIndex接口的出参
+      class AccessValueInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 字段类型，目前支持的类型有：long、text、double
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Tokenizer: 字段的分词符，只有当字段类型为text时才有意义；输入字符串中的每个字符代表一个分词符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tokenizer: String
+        # @param SqlFlag: 字段是否开启分析功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlFlag: Boolean
+        # @param ContainZH: 是否包含中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainZH: Boolean
+
+        attr_accessor :Type, :Tokenizer, :SqlFlag, :ContainZH
+        
+        def initialize(type=nil, tokenizer=nil, sqlflag=nil, containzh=nil)
+          @Type = type
+          @Tokenizer = tokenizer
+          @SqlFlag = sqlflag
+          @ContainZH = containzh
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Tokenizer = params['Tokenizer']
+          @SqlFlag = params['SqlFlag']
+          @ContainZH = params['ContainZH']
+        end
+      end
+
       # AddCustomRule请求参数结构体
       class AddCustomRuleRequest < TencentCloud::Common::AbstractModel
         # @param Name: 规则名称
@@ -128,6 +410,66 @@ module TencentCloud
         end
       end
 
+      # CreateAccessExport请求参数结构体
+      class CreateAccessExportRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
+        # @type TopicId: String
+        # @param From: 要查询的日志的起始时间，Unix时间戳，单位ms
+        # @type From: Integer
+        # @param To: 要查询的日志的结束时间，Unix时间戳，单位ms
+        # @type To: Integer
+        # @param Query: 日志导出检索语句
+        # @type Query: String
+        # @param Count: 日志导出数量
+        # @type Count: Integer
+        # @param Format: 日志导出数据格式。json，csv，默认为json
+        # @type Format: String
+        # @param Order: 日志导出时间排序。desc，asc，默认为desc
+        # @type Order: String
+
+        attr_accessor :TopicId, :From, :To, :Query, :Count, :Format, :Order
+        
+        def initialize(topicid=nil, from=nil, to=nil, query=nil, count=nil, format=nil, order=nil)
+          @TopicId = topicid
+          @From = from
+          @To = to
+          @Query = query
+          @Count = count
+          @Format = format
+          @Order = order
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @From = params['From']
+          @To = params['To']
+          @Query = params['Query']
+          @Count = params['Count']
+          @Format = params['Format']
+          @Order = params['Order']
+        end
+      end
+
+      # CreateAccessExport返回参数结构体
+      class CreateAccessExportResponse < TencentCloud::Common::AbstractModel
+        # @param ExportId: 日志导出ID。
+        # @type ExportId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExportId, :RequestId
+        
+        def initialize(exportid=nil, requestid=nil)
+          @ExportId = exportid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExportId = params['ExportId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAttackDownloadTask请求参数结构体
       class CreateAttackDownloadTaskRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名，所有域名填写all
@@ -192,6 +534,42 @@ module TencentCloud
 
         def deserialize(params)
           @Flow = params['Flow']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAccessExport请求参数结构体
+      class DeleteAccessExportRequest < TencentCloud::Common::AbstractModel
+        # @param ExportId: 日志导出ID
+        # @type ExportId: String
+        # @param TopicId: 日志主题
+        # @type TopicId: String
+
+        attr_accessor :ExportId, :TopicId
+        
+        def initialize(exportid=nil, topicid=nil)
+          @ExportId = exportid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @ExportId = params['ExportId']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteAccessExport返回参数结构体
+      class DeleteAccessExportResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -297,6 +675,133 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessExports请求参数结构体
+      class DescribeAccessExportsRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
+        # @type TopicId: String
+        # @param Offset: 分页的偏移量，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :Offset, :Limit
+        
+        def initialize(topicid=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAccessExports返回参数结构体
+      class DescribeAccessExportsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 日志导出ID。
+        # @type TotalCount: Integer
+        # @param Exports: 日志导出列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exports: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Exports, :RequestId
+        
+        def initialize(totalcount=nil, exports=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Exports = exports
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Exports'].nil?
+            @Exports = []
+            params['Exports'].each do |i|
+              exportaccessinfo_tmp = ExportAccessInfo.new
+              exportaccessinfo_tmp.deserialize(i)
+              @Exports << exportaccessinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessFastAnalysis请求参数结构体
+      class DescribeAccessFastAnalysisRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAccessFastAnalysis返回参数结构体
+      class DescribeAccessFastAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessIndex请求参数结构体
+      class DescribeAccessIndexRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAccessIndex返回参数结构体
+      class DescribeAccessIndexResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 是否生效
+        # @type Status: Boolean
+        # @param Rule: 索引配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rule: :class:`Tencentcloud::Waf.v20180125.models.AccessRuleInfo`
+        # @param ModifyTime: 索引修改时间，初始值为索引创建时间。
+        # @type ModifyTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Rule, :ModifyTime, :RequestId
+        
+        def initialize(status=nil, rule=nil, modifytime=nil, requestid=nil)
+          @Status = status
+          @Rule = rule
+          @ModifyTime = modifytime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          unless params['Rule'].nil?
+            @Rule = AccessRuleInfo.new
+            @Rule.deserialize(params['Rule'])
+          end
+          @ModifyTime = params['ModifyTime']
           @RequestId = params['RequestId']
         end
       end
@@ -529,6 +1034,72 @@ module TencentCloud
         end
       end
 
+      # DescribeAccessExports接口
+      class ExportAccessInfo < TencentCloud::Common::AbstractModel
+        # @param ExportId: 日志导出任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExportId: String
+        # @param Query: 日志导出查询语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Query: String
+        # @param FileName: 日志导出文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FileSize: 日志文件大小
+        # @type FileSize: Integer
+        # @param Order: 日志导出时间排序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Order: String
+        # @param Format: 日志导出格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+        # @param Count: 日志导出数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Status: 日志下载状态。Processing:导出正在进行中，Complete:导出完成，Failed:导出失败，Expired:日志导出已过期（三天有效期）
+        # @type Status: String
+        # @param From: 日志导出起始时间
+        # @type From: Integer
+        # @param To: 日志导出结束时间
+        # @type To: Integer
+        # @param CosPath: 日志导出路径
+        # @type CosPath: String
+        # @param CreateTime: 日志导出创建时间
+        # @type CreateTime: String
+
+        attr_accessor :ExportId, :Query, :FileName, :FileSize, :Order, :Format, :Count, :Status, :From, :To, :CosPath, :CreateTime
+        
+        def initialize(exportid=nil, query=nil, filename=nil, filesize=nil, order=nil, format=nil, count=nil, status=nil, from=nil, to=nil, cospath=nil, createtime=nil)
+          @ExportId = exportid
+          @Query = query
+          @FileName = filename
+          @FileSize = filesize
+          @Order = order
+          @Format = format
+          @Count = count
+          @Status = status
+          @From = from
+          @To = to
+          @CosPath = cospath
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ExportId = params['ExportId']
+          @Query = params['Query']
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @Order = params['Order']
+          @Format = params['Format']
+          @Count = params['Count']
+          @Status = params['Status']
+          @From = params['From']
+          @To = params['To']
+          @CosPath = params['CosPath']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # ModifyAccessPeriod请求参数结构体
       class ModifyAccessPeriodRequest < TencentCloud::Common::AbstractModel
         # @param Period: 访问日志保存期限，范围为[1, 30]
@@ -633,6 +1204,106 @@ module TencentCloud
         def deserialize(params)
           @Code = params['Code']
           @Message = params['Message']
+        end
+      end
+
+      # SearchAccessLog请求参数结构体
+      class SearchAccessLogRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
+        # @type TopicId: String
+        # @param From: 要查询的日志的起始时间，Unix时间戳，单位ms
+        # @type From: Integer
+        # @param To: 要查询的日志的结束时间，Unix时间戳，单位ms
+        # @type To: Integer
+        # @param Query: 查询语句，语句长度最大为4096
+        # @type Query: String
+        # @param Limit: 单次查询返回的日志条数，最大值为100
+        # @type Limit: Integer
+        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容
+        # @type Context: String
+        # @param Sort: 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+        # @type Sort: String
+
+        attr_accessor :TopicId, :From, :To, :Query, :Limit, :Context, :Sort
+        
+        def initialize(topicid=nil, from=nil, to=nil, query=nil, limit=nil, context=nil, sort=nil)
+          @TopicId = topicid
+          @From = from
+          @To = to
+          @Query = query
+          @Limit = limit
+          @Context = context
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @From = params['From']
+          @To = params['To']
+          @Query = params['Query']
+          @Limit = params['Limit']
+          @Context = params['Context']
+          @Sort = params['Sort']
+        end
+      end
+
+      # SearchAccessLog返回参数结构体
+      class SearchAccessLogResponse < TencentCloud::Common::AbstractModel
+        # @param Context: 加载后续内容的Context
+        # @type Context: String
+        # @param ListOver: 日志查询结果是否全部返回
+        # @type ListOver: Boolean
+        # @param Analysis: 返回的是否为分析结果
+        # @type Analysis: Boolean
+        # @param ColNames: 如果Analysis为True，则返回分析结果的列名，否则为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColNames: Array
+        # @param Results: 日志查询结果；当Analysis为True时，可能返回为null
+        # 注意：此字段可能返回 null，表示取不到有效值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param AnalysisResults: 日志分析结果；当Analysis为False时，可能返回为null
+        # 注意：此字段可能返回 null，表示取不到有效值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
+        
+        def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
+          @Context = context
+          @ListOver = listover
+          @Analysis = analysis
+          @ColNames = colnames
+          @Results = results
+          @AnalysisResults = analysisresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @ListOver = params['ListOver']
+          @Analysis = params['Analysis']
+          @ColNames = params['ColNames']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              accessloginfo_tmp = AccessLogInfo.new
+              accessloginfo_tmp.deserialize(i)
+              @Results << accessloginfo_tmp
+            end
+          end
+          unless params['AnalysisResults'].nil?
+            @AnalysisResults = []
+            params['AnalysisResults'].each do |i|
+              accesslogitems_tmp = AccessLogItems.new
+              accesslogitems_tmp.deserialize(i)
+              @AnalysisResults << accesslogitems_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

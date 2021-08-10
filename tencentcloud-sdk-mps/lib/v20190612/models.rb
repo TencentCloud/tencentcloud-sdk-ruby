@@ -7349,19 +7349,24 @@ module TencentCloud
         # @type SamplingRate: Integer
         # @param Codec: 音频流的编码格式，例如 aac。
         # @type Codec: String
+        # @param Channel: 音频声道数，例如 2。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Channel: Integer
 
-        attr_accessor :Bitrate, :SamplingRate, :Codec
+        attr_accessor :Bitrate, :SamplingRate, :Codec, :Channel
         
-        def initialize(bitrate=nil, samplingrate=nil, codec=nil)
+        def initialize(bitrate=nil, samplingrate=nil, codec=nil, channel=nil)
           @Bitrate = bitrate
           @SamplingRate = samplingrate
           @Codec = codec
+          @Channel = channel
         end
 
         def deserialize(params)
           @Bitrate = params['Bitrate']
           @SamplingRate = params['SamplingRate']
           @Codec = params['Codec']
+          @Channel = params['Channel']
         end
       end
 
@@ -8308,15 +8313,27 @@ module TencentCloud
         # @type Codec: String
         # @param Fps: 帧率，单位：hz。
         # @type Fps: Integer
+        # @param ColorPrimaries: 色彩空间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColorPrimaries: String
+        # @param ColorSpace: 色彩空间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColorSpace: String
+        # @param ColorTransfer: 色彩空间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColorTransfer: String
 
-        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps
+        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :ColorPrimaries, :ColorSpace, :ColorTransfer
         
-        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil)
+        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, colorprimaries=nil, colorspace=nil, colortransfer=nil)
           @Bitrate = bitrate
           @Height = height
           @Width = width
           @Codec = codec
           @Fps = fps
+          @ColorPrimaries = colorprimaries
+          @ColorSpace = colorspace
+          @ColorTransfer = colortransfer
         end
 
         def deserialize(params)
@@ -8325,6 +8342,9 @@ module TencentCloud
           @Width = params['Width']
           @Codec = params['Codec']
           @Fps = params['Fps']
+          @ColorPrimaries = params['ColorPrimaries']
+          @ColorSpace = params['ColorSpace']
+          @ColorTransfer = params['ColorTransfer']
         end
       end
 

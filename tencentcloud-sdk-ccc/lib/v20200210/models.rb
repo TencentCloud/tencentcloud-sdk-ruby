@@ -57,6 +57,123 @@ module TencentCloud
         end
       end
 
+      # 呼入实时指标
+      class CallInMetrics < TencentCloud::Common::AbstractModel
+        # @param IvrCount: IVR驻留数量
+        # @type IvrCount: Integer
+        # @param QueueCount: 排队中数量
+        # @type QueueCount: Integer
+        # @param RingCount: 振铃中数量
+        # @type RingCount: Integer
+        # @param AcceptCount: 接通中数量
+        # @type AcceptCount: Integer
+        # @param TransferOuterCount: 客服转接外线中数量
+        # @type TransferOuterCount: Integer
+        # @param MaxQueueDuration: 最大排队时长
+        # @type MaxQueueDuration: Integer
+        # @param AvgQueueDuration: 平均排队时长
+        # @type AvgQueueDuration: Integer
+        # @param MaxRingDuration: 最大振铃时长
+        # @type MaxRingDuration: Integer
+        # @param AvgRingDuration: 平均振铃时长
+        # @type AvgRingDuration: Integer
+        # @param MaxAcceptDuration: 最大接通时长
+        # @type MaxAcceptDuration: Integer
+        # @param AvgAcceptDuration: 平均接通时长
+        # @type AvgAcceptDuration: Integer
+
+        attr_accessor :IvrCount, :QueueCount, :RingCount, :AcceptCount, :TransferOuterCount, :MaxQueueDuration, :AvgQueueDuration, :MaxRingDuration, :AvgRingDuration, :MaxAcceptDuration, :AvgAcceptDuration
+        
+        def initialize(ivrcount=nil, queuecount=nil, ringcount=nil, acceptcount=nil, transferoutercount=nil, maxqueueduration=nil, avgqueueduration=nil, maxringduration=nil, avgringduration=nil, maxacceptduration=nil, avgacceptduration=nil)
+          @IvrCount = ivrcount
+          @QueueCount = queuecount
+          @RingCount = ringcount
+          @AcceptCount = acceptcount
+          @TransferOuterCount = transferoutercount
+          @MaxQueueDuration = maxqueueduration
+          @AvgQueueDuration = avgqueueduration
+          @MaxRingDuration = maxringduration
+          @AvgRingDuration = avgringduration
+          @MaxAcceptDuration = maxacceptduration
+          @AvgAcceptDuration = avgacceptduration
+        end
+
+        def deserialize(params)
+          @IvrCount = params['IvrCount']
+          @QueueCount = params['QueueCount']
+          @RingCount = params['RingCount']
+          @AcceptCount = params['AcceptCount']
+          @TransferOuterCount = params['TransferOuterCount']
+          @MaxQueueDuration = params['MaxQueueDuration']
+          @AvgQueueDuration = params['AvgQueueDuration']
+          @MaxRingDuration = params['MaxRingDuration']
+          @AvgRingDuration = params['AvgRingDuration']
+          @MaxAcceptDuration = params['MaxAcceptDuration']
+          @AvgAcceptDuration = params['AvgAcceptDuration']
+        end
+      end
+
+      # 呼入线路维度相关指标
+      class CallInNumberMetrics < TencentCloud::Common::AbstractModel
+        # @param Number: 线路号码
+        # @type Number: String
+        # @param Metrics: 线路相关指标
+        # @type Metrics: :class:`Tencentcloud::Ccc.v20200210.models.CallInMetrics`
+        # @param SkillGroupMetrics: 所属技能组相关指标
+        # @type SkillGroupMetrics: Array
+
+        attr_accessor :Number, :Metrics, :SkillGroupMetrics
+        
+        def initialize(number=nil, metrics=nil, skillgroupmetrics=nil)
+          @Number = number
+          @Metrics = metrics
+          @SkillGroupMetrics = skillgroupmetrics
+        end
+
+        def deserialize(params)
+          @Number = params['Number']
+          unless params['Metrics'].nil?
+            @Metrics = CallInMetrics.new
+            @Metrics.deserialize(params['Metrics'])
+          end
+          unless params['SkillGroupMetrics'].nil?
+            @SkillGroupMetrics = []
+            params['SkillGroupMetrics'].each do |i|
+              callinskillgroupmetrics_tmp = CallInSkillGroupMetrics.new
+              callinskillgroupmetrics_tmp.deserialize(i)
+              @SkillGroupMetrics << callinskillgroupmetrics_tmp
+            end
+          end
+        end
+      end
+
+      # 呼入技能组相关指标
+      class CallInSkillGroupMetrics < TencentCloud::Common::AbstractModel
+        # @param SkillGroupId: 技能组ID
+        # @type SkillGroupId: Integer
+        # @param Metrics: 数据指标
+        # @type Metrics: :class:`Tencentcloud::Ccc.v20200210.models.CallInMetrics`
+        # @param Name: 技能组名称
+        # @type Name: String
+
+        attr_accessor :SkillGroupId, :Metrics, :Name
+        
+        def initialize(skillgroupid=nil, metrics=nil, name=nil)
+          @SkillGroupId = skillgroupid
+          @Metrics = metrics
+          @Name = name
+        end
+
+        def deserialize(params)
+          @SkillGroupId = params['SkillGroupId']
+          unless params['Metrics'].nil?
+            @Metrics = CallInMetrics.new
+            @Metrics.deserialize(params['Metrics'])
+          end
+          @Name = params['Name']
+        end
+      end
+
       # CreateSDKLoginToken请求参数结构体
       class CreateSDKLoginTokenRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用ID。
@@ -245,6 +362,81 @@ module TencentCloud
 
         def deserialize(params)
           @OnlineStaffList = params['OnlineStaffList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCallInMetrics请求参数结构体
+      class DescribeCallInMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例ID
+        # @type SdkAppId: Integer
+        # @param EnabledSkillGroup: 是否返回技能组维度信息，默认“是”
+        # @type EnabledSkillGroup: Boolean
+        # @param EnabledNumber: 是否返回线路维度信息，默认“否”
+        # @type EnabledNumber: Boolean
+
+        attr_accessor :SdkAppId, :EnabledSkillGroup, :EnabledNumber
+        
+        def initialize(sdkappid=nil, enabledskillgroup=nil, enablednumber=nil)
+          @SdkAppId = sdkappid
+          @EnabledSkillGroup = enabledskillgroup
+          @EnabledNumber = enablednumber
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @EnabledSkillGroup = params['EnabledSkillGroup']
+          @EnabledNumber = params['EnabledNumber']
+        end
+      end
+
+      # DescribeCallInMetrics返回参数结构体
+      class DescribeCallInMetricsResponse < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳
+        # @type Timestamp: Integer
+        # @param TotalMetrics: 总体指标
+        # @type TotalMetrics: :class:`Tencentcloud::Ccc.v20200210.models.CallInMetrics`
+        # @param NumberMetrics: 线路维度指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumberMetrics: Array
+        # @param SkillGroupMetrics: 技能组维度指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkillGroupMetrics: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Timestamp, :TotalMetrics, :NumberMetrics, :SkillGroupMetrics, :RequestId
+        
+        def initialize(timestamp=nil, totalmetrics=nil, numbermetrics=nil, skillgroupmetrics=nil, requestid=nil)
+          @Timestamp = timestamp
+          @TotalMetrics = totalmetrics
+          @NumberMetrics = numbermetrics
+          @SkillGroupMetrics = skillgroupmetrics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          unless params['TotalMetrics'].nil?
+            @TotalMetrics = CallInMetrics.new
+            @TotalMetrics.deserialize(params['TotalMetrics'])
+          end
+          unless params['NumberMetrics'].nil?
+            @NumberMetrics = []
+            params['NumberMetrics'].each do |i|
+              callinnumbermetrics_tmp = CallInNumberMetrics.new
+              callinnumbermetrics_tmp.deserialize(i)
+              @NumberMetrics << callinnumbermetrics_tmp
+            end
+          end
+          unless params['SkillGroupMetrics'].nil?
+            @SkillGroupMetrics = []
+            params['SkillGroupMetrics'].each do |i|
+              callinskillgroupmetrics_tmp = CallInSkillGroupMetrics.new
+              callinskillgroupmetrics_tmp.deserialize(i)
+              @SkillGroupMetrics << callinskillgroupmetrics_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -617,6 +809,53 @@ module TencentCloud
               staffinfo_tmp = StaffInfo.new
               staffinfo_tmp.deserialize(i)
               @StaffList << staffinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStaffStatusMetrics请求参数结构体
+      class DescribeStaffStatusMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 实例ID
+        # @type SdkAppId: Integer
+        # @param StaffList: 筛选坐席列表，默认不传返回全部坐席信息
+        # @type StaffList: Array
+
+        attr_accessor :SdkAppId, :StaffList
+        
+        def initialize(sdkappid=nil, stafflist=nil)
+          @SdkAppId = sdkappid
+          @StaffList = stafflist
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StaffList = params['StaffList']
+        end
+      end
+
+      # DescribeStaffStatusMetrics返回参数结构体
+      class DescribeStaffStatusMetricsResponse < TencentCloud::Common::AbstractModel
+        # @param Metrics: 坐席状态实时信息
+        # @type Metrics: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Metrics, :RequestId
+        
+        def initialize(metrics=nil, requestid=nil)
+          @Metrics = metrics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              staffstatusmetrics_tmp = StaffStatusMetrics.new
+              staffstatusmetrics_tmp.deserialize(i)
+              @Metrics << staffstatusmetrics_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1314,6 +1553,89 @@ module TencentCloud
             end
           end
           @LastModifyTimestamp = params['LastModifyTimestamp']
+        end
+      end
+
+      # 坐席状态补充信息
+      class StaffStatusExtra < TencentCloud::Common::AbstractModel
+        # @param Type: im - 文本 | tel - 电话 | all - 全媒体
+        # @type Type: String
+        # @param Direct: in - 呼入 | out - 呼出
+        # @type Direct: String
+
+        attr_accessor :Type, :Direct
+        
+        def initialize(type=nil, direct=nil)
+          @Type = type
+          @Direct = direct
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Direct = params['Direct']
+        end
+      end
+
+      # 坐席状态相关信息
+      class StaffStatusMetrics < TencentCloud::Common::AbstractModel
+        # @param Email: 坐席邮箱
+        # @type Email: String
+        # @param Status: 坐席状态 free 示闲 | busy 忙碌 | rest 小休 | notReady 示忙 | afterCallWork 话后调整 | offline 离线
+        # @type Status: String
+        # @param StatusExtra: 坐席状态补充信息
+        # @type StatusExtra: :class:`Tencentcloud::Ccc.v20200210.models.StaffStatusExtra`
+        # @param OnlineDuration: 当天在线总时长
+        # @type OnlineDuration: Integer
+        # @param FreeDuration: 当天示闲总时长
+        # @type FreeDuration: Integer
+        # @param BusyDuration: 当天忙碌总时长
+        # @type BusyDuration: Integer
+        # @param NotReadyDuration: 当天示忙总时长
+        # @type NotReadyDuration: Integer
+        # @param RestDuration: 当天小休总时长
+        # @type RestDuration: Integer
+        # @param AfterCallWorkDuration: 当天话后调整总时长
+        # @type AfterCallWorkDuration: Integer
+        # @param Reason: 小休原因
+        # @type Reason: String
+        # @param ReserveRest: 是否预约小休
+        # @type ReserveRest: Boolean
+        # @param ReserveNotReady: 是否预约示忙
+        # @type ReserveNotReady: Boolean
+
+        attr_accessor :Email, :Status, :StatusExtra, :OnlineDuration, :FreeDuration, :BusyDuration, :NotReadyDuration, :RestDuration, :AfterCallWorkDuration, :Reason, :ReserveRest, :ReserveNotReady
+        
+        def initialize(email=nil, status=nil, statusextra=nil, onlineduration=nil, freeduration=nil, busyduration=nil, notreadyduration=nil, restduration=nil, aftercallworkduration=nil, reason=nil, reserverest=nil, reservenotready=nil)
+          @Email = email
+          @Status = status
+          @StatusExtra = statusextra
+          @OnlineDuration = onlineduration
+          @FreeDuration = freeduration
+          @BusyDuration = busyduration
+          @NotReadyDuration = notreadyduration
+          @RestDuration = restduration
+          @AfterCallWorkDuration = aftercallworkduration
+          @Reason = reason
+          @ReserveRest = reserverest
+          @ReserveNotReady = reservenotready
+        end
+
+        def deserialize(params)
+          @Email = params['Email']
+          @Status = params['Status']
+          unless params['StatusExtra'].nil?
+            @StatusExtra = StaffStatusExtra.new
+            @StatusExtra.deserialize(params['StatusExtra'])
+          end
+          @OnlineDuration = params['OnlineDuration']
+          @FreeDuration = params['FreeDuration']
+          @BusyDuration = params['BusyDuration']
+          @NotReadyDuration = params['NotReadyDuration']
+          @RestDuration = params['RestDuration']
+          @AfterCallWorkDuration = params['AfterCallWorkDuration']
+          @Reason = params['Reason']
+          @ReserveRest = params['ReserveRest']
+          @ReserveNotReady = params['ReserveNotReady']
         end
       end
 

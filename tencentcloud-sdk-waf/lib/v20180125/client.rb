@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建访问日志导出
+
+        # @param request: Request instance for CreateAccessExport.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreateAccessExportRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreateAccessExportResponse`
+        def CreateAccessExport(request)
+          body = send_request('CreateAccessExport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAccessExportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建攻击日志下载任务
 
         # @param request: Request instance for CreateAttackDownloadTask.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAttackDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除访问日志导出
+
+        # @param request: Request instance for DeleteAccessExport.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteAccessExportRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteAccessExportResponse`
+        def DeleteAccessExport(request)
+          body = send_request('DeleteAccessExport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccessExportResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -135,6 +183,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取访问日志导出列表
+
+        # @param request: Request instance for DescribeAccessExports.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAccessExportsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAccessExportsResponse`
+        def DescribeAccessExports(request)
+          body = send_request('DescribeAccessExports', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessExportsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于访问日志的快速分析
+
+        # @param request: Request instance for DescribeAccessFastAnalysis.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAccessFastAnalysisRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAccessFastAnalysisResponse`
+        def DescribeAccessFastAnalysis(request)
+          body = send_request('DescribeAccessFastAnalysis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessFastAnalysisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取访问日志索引配置信息
+
+        # @param request: Request instance for DescribeAccessIndex.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAccessIndexRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAccessIndexResponse`
+        def DescribeAccessIndex(request)
+          body = send_request('DescribeAccessIndex', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessIndexResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -255,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCustomRuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于搜索WAF访问日志
+
+        # @param request: Request instance for SearchAccessLog.
+        # @type request: :class:`Tencentcloud::waf::V20180125::SearchAccessLogRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::SearchAccessLogResponse`
+        def SearchAccessLog(request)
+          body = send_request('SearchAccessLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchAccessLogResponse.new
             model.deserialize(response['Response'])
             model
           else

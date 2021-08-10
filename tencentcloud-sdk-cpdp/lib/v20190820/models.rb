@@ -6392,6 +6392,54 @@ module TencentCloud
         end
       end
 
+      # QueryDownloadBillURL请求参数结构体
+      class QueryDownloadBillURLRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 分配给商户的AppId。进件成功后返给商户方的AppId。
+        # @type MerchantAppId: String
+        # @param ChannelCode: 渠道编号。固定值：ZSB2B
+        # @type ChannelCode: String
+        # @param BillDate: 对账单日期，格式yyyyMMdd
+        # @type BillDate: String
+
+        attr_accessor :MerchantAppId, :ChannelCode, :BillDate
+        
+        def initialize(merchantappid=nil, channelcode=nil, billdate=nil)
+          @MerchantAppId = merchantappid
+          @ChannelCode = channelcode
+          @BillDate = billdate
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @ChannelCode = params['ChannelCode']
+          @BillDate = params['BillDate']
+        end
+      end
+
+      # QueryDownloadBillURL返回参数结构体
+      class QueryDownloadBillURLResponse < TencentCloud::Common::AbstractModel
+        # @param MerchantAppId: 分配给商户的AppId。进件成功后返给商户方的AppId。
+        # @type MerchantAppId: String
+        # @param DownloadUrl: 对账单下载地址。
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MerchantAppId, :DownloadUrl, :RequestId
+        
+        def initialize(merchantappid=nil, downloadurl=nil, requestid=nil)
+          @MerchantAppId = merchantappid
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MerchantAppId = params['MerchantAppId']
+          @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryExchangeRate请求参数结构体
       class QueryExchangeRateRequest < TencentCloud::Common::AbstractModel
         # @param SourceCurrency: 源币种 (默认CNY)

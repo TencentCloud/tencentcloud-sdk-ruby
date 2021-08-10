@@ -403,6 +403,62 @@ module TencentCloud
         end
       end
 
+      # 绑定关系，包含监听器名字、协议、url、vport。
+      class BindDetailItem < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 配置绑定的CLB ID
+        # @type LoadBalancerId: String
+        # @param ListenerId: 配置绑定的监听器ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListenerId: String
+        # @param Domain: 配置绑定的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param LocationId: 配置绑定的规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocationId: String
+        # @param ListenerName: 监听器名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListenerName: String
+        # @param Protocol: 监听器协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Vport: 监听器端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+        # @param Url: location的url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param UconfigId: 配置ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UconfigId: String
+
+        attr_accessor :LoadBalancerId, :ListenerId, :Domain, :LocationId, :ListenerName, :Protocol, :Vport, :Url, :UconfigId
+        
+        def initialize(loadbalancerid=nil, listenerid=nil, domain=nil, locationid=nil, listenername=nil, protocol=nil, vport=nil, url=nil, uconfigid=nil)
+          @LoadBalancerId = loadbalancerid
+          @ListenerId = listenerid
+          @Domain = domain
+          @LocationId = locationid
+          @ListenerName = listenername
+          @Protocol = protocol
+          @Vport = vport
+          @Url = url
+          @UconfigId = uconfigid
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @ListenerId = params['ListenerId']
+          @Domain = params['Domain']
+          @LocationId = params['LocationId']
+          @ListenerName = params['ListenerName']
+          @Protocol = params['Protocol']
+          @Vport = params['Vport']
+          @Url = params['Url']
+          @UconfigId = params['UconfigId']
+        end
+      end
+
       # 加入了12306黑名单的IP
       class BlockedIP < TencentCloud::Common::AbstractModel
         # @param IP: 黑名单IP
@@ -929,6 +985,43 @@ module TencentCloud
         def deserialize(params)
           @MasterZone = params['MasterZone']
           @SlaveZone = params['SlaveZone']
+        end
+      end
+
+      # 配置内容
+      class ConfigListItem < TencentCloud::Common::AbstractModel
+        # @param UconfigId: 配置ID
+        # @type UconfigId: String
+        # @param ConfigType: 配置类型
+        # @type ConfigType: String
+        # @param ConfigName: 配置名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigName: String
+        # @param ConfigContent: 配置内容
+        # @type ConfigContent: String
+        # @param CreateTimestamp: 增加配置时间
+        # @type CreateTimestamp: String
+        # @param UpdateTimestamp: 修改配置时间
+        # @type UpdateTimestamp: String
+
+        attr_accessor :UconfigId, :ConfigType, :ConfigName, :ConfigContent, :CreateTimestamp, :UpdateTimestamp
+        
+        def initialize(uconfigid=nil, configtype=nil, configname=nil, configcontent=nil, createtimestamp=nil, updatetimestamp=nil)
+          @UconfigId = uconfigid
+          @ConfigType = configtype
+          @ConfigName = configname
+          @ConfigContent = configcontent
+          @CreateTimestamp = createtimestamp
+          @UpdateTimestamp = updatetimestamp
+        end
+
+        def deserialize(params)
+          @UconfigId = params['UconfigId']
+          @ConfigType = params['ConfigType']
+          @ConfigName = params['ConfigName']
+          @ConfigContent = params['ConfigContent']
+          @CreateTimestamp = params['CreateTimestamp']
+          @UpdateTimestamp = params['UpdateTimestamp']
         end
       end
 
@@ -2208,6 +2301,141 @@ module TencentCloud
               clusterresource_tmp = ClusterResource.new
               clusterresource_tmp.deserialize(i)
               @ClusterResourceSet << clusterresource_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomizedConfigAssociateList请求参数结构体
+      class DescribeCustomizedConfigAssociateListRequest < TencentCloud::Common::AbstractModel
+        # @param UconfigId: 配置ID
+        # @type UconfigId: String
+        # @param Offset: 拉取绑定关系列表开始位置，默认值 0
+        # @type Offset: Integer
+        # @param Limit: 拉取绑定关系列表数目，默认值 20
+        # @type Limit: Integer
+        # @param Domain: 搜索域名
+        # @type Domain: String
+
+        attr_accessor :UconfigId, :Offset, :Limit, :Domain
+        
+        def initialize(uconfigid=nil, offset=nil, limit=nil, domain=nil)
+          @UconfigId = uconfigid
+          @Offset = offset
+          @Limit = limit
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @UconfigId = params['UconfigId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeCustomizedConfigAssociateList返回参数结构体
+      class DescribeCustomizedConfigAssociateListResponse < TencentCloud::Common::AbstractModel
+        # @param BindList: 绑定关系列表
+        # @type BindList: Array
+        # @param TotalCount: 绑定关系总数目
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BindList, :TotalCount, :RequestId
+        
+        def initialize(bindlist=nil, totalcount=nil, requestid=nil)
+          @BindList = bindlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BindList'].nil?
+            @BindList = []
+            params['BindList'].each do |i|
+              binddetailitem_tmp = BindDetailItem.new
+              binddetailitem_tmp.deserialize(i)
+              @BindList << binddetailitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomizedConfigList请求参数结构体
+      class DescribeCustomizedConfigListRequest < TencentCloud::Common::AbstractModel
+        # @param ConfigType: 配置类型:CLB 负载均衡维度。 SERVER 域名维度。 LOCATION 规则维度。
+        # @type ConfigType: String
+        # @param Offset: 拉取页偏移，默认值0
+        # @type Offset: Integer
+        # @param Limit: 拉取数目，默认值20
+        # @type Limit: Integer
+        # @param ConfigName: 拉取指定配置名字，模糊匹配。
+        # @type ConfigName: String
+        # @param UconfigIds: 配置ID
+        # @type UconfigIds: Array
+        # @param Filters: 过滤条件如下：
+        # <li> loadbalancer-id - String - 是否必填：否 - （过滤条件）按照 负载均衡ID 过滤，如："lb-12345678"。</li>
+        # <li> vip - String - 是否必填：否 - （过滤条件）按照 负载均衡Vip 过滤，如："1.1.1.1","2204::22:3"。</li>
+        # @type Filters: Array
+
+        attr_accessor :ConfigType, :Offset, :Limit, :ConfigName, :UconfigIds, :Filters
+        
+        def initialize(configtype=nil, offset=nil, limit=nil, configname=nil, uconfigids=nil, filters=nil)
+          @ConfigType = configtype
+          @Offset = offset
+          @Limit = limit
+          @ConfigName = configname
+          @UconfigIds = uconfigids
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ConfigType = params['ConfigType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ConfigName = params['ConfigName']
+          @UconfigIds = params['UconfigIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCustomizedConfigList返回参数结构体
+      class DescribeCustomizedConfigListResponse < TencentCloud::Common::AbstractModel
+        # @param ConfigList: 配置列表
+        # @type ConfigList: Array
+        # @param TotalCount: 配置数目
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConfigList, :TotalCount, :RequestId
+        
+        def initialize(configlist=nil, totalcount=nil, requestid=nil)
+          @ConfigList = configlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ConfigList'].nil?
+            @ConfigList = []
+            params['ConfigList'].each do |i|
+              configlistitem_tmp = ConfigListItem.new
+              configlistitem_tmp.deserialize(i)
+              @ConfigList << configlistitem_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -5375,6 +5603,58 @@ module TencentCloud
               @Targets << backend_tmp
             end
           end
+        end
+      end
+
+      # SetCustomizedConfigForLoadBalancer请求参数结构体
+      class SetCustomizedConfigForLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param OperationType: 操作类型：'ADD', 'DELETE', 'UPDATE', 'BIND', 'UNBIND'
+        # @type OperationType: String
+        # @param UconfigId: 除了创建个性化配置外，必传此字段，如：pz-1234abcd
+        # @type UconfigId: String
+        # @param ConfigContent: 创建个性化配置或修改个性化配置的内容时，必传此字段
+        # @type ConfigContent: String
+        # @param ConfigName: 创建个性化配置或修改个性化配置的名字时，必传此字段
+        # @type ConfigName: String
+        # @param LoadBalancerIds: 绑定解绑时，必传此字段
+        # @type LoadBalancerIds: Array
+
+        attr_accessor :OperationType, :UconfigId, :ConfigContent, :ConfigName, :LoadBalancerIds
+        
+        def initialize(operationtype=nil, uconfigid=nil, configcontent=nil, configname=nil, loadbalancerids=nil)
+          @OperationType = operationtype
+          @UconfigId = uconfigid
+          @ConfigContent = configcontent
+          @ConfigName = configname
+          @LoadBalancerIds = loadbalancerids
+        end
+
+        def deserialize(params)
+          @OperationType = params['OperationType']
+          @UconfigId = params['UconfigId']
+          @ConfigContent = params['ConfigContent']
+          @ConfigName = params['ConfigName']
+          @LoadBalancerIds = params['LoadBalancerIds']
+        end
+      end
+
+      # SetCustomizedConfigForLoadBalancer返回参数结构体
+      class SetCustomizedConfigForLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 个性化配置ID，如：pz-1234abcd
+        # @type ConfigId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConfigId, :RequestId
+        
+        def initialize(configid=nil, requestid=nil)
+          @ConfigId = configid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @RequestId = params['RequestId']
         end
       end
 
