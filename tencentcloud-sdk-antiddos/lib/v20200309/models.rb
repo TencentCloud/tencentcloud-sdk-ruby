@@ -137,7 +137,7 @@ module TencentCloud
         # 注意：当资产实例不是三网套餐包的实例时，此字段为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StaticPackRelation: :class:`Tencentcloud::Antiddos.v20200309.models.StaticPackRelation`
-        # @param ZoneId: 区分高防IP海外线路
+        # @param ZoneId: 区分高防IP境外线路
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ZoneId: Integer
         # @param Tgw: 区分集群
@@ -157,10 +157,13 @@ module TencentCloud
         # 注意：当资产实例不是高防弹性公网IP实例时，此字段为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipAddressInfo: :class:`Tencentcloud::Antiddos.v20200309.models.EipAddressRelation`
+        # @param Domain: 建议客户接入的域名，客户可使用域名接入。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :ExpiredTime, :CreatedTime, :Name, :PackInfo, :StaticPackRelation, :ZoneId, :Tgw, :EipAddressStatus, :EipFlag, :EipAddressPackRelation, :EipAddressInfo, :Domain
         
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, expiredtime=nil, createdtime=nil, name=nil, packinfo=nil, staticpackrelation=nil, zoneid=nil, tgw=nil, eipaddressstatus=nil, eipflag=nil, eipaddresspackrelation=nil, eipaddressinfo=nil, domain=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -177,6 +180,7 @@ module TencentCloud
           @EipFlag = eipflag
           @EipAddressPackRelation = eipaddresspackrelation
           @EipAddressInfo = eipaddressinfo
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -220,12 +224,13 @@ module TencentCloud
             @EipAddressInfo = EipAddressRelation.new
             @EipAddressInfo.deserialize(params['EipAddressInfo'])
           end
+          @Domain = params['Domain']
         end
       end
 
       # 高防IP资产实例的规格信息
       class BGPIPInstanceSpecification < TencentCloud::Common::AbstractModel
-        # @param ProtectBandwidth: 保底防护峰值，单位Gbps
+        # @param ProtectBandwidth: 保底防护峰值，单位Mbps
         # @type ProtectBandwidth: Integer
         # @param ProtectCCQPS: CC防护峰值，单位qps
         # @type ProtectCCQPS: Integer
@@ -246,7 +251,7 @@ module TencentCloud
         # 99：第三方合作线路
         # ]
         # @type Line: Integer
-        # @param ElasticBandwidth: 弹性防护峰值，单位Gbps
+        # @param ElasticBandwidth: 弹性防护峰值，单位Mbps
         # @type ElasticBandwidth: Integer
 
         attr_accessor :ProtectBandwidth, :ProtectCCQPS, :NormalBandwidth, :ForwardRulesLimit, :AutoRenewFlag, :Line, :ElasticBandwidth

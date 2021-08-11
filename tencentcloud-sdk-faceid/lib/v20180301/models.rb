@@ -482,6 +482,75 @@ module TencentCloud
         end
       end
 
+      # CheckIdNameDate请求参数结构体
+      class CheckIdNameDateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名
+        # @type Name: String
+        # @param IdCard: 身份证号
+        # @type IdCard: String
+        # @param ValidityBegin: 身份证有效期开始时间，格式：YYYYMMDD。如：20210701
+        # @type ValidityBegin: String
+        # @param ValidityEnd: 身份证有效期到期时间，格式：YYYYMMDD，长期用“00000000”代替；如：20210701
+        # @type ValidityEnd: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+
+        attr_accessor :Name, :IdCard, :ValidityBegin, :ValidityEnd, :Encryption
+        
+        def initialize(name=nil, idcard=nil, validitybegin=nil, validityend=nil, encryption=nil)
+          @Name = name
+          @IdCard = idcard
+          @ValidityBegin = validitybegin
+          @ValidityEnd = validityend
+          @Encryption = encryption
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @IdCard = params['IdCard']
+          @ValidityBegin = params['ValidityBegin']
+          @ValidityEnd = params['ValidityEnd']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
+        end
+      end
+
+      # CheckIdNameDate返回参数结构体
+      class CheckIdNameDateResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 认证结果码，收费情况如下。
+        # 收费结果码：
+        # 0: 一致
+        # -1: 不一致
+        # 不收费结果码：
+        # -2: 非法身份证号（长度、校验位等不正确）
+        # -3: 非法姓名（长度、格式等不正确）
+        # -4: 非法有效期（长度、格式等不正确）
+        # -5: 身份信息无效
+        # -6: 证件库服务异常
+        # -7: 证件库中无此身份证记录
+        # @type Result: String
+        # @param Description: 业务结果描述。
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :Description, :RequestId
+        
+        def initialize(result=nil, description=nil, requestid=nil)
+          @Result = result
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckPhoneAndName请求参数结构体
       class CheckPhoneAndNameRequest < TencentCloud::Common::AbstractModel
         # @param Mobile: ⼿机号

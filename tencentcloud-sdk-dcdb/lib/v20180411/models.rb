@@ -3152,6 +3152,42 @@ module TencentCloud
         end
       end
 
+      # ModifyRealServerAccessStrategy请求参数结构体
+      class ModifyRealServerAccessStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param RsAccessStrategy: RS就近模式, 0-无策略, 1-可用区就近访问。
+        # @type RsAccessStrategy: Integer
+
+        attr_accessor :InstanceId, :RsAccessStrategy
+        
+        def initialize(instanceid=nil, rsaccessstrategy=nil)
+          @InstanceId = instanceid
+          @RsAccessStrategy = rsaccessstrategy
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RsAccessStrategy = params['RsAccessStrategy']
+        end
+      end
+
+      # ModifyRealServerAccessStrategy返回参数结构体
+      class ModifyRealServerAccessStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # OpenDBExtranetAccess请求参数结构体
       class OpenDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 待开放外网访问的实例ID。形如：dcdbt-ow728lmc。

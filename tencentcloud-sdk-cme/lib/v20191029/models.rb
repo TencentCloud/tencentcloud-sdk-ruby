@@ -200,7 +200,16 @@ module TencentCloud
         # <li>EXTERNAL ：视频来源于媒资绑定，如果媒体不是存储在腾讯云点播中或者云创中，都需要使用媒资绑定。</li>
         # </ul>
         # @type SourceType: String
-        # @param SourceMedia: 注：当 SourceType 为 EXTERNAL 时，目前仅支持外部 URL 的媒体直接导入项目中。当外部 URL Scheme 为 https 时，Definiton 为 1000000，MediaKey 为 URL 去掉<code> 'https://' </code>；当外部 URL Scheme 为 http 时，Definiton 为 1000001，MediaKey 为 URL 去掉<code> 'http://'</code>。
+        # @param SourceMedia: 音频媒体，可取值为：
+        # <ul>
+        # <li>当 SourceType 为 VOD 时，参数填云点播 FileId ；</li>
+        # <li>当 SourceType 为 CME 时，参数填云剪媒体 Id；</li>
+        # <li>当 SourceType 为 EXTERNAL 时，目前仅支持外部媒体 URL(如`https://www.example.com/a.mp3`)，参数填写规则请参见注意事项。</li>
+        # </ul>
+
+        # 注意：
+        # <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp3`)，参数为：`1000000:www.example.com/a.mp3`。</li>
+        # <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp3`)，参数为：`1000001:www.example.com/b.mp3`。</li>
         # @type SourceMedia: String
         # @param SourceMediaStartTime: 音频片段取自媒体文件的起始时间，单位为秒。0 表示从媒体开始位置截取。默认为0。
         # @type SourceMediaStartTime: Float
@@ -2201,7 +2210,8 @@ module TencentCloud
 
         # 注：如果要支持其它存储平台或者类型的媒体绑定，请联系 [客服](https://cloud.tencent.com/online-service?from=doc_1156)。
         # @type Definition: Integer
-        # @param MediaKey: 媒资绑定媒体路径或文件 ID，如果要绑定 URL 类型的媒体，请将 URL 的 <code> 'https://' </code>或者<code> 'http://' </code>去掉。
+        # @param MediaKey: 媒资绑定媒体路径或文件 ID。如果要绑定 URL 类型的媒体，请将 URL 的 <code>'https://'</code> 或者 <code>'http://'</code> 去掉，例如：
+        # 原始媒体 URL 为 `https://www.example.com/a.mp4`，则 MediaKey 为 `www.example.com/a.mp4`。
         # @type MediaKey: String
 
         attr_accessor :Definition, :MediaKey
@@ -5044,7 +5054,16 @@ module TencentCloud
         # <li>EXTERNAL ：视频来源于媒资绑定，如果媒体不是存储在腾讯云点播中或者云创中，都需要使用媒资绑定。</li>
         # </ul>
         # @type SourceType: String
-        # @param SourceMedia: 注：当 SourceType 为 EXTERNAL 时，目前仅支持外部 URL 的媒体直接导入项目中。当外部 URL Scheme 为 https 时，Definiton 为 1000000，MediaKey 为 URL 去掉<code> 'https://' </code>；当外部 URL Scheme 为 http 时，Definiton 为 1000001，MediaKey 为 URL 去掉<code> 'http://'</code>。
+        # @param SourceMedia: 视频媒体，可取值为：
+        # <ul>
+        # <li>当 SourceType 为 VOD 时，参数填云点播 FileId ；</li>
+        # <li>当 SourceType 为 CME 时，参数填云剪媒体 Id；</li>
+        # <li>当 SourceType 为 EXTERNAL 时，目前仅支持外部媒体 URL(如`https://www.example.com/a.mp4`)，参数填写规则请参见注意事项。</li>
+        # </ul>
+
+        # 注意：
+        # <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp4`)，参数为：`1000000:www.example.com/a.mp4`。</li>
+        # <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp4`)，参数为：`1000001:www.example.com/b.mp4`。</li>
         # @type SourceMedia: String
         # @param SourceMediaStartTime: 视频片段取自媒体文件的起始时间，单位为秒。默认为0。
         # @type SourceMediaStartTime: Float
