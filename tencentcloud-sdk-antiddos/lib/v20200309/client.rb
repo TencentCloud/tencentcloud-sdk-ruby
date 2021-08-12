@@ -557,6 +557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取业务流量曲线
+
+        # @param request: Request instance for DescribeBizTrend.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeBizTrendRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeBizTrendResponse`
+        def DescribeBizTrend(request)
+          body = send_request('DescribeBizTrend', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBizTrendResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取DDoS防护的IP黑白名单
 
         # @param request: Request instance for DescribeBlackWhiteIpList.
@@ -567,6 +591,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBlackWhiteIpListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)
+
+        # @param request: Request instance for DescribeCCTrend.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeCCTrendRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeCCTrendResponse`
+        def DescribeCCTrend(request)
+          body = send_request('DescribeCCTrend', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCCTrendResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DDoS攻击流量带宽和攻击包速率数据
+
+        # @param request: Request instance for DescribeDDoSTrend.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeDDoSTrendRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeDDoSTrendResponse`
+        def DescribeDDoSTrend(request)
+          body = send_request('DescribeDDoSTrend', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDDoSTrendResponse.new
             model.deserialize(response['Response'])
             model
           else

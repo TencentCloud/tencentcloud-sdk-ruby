@@ -557,6 +557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新一个应用的信息
+
+        # @param request: Request instance for ModifyApplication.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::ModifyApplicationRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::ModifyApplicationResponse`
+        def ModifyApplication(request)
+          body = send_request('ModifyApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过用户名或用户 id 冻结用户
 
         # @param request: Request instance for ModifyUserInfo.

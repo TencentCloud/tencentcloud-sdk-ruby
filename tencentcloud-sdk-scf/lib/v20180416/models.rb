@@ -2001,7 +2001,7 @@ module TencentCloud
       class InvokeFunctionRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 函数名称
         # @type FunctionName: String
-        # @param Qualifier: 触发函数的版本号或别名
+        # @param Qualifier: 触发函数的版本号或别名，默认值为$DEFAULT
         # @type Qualifier: String
         # @param Event: 运行函数时的参数，以json格式传入，最大支持的参数长度是 1M
         # @type Event: String

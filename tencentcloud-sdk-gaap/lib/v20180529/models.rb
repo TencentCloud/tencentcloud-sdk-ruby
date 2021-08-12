@@ -25,19 +25,23 @@ module TencentCloud
         # @type Bandwidth: Integer
         # @param Concurrent: 通道并发量上限，表示同时在线的连接数，单位：万。
         # @type Concurrent: Integer
+        # @param NetworkType: 网络类型，可取值：normal、cn2，默认值为normal
+        # @type NetworkType: String
 
-        attr_accessor :AccessRegion, :Bandwidth, :Concurrent
+        attr_accessor :AccessRegion, :Bandwidth, :Concurrent, :NetworkType
         
-        def initialize(accessregion=nil, bandwidth=nil, concurrent=nil)
+        def initialize(accessregion=nil, bandwidth=nil, concurrent=nil, networktype=nil)
           @AccessRegion = accessregion
           @Bandwidth = bandwidth
           @Concurrent = concurrent
+          @NetworkType = networktype
         end
 
         def deserialize(params)
           @AccessRegion = params['AccessRegion']
           @Bandwidth = params['Bandwidth']
           @Concurrent = params['Concurrent']
+          @NetworkType = params['NetworkType']
         end
       end
 
@@ -491,16 +495,19 @@ module TencentCloud
         # @type GroupId: String
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # @type IPAddressVersion: String
+        # @param NetworkType: 网络类型，可取值：normal、cn2，默认值normal
+        # @type NetworkType: String
 
-        attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion
+        attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion, :NetworkType
         
-        def initialize(accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, groupid=nil, ipaddressversion=nil)
+        def initialize(accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, groupid=nil, ipaddressversion=nil, networktype=nil)
           @AccessRegion = accessregion
           @RealServerRegion = realserverregion
           @Bandwidth = bandwidth
           @Concurrent = concurrent
           @GroupId = groupid
           @IPAddressVersion = ipaddressversion
+          @NetworkType = networktype
         end
 
         def deserialize(params)
@@ -510,6 +517,7 @@ module TencentCloud
           @Concurrent = params['Concurrent']
           @GroupId = params['GroupId']
           @IPAddressVersion = params['IPAddressVersion']
+          @NetworkType = params['NetworkType']
         end
       end
 
@@ -1166,10 +1174,12 @@ module TencentCloud
         # @type BillingType: Integer
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # @type IPAddressVersion: String
+        # @param NetworkType: 网络类型，可取值：normal、cn2，默认值normal
+        # @type NetworkType: String
 
-        attr_accessor :ProjectId, :ProxyName, :AccessRegion, :Bandwidth, :Concurrent, :RealServerRegion, :ClientToken, :GroupId, :TagSet, :ClonedProxyId, :BillingType, :IPAddressVersion
+        attr_accessor :ProjectId, :ProxyName, :AccessRegion, :Bandwidth, :Concurrent, :RealServerRegion, :ClientToken, :GroupId, :TagSet, :ClonedProxyId, :BillingType, :IPAddressVersion, :NetworkType
         
-        def initialize(projectid=nil, proxyname=nil, accessregion=nil, bandwidth=nil, concurrent=nil, realserverregion=nil, clienttoken=nil, groupid=nil, tagset=nil, clonedproxyid=nil, billingtype=nil, ipaddressversion=nil)
+        def initialize(projectid=nil, proxyname=nil, accessregion=nil, bandwidth=nil, concurrent=nil, realserverregion=nil, clienttoken=nil, groupid=nil, tagset=nil, clonedproxyid=nil, billingtype=nil, ipaddressversion=nil, networktype=nil)
           @ProjectId = projectid
           @ProxyName = proxyname
           @AccessRegion = accessregion
@@ -1182,6 +1192,7 @@ module TencentCloud
           @ClonedProxyId = clonedproxyid
           @BillingType = billingtype
           @IPAddressVersion = ipaddressversion
+          @NetworkType = networktype
         end
 
         def deserialize(params)
@@ -1204,6 +1215,7 @@ module TencentCloud
           @ClonedProxyId = params['ClonedProxyId']
           @BillingType = params['BillingType']
           @IPAddressVersion = params['IPAddressVersion']
+          @NetworkType = params['NetworkType']
         end
       end
 
@@ -4422,10 +4434,12 @@ module TencentCloud
         # @type BillingType: Integer
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # @type IPAddressVersion: String
+        # @param NetworkType: 网络类型，可取值：normal、cn2，默认值normal
+        # @type NetworkType: String
 
-        attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType, :IPAddressVersion
+        attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType, :IPAddressVersion, :NetworkType
         
-        def initialize(accessregion=nil, bandwidth=nil, destregion=nil, concurrency=nil, realserverregion=nil, concurrent=nil, billingtype=nil, ipaddressversion=nil)
+        def initialize(accessregion=nil, bandwidth=nil, destregion=nil, concurrency=nil, realserverregion=nil, concurrent=nil, billingtype=nil, ipaddressversion=nil, networktype=nil)
           @AccessRegion = accessregion
           @Bandwidth = bandwidth
           @DestRegion = destregion
@@ -4434,6 +4448,7 @@ module TencentCloud
           @Concurrent = concurrent
           @BillingType = billingtype
           @IPAddressVersion = ipaddressversion
+          @NetworkType = networktype
         end
 
         def deserialize(params)
@@ -4445,6 +4460,7 @@ module TencentCloud
           @Concurrent = params['Concurrent']
           @BillingType = params['BillingType']
           @IPAddressVersion = params['IPAddressVersion']
+          @NetworkType = params['NetworkType']
         end
       end
 
@@ -4465,18 +4481,26 @@ module TencentCloud
         # @param DiscountFlowUnitPrice: 通道的流量费用折扣价格，单位:元/GB
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountFlowUnitPrice: Float
+        # @param Cn2BandwidthPrice: 精品BGP的带宽费用价格，单位: 元/Mbps/天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cn2BandwidthPrice: Float
+        # @param Cn2BandwidthPriceWithDiscount: 精品BGP的折后带宽费用价格，单位: 元/Mbps/天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cn2BandwidthPriceWithDiscount: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProxyDailyPrice, :BandwidthUnitPrice, :DiscountProxyDailyPrice, :Currency, :FlowUnitPrice, :DiscountFlowUnitPrice, :RequestId
+        attr_accessor :ProxyDailyPrice, :BandwidthUnitPrice, :DiscountProxyDailyPrice, :Currency, :FlowUnitPrice, :DiscountFlowUnitPrice, :Cn2BandwidthPrice, :Cn2BandwidthPriceWithDiscount, :RequestId
         
-        def initialize(proxydailyprice=nil, bandwidthunitprice=nil, discountproxydailyprice=nil, currency=nil, flowunitprice=nil, discountflowunitprice=nil, requestid=nil)
+        def initialize(proxydailyprice=nil, bandwidthunitprice=nil, discountproxydailyprice=nil, currency=nil, flowunitprice=nil, discountflowunitprice=nil, cn2bandwidthprice=nil, cn2bandwidthpricewithdiscount=nil, requestid=nil)
           @ProxyDailyPrice = proxydailyprice
           @BandwidthUnitPrice = bandwidthunitprice
           @DiscountProxyDailyPrice = discountproxydailyprice
           @Currency = currency
           @FlowUnitPrice = flowunitprice
           @DiscountFlowUnitPrice = discountflowunitprice
+          @Cn2BandwidthPrice = cn2bandwidthprice
+          @Cn2BandwidthPriceWithDiscount = cn2bandwidthpricewithdiscount
           @RequestId = requestid
         end
 
@@ -4494,6 +4518,8 @@ module TencentCloud
           @Currency = params['Currency']
           @FlowUnitPrice = params['FlowUnitPrice']
           @DiscountFlowUnitPrice = params['DiscountFlowUnitPrice']
+          @Cn2BandwidthPrice = params['Cn2BandwidthPrice']
+          @Cn2BandwidthPriceWithDiscount = params['Cn2BandwidthPriceWithDiscount']
           @RequestId = params['RequestId']
         end
       end
@@ -5747,7 +5773,7 @@ module TencentCloud
         # @param ModifyConfigTime: 配置变更时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyConfigTime: Integer
-        # @param ProxyType: 通道类型，104表示新的银牌质量通道类型
+        # @param ProxyType: 通道类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyType: Integer
         # @param ClientIPMethod: 通道获取客户端IP的方式，0表示TOA，1表示Proxy Protocol
@@ -5756,10 +5782,13 @@ module TencentCloud
         # @param IPAddressVersion: IP版本：IPv4、IPv6
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPAddressVersion: String
+        # @param NetworkType: 网络类型：normal、cn2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkType: String
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType
         
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -5788,6 +5817,7 @@ module TencentCloud
           @ProxyType = proxytype
           @ClientIPMethod = clientipmethod
           @IPAddressVersion = ipaddressversion
+          @NetworkType = networktype
         end
 
         def deserialize(params)
@@ -5832,6 +5862,7 @@ module TencentCloud
           @ProxyType = params['ProxyType']
           @ClientIPMethod = params['ClientIPMethod']
           @IPAddressVersion = params['IPAddressVersion']
+          @NetworkType = params['NetworkType']
         end
       end
 

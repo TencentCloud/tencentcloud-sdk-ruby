@@ -1821,6 +1821,41 @@ module TencentCloud
         end
       end
 
+      # DescribeSocCspmCompliance请求参数结构体
+      class DescribeSocCspmComplianceRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSocCspmCompliance返回参数结构体
+      class DescribeSocCspmComplianceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.SocComplianceInfoResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = SocComplianceInfoResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVulDetail请求参数结构体
       class DescribeVulDetailRequest < TencentCloud::Common::AbstractModel
         # @param UniqId: 漏洞唯一标识符
@@ -2211,6 +2246,155 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # SocCheckItem类型
+      class SocCheckItem < TencentCloud::Common::AbstractModel
+        # @param Name: 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param LevelId: 唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LevelId: String
+        # @param SuccessCount: 成功数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessCount: Integer
+        # @param FailCount: 失败数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailCount: Integer
+
+        attr_accessor :Name, :LevelId, :SuccessCount, :FailCount
+        
+        def initialize(name=nil, levelid=nil, successcount=nil, failcount=nil)
+          @Name = name
+          @LevelId = levelid
+          @SuccessCount = successcount
+          @FailCount = failcount
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @LevelId = params['LevelId']
+          @SuccessCount = params['SuccessCount']
+          @FailCount = params['FailCount']
+        end
+      end
+
+      # 返回结构
+      class SocComplianceInfoResp < TencentCloud::Common::AbstractModel
+        # @param Items: 合格项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :Items
+        
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              soccomplianceitem_tmp = SocComplianceItem.new
+              soccomplianceitem_tmp.deserialize(i)
+              @Items << soccomplianceitem_tmp
+            end
+          end
+        end
+      end
+
+      # soc合规信息
+      class SocComplianceItem < TencentCloud::Common::AbstractModel
+        # @param Item: 唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Item: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param StandardItem: 分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardItem: String
+        # @param Result: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Integer
+        # @param Suggestion: 建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Suggestion: String
+        # @param ProStr: 产品字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProStr: String
+        # @param Production: 产品数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Production: Array
+        # @param CheckItems: 配置项数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckItems: Array
+
+        attr_accessor :Item, :Description, :StandardItem, :Result, :Suggestion, :ProStr, :Production, :CheckItems
+        
+        def initialize(item=nil, description=nil, standarditem=nil, result=nil, suggestion=nil, prostr=nil, production=nil, checkitems=nil)
+          @Item = item
+          @Description = description
+          @StandardItem = standarditem
+          @Result = result
+          @Suggestion = suggestion
+          @ProStr = prostr
+          @Production = production
+          @CheckItems = checkitems
+        end
+
+        def deserialize(params)
+          @Item = params['Item']
+          @Description = params['Description']
+          @StandardItem = params['StandardItem']
+          @Result = params['Result']
+          @Suggestion = params['Suggestion']
+          @ProStr = params['ProStr']
+          unless params['Production'].nil?
+            @Production = []
+            params['Production'].each do |i|
+              socproductionitem_tmp = SocProductionItem.new
+              socproductionitem_tmp.deserialize(i)
+              @Production << socproductionitem_tmp
+            end
+          end
+          unless params['CheckItems'].nil?
+            @CheckItems = []
+            params['CheckItems'].each do |i|
+              soccheckitem_tmp = SocCheckItem.new
+              soccheckitem_tmp.deserialize(i)
+              @CheckItems << soccheckitem_tmp
+            end
+          end
+        end
+      end
+
+      # soc产品购买信息
+      class SocProductionItem < TencentCloud::Common::AbstractModel
+        # @param Name: 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Index: 标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: Integer
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :Name, :Index, :Status
+        
+        def initialize(name=nil, index=nil, status=nil)
+          @Name = name
+          @Index = index
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Index = params['Index']
+          @Status = params['Status']
         end
       end
 

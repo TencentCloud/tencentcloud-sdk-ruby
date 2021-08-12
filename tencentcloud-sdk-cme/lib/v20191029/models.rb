@@ -3252,23 +3252,68 @@ module TencentCloud
         end
       end
 
-      # 媒体替换信息。
-      class MediaReplacementInfo < TencentCloud::Common::AbstractModel
-        # @param MaterialId: 素材 ID。
-        # @type MaterialId: String
-        # @param StartTimeOffset: 替换媒体选取的开始时间，单位为秒，默认为 0。
-        # @type StartTimeOffset: Float
+      # 媒体处理视频合成任务的预处理操作。
+      class MediaPreprocessOperation < TencentCloud::Common::AbstractModel
+        # @param Type: 预处理操作的类型，取值范围：
+        # <li>ImageTextMask：图片文字遮罩。</li>
+        # @type Type: String
+        # @param Args: 预处理操作参数。
+        # 当 Type 取值 ImageTextMask 时，参数为要保留的文字。
+        # @type Args: Array
 
-        attr_accessor :MaterialId, :StartTimeOffset
+        attr_accessor :Type, :Args
         
-        def initialize(materialid=nil, starttimeoffset=nil)
-          @MaterialId = materialid
-          @StartTimeOffset = starttimeoffset
+        def initialize(type=nil, args=nil)
+          @Type = type
+          @Args = args
         end
 
         def deserialize(params)
+          @Type = params['Type']
+          @Args = params['Args']
+        end
+      end
+
+      # 媒体替换信息。
+      class MediaReplacementInfo < TencentCloud::Common::AbstractModel
+        # @param MediaType: 替换的媒体类型，取值有：
+        # <li>CMEMaterialId：替换的媒体类型为媒体 ID；</li>
+        # <li>ImageUrl：替换的媒体类型为图片 URL；</li>
+
+        # 注：默认为 CMEMaterialId 。
+        # @type MediaType: String
+        # @param MaterialId: 媒体 ID。
+        # 当媒体类型取值为 CMEMaterialId 时有效。
+        # @type MaterialId: String
+        # @param MediaUrl: 媒体 URL。
+        # 当媒体类型取值为 ImageUrl 时有效，
+        # 图片仅支持 jpg、png 格式，且大小不超过 2M 。
+        # @type MediaUrl: String
+        # @param StartTimeOffset: 替换媒体选取的开始时间，单位为秒，默认为 0。
+        # @type StartTimeOffset: Float
+        # @param PreprocessOperation: 预处理操作。
+        # 注：目前该功能暂不支持，请勿使用。
+        # @type PreprocessOperation: :class:`Tencentcloud::Cme.v20191029.models.MediaPreprocessOperation`
+
+        attr_accessor :MediaType, :MaterialId, :MediaUrl, :StartTimeOffset, :PreprocessOperation
+        
+        def initialize(mediatype=nil, materialid=nil, mediaurl=nil, starttimeoffset=nil, preprocessoperation=nil)
+          @MediaType = mediatype
+          @MaterialId = materialid
+          @MediaUrl = mediaurl
+          @StartTimeOffset = starttimeoffset
+          @PreprocessOperation = preprocessoperation
+        end
+
+        def deserialize(params)
+          @MediaType = params['MediaType']
           @MaterialId = params['MaterialId']
+          @MediaUrl = params['MediaUrl']
           @StartTimeOffset = params['StartTimeOffset']
+          unless params['PreprocessOperation'].nil?
+            @PreprocessOperation = MediaPreprocessOperation.new
+            @PreprocessOperation.deserialize(params['PreprocessOperation'])
+          end
         end
       end
 

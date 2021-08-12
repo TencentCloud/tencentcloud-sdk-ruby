@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 合规详情项
+
+        # @param request: Request instance for DescribeSocCspmCompliance.
+        # @type request: :class:`Tencentcloud::ssa::V20180608::DescribeSocCspmComplianceRequest`
+        # @rtype: :class:`Tencentcloud::ssa::V20180608::DescribeSocCspmComplianceResponse`
+        def DescribeSocCspmCompliance(request)
+          body = send_request('DescribeSocCspmCompliance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSocCspmComplianceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 漏洞列表页，获取漏洞详情信息
 
         # @param request: Request instance for DescribeVulDetail.

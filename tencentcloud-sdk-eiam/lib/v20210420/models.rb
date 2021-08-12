@@ -524,12 +524,24 @@ module TencentCloud
         # @param AuthorizeUrl: 授权地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizeUrl: String
+        # @param IconUrl: 应用图标图片访问地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IconUrl: String
+        # @param SecureLevel: 安全等级。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecureLevel: String
+        # @param AppStatus: 应用状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppStatus: Boolean
+        # @param Description: 描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KeyId, :DisplayName, :LastModifiedDate, :ClientId, :ApplicationType, :CreatedDate, :ApplicationId, :TokenExpired, :ClientSecret, :PublicKey, :AuthorizeUrl, :RequestId
+        attr_accessor :KeyId, :DisplayName, :LastModifiedDate, :ClientId, :ApplicationType, :CreatedDate, :ApplicationId, :TokenExpired, :ClientSecret, :PublicKey, :AuthorizeUrl, :IconUrl, :SecureLevel, :AppStatus, :Description, :RequestId
         
-        def initialize(keyid=nil, displayname=nil, lastmodifieddate=nil, clientid=nil, applicationtype=nil, createddate=nil, applicationid=nil, tokenexpired=nil, clientsecret=nil, publickey=nil, authorizeurl=nil, requestid=nil)
+        def initialize(keyid=nil, displayname=nil, lastmodifieddate=nil, clientid=nil, applicationtype=nil, createddate=nil, applicationid=nil, tokenexpired=nil, clientsecret=nil, publickey=nil, authorizeurl=nil, iconurl=nil, securelevel=nil, appstatus=nil, description=nil, requestid=nil)
           @KeyId = keyid
           @DisplayName = displayname
           @LastModifiedDate = lastmodifieddate
@@ -541,6 +553,10 @@ module TencentCloud
           @ClientSecret = clientsecret
           @PublicKey = publickey
           @AuthorizeUrl = authorizeurl
+          @IconUrl = iconurl
+          @SecureLevel = securelevel
+          @AppStatus = appstatus
+          @Description = description
           @RequestId = requestid
         end
 
@@ -556,6 +572,10 @@ module TencentCloud
           @ClientSecret = params['ClientSecret']
           @PublicKey = params['PublicKey']
           @AuthorizeUrl = params['AuthorizeUrl']
+          @IconUrl = params['IconUrl']
+          @SecureLevel = params['SecureLevel']
+          @AppStatus = params['AppStatus']
+          @Description = params['Description']
           @RequestId = params['RequestId']
         end
       end
@@ -1419,6 +1439,58 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyApplication请求参数结构体
+      class ModifyApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID，是应用的全局唯一标识。
+        # @type ApplicationId: String
+        # @param SecureLevel: 安全级别。
+        # @type SecureLevel: String
+        # @param DisplayName: 应用展示名称，长度限制：32个字符。 默认与应用名字相同。
+        # @type DisplayName: String
+        # @param AppStatus: 应用状态
+        # @type AppStatus: Boolean
+        # @param IconUrl: 应用图标图片访问地址。
+        # @type IconUrl: String
+        # @param Description: 描述。长度不超过128。
+        # @type Description: String
+
+        attr_accessor :ApplicationId, :SecureLevel, :DisplayName, :AppStatus, :IconUrl, :Description
+        
+        def initialize(applicationid=nil, securelevel=nil, displayname=nil, appstatus=nil, iconurl=nil, description=nil)
+          @ApplicationId = applicationid
+          @SecureLevel = securelevel
+          @DisplayName = displayname
+          @AppStatus = appstatus
+          @IconUrl = iconurl
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @SecureLevel = params['SecureLevel']
+          @DisplayName = params['DisplayName']
+          @AppStatus = params['AppStatus']
+          @IconUrl = params['IconUrl']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyApplication返回参数结构体
+      class ModifyApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

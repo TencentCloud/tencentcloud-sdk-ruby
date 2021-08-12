@@ -125,16 +125,19 @@ module TencentCloud
         # @type CuMem: Integer
         # @param Remark: 作业的备注信息，可以随意设置
         # @type Remark: String
+        # @param FolderId: 作业名所属文件夹ID，根目录为"root"
+        # @type FolderId: String
 
-        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark
+        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId
         
-        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil)
+        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil)
           @Name = name
           @JobType = jobtype
           @ClusterType = clustertype
           @ClusterId = clusterid
           @CuMem = cumem
           @Remark = remark
+          @FolderId = folderid
         end
 
         def deserialize(params)
@@ -144,6 +147,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @CuMem = params['CuMem']
           @Remark = params['Remark']
+          @FolderId = params['FolderId']
         end
       end
 

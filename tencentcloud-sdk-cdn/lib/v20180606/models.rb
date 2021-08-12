@@ -733,8 +733,7 @@ module TencentCloud
         end
       end
 
-      # 缓存过期配置高级版（功能灰度中，尚未全量）
-      # 注意：该版本不支持设置首页缓存规则
+      # 缓存过期配置高级版，注意：此字段已经弃用，请使用RuleCache
       class AdvancedCache < TencentCloud::Common::AbstractModel
         # @param CacheRules: 缓存过期规则
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1363,11 +1362,11 @@ module TencentCloud
         end
       end
 
-      # 缓存键配置（过滤参数配置）
+      # 缓存键配置（忽略参数配置）
       class CacheKey < TencentCloud::Common::AbstractModel
         # @param FullUrlCache: 是否开启全路径缓存
-        # on：开启全路径缓存（即关闭参数过滤）
-        # off：关闭全路径缓存（即开启参数过滤）
+        # on：开启全路径缓存（即关闭参数忽略）
+        # off：关闭全路径缓存（即开启参数忽略）
         # @type FullUrlCache: String
         # @param IgnoreCase: 是否忽略大小写缓存
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2524,7 +2523,9 @@ module TencentCloud
         # 支持指定具体状态码查询，若未产生过，则返回为空
         # @type Metric: String
         # @param Domains: 指定查询域名列表
-        # 最多可一次性查询 30 个加速域名明细
+        # 查询单域名：指定单个域名
+        # 查询多个域名：指定多个域名，最多可一次性查询 30 个
+        # 查询账号下所有域名：不传参，默认查询账号维度
         # @type Domains: Array
         # @param Project: 指定要查询的项目 ID，[前往查看项目 ID](https://console.cloud.tencent.com/project)
         # 未填充域名情况下，指定项目查询，若填充了具体域名信息，以域名为主
@@ -5274,7 +5275,7 @@ module TencentCloud
         end
       end
 
-      # 状态码重定向配置，默认为关闭状态（功能灰度中，尚未全量）
+      # 状态码重定向配置，默认为关闭状态
       class ErrorPage < TencentCloud::Common::AbstractModel
         # @param Switch: 状态码重定向配置开关
         # on：开启
@@ -5923,8 +5924,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleType: String
         # @param FullUrlCache: 是否开启全路径缓存
-        # on：开启全路径缓存（即关闭参数过滤）
-        # off：关闭全路径缓存（即开启参数过滤）
+        # on：开启全路径缓存（即关闭参数忽略）
+        # off：关闭全路径缓存（即开启参数忽略）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullUrlCache: String
         # @param IgnoreCase: 是否忽略大小写缓存
@@ -6680,7 +6681,7 @@ module TencentCloud
         end
       end
 
-      # 浏览器缓存规则配置，用于设置 MaxAge 默认值，默认为关闭状态（功能灰度中，尚未全量）
+      # 浏览器缓存规则配置，用于设置 MaxAge 默认值，默认为关闭状态
       class MaxAge < TencentCloud::Common::AbstractModel
         # @param Switch: 浏览器缓存配置开关
         # on：开启
@@ -7924,10 +7925,10 @@ module TencentCloud
       # 查询对象及其对应的访问明细数据
       class ResourceData < TencentCloud::Common::AbstractModel
         # @param Resource: 资源名称，根据查询条件不同分为以下几类：
-        # 具体域名：表示该域名明细数据
-        # multiDomains：表示多域名汇总明细数据
-        # 项目 ID：指定项目查询时，显示为项目 ID
-        # all：账号维度明细数据
+        # 单域名：指定单域名查询，表示该域名明细数据，当传入参数 detail 指定为 true 时，显示该域名（ detail 参数默认为 false ）
+        # 多域名：指定多个域名查询，表示多域名汇总明细数据，显示 multiDomains
+        # 项目 ID：指定项目查询时，表示该项目下的域名汇总明细数据，显示该项目 ID
+        # all：账号维度明细数据，即账号下所有域名的汇总明细数据
         # @type Resource: String
         # @param CdnData: 资源对应的数据明细
         # @type CdnData: Array
@@ -10035,13 +10036,13 @@ module TencentCloud
         end
       end
 
-      # URL重定向配置
+      # 访问URL重写配置
       class UrlRedirect < TencentCloud::Common::AbstractModel
-        # @param Switch: URL重定向配置开关
+        # @param Switch: 访问URL重写配置开关
         # on：开启
         # off：关闭
         # @type Switch: String
-        # @param PathRules: URL重定向规则，当Switch为on时必填，规则数量最大为10个。
+        # @param PathRules: 访问URL重写规则，当Switch为on时必填，规则数量最大为10个。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathRules: Array
 
