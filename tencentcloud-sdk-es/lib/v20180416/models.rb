@@ -810,10 +810,16 @@ module TencentCloud
         # @param KibanaNodeInfo: Kibana节点信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaNodeInfo: :class:`Tencentcloud::Es.v20180416.models.KibanaNodeInfo`
+        # @param WebNodeTypeInfo: 可视化节点配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebNodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.WebNodeTypeInfo`
+        # @param Jdk: JDK类型，oracle或kona
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Jdk: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk
         
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -869,6 +875,8 @@ module TencentCloud
           @SceneType = scenetype
           @KibanaConfig = kibanaconfig
           @KibanaNodeInfo = kibananodeinfo
+          @WebNodeTypeInfo = webnodetypeinfo
+          @Jdk = jdk
         end
 
         def deserialize(params)
@@ -966,6 +974,11 @@ module TencentCloud
             @KibanaNodeInfo = KibanaNodeInfo.new
             @KibanaNodeInfo.deserialize(params['KibanaNodeInfo'])
           end
+          unless params['WebNodeTypeInfo'].nil?
+            @WebNodeTypeInfo = WebNodeTypeInfo.new
+            @WebNodeTypeInfo.deserialize(params['WebNodeTypeInfo'])
+          end
+          @Jdk = params['Jdk']
         end
       end
 
@@ -1258,17 +1271,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param ForceRestart: 是否强制重启<li>true：强制重启</li><li>false：不强制重启</li>默认false
         # @type ForceRestart: Boolean
+        # @param RestartMode: 重启模式：0 滚动重启； 1 全量重启
+        # @type RestartMode: Integer
 
-        attr_accessor :InstanceId, :ForceRestart
+        attr_accessor :InstanceId, :ForceRestart, :RestartMode
         
-        def initialize(instanceid=nil, forcerestart=nil)
+        def initialize(instanceid=nil, forcerestart=nil, restartmode=nil)
           @InstanceId = instanceid
           @ForceRestart = forcerestart
+          @RestartMode = restartmode
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ForceRestart = params['ForceRestart']
+          @RestartMode = params['RestartMode']
         end
       end
 
@@ -1555,10 +1572,12 @@ module TencentCloud
         # @type SceneType: Integer
         # @param KibanaConfig: Kibana配置项（JSON格式字符串）
         # @type KibanaConfig: String
+        # @param WebNodeTypeInfo: 可视化节点配置
+        # @type WebNodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.WebNodeTypeInfo`
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo
         
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -1583,6 +1602,7 @@ module TencentCloud
           @MultiZoneInfo = multizoneinfo
           @SceneType = scenetype
           @KibanaConfig = kibanaconfig
+          @WebNodeTypeInfo = webnodetypeinfo
         end
 
         def deserialize(params)
@@ -1633,6 +1653,10 @@ module TencentCloud
           end
           @SceneType = params['SceneType']
           @KibanaConfig = params['KibanaConfig']
+          unless params['WebNodeTypeInfo'].nil?
+            @WebNodeTypeInfo = WebNodeTypeInfo.new
+            @WebNodeTypeInfo.deserialize(params['WebNodeTypeInfo'])
+          end
         end
       end
 

@@ -47,10 +47,13 @@ module TencentCloud
         # @param CallBack: 自定义回调模板
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CallBack: :class:`Tencentcloud::Cls.v20201016.models.CallBackInfo`
+        # @param Analysis: 多维分析设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Analysis: Array
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis
         
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil)
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -64,6 +67,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @MessageTemplate = messagetemplate
           @CallBack = callback
+          @Analysis = analysis
         end
 
         def deserialize(params)
@@ -92,6 +96,14 @@ module TencentCloud
           unless params['CallBack'].nil?
             @CallBack = CallBackInfo.new
             @CallBack.deserialize(params['CallBack'])
+          end
+          unless params['Analysis'].nil?
+            @Analysis = []
+            params['Analysis'].each do |i|
+              analysisdimensional_tmp = AnalysisDimensional.new
+              analysisdimensional_tmp.deserialize(i)
+              @Analysis << analysisdimensional_tmp
+            end
           end
         end
       end
@@ -235,6 +247,30 @@ module TencentCloud
           @Number = params['Number']
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
+        end
+      end
+
+      # 多维分析的分析维度
+      class AnalysisDimensional < TencentCloud::Common::AbstractModel
+        # @param Name: 分析名称
+        # @type Name: String
+        # @param Type: 分析类型：query，field
+        # @type Type: String
+        # @param Content: 分析内容
+        # @type Content: String
+
+        attr_accessor :Name, :Type, :Content
+        
+        def initialize(name=nil, type=nil, content=nil)
+          @Name = name
+          @Type = type
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Content = params['Content']
         end
       end
 
@@ -615,10 +651,16 @@ module TencentCloud
         # @type AlarmNoticeIds: Array
         # @param Status: 是否开启告警策略。默认值为true
         # @type Status: Boolean
+        # @param MessageTemplate: 用户自定义告警内容
+        # @type MessageTemplate: String
+        # @param CallBack: 用户自定义回调
+        # @type CallBack: :class:`Tencentcloud::Cls.v20201016.models.CallBackInfo`
+        # @param Analysis: 多维分析
+        # @type Analysis: Array
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :MessageTemplate, :CallBack, :Analysis
         
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil)
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -627,6 +669,9 @@ module TencentCloud
           @AlarmPeriod = alarmperiod
           @AlarmNoticeIds = alarmnoticeids
           @Status = status
+          @MessageTemplate = messagetemplate
+          @CallBack = callback
+          @Analysis = analysis
         end
 
         def deserialize(params)
@@ -648,6 +693,19 @@ module TencentCloud
           @AlarmPeriod = params['AlarmPeriod']
           @AlarmNoticeIds = params['AlarmNoticeIds']
           @Status = params['Status']
+          @MessageTemplate = params['MessageTemplate']
+          unless params['CallBack'].nil?
+            @CallBack = CallBackInfo.new
+            @CallBack.deserialize(params['CallBack'])
+          end
+          unless params['Analysis'].nil?
+            @Analysis = []
+            params['Analysis'].each do |i|
+              analysisdimensional_tmp = AnalysisDimensional.new
+              analysisdimensional_tmp.deserialize(i)
+              @Analysis << analysisdimensional_tmp
+            end
+          end
         end
       end
 
@@ -3820,10 +3878,16 @@ module TencentCloud
         # @type AlarmTargets: Array
         # @param Status: 是否开启告警策略。
         # @type Status: Boolean
+        # @param MessageTemplate: 用户自定义告警内容
+        # @type MessageTemplate: String
+        # @param CallBack: 用户自定义回调
+        # @type CallBack: :class:`Tencentcloud::Cls.v20201016.models.CallBackInfo`
+        # @param Analysis: 多维分析
+        # @type Analysis: Array
 
-        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status
+        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :MessageTemplate, :CallBack, :Analysis
         
-        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil)
+        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil)
           @AlarmId = alarmid
           @Name = name
           @MonitorTime = monitortime
@@ -3833,6 +3897,9 @@ module TencentCloud
           @AlarmNoticeIds = alarmnoticeids
           @AlarmTargets = alarmtargets
           @Status = status
+          @MessageTemplate = messagetemplate
+          @CallBack = callback
+          @Analysis = analysis
         end
 
         def deserialize(params)
@@ -3855,6 +3922,19 @@ module TencentCloud
             end
           end
           @Status = params['Status']
+          @MessageTemplate = params['MessageTemplate']
+          unless params['CallBack'].nil?
+            @CallBack = CallBackInfo.new
+            @CallBack.deserialize(params['CallBack'])
+          end
+          unless params['Analysis'].nil?
+            @Analysis = []
+            params['Analysis'].each do |i|
+              analysisdimensional_tmp = AnalysisDimensional.new
+              analysisdimensional_tmp.deserialize(i)
+              @Analysis << analysisdimensional_tmp
+            end
+          end
         end
       end
 

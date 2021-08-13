@@ -206,6 +206,73 @@ module TencentCloud
         end
       end
 
+      # 授权资源详情
+      class AuthorizationResouceEntityInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 授权关系的唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceType: 资源授权类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param Resource: 授权的资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+
+        attr_accessor :ResourceId, :ResourceType, :Resource
+        
+        def initialize(resourceid=nil, resourcetype=nil, resource=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @Resource = resource
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @Resource = params['Resource']
+        end
+      end
+
+      # 返回符合条件的用户数据列表
+      class AuthorizationUserResouceInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param Resource: 授权资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: String
+        # @param InheritedForm: 继承关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InheritedForm: :class:`Tencentcloud::Eiam.v20210420.models.InheritedForm`
+        # @param ApplicationAccounts: 应用账户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationAccounts: Array
+
+        attr_accessor :ResourceId, :ResourceType, :Resource, :InheritedForm, :ApplicationAccounts
+        
+        def initialize(resourceid=nil, resourcetype=nil, resource=nil, inheritedform=nil, applicationaccounts=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @Resource = resource
+          @InheritedForm = inheritedform
+          @ApplicationAccounts = applicationaccounts
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @Resource = params['Resource']
+          unless params['InheritedForm'].nil?
+            @InheritedForm = InheritedForm.new
+            @InheritedForm.deserialize(params['InheritedForm'])
+          end
+          @ApplicationAccounts = params['ApplicationAccounts']
+        end
+      end
+
       # CreateOrgNode请求参数结构体
       class CreateOrgNodeRequest < TencentCloud::Common::AbstractModel
         # @param DisplayName: 机构节点名称，长度限制：64个字符。
@@ -663,6 +730,73 @@ module TencentCloud
         end
       end
 
+      # DescribeOrgResourcesAuthorization请求参数结构体
+      class DescribeOrgResourcesAuthorizationRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param OrgNodeId: 机构ID
+        # @type OrgNodeId: String
+
+        attr_accessor :ApplicationId, :OrgNodeId
+        
+        def initialize(applicationid=nil, orgnodeid=nil)
+          @ApplicationId = applicationid
+          @OrgNodeId = orgnodeid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @OrgNodeId = params['OrgNodeId']
+        end
+      end
+
+      # DescribeOrgResourcesAuthorization返回参数结构体
+      class DescribeOrgResourcesAuthorizationResponse < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param OrgNodeId: 授权机构ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgNodeId: String
+        # @param OrgNodeName: 机构名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgNodeName: String
+        # @param OrgNodePath: 机构目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgNodePath: String
+        # @param AuthorizationOrgResourceList: 资源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationOrgResourceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplicationId, :OrgNodeId, :OrgNodeName, :OrgNodePath, :AuthorizationOrgResourceList, :RequestId
+        
+        def initialize(applicationid=nil, orgnodeid=nil, orgnodename=nil, orgnodepath=nil, authorizationorgresourcelist=nil, requestid=nil)
+          @ApplicationId = applicationid
+          @OrgNodeId = orgnodeid
+          @OrgNodeName = orgnodename
+          @OrgNodePath = orgnodepath
+          @AuthorizationOrgResourceList = authorizationorgresourcelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @OrgNodeId = params['OrgNodeId']
+          @OrgNodeName = params['OrgNodeName']
+          @OrgNodePath = params['OrgNodePath']
+          unless params['AuthorizationOrgResourceList'].nil?
+            @AuthorizationOrgResourceList = []
+            params['AuthorizationOrgResourceList'].each do |i|
+              authorizationresouceentityinfo_tmp = AuthorizationResouceEntityInfo.new
+              authorizationresouceentityinfo_tmp.deserialize(i)
+              @AuthorizationOrgResourceList << authorizationresouceentityinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePublicKey请求参数结构体
       class DescribePublicKeyRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID，是应用的全局唯一标识。
@@ -723,6 +857,69 @@ module TencentCloud
 
         def deserialize(params)
           @UserGroupId = params['UserGroupId']
+        end
+      end
+
+      # DescribeUserGroupResourcesAuthorization请求参数结构体
+      class DescribeUserGroupResourcesAuthorizationRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param UserGroupId: 用户组ID
+        # @type UserGroupId: String
+
+        attr_accessor :ApplicationId, :UserGroupId
+        
+        def initialize(applicationid=nil, usergroupid=nil)
+          @ApplicationId = applicationid
+          @UserGroupId = usergroupid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @UserGroupId = params['UserGroupId']
+        end
+      end
+
+      # DescribeUserGroupResourcesAuthorization返回参数结构体
+      class DescribeUserGroupResourcesAuthorizationResponse < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param UserGroupId: 用户组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroupId: String
+        # @param UserGroupName: 用户组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroupName: String
+        # @param AuthorizationUserGroupResourceList: 资源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationUserGroupResourceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplicationId, :UserGroupId, :UserGroupName, :AuthorizationUserGroupResourceList, :RequestId
+        
+        def initialize(applicationid=nil, usergroupid=nil, usergroupname=nil, authorizationusergroupresourcelist=nil, requestid=nil)
+          @ApplicationId = applicationid
+          @UserGroupId = usergroupid
+          @UserGroupName = usergroupname
+          @AuthorizationUserGroupResourceList = authorizationusergroupresourcelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @UserGroupId = params['UserGroupId']
+          @UserGroupName = params['UserGroupName']
+          unless params['AuthorizationUserGroupResourceList'].nil?
+            @AuthorizationUserGroupResourceList = []
+            params['AuthorizationUserGroupResourceList'].each do |i|
+              authorizationresouceentityinfo_tmp = AuthorizationResouceEntityInfo.new
+              authorizationresouceentityinfo_tmp.deserialize(i)
+              @AuthorizationUserGroupResourceList << authorizationresouceentityinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -849,6 +1046,81 @@ module TencentCloud
           @DataSource = params['DataSource']
           @ExpirationTime = params['ExpirationTime']
           @ActivationTime = params['ActivationTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserResourcesAuthorization请求参数结构体
+      class DescribeUserResourcesAuthorizationRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID。
+        # @type ApplicationId: String
+        # @param UserId: 用户ID。
+        # @type UserId: String
+        # @param UserName: 用户名。
+        # @type UserName: String
+        # @param IncludeInheritedAuthorizations: 查询范围是否包括用户关联的用户组、组织机构的应用访问权限。默认为不查询 ，传false表示不查询该范围，传true查询该范围。
+        # @type IncludeInheritedAuthorizations: Boolean
+
+        attr_accessor :ApplicationId, :UserId, :UserName, :IncludeInheritedAuthorizations
+        
+        def initialize(applicationid=nil, userid=nil, username=nil, includeinheritedauthorizations=nil)
+          @ApplicationId = applicationid
+          @UserId = userid
+          @UserName = username
+          @IncludeInheritedAuthorizations = includeinheritedauthorizations
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          @IncludeInheritedAuthorizations = params['IncludeInheritedAuthorizations']
+        end
+      end
+
+      # DescribeUserResourcesAuthorization返回参数结构体
+      class DescribeUserResourcesAuthorizationResponse < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用的唯一ID。
+        # @type ApplicationId: String
+        # @param ApplicationAccounts: 应用账户。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationAccounts: Array
+        # @param UserId: 授权用户的唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param UserName: 授权的用户名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param AuthorizationUserResourceList: 返回的资源列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationUserResourceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplicationId, :ApplicationAccounts, :UserId, :UserName, :AuthorizationUserResourceList, :RequestId
+        
+        def initialize(applicationid=nil, applicationaccounts=nil, userid=nil, username=nil, authorizationuserresourcelist=nil, requestid=nil)
+          @ApplicationId = applicationid
+          @ApplicationAccounts = applicationaccounts
+          @UserId = userid
+          @UserName = username
+          @AuthorizationUserResourceList = authorizationuserresourcelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @ApplicationAccounts = params['ApplicationAccounts']
+          @UserId = params['UserId']
+          @UserName = params['UserName']
+          unless params['AuthorizationUserResourceList'].nil?
+            @AuthorizationUserResourceList = []
+            params['AuthorizationUserResourceList'].each do |i|
+              authorizationuserresouceinfo_tmp = AuthorizationUserResouceInfo.new
+              authorizationuserresouceinfo_tmp.deserialize(i)
+              @AuthorizationUserResourceList << authorizationuserresouceinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

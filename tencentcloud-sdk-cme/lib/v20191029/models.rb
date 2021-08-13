@@ -2704,7 +2704,7 @@ module TencentCloud
         # @type TeamId: String
         # @param Name: 团队名称。
         # @type Name: String
-        # @param MemberCount: 团队成员个数
+        # @param MemberCount: 团队成员个数。
         # @type MemberCount: Integer
         # @param Role: 成员在团队中的角色，取值有：
         # <li>Owner：团队所有者，添加团队成员及修改团队成员解决时不能填此角色；</li>

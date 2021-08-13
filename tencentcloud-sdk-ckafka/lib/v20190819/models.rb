@@ -1853,6 +1853,57 @@ module TencentCloud
         end
       end
 
+      # DescribeTopicSubscribeGroup请求参数结构体
+      class DescribeTopicSubscribeGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param Offset: 分页时的起始位置
+        # @type Offset: Integer
+        # @param Limit: 分页时的个数
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :TopicName, :Offset, :Limit
+        
+        def initialize(instanceid=nil, topicname=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @TopicName = topicname
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TopicName = params['TopicName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTopicSubscribeGroup返回参数结构体
+      class DescribeTopicSubscribeGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicSubscribeGroup`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TopicSubscribeGroup.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUser请求参数结构体
       class DescribeUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -3485,6 +3536,43 @@ module TencentCloud
           @Expect = params['Expect']
           @Current = params['Current']
           @ModTimeStamp = params['ModTimeStamp']
+        end
+      end
+
+      # DescribeTopicSubscribeGroup接口出参
+      class TopicSubscribeGroup < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param StatusCountInfo: 消费分组状态数量信息
+        # @type StatusCountInfo: String
+        # @param GroupsInfo: 消费分组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupsInfo: Array
+        # @param Status: 此次请求是否异步的状态。实例里分组较少的会直接返回结果,Status为1。当分组较多时,会异步更新缓存，Status为0时不会返回分组信息，直至Status为1更新完毕返回结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :TotalCount, :StatusCountInfo, :GroupsInfo, :Status
+        
+        def initialize(totalcount=nil, statuscountinfo=nil, groupsinfo=nil, status=nil)
+          @TotalCount = totalcount
+          @StatusCountInfo = statuscountinfo
+          @GroupsInfo = groupsinfo
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @StatusCountInfo = params['StatusCountInfo']
+          unless params['GroupsInfo'].nil?
+            @GroupsInfo = []
+            params['GroupsInfo'].each do |i|
+              groupinforesponse_tmp = GroupInfoResponse.new
+              groupinforesponse_tmp.deserialize(i)
+              @GroupsInfo << groupinforesponse_tmp
+            end
+          end
+          @Status = params['Status']
         end
       end
 

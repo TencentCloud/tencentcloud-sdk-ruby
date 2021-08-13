@@ -7338,10 +7338,15 @@ module TencentCloud
         # @param RequestHeaders: 路径匹配时回源的头部设置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestHeaders: Array
+        # @param FullMatch: 当Regex为false时，Path是否开启完全匹配。
+        # false：关闭
+        # true：开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullMatch: Boolean
 
-        attr_accessor :Regex, :Path, :Origin, :ServerName, :OriginArea, :ForwardUri, :RequestHeaders
+        attr_accessor :Regex, :Path, :Origin, :ServerName, :OriginArea, :ForwardUri, :RequestHeaders, :FullMatch
         
-        def initialize(regex=nil, path=nil, origin=nil, servername=nil, originarea=nil, forwarduri=nil, requestheaders=nil)
+        def initialize(regex=nil, path=nil, origin=nil, servername=nil, originarea=nil, forwarduri=nil, requestheaders=nil, fullmatch=nil)
           @Regex = regex
           @Path = path
           @Origin = origin
@@ -7349,6 +7354,7 @@ module TencentCloud
           @OriginArea = originarea
           @ForwardUri = forwarduri
           @RequestHeaders = requestheaders
+          @FullMatch = fullmatch
         end
 
         def deserialize(params)
@@ -7366,6 +7372,7 @@ module TencentCloud
               @RequestHeaders << httpheaderrule_tmp
             end
           end
+          @FullMatch = params['FullMatch']
         end
       end
 

@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定机构下的资源授权列表
+
+        # @param request: Request instance for DescribeOrgResourcesAuthorization.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::DescribeOrgResourcesAuthorizationRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::DescribeOrgResourcesAuthorizationResponse`
+        def DescribeOrgResourcesAuthorization(request)
+          body = send_request('DescribeOrgResourcesAuthorization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrgResourcesAuthorizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取JWT公钥信息。
 
         # @param request: Request instance for DescribePublicKey.
@@ -293,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定用户组下的资源授权列表
+
+        # @param request: Request instance for DescribeUserGroupResourcesAuthorization.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::DescribeUserGroupResourcesAuthorizationRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::DescribeUserGroupResourcesAuthorizationResponse`
+        def DescribeUserGroupResourcesAuthorization(request)
+          body = send_request('DescribeUserGroupResourcesAuthorization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserGroupResourcesAuthorizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过用户名或用户 id 搜索用户
 
         # @param request: Request instance for DescribeUserInfo.
@@ -303,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定用户下的资源授权列表
+
+        # @param request: Request instance for DescribeUserResourcesAuthorization.
+        # @type request: :class:`Tencentcloud::eiam::V20210420::DescribeUserResourcesAuthorizationRequest`
+        # @rtype: :class:`Tencentcloud::eiam::V20210420::DescribeUserResourcesAuthorizationResponse`
+        def DescribeUserResourcesAuthorization(request)
+          body = send_request('DescribeUserResourcesAuthorization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserResourcesAuthorizationResponse.new
             model.deserialize(response['Response'])
             model
           else

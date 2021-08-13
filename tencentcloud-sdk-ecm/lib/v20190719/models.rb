@@ -8435,10 +8435,12 @@ module TencentCloud
         # 2，按月后付费，单价：xx元/实例/月，仅适用于GNR机型；
         # 该字段不填时，非GNR机型会默认选择0；GNR机型默认选择2。
         # @type InstanceChargeType: Integer
+        # @param KeyIds: 密钥对。
+        # @type KeyIds: Array
 
-        attr_accessor :ZoneInstanceCountISPSet, :Password, :InternetMaxBandwidthOut, :ModuleId, :ImageId, :InstanceName, :HostName, :ClientToken, :EnhancedService, :TagSpecification, :UserData, :InstanceType, :DataDiskSize, :SecurityGroupIds, :SystemDiskSize, :InternetMaxBandwidthIn, :InstanceChargeType
+        attr_accessor :ZoneInstanceCountISPSet, :Password, :InternetMaxBandwidthOut, :ModuleId, :ImageId, :InstanceName, :HostName, :ClientToken, :EnhancedService, :TagSpecification, :UserData, :InstanceType, :DataDiskSize, :SecurityGroupIds, :SystemDiskSize, :InternetMaxBandwidthIn, :InstanceChargeType, :KeyIds
         
-        def initialize(zoneinstancecountispset=nil, password=nil, internetmaxbandwidthout=nil, moduleid=nil, imageid=nil, instancename=nil, hostname=nil, clienttoken=nil, enhancedservice=nil, tagspecification=nil, userdata=nil, instancetype=nil, datadisksize=nil, securitygroupids=nil, systemdisksize=nil, internetmaxbandwidthin=nil, instancechargetype=nil)
+        def initialize(zoneinstancecountispset=nil, password=nil, internetmaxbandwidthout=nil, moduleid=nil, imageid=nil, instancename=nil, hostname=nil, clienttoken=nil, enhancedservice=nil, tagspecification=nil, userdata=nil, instancetype=nil, datadisksize=nil, securitygroupids=nil, systemdisksize=nil, internetmaxbandwidthin=nil, instancechargetype=nil, keyids=nil)
           @ZoneInstanceCountISPSet = zoneinstancecountispset
           @Password = password
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -8456,6 +8458,7 @@ module TencentCloud
           @SystemDiskSize = systemdisksize
           @InternetMaxBandwidthIn = internetmaxbandwidthin
           @InstanceChargeType = instancechargetype
+          @KeyIds = keyids
         end
 
         def deserialize(params)
@@ -8493,6 +8496,7 @@ module TencentCloud
           @SystemDiskSize = params['SystemDiskSize']
           @InternetMaxBandwidthIn = params['InternetMaxBandwidthIn']
           @InstanceChargeType = params['InstanceChargeType']
+          @KeyIds = params['KeyIds']
         end
       end
 

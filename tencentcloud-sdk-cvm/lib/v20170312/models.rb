@@ -3086,7 +3086,7 @@ module TencentCloud
         # @type InstanceChargeType: String
         # @param SystemDisk: 实例系统盘信息。
         # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
-        # @param DataDisks: 实例数据盘信息。只包含随实例购买的数据盘。
+        # @param DataDisks: 实例数据盘信息。
         # @type DataDisks: Array
         # @param PrivateIpAddresses: 实例主网卡的内网`IP`列表。
         # @type PrivateIpAddresses: Array
@@ -3145,10 +3145,13 @@ module TencentCloud
         # @param RdmaIpAddresses: 高性能计算集群`IP`列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RdmaIpAddresses: Array
+        # @param IsolatedSource: 实例隔离类型。取值范围：<br><li>ARREAR：表示欠费隔离<br></li><li>EXPIRE：表示到期隔离<br></li><li>MANMADE：表示主动退还隔离<br></li><li>NOTISOLATED：表示未隔离<br></li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolatedSource: String
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :IsolatedSource
         
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, isolatedsource=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -3182,6 +3185,7 @@ module TencentCloud
           @CamRoleName = camrolename
           @HpcClusterId = hpcclusterid
           @RdmaIpAddresses = rdmaipaddresses
+          @IsolatedSource = isolatedsource
         end
 
         def deserialize(params)
@@ -3247,6 +3251,7 @@ module TencentCloud
           @CamRoleName = params['CamRoleName']
           @HpcClusterId = params['HpcClusterId']
           @RdmaIpAddresses = params['RdmaIpAddresses']
+          @IsolatedSource = params['IsolatedSource']
         end
       end
 
