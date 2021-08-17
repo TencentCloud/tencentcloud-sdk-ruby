@@ -378,7 +378,10 @@ module TencentCloud
         # @param ForcePoweroff: 是否执行强制关机以制作镜像。
         # 取值范围：<br><li>TRUE：表示关机之后制作镜像<br><li>FALSE：表示开机状态制作镜像<br><br>默认取值：FALSE。<br><br>开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
         # @type ForcePoweroff: String
-        # @param Sysprep: 创建Windows镜像时是否启用Sysprep，关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)
+        # @param Sysprep: 创建Windows镜像时是否启用Sysprep。
+        # 取值范围：TRUE或FALSE，默认取值为FALSE。
+
+        # 关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)。
         # @type Sysprep: String
         # @param DataDiskIds: 基于实例创建整机镜像时，指定包含在镜像里的数据盘Id
         # @type DataDiskIds: Array
@@ -1231,6 +1234,66 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceVncUrl = params['InstanceVncUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstancesModification请求参数结构体
+      class DescribeInstancesModificationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 一个或多个待查询的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为20。
+        # @type InstanceIds: Array
+        # @param Filters: <li><strong>status</strong></li>
+        # <p style="padding-left: 30px;">按照【<strong>配置规格状态</strong>】进行过滤。配置规格状态形如：SELL、UNAVAILABLE。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为2。
+        # @type Filters: Array
+
+        attr_accessor :InstanceIds, :Filters
+        
+        def initialize(instanceids=nil, filters=nil)
+          @InstanceIds = instanceids
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeInstancesModification返回参数结构体
+      class DescribeInstancesModificationResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例调整的机型配置的数量。
+        # @type TotalCount: Integer
+        # @param InstanceTypeConfigStatusSet: 实例支持调整的机型配置列表。
+        # @type InstanceTypeConfigStatusSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceTypeConfigStatusSet, :RequestId
+        
+        def initialize(totalcount=nil, instancetypeconfigstatusset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceTypeConfigStatusSet = instancetypeconfigstatusset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceTypeConfigStatusSet'].nil?
+            @InstanceTypeConfigStatusSet = []
+            params['InstanceTypeConfigStatusSet'].each do |i|
+              instancetypeconfigstatus_tmp = InstanceTypeConfigStatus.new
+              instancetypeconfigstatus_tmp.deserialize(i)
+              @InstanceTypeConfigStatusSet << instancetypeconfigstatus_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3376,6 +3439,34 @@ module TencentCloud
           @CPU = params['CPU']
           @Memory = params['Memory']
           @FPGA = params['FPGA']
+        end
+      end
+
+      # 描述实例机型配置信息及状态信息
+      class InstanceTypeConfigStatus < TencentCloud::Common::AbstractModel
+        # @param Status: 状态描述
+        # @type Status: String
+        # @param Message: 状态描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param InstanceTypeConfig: 配置信息
+        # @type InstanceTypeConfig: :class:`Tencentcloud::Cvm.v20170312.models.InstanceTypeConfig`
+
+        attr_accessor :Status, :Message, :InstanceTypeConfig
+        
+        def initialize(status=nil, message=nil, instancetypeconfig=nil)
+          @Status = status
+          @Message = message
+          @InstanceTypeConfig = instancetypeconfig
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Message = params['Message']
+          unless params['InstanceTypeConfig'].nil?
+            @InstanceTypeConfig = InstanceTypeConfig.new
+            @InstanceTypeConfig.deserialize(params['InstanceTypeConfig'])
+          end
         end
       end
 

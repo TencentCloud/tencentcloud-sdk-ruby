@@ -469,11 +469,122 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVPlaylistDetail请求参数结构体
+      class DescribeKTVPlaylistDetailRequest < TencentCloud::Common::AbstractModel
+        # @param PlaylistId: 歌单Id
+        # @type PlaylistId: String
+        # @param Offset: 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Offset: Integer
+        # @param Limit: 分页返回的记录条数，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Limit: Integer
+
+        attr_accessor :PlaylistId, :Offset, :Limit
+        
+        def initialize(playlistid=nil, offset=nil, limit=nil)
+          @PlaylistId = playlistid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @PlaylistId = params['PlaylistId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeKTVPlaylistDetail返回参数结构体
+      class DescribeKTVPlaylistDetailResponse < TencentCloud::Common::AbstractModel
+        # @param KTVMusicInfoSet: 歌曲基础信息列表
+        # @type KTVMusicInfoSet: Array
+        # @param PlaylistBaseInfo: 歌单基础信息
+        # @type PlaylistBaseInfo: :class:`Tencentcloud::Ame.v20190916.models.KTVPlaylistBaseInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KTVMusicInfoSet, :PlaylistBaseInfo, :RequestId
+        
+        def initialize(ktvmusicinfoset=nil, playlistbaseinfo=nil, requestid=nil)
+          @KTVMusicInfoSet = ktvmusicinfoset
+          @PlaylistBaseInfo = playlistbaseinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KTVMusicInfoSet'].nil?
+            @KTVMusicInfoSet = []
+            params['KTVMusicInfoSet'].each do |i|
+              ktvmusicbaseinfo_tmp = KTVMusicBaseInfo.new
+              ktvmusicbaseinfo_tmp.deserialize(i)
+              @KTVMusicInfoSet << ktvmusicbaseinfo_tmp
+            end
+          end
+          unless params['PlaylistBaseInfo'].nil?
+            @PlaylistBaseInfo = KTVPlaylistBaseInfo.new
+            @PlaylistBaseInfo.deserialize(params['PlaylistBaseInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKTVPlaylists请求参数结构体
+      class DescribeKTVPlaylistsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Offset: Integer
+        # @param Limit: 分页返回的记录条数，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+        
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeKTVPlaylists返回参数结构体
+      class DescribeKTVPlaylistsResponse < TencentCloud::Common::AbstractModel
+        # @param PlaylistBaseInfoSet: 推荐歌单列表
+        # @type PlaylistBaseInfoSet: Array
+        # @param TotalCount: 推荐歌单列表总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlaylistBaseInfoSet, :TotalCount, :RequestId
+        
+        def initialize(playlistbaseinfoset=nil, totalcount=nil, requestid=nil)
+          @PlaylistBaseInfoSet = playlistbaseinfoset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PlaylistBaseInfoSet'].nil?
+            @PlaylistBaseInfoSet = []
+            params['PlaylistBaseInfoSet'].each do |i|
+              ktvplaylistbaseinfo_tmp = KTVPlaylistBaseInfo.new
+              ktvplaylistbaseinfo_tmp.deserialize(i)
+              @PlaylistBaseInfoSet << ktvplaylistbaseinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLyric请求参数结构体
       class DescribeLyricRequest < TencentCloud::Common::AbstractModel
         # @param ItemId: 歌曲ID
         # @type ItemId: String
-        # @param SubItemType: 歌词格式，可选项，可不填写，目前填写只能填LRC-LRC。该字段为预留的扩展字段。后续如果不填，会返回歌曲的所有格式的歌词。如果填写某个正确的格式，则只返回该格式的歌词。
+        # @param SubItemType: 格式，可选项，可不填写，默认值为：LRC-LRC。
+        # <li>LRC-LRC：歌词；</li>
+        # <li>JSON-ST：波形图。</li>
         # @type SubItemType: String
 
         attr_accessor :ItemId, :SubItemType
@@ -491,7 +602,7 @@ module TencentCloud
 
       # DescribeLyric返回参数结构体
       class DescribeLyricResponse < TencentCloud::Common::AbstractModel
-        # @param Lyric: 歌词详情
+        # @param Lyric: 歌词或者波形图详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Lyric: :class:`Tencentcloud::Ame.v20190916.models.Lyric`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -842,6 +953,34 @@ module TencentCloud
         end
       end
 
+      # 推荐歌单基础信息
+      class KTVPlaylistBaseInfo < TencentCloud::Common::AbstractModel
+        # @param PlaylistId: 歌单Id
+        # @type PlaylistId: String
+        # @param Title: 歌单标题
+        # @type Title: String
+        # @param Description: 歌单介绍
+        # @type Description: String
+        # @param MusicNum: 歌曲数量
+        # @type MusicNum: Integer
+
+        attr_accessor :PlaylistId, :Title, :Description, :MusicNum
+        
+        def initialize(playlistid=nil, title=nil, description=nil, musicnum=nil)
+          @PlaylistId = playlistid
+          @Title = title
+          @Description = description
+          @MusicNum = musicnum
+        end
+
+        def deserialize(params)
+          @PlaylistId = params['PlaylistId']
+          @Title = params['Title']
+          @Description = params['Description']
+          @MusicNum = params['MusicNum']
+        end
+      end
+
       # 歌词信息
       class Lyric < TencentCloud::Common::AbstractModel
         # @param Url: 歌词cdn地址
@@ -1033,10 +1172,13 @@ module TencentCloud
         # @param LyricUrl: 歌词url
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LyricUrl: String
+        # @param WaveformUrl: 波形图url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaveformUrl: String
 
-        attr_accessor :MusicId, :AlbumName, :AlbumImageUrl, :MusicName, :MusicImageUrl, :Singers, :Duration, :Tags, :LyricUrl
+        attr_accessor :MusicId, :AlbumName, :AlbumImageUrl, :MusicName, :MusicImageUrl, :Singers, :Duration, :Tags, :LyricUrl, :WaveformUrl
         
-        def initialize(musicid=nil, albumname=nil, albumimageurl=nil, musicname=nil, musicimageurl=nil, singers=nil, duration=nil, tags=nil, lyricurl=nil)
+        def initialize(musicid=nil, albumname=nil, albumimageurl=nil, musicname=nil, musicimageurl=nil, singers=nil, duration=nil, tags=nil, lyricurl=nil, waveformurl=nil)
           @MusicId = musicid
           @AlbumName = albumname
           @AlbumImageUrl = albumimageurl
@@ -1046,6 +1188,7 @@ module TencentCloud
           @Duration = duration
           @Tags = tags
           @LyricUrl = lyricurl
+          @WaveformUrl = waveformurl
         end
 
         def deserialize(params)
@@ -1058,6 +1201,7 @@ module TencentCloud
           @Duration = params['Duration']
           @Tags = params['Tags']
           @LyricUrl = params['LyricUrl']
+          @WaveformUrl = params['WaveformUrl']
         end
       end
 

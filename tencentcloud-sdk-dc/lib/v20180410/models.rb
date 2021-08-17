@@ -75,10 +75,13 @@ module TencentCloud
         # @param Area: 接入点地域名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Area: String
+        # @param AccessPointType: 接入点类型。VXLAN/QCPL/QCAR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessPointType: String
 
-        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area
+        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType
         
-        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil)
+        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil)
           @AccessPointName = accesspointname
           @AccessPointId = accesspointid
           @State = state
@@ -89,6 +92,7 @@ module TencentCloud
           @Coordinate = coordinate
           @City = city
           @Area = area
+          @AccessPointType = accesspointtype
         end
 
         def deserialize(params)
@@ -105,6 +109,7 @@ module TencentCloud
           end
           @City = params['City']
           @Area = params['Area']
+          @AccessPointType = params['AccessPointType']
         end
       end
 

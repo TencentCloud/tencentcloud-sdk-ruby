@@ -500,7 +500,7 @@ module TencentCloud
         # @type ZoneId: Integer
         # @param Period: 预付费购买时长，例如 "1m",就是一个月
         # @type Period: String
-        # @param InstanceType: 实例规格，1：入门型 ，2： 标准型，3 ：进阶型，4 ：容量型，5： 高阶型1，6：高阶性2, 7： 高阶型3,8： 高阶型4， 9 ：独占型。
+        # @param InstanceType: 实例规格，专业版默认填写1。1：入门型 ，2： 标准型，3 ：进阶型，4 ：容量型，5： 高阶型1，6：高阶性2, 7： 高阶型3,8： 高阶型4， 9 ：独占型。
         # @type InstanceType: Integer
         # @param VpcId: vpcId，不填默认基础网络
         # @type VpcId: String

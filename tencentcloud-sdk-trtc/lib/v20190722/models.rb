@@ -245,9 +245,9 @@ module TencentCloud
       class DescribeAbnormalEventRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 用户SDKAppID，查询SDKAppID下任意20条异常体验事件（可能不同房间）
         # @type SdkAppId: String
-        # @param StartTime: 查询开始时间,本地unix时间戳（1588031999s）
+        # @param StartTime: 查询开始时间,本地unix时间戳（1592448600s）
         # @type StartTime: Integer
-        # @param EndTime: 查询结束时间,本地unix时间戳（1588031999s）
+        # @param EndTime: 查询结束时间,本地unix时间戳（1592449080s）
         # @type EndTime: Integer
         # @param RoomId: 房间号，查询房间内任意20条以内异常体验事件
         # @type RoomId: String
@@ -304,11 +304,11 @@ module TencentCloud
       class DescribeCallDetailRequest < TencentCloud::Common::AbstractModel
         # @param CommId: 通话 ID（唯一标识一次通话）： sdkappid_roomgString（房间号_createTime（房间创建时间，unix时间戳，单位为s）例：1400353843_218695_1590065777。通过 DescribeRoomInformation（查询房间列表）接口获取（链接：https://cloud.tencent.com/document/product/647/44050）
         # @type CommId: String
-        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588031999s），查询实时数据时，查询起止时间不超过1个小时。
+        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1590065777s），查询实时数据时，查询起止时间不超过1个小时。
         # @type StartTime: Integer
-        # @param EndTime: 查询结束时间，本地unix时间戳（1588031999s）
+        # @param EndTime: 查询结束时间，本地unix时间戳（1590065877s）
         # @type EndTime: Integer
-        # @param SdkAppId: 用户SDKAppID（1400188366）
+        # @param SdkAppId: 用户SDKAppID（1400353843）
         # @type SdkAppId: String
         # @param UserIds: 需查询的用户数组，不填默认返回6个用户,最多可填6个用户
         # @type UserIds: Array
@@ -405,9 +405,9 @@ module TencentCloud
       class DescribeDetailEventRequest < TencentCloud::Common::AbstractModel
         # @param CommId: 通话 ID（唯一标识一次通话）： sdkappid_roomgString（房间号_createTime（房间创建时间，unix时间戳，单位s）。通过 DescribeRoomInformation（查询房间列表）接口获取。（链接：https://cloud.tencent.com/document/product/647/44050）
         # @type CommId: String
-        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588031999s）
+        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588055615s）
         # @type StartTime: Integer
-        # @param EndTime: 查询结束时间，本地unix时间戳（1588031999s）
+        # @param EndTime: 查询结束时间，本地unix时间戳（1588058615s）
         # @type EndTime: Integer
         # @param UserId: 用户id
         # @type UserId: String
@@ -462,11 +462,11 @@ module TencentCloud
 
       # DescribeHistoryScale请求参数结构体
       class DescribeHistoryScaleRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 用户sdkappid
+        # @param SdkAppId: 用户sdkappid(1400188366)
         # @type SdkAppId: String
-        # @param StartTime: 查询开始时间，5天内。本地unix时间戳（1588031999s）
+        # @param StartTime: 查询开始时间，5天内。本地unix时间戳（1587571000s）
         # @type StartTime: Integer
-        # @param EndTime: 查询结束时间，本地unix时间戳（1588031999s）
+        # @param EndTime: 查询结束时间，本地unix时间戳（1588034999s）
         # @type EndTime: Integer
 
         attr_accessor :SdkAppId, :StartTime, :EndTime
@@ -804,9 +804,9 @@ module TencentCloud
       class DescribeRoomInformationRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 用户sdkappid
         # @type SdkAppId: String
-        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588031999s）
+        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588031999）
         # @type StartTime: Integer
-        # @param EndTime: 查询结束时间，本地unix时间戳（1588031999s）
+        # @param EndTime: 查询结束时间，本地unix时间戳（1588034999）
         # @type EndTime: Integer
         # @param RoomId: 字符串房间号
         # @type RoomId: String
@@ -975,11 +975,11 @@ module TencentCloud
       class DescribeUserInformationRequest < TencentCloud::Common::AbstractModel
         # @param CommId: 通话 ID（唯一标识一次通话）： sdkappid_roomgString（房间号_createTime（房间创建时间，unix时间戳，单位为s）例：1400353843_218695_1590065777。通过 DescribeRoomInformation（查询房间列表）接口获取（链接：https://cloud.tencent.com/document/product/647/44050）
         # @type CommId: String
-        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1588031999s）
+        # @param StartTime: 查询开始时间，14天内。本地unix时间戳（1590065777）
         # @type StartTime: Integer
-        # @param EndTime: 查询结束时间，本地unix时间戳（1588031999s）
+        # @param EndTime: 查询结束时间，本地unix时间戳（1590065877）
         # @type EndTime: Integer
-        # @param SdkAppId: 用户SDKAppID（1400188366）
+        # @param SdkAppId: 用户SDKAppID（1400353843）
         # @type SdkAppId: String
         # @param UserIds: 需查询的用户数组，不填默认返回6个用户,最多可填6个用户
         # @type UserIds: Array

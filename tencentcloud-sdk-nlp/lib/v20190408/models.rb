@@ -874,7 +874,7 @@ module TencentCloud
 
       # KeywordsExtraction请求参数结构体
       class KeywordsExtractionRequest < TencentCloud::Common::AbstractModel
-        # @param Text: 待处理的文本（仅支持UTF-8格式，不超过10000字）
+        # @param Text: 待处理的文本（仅支持UTF-8格式，不超过10000字符）
         # @type Text: String
         # @param Num: 指定关键词个数上限（默认值为5）
         # @type Num: Integer
@@ -1397,7 +1397,7 @@ module TencentCloud
       class TextSimilarityRequest < TencentCloud::Common::AbstractModel
         # @param SrcText: 需要与目标句子计算相似度的源句子（仅支持UTF-8格式，不超过500字符）
         # @type SrcText: String
-        # @param TargetText: 目标句子
+        # @param TargetText: 目标句子（以句子数量为单位消耗资源包）
         # @type TargetText: Array
 
         attr_accessor :SrcText, :TargetText

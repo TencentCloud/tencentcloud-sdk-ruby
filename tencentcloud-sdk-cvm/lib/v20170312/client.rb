@@ -603,6 +603,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeInstancesModification) 用于查询指定实例支持调整的机型配置。
+
+        # @param request: Request instance for DescribeInstancesModification.
+        # @type request: :class:`Tencentcloud::cvm::V20170312::DescribeInstancesModificationRequest`
+        # @rtype: :class:`Tencentcloud::cvm::V20170312::DescribeInstancesModificationResponse`
+        def DescribeInstancesModification(request)
+          body = send_request('DescribeInstancesModification', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancesModificationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeInstancesOperationLimit）用于查询实例操作限制。
 
         # * 目前支持调整配置操作限制次数查询。

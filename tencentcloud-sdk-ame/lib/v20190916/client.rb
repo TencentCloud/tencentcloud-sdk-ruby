@@ -173,7 +173,55 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 根据接口的模式及歌曲ID来取得歌词信息。
+        # 根据歌单 Id 获取歌单详情，包括歌单的基础信息以及歌曲列表。
+
+        # @param request: Request instance for DescribeKTVPlaylistDetail.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeKTVPlaylistDetailRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeKTVPlaylistDetailResponse`
+        def DescribeKTVPlaylistDetail(request)
+          body = send_request('DescribeKTVPlaylistDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVPlaylistDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取即时广播曲库推荐歌单列表。
+
+        # @param request: Request instance for DescribeKTVPlaylists.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeKTVPlaylistsRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeKTVPlaylistsResponse`
+        def DescribeKTVPlaylists(request)
+          body = send_request('DescribeKTVPlaylists', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVPlaylistsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据接口的模式及歌曲ID来取得歌词信息或者波形图信息。
 
         # @param request: Request instance for DescribeLyric.
         # @type request: :class:`Tencentcloud::ame::V20190916::DescribeLyricRequest`

@@ -688,10 +688,13 @@ module TencentCloud
         # @param NewPods: 新实例列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewPods: Array
+        # @param NextBatchStartTime: =0：手动确认批次；>0：下一批次开始时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextBatchStartTime: Integer
 
-        attr_accessor :OldPodList, :NewPodList, :BatchStatus, :PodNum, :BatchIndex, :OldPods, :NewPods
+        attr_accessor :OldPodList, :NewPodList, :BatchStatus, :PodNum, :BatchIndex, :OldPods, :NewPods, :NextBatchStartTime
         
-        def initialize(oldpodlist=nil, newpodlist=nil, batchstatus=nil, podnum=nil, batchindex=nil, oldpods=nil, newpods=nil)
+        def initialize(oldpodlist=nil, newpodlist=nil, batchstatus=nil, podnum=nil, batchindex=nil, oldpods=nil, newpods=nil, nextbatchstarttime=nil)
           @OldPodList = oldpodlist
           @NewPodList = newpodlist
           @BatchStatus = batchstatus
@@ -699,6 +702,7 @@ module TencentCloud
           @BatchIndex = batchindex
           @OldPods = oldpods
           @NewPods = newpods
+          @NextBatchStartTime = nextbatchstarttime
         end
 
         def deserialize(params)
@@ -729,6 +733,7 @@ module TencentCloud
               @NewPods << deployservicepoddetail_tmp
             end
           end
+          @NextBatchStartTime = params['NextBatchStartTime']
         end
       end
 
@@ -2148,10 +2153,22 @@ module TencentCloud
         # @param CurrentBatchStatus: 当前批次状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentBatchStatus: String
+        # @param NewDeployVersion: 新版本version
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewDeployVersion: String
+        # @param OldDeployVersion: 旧版本version
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldDeployVersion: String
+        # @param NewVersionPackageInfo: 包名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewVersionPackageInfo: String
+        # @param NextBatchStartTime: 下一批次开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextBatchStartTime: Integer
 
-        attr_accessor :DeployStrategyConf, :StartTime, :EndTime, :Status, :BetaBatchDetail, :OtherBatchDetail, :OldVersionPodList, :CurrentBatchIndex, :ErrorMessage, :CurrentBatchStatus
+        attr_accessor :DeployStrategyConf, :StartTime, :EndTime, :Status, :BetaBatchDetail, :OtherBatchDetail, :OldVersionPodList, :CurrentBatchIndex, :ErrorMessage, :CurrentBatchStatus, :NewDeployVersion, :OldDeployVersion, :NewVersionPackageInfo, :NextBatchStartTime
         
-        def initialize(deploystrategyconf=nil, starttime=nil, endtime=nil, status=nil, betabatchdetail=nil, otherbatchdetail=nil, oldversionpodlist=nil, currentbatchindex=nil, errormessage=nil, currentbatchstatus=nil)
+        def initialize(deploystrategyconf=nil, starttime=nil, endtime=nil, status=nil, betabatchdetail=nil, otherbatchdetail=nil, oldversionpodlist=nil, currentbatchindex=nil, errormessage=nil, currentbatchstatus=nil, newdeployversion=nil, olddeployversion=nil, newversionpackageinfo=nil, nextbatchstarttime=nil)
           @DeployStrategyConf = deploystrategyconf
           @StartTime = starttime
           @EndTime = endtime
@@ -2162,6 +2179,10 @@ module TencentCloud
           @CurrentBatchIndex = currentbatchindex
           @ErrorMessage = errormessage
           @CurrentBatchStatus = currentbatchstatus
+          @NewDeployVersion = newdeployversion
+          @OldDeployVersion = olddeployversion
+          @NewVersionPackageInfo = newversionpackageinfo
+          @NextBatchStartTime = nextbatchstarttime
         end
 
         def deserialize(params)
@@ -2191,6 +2212,10 @@ module TencentCloud
           @CurrentBatchIndex = params['CurrentBatchIndex']
           @ErrorMessage = params['ErrorMessage']
           @CurrentBatchStatus = params['CurrentBatchStatus']
+          @NewDeployVersion = params['NewDeployVersion']
+          @OldDeployVersion = params['OldDeployVersion']
+          @NewVersionPackageInfo = params['NewVersionPackageInfo']
+          @NextBatchStartTime = params['NextBatchStartTime']
         end
       end
 

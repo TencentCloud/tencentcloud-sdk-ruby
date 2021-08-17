@@ -1080,10 +1080,16 @@ module TencentCloud
         # @param SsaEventId: 事件Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SsaEventId: String
+        # @param IsNewCfwEvent: 是否新接入的云防事件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewCfwEvent: Boolean
+        # @param Direction: 出入站方向
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Direction: String
 
-        attr_accessor :OldIdMd5, :EventName, :EventType1, :EventType2, :Level, :Status, :SrcIp, :DstIp, :Time, :Dstport, :AssetIp, :AssetName, :SsaEventUniqid, :AssetId, :Source, :Index, :Id, :IsAssetDeleted, :SsaSrcCountry, :SsaDstCountry, :SsaDescription, :SsaAttackChain, :RuleComponents, :AssetIpAll, :AssetType, :PublicIpAddresses, :PrivateIpAddresses, :SoarResponseStatus, :SoarResponseTime, :SoarSuggestStatus, :SoarPlaybookType, :SoarRunId, :SsaEventId
+        attr_accessor :OldIdMd5, :EventName, :EventType1, :EventType2, :Level, :Status, :SrcIp, :DstIp, :Time, :Dstport, :AssetIp, :AssetName, :SsaEventUniqid, :AssetId, :Source, :Index, :Id, :IsAssetDeleted, :SsaSrcCountry, :SsaDstCountry, :SsaDescription, :SsaAttackChain, :RuleComponents, :AssetIpAll, :AssetType, :PublicIpAddresses, :PrivateIpAddresses, :SoarResponseStatus, :SoarResponseTime, :SoarSuggestStatus, :SoarPlaybookType, :SoarRunId, :SsaEventId, :IsNewCfwEvent, :Direction
         
-        def initialize(oldidmd5=nil, eventname=nil, eventtype1=nil, eventtype2=nil, level=nil, status=nil, srcip=nil, dstip=nil, time=nil, dstport=nil, assetip=nil, assetname=nil, ssaeventuniqid=nil, assetid=nil, source=nil, index=nil, id=nil, isassetdeleted=nil, ssasrccountry=nil, ssadstcountry=nil, ssadescription=nil, ssaattackchain=nil, rulecomponents=nil, assetipall=nil, assettype=nil, publicipaddresses=nil, privateipaddresses=nil, soarresponsestatus=nil, soarresponsetime=nil, soarsuggeststatus=nil, soarplaybooktype=nil, soarrunid=nil, ssaeventid=nil)
+        def initialize(oldidmd5=nil, eventname=nil, eventtype1=nil, eventtype2=nil, level=nil, status=nil, srcip=nil, dstip=nil, time=nil, dstport=nil, assetip=nil, assetname=nil, ssaeventuniqid=nil, assetid=nil, source=nil, index=nil, id=nil, isassetdeleted=nil, ssasrccountry=nil, ssadstcountry=nil, ssadescription=nil, ssaattackchain=nil, rulecomponents=nil, assetipall=nil, assettype=nil, publicipaddresses=nil, privateipaddresses=nil, soarresponsestatus=nil, soarresponsetime=nil, soarsuggeststatus=nil, soarplaybooktype=nil, soarrunid=nil, ssaeventid=nil, isnewcfwevent=nil, direction=nil)
           @OldIdMd5 = oldidmd5
           @EventName = eventname
           @EventType1 = eventtype1
@@ -1117,6 +1123,8 @@ module TencentCloud
           @SoarPlaybookType = soarplaybooktype
           @SoarRunId = soarrunid
           @SsaEventId = ssaeventid
+          @IsNewCfwEvent = isnewcfwevent
+          @Direction = direction
         end
 
         def deserialize(params)
@@ -1153,6 +1161,8 @@ module TencentCloud
           @SoarPlaybookType = params['SoarPlaybookType']
           @SoarRunId = params['SoarRunId']
           @SsaEventId = params['SsaEventId']
+          @IsNewCfwEvent = params['IsNewCfwEvent']
+          @Direction = params['Direction']
         end
       end
 

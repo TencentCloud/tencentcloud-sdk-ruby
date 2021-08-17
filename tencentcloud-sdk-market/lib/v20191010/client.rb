@@ -77,30 +77,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 同步企微的用户信息和订单信息到云市场
-
-        # @param request: Request instance for SyncUserAndOrderInfo.
-        # @type request: :class:`Tencentcloud::market::V20191010::SyncUserAndOrderInfoRequest`
-        # @rtype: :class:`Tencentcloud::market::V20191010::SyncUserAndOrderInfoResponse`
-        def SyncUserAndOrderInfo(request)
-          body = send_request('SyncUserAndOrderInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SyncUserAndOrderInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
 
       end
     end

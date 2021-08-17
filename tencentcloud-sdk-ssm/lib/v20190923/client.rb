@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用于托管SSH密钥对的凭据
+
+        # @param request: Request instance for CreateSSHKeyPairSecret.
+        # @type request: :class:`Tencentcloud::ssm::V20190923::CreateSSHKeyPairSecretRequest`
+        # @rtype: :class:`Tencentcloud::ssm::V20190923::CreateSSHKeyPairSecretResponse`
+        def CreateSSHKeyPairSecret(request)
+          body = send_request('CreateSSHKeyPairSecret', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSSHKeyPairSecretResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
 
         # @param request: Request instance for CreateSecret.
@@ -306,6 +330,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取SSH密钥对凭据明文信息。
+
+        # @param request: Request instance for GetSSHKeyPairValue.
+        # @type request: :class:`Tencentcloud::ssm::V20190923::GetSSHKeyPairValueRequest`
+        # @rtype: :class:`Tencentcloud::ssm::V20190923::GetSSHKeyPairValueResponse`
+        def GetSSHKeyPairValue(request)
+          body = send_request('GetSSHKeyPairValue', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetSSHKeyPairValueResponse.new
             model.deserialize(response['Response'])
             model
           else

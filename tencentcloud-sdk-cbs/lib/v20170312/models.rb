@@ -693,17 +693,17 @@ module TencentCloud
         # @param Filters: 过滤条件。支持以下条件：
         # <li>disk-id - Array of String - 是否必填：是 - 按云盘ID过滤，每个请求最多可指定10个云盘ID。
         # @type Filters: Array
-        # @param BeginTime: 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
-        # @type BeginTime: String
         # @param EndTime: 要查询的操作日志的截止时间，例如：“2019-11-22 23:59:59"
         # @type EndTime: String
+        # @param BeginTime: 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
+        # @type BeginTime: String
 
-        attr_accessor :Filters, :BeginTime, :EndTime
+        attr_accessor :Filters, :EndTime, :BeginTime
         
-        def initialize(filters=nil, begintime=nil, endtime=nil)
+        def initialize(filters=nil, endtime=nil, begintime=nil)
           @Filters = filters
-          @BeginTime = begintime
           @EndTime = endtime
+          @BeginTime = begintime
         end
 
         def deserialize(params)
@@ -715,8 +715,8 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
-          @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
+          @BeginTime = params['BeginTime']
         end
       end
 
@@ -1333,6 +1333,13 @@ module TencentCloud
 
       # 云盘操作日志。
       class DiskOperationLog < TencentCloud::Common::AbstractModel
+        # @param OperationState: 操作的状态。取值范围：
+        # SUCCESS :表示操作成功
+        # FAILED :表示操作失败
+        # PROCESSING :表示操作中。
+        # @type OperationState: String
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
         # @param Operator: 操作者的UIN。
         # @type Operator: String
         # @param Operation: 操作类型。取值范围：
@@ -1346,36 +1353,29 @@ module TencentCloud
         # ASP_OPERATION_BIND：关联定期快照策略
         # ASP_OPERATION_UNBIND：取消关联定期快照策略
         # @type Operation: String
-        # @param DiskId: 操作的云盘ID。
-        # @type DiskId: String
-        # @param OperationState: 操作的状态。取值范围：
-        # SUCCESS :表示操作成功
-        # FAILED :表示操作失败
-        # PROCESSING :表示操作中。
-        # @type OperationState: String
-        # @param StartTime: 开始时间。
-        # @type StartTime: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
+        # @param DiskId: 操作的云盘ID。
+        # @type DiskId: String
 
-        attr_accessor :Operator, :Operation, :DiskId, :OperationState, :StartTime, :EndTime
+        attr_accessor :OperationState, :StartTime, :Operator, :Operation, :EndTime, :DiskId
         
-        def initialize(operator=nil, operation=nil, diskid=nil, operationstate=nil, starttime=nil, endtime=nil)
-          @Operator = operator
-          @Operation = operation
-          @DiskId = diskid
+        def initialize(operationstate=nil, starttime=nil, operator=nil, operation=nil, endtime=nil, diskid=nil)
           @OperationState = operationstate
           @StartTime = starttime
+          @Operator = operator
+          @Operation = operation
           @EndTime = endtime
+          @DiskId = diskid
         end
 
         def deserialize(params)
-          @Operator = params['Operator']
-          @Operation = params['Operation']
-          @DiskId = params['DiskId']
           @OperationState = params['OperationState']
           @StartTime = params['StartTime']
+          @Operator = params['Operator']
+          @Operation = params['Operation']
           @EndTime = params['EndTime']
+          @DiskId = params['DiskId']
         end
       end
 

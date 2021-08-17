@@ -1024,6 +1024,68 @@ module TencentCloud
         end
       end
 
+      # BindAccount请求参数结构体
+      class BindAccountRequest < TencentCloud::Common::AbstractModel
+        # @param AnchorId: 主播Id
+        # @type AnchorId: String
+        # @param TransferType: 1 微信企业付款
+        # 2 支付宝转账
+        # 3 平安银企直连代发转账
+        # @type TransferType: Integer
+        # @param AccountNo: 收款方标识。
+        # 微信为open_id；
+        # 支付宝为会员alipay_user_id;
+        # 平安为收款方银行账号;
+        # @type AccountNo: String
+        # @param PhoneNum: 手机号
+        # @type PhoneNum: String
+
+        attr_accessor :AnchorId, :TransferType, :AccountNo, :PhoneNum
+        
+        def initialize(anchorid=nil, transfertype=nil, accountno=nil, phonenum=nil)
+          @AnchorId = anchorid
+          @TransferType = transfertype
+          @AccountNo = accountno
+          @PhoneNum = phonenum
+        end
+
+        def deserialize(params)
+          @AnchorId = params['AnchorId']
+          @TransferType = params['TransferType']
+          @AccountNo = params['AccountNo']
+          @PhoneNum = params['PhoneNum']
+        end
+      end
+
+      # BindAccount返回参数结构体
+      class BindAccountResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功。
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息。
+        # @type ErrMessage: String
+        # @param Result: 该字段为null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindAcct请求参数结构体
       class BindAcctRequest < TencentCloud::Common::AbstractModel
         # @param MidasAppId: 聚鑫分配的支付主MidasAppId
@@ -2473,6 +2535,86 @@ module TencentCloud
           @TxnReturnCode = params['TxnReturnCode']
           @TxnReturnMsg = params['TxnReturnMsg']
           @CnsmrSeqNo = params['CnsmrSeqNo']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateExternalAnchor接口返回参数
+      class CreateExternalAnchorData < TencentCloud::Common::AbstractModel
+        # @param AnchorId: 主播Id
+        # @type AnchorId: String
+
+        attr_accessor :AnchorId
+        
+        def initialize(anchorid=nil)
+          @AnchorId = anchorid
+        end
+
+        def deserialize(params)
+          @AnchorId = params['AnchorId']
+        end
+      end
+
+      # CreateExternalAnchor请求参数结构体
+      class CreateExternalAnchorRequest < TencentCloud::Common::AbstractModel
+        # @param Uid: 平台业务系统唯一标示的主播id
+        # @type Uid: String
+        # @param Name: 主播名称
+        # @type Name: String
+        # @param IdNo: 身份证号
+        # @type IdNo: String
+        # @param IdCardFront: 身份证正面图片下载链接
+        # @type IdCardFront: String
+        # @param IdCardReverse: 身份证反面图片下载链接
+        # @type IdCardReverse: String
+
+        attr_accessor :Uid, :Name, :IdNo, :IdCardFront, :IdCardReverse
+        
+        def initialize(uid=nil, name=nil, idno=nil, idcardfront=nil, idcardreverse=nil)
+          @Uid = uid
+          @Name = name
+          @IdNo = idno
+          @IdCardFront = idcardfront
+          @IdCardReverse = idcardreverse
+        end
+
+        def deserialize(params)
+          @Uid = params['Uid']
+          @Name = params['Name']
+          @IdNo = params['IdNo']
+          @IdCardFront = params['IdCardFront']
+          @IdCardReverse = params['IdCardReverse']
+        end
+      end
+
+      # CreateExternalAnchor返回参数结构体
+      class CreateExternalAnchorResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功。
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息。
+        # @type ErrMessage: String
+        # @param Result: 返回响应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateExternalAnchorData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = CreateExternalAnchorData.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4696,6 +4838,68 @@ module TencentCloud
             @AgentTaxPaymentBatch = AgentTaxPaymentBatch.new
             @AgentTaxPaymentBatch.deserialize(params['AgentTaxPaymentBatch'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBindedAccount请求参数结构体
+      class ModifyBindedAccountRequest < TencentCloud::Common::AbstractModel
+        # @param AnchorId: 主播Id
+        # @type AnchorId: String
+        # @param TransferType: 1 微信企业付款
+        # 2 支付宝转账
+        # 3 平安银企直连代发转账
+        # @type TransferType: Integer
+        # @param AccountNo: 收款方标识。
+        # 微信为open_id；
+        # 支付宝为会员alipay_user_id;
+        # 平安为收款方银行账号;
+        # @type AccountNo: String
+        # @param PhoneNum: 手机号
+        # @type PhoneNum: String
+
+        attr_accessor :AnchorId, :TransferType, :AccountNo, :PhoneNum
+        
+        def initialize(anchorid=nil, transfertype=nil, accountno=nil, phonenum=nil)
+          @AnchorId = anchorid
+          @TransferType = transfertype
+          @AccountNo = accountno
+          @PhoneNum = phonenum
+        end
+
+        def deserialize(params)
+          @AnchorId = params['AnchorId']
+          @TransferType = params['TransferType']
+          @AccountNo = params['AccountNo']
+          @PhoneNum = params['PhoneNum']
+        end
+      end
+
+      # ModifyBindedAccount返回参数结构体
+      class ModifyBindedAccountResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功。
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息。
+        # @type ErrMessage: String
+        # @param Result: 该字段为null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -11274,6 +11478,59 @@ module TencentCloud
           @OutTradeNo = params['OutTradeNo']
           @PayInfo = params['PayInfo']
           @TransactionId = params['TransactionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadExternalAnchorInfo请求参数结构体
+      class UploadExternalAnchorInfoRequest < TencentCloud::Common::AbstractModel
+        # @param AnchorId: 主播Id
+        # @type AnchorId: String
+        # @param IdCardFront: 身份证正面图片下载链接
+        # @type IdCardFront: String
+        # @param IdCardReverse: 身份证反面图片下载链接
+        # @type IdCardReverse: String
+
+        attr_accessor :AnchorId, :IdCardFront, :IdCardReverse
+        
+        def initialize(anchorid=nil, idcardfront=nil, idcardreverse=nil)
+          @AnchorId = anchorid
+          @IdCardFront = idcardfront
+          @IdCardReverse = idcardreverse
+        end
+
+        def deserialize(params)
+          @AnchorId = params['AnchorId']
+          @IdCardFront = params['IdCardFront']
+          @IdCardReverse = params['IdCardReverse']
+        end
+      end
+
+      # UploadExternalAnchorInfo返回参数结构体
+      class UploadExternalAnchorInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功。
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息。
+        # @type ErrMessage: String
+        # @param Result: 该字段为null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end

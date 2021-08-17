@@ -327,7 +327,7 @@ module TencentCloud
         # @param SrcIp: 来源ip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcIp: String
-        # @param Status: 失败：FAILED；成功：SUCCESS
+        # @param Status: SUCCESS：破解成功；FAILED：破解失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param Country: 国家id
@@ -342,7 +342,7 @@ module TencentCloud
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param BanStatus: 阻断状态：0-未阻断；1-已阻断；2-阻断失败；3-内网攻击暂不支持阻断；4-安平暂不支持阻断
+        # @param BanStatus: 阻断状态：1-阻断成功；非1-阻断失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BanStatus: Integer
         # @param EventType: 事件类型
@@ -366,10 +366,13 @@ module TencentCloud
         # @param ModifyTime: 最近攻击时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId
         
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -389,6 +392,7 @@ module TencentCloud
           @Protocol = protocol
           @Port = port
           @ModifyTime = modifytime
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -411,6 +415,7 @@ module TencentCloud
           @Protocol = params['Protocol']
           @Port = params['Port']
           @ModifyTime = params['ModifyTime']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -5634,16 +5639,18 @@ module TencentCloud
         # @type RegionInfo: :class:`Tencentcloud::Cwp.v20180228.models.RegionInfo`
         # @param InstanceState: 实例状态 TERMINATED_PRO_VERSION 已销毁
         # @type InstanceState: String
-        # @param LicenseStatus: 授权状态 1 授权 0 未授权
+        # @param LicenseStatus: 防篡改 授权状态 1 授权 0 未授权
         # @type LicenseStatus: Integer
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
         # @param HasAssetScan: 是否有资产扫描接口，0无，1有
         # @type HasAssetScan: Integer
+        # @param MachineType: 机器所属专区类型 CVM 云服务器, BM 黑石, ECM 边缘计算, LH 轻量应用服务器 ,Other 混合云专区
+        # @type MachineType: String
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType
         
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -5665,6 +5672,7 @@ module TencentCloud
           @LicenseStatus = licensestatus
           @ProjectId = projectid
           @HasAssetScan = hasassetscan
+          @MachineType = machinetype
         end
 
         def deserialize(params)
@@ -5699,6 +5707,7 @@ module TencentCloud
           @LicenseStatus = params['LicenseStatus']
           @ProjectId = params['ProjectId']
           @HasAssetScan = params['HasAssetScan']
+          @MachineType = params['MachineType']
         end
       end
 
@@ -5768,10 +5777,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param LatestScanTime: 最近扫描时间
         # @type LatestScanTime: String
+        # @param Reference: 参考链接
+        # @type Reference: String
 
-        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime
+        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference
         
-        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil)
+        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil)
           @VirusName = virusname
           @FileSize = filesize
           @MD5 = md5
@@ -5791,6 +5802,7 @@ module TencentCloud
           @FileName = filename
           @CreateTime = createtime
           @LatestScanTime = latestscantime
+          @Reference = reference
         end
 
         def deserialize(params)
@@ -5813,6 +5825,7 @@ module TencentCloud
           @FileName = params['FileName']
           @CreateTime = params['CreateTime']
           @LatestScanTime = params['LatestScanTime']
+          @Reference = params['Reference']
         end
       end
 
@@ -6195,7 +6208,7 @@ module TencentCloud
         # @type ParentProcPath: String
         # @param ProcTree: 进程树
         # @type ProcTree: String
-        # @param Status: 处理状态
+        # @param Status: 处理状态：0-待处理 2-白名单
         # @type Status: Integer
         # @param CreateTime: 发生时间
         # @type CreateTime: String
@@ -6302,14 +6315,17 @@ module TencentCloud
       # 需要开通专业版机器信息。
       class ProVersionMachine < TencentCloud::Common::AbstractModel
         # @param MachineType: 主机类型。
-        # <li>CVM: 虚拟主机</li>
+        # <li>CVM: 云服务器</li>
         # <li>BM: 黑石物理机</li>
+        # <li>ECM: 边缘计算服务器</li>
+        # <li>LH: 轻量应用服务器</li>
+        # <li>Other: 混合云机器</li>
         # @type MachineType: String
         # @param MachineRegion: 主机所在地域。
         # 如：ap-guangzhou、ap-beijing
         # @type MachineRegion: String
-        # @param Quuid: 主机唯一标识Uuid。
-        # 黑石的InstanceId，CVM的Uuid
+        # @param Quuid: 主机唯一标识Uuid数组。
+        # 黑石的InstanceId，CVM的Uuid ,边缘计算的Uuid , 轻量应用服务器的Uuid ,混合云机器的Quuid 。 当前参数最大长度限制20
         # @type Quuid: String
 
         attr_accessor :MachineType, :MachineRegion, :Quuid
@@ -6516,7 +6532,7 @@ module TencentCloud
 
       # 反弹Shell数据
       class ReverseShell < TencentCloud::Common::AbstractModel
-        # @param Id: ID
+        # @param Id: ID 主键
         # @type Id: Integer
         # @param Uuid: 云镜UUID
         # @type Uuid: String
@@ -6546,7 +6562,7 @@ module TencentCloud
         # @type ParentProcGroup: String
         # @param ParentProcPath: 父进程路径
         # @type ParentProcPath: String
-        # @param Status: 处理状态
+        # @param Status: 处理状态：0-待处理 2-白名单
         # @type Status: Integer
         # @param CreateTime: 产生时间
         # @type CreateTime: String
@@ -6554,10 +6570,12 @@ module TencentCloud
         # @type MachineName: String
         # @param ProcTree: 进程树
         # @type ProcTree: String
+        # @param DetectBy: 检测方法
+        # @type DetectBy: Integer
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree, :DetectBy
         
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil, detectby=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -6577,6 +6595,7 @@ module TencentCloud
           @CreateTime = createtime
           @MachineName = machinename
           @ProcTree = proctree
+          @DetectBy = detectby
         end
 
         def deserialize(params)
@@ -6599,6 +6618,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @MachineName = params['MachineName']
           @ProcTree = params['ProcTree']
+          @DetectBy = params['DetectBy']
         end
       end
 

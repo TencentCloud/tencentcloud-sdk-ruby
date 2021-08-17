@@ -138,6 +138,85 @@ module TencentCloud
         end
       end
 
+      # CreateSSHKeyPairSecret请求参数结构体
+      class CreateSSHKeyPairSecretRequest < TencentCloud::Common::AbstractModel
+        # @param SecretName: 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。
+        # @type SecretName: String
+        # @param ProjectId: 密钥对创建后所属的项目ID。
+        # @type ProjectId: Integer
+        # @param Description: 描述信息，用于详细描述用途等，最大支持2048字节。
+        # @type Description: String
+        # @param KmsKeyId: 指定对凭据进行加密的KMS CMK。
+        # 如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。
+        # 您也可以指定在同region 下自行创建的KMS CMK进行加密。
+        # @type KmsKeyId: String
+        # @param Tags: 标签列表。
+        # @type Tags: Array
+
+        attr_accessor :SecretName, :ProjectId, :Description, :KmsKeyId, :Tags
+        
+        def initialize(secretname=nil, projectid=nil, description=nil, kmskeyid=nil, tags=nil)
+          @SecretName = secretname
+          @ProjectId = projectid
+          @Description = description
+          @KmsKeyId = kmskeyid
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @SecretName = params['SecretName']
+          @ProjectId = params['ProjectId']
+          @Description = params['Description']
+          @KmsKeyId = params['KmsKeyId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSSHKeyPairSecret返回参数结构体
+      class CreateSSHKeyPairSecretResponse < TencentCloud::Common::AbstractModel
+        # @param SecretName: 创建的凭据名称。
+        # @type SecretName: String
+        # @param SSHKeyID: 创建的SSH密钥ID。
+        # @type SSHKeyID: String
+        # @param SSHKeyName: 创建的SSH密钥名称。
+        # @type SSHKeyName: String
+        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagCode: Integer
+        # @param TagMsg: 标签操作的返回信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecretName, :SSHKeyID, :SSHKeyName, :TagCode, :TagMsg, :RequestId
+        
+        def initialize(secretname=nil, sshkeyid=nil, sshkeyname=nil, tagcode=nil, tagmsg=nil, requestid=nil)
+          @SecretName = secretname
+          @SSHKeyID = sshkeyid
+          @SSHKeyName = sshkeyname
+          @TagCode = tagcode
+          @TagMsg = tagmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SecretName = params['SecretName']
+          @SSHKeyID = params['SSHKeyID']
+          @SSHKeyName = params['SSHKeyName']
+          @TagCode = params['TagCode']
+          @TagMsg = params['TagMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSecret请求参数结构体
       class CreateSecretRequest < TencentCloud::Common::AbstractModel
         # @param SecretName: 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。
@@ -224,18 +303,25 @@ module TencentCloud
         # @param SecretName: 指定需要删除的凭据名称。
         # @type SecretName: String
         # @param RecoveryWindowInDays: 指定计划删除日期，单位（天），0（默认）表示立即删除， 1-30 表示预留的天数，超出该日期之后彻底删除。
+        # 当凭据类型为SSH密钥对凭据时，此字段只能取值只能为0。
         # @type RecoveryWindowInDays: Integer
+        # @param CleanSSHKey: 当凭据类型为SSH密钥对凭据时，此字段有效，取值：
+        # True -- 表示不仅仅清理此凭据中存储的SSH密钥信息，还会将SSH密钥对从CVM侧进行清理。注意，如果SSH密钥此时绑定了CVM实例，那么会清理失败。
+        # False --  表示仅仅清理此凭据中存储的SSH密钥信息，不在CVM进侧进行清理。
+        # @type CleanSSHKey: Boolean
 
-        attr_accessor :SecretName, :RecoveryWindowInDays
+        attr_accessor :SecretName, :RecoveryWindowInDays, :CleanSSHKey
         
-        def initialize(secretname=nil, recoverywindowindays=nil)
+        def initialize(secretname=nil, recoverywindowindays=nil, cleansshkey=nil)
           @SecretName = secretname
           @RecoveryWindowInDays = recoverywindowindays
+          @CleanSSHKey = cleansshkey
         end
 
         def deserialize(params)
           @SecretName = params['SecretName']
           @RecoveryWindowInDays = params['RecoveryWindowInDays']
+          @CleanSSHKey = params['CleanSSHKey']
         end
       end
 
@@ -365,7 +451,7 @@ module TencentCloud
 
       # DescribeRotationDetail返回参数结构体
       class DescribeRotationDetailResponse < TencentCloud::Common::AbstractModel
-        # @param EnableRotation: 否允许轮转，True表示开启轮转，False表示禁止轮转。
+        # @param EnableRotation: 否允许轮转，true表示开启轮转，false表示禁止轮转。
         # @type EnableRotation: Boolean
         # @param Frequency: 轮转的频率，以天为单位，默认为1天。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -470,7 +556,7 @@ module TencentCloud
         # @type DeleteTime: Integer
         # @param CreateTime: 创建日期。
         # @type CreateTime: Integer
-        # @param SecretType: 0 --  用户自定义凭据类型；1 -- 云产品凭据类型。
+        # @param SecretType: 0 --  用户自定义凭据类型；1 -- 数据库凭据类型；2 -- SSH密钥对凭据类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretType: Integer
         # @param ProductName: 云产品名称。
@@ -485,12 +571,21 @@ module TencentCloud
         # @param RotationFrequency: 轮转周期，默认以天为单位。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RotationFrequency: Integer
+        # @param ResourceName: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对凭据的名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ProjectID: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectID: Integer
+        # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedInstanceIDs: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :RequestId
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :SecretType, :ProductName, :ResourceID, :RotationStatus, :RotationFrequency, :ResourceName, :ProjectID, :AssociatedInstanceIDs, :RequestId
         
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, requestid=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, secrettype=nil, productname=nil, resourceid=nil, rotationstatus=nil, rotationfrequency=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil, requestid=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -503,6 +598,9 @@ module TencentCloud
           @ResourceID = resourceid
           @RotationStatus = rotationstatus
           @RotationFrequency = rotationfrequency
+          @ResourceName = resourcename
+          @ProjectID = projectid
+          @AssociatedInstanceIDs = associatedinstanceids
           @RequestId = requestid
         end
 
@@ -519,6 +617,9 @@ module TencentCloud
           @ResourceID = params['ResourceID']
           @RotationStatus = params['RotationStatus']
           @RotationFrequency = params['RotationFrequency']
+          @ResourceName = params['ResourceName']
+          @ProjectID = params['ProjectID']
+          @AssociatedInstanceIDs = params['AssociatedInstanceIDs']
           @RequestId = params['RequestId']
         end
       end
@@ -657,6 +758,64 @@ module TencentCloud
 
         def deserialize(params)
           @Regions = params['Regions']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetSSHKeyPairValue请求参数结构体
+      class GetSSHKeyPairValueRequest < TencentCloud::Common::AbstractModel
+        # @param SecretName: 凭据名称，此凭据只能为SSH密钥对凭据类型。
+        # @type SecretName: String
+
+        attr_accessor :SecretName
+        
+        def initialize(secretname=nil)
+          @SecretName = secretname
+        end
+
+        def deserialize(params)
+          @SecretName = params['SecretName']
+        end
+      end
+
+      # GetSSHKeyPairValue返回参数结构体
+      class GetSSHKeyPairValueResponse < TencentCloud::Common::AbstractModel
+        # @param SSHKeyID: SSH密钥对ID。
+        # @type SSHKeyID: String
+        # @param PublicKey: 公钥明文，使用base64编码。
+        # @type PublicKey: String
+        # @param PrivateKey: 私钥明文，使用base64编码
+        # @type PrivateKey: String
+        # @param ProjectID: 此密钥对所属的项目ID。
+        # @type ProjectID: Integer
+        # @param SSHKeyDescription: SSH密钥对的描述信息。
+        # 用户可以在CVM侧控制台对密钥对的描述信息进行修改。
+        # @type SSHKeyDescription: String
+        # @param SSHKeyName: SSH密钥对的名称。
+        # 用户可以在CVM侧控制台对密钥对的名称进行修改。
+        # @type SSHKeyName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SSHKeyID, :PublicKey, :PrivateKey, :ProjectID, :SSHKeyDescription, :SSHKeyName, :RequestId
+        
+        def initialize(sshkeyid=nil, publickey=nil, privatekey=nil, projectid=nil, sshkeydescription=nil, sshkeyname=nil, requestid=nil)
+          @SSHKeyID = sshkeyid
+          @PublicKey = publickey
+          @PrivateKey = privatekey
+          @ProjectID = projectid
+          @SSHKeyDescription = sshkeydescription
+          @SSHKeyName = sshkeyname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SSHKeyID = params['SSHKeyID']
+          @PublicKey = params['PublicKey']
+          @PrivateKey = params['PrivateKey']
+          @ProjectID = params['ProjectID']
+          @SSHKeyDescription = params['SSHKeyDescription']
+          @SSHKeyName = params['SSHKeyName']
           @RequestId = params['RequestId']
         end
       end
@@ -822,7 +981,7 @@ module TencentCloud
         # @type TagFilters: Array
         # @param SecretType: 0  -- 表示用户自定义凭据，默认为0。
         # 1  -- 表示用户云产品凭据。
-        # 这个参数只能在云产品凭据(1)和用户自定义凭据(0)中二选一。
+        # 2 -- 表示SSH密钥对凭据。
         # @type SecretType: Integer
 
         attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType
@@ -1098,10 +1257,19 @@ module TencentCloud
         # @param ProductName: 云产品名称，仅在SecretType为1，即凭据类型为云产品凭据时生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
+        # @param ResourceName: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对凭据的名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ProjectID: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectID: Integer
+        # @param AssociatedInstanceIDs: 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedInstanceIDs: Array
 
-        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName
+        attr_accessor :SecretName, :Description, :KmsKeyId, :CreateUin, :Status, :DeleteTime, :CreateTime, :KmsKeyType, :RotationStatus, :NextRotationTime, :SecretType, :ProductName, :ResourceName, :ProjectID, :AssociatedInstanceIDs
         
-        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil)
+        def initialize(secretname=nil, description=nil, kmskeyid=nil, createuin=nil, status=nil, deletetime=nil, createtime=nil, kmskeytype=nil, rotationstatus=nil, nextrotationtime=nil, secrettype=nil, productname=nil, resourcename=nil, projectid=nil, associatedinstanceids=nil)
           @SecretName = secretname
           @Description = description
           @KmsKeyId = kmskeyid
@@ -1114,6 +1282,9 @@ module TencentCloud
           @NextRotationTime = nextrotationtime
           @SecretType = secrettype
           @ProductName = productname
+          @ResourceName = resourcename
+          @ProjectID = projectid
+          @AssociatedInstanceIDs = associatedinstanceids
         end
 
         def deserialize(params)
@@ -1129,6 +1300,9 @@ module TencentCloud
           @NextRotationTime = params['NextRotationTime']
           @SecretType = params['SecretType']
           @ProductName = params['ProductName']
+          @ResourceName = params['ResourceName']
+          @ProjectID = params['ProjectID']
+          @AssociatedInstanceIDs = params['AssociatedInstanceIDs']
         end
       end
 
@@ -1217,13 +1391,13 @@ module TencentCloud
         # @param SecretName: 云产品凭据名称。
         # @type SecretName: String
         # @param EnableRotation: 是否开启轮转。
-        # True -- 开启轮转；
-        # False -- 禁止轮转。
+        # true -- 开启轮转；
+        # false -- 禁止轮转。
         # @type EnableRotation: Boolean
         # @param Frequency: 轮转周期，以天为单位，最小为30天，最大为365天。
         # @type Frequency: Integer
         # @param RotationBeginTime: 用户设置的期望开始轮转时间，格式为：2006-01-02 15:04:05。
-        # 当EnableRotation为True时，如果不填RotationBeginTime，则默认填充为当前时间。
+        # 当EnableRotation为true时，如果不填RotationBeginTime，则默认填充为当前时间。
         # @type RotationBeginTime: String
 
         attr_accessor :SecretName, :EnableRotation, :Frequency, :RotationBeginTime

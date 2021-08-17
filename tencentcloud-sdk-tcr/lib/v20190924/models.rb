@@ -486,7 +486,7 @@ module TencentCloud
         # @type Username: String
         # @param Token: 访问凭证
         # @type Token: String
-        # @param ExpTime: 访问凭证过期时间戳
+        # @param ExpTime: 访问凭证过期时间戳，是一个时间戳数字，无单位
         # @type ExpTime: Integer
         # @param TokenId: 长期凭证的TokenId，短期凭证没有TokenId
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -642,7 +642,7 @@ module TencentCloud
       class CreateNamespaceRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例ID
         # @type RegistryId: String
-        # @param NamespaceName: 命名空间的名称
+        # @param NamespaceName: 命名空间的名称（长度2-30个字符，只能包含小写字母、数字及分隔符("."、"_"、"-")，且不能以分隔符开头、结尾或连续）
         # @type NamespaceName: String
         # @param IsPublic: 是否公开，true为公开，fale为私有
         # @type IsPublic: Boolean
@@ -856,7 +856,7 @@ module TencentCloud
         # @type RegistryId: String
         # @param RetentionId: 版本保留规则Id
         # @type RetentionId: Integer
-        # @param DryRun: 是否模拟执行
+        # @param DryRun: 是否模拟执行，默认值为false，即非模拟执行
         # @type DryRun: Boolean
 
         attr_accessor :RegistryId, :RetentionId, :DryRun
@@ -900,7 +900,7 @@ module TencentCloud
         # @type RetentionRule: :class:`Tencentcloud::Tcr.v20190924.models.RetentionRule`
         # @param CronSetting: 执行周期，当前只能选择： manual;daily;weekly;monthly
         # @type CronSetting: String
-        # @param Disabled: 是否禁用规则
+        # @param Disabled: 是否禁用规则，默认值为false
         # @type Disabled: Boolean
 
         attr_accessor :RegistryId, :NamespaceId, :RetentionRule, :CronSetting, :Disabled
@@ -943,7 +943,7 @@ module TencentCloud
 
       # CreateUserPersonal请求参数结构体
       class CreateUserPersonalRequest < TencentCloud::Common::AbstractModel
-        # @param Password: 用户密码
+        # @param Password: 用户密码，密码必须为8到16位
         # @type Password: String
 
         attr_accessor :Password
@@ -1314,8 +1314,8 @@ module TencentCloud
         # @type VpcId: String
         # @param EniLBIp: tcr内网访问链路ip
         # @type EniLBIp: String
-        # @param UsePublicDomain: true：use instance name as subdomain
-        # false: use instancename+"-vpc" as subdomain
+        # @param UsePublicDomain: true：使用默认域名
+        # false:  使用带有vpc的域名
         # @type UsePublicDomain: Boolean
 
         attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain
@@ -1504,7 +1504,7 @@ module TencentCloud
         # @type RegistryId: String
         # @param NamespaceName: 命名空间的名称
         # @type NamespaceName: String
-        # @param RepositoryName: 仓库名称的名称
+        # @param RepositoryName: 镜像仓库的名称
         # @type RepositoryName: String
 
         attr_accessor :RegistryId, :NamespaceName, :RepositoryName
@@ -1977,7 +1977,7 @@ module TencentCloud
 
       # DescribeImageFilterPersonal返回参数结构体
       class DescribeImageFilterPersonalResponse < TencentCloud::Common::AbstractModel
-        # @param Data: payload
+        # @param Data: 返回tag镜像内容相同的tag列表
         # @type Data: :class:`Tencentcloud::Tcr.v20190924.models.SameImagesResp`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2672,9 +2672,9 @@ module TencentCloud
 
       # DescribeReplicationInstanceCreateTasks请求参数结构体
       class DescribeReplicationInstanceCreateTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ReplicationRegistryId: 同步实例Id
+        # @param ReplicationRegistryId: 同步实例Id，见实例返回列表中的同步实例ID
         # @type ReplicationRegistryId: String
-        # @param ReplicationRegionId: 同步实例的地域ID
+        # @param ReplicationRegionId: 同步实例的地域ID，见实例返回列表中地域ID
         # @type ReplicationRegionId: Integer
 
         attr_accessor :ReplicationRegistryId, :ReplicationRegionId
@@ -3929,7 +3929,7 @@ module TencentCloud
       class ModifyApplicationTriggerPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 触发器关联的镜像仓库，library/test格式
         # @type RepoName: String
-        # @param TriggerName: 触发器名称
+        # @param TriggerName: 触发器名称，必填参数
         # @type TriggerName: String
         # @param InvokeMethod: 触发方式，"all"全部触发，"taglist"指定tag触发，"regex"正则触发
         # @type InvokeMethod: String
@@ -4054,7 +4054,7 @@ module TencentCloud
         # @type Enable: Boolean
         # @param Desc: 访问凭证描述
         # @type Desc: String
-        # @param ModifyFlag: 1为修改描述 2为启动禁用，不填写默认为修改启动禁用
+        # @param ModifyFlag: 1为修改描述 2为操作启动禁用，默认值为2
         # @type ModifyFlag: Integer
 
         attr_accessor :TokenId, :RegistryId, :Enable, :Desc, :ModifyFlag
@@ -4136,7 +4136,7 @@ module TencentCloud
       class ModifyRepositoryAccessPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 仓库名称
         # @type RepoName: String
-        # @param Public: 默认值为0
+        # @param Public: 默认值为0, 1公共，0私有
         # @type Public: Integer
 
         attr_accessor :RepoName, :Public
@@ -4685,7 +4685,7 @@ module TencentCloud
       class RenewInstanceRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例Id
         # @type RegistryId: String
-        # @param RegistryChargePrepaid: 预付费自动续费标识和购买时长
+        # @param RegistryChargePrepaid: 预付费自动续费标识和购买时长,0：手动续费，1：自动续费，2：不续费并且不通知;单位为月
         # @type RegistryChargePrepaid: :class:`Tencentcloud::Tcr.v20190924.models.RegistryChargePrepaid`
         # @param Flag: 0 续费， 1按量转包年包月
         # @type Flag: Integer
@@ -5764,7 +5764,7 @@ module TencentCloud
 
       # ValidateNamespaceExistPersonal返回参数结构体
       class ValidateNamespaceExistPersonalResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 命名空间是否存在
+        # @param Data: 验证命名空间是否存在返回信息
         # @type Data: :class:`Tencentcloud::Tcr.v20190924.models.NamespaceIsExistsResp`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5803,7 +5803,7 @@ module TencentCloud
 
       # ValidateRepositoryExistPersonal返回参数结构体
       class ValidateRepositoryExistPersonalResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 仓库是否存在
+        # @param Data: 验证个人版仓库是否存在返回信息
         # @type Data: :class:`Tencentcloud::Tcr.v20190924.models.RepoIsExistResp`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

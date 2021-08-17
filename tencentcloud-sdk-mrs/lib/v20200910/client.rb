@@ -77,58 +77,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口没有流量
-
-        # 将输入的图片类型报告结构化
-
-        # @param request: Request instance for ReportImageStructured.
-        # @type request: :class:`Tencentcloud::mrs::V20200910::ReportImageStructuredRequest`
-        # @rtype: :class:`Tencentcloud::mrs::V20200910::ReportImageStructuredResponse`
-        def ReportImageStructured(request)
-          body = send_request('ReportImageStructured', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ReportImageStructuredResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口还未上线
-
-        # 将输入的医疗报告文本内容进行结构化输出
-
-        # @param request: Request instance for ReportTextStructured.
-        # @type request: :class:`Tencentcloud::mrs::V20200910::ReportTextStructuredRequest`
-        # @rtype: :class:`Tencentcloud::mrs::V20200910::ReportTextStructuredResponse`
-        def ReportTextStructured(request)
-          body = send_request('ReportTextStructured', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ReportTextStructuredResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 文本分类
 
         # @param request: Request instance for TextToClass.
