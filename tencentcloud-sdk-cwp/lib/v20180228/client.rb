@@ -2239,6 +2239,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改告警设置
+
+        # @param request: Request instance for ModifyWarningSetting.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyWarningSettingRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ModifyWarningSettingResponse`
+        def ModifyWarningSetting(request)
+          body = send_request('ModifyWarningSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWarningSettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 网站防篡改-修改网站防护设置
 
         # @param request: Request instance for ModifyWebPageProtectSetting.

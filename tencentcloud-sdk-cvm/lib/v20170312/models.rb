@@ -2145,12 +2145,15 @@ module TencentCloud
         # @type SecurityService: :class:`Tencentcloud::Cvm.v20170312.models.RunSecurityServiceEnabled`
         # @param MonitorService: 开启云监控服务。若不指定该参数，则默认开启云监控服务。
         # @type MonitorService: :class:`Tencentcloud::Cvm.v20170312.models.RunMonitorServiceEnabled`
+        # @param AutomationService: 开启云自动化助手服务。若不指定该参数，则默认不开启云自动化助手服务。
+        # @type AutomationService: :class:`Tencentcloud::Cvm.v20170312.models.RunAutomationServiceEnabled`
 
-        attr_accessor :SecurityService, :MonitorService
+        attr_accessor :SecurityService, :MonitorService, :AutomationService
         
-        def initialize(securityservice=nil, monitorservice=nil)
+        def initialize(securityservice=nil, monitorservice=nil, automationservice=nil)
           @SecurityService = securityservice
           @MonitorService = monitorservice
+          @AutomationService = automationservice
         end
 
         def deserialize(params)
@@ -2161,6 +2164,10 @@ module TencentCloud
           unless params['MonitorService'].nil?
             @MonitorService = RunMonitorServiceEnabled.new
             @MonitorService.deserialize(params['MonitorService'])
+          end
+          unless params['AutomationService'].nil?
+            @AutomationService = RunAutomationServiceEnabled.new
+            @AutomationService.deserialize(params['AutomationService'])
           end
         end
       end
@@ -5219,6 +5226,17 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述了 “云自动化助手” 服务相关的信息
+      class RunAutomationServiceEnabled < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

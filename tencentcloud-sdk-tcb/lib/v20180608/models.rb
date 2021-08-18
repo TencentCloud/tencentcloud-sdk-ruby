@@ -1132,10 +1132,13 @@ module TencentCloud
         # @param Branch: 代码分支
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Branch: String
+        # @param ProjectId: coding项目ID，type为coding时需要填写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
 
-        attr_accessor :Type, :Url, :Name, :WorkDir, :CodingPackageName, :CodingPackageVersion, :RawCode, :Branch
+        attr_accessor :Type, :Url, :Name, :WorkDir, :CodingPackageName, :CodingPackageVersion, :RawCode, :Branch, :ProjectId
         
-        def initialize(type=nil, url=nil, name=nil, workdir=nil, codingpackagename=nil, codingpackageversion=nil, rawcode=nil, branch=nil)
+        def initialize(type=nil, url=nil, name=nil, workdir=nil, codingpackagename=nil, codingpackageversion=nil, rawcode=nil, branch=nil, projectid=nil)
           @Type = type
           @Url = url
           @Name = name
@@ -1144,6 +1147,7 @@ module TencentCloud
           @CodingPackageVersion = codingpackageversion
           @RawCode = rawcode
           @Branch = branch
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -1155,6 +1159,7 @@ module TencentCloud
           @CodingPackageVersion = params['CodingPackageVersion']
           @RawCode = params['RawCode']
           @Branch = params['Branch']
+          @ProjectId = params['ProjectId']
         end
       end
 

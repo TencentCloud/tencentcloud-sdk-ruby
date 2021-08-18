@@ -3142,10 +3142,12 @@ module TencentCloud
         # @type VirtualPort: Integer
         # @param SSLId: 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
         # @type SSLId: String
+        # @param Id: 同ruleId
+        # @type Id: String
 
-        attr_accessor :KeepTime, :Domain, :Protocol, :SourceType, :LbType, :SourceList, :KeepEnable, :Status, :RuleId, :CCThreshold, :PrivateKey, :CCEnable, :HttpsToHttpEnable, :CertType, :Cert, :CCLevel, :RuleName, :CCStatus, :VirtualPort, :SSLId
+        attr_accessor :KeepTime, :Domain, :Protocol, :SourceType, :LbType, :SourceList, :KeepEnable, :Status, :RuleId, :CCThreshold, :PrivateKey, :CCEnable, :HttpsToHttpEnable, :CertType, :Cert, :CCLevel, :RuleName, :CCStatus, :VirtualPort, :SSLId, :Id
         
-        def initialize(keeptime=nil, domain=nil, protocol=nil, sourcetype=nil, lbtype=nil, sourcelist=nil, keepenable=nil, status=nil, ruleid=nil, ccthreshold=nil, privatekey=nil, ccenable=nil, httpstohttpenable=nil, certtype=nil, cert=nil, cclevel=nil, rulename=nil, ccstatus=nil, virtualport=nil, sslid=nil)
+        def initialize(keeptime=nil, domain=nil, protocol=nil, sourcetype=nil, lbtype=nil, sourcelist=nil, keepenable=nil, status=nil, ruleid=nil, ccthreshold=nil, privatekey=nil, ccenable=nil, httpstohttpenable=nil, certtype=nil, cert=nil, cclevel=nil, rulename=nil, ccstatus=nil, virtualport=nil, sslid=nil, id=nil)
           @KeepTime = keeptime
           @Domain = domain
           @Protocol = protocol
@@ -3166,6 +3168,7 @@ module TencentCloud
           @CCStatus = ccstatus
           @VirtualPort = virtualport
           @SSLId = sslid
+          @Id = id
         end
 
         def deserialize(params)
@@ -3196,6 +3199,7 @@ module TencentCloud
           @CCStatus = params['CCStatus']
           @VirtualPort = params['VirtualPort']
           @SSLId = params['SSLId']
+          @Id = params['Id']
         end
       end
 

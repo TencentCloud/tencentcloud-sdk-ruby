@@ -1041,14 +1041,17 @@ module TencentCloud
         # @type Remark: String
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
+        # @param RetentionPolicy: 消息保留策略
+        # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId, :RetentionPolicy
         
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil, retentionpolicy=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
           @ClusterId = clusterid
+          @RetentionPolicy = retentionpolicy
         end
 
         def deserialize(params)
@@ -1056,6 +1059,10 @@ module TencentCloud
           @MsgTTL = params['MsgTTL']
           @Remark = params['Remark']
           @ClusterId = params['ClusterId']
+          unless params['RetentionPolicy'].nil?
+            @RetentionPolicy = RetentionPolicy.new
+            @RetentionPolicy.deserialize(params['RetentionPolicy'])
+          end
         end
       end
 
@@ -1423,13 +1430,16 @@ module TencentCloud
         # @type ClusterId: String
         # @param EnvironmentId: 环境（命名空间）名称。
         # @type EnvironmentId: String
+        # @param Force: 是否强制删除，默认为false
+        # @type Force: Boolean
 
-        attr_accessor :SubscriptionTopicSets, :ClusterId, :EnvironmentId
+        attr_accessor :SubscriptionTopicSets, :ClusterId, :EnvironmentId, :Force
         
-        def initialize(subscriptiontopicsets=nil, clusterid=nil, environmentid=nil)
+        def initialize(subscriptiontopicsets=nil, clusterid=nil, environmentid=nil, force=nil)
           @SubscriptionTopicSets = subscriptiontopicsets
           @ClusterId = clusterid
           @EnvironmentId = environmentid
+          @Force = force
         end
 
         def deserialize(params)
@@ -1443,6 +1453,7 @@ module TencentCloud
           end
           @ClusterId = params['ClusterId']
           @EnvironmentId = params['EnvironmentId']
+          @Force = params['Force']
         end
       end
 
@@ -1481,13 +1492,16 @@ module TencentCloud
         # @type ClusterId: String
         # @param EnvironmentId: 环境（命名空间）名称。
         # @type EnvironmentId: String
+        # @param Force: 是否强制删除，默认为false
+        # @type Force: Boolean
 
-        attr_accessor :TopicSets, :ClusterId, :EnvironmentId
+        attr_accessor :TopicSets, :ClusterId, :EnvironmentId, :Force
         
-        def initialize(topicsets=nil, clusterid=nil, environmentid=nil)
+        def initialize(topicsets=nil, clusterid=nil, environmentid=nil, force=nil)
           @TopicSets = topicsets
           @ClusterId = clusterid
           @EnvironmentId = environmentid
+          @Force = force
         end
 
         def deserialize(params)
@@ -1501,6 +1515,7 @@ module TencentCloud
           end
           @ClusterId = params['ClusterId']
           @EnvironmentId = params['EnvironmentId']
+          @Force = params['Force']
         end
       end
 
@@ -2939,14 +2954,17 @@ module TencentCloud
         # @type Remark: String
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param RetentionPolicy: 消息保留策略
+        # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId, :RetentionPolicy
         
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil, retentionpolicy=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
           @ClusterId = clusterid
+          @RetentionPolicy = retentionpolicy
         end
 
         def deserialize(params)
@@ -2954,6 +2972,10 @@ module TencentCloud
           @MsgTTL = params['MsgTTL']
           @Remark = params['Remark']
           @ClusterId = params['ClusterId']
+          unless params['RetentionPolicy'].nil?
+            @RetentionPolicy = RetentionPolicy.new
+            @RetentionPolicy.deserialize(params['RetentionPolicy'])
+          end
         end
       end
 
@@ -3325,6 +3347,26 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 消息保留策略
+      class RetentionPolicy < TencentCloud::Common::AbstractModel
+        # @param TimeInMinutes: 消息保留时长
+        # @type TimeInMinutes: Integer
+        # @param SizeInMB: 消息保留大小
+        # @type SizeInMB: Integer
+
+        attr_accessor :TimeInMinutes, :SizeInMB
+        
+        def initialize(timeinminutes=nil, sizeinmb=nil)
+          @TimeInMinutes = timeinminutes
+          @SizeInMB = sizeinmb
+        end
+
+        def deserialize(params)
+          @TimeInMinutes = params['TimeInMinutes']
+          @SizeInMB = params['SizeInMB']
         end
       end
 

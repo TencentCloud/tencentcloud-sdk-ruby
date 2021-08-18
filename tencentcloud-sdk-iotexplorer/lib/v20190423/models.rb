@@ -204,10 +204,12 @@ module TencentCloud
         # @type AppSKey: String
         # @param NwkSKey: LoRaWAN 网络会话密钥
         # @type NwkSKey: String
+        # @param DefinedPsk: 手动指定设备的PSK密钥
+        # @type DefinedPsk: String
 
-        attr_accessor :ProductId, :DeviceName, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey
+        attr_accessor :ProductId, :DeviceName, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey, :DefinedPsk
         
-        def initialize(productid=nil, devicename=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil)
+        def initialize(productid=nil, devicename=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil, definedpsk=nil)
           @ProductId = productid
           @DeviceName = devicename
           @DevAddr = devaddr
@@ -215,6 +217,7 @@ module TencentCloud
           @DevEUI = deveui
           @AppSKey = appskey
           @NwkSKey = nwkskey
+          @DefinedPsk = definedpsk
         end
 
         def deserialize(params)
@@ -225,6 +228,7 @@ module TencentCloud
           @DevEUI = params['DevEUI']
           @AppSKey = params['AppSKey']
           @NwkSKey = params['NwkSKey']
+          @DefinedPsk = params['DefinedPsk']
         end
       end
 

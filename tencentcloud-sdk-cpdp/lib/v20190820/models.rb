@@ -2429,6 +2429,194 @@ module TencentCloud
         end
       end
 
+      # CreateBatchPayment接口BatchInfo对象
+      class CreateBatchPaymentBatchData < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderId: String
+        # @param TradeSerialNo: 交易流水号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeSerialNo: String
+        # @param Status: 交易状态。
+        # 0 处理中
+        # 1 预占成功
+        # 2 交易成功
+        # 3 交易失败
+        # 4 未知渠道异常
+        # 5 预占额度失败
+        # 6 提交成功
+        # 7 提交失败
+        # 8 订单重复提交
+        # 99 未知系统异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StatusDesc: 状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
+        # @param AgentId: 代理商ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentId: String
+        # @param AgentName: 代理商名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentName: String
+
+        attr_accessor :OrderId, :TradeSerialNo, :Status, :StatusDesc, :AgentId, :AgentName
+        
+        def initialize(orderid=nil, tradeserialno=nil, status=nil, statusdesc=nil, agentid=nil, agentname=nil)
+          @OrderId = orderid
+          @TradeSerialNo = tradeserialno
+          @Status = status
+          @StatusDesc = statusdesc
+          @AgentId = agentid
+          @AgentName = agentname
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @TradeSerialNo = params['TradeSerialNo']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @AgentId = params['AgentId']
+          @AgentName = params['AgentName']
+        end
+      end
+
+      # CreateBatchPayment接口返回响应
+      class CreateBatchPaymentData < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批次号
+        # @type BatchId: String
+        # @param BatchInfoList: 批次列表详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchInfoList: Array
+
+        attr_accessor :BatchId, :BatchInfoList
+        
+        def initialize(batchid=nil, batchinfolist=nil)
+          @BatchId = batchid
+          @BatchInfoList = batchinfolist
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          unless params['BatchInfoList'].nil?
+            @BatchInfoList = []
+            params['BatchInfoList'].each do |i|
+              createbatchpaymentbatchdata_tmp = CreateBatchPaymentBatchData.new
+              createbatchpaymentbatchdata_tmp.deserialize(i)
+              @BatchInfoList << createbatchpaymentbatchdata_tmp
+            end
+          end
+        end
+      end
+
+      # CreateBatchPayment转账明细
+      class CreateBatchPaymentRecipient < TencentCloud::Common::AbstractModel
+        # @param TransferAmount: 转账金额
+        # @type TransferAmount: Integer
+        # @param OrderId: 订单号
+        # @type OrderId: String
+        # @param AnchorId: 主播ID（与主播业务ID不能同时为空，两者都填取主播ID）
+        # @type AnchorId: String
+        # @param Uid: 主播业务ID（与主播业务ID不能同时为空，两者都填取主播ID）
+        # @type Uid: String
+        # @param AnchorName: 主播名称。如果该字段填入，则会对AnchorName和AnchorId/Uid进行校验。
+        # @type AnchorName: String
+        # @param Remark: 业务备注
+        # @type Remark: String
+        # @param ReqReserved: 子单请求预留字段
+        # @type ReqReserved: String
+
+        attr_accessor :TransferAmount, :OrderId, :AnchorId, :Uid, :AnchorName, :Remark, :ReqReserved
+        
+        def initialize(transferamount=nil, orderid=nil, anchorid=nil, uid=nil, anchorname=nil, remark=nil, reqreserved=nil)
+          @TransferAmount = transferamount
+          @OrderId = orderid
+          @AnchorId = anchorid
+          @Uid = uid
+          @AnchorName = anchorname
+          @Remark = remark
+          @ReqReserved = reqreserved
+        end
+
+        def deserialize(params)
+          @TransferAmount = params['TransferAmount']
+          @OrderId = params['OrderId']
+          @AnchorId = params['AnchorId']
+          @Uid = params['Uid']
+          @AnchorName = params['AnchorName']
+          @Remark = params['Remark']
+          @ReqReserved = params['ReqReserved']
+        end
+      end
+
+      # CreateBatchPayment请求参数结构体
+      class CreateBatchPaymentRequest < TencentCloud::Common::AbstractModel
+        # @param TransferType: 1 微信企业付款
+        # 2 支付宝转账
+        # 3 平安银企直连代发转账
+        # @type TransferType: Integer
+        # @param RecipientList: 转账详情
+        # @type RecipientList: Array
+        # @param ReqReserved: 请求预留字段
+        # @type ReqReserved: String
+        # @param NotifyUrl: 回调Url
+        # @type NotifyUrl: String
+
+        attr_accessor :TransferType, :RecipientList, :ReqReserved, :NotifyUrl
+        
+        def initialize(transfertype=nil, recipientlist=nil, reqreserved=nil, notifyurl=nil)
+          @TransferType = transfertype
+          @RecipientList = recipientlist
+          @ReqReserved = reqreserved
+          @NotifyUrl = notifyurl
+        end
+
+        def deserialize(params)
+          @TransferType = params['TransferType']
+          unless params['RecipientList'].nil?
+            @RecipientList = []
+            params['RecipientList'].each do |i|
+              createbatchpaymentrecipient_tmp = CreateBatchPaymentRecipient.new
+              createbatchpaymentrecipient_tmp.deserialize(i)
+              @RecipientList << createbatchpaymentrecipient_tmp
+            end
+          end
+          @ReqReserved = params['ReqReserved']
+          @NotifyUrl = params['NotifyUrl']
+        end
+      end
+
+      # CreateBatchPayment返回参数结构体
+      class CreateBatchPaymentResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功。
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息。
+        # @type ErrMessage: String
+        # @param Result: 返回响应
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateBatchPaymentData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = CreateBatchPaymentData.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCustAcctId请求参数结构体
       class CreateCustAcctIdRequest < TencentCloud::Common::AbstractModel
         # @param FunctionFlag: STRING(2)，功能标志（1: 开户; 3: 销户）
@@ -3824,6 +4012,102 @@ module TencentCloud
           @PayStatus = params['PayStatus']
           @BankRetCode = params['BankRetCode']
           @BankRetMsg = params['BankRetMsg']
+        end
+      end
+
+      # CreateSinglePayment接口返回响应
+      class CreateSinglePaymentData < TencentCloud::Common::AbstractModel
+        # @param TradeSerialNo: 平台交易流水号，唯一
+        # @type TradeSerialNo: String
+
+        attr_accessor :TradeSerialNo
+        
+        def initialize(tradeserialno=nil)
+          @TradeSerialNo = tradeserialno
+        end
+
+        def deserialize(params)
+          @TradeSerialNo = params['TradeSerialNo']
+        end
+      end
+
+      # CreateSinglePayment请求参数结构体
+      class CreateSinglePaymentRequest < TencentCloud::Common::AbstractModel
+        # @param TransferType: 转账类型
+        # @type TransferType: Integer
+        # @param OrderId: 订单流水号
+        # @type OrderId: String
+        # @param TransferAmount: 转账金额
+        # @type TransferAmount: Integer
+        # @param AnchorId: 主播ID（与主播业务ID不能同时为空，两者都填取主播ID）
+        # @type AnchorId: String
+        # @param ReqReserved: 请求预留字段，原样透传返回
+        # @type ReqReserved: String
+        # @param Remark: 业务备注
+        # @type Remark: String
+        # @param AnchorName: 主播名称。如果该字段填入，则会对AnchorName和AnchorId/Uid进行校验。
+        # @type AnchorName: String
+        # @param Uid: 主播业务ID（与主播ID不能同时为空，两者都填取主播ID）
+        # @type Uid: String
+        # @param NotifyUrl: 转账结果回调通知URL。若不填，则不进行回调。
+        # @type NotifyUrl: String
+
+        attr_accessor :TransferType, :OrderId, :TransferAmount, :AnchorId, :ReqReserved, :Remark, :AnchorName, :Uid, :NotifyUrl
+        
+        def initialize(transfertype=nil, orderid=nil, transferamount=nil, anchorid=nil, reqreserved=nil, remark=nil, anchorname=nil, uid=nil, notifyurl=nil)
+          @TransferType = transfertype
+          @OrderId = orderid
+          @TransferAmount = transferamount
+          @AnchorId = anchorid
+          @ReqReserved = reqreserved
+          @Remark = remark
+          @AnchorName = anchorname
+          @Uid = uid
+          @NotifyUrl = notifyurl
+        end
+
+        def deserialize(params)
+          @TransferType = params['TransferType']
+          @OrderId = params['OrderId']
+          @TransferAmount = params['TransferAmount']
+          @AnchorId = params['AnchorId']
+          @ReqReserved = params['ReqReserved']
+          @Remark = params['Remark']
+          @AnchorName = params['AnchorName']
+          @Uid = params['Uid']
+          @NotifyUrl = params['NotifyUrl']
+        end
+      end
+
+      # CreateSinglePayment返回参数结构体
+      class CreateSinglePaymentResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息
+        # @type ErrMessage: String
+        # @param Result: 返回数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.CreateSinglePaymentData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = CreateSinglePaymentData.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6118,6 +6402,159 @@ module TencentCloud
         end
       end
 
+      # QueryBatchPaymentResult接口返回响应
+      class QueryBatchPaymentResultData < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批次号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchId: String
+        # @param TotalAmount: 批次总额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalAmount: Integer
+        # @param TotalCount: 批次总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ReqReserved: 批次预留字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReqReserved: String
+        # @param Remark: 批次备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param TransferType: 渠道类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferType: Integer
+        # @param TransferInfoList: 转账明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferInfoList: Array
+
+        attr_accessor :BatchId, :TotalAmount, :TotalCount, :ReqReserved, :Remark, :TransferType, :TransferInfoList
+        
+        def initialize(batchid=nil, totalamount=nil, totalcount=nil, reqreserved=nil, remark=nil, transfertype=nil, transferinfolist=nil)
+          @BatchId = batchid
+          @TotalAmount = totalamount
+          @TotalCount = totalcount
+          @ReqReserved = reqreserved
+          @Remark = remark
+          @TransferType = transfertype
+          @TransferInfoList = transferinfolist
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+          @TotalAmount = params['TotalAmount']
+          @TotalCount = params['TotalCount']
+          @ReqReserved = params['ReqReserved']
+          @Remark = params['Remark']
+          @TransferType = params['TransferType']
+          unless params['TransferInfoList'].nil?
+            @TransferInfoList = []
+            params['TransferInfoList'].each do |i|
+              querybatchpaymentresultdatainfo_tmp = QueryBatchPaymentResultDataInfo.new
+              querybatchpaymentresultdatainfo_tmp.deserialize(i)
+              @TransferInfoList << querybatchpaymentresultdatainfo_tmp
+            end
+          end
+        end
+      end
+
+      # QueryBatchPaymentResultData复杂类型中的TransferInfoList
+      class QueryBatchPaymentResultDataInfo < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderId: String
+        # @param AgentId: 代理商ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentId: String
+        # @param AgentName: 代理商名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentName: String
+        # @param Status: 交易状态。
+        # 0 处理中
+        # 1 预占成功
+        # 2 交易成功
+        # 3 交易失败
+        # 4 未知渠道异常
+        # 5 预占额度失败
+        # 6 提交成功
+        # 7 提交失败
+        # 8 订单重复提交
+        # 99 未知系统异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StatusDesc: 状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
+        # @param TransferAmount: 转账金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferAmount: Integer
+
+        attr_accessor :OrderId, :AgentId, :AgentName, :Status, :StatusDesc, :TransferAmount
+        
+        def initialize(orderid=nil, agentid=nil, agentname=nil, status=nil, statusdesc=nil, transferamount=nil)
+          @OrderId = orderid
+          @AgentId = agentid
+          @AgentName = agentname
+          @Status = status
+          @StatusDesc = statusdesc
+          @TransferAmount = transferamount
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @AgentId = params['AgentId']
+          @AgentName = params['AgentName']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @TransferAmount = params['TransferAmount']
+        end
+      end
+
+      # QueryBatchPaymentResult请求参数结构体
+      class QueryBatchPaymentResultRequest < TencentCloud::Common::AbstractModel
+        # @param BatchId: 批次号
+        # @type BatchId: String
+
+        attr_accessor :BatchId
+        
+        def initialize(batchid=nil)
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # QueryBatchPaymentResult返回参数结构体
+      class QueryBatchPaymentResultResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功。
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息。
+        # @type ErrMessage: String
+        # @param Result: 返回响应
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryBatchPaymentResultData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryBatchPaymentResultData.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 智能代发-单笔代发转账对账单返回数据
       class QueryBillDownloadURLData < TencentCloud::Common::AbstractModel
         # @param BillDownloadURL: 统一对账单下载链接
@@ -8272,6 +8709,114 @@ module TencentCloud
               @Items << querysinglepayitem_tmp
             end
           end
+        end
+      end
+
+      # QuerySinglePaymentResult接口返回响应
+      class QuerySinglePaymentResultData < TencentCloud::Common::AbstractModel
+        # @param TradeSerialNo: 平台交易流水号，唯一
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeSerialNo: String
+        # @param OrderId: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderId: String
+        # @param TradeStatus: 交易状态。
+        # 0 处理中
+        # 1 预占成功
+        # 2 交易成功
+        # 3 交易失败
+        # 4 未知渠道异常
+        # 5 预占额度失败
+        # 6 提交成功
+        # 7 提交失败
+        # 8 订单重复提交
+        # 99 未知系统异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeStatus: Integer
+        # @param Remark: 业务备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param AgentId: 代理商ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentId: String
+        # @param AgentName: 代理商名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentName: String
+
+        attr_accessor :TradeSerialNo, :OrderId, :TradeStatus, :Remark, :AgentId, :AgentName
+        
+        def initialize(tradeserialno=nil, orderid=nil, tradestatus=nil, remark=nil, agentid=nil, agentname=nil)
+          @TradeSerialNo = tradeserialno
+          @OrderId = orderid
+          @TradeStatus = tradestatus
+          @Remark = remark
+          @AgentId = agentid
+          @AgentName = agentname
+        end
+
+        def deserialize(params)
+          @TradeSerialNo = params['TradeSerialNo']
+          @OrderId = params['OrderId']
+          @TradeStatus = params['TradeStatus']
+          @Remark = params['Remark']
+          @AgentId = params['AgentId']
+          @AgentName = params['AgentName']
+        end
+      end
+
+      # QuerySinglePaymentResult请求参数结构体
+      class QuerySinglePaymentResultRequest < TencentCloud::Common::AbstractModel
+        # @param TransferType: 转账类型
+        # @type TransferType: Integer
+        # @param TradeSerialNo: 交易流水流水号，唯一
+        # @type TradeSerialNo: String
+        # @param OrderId: 订单号，与TradeSerialNo不能同时为空
+        # @type OrderId: String
+
+        attr_accessor :TransferType, :TradeSerialNo, :OrderId
+        
+        def initialize(transfertype=nil, tradeserialno=nil, orderid=nil)
+          @TransferType = transfertype
+          @TradeSerialNo = tradeserialno
+          @OrderId = orderid
+        end
+
+        def deserialize(params)
+          @TransferType = params['TransferType']
+          @TradeSerialNo = params['TradeSerialNo']
+          @OrderId = params['OrderId']
+        end
+      end
+
+      # QuerySinglePaymentResult返回参数结构体
+      class QuerySinglePaymentResultResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码。响应成功："SUCCESS"，其他为不成功
+        # @type ErrCode: String
+        # @param ErrMessage: 响应消息。
+        # @type ErrMessage: String
+        # @param Result: 返回响应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QuerySinglePaymentResultData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QuerySinglePaymentResultData.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
