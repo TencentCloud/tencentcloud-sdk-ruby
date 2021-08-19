@@ -2122,15 +2122,21 @@ module TencentCloud
         # @type ClusterId: String
         # @param RoleName: 角色名称
         # @type RoleName: String
+        # @param Filters: * RoleName
+        # 按照角色名进行过滤，精确查询。
+        # 类型：String
+        # 必选：否
+        # @type Filters: Array
 
-        attr_accessor :EnvironmentId, :Offset, :Limit, :ClusterId, :RoleName
+        attr_accessor :EnvironmentId, :Offset, :Limit, :ClusterId, :RoleName, :Filters
         
-        def initialize(environmentid=nil, offset=nil, limit=nil, clusterid=nil, rolename=nil)
+        def initialize(environmentid=nil, offset=nil, limit=nil, clusterid=nil, rolename=nil, filters=nil)
           @EnvironmentId = environmentid
           @Offset = offset
           @Limit = limit
           @ClusterId = clusterid
           @RoleName = rolename
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -2139,6 +2145,14 @@ module TencentCloud
           @Limit = params['Limit']
           @ClusterId = params['ClusterId']
           @RoleName = params['RoleName']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 

@@ -547,44 +547,78 @@ module TencentCloud
 
       # 监控的域名站点信息
       class DomainSiteInfo < TencentCloud::Common::AbstractModel
-        # @param Id: ID
+        # @param Id: ID标识
         # @type Id: Integer
         # @param Domain: 域名
         # @type Domain: String
         # @param Ip: IP地址
         # @type Ip: String
-        # @param AutoIP: 是否自动获取IP
+        # @param AutoIP: 是否自动获取IP：true：是，false:否
         # @type AutoIP: Boolean
-        # @param ServerType: 监控服务类型
-        # @type ServerType: Integer
+        # @param Grade: 评级
+        # "A+"，
+        #  "A"，
+        # "A-"，
+        # "B"，
+        # "C"，
+        # "D"，
+        #  "E"，
+        #  "F"，
+        # "T"，
+        # @type Grade: String
         # @param Brand: 证书品牌
         # @type Brand: String
-        # @param Grade: 评级
-        # @type Grade: String
+        # @param ServerType: 监控服务类型
+        # 0 :Web
+        # 1: SMTP
+        # 2: IMAP
+        # 3: POP3
+        # @type ServerType: Integer
         # @param GradeCode: 评级Code
+        # 0："unknown"，
+        # 1："A+"，
+        # 2： "A"，
+        # 3："A-"，
+        # 4："B"，
+        # 5："C"，
+        # 6："D"，
+        # 7： "E"，
+        # 8： "F"，
+        # 9："T"，
         # @type GradeCode: Integer
-        # @param Notice: 是否监控告警
+        # @param Notice: 是否监控告警；true：是，false:否
         # @type Notice: Boolean
         # @param AccountDomainId: 账号域名关系ID
         # @type AccountDomainId: Integer
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param Status: 域名状态
+        # @param Status: 域名状态:
+        # 连接异常，
+        # 证书已过期，
+        # 证书已吊销，
+        # 证书黑名单，
+        # 证书域名不匹配，
+        # 证书不可信，
+        # 证书密钥弱，
+        # 证书即将过期，少于7天，
+        # 证书即将过期，少于30天，
+        # 正常，
+        # 部分异常
         # @type Status: String
         # @param Port: 域名端口
         # @type Port: String
 
-        attr_accessor :Id, :Domain, :Ip, :AutoIP, :ServerType, :Brand, :Grade, :GradeCode, :Notice, :AccountDomainId, :Tags, :Status, :Port
+        attr_accessor :Id, :Domain, :Ip, :AutoIP, :Grade, :Brand, :ServerType, :GradeCode, :Notice, :AccountDomainId, :Tags, :Status, :Port
         
-        def initialize(id=nil, domain=nil, ip=nil, autoip=nil, servertype=nil, brand=nil, grade=nil, gradecode=nil, notice=nil, accountdomainid=nil, tags=nil, status=nil, port=nil)
+        def initialize(id=nil, domain=nil, ip=nil, autoip=nil, grade=nil, brand=nil, servertype=nil, gradecode=nil, notice=nil, accountdomainid=nil, tags=nil, status=nil, port=nil)
           @Id = id
           @Domain = domain
           @Ip = ip
           @AutoIP = autoip
-          @ServerType = servertype
-          @Brand = brand
           @Grade = grade
+          @Brand = brand
+          @ServerType = servertype
           @GradeCode = gradecode
           @Notice = notice
           @AccountDomainId = accountdomainid
@@ -598,9 +632,9 @@ module TencentCloud
           @Domain = params['Domain']
           @Ip = params['Ip']
           @AutoIP = params['AutoIP']
-          @ServerType = params['ServerType']
-          @Brand = params['Brand']
           @Grade = params['Grade']
+          @Brand = params['Brand']
+          @ServerType = params['ServerType']
           @GradeCode = params['GradeCode']
           @Notice = params['Notice']
           @AccountDomainId = params['AccountDomainId']
@@ -612,7 +646,10 @@ module TencentCloud
 
       # 通知额度限制信息
       class LimitInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 通知类型
+        # @param Type: 通知类型：
+        # limit_emai：邮件
+        # limit_wechat：微信
+        # limit_phone：手机
         # @type Type: String
         # @param Total: 总量
         # @type Total: Integer
@@ -674,7 +711,7 @@ module TencentCloud
       class NoticeInfoResult < TencentCloud::Common::AbstractModel
         # @param Id: 通知ID
         # @type Id: Integer
-        # @param NoticeType: 通知开关信息
+        # @param NoticeType: 通知开关信息；0：关闭；15开启
         # @type NoticeType: Integer
         # @param LimitInfos: 额度信息
         # @type LimitInfos: Array

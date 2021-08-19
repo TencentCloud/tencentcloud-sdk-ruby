@@ -793,11 +793,11 @@ module TencentCloud
 
       # DescribeBackupUrl返回参数结构体
       class DescribeBackupUrlResponse < TencentCloud::Common::AbstractModel
-        # @param DownloadUrl: 外网下载地址（6小时）
+        # @param DownloadUrl: 外网下载地址（6小时内链接有效），该字段正在逐步废弃中。
         # @type DownloadUrl: Array
-        # @param InnerDownloadUrl: 内网下载地址（6小时）
+        # @param InnerDownloadUrl: 内网下载地址（6小时内链接有效），该字段正在逐步废弃中。
         # @type InnerDownloadUrl: Array
-        # @param Filenames: 文件名称（仅tendis实例有值）
+        # @param Filenames: 文件名称，该字段正在逐步废弃中。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filenames: Array
         # @param BackupInfos: 备份文件信息列表
@@ -1919,7 +1919,7 @@ module TencentCloud
 
       # DescribeInstanceShards请求参数结构体
       class DescribeInstanceShardsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例ID
         # @type InstanceId: String
         # @param FilterSlave: 是否过滤掉从节信息
         # @type FilterSlave: Boolean
@@ -2727,7 +2727,7 @@ module TencentCloud
         # @type EndTime: String
         # @param MinQueryTime: 慢查询阈值（毫秒）
         # @type MinQueryTime: Integer
-        # @param Limit: 页面大小：20
+        # @param Limit: 页面大小：默认20
         # @type Limit: Integer
         # @param Offset: 偏移量，取Limit整数倍
         # @type Offset: Integer
@@ -3055,11 +3055,11 @@ module TencentCloud
         # @type BillingMode: Integer
         # @param ZoneId: 实例所属的可用区ID，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
         # @type ZoneId: Integer
-        # @param RedisShardNum: 实例分片数量，Redis2.8主从版、CKV主从版和Redis2.8单机版、Redis4.0主从版不需要填写。
+        # @param RedisShardNum: 实例分片数量，Redis2.8标准架构、CKV标准架构和Redis2.8单机版、Redis4.0标准架构不需要填写。
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 实例副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
+        # @param RedisReplicasNum: 实例副本数量，Redis2.8标准架构、CKV标准架构和Redis2.8单机版不需要填写。
         # @type RedisReplicasNum: Integer
-        # @param ReplicasReadonly: 是否支持副本只读，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
+        # @param ReplicasReadonly: 是否支持副本只读，Redis2.8标准架构、CKV标准架构和Redis2.8单机版不需要填写。
         # @type ReplicasReadonly: Boolean
         # @param ZoneName: 实例所属的可用区名称，可参考[地域和可用区](https://cloud.tencent.com/document/product/239/4106)  。
         # @type ZoneName: String
@@ -3095,7 +3095,7 @@ module TencentCloud
 
       # InquiryPriceCreateInstance返回参数结构体
       class InquiryPriceCreateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Price: 价格，单位：分
+        # @param Price: 价格，单位：元
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Price: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -4074,7 +4074,7 @@ module TencentCloud
       class ModifyAutoBackupConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param WeekDays: 日期 Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday
+        # @param WeekDays: 日期 Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday，该参数暂不支持修改。
         # @type WeekDays: Array
         # @param TimePeriod: 时间段 00:00-01:00, 01:00-02:00...... 23:00-00:00
         # @type TimePeriod: String
@@ -4495,11 +4495,11 @@ module TencentCloud
       class ModifyParamTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 源参数模板 ID。
         # @type TemplateId: String
-        # @param Name: 参数模板名称。
+        # @param Name: 参数模板修改后的新名称。
         # @type Name: String
-        # @param Description: 参数模板描述。
+        # @param Description: 参数模板修改后的新描述。
         # @type Description: String
-        # @param ParamList: 参数列表。
+        # @param ParamList: 修改后的新参数列表。
         # @type ParamList: Array
 
         attr_accessor :TemplateId, :Name, :Description, :ParamList
@@ -5605,11 +5605,11 @@ module TencentCloud
       class UpgradeInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param MemSize: 分片大小 单位 MB
+        # @param MemSize: 分片大小 单位 MB。该参数不支持与RedisShardNum或RedisReplicasNum同时输入。
         # @type MemSize: Integer
-        # @param RedisShardNum: 分片数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写
+        # @param RedisShardNum: 分片数量，标准架构不需要填写。该参数不支持与RedisReplicasNum或MemSize同时输入。
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写
+        # @param RedisReplicasNum: 副本数量，标准架构不需要填写，多AZ实例修改副本时必须要传入NodeSet。该参数不支持与RedisShardNum或MemSize同时输入。
         # @type RedisReplicasNum: Integer
         # @param NodeSet: 多AZ实例增加副本时的附带信息，非多AZ实例不需要传此参数。多AZ增加副本时此参数为必传参数，传入要增加的副本的信息，包括副本的可用区和副本的类型（NodeType为1）
         # @type NodeSet: Array

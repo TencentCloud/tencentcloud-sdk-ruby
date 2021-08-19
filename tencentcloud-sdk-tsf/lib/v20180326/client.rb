@@ -1879,6 +1879,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询部署组相关的发布信息
+
+        # @param request: Request instance for DescribeGroupRelease.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeGroupReleaseRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeGroupReleaseResponse`
+        def DescribeGroupRelease(request)
+          body = send_request('DescribeGroupRelease', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGroupReleaseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询网关分组监控明细数据
 
         # @param request: Request instance for DescribeGroupUseDetail.
@@ -3259,6 +3283,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUploadInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 绑定解绑tcr仓库
+
+        # @param request: Request instance for OperateApplicationTcrBinding.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::OperateApplicationTcrBindingRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::OperateApplicationTcrBindingResponse`
+        def OperateApplicationTcrBinding(request)
+          body = send_request('OperateApplicationTcrBinding', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OperateApplicationTcrBindingResponse.new
             model.deserialize(response['Response'])
             model
           else

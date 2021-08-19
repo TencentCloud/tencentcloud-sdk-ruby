@@ -21,15 +21,23 @@ module TencentCloud
       class DescribeSREInstanceAccessAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 注册引擎实例Id
         # @type InstanceId: String
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :VpcId, :SubnetId
         
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil)
           @InstanceId = instanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -277,10 +285,13 @@ module TencentCloud
         # @param EnableInternet: 注册引擎是否开启公网
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableInternet: Boolean
+        # @param VpcInfos: 私有网络列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcInfos: Array
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -299,6 +310,7 @@ module TencentCloud
           @EnvInfos = envinfos
           @EngineRegion = engineregion
           @EnableInternet = enableinternet
+          @VpcInfos = vpcinfos
         end
 
         def deserialize(params)
@@ -327,6 +339,14 @@ module TencentCloud
           end
           @EngineRegion = params['EngineRegion']
           @EnableInternet = params['EnableInternet']
+          unless params['VpcInfos'].nil?
+            @VpcInfos = []
+            params['VpcInfos'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcInfos << vpcinfo_tmp
+            end
+          end
         end
       end
 
@@ -336,17 +356,22 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String
+        # @param IntranetAddress: 内网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntranetAddress: String
 
-        attr_accessor :VpcId, :SubnetId
+        attr_accessor :VpcId, :SubnetId, :IntranetAddress
         
-        def initialize(vpcid=nil, subnetid=nil)
+        def initialize(vpcid=nil, subnetid=nil, intranetaddress=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
+          @IntranetAddress = intranetaddress
         end
 
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @IntranetAddress = params['IntranetAddress']
         end
       end
 

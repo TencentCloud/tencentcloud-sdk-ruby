@@ -3476,11 +3476,14 @@ module TencentCloud
       class DeleteImageTagsRequest < TencentCloud::Common::AbstractModel
         # @param ImageTags: 镜像版本数组
         # @type ImageTags: Array
+        # @param RepoType: 企业: tcr ；个人: personal或者不填
+        # @type RepoType: String
 
-        attr_accessor :ImageTags
+        attr_accessor :ImageTags, :RepoType
         
-        def initialize(imagetags=nil)
+        def initialize(imagetags=nil, repotype=nil)
           @ImageTags = imagetags
+          @RepoType = repotype
         end
 
         def deserialize(params)
@@ -3492,6 +3495,7 @@ module TencentCloud
               @ImageTags << deleteimagetag_tmp
             end
           end
+          @RepoType = params['RepoType']
         end
       end
 
@@ -3955,9 +3959,9 @@ module TencentCloud
         # @type MemLimit: String
         # @param JvmOpts: jvm参数
         # @type JvmOpts: String
-        # @param CpuRequest: 业务容器分配的 CPU 核数，对应 K8S 的 request
+        # @param CpuRequest: 业务容器分配的 CPU 核数，对应 K8S 的 request，默认0.25
         # @type CpuRequest: String
-        # @param MemRequest: 业务容器分配的内存 MiB 数，对应 K8S 的 request
+        # @param MemRequest: 业务容器分配的内存 MiB 数，对应 K8S 的 request，默认640 MiB
         # @type MemRequest: String
         # @param DoNotStart: 是否不立即启动
         # @type DoNotStart: Boolean
@@ -3997,10 +4001,14 @@ module TencentCloud
         # @type DeployAgent: Boolean
         # @param SchedulingStrategy: 节点调度策略。若不指定改参数，则默认不使用节点调度策略。
         # @type SchedulingStrategy: :class:`Tencentcloud::Tsf.v20180326.models.SchedulingStrategy`
+        # @param IncrementalDeployment: 是否进行增量部署，默认为false，全量更新
+        # @type IncrementalDeployment: Boolean
+        # @param RepoType: tcr或者不填
+        # @type RepoType: String
 
-        attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy
+        attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType
         
-        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, reponame=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil)
+        def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, reponame=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil)
           @GroupId = groupid
           @TagName = tagname
           @InstanceNum = instancenum
@@ -4030,6 +4038,8 @@ module TencentCloud
           @ServiceSetting = servicesetting
           @DeployAgent = deployagent
           @SchedulingStrategy = schedulingstrategy
+          @IncrementalDeployment = incrementaldeployment
+          @RepoType = repotype
         end
 
         def deserialize(params)
@@ -4078,6 +4088,8 @@ module TencentCloud
             @SchedulingStrategy = SchedulingStrategy.new
             @SchedulingStrategy.deserialize(params['SchedulingStrategy'])
           end
+          @IncrementalDeployment = params['IncrementalDeployment']
+          @RepoType = params['RepoType']
         end
       end
 
@@ -4133,10 +4145,12 @@ module TencentCloud
         # @type StartScript: String
         # @param StopScript: 停止脚本 base64编码
         # @type StopScript: String
+        # @param IncrementalDeployment: 是否进行增量部署，默认为false，全量更新
+        # @type IncrementalDeployment: Boolean
 
-        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :StartScript, :StopScript
+        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :StartScript, :StopScript, :IncrementalDeployment
         
-        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, startscript=nil, stopscript=nil)
+        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, startscript=nil, stopscript=nil, incrementaldeployment=nil)
           @GroupId = groupid
           @PkgId = pkgid
           @StartupParameters = startupparameters
@@ -4151,6 +4165,7 @@ module TencentCloud
           @DeployWaitTime = deploywaittime
           @StartScript = startscript
           @StopScript = stopscript
+          @IncrementalDeployment = incrementaldeployment
         end
 
         def deserialize(params)
@@ -4171,6 +4186,7 @@ module TencentCloud
           @DeployWaitTime = params['DeployWaitTime']
           @StartScript = params['StartScript']
           @StopScript = params['StopScript']
+          @IncrementalDeployment = params['IncrementalDeployment']
         end
       end
 
@@ -5737,6 +5753,46 @@ module TencentCloud
         end
       end
 
+      # DescribeGroupRelease请求参数结构体
+      class DescribeGroupReleaseRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组ID
+        # @type GroupId: String
+
+        attr_accessor :GroupId
+        
+        def initialize(groupid=nil)
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeGroupRelease返回参数结构体
+      class DescribeGroupReleaseResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 部署组发布的相关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.GroupRelease`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = GroupRelease.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGroup请求参数结构体
       class DescribeGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID
@@ -5975,19 +6031,34 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页个数，默认为20， 取值应为1~100
         # @type Limit: Integer
+        # @param RepoType: 企业: tcr ；个人: personal或者不填
+        # @type RepoType: String
+        # @param ApplicationId: 应用id
+        # @type ApplicationId: String
+        # @param TcrRepoInfo: TcrRepoInfo值
+        # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
 
-        attr_accessor :SearchWord, :Offset, :Limit
+        attr_accessor :SearchWord, :Offset, :Limit, :RepoType, :ApplicationId, :TcrRepoInfo
         
-        def initialize(searchword=nil, offset=nil, limit=nil)
+        def initialize(searchword=nil, offset=nil, limit=nil, repotype=nil, applicationid=nil, tcrrepoinfo=nil)
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
+          @RepoType = repotype
+          @ApplicationId = applicationid
+          @TcrRepoInfo = tcrrepoinfo
         end
 
         def deserialize(params)
           @SearchWord = params['SearchWord']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @RepoType = params['RepoType']
+          @ApplicationId = params['ApplicationId']
+          unless params['TcrRepoInfo'].nil?
+            @TcrRepoInfo = TcrRepoInfo.new
+            @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
         end
       end
 
@@ -6026,15 +6097,21 @@ module TencentCloud
         # @type QueryImageIdFlag: Integer
         # @param SearchWord: 可用于搜索的 tag 名字
         # @type SearchWord: String
+        # @param RepoType: 企业: tcr ；个人: personal或者不填
+        # @type RepoType: String
+        # @param TcrRepoInfo: TcrRepoInfo值
+        # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
 
-        attr_accessor :ApplicationId, :Offset, :Limit, :QueryImageIdFlag, :SearchWord
+        attr_accessor :ApplicationId, :Offset, :Limit, :QueryImageIdFlag, :SearchWord, :RepoType, :TcrRepoInfo
         
-        def initialize(applicationid=nil, offset=nil, limit=nil, queryimageidflag=nil, searchword=nil)
+        def initialize(applicationid=nil, offset=nil, limit=nil, queryimageidflag=nil, searchword=nil, repotype=nil, tcrrepoinfo=nil)
           @ApplicationId = applicationid
           @Offset = offset
           @Limit = limit
           @QueryImageIdFlag = queryimageidflag
           @SearchWord = searchword
+          @RepoType = repotype
+          @TcrRepoInfo = tcrrepoinfo
         end
 
         def deserialize(params)
@@ -6043,6 +6120,11 @@ module TencentCloud
           @Limit = params['Limit']
           @QueryImageIdFlag = params['QueryImageIdFlag']
           @SearchWord = params['SearchWord']
+          @RepoType = params['RepoType']
+          unless params['TcrRepoInfo'].nil?
+            @TcrRepoInfo = TcrRepoInfo.new
+            @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
         end
       end
 
@@ -8435,6 +8517,78 @@ module TencentCloud
         end
       end
 
+      # 文件配置项发布信息
+      class FileConfigRelease < TencentCloud::Common::AbstractModel
+        # @param ConfigReleaseId: 配置项发布ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigReleaseId: String
+        # @param ConfigId: 配置项ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigId: String
+        # @param ConfigName: 配置项名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigName: String
+        # @param ConfigVersion: 配置项版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigVersion: String
+        # @param ReleaseDesc: 发布描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseDesc: String
+        # @param ReleaseTime: 发布时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseTime: String
+        # @param GroupId: 部署组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 部署组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param NamespaceId: 命名空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceId: String
+        # @param NamespaceName: 命名空间名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceName: String
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+
+        attr_accessor :ConfigReleaseId, :ConfigId, :ConfigName, :ConfigVersion, :ReleaseDesc, :ReleaseTime, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName
+        
+        def initialize(configreleaseid=nil, configid=nil, configname=nil, configversion=nil, releasedesc=nil, releasetime=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil)
+          @ConfigReleaseId = configreleaseid
+          @ConfigId = configid
+          @ConfigName = configname
+          @ConfigVersion = configversion
+          @ReleaseDesc = releasedesc
+          @ReleaseTime = releasetime
+          @GroupId = groupid
+          @GroupName = groupname
+          @NamespaceId = namespaceid
+          @NamespaceName = namespacename
+          @ClusterId = clusterid
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @ConfigReleaseId = params['ConfigReleaseId']
+          @ConfigId = params['ConfigId']
+          @ConfigName = params['ConfigName']
+          @ConfigVersion = params['ConfigVersion']
+          @ReleaseDesc = params['ReleaseDesc']
+          @ReleaseTime = params['ReleaseTime']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @NamespaceId = params['NamespaceId']
+          @NamespaceName = params['NamespaceName']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+        end
+      end
+
       # 网关分组简单信息
       class GatewayApiGroupVo < TencentCloud::Common::AbstractModel
         # @param GroupId: 分组ID
@@ -8895,6 +9049,79 @@ module TencentCloud
         end
       end
 
+      # 部署组配置发布相关信息
+      class GroupRelease < TencentCloud::Common::AbstractModel
+        # @param PackageId: 程序包ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageId: String
+        # @param PackageName: 程序包名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageName: String
+        # @param PackageVersion: 程序包版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageVersion: String
+        # @param RepoName: 镜像名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoName: String
+        # @param TagName: 镜像版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagName: String
+        # @param PublicConfigReleaseList: 已发布的全局配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicConfigReleaseList: Array
+        # @param ConfigReleaseList: 已发布的应用配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigReleaseList: Array
+        # @param FileConfigReleaseList: 已发布的文件配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileConfigReleaseList: Array
+
+        attr_accessor :PackageId, :PackageName, :PackageVersion, :RepoName, :TagName, :PublicConfigReleaseList, :ConfigReleaseList, :FileConfigReleaseList
+        
+        def initialize(packageid=nil, packagename=nil, packageversion=nil, reponame=nil, tagname=nil, publicconfigreleaselist=nil, configreleaselist=nil, fileconfigreleaselist=nil)
+          @PackageId = packageid
+          @PackageName = packagename
+          @PackageVersion = packageversion
+          @RepoName = reponame
+          @TagName = tagname
+          @PublicConfigReleaseList = publicconfigreleaselist
+          @ConfigReleaseList = configreleaselist
+          @FileConfigReleaseList = fileconfigreleaselist
+        end
+
+        def deserialize(params)
+          @PackageId = params['PackageId']
+          @PackageName = params['PackageName']
+          @PackageVersion = params['PackageVersion']
+          @RepoName = params['RepoName']
+          @TagName = params['TagName']
+          unless params['PublicConfigReleaseList'].nil?
+            @PublicConfigReleaseList = []
+            params['PublicConfigReleaseList'].each do |i|
+              configrelease_tmp = ConfigRelease.new
+              configrelease_tmp.deserialize(i)
+              @PublicConfigReleaseList << configrelease_tmp
+            end
+          end
+          unless params['ConfigReleaseList'].nil?
+            @ConfigReleaseList = []
+            params['ConfigReleaseList'].each do |i|
+              configrelease_tmp = ConfigRelease.new
+              configrelease_tmp.deserialize(i)
+              @ConfigReleaseList << configrelease_tmp
+            end
+          end
+          unless params['FileConfigReleaseList'].nil?
+            @FileConfigReleaseList = []
+            params['FileConfigReleaseList'].each do |i|
+              fileconfigrelease_tmp = FileConfigRelease.new
+              fileconfigrelease_tmp.deserialize(i)
+              @FileConfigReleaseList << fileconfigrelease_tmp
+            end
+          end
+        end
+      end
+
       # 单元化API使用详情统计对象列表
       class GroupUnitApiDailyUseStatistics < TencentCloud::Common::AbstractModel
         # @param NamespaceId: 命名空间ID
@@ -9169,10 +9396,22 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param TcrRepoInfo: TcrRepoInfo值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
+        # @param TcrBindingId: TcrBindingId值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcrBindingId: Integer
+        # @param ApplicationId: applicationid值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: ApplicationName值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: :class:`Tencentcloud::Tsf.v20180326.models.ScalableRule`
 
-        attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime
+        attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName
         
-        def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil)
+        def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil)
           @Reponame = reponame
           @Repotype = repotype
           @TagCount = tagcount
@@ -9184,6 +9423,10 @@ module TencentCloud
           @Description = description
           @CreationTime = creationtime
           @UpdateTime = updatetime
+          @TcrRepoInfo = tcrrepoinfo
+          @TcrBindingId = tcrbindingid
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
         end
 
         def deserialize(params)
@@ -9198,6 +9441,16 @@ module TencentCloud
           @Description = params['Description']
           @CreationTime = params['CreationTime']
           @UpdateTime = params['UpdateTime']
+          unless params['TcrRepoInfo'].nil?
+            @TcrRepoInfo = TcrRepoInfo.new
+            @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
+          @TcrBindingId = params['TcrBindingId']
+          @ApplicationId = params['ApplicationId']
+          unless params['ApplicationName'].nil?
+            @ApplicationName = ScalableRule.new
+            @ApplicationName.deserialize(params['ApplicationName'])
+          end
         end
       end
 
@@ -9264,10 +9517,13 @@ module TencentCloud
         # @type PushTime: String
         # @param SizeByte: 单位为字节
         # @type SizeByte: Integer
+        # @param TcrRepoInfo: TcrRepoInfo值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
 
-        attr_accessor :RepoName, :TagName, :TagId, :ImageId, :Size, :CreationTime, :UpdateTime, :Author, :Architecture, :DockerVersion, :Os, :PushTime, :SizeByte
+        attr_accessor :RepoName, :TagName, :TagId, :ImageId, :Size, :CreationTime, :UpdateTime, :Author, :Architecture, :DockerVersion, :Os, :PushTime, :SizeByte, :TcrRepoInfo
         
-        def initialize(reponame=nil, tagname=nil, tagid=nil, imageid=nil, size=nil, creationtime=nil, updatetime=nil, author=nil, architecture=nil, dockerversion=nil, os=nil, pushtime=nil, sizebyte=nil)
+        def initialize(reponame=nil, tagname=nil, tagid=nil, imageid=nil, size=nil, creationtime=nil, updatetime=nil, author=nil, architecture=nil, dockerversion=nil, os=nil, pushtime=nil, sizebyte=nil, tcrrepoinfo=nil)
           @RepoName = reponame
           @TagName = tagname
           @TagId = tagid
@@ -9281,6 +9537,7 @@ module TencentCloud
           @Os = os
           @PushTime = pushtime
           @SizeByte = sizebyte
+          @TcrRepoInfo = tcrrepoinfo
         end
 
         def deserialize(params)
@@ -9297,6 +9554,10 @@ module TencentCloud
           @Os = params['Os']
           @PushTime = params['PushTime']
           @SizeByte = params['SizeByte']
+          unless params['TcrRepoInfo'].nil?
+            @TcrRepoInfo = TcrRepoInfo.new
+            @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
         end
       end
 
@@ -10766,6 +11027,53 @@ module TencentCloud
         end
       end
 
+      # OperateApplicationTcrBinding请求参数结构体
+      class OperateApplicationTcrBindingRequest < TencentCloud::Common::AbstractModel
+        # @param Command: bind 或 unbind
+        # @type Command: String
+        # @param ApplicationId: 应用id
+        # @type ApplicationId: String
+        # @param TcrRepoInfo: TcrRepoInfo值
+        # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
+
+        attr_accessor :Command, :ApplicationId, :TcrRepoInfo
+        
+        def initialize(command=nil, applicationid=nil, tcrrepoinfo=nil)
+          @Command = command
+          @ApplicationId = applicationid
+          @TcrRepoInfo = tcrrepoinfo
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
+          @ApplicationId = params['ApplicationId']
+          unless params['TcrRepoInfo'].nil?
+            @TcrRepoInfo = TcrRepoInfo.new
+            @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
+        end
+      end
+
+      # OperateApplicationTcrBinding返回参数结构体
+      class OperateApplicationTcrBindingResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 提供给前端，控制按钮是否显示
       class OperationInfo < TencentCloud::Common::AbstractModel
         # @param Init: 初始化按钮的控制信息
@@ -11774,6 +12082,48 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ScalableRule值
+      class ScalableRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: RuleId值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: String
+        # @param Name: Name值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ExpandVmCountLimit: ExpandVmCountLimit值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpandVmCountLimit: Integer
+        # @param ShrinkVmCountLimit: ShrinkVmCountLimit值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShrinkVmCountLimit: Integer
+        # @param GroupCount: GroupCount值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupCount: Integer
+        # @param Desc: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+
+        attr_accessor :RuleId, :Name, :ExpandVmCountLimit, :ShrinkVmCountLimit, :GroupCount, :Desc
+        
+        def initialize(ruleid=nil, name=nil, expandvmcountlimit=nil, shrinkvmcountlimit=nil, groupcount=nil, desc=nil)
+          @RuleId = ruleid
+          @Name = name
+          @ExpandVmCountLimit = expandvmcountlimit
+          @ShrinkVmCountLimit = shrinkvmcountlimit
+          @GroupCount = groupcount
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Name = params['Name']
+          @ExpandVmCountLimit = params['ExpandVmCountLimit']
+          @ShrinkVmCountLimit = params['ShrinkVmCountLimit']
+          @GroupCount = params['GroupCount']
+          @Desc = params['Desc']
         end
       end
 
@@ -13017,6 +13367,43 @@ module TencentCloud
           @RuleType = params['RuleType']
           @Expression = params['Expression']
           @RepeatInterval = params['RepeatInterval']
+        end
+      end
+
+      # tcr仓库信息
+      class TcrRepoInfo < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param RegistryId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryId: String
+        # @param RegistryName: 实例名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryName: String
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param RepoName: 仓库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoName: String
+
+        attr_accessor :Region, :RegistryId, :RegistryName, :Namespace, :RepoName
+        
+        def initialize(region=nil, registryid=nil, registryname=nil, namespace=nil, reponame=nil)
+          @Region = region
+          @RegistryId = registryid
+          @RegistryName = registryname
+          @Namespace = namespace
+          @RepoName = reponame
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegistryId = params['RegistryId']
+          @RegistryName = params['RegistryName']
+          @Namespace = params['Namespace']
+          @RepoName = params['RepoName']
         end
       end
 

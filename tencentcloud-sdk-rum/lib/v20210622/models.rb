@@ -201,6 +201,54 @@ module TencentCloud
         end
       end
 
+      # DescribeError请求参数结构体
+      class DescribeErrorRequest < TencentCloud::Common::AbstractModel
+        # @param Date: 日期
+        # @type Date: String
+        # @param ID: 项目ID
+        # @type ID: Integer
+
+        attr_accessor :Date, :ID
+        
+        def initialize(date=nil, id=nil)
+          @Date = date
+          @ID = id
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeError返回参数结构体
+      class DescribeErrorResponse < TencentCloud::Common::AbstractModel
+        # @param Content: 内容
+        # @type Content: String
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param CreateTime: 时间
+        # @type CreateTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Content, :ID, :CreateTime, :RequestId
+        
+        def initialize(content=nil, id=nil, createtime=nil, requestid=nil)
+          @Content = content
+          @ID = id
+          @CreateTime = createtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @ID = params['ID']
+          @CreateTime = params['CreateTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对回放流进行控制，包括暂停、播放、拉动、结束等
+
+        # @param request: Request instance for ControlRecordStream.
+        # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::ControlRecordStreamRequest`
+        # @rtype: :class:`Tencentcloud::iotvideoindustry::V20201201::ControlRecordStreamResponse`
+        def ControlRecordStream(request)
+          body = send_request('ControlRecordStream', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ControlRecordStreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateDevice) 用于创建设备。
 
         # @param request: Request instance for CreateDevice.

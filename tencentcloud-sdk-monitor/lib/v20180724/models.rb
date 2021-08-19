@@ -2107,10 +2107,12 @@ module TencentCloud
         # @type Enable: Array
         # @param NotBindingNoticeRule: 传 1 查询未配置通知规则的告警策略；不传或传其他数值，查询所有策略。
         # @type NotBindingNoticeRule: Integer
+        # @param InstanceGroupId: 实例分组id
+        # @type InstanceGroupId: Integer
 
-        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule
+        attr_accessor :Module, :PageNumber, :PageSize, :PolicyName, :MonitorTypes, :Namespaces, :Dimensions, :ReceiverUids, :ReceiverGroups, :PolicyType, :Field, :Order, :ProjectIds, :NoticeIds, :RuleTypes, :Enable, :NotBindingNoticeRule, :InstanceGroupId
         
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, policyname=nil, monitortypes=nil, namespaces=nil, dimensions=nil, receiveruids=nil, receivergroups=nil, policytype=nil, field=nil, order=nil, projectids=nil, noticeids=nil, ruletypes=nil, enable=nil, notbindingnoticerule=nil, instancegroupid=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -2128,6 +2130,7 @@ module TencentCloud
           @RuleTypes = ruletypes
           @Enable = enable
           @NotBindingNoticeRule = notbindingnoticerule
+          @InstanceGroupId = instancegroupid
         end
 
         def deserialize(params)
@@ -2148,6 +2151,7 @@ module TencentCloud
           @RuleTypes = params['RuleTypes']
           @Enable = params['Enable']
           @NotBindingNoticeRule = params['NotBindingNoticeRule']
+          @InstanceGroupId = params['InstanceGroupId']
         end
       end
 
