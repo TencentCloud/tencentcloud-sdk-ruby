@@ -915,6 +915,7 @@ module TencentCloud
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
         # @param LogExpireDay: 审计日志保存时长。支持值包括：
+        # 7 - 一周
         # 30 - 一个月；
         # 180 - 六个月；
         # 365 - 一年；
@@ -2357,22 +2358,26 @@ module TencentCloud
 
       # DescribeAuditConfig返回参数结构体
       class DescribeAuditConfigResponse < TencentCloud::Common::AbstractModel
-        # @param LogExpireDay: 审计日志保存时长。目前支持的值包括：[0，30，180，365，1095，1825]。
+        # @param LogExpireDay: 审计日志保存时长。目前支持的值包括：[0，7，30，180，365，1095，1825]。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogExpireDay: Integer
         # @param LogType: 审计日志存储类型。目前支持的值包括："storage" - 存储型。
         # @type LogType: String
         # @param IsClosing: 是否正在关闭审计。目前支持的值包括："false"-否，"true"-是
         # @type IsClosing: String
+        # @param CreateTime: 审计服务开通时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LogExpireDay, :LogType, :IsClosing, :RequestId
+        attr_accessor :LogExpireDay, :LogType, :IsClosing, :CreateTime, :RequestId
         
-        def initialize(logexpireday=nil, logtype=nil, isclosing=nil, requestid=nil)
+        def initialize(logexpireday=nil, logtype=nil, isclosing=nil, createtime=nil, requestid=nil)
           @LogExpireDay = logexpireday
           @LogType = logtype
           @IsClosing = isclosing
+          @CreateTime = createtime
           @RequestId = requestid
         end
 
@@ -2380,6 +2385,7 @@ module TencentCloud
           @LogExpireDay = params['LogExpireDay']
           @LogType = params['LogType']
           @IsClosing = params['IsClosing']
+          @CreateTime = params['CreateTime']
           @RequestId = params['RequestId']
         end
       end
@@ -6193,6 +6199,7 @@ module TencentCloud
         # @param InstanceId: 实例 ID。
         # @type InstanceId: String
         # @param LogExpireDay: 审计日志保存时长。支持值包括：
+        # 7 - 一周
         # 30 - 一个月；
         # 180 - 六个月；
         # 365 - 一年；

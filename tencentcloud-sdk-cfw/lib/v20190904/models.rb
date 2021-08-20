@@ -3804,10 +3804,12 @@ module TencentCloud
         # @param ServiceTemplateId: 端口协议类型参数模板id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplateId: String
+        # @param ProtocolPortType: 是否使用端口协议模板，0：否，1：是
+        # @type ProtocolPortType: Integer
 
-        attr_accessor :OrderIndex, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Direction, :Region, :Detail, :Status, :IsNew, :BothWay, :VpcId, :SubnetId, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ServiceTemplateId
+        attr_accessor :OrderIndex, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Direction, :Region, :Detail, :Status, :IsNew, :BothWay, :VpcId, :SubnetId, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ServiceTemplateId, :ProtocolPortType
         
-        def initialize(orderindex=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, direction=nil, region=nil, detail=nil, status=nil, isnew=nil, bothway=nil, vpcid=nil, subnetid=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, servicetemplateid=nil)
+        def initialize(orderindex=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, direction=nil, region=nil, detail=nil, status=nil, isnew=nil, bothway=nil, vpcid=nil, subnetid=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, servicetemplateid=nil, protocolporttype=nil)
           @OrderIndex = orderindex
           @SourceId = sourceid
           @SourceType = sourcetype
@@ -3829,6 +3831,7 @@ module TencentCloud
           @PrivateIp = privateip
           @Cidr = cidr
           @ServiceTemplateId = servicetemplateid
+          @ProtocolPortType = protocolporttype
         end
 
         def deserialize(params)
@@ -3853,6 +3856,7 @@ module TencentCloud
           @PrivateIp = params['PrivateIp']
           @Cidr = params['Cidr']
           @ServiceTemplateId = params['ServiceTemplateId']
+          @ProtocolPortType = params['ProtocolPortType']
         end
       end
 
@@ -3910,10 +3914,12 @@ module TencentCloud
         # @type BothWayInfo: Array
         # @param Direction: 方向，0：出站，1：入站，默认1
         # @type Direction: Integer
+        # @param ProtocolPortType: 是否使用端口协议模板，0：否，1：是
+        # @type ProtocolPortType: Integer
 
-        attr_accessor :OrderIndex, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Detail, :BothWay, :Id, :Status, :IsNew, :VpcId, :SubnetId, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ServiceTemplateId, :BothWayInfo, :Direction
+        attr_accessor :OrderIndex, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Detail, :BothWay, :Id, :Status, :IsNew, :VpcId, :SubnetId, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ServiceTemplateId, :BothWayInfo, :Direction, :ProtocolPortType
         
-        def initialize(orderindex=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, detail=nil, bothway=nil, id=nil, status=nil, isnew=nil, vpcid=nil, subnetid=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, servicetemplateid=nil, bothwayinfo=nil, direction=nil)
+        def initialize(orderindex=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, detail=nil, bothway=nil, id=nil, status=nil, isnew=nil, vpcid=nil, subnetid=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, servicetemplateid=nil, bothwayinfo=nil, direction=nil, protocolporttype=nil)
           @OrderIndex = orderindex
           @SourceId = sourceid
           @SourceType = sourcetype
@@ -3936,6 +3942,7 @@ module TencentCloud
           @ServiceTemplateId = servicetemplateid
           @BothWayInfo = bothwayinfo
           @Direction = direction
+          @ProtocolPortType = protocolporttype
         end
 
         def deserialize(params)
@@ -3968,6 +3975,7 @@ module TencentCloud
             end
           end
           @Direction = params['Direction']
+          @ProtocolPortType = params['ProtocolPortType']
         end
       end
 

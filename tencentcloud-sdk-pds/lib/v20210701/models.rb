@@ -38,7 +38,7 @@ module TencentCloud
 
       # DescribeNewUserAcquisition返回参数结构体
       class DescribeNewUserAcquisitionResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceRsp: 用户信誉值
+        # @param ServiceRsp: 用户信誉分，1-5从低到高
         # @type ServiceRsp: :class:`Tencentcloud::Pds.v20210701.models.Score`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -80,7 +80,7 @@ module TencentCloud
 
       # DescribeStockEstimation返回参数结构体
       class DescribeStockEstimationResponse < TencentCloud::Common::AbstractModel
-        # @param ServiceRsp: 用户信誉值
+        # @param ServiceRsp: 用户信誉分，1-5从低到高
         # @type ServiceRsp: :class:`Tencentcloud::Pds.v20210701.models.Score`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -101,9 +101,9 @@ module TencentCloud
         end
       end
 
-      # 信誉分
+      # 信誉分，1-5从低到高
       class Score < TencentCloud::Common::AbstractModel
-        # @param Star: 用户信誉分
+        # @param Star: 信誉分，1-5从低到高
         # @type Star: Integer
 
         attr_accessor :Star

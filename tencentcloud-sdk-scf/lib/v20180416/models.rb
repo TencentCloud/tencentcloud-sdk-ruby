@@ -2571,14 +2571,17 @@ module TencentCloud
         # @type Orderby: String
         # @param Order: 以升序还是降序的方式返回结果，可选值 ASC 和 DESC
         # @type Order: String
+        # @param SearchKey: 关键字匹配搜索，Key 可选值为 Namespace 和 Description，多个搜索条件之间是与的关系
+        # @type SearchKey: Array
 
-        attr_accessor :Limit, :Offset, :Orderby, :Order
+        attr_accessor :Limit, :Offset, :Orderby, :Order, :SearchKey
         
-        def initialize(limit=nil, offset=nil, orderby=nil, order=nil)
+        def initialize(limit=nil, offset=nil, orderby=nil, order=nil, searchkey=nil)
           @Limit = limit
           @Offset = offset
           @Orderby = orderby
           @Order = order
+          @SearchKey = searchkey
         end
 
         def deserialize(params)
@@ -2586,6 +2589,14 @@ module TencentCloud
           @Offset = params['Offset']
           @Orderby = params['Orderby']
           @Order = params['Order']
+          unless params['SearchKey'].nil?
+            @SearchKey = []
+            params['SearchKey'].each do |i|
+              searchkey_tmp = SearchKey.new
+              searchkey_tmp.deserialize(i)
+              @SearchKey << searchkey_tmp
+            end
+          end
         end
       end
 
@@ -3318,6 +3329,26 @@ module TencentCloud
               @AddtionVersionMatchs << versionmatch_tmp
             end
           end
+        end
+      end
+
+      # 包含搜索关键字和对应的内容
+      class SearchKey < TencentCloud::Common::AbstractModel
+        # @param Key: 搜索关键字
+        # @type Key: String
+        # @param Value: 搜索内容
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
