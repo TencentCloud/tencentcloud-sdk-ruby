@@ -5349,6 +5349,46 @@ module TencentCloud
         end
       end
 
+      # ModifyNodePoolInstanceTypes请求参数结构体
+      class ModifyNodePoolInstanceTypesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NodePoolId: 节点池id
+        # @type NodePoolId: String
+        # @param InstanceTypes: 机型列表
+        # @type InstanceTypes: Array
+
+        attr_accessor :ClusterId, :NodePoolId, :InstanceTypes
+        
+        def initialize(clusterid=nil, nodepoolid=nil, instancetypes=nil)
+          @ClusterId = clusterid
+          @NodePoolId = nodepoolid
+          @InstanceTypes = instancetypes
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodePoolId = params['NodePoolId']
+          @InstanceTypes = params['InstanceTypes']
+        end
+      end
+
+      # ModifyNodePoolInstanceTypes返回参数结构体
+      class ModifyNodePoolInstanceTypesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPrometheusAlertRule请求参数结构体
       class ModifyPrometheusAlertRuleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
