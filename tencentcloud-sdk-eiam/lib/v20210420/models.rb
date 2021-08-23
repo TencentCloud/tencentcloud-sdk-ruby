@@ -1054,9 +1054,9 @@ module TencentCloud
       class DescribeUserResourcesAuthorizationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID。
         # @type ApplicationId: String
-        # @param UserId: 用户ID。
+        # @param UserId: 用户ID。UserName 和 UserId 需至少一个不为空；都不为空时优先使用 UserName。
         # @type UserId: String
-        # @param UserName: 用户名。
+        # @param UserName: 用户名。UserName 和 UserId 需至少一个不为空；都不为空时优先使用 UserName。
         # @type UserName: String
         # @param IncludeInheritedAuthorizations: 查询范围是否包括用户关联的用户组、组织机构的应用访问权限。默认为不查询 ，传false表示不查询该范围，传true查询该范围。
         # @type IncludeInheritedAuthorizations: Boolean

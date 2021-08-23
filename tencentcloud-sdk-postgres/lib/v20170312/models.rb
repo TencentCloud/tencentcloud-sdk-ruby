@@ -93,6 +93,70 @@ module TencentCloud
         end
       end
 
+      # 慢查询分析接口返回的分析详情，按照参数抽象之后进行分类
+      class AnalysisItems < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 慢SQL查询的数据库名
+        # @type DatabaseName: String
+        # @param UserName: 慢SQL执行的用户名
+        # @type UserName: String
+        # @param NormalQuery: 抽象参数之后的慢SQL
+        # @type NormalQuery: String
+        # @param ClientAddr: 慢SQL执行的客户端地址
+        # @type ClientAddr: String
+        # @param CallNum: 在选定时间范围内慢SQL语句执行的次数
+        # @type CallNum: Integer
+        # @param CallPercent: 在选定时间范围内，慢SQL语句执行的次数占所有慢SQL的比例（小数返回）
+        # @type CallPercent: Float
+        # @param CostTime: 在选定时间范围内，慢SQL执行的总时间
+        # @type CostTime: Float
+        # @param CostPercent: 在选定时间范围内，慢SQL语句执行的总时间占所有慢SQL的比例（小数返回）
+        # @type CostPercent: Float
+        # @param MinCostTime: 在选定时间范围内，慢SQL语句执行的耗时最短的时间（单位：ms）
+        # @type MinCostTime: Float
+        # @param MaxCostTime: 在选定时间范围内，慢SQL语句执行的耗时最长的时间（单位：ms）
+        # @type MaxCostTime: Float
+        # @param AvgCostTime: 在选定时间范围内，慢SQL语句执行的耗时平均时间（单位：ms）
+        # @type AvgCostTime: Float
+        # @param FirstTime: 在选定时间范围内，慢SQL第一条开始执行的时间戳
+        # @type FirstTime: String
+        # @param LastTime: 在选定时间范围内，慢SQL最后一条开始执行的时间戳
+        # @type LastTime: String
+
+        attr_accessor :DatabaseName, :UserName, :NormalQuery, :ClientAddr, :CallNum, :CallPercent, :CostTime, :CostPercent, :MinCostTime, :MaxCostTime, :AvgCostTime, :FirstTime, :LastTime
+        
+        def initialize(databasename=nil, username=nil, normalquery=nil, clientaddr=nil, callnum=nil, callpercent=nil, costtime=nil, costpercent=nil, mincosttime=nil, maxcosttime=nil, avgcosttime=nil, firsttime=nil, lasttime=nil)
+          @DatabaseName = databasename
+          @UserName = username
+          @NormalQuery = normalquery
+          @ClientAddr = clientaddr
+          @CallNum = callnum
+          @CallPercent = callpercent
+          @CostTime = costtime
+          @CostPercent = costpercent
+          @MinCostTime = mincosttime
+          @MaxCostTime = maxcosttime
+          @AvgCostTime = avgcosttime
+          @FirstTime = firsttime
+          @LastTime = lasttime
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @UserName = params['UserName']
+          @NormalQuery = params['NormalQuery']
+          @ClientAddr = params['ClientAddr']
+          @CallNum = params['CallNum']
+          @CallPercent = params['CallPercent']
+          @CostTime = params['CostTime']
+          @CostPercent = params['CostPercent']
+          @MinCostTime = params['MinCostTime']
+          @MaxCostTime = params['MaxCostTime']
+          @AvgCostTime = params['AvgCostTime']
+          @FirstTime = params['FirstTime']
+          @LastTime = params['LastTime']
+        end
+      end
+
       # CloseDBExtranetAccess请求参数结构体
       class CloseDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-6r233v55
@@ -1768,6 +1832,165 @@ module TencentCloud
         end
       end
 
+      # DescribeSlowQueryAnalysis请求参数结构体
+      class DescribeSlowQueryAnalysisRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param StartTime: 查询起始时间戳，格式 “YYYY-MM-DD HH:mm:ss” ，日志保留时间默认为7天，起始时间不能超出保留时间范围。
+        # @type StartTime: String
+        # @param EndTime: 查询j结束时间戳，格式 “YYYY-MM-DD HH:mm:ss”。
+        # @type EndTime: String
+        # @param DatabaseName: 根据数据库名进行筛选，可以为空。
+        # @type DatabaseName: String
+        # @param OrderBy: 排序维度。 可选参数，取值范围[CallNum,CostTime,AvgCostTime]。
+        # @type OrderBy: String
+        # @param OrderByType: 排序类型。升序asc、降序desc。
+        # @type OrderByType: String
+        # @param Limit: 分页大小。取值范围[1,100]。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移。取值范围[0,INF)。
+        # @type Offset: Integer
+
+        attr_accessor :DBInstanceId, :StartTime, :EndTime, :DatabaseName, :OrderBy, :OrderByType, :Limit, :Offset
+        
+        def initialize(dbinstanceid=nil, starttime=nil, endtime=nil, databasename=nil, orderby=nil, orderbytype=nil, limit=nil, offset=nil)
+          @DBInstanceId = dbinstanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @DatabaseName = databasename
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DatabaseName = params['DatabaseName']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeSlowQueryAnalysis返回参数结构体
+      class DescribeSlowQueryAnalysisResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总条数。
+        # @type TotalCount: Integer
+        # @param Detail: 慢SQL统计分析接口返回详情。
+        # @type Detail: :class:`Tencentcloud::Postgres.v20170312.models.Detail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Detail, :RequestId
+        
+        def initialize(totalcount=nil, detail=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Detail'].nil?
+            @Detail = Detail.new
+            @Detail.deserialize(params['Detail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSlowQueryList请求参数结构体
+      class DescribeSlowQueryListRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param StartTime: 查询起始时间戳，格式 “YYYY-MM-DD HH:mm:ss” ，日志保留时间默认为7天，起始时间不能超出保留时间范围。
+        # @type StartTime: String
+        # @param EndTime: 查询j结束时间戳，格式 “YYYY-MM-DD HH:mm:ss”。
+        # @type EndTime: String
+        # @param DatabaseName: 根据数据库名进行筛选，可以为空。
+        # @type DatabaseName: String
+        # @param OrderByType: 排序类型。升序asc、降序desc。默认为desc。
+        # @type OrderByType: String
+        # @param OrderBy: 排序维度。 可选参数，取值范围[SessionStartTime,Duration]，默认为SessionStartTime。
+        # @type OrderBy: String
+        # @param Limit: 分页大小。取值范围[1,100],默认为20。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移。取值范围[0,INF)，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :DBInstanceId, :StartTime, :EndTime, :DatabaseName, :OrderByType, :OrderBy, :Limit, :Offset
+        
+        def initialize(dbinstanceid=nil, starttime=nil, endtime=nil, databasename=nil, orderbytype=nil, orderby=nil, limit=nil, offset=nil)
+          @DBInstanceId = dbinstanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @DatabaseName = databasename
+          @OrderByType = orderbytype
+          @OrderBy = orderby
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DatabaseName = params['DatabaseName']
+          @OrderByType = params['OrderByType']
+          @OrderBy = params['OrderBy']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeSlowQueryList返回参数结构体
+      class DescribeSlowQueryListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 选定时间范围内慢SQL总条数。
+        # @type TotalCount: Integer
+        # @param DurationAnalysis: 指定时间范围内，慢SQL耗时分段分析。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DurationAnalysis: Array
+        # @param RawSlowQueryList: 指定时间范围内 慢SQL流水。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawSlowQueryList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DurationAnalysis, :RawSlowQueryList, :RequestId
+        
+        def initialize(totalcount=nil, durationanalysis=nil, rawslowquerylist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DurationAnalysis = durationanalysis
+          @RawSlowQueryList = rawslowquerylist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DurationAnalysis'].nil?
+            @DurationAnalysis = []
+            params['DurationAnalysis'].each do |i|
+              durationanalysis_tmp = DurationAnalysis.new
+              durationanalysis_tmp.deserialize(i)
+              @DurationAnalysis << durationanalysis_tmp
+            end
+          end
+          unless params['RawSlowQueryList'].nil?
+            @RawSlowQueryList = []
+            params['RawSlowQueryList'].each do |i|
+              rawslowquery_tmp = RawSlowQuery.new
+              rawslowquery_tmp.deserialize(i)
+              @RawSlowQueryList << rawslowquery_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZones请求参数结构体
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
 
@@ -1842,6 +2065,38 @@ module TencentCloud
         end
       end
 
+      # 慢SQL 统计分析接口返回详情
+      class Detail < TencentCloud::Common::AbstractModel
+        # @param TotalTime: 输入时间范围内所有慢sql执行的总时间，单位毫秒（ms）
+        # @type TotalTime: Float
+        # @param TotalCallNum: 输入时间范围内所有慢sql总条数
+        # @type TotalCallNum: Integer
+        # @param AnalysisItems: 慢SQL统计分析列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisItems: Array
+
+        attr_accessor :TotalTime, :TotalCallNum, :AnalysisItems
+        
+        def initialize(totaltime=nil, totalcallnum=nil, analysisitems=nil)
+          @TotalTime = totaltime
+          @TotalCallNum = totalcallnum
+          @AnalysisItems = analysisitems
+        end
+
+        def deserialize(params)
+          @TotalTime = params['TotalTime']
+          @TotalCallNum = params['TotalCallNum']
+          unless params['AnalysisItems'].nil?
+            @AnalysisItems = []
+            params['AnalysisItems'].each do |i|
+              analysisitems_tmp = AnalysisItems.new
+              analysisitems_tmp.deserialize(i)
+              @AnalysisItems << analysisitems_tmp
+            end
+          end
+        end
+      end
+
       # DisIsolateDBInstances请求参数结构体
       class DisIsolateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceIdSet: 资源ID列表
@@ -1883,6 +2138,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 慢SQL耗时分段分析
+      class DurationAnalysis < TencentCloud::Common::AbstractModel
+        # @param TimeSegment: 慢SQL耗时，时段
+        # @type TimeSegment: String
+        # @param Count: 对应时段区间慢SQL 条数
+        # @type Count: Integer
+
+        attr_accessor :TimeSegment, :Count
+        
+        def initialize(timesegment=nil, count=nil)
+          @TimeSegment = timesegment
+          @Count = count
+        end
+
+        def deserialize(params)
+          @TimeSegment = params['TimeSegment']
+          @Count = params['Count']
         end
       end
 
@@ -2613,6 +2888,42 @@ module TencentCloud
           @PayMode = params['PayMode']
           @FlowId = params['FlowId']
           @DBInstanceIdSet = params['DBInstanceIdSet']
+        end
+      end
+
+      # 慢SQL查询接口返回 慢SQL列表详情
+      class RawSlowQuery < TencentCloud::Common::AbstractModel
+        # @param RawQuery: 慢SQL 语句
+        # @type RawQuery: String
+        # @param DatabaseName: 慢SQL 查询的数据库
+        # @type DatabaseName: String
+        # @param Duration: 慢SQL执行 耗时
+        # @type Duration: Float
+        # @param ClientAddr: 执行慢SQL的客户端
+        # @type ClientAddr: String
+        # @param UserName: 执行慢SQL的用户名
+        # @type UserName: String
+        # @param SessionStartTime: 慢SQL执行的开始时间
+        # @type SessionStartTime: String
+
+        attr_accessor :RawQuery, :DatabaseName, :Duration, :ClientAddr, :UserName, :SessionStartTime
+        
+        def initialize(rawquery=nil, databasename=nil, duration=nil, clientaddr=nil, username=nil, sessionstarttime=nil)
+          @RawQuery = rawquery
+          @DatabaseName = databasename
+          @Duration = duration
+          @ClientAddr = clientaddr
+          @UserName = username
+          @SessionStartTime = sessionstarttime
+        end
+
+        def deserialize(params)
+          @RawQuery = params['RawQuery']
+          @DatabaseName = params['DatabaseName']
+          @Duration = params['Duration']
+          @ClientAddr = params['ClientAddr']
+          @UserName = params['UserName']
+          @SessionStartTime = params['SessionStartTime']
         end
       end
 

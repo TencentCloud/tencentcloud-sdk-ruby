@@ -581,6 +581,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 慢查询统计分析接口，根据SQL语句抽象参数之后，进行聚合分析，并返回对应结果
+
+        # @param request: Request instance for DescribeSlowQueryAnalysis.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeSlowQueryAnalysisRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeSlowQueryAnalysisResponse`
+        def DescribeSlowQueryAnalysis(request)
+          body = send_request('DescribeSlowQueryAnalysis', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSlowQueryAnalysisResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取慢查询列表
+
+        # @param request: Request instance for DescribeSlowQueryList.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeSlowQueryListRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeSlowQueryListResponse`
+        def DescribeSlowQueryList(request)
+          body = send_request('DescribeSlowQueryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSlowQueryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeZones) 用于查询支持的可用区信息。
 
         # @param request: Request instance for DescribeZones.
