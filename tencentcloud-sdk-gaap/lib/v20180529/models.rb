@@ -497,10 +497,12 @@ module TencentCloud
         # @type IPAddressVersion: String
         # @param NetworkType: 网络类型，可取值：normal、cn2，默认值normal
         # @type NetworkType: String
+        # @param PackageType: 通道组类型。Thunder表示标准通道组，Accelerator表示游戏加速器通道。
+        # @type PackageType: String
 
-        attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion, :NetworkType
+        attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion, :NetworkType, :PackageType
         
-        def initialize(accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, groupid=nil, ipaddressversion=nil, networktype=nil)
+        def initialize(accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, groupid=nil, ipaddressversion=nil, networktype=nil, packagetype=nil)
           @AccessRegion = accessregion
           @RealServerRegion = realserverregion
           @Bandwidth = bandwidth
@@ -508,6 +510,7 @@ module TencentCloud
           @GroupId = groupid
           @IPAddressVersion = ipaddressversion
           @NetworkType = networktype
+          @PackageType = packagetype
         end
 
         def deserialize(params)
@@ -518,6 +521,7 @@ module TencentCloud
           @GroupId = params['GroupId']
           @IPAddressVersion = params['IPAddressVersion']
           @NetworkType = params['NetworkType']
+          @PackageType = params['PackageType']
         end
       end
 
@@ -1090,16 +1094,19 @@ module TencentCloud
         # @type AccessRegionSet: Array
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # @type IPAddressVersion: String
+        # @param PackageType: 通道组套餐类型，可取值：Thunder、Accelerator，默认值Thunder
+        # @type PackageType: String
 
-        attr_accessor :ProjectId, :GroupName, :RealServerRegion, :TagSet, :AccessRegionSet, :IPAddressVersion
+        attr_accessor :ProjectId, :GroupName, :RealServerRegion, :TagSet, :AccessRegionSet, :IPAddressVersion, :PackageType
         
-        def initialize(projectid=nil, groupname=nil, realserverregion=nil, tagset=nil, accessregionset=nil, ipaddressversion=nil)
+        def initialize(projectid=nil, groupname=nil, realserverregion=nil, tagset=nil, accessregionset=nil, ipaddressversion=nil, packagetype=nil)
           @ProjectId = projectid
           @GroupName = groupname
           @RealServerRegion = realserverregion
           @TagSet = tagset
           @AccessRegionSet = accessregionset
           @IPAddressVersion = ipaddressversion
+          @PackageType = packagetype
         end
 
         def deserialize(params)
@@ -1123,6 +1130,7 @@ module TencentCloud
             end
           end
           @IPAddressVersion = params['IPAddressVersion']
+          @PackageType = params['PackageType']
         end
       end
 
@@ -1864,17 +1872,21 @@ module TencentCloud
         # @type DestRegion: String
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # @type IPAddressVersion: String
+        # @param PackageType: 通道组类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道。
+        # @type PackageType: String
 
-        attr_accessor :DestRegion, :IPAddressVersion
+        attr_accessor :DestRegion, :IPAddressVersion, :PackageType
         
-        def initialize(destregion=nil, ipaddressversion=nil)
+        def initialize(destregion=nil, ipaddressversion=nil, packagetype=nil)
           @DestRegion = destregion
           @IPAddressVersion = ipaddressversion
+          @PackageType = packagetype
         end
 
         def deserialize(params)
           @DestRegion = params['DestRegion']
           @IPAddressVersion = params['IPAddressVersion']
+          @PackageType = params['PackageType']
         end
       end
 
@@ -2964,42 +2976,43 @@ module TencentCloud
         # 0，默认项目
         # 其他值，指定的项目
         # @type ProjectId: Integer
-        # @param TagSet: 标签列表，当存在该字段时，拉取对应标签下的资源列表。
-        # 最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，该通道组会被拉取出来。
-        # @type TagSet: Array
         # @param Filters: 过滤条件。
         # 每次请求的Filter.Values的上限为5。
         # RealServerRegion - String - 是否必填：否 -（过滤条件）按照源站地域过滤，可参考DescribeDestRegions接口返回结果中的RegionId。
+        # PackageType - String - 是否必填：否 - （过滤条件）通道组类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道。
         # @type Filters: Array
+        # @param TagSet: 标签列表，当存在该字段时，拉取对应标签下的资源列表。
+        # 最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，该通道组会被拉取出来。
+        # @type TagSet: Array
 
-        attr_accessor :Offset, :Limit, :ProjectId, :TagSet, :Filters
+        attr_accessor :Offset, :Limit, :ProjectId, :Filters, :TagSet
         
-        def initialize(offset=nil, limit=nil, projectid=nil, tagset=nil, filters=nil)
+        def initialize(offset=nil, limit=nil, projectid=nil, filters=nil, tagset=nil)
           @Offset = offset
           @Limit = limit
           @ProjectId = projectid
-          @TagSet = tagset
           @Filters = filters
+          @TagSet = tagset
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ProjectId = params['ProjectId']
-          unless params['TagSet'].nil?
-            @TagSet = []
-            params['TagSet'].each do |i|
-              tagpair_tmp = TagPair.new
-              tagpair_tmp.deserialize(i)
-              @TagSet << tagpair_tmp
-            end
-          end
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
               filter_tmp = Filter.new
               filter_tmp.deserialize(i)
               @Filters << filter_tmp
+            end
+          end
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tagpair_tmp = TagPair.new
+              tagpair_tmp.deserialize(i)
+              @TagSet << tagpair_tmp
             end
           end
         end
@@ -3372,15 +3385,19 @@ module TencentCloud
       class DescribeRegionAndPriceRequest < TencentCloud::Common::AbstractModel
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # @type IPAddressVersion: String
+        # @param PackageType: 通道组类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道。
+        # @type PackageType: String
 
-        attr_accessor :IPAddressVersion
+        attr_accessor :IPAddressVersion, :PackageType
         
-        def initialize(ipaddressversion=nil)
+        def initialize(ipaddressversion=nil, packagetype=nil)
           @IPAddressVersion = ipaddressversion
+          @PackageType = packagetype
         end
 
         def deserialize(params)
           @IPAddressVersion = params['IPAddressVersion']
+          @PackageType = params['PackageType']
         end
       end
 
@@ -4436,10 +4453,12 @@ module TencentCloud
         # @type IPAddressVersion: String
         # @param NetworkType: 网络类型，可取值：normal、cn2，默认值normal
         # @type NetworkType: String
+        # @param PackageType: 通道组类型。Thunder表示标准通道组，Accelerator表示游戏加速器通道。
+        # @type PackageType: String
 
-        attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType, :IPAddressVersion, :NetworkType
+        attr_accessor :AccessRegion, :Bandwidth, :DestRegion, :Concurrency, :RealServerRegion, :Concurrent, :BillingType, :IPAddressVersion, :NetworkType, :PackageType
         
-        def initialize(accessregion=nil, bandwidth=nil, destregion=nil, concurrency=nil, realserverregion=nil, concurrent=nil, billingtype=nil, ipaddressversion=nil, networktype=nil)
+        def initialize(accessregion=nil, bandwidth=nil, destregion=nil, concurrency=nil, realserverregion=nil, concurrent=nil, billingtype=nil, ipaddressversion=nil, networktype=nil, packagetype=nil)
           @AccessRegion = accessregion
           @Bandwidth = bandwidth
           @DestRegion = destregion
@@ -4449,6 +4468,7 @@ module TencentCloud
           @BillingType = billingtype
           @IPAddressVersion = ipaddressversion
           @NetworkType = networktype
+          @PackageType = packagetype
         end
 
         def deserialize(params)
@@ -4461,6 +4481,7 @@ module TencentCloud
           @BillingType = params['BillingType']
           @IPAddressVersion = params['IPAddressVersion']
           @NetworkType = params['NetworkType']
+          @PackageType = params['PackageType']
         end
       end
 
@@ -5557,10 +5578,13 @@ module TencentCloud
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPAddressVersion: String
+        # @param PackageType: 通道组类型，可取值：Thunder、Accelerator，默认值Thunder
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageType: String
 
-        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion
+        attr_accessor :CreateTime, :ProjectId, :ProxyNum, :Status, :OwnerUin, :CreateUin, :GroupName, :DnsDefaultIp, :Domain, :RealServerRegionInfo, :IsOldGroup, :GroupId, :TagSet, :PolicyId, :Version, :ClientIPMethod, :IPAddressVersion, :PackageType
         
-        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil, ipaddressversion=nil)
+        def initialize(createtime=nil, projectid=nil, proxynum=nil, status=nil, owneruin=nil, createuin=nil, groupname=nil, dnsdefaultip=nil, domain=nil, realserverregioninfo=nil, isoldgroup=nil, groupid=nil, tagset=nil, policyid=nil, version=nil, clientipmethod=nil, ipaddressversion=nil, packagetype=nil)
           @CreateTime = createtime
           @ProjectId = projectid
           @ProxyNum = proxynum
@@ -5578,6 +5602,7 @@ module TencentCloud
           @Version = version
           @ClientIPMethod = clientipmethod
           @IPAddressVersion = ipaddressversion
+          @PackageType = packagetype
         end
 
         def deserialize(params)
@@ -5608,6 +5633,7 @@ module TencentCloud
           @Version = params['Version']
           @ClientIPMethod = params['ClientIPMethod']
           @IPAddressVersion = params['IPAddressVersion']
+          @PackageType = params['PackageType']
         end
       end
 

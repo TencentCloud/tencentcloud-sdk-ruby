@@ -2077,19 +2077,23 @@ module TencentCloud
         # @type Page: Integer
         # @param Rp: 每页大小，默认值是 20
         # @type Rp: Integer
+        # @param Keyword: 搜索关键字
+        # @type Keyword: String
 
-        attr_accessor :TargetGroupId, :Page, :Rp
+        attr_accessor :TargetGroupId, :Page, :Rp, :Keyword
         
-        def initialize(targetgroupid=nil, page=nil, rp=nil)
+        def initialize(targetgroupid=nil, page=nil, rp=nil, keyword=nil)
           @TargetGroupId = targetgroupid
           @Page = page
           @Rp = rp
+          @Keyword = keyword
         end
 
         def deserialize(params)
           @TargetGroupId = params['TargetGroupId']
           @Page = params['Page']
           @Rp = params['Rp']
+          @Keyword = params['Keyword']
         end
       end
 
@@ -2136,15 +2140,18 @@ module TencentCloud
         # @type RoleName: String
         # @param PolicyType: 按策略类型过滤，User表示仅查询自定义策略，QCS表示仅查询预设策略
         # @type PolicyType: String
+        # @param Keyword: 搜索关键字
+        # @type Keyword: String
 
-        attr_accessor :Page, :Rp, :RoleId, :RoleName, :PolicyType
+        attr_accessor :Page, :Rp, :RoleId, :RoleName, :PolicyType, :Keyword
         
-        def initialize(page=nil, rp=nil, roleid=nil, rolename=nil, policytype=nil)
+        def initialize(page=nil, rp=nil, roleid=nil, rolename=nil, policytype=nil, keyword=nil)
           @Page = page
           @Rp = rp
           @RoleId = roleid
           @RoleName = rolename
           @PolicyType = policytype
+          @Keyword = keyword
         end
 
         def deserialize(params)
@@ -2153,6 +2160,7 @@ module TencentCloud
           @RoleId = params['RoleId']
           @RoleName = params['RoleName']
           @PolicyType = params['PolicyType']
+          @Keyword = params['Keyword']
         end
       end
 

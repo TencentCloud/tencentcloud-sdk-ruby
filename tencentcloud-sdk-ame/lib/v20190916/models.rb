@@ -119,15 +119,18 @@ module TencentCloud
         # @type AuditionBegin: Integer
         # @param AuditionEnd: 试听结束时间
         # @type AuditionEnd: Integer
+        # @param TagNames: 标签名称
+        # @type TagNames: Array
 
-        attr_accessor :Name, :Version, :Duration, :AuditionBegin, :AuditionEnd
+        attr_accessor :Name, :Version, :Duration, :AuditionBegin, :AuditionEnd, :TagNames
         
-        def initialize(name=nil, version=nil, duration=nil, auditionbegin=nil, auditionend=nil)
+        def initialize(name=nil, version=nil, duration=nil, auditionbegin=nil, auditionend=nil, tagnames=nil)
           @Name = name
           @Version = version
           @Duration = duration
           @AuditionBegin = auditionbegin
           @AuditionEnd = auditionend
+          @TagNames = tagnames
         end
 
         def deserialize(params)
@@ -136,6 +139,7 @@ module TencentCloud
           @Duration = params['Duration']
           @AuditionBegin = params['AuditionBegin']
           @AuditionEnd = params['AuditionEnd']
+          @TagNames = params['TagNames']
         end
       end
 

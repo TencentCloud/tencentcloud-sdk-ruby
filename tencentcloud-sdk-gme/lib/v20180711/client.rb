@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 用于创建年龄语音识别任务的接口，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
+
+        # @param request: Request instance for CreateAgeDetectTask.
+        # @type request: :class:`Tencentcloud::gme::V20180711::CreateAgeDetectTaskRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::CreateAgeDetectTaskResponse`
+        def CreateAgeDetectTask(request)
+          body = send_request('CreateAgeDetectTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAgeDetectTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateApp)用于创建一个GME应用。
 
         # @param request: Request instance for CreateApp.
@@ -39,6 +63,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询年龄语音识别任务结果，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
+
+        # @param request: Request instance for DescribeAgeDetectTask.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeAgeDetectTaskRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeAgeDetectTaskResponse`
+        def DescribeAgeDetectTask(request)
+          body = send_request('DescribeAgeDetectTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAgeDetectTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

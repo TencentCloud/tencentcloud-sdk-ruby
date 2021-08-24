@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于创建异步上下文任务
+        # 本接口用于创建离线上下文任务
 
         # @param request: Request instance for CreateAsyncContextTask.
         # @type request: :class:`Tencentcloud::cls::V20201016::CreateAsyncContextTaskRequest`
@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于创建异步检索任务
+        # 本接口用于创建离线检索任务
 
         # @param request: Request instance for CreateAsyncSearchTask.
         # @type request: :class:`Tencentcloud::cls::V20201016::CreateAsyncSearchTaskRequest`
@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于创建日志导出
+        # 本接口用于创建日志下载任务
 
         # @param request: Request instance for CreateExport.
         # @type request: :class:`Tencentcloud::cls::V20201016::CreateExportRequest`
@@ -365,7 +365,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于删除异步上下文任务
+        # 本接口用于删除离线上下文任务
 
         # @param request: Request instance for DeleteAsyncContextTask.
         # @type request: :class:`Tencentcloud::cls::V20201016::DeleteAsyncContextTaskRequest`
@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于删除异步检索任务
+        # 本接口用于删除离线检索任务
 
         # @param request: Request instance for DeleteAsyncSearchTask.
         # @type request: :class:`Tencentcloud::cls::V20201016::DeleteAsyncSearchTaskRequest`
@@ -461,7 +461,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于删除日志导出
+        # 本接口用于删除日志下载任务
 
         # @param request: Request instance for DeleteExport.
         # @type request: :class:`Tencentcloud::cls::V20201016::DeleteExportRequest`
@@ -653,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用户获取异步上下文任务的结果
+        # 本接口用户获取离线上下文任务的结果
 
         # @param request: Request instance for DescribeAsyncContextResult.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeAsyncContextResultRequest`
@@ -677,7 +677,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于获取异步上下文任务列表
+        # 本接口用于获取离线上下文任务列表
 
         # @param request: Request instance for DescribeAsyncContextTasks.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeAsyncContextTasksRequest`
@@ -701,7 +701,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用户获取异步检索任务的结果
+        # 本接口用户获取离线检索任务的结果
 
         # @param request: Request instance for DescribeAsyncSearchResult.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeAsyncSearchResultRequest`
@@ -725,7 +725,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用户获取异步检索任务列表
+        # 本接口用户获取离线检索任务列表
 
         # @param request: Request instance for DescribeAsyncSearchTasks.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeAsyncSearchTasksRequest`
@@ -797,7 +797,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于获取日志导出列表
+        # 本接口用于获取日志下载任务列表
 
         # @param request: Request instance for DescribeExports.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeExportsRequest`

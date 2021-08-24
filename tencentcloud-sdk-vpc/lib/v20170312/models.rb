@@ -2618,11 +2618,9 @@ module TencentCloud
 
       # CreateFlowLog请求参数结构体
       class CreateFlowLogRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID
-        # @type VpcId: String
         # @param FlowLogName: 流日志实例名字
         # @type FlowLogName: String
-        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE
+        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN
         # @type ResourceType: String
         # @param ResourceId: 资源唯一ID
         # @type ResourceId: String
@@ -2630,31 +2628,33 @@ module TencentCloud
         # @type TrafficType: String
         # @param CloudLogId: 流日志存储ID
         # @type CloudLogId: String
+        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID，当ResourceType为CCN时不填，其他类型必填。
+        # @type VpcId: String
         # @param FlowLogDescription: 流日志实例描述
         # @type FlowLogDescription: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
 
-        attr_accessor :VpcId, :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :FlowLogDescription, :Tags
+        attr_accessor :FlowLogName, :ResourceType, :ResourceId, :TrafficType, :CloudLogId, :VpcId, :FlowLogDescription, :Tags
         
-        def initialize(vpcid=nil, flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, flowlogdescription=nil, tags=nil)
-          @VpcId = vpcid
+        def initialize(flowlogname=nil, resourcetype=nil, resourceid=nil, traffictype=nil, cloudlogid=nil, vpcid=nil, flowlogdescription=nil, tags=nil)
           @FlowLogName = flowlogname
           @ResourceType = resourcetype
           @ResourceId = resourceid
           @TrafficType = traffictype
           @CloudLogId = cloudlogid
+          @VpcId = vpcid
           @FlowLogDescription = flowlogdescription
           @Tags = tags
         end
 
         def deserialize(params)
-          @VpcId = params['VpcId']
           @FlowLogName = params['FlowLogName']
           @ResourceType = params['ResourceType']
           @ResourceId = params['ResourceId']
           @TrafficType = params['TrafficType']
           @CloudLogId = params['CloudLogId']
+          @VpcId = params['VpcId']
           @FlowLogDescription = params['FlowLogDescription']
           unless params['Tags'].nil?
             @Tags = []
@@ -4675,21 +4675,21 @@ module TencentCloud
 
       # DeleteFlowLog请求参数结构体
       class DeleteFlowLogRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID
-        # @type VpcId: String
         # @param FlowLogId: 流日志唯一ID
         # @type FlowLogId: String
+        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID，删除云联网流日志时，可不填，其他流日志类型必填。
+        # @type VpcId: String
 
-        attr_accessor :VpcId, :FlowLogId
+        attr_accessor :FlowLogId, :VpcId
         
-        def initialize(vpcid=nil, flowlogid=nil)
-          @VpcId = vpcid
+        def initialize(flowlogid=nil, vpcid=nil)
           @FlowLogId = flowlogid
+          @VpcId = vpcid
         end
 
         def deserialize(params)
-          @VpcId = params['VpcId']
           @FlowLogId = params['FlowLogId']
+          @VpcId = params['VpcId']
         end
       end
 
@@ -10683,7 +10683,7 @@ module TencentCloud
         # @type FlowLogId: String
         # @param FlowLogName: 流日志实例名字
         # @type FlowLogName: String
-        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE
+        # @param ResourceType: 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN
         # @type ResourceType: String
         # @param ResourceId: 资源唯一ID
         # @type ResourceId: String
@@ -12290,27 +12290,27 @@ module TencentCloud
 
       # ModifyFlowLogAttribute请求参数结构体
       class ModifyFlowLogAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID
-        # @type VpcId: String
         # @param FlowLogId: 流日志唯一ID
         # @type FlowLogId: String
+        # @param VpcId: 私用网络ID或者统一ID，建议使用统一ID，修改云联网流日志属性时可不填，其他流日志类型必填。
+        # @type VpcId: String
         # @param FlowLogName: 流日志实例名字
         # @type FlowLogName: String
         # @param FlowLogDescription: 流日志实例描述
         # @type FlowLogDescription: String
 
-        attr_accessor :VpcId, :FlowLogId, :FlowLogName, :FlowLogDescription
+        attr_accessor :FlowLogId, :VpcId, :FlowLogName, :FlowLogDescription
         
-        def initialize(vpcid=nil, flowlogid=nil, flowlogname=nil, flowlogdescription=nil)
-          @VpcId = vpcid
+        def initialize(flowlogid=nil, vpcid=nil, flowlogname=nil, flowlogdescription=nil)
           @FlowLogId = flowlogid
+          @VpcId = vpcid
           @FlowLogName = flowlogname
           @FlowLogDescription = flowlogdescription
         end
 
         def deserialize(params)
-          @VpcId = params['VpcId']
           @FlowLogId = params['FlowLogId']
+          @VpcId = params['VpcId']
           @FlowLogName = params['FlowLogName']
           @FlowLogDescription = params['FlowLogDescription']
         end

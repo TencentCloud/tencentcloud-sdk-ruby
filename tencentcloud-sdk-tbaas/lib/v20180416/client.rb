@@ -711,6 +711,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用长安链合约执行交易
+
+        # @param request: Request instance for InvokeChainMakerContract.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::InvokeChainMakerContractRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::InvokeChainMakerContractResponse`
+        def InvokeChainMakerContract(request)
+          body = send_request('InvokeChainMakerContract', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InvokeChainMakerContractResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询交易
 
         # @param request: Request instance for Query.
@@ -721,6 +745,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询长安链指定高度区块的交易
+
+        # @param request: Request instance for QueryChainMakerBlockTransaction.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::QueryChainMakerBlockTransactionRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::QueryChainMakerBlockTransactionResponse`
+        def QueryChainMakerBlockTransaction(request)
+          body = send_request('QueryChainMakerBlockTransaction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryChainMakerBlockTransactionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用长安链合约查询
+
+        # @param request: Request instance for QueryChainMakerContract.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::QueryChainMakerContractRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::QueryChainMakerContractResponse`
+        def QueryChainMakerContract(request)
+          body = send_request('QueryChainMakerContract', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryChainMakerContractResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过交易ID查询长安链交易
+
+        # @param request: Request instance for QueryChainMakerTransaction.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::QueryChainMakerTransactionRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::QueryChainMakerTransactionResponse`
+        def QueryChainMakerTransaction(request)
+          body = send_request('QueryChainMakerTransaction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryChainMakerTransactionResponse.new
             model.deserialize(response['Response'])
             model
           else

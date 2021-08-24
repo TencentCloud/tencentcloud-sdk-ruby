@@ -3152,7 +3152,7 @@ module TencentCloud
         # @type AccessType: Integer
         # @param RouteId: 路由ID
         # @type RouteId: Integer
-        # @param VipType: vip网络类型（1:外网TGW  2:基础网络 3:VPC网络 4:腾讯云支持环境(一般用于内部实例) 5:SSL外网访问方式访问 6:黑石环境vpc）
+        # @param VipType: vip网络类型（1:外网TGW  2:基础网络 3:VPC网络 4:支撑网络(标准版) 5:SSL外网访问方式访问 6:黑石环境vpc 7:支撑网络(专业版)）
         # @type VipType: Integer
         # @param VipList: 虚拟IP列表
         # @type VipList: Array
@@ -3162,16 +3162,20 @@ module TencentCloud
         # @param DomainPort: 域名port
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainPort: Integer
+        # @param DeleteTimestamp: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteTimestamp: String
 
-        attr_accessor :AccessType, :RouteId, :VipType, :VipList, :Domain, :DomainPort
+        attr_accessor :AccessType, :RouteId, :VipType, :VipList, :Domain, :DomainPort, :DeleteTimestamp
         
-        def initialize(accesstype=nil, routeid=nil, viptype=nil, viplist=nil, domain=nil, domainport=nil)
+        def initialize(accesstype=nil, routeid=nil, viptype=nil, viplist=nil, domain=nil, domainport=nil, deletetimestamp=nil)
           @AccessType = accesstype
           @RouteId = routeid
           @VipType = viptype
           @VipList = viplist
           @Domain = domain
           @DomainPort = domainport
+          @DeleteTimestamp = deletetimestamp
         end
 
         def deserialize(params)
@@ -3188,6 +3192,7 @@ module TencentCloud
           end
           @Domain = params['Domain']
           @DomainPort = params['DomainPort']
+          @DeleteTimestamp = params['DeleteTimestamp']
         end
       end
 

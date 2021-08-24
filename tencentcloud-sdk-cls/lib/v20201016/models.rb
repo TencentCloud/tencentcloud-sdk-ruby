@@ -456,6 +456,26 @@ module TencentCloud
         end
       end
 
+      # 日志分析的列属性
+      class Column < TencentCloud::Common::AbstractModel
+        # @param Name: 列的名字
+        # @type Name: String
+        # @param Type: 列的属性
+        # @type Type: String
+
+        attr_accessor :Name, :Type
+        
+        def initialize(name=nil, type=nil)
+          @Name = name
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+        end
+      end
+
       # 投递日志的压缩配置
       class CompressInfo < TencentCloud::Common::AbstractModel
         # @param Format: 压缩格式，支持gzip、lzop和none不压缩
@@ -909,7 +929,7 @@ module TencentCloud
         # @type TopicId: String
         # @param Query: 日志导出检索语句
         # @type Query: String
-        # @param Count: 日志导出数量
+        # @param Count: 日志导出数量,  最大值1000万
         # @type Count: Integer
         # @param From: 日志导出起始时间，毫秒时间戳
         # @type From: Integer
@@ -4572,10 +4592,12 @@ module TencentCloud
         # @type Context: String
         # @param Sort: 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         # @type Sort: String
+        # @param UseNewAnalysis: 为true代表使用新检索,响应参数AnalysisRecords和Columns有效， 为false时代表使用老检索方式, AnalysisResults和ColNames有效
+        # @type UseNewAnalysis: Boolean
 
-        attr_accessor :TopicId, :From, :To, :Query, :Limit, :Context, :Sort
+        attr_accessor :TopicId, :From, :To, :Query, :Limit, :Context, :Sort, :UseNewAnalysis
         
-        def initialize(topicid=nil, from=nil, to=nil, query=nil, limit=nil, context=nil, sort=nil)
+        def initialize(topicid=nil, from=nil, to=nil, query=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil)
           @TopicId = topicid
           @From = from
           @To = to
@@ -4583,6 +4605,7 @@ module TencentCloud
           @Limit = limit
           @Context = context
           @Sort = sort
+          @UseNewAnalysis = usenewanalysis
         end
 
         def deserialize(params)
@@ -4593,6 +4616,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Context = params['Context']
           @Sort = params['Sort']
+          @UseNewAnalysis = params['UseNewAnalysis']
         end
       end
 
@@ -4613,18 +4637,26 @@ module TencentCloud
         # @param AnalysisResults: 日志分析结果；当Analysis为False时，可能返回为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisResults: Array
+        # @param AnalysisRecords: 新的日志分析结果; UseNewAnalysis为true有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AnalysisRecords: Array
+        # @param Columns: 日志分析的列属性; UseNewAnalysis为true有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
+        attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :AnalysisRecords, :Columns, :RequestId
         
-        def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
+        def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, analysisrecords=nil, columns=nil, requestid=nil)
           @Context = context
           @ListOver = listover
           @Analysis = analysis
           @ColNames = colnames
           @Results = results
           @AnalysisResults = analysisresults
+          @AnalysisRecords = analysisrecords
+          @Columns = columns
           @RequestId = requestid
         end
 
@@ -4647,6 +4679,15 @@ module TencentCloud
               logitems_tmp = LogItems.new
               logitems_tmp.deserialize(i)
               @AnalysisResults << logitems_tmp
+            end
+          end
+          @AnalysisRecords = params['AnalysisRecords']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              column_tmp = Column.new
+              column_tmp.deserialize(i)
+              @Columns << column_tmp
             end
           end
           @RequestId = params['RequestId']

@@ -6000,6 +6000,54 @@ module TencentCloud
         end
       end
 
+      # ModifyAccountHost请求参数结构体
+      class ModifyAccountHostRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param User: 账户的名称
+        # @type User: String
+        # @param Host: 账户的旧主机
+        # @type Host: String
+        # @param NewHost: 账户的新主机
+        # @type NewHost: String
+
+        attr_accessor :InstanceId, :User, :Host, :NewHost
+        
+        def initialize(instanceid=nil, user=nil, host=nil, newhost=nil)
+          @InstanceId = instanceid
+          @User = user
+          @Host = host
+          @NewHost = newhost
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @Host = params['Host']
+          @NewHost = params['NewHost']
+        end
+      end
+
+      # ModifyAccountHost返回参数结构体
+      class ModifyAccountHostResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAccountMaxUserConnections请求参数结构体
       class ModifyAccountMaxUserConnectionsRequest < TencentCloud::Common::AbstractModel
         # @param Accounts: 云数据库账号。

@@ -1907,14 +1907,23 @@ module TencentCloud
         # @type Volume: Integer
         # @param OplogSize: 实例配置变更后oplog的大小，单位：GB，默认为磁盘空间的10%，允许设置的最小值为磁盘的10%，最大值为磁盘的90%
         # @type OplogSize: Integer
+        # @param NodeNum: 实例变更后的节点数，取值范围具体参照查询云数据库的售卖规格返回参数。默认为不变更节点数
+        # @type NodeNum: Integer
+        # @param ReplicateSetNum: 实例变更后的分片数，取值范围具体参照查询云数据库的售卖规格返回参数。只能增加不能减少，默认为不变更分片数
+        # @type ReplicateSetNum: Integer
+        # @param InMaintenance: 实例配置变更的切换时间，参数为：0(默认)、1。0-调整完成时，1-维护时间内。注：调整节点数和分片数不支持在【维护时间内】变更。
+        # @type InMaintenance: Integer
 
-        attr_accessor :InstanceId, :Memory, :Volume, :OplogSize
+        attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance
         
-        def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
           @OplogSize = oplogsize
+          @NodeNum = nodenum
+          @ReplicateSetNum = replicatesetnum
+          @InMaintenance = inmaintenance
         end
 
         def deserialize(params)
@@ -1922,6 +1931,9 @@ module TencentCloud
           @Memory = params['Memory']
           @Volume = params['Volume']
           @OplogSize = params['OplogSize']
+          @NodeNum = params['NodeNum']
+          @ReplicateSetNum = params['ReplicateSetNum']
+          @InMaintenance = params['InMaintenance']
         end
       end
 

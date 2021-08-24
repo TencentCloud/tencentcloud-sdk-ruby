@@ -17,6 +17,54 @@
 module TencentCloud
   module Gme
     module V20180711
+      # 年龄语音识别子任务
+      class AgeDetectTask < TencentCloud::Common::AbstractModel
+        # @param DataId: 数据唯一ID
+        # @type DataId: String
+        # @param Url: 数据文件的url，为 urlencode 编码,音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg
+        # @type Url: String
+
+        attr_accessor :DataId, :Url
+        
+        def initialize(dataid=nil, url=nil)
+          @DataId = dataid
+          @Url = url
+        end
+
+        def deserialize(params)
+          @DataId = params['DataId']
+          @Url = params['Url']
+        end
+      end
+
+      # 年龄语音任务结果
+      class AgeDetectTaskResult < TencentCloud::Common::AbstractModel
+        # @param DataId: 数据唯一ID
+        # @type DataId: String
+        # @param Url: 数据文件的url
+        # @type Url: String
+        # @param Status: 任务状态，0: 已创建，1:运行中，2:正常结束，3:异常结束，4:运行超时
+        # @type Status: Integer
+        # @param Age: 任务结果：0: 成年，1:未成年，100:未知
+        # @type Age: Integer
+
+        attr_accessor :DataId, :Url, :Status, :Age
+        
+        def initialize(dataid=nil, url=nil, status=nil, age=nil)
+          @DataId = dataid
+          @Url = url
+          @Status = status
+          @Age = age
+        end
+
+        def deserialize(params)
+          @DataId = params['DataId']
+          @Url = params['Url']
+          @Status = params['Status']
+          @Age = params['Age']
+        end
+      end
+
       # 应用用量统计数据
       class AppStatisticsItem < TencentCloud::Common::AbstractModel
         # @param RealtimeSpeechStatisticsItem: 实时语音统计数据
@@ -184,6 +232,59 @@ module TencentCloud
         end
       end
 
+      # CreateAgeDetectTask请求参数结构体
+      class CreateAgeDetectTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用id
+        # @type BizId: Integer
+        # @param Tasks: 语音检测子任务列表，列表最多支持100个检测子任务。结构体中包含：
+        # <li>DataId：数据的唯一ID</li>
+        # <li>Url：数据文件的url，为 urlencode 编码，流式则为拉流地址</li>
+        # @type Tasks: Array
+        # @param Callback: 任务结束时gme后台会自动触发回调
+        # @type Callback: String
+
+        attr_accessor :BizId, :Tasks, :Callback
+        
+        def initialize(bizid=nil, tasks=nil, callback=nil)
+          @BizId = bizid
+          @Tasks = tasks
+          @Callback = callback
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              agedetecttask_tmp = AgeDetectTask.new
+              agedetecttask_tmp.deserialize(i)
+              @Tasks << agedetecttask_tmp
+            end
+          end
+          @Callback = params['Callback']
+        end
+      end
+
+      # CreateAgeDetectTask返回参数结构体
+      class CreateAgeDetectTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 本次任务提交后唯一id，用于获取任务运行结果
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateApp请求参数结构体
       class CreateAppRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称
@@ -294,6 +395,61 @@ module TencentCloud
             @VoiceFilterConf = VoiceFilterConf.new
             @VoiceFilterConf.deserialize(params['VoiceFilterConf'])
           end
+        end
+      end
+
+      # DescribeAgeDetectTask请求参数结构体
+      class DescribeAgeDetectTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用id
+        # @type BizId: Integer
+        # @param TaskId: 创建年龄语音识别任务时返回的taskid
+        # @type TaskId: String
+
+        attr_accessor :BizId, :TaskId
+        
+        def initialize(bizid=nil, taskid=nil)
+          @BizId = bizid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @BizId = params['BizId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAgeDetectTask返回参数结构体
+      class DescribeAgeDetectTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param Results: 语音检测返回。Results 字段是 JSON 数组，每一个元素包含：
+        # DataId： 请求中对应的 DataId。
+        # Url ：该请求中对应的 Url。
+        # Status ：子任务状态，0:已创建，1:运行中，2:已完成，3:任务异常，4:任务超时。
+        # Age ：子任务完成后的结果，0:成年人，1:未成年人，100:未知结果。
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Results, :RequestId
+        
+        def initialize(taskid=nil, results=nil, requestid=nil)
+          @TaskId = taskid
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              agedetecttaskresult_tmp = AgeDetectTaskResult.new
+              agedetecttaskresult_tmp.deserialize(i)
+              @Results << agedetecttaskresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -888,7 +1044,7 @@ module TencentCloud
       class RealtimeSpeechConf < TencentCloud::Common::AbstractModel
         # @param Status: 实时语音服务开关，取值：open/close
         # @type Status: String
-        # @param Quality: 实时语音音质类型，取值：high-高音质，ordinary-普通音质。默认高音质。普通音质仅白名单开放，如需要普通音质，请联系腾讯云商务。
+        # @param Quality: 实时语音音质类型，取值：high-高音质
         # @type Quality: String
 
         attr_accessor :Status, :Quality
