@@ -4613,6 +4613,63 @@ module TencentCloud
         end
       end
 
+      # DownloadReconciliationUrl请求参数结构体
+      class DownloadReconciliationUrlRequest < TencentCloud::Common::AbstractModel
+        # @param MainAppId: 平台应用ID
+        # @type MainAppId: String
+        # @param AppCode: 平台代码
+        # @type AppCode: String
+        # @param BillDate: 账单日期，yyyy-MM-dd
+        # @type BillDate: String
+        # @param SubAppId: 商户或者代理商ID
+        # @type SubAppId: String
+
+        attr_accessor :MainAppId, :AppCode, :BillDate, :SubAppId
+        
+        def initialize(mainappid=nil, appcode=nil, billdate=nil, subappid=nil)
+          @MainAppId = mainappid
+          @AppCode = appcode
+          @BillDate = billdate
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @MainAppId = params['MainAppId']
+          @AppCode = params['AppCode']
+          @BillDate = params['BillDate']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DownloadReconciliationUrl返回参数结构体
+      class DownloadReconciliationUrlResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadUrl: 下载地址
+        # @type DownloadUrl: String
+        # @param HashType: hash类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HashType: String
+        # @param HashValue: hash值
+        # @type HashValue: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadUrl, :HashType, :HashValue, :RequestId
+        
+        def initialize(downloadurl=nil, hashtype=nil, hashvalue=nil, requestid=nil)
+          @DownloadUrl = downloadurl
+          @HashType = hashtype
+          @HashValue = hashvalue
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadUrl = params['DownloadUrl']
+          @HashType = params['HashType']
+          @HashValue = params['HashValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ExecuteMemberTransaction请求参数结构体
       class ExecuteMemberTransactionRequest < TencentCloud::Common::AbstractModel
         # @param RequestType: 请求类型此接口固定填：MemberTransactionReq

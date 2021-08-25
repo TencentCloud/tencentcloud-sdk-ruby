@@ -682,6 +682,53 @@ module TencentCloud
         end
       end
 
+      # DescribeMusicSaleStatus请求参数结构体
+      class DescribeMusicSaleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param MusicIds: 歌曲Id集合，可传单个，也可传多个，上线查询单次50个
+        # @type MusicIds: Array
+        # @param PurchaseType: 查询哪个渠道的数据，1为曲库包，2为单曲
+        # @type PurchaseType: Integer
+
+        attr_accessor :MusicIds, :PurchaseType
+        
+        def initialize(musicids=nil, purchasetype=nil)
+          @MusicIds = musicids
+          @PurchaseType = purchasetype
+        end
+
+        def deserialize(params)
+          @MusicIds = params['MusicIds']
+          @PurchaseType = params['PurchaseType']
+        end
+      end
+
+      # DescribeMusicSaleStatus返回参数结构体
+      class DescribeMusicSaleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param MusicStatusSet: musicId对应歌曲状态
+        # @type MusicStatusSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MusicStatusSet, :RequestId
+        
+        def initialize(musicstatusset=nil, requestid=nil)
+          @MusicStatusSet = musicstatusset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MusicStatusSet'].nil?
+            @MusicStatusSet = []
+            params['MusicStatusSet'].each do |i|
+              musicstatus_tmp = MusicStatus.new
+              musicstatus_tmp.deserialize(i)
+              @MusicStatusSet << musicstatus_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePackageItems请求参数结构体
       class DescribePackageItemsRequest < TencentCloud::Common::AbstractModel
         # @param OrderId: 订单id，从获取已购曲库包列表中获取
@@ -1206,6 +1253,26 @@ module TencentCloud
           @Tags = params['Tags']
           @LyricUrl = params['LyricUrl']
           @WaveformUrl = params['WaveformUrl']
+        end
+      end
+
+      # 返回单曲页面歌曲是否在售状态
+      class MusicStatus < TencentCloud::Common::AbstractModel
+        # @param MusicId: 歌曲Id
+        # @type MusicId: String
+        # @param SaleStatus: 在售状态,0为在售，1为临时下架，2为永久下架
+        # @type SaleStatus: Integer
+
+        attr_accessor :MusicId, :SaleStatus
+        
+        def initialize(musicid=nil, salestatus=nil)
+          @MusicId = musicid
+          @SaleStatus = salestatus
+        end
+
+        def deserialize(params)
+          @MusicId = params['MusicId']
+          @SaleStatus = params['SaleStatus']
         end
       end
 

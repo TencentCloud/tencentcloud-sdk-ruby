@@ -5199,6 +5199,57 @@ module TencentCloud
         end
       end
 
+      # ExportScanTaskDetails请求参数结构体
+      class ExportScanTaskDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 本次检测的任务id（不同于出参的导出本次检测Excel的任务Id）
+        # @type TaskId: Integer
+        # @param ModuleType: 模块类型，当前提供：Malware 木马 , Vul 漏洞 , Baseline 基线
+        # @type ModuleType: String
+        # @param Filters: 过滤参数：ipOrAlias（服务器名/ip）
+        # @type Filters: Array
+
+        attr_accessor :TaskId, :ModuleType, :Filters
+        
+        def initialize(taskid=nil, moduletype=nil, filters=nil)
+          @TaskId = taskid
+          @ModuleType = moduletype
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ModuleType = params['ModuleType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+        end
+      end
+
+      # ExportScanTaskDetails返回参数结构体
+      class ExportScanTaskDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 导出本次检测Excel的任务Id（不同于入参的本次检测任务id）
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ExportTasks请求参数结构体
       class ExportTasksRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID

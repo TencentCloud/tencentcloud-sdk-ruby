@@ -270,10 +270,14 @@ module TencentCloud
         # @type ExecTime: Integer
         # @param AffectRows: 影响行数。表示筛选影响行数大于该值的审计日志。
         # @type AffectRows: Integer
+        # @param SqlTypes: SQL 类型。支持多个类型同时查询。目前支持："SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "DROP", "ALTER", "SET", "REPLACE", "EXECUTE"。
+        # @type SqlTypes: Array
+        # @param Sqls: SQL 语句。支持传递多个sql语句。
+        # @type Sqls: Array
 
-        attr_accessor :Host, :User, :DBName, :TableName, :PolicyName, :Sql, :SqlType, :ExecTime, :AffectRows
+        attr_accessor :Host, :User, :DBName, :TableName, :PolicyName, :Sql, :SqlType, :ExecTime, :AffectRows, :SqlTypes, :Sqls
         
-        def initialize(host=nil, user=nil, dbname=nil, tablename=nil, policyname=nil, sql=nil, sqltype=nil, exectime=nil, affectrows=nil)
+        def initialize(host=nil, user=nil, dbname=nil, tablename=nil, policyname=nil, sql=nil, sqltype=nil, exectime=nil, affectrows=nil, sqltypes=nil, sqls=nil)
           @Host = host
           @User = user
           @DBName = dbname
@@ -283,6 +287,8 @@ module TencentCloud
           @SqlType = sqltype
           @ExecTime = exectime
           @AffectRows = affectrows
+          @SqlTypes = sqltypes
+          @Sqls = sqls
         end
 
         def deserialize(params)
@@ -295,6 +301,8 @@ module TencentCloud
           @SqlType = params['SqlType']
           @ExecTime = params['ExecTime']
           @AffectRows = params['AffectRows']
+          @SqlTypes = params['SqlTypes']
+          @Sqls = params['Sqls']
         end
       end
 

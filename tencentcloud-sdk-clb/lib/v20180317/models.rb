@@ -4642,16 +4642,19 @@ module TencentCloud
         # @type LoadBalancerPassToTarget: Boolean
         # @param SnatPro: 是否开启SnatPro
         # @type SnatPro: Boolean
+        # @param DeleteProtect: 是否开启删除保护
+        # @type DeleteProtect: Boolean
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :TargetRegionInfo, :InternetChargeInfo, :LoadBalancerPassToTarget, :SnatPro
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :TargetRegionInfo, :InternetChargeInfo, :LoadBalancerPassToTarget, :SnatPro, :DeleteProtect
         
-        def initialize(loadbalancerid=nil, loadbalancername=nil, targetregioninfo=nil, internetchargeinfo=nil, loadbalancerpasstotarget=nil, snatpro=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, targetregioninfo=nil, internetchargeinfo=nil, loadbalancerpasstotarget=nil, snatpro=nil, deleteprotect=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @TargetRegionInfo = targetregioninfo
           @InternetChargeInfo = internetchargeinfo
           @LoadBalancerPassToTarget = loadbalancerpasstotarget
           @SnatPro = snatpro
+          @DeleteProtect = deleteprotect
         end
 
         def deserialize(params)
@@ -4667,6 +4670,7 @@ module TencentCloud
           end
           @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
           @SnatPro = params['SnatPro']
+          @DeleteProtect = params['DeleteProtect']
         end
       end
 

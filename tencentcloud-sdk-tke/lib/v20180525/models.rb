@@ -4746,10 +4746,13 @@ module TencentCloud
         # @param DesiredPodNumber: 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DesiredPodNumber: Integer
+        # @param PreStartUserScript: base64 编码的用户脚本，在初始化节点之前执行，目前只对添加已有节点生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreStartUserScript: String
 
-        attr_accessor :MountTarget, :DockerGraphPath, :UserScript, :Unschedulable, :Labels, :DataDisks, :ExtraArgs, :DesiredPodNumber
+        attr_accessor :MountTarget, :DockerGraphPath, :UserScript, :Unschedulable, :Labels, :DataDisks, :ExtraArgs, :DesiredPodNumber, :PreStartUserScript
         
-        def initialize(mounttarget=nil, dockergraphpath=nil, userscript=nil, unschedulable=nil, labels=nil, datadisks=nil, extraargs=nil, desiredpodnumber=nil)
+        def initialize(mounttarget=nil, dockergraphpath=nil, userscript=nil, unschedulable=nil, labels=nil, datadisks=nil, extraargs=nil, desiredpodnumber=nil, prestartuserscript=nil)
           @MountTarget = mounttarget
           @DockerGraphPath = dockergraphpath
           @UserScript = userscript
@@ -4758,6 +4761,7 @@ module TencentCloud
           @DataDisks = datadisks
           @ExtraArgs = extraargs
           @DesiredPodNumber = desiredpodnumber
+          @PreStartUserScript = prestartuserscript
         end
 
         def deserialize(params)
@@ -4786,6 +4790,7 @@ module TencentCloud
             @ExtraArgs.deserialize(params['ExtraArgs'])
           end
           @DesiredPodNumber = params['DesiredPodNumber']
+          @PreStartUserScript = params['PreStartUserScript']
         end
       end
 
@@ -6604,12 +6609,17 @@ module TencentCloud
 
       # 描述了 “云自动化助手” 服务相关的信息
       class RunAutomationServiceEnabled < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
+        # @type Enabled: Boolean
 
+        attr_accessor :Enabled
         
-        def initialize()
+        def initialize(enabled=nil)
+          @Enabled = enabled
         end
 
         def deserialize(params)
+          @Enabled = params['Enabled']
         end
       end
 

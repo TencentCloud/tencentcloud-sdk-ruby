@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据音乐信息查询音乐是否在售
+
+        # @param request: Request instance for DescribeMusicSaleStatus.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribeMusicSaleStatusRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribeMusicSaleStatusResponse`
+        def DescribeMusicSaleStatus(request)
+          body = send_request('DescribeMusicSaleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMusicSaleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取曲库包下已核销歌曲列表接口
 
         # @param request: Request instance for DescribePackageItems.

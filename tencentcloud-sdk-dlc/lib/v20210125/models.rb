@@ -2095,7 +2095,7 @@ module TencentCloud
         end
       end
 
-      # 任务实例。
+      # 任务实例
       class TaskResponseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 任务所属Database的名称。
         # @type DatabaseName: String
@@ -2130,10 +2130,13 @@ module TencentCloud
         # @type OutputMessage: String
         # @param TaskType: 执行SQL的引擎类型
         # @type TaskType: String
+        # @param ProgressDetail: 任务进度明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgressDetail: String
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail
         
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -2150,6 +2153,7 @@ module TencentCloud
           @Percentage = percentage
           @OutputMessage = outputmessage
           @TaskType = tasktype
+          @ProgressDetail = progressdetail
         end
 
         def deserialize(params)
@@ -2169,6 +2173,7 @@ module TencentCloud
           @Percentage = params['Percentage']
           @OutputMessage = params['OutputMessage']
           @TaskType = params['TaskType']
+          @ProgressDetail = params['ProgressDetail']
         end
       end
 

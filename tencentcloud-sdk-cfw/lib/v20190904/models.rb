@@ -3866,11 +3866,11 @@ module TencentCloud
         # @type OrderIndex: Integer
         # @param SourceId: 访问源
         # @type SourceId: String
-        # @param SourceType: 访问源类型，默认为0，1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 100:资源组
+        # @param SourceType: 访问源类型，默认为0，1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 7: 参数模板, 100: 资源组
         # @type SourceType: Integer
         # @param TargetId: 访问目的
         # @type TargetId: String
-        # @param TargetType: 访问目的类型，默认为0，1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 100:资源组
+        # @param TargetType: 访问目的类型，默认为0，1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 7: 参数模板, 100:资源组
         # @type TargetType: Integer
         # @param Protocol: 协议
         # @type Protocol: String
@@ -3909,7 +3909,7 @@ module TencentCloud
         # @param ServiceTemplateId: 端口协议类型参数模板id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplateId: String
-        # @param BothWayInfo: 当BothWay为0的时候，填空，当BothWay为1的时候，为JSON字符串，数据来源于DescribeBothWayInstanceListByIp个接口，如果该接口返回数据为空，则不支持双向下发
+        # @param BothWayInfo: 生成双向下发规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BothWayInfo: Array
         # @param Direction: 方向，0：出站，1：入站，默认1

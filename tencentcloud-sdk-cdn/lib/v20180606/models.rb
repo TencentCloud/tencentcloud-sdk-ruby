@@ -1513,6 +1513,43 @@ module TencentCloud
         end
       end
 
+      # CC攻击Top数据
+      class CcTopData < TencentCloud::Common::AbstractModel
+        # @param Ip: 客户端Ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Url: 访问URL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param UserAgent: 客户端UserAgent
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAgent: String
+        # @param Value: 请求数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Integer
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+
+        attr_accessor :Ip, :Url, :UserAgent, :Value, :Domain
+        
+        def initialize(ip=nil, url=nil, useragent=nil, value=nil, domain=nil)
+          @Ip = ip
+          @Url = url
+          @UserAgent = useragent
+          @Value = value
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Url = params['Url']
+          @UserAgent = params['UserAgent']
+          @Value = params['Value']
+          @Domain = params['Domain']
+        end
+      end
+
       # 访问明细数据类型
       class CdnData < TencentCloud::Common::AbstractModel
         # @param Metric: 查询指定的指标名称：
@@ -2279,6 +2316,26 @@ module TencentCloud
           @Record = params['Record']
           @RecordType = params['RecordType']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DDoS攻击Top数据
+      class DDoSTopData < TencentCloud::Common::AbstractModel
+        # @param AttackType: 攻击类型
+        # @type AttackType: String
+        # @param Value: 攻击带宽，单位：bps
+        # @type Value: Integer
+
+        attr_accessor :AttackType, :Value
+        
+        def initialize(attacktype=nil, value=nil)
+          @AttackType = attacktype
+          @Value = value
+        end
+
+        def deserialize(params)
+          @AttackType = params['AttackType']
+          @Value = params['Value']
         end
       end
 
@@ -5055,6 +5112,46 @@ module TencentCloud
         end
       end
 
+      # 域名及其他指标Bot次数
+      class DomainBotCount < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Count: BOT次数
+        # @type Count: Integer
+        # @param Value: Top指标值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Country: 国家/地区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param Isp: 运营商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Isp: String
+
+        attr_accessor :Domain, :Count, :Value, :Country, :Province, :Isp
+        
+        def initialize(domain=nil, count=nil, value=nil, country=nil, province=nil, isp=nil)
+          @Domain = domain
+          @Count = count
+          @Value = value
+          @Country = country
+          @Province = province
+          @Isp = isp
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Count = params['Count']
+          @Value = params['Value']
+          @Country = params['Country']
+          @Province = params['Province']
+          @Isp = params['Isp']
+        end
+      end
+
       # 域名查询时过滤条件。
       class DomainFilter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤字段名，支持的列表如下：
@@ -6244,6 +6341,203 @@ module TencentCloud
         end
       end
 
+      # ListTopBotData请求参数结构体
+      class ListTopBotDataRequest < TencentCloud::Common::AbstractModel
+        # @param TopCount: 获取Top量，取值范围[1-10]
+        # @type TopCount: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Metric: session表示查询BOT会话的Top信息
+        # ip表示查询BOT客户端IP的Top信息
+
+        # 不填代表获取会话信息
+        # @type Metric: String
+        # @param Domain: 域名，仅当Metric=ip时有效，不填写表示使用Domains参数
+        # @type Domain: String
+        # @param Domains: 域名，仅当Metric=ip，并且Domain为空时有效，不填写表示获取AppID信息
+        # @type Domains: Array
+
+        attr_accessor :TopCount, :StartTime, :EndTime, :Metric, :Domain, :Domains
+        
+        def initialize(topcount=nil, starttime=nil, endtime=nil, metric=nil, domain=nil, domains=nil)
+          @TopCount = topcount
+          @StartTime = starttime
+          @EndTime = endtime
+          @Metric = metric
+          @Domain = domain
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @TopCount = params['TopCount']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Metric = params['Metric']
+          @Domain = params['Domain']
+          @Domains = params['Domains']
+        end
+      end
+
+      # ListTopBotData返回参数结构体
+      class ListTopBotDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 域名BOT次数列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              domainbotcount_tmp = DomainBotCount.new
+              domainbotcount_tmp.deserialize(i)
+              @Data << domainbotcount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListTopCcData请求参数结构体
+      class ListTopCcDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询Top数据的开始时间，格式为：2020-01-01 00:00:00
+        # @type StartTime: String
+        # @param EndTime: 查询Top数据的结束时间，格式为：2020-01-01 23:59:59
+        # 支持 90 天内数据查询，不传此参数，表示查当天数据
+        # 时间跨度要小于等于7天
+        # @type EndTime: String
+        # @param Domain: 域名，不传此参数，表示查询账号级别数据
+        # @type Domain: String
+        # @param Metric: 统计指标：
+        # ip_url : Top IP+URL 默认值
+        # ua :  Top UA
+        # @type Metric: String
+        # @param Source: cdn表示CDN数据，默认值
+        # ecdn表示ECDN数据
+        # @type Source: String
+        # @param Domains: 域名列表，不传此参数，表示查询账号级别数据
+        # @type Domains: Array
+        # @param ActionName: 执行动作，取值为：intercept/redirect/observe
+        # 分别表示：拦截/重定向/观察
+        # 为空表示查询所有执行动作数据
+        # @type ActionName: String
+        # @param Area: 地域：mainland或overseas，表示国内或海外，不填写默认表示国内
+        # @type Area: String
+
+        attr_accessor :StartTime, :EndTime, :Domain, :Metric, :Source, :Domains, :ActionName, :Area
+        
+        def initialize(starttime=nil, endtime=nil, domain=nil, metric=nil, source=nil, domains=nil, actionname=nil, area=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Domain = domain
+          @Metric = metric
+          @Source = source
+          @Domains = domains
+          @ActionName = actionname
+          @Area = area
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Domain = params['Domain']
+          @Metric = params['Metric']
+          @Source = params['Source']
+          @Domains = params['Domains']
+          @ActionName = params['ActionName']
+          @Area = params['Area']
+        end
+      end
+
+      # ListTopCcData返回参数结构体
+      class ListTopCcDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: Top数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              cctopdata_tmp = CcTopData.new
+              cctopdata_tmp.deserialize(i)
+              @Data << cctopdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListTopDDoSData请求参数结构体
+      class ListTopDDoSDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询Top数据的开始时间，格式为：2020-01-01 00:00:00
+        # @type StartTime: String
+        # @param EndTime: 查询Top数据的结束时间，格式为：2020-01-01 23:59:59
+        # 支持 90 天内数据查询，时间跨度要小于等于7天
+        # @type EndTime: String
+        # @param TopCount: 查询Top的数量，不填默认值为10
+        # @type TopCount: Integer
+
+        attr_accessor :StartTime, :EndTime, :TopCount
+        
+        def initialize(starttime=nil, endtime=nil, topcount=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @TopCount = topcount
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TopCount = params['TopCount']
+        end
+      end
+
+      # ListTopDDoSData返回参数结构体
+      class ListTopDDoSDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: DDoS Top数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              ddostopdata_tmp = DDoSTopData.new
+              ddostopdata_tmp.deserialize(i)
+              @Data << ddostopdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListTopData请求参数结构体
       class ListTopDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询起始日期：yyyy-MM-dd HH:mm:ss
@@ -6352,6 +6646,137 @@ module TencentCloud
               topdata_tmp = TopData.new
               topdata_tmp.deserialize(i)
               @Data << topdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListTopWafData请求参数结构体
+      class ListTopWafDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
+        # @type EndTime: String
+        # @param Domain: 指定域名查询，不填写查询整个AppID下数据
+        # @type Domain: String
+        # @param AttackType: 指定攻击类型
+        # 不填则查询所有攻击类型的数据总和
+        # AttackType 映射如下:
+        # "webshell" : Webshell检测防护
+        # "oa" : 常见OA漏洞防护
+        # "xss" : XSS跨站脚本攻击防护
+        # "xxe" : XXE攻击防护
+        # "webscan" : 扫描器攻击漏洞防护
+        # "cms" : 常见CMS漏洞防护
+        # "upload" : 恶意文件上传攻击防护
+        # "sql" : SQL注入攻击防护
+        # "cmd_inject": 命令/代码注入攻击防护
+        # "osc" : 开源组件漏洞防护
+        # "file_read" : 任意文件读取
+        # "ldap" : LDAP注入攻击防护
+        # "other" : 其它漏洞防护
+        # @type AttackType: String
+        # @param DefenceMode: 指定防御模式
+        # 不填则查询所有防御模式的数据总和
+        # DefenceMode 映射如下：
+        #   observe = '观察模式'
+        #   intercept = '拦截模式'
+        # @type DefenceMode: String
+        # @param Metric: 排序对象，支持以下几种形式：
+        # url：攻击目标 url 排序
+        # ip：攻击源 IP 排序
+        # attackType：攻击类型排序
+        # domain：当查询整个AppID下数据时，按照域名请求量排序
+        # @type Metric: String
+        # @param Area: 地域：mainland 或 overseas
+        # @type Area: String
+        # @param AttackTypes: 指定攻击类型列表，取值参考AttackType
+        # @type AttackTypes: Array
+        # @param Domains: 指定域名列表查询，不填写查询整个AppID下数据
+        # @type Domains: Array
+
+        attr_accessor :StartTime, :EndTime, :Domain, :AttackType, :DefenceMode, :Metric, :Area, :AttackTypes, :Domains
+        
+        def initialize(starttime=nil, endtime=nil, domain=nil, attacktype=nil, defencemode=nil, metric=nil, area=nil, attacktypes=nil, domains=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Domain = domain
+          @AttackType = attacktype
+          @DefenceMode = defencemode
+          @Metric = metric
+          @Area = area
+          @AttackTypes = attacktypes
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Domain = params['Domain']
+          @AttackType = params['AttackType']
+          @DefenceMode = params['DefenceMode']
+          @Metric = params['Metric']
+          @Area = params['Area']
+          @AttackTypes = params['AttackTypes']
+          @Domains = params['Domains']
+        end
+      end
+
+      # ListTopWafData返回参数结构体
+      class ListTopWafDataResponse < TencentCloud::Common::AbstractModel
+        # @param TopTypeData: 攻击类型统计
+        # @type TopTypeData: Array
+        # @param TopIpData: IP统计
+        # @type TopIpData: Array
+        # @param TopUrlData: URL统计
+        # @type TopUrlData: Array
+        # @param TopDomainData: 域名统计
+        # @type TopDomainData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopTypeData, :TopIpData, :TopUrlData, :TopDomainData, :RequestId
+        
+        def initialize(toptypedata=nil, topipdata=nil, topurldata=nil, topdomaindata=nil, requestid=nil)
+          @TopTypeData = toptypedata
+          @TopIpData = topipdata
+          @TopUrlData = topurldata
+          @TopDomainData = topdomaindata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TopTypeData'].nil?
+            @TopTypeData = []
+            params['TopTypeData'].each do |i|
+              scdntypedata_tmp = ScdnTypeData.new
+              scdntypedata_tmp.deserialize(i)
+              @TopTypeData << scdntypedata_tmp
+            end
+          end
+          unless params['TopIpData'].nil?
+            @TopIpData = []
+            params['TopIpData'].each do |i|
+              scdntopdata_tmp = ScdnTopData.new
+              scdntopdata_tmp.deserialize(i)
+              @TopIpData << scdntopdata_tmp
+            end
+          end
+          unless params['TopUrlData'].nil?
+            @TopUrlData = []
+            params['TopUrlData'].each do |i|
+              scdntopurldata_tmp = ScdnTopUrlData.new
+              scdntopurldata_tmp.deserialize(i)
+              @TopUrlData << scdntopurldata_tmp
+            end
+          end
+          unless params['TopDomainData'].nil?
+            @TopDomainData = []
+            params['TopDomainData'].each do |i|
+              scdntopdomaindata_tmp = ScdnTopDomainData.new
+              scdntopdomaindata_tmp.deserialize(i)
+              @TopDomainData << scdntopdomaindata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8636,6 +9061,30 @@ module TencentCloud
           @Isp = params['Isp']
           @Ip = params['Ip']
           @District = params['District']
+        end
+      end
+
+      # SCDN攻击数据Top展示
+      class ScdnTopDomainData < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Value: 请求量
+        # @type Value: Integer
+        # @param Percent: 百分比
+        # @type Percent: Float
+
+        attr_accessor :Domain, :Value, :Percent
+        
+        def initialize(domain=nil, value=nil, percent=nil)
+          @Domain = domain
+          @Value = value
+          @Percent = percent
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Value = params['Value']
+          @Percent = params['Percent']
         end
       end
 

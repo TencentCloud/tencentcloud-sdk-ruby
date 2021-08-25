@@ -2047,6 +2047,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据任务id导出指定扫描任务详情
+
+        # @param request: Request instance for ExportScanTaskDetails.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ExportScanTaskDetailsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ExportScanTaskDetailsResponse`
+        def ExportScanTaskDetails(request)
+          body = send_request('ExportScanTaskDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportScanTaskDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于异步导出数据量大的日志文件
 
         # @param request: Request instance for ExportTasks.

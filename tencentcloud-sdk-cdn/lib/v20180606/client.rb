@@ -1186,6 +1186,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取Bot攻击的Top信息
+
+        # @param request: Request instance for ListTopBotData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::ListTopBotDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::ListTopBotDataResponse`
+        def ListTopBotData(request)
+          body = send_request('ListTopBotData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListTopBotDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取CC攻击Top数据
+
+        # @param request: Request instance for ListTopCcData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::ListTopCcDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::ListTopCcDataResponse`
+        def ListTopCcData(request)
+          body = send_request('ListTopCcData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListTopCcDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取DDoS攻击Top数据
+
+        # @param request: Request instance for ListTopDDoSData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::ListTopDDoSDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::ListTopDDoSDataResponse`
+        def ListTopDDoSData(request)
+          body = send_request('ListTopDDoSData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListTopDDoSDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # ListTopData 通过入参 Metric 和 Filter 组合不同，可以查询以下排序数据：
 
         # + 依据总流量、总请求数对访问 URL 排序，从大至小返回 TOP 1000 URL
@@ -1204,6 +1276,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListTopDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Waf攻击Top数据
+
+        # @param request: Request instance for ListTopWafData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::ListTopWafDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::ListTopWafDataResponse`
+        def ListTopWafData(request)
+          body = send_request('ListTopWafData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListTopWafDataResponse.new
             model.deserialize(response['Response'])
             model
           else

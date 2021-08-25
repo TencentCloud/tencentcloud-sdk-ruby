@@ -5231,12 +5231,17 @@ module TencentCloud
 
       # 描述了 “云自动化助手” 服务相关的信息
       class RunAutomationServiceEnabled < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
+        # @type Enabled: Boolean
 
+        attr_accessor :Enabled
         
-        def initialize()
+        def initialize(enabled=nil)
+          @Enabled = enabled
         end
 
         def deserialize(params)
+          @Enabled = params['Enabled']
         end
       end
 
