@@ -5578,7 +5578,7 @@ module TencentCloud
         # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPAddressVersion: String
-        # @param PackageType: 通道组类型，可取值：Thunder、Accelerator，默认值Thunder
+        # @param PackageType: 通道组套餐类型：Thunder表示标准通道组，Accelerator表示游戏加速器通道组。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
 
@@ -5811,10 +5811,13 @@ module TencentCloud
         # @param NetworkType: 网络类型：normal、cn2
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkType: String
+        # @param PackageType: 通道套餐类型：Thunder表示标准通道，Accelerator表示游戏加速器通道。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageType: String
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType
         
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -5844,6 +5847,7 @@ module TencentCloud
           @ClientIPMethod = clientipmethod
           @IPAddressVersion = ipaddressversion
           @NetworkType = networktype
+          @PackageType = packagetype
         end
 
         def deserialize(params)
@@ -5889,6 +5893,7 @@ module TencentCloud
           @ClientIPMethod = params['ClientIPMethod']
           @IPAddressVersion = params['IPAddressVersion']
           @NetworkType = params['NetworkType']
+          @PackageType = params['PackageType']
         end
       end
 
@@ -6445,10 +6450,16 @@ module TencentCloud
         # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败多少次数后认为源站不健康。范围为1到10
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnhealthyThreshold: Integer
+        # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailoverSwitch: Integer
+        # @param SessionPersist: 是否开启会话保持选项：0关闭， 非0开启，非0值为会话保持时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionPersist: Integer
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :ConnectTimeout, :DelayLoop, :HealthCheck, :BindStatus, :RealServerSet, :CreateTime, :ClientIPMethod, :HealthyThreshold, :UnhealthyThreshold
+        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :ConnectTimeout, :DelayLoop, :HealthCheck, :BindStatus, :RealServerSet, :CreateTime, :ClientIPMethod, :HealthyThreshold, :UnhealthyThreshold, :FailoverSwitch, :SessionPersist
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, connecttimeout=nil, delayloop=nil, healthcheck=nil, bindstatus=nil, realserverset=nil, createtime=nil, clientipmethod=nil, healthythreshold=nil, unhealthythreshold=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, connecttimeout=nil, delayloop=nil, healthcheck=nil, bindstatus=nil, realserverset=nil, createtime=nil, clientipmethod=nil, healthythreshold=nil, unhealthythreshold=nil, failoverswitch=nil, sessionpersist=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -6466,6 +6477,8 @@ module TencentCloud
           @ClientIPMethod = clientipmethod
           @HealthyThreshold = healthythreshold
           @UnhealthyThreshold = unhealthythreshold
+          @FailoverSwitch = failoverswitch
+          @SessionPersist = sessionpersist
         end
 
         def deserialize(params)
@@ -6493,6 +6506,8 @@ module TencentCloud
           @ClientIPMethod = params['ClientIPMethod']
           @HealthyThreshold = params['HealthyThreshold']
           @UnhealthyThreshold = params['UnhealthyThreshold']
+          @FailoverSwitch = params['FailoverSwitch']
+          @SessionPersist = params['SessionPersist']
         end
       end
 
@@ -6569,10 +6584,13 @@ module TencentCloud
         # @type RealServerSet: Array
         # @param CreateTime: 监听器创建时间，Unix时间戳
         # @type CreateTime: Integer
+        # @param SessionPersist: 是否开启会话保持选项：0关闭， 非0开启，非0值为会话保持时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionPersist: Integer
 
-        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :BindStatus, :RealServerSet, :CreateTime
+        attr_accessor :ListenerId, :ListenerName, :Port, :RealServerPort, :RealServerType, :Protocol, :ListenerStatus, :Scheduler, :BindStatus, :RealServerSet, :CreateTime, :SessionPersist
         
-        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, bindstatus=nil, realserverset=nil, createtime=nil)
+        def initialize(listenerid=nil, listenername=nil, port=nil, realserverport=nil, realservertype=nil, protocol=nil, listenerstatus=nil, scheduler=nil, bindstatus=nil, realserverset=nil, createtime=nil, sessionpersist=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @Port = port
@@ -6584,6 +6602,7 @@ module TencentCloud
           @BindStatus = bindstatus
           @RealServerSet = realserverset
           @CreateTime = createtime
+          @SessionPersist = sessionpersist
         end
 
         def deserialize(params)
@@ -6605,6 +6624,7 @@ module TencentCloud
             end
           end
           @CreateTime = params['CreateTime']
+          @SessionPersist = params['SessionPersist']
         end
       end
 

@@ -441,9 +441,9 @@ module TencentCloud
         # @type Size: Integer
         # @param Date: 备份快照时间，时间格式：2016-03-17 02:10:37
         # @type Date: String
-        # @param IntranetUrl: 内网下载地址
+        # @param IntranetUrl: 下载地址
         # @type IntranetUrl: String
-        # @param InternetUrl: 外网下载地址
+        # @param InternetUrl: 下载地址
         # @type InternetUrl: String
         # @param Type: 日志具体类型。可能的值有 "logical": 逻辑冷备， "physical": 物理冷备。
         # @type Type: String
@@ -609,9 +609,9 @@ module TencentCloud
         # @type Size: Integer
         # @param Date: 文件存储时间，时间格式：2016-03-17 02:10:37
         # @type Date: String
-        # @param IntranetUrl: 内网下载地址
+        # @param IntranetUrl: 下载地址
         # @type IntranetUrl: String
-        # @param InternetUrl: 外网下载地址
+        # @param InternetUrl: 下载地址
         # @type InternetUrl: String
         # @param Type: 日志具体类型，可能的值有：binlog - 二进制日志
         # @type Type: String

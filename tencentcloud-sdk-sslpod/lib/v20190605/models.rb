@@ -131,7 +131,7 @@ module TencentCloud
         # @type Port: String
         # @param IP: 指定域名的IP
         # @type IP: String
-        # @param Notice: 是否开启通知告警
+        # @param Notice: 是否开启通知告警；true：开启通知告警，false：关闭通知告警
         # @type Notice: Boolean
         # @param Tags: 给域名添加标签，多个以逗号隔开
         # @type Tags: String
@@ -253,7 +253,7 @@ module TencentCloud
 
       # DeleteDomain请求参数结构体
       class DeleteDomainRequest < TencentCloud::Common::AbstractModel
-        # @param DomainId: 域名ID，可通过搜索域名接口获得
+        # @param DomainId: 域名ID，可通过<a href="https://cloud.tencent.com/document/api/1084/49339">搜索域名</a>接口获得
         # @type DomainId: Integer
 
         attr_accessor :DomainId
@@ -442,7 +442,13 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 获取数量
         # @type Limit: Integer
-        # @param SearchType: 搜索的类型 Enums(none,tags,grade,brand,code,hash,limit)
+        # @param SearchType: 搜索的类型有：none，tags，grade，brand，code，hash，limit。
+        # 选tags，入参请填Tag，
+        # 选grade，入参请填Grade，
+        # 选brand，入参请填Brand，
+        # 选code，入参请填Code，
+        # 选hash，入参请填Hash
+        # 选limit，标识只返回数量信息
         # @type SearchType: String
         # @param Tag: 标签，多个标签用逗号分隔
         # @type Tag: String

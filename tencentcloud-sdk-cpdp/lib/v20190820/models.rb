@@ -2755,15 +2755,18 @@ module TencentCloud
         # @type IdCardFront: String
         # @param IdCardReverse: 身份证反面图片下载链接
         # @type IdCardReverse: String
+        # @param AgentId: 指定分配的代理商ID
+        # @type AgentId: String
 
-        attr_accessor :Uid, :Name, :IdNo, :IdCardFront, :IdCardReverse
+        attr_accessor :Uid, :Name, :IdNo, :IdCardFront, :IdCardReverse, :AgentId
         
-        def initialize(uid=nil, name=nil, idno=nil, idcardfront=nil, idcardreverse=nil)
+        def initialize(uid=nil, name=nil, idno=nil, idcardfront=nil, idcardreverse=nil, agentid=nil)
           @Uid = uid
           @Name = name
           @IdNo = idno
           @IdCardFront = idcardfront
           @IdCardReverse = idcardreverse
+          @AgentId = agentid
         end
 
         def deserialize(params)
@@ -2772,6 +2775,7 @@ module TencentCloud
           @IdNo = params['IdNo']
           @IdCardFront = params['IdCardFront']
           @IdCardReverse = params['IdCardReverse']
+          @AgentId = params['AgentId']
         end
       end
 
