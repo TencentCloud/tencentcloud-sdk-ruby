@@ -11368,6 +11368,7 @@ module TencentCloud
       # 指定删除点播视频时的删除内容
       class MediaDeleteItem < TencentCloud::Common::AbstractModel
         # @param Type: 所指定的删除部分。如果未填写该字段则参数无效。可选值有：
+        # <li>OriginFiles（删除源文件，删除后不支持发起异步任务）。</li>
         # <li>TranscodeFiles（删除转码文件）。</li>
         # <li>WechatPublishFiles（删除微信发布文件）。</li>
         # @type Type: String

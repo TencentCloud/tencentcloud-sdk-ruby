@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除设备
+
+        # @param request: Request instance for DeleteDevices.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteDevicesResponse`
+        def DeleteDevices(request)
+          body = send_request('DeleteDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供删除LoRa自定义频点的能力
 
         # @param request: Request instance for DeleteLoRaFrequency.
@@ -1071,6 +1095,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量禁用启用设备
+
+        # @param request: Request instance for UpdateDevicesEnableState.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UpdateDevicesEnableStateRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UpdateDevicesEnableStateResponse`
+        def UpdateDevicesEnableState(request)
+          body = send_request('UpdateDevicesEnableState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDevicesEnableStateResponse.new
             model.deserialize(response['Response'])
             model
           else

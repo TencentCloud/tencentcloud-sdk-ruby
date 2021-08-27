@@ -1480,6 +1480,62 @@ module TencentCloud
         end
       end
 
+      # DescribeResourceGroupNew请求参数结构体
+      class DescribeResourceGroupNewRequest < TencentCloud::Common::AbstractModel
+        # @param QueryType: 查询类型 网络结构 vpc，业务识别- resource ，资源标签-tag
+        # @type QueryType: String
+        # @param GroupId: 资产组id  全部传0
+        # @type GroupId: String
+        # @param ShowType: all  包含子组 own自己
+        # @type ShowType: String
+
+        attr_accessor :QueryType, :GroupId, :ShowType
+        
+        def initialize(querytype=nil, groupid=nil, showtype=nil)
+          @QueryType = querytype
+          @GroupId = groupid
+          @ShowType = showtype
+        end
+
+        def deserialize(params)
+          @QueryType = params['QueryType']
+          @GroupId = params['GroupId']
+          @ShowType = params['ShowType']
+        end
+      end
+
+      # DescribeResourceGroupNew返回参数结构体
+      class DescribeResourceGroupNewResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回树形结构
+        # @type Data: String
+        # @param UnResourceNum: 无
+        # @type UnResourceNum: Integer
+        # @param ReturnMsg: 无
+        # @type ReturnMsg: String
+        # @param ReturnCode: 无
+        # @type ReturnCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :UnResourceNum, :ReturnMsg, :ReturnCode, :RequestId
+        
+        def initialize(data=nil, unresourcenum=nil, returnmsg=nil, returncode=nil, requestid=nil)
+          @Data = data
+          @UnResourceNum = unresourcenum
+          @ReturnMsg = returnmsg
+          @ReturnCode = returncode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @UnResourceNum = params['UnResourceNum']
+          @ReturnMsg = params['ReturnMsg']
+          @ReturnCode = params['ReturnCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourceGroup请求参数结构体
       class DescribeResourceGroupRequest < TencentCloud::Common::AbstractModel
         # @param QueryType: 查询类型 网络结构 vpc，业务识别- resource ，资源标签-tag
