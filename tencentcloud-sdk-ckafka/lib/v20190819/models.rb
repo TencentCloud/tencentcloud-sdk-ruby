@@ -1904,6 +1904,61 @@ module TencentCloud
         end
       end
 
+      # DescribeTopicSyncReplica请求参数结构体
+      class DescribeTopicSyncReplicaRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param Offset: 偏移量，不填默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，不填则默认10，最大值20。
+        # @type Limit: Integer
+        # @param OutOfSyncReplicaOnly: 仅筛选未同步副本
+        # @type OutOfSyncReplicaOnly: Boolean
+
+        attr_accessor :InstanceId, :TopicName, :Offset, :Limit, :OutOfSyncReplicaOnly
+        
+        def initialize(instanceid=nil, topicname=nil, offset=nil, limit=nil, outofsyncreplicaonly=nil)
+          @InstanceId = instanceid
+          @TopicName = topicname
+          @Offset = offset
+          @Limit = limit
+          @OutOfSyncReplicaOnly = outofsyncreplicaonly
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TopicName = params['TopicName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OutOfSyncReplicaOnly = params['OutOfSyncReplicaOnly']
+        end
+      end
+
+      # DescribeTopicSyncReplica返回参数结构体
+      class DescribeTopicSyncReplicaResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回topic 副本详情
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicInSyncReplicaResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TopicInSyncReplicaResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUser请求参数结构体
       class DescribeUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
@@ -3454,6 +3509,81 @@ module TencentCloud
               topicdetail_tmp = TopicDetail.new
               topicdetail_tmp.deserialize(i)
               @TopicList << topicdetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # topic副本及详细信息
+      class TopicInSyncReplicaInfo < TencentCloud::Common::AbstractModel
+        # @param Partition: 分区名称
+        # @type Partition: String
+        # @param Leader: Leader Id
+        # @type Leader: Integer
+        # @param Replica: 副本集
+        # @type Replica: String
+        # @param InSyncReplica: ISR
+        # @type InSyncReplica: String
+        # @param BeginOffset: 起始Offset
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginOffset: Integer
+        # @param EndOffset: 末端Offset
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndOffset: Integer
+        # @param MessageCount: 消息数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageCount: Integer
+        # @param OutOfSyncReplica: 未同步副本集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutOfSyncReplica: String
+
+        attr_accessor :Partition, :Leader, :Replica, :InSyncReplica, :BeginOffset, :EndOffset, :MessageCount, :OutOfSyncReplica
+        
+        def initialize(partition=nil, leader=nil, replica=nil, insyncreplica=nil, beginoffset=nil, endoffset=nil, messagecount=nil, outofsyncreplica=nil)
+          @Partition = partition
+          @Leader = leader
+          @Replica = replica
+          @InSyncReplica = insyncreplica
+          @BeginOffset = beginoffset
+          @EndOffset = endoffset
+          @MessageCount = messagecount
+          @OutOfSyncReplica = outofsyncreplica
+        end
+
+        def deserialize(params)
+          @Partition = params['Partition']
+          @Leader = params['Leader']
+          @Replica = params['Replica']
+          @InSyncReplica = params['InSyncReplica']
+          @BeginOffset = params['BeginOffset']
+          @EndOffset = params['EndOffset']
+          @MessageCount = params['MessageCount']
+          @OutOfSyncReplica = params['OutOfSyncReplica']
+        end
+      end
+
+      # Topic 副本及详情数据集合
+      class TopicInSyncReplicaResult < TencentCloud::Common::AbstractModel
+        # @param TopicInSyncReplicaList: Topic详情及副本合集
+        # @type TopicInSyncReplicaList: Array
+        # @param TotalCount: 总计个数
+        # @type TotalCount: Integer
+
+        attr_accessor :TopicInSyncReplicaList, :TotalCount
+        
+        def initialize(topicinsyncreplicalist=nil, totalcount=nil)
+          @TopicInSyncReplicaList = topicinsyncreplicalist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['TopicInSyncReplicaList'].nil?
+            @TopicInSyncReplicaList = []
+            params['TopicInSyncReplicaList'].each do |i|
+              topicinsyncreplicainfo_tmp = TopicInSyncReplicaInfo.new
+              topicinsyncreplicainfo_tmp.deserialize(i)
+              @TopicInSyncReplicaList << topicinsyncreplicainfo_tmp
             end
           end
           @TotalCount = params['TotalCount']
