@@ -3087,17 +3087,22 @@ module TencentCloud
         # @type Source: String
         # @param Weight: 权重值，取值[0,100]
         # @type Weight: Integer
+        # @param Port: 8000
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
 
-        attr_accessor :Source, :Weight
+        attr_accessor :Source, :Weight, :Port
         
-        def initialize(source=nil, weight=nil)
+        def initialize(source=nil, weight=nil, port=nil)
           @Source = source
           @Weight = weight
+          @Port = port
         end
 
         def deserialize(params)
           @Source = params['Source']
           @Weight = params['Weight']
+          @Port = params['Port']
         end
       end
 

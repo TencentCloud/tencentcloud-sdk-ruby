@@ -4654,6 +4654,103 @@ module TencentCloud
         end
       end
 
+      # SmartStructuralOCR请求参数结构体
+      class SmartStructuralOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ItemNames: 需返回的字段名称，例：
+        # 若客户只想返回姓名、性别两个字段的识别结果，则输入
+        # ItemNames=["姓名","性别"]
+        # @type ItemNames: Array
+
+        attr_accessor :ImageUrl, :ImageBase64, :ItemNames
+        
+        def initialize(imageurl=nil, imagebase64=nil, itemnames=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @ItemNames = itemnames
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @ItemNames = params['ItemNames']
+        end
+      end
+
+      # SmartStructuralOCR返回参数结构体
+      class SmartStructuralOCRResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向
+        # 为 0；顺时针为正，逆时针为负
+        # @type Angle: Float
+        # @param StructuralItems: 识别信息
+        # @type StructuralItems: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :StructuralItems, :RequestId
+        
+        def initialize(angle=nil, structuralitems=nil, requestid=nil)
+          @Angle = angle
+          @StructuralItems = structuralitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['StructuralItems'].nil?
+            @StructuralItems = []
+            params['StructuralItems'].each do |i|
+              structuralitem_tmp = StructuralItem.new
+              structuralitem_tmp.deserialize(i)
+              @StructuralItems << structuralitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 智能结构化识别
+      class StructuralItem < TencentCloud::Common::AbstractModel
+        # @param Name: 识别出的字段名称(关键字)。
+        # @type Name: String
+        # @param Value: 识别出的字段名称对应的值。
+        # @type Value: String
+        # @param Confidence: 置信度 0 ~100。
+        # @type Confidence: Integer
+        # @param ItemCoord: 文本行在旋转纠正之后的图像中的像素
+        # 坐标。
+        # @type ItemCoord: :class:`Tencentcloud::Ocr.v20181119.models.ItemCoord`
+
+        attr_accessor :Name, :Value, :Confidence, :ItemCoord
+        
+        def initialize(name=nil, value=nil, confidence=nil, itemcoord=nil)
+          @Name = name
+          @Value = value
+          @Confidence = confidence
+          @ItemCoord = itemcoord
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Confidence = params['Confidence']
+          unless params['ItemCoord'].nil?
+            @ItemCoord = ItemCoord.new
+            @ItemCoord.deserialize(params['ItemCoord'])
+          end
+        end
+      end
+
       # 单元格数据
       class TableCell < TencentCloud::Common::AbstractModel
         # @param ColTl: 单元格左上角的列索引

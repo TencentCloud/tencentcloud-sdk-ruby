@@ -946,6 +946,38 @@ module TencentCloud
         end
       end
 
+      # DeleteRouteTriggerTime请求参数结构体
+      class DeleteRouteTriggerTimeRequest < TencentCloud::Common::AbstractModel
+        # @param DelayTime: 修改时间
+        # @type DelayTime: String
+
+        attr_accessor :DelayTime
+        
+        def initialize(delaytime=nil)
+          @DelayTime = delaytime
+        end
+
+        def deserialize(params)
+          @DelayTime = params['DelayTime']
+        end
+      end
+
+      # DeleteRouteTriggerTime返回参数结构体
+      class DeleteRouteTriggerTimeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTopicIpWhiteList请求参数结构体
       class DeleteTopicIpWhiteListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1466,7 +1498,7 @@ module TencentCloud
 
       # DescribeInstanceAttributes返回参数结构体
       class DescribeInstanceAttributesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 实例属性返回结果对象
+        # @param Result: 实例属性返回结果对象。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceAttributesResponse`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2453,10 +2485,19 @@ module TencentCloud
         # @param RetentionTimeConfig: 动态消息保留策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionTimeConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
+        # @param MaxConnection: 最大连接数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConnection: Integer
+        # @param PublicNetwork: 公网带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicNetwork: Integer
+        # @param DeleteRouteTimestamp: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteRouteTimestamp: String
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp
         
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -2486,6 +2527,9 @@ module TencentCloud
           @InstanceType = instancetype
           @Features = features
           @RetentionTimeConfig = retentiontimeconfig
+          @MaxConnection = maxconnection
+          @PublicNetwork = publicnetwork
+          @DeleteRouteTimestamp = deleteroutetimestamp
         end
 
         def deserialize(params)
@@ -2538,6 +2582,9 @@ module TencentCloud
             @RetentionTimeConfig = DynamicRetentionTime.new
             @RetentionTimeConfig.deserialize(params['RetentionTimeConfig'])
           end
+          @MaxConnection = params['MaxConnection']
+          @PublicNetwork = params['PublicNetwork']
+          @DeleteRouteTimestamp = params['DeleteRouteTimestamp']
         end
       end
 
@@ -2896,16 +2943,19 @@ module TencentCloud
         # @type DynamicRetentionConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
         # @param RebalanceTime: 修改升配置rebalance时间
         # @type RebalanceTime: Integer
+        # @param PublicNetwork: 时间戳
+        # @type PublicNetwork: Integer
 
-        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime
+        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork
         
-        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil)
+        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil)
           @InstanceId = instanceid
           @MsgRetentionTime = msgretentiontime
           @InstanceName = instancename
           @Config = config
           @DynamicRetentionConfig = dynamicretentionconfig
           @RebalanceTime = rebalancetime
+          @PublicNetwork = publicnetwork
         end
 
         def deserialize(params)
@@ -2921,6 +2971,7 @@ module TencentCloud
             @DynamicRetentionConfig.deserialize(params['DynamicRetentionConfig'])
           end
           @RebalanceTime = params['RebalanceTime']
+          @PublicNetwork = params['PublicNetwork']
         end
       end
 
@@ -3075,7 +3126,7 @@ module TencentCloud
 
       # 操作类型返回的Data结构
       class OperateResponseData < TencentCloud::Common::AbstractModel
-        # @param FlowId: FlowId
+        # @param FlowId: FlowId11
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
 

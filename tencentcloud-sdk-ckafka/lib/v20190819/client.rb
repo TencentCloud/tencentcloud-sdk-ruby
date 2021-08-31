@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改删除路由延迟触发时间
+
+        # @param request: Request instance for DeleteRouteTriggerTime.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteRouteTriggerTimeRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DeleteRouteTriggerTimeResponse`
+        def DeleteRouteTriggerTime(request)
+          body = send_request('DeleteRouteTriggerTime', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRouteTriggerTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除ckafka主题
 
         # @param request: Request instance for DeleteTopic.

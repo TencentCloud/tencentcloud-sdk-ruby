@@ -7377,10 +7377,13 @@ module TencentCloud
         # @type IsRedWashed: Integer
         # @param PdfUrl: pdf地址
         # @type PdfUrl: String
+        # @param ImageUrl: png地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
 
-        attr_accessor :OrderId, :OrderSn, :Status, :Message, :TicketDate, :TicketSn, :TicketCode, :CheckCode, :AmountWithTax, :AmountWithoutTax, :TaxAmount, :IsRedWashed, :PdfUrl
+        attr_accessor :OrderId, :OrderSn, :Status, :Message, :TicketDate, :TicketSn, :TicketCode, :CheckCode, :AmountWithTax, :AmountWithoutTax, :TaxAmount, :IsRedWashed, :PdfUrl, :ImageUrl
         
-        def initialize(orderid=nil, ordersn=nil, status=nil, message=nil, ticketdate=nil, ticketsn=nil, ticketcode=nil, checkcode=nil, amountwithtax=nil, amountwithouttax=nil, taxamount=nil, isredwashed=nil, pdfurl=nil)
+        def initialize(orderid=nil, ordersn=nil, status=nil, message=nil, ticketdate=nil, ticketsn=nil, ticketcode=nil, checkcode=nil, amountwithtax=nil, amountwithouttax=nil, taxamount=nil, isredwashed=nil, pdfurl=nil, imageurl=nil)
           @OrderId = orderid
           @OrderSn = ordersn
           @Status = status
@@ -7394,6 +7397,7 @@ module TencentCloud
           @TaxAmount = taxamount
           @IsRedWashed = isredwashed
           @PdfUrl = pdfurl
+          @ImageUrl = imageurl
         end
 
         def deserialize(params)
@@ -7410,6 +7414,7 @@ module TencentCloud
           @TaxAmount = params['TaxAmount']
           @IsRedWashed = params['IsRedWashed']
           @PdfUrl = params['PdfUrl']
+          @ImageUrl = params['ImageUrl']
         end
       end
 

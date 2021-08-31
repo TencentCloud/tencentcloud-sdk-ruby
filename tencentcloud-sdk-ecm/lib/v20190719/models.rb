@@ -8092,15 +8092,23 @@ module TencentCloud
         # @type EnhancedService: :class:`Tencentcloud::Ecm.v20190719.models.EnhancedService`
         # @param KeepData: 是否保留数据盘数据，取值"true"/"false"。默认为"true"
         # @type KeepData: String
+        # @param KeepImageLogin: 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+        # TRUE：表示保持镜像的登录设置
+        # FALSE：表示不保持镜像的登录设置
 
-        attr_accessor :InstanceIdSet, :ImageId, :Password, :EnhancedService, :KeepData
+        # 默认取值：FALSE。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeepImageLogin: String
+
+        attr_accessor :InstanceIdSet, :ImageId, :Password, :EnhancedService, :KeepData, :KeepImageLogin
         
-        def initialize(instanceidset=nil, imageid=nil, password=nil, enhancedservice=nil, keepdata=nil)
+        def initialize(instanceidset=nil, imageid=nil, password=nil, enhancedservice=nil, keepdata=nil, keepimagelogin=nil)
           @InstanceIdSet = instanceidset
           @ImageId = imageid
           @Password = password
           @EnhancedService = enhancedservice
           @KeepData = keepdata
+          @KeepImageLogin = keepimagelogin
         end
 
         def deserialize(params)
@@ -8112,6 +8120,7 @@ module TencentCloud
             @EnhancedService.deserialize(params['EnhancedService'])
           end
           @KeepData = params['KeepData']
+          @KeepImageLogin = params['KeepImageLogin']
         end
       end
 
@@ -8437,10 +8446,17 @@ module TencentCloud
         # @type InstanceChargeType: Integer
         # @param KeyIds: 密钥对。
         # @type KeyIds: Array
+        # @param KeepImageLogin: 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+        # TRUE：表示保持镜像的登录设置
+        # FALSE：表示不保持镜像的登录设置
 
-        attr_accessor :ZoneInstanceCountISPSet, :Password, :InternetMaxBandwidthOut, :ModuleId, :ImageId, :InstanceName, :HostName, :ClientToken, :EnhancedService, :TagSpecification, :UserData, :InstanceType, :DataDiskSize, :SecurityGroupIds, :SystemDiskSize, :InternetMaxBandwidthIn, :InstanceChargeType, :KeyIds
+        # 默认取值：FALSE。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeepImageLogin: String
+
+        attr_accessor :ZoneInstanceCountISPSet, :Password, :InternetMaxBandwidthOut, :ModuleId, :ImageId, :InstanceName, :HostName, :ClientToken, :EnhancedService, :TagSpecification, :UserData, :InstanceType, :DataDiskSize, :SecurityGroupIds, :SystemDiskSize, :InternetMaxBandwidthIn, :InstanceChargeType, :KeyIds, :KeepImageLogin
         
-        def initialize(zoneinstancecountispset=nil, password=nil, internetmaxbandwidthout=nil, moduleid=nil, imageid=nil, instancename=nil, hostname=nil, clienttoken=nil, enhancedservice=nil, tagspecification=nil, userdata=nil, instancetype=nil, datadisksize=nil, securitygroupids=nil, systemdisksize=nil, internetmaxbandwidthin=nil, instancechargetype=nil, keyids=nil)
+        def initialize(zoneinstancecountispset=nil, password=nil, internetmaxbandwidthout=nil, moduleid=nil, imageid=nil, instancename=nil, hostname=nil, clienttoken=nil, enhancedservice=nil, tagspecification=nil, userdata=nil, instancetype=nil, datadisksize=nil, securitygroupids=nil, systemdisksize=nil, internetmaxbandwidthin=nil, instancechargetype=nil, keyids=nil, keepimagelogin=nil)
           @ZoneInstanceCountISPSet = zoneinstancecountispset
           @Password = password
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -8459,6 +8475,7 @@ module TencentCloud
           @InternetMaxBandwidthIn = internetmaxbandwidthin
           @InstanceChargeType = instancechargetype
           @KeyIds = keyids
+          @KeepImageLogin = keepimagelogin
         end
 
         def deserialize(params)
@@ -8497,6 +8514,7 @@ module TencentCloud
           @InternetMaxBandwidthIn = params['InternetMaxBandwidthIn']
           @InstanceChargeType = params['InstanceChargeType']
           @KeyIds = params['KeyIds']
+          @KeepImageLogin = params['KeepImageLogin']
         end
       end
 
