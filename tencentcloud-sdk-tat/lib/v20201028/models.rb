@@ -669,10 +669,18 @@ module TencentCloud
         # @type Username: String
         # @param InvocationSource: 调用来源。
         # @type InvocationSource: String
+        # @param CommandContent: base64编码的命令内容
+        # @type CommandContent: String
+        # @param CommandType: 命令类型
+        # @type CommandType: String
+        # @param Timeout: 执行命令过期时间， 单位秒
+        # @type Timeout: Integer
+        # @param WorkingDirectory: 执行命令的工作路径
+        # @type WorkingDirectory: String
 
-        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username, :InvocationSource
+        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username, :InvocationSource, :CommandContent, :CommandType, :Timeout, :WorkingDirectory
         
-        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil, invocationsource=nil)
+        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil, invocationsource=nil, commandcontent=nil, commandtype=nil, timeout=nil, workingdirectory=nil)
           @InvocationId = invocationid
           @CommandId = commandid
           @InvocationStatus = invocationstatus
@@ -687,6 +695,10 @@ module TencentCloud
           @InstanceKind = instancekind
           @Username = username
           @InvocationSource = invocationsource
+          @CommandContent = commandcontent
+          @CommandType = commandtype
+          @Timeout = timeout
+          @WorkingDirectory = workingdirectory
         end
 
         def deserialize(params)
@@ -711,6 +723,10 @@ module TencentCloud
           @InstanceKind = params['InstanceKind']
           @Username = params['Username']
           @InvocationSource = params['InvocationSource']
+          @CommandContent = params['CommandContent']
+          @CommandType = params['CommandType']
+          @Timeout = params['Timeout']
+          @WorkingDirectory = params['WorkingDirectory']
         end
       end
 

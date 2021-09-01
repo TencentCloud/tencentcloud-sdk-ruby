@@ -346,7 +346,7 @@ module TencentCloud
       end
 
       # CreateApp的输出参数
-      class CreateAppResponse < TencentCloud::Common::AbstractModel
+      class CreateAppResp < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID，由后台自动生成。
         # @type BizId: Integer
         # @param AppName: 应用名称，透传输入参数的AppName
@@ -395,6 +395,29 @@ module TencentCloud
             @VoiceFilterConf = VoiceFilterConf.new
             @VoiceFilterConf.deserialize(params['VoiceFilterConf'])
           end
+        end
+      end
+
+      # CreateApp返回参数结构体
+      class CreateAppResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 创建应用返回数据
+        # @type Data: :class:`Tencentcloud::Gme.v20180711.models.CreateAppResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateAppResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -482,7 +505,7 @@ module TencentCloud
       end
 
       # 获取应用用量统计数据输出参数
-      class DescribeAppStatisticsResponse < TencentCloud::Common::AbstractModel
+      class DescribeAppStatisticsResp < TencentCloud::Common::AbstractModel
         # @param AppStatistics: 应用用量统计数据
         # @type AppStatistics: Array
 
@@ -501,6 +524,29 @@ module TencentCloud
               @AppStatistics << appstatisticsitem_tmp
             end
           end
+        end
+      end
+
+      # DescribeAppStatistics返回参数结构体
+      class DescribeAppStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 应用用量统计数据
+        # @type Data: :class:`Tencentcloud::Gme.v20180711.models.DescribeAppStatisticsResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAppStatisticsResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -933,7 +979,7 @@ module TencentCloud
       end
 
       # ModifyAppStatus接口输出参数
-      class ModifyAppStatusResponse < TencentCloud::Common::AbstractModel
+      class ModifyAppStatusResp < TencentCloud::Common::AbstractModel
         # @param BizId: GME应用ID
         # @type BizId: Integer
         # @param Status: 应用状态，取值：open/close
@@ -949,6 +995,29 @@ module TencentCloud
         def deserialize(params)
           @BizId = params['BizId']
           @Status = params['Status']
+        end
+      end
+
+      # ModifyAppStatus返回参数结构体
+      class ModifyAppStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 修改应用开关状态返回数据
+        # @type Data: :class:`Tencentcloud::Gme.v20180711.models.ModifyAppStatusResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ModifyAppStatusResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

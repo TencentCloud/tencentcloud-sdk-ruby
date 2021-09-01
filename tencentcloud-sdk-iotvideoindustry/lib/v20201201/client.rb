@@ -486,6 +486,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取设备下属通道
+
+        # @param request: Request instance for DescribeIPCChannels.
+        # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeIPCChannelsRequest`
+        # @rtype: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeIPCChannelsResponse`
+        def DescribeIPCChannels(request)
+          body = send_request('DescribeIPCChannels', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIPCChannelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取回放视频流(NVR录制用)
         # RecordId和StartTime/EndTime互斥
         # 当存在RecordId时，StartTime和EndTime无效

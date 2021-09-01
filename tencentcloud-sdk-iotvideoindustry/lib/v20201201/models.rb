@@ -1009,6 +1009,67 @@ module TencentCloud
         end
       end
 
+      # DescribeIPCChannels请求参数结构体
+      class DescribeIPCChannelsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+        # @param Limit: 限制，默认0
+        # @type Limit: Integer
+        # @param DeviceId: 设备Id
+        # @type DeviceId: String
+        # @param ChannelTypes: 通道类型 	4: 国标NVR通道 5:  国标VMS通道 6: 国标IPC通道
+        # @type ChannelTypes: Array
+
+        attr_accessor :Offset, :Limit, :DeviceId, :ChannelTypes
+        
+        def initialize(offset=nil, limit=nil, deviceid=nil, channeltypes=nil)
+          @Offset = offset
+          @Limit = limit
+          @DeviceId = deviceid
+          @ChannelTypes = channeltypes
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @DeviceId = params['DeviceId']
+          @ChannelTypes = params['ChannelTypes']
+        end
+      end
+
+      # DescribeIPCChannels返回参数结构体
+      class DescribeIPCChannelsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 通道总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param DeviceList: 通道详情列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DeviceList, :RequestId
+        
+        def initialize(totalcount=nil, devicelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DeviceList = devicelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DeviceList'].nil?
+            @DeviceList = []
+            params['DeviceList'].each do |i|
+              groupdeviceitem_tmp = GroupDeviceItem.new
+              groupdeviceitem_tmp.deserialize(i)
+              @DeviceList << groupdeviceitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRecordStreamData 复杂类型
       class DescribeRecordStreamData < TencentCloud::Common::AbstractModel
         # @param RtspAddr: Rtsp地址
@@ -1321,33 +1382,65 @@ module TencentCloud
 
       # DescribeVideoList请求参数结构体
       class DescribeVideoListRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间戳，秒级
-        # @type StartTime: Integer
-        # @param EndTime: 结束时间戳，秒级
-        # @type EndTime: Integer
         # @param Offset: 偏移
         # @type Offset: Integer
         # @param Limit: 限制
         # @type Limit: Integer
+        # @param StartTime: 开始时间戳，秒级
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间戳，秒级
+        # @type EndTime: Integer
         # @param DeviceId: 设备Id
         # @type DeviceId: String
+        # @param StartRecordTime: 开始录制范围 开始
+        # @type StartRecordTime: Integer
+        # @param EndRecordTime: 开始录制范围 结束
+        # @type EndRecordTime: Integer
+        # @param StartExpireTime: 过期时间范围 开始
+        # @type StartExpireTime: Integer
+        # @param EndExpireTime: 过期时间范围 结束
+        # @type EndExpireTime: Integer
+        # @param StartFileSize: 文件大小范围 开始 单位byte
+        # @type StartFileSize: Integer
+        # @param EndFileSize: 文件大小范围 结束 单位byte
+        # @type EndFileSize: Integer
+        # @param IsRecording: 录制状态 99: 录制方已经回写状态 1: 开始录制了，等待回写 2: 已经到了时间模板的停止时间，在等待录制方回写
+        # @type IsRecording: Integer
+        # @param ChannelId: 通道ID默认必传
+        # @type ChannelId: String
 
-        attr_accessor :StartTime, :EndTime, :Offset, :Limit, :DeviceId
+        attr_accessor :Offset, :Limit, :StartTime, :EndTime, :DeviceId, :StartRecordTime, :EndRecordTime, :StartExpireTime, :EndExpireTime, :StartFileSize, :EndFileSize, :IsRecording, :ChannelId
         
-        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil, deviceid=nil)
-          @StartTime = starttime
-          @EndTime = endtime
+        def initialize(offset=nil, limit=nil, starttime=nil, endtime=nil, deviceid=nil, startrecordtime=nil, endrecordtime=nil, startexpiretime=nil, endexpiretime=nil, startfilesize=nil, endfilesize=nil, isrecording=nil, channelid=nil)
           @Offset = offset
           @Limit = limit
+          @StartTime = starttime
+          @EndTime = endtime
           @DeviceId = deviceid
+          @StartRecordTime = startrecordtime
+          @EndRecordTime = endrecordtime
+          @StartExpireTime = startexpiretime
+          @EndExpireTime = endexpiretime
+          @StartFileSize = startfilesize
+          @EndFileSize = endfilesize
+          @IsRecording = isrecording
+          @ChannelId = channelid
         end
 
         def deserialize(params)
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           @DeviceId = params['DeviceId']
+          @StartRecordTime = params['StartRecordTime']
+          @EndRecordTime = params['EndRecordTime']
+          @StartExpireTime = params['StartExpireTime']
+          @EndExpireTime = params['EndExpireTime']
+          @StartFileSize = params['StartFileSize']
+          @EndFileSize = params['EndFileSize']
+          @IsRecording = params['IsRecording']
+          @ChannelId = params['ChannelId']
         end
       end
 

@@ -4044,6 +4044,42 @@ module TencentCloud
         end
       end
 
+      # ModifyInstance请求参数结构体
+      class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例ID
+        # @type RegistryId: String
+        # @param RegistryType: 实例的规格
+        # @type RegistryType: String
+
+        attr_accessor :RegistryId, :RegistryType
+        
+        def initialize(registryid=nil, registrytype=nil)
+          @RegistryId = registryid
+          @RegistryType = registrytype
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @RegistryType = params['RegistryType']
+        end
+      end
+
+      # ModifyInstance返回参数结构体
+      class ModifyInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstanceToken请求参数结构体
       class ModifyInstanceTokenRequest < TencentCloud::Common::AbstractModel
         # @param TokenId: 实例长期访问凭证 ID

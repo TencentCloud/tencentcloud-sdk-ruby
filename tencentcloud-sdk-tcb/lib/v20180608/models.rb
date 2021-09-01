@@ -3424,6 +3424,78 @@ module TencentCloud
         end
       end
 
+      # DescribeEnvDealRegion请求参数结构体
+      class DescribeEnvDealRegionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param DealType: 订单类型：
+        # ENV_PREPAY_MINIAPP= 预付费环境(微信小程序)
+        # ENV_PREPAY_CLOUD= 预付费环境(腾讯云)
+        # ENV_POSTPAY = 后付费环境
+        # HOSTING_PREPAY = 预付费静态托管
+        # PACKAGE=套餐包
+        # @type DealType: String
+        # @param DealAction: 下单类型：
+        # CREATE = 新购
+        # RENEW = 续费
+        # MODIFY = 套餐调整(升级/降级)
+        # REFUND = 退费
+        # @type DealAction: String
+        # @param DealRegion: 下单地域：
+        # ap-guangzhou = 广州地域
+        # ap-shanghai = 上海地域
+        # ap-beijing = 北京地域
+        # @type DealRegion: String
+
+        attr_accessor :EnvId, :DealType, :DealAction, :DealRegion
+        
+        def initialize(envid=nil, dealtype=nil, dealaction=nil, dealregion=nil)
+          @EnvId = envid
+          @DealType = dealtype
+          @DealAction = dealaction
+          @DealRegion = dealregion
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @DealType = params['DealType']
+          @DealAction = params['DealAction']
+          @DealRegion = params['DealRegion']
+        end
+      end
+
+      # DescribeEnvDealRegion返回参数结构体
+      class DescribeEnvDealRegionResponse < TencentCloud::Common::AbstractModel
+        # @param Region: 下单region
+        # @type Region: String
+        # @param Zone: 下单zone
+        # @type Zone: String
+        # @param RegionId: 下单regionId
+        # @type RegionId: Integer
+        # @param ZoneId: 下单zoneId
+        # @type ZoneId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Region, :Zone, :RegionId, :ZoneId, :RequestId
+        
+        def initialize(region=nil, zone=nil, regionid=nil, zoneid=nil, requestid=nil)
+          @Region = region
+          @Zone = zone
+          @RegionId = regionid
+          @ZoneId = zoneid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @RegionId = params['RegionId']
+          @ZoneId = params['ZoneId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnvFreeQuota请求参数结构体
       class DescribeEnvFreeQuotaRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID

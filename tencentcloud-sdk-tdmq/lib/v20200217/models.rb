@@ -198,10 +198,13 @@ module TencentCloud
         # @param NamespaceNum: 命名空间数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceNum: Integer
+        # @param UsedStorageBudget: 已使用存储限制，MB为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedStorageBudget: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum
+        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget
         
-        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -219,6 +222,7 @@ module TencentCloud
           @PublicEndPoint = publicendpoint
           @VpcEndPoint = vpcendpoint
           @NamespaceNum = namespacenum
+          @UsedStorageBudget = usedstoragebudget
         end
 
         def deserialize(params)
@@ -239,6 +243,7 @@ module TencentCloud
           @PublicEndPoint = params['PublicEndPoint']
           @VpcEndPoint = params['VpcEndPoint']
           @NamespaceNum = params['NamespaceNum']
+          @UsedStorageBudget = params['UsedStorageBudget']
         end
       end
 

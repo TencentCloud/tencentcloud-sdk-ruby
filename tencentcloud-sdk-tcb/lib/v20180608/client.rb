@@ -845,6 +845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取环境下单地域
+
+        # @param request: Request instance for DescribeEnvDealRegion.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeEnvDealRegionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeEnvDealRegionResponse`
+        def DescribeEnvDealRegion(request)
+          body = send_request('DescribeEnvDealRegion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnvDealRegionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询后付费免费配额信息
 
         # @param request: Request instance for DescribeEnvFreeQuota.
