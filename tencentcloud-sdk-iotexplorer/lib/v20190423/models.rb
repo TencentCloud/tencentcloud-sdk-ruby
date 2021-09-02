@@ -17,6 +17,58 @@
 module TencentCloud
   module Iotexplorer
     module V20190423
+      # 云api直接绑定设备出参
+      class AppDeviceInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 产品ID/设备名
+        # @type DeviceId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param AliasName: 设备别名
+        # @type AliasName: String
+        # @param IconUrl: icon地址
+        # @type IconUrl: String
+        # @param FamilyId: 家庭ID
+        # @type FamilyId: String
+        # @param RoomId: 房间ID
+        # @type RoomId: String
+        # @param DeviceType: 设备类型
+        # @type DeviceType: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :DeviceId, :ProductId, :DeviceName, :AliasName, :IconUrl, :FamilyId, :RoomId, :DeviceType, :CreateTime, :UpdateTime
+        
+        def initialize(deviceid=nil, productid=nil, devicename=nil, aliasname=nil, iconurl=nil, familyid=nil, roomid=nil, devicetype=nil, createtime=nil, updatetime=nil)
+          @DeviceId = deviceid
+          @ProductId = productid
+          @DeviceName = devicename
+          @AliasName = aliasname
+          @IconUrl = iconurl
+          @FamilyId = familyid
+          @RoomId = roomid
+          @DeviceType = devicetype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @AliasName = params['AliasName']
+          @IconUrl = params['IconUrl']
+          @FamilyId = params['FamilyId']
+          @RoomId = params['RoomId']
+          @DeviceType = params['DeviceType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # CallDeviceActionAsync请求参数结构体
       class CallDeviceActionAsyncRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品Id
@@ -1414,6 +1466,65 @@ module TencentCloud
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DirectBindDeviceInFamily请求参数结构体
+      class DirectBindDeviceInFamilyRequest < TencentCloud::Common::AbstractModel
+        # @param IotAppID: 小程序appid
+        # @type IotAppID: String
+        # @param UserID: 用户ID
+        # @type UserID: String
+        # @param FamilyId: 家庭ID
+        # @type FamilyId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param RoomId: 房间ID
+        # @type RoomId: String
+
+        attr_accessor :IotAppID, :UserID, :FamilyId, :ProductId, :DeviceName, :RoomId
+        
+        def initialize(iotappid=nil, userid=nil, familyid=nil, productid=nil, devicename=nil, roomid=nil)
+          @IotAppID = iotappid
+          @UserID = userid
+          @FamilyId = familyid
+          @ProductId = productid
+          @DeviceName = devicename
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @IotAppID = params['IotAppID']
+          @UserID = params['UserID']
+          @FamilyId = params['FamilyId']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DirectBindDeviceInFamily返回参数结构体
+      class DirectBindDeviceInFamilyResponse < TencentCloud::Common::AbstractModel
+        # @param AppDeviceInfo: 返回设备信息
+        # @type AppDeviceInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.AppDeviceInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppDeviceInfo, :RequestId
+        
+        def initialize(appdeviceinfo=nil, requestid=nil)
+          @AppDeviceInfo = appdeviceinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AppDeviceInfo'].nil?
+            @AppDeviceInfo = AppDeviceInfo.new
+            @AppDeviceInfo.deserialize(params['AppDeviceInfo'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

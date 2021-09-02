@@ -598,16 +598,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回实例数量，默认20，有效区间[1,100]
         # @type Limit: Integer
+        # @param TagFilters: 标签过滤条件
+        # @type TagFilters: Array
 
-        attr_accessor :JobId, :JobName, :Order, :OrderSeq, :Offset, :Limit
+        attr_accessor :JobId, :JobName, :Order, :OrderSeq, :Offset, :Limit, :TagFilters
         
-        def initialize(jobid=nil, jobname=nil, order=nil, orderseq=nil, offset=nil, limit=nil)
+        def initialize(jobid=nil, jobname=nil, order=nil, orderseq=nil, offset=nil, limit=nil, tagfilters=nil)
           @JobId = jobid
           @JobName = jobname
           @Order = order
           @OrderSeq = orderseq
           @Offset = offset
           @Limit = limit
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -617,6 +620,14 @@ module TencentCloud
           @OrderSeq = params['OrderSeq']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
         end
       end
 
@@ -1075,10 +1086,10 @@ module TencentCloud
 
       # 目的实例信息，具体内容跟迁移任务类型相关
       class DstInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 目标实例ID，如cdb-jd92ijd8
-        # @type InstanceId: String
         # @param Region: 目标实例地域，如ap-guangzhou
         # @type Region: String
+        # @param InstanceId: 目标实例ID，如cdb-jd92ijd8
+        # @type InstanceId: String
         # @param Ip: 目标实例vip。已废弃，无需填写
         # @type Ip: String
         # @param Port: 目标实例vport。已废弃，无需填写
@@ -1090,11 +1101,11 @@ module TencentCloud
         # @param Password: 目标数据库密码
         # @type Password: String
 
-        attr_accessor :InstanceId, :Region, :Ip, :Port, :ReadOnly, :User, :Password
+        attr_accessor :Region, :InstanceId, :Ip, :Port, :ReadOnly, :User, :Password
         
-        def initialize(instanceid=nil, region=nil, ip=nil, port=nil, readonly=nil, user=nil, password=nil)
-          @InstanceId = instanceid
+        def initialize(region=nil, instanceid=nil, ip=nil, port=nil, readonly=nil, user=nil, password=nil)
           @Region = region
+          @InstanceId = instanceid
           @Ip = ip
           @Port = port
           @ReadOnly = readonly
@@ -1103,8 +1114,8 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InstanceId = params['InstanceId']
           @Region = params['Region']
+          @InstanceId = params['InstanceId']
           @Ip = params['Ip']
           @Port = params['Port']
           @ReadOnly = params['ReadOnly']
@@ -1246,10 +1257,13 @@ module TencentCloud
         # @type Detail: :class:`Tencentcloud::Dts.v20180330.models.MigrateDetailInfo`
         # @param ErrorInfo: 任务错误信息提示，当任务发生错误时，不为null或者空值
         # @type ErrorInfo: Array
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :JobId, :JobName, :MigrateOption, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstDatabaseType, :DstAccessType, :DstInfo, :DatabaseInfo, :CreateTime, :StartTime, :EndTime, :Status, :Detail, :ErrorInfo
+        attr_accessor :JobId, :JobName, :MigrateOption, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstDatabaseType, :DstAccessType, :DstInfo, :DatabaseInfo, :CreateTime, :StartTime, :EndTime, :Status, :Detail, :ErrorInfo, :Tags
         
-        def initialize(jobid=nil, jobname=nil, migrateoption=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, createtime=nil, starttime=nil, endtime=nil, status=nil, detail=nil, errorinfo=nil)
+        def initialize(jobid=nil, jobname=nil, migrateoption=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, databaseinfo=nil, createtime=nil, starttime=nil, endtime=nil, status=nil, detail=nil, errorinfo=nil, tags=nil)
           @JobId = jobid
           @JobName = jobname
           @MigrateOption = migrateoption
@@ -1266,6 +1280,7 @@ module TencentCloud
           @Status = status
           @Detail = detail
           @ErrorInfo = errorinfo
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1302,6 +1317,14 @@ module TencentCloud
               errorinfo_tmp = ErrorInfo.new
               errorinfo_tmp.deserialize(i)
               @ErrorInfo << errorinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @Tags << tagitem_tmp
             end
           end
         end

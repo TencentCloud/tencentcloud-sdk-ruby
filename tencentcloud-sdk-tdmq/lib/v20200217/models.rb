@@ -1693,17 +1693,21 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认为10，最大值为20。
         # @type Limit: Integer
+        # @param ClusterIdList: 集群ID列表过滤
+        # @type ClusterIdList: Array
 
-        attr_accessor :Offset, :Limit
+        attr_accessor :Offset, :Limit, :ClusterIdList
         
-        def initialize(offset=nil, limit=nil)
+        def initialize(offset=nil, limit=nil, clusteridlist=nil)
           @Offset = offset
           @Limit = limit
+          @ClusterIdList = clusteridlist
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ClusterIdList = params['ClusterIdList']
         end
       end
 

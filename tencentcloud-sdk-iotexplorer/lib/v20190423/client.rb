@@ -629,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 直接绑定设备和家庭
+
+        # @param request: Request instance for DirectBindDeviceInFamily.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DirectBindDeviceInFamilyRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DirectBindDeviceInFamilyResponse`
+        def DirectBindDeviceInFamily(request)
+          body = send_request('DirectBindDeviceInFamily', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DirectBindDeviceInFamilyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 禁用规则
 
         # @param request: Request instance for DisableTopicRule.

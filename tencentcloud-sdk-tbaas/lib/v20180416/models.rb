@@ -316,7 +316,7 @@ module TencentCloud
         # @param Message: 合约返回信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param Timestamp: 交易时间
+        # @param Timestamp: 交易时间，单位是秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Timestamp: Integer
 
@@ -2415,7 +2415,7 @@ module TencentCloud
         # @param TxCount: 交易数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxCount: Integer
-        # @param BlockTimestamp: 区块时间戳
+        # @param BlockTimestamp: 区块时间戳，单位是秒
         # @type BlockTimestamp: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

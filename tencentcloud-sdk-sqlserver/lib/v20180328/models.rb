@@ -6120,14 +6120,17 @@ module TencentCloud
         # @type AutoVoucher: Integer
         # @param VoucherIds: 代金券ID数组，目前只支持使用1张代金券
         # @type VoucherIds: Array
+        # @param AutoRenewFlag: 续费标记 0:正常续费 1:自动续费：只用于按量计费转包年包月时有效。
+        # @type AutoRenewFlag: Integer
 
-        attr_accessor :InstanceId, :Period, :AutoVoucher, :VoucherIds
+        attr_accessor :InstanceId, :Period, :AutoVoucher, :VoucherIds, :AutoRenewFlag
         
-        def initialize(instanceid=nil, period=nil, autovoucher=nil, voucherids=nil)
+        def initialize(instanceid=nil, period=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil)
           @InstanceId = instanceid
           @Period = period
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
+          @AutoRenewFlag = autorenewflag
         end
 
         def deserialize(params)
@@ -6135,6 +6138,7 @@ module TencentCloud
           @Period = params['Period']
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
+          @AutoRenewFlag = params['AutoRenewFlag']
         end
       end
 

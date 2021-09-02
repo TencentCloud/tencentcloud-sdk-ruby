@@ -5869,10 +5869,14 @@ module TencentCloud
         # @type GateWayStatus: String
         # @param ServiceInfo: 服务信息
         # @type ServiceInfo: :class:`Tencentcloud::Tcb.v20180608.models.BackendServiceInfo`
+        # @param PublicClbIp: 公网CLBIP
+        # @type PublicClbIp: String
+        # @param InternalClbIp: 内网CLBIP
+        # @type InternalClbIp: String
 
-        attr_accessor :GatewayName, :CPU, :Mem, :PackageVersion, :GatewayAlias, :VpcId, :SubnetIds, :GatewayDesc, :GateWayStatus, :ServiceInfo
+        attr_accessor :GatewayName, :CPU, :Mem, :PackageVersion, :GatewayAlias, :VpcId, :SubnetIds, :GatewayDesc, :GateWayStatus, :ServiceInfo, :PublicClbIp, :InternalClbIp
         
-        def initialize(gatewayname=nil, cpu=nil, mem=nil, packageversion=nil, gatewayalias=nil, vpcid=nil, subnetids=nil, gatewaydesc=nil, gatewaystatus=nil, serviceinfo=nil)
+        def initialize(gatewayname=nil, cpu=nil, mem=nil, packageversion=nil, gatewayalias=nil, vpcid=nil, subnetids=nil, gatewaydesc=nil, gatewaystatus=nil, serviceinfo=nil, publicclbip=nil, internalclbip=nil)
           @GatewayName = gatewayname
           @CPU = cpu
           @Mem = mem
@@ -5883,6 +5887,8 @@ module TencentCloud
           @GatewayDesc = gatewaydesc
           @GateWayStatus = gatewaystatus
           @ServiceInfo = serviceinfo
+          @PublicClbIp = publicclbip
+          @InternalClbIp = internalclbip
         end
 
         def deserialize(params)
@@ -5899,6 +5905,8 @@ module TencentCloud
             @ServiceInfo = BackendServiceInfo.new
             @ServiceInfo.deserialize(params['ServiceInfo'])
           end
+          @PublicClbIp = params['PublicClbIp']
+          @InternalClbIp = params['InternalClbIp']
         end
       end
 

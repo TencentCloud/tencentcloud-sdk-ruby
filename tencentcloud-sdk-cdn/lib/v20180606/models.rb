@@ -1036,17 +1036,31 @@ module TencentCloud
         # RETURN_404：全部请求返回 404
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CounterMeasure: String
-        # @param LastTriggerTime: 上次触发带宽封顶阈值的时间
+        # @param LastTriggerTime: 境内区域上次触发带宽封顶阈值的时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTriggerTime: String
+        # @param AlertSwitch: 带宽封顶提醒开关
+        # on：开启
+        # off：关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertSwitch: String
+        # @param AlertPercentage: 带宽封顶阈值提醒百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertPercentage: Integer
+        # @param LastTriggerTimeOverseas: 海外区域上次触发带宽封顶阈值的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastTriggerTimeOverseas: String
 
-        attr_accessor :Switch, :BpsThreshold, :CounterMeasure, :LastTriggerTime
+        attr_accessor :Switch, :BpsThreshold, :CounterMeasure, :LastTriggerTime, :AlertSwitch, :AlertPercentage, :LastTriggerTimeOverseas
         
-        def initialize(switch=nil, bpsthreshold=nil, countermeasure=nil, lasttriggertime=nil)
+        def initialize(switch=nil, bpsthreshold=nil, countermeasure=nil, lasttriggertime=nil, alertswitch=nil, alertpercentage=nil, lasttriggertimeoverseas=nil)
           @Switch = switch
           @BpsThreshold = bpsthreshold
           @CounterMeasure = countermeasure
           @LastTriggerTime = lasttriggertime
+          @AlertSwitch = alertswitch
+          @AlertPercentage = alertpercentage
+          @LastTriggerTimeOverseas = lasttriggertimeoverseas
         end
 
         def deserialize(params)
@@ -1054,6 +1068,9 @@ module TencentCloud
           @BpsThreshold = params['BpsThreshold']
           @CounterMeasure = params['CounterMeasure']
           @LastTriggerTime = params['LastTriggerTime']
+          @AlertSwitch = params['AlertSwitch']
+          @AlertPercentage = params['AlertPercentage']
+          @LastTriggerTimeOverseas = params['LastTriggerTimeOverseas']
         end
       end
 

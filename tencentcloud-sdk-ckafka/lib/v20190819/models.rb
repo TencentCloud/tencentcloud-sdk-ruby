@@ -418,10 +418,12 @@ module TencentCloud
         # @type Host: String
         # @param Principal: 用户列表，默认为User:*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户。传入时需要加 User: 前缀,如用户A则传入User:A。
         # @type Principal: String
+        # @param ResourceNameList: 资源名称列表,Json字符串格式。ResourceName和resourceNameList只能指定其中一个。
+        # @type ResourceNameList: String
 
-        attr_accessor :InstanceId, :ResourceType, :Operation, :PermissionType, :ResourceName, :Host, :Principal
+        attr_accessor :InstanceId, :ResourceType, :Operation, :PermissionType, :ResourceName, :Host, :Principal, :ResourceNameList
         
-        def initialize(instanceid=nil, resourcetype=nil, operation=nil, permissiontype=nil, resourcename=nil, host=nil, principal=nil)
+        def initialize(instanceid=nil, resourcetype=nil, operation=nil, permissiontype=nil, resourcename=nil, host=nil, principal=nil, resourcenamelist=nil)
           @InstanceId = instanceid
           @ResourceType = resourcetype
           @Operation = operation
@@ -429,6 +431,7 @@ module TencentCloud
           @ResourceName = resourcename
           @Host = host
           @Principal = principal
+          @ResourceNameList = resourcenamelist
         end
 
         def deserialize(params)
@@ -439,6 +442,7 @@ module TencentCloud
           @ResourceName = params['ResourceName']
           @Host = params['Host']
           @Principal = params['Principal']
+          @ResourceNameList = params['ResourceNameList']
         end
       end
 
