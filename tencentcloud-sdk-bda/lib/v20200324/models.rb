@@ -921,6 +921,45 @@ module TencentCloud
         end
       end
 
+      # GetSummaryInfo请求参数结构体
+      class GetSummaryInfoRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetSummaryInfo返回参数结构体
+      class GetSummaryInfoResponse < TencentCloud::Common::AbstractModel
+        # @param GroupCount: 人体库总数量。
+        # @type GroupCount: Integer
+        # @param PersonCount: 人员总数量
+        # @type PersonCount: Integer
+        # @param TraceCount: 人员轨迹总数量
+        # @type TraceCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupCount, :PersonCount, :TraceCount, :RequestId
+        
+        def initialize(groupcount=nil, personcount=nil, tracecount=nil, requestid=nil)
+          @GroupCount = groupcount
+          @PersonCount = personcount
+          @TraceCount = tracecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupCount = params['GroupCount']
+          @PersonCount = params['PersonCount']
+          @TraceCount = params['TraceCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 返回的人员库信息。
       class GroupInfo < TencentCloud::Common::AbstractModel
         # @param GroupName: 人体库名称。

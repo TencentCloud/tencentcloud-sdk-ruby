@@ -518,10 +518,13 @@ module TencentCloud
         # @type UpdateTime: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param UserDefineRule: 用户自定义解析字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDefineRule: String
 
-        attr_accessor :ConfigId, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime
+        attr_accessor :ConfigId, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime, :UserDefineRule
         
-        def initialize(configid=nil, logformat=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, updatetime=nil, createtime=nil)
+        def initialize(configid=nil, logformat=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, updatetime=nil, createtime=nil, userdefinerule=nil)
           @ConfigId = configid
           @LogFormat = logformat
           @Path = path
@@ -531,6 +534,7 @@ module TencentCloud
           @Output = output
           @UpdateTime = updatetime
           @CreateTime = createtime
+          @UserDefineRule = userdefinerule
         end
 
         def deserialize(params)
@@ -553,6 +557,7 @@ module TencentCloud
           @Output = params['Output']
           @UpdateTime = params['UpdateTime']
           @CreateTime = params['CreateTime']
+          @UserDefineRule = params['UserDefineRule']
         end
       end
 
@@ -871,16 +876,19 @@ module TencentCloud
         # @type ExtractRule: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
         # @param ExcludePaths: 采集黑名单路径列表
         # @type ExcludePaths: Array
+        # @param UserDefineRule: 用户自定义采集规则，Json格式序列化的字符串
+        # @type UserDefineRule: String
 
-        attr_accessor :Name, :Output, :Path, :LogType, :ExtractRule, :ExcludePaths
+        attr_accessor :Name, :Output, :Path, :LogType, :ExtractRule, :ExcludePaths, :UserDefineRule
         
-        def initialize(name=nil, output=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil)
+        def initialize(name=nil, output=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil)
           @Name = name
           @Output = output
           @Path = path
           @LogType = logtype
           @ExtractRule = extractrule
           @ExcludePaths = excludepaths
+          @UserDefineRule = userdefinerule
         end
 
         def deserialize(params)
@@ -900,6 +908,7 @@ module TencentCloud
               @ExcludePaths << excludepathinfo_tmp
             end
           end
+          @UserDefineRule = params['UserDefineRule']
         end
       end
 
@@ -3990,10 +3999,12 @@ module TencentCloud
         # @type ExcludePaths: Array
         # @param Output: 采集配置关联的日志主题（TopicId）
         # @type Output: String
+        # @param UserDefineRule: 用户自定义解析字符串，Json格式序列化的字符串
+        # @type UserDefineRule: String
 
-        attr_accessor :ConfigId, :Name, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output
+        attr_accessor :ConfigId, :Name, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UserDefineRule
         
-        def initialize(configid=nil, name=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil)
+        def initialize(configid=nil, name=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, userdefinerule=nil)
           @ConfigId = configid
           @Name = name
           @Path = path
@@ -4001,6 +4012,7 @@ module TencentCloud
           @ExtractRule = extractrule
           @ExcludePaths = excludepaths
           @Output = output
+          @UserDefineRule = userdefinerule
         end
 
         def deserialize(params)
@@ -4021,6 +4033,7 @@ module TencentCloud
             end
           end
           @Output = params['Output']
+          @UserDefineRule = params['UserDefineRule']
         end
       end
 

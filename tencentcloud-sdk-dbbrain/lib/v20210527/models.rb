@@ -2135,6 +2135,63 @@ module TencentCloud
         end
       end
 
+      # KillMySqlThreads请求参数结构体
+      class KillMySqlThreadsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Stage: kill会话任务的阶段，取值包括："Prepare"-准备阶段，"Commit"-提交阶段。
+        # @type Stage: String
+        # @param Threads: 需要kill的sql会话ID列表，此参数用于Prepare阶段。
+        # @type Threads: Array
+        # @param SqlExecId: 执行ID，此参数用于Commit阶段。
+        # @type SqlExecId: String
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :InstanceId, :Stage, :Threads, :SqlExecId, :Product
+        
+        def initialize(instanceid=nil, stage=nil, threads=nil, sqlexecid=nil, product=nil)
+          @InstanceId = instanceid
+          @Stage = stage
+          @Threads = threads
+          @SqlExecId = sqlexecid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Stage = params['Stage']
+          @Threads = params['Threads']
+          @SqlExecId = params['SqlExecId']
+          @Product = params['Product']
+        end
+      end
+
+      # KillMySqlThreads返回参数结构体
+      class KillMySqlThreadsResponse < TencentCloud::Common::AbstractModel
+        # @param Threads: kill完成的sql会话ID列表。
+        # @type Threads: Array
+        # @param SqlExecId: 执行ID， Prepare阶段的任务输出，用于Commit阶段中指定执行kill操作的会话ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlExecId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Threads, :SqlExecId, :RequestId
+        
+        def initialize(threads=nil, sqlexecid=nil, requestid=nil)
+          @Threads = threads
+          @SqlExecId = sqlexecid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Threads = params['Threads']
+          @SqlExecId = params['SqlExecId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 邮件发送配置
       class MailConfiguration < TencentCloud::Common::AbstractModel
         # @param SendMail: 是否开启邮件发送: 0, 否; 1, 是。

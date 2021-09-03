@@ -868,16 +868,15 @@ module TencentCloud
         # resume
         # pause
         # @type ServerlessStatus: String
-        # @param StoragePayMode: 存储付费类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StoragePayMode: Integer
         # @param StorageId: 预付费存储Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageId: String
+        # @param StoragePayMode: 存储付费类型
+        # @type StoragePayMode: Integer
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StoragePayMode, :StorageId
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode
         
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storagepaymode=nil, storageid=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -918,8 +917,8 @@ module TencentCloud
           @MinCpu = mincpu
           @MaxCpu = maxcpu
           @ServerlessStatus = serverlessstatus
-          @StoragePayMode = storagepaymode
           @StorageId = storageid
+          @StoragePayMode = storagepaymode
         end
 
         def deserialize(params)
@@ -963,8 +962,8 @@ module TencentCloud
           @MinCpu = params['MinCpu']
           @MaxCpu = params['MaxCpu']
           @ServerlessStatus = params['ServerlessStatus']
-          @StoragePayMode = params['StoragePayMode']
           @StorageId = params['StorageId']
+          @StoragePayMode = params['StoragePayMode']
         end
       end
 
