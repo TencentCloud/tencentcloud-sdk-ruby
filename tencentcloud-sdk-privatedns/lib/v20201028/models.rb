@@ -17,6 +17,61 @@
 module TencentCloud
   module Privatedns
     module V20201028
+      # 私有域解析账号Vpc信息
+      class AccountVpcInfo < TencentCloud::Common::AbstractModel
+        # @param UniqVpcId: VpcId： vpc-xadsafsdasd
+        # @type UniqVpcId: String
+        # @param Region: Vpc所属地区: ap-guangzhou, ap-shanghai
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Uin: Vpc所属账号: 123456789
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param VpcName: vpc资源名称：testname
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcName: String
+
+        attr_accessor :UniqVpcId, :Region, :Uin, :VpcName
+        
+        def initialize(uniqvpcid=nil, region=nil, uin=nil, vpcname=nil)
+          @UniqVpcId = uniqvpcid
+          @Region = region
+          @Uin = uin
+          @VpcName = vpcname
+        end
+
+        def deserialize(params)
+          @UniqVpcId = params['UniqVpcId']
+          @Region = params['Region']
+          @Uin = params['Uin']
+          @VpcName = params['VpcName']
+        end
+      end
+
+      # 关联的VPC出参
+      class AccountVpcInfoOutput < TencentCloud::Common::AbstractModel
+        # @param Uin: 关联账户的uin
+        # @type Uin: String
+        # @param UniqVpcId: vpcid
+        # @type UniqVpcId: String
+        # @param Region: 地域
+        # @type Region: String
+
+        attr_accessor :Uin, :UniqVpcId, :Region
+        
+        def initialize(uin=nil, uniqvpcid=nil, region=nil)
+          @Uin = uin
+          @UniqVpcId = uniqvpcid
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @UniqVpcId = params['UniqVpcId']
+          @Region = params['Region']
+        end
+      end
+
       # 操作日志
       class AuditLog < TencentCloud::Common::AbstractModel
         # @param Resource: 日志类型
@@ -150,16 +205,19 @@ module TencentCloud
         # @type DnsForwardStatus: String
         # @param Vpcs: 创建私有域的同时，将其关联至VPC
         # @type Vpcs: Array
+        # @param AccountVpcSet: 创建私有域同时绑定关联账号的VPC
+        # @type AccountVpcSet: Array
 
-        attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs
+        attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet
         
-        def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil)
+        def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil)
           @Domain = domain
           @TagSet = tagset
           @VpcSet = vpcset
           @Remark = remark
           @DnsForwardStatus = dnsforwardstatus
           @Vpcs = vpcs
+          @AccountVpcSet = accountvpcset
         end
 
         def deserialize(params)
@@ -188,6 +246,14 @@ module TencentCloud
               vpcinfo_tmp = VpcInfo.new
               vpcinfo_tmp.deserialize(i)
               @Vpcs << vpcinfo_tmp
+            end
+          end
+          unless params['AccountVpcSet'].nil?
+            @AccountVpcSet = []
+            params['AccountVpcSet'].each do |i|
+              accountvpcinfo_tmp = AccountVpcInfo.new
+              accountvpcinfo_tmp.deserialize(i)
+              @AccountVpcSet << accountvpcinfo_tmp
             end
           end
         end
@@ -870,12 +936,15 @@ module TencentCloud
         # @type ZoneId: String
         # @param VpcSet: 私有域关联的全部VPC列表
         # @type VpcSet: Array
+        # @param AccountVpcSet: 私有域账号关联的全部VPC列表
+        # @type AccountVpcSet: Array
 
-        attr_accessor :ZoneId, :VpcSet
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet
         
-        def initialize(zoneid=nil, vpcset=nil)
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil)
           @ZoneId = zoneid
           @VpcSet = vpcset
+          @AccountVpcSet = accountvpcset
         end
 
         def deserialize(params)
@@ -888,6 +957,14 @@ module TencentCloud
               @VpcSet << vpcinfo_tmp
             end
           end
+          unless params['AccountVpcSet'].nil?
+            @AccountVpcSet = []
+            params['AccountVpcSet'].each do |i|
+              accountvpcinfo_tmp = AccountVpcInfo.new
+              accountvpcinfo_tmp.deserialize(i)
+              @AccountVpcSet << accountvpcinfo_tmp
+            end
+          end
         end
       end
 
@@ -897,14 +974,17 @@ module TencentCloud
         # @type ZoneId: String
         # @param VpcSet: 解析域关联的VPC列表
         # @type VpcSet: Array
+        # @param AccountVpcSet: 私有域账号关联的全部VPC列表
+        # @type AccountVpcSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ZoneId, :VpcSet, :RequestId
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet, :RequestId
         
-        def initialize(zoneid=nil, vpcset=nil, requestid=nil)
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil, requestid=nil)
           @ZoneId = zoneid
           @VpcSet = vpcset
+          @AccountVpcSet = accountvpcset
           @RequestId = requestid
         end
 
@@ -916,6 +996,14 @@ module TencentCloud
               vpcinfo_tmp = VpcInfo.new
               vpcinfo_tmp.deserialize(i)
               @VpcSet << vpcinfo_tmp
+            end
+          end
+          unless params['AccountVpcSet'].nil?
+            @AccountVpcSet = []
+            params['AccountVpcSet'].each do |i|
+              accountvpcinfooutput_tmp = AccountVpcInfoOutput.new
+              accountvpcinfooutput_tmp.deserialize(i)
+              @AccountVpcSet << accountvpcinfooutput_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -947,10 +1035,13 @@ module TencentCloud
         # @type DnsForwardStatus: String
         # @param Tags: 标签键值对集合
         # @type Tags: Array
+        # @param AccountVpcSet: 绑定的关联账号的vpc列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountVpcSet: Array
 
-        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags
+        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet
         
-        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil)
+        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil, accountvpcset=nil)
           @ZoneId = zoneid
           @OwnerUin = owneruin
           @Domain = domain
@@ -962,6 +1053,7 @@ module TencentCloud
           @Status = status
           @DnsForwardStatus = dnsforwardstatus
           @Tags = tags
+          @AccountVpcSet = accountvpcset
         end
 
         def deserialize(params)
@@ -988,6 +1080,14 @@ module TencentCloud
               taginfo_tmp = TagInfo.new
               taginfo_tmp.deserialize(i)
               @Tags << taginfo_tmp
+            end
+          end
+          unless params['AccountVpcSet'].nil?
+            @AccountVpcSet = []
+            params['AccountVpcSet'].each do |i|
+              accountvpcinfooutput_tmp = AccountVpcInfoOutput.new
+              accountvpcinfooutput_tmp.deserialize(i)
+              @AccountVpcSet << accountvpcinfooutput_tmp
             end
           end
         end

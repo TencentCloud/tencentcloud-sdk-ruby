@@ -17,6 +17,42 @@
 module TencentCloud
   module Tcb
     module V20180608
+      # 活动信息
+      class ActivityInfoItem < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 活动id
+        # @type ActivityId: Integer
+        # @param CreateTime: 记录插入时间
+        # @type CreateTime: String
+        # @param UpdateTime: 记录最后一次变更时间
+        # @type UpdateTime: String
+        # @param StartTime: 活动开始时间
+        # @type StartTime: String
+        # @param ExpireTime: 活动结束时间
+        # @type ExpireTime: String
+        # @param Tag: 自定义备注信息
+        # @type Tag: String
+
+        attr_accessor :ActivityId, :CreateTime, :UpdateTime, :StartTime, :ExpireTime, :Tag
+        
+        def initialize(activityid=nil, createtime=nil, updatetime=nil, starttime=nil, expiretime=nil, tag=nil)
+          @ActivityId = activityid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @StartTime = starttime
+          @ExpireTime = expiretime
+          @Tag = tag
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @StartTime = params['StartTime']
+          @ExpireTime = params['ExpireTime']
+          @Tag = params['Tag']
+        end
+      end
+
       # 活动详情
       class ActivityRecordItem < TencentCloud::Common::AbstractModel
         # @param Uin: 用户uin
@@ -31,14 +67,22 @@ module TencentCloud
         # @param SubStatus: 自定义子状态码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubStatus: String
+        # @param SubStatusInt: 整型子状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubStatusInt: Integer
+        # @param IsDeleted: 是否软删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDeleted: Boolean
 
-        attr_accessor :Uin, :ActivityId, :Status, :SubStatus
+        attr_accessor :Uin, :ActivityId, :Status, :SubStatus, :SubStatusInt, :IsDeleted
         
-        def initialize(uin=nil, activityid=nil, status=nil, substatus=nil)
+        def initialize(uin=nil, activityid=nil, status=nil, substatus=nil, substatusint=nil, isdeleted=nil)
           @Uin = uin
           @ActivityId = activityid
           @Status = status
           @SubStatus = substatus
+          @SubStatusInt = substatusint
+          @IsDeleted = isdeleted
         end
 
         def deserialize(params)
@@ -46,6 +90,8 @@ module TencentCloud
           @ActivityId = params['ActivityId']
           @Status = params['Status']
           @SubStatus = params['SubStatus']
+          @SubStatusInt = params['SubStatusInt']
+          @IsDeleted = params['IsDeleted']
         end
       end
 
@@ -2137,6 +2183,49 @@ module TencentCloud
         end
       end
 
+      # DescribeActivityInfo请求参数结构体
+      class DescribeActivityInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ActivityIdList: 活动id列表
+        # @type ActivityIdList: Array
+
+        attr_accessor :ActivityIdList
+        
+        def initialize(activityidlist=nil)
+          @ActivityIdList = activityidlist
+        end
+
+        def deserialize(params)
+          @ActivityIdList = params['ActivityIdList']
+        end
+      end
+
+      # DescribeActivityInfo返回参数结构体
+      class DescribeActivityInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ActivityInfoList: 活动详情
+        # @type ActivityInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivityInfoList, :RequestId
+        
+        def initialize(activityinfolist=nil, requestid=nil)
+          @ActivityInfoList = activityinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ActivityInfoList'].nil?
+            @ActivityInfoList = []
+            params['ActivityInfoList'].each do |i|
+              activityinfoitem_tmp = ActivityInfoItem.new
+              activityinfoitem_tmp.deserialize(i)
+              @ActivityInfoList << activityinfoitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeActivityRecord请求参数结构体
       class DescribeActivityRecordRequest < TencentCloud::Common::AbstractModel
         # @param ChannelToken: 渠道加密token
@@ -2149,15 +2238,18 @@ module TencentCloud
         # @type Status: Integer
         # @param Statuses: 状态码过滤数组，空数组时不过滤
         # @type Statuses: Array
+        # @param IsDeletedList: 根据是否软删除进行过滤，[0]未删除, [1] 删除，不传不过滤
+        # @type IsDeletedList: Array
 
-        attr_accessor :ChannelToken, :Channel, :ActivityIdList, :Status, :Statuses
+        attr_accessor :ChannelToken, :Channel, :ActivityIdList, :Status, :Statuses, :IsDeletedList
         
-        def initialize(channeltoken=nil, channel=nil, activityidlist=nil, status=nil, statuses=nil)
+        def initialize(channeltoken=nil, channel=nil, activityidlist=nil, status=nil, statuses=nil, isdeletedlist=nil)
           @ChannelToken = channeltoken
           @Channel = channel
           @ActivityIdList = activityidlist
           @Status = status
           @Statuses = statuses
+          @IsDeletedList = isdeletedlist
         end
 
         def deserialize(params)
@@ -2166,6 +2258,7 @@ module TencentCloud
           @ActivityIdList = params['ActivityIdList']
           @Status = params['Status']
           @Statuses = params['Statuses']
+          @IsDeletedList = params['IsDeletedList']
         end
       end
 
@@ -4239,6 +4332,71 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserActivityInfo请求参数结构体
+      class DescribeUserActivityInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 活动id
+        # @type ActivityId: Integer
+        # @param ChannelToken: 渠道加密token
+        # @type ChannelToken: String
+        # @param Channel: 渠道来源，每个来源对应不同secretKey
+        # @type Channel: String
+        # @param GroupId: 团id, 1元钱裂变中活动团id不为空时根据团id来查询记录，为空时查询uin最新记录
+        # @type GroupId: String
+
+        attr_accessor :ActivityId, :ChannelToken, :Channel, :GroupId
+        
+        def initialize(activityid=nil, channeltoken=nil, channel=nil, groupid=nil)
+          @ActivityId = activityid
+          @ChannelToken = channeltoken
+          @Channel = channel
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @ChannelToken = params['ChannelToken']
+          @Channel = params['Channel']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeUserActivityInfo返回参数结构体
+      class DescribeUserActivityInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Tag: 自定义标记，1元钱裂变需求中即代指`团id`
+        # @type Tag: String
+        # @param Notes: 自定义备注，1元钱裂变需求中返回`团列表`，uin列表通过","拼接
+        # @type Notes: String
+        # @param ActivityTimeLeft: 活动剩余时间，单位为s.1元钱裂变需求中即为 time(活动过期时间)-Now()), 过期后为0，即返回必为自然数
+        # @type ActivityTimeLeft: Integer
+        # @param GroupTimeLeft: 拼团剩余时间，单位为s.1元钱裂变需求中即为time(成团时间)+24H-Now()，过期后为0，即返回必为自然数
+        # @type GroupTimeLeft: Integer
+        # @param NickNameList: 昵称列表,通过","拼接， 1元钱裂变活动中与Notes中uin一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NickNameList: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tag, :Notes, :ActivityTimeLeft, :GroupTimeLeft, :NickNameList, :RequestId
+        
+        def initialize(tag=nil, notes=nil, activitytimeleft=nil, grouptimeleft=nil, nicknamelist=nil, requestid=nil)
+          @Tag = tag
+          @Notes = notes
+          @ActivityTimeLeft = activitytimeleft
+          @GroupTimeLeft = grouptimeleft
+          @NickNameList = nicknamelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Tag = params['Tag']
+          @Notes = params['Notes']
+          @ActivityTimeLeft = params['ActivityTimeLeft']
+          @GroupTimeLeft = params['GroupTimeLeft']
+          @NickNameList = params['NickNameList']
           @RequestId = params['RequestId']
         end
       end

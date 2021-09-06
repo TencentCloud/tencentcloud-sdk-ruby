@@ -197,7 +197,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取即时广播曲库推荐歌单列表。
+        # 获取直播互动曲库推荐歌单列表。
 
         # @param request: Request instance for DescribeKTVPlaylists.
         # @type request: :class:`Tencentcloud::ame::V20190916::DescribeKTVPlaylistsRequest`
@@ -327,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePackagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据购买曲库包用户可查询已回退的歌曲信息
+
+        # @param request: Request instance for DescribePkgOfflineMusic.
+        # @type request: :class:`Tencentcloud::ame::V20190916::DescribePkgOfflineMusicRequest`
+        # @rtype: :class:`Tencentcloud::ame::V20190916::DescribePkgOfflineMusicResponse`
+        def DescribePkgOfflineMusic(request)
+          body = send_request('DescribePkgOfflineMusic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePkgOfflineMusicResponse.new
             model.deserialize(response['Response'])
             model
           else

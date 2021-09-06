@@ -54,10 +54,12 @@ module TencentCloud
         # @type StatusMessageSimplified: String
         # @param LifecycleActionResultSet: 伸缩活动中生命周期挂钩的执行结果。
         # @type LifecycleActionResultSet: Array
+        # @param DetailedStatusMessageSet: 伸缩活动状态详细描述。
+        # @type DetailedStatusMessageSet: Array
 
-        attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet
+        attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet
         
-        def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil)
+        def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ActivityId = activityid
           @ActivityType = activitytype
@@ -71,6 +73,7 @@ module TencentCloud
           @ActivityRelatedInstanceSet = activityrelatedinstanceset
           @StatusMessageSimplified = statusmessagesimplified
           @LifecycleActionResultSet = lifecycleactionresultset
+          @DetailedStatusMessageSet = detailedstatusmessageset
         end
 
         def deserialize(params)
@@ -99,6 +102,14 @@ module TencentCloud
               lifecycleactionresultinfo_tmp = LifecycleActionResultInfo.new
               lifecycleactionresultinfo_tmp.deserialize(i)
               @LifecycleActionResultSet << lifecycleactionresultinfo_tmp
+            end
+          end
+          unless params['DetailedStatusMessageSet'].nil?
+            @DetailedStatusMessageSet = []
+            params['DetailedStatusMessageSet'].each do |i|
+              detailedstatusmessage_tmp = DetailedStatusMessage.new
+              detailedstatusmessage_tmp.deserialize(i)
+              @DetailedStatusMessageSet << detailedstatusmessage_tmp
             end
           end
         end
@@ -2178,6 +2189,46 @@ module TencentCloud
         def deserialize(params)
           @ActivityId = params['ActivityId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 伸缩活动状态详细描述。
+      class DetailedStatusMessage < TencentCloud::Common::AbstractModel
+        # @param Code: 错误类型。
+        # @type Code: String
+        # @param Zone: 可用区信息。
+        # @type Zone: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param InstanceChargeType: 实例计费类型。
+        # @type InstanceChargeType: String
+        # @param SubnetId: 子网ID。
+        # @type SubnetId: String
+        # @param Message: 错误描述。
+        # @type Message: String
+        # @param InstanceType: 实例类型。
+        # @type InstanceType: String
+
+        attr_accessor :Code, :Zone, :InstanceId, :InstanceChargeType, :SubnetId, :Message, :InstanceType
+        
+        def initialize(code=nil, zone=nil, instanceid=nil, instancechargetype=nil, subnetid=nil, message=nil, instancetype=nil)
+          @Code = code
+          @Zone = zone
+          @InstanceId = instanceid
+          @InstanceChargeType = instancechargetype
+          @SubnetId = subnetid
+          @Message = message
+          @InstanceType = instancetype
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Zone = params['Zone']
+          @InstanceId = params['InstanceId']
+          @InstanceChargeType = params['InstanceChargeType']
+          @SubnetId = params['SubnetId']
+          @Message = params['Message']
+          @InstanceType = params['InstanceType']
         end
       end
 

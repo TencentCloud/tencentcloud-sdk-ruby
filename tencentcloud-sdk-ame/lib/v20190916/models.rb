@@ -829,6 +829,61 @@ module TencentCloud
         end
       end
 
+      # DescribePkgOfflineMusic请求参数结构体
+      class DescribePkgOfflineMusicRequest < TencentCloud::Common::AbstractModel
+        # @param PackageOrderId: 订单id
+        # @type PackageOrderId: String
+        # @param Limit: 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条(注：单次上限为100)。
+        # @type Limit: Integer
+        # @param Offset: 分页返回的记录条数，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
+        # @type Offset: Integer
+
+        attr_accessor :PackageOrderId, :Limit, :Offset
+        
+        def initialize(packageorderid=nil, limit=nil, offset=nil)
+          @PackageOrderId = packageorderid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @PackageOrderId = params['PackageOrderId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribePkgOfflineMusic返回参数结构体
+      class DescribePkgOfflineMusicResponse < TencentCloud::Common::AbstractModel
+        # @param OfflineMusicSet: 曲库包中不可用歌曲信息
+        # @type OfflineMusicSet: Array
+        # @param TotalCount: 返回总量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OfflineMusicSet, :TotalCount, :RequestId
+        
+        def initialize(offlinemusicset=nil, totalcount=nil, requestid=nil)
+          @OfflineMusicSet = offlinemusicset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OfflineMusicSet'].nil?
+            @OfflineMusicSet = []
+            params['OfflineMusicSet'].each do |i|
+              offlinemusicdetail_tmp = OfflineMusicDetail.new
+              offlinemusicdetail_tmp.deserialize(i)
+              @OfflineMusicSet << offlinemusicdetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStations请求参数结构体
       class DescribeStationsRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 条数，必须大于0
@@ -1273,6 +1328,34 @@ module TencentCloud
         def deserialize(params)
           @MusicId = params['MusicId']
           @SaleStatus = params['SaleStatus']
+        end
+      end
+
+      # 曲库包已下架歌曲详细信息
+      class OfflineMusicDetail < TencentCloud::Common::AbstractModel
+        # @param ItemId: 歌曲Id
+        # @type ItemId: String
+        # @param MusicName: 歌曲名称
+        # @type MusicName: String
+        # @param OffRemark: 不可用原因
+        # @type OffRemark: String
+        # @param OffTime: 不可用时间
+        # @type OffTime: String
+
+        attr_accessor :ItemId, :MusicName, :OffRemark, :OffTime
+        
+        def initialize(itemid=nil, musicname=nil, offremark=nil, offtime=nil)
+          @ItemId = itemid
+          @MusicName = musicname
+          @OffRemark = offremark
+          @OffTime = offtime
+        end
+
+        def deserialize(params)
+          @ItemId = params['ItemId']
+          @MusicName = params['MusicName']
+          @OffRemark = params['OffRemark']
+          @OffTime = params['OffTime']
         end
       end
 

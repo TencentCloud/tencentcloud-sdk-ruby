@@ -1001,10 +1001,13 @@ module TencentCloud
         # @param RunningCu: 细粒度下的运行的CU数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RunningCu: Float
+        # @param FlinkVersion: 作业运行的 Flink 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlinkVersion: String
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion
         
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -1033,6 +1036,7 @@ module TencentCloud
           @SchedulerType = schedulertype
           @ClusterStatus = clusterstatus
           @RunningCu = runningcu
+          @FlinkVersion = flinkversion
         end
 
         def deserialize(params)
@@ -1064,6 +1068,7 @@ module TencentCloud
           @SchedulerType = params['SchedulerType']
           @ClusterStatus = params['ClusterStatus']
           @RunningCu = params['RunningCu']
+          @FlinkVersion = params['FlinkVersion']
         end
       end
 
