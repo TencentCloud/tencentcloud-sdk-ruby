@@ -3608,7 +3608,7 @@ module TencentCloud
         # 取值：1~100之前的任意整数。
         # 默认值：10。
         # @type PageSize: Integer
-        # @param StreamName: 搜索的推流 id 名称。
+        # @param StreamName: 按流名称查询。
         # @type StreamName: String
 
         attr_accessor :PageNum, :PageSize, :StreamName

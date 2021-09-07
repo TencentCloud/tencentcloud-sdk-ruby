@@ -17,6 +17,27 @@
 module TencentCloud
   module Tse
     module V20201207
+      # 服务治理引擎绑定的kubernetes信息
+      class BoundK8SInfo < TencentCloud::Common::AbstractModel
+        # @param BoundClusterId: 绑定的kubernetes集群ID
+        # @type BoundClusterId: String
+        # @param BoundClusterType: 绑定的kubernetes的集群类型，分tke和eks两种
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BoundClusterType: String
+
+        attr_accessor :BoundClusterId, :BoundClusterType
+        
+        def initialize(boundclusterid=nil, boundclustertype=nil)
+          @BoundClusterId = boundclusterid
+          @BoundClusterType = boundclustertype
+        end
+
+        def deserialize(params)
+          @BoundClusterId = params['BoundClusterId']
+          @BoundClusterType = params['BoundClusterType']
+        end
+      end
+
       # DescribeSREInstanceAccessAddress请求参数结构体
       class DescribeSREInstanceAccessAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 注册引擎实例Id
@@ -288,10 +309,13 @@ module TencentCloud
         # @param VpcInfos: 私有网络列表信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcInfos: Array
+        # @param ServiceGovernanceInfos: 服务治理相关信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceGovernanceInfos: Array
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -311,6 +335,7 @@ module TencentCloud
           @EngineRegion = engineregion
           @EnableInternet = enableinternet
           @VpcInfos = vpcinfos
+          @ServiceGovernanceInfos = servicegovernanceinfos
         end
 
         def deserialize(params)
@@ -339,6 +364,52 @@ module TencentCloud
           end
           @EngineRegion = params['EngineRegion']
           @EnableInternet = params['EnableInternet']
+          unless params['VpcInfos'].nil?
+            @VpcInfos = []
+            params['VpcInfos'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcInfos << vpcinfo_tmp
+            end
+          end
+          unless params['ServiceGovernanceInfos'].nil?
+            @ServiceGovernanceInfos = []
+            params['ServiceGovernanceInfos'].each do |i|
+              servicegovernanceinfo_tmp = ServiceGovernanceInfo.new
+              servicegovernanceinfo_tmp.deserialize(i)
+              @ServiceGovernanceInfos << servicegovernanceinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 服务治理相关的信息
+      class ServiceGovernanceInfo < TencentCloud::Common::AbstractModel
+        # @param EngineRegion: 引擎所在的地域
+        # @type EngineRegion: String
+        # @param BoundK8SInfos: 服务治理引擎绑定的kubernetes集群信息
+        # @type BoundK8SInfos: Array
+        # @param VpcInfos: 服务治理引擎绑定的网络信息
+        # @type VpcInfos: Array
+
+        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos
+        
+        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil)
+          @EngineRegion = engineregion
+          @BoundK8SInfos = boundk8sinfos
+          @VpcInfos = vpcinfos
+        end
+
+        def deserialize(params)
+          @EngineRegion = params['EngineRegion']
+          unless params['BoundK8SInfos'].nil?
+            @BoundK8SInfos = []
+            params['BoundK8SInfos'].each do |i|
+              boundk8sinfo_tmp = BoundK8SInfo.new
+              boundk8sinfo_tmp.deserialize(i)
+              @BoundK8SInfos << boundk8sinfo_tmp
+            end
+          end
           unless params['VpcInfos'].nil?
             @VpcInfos = []
             params['VpcInfos'].each do |i|

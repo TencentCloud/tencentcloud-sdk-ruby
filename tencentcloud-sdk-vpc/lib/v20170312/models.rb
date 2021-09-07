@@ -3913,8 +3913,6 @@ module TencentCloud
 
       # CreateVpnConnection请求参数结构体
       class CreateVpnConnectionRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口返回值中的VpcId获取。
-        # @type VpcId: String
         # @param VpnGatewayId: VPN网关实例ID。
         # @type VpnGatewayId: String
         # @param CustomerGatewayId: 对端网关ID，例如：cgw-2wqq41m9，可通过DescribeCustomerGateways接口查询对端网关。
@@ -3923,6 +3921,9 @@ module TencentCloud
         # @type VpnConnectionName: String
         # @param PreShareKey: 预共享密钥。
         # @type PreShareKey: String
+        # @param VpcId: VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口返回值中的VpcId获取。
+        # CCN VPN 形的通道 可以不传VPCID
+        # @type VpcId: String
         # @param SecurityPolicyDatabases: SPD策略组，例如：{"10.0.0.5/24":["172.123.10.5/16"]}，10.0.0.5/24是vpc内网段172.123.10.5/16是IDC网段。用户指定VPC内哪些网段可以和您IDC中哪些网段通信。
         # @type SecurityPolicyDatabases: Array
         # @param IKEOptionsSpecification: IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议
@@ -3937,15 +3938,17 @@ module TencentCloud
         # @type HealthCheckLocalIp: String
         # @param HealthCheckRemoteIp: 健康检查对端地址
         # @type HealthCheckRemoteIp: String
+        # @param RouteType: 通道类型, 例如:["STATIC", "StaticRoute", "Policy"]
+        # @type RouteType: String
 
-        attr_accessor :VpcId, :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp
+        attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType
         
-        def initialize(vpcid=nil, vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil)
-          @VpcId = vpcid
+        def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil)
           @VpnGatewayId = vpngatewayid
           @CustomerGatewayId = customergatewayid
           @VpnConnectionName = vpnconnectionname
           @PreShareKey = presharekey
+          @VpcId = vpcid
           @SecurityPolicyDatabases = securitypolicydatabases
           @IKEOptionsSpecification = ikeoptionsspecification
           @IPSECOptionsSpecification = ipsecoptionsspecification
@@ -3953,14 +3956,15 @@ module TencentCloud
           @EnableHealthCheck = enablehealthcheck
           @HealthCheckLocalIp = healthchecklocalip
           @HealthCheckRemoteIp = healthcheckremoteip
+          @RouteType = routetype
         end
 
         def deserialize(params)
-          @VpcId = params['VpcId']
           @VpnGatewayId = params['VpnGatewayId']
           @CustomerGatewayId = params['CustomerGatewayId']
           @VpnConnectionName = params['VpnConnectionName']
           @PreShareKey = params['PreShareKey']
+          @VpcId = params['VpcId']
           unless params['SecurityPolicyDatabases'].nil?
             @SecurityPolicyDatabases = []
             params['SecurityPolicyDatabases'].each do |i|
@@ -3988,6 +3992,7 @@ module TencentCloud
           @EnableHealthCheck = params['EnableHealthCheck']
           @HealthCheckLocalIp = params['HealthCheckLocalIp']
           @HealthCheckRemoteIp = params['HealthCheckRemoteIp']
+          @RouteType = params['RouteType']
         end
       end
 

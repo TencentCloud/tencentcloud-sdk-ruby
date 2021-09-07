@@ -128,7 +128,9 @@ module TencentCloud
         # @param IsStaticPPT: 是否为静态PPT，默认为False；
         # 如果IsStaticPPT为False，后缀名为.ppt或.pptx的文档会动态转码成HTML5页面，其他格式的文档会静态转码成图片；如果IsStaticPPT为True，所有格式的文档会静态转码成图片；
         # @type IsStaticPPT: Boolean
-        # @param MinResolution: 转码后文档的最小分辨率，不传、传空字符串或分辨率格式错误则使用文档原分辨率
+        # @param MinResolution: 注意: 该参数已废弃, 请使用 MinScaleResolution
+
+        # 转码后文档的最小分辨率，不传、传空字符串或分辨率格式错误则使用文档原分辨率
 
         # 注意分辨率宽高中间为英文字母"xyz"的"x"
         # @type MinResolution: String
@@ -147,10 +149,14 @@ module TencentCloud
         # <br/>
         # 注意：对于PDF等静态文件转码，无论是正常优先级或者低优先级，最大只能支持200MB
         # @type Priority: String
+        # @param MinScaleResolution: 转码后文档的最小分辨率，不传、传空字符串或分辨率格式错误则使用文档原分辨率
 
-        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType, :ExtraData, :Priority
+        # 注意分辨率宽高中间为英文字母"xyz"的"x"
+        # @type MinScaleResolution: String
+
+        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType, :ExtraData, :Priority, :MinScaleResolution
         
-        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil, extradata=nil, priority=nil)
+        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil, extradata=nil, priority=nil, minscaleresolution=nil)
           @SdkAppId = sdkappid
           @Url = url
           @IsStaticPPT = isstaticppt
@@ -159,6 +165,7 @@ module TencentCloud
           @CompressFileType = compressfiletype
           @ExtraData = extradata
           @Priority = priority
+          @MinScaleResolution = minscaleresolution
         end
 
         def deserialize(params)
@@ -170,6 +177,7 @@ module TencentCloud
           @CompressFileType = params['CompressFileType']
           @ExtraData = params['ExtraData']
           @Priority = params['Priority']
+          @MinScaleResolution = params['MinScaleResolution']
         end
       end
 

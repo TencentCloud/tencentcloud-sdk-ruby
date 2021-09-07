@@ -602,7 +602,7 @@ module TencentCloud
         # @type FunctionName: String
         # @param TriggerName: 新建触发器名称。如果是定时触发器，名称支持英文字母、数字、连接符和下划线，最长100个字符；如果是cos触发器，需要是对应cos存储桶适用于XML API的访问域名(例如:5401-5ff414-12345.cos.ap-shanghai.myqcloud.com);如果是其他触发器，见具体触发器绑定参数的说明
         # @type TriggerName: String
-        # @param Type: 触发器类型，目前支持 cos 、cmq、 timer、 ckafka、apigw类型
+        # @param Type: 触发器类型，目前支持 cos 、cmq、 timer、 ckafka、apigw类型。创建 cls 触发器请参考[CLS 创建投递 SCF 任务](https://cloud.tencent.com/document/product/614/61096)。
         # @type Type: String
         # @param TriggerDesc: 触发器对应的参数，可见具体[触发器描述说明](https://cloud.tencent.com/document/product/583/39901)
         # @type TriggerDesc: String
@@ -1097,10 +1097,14 @@ module TencentCloud
         # @param ReservedConcurrencyMem: 函数并发保留内存
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReservedConcurrencyMem: Integer
+        # @param AsyncRunEnable: 函数异步属性，取值 TRUE 或者 FALSE
+        # @type AsyncRunEnable: String
+        # @param TraceEnable: 异步函数是否开启调用追踪，取值 TRUE 或者 FALSE
+        # @type TraceEnable: String
 
-        attr_accessor :ModTime, :AddTime, :Runtime, :FunctionName, :FunctionId, :Namespace, :Status, :StatusDesc, :Description, :Tags, :Type, :StatusReasons, :TotalProvisionedConcurrencyMem, :ReservedConcurrencyMem
+        attr_accessor :ModTime, :AddTime, :Runtime, :FunctionName, :FunctionId, :Namespace, :Status, :StatusDesc, :Description, :Tags, :Type, :StatusReasons, :TotalProvisionedConcurrencyMem, :ReservedConcurrencyMem, :AsyncRunEnable, :TraceEnable
         
-        def initialize(modtime=nil, addtime=nil, runtime=nil, functionname=nil, functionid=nil, namespace=nil, status=nil, statusdesc=nil, description=nil, tags=nil, type=nil, statusreasons=nil, totalprovisionedconcurrencymem=nil, reservedconcurrencymem=nil)
+        def initialize(modtime=nil, addtime=nil, runtime=nil, functionname=nil, functionid=nil, namespace=nil, status=nil, statusdesc=nil, description=nil, tags=nil, type=nil, statusreasons=nil, totalprovisionedconcurrencymem=nil, reservedconcurrencymem=nil, asyncrunenable=nil, traceenable=nil)
           @ModTime = modtime
           @AddTime = addtime
           @Runtime = runtime
@@ -1115,6 +1119,8 @@ module TencentCloud
           @StatusReasons = statusreasons
           @TotalProvisionedConcurrencyMem = totalprovisionedconcurrencymem
           @ReservedConcurrencyMem = reservedconcurrencymem
+          @AsyncRunEnable = asyncrunenable
+          @TraceEnable = traceenable
         end
 
         def deserialize(params)
@@ -1146,6 +1152,8 @@ module TencentCloud
           end
           @TotalProvisionedConcurrencyMem = params['TotalProvisionedConcurrencyMem']
           @ReservedConcurrencyMem = params['ReservedConcurrencyMem']
+          @AsyncRunEnable = params['AsyncRunEnable']
+          @TraceEnable = params['TraceEnable']
         end
       end
 
