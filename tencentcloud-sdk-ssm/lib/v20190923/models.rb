@@ -766,15 +766,19 @@ module TencentCloud
       class GetSSHKeyPairValueRequest < TencentCloud::Common::AbstractModel
         # @param SecretName: 凭据名称，此凭据只能为SSH密钥对凭据类型。
         # @type SecretName: String
+        # @param SSHKeyId: 密钥对ID，是云服务器中密钥对的唯一标识。
+        # @type SSHKeyId: String
 
-        attr_accessor :SecretName
+        attr_accessor :SecretName, :SSHKeyId
         
-        def initialize(secretname=nil)
+        def initialize(secretname=nil, sshkeyid=nil)
           @SecretName = secretname
+          @SSHKeyId = sshkeyid
         end
 
         def deserialize(params)
           @SecretName = params['SecretName']
+          @SSHKeyId = params['SSHKeyId']
         end
       end
 
@@ -983,10 +987,16 @@ module TencentCloud
         # 1  -- 表示用户云产品凭据。
         # 2 -- 表示SSH密钥对凭据。
         # @type SecretType: Integer
+        # @param ProductName: 此参数仅在SecretType参数值为1时生效，
+        # 当SecretType值为1时：
+        # 如果ProductName值为空，则表示查询所有类型的云产品凭据
+        # 如果ProductName值为Mysql，则表示查询Mysql数据库凭据
+        # 如果ProductName值为Tdsql-mysql，则表示查询Tdsql（Mysql版本）的凭据
+        # @type ProductName: String
 
-        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType
+        attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType, :ProductName
         
-        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil, secrettype=nil)
+        def initialize(offset=nil, limit=nil, ordertype=nil, state=nil, searchsecretname=nil, tagfilters=nil, secrettype=nil, productname=nil)
           @Offset = offset
           @Limit = limit
           @OrderType = ordertype
@@ -994,6 +1004,7 @@ module TencentCloud
           @SearchSecretName = searchsecretname
           @TagFilters = tagfilters
           @SecretType = secrettype
+          @ProductName = productname
         end
 
         def deserialize(params)
@@ -1011,6 +1022,7 @@ module TencentCloud
             end
           end
           @SecretType = params['SecretType']
+          @ProductName = params['ProductName']
         end
       end
 

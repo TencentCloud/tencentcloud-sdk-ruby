@@ -276,7 +276,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除函数的保留并发配置。
+        # 删除函数的最大独占配额配置。
 
         # @param request: Request instance for DeleteReservedConcurrencyConfig.
         # @type request: :class:`Tencentcloud::scf::V20180416::DeleteReservedConcurrencyConfigRequest`
@@ -516,7 +516,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取函数的保留并发详情。
+        # 获取函数的最大独占配额详情。
 
         # @param request: Request instance for GetReservedConcurrencyConfig.
         # @type request: :class:`Tencentcloud::scf::V20180416::GetReservedConcurrencyConfigRequest`
@@ -852,7 +852,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 设置函数保留并发
+        # 设置函数最大独占配额
 
         # @param request: Request instance for PutReservedConcurrencyConfig.
         # @type request: :class:`Tencentcloud::scf::V20180416::PutReservedConcurrencyConfigRequest`

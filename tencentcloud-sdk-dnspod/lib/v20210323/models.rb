@@ -2450,6 +2450,54 @@ module TencentCloud
         end
       end
 
+      # ModifySubdomainStatus请求参数结构体
+      class ModifySubdomainStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param RecordType: 记录类型。允许的值为A、CNAME、MX、TXT、NS、AAAA、SPF、SRV、CAA、URL、URL1。若要传多个，用英文逗号分隔，例如A,TXT,CNAME。
+        # @type RecordType: String
+        # @param Status: 记录状态。允许的值为disable。
+        # @type Status: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
+        # @type DomainId: Integer
+        # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
+        # @type SubDomain: String
+
+        attr_accessor :Domain, :RecordType, :Status, :DomainId, :SubDomain
+        
+        def initialize(domain=nil, recordtype=nil, status=nil, domainid=nil, subdomain=nil)
+          @Domain = domain
+          @RecordType = recordtype
+          @Status = status
+          @DomainId = domainid
+          @SubDomain = subdomain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RecordType = params['RecordType']
+          @Status = params['Status']
+          @DomainId = params['DomainId']
+          @SubDomain = params['SubDomain']
+        end
+      end
+
+      # ModifySubdomainStatus返回参数结构体
+      class ModifySubdomainStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 域名权限项
       class PurviewInfo < TencentCloud::Common::AbstractModel
         # @param Name: 权限名称

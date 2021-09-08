@@ -3122,16 +3122,27 @@ module TencentCloud
 
       # InquiryPriceTerminateInstances返回参数结构体
       class InquiryPriceTerminateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceRefundsSet: 退款详情。
+        # @type InstanceRefundsSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :InstanceRefundsSet, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(instancerefundsset=nil, requestid=nil)
+          @InstanceRefundsSet = instancerefundsset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['InstanceRefundsSet'].nil?
+            @InstanceRefundsSet = []
+            params['InstanceRefundsSet'].each do |i|
+              instancerefund_tmp = InstanceRefund.new
+              instancerefund_tmp.deserialize(i)
+              @InstanceRefundsSet << instancerefund_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3386,6 +3397,33 @@ module TencentCloud
             @SpotOptions.deserialize(params['SpotOptions'])
           end
           @MarketType = params['MarketType']
+        end
+      end
+
+      # 描述退款详情。
+      class InstanceRefund < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Refunds: 退款数额。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Refunds: Float
+        # @param PriceDetail: 退款详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriceDetail: String
+
+        attr_accessor :InstanceId, :Refunds, :PriceDetail
+        
+        def initialize(instanceid=nil, refunds=nil, pricedetail=nil)
+          @InstanceId = instanceid
+          @Refunds = refunds
+          @PriceDetail = pricedetail
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Refunds = params['Refunds']
+          @PriceDetail = params['PriceDetail']
         end
       end
 
