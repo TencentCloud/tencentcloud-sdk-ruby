@@ -1181,10 +1181,13 @@ module TencentCloud
         # @param ProjectId: coding项目ID，type为coding时需要填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: Integer
+        # @param ProjectName: coding项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
 
-        attr_accessor :Type, :Url, :Name, :WorkDir, :CodingPackageName, :CodingPackageVersion, :RawCode, :Branch, :ProjectId
+        attr_accessor :Type, :Url, :Name, :WorkDir, :CodingPackageName, :CodingPackageVersion, :RawCode, :Branch, :ProjectId, :ProjectName
         
-        def initialize(type=nil, url=nil, name=nil, workdir=nil, codingpackagename=nil, codingpackageversion=nil, rawcode=nil, branch=nil, projectid=nil)
+        def initialize(type=nil, url=nil, name=nil, workdir=nil, codingpackagename=nil, codingpackageversion=nil, rawcode=nil, branch=nil, projectid=nil, projectname=nil)
           @Type = type
           @Url = url
           @Name = name
@@ -1194,6 +1197,7 @@ module TencentCloud
           @RawCode = rawcode
           @Branch = branch
           @ProjectId = projectid
+          @ProjectName = projectname
         end
 
         def deserialize(params)
@@ -1206,6 +1210,7 @@ module TencentCloud
           @RawCode = params['RawCode']
           @Branch = params['Branch']
           @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
         end
       end
 
@@ -1429,7 +1434,7 @@ module TencentCloud
       class CreateCloudBaseRunServerVersionRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
         # @type EnvId: String
-        # @param UploadType: 枚举（package/repository/image)
+        # @param UploadType: 枚举（package/repository/image/jar/war)
         # @type UploadType: String
         # @param FlowRatio: 流量占比
         # @type FlowRatio: Integer
@@ -1503,10 +1508,20 @@ module TencentCloud
         # @type IsCreateJnsGw: Integer
         # @param ServiceVolumeMounts: 数据卷挂载参数
         # @type ServiceVolumeMounts: Array
+        # @param HasDockerfile: 是否有Dockerfile：0-default has, 1-has, 2-has not
+        # @type HasDockerfile: Integer
+        # @param BaseImage: 基础镜像
+        # @type BaseImage: String
+        # @param EntryPoint: 容器启动入口命令
+        # @type EntryPoint: String
+        # @param RepoLanguage: 仓库语言
+        # @type RepoLanguage: String
+        # @param UploadFilename: 用户实际上传文件名（仅UploadType为jar/war时必填）
+        # @type UploadFilename: String
 
-        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security, :ServiceVolumes, :IsCreateJnsGw, :ServiceVolumeMounts
+        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security, :ServiceVolumes, :IsCreateJnsGw, :ServiceVolumeMounts, :HasDockerfile, :BaseImage, :EntryPoint, :RepoLanguage, :UploadFilename
         
-        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil, servicevolumes=nil, iscreatejnsgw=nil, servicevolumemounts=nil)
+        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil, servicevolumes=nil, iscreatejnsgw=nil, servicevolumemounts=nil, hasdockerfile=nil, baseimage=nil, entrypoint=nil, repolanguage=nil, uploadfilename=nil)
           @EnvId = envid
           @UploadType = uploadtype
           @FlowRatio = flowratio
@@ -1545,6 +1560,11 @@ module TencentCloud
           @ServiceVolumes = servicevolumes
           @IsCreateJnsGw = iscreatejnsgw
           @ServiceVolumeMounts = servicevolumemounts
+          @HasDockerfile = hasdockerfile
+          @BaseImage = baseimage
+          @EntryPoint = entrypoint
+          @RepoLanguage = repolanguage
+          @UploadFilename = uploadfilename
         end
 
         def deserialize(params)
@@ -1629,6 +1649,11 @@ module TencentCloud
               @ServiceVolumeMounts << cloudbaserunservicevolumemount_tmp
             end
           end
+          @HasDockerfile = params['HasDockerfile']
+          @BaseImage = params['BaseImage']
+          @EntryPoint = params['EntryPoint']
+          @RepoLanguage = params['RepoLanguage']
+          @UploadFilename = params['UploadFilename']
         end
       end
 
@@ -2853,12 +2878,24 @@ module TencentCloud
         # @param MemSize: MEM 大小
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Float
+        # @param HasDockerfile: 是否有Dockerfile：0-default has, 1-has, 2-has not
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasDockerfile: Integer
+        # @param BaseImage: 基础镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BaseImage: String
+        # @param EntryPoint: 容器启动入口命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntryPoint: String
+        # @param RepoLanguage: 仓库语言
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoLanguage: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :RequestId
+        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :HasDockerfile, :BaseImage, :EntryPoint, :RepoLanguage, :RequestId
         
-        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, requestid=nil)
+        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, hasdockerfile=nil, baseimage=nil, entrypoint=nil, repolanguage=nil, requestid=nil)
           @VersionName = versionname
           @Remark = remark
           @DockerfilePath = dockerfilepath
@@ -2891,6 +2928,10 @@ module TencentCloud
           @ImageUrl = imageurl
           @CpuSize = cpusize
           @MemSize = memsize
+          @HasDockerfile = hasdockerfile
+          @BaseImage = baseimage
+          @EntryPoint = entrypoint
+          @RepoLanguage = repolanguage
           @RequestId = requestid
         end
 
@@ -2927,6 +2968,10 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @CpuSize = params['CpuSize']
           @MemSize = params['MemSize']
+          @HasDockerfile = params['HasDockerfile']
+          @BaseImage = params['BaseImage']
+          @EntryPoint = params['EntryPoint']
+          @RepoLanguage = params['RepoLanguage']
           @RequestId = params['RequestId']
         end
       end

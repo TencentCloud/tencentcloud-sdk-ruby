@@ -1143,6 +1143,13 @@ module TencentCloud
         # VodSourceFileStart：从点播源文件开始拉流回调，
         # VodSourceFileFinish：从点播源文件拉流结束回调，
         # ResetTaskConfig：任务更新回调。
+
+        # TaskAlarm: 用于告警事件通知，AlarmType 示例:
+        # PullFileUnstable - 文件拉取不稳定，
+        # PushStreamUnstable - 推流不稳定，
+        # PullFileFailed - 文件拉取出错，
+        # PushStreamFailed - 推流出现失败，
+        # FileEndEarly - 文件提前结束。
         # @type CallbackEvents: Array
         # @param VodLoopTimes: 点播拉流转推循环次数。默认：-1。
         # -1：无限循环，直到任务结束。
@@ -3542,16 +3549,22 @@ module TencentCloud
         # @type IsDelayLive: Integer
         # @param DomainPrefix: 域名前缀。
         # @type DomainPrefix: String
+        # @param PlayType: 播放区域，只在 DomainType=1 时该参数有意义。
+        # 1: 国内。
+        # 2: 全球。
+        # 3: 海外。
+        # @type PlayType: Integer
 
-        attr_accessor :DomainStatus, :DomainType, :PageSize, :PageNum, :IsDelayLive, :DomainPrefix
+        attr_accessor :DomainStatus, :DomainType, :PageSize, :PageNum, :IsDelayLive, :DomainPrefix, :PlayType
         
-        def initialize(domainstatus=nil, domaintype=nil, pagesize=nil, pagenum=nil, isdelaylive=nil, domainprefix=nil)
+        def initialize(domainstatus=nil, domaintype=nil, pagesize=nil, pagenum=nil, isdelaylive=nil, domainprefix=nil, playtype=nil)
           @DomainStatus = domainstatus
           @DomainType = domaintype
           @PageSize = pagesize
           @PageNum = pagenum
           @IsDelayLive = isdelaylive
           @DomainPrefix = domainprefix
+          @PlayType = playtype
         end
 
         def deserialize(params)
@@ -3561,6 +3574,7 @@ module TencentCloud
           @PageNum = params['PageNum']
           @IsDelayLive = params['IsDelayLive']
           @DomainPrefix = params['DomainPrefix']
+          @PlayType = params['PlayType']
         end
       end
 

@@ -83,6 +83,34 @@ module TencentCloud
         end
       end
 
+      # 表示ACL 规则的四元组信息
+      class AclRuleInfo < TencentCloud::Common::AbstractModel
+        # @param Operation: Acl操作方式，枚举值(所有操作: All, 读：Read，写：Write)
+        # @type Operation: String
+        # @param PermissionType: 权限类型，(Deny，Allow)
+        # @type PermissionType: String
+        # @param Host: 默认为*，表示任何host都可以访问，当前ckafka不支持host为*和ip网段
+        # @type Host: String
+        # @param Principal: 用户列表，默认为User:*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户。传入格式需要带【User:】前缀。例如用户A，传入为User:A。
+        # @type Principal: String
+
+        attr_accessor :Operation, :PermissionType, :Host, :Principal
+        
+        def initialize(operation=nil, permissiontype=nil, host=nil, principal=nil)
+          @Operation = operation
+          @PermissionType = permissiontype
+          @Host = host
+          @Principal = principal
+        end
+
+        def deserialize(params)
+          @Operation = params['Operation']
+          @PermissionType = params['PermissionType']
+          @Host = params['Host']
+          @Principal = params['Principal']
+        end
+      end
+
       # AppId的查询结果
       class AppIdResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合要求的所有AppId数量
@@ -129,6 +157,61 @@ module TencentCloud
               @Topics << groupinfotopics_tmp
             end
           end
+        end
+      end
+
+      # BatchCreateAcl请求参数结构体
+      class BatchCreateAclRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ResourceType: Acl资源类型，(2:TOPIC）
+        # @type ResourceType: Integer
+        # @param ResourceNames: 资源列表数组
+        # @type ResourceNames: Array
+        # @param RuleList: 设置的ACL规则列表
+        # @type RuleList: Array
+
+        attr_accessor :InstanceId, :ResourceType, :ResourceNames, :RuleList
+        
+        def initialize(instanceid=nil, resourcetype=nil, resourcenames=nil, rulelist=nil)
+          @InstanceId = instanceid
+          @ResourceType = resourcetype
+          @ResourceNames = resourcenames
+          @RuleList = rulelist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ResourceType = params['ResourceType']
+          @ResourceNames = params['ResourceNames']
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              aclruleinfo_tmp = AclRuleInfo.new
+              aclruleinfo_tmp.deserialize(i)
+              @RuleList << aclruleinfo_tmp
+            end
+          end
+        end
+      end
+
+      # BatchCreateAcl返回参数结构体
+      class BatchCreateAclResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 状态码
+        # @type Result: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 
