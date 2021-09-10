@@ -3566,7 +3566,7 @@ module TencentCloud
         # @type TargetIp: String
         # @param Protocol: 协议
         # @type Protocol: String
-        # @param Strategy: 策略
+        # @param Strategy: 策略, 0：观察，1：阻断，2：放行
         # @type Strategy: String
         # @param SourceType: 访问源类型，1是IP，3是域名，4是IP地址模版，5是域名地址模版
         # @type SourceType: Integer

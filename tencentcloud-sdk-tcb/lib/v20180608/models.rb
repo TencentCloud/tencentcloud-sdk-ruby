@@ -407,10 +407,13 @@ module TencentCloud
         # @param AutoDeployOnCodeChange: 是否私有仓库代码变更触发自动部署
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoDeployOnCodeChange: Boolean
+        # @param BuildPercent: ci部署进度（%）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildPercent: Integer
 
-        attr_accessor :Name, :Sam, :Source, :CreateTime, :UpdateTime, :Status, :Parameters, :Type, :CIId, :CDId, :EnvId, :VersionNum, :FailReason, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :ExtensionId, :FailType, :RepoUrl, :AutoDeployOnCodeChange
+        attr_accessor :Name, :Sam, :Source, :CreateTime, :UpdateTime, :Status, :Parameters, :Type, :CIId, :CDId, :EnvId, :VersionNum, :FailReason, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :ExtensionId, :FailType, :RepoUrl, :AutoDeployOnCodeChange, :BuildPercent
         
-        def initialize(name=nil, sam=nil, source=nil, createtime=nil, updatetime=nil, status=nil, parameters=nil, type=nil, ciid=nil, cdid=nil, envid=nil, versionnum=nil, failreason=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, extensionid=nil, failtype=nil, repourl=nil, autodeployoncodechange=nil)
+        def initialize(name=nil, sam=nil, source=nil, createtime=nil, updatetime=nil, status=nil, parameters=nil, type=nil, ciid=nil, cdid=nil, envid=nil, versionnum=nil, failreason=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, extensionid=nil, failtype=nil, repourl=nil, autodeployoncodechange=nil, buildpercent=nil)
           @Name = name
           @Sam = sam
           @Source = source
@@ -432,6 +435,7 @@ module TencentCloud
           @FailType = failtype
           @RepoUrl = repourl
           @AutoDeployOnCodeChange = autodeployoncodechange
+          @BuildPercent = buildpercent
         end
 
         def deserialize(params)
@@ -466,6 +470,7 @@ module TencentCloud
           @FailType = params['FailType']
           @RepoUrl = params['RepoUrl']
           @AutoDeployOnCodeChange = params['AutoDeployOnCodeChange']
+          @BuildPercent = params['BuildPercent']
         end
       end
 
@@ -2460,16 +2465,19 @@ module TencentCloud
         # @type ProjectType: String
         # @param Tags: 标签
         # @type Tags: Array
+        # @param CiId: ci的id
+        # @type CiId: String
 
-        attr_accessor :Offset, :PageSize, :EnvId, :ProjectName, :ProjectType, :Tags
+        attr_accessor :Offset, :PageSize, :EnvId, :ProjectName, :ProjectType, :Tags, :CiId
         
-        def initialize(offset=nil, pagesize=nil, envid=nil, projectname=nil, projecttype=nil, tags=nil)
+        def initialize(offset=nil, pagesize=nil, envid=nil, projectname=nil, projecttype=nil, tags=nil, ciid=nil)
           @Offset = offset
           @PageSize = pagesize
           @EnvId = envid
           @ProjectName = projectname
           @ProjectType = projecttype
           @Tags = tags
+          @CiId = ciid
         end
 
         def deserialize(params)
@@ -2479,6 +2487,7 @@ module TencentCloud
           @ProjectName = params['ProjectName']
           @ProjectType = params['ProjectType']
           @Tags = params['Tags']
+          @CiId = params['CiId']
         end
       end
 

@@ -520,6 +520,148 @@ module TencentCloud
         end
       end
 
+      # CreateDedicatedClusterDBInstance请求参数结构体
+      class CreateDedicatedClusterDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param GoodsNum: 分配实例个数
+        # @type GoodsNum: Integer
+        # @param Memory: 內存大小，单位GB
+        # @type Memory: Integer
+        # @param Storage: 磁盘大小，单位GB
+        # @type Storage: Integer
+        # @param ClusterId: 独享集群集群uuid
+        # @type ClusterId: String
+        # @param Zone: （废弃）可用区
+        # @type Zone: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param Pid: （废弃）Pid，可通过获取独享集群售卖配置接口得到
+        # @type Pid: Integer
+        # @param Machine: （废弃）机型
+        # @type Machine: String
+        # @param VpcId: 网络Id
+        # @type VpcId: String
+        # @param SubnetId: 子网Id
+        # @type SubnetId: String
+        # @param DbVersionId: db类型，不传默认0
+        # @type DbVersionId: String
+        # @param Manual: （废弃）是否手动指定一组服务器分配, 运维使用
+        # @type Manual: Integer
+        # @param DeviceNo: （废弃）DeviceNo参数
+        # @type DeviceNo: String
+        # @param SecurityGroupIds: 安全组ID
+        # @type SecurityGroupIds: Array
+        # @param DcnInstanceId: DCN源实例ID
+        # @type DcnInstanceId: String
+        # @param DcnRegion: DCN源实例地域名
+        # @type DcnRegion: String
+        # @param InstanceName: 自定义实例名称
+        # @type InstanceName: String
+        # @param ResourceTags: 标签
+        # @type ResourceTags: Array
+        # @param Ipv6Flag: 支持IPv6标志：1 支持， 0 不支持
+        # @type Ipv6Flag: Integer
+        # @param InitParams: 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
+        # @type InitParams: Array
+        # @param NodeNum: 实例节点数
+        # @type NodeNum: Integer
+        # @param MasterHostId: 指定主节点uuid，不填随机分配
+        # @type MasterHostId: String
+        # @param SlaveHostIds: 指定从节点uuid，不填随机分配
+        # @type SlaveHostIds: Array
+
+        attr_accessor :GoodsNum, :Memory, :Storage, :ClusterId, :Zone, :ProjectId, :Pid, :Machine, :VpcId, :SubnetId, :DbVersionId, :Manual, :DeviceNo, :SecurityGroupIds, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :InitParams, :NodeNum, :MasterHostId, :SlaveHostIds
+        
+        def initialize(goodsnum=nil, memory=nil, storage=nil, clusterid=nil, zone=nil, projectid=nil, pid=nil, machine=nil, vpcid=nil, subnetid=nil, dbversionid=nil, manual=nil, deviceno=nil, securitygroupids=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, initparams=nil, nodenum=nil, masterhostid=nil, slavehostids=nil)
+          @GoodsNum = goodsnum
+          @Memory = memory
+          @Storage = storage
+          @ClusterId = clusterid
+          @Zone = zone
+          @ProjectId = projectid
+          @Pid = pid
+          @Machine = machine
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @DbVersionId = dbversionid
+          @Manual = manual
+          @DeviceNo = deviceno
+          @SecurityGroupIds = securitygroupids
+          @DcnInstanceId = dcninstanceid
+          @DcnRegion = dcnregion
+          @InstanceName = instancename
+          @ResourceTags = resourcetags
+          @Ipv6Flag = ipv6flag
+          @InitParams = initparams
+          @NodeNum = nodenum
+          @MasterHostId = masterhostid
+          @SlaveHostIds = slavehostids
+        end
+
+        def deserialize(params)
+          @GoodsNum = params['GoodsNum']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @ClusterId = params['ClusterId']
+          @Zone = params['Zone']
+          @ProjectId = params['ProjectId']
+          @Pid = params['Pid']
+          @Machine = params['Machine']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @DbVersionId = params['DbVersionId']
+          @Manual = params['Manual']
+          @DeviceNo = params['DeviceNo']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @DcnInstanceId = params['DcnInstanceId']
+          @DcnRegion = params['DcnRegion']
+          @InstanceName = params['InstanceName']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @Ipv6Flag = params['Ipv6Flag']
+          unless params['InitParams'].nil?
+            @InitParams = []
+            params['InitParams'].each do |i|
+              dbparamvalue_tmp = DBParamValue.new
+              dbparamvalue_tmp.deserialize(i)
+              @InitParams << dbparamvalue_tmp
+            end
+          end
+          @NodeNum = params['NodeNum']
+          @MasterHostId = params['MasterHostId']
+          @SlaveHostIds = params['SlaveHostIds']
+        end
+      end
+
+      # CreateDedicatedClusterDBInstance返回参数结构体
+      class CreateDedicatedClusterDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 分配资源ID数组
+        # @type InstanceIds: Array
+        # @param FlowId: 流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceIds, :FlowId, :RequestId
+        
+        def initialize(instanceids=nil, flowid=nil, requestid=nil)
+          @InstanceIds = instanceids
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTmpInstances请求参数结构体
       class CreateTmpInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 回档实例的ID列表，形如：tdsql-ow728lmc。

@@ -526,6 +526,148 @@ module TencentCloud
         end
       end
 
+      # CreateDedicatedClusterDCDBInstance请求参数结构体
+      class CreateDedicatedClusterDCDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param GoodsNum: 分配实例个数
+        # @type GoodsNum: Integer
+        # @param ShardNum: 分片数量
+        # @type ShardNum: Integer
+        # @param ShardMemory: 分片內存大小, 单位GB
+        # @type ShardMemory: Integer
+        # @param ShardStorage: 分片磁盘大小, 单位GB
+        # @type ShardStorage: Integer
+        # @param ClusterId: 独享集群集群uuid
+        # @type ClusterId: String
+        # @param Zone: （废弃）可用区
+        # @type Zone: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param Cpu: （废弃）cpu大小，单位：核
+        # @type Cpu: Integer
+        # @param VpcId: 网络ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param ShardMachine: （废弃）分片机型
+        # @type ShardMachine: String
+        # @param ShardNodeNum: 分片的节点个数
+        # @type ShardNodeNum: Integer
+        # @param ShardNodeCpu: （废弃）节点cpu核数，单位：1/100核
+        # @type ShardNodeCpu: Integer
+        # @param ShardNodeMemory: （废弃）节点內存大小，单位：GB
+        # @type ShardNodeMemory: Integer
+        # @param ShardNodeStorage: （废弃）节点磁盘大小，单位：GB
+        # @type ShardNodeStorage: Integer
+        # @param DbVersionId: db版本
+        # @type DbVersionId: String
+        # @param SecurityGroupId: 安全组ID
+        # @type SecurityGroupId: String
+        # @param DcnInstanceId: DCN源实例ID
+        # @type DcnInstanceId: String
+        # @param DcnRegion: DCN源实例地域名
+        # @type DcnRegion: String
+        # @param InstanceName: 自定义实例名称
+        # @type InstanceName: String
+        # @param ResourceTags: 标签
+        # @type ResourceTags: Array
+        # @param Ipv6Flag: 支持IPv6标志：1 支持， 0 不支持
+        # @type Ipv6Flag: Integer
+        # @param Pid: （废弃）Pid，可通过获取独享集群售卖配置接口得到
+        # @type Pid: Integer
+        # @param InitParams: 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
+        # @type InitParams: :class:`Tencentcloud::Dcdb.v20180411.models.DBParamValue`
+        # @param MasterHostId: 指定主节点uuid，不填随机分配
+        # @type MasterHostId: String
+        # @param SlaveHostIds: 指定从节点uuid，不填随机分配
+        # @type SlaveHostIds: Array
+
+        attr_accessor :GoodsNum, :ShardNum, :ShardMemory, :ShardStorage, :ClusterId, :Zone, :ProjectId, :Cpu, :VpcId, :SubnetId, :ShardMachine, :ShardNodeNum, :ShardNodeCpu, :ShardNodeMemory, :ShardNodeStorage, :DbVersionId, :SecurityGroupId, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :Pid, :InitParams, :MasterHostId, :SlaveHostIds
+        
+        def initialize(goodsnum=nil, shardnum=nil, shardmemory=nil, shardstorage=nil, clusterid=nil, zone=nil, projectid=nil, cpu=nil, vpcid=nil, subnetid=nil, shardmachine=nil, shardnodenum=nil, shardnodecpu=nil, shardnodememory=nil, shardnodestorage=nil, dbversionid=nil, securitygroupid=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, pid=nil, initparams=nil, masterhostid=nil, slavehostids=nil)
+          @GoodsNum = goodsnum
+          @ShardNum = shardnum
+          @ShardMemory = shardmemory
+          @ShardStorage = shardstorage
+          @ClusterId = clusterid
+          @Zone = zone
+          @ProjectId = projectid
+          @Cpu = cpu
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ShardMachine = shardmachine
+          @ShardNodeNum = shardnodenum
+          @ShardNodeCpu = shardnodecpu
+          @ShardNodeMemory = shardnodememory
+          @ShardNodeStorage = shardnodestorage
+          @DbVersionId = dbversionid
+          @SecurityGroupId = securitygroupid
+          @DcnInstanceId = dcninstanceid
+          @DcnRegion = dcnregion
+          @InstanceName = instancename
+          @ResourceTags = resourcetags
+          @Ipv6Flag = ipv6flag
+          @Pid = pid
+          @InitParams = initparams
+          @MasterHostId = masterhostid
+          @SlaveHostIds = slavehostids
+        end
+
+        def deserialize(params)
+          @GoodsNum = params['GoodsNum']
+          @ShardNum = params['ShardNum']
+          @ShardMemory = params['ShardMemory']
+          @ShardStorage = params['ShardStorage']
+          @ClusterId = params['ClusterId']
+          @Zone = params['Zone']
+          @ProjectId = params['ProjectId']
+          @Cpu = params['Cpu']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ShardMachine = params['ShardMachine']
+          @ShardNodeNum = params['ShardNodeNum']
+          @ShardNodeCpu = params['ShardNodeCpu']
+          @ShardNodeMemory = params['ShardNodeMemory']
+          @ShardNodeStorage = params['ShardNodeStorage']
+          @DbVersionId = params['DbVersionId']
+          @SecurityGroupId = params['SecurityGroupId']
+          @DcnInstanceId = params['DcnInstanceId']
+          @DcnRegion = params['DcnRegion']
+          @InstanceName = params['InstanceName']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @ResourceTags << resourcetag_tmp
+            end
+          end
+          @Ipv6Flag = params['Ipv6Flag']
+          @Pid = params['Pid']
+          unless params['InitParams'].nil?
+            @InitParams = DBParamValue.new
+            @InitParams.deserialize(params['InitParams'])
+          end
+          @MasterHostId = params['MasterHostId']
+          @SlaveHostIds = params['SlaveHostIds']
+        end
+      end
+
+      # CreateDedicatedClusterDCDBInstance返回参数结构体
+      class CreateDedicatedClusterDCDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云数据库账号信息
       class DBAccount < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名

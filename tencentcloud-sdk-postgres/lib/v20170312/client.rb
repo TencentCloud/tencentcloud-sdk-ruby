@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBSlowlogs）用于获取慢查询日志。
+        # 本接口（DescribeDBSlowlogs）用于获取慢查询日志。已于2021.09.01日正式废弃，后续此接口将不再返回任何数据，新接口为DescribeSlowQueryList，详细请查看：https://cloud.tencent.com/document/product/409/60540
 
         # @param request: Request instance for DescribeDBSlowlogs.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBSlowlogsRequest`
@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 慢查询统计分析接口，根据SQL语句抽象参数之后，进行聚合分析，并返回对应结果
+        # 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
 
         # @param request: Request instance for DescribeSlowQueryAnalysis.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeSlowQueryAnalysisRequest`
@@ -605,7 +605,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取慢查询列表
+        # 此接口（DescribeSlowQueryList）用于查询指定时间范围内的所有慢查询。
 
         # @param request: Request instance for DescribeSlowQueryList.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeSlowQueryListRequest`

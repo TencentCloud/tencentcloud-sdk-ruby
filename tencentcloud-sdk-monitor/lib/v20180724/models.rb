@@ -2005,10 +2005,12 @@ module TencentCloud
         # @type UserIds: Array
         # @param GroupIds: 接收组列表
         # @type GroupIds: Array
+        # @param NoticeIds: 根据通知模板 id 过滤，空数组/不传则不过滤
+        # @type NoticeIds: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :Order, :OwnerUid, :Name, :ReceiverType, :UserIds, :GroupIds
+        attr_accessor :Module, :PageNumber, :PageSize, :Order, :OwnerUid, :Name, :ReceiverType, :UserIds, :GroupIds, :NoticeIds
         
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, owneruid=nil, name=nil, receivertype=nil, userids=nil, groupids=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, owneruid=nil, name=nil, receivertype=nil, userids=nil, groupids=nil, noticeids=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -2018,6 +2020,7 @@ module TencentCloud
           @ReceiverType = receivertype
           @UserIds = userids
           @GroupIds = groupids
+          @NoticeIds = noticeids
         end
 
         def deserialize(params)
@@ -2030,6 +2033,7 @@ module TencentCloud
           @ReceiverType = params['ReceiverType']
           @UserIds = params['UserIds']
           @GroupIds = params['GroupIds']
+          @NoticeIds = params['NoticeIds']
         end
       end
 

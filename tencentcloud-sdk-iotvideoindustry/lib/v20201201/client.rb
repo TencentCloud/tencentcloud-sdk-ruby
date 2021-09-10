@@ -486,7 +486,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取设备下属通道
+        # 获取IPC设备下属通道
 
         # @param request: Request instance for DescribeIPCChannels.
         # @type request: :class:`Tencentcloud::iotvideoindustry::V20201201::DescribeIPCChannelsRequest`
