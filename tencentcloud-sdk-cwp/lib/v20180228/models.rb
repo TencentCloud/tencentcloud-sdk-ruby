@@ -660,7 +660,7 @@ module TencentCloud
         # @type EventId: Integer
         # @param Name: 填入的规则名称
         # @type Name: String
-        # @param Rule: 用户填入的正则表达式
+        # @param Rule: 用户填入的正则表达式：“正则表达式“需与“提交EventId对应的命令内容”相匹配
         # @type Rule: String
         # @param Id: 编辑时传的规则id
         # @type Id: Integer
@@ -2491,7 +2491,7 @@ module TencentCloud
         # @param BaselineRuleList: 基线检测项列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BaselineRuleList: Array
-        # @param ShowRuleRemark: 是否显示说明列
+        # @param ShowRuleRemark: 是否显示说明列：true-是，false-否
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShowRuleRemark: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -4225,7 +4225,7 @@ module TencentCloud
 
       # DescribeMalwareRiskWarning返回参数结构体
       class DescribeMalwareRiskWarningResponse < TencentCloud::Common::AbstractModel
-        # @param IsCheckRisk: 是否开启自动扫描
+        # @param IsCheckRisk: 是否开启自动扫描：true-开启，false-未开启
         # @type IsCheckRisk: Boolean
         # @param List: 风险文件列表信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6003,7 +6003,7 @@ module TencentCloud
         # @type AddRiskFileCount: Integer
         # @param ServersCount: 受影响服务器台数
         # @type ServersCount: Integer
-        # @param IsFirstCheck: 是否试用
+        # @param IsFirstCheck: 是否试用：true-是，false-否
         # @type IsFirstCheck: Boolean
         # @param ScanTime: 木马最近检测时间
         # @type ScanTime: String
@@ -6809,7 +6809,7 @@ module TencentCloud
 
       # DescribeWebPageServiceInfo返回参数结构体
       class DescribeWebPageServiceInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 是否已购服务
+        # @param Status: 是否已购服务：true-是，false-否
         # @type Status: Boolean
         # @param UsedNum: 已使用授权数
         # @type UsedNum: Integer

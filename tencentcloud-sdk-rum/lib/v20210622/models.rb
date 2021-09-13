@@ -361,6 +361,70 @@ module TencentCloud
         end
       end
 
+      # DescribeLogList请求参数结构体
+      class DescribeLogListRequest < TencentCloud::Common::AbstractModel
+        # @param Sort: 排序方式  desc  asc
+        # @type Sort: String
+        # @param ActionType: searchlog   histogram
+        # @type ActionType: String
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param Limit: 限制
+        # @type Limit: Integer
+        # @param Context: 上下文
+        # @type Context: String
+        # @param Query: 查询语句
+        # @type Query: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :Sort, :ActionType, :ID, :StartTime, :Limit, :Context, :Query, :EndTime
+        
+        def initialize(sort=nil, actiontype=nil, id=nil, starttime=nil, limit=nil, context=nil, query=nil, endtime=nil)
+          @Sort = sort
+          @ActionType = actiontype
+          @ID = id
+          @StartTime = starttime
+          @Limit = limit
+          @Context = context
+          @Query = query
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Sort = params['Sort']
+          @ActionType = params['ActionType']
+          @ID = params['ID']
+          @StartTime = params['StartTime']
+          @Limit = params['Limit']
+          @Context = params['Context']
+          @Query = params['Query']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeLogList返回参数结构体
+      class DescribeLogListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回字符串
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

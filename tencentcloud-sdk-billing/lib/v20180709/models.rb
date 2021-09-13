@@ -35,10 +35,12 @@ module TencentCloud
         # @type VoucherPayAmount: String
         # @param BillMonth: 账单月份，格式2019-08
         # @type BillMonth: String
+        # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        # @type TotalCost: String
 
-        attr_accessor :ActionType, :ActionTypeName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth
+        attr_accessor :ActionType, :ActionTypeName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth, :TotalCost
         
-        def initialize(actiontype=nil, actiontypename=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil)
+        def initialize(actiontype=nil, actiontypename=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil, totalcost=nil)
           @ActionType = actiontype
           @ActionTypeName = actiontypename
           @RealTotalCost = realtotalcost
@@ -47,6 +49,7 @@ module TencentCloud
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
           @BillMonth = billmonth
+          @TotalCost = totalcost
         end
 
         def deserialize(params)
@@ -58,6 +61,7 @@ module TencentCloud
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
           @BillMonth = params['BillMonth']
+          @TotalCost = params['TotalCost']
         end
       end
 
@@ -526,10 +530,12 @@ module TencentCloud
         # @type VoucherPayAmount: String
         # @param BillMonth: 账单月份，格式2019-08
         # @type BillMonth: String
+        # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        # @type TotalCost: String
 
-        attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth
+        attr_accessor :BusinessCode, :BusinessCodeName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth, :TotalCost
         
-        def initialize(businesscode=nil, businesscodename=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil)
+        def initialize(businesscode=nil, businesscodename=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil, totalcost=nil)
           @BusinessCode = businesscode
           @BusinessCodeName = businesscodename
           @RealTotalCost = realtotalcost
@@ -538,6 +544,7 @@ module TencentCloud
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
           @BillMonth = billmonth
+          @TotalCost = totalcost
         end
 
         def deserialize(params)
@@ -549,6 +556,7 @@ module TencentCloud
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
           @BillMonth = params['BillMonth']
+          @TotalCost = params['TotalCost']
         end
       end
 
@@ -562,14 +570,17 @@ module TencentCloud
         # @type IncentivePayAmount: String
         # @param CashPayAmount: 现金金额
         # @type CashPayAmount: String
+        # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        # @type TotalCost: String
 
-        attr_accessor :RealTotalCost, :VoucherPayAmount, :IncentivePayAmount, :CashPayAmount
+        attr_accessor :RealTotalCost, :VoucherPayAmount, :IncentivePayAmount, :CashPayAmount, :TotalCost
         
-        def initialize(realtotalcost=nil, voucherpayamount=nil, incentivepayamount=nil, cashpayamount=nil)
+        def initialize(realtotalcost=nil, voucherpayamount=nil, incentivepayamount=nil, cashpayamount=nil, totalcost=nil)
           @RealTotalCost = realtotalcost
           @VoucherPayAmount = voucherpayamount
           @IncentivePayAmount = incentivepayamount
           @CashPayAmount = cashpayamount
+          @TotalCost = totalcost
         end
 
         def deserialize(params)
@@ -577,6 +588,7 @@ module TencentCloud
           @VoucherPayAmount = params['VoucherPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @CashPayAmount = params['CashPayAmount']
+          @TotalCost = params['TotalCost']
         end
       end
 
@@ -1626,10 +1638,10 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 数量，最大值为1000
         # @type Limit: Integer
-        # @param PeriodType: 周期类型，byUsedTime按计费周期/byPayTime按扣费周期。需要与费用中心该月份账单的周期保持一致。您可前往[账单概览](https://console.cloud.tencent.com/expense/bill/overview)页面顶部查看确认您的账单统计周期类型。
-        # @type PeriodType: String
         # @param Month: 月份，格式为yyyy-mm。不能早于开通账单2.0的月份，最多可拉取24个月内的数据。
         # @type Month: String
+        # @param PeriodType: 周期类型，byUsedTime按计费周期/byPayTime按扣费周期。需要与费用中心该月份账单的周期保持一致。您可前往[账单概览](https://console.cloud.tencent.com/expense/bill/overview)页面顶部查看确认您的账单统计周期类型。
+        # @type PeriodType: String
         # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
         # 1-表示需要， 0-表示不需要
         # @type NeedRecordNum: Integer
@@ -1640,13 +1652,13 @@ module TencentCloud
         # @param PayMode: 付费模式 prePay/postPay
         # @type PayMode: String
 
-        attr_accessor :Offset, :Limit, :PeriodType, :Month, :NeedRecordNum, :ActionType, :ResourceId, :PayMode
+        attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode
         
-        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil)
+        def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil)
           @Offset = offset
           @Limit = limit
-          @PeriodType = periodtype
           @Month = month
+          @PeriodType = periodtype
           @NeedRecordNum = needrecordnum
           @ActionType = actiontype
           @ResourceId = resourceid
@@ -1656,8 +1668,8 @@ module TencentCloud
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @PeriodType = params['PeriodType']
           @Month = params['Month']
+          @PeriodType = params['PeriodType']
           @NeedRecordNum = params['NeedRecordNum']
           @ActionType = params['ActionType']
           @ResourceId = params['ResourceId']
@@ -1939,14 +1951,17 @@ module TencentCloud
         # @type TagKey: String
         # @param PayerUin: 查询账单数据的用户UIN
         # @type PayerUin: String
+        # @param TagValue: 分账标签值
+        # @type TagValue: String
 
-        attr_accessor :BeginTime, :EndTime, :TagKey, :PayerUin
+        attr_accessor :BeginTime, :EndTime, :TagKey, :PayerUin, :TagValue
         
-        def initialize(begintime=nil, endtime=nil, tagkey=nil, payeruin=nil)
+        def initialize(begintime=nil, endtime=nil, tagkey=nil, payeruin=nil, tagvalue=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @TagKey = tagkey
           @PayerUin = payeruin
+          @TagValue = tagvalue
         end
 
         def deserialize(params)
@@ -1954,6 +1969,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @TagKey = params['TagKey']
           @PayerUin = params['PayerUin']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -1964,14 +1980,18 @@ module TencentCloud
         # @param SummaryOverview: 各标签值花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryOverview: Array
+        # @param SummaryTotal: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SummaryTotal: :class:`Tencentcloud::Billing.v20180709.models.SummaryTotal`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Ready, :SummaryOverview, :RequestId
+        attr_accessor :Ready, :SummaryOverview, :SummaryTotal, :RequestId
         
-        def initialize(ready=nil, summaryoverview=nil, requestid=nil)
+        def initialize(ready=nil, summaryoverview=nil, summarytotal=nil, requestid=nil)
           @Ready = ready
           @SummaryOverview = summaryoverview
+          @SummaryTotal = summarytotal
           @RequestId = requestid
         end
 
@@ -1984,6 +2004,10 @@ module TencentCloud
               tagsummaryoverviewitem_tmp.deserialize(i)
               @SummaryOverview << tagsummaryoverviewitem_tmp
             end
+          end
+          unless params['SummaryTotal'].nil?
+            @SummaryTotal = SummaryTotal.new
+            @SummaryTotal.deserialize(params['SummaryTotal'])
           end
           @RequestId = params['RequestId']
         end
@@ -2764,10 +2788,12 @@ module TencentCloud
         # @type IncentivePayAmount: String
         # @param VoucherPayAmount: 代金券金额
         # @type VoucherPayAmount: String
+        # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        # @type TotalCost: String
 
-        attr_accessor :PayMode, :PayModeName, :RealTotalCost, :RealTotalCostRatio, :Detail, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount
+        attr_accessor :PayMode, :PayModeName, :RealTotalCost, :RealTotalCostRatio, :Detail, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :TotalCost
         
-        def initialize(paymode=nil, paymodename=nil, realtotalcost=nil, realtotalcostratio=nil, detail=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil)
+        def initialize(paymode=nil, paymodename=nil, realtotalcost=nil, realtotalcostratio=nil, detail=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, totalcost=nil)
           @PayMode = paymode
           @PayModeName = paymodename
           @RealTotalCost = realtotalcost
@@ -2776,6 +2802,7 @@ module TencentCloud
           @CashPayAmount = cashpayamount
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
+          @TotalCost = totalcost
         end
 
         def deserialize(params)
@@ -2794,6 +2821,7 @@ module TencentCloud
           @CashPayAmount = params['CashPayAmount']
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
+          @TotalCost = params['TotalCost']
         end
       end
 
@@ -2835,10 +2863,12 @@ module TencentCloud
         # @type VoucherPayAmount: String
         # @param BillMonth: 账单月份，格式2019-08
         # @type BillMonth: String
+        # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        # @type TotalCost: String
 
-        attr_accessor :ProjectId, :ProjectName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth
+        attr_accessor :ProjectId, :ProjectName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth, :TotalCost
         
-        def initialize(projectid=nil, projectname=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil)
+        def initialize(projectid=nil, projectname=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil, totalcost=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @RealTotalCost = realtotalcost
@@ -2847,6 +2877,7 @@ module TencentCloud
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
           @BillMonth = billmonth
+          @TotalCost = totalcost
         end
 
         def deserialize(params)
@@ -2858,6 +2889,7 @@ module TencentCloud
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
           @BillMonth = params['BillMonth']
+          @TotalCost = params['TotalCost']
         end
       end
 
@@ -2880,10 +2912,12 @@ module TencentCloud
         # @type VoucherPayAmount: String
         # @param BillMonth: 账单月份，格式2019-08
         # @type BillMonth: String
+        # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        # @type TotalCost: String
 
-        attr_accessor :RegionId, :RegionName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth
+        attr_accessor :RegionId, :RegionName, :RealTotalCost, :RealTotalCostRatio, :CashPayAmount, :IncentivePayAmount, :VoucherPayAmount, :BillMonth, :TotalCost
         
-        def initialize(regionid=nil, regionname=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil)
+        def initialize(regionid=nil, regionname=nil, realtotalcost=nil, realtotalcostratio=nil, cashpayamount=nil, incentivepayamount=nil, voucherpayamount=nil, billmonth=nil, totalcost=nil)
           @RegionId = regionid
           @RegionName = regionname
           @RealTotalCost = realtotalcost
@@ -2892,6 +2926,7 @@ module TencentCloud
           @IncentivePayAmount = incentivepayamount
           @VoucherPayAmount = voucherpayamount
           @BillMonth = billmonth
+          @TotalCost = totalcost
         end
 
         def deserialize(params)
@@ -2903,6 +2938,29 @@ module TencentCloud
           @IncentivePayAmount = params['IncentivePayAmount']
           @VoucherPayAmount = params['VoucherPayAmount']
           @BillMonth = params['BillMonth']
+          @TotalCost = params['TotalCost']
+        end
+      end
+
+      # 总数
+      class SummaryTotal < TencentCloud::Common::AbstractModel
+        # @param RealTotalCost: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealTotalCost: String
+        # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCost: String
+
+        attr_accessor :RealTotalCost, :TotalCost
+        
+        def initialize(realtotalcost=nil, totalcost=nil)
+          @RealTotalCost = realtotalcost
+          @TotalCost = totalcost
+        end
+
+        def deserialize(params)
+          @RealTotalCost = params['RealTotalCost']
+          @TotalCost = params['TotalCost']
         end
       end
 
@@ -2917,19 +2975,24 @@ module TencentCloud
         # @param RealTotalCostRatio: 费用所占百分比，两位小数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTotalCostRatio: String
+        # @param TotalCost: 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCost: String
 
-        attr_accessor :TagValue, :RealTotalCost, :RealTotalCostRatio
+        attr_accessor :TagValue, :RealTotalCost, :RealTotalCostRatio, :TotalCost
         
-        def initialize(tagvalue=nil, realtotalcost=nil, realtotalcostratio=nil)
+        def initialize(tagvalue=nil, realtotalcost=nil, realtotalcostratio=nil, totalcost=nil)
           @TagValue = tagvalue
           @RealTotalCost = realtotalcost
           @RealTotalCostRatio = realtotalcostratio
+          @TotalCost = totalcost
         end
 
         def deserialize(params)
           @TagValue = params['TagValue']
           @RealTotalCost = params['RealTotalCost']
           @RealTotalCostRatio = params['RealTotalCostRatio']
+          @TotalCost = params['TotalCost']
         end
       end
 

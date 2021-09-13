@@ -420,7 +420,7 @@ module TencentCloud
         # @type To: Integer
         # @param Query: 日志导出检索语句
         # @type Query: String
-        # @param Count: 日志导出数量
+        # @param Count: 日志导出数量，最大值100w
         # @type Count: Integer
         # @param Format: 日志导出数据格式。json，csv，默认为json
         # @type Format: String

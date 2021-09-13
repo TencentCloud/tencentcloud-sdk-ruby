@@ -495,6 +495,68 @@ module TencentCloud
         end
       end
 
+      # DescribePrivateDNSAccountList请求参数结构体
+      class DescribePrivateDNSAccountListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页限制数目， 最大100，默认20
+        # @type Limit: Integer
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+        
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePrivateDNSAccountList返回参数结构体
+      class DescribePrivateDNSAccountListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 私有域解析账号数量
+        # @type TotalCount: Integer
+        # @param AccountSet: 私有域解析账号列表
+        # @type AccountSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AccountSet, :RequestId
+        
+        def initialize(totalcount=nil, accountset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AccountSet = accountset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AccountSet'].nil?
+            @AccountSet = []
+            params['AccountSet'].each do |i|
+              privatednsaccount_tmp = PrivateDNSAccount.new
+              privatednsaccount_tmp.deserialize(i)
+              @AccountSet << privatednsaccount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrivateZoneList请求参数结构体
       class DescribePrivateZoneListRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页偏移量，从0开始
@@ -1007,6 +1069,30 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 私有域解析账号
+      class PrivateDNSAccount < TencentCloud::Common::AbstractModel
+        # @param Uin: 主账号Uin
+        # @type Uin: String
+        # @param Account: 主账号名称
+        # @type Account: String
+        # @param Nickname: 用户昵称
+        # @type Nickname: String
+
+        attr_accessor :Uin, :Account, :Nickname
+        
+        def initialize(uin=nil, account=nil, nickname=nil)
+          @Uin = uin
+          @Account = account
+          @Nickname = nickname
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @Account = params['Account']
+          @Nickname = params['Nickname']
         end
       end
 

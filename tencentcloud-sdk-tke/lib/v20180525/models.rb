@@ -3201,6 +3201,49 @@ module TencentCloud
         end
       end
 
+      # DescribeEKSContainerInstanceRegions请求参数结构体
+      class DescribeEKSContainerInstanceRegionsRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeEKSContainerInstanceRegions返回参数结构体
+      class DescribeEKSContainerInstanceRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param Regions: EKS Container Instance支持的地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Regions: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Regions, :TotalCount, :RequestId
+        
+        def initialize(regions=nil, totalcount=nil, requestid=nil)
+          @Regions = regions
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Regions'].nil?
+            @Regions = []
+            params['Regions'].each do |i|
+              eksciregioninfo_tmp = EksCiRegionInfo.new
+              eksciregioninfo_tmp.deserialize(i)
+              @Regions << eksciregioninfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnableVpcCniProgress请求参数结构体
       class DescribeEnableVpcCniProgressRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 开启vpc-cni的集群ID
@@ -4153,6 +4196,30 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           @DnsServers = params['DnsServers']
+        end
+      end
+
+      # EksCi地域信息
+      class EksCiRegionInfo < TencentCloud::Common::AbstractModel
+        # @param Alias: 地域别名，形如gz
+        # @type Alias: String
+        # @param RegionName: 地域名，形如ap-guangzhou
+        # @type RegionName: String
+        # @param RegionId: 地域ID
+        # @type RegionId: Integer
+
+        attr_accessor :Alias, :RegionName, :RegionId
+        
+        def initialize(_alias=nil, regionname=nil, regionid=nil)
+          @Alias = _alias
+          @RegionName = regionname
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @Alias = params['Alias']
+          @RegionName = params['RegionName']
+          @RegionId = params['RegionId']
         end
       end
 
