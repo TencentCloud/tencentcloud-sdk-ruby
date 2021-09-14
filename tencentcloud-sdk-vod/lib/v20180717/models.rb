@@ -5911,6 +5911,50 @@ module TencentCloud
         end
       end
 
+      # CreateVodDomain请求参数结构体
+      class CreateVodDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要接入点播的加速域名。注意：不支持填写泛域名。
+        # @type Domain: String
+        # @param AccelerateArea: 需要开启 CDN 加速的区域：
+        # <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
+        # <li>Outside Chinese Mainland: 中国境外。</li>
+        # <li>Global: 全球范围。</li>
+        # 如果没有设置 AccelerateArea， 点播会根据用户在腾讯云设置的地域信息自动开通中国境内或者中国境外的 CDN 加速。开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
+        # @type AccelerateArea: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Domain, :AccelerateArea, :SubAppId
+        
+        def initialize(domain=nil, acceleratearea=nil, subappid=nil)
+          @Domain = domain
+          @AccelerateArea = acceleratearea
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @AccelerateArea = params['AccelerateArea']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # CreateVodDomain返回参数结构体
+      class CreateVodDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateWatermarkTemplate请求参数结构体
       class CreateWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Type: 水印类型，可选值：
@@ -6666,6 +6710,42 @@ module TencentCloud
 
       # DeleteTranscodeTemplate返回参数结构体
       class DeleteTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVodDomain请求参数结构体
+      class DeleteVodDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要删除的点播加速域名。
+        # @type Domain: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Domain, :SubAppId
+        
+        def initialize(domain=nil, subappid=nil)
+          @Domain = domain
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DeleteVodDomain返回参数结构体
+      class DeleteVodDomainResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -14088,6 +14168,106 @@ module TencentCloud
         end
       end
 
+      # ModifyVodDomainAccelerateConfig请求参数结构体
+      class ModifyVodDomainAccelerateConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要设置加速配置的域名。
+        # @type Domain: String
+        # @param Area: 区域，可选值：
+        # <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
+        # <li>Outside Chinese Mainland: 中国境外。</li>
+        # <li>Global: 全球范围。</li>
+        # @type Area: String
+        # @param Status: 开启或者关闭所选区域的域名加速，可选值：
+        # <li>Enabled: 开启。</li>
+        # <li>Disabled：关闭。</li>
+        # 开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
+        # @type Status: String
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Domain, :Area, :Status, :SubAppId
+        
+        def initialize(domain=nil, area=nil, status=nil, subappid=nil)
+          @Domain = domain
+          @Area = area
+          @Status = status
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Area = params['Area']
+          @Status = params['Status']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # ModifyVodDomainAccelerateConfig返回参数结构体
+      class ModifyVodDomainAccelerateConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyVodDomainConfig请求参数结构体
+      class ModifyVodDomainConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名。
+        # @type Domain: String
+        # @param RefererAuthPolicy: [Referer 防盗链](/document/product/266/14046)规则。
+        # @type RefererAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.RefererAuthPolicy`
+        # @param UrlSignatureAuthPolicy: [Key 防盗链](/document/product/266/14047)规则。
+        # @type UrlSignatureAuthPolicy: :class:`Tencentcloud::Vod.v20180717.models.UrlSignatureAuthPolicy`
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Domain, :RefererAuthPolicy, :UrlSignatureAuthPolicy, :SubAppId
+        
+        def initialize(domain=nil, refererauthpolicy=nil, urlsignatureauthpolicy=nil, subappid=nil)
+          @Domain = domain
+          @RefererAuthPolicy = refererauthpolicy
+          @UrlSignatureAuthPolicy = urlsignatureauthpolicy
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['RefererAuthPolicy'].nil?
+            @RefererAuthPolicy = RefererAuthPolicy.new
+            @RefererAuthPolicy.deserialize(params['RefererAuthPolicy'])
+          end
+          unless params['UrlSignatureAuthPolicy'].nil?
+            @UrlSignatureAuthPolicy = UrlSignatureAuthPolicy.new
+            @UrlSignatureAuthPolicy.deserialize(params['UrlSignatureAuthPolicy'])
+          end
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # ModifyVodDomainConfig返回参数结构体
+      class ModifyVodDomainConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyWatermarkTemplate请求参数结构体
       class ModifyWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 水印模板唯一标识。
@@ -16058,14 +16238,16 @@ module TencentCloud
         # <li>Disabled: 禁用。</li>
         # @type Status: String
         # @param AuthType: Referer 校验类型，可选值：
-        # <li>Black: 黑名单方式校验；</li>
-        # <li>White:白名单方式校验。</li>
+        # <li>Black：黑名单方式校验。HTTP 请求携带了 Referers 列表中的某个 Referer 将被拒绝访问。</li>
+        # <li>White：白名单方式校验。HTTP 请求携带了 Referers 列表中的 Referer 时才允许访问。</li>
+        # 当 Status 取值为 Enabled 时，AuthType 必须赋值。
         # @type AuthType: String
-        # @param Referers: 用于校验的 Referer 名单。
+        # @param Referers: 用于校验的 Referer 列表，最大支持20个 Referer。当 Status 取值为 Enabled 时， Referers 不能为空数组。Referer 的格式参考域名的格式。
         # @type Referers: Array
         # @param BlankRefererAllowed: 是否允许空 Referer 访问本域名，可选值：
-        # <li>Yes: 是；</li>
-        # <li>No: 否。</li>
+        # <li>Yes： 是。</li>
+        # <li>No： 否。</li>
+        # 当 Status 取值为 Enabled 时，BlankRefererAllowed 必须赋值。
         # @type BlankRefererAllowed: String
 
         attr_accessor :Status, :AuthType, :Referers, :BlankRefererAllowed
@@ -18220,10 +18402,11 @@ module TencentCloud
       # 基于签名的 Key 防盗链信息
       class UrlSignatureAuthPolicy < TencentCloud::Common::AbstractModel
         # @param Status: [Key 防盗链](https://cloud.tencent.com/document/product/266/14047)设置状态，可选值：
-        # <li>Enabled: 启用；</li>
+        # <li>Enabled: 启用。</li>
         # <li>Disabled: 禁用。</li>
         # @type Status: String
         # @param EncryptedKey: [Key 防盗链](https://cloud.tencent.com/document/product/266/14047)中用于生成签名的密钥。
+        # EncryptedKey 字符串的长度为8~40个字节，不能包含不可见字符。
         # @type EncryptedKey: String
 
         attr_accessor :Status, :EncryptedKey

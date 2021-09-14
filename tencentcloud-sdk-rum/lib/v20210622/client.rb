@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取项目列表（实例创建的团队下的项目列表）
+
+        # @param request: Request instance for DescribeProjects.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeProjectsRequest`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeProjectsResponse`
+        def DescribeProjects(request)
+          body = send_request('DescribeProjects', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProjectsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

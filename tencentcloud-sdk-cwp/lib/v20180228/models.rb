@@ -461,7 +461,7 @@ module TencentCloud
         # @param BanStatus: 阻断状态：1-阻断成功；非1-阻断失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BanStatus: Integer
-        # @param EventType: 事件类型
+        # @param EventType: 事件类型：200-暴力破解事件，300-暴力破解成功事件（页面展示），400-暴力破解不存在的帐号事件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventType: Integer
         # @param Count: 发生次数
@@ -7332,12 +7332,11 @@ module TencentCloud
 
       # ExportBaselineList请求参数结构体
       class ExportBaselineListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。
+        # @param Filters: 过滤条件：
         # <li>StrategyId- Uint64 - 基线策略id</li>
-        # <li>Status - Uint64 - 处理状态1已通过 0未通过</li>
-        # <li>Level - Uint64[] - 处理状态1已通过 0未通过</li>BaselineName
+        # <li>Status - Uint64 - 事件状态：0-未通过，1-忽略，3-通过，5-检测中</li>
         # <li>BaselineName  - String - 基线名称</li>
-        # <li>Quuid- String - 主机quuid</li>
+        # <li>AliasName- String - 服务器名称/服务器ip</li>
         # <li>Uuid- String - 主机uuid</li>
         # @type Filters: Array
         # @param IfDetail: 已废弃

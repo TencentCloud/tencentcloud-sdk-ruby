@@ -303,6 +303,49 @@ module TencentCloud
         end
       end
 
+      # CreateDatabaseWhiteListRules请求参数结构体
+      class CreateDatabaseWhiteListRulesRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseWhiteListRuleData: 创建白名单数据
+        # @type DatabaseWhiteListRuleData: Array
+
+        attr_accessor :DatabaseWhiteListRuleData
+        
+        def initialize(databasewhitelistruledata=nil)
+          @DatabaseWhiteListRuleData = databasewhitelistruledata
+        end
+
+        def deserialize(params)
+          unless params['DatabaseWhiteListRuleData'].nil?
+            @DatabaseWhiteListRuleData = []
+            params['DatabaseWhiteListRuleData'].each do |i|
+              databasewhitelistruledata_tmp = DatabaseWhiteListRuleData.new
+              databasewhitelistruledata_tmp.deserialize(i)
+              @DatabaseWhiteListRuleData << databasewhitelistruledata_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDatabaseWhiteListRules返回参数结构体
+      class CreateDatabaseWhiteListRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态值，0:添加成功，非0：添加失败
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+        
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNatFwInstance请求参数结构体
       class CreateNatFwInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 防火墙实例名称
@@ -473,6 +516,70 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据库白名单规则数据
+      class DatabaseWhiteListRuleData < TencentCloud::Common::AbstractModel
+        # @param SourceIp: 访问源
+        # @type SourceIp: String
+        # @param SourceType: 访问源类型，1 ip；6 实例；100 资源分组
+        # @type SourceType: Integer
+        # @param TargetIp: 访问目的
+        # @type TargetIp: String
+        # @param TargetType: 访问目的类型，1 ip；6 实例；100 资源分组
+        # @type TargetType: Integer
+        # @param Detail: 规则描述
+        # @type Detail: String
+        # @param IsRegionRule: 是否地域规则，0不是 1是
+        # @type IsRegionRule: Integer
+        # @param IsCloudRule: 是否云厂商规则，0不是 1 时
+        # @type IsCloudRule: Integer
+        # @param Enable: 是否启用，0 不启用，1启用
+        # @type Enable: Integer
+        # @param FirstLevelRegionCode: 地域码1
+        # @type FirstLevelRegionCode: Integer
+        # @param SecondLevelRegionCode: 地域码2
+        # @type SecondLevelRegionCode: Integer
+        # @param FirstLevelRegionName: 地域名称1
+        # @type FirstLevelRegionName: String
+        # @param SecondLevelRegionName: 地域名称2
+        # @type SecondLevelRegionName: String
+        # @param CloudCode: 云厂商码
+        # @type CloudCode: String
+
+        attr_accessor :SourceIp, :SourceType, :TargetIp, :TargetType, :Detail, :IsRegionRule, :IsCloudRule, :Enable, :FirstLevelRegionCode, :SecondLevelRegionCode, :FirstLevelRegionName, :SecondLevelRegionName, :CloudCode
+        
+        def initialize(sourceip=nil, sourcetype=nil, targetip=nil, targettype=nil, detail=nil, isregionrule=nil, iscloudrule=nil, enable=nil, firstlevelregioncode=nil, secondlevelregioncode=nil, firstlevelregionname=nil, secondlevelregionname=nil, cloudcode=nil)
+          @SourceIp = sourceip
+          @SourceType = sourcetype
+          @TargetIp = targetip
+          @TargetType = targettype
+          @Detail = detail
+          @IsRegionRule = isregionrule
+          @IsCloudRule = iscloudrule
+          @Enable = enable
+          @FirstLevelRegionCode = firstlevelregioncode
+          @SecondLevelRegionCode = secondlevelregioncode
+          @FirstLevelRegionName = firstlevelregionname
+          @SecondLevelRegionName = secondlevelregionname
+          @CloudCode = cloudcode
+        end
+
+        def deserialize(params)
+          @SourceIp = params['SourceIp']
+          @SourceType = params['SourceType']
+          @TargetIp = params['TargetIp']
+          @TargetType = params['TargetType']
+          @Detail = params['Detail']
+          @IsRegionRule = params['IsRegionRule']
+          @IsCloudRule = params['IsCloudRule']
+          @Enable = params['Enable']
+          @FirstLevelRegionCode = params['FirstLevelRegionCode']
+          @SecondLevelRegionCode = params['SecondLevelRegionCode']
+          @FirstLevelRegionName = params['FirstLevelRegionName']
+          @SecondLevelRegionName = params['SecondLevelRegionName']
+          @CloudCode = params['CloudCode']
         end
       end
 
@@ -3448,15 +3555,19 @@ module TencentCloud
         # @param Status: 0:正常状态， 1: 正在创建
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param NatIp: nat公网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatIp: String
 
-        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :Status
+        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :Status, :NatIp
         
-        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, status=nil)
+        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, status=nil, natip=nil)
           @NatinsId = natinsid
           @NatinsName = natinsname
           @Region = region
           @FwMode = fwmode
           @Status = status
+          @NatIp = natip
         end
 
         def deserialize(params)
@@ -3465,6 +3576,7 @@ module TencentCloud
           @Region = params['Region']
           @FwMode = params['FwMode']
           @Status = params['Status']
+          @NatIp = params['NatIp']
         end
       end
 

@@ -1523,10 +1523,12 @@ module TencentCloud
         # @type RepoLanguage: String
         # @param UploadFilename: 用户实际上传文件名（仅UploadType为jar/war时必填）
         # @type UploadFilename: String
+        # @param PolicyDetail: 自动扩缩容策略组
+        # @type PolicyDetail: Array
 
-        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security, :ServiceVolumes, :IsCreateJnsGw, :ServiceVolumeMounts, :HasDockerfile, :BaseImage, :EntryPoint, :RepoLanguage, :UploadFilename
+        attr_accessor :EnvId, :UploadType, :FlowRatio, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :ContainerPort, :ServerName, :RepositoryType, :DockerfilePath, :BuildDir, :EnvParams, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :ImageSecretInfo, :ImagePullSecret, :CustomLogs, :InitialDelaySeconds, :MountVolumeInfo, :AccessType, :EsInfo, :EnableUnion, :OperatorRemark, :ServerPath, :ImageReuseKey, :SidecarSpecs, :Security, :ServiceVolumes, :IsCreateJnsGw, :ServiceVolumeMounts, :HasDockerfile, :BaseImage, :EntryPoint, :RepoLanguage, :UploadFilename, :PolicyDetail
         
-        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil, servicevolumes=nil, iscreatejnsgw=nil, servicevolumemounts=nil, hasdockerfile=nil, baseimage=nil, entrypoint=nil, repolanguage=nil, uploadfilename=nil)
+        def initialize(envid=nil, uploadtype=nil, flowratio=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, containerport=nil, servername=nil, repositorytype=nil, dockerfilepath=nil, builddir=nil, envparams=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, imagesecretinfo=nil, imagepullsecret=nil, customlogs=nil, initialdelayseconds=nil, mountvolumeinfo=nil, accesstype=nil, esinfo=nil, enableunion=nil, operatorremark=nil, serverpath=nil, imagereusekey=nil, sidecarspecs=nil, security=nil, servicevolumes=nil, iscreatejnsgw=nil, servicevolumemounts=nil, hasdockerfile=nil, baseimage=nil, entrypoint=nil, repolanguage=nil, uploadfilename=nil, policydetail=nil)
           @EnvId = envid
           @UploadType = uploadtype
           @FlowRatio = flowratio
@@ -1570,6 +1572,7 @@ module TencentCloud
           @EntryPoint = entrypoint
           @RepoLanguage = repolanguage
           @UploadFilename = uploadfilename
+          @PolicyDetail = policydetail
         end
 
         def deserialize(params)
@@ -1659,6 +1662,14 @@ module TencentCloud
           @EntryPoint = params['EntryPoint']
           @RepoLanguage = params['RepoLanguage']
           @UploadFilename = params['UploadFilename']
+          unless params['PolicyDetail'].nil?
+            @PolicyDetail = []
+            params['PolicyDetail'].each do |i|
+              hpapolicy_tmp = HpaPolicy.new
+              hpapolicy_tmp.deserialize(i)
+              @PolicyDetail << hpapolicy_tmp
+            end
+          end
         end
       end
 
@@ -2899,12 +2910,15 @@ module TencentCloud
         # @param RepoLanguage: 仓库语言
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RepoLanguage: String
+        # @param PolicyDetail: 自动扩缩容策略组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyDetail: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :HasDockerfile, :BaseImage, :EntryPoint, :RepoLanguage, :RequestId
+        attr_accessor :VersionName, :Remark, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :CreatedTime, :UpdatedTime, :VersionIP, :VersionPort, :Status, :PackageName, :PackageVersion, :UploadType, :RepoType, :Repo, :Branch, :ServerName, :IsPublic, :VpcId, :SubnetIds, :CustomLogs, :ContainerPort, :InitialDelaySeconds, :ImageUrl, :CpuSize, :MemSize, :HasDockerfile, :BaseImage, :EntryPoint, :RepoLanguage, :PolicyDetail, :RequestId
         
-        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, hasdockerfile=nil, baseimage=nil, entrypoint=nil, repolanguage=nil, requestid=nil)
+        def initialize(versionname=nil, remark=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, createdtime=nil, updatedtime=nil, versionip=nil, versionport=nil, status=nil, packagename=nil, packageversion=nil, uploadtype=nil, repotype=nil, repo=nil, branch=nil, servername=nil, ispublic=nil, vpcid=nil, subnetids=nil, customlogs=nil, containerport=nil, initialdelayseconds=nil, imageurl=nil, cpusize=nil, memsize=nil, hasdockerfile=nil, baseimage=nil, entrypoint=nil, repolanguage=nil, policydetail=nil, requestid=nil)
           @VersionName = versionname
           @Remark = remark
           @DockerfilePath = dockerfilepath
@@ -2941,6 +2955,7 @@ module TencentCloud
           @BaseImage = baseimage
           @EntryPoint = entrypoint
           @RepoLanguage = repolanguage
+          @PolicyDetail = policydetail
           @RequestId = requestid
         end
 
@@ -2981,6 +2996,14 @@ module TencentCloud
           @BaseImage = params['BaseImage']
           @EntryPoint = params['EntryPoint']
           @RepoLanguage = params['RepoLanguage']
+          unless params['PolicyDetail'].nil?
+            @PolicyDetail = []
+            params['PolicyDetail'].each do |i|
+              hpapolicy_tmp = HpaPolicy.new
+              hpapolicy_tmp.deserialize(i)
+              @PolicyDetail << hpapolicy_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5221,6 +5244,28 @@ module TencentCloud
         end
       end
 
+      # 扩缩容策略
+      class HpaPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyType: 策略类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyType: String
+        # @param PolicyThreshold: 策略阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyThreshold: Integer
+
+        attr_accessor :PolicyType, :PolicyThreshold
+        
+        def initialize(policytype=nil, policythreshold=nil)
+          @PolicyType = policytype
+          @PolicyThreshold = policythreshold
+        end
+
+        def deserialize(params)
+          @PolicyType = params['PolicyType']
+          @PolicyThreshold = params['PolicyThreshold']
+        end
+      end
+
       # 键值对
       class KVPair < TencentCloud::Common::AbstractModel
         # @param Key: 键
@@ -5871,10 +5916,12 @@ module TencentCloud
         # @type ServerPath: String
         # @param IsUpdateCls: 是否更新Cls
         # @type IsUpdateCls: Boolean
+        # @param PolicyDetail: 自动扩缩容策略组
+        # @type PolicyDetail: Array
 
-        attr_accessor :EnvId, :VersionName, :UploadType, :RepositoryType, :FlowRatio, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :ContainerPort, :ServerName, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :IsRebuild, :InitialDelaySeconds, :MountVolumeInfo, :Rollback, :SnapshotName, :CustomLogs, :EnableUnion, :OperatorRemark, :ServerPath, :IsUpdateCls
+        attr_accessor :EnvId, :VersionName, :UploadType, :RepositoryType, :FlowRatio, :DockerfilePath, :BuildDir, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyType, :PolicyThreshold, :EnvParams, :ContainerPort, :ServerName, :Repository, :Branch, :VersionRemark, :PackageName, :PackageVersion, :ImageInfo, :CodeDetail, :IsRebuild, :InitialDelaySeconds, :MountVolumeInfo, :Rollback, :SnapshotName, :CustomLogs, :EnableUnion, :OperatorRemark, :ServerPath, :IsUpdateCls, :PolicyDetail
         
-        def initialize(envid=nil, versionname=nil, uploadtype=nil, repositorytype=nil, flowratio=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, containerport=nil, servername=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, isrebuild=nil, initialdelayseconds=nil, mountvolumeinfo=nil, rollback=nil, snapshotname=nil, customlogs=nil, enableunion=nil, operatorremark=nil, serverpath=nil, isupdatecls=nil)
+        def initialize(envid=nil, versionname=nil, uploadtype=nil, repositorytype=nil, flowratio=nil, dockerfilepath=nil, builddir=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policytype=nil, policythreshold=nil, envparams=nil, containerport=nil, servername=nil, repository=nil, branch=nil, versionremark=nil, packagename=nil, packageversion=nil, imageinfo=nil, codedetail=nil, isrebuild=nil, initialdelayseconds=nil, mountvolumeinfo=nil, rollback=nil, snapshotname=nil, customlogs=nil, enableunion=nil, operatorremark=nil, serverpath=nil, isupdatecls=nil, policydetail=nil)
           @EnvId = envid
           @VersionName = versionname
           @UploadType = uploadtype
@@ -5908,6 +5955,7 @@ module TencentCloud
           @OperatorRemark = operatorremark
           @ServerPath = serverpath
           @IsUpdateCls = isupdatecls
+          @PolicyDetail = policydetail
         end
 
         def deserialize(params)
@@ -5957,6 +6005,14 @@ module TencentCloud
           @OperatorRemark = params['OperatorRemark']
           @ServerPath = params['ServerPath']
           @IsUpdateCls = params['IsUpdateCls']
+          unless params['PolicyDetail'].nil?
+            @PolicyDetail = []
+            params['PolicyDetail'].each do |i|
+              hpapolicy_tmp = HpaPolicy.new
+              hpapolicy_tmp.deserialize(i)
+              @PolicyDetail << hpapolicy_tmp
+            end
+          end
         end
       end
 

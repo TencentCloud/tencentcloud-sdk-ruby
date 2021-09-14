@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建暴露数据库白名单规则
+
+        # @param request: Request instance for CreateDatabaseWhiteListRules.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateDatabaseWhiteListRulesRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateDatabaseWhiteListRulesResponse`
+        def CreateDatabaseWhiteListRules(request)
+          body = send_request('CreateDatabaseWhiteListRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDatabaseWhiteListRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建防火墙实例
 
         # @param request: Request instance for CreateNatFwInstance.

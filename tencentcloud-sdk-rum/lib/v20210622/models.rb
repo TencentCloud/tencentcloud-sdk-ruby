@@ -425,6 +425,167 @@ module TencentCloud
         end
       end
 
+      # DescribeProjects请求参数结构体
+      class DescribeProjectsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页每页数目，整型
+        # @type Limit: Integer
+        # @param Offset: 分页页码，整型
+        # @type Offset: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeProjects返回参数结构体
+      class DescribeProjectsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 列表总数
+        # @type TotalCount: Integer
+        # @param ProjectSet: 项目列表
+        # @type ProjectSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ProjectSet, :RequestId
+        
+        def initialize(totalcount=nil, projectset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ProjectSet = projectset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ProjectSet'].nil?
+            @ProjectSet = []
+            params['ProjectSet'].each do |i|
+              rumproject_tmp = RumProject.new
+              rumproject_tmp.deserialize(i)
+              @ProjectSet << rumproject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+
+      # · 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+      # · 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Values: 一个或者多个过滤值。
+        # @type Values: Array
+        # @param Name: 过滤键的名称。
+        # @type Name: String
+
+        attr_accessor :Values, :Name
+        
+        def initialize(values=nil, name=nil)
+          @Values = values
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
+          @Name = params['Name']
+        end
+      end
+
+      # Rum 项目信息
+      class RumProject < TencentCloud::Common::AbstractModel
+        # @param Name: 项目名
+        # @type Name: String
+        # @param Creator: 创建者 id
+        # @type Creator: String
+        # @param InstanceID: 实例 id
+        # @type InstanceID: String
+        # @param Type: 项目类型
+        # @type Type: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Repo: 项目仓库地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Repo: String
+        # @param URL: 项目网址地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type URL: String
+        # @param Rate: 项目采样频率
+        # @type Rate: String
+        # @param Key: 项目唯一key（长度 12 位）
+        # @type Key: String
+        # @param EnableURLGroup: 是否开启url聚类
+        # @type EnableURLGroup: Integer
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param ID: 项目 ID
+        # @type ID: Integer
+        # @param InstanceKey: 实例 key
+        # @type InstanceKey: String
+        # @param Desc: 项目描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param IsStar: 是否星标  1:是 0:否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsStar: Integer
+
+        attr_accessor :Name, :Creator, :InstanceID, :Type, :CreateTime, :Repo, :URL, :Rate, :Key, :EnableURLGroup, :InstanceName, :ID, :InstanceKey, :Desc, :IsStar
+        
+        def initialize(name=nil, creator=nil, instanceid=nil, type=nil, createtime=nil, repo=nil, url=nil, rate=nil, key=nil, enableurlgroup=nil, instancename=nil, id=nil, instancekey=nil, desc=nil, isstar=nil)
+          @Name = name
+          @Creator = creator
+          @InstanceID = instanceid
+          @Type = type
+          @CreateTime = createtime
+          @Repo = repo
+          @URL = url
+          @Rate = rate
+          @Key = key
+          @EnableURLGroup = enableurlgroup
+          @InstanceName = instancename
+          @ID = id
+          @InstanceKey = instancekey
+          @Desc = desc
+          @IsStar = isstar
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Creator = params['Creator']
+          @InstanceID = params['InstanceID']
+          @Type = params['Type']
+          @CreateTime = params['CreateTime']
+          @Repo = params['Repo']
+          @URL = params['URL']
+          @Rate = params['Rate']
+          @Key = params['Key']
+          @EnableURLGroup = params['EnableURLGroup']
+          @InstanceName = params['InstanceName']
+          @ID = params['ID']
+          @InstanceKey = params['InstanceKey']
+          @Desc = params['Desc']
+          @IsStar = params['IsStar']
+        end
+      end
+
     end
   end
 end

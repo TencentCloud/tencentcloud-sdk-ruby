@@ -546,6 +546,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于将加速域名添加到点播，一个用户最多添加20个加速域名。
+        # 1.域名添加成功后点播会进行域名的部署，域名由部署状态变为在线状态大概需要2分钟的时间。
+
+        # @param request: Request instance for CreateVodDomain.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateVodDomainRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateVodDomainResponse`
+        def CreateVodDomain(request)
+          body = send_request('CreateVodDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVodDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义水印模板，数量上限：1000。
 
         # @param request: Request instance for CreateWatermarkTemplate.
@@ -969,6 +994,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于删除点播加速域名。
+        # 1、域名删除前需要先关闭所有区域的加速。
+
+        # @param request: Request instance for DeleteVodDomain.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteVodDomainRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteVodDomainResponse`
+        def DeleteVodDomain(request)
+          body = send_request('DeleteVodDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVodDomainResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2506,6 +2556,56 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于开启或者关闭点播域名的加速区域。
+        # 1、域名部署状态为 Online 状态时才允许开启或者关闭域名加速区域。
+
+        # @param request: Request instance for ModifyVodDomainAccelerateConfig.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyVodDomainAccelerateConfigRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyVodDomainAccelerateConfigResponse`
+        def ModifyVodDomainAccelerateConfig(request)
+          body = send_request('ModifyVodDomainAccelerateConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVodDomainAccelerateConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于修改域名配置，可以修改域名的防盗链配置。
+        # 1、域名部署状态为 Online 状态时才允许修改域名的配置。
+
+        # @param request: Request instance for ModifyVodDomainConfig.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyVodDomainConfigRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyVodDomainConfigResponse`
+        def ModifyVodDomainConfig(request)
+          body = send_request('ModifyVodDomainConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVodDomainConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

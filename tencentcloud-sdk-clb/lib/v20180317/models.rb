@@ -1204,6 +1204,8 @@ module TencentCloud
         # @type BandwidthPackageId: String
         # @param ExclusiveCluster: 独占集群信息。若创建独占集群负载均衡实例，则此参数必填。
         # @type ExclusiveCluster: :class:`Tencentcloud::Clb.v20180317.models.ExclusiveCluster`
+        # @param SlaType: 创建性能独享型CLB，传SLA。
+        # @type SlaType: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
         # @param SnatPro: 是否支持绑定跨地域/跨Vpc绑定IP的功能。
@@ -1218,9 +1220,9 @@ module TencentCloud
         # @param EipAddressId: EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
         # @type EipAddressId: String
 
-        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId
+        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId
         
-        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil)
+        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil)
           @LoadBalancerType = loadbalancertype
           @Forward = forward
           @LoadBalancerName = loadbalancername
@@ -1237,6 +1239,7 @@ module TencentCloud
           @Vip = vip
           @BandwidthPackageId = bandwidthpackageid
           @ExclusiveCluster = exclusivecluster
+          @SlaType = slatype
           @ClientToken = clienttoken
           @SnatPro = snatpro
           @SnatIps = snatips
@@ -1275,6 +1278,7 @@ module TencentCloud
             @ExclusiveCluster = ExclusiveCluster.new
             @ExclusiveCluster.deserialize(params['ExclusiveCluster'])
           end
+          @SlaType = params['SlaType']
           @ClientToken = params['ClientToken']
           @SnatPro = params['SnatPro']
           unless params['SnatIps'].nil?
@@ -2514,6 +2518,56 @@ module TencentCloud
         end
       end
 
+      # DescribeLBListeners请求参数结构体
+      class DescribeLBListenersRequest < TencentCloud::Common::AbstractModel
+        # @param Backends: 需要查询的内网ip列表
+        # @type Backends: Array
+
+        attr_accessor :Backends
+        
+        def initialize(backends=nil)
+          @Backends = backends
+        end
+
+        def deserialize(params)
+          unless params['Backends'].nil?
+            @Backends = []
+            params['Backends'].each do |i|
+              lbrsitem_tmp = LbRsItem.new
+              lbrsitem_tmp.deserialize(i)
+              @Backends << lbrsitem_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLBListeners返回参数结构体
+      class DescribeLBListenersResponse < TencentCloud::Common::AbstractModel
+        # @param LoadBalancers: 绑定的后端规则
+        # @type LoadBalancers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoadBalancers, :RequestId
+        
+        def initialize(loadbalancers=nil, requestid=nil)
+          @LoadBalancers = loadbalancers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LoadBalancers'].nil?
+            @LoadBalancers = []
+            params['LoadBalancers'].each do |i|
+              lbitem_tmp = LBItem.new
+              lbitem_tmp.deserialize(i)
+              @LoadBalancers << lbitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeListeners请求参数结构体
       class DescribeListenersRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例 ID。
@@ -3563,6 +3617,95 @@ module TencentCloud
         end
       end
 
+      # 反查Lb绑定关系。
+      class LBItem < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: lb的字符串id
+        # @type LoadBalancerId: String
+        # @param Vip: lb的vip
+        # @type Vip: String
+        # @param Listeners: 监听器规则
+        # @type Listeners: Array
+        # @param Region: LB所在地域
+        # @type Region: String
+
+        attr_accessor :LoadBalancerId, :Vip, :Listeners, :Region
+        
+        def initialize(loadbalancerid=nil, vip=nil, listeners=nil, region=nil)
+          @LoadBalancerId = loadbalancerid
+          @Vip = vip
+          @Listeners = listeners
+          @Region = region
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @Vip = params['Vip']
+          unless params['Listeners'].nil?
+            @Listeners = []
+            params['Listeners'].each do |i|
+              listeneritem_tmp = ListenerItem.new
+              listeneritem_tmp.deserialize(i)
+              @Listeners << listeneritem_tmp
+            end
+          end
+          @Region = params['Region']
+        end
+      end
+
+      # 查询类型
+      class LbRsItem < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc的字符串id，只支持字符串id。
+        # @type VpcId: String
+        # @param PrivateIp: 需要查询后端的内网ip，可以是cvm和弹性网卡。
+        # @type PrivateIp: String
+
+        attr_accessor :VpcId, :PrivateIp
+        
+        def initialize(vpcid=nil, privateip=nil)
+          @VpcId = vpcid
+          @PrivateIp = privateip
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @PrivateIp = params['PrivateIp']
+        end
+      end
+
+      # 反查结果数据类型。
+      class LbRsTargets < TencentCloud::Common::AbstractModel
+        # @param Type: 内网ip类型。“cvm”或“eni”
+        # @type Type: String
+        # @param PrivateIp: 后端实例的内网ip。
+        # @type PrivateIp: String
+        # @param Port: 绑定后端实例的端口。
+        # @type Port: Integer
+        # @param VpcId: rs的vpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: Integer
+        # @param Weight: rs的权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
+
+        attr_accessor :Type, :PrivateIp, :Port, :VpcId, :Weight
+        
+        def initialize(type=nil, privateip=nil, port=nil, vpcid=nil, weight=nil)
+          @Type = type
+          @PrivateIp = privateip
+          @Port = port
+          @VpcId = vpcid
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @PrivateIp = params['PrivateIp']
+          @Port = params['Port']
+          @VpcId = params['VpcId']
+          @Weight = params['Weight']
+        end
+      end
+
       # 监听器的信息
       class Listener < TencentCloud::Common::AbstractModel
         # @param ListenerId: 负载均衡监听器 ID
@@ -3769,6 +3912,59 @@ module TencentCloud
               @Rules << rulehealth_tmp
             end
           end
+        end
+      end
+
+      # 反查监听器类型
+      class ListenerItem < TencentCloud::Common::AbstractModel
+        # @param ListenerId: 监听器ID
+        # @type ListenerId: String
+        # @param Protocol: 监听器协议
+        # @type Protocol: String
+        # @param Port: 监听器端口
+        # @type Port: Integer
+        # @param Rules: 绑定规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+        # @param Targets: 四层绑定对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Targets: Array
+        # @param EndPort: 端口段监听器的结束端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndPort: Integer
+
+        attr_accessor :ListenerId, :Protocol, :Port, :Rules, :Targets, :EndPort
+        
+        def initialize(listenerid=nil, protocol=nil, port=nil, rules=nil, targets=nil, endport=nil)
+          @ListenerId = listenerid
+          @Protocol = protocol
+          @Port = port
+          @Rules = rules
+          @Targets = targets
+          @EndPort = endport
+        end
+
+        def deserialize(params)
+          @ListenerId = params['ListenerId']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              rulesitems_tmp = RulesItems.new
+              rulesitems_tmp.deserialize(i)
+              @Rules << rulesitems_tmp
+            end
+          end
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              lbrstargets_tmp = LbRsTargets.new
+              lbrstargets_tmp.deserialize(i)
+              @Targets << lbrstargets_tmp
+            end
+          end
+          @EndPort = params['EndPort']
         end
       end
 
@@ -5605,6 +5801,41 @@ module TencentCloud
               backend_tmp = Backend.new
               backend_tmp.deserialize(i)
               @Targets << backend_tmp
+            end
+          end
+        end
+      end
+
+      # 七层规则对象
+      class RulesItems < TencentCloud::Common::AbstractModel
+        # @param LocationId: 规则id
+        # @type LocationId: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Url: uri
+        # @type Url: String
+        # @param Targets: 绑定的后端对象
+        # @type Targets: Array
+
+        attr_accessor :LocationId, :Domain, :Url, :Targets
+        
+        def initialize(locationid=nil, domain=nil, url=nil, targets=nil)
+          @LocationId = locationid
+          @Domain = domain
+          @Url = url
+          @Targets = targets
+        end
+
+        def deserialize(params)
+          @LocationId = params['LocationId']
+          @Domain = params['Domain']
+          @Url = params['Url']
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              lbrstargets_tmp = LbRsTargets.new
+              lbrstargets_tmp.deserialize(i)
+              @Targets << lbrstargets_tmp
             end
           end
         end
