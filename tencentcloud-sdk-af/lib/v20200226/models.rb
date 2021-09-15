@@ -201,6 +201,9 @@ module TencentCloud
         # @param RiskInfo: 扩展字段，对风险类型的说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskInfo: Array
+        # @param OtherModelScores: 多模型返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherModelScores: Array
         # @param Code: 业务侧错误码。成功时返回0，错误时返回非0值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
@@ -209,13 +212,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
 
-        attr_accessor :Found, :IdFound, :RiskScore, :RiskInfo, :Code, :Message
+        attr_accessor :Found, :IdFound, :RiskScore, :RiskInfo, :OtherModelScores, :Code, :Message
         
-        def initialize(found=nil, idfound=nil, riskscore=nil, riskinfo=nil, code=nil, message=nil)
+        def initialize(found=nil, idfound=nil, riskscore=nil, riskinfo=nil, othermodelscores=nil, code=nil, message=nil)
           @Found = found
           @IdFound = idfound
           @RiskScore = riskscore
           @RiskInfo = riskinfo
+          @OtherModelScores = othermodelscores
           @Code = code
           @Message = message
         end
@@ -232,8 +236,38 @@ module TencentCloud
               @RiskInfo << riskdetailinfo_tmp
             end
           end
+          unless params['OtherModelScores'].nil?
+            @OtherModelScores = []
+            params['OtherModelScores'].each do |i|
+              financeothermodelscores_tmp = FinanceOtherModelScores.new
+              financeothermodelscores_tmp.deserialize(i)
+              @OtherModelScores << financeothermodelscores_tmp
+            end
+          end
           @Code = params['Code']
           @Message = params['Message']
+        end
+      end
+
+      # 借贷反欺返回结果出参中的多模型返回结果
+      class FinanceOtherModelScores < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param ModelScore: 模型ID序号对应的评分结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelScore: String
+
+        attr_accessor :ModelId, :ModelScore
+        
+        def initialize(modelid=nil, modelscore=nil)
+          @ModelId = modelid
+          @ModelScore = modelscore
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelScore = params['ModelScore']
         end
       end
 

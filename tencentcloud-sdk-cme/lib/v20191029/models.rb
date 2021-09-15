@@ -1636,7 +1636,7 @@ module TencentCloud
         # @type StatusSet: Array
         # @param Offset: 分页返回的起始偏移量，默认值：0。
         # @type Offset: Integer
-        # @param Limit: 分页返回的记录条数，默认值：10。
+        # @param Limit: 分页返回的记录条数，默认值：10。最大值：20。
         # @type Limit: Integer
         # @param Operator: 操作者。填写用户的 Id，用于标识调用者及校验对任务的访问权限。
         # @type Operator: String
@@ -3832,18 +3832,24 @@ module TencentCloud
         # @type VodSubAppId: Integer
         # @param LicenseId: 平台绑定的 license Id。
         # @type LicenseId: String
+        # @param Status: 平台状态，可取值为：
+        # <li>Normal：正常，可使用。；</li>
+        # <li>Stopped：已停用，暂无法使用；</li>
+        # <li>Expired：已过期，需要重新购买会员包。</li>
+        # @type Status: String
         # @param CreateTime: 创建时间，格式按照 ISO 8601 标准表示。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间，格式按照 ISO 8601 标准表示。
         # @type UpdateTime: String
 
-        attr_accessor :Platform, :Description, :VodSubAppId, :LicenseId, :CreateTime, :UpdateTime
+        attr_accessor :Platform, :Description, :VodSubAppId, :LicenseId, :Status, :CreateTime, :UpdateTime
         
-        def initialize(platform=nil, description=nil, vodsubappid=nil, licenseid=nil, createtime=nil, updatetime=nil)
+        def initialize(platform=nil, description=nil, vodsubappid=nil, licenseid=nil, status=nil, createtime=nil, updatetime=nil)
           @Platform = platform
           @Description = description
           @VodSubAppId = vodsubappid
           @LicenseId = licenseid
+          @Status = status
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -3853,6 +3859,7 @@ module TencentCloud
           @Description = params['Description']
           @VodSubAppId = params['VodSubAppId']
           @LicenseId = params['LicenseId']
+          @Status = params['Status']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
         end
