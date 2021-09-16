@@ -790,10 +790,12 @@ module TencentCloud
         # <li>Success: 成功结束</li>
         # <li>Error: 异常</li>
         # @type Status: String
+        # @param BizId: 提交检测的应用 ID
+        # @type BizId: Integer
 
-        attr_accessor :Code, :DataId, :ScanFinishTime, :HitFlag, :Live, :Msg, :ScanPiece, :ScanStartTime, :Scenes, :TaskId, :Url, :Status
+        attr_accessor :Code, :DataId, :ScanFinishTime, :HitFlag, :Live, :Msg, :ScanPiece, :ScanStartTime, :Scenes, :TaskId, :Url, :Status, :BizId
         
-        def initialize(code=nil, dataid=nil, scanfinishtime=nil, hitflag=nil, live=nil, msg=nil, scanpiece=nil, scanstarttime=nil, scenes=nil, taskid=nil, url=nil, status=nil)
+        def initialize(code=nil, dataid=nil, scanfinishtime=nil, hitflag=nil, live=nil, msg=nil, scanpiece=nil, scanstarttime=nil, scenes=nil, taskid=nil, url=nil, status=nil, bizid=nil)
           @Code = code
           @DataId = dataid
           @ScanFinishTime = scanfinishtime
@@ -806,6 +808,7 @@ module TencentCloud
           @TaskId = taskid
           @Url = url
           @Status = status
+          @BizId = bizid
         end
 
         def deserialize(params)
@@ -828,6 +831,7 @@ module TencentCloud
           @TaskId = params['TaskId']
           @Url = params['Url']
           @Status = params['Status']
+          @BizId = params['BizId']
         end
       end
 

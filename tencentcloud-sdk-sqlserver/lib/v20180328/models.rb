@@ -236,19 +236,19 @@ module TencentCloud
 
       # 备份文件详细信息
       class Backup < TencentCloud::Common::AbstractModel
-        # @param FileName: 文件名
+        # @param FileName: 文件名，对于单库备份文件不返回此值；单库备份文件通过DescribeBackupFiles接口获取文件名
         # @type FileName: String
-        # @param Size: 文件大小，单位 KB
+        # @param Size: 文件大小，单位 KB，对于单库备份文件不返回此值；单库备份文件通过DescribeBackupFiles接口获取文件大小
         # @type Size: Integer
         # @param StartTime: 备份开始时间
         # @type StartTime: String
         # @param EndTime: 备份结束时间
         # @type EndTime: String
-        # @param InternalAddr: 内网下载地址
+        # @param InternalAddr: 内网下载地址，对于单库备份文件不返回此值；单库备份文件通过DescribeBackupFiles接口获取下载地址
         # @type InternalAddr: String
-        # @param ExternalAddr: 外网下载地址
+        # @param ExternalAddr: 外网下载地址，对于单库备份文件不返回此值；单库备份文件通过DescribeBackupFiles接口获取下载地址
         # @type ExternalAddr: String
-        # @param Id: 备份文件唯一标识，RestoreInstance接口会用到该字段
+        # @param Id: 备份文件唯一标识，RestoreInstance接口会用到该字段，对于单库备份文件不返回此值；单库备份文件通过DescribeBackupFiles接口获取可回档的ID
         # @type Id: Integer
         # @param Status: 备份文件状态（0-创建中；1-成功；2-失败）
         # @type Status: Integer
@@ -258,12 +258,14 @@ module TencentCloud
         # @type Strategy: Integer
         # @param BackupWay: 备份方式，0-定时备份；1-手动临时备份
         # @type BackupWay: Integer
-        # @param BackupName: 备份名称，可自定义
+        # @param BackupName: 备份任务名称，可自定义
         # @type BackupName: String
+        # @param GroupId: 聚合Id，对于打包备份文件不返回此值。通过此值调用DescribeBackupFiles接口，获取单库备份文件的详细信息
+        # @type GroupId: String
 
-        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :BackupWay, :BackupName
+        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :BackupWay, :BackupName, :GroupId
         
-        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, backupway=nil, backupname=nil)
+        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, backupway=nil, backupname=nil, groupid=nil)
           @FileName = filename
           @Size = size
           @StartTime = starttime
@@ -276,6 +278,7 @@ module TencentCloud
           @Strategy = strategy
           @BackupWay = backupway
           @BackupName = backupname
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -291,6 +294,39 @@ module TencentCloud
           @Strategy = params['Strategy']
           @BackupWay = params['BackupWay']
           @BackupName = params['BackupName']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # 在非打包上传备份模式下，每个库对应一个备份文件
+      class BackupFile < TencentCloud::Common::AbstractModel
+        # @param Id: 备份文件唯一标识
+        # @type Id: Integer
+        # @param FileName: 备份文件名称
+        # @type FileName: String
+        # @param Size: 文件大小(K)
+        # @type Size: Integer
+        # @param DBs: 备份文件的库的名称
+        # @type DBs: Array
+        # @param DownloadLink: 下载地址
+        # @type DownloadLink: String
+
+        attr_accessor :Id, :FileName, :Size, :DBs, :DownloadLink
+        
+        def initialize(id=nil, filename=nil, size=nil, dbs=nil, downloadlink=nil)
+          @Id = id
+          @FileName = filename
+          @Size = size
+          @DBs = dbs
+          @DownloadLink = downloadlink
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @FileName = params['FileName']
+          @Size = params['Size']
+          @DBs = params['DBs']
+          @DownloadLink = params['DownloadLink']
         end
       end
 
@@ -1269,7 +1305,7 @@ module TencentCloud
         # @type VpcId: Integer
         # @param SubnetId: 实例所在私有网络子网ID，基础网络时为 0
         # @type SubnetId: Integer
-        # @param Status: 实例状态。取值范围： <li>1：申请中</li> <li>2：运行中</li> <li>3：受限运行中 (主备切换中)</li> <li>4：已隔离</li> <li>5：回收中</li> <li>6：已回收</li> <li>7：任务执行中 (实例做备份、回档等操作)</li> <li>8：已下线</li> <li>9：实例扩容中</li> <li>10：实例迁移中</li> <li>11：只读</li> <li>12：重启中</li>
+        # @param Status: 实例状态。取值范围： <li>1：申请中</li> <li>2：运行中</li> <li>3：受限运行中 (主备切换中)</li> <li>4：已隔离</li> <li>5：回收中</li> <li>6：已回收</li> <li>7：任务执行中 (实例做备份、回档等操作)</li> <li>8：已下线</li> <li>9：实例扩容中</li> <li>10：实例迁移中</li> <li>11：只读</li> <li>12：重启中</li>  <li>13：实例修改中且待切换</li> <li>14：订阅发布创建中</li> <li>15：订阅发布修改中</li> <li>16：实例修改中且切换中</li> <li>17：创建RO副本中</li>
         # @type Status: Integer
         # @param Vip: 实例访问IP
         # @type Vip: String
@@ -1334,10 +1370,13 @@ module TencentCloud
         # @param ResourceTags: 实例绑定的标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
+        # @param BackupModel: 备份模式，master_pkg-主节点打包备份(默认) ；master_no_pkg-主节点不打包备份；slave_pkg-从节点打包备份(always on集群有效)；slave_no_pkg-从节点不打包备份(always on集群有效)；只读副本对该值无效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupModel: String
 
-        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags
+        attr_accessor :InstanceId, :Name, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :UpdateTime, :StartTime, :EndTime, :IsolateTime, :Memory, :UsedStorage, :Storage, :VersionName, :RenewFlag, :Model, :Region, :Zone, :BackupTime, :PayMode, :Uid, :Cpu, :Version, :Type, :Pid, :UniqVpcId, :UniqSubnetId, :IsolateOperator, :SubFlag, :ROFlag, :HAFlag, :ResourceTags, :BackupModel
         
-        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil)
+        def initialize(instanceid=nil, name=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, isolatetime=nil, memory=nil, usedstorage=nil, storage=nil, versionname=nil, renewflag=nil, model=nil, region=nil, zone=nil, backuptime=nil, paymode=nil, uid=nil, cpu=nil, version=nil, type=nil, pid=nil, uniqvpcid=nil, uniqsubnetid=nil, isolateoperator=nil, subflag=nil, roflag=nil, haflag=nil, resourcetags=nil, backupmodel=nil)
           @InstanceId = instanceid
           @Name = name
           @ProjectId = projectid
@@ -1375,6 +1414,7 @@ module TencentCloud
           @ROFlag = roflag
           @HAFlag = haflag
           @ResourceTags = resourcetags
+          @BackupModel = backupmodel
         end
 
         def deserialize(params)
@@ -1422,6 +1462,7 @@ module TencentCloud
               @ResourceTags << resourcetag_tmp
             end
           end
+          @BackupModel = params['BackupModel']
         end
       end
 
@@ -2021,36 +2062,38 @@ module TencentCloud
 
       # DescribeBackupByFlowId返回参数结构体
       class DescribeBackupByFlowIdResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 备份文件唯一标识，RestoreInstance接口会用到该字段
+        # @param Id: 备份文件唯一标识，RestoreInstance接口会用到该字段，对于单库备份文件只返回第一条记录的备份文件唯一标识；单库备份文件需要通过DescribeBackupFiles接口获取全部记录的可回档的ID
         # @type Id: Integer
-        # @param FileName: 存储文件名
+        # @param FileName: 文件名，对于单库备份文件只返回第一条记录的文件名；单库备份文件需要通过DescribeBackupFiles接口获取全部记录的文件名
         # @type FileName: String
-        # @param BackupName: 备份名称，可自定义
+        # @param BackupName: 备份任务名称，可自定义
         # @type BackupName: String
         # @param StartTime: 备份开始时间
         # @type StartTime: String
         # @param EndTime: 备份结束时间
         # @type EndTime: String
-        # @param Size: 文件大小，单位 KB
+        # @param Size: 文件大小，单位 KB，对于单库备份文件只返回第一条记录的文件大小；单库备份文件需要通过DescribeBackupFiles接口获取全部记录的文件大小
         # @type Size: Integer
         # @param Strategy: 备份策略，0-实例备份；1-多库备份；实例状态是0-创建中时，该字段为默认值0，无实际意义
         # @type Strategy: Integer
-        # @param BackupWay: 备份方式，0-定时备份；1-手动临时备份；实例状态是0-创建中时，该字段为默认值0，无实际意义
-        # @type BackupWay: Integer
         # @param Status: 备份文件状态，0-创建中；1-成功；2-失败
         # @type Status: Integer
-        # @param DBs: 多库备份时的DB列表
+        # @param BackupWay: 备份方式，0-定时备份；1-手动临时备份；实例状态是0-创建中时，该字段为默认值0，无实际意义
+        # @type BackupWay: Integer
+        # @param DBs: DB列表，对于单库备份文件只返回第一条记录包含的库名；单库备份文件需要通过DescribeBackupFiles接口获取全部记录的库名。
         # @type DBs: Array
-        # @param InternalAddr: 内网下载地址
+        # @param InternalAddr: 内网下载地址，对于单库备份文件只返回第一条记录的内网下载地址；单库备份文件需要通过DescribeBackupFiles接口获取全部记录的下载地址
         # @type InternalAddr: String
-        # @param ExternalAddr: 外网下载地址
+        # @param ExternalAddr: 外网下载地址，对于单库备份文件只返回第一条记录的外网下载地址；单库备份文件需要通过DescribeBackupFiles接口获取全部记录的下载地址
         # @type ExternalAddr: String
+        # @param GroupId: 聚合Id，对于打包备份文件不返回此值。通过此值调用DescribeBackupFiles接口，获取单库备份文件的详细信息
+        # @type GroupId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :FileName, :BackupName, :StartTime, :EndTime, :Size, :Strategy, :BackupWay, :Status, :DBs, :InternalAddr, :ExternalAddr, :RequestId
+        attr_accessor :Id, :FileName, :BackupName, :StartTime, :EndTime, :Size, :Strategy, :Status, :BackupWay, :DBs, :InternalAddr, :ExternalAddr, :GroupId, :RequestId
         
-        def initialize(id=nil, filename=nil, backupname=nil, starttime=nil, endtime=nil, size=nil, strategy=nil, backupway=nil, status=nil, dbs=nil, internaladdr=nil, externaladdr=nil, requestid=nil)
+        def initialize(id=nil, filename=nil, backupname=nil, starttime=nil, endtime=nil, size=nil, strategy=nil, status=nil, backupway=nil, dbs=nil, internaladdr=nil, externaladdr=nil, groupid=nil, requestid=nil)
           @Id = id
           @FileName = filename
           @BackupName = backupname
@@ -2058,11 +2101,12 @@ module TencentCloud
           @EndTime = endtime
           @Size = size
           @Strategy = strategy
-          @BackupWay = backupway
           @Status = status
+          @BackupWay = backupway
           @DBs = dbs
           @InternalAddr = internaladdr
           @ExternalAddr = externaladdr
+          @GroupId = groupid
           @RequestId = requestid
         end
 
@@ -2074,11 +2118,12 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Size = params['Size']
           @Strategy = params['Strategy']
-          @BackupWay = params['BackupWay']
           @Status = params['Status']
+          @BackupWay = params['BackupWay']
           @DBs = params['DBs']
           @InternalAddr = params['InternalAddr']
           @ExternalAddr = params['ExternalAddr']
+          @GroupId = params['GroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -2127,6 +2172,69 @@ module TencentCloud
 
         def deserialize(params)
           @Command = params['Command']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupFiles请求参数结构体
+      class DescribeBackupFilesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如mssql-njj2mtpl
+        # @type InstanceId: String
+        # @param GroupId: 聚合ID, 可通过接口DescribeBackups获取
+        # @type GroupId: String
+        # @param Limit: 分页返回，每页返回的数目，取值为1-100，默认值为20
+        # @type Limit: Integer
+        # @param Offset: 分页返回，页编号，默认值为第0页
+        # @type Offset: Integer
+        # @param DatabaseName: 按照备份的库名称筛选，不填则不筛选此项
+        # @type DatabaseName: String
+
+        attr_accessor :InstanceId, :GroupId, :Limit, :Offset, :DatabaseName
+        
+        def initialize(instanceid=nil, groupid=nil, limit=nil, offset=nil, databasename=nil)
+          @InstanceId = instanceid
+          @GroupId = groupid
+          @Limit = limit
+          @Offset = offset
+          @DatabaseName = databasename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupId = params['GroupId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @DatabaseName = params['DatabaseName']
+        end
+      end
+
+      # DescribeBackupFiles返回参数结构体
+      class DescribeBackupFilesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 备份总数量
+        # @type TotalCount: Integer
+        # @param BackupFiles: 备份文件列表详情
+        # @type BackupFiles: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BackupFiles, :RequestId
+        
+        def initialize(totalcount=nil, backupfiles=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BackupFiles = backupfiles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BackupFiles'].nil?
+            @BackupFiles = []
+            params['BackupFiles'].each do |i|
+              backupfile_tmp = BackupFile.new
+              backupfile_tmp.deserialize(i)
+              @BackupFiles << backupfile_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2291,10 +2399,12 @@ module TencentCloud
         # @type BackupId: Integer
         # @param DatabaseName: 按照备份的库名称筛选，不填则不筛选此项
         # @type DatabaseName: String
+        # @param Group: 是否分组查询，默认是0，单库备份情况下 0-兼容老方式不分组，1-单库备份分组后展示
+        # @type Group: Integer
 
-        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset, :BackupName, :Strategy, :BackupWay, :BackupId, :DatabaseName
+        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset, :BackupName, :Strategy, :BackupWay, :BackupId, :DatabaseName, :Group
         
-        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil, backupname=nil, strategy=nil, backupway=nil, backupid=nil, databasename=nil)
+        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil, backupname=nil, strategy=nil, backupway=nil, backupid=nil, databasename=nil, group=nil)
           @StartTime = starttime
           @EndTime = endtime
           @InstanceId = instanceid
@@ -2305,6 +2415,7 @@ module TencentCloud
           @BackupWay = backupway
           @BackupId = backupid
           @DatabaseName = databasename
+          @Group = group
         end
 
         def deserialize(params)
@@ -2318,6 +2429,7 @@ module TencentCloud
           @BackupWay = params['BackupWay']
           @BackupId = params['BackupId']
           @DatabaseName = params['DatabaseName']
+          @Group = params['Group']
         end
       end
 
@@ -2470,10 +2582,12 @@ module TencentCloud
         # @type TagKeys: Array
         # @param SearchKey: 模糊查询关键字，支持实例id、实例名、内网ip
         # @type SearchKey: String
+        # @param UidSet: 实例唯一Uid列表
+        # @type UidSet: Array
 
-        attr_accessor :ProjectId, :Status, :Offset, :Limit, :InstanceIdSet, :PayMode, :VpcId, :SubnetId, :VipSet, :InstanceNameSet, :VersionSet, :Zone, :TagKeys, :SearchKey
+        attr_accessor :ProjectId, :Status, :Offset, :Limit, :InstanceIdSet, :PayMode, :VpcId, :SubnetId, :VipSet, :InstanceNameSet, :VersionSet, :Zone, :TagKeys, :SearchKey, :UidSet
         
-        def initialize(projectid=nil, status=nil, offset=nil, limit=nil, instanceidset=nil, paymode=nil, vpcid=nil, subnetid=nil, vipset=nil, instancenameset=nil, versionset=nil, zone=nil, tagkeys=nil, searchkey=nil)
+        def initialize(projectid=nil, status=nil, offset=nil, limit=nil, instanceidset=nil, paymode=nil, vpcid=nil, subnetid=nil, vipset=nil, instancenameset=nil, versionset=nil, zone=nil, tagkeys=nil, searchkey=nil, uidset=nil)
           @ProjectId = projectid
           @Status = status
           @Offset = offset
@@ -2488,6 +2602,7 @@ module TencentCloud
           @Zone = zone
           @TagKeys = tagkeys
           @SearchKey = searchkey
+          @UidSet = uidset
         end
 
         def deserialize(params)
@@ -2505,6 +2620,7 @@ module TencentCloud
           @Zone = params['Zone']
           @TagKeys = params['TagKeys']
           @SearchKey = params['SearchKey']
+          @UidSet = params['UidSet']
         end
       end
 
@@ -4693,23 +4809,28 @@ module TencentCloud
       class ModifyBackupNameRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：mssql-3l3fgqn7
         # @type InstanceId: String
-        # @param BackupId: 要修改名称的备份ID，可通过 [DescribeBackups](https://cloud.tencent.com/document/product/238/19943)  接口获取。
-        # @type BackupId: Integer
         # @param BackupName: 修改的备份名称
         # @type BackupName: String
+        # @param BackupId: 要修改名称的备份ID，可通过 [DescribeBackups](https://cloud.tencent.com/document/product/238/19943)  接口获取。
+        # @type BackupId: Integer
+        # @param GroupId: 备份任务组ID，在单库备份文件模式下，可通过[DescribeBackups](https://cloud.tencent.com/document/product/238/19943) 接口获得。
+        #  BackupId 和 GroupId 同时存在，按照BackupId进行修改。
+        # @type GroupId: String
 
-        attr_accessor :InstanceId, :BackupId, :BackupName
+        attr_accessor :InstanceId, :BackupName, :BackupId, :GroupId
         
-        def initialize(instanceid=nil, backupid=nil, backupname=nil)
+        def initialize(instanceid=nil, backupname=nil, backupid=nil, groupid=nil)
           @InstanceId = instanceid
-          @BackupId = backupid
           @BackupName = backupname
+          @BackupId = backupid
+          @GroupId = groupid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @BackupId = params['BackupId']
           @BackupName = params['BackupName']
+          @BackupId = params['BackupId']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -4739,14 +4860,17 @@ module TencentCloud
         # @type BackupTime: Integer
         # @param BackupDay: BackupType取值为daily时，表示备份间隔天数。当前取值只能为1
         # @type BackupDay: Integer
+        # @param BackupModel: 备份模式，master_pkg-主节点上打包备份文件；master_no_pkg-主节点单库备份文件；slave_pkg-从节点上打包备份文件；slave_no_pkg-从节点上单库备份文件，从节点上备份只有在always on容灾模式下支持。
+        # @type BackupModel: String
 
-        attr_accessor :InstanceId, :BackupType, :BackupTime, :BackupDay
+        attr_accessor :InstanceId, :BackupType, :BackupTime, :BackupDay, :BackupModel
         
-        def initialize(instanceid=nil, backuptype=nil, backuptime=nil, backupday=nil)
+        def initialize(instanceid=nil, backuptype=nil, backuptime=nil, backupday=nil, backupmodel=nil)
           @InstanceId = instanceid
           @BackupType = backuptype
           @BackupTime = backuptime
           @BackupDay = backupday
+          @BackupModel = backupmodel
         end
 
         def deserialize(params)
@@ -4754,6 +4878,7 @@ module TencentCloud
           @BackupType = params['BackupType']
           @BackupTime = params['BackupTime']
           @BackupDay = params['BackupDay']
+          @BackupModel = params['BackupModel']
         end
       end
 
@@ -6307,14 +6432,17 @@ module TencentCloud
         # @type TargetInstanceId: String
         # @param RenameRestore: 按照ReNameRestoreDatabase中的库进行恢复，并重命名，不填则按照默认方式命名恢复的库，且恢复所有的库。
         # @type RenameRestore: Array
+        # @param GroupId: 备份任务组ID，在单库备份文件模式下，可通过[DescribeBackups](https://cloud.tencent.com/document/product/238/19943) 接口获得。
+        # @type GroupId: String
 
-        attr_accessor :InstanceId, :BackupId, :TargetInstanceId, :RenameRestore
+        attr_accessor :InstanceId, :BackupId, :TargetInstanceId, :RenameRestore, :GroupId
         
-        def initialize(instanceid=nil, backupid=nil, targetinstanceid=nil, renamerestore=nil)
+        def initialize(instanceid=nil, backupid=nil, targetinstanceid=nil, renamerestore=nil, groupid=nil)
           @InstanceId = instanceid
           @BackupId = backupid
           @TargetInstanceId = targetinstanceid
           @RenameRestore = renamerestore
+          @GroupId = groupid
         end
 
         def deserialize(params)
@@ -6329,6 +6457,7 @@ module TencentCloud
               @RenameRestore << renamerestoredatabase_tmp
             end
           end
+          @GroupId = params['GroupId']
         end
       end
 

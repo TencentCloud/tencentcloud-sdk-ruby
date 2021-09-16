@@ -503,6 +503,50 @@ module TencentCloud
         end
       end
 
+      # AttachDisks请求参数结构体
+      class AttachDisksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 云服务器实例ID。云盘将被挂载到此云服务器上，通过[DescribeInstances](/document/product/213/15728)接口查询。
+        # @type InstanceId: String
+        # @param DiskIds: 将要被挂载的弹性云盘ID。通过[DescribeDisks](/document/product/362/16315)接口查询。单次最多可挂载10块弹性云盘。
+        # @type DiskIds: Array
+        # @param DeleteWithInstance: 可选参数，不传该参数则仅执行挂载操作。传入`True`时，会在挂载成功后将云硬盘设置为随云主机销毁模式，仅对按量计费云硬盘有效。
+        # @type DeleteWithInstance: Boolean
+        # @param AttachMode: 可选参数，用于控制云盘挂载时使用的挂载模式，目前仅对黑石裸金属机型有效。取值范围：<br><li>PF<br><li>VF
+        # @type AttachMode: String
+
+        attr_accessor :InstanceId, :DiskIds, :DeleteWithInstance, :AttachMode
+        
+        def initialize(instanceid=nil, diskids=nil, deletewithinstance=nil, attachmode=nil)
+          @InstanceId = instanceid
+          @DiskIds = diskids
+          @DeleteWithInstance = deletewithinstance
+          @AttachMode = attachmode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DiskIds = params['DiskIds']
+          @DeleteWithInstance = params['DeleteWithInstance']
+          @AttachMode = params['AttachMode']
+        end
+      end
+
+      # AttachDisks返回参数结构体
+      class AttachDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AttachNetworkInterface请求参数结构体
       class AttachNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -808,6 +852,103 @@ module TencentCloud
         def deserialize(params)
           @CountryId = params['CountryId']
           @CountryName = params['CountryName']
+        end
+      end
+
+      # CreateDisks请求参数结构体
+      class CreateDisksRequest < TencentCloud::Common::AbstractModel
+        # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目。若不指定项目，将在默认项目下进行创建。
+        # @type Placement: :class:`Tencentcloud::Ecm.v20190719.models.Placement`
+        # @param DiskChargeType: 云硬盘计费类型。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>CDCPAID：独享集群付费<br>各类型价格请参考云硬盘[价格总览](/document/product/362/2413)。
+        # @type DiskChargeType: String
+        # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘<br><li>CLOUD_TSSD：表示极速型SSD云硬盘。
+        # @type DiskType: String
+        # @param DiskName: 云盘显示名称。不传则默认为“未命名”。最大长度不能超60个字节。
+        # @type DiskName: String
+        # @param Tags: 云盘绑定的标签。
+        # @type Tags: Array
+        # @param DiskChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。<br>创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
+        # @type DiskChargePrepaid: :class:`Tencentcloud::Ecm.v20190719.models.DiskChargePrepaid`
+        # @param DiskCount: 创建云硬盘数量，不传则默认为1。单次请求最多可创建的云盘数有限制，具体参见[云硬盘使用限制](https://cloud.tencent.com/doc/product/362/5145)。
+        # @type DiskCount: Integer
+        # @param ThroughputPerformance: 可选参数。使用此参数可给云硬盘购买额外的性能。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
+        # @type ThroughputPerformance: Integer
+        # @param DiskSize: 云硬盘大小，单位为GB。<br><li>如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小<br><li>如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小<br><li>云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
+        # @type DiskSize: Integer
+        # @param Shareable: 可选参数，默认为False。传入True时，云盘将创建为共享型云盘。
+        # @type Shareable: Boolean
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
+        # @param Encrypt: 传入该参数用于创建加密云盘，取值固定为ENCRYPT。
+        # @type Encrypt: String
+        # @param SnapshotId: 快照ID，如果传入则根据此快照创建云硬盘，快照类型必须为数据盘快照，可通过[DescribeSnapshots](/document/product/362/15647)接口查询快照，见输出参数DiskUsage解释。
+        # @type SnapshotId: String
+
+        attr_accessor :Placement, :DiskChargeType, :DiskType, :DiskName, :Tags, :DiskChargePrepaid, :DiskCount, :ThroughputPerformance, :DiskSize, :Shareable, :ClientToken, :Encrypt, :SnapshotId
+        
+        def initialize(placement=nil, diskchargetype=nil, disktype=nil, diskname=nil, tags=nil, diskchargeprepaid=nil, diskcount=nil, throughputperformance=nil, disksize=nil, shareable=nil, clienttoken=nil, encrypt=nil, snapshotid=nil)
+          @Placement = placement
+          @DiskChargeType = diskchargetype
+          @DiskType = disktype
+          @DiskName = diskname
+          @Tags = tags
+          @DiskChargePrepaid = diskchargeprepaid
+          @DiskCount = diskcount
+          @ThroughputPerformance = throughputperformance
+          @DiskSize = disksize
+          @Shareable = shareable
+          @ClientToken = clienttoken
+          @Encrypt = encrypt
+          @SnapshotId = snapshotid
+        end
+
+        def deserialize(params)
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          @DiskChargeType = params['DiskChargeType']
+          @DiskType = params['DiskType']
+          @DiskName = params['DiskName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['DiskChargePrepaid'].nil?
+            @DiskChargePrepaid = DiskChargePrepaid.new
+            @DiskChargePrepaid.deserialize(params['DiskChargePrepaid'])
+          end
+          @DiskCount = params['DiskCount']
+          @ThroughputPerformance = params['ThroughputPerformance']
+          @DiskSize = params['DiskSize']
+          @Shareable = params['Shareable']
+          @ClientToken = params['ClientToken']
+          @Encrypt = params['Encrypt']
+          @SnapshotId = params['SnapshotId']
+        end
+      end
+
+      # CreateDisks返回参数结构体
+      class CreateDisksResponse < TencentCloud::Common::AbstractModel
+        # @param DiskIdSet: 创建的云硬盘ID列表。
+        # @type DiskIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiskIdSet, :RequestId
+        
+        def initialize(diskidset=nil, requestid=nil)
+          @DiskIdSet = diskidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DiskIdSet = params['DiskIdSet']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1953,6 +2094,42 @@ module TencentCloud
         end
       end
 
+      # DeleteSnapshots请求参数结构体
+      class DeleteSnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotIds: 要删除的快照ID列表，可通过[DescribeSnapshots](/document/product/362/15647)查询。
+        # @type SnapshotIds: Array
+        # @param DeleteBindImages: 是否强制删除快照关联的镜像
+        # @type DeleteBindImages: Boolean
+
+        attr_accessor :SnapshotIds, :DeleteBindImages
+        
+        def initialize(snapshotids=nil, deletebindimages=nil)
+          @SnapshotIds = snapshotids
+          @DeleteBindImages = deletebindimages
+        end
+
+        def deserialize(params)
+          @SnapshotIds = params['SnapshotIds']
+          @DeleteBindImages = params['DeleteBindImages']
+        end
+      end
+
+      # DeleteSnapshots返回参数结构体
+      class DeleteSnapshotsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSubnet请求参数结构体
       class DeleteSubnetRequest < TencentCloud::Common::AbstractModel
         # @param SubnetId: 子网实例ID。可通过DescribeSubnets接口返回值中的SubnetId获取。
@@ -2376,6 +2553,84 @@ module TencentCloud
           unless params['Subnet'].nil?
             @Subnet = Subnet.new
             @Subnet.deserialize(params['Subnet'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDisks请求参数结构体
+      class DescribeDisksRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。参数不支持同时指定`DiskIds`和`Filters`。<br><li>disk-usage - Array of String - 是否必填：否 -（过滤条件）按云盘类型过滤。 (SYSTEM_DISK：表示系统盘 | DATA_DISK：表示数据盘)<br><li>disk-charge-type - Array of String - 是否必填：否 -（过滤条件）按照云硬盘计费模式过滤。 (PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费。)<br><li>portable - Array of String - 是否必填：否 -（过滤条件）按是否为弹性云盘过滤。 (TRUE：表示弹性云盘 | FALSE：表示非弹性云盘。)<br><li>project-id - Array of Integer - 是否必填：否 -（过滤条件）按云硬盘所属项目ID过滤。<br><li>disk-id - Array of String - 是否必填：否 -（过滤条件）按照云硬盘ID过滤。云盘ID形如：`disk-11112222`。<br><li>disk-name - Array of String - 是否必填：否 -（过滤条件）按照云盘名称过滤。<br><li>disk-type - Array of String - 是否必填：否 -（过滤条件）按照云盘介质类型过滤。(CLOUD_BASIC：表示普通云硬盘 | CLOUD_PREMIUM：表示高性能云硬盘。| CLOUD_SSD：表示SSD云硬盘 | CLOUD_HSSD：表示增强型SSD云硬盘。| CLOUD_TSSD：表示极速型云硬盘。)<br><li>disk-state - Array of String - 是否必填：否 -（过滤条件）按照云盘状态过滤。(UNATTACHED：未挂载 | ATTACHING：挂载中 | ATTACHED：已挂载 | DETACHING：解挂中 | EXPANDING：扩容中 | ROLLBACKING：回滚中 | TORECYCLE：待回收。)<br><li>instance-id - Array of String - 是否必填：否 -（过滤条件）按照云盘挂载的云主机实例ID过滤。可根据此参数查询挂载在指定云主机下的云硬盘。<br><li>zone - Array of String - 是否必填：否 -（过滤条件）按照[可用区](/document/product/213/15753#ZoneInfo)过滤。<br><li>instance-ip-address - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载云主机的内网或外网IP过滤。<br><li>instance-name - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载的实例名称过滤。<br><li>tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键进行过滤。<br><li>tag-value - Array of String - 是否必填：否 -（过滤条件）照标签值进行过滤。<br><li>tag:tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。
+        # @type Filters: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
+        # @type Limit: Integer
+        # @param OrderField: 云盘列表排序的依据字段。取值范围：<br><li>CREATE_TIME：依据云盘的创建时间排序<br><li>DEADLINE：依据云盘的到期时间排序<br>默认按云盘创建时间排序。
+        # @type OrderField: String
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
+        # @type Offset: Integer
+        # @param ReturnBindAutoSnapshotPolicy: 云盘详情中是否需要返回云盘绑定的定期快照策略ID，TRUE表示需要返回，FALSE表示不返回。
+        # @type ReturnBindAutoSnapshotPolicy: Boolean
+        # @param DiskIds: 按照一个或者多个云硬盘ID查询。云硬盘ID形如：`disk-11112222`，此参数的具体格式可参考API[简介](/document/product/362/15633)的ids.N一节）。参数不支持同时指定`DiskIds`和`Filters`。
+        # @type DiskIds: Array
+        # @param Order: 输出云盘列表的排列顺序。取值范围：<br><li>ASC：升序排列<br><li>DESC：降序排列。
+        # @type Order: String
+
+        attr_accessor :Filters, :Limit, :OrderField, :Offset, :ReturnBindAutoSnapshotPolicy, :DiskIds, :Order
+        
+        def initialize(filters=nil, limit=nil, orderfield=nil, offset=nil, returnbindautosnapshotpolicy=nil, diskids=nil, order=nil)
+          @Filters = filters
+          @Limit = limit
+          @OrderField = orderfield
+          @Offset = offset
+          @ReturnBindAutoSnapshotPolicy = returnbindautosnapshotpolicy
+          @DiskIds = diskids
+          @Order = order
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Offset = params['Offset']
+          @ReturnBindAutoSnapshotPolicy = params['ReturnBindAutoSnapshotPolicy']
+          @DiskIds = params['DiskIds']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeDisks返回参数结构体
+      class DescribeDisksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的云硬盘数量。
+        # @type TotalCount: Integer
+        # @param DiskSet: 云硬盘的详细信息列表。
+        # @type DiskSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DiskSet, :RequestId
+        
+        def initialize(totalcount=nil, diskset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DiskSet = diskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DiskSet'].nil?
+            @DiskSet = []
+            params['DiskSet'].each do |i|
+              disk_tmp = Disk.new
+              disk_tmp.deserialize(i)
+              @DiskSet << disk_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -3730,6 +3985,82 @@ module TencentCloud
         end
       end
 
+      # DescribeSnapshots请求参数结构体
+      class DescribeSnapshotsRequest < TencentCloud::Common::AbstractModel
+        # @param SnapshotIds: 要查询快照的ID列表。参数不支持同时指定`SnapshotIds`和`Filters`。
+        # @type SnapshotIds: Array
+        # @param Filters: 过滤条件。参数不支持同时指定`SnapshotIds`和`Filters`。<br><li>snapshot-id - Array of String - 是否必填：否 -（过滤条件）按照快照的ID过滤。快照ID形如：`snap-11112222`。<br><li>snapshot-name - Array of String - 是否必填：否 -（过滤条件）按照快照名称过滤。<br><li>snapshot-state - Array of String - 是否必填：否 -（过滤条件）按照快照状态过滤。 (NORMAL：正常 | CREATING：创建中 | ROLLBACKING：回滚中。)<br><li>disk-usage - Array of String - 是否必填：否 -（过滤条件）按创建快照的云盘类型过滤。 (SYSTEM_DISK：代表系统盘 | DATA_DISK：代表数据盘。)<br><li>project-id  - Array of String - 是否必填：否 -（过滤条件）按云硬盘所属项目ID过滤。<br><li>disk-id  - Array of String - 是否必填：否 -（过滤条件）按照创建快照的云硬盘ID过滤。<br><li>zone - Array of String - 是否必填：否 -（过滤条件）按照[可用区](/document/product/213/15753#ZoneInfo)过滤。<br><li>encrypt - Array of String - 是否必填：否 -（过滤条件）按是否加密盘快照过滤。 (TRUE：表示加密盘快照 | FALSE：表示非加密盘快照。)
+        # <li>snapshot-type- Array of String - 是否必填：否 -（过滤条件）根据snapshot-type指定的快照类型查询对应的快照。
+        # (SHARED_SNAPSHOT：表示共享过来的快照 | PRIVATE_SNAPSHOT：表示自己私有快照。)
+        # @type Filters: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
+        # @type Limit: Integer
+        # @param OrderField: 快照列表排序的依据字段。取值范围：<br><li>CREATE_TIME：依据快照的创建时间排序<br>默认按创建时间排序。
+        # @type OrderField: String
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
+        # @type Offset: Integer
+        # @param Order: 输出云盘列表的排列顺序。取值范围：<br><li>ASC：升序排列<br><li>DESC：降序排列。
+        # @type Order: String
+
+        attr_accessor :SnapshotIds, :Filters, :Limit, :OrderField, :Offset, :Order
+        
+        def initialize(snapshotids=nil, filters=nil, limit=nil, orderfield=nil, offset=nil, order=nil)
+          @SnapshotIds = snapshotids
+          @Filters = filters
+          @Limit = limit
+          @OrderField = orderfield
+          @Offset = offset
+          @Order = order
+        end
+
+        def deserialize(params)
+          @SnapshotIds = params['SnapshotIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Offset = params['Offset']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeSnapshots返回参数结构体
+      class DescribeSnapshotsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 快照的数量。
+        # @type TotalCount: Integer
+        # @param SnapshotSet: 快照的详情列表。
+        # @type SnapshotSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SnapshotSet, :RequestId
+        
+        def initialize(totalcount=nil, snapshotset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SnapshotSet = snapshotset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SnapshotSet'].nil?
+            @SnapshotSet = []
+            params['SnapshotSet'].each do |i|
+              snapshot_tmp = Snapshot.new
+              snapshot_tmp.deserialize(i)
+              @SnapshotSet << snapshot_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSubnets请求参数结构体
       class DescribeSubnetsRequest < TencentCloud::Common::AbstractModel
         # @param SubnetIds: 子网实例ID查询。形如：subnet-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定SubnetIds和Filters。
@@ -4089,6 +4420,42 @@ module TencentCloud
         end
       end
 
+      # DetachDisks请求参数结构体
+      class DetachDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 将要卸载的云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询，单次请求最多可卸载10块弹性云盘。
+        # @type DiskIds: Array
+        # @param InstanceId: 对于非共享型云盘，会忽略该参数；对于共享型云盘，该参数表示要从哪个CVM实例上卸载云盘。
+        # @type InstanceId: String
+
+        attr_accessor :DiskIds, :InstanceId
+        
+        def initialize(diskids=nil, instanceid=nil)
+          @DiskIds = diskids
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DetachDisks返回参数结构体
+      class DetachDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetachNetworkInterface请求参数结构体
       class DetachNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -4249,6 +4616,205 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述了云硬盘的详细信息
+      class Disk < TencentCloud::Common::AbstractModel
+        # @param DeleteWithInstance: 云盘是否与挂载的实例一起销毁。<br><li>true:销毁实例时会同时销毁云盘，只支持按小时后付费云盘。<br><li>false：销毁实例时不销毁云盘。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteWithInstance: Boolean
+        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: String
+        # @param DiskType: 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘<br><li>CLOUD_TSSD：表示极速型SSD云硬盘。
+        # @type DiskType: String
+        # @param DiskState: 云盘状态。取值范围：<br><li>UNATTACHED：未挂载<br><li>ATTACHING：挂载中<br><li>ATTACHED：已挂载<br><li>DETACHING：解挂中<br><li>EXPANDING：扩容中<br><li>ROLLBACKING：回滚中<br><li>TORECYCLE：待回收<br><li>DUMPING：拷贝硬盘中。
+        # @type DiskState: String
+        # @param SnapshotCount: 云盘拥有的快照总数。
+        # @type SnapshotCount: Integer
+        # @param AutoRenewFlagError: 云盘已挂载到子机，且子机与云盘都是包年包月。<br><li>true：子机设置了自动续费标识，但云盘未设置<br><li>false：云盘自动续费标识正常。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlagError: Boolean
+        # @param Rollbacking: 云盘是否处于快照回滚状态。取值范围：<br><li>false:表示不处于快照回滚状态<br><li>true:表示处于快照回滚状态。
+        # @type Rollbacking: Boolean
+        # @param InstanceIdList: 对于非共享型云盘，该参数为空数组。对于共享型云盘，则表示该云盘当前被挂载到的CVM实例InstanceId
+        # @type InstanceIdList: Array
+        # @param Encrypt: 云盘是否为加密盘。取值范围：<br><li>false:表示非加密盘<br><li>true:表示加密盘。
+        # @type Encrypt: Boolean
+        # @param DiskName: 云硬盘名称。
+        # @type DiskName: String
+        # @param BackupDisk: 云硬盘因欠费销毁或者到期销毁时， 是否使用快照备份数据的标识。true表示销毁时创建快照进行数据备份。false表示直接销毁，不进行数据备份。
+        # @type BackupDisk: Boolean
+        # @param Tags: 与云盘绑定的标签，云盘未绑定标签则取值为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param InstanceId: 云硬盘挂载的云主机ID。
+        # @type InstanceId: String
+        # @param AutoSnapshotPolicyIds: 云盘关联的定期快照ID。只有在调用DescribeDisks接口时，入参ReturnBindAutoSnapshotPolicy取值为TRUE才会返回该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSnapshotPolicyIds: Array
+        # @param ThroughputPerformance: 云硬盘额外性能值，单位MB/s。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThroughputPerformance: Integer
+        # @param Migrating: 云盘是否处于类型变更中。取值范围：<br><li>false:表示云盘不处于类型变更中<br><li>true:表示云盘已发起类型变更，正处于迁移中。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Migrating: Boolean
+        # @param DiskId: 云硬盘ID。
+        # @type DiskId: String
+        # @param SnapshotSize: 云盘拥有的快照总容量，单位为MB。
+        # @type SnapshotSize: Integer
+        # @param Placement: 云硬盘所在的位置。
+        # @type Placement: :class:`Tencentcloud::Ecm.v20190719.models.Placement`
+        # @param IsReturnable: 判断预付费的云盘是否支持主动退还。<br><li>true:支持主动退还<br><li>false:不支持主动退还。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsReturnable: Boolean
+        # @param Attached: 云盘是否挂载到云主机上。取值范围：<br><li>false:表示未挂载<br><li>true:表示已挂载。
+        # @type Attached: Boolean
+        # @param DiskSize: 云硬盘大小，单位GB。
+        # @type DiskSize: Integer
+        # @param MigratePercent: 云盘类型变更的迁移进度，取值0到100。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigratePercent: Integer
+        # @param DiskUsage: 云硬盘类型。取值范围：<br><li>SYSTEM_DISK：系统盘<br><li>DATA_DISK：数据盘。
+        # @type DiskUsage: String
+        # @param DiskChargeType: 付费模式。取值范围：<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：后付费，即按量计费。
+        # @type DiskChargeType: String
+        # @param Portable: 是否为弹性云盘，false表示非弹性云盘，true表示弹性云盘。
+        # @type Portable: Boolean
+        # @param SnapshotAbility: 云盘是否具备创建快照的能力。取值范围：<br><li>false表示不具备<br><li>true表示具备。
+        # @type SnapshotAbility: Boolean
+        # @param DeadlineError: 在云盘已挂载到实例，且实例与云盘都是包年包月的条件下，此字段才有意义。<br><li>true:云盘到期时间早于实例。<br><li>false：云盘到期时间晚于实例。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadlineError: Boolean
+        # @param RollbackPercent: 云盘快照回滚的进度。
+        # @type RollbackPercent: Integer
+        # @param DifferDaysOfDeadline: 当前时间距离盘到期的天数（仅对预付费盘有意义）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DifferDaysOfDeadline: Integer
+        # @param ReturnFailCode: 预付费云盘在不支持主动退还的情况下，该参数表明不支持主动退还的具体原因。取值范围：<br><li>1：云硬盘已经退还<br><li>2：云硬盘已过期<br><li>3：云盘不支持退还<br><li>8：超过可退还数量的限制。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnFailCode: Integer
+        # @param Shareable: 云盘是否为共享型云盘。
+        # @type Shareable: Boolean
+        # @param CreateTime: 云硬盘的创建时间。
+        # @type CreateTime: String
+        # @param DeadlineTime: 云硬盘的到期时间。
+        # @type DeadlineTime: String
+        # @param AttachMode: 云盘的挂载类型。取值范围：<br><li>PF: PF挂载<br><li>VF: VF挂载
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachMode: String
+
+        attr_accessor :DeleteWithInstance, :RenewFlag, :DiskType, :DiskState, :SnapshotCount, :AutoRenewFlagError, :Rollbacking, :InstanceIdList, :Encrypt, :DiskName, :BackupDisk, :Tags, :InstanceId, :AutoSnapshotPolicyIds, :ThroughputPerformance, :Migrating, :DiskId, :SnapshotSize, :Placement, :IsReturnable, :Attached, :DiskSize, :MigratePercent, :DiskUsage, :DiskChargeType, :Portable, :SnapshotAbility, :DeadlineError, :RollbackPercent, :DifferDaysOfDeadline, :ReturnFailCode, :Shareable, :CreateTime, :DeadlineTime, :AttachMode
+        
+        def initialize(deletewithinstance=nil, renewflag=nil, disktype=nil, diskstate=nil, snapshotcount=nil, autorenewflagerror=nil, rollbacking=nil, instanceidlist=nil, encrypt=nil, diskname=nil, backupdisk=nil, tags=nil, instanceid=nil, autosnapshotpolicyids=nil, throughputperformance=nil, migrating=nil, diskid=nil, snapshotsize=nil, placement=nil, isreturnable=nil, attached=nil, disksize=nil, migratepercent=nil, diskusage=nil, diskchargetype=nil, portable=nil, snapshotability=nil, deadlineerror=nil, rollbackpercent=nil, differdaysofdeadline=nil, returnfailcode=nil, shareable=nil, createtime=nil, deadlinetime=nil, attachmode=nil)
+          @DeleteWithInstance = deletewithinstance
+          @RenewFlag = renewflag
+          @DiskType = disktype
+          @DiskState = diskstate
+          @SnapshotCount = snapshotcount
+          @AutoRenewFlagError = autorenewflagerror
+          @Rollbacking = rollbacking
+          @InstanceIdList = instanceidlist
+          @Encrypt = encrypt
+          @DiskName = diskname
+          @BackupDisk = backupdisk
+          @Tags = tags
+          @InstanceId = instanceid
+          @AutoSnapshotPolicyIds = autosnapshotpolicyids
+          @ThroughputPerformance = throughputperformance
+          @Migrating = migrating
+          @DiskId = diskid
+          @SnapshotSize = snapshotsize
+          @Placement = placement
+          @IsReturnable = isreturnable
+          @Attached = attached
+          @DiskSize = disksize
+          @MigratePercent = migratepercent
+          @DiskUsage = diskusage
+          @DiskChargeType = diskchargetype
+          @Portable = portable
+          @SnapshotAbility = snapshotability
+          @DeadlineError = deadlineerror
+          @RollbackPercent = rollbackpercent
+          @DifferDaysOfDeadline = differdaysofdeadline
+          @ReturnFailCode = returnfailcode
+          @Shareable = shareable
+          @CreateTime = createtime
+          @DeadlineTime = deadlinetime
+          @AttachMode = attachmode
+        end
+
+        def deserialize(params)
+          @DeleteWithInstance = params['DeleteWithInstance']
+          @RenewFlag = params['RenewFlag']
+          @DiskType = params['DiskType']
+          @DiskState = params['DiskState']
+          @SnapshotCount = params['SnapshotCount']
+          @AutoRenewFlagError = params['AutoRenewFlagError']
+          @Rollbacking = params['Rollbacking']
+          @InstanceIdList = params['InstanceIdList']
+          @Encrypt = params['Encrypt']
+          @DiskName = params['DiskName']
+          @BackupDisk = params['BackupDisk']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @InstanceId = params['InstanceId']
+          @AutoSnapshotPolicyIds = params['AutoSnapshotPolicyIds']
+          @ThroughputPerformance = params['ThroughputPerformance']
+          @Migrating = params['Migrating']
+          @DiskId = params['DiskId']
+          @SnapshotSize = params['SnapshotSize']
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          @IsReturnable = params['IsReturnable']
+          @Attached = params['Attached']
+          @DiskSize = params['DiskSize']
+          @MigratePercent = params['MigratePercent']
+          @DiskUsage = params['DiskUsage']
+          @DiskChargeType = params['DiskChargeType']
+          @Portable = params['Portable']
+          @SnapshotAbility = params['SnapshotAbility']
+          @DeadlineError = params['DeadlineError']
+          @RollbackPercent = params['RollbackPercent']
+          @DifferDaysOfDeadline = params['DifferDaysOfDeadline']
+          @ReturnFailCode = params['ReturnFailCode']
+          @Shareable = params['Shareable']
+          @CreateTime = params['CreateTime']
+          @DeadlineTime = params['DeadlineTime']
+          @AttachMode = params['AttachMode']
+        end
+      end
+
+      # 描述了实例的计费模式
+      class DiskChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 购买云盘的时长，默认单位为月，取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
+        # @type Period: Integer
+        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费。
+        # @type RenewFlag: String
+        # @param CurInstanceDeadline: 需要将云盘的到期时间与挂载的子机对齐时，可传入该参数。该参数表示子机当前的到期时间，此时Period如果传入，则表示子机需要续费的时长，云盘会自动按对齐到子机续费后的到期时间续费，示例取值：2018-03-30 20:15:03。
+        # @type CurInstanceDeadline: String
+
+        attr_accessor :Period, :RenewFlag, :CurInstanceDeadline
+        
+        def initialize(period=nil, renewflag=nil, curinstancedeadline=nil)
+          @Period = period
+          @RenewFlag = renewflag
+          @CurInstanceDeadline = curinstancedeadline
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+          @CurInstanceDeadline = params['CurInstanceDeadline']
         end
       end
 
@@ -7490,6 +8056,41 @@ module TencentCloud
         end
       end
 
+      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，以及所属的独享集群的ID和名字。
+      class Placement < TencentCloud::Common::AbstractModel
+        # @param Zone: 云硬盘所属的[可用区](/document/product/213/15753#ZoneInfo)。该参数也可以通过调用  [DescribeZones](/document/product/213/15707) 的返回值中的Zone字段来获取。
+        # @type Zone: String
+        # @param CageId: 围笼Id。作为入参时，表示对指定的CageId的资源进行操作，可为空。 作为出参时，表示资源所属围笼ID，可为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CageId: String
+        # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](/document/api/378/4400) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        # @type ProjectId: Integer
+        # @param CdcName: 独享集群名字。作为入参时，忽略。作为出参时，表示云硬盘所属的独享集群名，可为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcName: String
+        # @param CdcId: 实例所属的独享集群ID。作为入参时，表示对指定的CdcId独享集群的资源进行操作，可为空。 作为出参时，表示资源所属的独享集群的ID，可为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
+
+        attr_accessor :Zone, :CageId, :ProjectId, :CdcName, :CdcId
+        
+        def initialize(zone=nil, cageid=nil, projectid=nil, cdcname=nil, cdcid=nil)
+          @Zone = zone
+          @CageId = cageid
+          @ProjectId = projectid
+          @CdcName = cdcname
+          @CdcId = cdcid
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @CageId = params['CageId']
+          @ProjectId = params['ProjectId']
+          @CdcName = params['CdcName']
+          @CdcId = params['CdcId']
+        end
+      end
+
       # 描述实例的位置相关信息。
       class Position < TencentCloud::Common::AbstractModel
         # @param ZoneInfo: 实例所在的Zone的信息。
@@ -8928,6 +9529,105 @@ module TencentCloud
         end
       end
 
+      # 描述了快照的详细信息
+      class Snapshot < TencentCloud::Common::AbstractModel
+        # @param Placement: 快照所在的位置。
+        # @type Placement: :class:`Tencentcloud::Ecm.v20190719.models.Placement`
+        # @param CopyFromRemote: 是否为跨地域复制的快照。取值范围：<br><li>true：表示为跨地域复制的快照。<br><li>false:本地域的快照。
+        # @type CopyFromRemote: Boolean
+        # @param IsPermanent: 是否为永久快照。取值范围：<br><li>true：永久快照<br><li>false：非永久快照。
+        # @type IsPermanent: Boolean
+        # @param SnapshotName: 快照名称，用户自定义的快照别名。调用[ModifySnapshotAttribute](/document/product/362/15650)可修改此字段。
+        # @type SnapshotName: String
+        # @param Percent: 快照创建进度百分比，快照创建成功后此字段恒为100。
+        # @type Percent: Integer
+        # @param Images: 快照关联的镜像列表。
+        # @type Images: Array
+        # @param ShareReference: 快照当前被共享数。
+        # @type ShareReference: Integer
+        # @param SnapshotType: 快照类型，目前该项取值可以为PRIVATE_SNAPSHOT或者SHARED_SNAPSHOT
+        # @type SnapshotType: String
+        # @param DiskSize: 创建此快照的云硬盘大小，单位GB。
+        # @type DiskSize: Integer
+        # @param DiskId: 创建此快照的云硬盘ID。
+        # @type DiskId: String
+        # @param CopyingToRegions: 快照正在跨地域复制的目的地域，默认取值为[]。
+        # @type CopyingToRegions: Array
+        # @param SnapshotId: 快照ID。
+        # @type SnapshotId: String
+        # @param DiskUsage: 创建此快照的云硬盘类型。取值范围：<br><li>SYSTEM_DISK：系统盘<br><li>DATA_DISK：数据盘。
+        # @type DiskUsage: String
+        # @param Encrypt: 是否为加密盘创建的快照。取值范围：<br><li>true：该快照为加密盘创建的<br><li>false:非加密盘创建的快照。
+        # @type Encrypt: Boolean
+        # @param CreateTime: 快照的创建时间。
+        # @type CreateTime: String
+        # @param ImageCount: 快照关联的镜像个数。
+        # @type ImageCount: Integer
+        # @param SnapshotState: 快照的状态。取值范围：<br><li>NORMAL：正常<br><li>CREATING：创建中<br><li>ROLLBACKING：回滚中<br><li>COPYING_FROM_REMOTE：跨地域复制中<br><li>CHECKING_COPIED：复制校验中<br><li>TORECYCLE：待回收。
+        # @type SnapshotState: String
+        # @param DeadlineTime: 快照的到期时间。
+        # @type DeadlineTime: String
+        # @param TimeStartShare: 快照开始共享的时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeStartShare: String
+
+        attr_accessor :Placement, :CopyFromRemote, :IsPermanent, :SnapshotName, :Percent, :Images, :ShareReference, :SnapshotType, :DiskSize, :DiskId, :CopyingToRegions, :SnapshotId, :DiskUsage, :Encrypt, :CreateTime, :ImageCount, :SnapshotState, :DeadlineTime, :TimeStartShare
+        
+        def initialize(placement=nil, copyfromremote=nil, ispermanent=nil, snapshotname=nil, percent=nil, images=nil, sharereference=nil, snapshottype=nil, disksize=nil, diskid=nil, copyingtoregions=nil, snapshotid=nil, diskusage=nil, encrypt=nil, createtime=nil, imagecount=nil, snapshotstate=nil, deadlinetime=nil, timestartshare=nil)
+          @Placement = placement
+          @CopyFromRemote = copyfromremote
+          @IsPermanent = ispermanent
+          @SnapshotName = snapshotname
+          @Percent = percent
+          @Images = images
+          @ShareReference = sharereference
+          @SnapshotType = snapshottype
+          @DiskSize = disksize
+          @DiskId = diskid
+          @CopyingToRegions = copyingtoregions
+          @SnapshotId = snapshotid
+          @DiskUsage = diskusage
+          @Encrypt = encrypt
+          @CreateTime = createtime
+          @ImageCount = imagecount
+          @SnapshotState = snapshotstate
+          @DeadlineTime = deadlinetime
+          @TimeStartShare = timestartshare
+        end
+
+        def deserialize(params)
+          unless params['Placement'].nil?
+            @Placement = Placement.new
+            @Placement.deserialize(params['Placement'])
+          end
+          @CopyFromRemote = params['CopyFromRemote']
+          @IsPermanent = params['IsPermanent']
+          @SnapshotName = params['SnapshotName']
+          @Percent = params['Percent']
+          unless params['Images'].nil?
+            @Images = []
+            params['Images'].each do |i|
+              image_tmp = Image.new
+              image_tmp.deserialize(i)
+              @Images << image_tmp
+            end
+          end
+          @ShareReference = params['ShareReference']
+          @SnapshotType = params['SnapshotType']
+          @DiskSize = params['DiskSize']
+          @DiskId = params['DiskId']
+          @CopyingToRegions = params['CopyingToRegions']
+          @SnapshotId = params['SnapshotId']
+          @DiskUsage = params['DiskUsage']
+          @Encrypt = params['Encrypt']
+          @CreateTime = params['CreateTime']
+          @ImageCount = params['ImageCount']
+          @SnapshotState = params['SnapshotState']
+          @DeadlineTime = params['DeadlineTime']
+          @TimeStartShare = params['TimeStartShare']
+        end
+      end
+
       # 镜像来源信息
       class SrcImage < TencentCloud::Common::AbstractModel
         # @param ImageId: 镜像id
@@ -9382,6 +10082,38 @@ module TencentCloud
           @AddTime = params['AddTime']
           @EndTime = params['EndTime']
           @Operation = params['Operation']
+        end
+      end
+
+      # TerminateDisks请求参数结构体
+      class TerminateDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 需退还的云盘ID列表。
+        # @type DiskIds: Array
+
+        attr_accessor :DiskIds
+        
+        def initialize(diskids=nil)
+          @DiskIds = diskids
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+        end
+      end
+
+      # TerminateDisks返回参数结构体
+      class TerminateDisksResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

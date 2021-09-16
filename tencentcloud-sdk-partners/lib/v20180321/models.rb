@@ -698,38 +698,6 @@ module TencentCloud
         end
       end
 
-      # 代客基础信息
-      class ClientBaseElem < TencentCloud::Common::AbstractModel
-        # @param AgentUin: 代客关联的代理商UIN
-        # @type AgentUin: String
-        # @param ClientUin: 代客UIN
-        # @type ClientUin: String
-        # @param ClientRelateType: 代客关联类型 0:代理 1:转售
-        # @type ClientRelateType: Integer
-        # @param AgentCooperationMode: 代理商合作模式 0:代理 1:转售
-        # @type AgentCooperationMode: Integer
-        # @param AgentCountry: 代理商国家编码 China:中国  其他:海外，如US等
-        # @type AgentCountry: String
-
-        attr_accessor :AgentUin, :ClientUin, :ClientRelateType, :AgentCooperationMode, :AgentCountry
-        
-        def initialize(agentuin=nil, clientuin=nil, clientrelatetype=nil, agentcooperationmode=nil, agentcountry=nil)
-          @AgentUin = agentuin
-          @ClientUin = clientuin
-          @ClientRelateType = clientrelatetype
-          @AgentCooperationMode = agentcooperationmode
-          @AgentCountry = agentcountry
-        end
-
-        def deserialize(params)
-          @AgentUin = params['AgentUin']
-          @ClientUin = params['ClientUin']
-          @ClientRelateType = params['ClientRelateType']
-          @AgentCooperationMode = params['AgentCooperationMode']
-          @AgentCountry = params['AgentCountry']
-        end
-      end
-
       # CreatePayRelationForClient请求参数结构体
       class CreatePayRelationForClientRequest < TencentCloud::Common::AbstractModel
         # @param ClientUin: 客户账号ID
@@ -1625,53 +1593,6 @@ module TencentCloud
         def deserialize(params)
           @Balance = params['Balance']
           @Cash = params['Cash']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeClientBaseInfo请求参数结构体
-      class DescribeClientBaseInfoRequest < TencentCloud::Common::AbstractModel
-        # @param ClientUin: 代客UIN
-        # @type ClientUin: String
-
-        attr_accessor :ClientUin
-        
-        def initialize(clientuin=nil)
-          @ClientUin = clientuin
-        end
-
-        def deserialize(params)
-          @ClientUin = params['ClientUin']
-        end
-      end
-
-      # DescribeClientBaseInfo返回参数结构体
-      class DescribeClientBaseInfoResponse < TencentCloud::Common::AbstractModel
-        # @param ClientBaseSet: 代客基础信息数组
-        # @type ClientBaseSet: Array
-        # @param TotalCount: 符合条件的代客数
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ClientBaseSet, :TotalCount, :RequestId
-        
-        def initialize(clientbaseset=nil, totalcount=nil, requestid=nil)
-          @ClientBaseSet = clientbaseset
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['ClientBaseSet'].nil?
-            @ClientBaseSet = []
-            params['ClientBaseSet'].each do |i|
-              clientbaseelem_tmp = ClientBaseElem.new
-              clientbaseelem_tmp.deserialize(i)
-              @ClientBaseSet << clientbaseelem_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
