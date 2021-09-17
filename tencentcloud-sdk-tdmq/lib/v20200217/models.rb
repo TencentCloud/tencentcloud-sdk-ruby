@@ -1848,19 +1848,27 @@ module TencentCloud
         # @type Limit: Integer
         # @param QueueName: 根据QueueName进行过滤
         # @type QueueName: String
+        # @param QueueNameList: CMQ 队列名称列表过滤
+        # @type QueueNameList: Array
+        # @param IsTagFilter: 标签过滤查找时，需要设置为 true
+        # @type IsTagFilter: Boolean
 
-        attr_accessor :Offset, :Limit, :QueueName
+        attr_accessor :Offset, :Limit, :QueueName, :QueueNameList, :IsTagFilter
         
-        def initialize(offset=nil, limit=nil, queuename=nil)
+        def initialize(offset=nil, limit=nil, queuename=nil, queuenamelist=nil, istagfilter=nil)
           @Offset = offset
           @Limit = limit
           @QueueName = queuename
+          @QueueNameList = queuenamelist
+          @IsTagFilter = istagfilter
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @QueueName = params['QueueName']
+          @QueueNameList = params['QueueNameList']
+          @IsTagFilter = params['IsTagFilter']
         end
       end
 
@@ -2003,19 +2011,27 @@ module TencentCloud
         # @type Limit: Integer
         # @param TopicName: 根据TopicName进行模糊搜索
         # @type TopicName: String
+        # @param TopicNameList: CMQ 主题名称列表过滤
+        # @type TopicNameList: Array
+        # @param IsTagFilter: 标签过滤查找时，需要设置为 true
+        # @type IsTagFilter: Boolean
 
-        attr_accessor :Offset, :Limit, :TopicName
+        attr_accessor :Offset, :Limit, :TopicName, :TopicNameList, :IsTagFilter
         
-        def initialize(offset=nil, limit=nil, topicname=nil)
+        def initialize(offset=nil, limit=nil, topicname=nil, topicnamelist=nil, istagfilter=nil)
           @Offset = offset
           @Limit = limit
           @TopicName = topicname
+          @TopicNameList = topicnamelist
+          @IsTagFilter = istagfilter
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @TopicName = params['TopicName']
+          @TopicNameList = params['TopicNameList']
+          @IsTagFilter = params['IsTagFilter']
         end
       end
 

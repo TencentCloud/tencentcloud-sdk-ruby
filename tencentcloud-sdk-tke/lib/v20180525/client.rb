@@ -413,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建容器实例
+
+        # @param request: Request instance for CreateEKSContainerInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateEKSContainerInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateEKSContainerInstancesResponse`
+        def CreateEKSContainerInstances(request)
+          body = send_request('CreateEKSContainerInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEKSContainerInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建告警规则
 
         # @param request: Request instance for CreatePrometheusAlertRule.
@@ -687,6 +711,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteEKSClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除容器实例，可批量删除
+
+        # @param request: Request instance for DeleteEKSContainerInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteEKSContainerInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteEKSContainerInstancesResponse`
+        def DeleteEKSContainerInstances(request)
+          body = send_request('DeleteEKSContainerInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEKSContainerInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1181,6 +1229,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询容器实例的事件
+
+        # @param request: Request instance for DescribeEKSContainerInstanceEvent.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEKSContainerInstanceEventRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEKSContainerInstanceEventResponse`
+        def DescribeEKSContainerInstanceEvent(request)
+          body = send_request('DescribeEKSContainerInstanceEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEKSContainerInstanceEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询容器实例支持的地域
 
         # @param request: Request instance for DescribeEKSContainerInstanceRegions.
@@ -1191,6 +1263,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEKSContainerInstanceRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询容器实例
+
+        # @param request: Request instance for DescribeEKSContainerInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEKSContainerInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEKSContainerInstancesResponse`
+        def DescribeEKSContainerInstances(request)
+          body = send_request('DescribeEKSContainerInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEKSContainerInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询容器实例中容器日志
+
+        # @param request: Request instance for DescribeEksContainerInstanceLog.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEksContainerInstanceLogRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEksContainerInstanceLogResponse`
+        def DescribeEksContainerInstanceLog(request)
+          body = send_request('DescribeEksContainerInstanceLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEksContainerInstanceLogResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1901,6 +2021,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重启弹性容器实例，支持批量操作
+
+        # @param request: Request instance for RestartEKSContainerInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::RestartEKSContainerInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::RestartEKSContainerInstancesResponse`
+        def RestartEKSContainerInstances(request)
+          body = send_request('RestartEKSContainerInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartEKSContainerInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 仅能设置节点池中处于伸缩组的节点
 
         # @param request: Request instance for SetNodePoolNodeProtection.
@@ -1983,6 +2127,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateEKSClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新容器实例
+
+        # @param request: Request instance for UpdateEKSContainerInstance.
+        # @type request: :class:`Tencentcloud::tke::V20180525::UpdateEKSContainerInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::UpdateEKSContainerInstanceResponse`
+        def UpdateEKSContainerInstance(request)
+          body = send_request('UpdateEKSContainerInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateEKSContainerInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -250,10 +250,12 @@ module TencentCloud
         # @type GitCommitId: String
         # @param GitUserNameSecret: 加密后的Git用户名，一般无需指定
         # @type GitUserNameSecret: String
+        # @param ImageConfig: 镜像部署时配置TCR镜像信息
+        # @type ImageConfig: :class:`Tencentcloud::Scf.v20180416.models.ImageConfig`
 
-        attr_accessor :CosBucketName, :CosObjectName, :ZipFile, :CosBucketRegion, :DemoId, :TempCosObjectName, :GitUrl, :GitUserName, :GitPassword, :GitPasswordSecret, :GitBranch, :GitDirectory, :GitCommitId, :GitUserNameSecret
+        attr_accessor :CosBucketName, :CosObjectName, :ZipFile, :CosBucketRegion, :DemoId, :TempCosObjectName, :GitUrl, :GitUserName, :GitPassword, :GitPasswordSecret, :GitBranch, :GitDirectory, :GitCommitId, :GitUserNameSecret, :ImageConfig
         
-        def initialize(cosbucketname=nil, cosobjectname=nil, zipfile=nil, cosbucketregion=nil, demoid=nil, tempcosobjectname=nil, giturl=nil, gitusername=nil, gitpassword=nil, gitpasswordsecret=nil, gitbranch=nil, gitdirectory=nil, gitcommitid=nil, gitusernamesecret=nil)
+        def initialize(cosbucketname=nil, cosobjectname=nil, zipfile=nil, cosbucketregion=nil, demoid=nil, tempcosobjectname=nil, giturl=nil, gitusername=nil, gitpassword=nil, gitpasswordsecret=nil, gitbranch=nil, gitdirectory=nil, gitcommitid=nil, gitusernamesecret=nil, imageconfig=nil)
           @CosBucketName = cosbucketname
           @CosObjectName = cosobjectname
           @ZipFile = zipfile
@@ -268,6 +270,7 @@ module TencentCloud
           @GitDirectory = gitdirectory
           @GitCommitId = gitcommitid
           @GitUserNameSecret = gitusernamesecret
+          @ImageConfig = imageconfig
         end
 
         def deserialize(params)
@@ -285,6 +288,10 @@ module TencentCloud
           @GitDirectory = params['GitDirectory']
           @GitCommitId = params['GitCommitId']
           @GitUserNameSecret = params['GitUserNameSecret']
+          unless params['ImageConfig'].nil?
+            @ImageConfig = ImageConfig.new
+            @ImageConfig.deserialize(params['ImageConfig'])
+          end
         end
       end
 
@@ -448,7 +455,7 @@ module TencentCloud
         # @type PublicNetConfig: :class:`Tencentcloud::Scf.v20180416.models.PublicNetConfigIn`
         # @param CfsConfig: 文件系统配置参数，用于云函数挂载文件系统
         # @type CfsConfig: :class:`Tencentcloud::Scf.v20180416.models.CfsConfig`
-        # @param InitTimeout: 函数初始化超时时间
+        # @param InitTimeout: 函数初始化超时时间，默认 65s，镜像部署函数默认 90s。
         # @type InitTimeout: Integer
         # @param Tags: 函数 Tag 参数，以键值对数组形式传入
         # @type Tags: Array
@@ -2002,6 +2009,46 @@ module TencentCloud
         def deserialize(params)
           @ReservedMem = params['ReservedMem']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # TCR镜像信息描述
+      class ImageConfig < TencentCloud::Common::AbstractModel
+        # @param ImageType: 镜像仓库类型，个人版或者企业版：personal/enterprise
+        # @type ImageType: String
+        # @param ImageUri: {domain}/{namespace}/{imageName}:{tag}@{digest}
+        # @type ImageUri: String
+        # @param RegistryId: 用于企业版TCR获取镜像拉取临时凭证，ImageType为"enterprise"时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegistryId: String
+        # @param EntryPoint: 应用的ENTRYPOINT
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntryPoint: String
+        # @param Command: entrypoint执行命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Command: String
+        # @param Args: 命令参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Args: String
+
+        attr_accessor :ImageType, :ImageUri, :RegistryId, :EntryPoint, :Command, :Args
+        
+        def initialize(imagetype=nil, imageuri=nil, registryid=nil, entrypoint=nil, command=nil, args=nil)
+          @ImageType = imagetype
+          @ImageUri = imageuri
+          @RegistryId = registryid
+          @EntryPoint = entrypoint
+          @Command = command
+          @Args = args
+        end
+
+        def deserialize(params)
+          @ImageType = params['ImageType']
+          @ImageUri = params['ImageUri']
+          @RegistryId = params['RegistryId']
+          @EntryPoint = params['EntryPoint']
+          @Command = params['Command']
+          @Args = params['Args']
         end
       end
 
@@ -3803,7 +3850,7 @@ module TencentCloud
         # @type PublicNetConfig: :class:`Tencentcloud::Scf.v20180416.models.PublicNetConfigIn`
         # @param CfsConfig: 文件系统配置入参，用于云函数绑定CFS文件系统
         # @type CfsConfig: :class:`Tencentcloud::Scf.v20180416.models.CfsConfig`
-        # @param InitTimeout: 函数初始化执行超时时间，默认15秒
+        # @param InitTimeout: 函数初始化执行超时时间
         # @type InitTimeout: Integer
 
         attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout

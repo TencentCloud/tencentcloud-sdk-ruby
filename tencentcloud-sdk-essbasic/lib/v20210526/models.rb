@@ -170,15 +170,21 @@ module TencentCloud
         # @type ProxyOperatorName: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Module: 控制台指定模块，文件/合同管理:"DOCUMENT"，模版管理:"TEMPLATE"，印章管理:"SEAL"，组织架构/人员:"OPERATOR"，空字符串："账号信息"
+        # @type Module: String
+        # @param ModuleId: 控制台指定模块Id
+        # @type ModuleId: String
 
-        attr_accessor :Agent, :ProxyOrganizationName, :UniformSocialCreditCode, :ProxyOperatorName, :Operator
+        attr_accessor :Agent, :ProxyOrganizationName, :UniformSocialCreditCode, :ProxyOperatorName, :Operator, :Module, :ModuleId
         
-        def initialize(agent=nil, proxyorganizationname=nil, uniformsocialcreditcode=nil, proxyoperatorname=nil, operator=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, uniformsocialcreditcode=nil, proxyoperatorname=nil, operator=nil, _module=nil, moduleid=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @UniformSocialCreditCode = uniformsocialcreditcode
           @ProxyOperatorName = proxyoperatorname
           @Operator = operator
+          @Module = _module
+          @ModuleId = moduleid
         end
 
         def deserialize(params)
@@ -193,6 +199,8 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @Module = params['Module']
+          @ModuleId = params['ModuleId']
         end
       end
 
@@ -295,7 +303,7 @@ module TencentCloud
         # @type FlowIds: Array
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param Endpoint: 签署链接类型，默认：“WEIXINAPP”-直接跳小程序; “CHANNEL”-跳转H5页面
+        # @param Endpoint: 签署链接类型，默认：“WEIXINAPP”-直接跳小程序; “CHANNEL”-跳转H5页面; “APP”-第三方APP或小程序跳转电子签小程序;
         # @type Endpoint: String
         # @param JumpUrl: 签署完成后H5引导页跳转URL
         # @type JumpUrl: String
@@ -358,12 +366,15 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param TemplateId: 模版唯一标识,可以通过模版列表处获取
+        # @type TemplateId: String
 
-        attr_accessor :Agent, :Operator
+        attr_accessor :Agent, :Operator, :TemplateId
         
-        def initialize(agent=nil, operator=nil)
+        def initialize(agent=nil, operator=nil, templateid=nil)
           @Agent = agent
           @Operator = operator
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -375,6 +386,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -500,16 +512,22 @@ module TencentCloud
         # @type Deadline: Integer
         # @param CallbackUrl: 签署完回调url
         # @type CallbackUrl: String
+        # @param ApproverType: 签署人类型，PERSON和ORGANIZATION
+        # @type ApproverType: String
+        # @param OpenId: 用户侧第三方id
+        # @type OpenId: String
 
-        attr_accessor :Name, :Mobile, :IdCardNumber, :JumpUrl, :Deadline, :CallbackUrl
+        attr_accessor :Name, :Mobile, :IdCardNumber, :JumpUrl, :Deadline, :CallbackUrl, :ApproverType, :OpenId
         
-        def initialize(name=nil, mobile=nil, idcardnumber=nil, jumpurl=nil, deadline=nil, callbackurl=nil)
+        def initialize(name=nil, mobile=nil, idcardnumber=nil, jumpurl=nil, deadline=nil, callbackurl=nil, approvertype=nil, openid=nil)
           @Name = name
           @Mobile = mobile
           @IdCardNumber = idcardnumber
           @JumpUrl = jumpurl
           @Deadline = deadline
           @CallbackUrl = callbackurl
+          @ApproverType = approvertype
+          @OpenId = openid
         end
 
         def deserialize(params)
@@ -519,6 +537,8 @@ module TencentCloud
           @JumpUrl = params['JumpUrl']
           @Deadline = params['Deadline']
           @CallbackUrl = params['CallbackUrl']
+          @ApproverType = params['ApproverType']
+          @OpenId = params['OpenId']
         end
       end
 
@@ -711,6 +731,50 @@ module TencentCloud
         end
       end
 
+      # 签署参与者信息
+      class Recipient < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 签署人唯一标识
+        # @type RecipientId: String
+        # @param RecipientType: 签署方类型：ENTERPRISE-企业INDIVIDUAL-自然人
+        # @type RecipientType: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param RoleName: 签署方备注信息
+        # @type RoleName: String
+        # @param RequireValidation: 是否需要校验
+        # @type RequireValidation: Boolean
+        # @param RequireSign: 是否必须填写
+        # @type RequireSign: Boolean
+        # @param SignType: 签署类型
+        # @type SignType: Integer
+        # @param RoutingOrder: 签署顺序：数字越小优先级越高
+        # @type RoutingOrder: Integer
+
+        attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :SignType, :RoutingOrder
+        
+        def initialize(recipientid=nil, recipienttype=nil, description=nil, rolename=nil, requirevalidation=nil, requiresign=nil, signtype=nil, routingorder=nil)
+          @RecipientId = recipientid
+          @RecipientType = recipienttype
+          @Description = description
+          @RoleName = rolename
+          @RequireValidation = requirevalidation
+          @RequireSign = requiresign
+          @SignType = signtype
+          @RoutingOrder = routingorder
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @RecipientType = params['RecipientType']
+          @Description = params['Description']
+          @RoleName = params['RoleName']
+          @RequireValidation = params['RequireValidation']
+          @RequireSign = params['RequireSign']
+          @SignType = params['SignType']
+          @RoutingOrder = params['RoutingOrder']
+        end
+      end
+
       # 签署链接内容
       class SignUrlInfo < TencentCloud::Common::AbstractModel
         # @param SignUrl: 签署链接
@@ -780,6 +844,28 @@ module TencentCloud
         end
       end
 
+      # 同步经办人失败原因
+      class SyncFailReason < TencentCloud::Common::AbstractModel
+        # @param Id: 经办人Id
+        # @type Id: String
+        # @param Message: 失败原因
+        # 例如：Id不符合规范、证件号码不合法等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :Id, :Message
+        
+        def initialize(id=nil, message=nil)
+          @Id = id
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Message = params['Message']
+        end
+      end
+
       # SyncProxyOrganizationOperators请求参数结构体
       class SyncProxyOrganizationOperatorsRequest < TencentCloud::Common::AbstractModel
         # @param OperatorType: 操作类型，新增:"CREATE"，修改:"UPDATE"，离职:"RESIGN"
@@ -823,16 +909,35 @@ module TencentCloud
 
       # SyncProxyOrganizationOperators返回参数结构体
       class SyncProxyOrganizationOperatorsResponse < TencentCloud::Common::AbstractModel
+        # @param Status: Status 同步状态,全部同步失败接口会直接报错
+        # 1-成功
+        # 2-部分成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param FailedList: 同步失败经办人及其失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Status, :FailedList, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(status=nil, failedlist=nil, requestid=nil)
+          @Status = status
+          @FailedList = failedlist
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Status = params['Status']
+          unless params['FailedList'].nil?
+            @FailedList = []
+            params['FailedList'].each do |i|
+              syncfailreason_tmp = SyncFailReason.new
+              syncfailreason_tmp.deserialize(i)
+              @FailedList << syncfailreason_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -908,10 +1013,14 @@ module TencentCloud
         # @type Creator: String
         # @param CreatedOn: 模板创建的时间戳（精确到秒）
         # @type CreatedOn: Integer
+        # @param TemplateType: 模板类型：1-静默签；2-静默签授权；3-普通模版
+        # @type TemplateType: Integer
+        # @param Recipients: 模板中的流程参与人信息
+        # @type Recipients: Array
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :SignComponents, :Creator, :CreatedOn
+        attr_accessor :TemplateId, :TemplateName, :Description, :Components, :SignComponents, :Creator, :CreatedOn, :TemplateType, :Recipients
         
-        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, signcomponents=nil, creator=nil, createdon=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, components=nil, signcomponents=nil, creator=nil, createdon=nil, templatetype=nil, recipients=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -919,6 +1028,8 @@ module TencentCloud
           @SignComponents = signcomponents
           @Creator = creator
           @CreatedOn = createdon
+          @TemplateType = templatetype
+          @Recipients = recipients
         end
 
         def deserialize(params)
@@ -943,6 +1054,15 @@ module TencentCloud
           end
           @Creator = params['Creator']
           @CreatedOn = params['CreatedOn']
+          @TemplateType = params['TemplateType']
+          unless params['Recipients'].nil?
+            @Recipients = []
+            params['Recipients'].each do |i|
+              recipient_tmp = Recipient.new
+              recipient_tmp.deserialize(i)
+              @Recipients << recipient_tmp
+            end
+          end
         end
       end
 

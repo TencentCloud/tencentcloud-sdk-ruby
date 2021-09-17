@@ -83,6 +83,83 @@ module TencentCloud
         end
       end
 
+      # AclRule列表接口出参
+      class AclRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: Acl规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param PatternType: 匹配类型，目前只支持前缀匹配，枚举值列表：PREFIXED
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PatternType: String
+        # @param Pattern: 表示前缀匹配的前缀的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pattern: String
+        # @param ResourceType: Acl资源类型,目前只支持Topic,枚举值列表：Topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param AclList: 该规则所包含的ACL信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclList: String
+        # @param CreateTimeStamp: 规则所创建的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTimeStamp: String
+        # @param IsApplied: 预设ACL规则是否应用到新增的topic中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsApplied: Integer
+        # @param UpdateTimeStamp: 规则更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTimeStamp: String
+        # @param Comment: 规则的备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param TopicName: 其中一个显示的对应的TopicName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param TopicCount: 应用该ACL规则的Topic数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicCount: Integer
+        # @param PatternTypeTitle: patternType的中文显示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PatternTypeTitle: String
+
+        attr_accessor :RuleName, :InstanceId, :PatternType, :Pattern, :ResourceType, :AclList, :CreateTimeStamp, :IsApplied, :UpdateTimeStamp, :Comment, :TopicName, :TopicCount, :PatternTypeTitle
+        
+        def initialize(rulename=nil, instanceid=nil, patterntype=nil, pattern=nil, resourcetype=nil, acllist=nil, createtimestamp=nil, isapplied=nil, updatetimestamp=nil, comment=nil, topicname=nil, topiccount=nil, patterntypetitle=nil)
+          @RuleName = rulename
+          @InstanceId = instanceid
+          @PatternType = patterntype
+          @Pattern = pattern
+          @ResourceType = resourcetype
+          @AclList = acllist
+          @CreateTimeStamp = createtimestamp
+          @IsApplied = isapplied
+          @UpdateTimeStamp = updatetimestamp
+          @Comment = comment
+          @TopicName = topicname
+          @TopicCount = topiccount
+          @PatternTypeTitle = patterntypetitle
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @InstanceId = params['InstanceId']
+          @PatternType = params['PatternType']
+          @Pattern = params['Pattern']
+          @ResourceType = params['ResourceType']
+          @AclList = params['AclList']
+          @CreateTimeStamp = params['CreateTimeStamp']
+          @IsApplied = params['IsApplied']
+          @UpdateTimeStamp = params['UpdateTimeStamp']
+          @Comment = params['Comment']
+          @TopicName = params['TopicName']
+          @TopicCount = params['TopicCount']
+          @PatternTypeTitle = params['PatternTypeTitle']
+        end
+      end
+
       # 表示ACL 规则的四元组信息
       class AclRuleInfo < TencentCloud::Common::AbstractModel
         # @param Operation: Acl操作方式，枚举值(所有操作: All, 读：Read，写：Write)
@@ -810,10 +887,14 @@ module TencentCloud
         # @type RetentionMs: Integer
         # @param SegmentMs: Segment分片滚动的时长，单位ms，当前最小为3600000ms
         # @type SegmentMs: Integer
+        # @param EnableAclRule: 预设ACL规则, 1:打开  0:关闭，默认不打开
+        # @type EnableAclRule: Integer
+        # @param AclRuleName: 预设ACL规则的名称
+        # @type AclRuleName: String
 
-        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs
+        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :EnableAclRule, :AclRuleName
         
-        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil)
+        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, enableaclrule=nil, aclrulename=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @PartitionNum = partitionnum
@@ -826,6 +907,8 @@ module TencentCloud
           @UncleanLeaderElectionEnable = uncleanleaderelectionenable
           @RetentionMs = retentionms
           @SegmentMs = segmentms
+          @EnableAclRule = enableaclrule
+          @AclRuleName = aclrulename
         end
 
         def deserialize(params)
@@ -841,6 +924,8 @@ module TencentCloud
           @UncleanLeaderElectionEnable = params['UncleanLeaderElectionEnable']
           @RetentionMs = params['RetentionMs']
           @SegmentMs = params['SegmentMs']
+          @EnableAclRule = params['EnableAclRule']
+          @AclRuleName = params['AclRuleName']
         end
       end
 
@@ -1879,14 +1964,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认 10，最大值20，取值要大于0
         # @type Limit: Integer
+        # @param AclRuleName: Acl预设策略名称
+        # @type AclRuleName: String
 
-        attr_accessor :InstanceId, :SearchWord, :Offset, :Limit
+        attr_accessor :InstanceId, :SearchWord, :Offset, :Limit, :AclRuleName
         
-        def initialize(instanceid=nil, searchword=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, searchword=nil, offset=nil, limit=nil, aclrulename=nil)
           @InstanceId = instanceid
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
+          @AclRuleName = aclrulename
         end
 
         def deserialize(params)
@@ -1894,6 +1982,7 @@ module TencentCloud
           @SearchWord = params['SearchWord']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @AclRuleName = params['AclRuleName']
         end
       end
 
@@ -1930,14 +2019,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认为10，最大值为50
         # @type Limit: Integer
+        # @param AclRuleName: Acl预设策略名称
+        # @type AclRuleName: String
 
-        attr_accessor :InstanceId, :SearchWord, :Offset, :Limit
+        attr_accessor :InstanceId, :SearchWord, :Offset, :Limit, :AclRuleName
         
-        def initialize(instanceid=nil, searchword=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, searchword=nil, offset=nil, limit=nil, aclrulename=nil)
           @InstanceId = instanceid
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
+          @AclRuleName = aclrulename
         end
 
         def deserialize(params)
@@ -1945,6 +2037,7 @@ module TencentCloud
           @SearchWord = params['SearchWord']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @AclRuleName = params['AclRuleName']
         end
       end
 
@@ -3158,10 +3251,16 @@ module TencentCloud
         # @type MaxMessageBytes: Integer
         # @param CleanUpPolicy: 消息删除策略，可以选择delete 或者compact
         # @type CleanUpPolicy: String
+        # @param IpWhiteList: Ip白名单列表，配额限制，enableWhileList=1时必选
+        # @type IpWhiteList: Array
+        # @param EnableAclRule: 预设ACL规则, 1:打开  0:关闭，默认不打开
+        # @type EnableAclRule: Integer
+        # @param AclRuleName: 预设ACL规则的名称
+        # @type AclRuleName: String
 
-        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy
+        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName
         
-        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil)
+        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @Note = note
@@ -3172,6 +3271,9 @@ module TencentCloud
           @SegmentMs = segmentms
           @MaxMessageBytes = maxmessagebytes
           @CleanUpPolicy = cleanuppolicy
+          @IpWhiteList = ipwhitelist
+          @EnableAclRule = enableaclrule
+          @AclRuleName = aclrulename
         end
 
         def deserialize(params)
@@ -3185,6 +3287,9 @@ module TencentCloud
           @SegmentMs = params['SegmentMs']
           @MaxMessageBytes = params['MaxMessageBytes']
           @CleanUpPolicy = params['CleanUpPolicy']
+          @IpWhiteList = params['IpWhiteList']
+          @EnableAclRule = params['EnableAclRule']
+          @AclRuleName = params['AclRuleName']
         end
       end
 
@@ -3515,10 +3620,16 @@ module TencentCloud
         # @type Config: :class:`Tencentcloud::Ckafka.v20190819.models.Config`
         # @param Partitions: 分区详情
         # @type Partitions: Array
+        # @param EnableAclRule: ACL预设策略开关，1：打开； 0：关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableAclRule: Integer
+        # @param AclRuleList: 预设策略列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclRuleList: Array
 
-        attr_accessor :TopicId, :CreateTime, :Note, :PartitionNum, :EnableWhiteList, :IpWhiteList, :Config, :Partitions
+        attr_accessor :TopicId, :CreateTime, :Note, :PartitionNum, :EnableWhiteList, :IpWhiteList, :Config, :Partitions, :EnableAclRule, :AclRuleList
         
-        def initialize(topicid=nil, createtime=nil, note=nil, partitionnum=nil, enablewhitelist=nil, ipwhitelist=nil, config=nil, partitions=nil)
+        def initialize(topicid=nil, createtime=nil, note=nil, partitionnum=nil, enablewhitelist=nil, ipwhitelist=nil, config=nil, partitions=nil, enableaclrule=nil, aclrulelist=nil)
           @TopicId = topicid
           @CreateTime = createtime
           @Note = note
@@ -3527,6 +3638,8 @@ module TencentCloud
           @IpWhiteList = ipwhitelist
           @Config = config
           @Partitions = partitions
+          @EnableAclRule = enableaclrule
+          @AclRuleList = aclrulelist
         end
 
         def deserialize(params)
@@ -3546,6 +3659,15 @@ module TencentCloud
               topicpartitiondo_tmp = TopicPartitionDO.new
               topicpartitiondo_tmp.deserialize(i)
               @Partitions << topicpartitiondo_tmp
+            end
+          end
+          @EnableAclRule = params['EnableAclRule']
+          unless params['AclRuleList'].nil?
+            @AclRuleList = []
+            params['AclRuleList'].each do |i|
+              aclrule_tmp = AclRule.new
+              aclrule_tmp.deserialize(i)
+              @AclRuleList << aclrule_tmp
             end
           end
         end
@@ -3583,10 +3705,13 @@ module TencentCloud
         # @param RetentionTimeConfig: 消息保留时间配置(用于动态配置变更记录)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetentionTimeConfig: :class:`Tencentcloud::Ckafka.v20190819.models.TopicRetentionTimeConfigRsp`
+        # @param Status: 0:正常，1：已删除，2：删除中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :TopicName, :TopicId, :PartitionNum, :ReplicaNum, :Note, :CreateTime, :EnableWhiteList, :IpWhiteListCount, :ForwardCosBucket, :ForwardStatus, :ForwardInterval, :Config, :RetentionTimeConfig
+        attr_accessor :TopicName, :TopicId, :PartitionNum, :ReplicaNum, :Note, :CreateTime, :EnableWhiteList, :IpWhiteListCount, :ForwardCosBucket, :ForwardStatus, :ForwardInterval, :Config, :RetentionTimeConfig, :Status
         
-        def initialize(topicname=nil, topicid=nil, partitionnum=nil, replicanum=nil, note=nil, createtime=nil, enablewhitelist=nil, ipwhitelistcount=nil, forwardcosbucket=nil, forwardstatus=nil, forwardinterval=nil, config=nil, retentiontimeconfig=nil)
+        def initialize(topicname=nil, topicid=nil, partitionnum=nil, replicanum=nil, note=nil, createtime=nil, enablewhitelist=nil, ipwhitelistcount=nil, forwardcosbucket=nil, forwardstatus=nil, forwardinterval=nil, config=nil, retentiontimeconfig=nil, status=nil)
           @TopicName = topicname
           @TopicId = topicid
           @PartitionNum = partitionnum
@@ -3600,6 +3725,7 @@ module TencentCloud
           @ForwardInterval = forwardinterval
           @Config = config
           @RetentionTimeConfig = retentiontimeconfig
+          @Status = status
         end
 
         def deserialize(params)
@@ -3622,6 +3748,7 @@ module TencentCloud
             @RetentionTimeConfig = TopicRetentionTimeConfigRsp.new
             @RetentionTimeConfig.deserialize(params['RetentionTimeConfig'])
           end
+          @Status = params['Status']
         end
       end
 
