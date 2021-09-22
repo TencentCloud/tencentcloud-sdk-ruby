@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 依托人工智能技术和腾讯丰富的风控实战经验，根据用户提供的数据和业务场景，给客户提供定制化模型服务
+
+        # @param request: Request instance for DescribeRiskModel.
+        # @type request: :class:`Tencentcloud::rce::V20201103::DescribeRiskModelRequest`
+        # @rtype: :class:`Tencentcloud::rce::V20201103::DescribeRiskModelResponse`
+        def DescribeRiskModel(request)
+          body = send_request('DescribeRiskModel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRiskModelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 全栈式风控引擎（RiskControlEngine，RCE）是基于人工智能技术和腾讯20年风控实战沉淀，依托腾讯海量业务构建的风控引擎，以轻量级的 SaaS 服务方式接入，帮助您快速解决注册、登录、营销活动等关键场景遇到的欺诈问题，实时防御黑灰产作恶。
 
         # @param request: Request instance for ManageMarketingRisk.

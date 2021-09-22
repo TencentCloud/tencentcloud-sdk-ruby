@@ -8808,16 +8808,20 @@ module TencentCloud
         # @param AgentName: 代理商名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentName: String
+        # @param TradeStatusDesc: 交易状态描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeStatusDesc: String
 
-        attr_accessor :TradeSerialNo, :OrderId, :TradeStatus, :Remark, :AgentId, :AgentName
+        attr_accessor :TradeSerialNo, :OrderId, :TradeStatus, :Remark, :AgentId, :AgentName, :TradeStatusDesc
         
-        def initialize(tradeserialno=nil, orderid=nil, tradestatus=nil, remark=nil, agentid=nil, agentname=nil)
+        def initialize(tradeserialno=nil, orderid=nil, tradestatus=nil, remark=nil, agentid=nil, agentname=nil, tradestatusdesc=nil)
           @TradeSerialNo = tradeserialno
           @OrderId = orderid
           @TradeStatus = tradestatus
           @Remark = remark
           @AgentId = agentid
           @AgentName = agentname
+          @TradeStatusDesc = tradestatusdesc
         end
 
         def deserialize(params)
@@ -8827,6 +8831,7 @@ module TencentCloud
           @Remark = params['Remark']
           @AgentId = params['AgentId']
           @AgentName = params['AgentName']
+          @TradeStatusDesc = params['TradeStatusDesc']
         end
       end
 

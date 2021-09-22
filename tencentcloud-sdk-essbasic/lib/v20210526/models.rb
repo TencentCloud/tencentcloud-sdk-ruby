@@ -366,7 +366,7 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param TemplateId: 模版唯一标识,可以通过模版列表处获取
+        # @param TemplateId: 模版唯一标识
         # @type TemplateId: String
 
         attr_accessor :Agent, :Operator, :TemplateId

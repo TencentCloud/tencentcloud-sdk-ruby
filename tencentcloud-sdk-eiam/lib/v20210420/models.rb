@@ -217,19 +217,24 @@ module TencentCloud
         # @param Resource: 授权的资源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
+        # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
 
-        attr_accessor :ResourceId, :ResourceType, :Resource
+        attr_accessor :ResourceId, :ResourceType, :Resource, :ResourceName
         
-        def initialize(resourceid=nil, resourcetype=nil, resource=nil)
+        def initialize(resourceid=nil, resourcetype=nil, resource=nil, resourcename=nil)
           @ResourceId = resourceid
           @ResourceType = resourcetype
           @Resource = resource
+          @ResourceName = resourcename
         end
 
         def deserialize(params)
           @ResourceId = params['ResourceId']
           @ResourceType = params['ResourceType']
           @Resource = params['Resource']
+          @ResourceName = params['ResourceName']
         end
       end
 
@@ -250,15 +255,19 @@ module TencentCloud
         # @param ApplicationAccounts: 应用账户
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationAccounts: Array
+        # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
 
-        attr_accessor :ResourceId, :ResourceType, :Resource, :InheritedForm, :ApplicationAccounts
+        attr_accessor :ResourceId, :ResourceType, :Resource, :InheritedForm, :ApplicationAccounts, :ResourceName
         
-        def initialize(resourceid=nil, resourcetype=nil, resource=nil, inheritedform=nil, applicationaccounts=nil)
+        def initialize(resourceid=nil, resourcetype=nil, resource=nil, inheritedform=nil, applicationaccounts=nil, resourcename=nil)
           @ResourceId = resourceid
           @ResourceType = resourcetype
           @Resource = resource
           @InheritedForm = inheritedform
           @ApplicationAccounts = applicationaccounts
+          @ResourceName = resourcename
         end
 
         def deserialize(params)
@@ -270,6 +279,7 @@ module TencentCloud
             @InheritedForm.deserialize(params['InheritedForm'])
           end
           @ApplicationAccounts = params['ApplicationAccounts']
+          @ResourceName = params['ResourceName']
         end
       end
 
@@ -766,17 +776,21 @@ module TencentCloud
         # @param AuthorizationOrgResourceList: 资源列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizationOrgResourceList: Array
+        # @param TotalCount: 资源数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ApplicationId, :OrgNodeId, :OrgNodeName, :OrgNodePath, :AuthorizationOrgResourceList, :RequestId
+        attr_accessor :ApplicationId, :OrgNodeId, :OrgNodeName, :OrgNodePath, :AuthorizationOrgResourceList, :TotalCount, :RequestId
         
-        def initialize(applicationid=nil, orgnodeid=nil, orgnodename=nil, orgnodepath=nil, authorizationorgresourcelist=nil, requestid=nil)
+        def initialize(applicationid=nil, orgnodeid=nil, orgnodename=nil, orgnodepath=nil, authorizationorgresourcelist=nil, totalcount=nil, requestid=nil)
           @ApplicationId = applicationid
           @OrgNodeId = orgnodeid
           @OrgNodeName = orgnodename
           @OrgNodePath = orgnodepath
           @AuthorizationOrgResourceList = authorizationorgresourcelist
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -793,6 +807,7 @@ module TencentCloud
               @AuthorizationOrgResourceList << authorizationresouceentityinfo_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

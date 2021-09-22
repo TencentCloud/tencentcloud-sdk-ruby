@@ -4169,10 +4169,13 @@ module TencentCloud
         # 2表示删除中。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainStatus: Integer
+        # @param BanStatus: 封禁解封状态：BANNED表示已封禁，RECOVER表示已解封或未封禁，BANNING表示封禁中，RECOVERING表示解封中，BAN_FAILED表示封禁失败，RECOVER_FAILED表示解封失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BanStatus: String
 
-        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus
+        attr_accessor :Domain, :RuleSet, :CertificateId, :CertificateAlias, :ClientCertificateId, :ClientCertificateAlias, :BasicAuthConfId, :BasicAuth, :BasicAuthConfAlias, :RealServerCertificateId, :RealServerAuth, :RealServerCertificateAlias, :GaapCertificateId, :GaapAuth, :GaapCertificateAlias, :RealServerCertificateDomain, :PolyClientCertificateAliasInfo, :PolyRealServerCertificateAliasInfo, :DomainStatus, :BanStatus
         
-        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil, domainstatus=nil)
+        def initialize(domain=nil, ruleset=nil, certificateid=nil, certificatealias=nil, clientcertificateid=nil, clientcertificatealias=nil, basicauthconfid=nil, basicauth=nil, basicauthconfalias=nil, realservercertificateid=nil, realserverauth=nil, realservercertificatealias=nil, gaapcertificateid=nil, gaapauth=nil, gaapcertificatealias=nil, realservercertificatedomain=nil, polyclientcertificatealiasinfo=nil, polyrealservercertificatealiasinfo=nil, domainstatus=nil, banstatus=nil)
           @Domain = domain
           @RuleSet = ruleset
           @CertificateId = certificateid
@@ -4192,6 +4195,7 @@ module TencentCloud
           @PolyClientCertificateAliasInfo = polyclientcertificatealiasinfo
           @PolyRealServerCertificateAliasInfo = polyrealservercertificatealiasinfo
           @DomainStatus = domainstatus
+          @BanStatus = banstatus
         end
 
         def deserialize(params)
@@ -4235,6 +4239,7 @@ module TencentCloud
             end
           end
           @DomainStatus = params['DomainStatus']
+          @BanStatus = params['BanStatus']
         end
       end
 
@@ -5799,7 +5804,7 @@ module TencentCloud
         # @param ModifyConfigTime: 配置变更时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyConfigTime: Integer
-        # @param ProxyType: 通道类型
+        # @param ProxyType: 通道类型，100表示THUNDER通道，103表示微软合作通道
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyType: Integer
         # @param ClientIPMethod: 通道获取客户端IP的方式，0表示TOA，1表示Proxy Protocol
@@ -5814,10 +5819,13 @@ module TencentCloud
         # @param PackageType: 通道套餐类型：Thunder表示标准通道，Accelerator表示游戏加速器通道。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageType: String
+        # @param BanStatus: 封禁解封状态：BANNED表示已封禁，RECOVER表示已解封或未封禁，BANNING表示封禁中，RECOVERING表示解封中，BAN_FAILED表示封禁失败，RECOVER_FAILED表示解封失败。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BanStatus: String
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus
         
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -5848,6 +5856,7 @@ module TencentCloud
           @IPAddressVersion = ipaddressversion
           @NetworkType = networktype
           @PackageType = packagetype
+          @BanStatus = banstatus
         end
 
         def deserialize(params)
@@ -5894,6 +5903,7 @@ module TencentCloud
           @IPAddressVersion = params['IPAddressVersion']
           @NetworkType = params['NetworkType']
           @PackageType = params['PackageType']
+          @BanStatus = params['BanStatus']
         end
       end
 

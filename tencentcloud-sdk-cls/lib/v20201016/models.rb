@@ -2260,9 +2260,9 @@ module TencentCloud
 
       # DescribeConfigs请求参数结构体
       class DescribeConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <br><li> name
+        # @param Filters: <br><li> configName
 
-        # 按照【采集配置名称】进行过滤。
+        # 按照【采集配置名称】进行模糊匹配过滤。
         # 类型：String
 
         # 必选：否
@@ -4599,7 +4599,7 @@ module TencentCloud
         # @type To: Integer
         # @param Query: 查询语句，语句长度最大为4096
         # @type Query: String
-        # @param Limit: 单次查询返回的日志条数，最大值为100
+        # @param Limit: 单次查询返回的原始日志条数，最大值为100。查询语句(Query)包含SQL时，针对SQL的结果条数需在Query中指定，参考https://cloud.tencent.com/document/product/614/58977
         # @type Limit: Integer
         # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容
         # @type Context: String
@@ -4637,7 +4637,7 @@ module TencentCloud
       class SearchLogResponse < TencentCloud::Common::AbstractModel
         # @param Context: 加载后续内容的Context
         # @type Context: String
-        # @param ListOver: 日志查询结果是否全部返回
+        # @param ListOver: 原始日志查询结果是否全部返回。查询语句(Query)包含SQL时该参数无意义
         # @type ListOver: Boolean
         # @param Analysis: 返回的是否为分析结果
         # @type Analysis: Boolean

@@ -919,6 +919,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 专家服务-可用订单详情
+
+        # @param request: Request instance for DescribeAvailableExpertServiceDetail.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAvailableExpertServiceDetailRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAvailableExpertServiceDetailResponse`
+        def DescribeAvailableExpertServiceDetail(request)
+          body = send_request('DescribeAvailableExpertServiceDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAvailableExpertServiceDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取爆破阻断模式
 
         # @param request: Request instance for DescribeBanMode.
@@ -991,6 +1015,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取阻断白名单列表
+
+        # @param request: Request instance for DescribeBanWhiteList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBanWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBanWhiteListResponse`
+        def DescribeBanWhiteList(request)
+          body = send_request('DescribeBanWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBanWhiteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据基线策略id查询基线策略数据概览统计
+
+        # @param request: Request instance for DescribeBaselineAnalysisData.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineAnalysisDataRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineAnalysisDataResponse`
+        def DescribeBaselineAnalysisData(request)
+          body = send_request('DescribeBaselineAnalysisData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineAnalysisDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询基线基础信息列表
 
         # @param request: Request instance for DescribeBaselineBasicInfo.
@@ -1039,6 +1111,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据基线id查询基线影响主机列表
+
+        # @param request: Request instance for DescribeBaselineEffectHostList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineEffectHostListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineEffectHostListResponse`
+        def DescribeBaselineEffectHostList(request)
+          body = send_request('DescribeBaselineEffectHostList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineEffectHostListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口返回TopN的风险服务器
+
+        # @param request: Request instance for DescribeBaselineHostTop.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineHostTopRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineHostTopResponse`
+        def DescribeBaselineHostTop(request)
+          body = send_request('DescribeBaselineHostTop', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineHostTopResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询基线列表信息
+
+        # @param request: Request instance for DescribeBaselineList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineListResponse`
+        def DescribeBaselineList(request)
+          body = send_request('DescribeBaselineList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据基线id查询下属检测项信息
 
         # @param request: Request instance for DescribeBaselineRule.
@@ -1073,6 +1217,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBaselineScanScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据基线策略id查询策略详情
+
+        # @param request: Request instance for DescribeBaselineStrategyDetail.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineStrategyDetailRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineStrategyDetailResponse`
+        def DescribeBaselineStrategyDetail(request)
+          body = send_request('DescribeBaselineStrategyDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineStrategyDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询一个用户下的基线策略信息
+
+        # @param request: Request instance for DescribeBaselineStrategyList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineStrategyListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineStrategyListResponse`
+        def DescribeBaselineStrategyList(request)
+          body = send_request('DescribeBaselineStrategyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineStrategyListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据策略id查询基线检测项TOP
+
+        # @param request: Request instance for DescribeBaselineTop.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineTopRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBaselineTopResponse`
+        def DescribeBaselineTop(request)
+          body = send_request('DescribeBaselineTop', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineTopResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1159,6 +1375,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取爆破破解规则
+
+        # @param request: Request instance for DescribeBruteAttackRules.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeBruteAttackRulesRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeBruteAttackRulesResponse`
+        def DescribeBruteAttackRules(request)
+          body = send_request('DescribeBruteAttackRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBruteAttackRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
 
         # @param request: Request instance for DescribeComponentStatistics.
@@ -1231,6 +1471,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 专家服务-应急响应列表
+
+        # @param request: Request instance for DescribeEmergencyResponseList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeEmergencyResponseListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeEmergencyResponseListResponse`
+        def DescribeEmergencyResponseList(request)
+          body = send_request('DescribeEmergencyResponseList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEmergencyResponseListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取应急漏洞列表
 
         # @param request: Request instance for DescribeEmergencyVulList.
@@ -1241,6 +1505,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEmergencyVulListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 专家服务-安全管家列表
+
+        # @param request: Request instance for DescribeExpertServiceList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeExpertServiceListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeExpertServiceListResponse`
+        def DescribeExpertServiceList(request)
+          body = send_request('DescribeExpertServiceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExpertServiceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 专家服务-专家服务订单列表
+
+        # @param request: Request instance for DescribeExpertServiceOrderList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeExpertServiceOrderListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeExpertServiceOrderListResponse`
+        def DescribeExpertServiceOrderList(request)
+          body = send_request('DescribeExpertServiceOrderList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExpertServiceOrderListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1385,6 +1697,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIgnoreBaselineRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
+
+        # @param request: Request instance for DescribeIgnoreRuleEffectHostList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeIgnoreRuleEffectHostListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeIgnoreRuleEffectHostListResponse`
+        def DescribeIgnoreRuleEffectHostList(request)
+          body = send_request('DescribeIgnoreRuleEffectHostList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIgnoreRuleEffectHostListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1649,6 +1985,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMalWareListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询恶意请求白名单列表
+
+        # @param request: Request instance for DescribeMaliciousRequestWhiteList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeMaliciousRequestWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeMaliciousRequestWhiteListResponse`
+        def DescribeMaliciousRequestWhiteList(request)
+          body = send_request('DescribeMaliciousRequestWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMaliciousRequestWhiteListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1999,6 +2359,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 专家服务-旗舰护网列表
+
+        # @param request: Request instance for DescribeProtectNetList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeProtectNetListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeProtectNetListResponse`
+        def DescribeProtectNetList(request)
+          body = send_request('DescribeProtectNetList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProtectNetListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取反弹Shell列表
 
         # @param request: Request instance for DescribeReverseShellEvents.
@@ -2177,6 +2561,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeScanTaskDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
+
+        # @param request: Request instance for DescribeScanTaskStatus.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeScanTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeScanTaskStatusResponse`
+        def DescribeScanTaskStatus(request)
+          body = send_request('DescribeScanTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScanTaskStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2585,6 +2993,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVulHostCountScanTimeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取服务器风险top列表
+
+        # @param request: Request instance for DescribeVulHostTop.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeVulHostTopRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeVulHostTopResponse`
+        def DescribeVulHostTop(request)
+          body = send_request('DescribeVulHostTop', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulHostTopResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3209,6 +3641,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExportScanTaskDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导出风险趋势
+
+        # @param request: Request instance for ExportSecurityTrends.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ExportSecurityTrendsRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ExportSecurityTrendsResponse`
+        def ExportSecurityTrends(request)
+          body = send_request('ExportSecurityTrends', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportSecurityTrendsResponse.new
             model.deserialize(response['Response'])
             model
           else
