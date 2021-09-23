@@ -847,7 +847,7 @@ module TencentCloud
 
       # CreateCommonMixStream请求参数结构体
       class CreateCommonMixStreamRequest < TencentCloud::Common::AbstractModel
-        # @param MixStreamSessionId: 混流会话（申请混流开始到取消混流结束）标识 ID。
+        # @param MixStreamSessionId: 混流会话（申请混流开始到取消混流结束）标识 ID。80字节以内，仅含字母、数字以及下划线的字符串。
         # @type MixStreamSessionId: String
         # @param InputStreamList: 混流输入流列表。
         # @type InputStreamList: Array

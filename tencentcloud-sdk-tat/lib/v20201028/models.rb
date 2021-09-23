@@ -248,6 +248,69 @@ module TencentCloud
         end
       end
 
+      # CreateInvoker请求参数结构体
+      class CreateInvokerRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 执行器名称。
+        # @type Name: String
+        # @param Type: 执行器类型，当前仅支持周期类型执行器，取值：`SCHEDULE` 。
+        # @type Type: String
+        # @param CommandId: 远程命令ID。
+        # @type CommandId: String
+        # @param InstanceIds: 触发器关联的实例ID。列表上限 100。
+        # @type InstanceIds: Array
+        # @param Username: 命令执行用户。
+        # @type Username: String
+        # @param Parameters: 命令自定义参数。
+        # @type Parameters: String
+        # @param ScheduleSettings: 周期执行器设置，当创建周期执行器时，必须指定此参数。
+        # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
+
+        attr_accessor :Name, :Type, :CommandId, :InstanceIds, :Username, :Parameters, :ScheduleSettings
+        
+        def initialize(name=nil, type=nil, commandid=nil, instanceids=nil, username=nil, parameters=nil, schedulesettings=nil)
+          @Name = name
+          @Type = type
+          @CommandId = commandid
+          @InstanceIds = instanceids
+          @Username = username
+          @Parameters = parameters
+          @ScheduleSettings = schedulesettings
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @CommandId = params['CommandId']
+          @InstanceIds = params['InstanceIds']
+          @Username = params['Username']
+          @Parameters = params['Parameters']
+          unless params['ScheduleSettings'].nil?
+            @ScheduleSettings = ScheduleSettings.new
+            @ScheduleSettings.deserialize(params['ScheduleSettings'])
+          end
+        end
+      end
+
+      # CreateInvoker返回参数结构体
+      class CreateInvokerResponse < TencentCloud::Common::AbstractModel
+        # @param InvokerId: 执行器ID。
+        # @type InvokerId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InvokerId, :RequestId
+        
+        def initialize(invokerid=nil, requestid=nil)
+          @InvokerId = invokerid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InvokerId = params['InvokerId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCommand请求参数结构体
       class DeleteCommandRequest < TencentCloud::Common::AbstractModel
         # @param CommandId: 待删除的命令ID。
@@ -266,6 +329,38 @@ module TencentCloud
 
       # DeleteCommand返回参数结构体
       class DeleteCommandResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInvoker请求参数结构体
+      class DeleteInvokerRequest < TencentCloud::Common::AbstractModel
+        # @param InvokerId: 待删除的执行器ID。
+        # @type InvokerId: String
+
+        attr_accessor :InvokerId
+        
+        def initialize(invokerid=nil)
+          @InvokerId = invokerid
+        end
+
+        def deserialize(params)
+          @InvokerId = params['InvokerId']
+        end
+      end
+
+      # DeleteInvoker返回参数结构体
+      class DeleteInvokerResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -560,6 +655,131 @@ module TencentCloud
         end
       end
 
+      # DescribeInvokerRecords请求参数结构体
+      class DescribeInvokerRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param InvokerIds: 执行器ID列表。列表上限 100。
+        # @type InvokerIds: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :InvokerIds, :Limit, :Offset
+        
+        def initialize(invokerids=nil, limit=nil, offset=nil)
+          @InvokerIds = invokerids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InvokerIds = params['InvokerIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeInvokerRecords返回参数结构体
+      class DescribeInvokerRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的历史记录数量。
+        # @type TotalCount: Integer
+        # @param InvokerRecordSet: 执行器执行历史记录。
+        # @type InvokerRecordSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InvokerRecordSet, :RequestId
+        
+        def initialize(totalcount=nil, invokerrecordset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InvokerRecordSet = invokerrecordset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InvokerRecordSet'].nil?
+            @InvokerRecordSet = []
+            params['InvokerRecordSet'].each do |i|
+              invokerrecord_tmp = InvokerRecord.new
+              invokerrecord_tmp.deserialize(i)
+              @InvokerRecordSet << invokerrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInvokers请求参数结构体
+      class DescribeInvokersRequest < TencentCloud::Common::AbstractModel
+        # @param InvokerIds: 执行器ID列表。
+        # @type InvokerIds: Array
+        # @param Filters: 过滤条件：
+
+        # <li> invoker-id - String - 是否必填：否 - （过滤条件）按执行器ID过滤。
+        # <li> command-id - String - 是否必填：否 - （过滤条件）按命令ID过滤。
+        # <li> type - String - 是否必填：否 - （过滤条件）按执行器类型过滤。
+        # @type Filters: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :InvokerIds, :Filters, :Limit, :Offset
+        
+        def initialize(invokerids=nil, filters=nil, limit=nil, offset=nil)
+          @InvokerIds = invokerids
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InvokerIds = params['InvokerIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeInvokers返回参数结构体
+      class DescribeInvokersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 满足条件的执行器数量。
+        # @type TotalCount: Integer
+        # @param InvokerSet: 执行器信息。
+        # @type InvokerSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InvokerSet, :RequestId
+        
+        def initialize(totalcount=nil, invokerset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InvokerSet = invokerset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InvokerSet'].nil?
+            @InvokerSet = []
+            params['InvokerSet'].each do |i|
+              invoker_tmp = Invoker.new
+              invoker_tmp.deserialize(i)
+              @InvokerSet << invoker_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRegions请求参数结构体
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
 
@@ -598,6 +818,70 @@ module TencentCloud
               @RegionSet << regioninfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableInvoker请求参数结构体
+      class DisableInvokerRequest < TencentCloud::Common::AbstractModel
+        # @param InvokerId: 待停止的执行器ID。
+        # @type InvokerId: String
+
+        attr_accessor :InvokerId
+        
+        def initialize(invokerid=nil)
+          @InvokerId = invokerid
+        end
+
+        def deserialize(params)
+          @InvokerId = params['InvokerId']
+        end
+      end
+
+      # DisableInvoker返回参数结构体
+      class DisableInvokerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableInvoker请求参数结构体
+      class EnableInvokerRequest < TencentCloud::Common::AbstractModel
+        # @param InvokerId: 待启用的执行器ID。
+        # @type InvokerId: String
+
+        attr_accessor :InvokerId
+        
+        def initialize(invokerid=nil)
+          @InvokerId = invokerid
+        end
+
+        def deserialize(params)
+          @InvokerId = params['InvokerId']
+        end
+      end
+
+      # EnableInvoker返回参数结构体
+      class EnableInvokerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -904,6 +1188,98 @@ module TencentCloud
         end
       end
 
+      # 执行器信息。
+      class Invoker < TencentCloud::Common::AbstractModel
+        # @param InvokerId: 执行器ID。
+        # @type InvokerId: String
+        # @param Name: 执行器名称。
+        # @type Name: String
+        # @param Type: 执行器类型。
+        # @type Type: String
+        # @param CommandId: 命令ID。
+        # @type CommandId: String
+        # @param Username: 用户名。
+        # @type Username: String
+        # @param Parameters: 自定义参数。
+        # @type Parameters: String
+        # @param InstanceIds: 实例ID列表。
+        # @type InstanceIds: Array
+        # @param Enable: 执行器是否启用。
+        # @type Enable: Boolean
+        # @param ScheduleSettings: 执行器周期计划。周期执行器会返回此字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
+        # @param CreatedTime: 创建时间。
+        # @type CreatedTime: String
+        # @param UpdatedTime: 修改时间。
+        # @type UpdatedTime: String
+
+        attr_accessor :InvokerId, :Name, :Type, :CommandId, :Username, :Parameters, :InstanceIds, :Enable, :ScheduleSettings, :CreatedTime, :UpdatedTime
+        
+        def initialize(invokerid=nil, name=nil, type=nil, commandid=nil, username=nil, parameters=nil, instanceids=nil, enable=nil, schedulesettings=nil, createdtime=nil, updatedtime=nil)
+          @InvokerId = invokerid
+          @Name = name
+          @Type = type
+          @CommandId = commandid
+          @Username = username
+          @Parameters = parameters
+          @InstanceIds = instanceids
+          @Enable = enable
+          @ScheduleSettings = schedulesettings
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+        end
+
+        def deserialize(params)
+          @InvokerId = params['InvokerId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @CommandId = params['CommandId']
+          @Username = params['Username']
+          @Parameters = params['Parameters']
+          @InstanceIds = params['InstanceIds']
+          @Enable = params['Enable']
+          unless params['ScheduleSettings'].nil?
+            @ScheduleSettings = ScheduleSettings.new
+            @ScheduleSettings.deserialize(params['ScheduleSettings'])
+          end
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+        end
+      end
+
+      # 执行器执行记录。
+      class InvokerRecord < TencentCloud::Common::AbstractModel
+        # @param InvokerId: 执行器ID。
+        # @type InvokerId: String
+        # @param InvokeTime: 执行时间。
+        # @type InvokeTime: String
+        # @param Reason: 执行原因。
+        # @type Reason: String
+        # @param InvocationId: 命令执行ID。
+        # @type InvocationId: String
+        # @param Result: 触发结果。
+        # @type Result: String
+
+        attr_accessor :InvokerId, :InvokeTime, :Reason, :InvocationId, :Result
+        
+        def initialize(invokerid=nil, invoketime=nil, reason=nil, invocationid=nil, result=nil)
+          @InvokerId = invokerid
+          @InvokeTime = invoketime
+          @Reason = reason
+          @InvocationId = invocationid
+          @Result = result
+        end
+
+        def deserialize(params)
+          @InvokerId = params['InvokerId']
+          @InvokeTime = params['InvokeTime']
+          @Reason = params['Reason']
+          @InvocationId = params['InvocationId']
+          @Result = params['Result']
+        end
+      end
+
       # ModifyCommand请求参数结构体
       class ModifyCommandRequest < TencentCloud::Common::AbstractModel
         # @param CommandId: 命令ID。
@@ -960,6 +1336,69 @@ module TencentCloud
 
       # ModifyCommand返回参数结构体
       class ModifyCommandResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInvoker请求参数结构体
+      class ModifyInvokerRequest < TencentCloud::Common::AbstractModel
+        # @param InvokerId: 待修改的执行器ID。
+        # @type InvokerId: String
+        # @param Name: 待修改的执行器名称。
+        # @type Name: String
+        # @param Type: 执行器类型，当前仅支持周期类型执行器，取值：`SCHEDULE` 。
+        # @type Type: String
+        # @param CommandId: 待修改的命令ID。
+        # @type CommandId: String
+        # @param Username: 待修改的用户名。
+        # @type Username: String
+        # @param Parameters: 待修改的自定义参数。
+        # @type Parameters: String
+        # @param InstanceIds: 待修改的实例ID列表。列表长度上限100。
+        # @type InstanceIds: Array
+        # @param ScheduleSettings: 待修改的周期执行器设置。
+        # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
+
+        attr_accessor :InvokerId, :Name, :Type, :CommandId, :Username, :Parameters, :InstanceIds, :ScheduleSettings
+        
+        def initialize(invokerid=nil, name=nil, type=nil, commandid=nil, username=nil, parameters=nil, instanceids=nil, schedulesettings=nil)
+          @InvokerId = invokerid
+          @Name = name
+          @Type = type
+          @CommandId = commandid
+          @Username = username
+          @Parameters = parameters
+          @InstanceIds = instanceids
+          @ScheduleSettings = schedulesettings
+        end
+
+        def deserialize(params)
+          @InvokerId = params['InvokerId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @CommandId = params['CommandId']
+          @Username = params['Username']
+          @Parameters = params['Parameters']
+          @InstanceIds = params['InstanceIds']
+          unless params['ScheduleSettings'].nil?
+            @ScheduleSettings = ScheduleSettings.new
+            @ScheduleSettings.deserialize(params['ScheduleSettings'])
+          end
+        end
+      end
+
+      # ModifyInvoker返回参数结构体
+      class ModifyInvokerResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1156,6 +1595,32 @@ module TencentCloud
           @CommandId = params['CommandId']
           @InvocationId = params['InvocationId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 周期执行器设置。
+      class ScheduleSettings < TencentCloud::Common::AbstractModel
+        # @param Policy: 执行策略：
+        # <br><li>ONCE：单次执行
+        # <br><li>RECURRENCE：周期执行
+        # @type Policy: String
+        # @param Recurrence: 触发 Crontab 表达式。Policy 为 RECURRENCE 时，需要指定此字段。Crontab 按北京时间解析。
+        # @type Recurrence: String
+        # @param InvokeTime: 执行器下次执行时间。Policy 为 ONCE 时，需要指定此字段。
+        # @type InvokeTime: String
+
+        attr_accessor :Policy, :Recurrence, :InvokeTime
+        
+        def initialize(policy=nil, recurrence=nil, invoketime=nil)
+          @Policy = policy
+          @Recurrence = recurrence
+          @InvokeTime = invoketime
+        end
+
+        def deserialize(params)
+          @Policy = params['Policy']
+          @Recurrence = params['Recurrence']
+          @InvokeTime = params['InvokeTime']
         end
       end
 

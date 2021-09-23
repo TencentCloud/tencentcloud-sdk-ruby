@@ -4869,10 +4869,16 @@ module TencentCloud
         # @type Meaning: :class:`Tencentcloud::Monitor.v20180724.models.MetricObjectMeaning`
         # @param Dimensions: 维度描述信息
         # @type Dimensions: Array
+        # @param MetricCName: 指标中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricCName: String
+        # @param MetricEName: 指标英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricEName: String
 
-        attr_accessor :Namespace, :MetricName, :Unit, :UnitCname, :Period, :Periods, :Meaning, :Dimensions
+        attr_accessor :Namespace, :MetricName, :Unit, :UnitCname, :Period, :Periods, :Meaning, :Dimensions, :MetricCName, :MetricEName
         
-        def initialize(namespace=nil, metricname=nil, unit=nil, unitcname=nil, period=nil, periods=nil, meaning=nil, dimensions=nil)
+        def initialize(namespace=nil, metricname=nil, unit=nil, unitcname=nil, period=nil, periods=nil, meaning=nil, dimensions=nil, metriccname=nil, metricename=nil)
           @Namespace = namespace
           @MetricName = metricname
           @Unit = unit
@@ -4881,6 +4887,8 @@ module TencentCloud
           @Periods = periods
           @Meaning = meaning
           @Dimensions = dimensions
+          @MetricCName = metriccname
+          @MetricEName = metricename
         end
 
         def deserialize(params)
@@ -4909,6 +4917,8 @@ module TencentCloud
               @Dimensions << dimensionsdesc_tmp
             end
           end
+          @MetricCName = params['MetricCName']
+          @MetricEName = params['MetricEName']
         end
       end
 

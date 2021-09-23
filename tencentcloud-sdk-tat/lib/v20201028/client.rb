@@ -53,7 +53,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于创建执行器。
+
+        # @param request: Request instance for CreateInvoker.
+        # @type request: :class:`Tencentcloud::tat::V20201028::CreateInvokerRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::CreateInvokerResponse`
+        def CreateInvoker(request)
+          body = send_request('CreateInvoker', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInvokerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于删除命令。
+        # 如果命令与执行器关联，则无法被删除。
 
         # @param request: Request instance for DeleteCommand.
         # @type request: :class:`Tencentcloud::tat::V20201028::DeleteCommandRequest`
@@ -63,6 +88,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCommandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于删除执行器。
+
+        # @param request: Request instance for DeleteInvoker.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DeleteInvokerRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DeleteInvokerResponse`
+        def DeleteInvoker(request)
+          body = send_request('DeleteInvoker', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInvokerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -173,6 +222,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于查询执行器的执行记录。
+
+        # @param request: Request instance for DescribeInvokerRecords.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DescribeInvokerRecordsRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DescribeInvokerRecordsResponse`
+        def DescribeInvokerRecords(request)
+          body = send_request('DescribeInvokerRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInvokerRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于查询执行器信息。
+
+        # @param request: Request instance for DescribeInvokers.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DescribeInvokersRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DescribeInvokersResponse`
+        def DescribeInvokers(request)
+          body = send_request('DescribeInvokers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInvokersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于查询 TAT 产品后台地域列表。
         # RegionState 为 AVAILABLE，代表该地域的 TAT 后台服务已经可用；未返回，代表该地域的 TAT 后台服务尚不可用。
 
@@ -184,6 +281,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于停止执行器。
+
+        # @param request: Request instance for DisableInvoker.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DisableInvokerRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DisableInvokerResponse`
+        def DisableInvoker(request)
+          body = send_request('DisableInvoker', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableInvokerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于启用执行器。
+
+        # @param request: Request instance for EnableInvoker.
+        # @type request: :class:`Tencentcloud::tat::V20201028::EnableInvokerRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::EnableInvokerResponse`
+        def EnableInvoker(request)
+          body = send_request('EnableInvoker', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableInvokerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -238,6 +383,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCommandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于修改执行器。
+
+        # @param request: Request instance for ModifyInvoker.
+        # @type request: :class:`Tencentcloud::tat::V20201028::ModifyInvokerRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::ModifyInvokerResponse`
+        def ModifyInvoker(request)
+          body = send_request('ModifyInvoker', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInvokerResponse.new
             model.deserialize(response['Response'])
             model
           else

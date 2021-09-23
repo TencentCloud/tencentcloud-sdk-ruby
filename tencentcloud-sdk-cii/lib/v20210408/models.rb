@@ -17,6 +17,42 @@
 module TencentCloud
   module Cii
     module V20210408
+      # 报告分类信息
+      class ClassifyInfo < TencentCloud::Common::AbstractModel
+        # @param FirstClass: 一级分类
+        # @type FirstClass: String
+        # @param SecondClass: 二级分类
+        # @type SecondClass: String
+        # @param ThirdClass: 三级分类
+        # @type ThirdClass: String
+        # @param FirstClassId: 一级分类序号
+        # @type FirstClassId: Integer
+        # @param SecondClassId: 二级分类序号
+        # @type SecondClassId: Integer
+        # @param ThirdClassId: 三级分类序号
+        # @type ThirdClassId: Integer
+
+        attr_accessor :FirstClass, :SecondClass, :ThirdClass, :FirstClassId, :SecondClassId, :ThirdClassId
+        
+        def initialize(firstclass=nil, secondclass=nil, thirdclass=nil, firstclassid=nil, secondclassid=nil, thirdclassid=nil)
+          @FirstClass = firstclass
+          @SecondClass = secondclass
+          @ThirdClass = thirdclass
+          @FirstClassId = firstclassid
+          @SecondClassId = secondclassid
+          @ThirdClassId = thirdclassid
+        end
+
+        def deserialize(params)
+          @FirstClass = params['FirstClass']
+          @SecondClass = params['SecondClass']
+          @ThirdClass = params['ThirdClass']
+          @FirstClassId = params['FirstClassId']
+          @SecondClassId = params['SecondClassId']
+          @ThirdClassId = params['ThirdClassId']
+        end
+      end
+
       # 结构化对比指标（准确率/召回率）数据
       class CompareMetricsData < TencentCloud::Common::AbstractModel
         # @param ShortStructAccuracy: 短文准确率
@@ -493,17 +529,29 @@ module TencentCloud
         # @type Quality: Float
         # @param StructureResult: 由结构化算法结构化json转换的字符串，具体协议参见算法结构化结果协议
         # @type StructureResult: String
+        # @param ReportType: 报告分类信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportType: Array
 
-        attr_accessor :Quality, :StructureResult
+        attr_accessor :Quality, :StructureResult, :ReportType
         
-        def initialize(quality=nil, structureresult=nil)
+        def initialize(quality=nil, structureresult=nil, reporttype=nil)
           @Quality = quality
           @StructureResult = structureresult
+          @ReportType = reporttype
         end
 
         def deserialize(params)
           @Quality = params['Quality']
           @StructureResult = params['StructureResult']
+          unless params['ReportType'].nil?
+            @ReportType = []
+            params['ReportType'].each do |i|
+              classifyinfo_tmp = ClassifyInfo.new
+              classifyinfo_tmp.deserialize(i)
+              @ReportType << classifyinfo_tmp
+            end
+          end
         end
       end
 

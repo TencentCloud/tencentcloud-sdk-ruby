@@ -3917,7 +3917,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param InstanceIds: 实例ID。
         # @type InstanceIds: Array
-        # @param ProtectedFromScaleIn: 实例是否需要移出保护。
+        # @param ProtectedFromScaleIn: 实例是否需要设置保护。
         # @type ProtectedFromScaleIn: Boolean
 
         attr_accessor :AutoScalingGroupId, :InstanceIds, :ProtectedFromScaleIn

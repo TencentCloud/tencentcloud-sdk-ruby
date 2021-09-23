@@ -8885,10 +8885,13 @@ module TencentCloud
         # @param Area: 域名加速区域，取值global | mainland |  overseas
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Area: String
+        # @param WafLevel: waf规则等级，可取100|200|300
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WafLevel: Integer
 
-        attr_accessor :Domain, :Status, :Waf, :Acl, :CC, :Ddos, :ProjectId, :AclRuleNumbers, :Bot, :Area
+        attr_accessor :Domain, :Status, :Waf, :Acl, :CC, :Ddos, :ProjectId, :AclRuleNumbers, :Bot, :Area, :WafLevel
         
-        def initialize(domain=nil, status=nil, waf=nil, acl=nil, cc=nil, ddos=nil, projectid=nil, aclrulenumbers=nil, bot=nil, area=nil)
+        def initialize(domain=nil, status=nil, waf=nil, acl=nil, cc=nil, ddos=nil, projectid=nil, aclrulenumbers=nil, bot=nil, area=nil, waflevel=nil)
           @Domain = domain
           @Status = status
           @Waf = waf
@@ -8899,6 +8902,7 @@ module TencentCloud
           @AclRuleNumbers = aclrulenumbers
           @Bot = bot
           @Area = area
+          @WafLevel = waflevel
         end
 
         def deserialize(params)
@@ -8912,6 +8916,7 @@ module TencentCloud
           @AclRuleNumbers = params['AclRuleNumbers']
           @Bot = params['Bot']
           @Area = params['Area']
+          @WafLevel = params['WafLevel']
         end
       end
 

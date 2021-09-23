@@ -420,6 +420,50 @@ module TencentCloud
         end
       end
 
+      # DescribePhoneNumberInfo请求参数结构体
+      class DescribePhoneNumberInfoRequest < TencentCloud::Common::AbstractModel
+        # @param PhoneNumberSet: 查询手机号码，采用 E.164 标准，格式为+[国家或地区码][手机号]，单次请求最多支持200个手机号。
+        # 例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
+        # @type PhoneNumberSet: Array
+
+        attr_accessor :PhoneNumberSet
+        
+        def initialize(phonenumberset=nil)
+          @PhoneNumberSet = phonenumberset
+        end
+
+        def deserialize(params)
+          @PhoneNumberSet = params['PhoneNumberSet']
+        end
+      end
+
+      # DescribePhoneNumberInfo返回参数结构体
+      class DescribePhoneNumberInfoResponse < TencentCloud::Common::AbstractModel
+        # @param PhoneNumberInfoSet: 获取号码信息。
+        # @type PhoneNumberInfoSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PhoneNumberInfoSet, :RequestId
+        
+        def initialize(phonenumberinfoset=nil, requestid=nil)
+          @PhoneNumberInfoSet = phonenumberinfoset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PhoneNumberInfoSet'].nil?
+            @PhoneNumberInfoSet = []
+            params['PhoneNumberInfoSet'].each do |i|
+              phonenumberinfo_tmp = PhoneNumberInfo.new
+              phonenumberinfo_tmp.deserialize(i)
+              @PhoneNumberInfoSet << phonenumberinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 获取短信签名信息响应
       class DescribeSignListStatus < TencentCloud::Common::AbstractModel
         # @param SignId: 签名ID。
@@ -781,6 +825,46 @@ module TencentCloud
 
         def deserialize(params)
           @TemplateId = params['TemplateId']
+        end
+      end
+
+      # 号码信息。
+      class PhoneNumberInfo < TencentCloud::Common::AbstractModel
+        # @param Code: 号码信息查询错误码，查询成功返回 "Ok"。
+        # @type Code: String
+        # @param Message: 号码信息查询错误码描述。
+        # @type Message: String
+        # @param NationCode: 国家（或地区）码。
+        # @type NationCode: String
+        # @param SubscriberNumber: 用户号码，去除国家或地区码前缀的普通格式，示例如：13711112222。
+        # @type SubscriberNumber: String
+        # @param PhoneNumber: 解析后的规范的 E.164 号码，与下发短信的号码解析结果一致。解析失败时会原样返回。
+        # @type PhoneNumber: String
+        # @param IsoCode: 国家码或地区码，例如 CN、US 等，对于未识别出国家码或者地区码，默认返回 DEF。
+        # @type IsoCode: String
+        # @param IsoName: 国家码或地区名，例如 China，可参考 [国际/港澳台短信价格总览](https://cloud.tencent.com/document/product/382/18051#.E6.97.A5.E7.BB.93.E5.90.8E.E4.BB.98.E8.B4.B9.3Ca-id.3D.22post-payment.22.3E.3C.2Fa.3E)
+        # @type IsoName: String
+
+        attr_accessor :Code, :Message, :NationCode, :SubscriberNumber, :PhoneNumber, :IsoCode, :IsoName
+        
+        def initialize(code=nil, message=nil, nationcode=nil, subscribernumber=nil, phonenumber=nil, isocode=nil, isoname=nil)
+          @Code = code
+          @Message = message
+          @NationCode = nationcode
+          @SubscriberNumber = subscribernumber
+          @PhoneNumber = phonenumber
+          @IsoCode = isocode
+          @IsoName = isoname
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @NationCode = params['NationCode']
+          @SubscriberNumber = params['SubscriberNumber']
+          @PhoneNumber = params['PhoneNumber']
+          @IsoCode = params['IsoCode']
+          @IsoName = params['IsoName']
         end
       end
 
