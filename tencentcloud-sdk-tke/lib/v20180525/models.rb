@@ -3443,16 +3443,47 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 最大输出条数，默认20，最大为100
         # @type Limit: Integer
-        # @param Filters: 过滤条件,当前只支持按照单个条件ClusterName进行过滤
-        # @type Filters: Array
+        # @param Filters: ·  ClusterName
+        #     按照【集群名】进行过滤。
+        #     类型：String
+        #     必选：否
 
-        attr_accessor :ClusterIds, :Offset, :Limit, :Filters
+        # ·  Tags
+        #     按照【标签键值对】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  vpc-id
+        #     按照【VPC】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tag-key
+        #     按照【标签键】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tag-value
+        #     按照【标签值】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tag:tag-key
+        #     按照【标签键值对】进行过滤。
+        #     类型：String
+        #     必选：否
+        # @type Filters: Array
+        # @param ClusterType: 集群类型，例如：MANAGED_CLUSTER
+        # @type ClusterType: String
+
+        attr_accessor :ClusterIds, :Offset, :Limit, :Filters, :ClusterType
         
-        def initialize(clusterids=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(clusterids=nil, offset=nil, limit=nil, filters=nil, clustertype=nil)
           @ClusterIds = clusterids
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -3467,6 +3498,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @ClusterType = params['ClusterType']
         end
       end
 
@@ -3996,6 +4028,54 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExternalClusterSpec请求参数结构体
+      class DescribeExternalClusterSpecRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 注册集群ID
+        # @type ClusterId: String
+        # @param IsExtranet: 默认false 获取内网，是否获取外网版注册命令
+        # @type IsExtranet: Boolean
+        # @param IsRefreshExpirationTime: 默认false 不刷新有效时间 ，true刷新有效时间
+        # @type IsRefreshExpirationTime: Boolean
+
+        attr_accessor :ClusterId, :IsExtranet, :IsRefreshExpirationTime
+        
+        def initialize(clusterid=nil, isextranet=nil, isrefreshexpirationtime=nil)
+          @ClusterId = clusterid
+          @IsExtranet = isextranet
+          @IsRefreshExpirationTime = isrefreshexpirationtime
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @IsExtranet = params['IsExtranet']
+          @IsRefreshExpirationTime = params['IsRefreshExpirationTime']
+        end
+      end
+
+      # DescribeExternalClusterSpec返回参数结构体
+      class DescribeExternalClusterSpecResponse < TencentCloud::Common::AbstractModel
+        # @param Spec: 导入第三方集群YAML定义
+        # @type Spec: String
+        # @param Expiration: agent.yaml文件过期时间字符串，时区UTC
+        # @type Expiration: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Spec, :Expiration, :RequestId
+        
+        def initialize(spec=nil, expiration=nil, requestid=nil)
+          @Spec = spec
+          @Expiration = expiration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Spec = params['Spec']
+          @Expiration = params['Expiration']
           @RequestId = params['RequestId']
         end
       end

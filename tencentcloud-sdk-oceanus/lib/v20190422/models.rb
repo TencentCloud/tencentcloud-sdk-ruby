@@ -127,10 +127,12 @@ module TencentCloud
         # @type Remark: String
         # @param FolderId: 作业名所属文件夹ID，根目录为"root"
         # @type FolderId: String
+        # @param FlinkVersion: 作业运行的Flink版本
+        # @type FlinkVersion: String
 
-        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId
+        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion
         
-        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil)
+        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil)
           @Name = name
           @JobType = jobtype
           @ClusterType = clustertype
@@ -138,6 +140,7 @@ module TencentCloud
           @CuMem = cumem
           @Remark = remark
           @FolderId = folderid
+          @FlinkVersion = flinkversion
         end
 
         def deserialize(params)
@@ -148,6 +151,7 @@ module TencentCloud
           @CuMem = params['CuMem']
           @Remark = params['Remark']
           @FolderId = params['FolderId']
+          @FlinkVersion = params['FlinkVersion']
         end
       end
 
@@ -734,15 +738,18 @@ module TencentCloud
         # @type Filters: Array
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param FlinkVersion: 查询对应Flink版本的内置connector
+        # @type FlinkVersion: String
 
-        attr_accessor :ResourceIds, :Offset, :Limit, :Filters, :ClusterId
+        attr_accessor :ResourceIds, :Offset, :Limit, :Filters, :ClusterId, :FlinkVersion
         
-        def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil, clusterid=nil)
+        def initialize(resourceids=nil, offset=nil, limit=nil, filters=nil, clusterid=nil, flinkversion=nil)
           @ResourceIds = resourceids
           @Offset = offset
           @Limit = limit
           @Filters = filters
           @ClusterId = clusterid
+          @FlinkVersion = flinkversion
         end
 
         def deserialize(params)
@@ -758,6 +765,7 @@ module TencentCloud
             end
           end
           @ClusterId = params['ClusterId']
+          @FlinkVersion = params['FlinkVersion']
         end
       end
 

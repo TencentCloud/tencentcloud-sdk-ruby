@@ -396,14 +396,17 @@ module TencentCloud
         # @type Status: Integer
         # @param Results: 结构化结果
         # @type Results: Array
+        # @param MainTaskId: 主任务ID
+        # @type MainTaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :Results, :RequestId
+        attr_accessor :Status, :Results, :MainTaskId, :RequestId
         
-        def initialize(status=nil, results=nil, requestid=nil)
+        def initialize(status=nil, results=nil, maintaskid=nil, requestid=nil)
           @Status = status
           @Results = results
+          @MainTaskId = maintaskid
           @RequestId = requestid
         end
 
@@ -417,6 +420,7 @@ module TencentCloud
               @Results << structureresultobject_tmp
             end
           end
+          @MainTaskId = params['MainTaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -591,19 +595,23 @@ module TencentCloud
         # @type TaskType: String
         # @param StructureResult: 结构化结果
         # @type StructureResult: String
+        # @param SubTaskId: 子任务ID
+        # @type SubTaskId: String
 
-        attr_accessor :Code, :TaskType, :StructureResult
+        attr_accessor :Code, :TaskType, :StructureResult, :SubTaskId
         
-        def initialize(code=nil, tasktype=nil, structureresult=nil)
+        def initialize(code=nil, tasktype=nil, structureresult=nil, subtaskid=nil)
           @Code = code
           @TaskType = tasktype
           @StructureResult = structureresult
+          @SubTaskId = subtaskid
         end
 
         def deserialize(params)
           @Code = params['Code']
           @TaskType = params['TaskType']
           @StructureResult = params['StructureResult']
+          @SubTaskId = params['SubTaskId']
         end
       end
 

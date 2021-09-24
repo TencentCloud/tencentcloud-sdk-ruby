@@ -288,10 +288,16 @@ module TencentCloud
         # @param DbaUins: 审批人uin列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbaUins: Array
+        # @param DataFlowStatus: 是否开启了数据订阅
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataFlowStatus: Integer
+        # @param KafkaInfo: 数据订阅的kafka信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaInfo: :class:`Tencentcloud::Tcaplusdb.v20190823.models.KafkaInfo`
 
-        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins
+        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins, :DataFlowStatus, :KafkaInfo
         
-        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil)
+        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil, dataflowstatus=nil, kafkainfo=nil)
           @ClusterName = clustername
           @ClusterId = clusterid
           @Region = region
@@ -316,6 +322,8 @@ module TencentCloud
           @ProxyList = proxylist
           @Censorship = censorship
           @DbaUins = dbauins
+          @DataFlowStatus = dataflowstatus
+          @KafkaInfo = kafkainfo
         end
 
         def deserialize(params)
@@ -357,6 +365,11 @@ module TencentCloud
           end
           @Censorship = params['Censorship']
           @DbaUins = params['DbaUins']
+          @DataFlowStatus = params['DataFlowStatus']
+          unless params['KafkaInfo'].nil?
+            @KafkaInfo = KafkaInfo.new
+            @KafkaInfo.deserialize(params['KafkaInfo'])
+          end
         end
       end
 
@@ -984,6 +997,64 @@ module TencentCloud
               snapshotresult_tmp = SnapshotResult.new
               snapshotresult_tmp.deserialize(i)
               @TableResults << snapshotresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTableDataFlow请求参数结构体
+      class DeleteTableDataFlowRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 表格所属集群实例ID
+        # @type ClusterId: String
+        # @param SelectedTables: 待删除分布式索引的表格列表
+        # @type SelectedTables: Array
+
+        attr_accessor :ClusterId, :SelectedTables
+        
+        def initialize(clusterid=nil, selectedtables=nil)
+          @ClusterId = clusterid
+          @SelectedTables = selectedtables
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['SelectedTables'].nil?
+            @SelectedTables = []
+            params['SelectedTables'].each do |i|
+              selectedtableinfonew_tmp = SelectedTableInfoNew.new
+              selectedtableinfonew_tmp.deserialize(i)
+              @SelectedTables << selectedtableinfonew_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteTableDataFlow返回参数结构体
+      class DeleteTableDataFlowResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 删除表格分布式索引结果数量
+        # @type TotalCount: Integer
+        # @param TableResults: 删除表格分布式索引结果列表
+        # @type TableResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TableResults, :RequestId
+        
+        def initialize(totalcount=nil, tableresults=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TableResults = tableresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TableResults'].nil?
+            @TableResults = []
+            params['TableResults'].each do |i|
+              tableresultnew_tmp = TableResultNew.new
+              tableresultnew_tmp.deserialize(i)
+              @TableResults << tableresultnew_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2282,6 +2353,42 @@ module TencentCloud
         end
       end
 
+      # ckafka地址信息
+      class KafkaInfo < TencentCloud::Common::AbstractModel
+        # @param Address: kafaka address
+        # @type Address: String
+        # @param Topic: kafaka topic
+        # @type Topic: String
+        # @param User: kafka username
+        # @type User: String
+        # @param Password: kafka password
+        # @type Password: String
+        # @param Instance: ckafka实例
+        # @type Instance: String
+        # @param IsVpc: 是否走VPC
+        # @type IsVpc: Integer
+
+        attr_accessor :Address, :Topic, :User, :Password, :Instance, :IsVpc
+        
+        def initialize(address=nil, topic=nil, user=nil, password=nil, instance=nil, isvpc=nil)
+          @Address = address
+          @Topic = topic
+          @User = user
+          @Password = password
+          @Instance = instance
+          @IsVpc = isvpc
+        end
+
+        def deserialize(params)
+          @Address = params['Address']
+          @Topic = params['Topic']
+          @User = params['User']
+          @Password = params['Password']
+          @Instance = params['Instance']
+          @IsVpc = params['IsVpc']
+        end
+      end
+
       # 部分key导入快照数据时所需要的key文件
       class KeyFile < TencentCloud::Common::AbstractModel
         # @param FileName: key文件名称
@@ -3317,17 +3424,21 @@ module TencentCloud
         # @type ProxyUid: String
         # @param MachineType: 机器类型
         # @type MachineType: String
+        # @param AvailableCount: 可分配proxy资源数
+        # @type AvailableCount: Integer
 
-        attr_accessor :ProxyUid, :MachineType
+        attr_accessor :ProxyUid, :MachineType, :AvailableCount
         
-        def initialize(proxyuid=nil, machinetype=nil)
+        def initialize(proxyuid=nil, machinetype=nil, availablecount=nil)
           @ProxyUid = proxyuid
           @MachineType = machinetype
+          @AvailableCount = availablecount
         end
 
         def deserialize(params)
           @ProxyUid = params['ProxyUid']
           @MachineType = params['MachineType']
+          @AvailableCount = params['AvailableCount']
         end
       end
 
@@ -3563,14 +3674,16 @@ module TencentCloud
         # @type TableIdlType: String
         # @param TableType: 表格数据结构类型：`GENERIC`或`LIST`
         # @type TableType: String
-        # @param SelectedFields: 待创建索引的字段列表
+        # @param SelectedFields: 待创建索引、缓写、数据订阅的字段列表
         # @type SelectedFields: Array
         # @param ShardNum: 索引分片数
         # @type ShardNum: Integer
+        # @param KafkaInfo: ckafka实例信息
+        # @type KafkaInfo: :class:`Tencentcloud::Tcaplusdb.v20190823.models.KafkaInfo`
 
-        attr_accessor :TableGroupId, :TableName, :TableInstanceId, :TableIdlType, :TableType, :SelectedFields, :ShardNum
+        attr_accessor :TableGroupId, :TableName, :TableInstanceId, :TableIdlType, :TableType, :SelectedFields, :ShardNum, :KafkaInfo
         
-        def initialize(tablegroupid=nil, tablename=nil, tableinstanceid=nil, tableidltype=nil, tabletype=nil, selectedfields=nil, shardnum=nil)
+        def initialize(tablegroupid=nil, tablename=nil, tableinstanceid=nil, tableidltype=nil, tabletype=nil, selectedfields=nil, shardnum=nil, kafkainfo=nil)
           @TableGroupId = tablegroupid
           @TableName = tablename
           @TableInstanceId = tableinstanceid
@@ -3578,6 +3691,7 @@ module TencentCloud
           @TableType = tabletype
           @SelectedFields = selectedfields
           @ShardNum = shardnum
+          @KafkaInfo = kafkainfo
         end
 
         def deserialize(params)
@@ -3595,6 +3709,10 @@ module TencentCloud
             end
           end
           @ShardNum = params['ShardNum']
+          unless params['KafkaInfo'].nil?
+            @KafkaInfo = KafkaInfo.new
+            @KafkaInfo.deserialize(params['KafkaInfo'])
+          end
         end
       end
 
@@ -3651,6 +3769,64 @@ module TencentCloud
         def deserialize(params)
           @ServerUid = params['ServerUid']
           @MachineType = params['MachineType']
+        end
+      end
+
+      # SetTableDataFlow请求参数结构体
+      class SetTableDataFlowRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 表所属集群实例ID
+        # @type ClusterId: String
+        # @param SelectedTables: 待创建分布式索引表格列表
+        # @type SelectedTables: Array
+
+        attr_accessor :ClusterId, :SelectedTables
+        
+        def initialize(clusterid=nil, selectedtables=nil)
+          @ClusterId = clusterid
+          @SelectedTables = selectedtables
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['SelectedTables'].nil?
+            @SelectedTables = []
+            params['SelectedTables'].each do |i|
+              selectedtablewithfield_tmp = SelectedTableWithField.new
+              selectedtablewithfield_tmp.deserialize(i)
+              @SelectedTables << selectedtablewithfield_tmp
+            end
+          end
+        end
+      end
+
+      # SetTableDataFlow返回参数结构体
+      class SetTableDataFlowResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 表格数据订阅创建结果数量
+        # @type TotalCount: Integer
+        # @param TableResults: 表格数据订阅创建结果列表
+        # @type TableResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TableResults, :RequestId
+        
+        def initialize(totalcount=nil, tableresults=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TableResults = tableresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TableResults'].nil?
+            @TableResults = []
+            params['TableResults'].each do |i|
+              tableresultnew_tmp = TableResultNew.new
+              tableresultnew_tmp.deserialize(i)
+              @TableResults << tableresultnew_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3949,7 +4125,7 @@ module TencentCloud
         # @param SortRule: SORTLIST类型表格排序顺序
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SortRule: Integer
-        # @param DbClusterInfoStruct: 表格分布式索引信息
+        # @param DbClusterInfoStruct: 表格分布式索引/缓写、kafka数据订阅信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbClusterInfoStruct: String
 

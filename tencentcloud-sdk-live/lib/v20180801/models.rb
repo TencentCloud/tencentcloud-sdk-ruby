@@ -2817,16 +2817,17 @@ module TencentCloud
         # @type EndTime: String
         # @param StreamName: 流名称，精确匹配。
         # @type StreamName: String
-        # @param PageNum: 页码
+        # @param PageNum: 页码。
         # @type PageNum: Integer
-        # @param PageSize: 每页条数
+        # @param PageSize: 每页条数。
         # @type PageSize: Integer
         # @param EventType: 事件类型。
         # 0: "断流",
         # 1: "推流",
-        # 100: "录制"
+        # 100: "录制"。
         # @type EventType: Integer
-        # @param ResultCode: 回调结果。0为成功，其他为失败
+        # @param ResultCode: 回调结果。
+        # 0为成功，其他为失败。
         # @type ResultCode: Integer
 
         attr_accessor :StartTime, :EndTime, :StreamName, :PageNum, :PageSize, :EventType, :ResultCode
@@ -2854,15 +2855,15 @@ module TencentCloud
 
       # DescribeCallbackRecordsList返回参数结构体
       class DescribeCallbackRecordsListResponse < TencentCloud::Common::AbstractModel
-        # @param DataInfoList: 回调事件列表
+        # @param DataInfoList: 回调事件列表。
         # @type DataInfoList: Array
-        # @param PageNum: 页码
+        # @param PageNum: 页码。
         # @type PageNum: Integer
-        # @param PageSize: 每页条数
+        # @param PageSize: 每页条数。
         # @type PageSize: Integer
-        # @param TotalNum: 总条数
+        # @param TotalNum: 总条数。
         # @type TotalNum: Integer
-        # @param TotalPage: 总页数
+        # @param TotalPage: 总页数。
         # @type TotalPage: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5628,7 +5629,7 @@ module TencentCloud
         # @type Zone: String
         # @param PushDomains: 推流域名（支持查询2019年11 月1日之后的域名维度数据）。
         # @type PushDomains: Array
-        # @param Granularity: 数据维度，数据延迟1个半小时，可选值包括：1、Minute（5分钟粒度，最大支持查询时间范围是31天），2、Day（天粒度，默认值，最大支持查询时间范围是186天当天）。
+        # @param Granularity: 数据维度，数据延迟1个半小时，可选值包括：1、Minute（5分钟粒度，最大支持查询时间范围是31天），2、Day（天粒度，默认值，按照北京时间做跨天处理，最大支持查询时间范围是186天当天）。
         # @type Granularity: String
 
         attr_accessor :StartTime, :EndTime, :Zone, :PushDomains, :Granularity
@@ -5834,7 +5835,7 @@ module TencentCloud
         # @type StreamName: String
         # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
         # @type StartTime: String
-        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS，最大时间跨度支持6小时，支持最近6天数据查询。
+        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS，支持查询最近7天数据，建议查询时间跨度在3小时之内。
         # @type EndTime: String
         # @param PushDomain: 推流域名。
         # @type PushDomain: String

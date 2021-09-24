@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除表格的数据订阅
+
+        # @param request: Request instance for DeleteTableDataFlow.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::DeleteTableDataFlowRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::DeleteTableDataFlowResponse`
+        def DeleteTableDataFlow(request)
+          body = send_request('DeleteTableDataFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTableDataFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除表格组
 
         # @param request: Request instance for DeleteTableGroup.
@@ -1095,6 +1119,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RollbackTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新增、修改表格数据订阅
+
+        # @param request: Request instance for SetTableDataFlow.
+        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::SetTableDataFlowRequest`
+        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::SetTableDataFlowResponse`
+        def SetTableDataFlow(request)
+          body = send_request('SetTableDataFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetTableDataFlowResponse.new
             model.deserialize(response['Response'])
             model
           else

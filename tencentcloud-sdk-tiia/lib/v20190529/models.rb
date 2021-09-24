@@ -89,6 +89,45 @@ module TencentCloud
         end
       end
 
+      # 车牌信息
+      class CarPlateContent < TencentCloud::Common::AbstractModel
+        # @param Plate: 车牌信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Plate: String
+        # @param Color: 车牌颜色。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Color: String
+        # @param Type: 车牌类型；渣土车车牌遮挡时,该值为枚举值“异常”。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param PlateLocation: 车牌在图片中的坐标信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlateLocation: Array
+
+        attr_accessor :Plate, :Color, :Type, :PlateLocation
+        
+        def initialize(plate=nil, color=nil, type=nil, platelocation=nil)
+          @Plate = plate
+          @Color = color
+          @Type = type
+          @PlateLocation = platelocation
+        end
+
+        def deserialize(params)
+          @Plate = params['Plate']
+          @Color = params['Color']
+          @Type = params['Type']
+          unless params['PlateLocation'].nil?
+            @PlateLocation = []
+            params['PlateLocation'].each do |i|
+              coord_tmp = Coord.new
+              coord_tmp.deserialize(i)
+              @PlateLocation << coord_tmp
+            end
+          end
+        end
+      end
+
       # 车辆属性识别的结果
       class CarTagItem < TencentCloud::Common::AbstractModel
         # @param Serial: 车系
@@ -105,10 +144,13 @@ module TencentCloud
         # @type Year: Integer
         # @param CarLocation: 车辆在图片中的坐标信息
         # @type CarLocation: Array
+        # @param PlateContent: 车牌信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlateContent: :class:`Tencentcloud::Tiia.v20190529.models.CarPlateContent`
 
-        attr_accessor :Serial, :Brand, :Type, :Color, :Confidence, :Year, :CarLocation
+        attr_accessor :Serial, :Brand, :Type, :Color, :Confidence, :Year, :CarLocation, :PlateContent
         
-        def initialize(serial=nil, brand=nil, type=nil, color=nil, confidence=nil, year=nil, carlocation=nil)
+        def initialize(serial=nil, brand=nil, type=nil, color=nil, confidence=nil, year=nil, carlocation=nil, platecontent=nil)
           @Serial = serial
           @Brand = brand
           @Type = type
@@ -116,6 +158,7 @@ module TencentCloud
           @Confidence = confidence
           @Year = year
           @CarLocation = carlocation
+          @PlateContent = platecontent
         end
 
         def deserialize(params)
@@ -132,6 +175,10 @@ module TencentCloud
               coord_tmp.deserialize(i)
               @CarLocation << coord_tmp
             end
+          end
+          unless params['PlateContent'].nil?
+            @PlateContent = CarPlateContent.new
+            @PlateContent.deserialize(params['PlateContent'])
           end
         end
       end

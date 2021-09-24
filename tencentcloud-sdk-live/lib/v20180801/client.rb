@@ -1021,7 +1021,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 回调事件查询
+        # 用于查询回调事件。
 
         # @param request: Request instance for DescribeCallbackRecordsList.
         # @type request: :class:`Tencentcloud::live::V20180801::DescribeCallbackRecordsListRequest`
