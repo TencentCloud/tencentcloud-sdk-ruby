@@ -1299,10 +1299,12 @@ module TencentCloud
         # @type Cpu: Integer
         # @param AutoSyncFlag: 是否自动发起灾备同步功能。该参数仅对购买灾备实例生效。 可选值为：0 - 不自动发起灾备同步；1 - 自动发起灾备同步。
         # @type AutoSyncFlag: Integer
+        # @param CageId: 金融围拢 ID 。
+        # @type CageId: String
 
-        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag
+        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId
         
-        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil)
+        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
@@ -1334,6 +1336,7 @@ module TencentCloud
           @InstanceNodes = instancenodes
           @Cpu = cpu
           @AutoSyncFlag = autosyncflag
+          @CageId = cageid
         end
 
         def deserialize(params)
@@ -1385,6 +1388,7 @@ module TencentCloud
           @InstanceNodes = params['InstanceNodes']
           @Cpu = params['Cpu']
           @AutoSyncFlag = params['AutoSyncFlag']
+          @CageId = params['CageId']
         end
       end
 
@@ -1478,10 +1482,12 @@ module TencentCloud
         # @type Cpu: Integer
         # @param AutoSyncFlag: 是否自动发起灾备同步功能。该参数仅对购买灾备实例生效。 可选值为：0 - 不自动发起灾备同步；1 - 自动发起灾备同步。
         # @type AutoSyncFlag: Integer
+        # @param CageId: 金融围拢 ID。
+        # @type CageId: String
 
-        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag
+        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId
         
-        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil)
+        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil)
           @Memory = memory
           @Volume = volume
           @Period = period
@@ -1514,6 +1520,7 @@ module TencentCloud
           @InstanceNodes = instancenodes
           @Cpu = cpu
           @AutoSyncFlag = autosyncflag
+          @CageId = cageid
         end
 
         def deserialize(params)
@@ -1566,6 +1573,7 @@ module TencentCloud
           @InstanceNodes = params['InstanceNodes']
           @Cpu = params['Cpu']
           @AutoSyncFlag = params['AutoSyncFlag']
+          @CageId = params['CageId']
         end
       end
 
@@ -3452,10 +3460,12 @@ module TencentCloud
         # @type DeployGroupIds: Array
         # @param TagKeysForSearch: 是否以标签键为过滤条件。
         # @type TagKeysForSearch: Array
+        # @param CageIds: 金融围拢 ID 。
+        # @type CageIds: Array
 
-        attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch
+        attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch, :CageIds
         
-        def initialize(projectid=nil, instancetypes=nil, vips=nil, status=nil, offset=nil, limit=nil, securitygroupid=nil, paytypes=nil, instancenames=nil, taskstatus=nil, engineversions=nil, vpcids=nil, zoneids=nil, subnetids=nil, cdberrors=nil, orderby=nil, orderdirection=nil, withsecuritygroup=nil, withexcluster=nil, exclusterid=nil, instanceids=nil, initflag=nil, withdr=nil, withro=nil, withmaster=nil, deploygroupids=nil, tagkeysforsearch=nil)
+        def initialize(projectid=nil, instancetypes=nil, vips=nil, status=nil, offset=nil, limit=nil, securitygroupid=nil, paytypes=nil, instancenames=nil, taskstatus=nil, engineversions=nil, vpcids=nil, zoneids=nil, subnetids=nil, cdberrors=nil, orderby=nil, orderdirection=nil, withsecuritygroup=nil, withexcluster=nil, exclusterid=nil, instanceids=nil, initflag=nil, withdr=nil, withro=nil, withmaster=nil, deploygroupids=nil, tagkeysforsearch=nil, cageids=nil)
           @ProjectId = projectid
           @InstanceTypes = instancetypes
           @Vips = vips
@@ -3483,6 +3493,7 @@ module TencentCloud
           @WithMaster = withmaster
           @DeployGroupIds = deploygroupids
           @TagKeysForSearch = tagkeysforsearch
+          @CageIds = cageids
         end
 
         def deserialize(params)
@@ -3513,6 +3524,7 @@ module TencentCloud
           @WithMaster = params['WithMaster']
           @DeployGroupIds = params['DeployGroupIds']
           @TagKeysForSearch = params['TagKeysForSearch']
+          @CageIds = params['CageIds']
         end
       end
 

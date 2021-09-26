@@ -76,7 +76,7 @@ module TencentCloud
 
         # 表单域的控件不能作为印章和签名控件
         # @type ComponentType: String
-        # @param ComponentName: 控件名称
+        # @param ComponentName: 控件简称
         # @type ComponentName: String
         # @param ComponentRequired: 定义控件是否为必填项，默认为false
         # @type ComponentRequired: Boolean
