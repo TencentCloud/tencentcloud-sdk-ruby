@@ -3699,6 +3699,42 @@ module TencentCloud
         end
       end
 
+      # SetProductsForbiddenStatus请求参数结构体
+      class SetProductsForbiddenStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 要设置禁用状态的产品列表
+        # @type ProductID: Array
+        # @param Status: 0启用，1禁用
+        # @type Status: Integer
+
+        attr_accessor :ProductID, :Status
+        
+        def initialize(productid=nil, status=nil)
+          @ProductID = productid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @Status = params['Status']
+        end
+      end
+
+      # SetProductsForbiddenStatus返回参数结构体
+      class SetProductsForbiddenStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 状态统计信息
       class StatusStatistic < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态
@@ -4004,6 +4040,46 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateDevicesEnableState请求参数结构体
+      class UpdateDevicesEnableStateRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 设备所属产品id
+        # @type ProductID: String
+        # @param DeviceNames: 设备名称集合
+        # @type DeviceNames: Array
+        # @param Status: 要设置的设备状态，1为启用，0为禁用
+        # @type Status: Integer
+
+        attr_accessor :ProductID, :DeviceNames, :Status
+        
+        def initialize(productid=nil, devicenames=nil, status=nil)
+          @ProductID = productid
+          @DeviceNames = devicenames
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @DeviceNames = params['DeviceNames']
+          @Status = params['Status']
+        end
+      end
+
+      # UpdateDevicesEnableState返回参数结构体
+      class UpdateDevicesEnableStateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

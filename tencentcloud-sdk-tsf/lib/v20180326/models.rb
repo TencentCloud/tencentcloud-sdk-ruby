@@ -2107,10 +2107,12 @@ module TencentCloud
         # @type ProgramId: String
         # @param ServiceConfigList: 服务配置信息列表
         # @type ServiceConfigList: Array
+        # @param IgnoreCreateImageRepository: 忽略创建镜像仓库
+        # @type IgnoreCreateImageRepository: Boolean
 
-        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList
+        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository
         
-        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil)
+        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil)
           @ApplicationName = applicationname
           @ApplicationType = applicationtype
           @MicroserviceType = microservicetype
@@ -2120,6 +2122,7 @@ module TencentCloud
           @ApplicationRuntimeType = applicationruntimetype
           @ProgramId = programid
           @ServiceConfigList = serviceconfiglist
+          @IgnoreCreateImageRepository = ignorecreateimagerepository
         end
 
         def deserialize(params)
@@ -2139,6 +2142,7 @@ module TencentCloud
               @ServiceConfigList << serviceconfig_tmp
             end
           end
+          @IgnoreCreateImageRepository = params['IgnoreCreateImageRepository']
         end
       end
 

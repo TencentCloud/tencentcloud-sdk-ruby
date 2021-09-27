@@ -733,6 +733,64 @@ module TencentCloud
         end
       end
 
+      # scdn 的自定义 cc 规则
+      class AdvancedCCRules < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param DetectionTime: 探测时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectionTime: Integer
+        # @param FrequencyLimit: 限频阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrequencyLimit: Integer
+        # @param PunishmentSwitch: IP 惩罚开关，可选on|off
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PunishmentSwitch: String
+        # @param PunishmentTime: IP 惩罚时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PunishmentTime: Integer
+        # @param Action: 执行动作，intercept|redirect
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param RedirectUrl: 动作为 redirect 时，重定向的url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectUrl: String
+        # @param Configure: 七层限频具体配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Configure: Array
+
+        attr_accessor :RuleName, :DetectionTime, :FrequencyLimit, :PunishmentSwitch, :PunishmentTime, :Action, :RedirectUrl, :Configure
+        
+        def initialize(rulename=nil, detectiontime=nil, frequencylimit=nil, punishmentswitch=nil, punishmenttime=nil, action=nil, redirecturl=nil, configure=nil)
+          @RuleName = rulename
+          @DetectionTime = detectiontime
+          @FrequencyLimit = frequencylimit
+          @PunishmentSwitch = punishmentswitch
+          @PunishmentTime = punishmenttime
+          @Action = action
+          @RedirectUrl = redirecturl
+          @Configure = configure
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @DetectionTime = params['DetectionTime']
+          @FrequencyLimit = params['FrequencyLimit']
+          @PunishmentSwitch = params['PunishmentSwitch']
+          @PunishmentTime = params['PunishmentTime']
+          @Action = params['Action']
+          @RedirectUrl = params['RedirectUrl']
+          unless params['Configure'].nil?
+            @Configure = []
+            params['Configure'].each do |i|
+              scdnsevenlayerrules_tmp = ScdnSevenLayerRules.new
+              scdnsevenlayerrules_tmp.deserialize(i)
+              @Configure << scdnsevenlayerrules_tmp
+            end
+          end
+        end
+      end
+
       # 缓存过期配置高级版，注意：此字段已经弃用，请使用RuleCache
       class AdvancedCache < TencentCloud::Common::AbstractModel
         # @param CacheRules: 缓存过期规则
@@ -5337,13 +5395,17 @@ module TencentCloud
         # @param CacheOptResult: 结果列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheOptResult: :class:`Tencentcloud::Cdn.v20180606.models.CacheOptResult`
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CacheOptResult, :RequestId
+        attr_accessor :CacheOptResult, :TaskId, :RequestId
         
-        def initialize(cacheoptresult=nil, requestid=nil)
+        def initialize(cacheoptresult=nil, taskid=nil, requestid=nil)
           @CacheOptResult = cacheoptresult
+          @TaskId = taskid
           @RequestId = requestid
         end
 
@@ -5352,6 +5414,7 @@ module TencentCloud
             @CacheOptResult = CacheOptResult.new
             @CacheOptResult.deserialize(params['CacheOptResult'])
           end
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -8825,12 +8888,16 @@ module TencentCloud
         # @param Rules: 自定义 cc 防护规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rules: Array
+        # @param AdvancedRules: 增强自定义 cc 防护规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancedRules: Array
 
-        attr_accessor :Switch, :Rules
+        attr_accessor :Switch, :Rules, :AdvancedRules
         
-        def initialize(switch=nil, rules=nil)
+        def initialize(switch=nil, rules=nil, advancedrules=nil)
           @Switch = switch
           @Rules = rules
+          @AdvancedRules = advancedrules
         end
 
         def deserialize(params)
@@ -8841,6 +8908,14 @@ module TencentCloud
               scdnccrules_tmp = ScdnCCRules.new
               scdnccrules_tmp.deserialize(i)
               @Rules << scdnccrules_tmp
+            end
+          end
+          unless params['AdvancedRules'].nil?
+            @AdvancedRules = []
+            params['AdvancedRules'].each do |i|
+              advancedccrules_tmp = AdvancedCCRules.new
+              advancedccrules_tmp.deserialize(i)
+              @AdvancedRules << advancedccrules_tmp
             end
           end
         end
@@ -9059,6 +9134,59 @@ module TencentCloud
             end
           end
           @Area = params['Area']
+        end
+      end
+
+      # Scdn的七层限频配置
+      class ScdnSevenLayerRules < TencentCloud::Common::AbstractModel
+        # @param CaseSensitive: 区分大小写
+        # @type CaseSensitive: Boolean
+        # @param RuleType: 规则类型：
+        # protocol：协议，填写 HTTP/HTTPS
+        # method：请求方法，支持 HEAD、GET、POST、PUT、OPTIONS、TRACE、DELETE、PATCH、CONNECT
+        # all：域名 匹配内容固定为"*",不可编辑修改
+        # ip：IP 填写 CIDR 表达式
+        # directory：路径，以/开头，支持目录和具体路径，128字符以内
+        # index：首页 默认固定值：/;/index.html,不可编辑修改
+        # path：文件全路径，资源地址，如/acb/test.png，支持通配符，如/abc/*.jpg
+        # file：文件扩展名，填写具体扩展名，如 jpg;png;css
+        # param：请求参数，填写具体 value 值，512字符以内
+        # referer：Referer，填写具体 value 值，512字符以内
+        # cookie：Cookie，填写具体 value 值，512字符以内
+        # user-agent：User-Agent，填写具体 value 值，512字符以内
+        # head：自定义请求头，填写具体value值，512字符以内；内容为空或者不存在时，无匹配内容输入框，填写匹配参数即可
+        # @type RuleType: String
+        # @param LogicOperator: 逻辑操作符，取值 ：
+        # 不包含：exclude,
+        # 包含：include,
+        # 不等于：notequal,
+        # 等于：equal,
+        # 前缀匹配：matching
+        # 内容为空或不存在：null
+        # @type LogicOperator: String
+        # @param RuleValue: 规则值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleValue: Array
+        # @param RuleParam: 匹配参数，只有请求参数、Cookie、自定义请求头 有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleParam: String
+
+        attr_accessor :CaseSensitive, :RuleType, :LogicOperator, :RuleValue, :RuleParam
+        
+        def initialize(casesensitive=nil, ruletype=nil, logicoperator=nil, rulevalue=nil, ruleparam=nil)
+          @CaseSensitive = casesensitive
+          @RuleType = ruletype
+          @LogicOperator = logicoperator
+          @RuleValue = rulevalue
+          @RuleParam = ruleparam
+        end
+
+        def deserialize(params)
+          @CaseSensitive = params['CaseSensitive']
+          @RuleType = params['RuleType']
+          @LogicOperator = params['LogicOperator']
+          @RuleValue = params['RuleValue']
+          @RuleParam = params['RuleParam']
         end
       end
 

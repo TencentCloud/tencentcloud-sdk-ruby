@@ -3140,15 +3140,19 @@ module TencentCloud
       class DescribeClusterKubeconfigRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param IsExtranet: 默认false 获取内网，是否获取外网访问的kubeconfig
+        # @type IsExtranet: Boolean
 
-        attr_accessor :ClusterId
+        attr_accessor :ClusterId, :IsExtranet
         
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, isextranet=nil)
           @ClusterId = clusterid
+          @IsExtranet = isextranet
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @IsExtranet = params['IsExtranet']
         end
       end
 

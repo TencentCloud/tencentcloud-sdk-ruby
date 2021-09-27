@@ -76,6 +76,144 @@ module TencentCloud
         end
       end
 
+      # AddAcRule请求参数结构体
+      class AddAcRuleRequest < TencentCloud::Common::AbstractModel
+        # @param OrderIndex: -1表示优先级最低，1表示优先级最高
+        # @type OrderIndex: String
+        # @param RuleAction: 访问控制策略中设置的流量通过云防火墙的方式。取值：
+        # accept：放行
+        # drop：拒绝
+        # log：观察
+        # @type RuleAction: String
+        # @param Direction: 访问控制策略的流量方向。取值：
+        # in：外对内流量访问控制
+        # out：内对外流量访问控制
+        # @type Direction: String
+        # @param Description: 访问控制策略的描述信息
+        # @type Description: String
+        # @param SourceType: 访问控制策略中的源地址类型。取值：
+        # net：源IP或网段（IP或者CIDR）
+        # location：源区域
+        # template：云防火墙地址模板
+        # instance：实例id
+        # vendor：云厂商
+        # @type SourceType: String
+        # @param SourceContent: 访问控制策略中的源地址。取值：
+        # 当SourceType为net时，SourceContent为源IP地址或者CIDR地址。
+        # 例如：1.1.1.0/24
+
+        # 当SourceType为template时，SourceContent为源地址模板名称。
+
+        # 当SourceType为location时，SourceContent为源区域。
+        # 例如["BJ11", "ZB"]
+
+        # 当SourceType为instance时，SourceContent为该实例id对应的公网ip。
+        # 例如ins-xxxxx
+
+        # 当SourceType为vendor时，SourceContent为所选择厂商的公网ip列表。
+        # 例如：aws,huawei,tencent,aliyun,azure,all代表以上五个
+        # @type SourceContent: String
+        # @param DestType: 访问控制策略中的目的地址类型。取值：
+        # net：目的IP或者网段（IP或者CIDR）
+        # location：源区域
+        # template：云防火墙地址模板
+        # instance：实例id
+        # vendor：云厂商
+        # domain: 域名或者ip
+        # @type DestType: String
+        # @param DestContent: 访问控制策略中的目的地址。取值：
+        # 当DestType为net时，DestContent为源IP地址或者CIDR地址。
+        # 例如：1.1.1.0/24
+
+        # 当DestType为template时，DestContent为源地址模板名称。
+
+        # 当DestType为location时，DestContent为源区域。
+        # 例如["BJ11", "ZB"]
+
+        # 当DestType为instance时，DestContent为该实例id对应的公网ip。
+        # 例如ins-xxxxx
+
+        # 当DestType为domain时，DestContent为该实例id对应的域名规则。
+        # 例如*.qq.com
+
+        # 当DestType为vendor时，DestContent为所选择厂商的公网ip列表。
+        # 例如：aws,huawei,tencent,aliyun,azure,all代表以上五个
+        # @type DestContent: String
+        # @param Port: 访问控制策略的端口。取值：
+        # -1/-1：全部端口
+        # 80,443：80或者443
+        # @type Port: String
+        # @param Protocol: 访问控制策略中流量访问的协议类型。取值：TCP，目前互联网边界规则只能支持TCP，不传参数默认就是TCP
+        # @type Protocol: String
+        # @param ApplicationName: 七层协议，取值：
+        # HTTP/HTTPS
+        # TLS/SSL
+        # @type ApplicationName: String
+        # @param Enable: 是否启用规则，默认为启用，取值：
+        # true为启用，false为不启用
+        # @type Enable: String
+
+        attr_accessor :OrderIndex, :RuleAction, :Direction, :Description, :SourceType, :SourceContent, :DestType, :DestContent, :Port, :Protocol, :ApplicationName, :Enable
+        
+        def initialize(orderindex=nil, ruleaction=nil, direction=nil, description=nil, sourcetype=nil, sourcecontent=nil, desttype=nil, destcontent=nil, port=nil, protocol=nil, applicationname=nil, enable=nil)
+          @OrderIndex = orderindex
+          @RuleAction = ruleaction
+          @Direction = direction
+          @Description = description
+          @SourceType = sourcetype
+          @SourceContent = sourcecontent
+          @DestType = desttype
+          @DestContent = destcontent
+          @Port = port
+          @Protocol = protocol
+          @ApplicationName = applicationname
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @OrderIndex = params['OrderIndex']
+          @RuleAction = params['RuleAction']
+          @Direction = params['Direction']
+          @Description = params['Description']
+          @SourceType = params['SourceType']
+          @SourceContent = params['SourceContent']
+          @DestType = params['DestType']
+          @DestContent = params['DestContent']
+          @Port = params['Port']
+          @Protocol = params['Protocol']
+          @ApplicationName = params['ApplicationName']
+          @Enable = params['Enable']
+        end
+      end
+
+      # AddAcRule返回参数结构体
+      class AddAcRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 创建成功后返回新策略的uuid
+        # @type RuleUuid: Integer
+        # @param ReturnCode: 0代表成功，-1代表失败
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: success代表成功，failed代表失败
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleUuid, :ReturnCode, :ReturnMsg, :RequestId
+        
+        def initialize(ruleuuid=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @RuleUuid = ruleuuid
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssetZone
       class AssetZone < TencentCloud::Common::AbstractModel
         # @param Zone: 地域
@@ -395,6 +533,77 @@ module TencentCloud
 
       # CreateNatFwInstance返回参数结构体
       class CreateNatFwInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNatFwInstanceWithDomain请求参数结构体
+      class CreateNatFwInstanceWithDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 防火墙实例名称
+        # @type Name: String
+        # @param Width: 带宽
+        # @type Width: Integer
+        # @param Mode: 模式 1：接入模式；0：新增模式
+        # @type Mode: Integer
+        # @param NewModeItems: 新增模式传递参数，其中NewModeItems和NatgwList至少传递一种。
+        # @type NewModeItems: :class:`Tencentcloud::Cfw.v20190904.models.NewModeItems`
+        # @param NatGwList: 接入模式接入的nat网关列表，其中NewModeItems和NatgwList至少传递一种。
+        # @type NatGwList: Array
+        # @param Zone: 主可用区，为空则选择默认可用区
+        # @type Zone: String
+        # @param ZoneBak: 备可用区，为空则选择默认可用区
+        # @type ZoneBak: String
+        # @param CrossAZone: 异地灾备 1：使用异地灾备；0：不使用异地灾备
+        # @type CrossAZone: Integer
+        # @param IsCreateDomain: 0不创建域名,1创建域名
+        # @type IsCreateDomain: Integer
+        # @param Domain: 如果要创建域名则必填
+        # @type Domain: String
+
+        attr_accessor :Name, :Width, :Mode, :NewModeItems, :NatGwList, :Zone, :ZoneBak, :CrossAZone, :IsCreateDomain, :Domain
+        
+        def initialize(name=nil, width=nil, mode=nil, newmodeitems=nil, natgwlist=nil, zone=nil, zonebak=nil, crossazone=nil, iscreatedomain=nil, domain=nil)
+          @Name = name
+          @Width = width
+          @Mode = mode
+          @NewModeItems = newmodeitems
+          @NatGwList = natgwlist
+          @Zone = zone
+          @ZoneBak = zonebak
+          @CrossAZone = crossazone
+          @IsCreateDomain = iscreatedomain
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Width = params['Width']
+          @Mode = params['Mode']
+          unless params['NewModeItems'].nil?
+            @NewModeItems = NewModeItems.new
+            @NewModeItems.deserialize(params['NewModeItems'])
+          end
+          @NatGwList = params['NatGwList']
+          @Zone = params['Zone']
+          @ZoneBak = params['ZoneBak']
+          @CrossAZone = params['CrossAZone']
+          @IsCreateDomain = params['IsCreateDomain']
+          @Domain = params['Domain']
+        end
+      end
+
+      # CreateNatFwInstanceWithDomain返回参数结构体
+      class CreateNatFwInstanceWithDomainResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3665,6 +3874,52 @@ module TencentCloud
           @VpcList = params['VpcList']
           @Eips = params['Eips']
           @AddCount = params['AddCount']
+        end
+      end
+
+      # RemoveAcRule请求参数结构体
+      class RemoveAcRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 规则的uuid，可通过查询规则列表获取
+        # @type RuleUuid: Integer
+
+        attr_accessor :RuleUuid
+        
+        def initialize(ruleuuid=nil)
+          @RuleUuid = ruleuuid
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
+        end
+      end
+
+      # RemoveAcRule返回参数结构体
+      class RemoveAcRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleUuid: 删除成功后返回被删除策略的uuid
+        # @type RuleUuid: Integer
+        # @param ReturnCode: 0代表成功，-1代表失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: success代表成功，failed代表失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleUuid, :ReturnCode, :ReturnMsg, :RequestId
+        
+        def initialize(ruleuuid=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @RuleUuid = ruleuuid
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleUuid = params['RuleUuid']
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
         end
       end
 

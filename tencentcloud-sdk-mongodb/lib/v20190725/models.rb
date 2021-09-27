@@ -323,15 +323,15 @@ module TencentCloud
         # @type Volume: Integer
         # @param ReplicateSetNum: 副本集个数，创建副本集实例时，该参数必须设置为1；创建分片实例时，具体参照查询云数据库的售卖规格返回参数
         # @type ReplicateSetNum: Integer
-        # @param NodeNum: 每个副本集内节点个数，当前副本集节点数固定为3，分片从节点数可选，具体参照查询云数据库的售卖规格返回参数
+        # @param NodeNum: 每个副本集内节点个数，具体参照查询云数据库的售卖规格返回参数
         # @type NodeNum: Integer
-        # @param MongoVersion: 版本号，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本，MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本，MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本
+        # @param MongoVersion: 版本号，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本，MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本，MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本，MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本
         # @type MongoVersion: String
         # @param MachineCode: 机器类型，HIO：高IO型；HIO10G：高IO万兆
         # @type MachineCode: String
         # @param GoodsNum: 实例数量，最小值1，最大值为10
         # @type GoodsNum: Integer
-        # @param Zone: 可用区信息，格式如：ap-guangzhou-2
+        # @param Zone: 可用区信息，格式如：ap-guangzhou-2。注：此参数填写的是主可用区，如果选择多可用区部署，Zone必须是AvailabilityZoneList中的一个
         # @type Zone: String
         # @param ClusterType: 实例类型，REPLSET-副本集，SHARD-分片集群
         # @type ClusterType: String
@@ -345,16 +345,28 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param Tags: 实例标签信息
         # @type Tags: Array
-        # @param Clone: 1:正式实例,2:临时实例,3:只读实例，4：灾备实例
+        # @param Clone: 1:正式实例,2:临时实例,3:只读实例,4:灾备实例,5:克隆实例
         # @type Clone: Integer
         # @param Father: 父实例Id，当Clone为3或者4时，这个必须填
         # @type Father: String
         # @param SecurityGroup: 安全组
         # @type SecurityGroup: Array
+        # @param RestoreTime: 克隆实例回档时间。若是克隆实例，则必须填写，示例：2021-08-13 16:30:00。注：只能回档7天内的时间点
+        # @type RestoreTime: String
+        # @param InstanceName: 实例名称。注：名称只支持长度为60个字符的中文、英文、数字、下划线_、分隔符-
+        # @type InstanceName: String
+        # @param AvailabilityZoneList: 多可用区部署的节点列表，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。注：1、多可用区部署节点只能部署在3个不同可用区；2、为了保障跨可用区切换，不支持将集群的大多数节点部署在同一个可用区（如3节点集群不支持2个节点部署在同一个区）；3、不支持4.2及以上版本；4、不支持只读灾备实例；5、不能选择基础网络
+        # @type AvailabilityZoneList: Array
+        # @param MongosCpu: mongos cpu数量，购买MongoDB 4.2 WiredTiger存储引擎版本的分片集群时必须填写，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果
+        # @type MongosCpu: Integer
+        # @param MongosMemory: mongos 内存大小，购买MongoDB 4.2 WiredTiger存储引擎版本的分片集群时必须填写，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果
+        # @type MongosMemory: Integer
+        # @param MongosNodeNum: mongos 数量，购买MongoDB 4.2 WiredTiger存储引擎版本的分片集群时必须填写，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。注：为了保障高可用，最低需要购买3个mongos，上限为32个
+        # @type MongosNodeNum: Integer
 
-        attr_accessor :Memory, :Volume, :ReplicateSetNum, :NodeNum, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :ClusterType, :VpcId, :SubnetId, :Password, :ProjectId, :Tags, :Clone, :Father, :SecurityGroup
+        attr_accessor :Memory, :Volume, :ReplicateSetNum, :NodeNum, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :ClusterType, :VpcId, :SubnetId, :Password, :ProjectId, :Tags, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum
         
-        def initialize(memory=nil, volume=nil, replicatesetnum=nil, nodenum=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, zone=nil, clustertype=nil, vpcid=nil, subnetid=nil, password=nil, projectid=nil, tags=nil, clone=nil, father=nil, securitygroup=nil)
+        def initialize(memory=nil, volume=nil, replicatesetnum=nil, nodenum=nil, mongoversion=nil, machinecode=nil, goodsnum=nil, zone=nil, clustertype=nil, vpcid=nil, subnetid=nil, password=nil, projectid=nil, tags=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil)
           @Memory = memory
           @Volume = volume
           @ReplicateSetNum = replicatesetnum
@@ -372,6 +384,12 @@ module TencentCloud
           @Clone = clone
           @Father = father
           @SecurityGroup = securitygroup
+          @RestoreTime = restoretime
+          @InstanceName = instancename
+          @AvailabilityZoneList = availabilityzonelist
+          @MongosCpu = mongoscpu
+          @MongosMemory = mongosmemory
+          @MongosNodeNum = mongosnodenum
         end
 
         def deserialize(params)
@@ -399,6 +417,12 @@ module TencentCloud
           @Clone = params['Clone']
           @Father = params['Father']
           @SecurityGroup = params['SecurityGroup']
+          @RestoreTime = params['RestoreTime']
+          @InstanceName = params['InstanceName']
+          @AvailabilityZoneList = params['AvailabilityZoneList']
+          @MongosCpu = params['MongosCpu']
+          @MongosMemory = params['MongosMemory']
+          @MongosNodeNum = params['MongosNodeNum']
         end
       end
 
@@ -428,17 +452,17 @@ module TencentCloud
 
       # CreateDBInstance请求参数结构体
       class CreateDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param NodeNum: 每个副本集内节点个数，当前副本集节点数固定为3，分片从节点数可选，具体参照查询云数据库的售卖规格返回参数
+        # @param NodeNum: 每个副本集内节点个数，具体参照查询云数据库的售卖规格返回参数
         # @type NodeNum: Integer
         # @param Memory: 实例内存大小，单位：GB
         # @type Memory: Integer
         # @param Volume: 实例硬盘大小，单位：GB
         # @type Volume: Integer
-        # @param MongoVersion: 版本号，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本，MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本，MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本
+        # @param MongoVersion: 版本号，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本，MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本，MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本，MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本
         # @type MongoVersion: String
         # @param GoodsNum: 实例数量, 最小值1，最大值为10
         # @type GoodsNum: Integer
-        # @param Zone: 实例所属区域名称，格式如：ap-guangzhou-2
+        # @param Zone: 实例所属区域名称，格式如：ap-guangzhou-2。注：此参数填写的是主可用区，如果选择多可用区部署，Zone必须是AvailabilityZoneList中的一个
         # @type Zone: String
         # @param Period: 实例时长，单位：月，可选值包括 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]
         # @type Period: Integer
@@ -462,16 +486,28 @@ module TencentCloud
         # @type AutoRenewFlag: Integer
         # @param AutoVoucher: 是否自动选择代金券，可选值为：1 - 是；0 - 否； 默认为0
         # @type AutoVoucher: Integer
-        # @param Clone: 1:正式实例,2:临时实例,3:只读实例，4：灾备实例
+        # @param Clone: 1:正式实例,2:临时实例,3:只读实例,4:灾备实例,5:克隆实例
         # @type Clone: Integer
-        # @param Father: 若是只读，灾备实例，Father必须填写，即主实例ID
+        # @param Father: 若是只读，灾备实例或克隆实例，Father必须填写，即主实例ID
         # @type Father: String
         # @param SecurityGroup: 安全组
         # @type SecurityGroup: Array
+        # @param RestoreTime: 克隆实例回档时间。若是克隆实例，则必须填写，格式：2021-08-13 16:30:00。注：只能回档7天内的时间点
+        # @type RestoreTime: String
+        # @param InstanceName: 实例名称。注：名称只支持长度为60个字符的中文、英文、数字、下划线_、分隔符-
+        # @type InstanceName: String
+        # @param AvailabilityZoneList: 多可用区部署的节点列表，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。注：1、多可用区部署节点只能部署在3个不同可用区；2、为了保障跨可用区切换，不支持将集群的大多数节点部署在同一个可用区（如3节点集群不支持2个节点部署在同一个区）；3、不支持4.2及以上版本；4、不支持只读灾备实例；5、不能选择基础网络
+        # @type AvailabilityZoneList: Array
+        # @param MongosCpu: mongos cpu数量，购买MongoDB 4.2 WiredTiger存储引擎版本的分片集群时必须填写，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果
+        # @type MongosCpu: Integer
+        # @param MongosMemory: mongos 内存大小，购买MongoDB 4.2 WiredTiger存储引擎版本的分片集群时必须填写，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果
+        # @type MongosMemory: Integer
+        # @param MongosNodeNum: mongos 数量，购买MongoDB 4.2 WiredTiger存储引擎版本的分片集群时必须填写，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。注：为了保障高可用，最低需要购买3个mongos，上限为32个
+        # @type MongosNodeNum: Integer
 
-        attr_accessor :NodeNum, :Memory, :Volume, :MongoVersion, :GoodsNum, :Zone, :Period, :MachineCode, :ClusterType, :ReplicateSetNum, :ProjectId, :VpcId, :SubnetId, :Password, :Tags, :AutoRenewFlag, :AutoVoucher, :Clone, :Father, :SecurityGroup
+        attr_accessor :NodeNum, :Memory, :Volume, :MongoVersion, :GoodsNum, :Zone, :Period, :MachineCode, :ClusterType, :ReplicateSetNum, :ProjectId, :VpcId, :SubnetId, :Password, :Tags, :AutoRenewFlag, :AutoVoucher, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum
         
-        def initialize(nodenum=nil, memory=nil, volume=nil, mongoversion=nil, goodsnum=nil, zone=nil, period=nil, machinecode=nil, clustertype=nil, replicatesetnum=nil, projectid=nil, vpcid=nil, subnetid=nil, password=nil, tags=nil, autorenewflag=nil, autovoucher=nil, clone=nil, father=nil, securitygroup=nil)
+        def initialize(nodenum=nil, memory=nil, volume=nil, mongoversion=nil, goodsnum=nil, zone=nil, period=nil, machinecode=nil, clustertype=nil, replicatesetnum=nil, projectid=nil, vpcid=nil, subnetid=nil, password=nil, tags=nil, autorenewflag=nil, autovoucher=nil, clone=nil, father=nil, securitygroup=nil, restoretime=nil, instancename=nil, availabilityzonelist=nil, mongoscpu=nil, mongosmemory=nil, mongosnodenum=nil)
           @NodeNum = nodenum
           @Memory = memory
           @Volume = volume
@@ -492,6 +528,12 @@ module TencentCloud
           @Clone = clone
           @Father = father
           @SecurityGroup = securitygroup
+          @RestoreTime = restoretime
+          @InstanceName = instancename
+          @AvailabilityZoneList = availabilityzonelist
+          @MongosCpu = mongoscpu
+          @MongosMemory = mongosmemory
+          @MongosNodeNum = mongosnodenum
         end
 
         def deserialize(params)
@@ -522,6 +564,12 @@ module TencentCloud
           @Clone = params['Clone']
           @Father = params['Father']
           @SecurityGroup = params['SecurityGroup']
+          @RestoreTime = params['RestoreTime']
+          @InstanceName = params['InstanceName']
+          @AvailabilityZoneList = params['AvailabilityZoneList']
+          @MongosCpu = params['MongosCpu']
+          @MongosMemory = params['MongosMemory']
+          @MongosNodeNum = params['MongosNodeNum']
         end
       end
 
@@ -667,7 +715,7 @@ module TencentCloud
 
       # DescribeAsyncRequestInfo返回参数结构体
       class DescribeAsyncRequestInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 状态
+        # @param Status: 状态。返回参数有：initial-初始化、running-运行中、paused-任务执行失败，已暂停、undoed-任务执行失败，已回滚、failed-任务执行失败, 已终止、success-成功
         # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

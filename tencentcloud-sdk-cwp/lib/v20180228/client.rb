@@ -799,6 +799,174 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询应用列表
+
+        # @param request: Request instance for DescribeAssetAppList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetAppListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetAppListResponse`
+        def DescribeAssetAppList(request)
+          body = send_request('DescribeAssetAppList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetAppListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取软件关联进程列表
+
+        # @param request: Request instance for DescribeAssetAppProcessList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetAppProcessListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetAppProcessListResponse`
+        def DescribeAssetAppProcessList(request)
+          body = send_request('DescribeAssetAppProcessList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetAppProcessListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取内核模块详情
+
+        # @param request: Request instance for DescribeAssetCoreModuleInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetCoreModuleInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetCoreModuleInfoResponse`
+        def DescribeAssetCoreModuleInfo(request)
+          body = send_request('DescribeAssetCoreModuleInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetCoreModuleInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资产管理内核模块列表
+
+        # @param request: Request instance for DescribeAssetCoreModuleList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetCoreModuleListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetCoreModuleListResponse`
+        def DescribeAssetCoreModuleList(request)
+          body = send_request('DescribeAssetCoreModuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetCoreModuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资产管理数据库详情
+
+        # @param request: Request instance for DescribeAssetDatabaseInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetDatabaseInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetDatabaseInfoResponse`
+        def DescribeAssetDatabaseInfo(request)
+          body = send_request('DescribeAssetDatabaseInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetDatabaseInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资产管理数据库列表
+
+        # @param request: Request instance for DescribeAssetDatabaseList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetDatabaseListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetDatabaseListResponse`
+        def DescribeAssetDatabaseList(request)
+          body = send_request('DescribeAssetDatabaseList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetDatabaseListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资产管理环境变量列表
+
+        # @param request: Request instance for DescribeAssetEnvList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetEnvListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetEnvListResponse`
+        def DescribeAssetEnvList(request)
+          body = send_request('DescribeAssetEnvList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetEnvListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取资产数量： 主机数、账号数、端口数、进程数、软件数、数据库数、Web应用数、Web框架数、Web服务数、Web站点数
 
         # @param request: Request instance for DescribeAssetInfo.
@@ -823,6 +991,198 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询资产管理启动服务列表
+
+        # @param request: Request instance for DescribeAssetInitServiceList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetInitServiceListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetInitServiceListResponse`
+        def DescribeAssetInitServiceList(request)
+          body = send_request('DescribeAssetInitServiceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetInitServiceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Jar包详情
+
+        # @param request: Request instance for DescribeAssetJarInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetJarInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetJarInfoResponse`
+        def DescribeAssetJarInfo(request)
+          body = send_request('DescribeAssetJarInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetJarInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Jar包列表
+
+        # @param request: Request instance for DescribeAssetJarList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetJarListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetJarListResponse`
+        def DescribeAssetJarList(request)
+          body = send_request('DescribeAssetJarList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetJarListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资产管理主机资源详细信息
+
+        # @param request: Request instance for DescribeAssetMachineDetail.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetMachineDetailRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetMachineDetailResponse`
+        def DescribeAssetMachineDetail(request)
+          body = send_request('DescribeAssetMachineDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetMachineDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资产指纹页面的资源监控列表
+
+        # @param request: Request instance for DescribeAssetMachineList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetMachineListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetMachineListResponse`
+        def DescribeAssetMachineList(request)
+          body = send_request('DescribeAssetMachineList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetMachineListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资产管理计划任务列表
+
+        # @param request: Request instance for DescribeAssetPlanTaskList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetPlanTaskListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetPlanTaskListResponse`
+        def DescribeAssetPlanTaskList(request)
+          body = send_request('DescribeAssetPlanTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetPlanTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资产管理端口列表
+
+        # @param request: Request instance for DescribeAssetPortInfoList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetPortInfoListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetPortInfoListResponse`
+        def DescribeAssetPortInfoList(request)
+          body = send_request('DescribeAssetPortInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetPortInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资产管理进程列表
+
+        # @param request: Request instance for DescribeAssetProcessInfoList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetProcessInfoListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetProcessInfoListResponse`
+        def DescribeAssetProcessInfoList(request)
+          body = send_request('DescribeAssetProcessInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetProcessInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取主机最近趋势情况
 
         # @param request: Request instance for DescribeAssetRecentMachineInfo.
@@ -833,6 +1193,246 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAssetRecentMachineInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资产管理系统安装包列表
+
+        # @param request: Request instance for DescribeAssetSystemPackageList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetSystemPackageListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetSystemPackageListResponse`
+        def DescribeAssetSystemPackageList(request)
+          body = send_request('DescribeAssetSystemPackageList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetSystemPackageListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取主机账号详情
+
+        # @param request: Request instance for DescribeAssetUserInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetUserInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetUserInfoResponse`
+        def DescribeAssetUserInfo(request)
+          body = send_request('DescribeAssetUserInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetUserInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取账号列表
+
+        # @param request: Request instance for DescribeAssetUserList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetUserListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetUserListResponse`
+        def DescribeAssetUserList(request)
+          body = send_request('DescribeAssetUserList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetUserListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资产管理Web应用列表
+
+        # @param request: Request instance for DescribeAssetWebAppList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebAppListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebAppListResponse`
+        def DescribeAssetWebAppList(request)
+          body = send_request('DescribeAssetWebAppList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetWebAppListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资产管理Web应用插件列表
+
+        # @param request: Request instance for DescribeAssetWebAppPluginList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebAppPluginListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebAppPluginListResponse`
+        def DescribeAssetWebAppPluginList(request)
+          body = send_request('DescribeAssetWebAppPluginList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetWebAppPluginListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取资产管理Web框架列表
+
+        # @param request: Request instance for DescribeAssetWebFrameList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebFrameListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebFrameListResponse`
+        def DescribeAssetWebFrameList(request)
+          body = send_request('DescribeAssetWebFrameList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetWebFrameListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Web站点详情
+
+        # @param request: Request instance for DescribeAssetWebLocationInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebLocationInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebLocationInfoResponse`
+        def DescribeAssetWebLocationInfo(request)
+          body = send_request('DescribeAssetWebLocationInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetWebLocationInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Web站点列表
+
+        # @param request: Request instance for DescribeAssetWebLocationList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebLocationListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebLocationListResponse`
+        def DescribeAssetWebLocationList(request)
+          body = send_request('DescribeAssetWebLocationList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetWebLocationListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询资产管理Web服务列表
+
+        # @param request: Request instance for DescribeAssetWebServiceInfoList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebServiceInfoListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebServiceInfoListResponse`
+        def DescribeAssetWebServiceInfoList(request)
+          body = send_request('DescribeAssetWebServiceInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetWebServiceInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Web服务关联进程列表
+
+        # @param request: Request instance for DescribeAssetWebServiceProcessList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebServiceProcessListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAssetWebServiceProcessListResponse`
+        def DescribeAssetWebServiceProcessList(request)
+          body = send_request('DescribeAssetWebServiceProcessList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetWebServiceProcessListResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -523,19 +523,23 @@ module TencentCloud
         # @param SalesName: 添加了此外部联系人的企业成员的姓名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SalesName: String
+        # @param DepartmentIdList: 添加了此外部联系人的企业成员的归属部门id列表
+        # @type DepartmentIdList: Array
 
-        attr_accessor :ExternalUserId, :UserId, :SalesName
+        attr_accessor :ExternalUserId, :UserId, :SalesName, :DepartmentIdList
         
-        def initialize(externaluserid=nil, userid=nil, salesname=nil)
+        def initialize(externaluserid=nil, userid=nil, salesname=nil, departmentidlist=nil)
           @ExternalUserId = externaluserid
           @UserId = userid
           @SalesName = salesname
+          @DepartmentIdList = departmentidlist
         end
 
         def deserialize(params)
           @ExternalUserId = params['ExternalUserId']
           @UserId = params['UserId']
           @SalesName = params['SalesName']
+          @DepartmentIdList = params['DepartmentIdList']
         end
       end
 

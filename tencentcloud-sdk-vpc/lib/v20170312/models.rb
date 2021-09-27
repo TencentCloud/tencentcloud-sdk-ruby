@@ -7443,9 +7443,9 @@ module TencentCloud
 
       # DescribeIpGeolocationInfos请求参数结构体
       class DescribeIpGeolocationInfosRequest < TencentCloud::Common::AbstractModel
-        # @param AddressIps: 查询IP地址列表，支持IPv4和IPv6。
+        # @param AddressIps: 需查询的IP地址列表，支持IPv4和IPv6。批量查询的IP地址上限为100个。
         # @type AddressIps: Array
-        # @param Fields: 查询IP地址的字段信息，包括"Country","Province","City","Region","Isp","AsName","AsId"
+        # @param Fields: 需查询的IP地址的字段信息。
         # @type Fields: :class:`Tencentcloud::Vpc.v20170312.models.IpField`
 
         attr_accessor :AddressIps, :Fields
@@ -7466,9 +7466,9 @@ module TencentCloud
 
       # DescribeIpGeolocationInfos返回参数结构体
       class DescribeIpGeolocationInfosResponse < TencentCloud::Common::AbstractModel
-        # @param AddressInfo: IP地址信息列表
+        # @param AddressInfo: IP地址信息列表。
         # @type AddressInfo: Array
-        # @param Total: IP地址信息个数
+        # @param Total: IP地址信息个数。
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

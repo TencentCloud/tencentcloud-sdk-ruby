@@ -581,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询环境下所有的vpc列表
+
+        # @param request: Request instance for DescribeCloudBaseRunAllVpcs.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunAllVpcsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunAllVpcsResponse`
+        def DescribeCloudBaseRunAllVpcs(request)
+          body = send_request('DescribeCloudBaseRunAllVpcs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudBaseRunAllVpcsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 独立网关中拉取云托管服务对应的配置信息
 
         # @param request: Request instance for DescribeCloudBaseRunConfForGateWay.
@@ -591,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudBaseRunConfForGateWayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询服务、版本和操作类型
+
+        # @param request: Request instance for DescribeCloudBaseRunOperationTypes.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunOperationTypesRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunOperationTypesResponse`
+        def DescribeCloudBaseRunOperationTypes(request)
+          body = send_request('DescribeCloudBaseRunOperationTypes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudBaseRunOperationTypesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -687,6 +735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudBaseRunVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
+
+        # @param request: Request instance for DescribeCloudBaseRunVersionRsByCondition.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunVersionRsByConditionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunVersionRsByConditionResponse`
+        def DescribeCloudBaseRunVersionRsByCondition(request)
+          body = send_request('DescribeCloudBaseRunVersionRsByCondition', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudBaseRunVersionRsByConditionResponse.new
             model.deserialize(response['Response'])
             model
           else

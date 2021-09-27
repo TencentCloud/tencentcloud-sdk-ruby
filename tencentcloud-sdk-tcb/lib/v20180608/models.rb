@@ -2604,6 +2604,43 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudBaseRunAllVpcs请求参数结构体
+      class DescribeCloudBaseRunAllVpcsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+        
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeCloudBaseRunAllVpcs返回参数结构体
+      class DescribeCloudBaseRunAllVpcsResponse < TencentCloud::Common::AbstractModel
+        # @param Vpcs: 所有vpcid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vpcs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Vpcs, :RequestId
+        
+        def initialize(vpcs=nil, requestid=nil)
+          @Vpcs = vpcs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Vpcs = params['Vpcs']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudBaseRunConfForGateWay请求参数结构体
       class DescribeCloudBaseRunConfForGateWayRequest < TencentCloud::Common::AbstractModel
         # @param EnvID: 环境ID
@@ -2653,6 +2690,52 @@ module TencentCloud
               @Data << cloudbaserunforgatewayconf_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunOperationTypes请求参数结构体
+      class DescribeCloudBaseRunOperationTypesRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerName: 服务名称，精确匹配
+        # @type ServerName: String
+
+        attr_accessor :EnvId, :ServerName
+        
+        def initialize(envid=nil, servername=nil)
+          @EnvId = envid
+          @ServerName = servername
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+        end
+      end
+
+      # DescribeCloudBaseRunOperationTypes返回参数结构体
+      class DescribeCloudBaseRunOperationTypesResponse < TencentCloud::Common::AbstractModel
+        # @param Action: 操作类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: Array
+        # @param ServerName: 服务名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerName: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Action, :ServerName, :RequestId
+        
+        def initialize(action=nil, servername=nil, requestid=nil)
+          @Action = action
+          @ServerName = servername
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @ServerName = params['ServerName']
           @RequestId = params['RequestId']
         end
       end
@@ -3187,6 +3270,33 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @CpuSize = params['CpuSize']
           @MemSize = params['MemSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunVersionRsByCondition请求参数结构体
+      class DescribeCloudBaseRunVersionRsByConditionRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCloudBaseRunVersionRsByCondition返回参数结构体
+      class DescribeCloudBaseRunVersionRsByConditionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

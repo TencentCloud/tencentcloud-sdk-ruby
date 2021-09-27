@@ -557,7 +557,7 @@ module TencentCloud
         # @type LoadBalancerIds: Array
         # @param ProjectId: 伸缩组内实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/378/4400) 的返回值中的`projectId`字段来获取。不填为默认项目。
         # @type ProjectId: Integer
-        # @param ForwardLoadBalancers: 应用型负载均衡器列表，目前长度上限为20，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
+        # @param ForwardLoadBalancers: 应用型负载均衡器列表，目前长度上限为50，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         # @type ForwardLoadBalancers: Array
         # @param SubnetIds: 子网ID列表，VPC场景下必须指定子网。多个子网以填写顺序为优先级，依次进行尝试，直至可以成功创建实例。
         # @type SubnetIds: Array
@@ -3328,7 +3328,7 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param LoadBalancerIds: 传统负载均衡器ID列表，目前长度上限为20，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         # @type LoadBalancerIds: Array
-        # @param ForwardLoadBalancers: 应用型负载均衡器列表，目前长度上限为20，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
+        # @param ForwardLoadBalancers: 应用型负载均衡器列表，目前长度上限为50，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         # @type ForwardLoadBalancers: Array
         # @param LoadBalancersCheckPolicy: 负载均衡器校验策略，取值包括 ALL 和 DIFF，默认取值为 ALL。
         # <br><li> ALL，所有负载均衡器都合法则通过校验，否则校验报错。

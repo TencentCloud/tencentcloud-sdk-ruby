@@ -87,6 +87,574 @@ module TencentCloud
         end
       end
 
+      # 资源管理进程基本信息
+      class AssetAppBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
+        # @param ProjectId: 主机业务组ID
+        # @type ProjectId: Integer
+        # @param Tag: 主机标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param Name: 应用名称
+        # @type Name: String
+        # @param Type: 应用类型
+        # 1: 运维
+        # 2 : 数据库
+        # 3 : 安全
+        # 4 : 可疑应用
+        # 5 : 系统架构
+        # 6 : 系统应用
+        # 7 : WEB服务
+        # 99: 其他
+        # @type Type: Integer
+        # @param BinPath: 二进制路径
+        # @type BinPath: String
+        # @param ConfigPath: 配置文件路径
+        # @type ConfigPath: String
+        # @param ProcessCount: 关联进程数
+        # @type ProcessCount: Integer
+        # @param Desc: 应用描述
+        # @type Desc: String
+        # @param Version: 版本号
+        # @type Version: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Type, :BinPath, :ConfigPath, :ProcessCount, :Desc, :Version, :UpdateTime
+        
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, type=nil, binpath=nil, configpath=nil, processcount=nil, desc=nil, version=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @Quuid = quuid
+          @Uuid = uuid
+          @OsInfo = osinfo
+          @ProjectId = projectid
+          @Tag = tag
+          @Name = name
+          @Type = type
+          @BinPath = binpath
+          @ConfigPath = configpath
+          @ProcessCount = processcount
+          @Desc = desc
+          @Version = version
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @OsInfo = params['OsInfo']
+          @ProjectId = params['ProjectId']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              machinetag_tmp = MachineTag.new
+              machinetag_tmp.deserialize(i)
+              @Tag << machinetag_tmp
+            end
+          end
+          @Name = params['Name']
+          @Type = params['Type']
+          @BinPath = params['BinPath']
+          @ConfigPath = params['ConfigPath']
+          @ProcessCount = params['ProcessCount']
+          @Desc = params['Desc']
+          @Version = params['Version']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 软件应用关联进程信息
+      class AssetAppProcessInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Status: 进程状态
+        # @type Status: String
+        # @param Version: 进程版本
+        # @type Version: String
+        # @param Path: 路径
+        # @type Path: String
+        # @param User: 用户
+        # @type User: String
+        # @param StartTime: 启动时间
+        # @type StartTime: String
+
+        attr_accessor :Name, :Status, :Version, :Path, :User, :StartTime
+        
+        def initialize(name=nil, status=nil, version=nil, path=nil, user=nil, starttime=nil)
+          @Name = name
+          @Status = status
+          @Version = version
+          @Path = path
+          @User = user
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Status = params['Status']
+          @Version = params['Version']
+          @Path = params['Path']
+          @User = params['User']
+          @StartTime = params['StartTime']
+        end
+      end
+
+      # 资产管理内核模块列表
+      class AssetCoreModuleBaseInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param Path: 路径
+        # @type Path: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param MachineIp: 服务器IP
+        # @type MachineIp: String
+        # @param MachineName: 服务器名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统
+        # @type OsInfo: String
+        # @param Size: 模块大小
+        # @type Size: Integer
+        # @param ProcessCount: 依赖进程数
+        # @type ProcessCount: Integer
+        # @param ModuleCount: 依赖模块数
+        # @type ModuleCount: Integer
+        # @param Id: 模块ID
+        # @type Id: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机uuid
+        # @type Uuid: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :Desc, :Path, :Version, :MachineIp, :MachineName, :OsInfo, :Size, :ProcessCount, :ModuleCount, :Id, :Quuid, :Uuid, :UpdateTime
+        
+        def initialize(name=nil, desc=nil, path=nil, version=nil, machineip=nil, machinename=nil, osinfo=nil, size=nil, processcount=nil, modulecount=nil, id=nil, quuid=nil, uuid=nil, updatetime=nil)
+          @Name = name
+          @Desc = desc
+          @Path = path
+          @Version = version
+          @MachineIp = machineip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Size = size
+          @ProcessCount = processcount
+          @ModuleCount = modulecount
+          @Id = id
+          @Quuid = quuid
+          @Uuid = uuid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Desc = params['Desc']
+          @Path = params['Path']
+          @Version = params['Version']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          @Size = params['Size']
+          @ProcessCount = params['ProcessCount']
+          @ModuleCount = params['ModuleCount']
+          @Id = params['Id']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理内核模块详情
+      class AssetCoreModuleDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param Path: 路径
+        # @type Path: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param Size: 大小
+        # @type Size: Integer
+        # @param Processes: 依赖进程
+        # @type Processes: String
+        # @param Modules: 被依赖模块
+        # @type Modules: String
+        # @param Params: 参数信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: Array
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :Desc, :Path, :Version, :Size, :Processes, :Modules, :Params, :UpdateTime
+        
+        def initialize(name=nil, desc=nil, path=nil, version=nil, size=nil, processes=nil, modules=nil, params=nil, updatetime=nil)
+          @Name = name
+          @Desc = desc
+          @Path = path
+          @Version = version
+          @Size = size
+          @Processes = processes
+          @Modules = modules
+          @Params = params
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Desc = params['Desc']
+          @Path = params['Path']
+          @Version = params['Version']
+          @Size = params['Size']
+          @Processes = params['Processes']
+          @Modules = params['Modules']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              assetcoremoduleparam_tmp = AssetCoreModuleParam.new
+              assetcoremoduleparam_tmp.deserialize(i)
+              @Params << assetcoremoduleparam_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理内核模块参数
+      class AssetCoreModuleParam < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Data: 数据
+        # @type Data: String
+
+        attr_accessor :Name, :Data
+        
+        def initialize(name=nil, data=nil)
+          @Name = name
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Data = params['Data']
+        end
+      end
+
+      # 资源管理数据库列表信息
+      class AssetDatabaseBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
+        # @param ProjectId: 主机业务组ID
+        # @type ProjectId: Integer
+        # @param Tag: 主机标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param Name: 数据库名
+        # @type Name: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param Port: 监听端口
+        # @type Port: String
+        # @param Proto: 协议
+        # @type Proto: String
+        # @param User: 运行用户
+        # @type User: String
+        # @param Ip: 绑定IP
+        # @type Ip: String
+        # @param ConfigPath: 配置文件路径
+        # @type ConfigPath: String
+        # @param LogPath: 日志文件路径
+        # @type LogPath: String
+        # @param DataPath: 数据路径
+        # @type DataPath: String
+        # @param Permission: 运行权限
+        # @type Permission: String
+        # @param ErrorLogPath: 错误日志路径
+        # @type ErrorLogPath: String
+        # @param PlugInPath: 插件路径
+        # @type PlugInPath: String
+        # @param BinPath: 二进制路径
+        # @type BinPath: String
+        # @param Param: 启动参数
+        # @type Param: String
+        # @param Id: 数据库ID
+        # @type Id: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Port, :Proto, :User, :Ip, :ConfigPath, :LogPath, :DataPath, :Permission, :ErrorLogPath, :PlugInPath, :BinPath, :Param, :Id, :UpdateTime
+        
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, port=nil, proto=nil, user=nil, ip=nil, configpath=nil, logpath=nil, datapath=nil, permission=nil, errorlogpath=nil, pluginpath=nil, binpath=nil, param=nil, id=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @Quuid = quuid
+          @Uuid = uuid
+          @OsInfo = osinfo
+          @ProjectId = projectid
+          @Tag = tag
+          @Name = name
+          @Version = version
+          @Port = port
+          @Proto = proto
+          @User = user
+          @Ip = ip
+          @ConfigPath = configpath
+          @LogPath = logpath
+          @DataPath = datapath
+          @Permission = permission
+          @ErrorLogPath = errorlogpath
+          @PlugInPath = pluginpath
+          @BinPath = binpath
+          @Param = param
+          @Id = id
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @OsInfo = params['OsInfo']
+          @ProjectId = params['ProjectId']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              machinetag_tmp = MachineTag.new
+              machinetag_tmp.deserialize(i)
+              @Tag << machinetag_tmp
+            end
+          end
+          @Name = params['Name']
+          @Version = params['Version']
+          @Port = params['Port']
+          @Proto = params['Proto']
+          @User = params['User']
+          @Ip = params['Ip']
+          @ConfigPath = params['ConfigPath']
+          @LogPath = params['LogPath']
+          @DataPath = params['DataPath']
+          @Permission = params['Permission']
+          @ErrorLogPath = params['ErrorLogPath']
+          @PlugInPath = params['PlugInPath']
+          @BinPath = params['BinPath']
+          @Param = params['Param']
+          @Id = params['Id']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资源管理数据库列表信息
+      class AssetDatabaseDetail < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
+        # @param Name: 数据库名
+        # @type Name: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param Port: 监听端口
+        # @type Port: String
+        # @param Proto: 协议
+        # @type Proto: String
+        # @param User: 运行用户
+        # @type User: String
+        # @param Ip: 绑定IP
+        # @type Ip: String
+        # @param ConfigPath: 配置文件路径
+        # @type ConfigPath: String
+        # @param LogPath: 日志文件路径
+        # @type LogPath: String
+        # @param DataPath: 数据路径
+        # @type DataPath: String
+        # @param Permission: 运行权限
+        # @type Permission: String
+        # @param ErrorLogPath: 错误日志路径
+        # @type ErrorLogPath: String
+        # @param PlugInPath: 插件路径
+        # @type PlugInPath: String
+        # @param BinPath: 二进制路径
+        # @type BinPath: String
+        # @param Param: 启动参数
+        # @type Param: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :Name, :Version, :Port, :Proto, :User, :Ip, :ConfigPath, :LogPath, :DataPath, :Permission, :ErrorLogPath, :PlugInPath, :BinPath, :Param, :UpdateTime
+        
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, name=nil, version=nil, port=nil, proto=nil, user=nil, ip=nil, configpath=nil, logpath=nil, datapath=nil, permission=nil, errorlogpath=nil, pluginpath=nil, binpath=nil, param=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @Quuid = quuid
+          @Uuid = uuid
+          @OsInfo = osinfo
+          @Name = name
+          @Version = version
+          @Port = port
+          @Proto = proto
+          @User = user
+          @Ip = ip
+          @ConfigPath = configpath
+          @LogPath = logpath
+          @DataPath = datapath
+          @Permission = permission
+          @ErrorLogPath = errorlogpath
+          @PlugInPath = pluginpath
+          @BinPath = binpath
+          @Param = param
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @OsInfo = params['OsInfo']
+          @Name = params['Name']
+          @Version = params['Version']
+          @Port = params['Port']
+          @Proto = params['Proto']
+          @User = params['User']
+          @Ip = params['Ip']
+          @ConfigPath = params['ConfigPath']
+          @LogPath = params['LogPath']
+          @DataPath = params['DataPath']
+          @Permission = params['Permission']
+          @ErrorLogPath = params['ErrorLogPath']
+          @PlugInPath = params['PlugInPath']
+          @BinPath = params['BinPath']
+          @Param = params['Param']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理磁盘分区信息
+      class AssetDiskPartitionInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 分区名
+        # @type Name: String
+        # @param Size: 分区大小：单位G
+        # @type Size: Integer
+        # @param Percent: 分区使用率
+        # @type Percent: Float
+        # @param Type: 文件系统类型
+        # @type Type: String
+        # @param Path: 挂载目录
+        # @type Path: String
+        # @param Used: 已使用空间：单位G
+        # @type Used: Integer
+
+        attr_accessor :Name, :Size, :Percent, :Type, :Path, :Used
+        
+        def initialize(name=nil, size=nil, percent=nil, type=nil, path=nil, used=nil)
+          @Name = name
+          @Size = size
+          @Percent = percent
+          @Type = type
+          @Path = path
+          @Used = used
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Size = params['Size']
+          @Percent = params['Percent']
+          @Type = params['Type']
+          @Path = params['Path']
+          @Used = params['Used']
+        end
+      end
+
+      # 资产管理环境变量列表
+      class AssetEnvBaseInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Type: 类型：
+        # 0:用户变量
+        # 1:系统变量
+        # @type Type: Integer
+        # @param User: 启动用户
+        # @type User: String
+        # @param Value: 环境变量值
+        # @type Value: String
+        # @param MachineIp: 服务器IP
+        # @type MachineIp: String
+        # @param MachineName: 服务器名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统
+        # @type OsInfo: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机uuid
+        # @type Uuid: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :Type, :User, :Value, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime
+        
+        def initialize(name=nil, type=nil, user=nil, value=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil)
+          @Name = name
+          @Type = type
+          @User = user
+          @Value = value
+          @MachineIp = machineip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Quuid = quuid
+          @Uuid = uuid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @User = params['User']
+          @Value = params['Value']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 容器安全
       # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
       # 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
@@ -114,6 +682,207 @@ module TencentCloud
         end
       end
 
+      # 资产管理启动服务列表
+      class AssetInitServiceBaseInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Type: 类型：
+        # 1:编码器
+        # 2:IE插件
+        # 3:网络提供者
+        # 4:镜像劫持
+        # 5:LSA提供者
+        # 6:KnownDLLs
+        # 7:启动执行
+        # 8:WMI
+        # 9:计划任务
+        # 10:Winsock提供者
+        # 11:打印监控器
+        # 12:资源管理器
+        # 13:驱动服务
+        # 14:登录
+        # @type Type: Integer
+        # @param Status: 默认启用状态：0未启用，1启用
+        # @type Status: Integer
+        # @param User: 启动用户
+        # @type User: String
+        # @param Path: 路径
+        # @type Path: String
+        # @param MachineIp: 服务器IP
+        # @type MachineIp: String
+        # @param MachineName: 服务器名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统
+        # @type OsInfo: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机uuid
+        # @type Uuid: String
+        # @param UpdateTime: 数据更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :Type, :Status, :User, :Path, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime
+        
+        def initialize(name=nil, type=nil, status=nil, user=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil)
+          @Name = name
+          @Type = type
+          @Status = status
+          @User = user
+          @Path = path
+          @MachineIp = machineip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Quuid = quuid
+          @Uuid = uuid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Status = params['Status']
+          @User = params['User']
+          @Path = params['Path']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理jar包列表
+      class AssetJarBaseInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Type: 类型：1应用程序，2系统类库，3Web服务自带库，8:其他，
+        # @type Type: Integer
+        # @param Status: 是否可执行：0未知，1是，2否
+        # @type Status: Integer
+        # @param Version: 版本
+        # @type Version: String
+        # @param Path: 路径
+        # @type Path: String
+        # @param MachineIp: 服务器IP
+        # @type MachineIp: String
+        # @param MachineName: 服务器名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统
+        # @type OsInfo: String
+        # @param Id: Jar包ID
+        # @type Id: String
+        # @param Md5: Jar包Md5
+        # @type Md5: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机uuid
+        # @type Uuid: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :Type, :Status, :Version, :Path, :MachineIp, :MachineName, :OsInfo, :Id, :Md5, :Quuid, :Uuid, :UpdateTime
+        
+        def initialize(name=nil, type=nil, status=nil, version=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, id=nil, md5=nil, quuid=nil, uuid=nil, updatetime=nil)
+          @Name = name
+          @Type = type
+          @Status = status
+          @Version = version
+          @Path = path
+          @MachineIp = machineip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Id = id
+          @Md5 = md5
+          @Quuid = quuid
+          @Uuid = uuid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Status = params['Status']
+          @Version = params['Version']
+          @Path = params['Path']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          @Id = params['Id']
+          @Md5 = params['Md5']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理jar包详情
+      class AssetJarDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Type: 类型：1应用程序，2系统类库，3Web服务自带库，8:其他，
+        # @type Type: Integer
+        # @param Status: 是否可执行：0未知，1是，2否
+        # @type Status: Integer
+        # @param Version: 版本
+        # @type Version: String
+        # @param Path: 路径
+        # @type Path: String
+        # @param MachineIp: 服务器IP
+        # @type MachineIp: String
+        # @param MachineName: 服务器名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统
+        # @type OsInfo: String
+        # @param Process: 引用进程列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Process: Array
+        # @param Md5: Jar包Md5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :Type, :Status, :Version, :Path, :MachineIp, :MachineName, :OsInfo, :Process, :Md5, :UpdateTime
+        
+        def initialize(name=nil, type=nil, status=nil, version=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, process=nil, md5=nil, updatetime=nil)
+          @Name = name
+          @Type = type
+          @Status = status
+          @Version = version
+          @Path = path
+          @MachineIp = machineip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Process = process
+          @Md5 = md5
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Status = params['Status']
+          @Version = params['Version']
+          @Path = params['Path']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          unless params['Process'].nil?
+            @Process = []
+            params['Process'].each do |i|
+              assetappprocessinfo_tmp = AssetAppProcessInfo.new
+              assetappprocessinfo_tmp.deserialize(i)
+              @Process << assetappprocessinfo_tmp
+            end
+          end
+          @Md5 = params['Md5']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # key-val类型的通用数据结构
       class AssetKeyVal < TencentCloud::Common::AbstractModel
         # @param Key: 标签
@@ -136,6 +905,1362 @@ module TencentCloud
           @Key = params['Key']
           @Value = params['Value']
           @Desc = params['Desc']
+        end
+      end
+
+      # 资产指纹中服务器列表的基本信息
+      class AssetMachineBaseInfo < TencentCloud::Common::AbstractModel
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+        # @param Uuid: 服务器uuid
+        # @type Uuid: String
+        # @param MachineIp: 服务器内网IP
+        # @type MachineIp: String
+        # @param MachineName: 服务器名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统名称
+        # @type OsInfo: String
+        # @param Cpu: CPU信息
+        # @type Cpu: String
+        # @param MemSize: 内存容量：单位G
+        # @type MemSize: Integer
+        # @param MemLoad: 内存使用率百分比
+        # @type MemLoad: String
+        # @param DiskSize: 硬盘容量：单位G
+        # @type DiskSize: Integer
+        # @param DiskLoad: 硬盘使用率百分比
+        # @type DiskLoad: String
+        # @param PartitionCount: 分区数
+        # @type PartitionCount: Integer
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param ProjectId: 业务组ID
+        # @type ProjectId: Integer
+        # @param CpuSize: Cpu数量
+        # @type CpuSize: Integer
+        # @param CpuLoad: Cpu使用率百分比
+        # @type CpuLoad: String
+        # @param Tag: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :ProjectId, :CpuSize, :CpuLoad, :Tag, :UpdateTime
+        
+        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, projectid=nil, cpusize=nil, cpuload=nil, tag=nil, updatetime=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @MachineIp = machineip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Cpu = cpu
+          @MemSize = memsize
+          @MemLoad = memload
+          @DiskSize = disksize
+          @DiskLoad = diskload
+          @PartitionCount = partitioncount
+          @MachineWanIp = machinewanip
+          @ProjectId = projectid
+          @CpuSize = cpusize
+          @CpuLoad = cpuload
+          @Tag = tag
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          @Cpu = params['Cpu']
+          @MemSize = params['MemSize']
+          @MemLoad = params['MemLoad']
+          @DiskSize = params['DiskSize']
+          @DiskLoad = params['DiskLoad']
+          @PartitionCount = params['PartitionCount']
+          @MachineWanIp = params['MachineWanIp']
+          @ProjectId = params['ProjectId']
+          @CpuSize = params['CpuSize']
+          @CpuLoad = params['CpuLoad']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              machinetag_tmp = MachineTag.new
+              machinetag_tmp.deserialize(i)
+              @Tag << machinetag_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产指纹中服务器列表的基本信息
+      class AssetMachineDetail < TencentCloud::Common::AbstractModel
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+        # @param Uuid: 服务器uuid
+        # @type Uuid: String
+        # @param MachineIp: 服务器内网IP
+        # @type MachineIp: String
+        # @param MachineName: 服务器名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统名称
+        # @type OsInfo: String
+        # @param Cpu: CPU信息
+        # @type Cpu: String
+        # @param MemSize: 内存容量：单位G
+        # @type MemSize: Integer
+        # @param MemLoad: 内存使用率百分比
+        # @type MemLoad: String
+        # @param DiskSize: 硬盘容量：单位G
+        # @type DiskSize: Integer
+        # @param DiskLoad: 硬盘使用率百分比
+        # @type DiskLoad: String
+        # @param PartitionCount: 分区数
+        # @type PartitionCount: Integer
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param CpuSize: Cpu数量
+        # @type CpuSize: Integer
+        # @param CpuLoad: Cpu使用率百分比
+        # @type CpuLoad: String
+        # @param ProtectLevel: 防护级别：0基础版，1专业版
+        # @type ProtectLevel: Integer
+        # @param RiskStatus: 风险状态：UNKNOW-未知，RISK-风险，SAFT-安全
+        # @type RiskStatus: String
+        # @param ProtectDays: 已防护天数
+        # @type ProtectDays: Integer
+        # @param BuyTime: 专业版开通时间
+        # @type BuyTime: String
+        # @param EndTime: 专业版到期时间
+        # @type EndTime: String
+        # @param CoreVersion: 内核版本
+        # @type CoreVersion: String
+        # @param OsType: linux/windows
+        # @type OsType: String
+        # @param AgentVersion: agent版本
+        # @type AgentVersion: String
+        # @param InstallTime: 安装时间
+        # @type InstallTime: String
+        # @param BootTime: 系统启动时间
+        # @type BootTime: String
+        # @param LastLiveTime: 最后上线时间
+        # @type LastLiveTime: String
+        # @param Producer: 生产商
+        # @type Producer: String
+        # @param SerialNumber: 序列号
+        # @type SerialNumber: String
+        # @param NetCards: 网卡
+        # @type NetCards: Array
+        # @param Disks: 分区
+        # @type Disks: Array
+        # @param Status: 0在线，1已离线
+        # @type Status: Integer
+        # @param ProjectId: 业务组ID
+        # @type ProjectId: Integer
+        # @param DeviceVersion: 设备型号
+        # @type DeviceVersion: String
+        # @param OfflineTime: 离线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineTime: String
+        # @param InstanceId: 主机ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :CpuSize, :CpuLoad, :ProtectLevel, :RiskStatus, :ProtectDays, :BuyTime, :EndTime, :CoreVersion, :OsType, :AgentVersion, :InstallTime, :BootTime, :LastLiveTime, :Producer, :SerialNumber, :NetCards, :Disks, :Status, :ProjectId, :DeviceVersion, :OfflineTime, :InstanceId, :UpdateTime
+        
+        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, cpusize=nil, cpuload=nil, protectlevel=nil, riskstatus=nil, protectdays=nil, buytime=nil, endtime=nil, coreversion=nil, ostype=nil, agentversion=nil, installtime=nil, boottime=nil, lastlivetime=nil, producer=nil, serialnumber=nil, netcards=nil, disks=nil, status=nil, projectid=nil, deviceversion=nil, offlinetime=nil, instanceid=nil, updatetime=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @MachineIp = machineip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Cpu = cpu
+          @MemSize = memsize
+          @MemLoad = memload
+          @DiskSize = disksize
+          @DiskLoad = diskload
+          @PartitionCount = partitioncount
+          @MachineWanIp = machinewanip
+          @CpuSize = cpusize
+          @CpuLoad = cpuload
+          @ProtectLevel = protectlevel
+          @RiskStatus = riskstatus
+          @ProtectDays = protectdays
+          @BuyTime = buytime
+          @EndTime = endtime
+          @CoreVersion = coreversion
+          @OsType = ostype
+          @AgentVersion = agentversion
+          @InstallTime = installtime
+          @BootTime = boottime
+          @LastLiveTime = lastlivetime
+          @Producer = producer
+          @SerialNumber = serialnumber
+          @NetCards = netcards
+          @Disks = disks
+          @Status = status
+          @ProjectId = projectid
+          @DeviceVersion = deviceversion
+          @OfflineTime = offlinetime
+          @InstanceId = instanceid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          @Cpu = params['Cpu']
+          @MemSize = params['MemSize']
+          @MemLoad = params['MemLoad']
+          @DiskSize = params['DiskSize']
+          @DiskLoad = params['DiskLoad']
+          @PartitionCount = params['PartitionCount']
+          @MachineWanIp = params['MachineWanIp']
+          @CpuSize = params['CpuSize']
+          @CpuLoad = params['CpuLoad']
+          @ProtectLevel = params['ProtectLevel']
+          @RiskStatus = params['RiskStatus']
+          @ProtectDays = params['ProtectDays']
+          @BuyTime = params['BuyTime']
+          @EndTime = params['EndTime']
+          @CoreVersion = params['CoreVersion']
+          @OsType = params['OsType']
+          @AgentVersion = params['AgentVersion']
+          @InstallTime = params['InstallTime']
+          @BootTime = params['BootTime']
+          @LastLiveTime = params['LastLiveTime']
+          @Producer = params['Producer']
+          @SerialNumber = params['SerialNumber']
+          unless params['NetCards'].nil?
+            @NetCards = []
+            params['NetCards'].each do |i|
+              assetnetworkcardinfo_tmp = AssetNetworkCardInfo.new
+              assetnetworkcardinfo_tmp.deserialize(i)
+              @NetCards << assetnetworkcardinfo_tmp
+            end
+          end
+          unless params['Disks'].nil?
+            @Disks = []
+            params['Disks'].each do |i|
+              assetdiskpartitioninfo_tmp = AssetDiskPartitionInfo.new
+              assetdiskpartitioninfo_tmp.deserialize(i)
+              @Disks << assetdiskpartitioninfo_tmp
+            end
+          end
+          @Status = params['Status']
+          @ProjectId = params['ProjectId']
+          @DeviceVersion = params['DeviceVersion']
+          @OfflineTime = params['OfflineTime']
+          @InstanceId = params['InstanceId']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理网卡信息
+      class AssetNetworkCardInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 网卡名称
+        # @type Name: String
+        # @param Ip: Ipv4对应IP
+        # @type Ip: String
+        # @param GateWay: 网关
+        # @type GateWay: String
+        # @param Mac: MAC地址
+        # @type Mac: String
+        # @param Ipv6: Ipv6对应IP
+        # @type Ipv6: String
+        # @param DnsServer: DNS服务器
+        # @type DnsServer: String
+
+        attr_accessor :Name, :Ip, :GateWay, :Mac, :Ipv6, :DnsServer
+        
+        def initialize(name=nil, ip=nil, gateway=nil, mac=nil, ipv6=nil, dnsserver=nil)
+          @Name = name
+          @Ip = ip
+          @GateWay = gateway
+          @Mac = mac
+          @Ipv6 = ipv6
+          @DnsServer = dnsserver
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Ip = params['Ip']
+          @GateWay = params['GateWay']
+          @Mac = params['Mac']
+          @Ipv6 = params['Ipv6']
+          @DnsServer = params['DnsServer']
+        end
+      end
+
+      # 资产管理计划任务列表
+      class AssetPlanTask < TencentCloud::Common::AbstractModel
+        # @param Status: 默认启用状态：1启用，2未启用
+        # @type Status: Integer
+        # @param Cycle: 执行周期
+        # @type Cycle: String
+        # @param Command: 执行命令或脚本
+        # @type Command: String
+        # @param User: 启动用户
+        # @type User: String
+        # @param ConfigPath: 配置文件路径
+        # @type ConfigPath: String
+        # @param MachineIp: 服务器IP
+        # @type MachineIp: String
+        # @param MachineName: 服务器名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统
+        # @type OsInfo: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机uuid
+        # @type Uuid: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Status, :Cycle, :Command, :User, :ConfigPath, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime
+        
+        def initialize(status=nil, cycle=nil, command=nil, user=nil, configpath=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil)
+          @Status = status
+          @Cycle = cycle
+          @Command = command
+          @User = user
+          @ConfigPath = configpath
+          @MachineIp = machineip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Quuid = quuid
+          @Uuid = uuid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Cycle = params['Cycle']
+          @Command = params['Command']
+          @User = params['User']
+          @ConfigPath = params['ConfigPath']
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资源管理账号基本信息
+      class AssetPortBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
+        # @param ProjectId: 主机业务组ID
+        # @type ProjectId: Integer
+        # @param Tag: 主机标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param ProcessName: 进程名称
+        # @type ProcessName: String
+        # @param ProcessVersion: 进程版本
+        # @type ProcessVersion: String
+        # @param ProcessPath: 进程路径
+        # @type ProcessPath: String
+        # @param Pid: 进程ID
+        # @type Pid: String
+        # @param User: 运行用户
+        # @type User: String
+        # @param StartTime: 启动时间
+        # @type StartTime: String
+        # @param Param: 启动参数
+        # @type Param: String
+        # @param Teletype: 进程TTY
+        # @type Teletype: String
+        # @param Port: 端口
+        # @type Port: String
+        # @param GroupName: 所属用户组
+        # @type GroupName: String
+        # @param Md5: 进程MD5
+        # @type Md5: String
+        # @param Ppid: 父进程ID
+        # @type Ppid: String
+        # @param ParentProcessName: 父进程名称
+        # @type ParentProcessName: String
+        # @param Proto: 端口协议
+        # @type Proto: String
+        # @param BindIp: 绑定IP
+        # @type BindIp: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :ProcessName, :ProcessVersion, :ProcessPath, :Pid, :User, :StartTime, :Param, :Teletype, :Port, :GroupName, :Md5, :Ppid, :ParentProcessName, :Proto, :BindIp, :MachineName, :UpdateTime
+        
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, processname=nil, processversion=nil, processpath=nil, pid=nil, user=nil, starttime=nil, param=nil, teletype=nil, port=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, proto=nil, bindip=nil, machinename=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @Quuid = quuid
+          @Uuid = uuid
+          @OsInfo = osinfo
+          @ProjectId = projectid
+          @Tag = tag
+          @ProcessName = processname
+          @ProcessVersion = processversion
+          @ProcessPath = processpath
+          @Pid = pid
+          @User = user
+          @StartTime = starttime
+          @Param = param
+          @Teletype = teletype
+          @Port = port
+          @GroupName = groupname
+          @Md5 = md5
+          @Ppid = ppid
+          @ParentProcessName = parentprocessname
+          @Proto = proto
+          @BindIp = bindip
+          @MachineName = machinename
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @OsInfo = params['OsInfo']
+          @ProjectId = params['ProjectId']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              machinetag_tmp = MachineTag.new
+              machinetag_tmp.deserialize(i)
+              @Tag << machinetag_tmp
+            end
+          end
+          @ProcessName = params['ProcessName']
+          @ProcessVersion = params['ProcessVersion']
+          @ProcessPath = params['ProcessPath']
+          @Pid = params['Pid']
+          @User = params['User']
+          @StartTime = params['StartTime']
+          @Param = params['Param']
+          @Teletype = params['Teletype']
+          @Port = params['Port']
+          @GroupName = params['GroupName']
+          @Md5 = params['Md5']
+          @Ppid = params['Ppid']
+          @ParentProcessName = params['ParentProcessName']
+          @Proto = params['Proto']
+          @BindIp = params['BindIp']
+          @MachineName = params['MachineName']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资源管理进程基本信息
+      class AssetProcessBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
+        # @param ProjectId: 主机业务组ID
+        # @type ProjectId: Integer
+        # @param Tag: 主机标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param Name: 进程名称
+        # @type Name: String
+        # @param Desc: 进程说明
+        # @type Desc: String
+        # @param Path: 进程路径
+        # @type Path: String
+        # @param Pid: 进程ID
+        # @type Pid: String
+        # @param User: 运行用户
+        # @type User: String
+        # @param StartTime: 启动时间
+        # @type StartTime: String
+        # @param Param: 启动参数
+        # @type Param: String
+        # @param Tty: 进程TTY
+        # @type Tty: String
+        # @param Version: 进程版本
+        # @type Version: String
+        # @param GroupName: 进程用户组
+        # @type GroupName: String
+        # @param Md5: 进程MD5
+        # @type Md5: String
+        # @param Ppid: 父进程ID
+        # @type Ppid: String
+        # @param ParentProcessName: 父进程名称
+        # @type ParentProcessName: String
+        # @param Status: 进程状态
+        # @type Status: String
+        # @param HasSign: 数字签名:0无，1有， 999 空，仅windows
+        # @type HasSign: Integer
+        # @param InstallByPackage: 是否通过安装包安装：:0否，1是， 999 空，仅linux
+        # @type InstallByPackage: Integer
+        # @param PackageName: 软件包名
+        # @type PackageName: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Desc, :Path, :Pid, :User, :StartTime, :Param, :Tty, :Version, :GroupName, :Md5, :Ppid, :ParentProcessName, :Status, :HasSign, :InstallByPackage, :PackageName, :MachineName, :UpdateTime
+        
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, desc=nil, path=nil, pid=nil, user=nil, starttime=nil, param=nil, tty=nil, version=nil, groupname=nil, md5=nil, ppid=nil, parentprocessname=nil, status=nil, hassign=nil, installbypackage=nil, packagename=nil, machinename=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @Quuid = quuid
+          @Uuid = uuid
+          @OsInfo = osinfo
+          @ProjectId = projectid
+          @Tag = tag
+          @Name = name
+          @Desc = desc
+          @Path = path
+          @Pid = pid
+          @User = user
+          @StartTime = starttime
+          @Param = param
+          @Tty = tty
+          @Version = version
+          @GroupName = groupname
+          @Md5 = md5
+          @Ppid = ppid
+          @ParentProcessName = parentprocessname
+          @Status = status
+          @HasSign = hassign
+          @InstallByPackage = installbypackage
+          @PackageName = packagename
+          @MachineName = machinename
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @OsInfo = params['OsInfo']
+          @ProjectId = params['ProjectId']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              machinetag_tmp = MachineTag.new
+              machinetag_tmp.deserialize(i)
+              @Tag << machinetag_tmp
+            end
+          end
+          @Name = params['Name']
+          @Desc = params['Desc']
+          @Path = params['Path']
+          @Pid = params['Pid']
+          @User = params['User']
+          @StartTime = params['StartTime']
+          @Param = params['Param']
+          @Tty = params['Tty']
+          @Version = params['Version']
+          @GroupName = params['GroupName']
+          @Md5 = params['Md5']
+          @Ppid = params['Ppid']
+          @ParentProcessName = params['ParentProcessName']
+          @Status = params['Status']
+          @HasSign = params['HasSign']
+          @InstallByPackage = params['InstallByPackage']
+          @PackageName = params['PackageName']
+          @MachineName = params['MachineName']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资源管理系统安装包列表信息
+      class AssetSystemPackageInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 数据库名
+        # @type Name: String
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param InstallTime: 安装时间
+        # @type InstallTime: String
+        # @param Type: 类型
+        # @type Type: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
+        # @param MachineIp: 主机IP
+        # @type MachineIp: String
+        # @param OsInfo: 操作系统
+        # @type OsInfo: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :Desc, :Version, :InstallTime, :Type, :MachineName, :MachineIp, :OsInfo, :UpdateTime
+        
+        def initialize(name=nil, desc=nil, version=nil, installtime=nil, type=nil, machinename=nil, machineip=nil, osinfo=nil, updatetime=nil)
+          @Name = name
+          @Desc = desc
+          @Version = version
+          @InstallTime = installtime
+          @Type = type
+          @MachineName = machinename
+          @MachineIp = machineip
+          @OsInfo = osinfo
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Desc = params['Desc']
+          @Version = params['Version']
+          @InstallTime = params['InstallTime']
+          @Type = params['Type']
+          @MachineName = params['MachineName']
+          @MachineIp = params['MachineIp']
+          @OsInfo = params['OsInfo']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资源管理账号基本信息
+      class AssetUserBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uid: 账号UID
+        # @type Uid: String
+        # @param Gid: 账号GID
+        # @type Gid: String
+        # @param Status: 账号状态：0-禁用；1-启用
+        # @type Status: Integer
+        # @param IsRoot: 是否有root权限：0-否；1是，999为空: 仅linux
+        # @type IsRoot: Integer
+        # @param LoginType: 登录方式：0-不可登录；1-只允许key登录；2只允许密码登录；3-允许key和密码，999为空，仅linux
+        # @type LoginType: Integer
+        # @param LastLoginTime: 上次登录时间
+        # @type LastLoginTime: String
+        # @param Name: 账号名称
+        # @type Name: String
+        # @param ProjectId: 主机业务组ID
+        # @type ProjectId: Integer
+        # @param UserType: 账号类型：0访客用户，1标准用户，2管理员用户 ,999为空,仅windows
+        # @type UserType: Integer
+        # @param IsDomain: 是否域账号：0否， 1是，2否, 999为空  仅windows
+        # @type IsDomain: Integer
+        # @param IsSudo: 是否有sudo权限，1是，0否, 999为空, 仅linux
+        # @type IsSudo: Integer
+        # @param IsSshLogin: 是否允许ssh登录，1是，0否, 999为空, 仅linux
+        # @type IsSshLogin: Integer
+        # @param HomePath: Home目录
+        # @type HomePath: String
+        # @param Shell: Shell路径  仅linux
+        # @type Shell: String
+        # @param ShellLoginStatus: 是否shell登录性，0不是；1是 仅linux
+        # @type ShellLoginStatus: Integer
+        # @param PasswordChangeTime: 密码修改时间
+        # @type PasswordChangeTime: String
+        # @param PasswordDueTime: 密码过期时间  仅linux
+        # @type PasswordDueTime: String
+        # @param PasswordLockDays: 密码锁定时间：单位天, -1为永不锁定 999为空，仅linux
+        # @type PasswordLockDays: Integer
+        # @param PasswordStatus: 密码状态：1正常 2即将过期 3已过期 4已锁定 999为空 仅linux
+        # @type PasswordStatus: Integer
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Uuid, :Quuid, :Uid, :Gid, :Status, :IsRoot, :LoginType, :LastLoginTime, :Name, :ProjectId, :UserType, :IsDomain, :IsSudo, :IsSshLogin, :HomePath, :Shell, :ShellLoginStatus, :PasswordChangeTime, :PasswordDueTime, :PasswordLockDays, :PasswordStatus, :UpdateTime
+        
+        def initialize(machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, uuid=nil, quuid=nil, uid=nil, gid=nil, status=nil, isroot=nil, logintype=nil, lastlogintime=nil, name=nil, projectid=nil, usertype=nil, isdomain=nil, issudo=nil, issshlogin=nil, homepath=nil, shell=nil, shellloginstatus=nil, passwordchangetime=nil, passwordduetime=nil, passwordlockdays=nil, passwordstatus=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Uuid = uuid
+          @Quuid = quuid
+          @Uid = uid
+          @Gid = gid
+          @Status = status
+          @IsRoot = isroot
+          @LoginType = logintype
+          @LastLoginTime = lastlogintime
+          @Name = name
+          @ProjectId = projectid
+          @UserType = usertype
+          @IsDomain = isdomain
+          @IsSudo = issudo
+          @IsSshLogin = issshlogin
+          @HomePath = homepath
+          @Shell = shell
+          @ShellLoginStatus = shellloginstatus
+          @PasswordChangeTime = passwordchangetime
+          @PasswordDueTime = passwordduetime
+          @PasswordLockDays = passwordlockdays
+          @PasswordStatus = passwordstatus
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @Uid = params['Uid']
+          @Gid = params['Gid']
+          @Status = params['Status']
+          @IsRoot = params['IsRoot']
+          @LoginType = params['LoginType']
+          @LastLoginTime = params['LastLoginTime']
+          @Name = params['Name']
+          @ProjectId = params['ProjectId']
+          @UserType = params['UserType']
+          @IsDomain = params['IsDomain']
+          @IsSudo = params['IsSudo']
+          @IsSshLogin = params['IsSshLogin']
+          @HomePath = params['HomePath']
+          @Shell = params['Shell']
+          @ShellLoginStatus = params['ShellLoginStatus']
+          @PasswordChangeTime = params['PasswordChangeTime']
+          @PasswordDueTime = params['PasswordDueTime']
+          @PasswordLockDays = params['PasswordLockDays']
+          @PasswordStatus = params['PasswordStatus']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资源管理账号基本信息
+      class AssetUserDetail < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uid: 账号UID
+        # @type Uid: String
+        # @param Gid: 账号GID
+        # @type Gid: String
+        # @param Status: 账号状态：0-禁用；1-启用
+        # @type Status: Integer
+        # @param IsRoot: 是否有root权限：0-否；1是，999为空: 仅linux
+        # @type IsRoot: Integer
+        # @param LastLoginTime: 上次登录时间
+        # @type LastLoginTime: String
+        # @param Name: 账号名称
+        # @type Name: String
+        # @param UserType: 账号类型：0访客用户，1标准用户，2管理员用户 ,999为空,仅windows
+        # @type UserType: Integer
+        # @param IsDomain: 是否域账号：0否， 1是, 999为空  仅windows
+        # @type IsDomain: Integer
+        # @param IsSshLogin: 是否允许ssh登录，1是，0否, 999为空, 仅linux
+        # @type IsSshLogin: Integer
+        # @param HomePath: Home目录
+        # @type HomePath: String
+        # @param Shell: Shell路径  仅linux
+        # @type Shell: String
+        # @param ShellLoginStatus: 是否shell登录性，0不是；1是 仅linux
+        # @type ShellLoginStatus: Integer
+        # @param PasswordChangeTime: 密码修改时间
+        # @type PasswordChangeTime: String
+        # @param PasswordDueTime: 密码过期时间  仅linux
+        # @type PasswordDueTime: String
+        # @param PasswordLockDays: 密码锁定时间：单位天, -1为永不锁定 999为空，仅linux
+        # @type PasswordLockDays: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param GroupName: 用户组名
+        # @type GroupName: String
+        # @param DisableTime: 账号到期时间
+        # @type DisableTime: String
+        # @param LastLoginTerminal: 最近登录终端
+        # @type LastLoginTerminal: String
+        # @param LastLoginLoc: 最近登录位置
+        # @type LastLoginLoc: String
+        # @param LastLoginIp: 最近登录IP
+        # @type LastLoginIp: String
+        # @param PasswordWarnDays: 密码过期提醒：单位天
+        # @type PasswordWarnDays: Integer
+        # @param PasswordChangeType: 密码修改设置：0-不可修改，1-可修改
+        # @type PasswordChangeType: Integer
+        # @param Keys: 用户公钥列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keys: Array
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineName, :Uuid, :Quuid, :Uid, :Gid, :Status, :IsRoot, :LastLoginTime, :Name, :UserType, :IsDomain, :IsSshLogin, :HomePath, :Shell, :ShellLoginStatus, :PasswordChangeTime, :PasswordDueTime, :PasswordLockDays, :Remark, :GroupName, :DisableTime, :LastLoginTerminal, :LastLoginLoc, :LastLoginIp, :PasswordWarnDays, :PasswordChangeType, :Keys, :UpdateTime
+        
+        def initialize(machineip=nil, machinename=nil, uuid=nil, quuid=nil, uid=nil, gid=nil, status=nil, isroot=nil, lastlogintime=nil, name=nil, usertype=nil, isdomain=nil, issshlogin=nil, homepath=nil, shell=nil, shellloginstatus=nil, passwordchangetime=nil, passwordduetime=nil, passwordlockdays=nil, remark=nil, groupname=nil, disabletime=nil, lastloginterminal=nil, lastloginloc=nil, lastloginip=nil, passwordwarndays=nil, passwordchangetype=nil, keys=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineName = machinename
+          @Uuid = uuid
+          @Quuid = quuid
+          @Uid = uid
+          @Gid = gid
+          @Status = status
+          @IsRoot = isroot
+          @LastLoginTime = lastlogintime
+          @Name = name
+          @UserType = usertype
+          @IsDomain = isdomain
+          @IsSshLogin = issshlogin
+          @HomePath = homepath
+          @Shell = shell
+          @ShellLoginStatus = shellloginstatus
+          @PasswordChangeTime = passwordchangetime
+          @PasswordDueTime = passwordduetime
+          @PasswordLockDays = passwordlockdays
+          @Remark = remark
+          @GroupName = groupname
+          @DisableTime = disabletime
+          @LastLoginTerminal = lastloginterminal
+          @LastLoginLoc = lastloginloc
+          @LastLoginIp = lastloginip
+          @PasswordWarnDays = passwordwarndays
+          @PasswordChangeType = passwordchangetype
+          @Keys = keys
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineName = params['MachineName']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @Uid = params['Uid']
+          @Gid = params['Gid']
+          @Status = params['Status']
+          @IsRoot = params['IsRoot']
+          @LastLoginTime = params['LastLoginTime']
+          @Name = params['Name']
+          @UserType = params['UserType']
+          @IsDomain = params['IsDomain']
+          @IsSshLogin = params['IsSshLogin']
+          @HomePath = params['HomePath']
+          @Shell = params['Shell']
+          @ShellLoginStatus = params['ShellLoginStatus']
+          @PasswordChangeTime = params['PasswordChangeTime']
+          @PasswordDueTime = params['PasswordDueTime']
+          @PasswordLockDays = params['PasswordLockDays']
+          @Remark = params['Remark']
+          @GroupName = params['GroupName']
+          @DisableTime = params['DisableTime']
+          @LastLoginTerminal = params['LastLoginTerminal']
+          @LastLoginLoc = params['LastLoginLoc']
+          @LastLoginIp = params['LastLoginIp']
+          @PasswordWarnDays = params['PasswordWarnDays']
+          @PasswordChangeType = params['PasswordChangeType']
+          unless params['Keys'].nil?
+            @Keys = []
+            params['Keys'].each do |i|
+              assetuserkeyinfo_tmp = AssetUserKeyInfo.new
+              assetuserkeyinfo_tmp.deserialize(i)
+              @Keys << assetuserkeyinfo_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理账号key详情
+      class AssetUserKeyInfo < TencentCloud::Common::AbstractModel
+        # @param Value: 公钥值
+        # @type Value: String
+        # @param Comment: 公钥备注
+        # @type Comment: String
+        # @param EncryptType: 加密方式
+        # @type EncryptType: String
+
+        attr_accessor :Value, :Comment, :EncryptType
+        
+        def initialize(value=nil, comment=nil, encrypttype=nil)
+          @Value = value
+          @Comment = comment
+          @EncryptType = encrypttype
+        end
+
+        def deserialize(params)
+          @Value = params['Value']
+          @Comment = params['Comment']
+          @EncryptType = params['EncryptType']
+        end
+      end
+
+      # 资源管理Web应用列表信息
+      class AssetWebAppBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
+        # @param ProjectId: 主机业务组ID
+        # @type ProjectId: Integer
+        # @param Tag: 主机标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param Name: 应用名
+        # @type Name: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param RootPath: 根路径
+        # @type RootPath: String
+        # @param ServiceType: 服务类型
+        # @type ServiceType: String
+        # @param Domain: 站点域名
+        # @type Domain: String
+        # @param VirtualPath: 虚拟路径
+        # @type VirtualPath: String
+        # @param PluginCount: 插件数
+        # @type PluginCount: Integer
+        # @param Id: 应用ID
+        # @type Id: String
+        # @param Desc: 应用描述
+        # @type Desc: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :RootPath, :ServiceType, :Domain, :VirtualPath, :PluginCount, :Id, :Desc, :MachineName, :UpdateTime
+        
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, rootpath=nil, servicetype=nil, domain=nil, virtualpath=nil, plugincount=nil, id=nil, desc=nil, machinename=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @Quuid = quuid
+          @Uuid = uuid
+          @OsInfo = osinfo
+          @ProjectId = projectid
+          @Tag = tag
+          @Name = name
+          @Version = version
+          @RootPath = rootpath
+          @ServiceType = servicetype
+          @Domain = domain
+          @VirtualPath = virtualpath
+          @PluginCount = plugincount
+          @Id = id
+          @Desc = desc
+          @MachineName = machinename
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @OsInfo = params['OsInfo']
+          @ProjectId = params['ProjectId']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              machinetag_tmp = MachineTag.new
+              machinetag_tmp.deserialize(i)
+              @Tag << machinetag_tmp
+            end
+          end
+          @Name = params['Name']
+          @Version = params['Version']
+          @RootPath = params['RootPath']
+          @ServiceType = params['ServiceType']
+          @Domain = params['Domain']
+          @VirtualPath = params['VirtualPath']
+          @PluginCount = params['PluginCount']
+          @Id = params['Id']
+          @Desc = params['Desc']
+          @MachineName = params['MachineName']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理Web应用插件详情
+      class AssetWebAppPluginInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param Link: 链接
+        # @type Link: String
+
+        attr_accessor :Name, :Desc, :Version, :Link
+        
+        def initialize(name=nil, desc=nil, version=nil, link=nil)
+          @Name = name
+          @Desc = desc
+          @Version = version
+          @Link = link
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Desc = params['Desc']
+          @Version = params['Version']
+          @Link = params['Link']
+        end
+      end
+
+      # 资源管理Web应用列表信息
+      class AssetWebFrameBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
+        # @param ProjectId: 主机业务组ID
+        # @type ProjectId: Integer
+        # @param Tag: 主机标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param Name: 数据库名
+        # @type Name: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param Lang: 语言
+        # @type Lang: String
+        # @param ServiceType: 服务类型
+        # @type ServiceType: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :Lang, :ServiceType, :MachineName, :UpdateTime
+        
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, lang=nil, servicetype=nil, machinename=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @Quuid = quuid
+          @Uuid = uuid
+          @OsInfo = osinfo
+          @ProjectId = projectid
+          @Tag = tag
+          @Name = name
+          @Version = version
+          @Lang = lang
+          @ServiceType = servicetype
+          @MachineName = machinename
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @OsInfo = params['OsInfo']
+          @ProjectId = params['ProjectId']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              machinetag_tmp = MachineTag.new
+              machinetag_tmp.deserialize(i)
+              @Tag << machinetag_tmp
+            end
+          end
+          @Name = params['Name']
+          @Version = params['Version']
+          @Lang = params['Lang']
+          @ServiceType = params['ServiceType']
+          @MachineName = params['MachineName']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理Web站点列表信息
+      class AssetWebLocationBaseInfo < TencentCloud::Common::AbstractModel
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param MachineIp: 内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 外网IP
+        # @type MachineWanIp: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
+        # @param OsInfo: 操作系统
+        # @type OsInfo: String
+        # @param Name: 域名
+        # @type Name: String
+        # @param Port: 站点端口
+        # @type Port: String
+        # @param Proto: 站点协议
+        # @type Proto: String
+        # @param ServiceType: 服务类型
+        # @type ServiceType: String
+        # @param PathCount: 站点路经数
+        # @type PathCount: Integer
+        # @param User: 运行用户
+        # @type User: String
+        # @param MainPath: 主目录
+        # @type MainPath: String
+        # @param MainPathOwner: 主目录所有者
+        # @type MainPathOwner: String
+        # @param Permission: 拥有者权限
+        # @type Permission: String
+        # @param ProjectId: 主机业务组ID
+        # @type ProjectId: Integer
+        # @param Tag: 主机标签
+        # @type Tag: Array
+        # @param Id: Web站点Id
+        # @type Id: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Uuid, :Quuid, :MachineIp, :MachineWanIp, :MachineName, :OsInfo, :Name, :Port, :Proto, :ServiceType, :PathCount, :User, :MainPath, :MainPathOwner, :Permission, :ProjectId, :Tag, :Id, :UpdateTime
+        
+        def initialize(uuid=nil, quuid=nil, machineip=nil, machinewanip=nil, machinename=nil, osinfo=nil, name=nil, port=nil, proto=nil, servicetype=nil, pathcount=nil, user=nil, mainpath=nil, mainpathowner=nil, permission=nil, projectid=nil, tag=nil, id=nil, updatetime=nil)
+          @Uuid = uuid
+          @Quuid = quuid
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @MachineName = machinename
+          @OsInfo = osinfo
+          @Name = name
+          @Port = port
+          @Proto = proto
+          @ServiceType = servicetype
+          @PathCount = pathcount
+          @User = user
+          @MainPath = mainpath
+          @MainPathOwner = mainpathowner
+          @Permission = permission
+          @ProjectId = projectid
+          @Tag = tag
+          @Id = id
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @MachineName = params['MachineName']
+          @OsInfo = params['OsInfo']
+          @Name = params['Name']
+          @Port = params['Port']
+          @Proto = params['Proto']
+          @ServiceType = params['ServiceType']
+          @PathCount = params['PathCount']
+          @User = params['User']
+          @MainPath = params['MainPath']
+          @MainPathOwner = params['MainPathOwner']
+          @Permission = params['Permission']
+          @ProjectId = params['ProjectId']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              machinetag_tmp = MachineTag.new
+              machinetag_tmp.deserialize(i)
+              @Tag << machinetag_tmp
+            end
+          end
+          @Id = params['Id']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资产管理Web站点列表信息
+      class AssetWebLocationInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 域名
+        # @type Name: String
+        # @param Port: 站点端口
+        # @type Port: String
+        # @param Proto: 站点协议
+        # @type Proto: String
+        # @param ServiceType: 服务类型
+        # @type ServiceType: String
+        # @param SafeStatus: 安全模块状态：0未启用，1启用，999空，仅nginx
+        # @type SafeStatus: Integer
+        # @param User: 运行用户
+        # @type User: String
+        # @param MainPath: 主目录
+        # @type MainPath: String
+        # @param Command: 启动命令
+        # @type Command: String
+        # @param Ip: 绑定IP
+        # @type Ip: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :Port, :Proto, :ServiceType, :SafeStatus, :User, :MainPath, :Command, :Ip, :UpdateTime
+        
+        def initialize(name=nil, port=nil, proto=nil, servicetype=nil, safestatus=nil, user=nil, mainpath=nil, command=nil, ip=nil, updatetime=nil)
+          @Name = name
+          @Port = port
+          @Proto = proto
+          @ServiceType = servicetype
+          @SafeStatus = safestatus
+          @User = user
+          @MainPath = mainpath
+          @Command = command
+          @Ip = ip
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Port = params['Port']
+          @Proto = params['Proto']
+          @ServiceType = params['ServiceType']
+          @SafeStatus = params['SafeStatus']
+          @User = params['User']
+          @MainPath = params['MainPath']
+          @Command = params['Command']
+          @Ip = params['Ip']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 资源管理Web服务列表信息
+      class AssetWebServiceBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MachineIp: 主机内网IP
+        # @type MachineIp: String
+        # @param MachineWanIp: 主机外网IP
+        # @type MachineWanIp: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param OsInfo: 操作系统信息
+        # @type OsInfo: String
+        # @param ProjectId: 主机业务组ID
+        # @type ProjectId: Integer
+        # @param Tag: 主机标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param Name: 数据库名
+        # @type Name: String
+        # @param Version: 版本
+        # @type Version: String
+        # @param BinPath: 二进制路径
+        # @type BinPath: String
+        # @param User: 启动用户
+        # @type User: String
+        # @param InstallPath: 安装路径
+        # @type InstallPath: String
+        # @param ConfigPath: 配置路径
+        # @type ConfigPath: String
+        # @param ProcessCount: 关联进程数
+        # @type ProcessCount: Integer
+        # @param Id: Web服务ID
+        # @type Id: String
+        # @param MachineName: 主机名称
+        # @type MachineName: String
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param UpdateTime: 数据更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :MachineIp, :MachineWanIp, :Quuid, :Uuid, :OsInfo, :ProjectId, :Tag, :Name, :Version, :BinPath, :User, :InstallPath, :ConfigPath, :ProcessCount, :Id, :MachineName, :Desc, :UpdateTime
+        
+        def initialize(machineip=nil, machinewanip=nil, quuid=nil, uuid=nil, osinfo=nil, projectid=nil, tag=nil, name=nil, version=nil, binpath=nil, user=nil, installpath=nil, configpath=nil, processcount=nil, id=nil, machinename=nil, desc=nil, updatetime=nil)
+          @MachineIp = machineip
+          @MachineWanIp = machinewanip
+          @Quuid = quuid
+          @Uuid = uuid
+          @OsInfo = osinfo
+          @ProjectId = projectid
+          @Tag = tag
+          @Name = name
+          @Version = version
+          @BinPath = binpath
+          @User = user
+          @InstallPath = installpath
+          @ConfigPath = configpath
+          @ProcessCount = processcount
+          @Id = id
+          @MachineName = machinename
+          @Desc = desc
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @MachineIp = params['MachineIp']
+          @MachineWanIp = params['MachineWanIp']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @OsInfo = params['OsInfo']
+          @ProjectId = params['ProjectId']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              machinetag_tmp = MachineTag.new
+              machinetag_tmp.deserialize(i)
+              @Tag << machinetag_tmp
+            end
+          end
+          @Name = params['Name']
+          @Version = params['Version']
+          @BinPath = params['BinPath']
+          @User = params['User']
+          @InstallPath = params['InstallPath']
+          @ConfigPath = params['ConfigPath']
+          @ProcessCount = params['ProcessCount']
+          @Id = params['Id']
+          @MachineName = params['MachineName']
+          @Desc = params['Desc']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -2184,6 +4309,500 @@ module TencentCloud
         end
       end
 
+      # DescribeAssetAppList请求参数结构体
+      class DescribeAssetAppListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>AppName- string - 是否必填：否 - 应用名搜索</li>
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Type - int - 是否必填：否 - 类型	: 仅linux
+        # 0: 全部
+        # 1: 运维
+        # 2 : 数据库
+        # 3 : 安全
+        # 4 : 可疑应用
+        # 5 : 系统架构
+        # 6 : 系统应用
+        # 7 : WEB服务
+        # 99:其他</li>
+        # <li>OsType - uint64 - 是否必填：否 - windows/linux</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param By: 排序方式：ProcessCount
+        # @type By: String
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :By, :Order, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetAppList返回参数结构体
+      class DescribeAssetAppListResponse < TencentCloud::Common::AbstractModel
+        # @param Apps: 应用列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Apps: Array
+        # @param Total: 总数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Apps, :Total, :RequestId
+        
+        def initialize(apps=nil, total=nil, requestid=nil)
+          @Apps = apps
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Apps'].nil?
+            @Apps = []
+            params['Apps'].each do |i|
+              assetappbaseinfo_tmp = AssetAppBaseInfo.new
+              assetappbaseinfo_tmp.deserialize(i)
+              @Apps << assetappbaseinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetAppProcessList请求参数结构体
+      class DescribeAssetAppProcessListRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param Name: App名
+        # @type Name: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+
+        attr_accessor :Quuid, :Uuid, :Name, :Offset, :Limit
+        
+        def initialize(quuid=nil, uuid=nil, name=nil, offset=nil, limit=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAssetAppProcessList返回参数结构体
+      class DescribeAssetAppProcessListResponse < TencentCloud::Common::AbstractModel
+        # @param Process: 进程列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Process: Array
+        # @param Total: 分区总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Process, :Total, :RequestId
+        
+        def initialize(process=nil, total=nil, requestid=nil)
+          @Process = process
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Process'].nil?
+            @Process = []
+            params['Process'].each do |i|
+              assetappprocessinfo_tmp = AssetAppProcessInfo.new
+              assetappprocessinfo_tmp.deserialize(i)
+              @Process << assetappprocessinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetCoreModuleInfo请求参数结构体
+      class DescribeAssetCoreModuleInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Id: 内核模块ID
+        # @type Id: String
+
+        attr_accessor :Quuid, :Uuid, :Id
+        
+        def initialize(quuid=nil, uuid=nil, id=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeAssetCoreModuleInfo返回参数结构体
+      class DescribeAssetCoreModuleInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Module: 内核模块详情
+        # @type Module: :class:`Tencentcloud::Cwp.v20180228.models.AssetCoreModuleDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Module, :RequestId
+        
+        def initialize(_module=nil, requestid=nil)
+          @Module = _module
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Module'].nil?
+            @Module = AssetCoreModuleDetail.new
+            @Module.deserialize(params['Module'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetCoreModuleList请求参数结构体
+      class DescribeAssetCoreModuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Name- string - 是否必填：否 - 包名</li>
+        # <li>User- string - 是否必填：否 - 用户</li>
+        # @type Filters: Array
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序依据:Size,ProcessCount,ModuleCount
+        # @type By: String
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Uuid, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, uuid=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+          @Uuid = uuid
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetCoreModuleList返回参数结构体
+      class DescribeAssetCoreModuleListResponse < TencentCloud::Common::AbstractModel
+        # @param Modules: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Modules: Array
+        # @param Total: 总数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Modules, :Total, :RequestId
+        
+        def initialize(modules=nil, total=nil, requestid=nil)
+          @Modules = modules
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Modules'].nil?
+            @Modules = []
+            params['Modules'].each do |i|
+              assetcoremodulebaseinfo_tmp = AssetCoreModuleBaseInfo.new
+              assetcoremodulebaseinfo_tmp.deserialize(i)
+              @Modules << assetcoremodulebaseinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetDatabaseInfo请求参数结构体
+      class DescribeAssetDatabaseInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Id: 数据库ID
+        # @type Id: String
+
+        attr_accessor :Quuid, :Uuid, :Id
+        
+        def initialize(quuid=nil, uuid=nil, id=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeAssetDatabaseInfo返回参数结构体
+      class DescribeAssetDatabaseInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Database: 数据库详情
+        # @type Database: :class:`Tencentcloud::Cwp.v20180228.models.AssetDatabaseDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Database, :RequestId
+        
+        def initialize(database=nil, requestid=nil)
+          @Database = database
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Database'].nil?
+            @Database = AssetDatabaseDetail.new
+            @Database.deserialize(params['Database'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetDatabaseList请求参数结构体
+      class DescribeAssetDatabaseListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>User- string - 是否必填：否 - 运行用户</li>
+        # <li>Ip - String - 是否必填：否 - 绑定IP</li>
+        # <li>Port - Int - 是否必填：否 - 端口</li>
+        # <li>Name - Int - 是否必填：否 - 数据库名称
+        # 0:全部
+        # 1:MySQL
+        # 2:Redis
+        # 3:Oracle
+        # 4:MongoDB
+        # 5:MemCache
+        # 6:PostgreSQL
+        # 7:HBase
+        # 8:DB2
+        # 9:Sybase
+        # 10:TiDB</li>
+        # <li>Proto - String - 是否必填：否 - 协议：1:TCP, 2:UDP, 3:未知</li>
+        # <li>OsType - String - 是否必填：否 - 操作系统: linux/windows</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetDatabaseList返回参数结构体
+      class DescribeAssetDatabaseListResponse < TencentCloud::Common::AbstractModel
+        # @param Databases: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Databases: Array
+        # @param Total: 总数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Databases, :Total, :RequestId
+        
+        def initialize(databases=nil, total=nil, requestid=nil)
+          @Databases = databases
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Databases'].nil?
+            @Databases = []
+            params['Databases'].each do |i|
+              assetdatabasebaseinfo_tmp = AssetDatabaseBaseInfo.new
+              assetdatabasebaseinfo_tmp.deserialize(i)
+              @Databases << assetdatabasebaseinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetEnvList请求参数结构体
+      class DescribeAssetEnvListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Type: 类型：
+        # 0
+        # @type Type: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Name- string - 是否必填：否 - 环境变量名</li>
+        # <li>Type- int - 是否必填：否 - 类型：0用户变量，1系统变量</li>
+        # @type Filters: Array
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Type, :Filters, :Uuid, :Quuid
+        
+        def initialize(limit=nil, offset=nil, type=nil, filters=nil, uuid=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Type = type
+          @Filters = filters
+          @Uuid = uuid
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Type = params['Type']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetEnvList返回参数结构体
+      class DescribeAssetEnvListResponse < TencentCloud::Common::AbstractModel
+        # @param Envs: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Envs: Array
+        # @param Total: 总数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Envs, :Total, :RequestId
+        
+        def initialize(envs=nil, total=nil, requestid=nil)
+          @Envs = envs
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              assetenvbaseinfo_tmp = AssetEnvBaseInfo.new
+              assetenvbaseinfo_tmp.deserialize(i)
+              @Envs << assetenvbaseinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAssetInfo请求参数结构体
       class DescribeAssetInfoRequest < TencentCloud::Common::AbstractModel
 
@@ -2247,6 +4866,605 @@ module TencentCloud
           @WebFrameCount = params['WebFrameCount']
           @WebServiceCount = params['WebServiceCount']
           @WebLocationCount = params['WebLocationCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetInitServiceList请求参数结构体
+      class DescribeAssetInitServiceListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Name- string - 是否必填：否 - 包名</li>
+        # <li>User- string - 是否必填：否 - 用户</li>
+        # <li>Status- string - 是否必填：否 - 默认启用状态：0未启用， 1启用 仅linux</li>
+        # <li>Type- string - 是否必填：否 - 类型：类型 仅windows：
+        # 1:编码器
+        # 2:IE插件
+        # 3:网络提供者
+        # 4:镜像劫持
+        # 5:LSA提供者
+        # 6:KnownDLLs
+        # 7:启动执行
+        # 8:WMI
+        # 9:计划任务
+        # 10:Winsock提供者
+        # 11:打印监控器
+        # 12:资源管理器
+        # 13:驱动服务
+        # 14:登录</li>
+        # @type Filters: Array
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Uuid, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, uuid=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Uuid = uuid
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetInitServiceList返回参数结构体
+      class DescribeAssetInitServiceListResponse < TencentCloud::Common::AbstractModel
+        # @param Services: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Services: Array
+        # @param Total: 总数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Services, :Total, :RequestId
+        
+        def initialize(services=nil, total=nil, requestid=nil)
+          @Services = services
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Services'].nil?
+            @Services = []
+            params['Services'].each do |i|
+              assetinitservicebaseinfo_tmp = AssetInitServiceBaseInfo.new
+              assetinitservicebaseinfo_tmp.deserialize(i)
+              @Services << assetinitservicebaseinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetJarInfo请求参数结构体
+      class DescribeAssetJarInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Id: Jar包ID
+        # @type Id: String
+
+        attr_accessor :Quuid, :Uuid, :Id
+        
+        def initialize(quuid=nil, uuid=nil, id=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeAssetJarInfo返回参数结构体
+      class DescribeAssetJarInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Jar: Jar包详情
+        # @type Jar: :class:`Tencentcloud::Cwp.v20180228.models.AssetJarDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Jar, :RequestId
+        
+        def initialize(jar=nil, requestid=nil)
+          @Jar = jar
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Jar'].nil?
+            @Jar = AssetJarDetail.new
+            @Jar.deserialize(params['Jar'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetJarList请求参数结构体
+      class DescribeAssetJarListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Name- string - 是否必填：否 - 包名</li>
+        # <li>Type- uint - 是否必填：否 - 类型
+        # 1: 应用程序
+        # 2 : 系统类库
+        # 3 : Web服务自带库
+        # 4 : 其他依赖包</li>
+        # <li>Status- string - 是否必填：否 - 是否可执行：0否，1是</li>
+        # @type Filters: Array
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Uuid, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, uuid=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Uuid = uuid
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetJarList返回参数结构体
+      class DescribeAssetJarListResponse < TencentCloud::Common::AbstractModel
+        # @param Jars: 应用列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Jars: Array
+        # @param Total: 总数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Jars, :Total, :RequestId
+        
+        def initialize(jars=nil, total=nil, requestid=nil)
+          @Jars = jars
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Jars'].nil?
+            @Jars = []
+            params['Jars'].each do |i|
+              assetjarbaseinfo_tmp = AssetJarBaseInfo.new
+              assetjarbaseinfo_tmp.deserialize(i)
+              @Jars << assetjarbaseinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetMachineDetail请求参数结构体
+      class DescribeAssetMachineDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+
+        attr_accessor :Quuid, :Uuid
+        
+        def initialize(quuid=nil, uuid=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+        end
+      end
+
+      # DescribeAssetMachineDetail返回参数结构体
+      class DescribeAssetMachineDetailResponse < TencentCloud::Common::AbstractModel
+        # @param MachineDetail: 主机详情
+        # @type MachineDetail: :class:`Tencentcloud::Cwp.v20180228.models.AssetMachineDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MachineDetail, :RequestId
+        
+        def initialize(machinedetail=nil, requestid=nil)
+          @MachineDetail = machinedetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MachineDetail'].nil?
+            @MachineDetail = AssetMachineDetail.new
+            @MachineDetail.deserialize(params['MachineDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetMachineList请求参数结构体
+      class DescribeAssetMachineListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>OsType - String - 是否必填：否 - windows或linux</li>
+        # <li>CpuLoad - Int - 是否必填：否 -
+        # 0: 未知  1: 低负载
+        # 2: 中负载  3: 高负载</li>
+        # <li>DiskLoad - Int - 是否必填：否 -
+        # 0: 0%或未知  1: 0%～20%
+        # 2: 20%～50%  3: 50%～80%
+        # 4: 80%～100%</li>
+        # <li>MemLoad - Int - 是否必填：否 -
+        # 0: 0%或未知  1: 0%～20%
+        # 2: 20%～50%  3: 50%～80%
+        # 4: 80%～100%</li>
+        # <li>Quuid：主机Quuid</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param By: 可选排序：PartitionCount
+        # @type By: String
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+
+        attr_accessor :Limit, :Offset, :Filters, :By, :Order
+        
+        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeAssetMachineList返回参数结构体
+      class DescribeAssetMachineListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Machines: 记录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Machines: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Machines, :RequestId
+        
+        def initialize(total=nil, machines=nil, requestid=nil)
+          @Total = total
+          @Machines = machines
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Machines'].nil?
+            @Machines = []
+            params['Machines'].each do |i|
+              assetmachinebaseinfo_tmp = AssetMachineBaseInfo.new
+              assetmachinebaseinfo_tmp.deserialize(i)
+              @Machines << assetmachinebaseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetPlanTaskList请求参数结构体
+      class DescribeAssetPlanTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>User- string - 是否必填：否 - 用户</li>
+        # <li>Status- int - 是否必填：否 - 默认启用状态：0未启用， 1启用 </li>
+        # @type Filters: Array
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Uuid, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, uuid=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Uuid = uuid
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetPlanTaskList返回参数结构体
+      class DescribeAssetPlanTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param Total: 总数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :Total, :RequestId
+        
+        def initialize(tasks=nil, total=nil, requestid=nil)
+          @Tasks = tasks
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              assetplantask_tmp = AssetPlanTask.new
+              assetplantask_tmp.deserialize(i)
+              @Tasks << assetplantask_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetPortInfoList请求参数结构体
+      class DescribeAssetPortInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>Port - uint64 - 是否必填：否 - 端口</li>
+        # <li>Ip - String - 是否必填：否 - 绑定IP</li>
+        # <li>ProcessName - String - 是否必填：否 - 监听进程</li>
+        # <li>Pid - uint64 - 是否必填：否 - PID</li>
+        # <li>User - String - 是否必填：否 - 运行用户</li>
+        # <li>Group - String - 是否必填：否 - 所属用户组</li>
+        # <li>Ppid - uint64 - 是否必填：否 - PPID</li>
+        # <li>Proto - string - 是否必填：否 - tcp/udp或“”(空字符串筛选未知状态)</li>
+        # <li>OsType - uint64 - 是否必填：否 - windows/linux</li>
+        # <li>RunTimeStart - String - 是否必填：否 - 运行开始时间</li>
+        # <li>RunTimeEnd - String - 是否必填：否 - 运行结束时间</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序方式：StartTime
+        # @type By: String
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetPortInfoList返回参数结构体
+      class DescribeAssetPortInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数
+        # @type Total: Integer
+        # @param Ports: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ports: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Ports, :RequestId
+        
+        def initialize(total=nil, ports=nil, requestid=nil)
+          @Total = total
+          @Ports = ports
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              assetportbaseinfo_tmp = AssetPortBaseInfo.new
+              assetportbaseinfo_tmp.deserialize(i)
+              @Ports << assetportbaseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetProcessInfoList请求参数结构体
+      class DescribeAssetProcessInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Name - String - 是否必填：否 - 进程名</li>
+        # <li>User - String - 是否必填：否 - 进程用户</li>
+        # <li>Group - String - 是否必填：否 - 进程用户组</li>
+        # <li>Pid - uint64 - 是否必填：否 - 进程ID</li>
+        # <li>Ppid - uint64 - 是否必填：否 - 父进程ID</li>
+        # <li>OsType - uint64 - 是否必填：否 - windows/linux</li>
+        # <li>Status - string - 是否必填：否 - 进程状态：
+        # 1:R 可执行
+        # 2:S 可中断
+        # 3:D 不可中断
+        # 4:T 暂停状态或跟踪状态
+        # 5:Z 僵尸状态
+        # 6:X 将被销毁</li>
+        # <li>RunTimeStart - String - 是否必填：否 - 运行开始时间</li>
+        # <li>RunTimeEnd - String - 是否必填：否 - 运行结束时间</li>
+        # <li>InstallByPackage - uint64 - 是否必填：否 - 是否包安装：0否，1是</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序方式：StartTime
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Quuid, :Order, :By
+        
+        def initialize(limit=nil, offset=nil, filters=nil, quuid=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Quuid = quuid
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Quuid = params['Quuid']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeAssetProcessInfoList返回参数结构体
+      class DescribeAssetProcessInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数
+        # @type Total: Integer
+        # @param Process: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Process: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Process, :RequestId
+        
+        def initialize(total=nil, process=nil, requestid=nil)
+          @Total = total
+          @Process = process
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Process'].nil?
+            @Process = []
+            params['Process'].each do |i|
+              assetprocessbaseinfo_tmp = AssetProcessBaseInfo.new
+              assetprocessbaseinfo_tmp.deserialize(i)
+              @Process << assetprocessbaseinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2331,6 +5549,780 @@ module TencentCloud
               @RiskList << assetkeyval_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetSystemPackageList请求参数结构体
+      class DescribeAssetSystemPackageListRequest < TencentCloud::Common::AbstractModel
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>Name - String - 是否必填：否 - 包 名</li>
+        # <li>StartTime - String - 是否必填：否 - 安装开始时间</li>
+        # <li>EndTime - String - 是否必填：否 - 安装开始时间</li>
+        # <li>Type - int - 是否必填：否 - 安装包类型：
+        # 1:rmp
+        # 2:dpkg
+        # 3:java
+        # 4:system</li>
+        # @type Filters: Array
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 排序方式可选：InstallTime 安装时间
+        # @type By: String
+
+        attr_accessor :Uuid, :Quuid, :Limit, :Offset, :Filters, :Order, :By
+        
+        def initialize(uuid=nil, quuid=nil, limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Uuid = uuid
+          @Quuid = quuid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeAssetSystemPackageList返回参数结构体
+      class DescribeAssetSystemPackageListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数
+        # @type Total: Integer
+        # @param Packages: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Packages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Packages, :RequestId
+        
+        def initialize(total=nil, packages=nil, requestid=nil)
+          @Total = total
+          @Packages = packages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Packages'].nil?
+            @Packages = []
+            params['Packages'].each do |i|
+              assetsystempackageinfo_tmp = AssetSystemPackageInfo.new
+              assetsystempackageinfo_tmp.deserialize(i)
+              @Packages << assetsystempackageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetUserInfo请求参数结构体
+      class DescribeAssetUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Name: 账户名
+        # @type Name: String
+
+        attr_accessor :Quuid, :Uuid, :Name
+        
+        def initialize(quuid=nil, uuid=nil, name=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeAssetUserInfo返回参数结构体
+      class DescribeAssetUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param User: 用户详细信息
+        # @type User: :class:`Tencentcloud::Cwp.v20180228.models.AssetUserDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :User, :RequestId
+        
+        def initialize(user=nil, requestid=nil)
+          @User = user
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['User'].nil?
+            @User = AssetUserDetail.new
+            @User.deserialize(params['User'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetUserList请求参数结构体
+      class DescribeAssetUserListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Name - String - 是否必填：否 - 账户名（模糊匹配）</li>
+        # <li>NameStrict - String - 是否必填：否 - 账户名（严格匹配）</li>
+        # <li>Uid - uint64 - 是否必填：否 - Uid</li>
+        # <li>Guid - uint64 - 是否必填：否 - Guid</li>
+        # <li>LoginTimeStart - String - 是否必填：否 - 开始时间，如：2021-01-11</li>
+        # <li>LoginTimeEnd - String - 是否必填：否 - 结束时间，如：2021-01-11</li>
+        # <li>LoginType - uint64 - 是否必填：否 - 0-不可登录；1-只允许key登录；2只允许密码登录；3-允许key和密码 仅linux</li>
+        # <li>OsType - String - 是否必填：否 - windows或linux</li>
+        # <li>Status - uint64 - 是否必填：否 - 账号状态：0-禁用；1-启用</li>
+        # <li>UserType - uint64 - 是否必填：否 - 账号类型：0访客用户，1标准用户，2管理员用户 仅windows</li>
+        # <li>IsDomain - uint64 - 是否必填：否 - 是否域账号：0 不是，1是 仅windows
+        # <li>IsRoot - uint64 - 是否必填：否 - 是否Root权限：0 不是，1是 仅linux
+        # <li>IsSudo - uint64 - 是否必填：否 - 是否Sudo权限：0 不是，1是 仅linux</li>
+        # <li>IsSshLogin - uint64 - 是否必填：否 - 是否ssh登录：0 不是，1是 仅linux</li>
+        # <li>ShellLoginStatus - uint64 - 是否必填：否 - 是否shell登录性，0不是；1是 仅linux</li>
+        # <li>PasswordStatus - uint64 - 是否必填：否 - 密码状态：1正常 2即将过期 3已过期 4已锁定 仅linux</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 可选排序：
+        # LoginTime
+        # PasswordChangeTime
+        # PasswordDuaTime
+        # PasswordLockDays
+        # @type By: String
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetUserList返回参数结构体
+      class DescribeAssetUserListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数
+        # @type Total: Integer
+        # @param Users: 账号列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Users: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Users, :RequestId
+        
+        def initialize(total=nil, users=nil, requestid=nil)
+          @Total = total
+          @Users = users
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              assetuserbaseinfo_tmp = AssetUserBaseInfo.new
+              assetuserbaseinfo_tmp.deserialize(i)
+              @Users << assetuserbaseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetWebAppList请求参数结构体
+      class DescribeAssetWebAppListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Name - String - 是否必填：否 - 应用名</li>
+        # <li>Domain - String - 是否必填：否 - 站点域名</li>
+        # <li>Type - int - 是否必填：否 - 服务类型：
+        # 0：全部
+        # 1:Tomcat
+        # 2:Apache
+        # 3:Nginx
+        # 4:WebLogic
+        # 5:Websphere
+        # 6:JBoss
+        # 7:Jetty
+        # 8:IHS
+        # 9:Tengine</li>
+        # <li>OsType - String - 是否必填：否 - windows/linux</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 可选排序：PluginCount
+        # @type By: String
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetWebAppList返回参数结构体
+      class DescribeAssetWebAppListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数
+        # @type Total: Integer
+        # @param WebApps: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebApps: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :WebApps, :RequestId
+        
+        def initialize(total=nil, webapps=nil, requestid=nil)
+          @Total = total
+          @WebApps = webapps
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['WebApps'].nil?
+            @WebApps = []
+            params['WebApps'].each do |i|
+              assetwebappbaseinfo_tmp = AssetWebAppBaseInfo.new
+              assetwebappbaseinfo_tmp.deserialize(i)
+              @WebApps << assetwebappbaseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetWebAppPluginList请求参数结构体
+      class DescribeAssetWebAppPluginListRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param Id: Web应用ID
+        # @type Id: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+
+        attr_accessor :Quuid, :Uuid, :Id, :Offset, :Limit
+        
+        def initialize(quuid=nil, uuid=nil, id=nil, offset=nil, limit=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @Id = id
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @Id = params['Id']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAssetWebAppPluginList返回参数结构体
+      class DescribeAssetWebAppPluginListResponse < TencentCloud::Common::AbstractModel
+        # @param Plugins: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Plugins: Array
+        # @param Total: 分区总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Plugins, :Total, :RequestId
+        
+        def initialize(plugins=nil, total=nil, requestid=nil)
+          @Plugins = plugins
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Plugins'].nil?
+            @Plugins = []
+            params['Plugins'].each do |i|
+              assetwebappplugininfo_tmp = AssetWebAppPluginInfo.new
+              assetwebappplugininfo_tmp.deserialize(i)
+              @Plugins << assetwebappplugininfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetWebFrameList请求参数结构体
+      class DescribeAssetWebFrameListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Name - String - 是否必填：否 - 框架名</li>
+        # <li>NameStrict - String - 是否必填：否 - 框架名（严格匹配）</li>
+        # <li>Lang - String - 是否必填：否 - 框架语言:java/python</li>
+        # <li>Type - String - 是否必填：否 - 服务类型：
+        # 0：全部
+        # 1:Tomcat
+        # 2:Apache
+        # 3:Nginx
+        # 4:WebLogic
+        # 5:Websphere
+        # 6:JBoss
+        # 7:WildFly
+        # 8:Jetty
+        # 9:IHS
+        # 10:Tengine</li>
+        # <li>OsType - String - 是否必填：否 - windows/linux</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 可选排序：JarCount
+        # @type By: String
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetWebFrameList返回参数结构体
+      class DescribeAssetWebFrameListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数
+        # @type Total: Integer
+        # @param WebFrames: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebFrames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :WebFrames, :RequestId
+        
+        def initialize(total=nil, webframes=nil, requestid=nil)
+          @Total = total
+          @WebFrames = webframes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['WebFrames'].nil?
+            @WebFrames = []
+            params['WebFrames'].each do |i|
+              assetwebframebaseinfo_tmp = AssetWebFrameBaseInfo.new
+              assetwebframebaseinfo_tmp.deserialize(i)
+              @WebFrames << assetwebframebaseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetWebLocationInfo请求参数结构体
+      class DescribeAssetWebLocationInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 服务器Quuid
+        # @type Quuid: String
+        # @param Uuid: 服务器Uuid
+        # @type Uuid: String
+        # @param Id: 站点Id
+        # @type Id: String
+
+        attr_accessor :Quuid, :Uuid, :Id
+        
+        def initialize(quuid=nil, uuid=nil, id=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeAssetWebLocationInfo返回参数结构体
+      class DescribeAssetWebLocationInfoResponse < TencentCloud::Common::AbstractModel
+        # @param WebLocation: 站点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebLocation: :class:`Tencentcloud::Cwp.v20180228.models.AssetWebLocationInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebLocation, :RequestId
+        
+        def initialize(weblocation=nil, requestid=nil)
+          @WebLocation = weblocation
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WebLocation'].nil?
+            @WebLocation = AssetWebLocationInfo.new
+            @WebLocation.deserialize(params['WebLocation'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetWebLocationList请求参数结构体
+      class DescribeAssetWebLocationListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>Name - String - 是否必填：否 - 域名</li>
+        # <li>User - String - 是否必填：否 - 运行用户</li>
+        # <li>Port - uint64 - 是否必填：否 - 站点端口</li>
+        # <li>Proto - uint64 - 是否必填：否 - 站点协议：1:HTTP,2:HTTPS</li>
+        # <li>ServiceType - uint64 - 是否必填：否 - 服务类型：
+        # 1:Tomcat
+        # 2：Apache
+        # 3:Nginx
+        # 4:WebLogic
+        # 5:Websphere
+        # 6:JBoss
+        # 7:WildFly
+        # 8:Jetty
+        # 9:IHS
+        # 10:Tengine</li>
+        # <li>OsType - String - 是否必填：否 - windows/linux</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 可选排序：PathCount
+        # @type By: String
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetWebLocationList返回参数结构体
+      class DescribeAssetWebLocationListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录总数
+        # @type Total: Integer
+        # @param Locations: 站点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Locations: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Locations, :RequestId
+        
+        def initialize(total=nil, locations=nil, requestid=nil)
+          @Total = total
+          @Locations = locations
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Locations'].nil?
+            @Locations = []
+            params['Locations'].each do |i|
+              assetweblocationbaseinfo_tmp = AssetWebLocationBaseInfo.new
+              assetweblocationbaseinfo_tmp.deserialize(i)
+              @Locations << assetweblocationbaseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetWebServiceInfoList请求参数结构体
+      class DescribeAssetWebServiceInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>User- string - 是否必填：否 - 运行用户</li>
+        # <li>Name- string - 是否必填：否 - Web服务名：
+        # 1:Tomcat
+        # 2:Apache
+        # 3:Nginx
+        # 4:WebLogic
+        # 5:Websphere
+        # 6:JBoss
+        # 7:WildFly
+        # 8:Jetty
+        # 9:IHS
+        # 10:Tengine</li>
+        # <li>OsType- string - 是否必填：否 - Windows/linux</li>
+        # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        # @type Filters: Array
+        # @param Order: 排序方式，asc升序 或 desc降序
+        # @type Order: String
+        # @param By: 可选排序：ProcessCount
+        # @type By: String
+        # @param Quuid: 查询指定Quuid主机的信息
+        # @type Quuid: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By, :Quuid
+        
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil, quuid=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+          @Quuid = quuid
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              assetfilters_tmp = AssetFilters.new
+              assetfilters_tmp.deserialize(i)
+              @Filters << assetfilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+          @Quuid = params['Quuid']
+        end
+      end
+
+      # DescribeAssetWebServiceInfoList返回参数结构体
+      class DescribeAssetWebServiceInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param WebServices: 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebServices: Array
+        # @param Total: 总数量
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebServices, :Total, :RequestId
+        
+        def initialize(webservices=nil, total=nil, requestid=nil)
+          @WebServices = webservices
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WebServices'].nil?
+            @WebServices = []
+            params['WebServices'].each do |i|
+              assetwebservicebaseinfo_tmp = AssetWebServiceBaseInfo.new
+              assetwebservicebaseinfo_tmp.deserialize(i)
+              @WebServices << assetwebservicebaseinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetWebServiceProcessList请求参数结构体
+      class DescribeAssetWebServiceProcessListRequest < TencentCloud::Common::AbstractModel
+        # @param Quuid: 主机Quuid
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # @type Uuid: String
+        # @param Id: Web服务ID
+        # @type Id: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+
+        attr_accessor :Quuid, :Uuid, :Id, :Offset, :Limit
+        
+        def initialize(quuid=nil, uuid=nil, id=nil, offset=nil, limit=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @Id = id
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @Id = params['Id']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAssetWebServiceProcessList返回参数结构体
+      class DescribeAssetWebServiceProcessListResponse < TencentCloud::Common::AbstractModel
+        # @param Process: 进程列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Process: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Process, :Total, :RequestId
+        
+        def initialize(process=nil, total=nil, requestid=nil)
+          @Process = process
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Process'].nil?
+            @Process = []
+            params['Process'].each do |i|
+              assetappprocessinfo_tmp = AssetAppProcessInfo.new
+              assetappprocessinfo_tmp.deserialize(i)
+              @Process << assetappprocessinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -3261,7 +7253,7 @@ module TencentCloud
         # @param IsGlobal: 扫描范围是否全部服务器, 1:是  0:否, 为1则为全部专业版主机
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGlobal: Integer
-        # @param MachineType: 云主机类型：
+        # @param MachineType: 云服务器类型：
         # cvm：腾讯云服务器
         # bm：裸金属
         # ecm：边缘计算主机
@@ -7642,16 +11634,24 @@ module TencentCloud
 
       # DescribeVersionStatistics返回参数结构体
       class DescribeVersionStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param BasicVersionNum: 基础版数量
+        # @type BasicVersionNum: Integer
+        # @param ProVersionNum: 专业版数量
+        # @type ProVersionNum: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :BasicVersionNum, :ProVersionNum, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(basicversionnum=nil, proversionnum=nil, requestid=nil)
+          @BasicVersionNum = basicversionnum
+          @ProVersionNum = proversionnum
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @BasicVersionNum = params['BasicVersionNum']
+          @ProVersionNum = params['ProVersionNum']
           @RequestId = params['RequestId']
         end
       end

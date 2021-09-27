@@ -487,6 +487,57 @@ module TencentCloud
         end
       end
 
+      # DescribeScores请求参数结构体
+      class DescribeScoresRequest < TencentCloud::Common::AbstractModel
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param ID: 项目ID
+        # @type ID: Integer
+
+        attr_accessor :EndTime, :StartTime, :ID
+        
+        def initialize(endtime=nil, starttime=nil, id=nil)
+          @EndTime = endtime
+          @StartTime = starttime
+          @ID = id
+        end
+
+        def deserialize(params)
+          @EndTime = params['EndTime']
+          @StartTime = params['StartTime']
+          @ID = params['ID']
+        end
+      end
+
+      # DescribeScores返回参数结构体
+      class DescribeScoresResponse < TencentCloud::Common::AbstractModel
+        # @param ScoreSet: 数组
+        # @type ScoreSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScoreSet, :RequestId
+        
+        def initialize(scoreset=nil, requestid=nil)
+          @ScoreSet = scoreset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ScoreSet'].nil?
+            @ScoreSet = []
+            params['ScoreSet'].each do |i|
+              scoreinfo_tmp = ScoreInfo.new
+              scoreinfo_tmp.deserialize(i)
+              @ScoreSet << scoreinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
 
       # · 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
@@ -583,6 +634,70 @@ module TencentCloud
           @InstanceKey = params['InstanceKey']
           @Desc = params['Desc']
           @IsStar = params['IsStar']
+        end
+      end
+
+      # project Score分数实体
+      class ScoreInfo < TencentCloud::Common::AbstractModel
+        # @param StaticDuration: duration
+        # @type StaticDuration: String
+        # @param PagePv: pv
+        # @type PagePv: String
+        # @param ApiFail: 失败
+        # @type ApiFail: String
+        # @param ApiNum: 请求
+        # @type ApiNum: String
+        # @param StaticFail: fail
+        # @type StaticFail: String
+        # @param ProjectID: 项目id
+        # @type ProjectID: Integer
+        # @param PageUv: uv
+        # @type PageUv: String
+        # @param ApiDuration: 请求次数
+        # @type ApiDuration: String
+        # @param Score: 分数
+        # @type Score: String
+        # @param PageError: error
+        # @type PageError: String
+        # @param StaticNum: num
+        # @type StaticNum: String
+        # @param RecordNum: num
+        # @type RecordNum: Integer
+        # @param PageDuration: Duration
+        # @type PageDuration: String
+
+        attr_accessor :StaticDuration, :PagePv, :ApiFail, :ApiNum, :StaticFail, :ProjectID, :PageUv, :ApiDuration, :Score, :PageError, :StaticNum, :RecordNum, :PageDuration
+        
+        def initialize(staticduration=nil, pagepv=nil, apifail=nil, apinum=nil, staticfail=nil, projectid=nil, pageuv=nil, apiduration=nil, score=nil, pageerror=nil, staticnum=nil, recordnum=nil, pageduration=nil)
+          @StaticDuration = staticduration
+          @PagePv = pagepv
+          @ApiFail = apifail
+          @ApiNum = apinum
+          @StaticFail = staticfail
+          @ProjectID = projectid
+          @PageUv = pageuv
+          @ApiDuration = apiduration
+          @Score = score
+          @PageError = pageerror
+          @StaticNum = staticnum
+          @RecordNum = recordnum
+          @PageDuration = pageduration
+        end
+
+        def deserialize(params)
+          @StaticDuration = params['StaticDuration']
+          @PagePv = params['PagePv']
+          @ApiFail = params['ApiFail']
+          @ApiNum = params['ApiNum']
+          @StaticFail = params['StaticFail']
+          @ProjectID = params['ProjectID']
+          @PageUv = params['PageUv']
+          @ApiDuration = params['ApiDuration']
+          @Score = params['Score']
+          @PageError = params['PageError']
+          @StaticNum = params['StaticNum']
+          @RecordNum = params['RecordNum']
+          @PageDuration = params['PageDuration']
         end
       end
 

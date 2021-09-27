@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 添加互联网边界规则
+
+        # @param request: Request instance for AddAcRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::AddAcRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::AddAcRuleResponse`
+        def AddAcRule(request)
+          body = send_request('AddAcRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddAcRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建规则
 
         # @param request: Request instance for CreateAcRules.
@@ -111,6 +135,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateNatFwInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建防火墙实例和接入域名
+
+        # @param request: Request instance for CreateNatFwInstanceWithDomain.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateNatFwInstanceWithDomainRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateNatFwInstanceWithDomainResponse`
+        def CreateNatFwInstanceWithDomain(request)
+          body = send_request('CreateNatFwInstanceWithDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNatFwInstanceWithDomainResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1435,6 +1483,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyVPCSwitchStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除互联网边界规则
+
+        # @param request: Request instance for RemoveAcRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::RemoveAcRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::RemoveAcRuleResponse`
+        def RemoveAcRule(request)
+          body = send_request('RemoveAcRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveAcRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

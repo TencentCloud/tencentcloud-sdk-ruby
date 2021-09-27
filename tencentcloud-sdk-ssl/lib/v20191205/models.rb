@@ -1338,16 +1338,19 @@ module TencentCloud
         # 'expiring'  即将过期
         # 'expired' 已过期
         # @type Status: String
+        # @param SearchKey: 管理人姓名/邮箱/部门精准匹配
+        # @type SearchKey: String
 
-        attr_accessor :CompanyId, :Offset, :Limit, :ManagerName, :ManagerMail, :Status
+        attr_accessor :CompanyId, :Offset, :Limit, :ManagerName, :ManagerMail, :Status, :SearchKey
         
-        def initialize(companyid=nil, offset=nil, limit=nil, managername=nil, managermail=nil, status=nil)
+        def initialize(companyid=nil, offset=nil, limit=nil, managername=nil, managermail=nil, status=nil, searchkey=nil)
           @CompanyId = companyid
           @Offset = offset
           @Limit = limit
           @ManagerName = managername
           @ManagerMail = managermail
           @Status = status
+          @SearchKey = searchkey
         end
 
         def deserialize(params)
@@ -1357,6 +1360,7 @@ module TencentCloud
           @ManagerName = params['ManagerName']
           @ManagerMail = params['ManagerMail']
           @Status = params['Status']
+          @SearchKey = params['SearchKey']
         end
       end
 
@@ -1558,10 +1562,13 @@ module TencentCloud
         # @param VerifyTime: 审核通过时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyTime: String
+        # @param StatusInfo: 具体审核状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusInfo: Array
 
-        attr_accessor :Status, :ManagerFirstName, :ManagerLastName, :ManagerPosition, :ManagerPhone, :ManagerMail, :ManagerDepartment, :CreateTime, :DomainCount, :CertCount, :ManagerId, :ExpireTime, :SubmitAuditTime, :VerifyTime
+        attr_accessor :Status, :ManagerFirstName, :ManagerLastName, :ManagerPosition, :ManagerPhone, :ManagerMail, :ManagerDepartment, :CreateTime, :DomainCount, :CertCount, :ManagerId, :ExpireTime, :SubmitAuditTime, :VerifyTime, :StatusInfo
         
-        def initialize(status=nil, managerfirstname=nil, managerlastname=nil, managerposition=nil, managerphone=nil, managermail=nil, managerdepartment=nil, createtime=nil, domaincount=nil, certcount=nil, managerid=nil, expiretime=nil, submitaudittime=nil, verifytime=nil)
+        def initialize(status=nil, managerfirstname=nil, managerlastname=nil, managerposition=nil, managerphone=nil, managermail=nil, managerdepartment=nil, createtime=nil, domaincount=nil, certcount=nil, managerid=nil, expiretime=nil, submitaudittime=nil, verifytime=nil, statusinfo=nil)
           @Status = status
           @ManagerFirstName = managerfirstname
           @ManagerLastName = managerlastname
@@ -1576,6 +1583,7 @@ module TencentCloud
           @ExpireTime = expiretime
           @SubmitAuditTime = submitaudittime
           @VerifyTime = verifytime
+          @StatusInfo = statusinfo
         end
 
         def deserialize(params)
@@ -1593,6 +1601,25 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @SubmitAuditTime = params['SubmitAuditTime']
           @VerifyTime = params['VerifyTime']
+          unless params['StatusInfo'].nil?
+            @StatusInfo = []
+            params['StatusInfo'].each do |i|
+              managerstatusinfo_tmp = ManagerStatusInfo.new
+              managerstatusinfo_tmp.deserialize(i)
+              @StatusInfo << managerstatusinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 管理人的四种审核状态
+      class ManagerStatusInfo < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
