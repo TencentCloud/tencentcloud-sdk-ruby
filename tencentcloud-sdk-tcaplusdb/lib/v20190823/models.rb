@@ -587,10 +587,12 @@ module TencentCloud
         # @type ProxyList: Array
         # @param ClusterType: 集群类型1共享2独占
         # @type ClusterType: Integer
+        # @param AuthType: 密码认证类型，0 静态认证， 1 签名认证
+        # @type AuthType: Integer
 
-        attr_accessor :IdlType, :ClusterName, :VpcId, :SubnetId, :Password, :ResourceTags, :Ipv6Enable, :ServerList, :ProxyList, :ClusterType
+        attr_accessor :IdlType, :ClusterName, :VpcId, :SubnetId, :Password, :ResourceTags, :Ipv6Enable, :ServerList, :ProxyList, :ClusterType, :AuthType
         
-        def initialize(idltype=nil, clustername=nil, vpcid=nil, subnetid=nil, password=nil, resourcetags=nil, ipv6enable=nil, serverlist=nil, proxylist=nil, clustertype=nil)
+        def initialize(idltype=nil, clustername=nil, vpcid=nil, subnetid=nil, password=nil, resourcetags=nil, ipv6enable=nil, serverlist=nil, proxylist=nil, clustertype=nil, authtype=nil)
           @IdlType = idltype
           @ClusterName = clustername
           @VpcId = vpcid
@@ -601,6 +603,7 @@ module TencentCloud
           @ServerList = serverlist
           @ProxyList = proxylist
           @ClusterType = clustertype
+          @AuthType = authtype
         end
 
         def deserialize(params)
@@ -635,6 +638,7 @@ module TencentCloud
             end
           end
           @ClusterType = params['ClusterType']
+          @AuthType = params['AuthType']
         end
       end
 
@@ -2838,9 +2842,9 @@ module TencentCloud
 
       # ModifySnapshots返回参数结构体
       class ModifySnapshotsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 批量创建的快照数量
+        # @param TotalCount: 批量修改的快照数量
         # @type TotalCount: Integer
-        # @param TableResults: 批量创建的快照结果列表
+        # @param TableResults: 批量修改的快照结果列表
         # @type TableResults: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

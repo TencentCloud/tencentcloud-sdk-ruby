@@ -272,19 +272,34 @@ module TencentCloud
         # @param Comment: 对该类的注释。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
+        # @param Precision: 表示整个 numeric 的长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Precision: Integer
+        # @param Scale: 表示小数部分的长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scale: Integer
+        # @param Nullable: 是否为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nullable: String
 
-        attr_accessor :Name, :Type, :Comment
+        attr_accessor :Name, :Type, :Comment, :Precision, :Scale, :Nullable
         
-        def initialize(name=nil, type=nil, comment=nil)
+        def initialize(name=nil, type=nil, comment=nil, precision=nil, scale=nil, nullable=nil)
           @Name = name
           @Type = type
           @Comment = comment
+          @Precision = precision
+          @Scale = scale
+          @Nullable = nullable
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Type = params['Type']
           @Comment = params['Comment']
+          @Precision = params['Precision']
+          @Scale = params['Scale']
+          @Nullable = params['Nullable']
         end
       end
 
@@ -1260,10 +1275,10 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为以下其中一个,每个过滤参数支持的过滤值不超过5个。
-        # task-id - String - （任务ID过滤）task-id取值形如：e386471f-139a-4e59-877f-50ece8135b99。
+        # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为以下其中一个,其中task-id支持最大50个过滤个数，其他过滤参数支持的总数不超过5个。
+        # task-id - String - （任务ID准确过滤）task-id取值形如：e386471f-139a-4e59-877f-50ece8135b99。
         # task-state - String - （任务状态过滤）取值范围 0(初始化)， 1(运行中)， 2(成功)， -1(失败)。
-        # task-sql-keyword - String - （SQL语句关键字）取值形如：DROP TABLE。
+        # task-sql-keyword - String - （SQL语句关键字模糊过滤）取值形如：DROP TABLE。
         # @type Filters: Array
         # @param SortBy: 排序字段，支持如下字段类型，create-time
         # @type SortBy: String
@@ -1802,29 +1817,33 @@ module TencentCloud
 
       # 权限对象
       class Policy < TencentCloud::Common::AbstractModel
-        # @param Catalog: 需要授权的数据源名称，当前仅支持COSDataCatalog或者*
-        # @type Catalog: String
-        # @param Database: 需要授权的数据库名，填*代表当前Catalog下所有数据库
+        # @param Database: 需要授权的数据库名，填*代表当前Catalog下所有数据库。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别时只允许填空，其他类型下可以任意指定数据库。
         # @type Database: String
-        # @param Table: 需要授权的表名，填*代表当前Database下所有表
+        # @param Catalog: 需要授权的数据源名称，管理员级别下只支持填*（代表该级别全部资源）；数据源级别和数据库级别鉴权的情况下，只支持填COSDataCatalog或者*；在数据表级别鉴权下可以填写用户自定义数据源。不填情况下默认为COSDataCatalog。注意：如果是对用户自定义数据源进行鉴权，DLC能够管理的权限是用户接入数据源的时候提供的账户的子集。
+        # @type Catalog: String
+        # @param Table: 需要授权的表名，填*代表当前Database下所有表。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别、数据库级别时只允许填空，其他类型下可以任意指定数据表。
         # @type Table: String
-        # @param Operation: 授权粒度，当前只支持ALL，即全部权限
+        # @param Operation: 授权的权限操作，对于不同级别的鉴权提供不同操作。管理员权限：ALL，不填默认为ALL；数据连接级鉴权：CRETE；数据库级别鉴权：ALL、CREATE、ALTER、DROP；数据表权限：ALL、SELECT、INSERT、ALTER、DELETE、DROP、UPDATE。注意：在数据表权限下，指定的数据源不为COSDataCatalog的时候，只支持SELECT操作。
         # @type Operation: String
+        # @param PolicyType: 授权类型，现在支持四种授权类型：ADMIN:管理员级别鉴权 DATASOURCE：数据连接级别鉴权 DATABASE：数据库级别鉴权 TABLE：表级别鉴权。不填默认为管理员级别鉴权。
+        # @type PolicyType: String
 
-        attr_accessor :Catalog, :Database, :Table, :Operation
+        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType
         
-        def initialize(catalog=nil, database=nil, table=nil, operation=nil)
-          @Catalog = catalog
+        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil)
           @Database = database
+          @Catalog = catalog
           @Table = table
           @Operation = operation
+          @PolicyType = policytype
         end
 
         def deserialize(params)
-          @Catalog = params['Catalog']
           @Database = params['Database']
+          @Catalog = params['Catalog']
           @Table = params['Table']
           @Operation = params['Operation']
+          @PolicyType = params['PolicyType']
         end
       end
 

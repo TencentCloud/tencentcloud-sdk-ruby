@@ -1833,19 +1833,23 @@ module TencentCloud
         # @type ImageUrl: String
         # @param IsWords: 是否返回单字信息，默认关
         # @type IsWords: Boolean
+        # @param EnableDetectSplit: 是否开启原图切图检测功能，开启后可提升“整图面积大，但单字符占比面积小”（例如：试卷）场景下的识别效果，默认关
+        # @type EnableDetectSplit: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :IsWords
+        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit
         
-        def initialize(imagebase64=nil, imageurl=nil, iswords=nil)
+        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @IsWords = iswords
+          @EnableDetectSplit = enabledetectsplit
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @IsWords = params['IsWords']
+          @EnableDetectSplit = params['EnableDetectSplit']
         end
       end
 

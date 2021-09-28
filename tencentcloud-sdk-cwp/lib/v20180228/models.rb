@@ -9533,12 +9533,14 @@ module TencentCloud
         # @type AutoIsolation: Integer
         # @param ClickTimeout: 一键扫描超时时长，如：1800秒（s）
         # @type ClickTimeout: Integer
+        # @param KillProcess: 是否杀掉进程 1杀掉 0不杀掉 只有开启自动隔离才生效
+        # @type KillProcess: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :RequestId
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :QuuidList, :MonitoringPattern, :Cycle, :EnableScan, :Id, :RealTimeMonitoring, :AutoIsolation, :ClickTimeout, :KillProcess, :RequestId
         
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, requestid=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, quuidlist=nil, monitoringpattern=nil, cycle=nil, enablescan=nil, id=nil, realtimemonitoring=nil, autoisolation=nil, clicktimeout=nil, killprocess=nil, requestid=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -9551,6 +9553,7 @@ module TencentCloud
           @RealTimeMonitoring = realtimemonitoring
           @AutoIsolation = autoisolation
           @ClickTimeout = clicktimeout
+          @KillProcess = killprocess
           @RequestId = requestid
         end
 
@@ -9567,6 +9570,7 @@ module TencentCloud
           @RealTimeMonitoring = params['RealTimeMonitoring']
           @AutoIsolation = params['AutoIsolation']
           @ClickTimeout = params['ClickTimeout']
+          @KillProcess = params['KillProcess']
           @RequestId = params['RequestId']
         end
       end
@@ -14795,10 +14799,12 @@ module TencentCloud
         # @type QuuidList: Array
         # @param AutoIsolation: 是否自动隔离 1隔离 0 不隔离
         # @type AutoIsolation: Integer
+        # @param KillProcess: 是否杀掉进程 1杀掉 0不杀掉
+        # @type KillProcess: Integer
 
-        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation
+        attr_accessor :CheckPattern, :StartTime, :EndTime, :IsGlobal, :EnableScan, :MonitoringPattern, :Cycle, :RealTimeMonitoring, :QuuidList, :AutoIsolation, :KillProcess
         
-        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil)
+        def initialize(checkpattern=nil, starttime=nil, endtime=nil, isglobal=nil, enablescan=nil, monitoringpattern=nil, cycle=nil, realtimemonitoring=nil, quuidlist=nil, autoisolation=nil, killprocess=nil)
           @CheckPattern = checkpattern
           @StartTime = starttime
           @EndTime = endtime
@@ -14809,6 +14815,7 @@ module TencentCloud
           @RealTimeMonitoring = realtimemonitoring
           @QuuidList = quuidlist
           @AutoIsolation = autoisolation
+          @KillProcess = killprocess
         end
 
         def deserialize(params)
@@ -14822,6 +14829,7 @@ module TencentCloud
           @RealTimeMonitoring = params['RealTimeMonitoring']
           @QuuidList = params['QuuidList']
           @AutoIsolation = params['AutoIsolation']
+          @KillProcess = params['KillProcess']
         end
       end
 
@@ -16565,15 +16573,19 @@ module TencentCloud
       class SeparateMalwaresRequest < TencentCloud::Common::AbstractModel
         # @param Ids: 木马事件ID数组。(最大100条)
         # @type Ids: Array
+        # @param KillProcess: 是否杀掉进程
+        # @type KillProcess: Boolean
 
-        attr_accessor :Ids
+        attr_accessor :Ids, :KillProcess
         
-        def initialize(ids=nil)
+        def initialize(ids=nil, killprocess=nil)
           @Ids = ids
+          @KillProcess = killprocess
         end
 
         def deserialize(params)
           @Ids = params['Ids']
+          @KillProcess = params['KillProcess']
         end
       end
 

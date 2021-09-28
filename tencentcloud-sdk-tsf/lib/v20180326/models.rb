@@ -4151,10 +4151,14 @@ module TencentCloud
         # @type StopScript: String
         # @param IncrementalDeployment: 是否进行增量部署，默认为false，全量更新
         # @type IncrementalDeployment: Boolean
+        # @param JdkName: JDK名称: konaJDK或openJDK
+        # @type JdkName: String
+        # @param JdkVersion: JDK版本: 8或11 (openJDK只支持8)
+        # @type JdkVersion: String
 
-        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :StartScript, :StopScript, :IncrementalDeployment
+        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :StartScript, :StopScript, :IncrementalDeployment, :JdkName, :JdkVersion
         
-        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, startscript=nil, stopscript=nil, incrementaldeployment=nil)
+        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, startscript=nil, stopscript=nil, incrementaldeployment=nil, jdkname=nil, jdkversion=nil)
           @GroupId = groupid
           @PkgId = pkgid
           @StartupParameters = startupparameters
@@ -4170,6 +4174,8 @@ module TencentCloud
           @StartScript = startscript
           @StopScript = stopscript
           @IncrementalDeployment = incrementaldeployment
+          @JdkName = jdkname
+          @JdkVersion = jdkversion
         end
 
         def deserialize(params)
@@ -4191,6 +4197,8 @@ module TencentCloud
           @StartScript = params['StartScript']
           @StopScript = params['StopScript']
           @IncrementalDeployment = params['IncrementalDeployment']
+          @JdkName = params['JdkName']
+          @JdkVersion = params['JdkVersion']
         end
       end
 
@@ -12109,16 +12117,20 @@ module TencentCloud
         # @param Desc: 备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Desc: String
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :RuleId, :Name, :ExpandVmCountLimit, :ShrinkVmCountLimit, :GroupCount, :Desc
+        attr_accessor :RuleId, :Name, :ExpandVmCountLimit, :ShrinkVmCountLimit, :GroupCount, :Desc, :Description
         
-        def initialize(ruleid=nil, name=nil, expandvmcountlimit=nil, shrinkvmcountlimit=nil, groupcount=nil, desc=nil)
+        def initialize(ruleid=nil, name=nil, expandvmcountlimit=nil, shrinkvmcountlimit=nil, groupcount=nil, desc=nil, description=nil)
           @RuleId = ruleid
           @Name = name
           @ExpandVmCountLimit = expandvmcountlimit
           @ShrinkVmCountLimit = shrinkvmcountlimit
           @GroupCount = groupcount
           @Desc = desc
+          @Description = description
         end
 
         def deserialize(params)
@@ -12128,6 +12140,7 @@ module TencentCloud
           @ShrinkVmCountLimit = params['ShrinkVmCountLimit']
           @GroupCount = params['GroupCount']
           @Desc = params['Desc']
+          @Description = params['Description']
         end
       end
 
