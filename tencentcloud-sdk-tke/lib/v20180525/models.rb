@@ -6422,10 +6422,12 @@ module TencentCloud
         # @type OsName: String
         # @param OsCustomizeType: 镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
         # @type OsCustomizeType: String
+        # @param ExtraArgs: 节点自定义参数
+        # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.InstanceExtraArgs`
 
-        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType
+        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :ExtraArgs
         
-        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, extraargs=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
           @Name = name
@@ -6436,6 +6438,7 @@ module TencentCloud
           @EnableAutoscale = enableautoscale
           @OsName = osname
           @OsCustomizeType = oscustomizetype
+          @ExtraArgs = extraargs
         end
 
         def deserialize(params)
@@ -6463,6 +6466,10 @@ module TencentCloud
           @EnableAutoscale = params['EnableAutoscale']
           @OsName = params['OsName']
           @OsCustomizeType = params['OsCustomizeType']
+          unless params['ExtraArgs'].nil?
+            @ExtraArgs = InstanceExtraArgs.new
+            @ExtraArgs.deserialize(params['ExtraArgs'])
+          end
         end
       end
 

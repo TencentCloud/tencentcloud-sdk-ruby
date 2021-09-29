@@ -169,6 +169,63 @@ module TencentCloud
         end
       end
 
+      # DescribeQos请求参数结构体
+      class DescribeQosRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: 单次加速唯一 Id
+        # @type SessionId: String
+
+        attr_accessor :SessionId
+        
+        def initialize(sessionid=nil)
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DescribeQos返回参数结构体
+      class DescribeQosResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 0：无匹配的加速中会话
+        # 1：存在匹配的加速中会话
+        # @type Status: Integer
+        # @param SrcPublicIpv4: 手机公网出口IP，仅匹配时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcPublicIpv4: String
+        # @param DestIpv4: 业务访问目的IP，仅匹配时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestIpv4: Array
+        # @param Duration: 当前加速剩余时长（单位秒）有，仅匹配时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param QosMenu: 加速套餐类型，仅匹配时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QosMenu: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :SrcPublicIpv4, :DestIpv4, :Duration, :QosMenu, :RequestId
+        
+        def initialize(status=nil, srcpublicipv4=nil, destipv4=nil, duration=nil, qosmenu=nil, requestid=nil)
+          @Status = status
+          @SrcPublicIpv4 = srcpublicipv4
+          @DestIpv4 = destipv4
+          @Duration = duration
+          @QosMenu = qosmenu
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @SrcPublicIpv4 = params['SrcPublicIpv4']
+          @DestIpv4 = params['DestIpv4']
+          @Duration = params['Duration']
+          @QosMenu = params['QosMenu']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 移动网络加速目标地址结构体
       class DestAddressInfo < TencentCloud::Common::AbstractModel
         # @param DestIp: 加速业务目标 ip 地址数组

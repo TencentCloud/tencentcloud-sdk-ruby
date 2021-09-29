@@ -2383,14 +2383,17 @@ module TencentCloud
         # @type CIBusiness: String
         # @param ServiceVersion: 服务版本
         # @type ServiceVersion: String
+        # @param Suffix: 文件后缀
+        # @type Suffix: String
 
-        attr_accessor :EnvId, :ServiceName, :CIBusiness, :ServiceVersion
+        attr_accessor :EnvId, :ServiceName, :CIBusiness, :ServiceVersion, :Suffix
         
-        def initialize(envid=nil, servicename=nil, cibusiness=nil, serviceversion=nil)
+        def initialize(envid=nil, servicename=nil, cibusiness=nil, serviceversion=nil, suffix=nil)
           @EnvId = envid
           @ServiceName = servicename
           @CIBusiness = cibusiness
           @ServiceVersion = serviceversion
+          @Suffix = suffix
         end
 
         def deserialize(params)
@@ -2398,6 +2401,7 @@ module TencentCloud
           @ServiceName = params['ServiceName']
           @CIBusiness = params['CIBusiness']
           @ServiceVersion = params['ServiceVersion']
+          @Suffix = params['Suffix']
         end
       end
 
