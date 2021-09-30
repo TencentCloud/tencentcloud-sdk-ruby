@@ -216,6 +216,76 @@ module TencentCloud
         end
       end
 
+      # 描述独享集群的详细信息。
+      class Cdc < TencentCloud::Common::AbstractModel
+        # @param CageId: 独享集群围笼ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CageId: String
+        # @param CdcState: 独享集群状态。取值范围：<br><li>NORMAL:正常<br><li>CLOSED：关闭售卖<br><li>FAULT：状态异常<br><li>ISOLATED：已隔离。
+        # @type CdcState: String
+        # @param Zone: 独享集群所属的[可用区](/document/api/213/9452#zone)ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param CdcName: 独享集群实例名称。
+        # @type CdcName: String
+        # @param CdcResource: 独享集群的资源大小。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcResource: :class:`Tencentcloud::Cbs.v20170312.models.CdcSize`
+        # @param CdcId: 独享集群实例id。
+        # @type CdcId: String
+        # @param DiskType: 独享集群类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘集群<br><li>CLOUD_PREMIUM：表示高性能云硬盘集群<br><li>CLOUD_SSD：SSD表示SSD云硬盘集群。
+        # @type DiskType: String
+        # @param ExpiredTime: 独享集群过期时间。
+        # @type ExpiredTime: String
+
+        attr_accessor :CageId, :CdcState, :Zone, :CdcName, :CdcResource, :CdcId, :DiskType, :ExpiredTime
+        
+        def initialize(cageid=nil, cdcstate=nil, zone=nil, cdcname=nil, cdcresource=nil, cdcid=nil, disktype=nil, expiredtime=nil)
+          @CageId = cageid
+          @CdcState = cdcstate
+          @Zone = zone
+          @CdcName = cdcname
+          @CdcResource = cdcresource
+          @CdcId = cdcid
+          @DiskType = disktype
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          @CageId = params['CageId']
+          @CdcState = params['CdcState']
+          @Zone = params['Zone']
+          @CdcName = params['CdcName']
+          unless params['CdcResource'].nil?
+            @CdcResource = CdcSize.new
+            @CdcResource.deserialize(params['CdcResource'])
+          end
+          @CdcId = params['CdcId']
+          @DiskType = params['DiskType']
+          @ExpiredTime = params['ExpiredTime']
+        end
+      end
+
+      # 显示独享集群的大小
+      class CdcSize < TencentCloud::Common::AbstractModel
+        # @param DiskAavilable: 独享集群的可用容量大小，单位GiB
+        # @type DiskAavilable: Integer
+        # @param DiskTotal: 独享集群的总容量大小，单位GiB
+        # @type DiskTotal: Integer
+
+        attr_accessor :DiskAavilable, :DiskTotal
+        
+        def initialize(diskaavilable=nil, disktotal=nil)
+          @DiskAavilable = diskaavilable
+          @DiskTotal = disktotal
+        end
+
+        def deserialize(params)
+          @DiskAavilable = params['DiskAavilable']
+          @DiskTotal = params['DiskTotal']
+        end
+      end
+
       # CreateAutoSnapshotPolicy请求参数结构体
       class CreateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
         # @param Policy: 定期快照的执行策略。
@@ -741,6 +811,72 @@ module TencentCloud
               diskoperationlog_tmp = DiskOperationLog.new
               diskoperationlog_tmp.deserialize(i)
               @DiskOperationLogSet << diskoperationlog_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDiskStoragePool请求参数结构体
+      class DescribeDiskStoragePoolRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
+        # @type Limit: Integer
+        # @param CdcIds: 指定需要查询的独享集群ID列表，该入参不能与Filters一起使用。
+        # @type CdcIds: Array
+        # @param Filters: 过滤条件。参数不支持同时指定`CdcIds`和`Filters`。<br><li>cdc-id - Array of String - 是否必填：否 -（过滤条件）按独享集群ID过滤。<br><li>zone - Array of String - 是否必填：否 -（过滤条件）按独享集群所在[可用区](/document/api/213/9452#zone)过滤。<br><li>cage-id - Array of String - 是否必填：否 -（过滤条件）按独享集群所在围笼的ID过滤。<br><li>disk-type - Array of String - 是否必填：否 -（过滤条件）按照云盘介质类型过滤。(CLOUD_BASIC：表示普通云硬盘 | CLOUD_PREMIUM：表示高性能云硬盘。| CLOUD_SSD：SSD表示SSD云硬盘。)
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :CdcIds, :Filters, :Offset
+        
+        def initialize(limit=nil, cdcids=nil, filters=nil, offset=nil)
+          @Limit = limit
+          @CdcIds = cdcids
+          @Filters = filters
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @CdcIds = params['CdcIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeDiskStoragePool返回参数结构体
+      class DescribeDiskStoragePoolResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的独享集群的数量
+        # @type TotalCount: Integer
+        # @param DiskStoragePoolSet: 独享集群的详细信息列表
+        # @type DiskStoragePoolSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DiskStoragePoolSet, :RequestId
+        
+        def initialize(totalcount=nil, diskstoragepoolset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DiskStoragePoolSet = diskstoragepoolset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DiskStoragePoolSet'].nil?
+            @DiskStoragePoolSet = []
+            params['DiskStoragePoolSet'].each do |i|
+              cdc_tmp = Cdc.new
+              cdc_tmp.deserialize(i)
+              @DiskStoragePoolSet << cdc_tmp
             end
           end
           @RequestId = params['RequestId']

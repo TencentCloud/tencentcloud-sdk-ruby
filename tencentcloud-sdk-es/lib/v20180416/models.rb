@@ -1676,6 +1676,50 @@ module TencentCloud
         end
       end
 
+      # UpdateJdk请求参数结构体
+      class UpdateJdkRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES实例ID
+        # @type InstanceId: String
+        # @param Jdk: Jdk类型，支持kona和oracle
+        # @type Jdk: String
+        # @param Gc: Gc类型，支持g1和cms
+        # @type Gc: String
+        # @param ForceRestart: 是否强制重启
+        # @type ForceRestart: Boolean
+
+        attr_accessor :InstanceId, :Jdk, :Gc, :ForceRestart
+        
+        def initialize(instanceid=nil, jdk=nil, gc=nil, forcerestart=nil)
+          @InstanceId = instanceid
+          @Jdk = jdk
+          @Gc = gc
+          @ForceRestart = forcerestart
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Jdk = params['Jdk']
+          @Gc = params['Gc']
+          @ForceRestart = params['ForceRestart']
+        end
+      end
+
+      # UpdateJdk返回参数结构体
+      class UpdateJdkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdatePlugins请求参数结构体
       class UpdatePluginsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID

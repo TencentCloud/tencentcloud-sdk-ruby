@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 企业可通过此接口获取线索列表。
+
+        # @param request: Request instance for QueryClueInfoList.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryClueInfoListRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryClueInfoListResponse`
+        def QueryClueInfoList(request)
+          body = send_request('QueryClueInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryClueInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 企业可通过此接口，根据外部联系人的userid，拉取客户详情
 
         # @param request: Request instance for QueryExternalContactDetail.

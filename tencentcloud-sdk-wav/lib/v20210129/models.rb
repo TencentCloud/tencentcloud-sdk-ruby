@@ -339,6 +339,74 @@ module TencentCloud
         end
       end
 
+      # 线索信息详情
+      class ClueInfoDetail < TencentCloud::Common::AbstractModel
+        # @param ClueId: 线索id，线索唯一识别编码
+        # @type ClueId: String
+        # @param DealerId: 接待客户经销商顾问所属组织id,多个组织使用逗号分割
+        # @type DealerId: String
+        # @param EnquireTime: 线索获取时间，用户添加企业微信时间，单位是秒
+        # @type EnquireTime: Integer
+        # @param UnionId: 客户在微信生态中唯一识别码
+        # @type UnionId: String
+        # @param Name: 微信昵称
+        # @type Name: String
+        # @param Phone: 联系方式
+        # @type Phone: String
+        # @param SeriesCode: 车系编号
+        # @type SeriesCode: String
+        # @param ModelCode: 车型编号
+        # @type ModelCode: String
+        # @param ProvinceCode: 省份编号
+        # @type ProvinceCode: String
+        # @param CityCode: 城市编号
+        # @type CityCode: String
+        # @param SalesName: 顾问名称
+        # @type SalesName: String
+        # @param SalesPhone: 顾问电话
+        # @type SalesPhone: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param TagList: 标签
+        # @type TagList: Array
+
+        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList
+        
+        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil)
+          @ClueId = clueid
+          @DealerId = dealerid
+          @EnquireTime = enquiretime
+          @UnionId = unionid
+          @Name = name
+          @Phone = phone
+          @SeriesCode = seriescode
+          @ModelCode = modelcode
+          @ProvinceCode = provincecode
+          @CityCode = citycode
+          @SalesName = salesname
+          @SalesPhone = salesphone
+          @Remark = remark
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @ClueId = params['ClueId']
+          @DealerId = params['DealerId']
+          @EnquireTime = params['EnquireTime']
+          @UnionId = params['UnionId']
+          @Name = params['Name']
+          @Phone = params['Phone']
+          @SeriesCode = params['SeriesCode']
+          @ModelCode = params['ModelCode']
+          @ProvinceCode = params['ProvinceCode']
+          @CityCode = params['CityCode']
+          @SalesName = params['SalesName']
+          @SalesPhone = params['SalesPhone']
+          @Remark = params['Remark']
+          @TagList = params['TagList']
+        end
+      end
+
       # CreateChannelCode请求参数结构体
       class CreateChannelCodeRequest < TencentCloud::Common::AbstractModel
         # @param Type: 欢迎语类型:0普通欢迎语,1渠道欢迎语
@@ -1053,6 +1121,64 @@ module TencentCloud
               @PageData << chatarchivingdetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryClueInfoList请求参数结构体
+      class QueryClueInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+        # @param Limit: 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
+        # @type Limit: Integer
+
+        attr_accessor :Cursor, :Limit
+        
+        def initialize(cursor=nil, limit=nil)
+          @Cursor = cursor
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Cursor = params['Cursor']
+          @Limit = params['Limit']
+        end
+      end
+
+      # QueryClueInfoList返回参数结构体
+      class QueryClueInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param PageData: 线索信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param NextCursor: 分页游标，下次调用带上该值，则从当前的位置继续往后拉，以实现增量拉取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param HasMore: 是否还有更多数据。0-否；1-是。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasMore: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PageData, :NextCursor, :HasMore, :RequestId
+        
+        def initialize(pagedata=nil, nextcursor=nil, hasmore=nil, requestid=nil)
+          @PageData = pagedata
+          @NextCursor = nextcursor
+          @HasMore = hasmore
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              clueinfodetail_tmp = ClueInfoDetail.new
+              clueinfodetail_tmp.deserialize(i)
+              @PageData << clueinfodetail_tmp
+            end
+          end
+          @NextCursor = params['NextCursor']
+          @HasMore = params['HasMore']
           @RequestId = params['RequestId']
         end
       end

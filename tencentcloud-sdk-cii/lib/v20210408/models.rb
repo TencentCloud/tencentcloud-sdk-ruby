@@ -201,72 +201,109 @@ module TencentCloud
         end
       end
 
-      # CreateStructureTaskTest请求参数结构体
-      class CreateStructureTaskTestRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceType: 服务类型
-        # Structured 仅结构化
-        # Underwrite 结构化+核保
-        # @type ServiceType: String
-        # @param TaskInfos: 创建任务时可以上传多个报告，后台生成多个识别子任务，子任务的详细信息
-        # @type TaskInfos: Array
-        # @param PolicyId: 保单号
-        # @type PolicyId: String
-        # @param TriggerType: 核保触发方式
-        # Auto 自动
-        # Manual 手动
-        # @type TriggerType: String
-        # @param InsuranceTypes: 险种，如果是体检报告类型，此参数是必填，类型说明如下：
-        # CriticalDiseaseInsurance:重疾险
-        # LifeInsurance：寿险
-        # AccidentInsurance：意外险
-        # @type InsuranceTypes: Array
-        # @param CallbackUrl: 回调地址，接收Post请求传送结果
+      # CreateUnderwriteTaskById请求参数结构体
+      class CreateUnderwriteTaskByIdRequest < TencentCloud::Common::AbstractModel
+        # @param MainTaskIds: 主任务ID数组，
+        # @type MainTaskIds: Array
+        # @param CallbackUrl: 回调地址，可不传（提供轮询机制）。
         # @type CallbackUrl: String
 
-        attr_accessor :ServiceType, :TaskInfos, :PolicyId, :TriggerType, :InsuranceTypes, :CallbackUrl
+        attr_accessor :MainTaskIds, :CallbackUrl
         
-        def initialize(servicetype=nil, taskinfos=nil, policyid=nil, triggertype=nil, insurancetypes=nil, callbackurl=nil)
-          @ServiceType = servicetype
-          @TaskInfos = taskinfos
-          @PolicyId = policyid
-          @TriggerType = triggertype
-          @InsuranceTypes = insurancetypes
+        def initialize(maintaskids=nil, callbackurl=nil)
+          @MainTaskIds = maintaskids
           @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
-          @ServiceType = params['ServiceType']
-          unless params['TaskInfos'].nil?
-            @TaskInfos = []
-            params['TaskInfos'].each do |i|
-              createstructuretaskinfo_tmp = CreateStructureTaskInfo.new
-              createstructuretaskinfo_tmp.deserialize(i)
-              @TaskInfos << createstructuretaskinfo_tmp
-            end
-          end
-          @PolicyId = params['PolicyId']
-          @TriggerType = params['TriggerType']
-          @InsuranceTypes = params['InsuranceTypes']
+          @MainTaskIds = params['MainTaskIds']
           @CallbackUrl = params['CallbackUrl']
         end
       end
 
-      # CreateStructureTaskTest返回参数结构体
-      class CreateStructureTaskTestResponse < TencentCloud::Common::AbstractModel
-        # @param MainTaskId: 创建的主任务号，用于查询结果
-        # @type MainTaskId: String
+      # CreateUnderwriteTaskById返回参数结构体
+      class CreateUnderwriteTaskByIdResponse < TencentCloud::Common::AbstractModel
+        # @param UnderwriteTaskIds: 核保任务ID数据
+        # @type UnderwriteTaskIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MainTaskId, :RequestId
+        attr_accessor :UnderwriteTaskIds, :RequestId
         
-        def initialize(maintaskid=nil, requestid=nil)
-          @MainTaskId = maintaskid
+        def initialize(underwritetaskids=nil, requestid=nil)
+          @UnderwriteTaskIds = underwritetaskids
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @UnderwriteTaskIds = params['UnderwriteTaskIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMachineUnderwrite请求参数结构体
+      class DescribeMachineUnderwriteRequest < TencentCloud::Common::AbstractModel
+        # @param UnderwriteTaskId: 核保任务ID
+        # @type UnderwriteTaskId: String
+
+        attr_accessor :UnderwriteTaskId
+        
+        def initialize(underwritetaskid=nil)
+          @UnderwriteTaskId = underwritetaskid
+        end
+
+        def deserialize(params)
+          @UnderwriteTaskId = params['UnderwriteTaskId']
+        end
+      end
+
+      # DescribeMachineUnderwrite返回参数结构体
+      class DescribeMachineUnderwriteResponse < TencentCloud::Common::AbstractModel
+        # @param Uin: 腾讯云主账号ID
+        # @type Uin: String
+        # @param SubAccountUin: 操作人子账户ID
+        # @type SubAccountUin: String
+        # @param PolicyId: 保单ID
+        # @type PolicyId: String
+        # @param MainTaskId: 主任务ID
+        # @type MainTaskId: String
+        # @param UnderwriteTaskId: 核保任务ID
+        # @type UnderwriteTaskId: String
+        # @param Status: 状态码
+        # @type Status: Integer
+        # @param UnderwriteResults: 机器核保结果
+        # @type UnderwriteResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Uin, :SubAccountUin, :PolicyId, :MainTaskId, :UnderwriteTaskId, :Status, :UnderwriteResults, :RequestId
+        
+        def initialize(uin=nil, subaccountuin=nil, policyid=nil, maintaskid=nil, underwritetaskid=nil, status=nil, underwriteresults=nil, requestid=nil)
+          @Uin = uin
+          @SubAccountUin = subaccountuin
+          @PolicyId = policyid
+          @MainTaskId = maintaskid
+          @UnderwriteTaskId = underwritetaskid
+          @Status = status
+          @UnderwriteResults = underwriteresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
+          @PolicyId = params['PolicyId']
           @MainTaskId = params['MainTaskId']
+          @UnderwriteTaskId = params['UnderwriteTaskId']
+          @Status = params['Status']
+          unless params['UnderwriteResults'].nil?
+            @UnderwriteResults = []
+            params['UnderwriteResults'].each do |i|
+              machineunderwriteoutput_tmp = MachineUnderwriteOutput.new
+              machineunderwriteoutput_tmp.deserialize(i)
+              @UnderwriteResults << machineunderwriteoutput_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -367,6 +404,65 @@ module TencentCloud
             end
           end
           @TaskType = params['TaskType']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStructureDifference请求参数结构体
+      class DescribeStructureDifferenceRequest < TencentCloud::Common::AbstractModel
+        # @param MainTaskId: 主任务号
+        # @type MainTaskId: String
+        # @param SubTaskId: 子任务号
+        # @type SubTaskId: String
+
+        attr_accessor :MainTaskId, :SubTaskId
+        
+        def initialize(maintaskid=nil, subtaskid=nil)
+          @MainTaskId = maintaskid
+          @SubTaskId = subtaskid
+        end
+
+        def deserialize(params)
+          @MainTaskId = params['MainTaskId']
+          @SubTaskId = params['SubTaskId']
+        end
+      end
+
+      # DescribeStructureDifference返回参数结构体
+      class DescribeStructureDifferenceResponse < TencentCloud::Common::AbstractModel
+        # @param MainTaskId: 主任务号
+        # @type MainTaskId: String
+        # @param Status: 结果状态：
+        # 0：返回成功
+        # 1：结果未生成
+        # 2：结果生成失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Results: 差异的结果数组
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MainTaskId, :Status, :Results, :RequestId
+        
+        def initialize(maintaskid=nil, status=nil, results=nil, requestid=nil)
+          @MainTaskId = maintaskid
+          @Status = status
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MainTaskId = params['MainTaskId']
+          @Status = params['Status']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              perstructdifference_tmp = PerStructDifference.new
+              perstructdifference_tmp.deserialize(i)
+              @Results << perstructdifference_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -476,54 +572,167 @@ module TencentCloud
         end
       end
 
-      # DescribeStructureTaskResultTest请求参数结构体
-      class DescribeStructureTaskResultTestRequest < TencentCloud::Common::AbstractModel
-        # @param MainTaskId: 结构化任务ID
-        # @type MainTaskId: String
+      # 包含险种的各个核保结论
+      class InsuranceResult < TencentCloud::Common::AbstractModel
+        # @param InsuranceType: 险种
+        # @type InsuranceType: String
+        # @param Result: 对应险种的机器核保结果
+        # @type Result: Array
 
-        attr_accessor :MainTaskId
+        attr_accessor :InsuranceType, :Result
         
-        def initialize(maintaskid=nil)
-          @MainTaskId = maintaskid
+        def initialize(insurancetype=nil, result=nil)
+          @InsuranceType = insurancetype
+          @Result = result
         end
 
         def deserialize(params)
-          @MainTaskId = params['MainTaskId']
+          @InsuranceType = params['InsuranceType']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              machinepredict_tmp = MachinePredict.new
+              machinepredict_tmp.deserialize(i)
+              @Result << machinepredict_tmp
+            end
+          end
         end
       end
 
-      # DescribeStructureTaskResultTest返回参数结构体
-      class DescribeStructureTaskResultTestResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 结果状态：
-        # 0：返回成功
-        # 1：结果未生成
-        # 2：结果生成失败
-        # @type Status: Integer
-        # @param Results: 结构化识别结果数组，每个数组元素对应一个图片的结构化结果，顺序和输入参数的ImageList或FileList对应。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Results: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
+      # 机器核保预测结果
+      class MachinePredict < TencentCloud::Common::AbstractModel
+        # @param Title: 核保引擎名称
+        # @type Title: String
+        # @param Conclusion: 核保结论
+        # @type Conclusion: String
+        # @param Explanation: AI决策树解释
+        # @type Explanation: Array
+        # @param Disease: 疾病指标
+        # @type Disease: Array
+        # @param Laboratory: 检查异常
+        # @type Laboratory: Array
 
-        attr_accessor :Status, :Results, :RequestId
+        attr_accessor :Title, :Conclusion, :Explanation, :Disease, :Laboratory
         
-        def initialize(status=nil, results=nil, requestid=nil)
-          @Status = status
-          @Results = results
-          @RequestId = requestid
+        def initialize(title=nil, conclusion=nil, explanation=nil, disease=nil, laboratory=nil)
+          @Title = title
+          @Conclusion = conclusion
+          @Explanation = explanation
+          @Disease = disease
+          @Laboratory = laboratory
         end
 
         def deserialize(params)
-          @Status = params['Status']
+          @Title = params['Title']
+          @Conclusion = params['Conclusion']
+          unless params['Explanation'].nil?
+            @Explanation = []
+            params['Explanation'].each do |i|
+              underwriteitem_tmp = UnderwriteItem.new
+              underwriteitem_tmp.deserialize(i)
+              @Explanation << underwriteitem_tmp
+            end
+          end
+          unless params['Disease'].nil?
+            @Disease = []
+            params['Disease'].each do |i|
+              underwriteitem_tmp = UnderwriteItem.new
+              underwriteitem_tmp.deserialize(i)
+              @Disease << underwriteitem_tmp
+            end
+          end
+          unless params['Laboratory'].nil?
+            @Laboratory = []
+            params['Laboratory'].each do |i|
+              underwriteitem_tmp = UnderwriteItem.new
+              underwriteitem_tmp.deserialize(i)
+              @Laboratory << underwriteitem_tmp
+            end
+          end
+        end
+      end
+
+      # 机器核保输出
+      class MachineUnderwriteOutput < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 客户号
+        # @type CustomerId: String
+        # @param CustomerName: 客户姓名
+        # @type CustomerName: String
+        # @param Results: 各个险种的结果
+        # @type Results: Array
+
+        attr_accessor :CustomerId, :CustomerName, :Results
+        
+        def initialize(customerid=nil, customername=nil, results=nil)
+          @CustomerId = customerid
+          @CustomerName = customername
+          @Results = results
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @CustomerName = params['CustomerName']
           unless params['Results'].nil?
             @Results = []
             params['Results'].each do |i|
-              resultobject_tmp = ResultObject.new
-              resultobject_tmp.deserialize(i)
-              @Results << resultobject_tmp
+              insuranceresult_tmp = InsuranceResult.new
+              insuranceresult_tmp.deserialize(i)
+              @Results << insuranceresult_tmp
             end
           end
-          @RequestId = params['RequestId']
+        end
+      end
+
+      # 复核差异接口的每一份报告的差异结果
+      class PerStructDifference < TencentCloud::Common::AbstractModel
+        # @param SubTaskId: 子任务ID
+        # @type SubTaskId: String
+        # @param TaskType: 任务类型
+        # @type TaskType: String
+        # @param ModifyItems: 修改的项
+        # @type ModifyItems: Array
+        # @param NewItems: 新增的项
+        # @type NewItems: Array
+        # @param RemoveItems: 删除的项
+        # @type RemoveItems: Array
+
+        attr_accessor :SubTaskId, :TaskType, :ModifyItems, :NewItems, :RemoveItems
+        
+        def initialize(subtaskid=nil, tasktype=nil, modifyitems=nil, newitems=nil, removeitems=nil)
+          @SubTaskId = subtaskid
+          @TaskType = tasktype
+          @ModifyItems = modifyitems
+          @NewItems = newitems
+          @RemoveItems = removeitems
+        end
+
+        def deserialize(params)
+          @SubTaskId = params['SubTaskId']
+          @TaskType = params['TaskType']
+          unless params['ModifyItems'].nil?
+            @ModifyItems = []
+            params['ModifyItems'].each do |i|
+              structuremodifyitem_tmp = StructureModifyItem.new
+              structuremodifyitem_tmp.deserialize(i)
+              @ModifyItems << structuremodifyitem_tmp
+            end
+          end
+          unless params['NewItems'].nil?
+            @NewItems = []
+            params['NewItems'].each do |i|
+              structureoneitem_tmp = StructureOneItem.new
+              structureoneitem_tmp.deserialize(i)
+              @NewItems << structureoneitem_tmp
+            end
+          end
+          unless params['RemoveItems'].nil?
+            @RemoveItems = []
+            params['RemoveItems'].each do |i|
+              structureoneitem_tmp = StructureOneItem.new
+              structureoneitem_tmp.deserialize(i)
+              @RemoveItems << structureoneitem_tmp
+            end
+          end
         end
       end
 
@@ -587,6 +796,55 @@ module TencentCloud
         end
       end
 
+      # 结构化复核差异接口的修改的项
+      class StructureModifyItem < TencentCloud::Common::AbstractModel
+        # @param Path: 修改的字段的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Machine: 机器结果的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Machine: String
+        # @param Manual: 人工结果的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Manual: String
+
+        attr_accessor :Path, :Machine, :Manual
+        
+        def initialize(path=nil, machine=nil, manual=nil)
+          @Path = path
+          @Machine = machine
+          @Manual = manual
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Machine = params['Machine']
+          @Manual = params['Manual']
+        end
+      end
+
+      # 复核差异接口的新增或者删除的项
+      class StructureOneItem < TencentCloud::Common::AbstractModel
+        # @param Path: 新字段的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Value: 字段的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Path, :Value
+        
+        def initialize(path=nil, value=nil)
+          @Path = path
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Value = params['Value']
+        end
+      end
+
       # 结构化结果
       class StructureResultObject < TencentCloud::Common::AbstractModel
         # @param Code: 0表示正常返回
@@ -612,6 +870,30 @@ module TencentCloud
           @TaskType = params['TaskType']
           @StructureResult = params['StructureResult']
           @SubTaskId = params['SubTaskId']
+        end
+      end
+
+      # 机器核保结论子项
+      class UnderwriteItem < TencentCloud::Common::AbstractModel
+        # @param Name: 字段名
+        # @type Name: String
+        # @param Result: 结果
+        # @type Result: String
+        # @param Value: 风险值或者说明
+        # @type Value: String
+
+        attr_accessor :Name, :Result, :Value
+        
+        def initialize(name=nil, result=nil, value=nil)
+          @Name = name
+          @Result = result
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Result = params['Result']
+          @Value = params['Value']
         end
       end
 

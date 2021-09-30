@@ -12282,18 +12282,18 @@ module TencentCloud
 
       # EditBashRules请求参数结构体
       class EditBashRulesRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 规则名称
-        # @type Name: String
-        # @param Rule: 正则表达式
-        # @type Rule: String
         # @param Id: 规则ID（新增时不填）
         # @type Id: Integer
         # @param Uuids: 客户端ID数组
         # @type Uuids: Array
         # @param HostIp: 主机IP
         # @type HostIp: String
+        # @param Name: 规则名称，编辑时不可修改规则名称
+        # @type Name: String
         # @param Level: 危险等级(0:无，1: 高危 2:中危 3: 低危)
         # @type Level: Integer
+        # @param Rule: 正则表达式 ，编辑时不可修改正则表达式，需要对内容QueryEscape后再base64
+        # @type Rule: String
         # @param IsGlobal: 是否全局规则(默认否)：1-全局，0-非全局
         # @type IsGlobal: Integer
         # @param White: 0=黑名单， 1=白名单
@@ -12303,15 +12303,15 @@ module TencentCloud
         # @param DealOldEvents: 是否处理旧事件为白名单 0=不处理 1=处理
         # @type DealOldEvents: Integer
 
-        attr_accessor :Name, :Rule, :Id, :Uuids, :HostIp, :Level, :IsGlobal, :White, :EventId, :DealOldEvents
+        attr_accessor :Id, :Uuids, :HostIp, :Name, :Level, :Rule, :IsGlobal, :White, :EventId, :DealOldEvents
         
-        def initialize(name=nil, rule=nil, id=nil, uuids=nil, hostip=nil, level=nil, isglobal=nil, white=nil, eventid=nil, dealoldevents=nil)
-          @Name = name
-          @Rule = rule
+        def initialize(id=nil, uuids=nil, hostip=nil, name=nil, level=nil, rule=nil, isglobal=nil, white=nil, eventid=nil, dealoldevents=nil)
           @Id = id
           @Uuids = uuids
           @HostIp = hostip
+          @Name = name
           @Level = level
+          @Rule = rule
           @IsGlobal = isglobal
           @White = white
           @EventId = eventid
@@ -12319,12 +12319,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Name = params['Name']
-          @Rule = params['Rule']
           @Id = params['Id']
           @Uuids = params['Uuids']
           @HostIp = params['HostIp']
+          @Name = params['Name']
           @Level = params['Level']
+          @Rule = params['Rule']
           @IsGlobal = params['IsGlobal']
           @White = params['White']
           @EventId = params['EventId']
@@ -14558,10 +14558,22 @@ module TencentCloud
         # @type LatestScanTime: String
         # @param Reference: 参考链接
         # @type Reference: String
+        # @param MachineWanIp: 外网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineWanIp: String
+        # @param PsTree: 进程树 json  pid:进程id，exe:文件路径 ，account:进程所属用组和用户 ,cmdline:执行命令，ssh_service: SSH服务ip, ssh_soure:登录源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PsTree: String
+        # @param MachineStatus: 主机在线状态 OFFLINE  ONLINE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineStatus: String
+        # @param Status: 状态；4-:待处理，5-已信任，6-已隔离
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference
+        attr_accessor :VirusName, :FileSize, :MD5, :FilePath, :FileCreateTime, :FileModifierTime, :HarmDescribe, :SuggestScheme, :ServersName, :HostIp, :ProcessName, :ProcessID, :Tags, :Breadth, :Heat, :Id, :FileName, :CreateTime, :LatestScanTime, :Reference, :MachineWanIp, :PsTree, :MachineStatus, :Status
         
-        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil)
+        def initialize(virusname=nil, filesize=nil, md5=nil, filepath=nil, filecreatetime=nil, filemodifiertime=nil, harmdescribe=nil, suggestscheme=nil, serversname=nil, hostip=nil, processname=nil, processid=nil, tags=nil, breadth=nil, heat=nil, id=nil, filename=nil, createtime=nil, latestscantime=nil, reference=nil, machinewanip=nil, pstree=nil, machinestatus=nil, status=nil)
           @VirusName = virusname
           @FileSize = filesize
           @MD5 = md5
@@ -14582,6 +14594,10 @@ module TencentCloud
           @CreateTime = createtime
           @LatestScanTime = latestscantime
           @Reference = reference
+          @MachineWanIp = machinewanip
+          @PsTree = pstree
+          @MachineStatus = machinestatus
+          @Status = status
         end
 
         def deserialize(params)
@@ -14605,6 +14621,10 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @LatestScanTime = params['LatestScanTime']
           @Reference = params['Reference']
+          @MachineWanIp = params['MachineWanIp']
+          @PsTree = params['PsTree']
+          @MachineStatus = params['MachineStatus']
+          @Status = params['Status']
         end
       end
 
@@ -16084,10 +16104,16 @@ module TencentCloud
         # @type SuggestScheme: String
         # @param Tags: 标签特性
         # @type Tags: Array
+        # @param MachineWanIp: 外网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineWanIp: String
+        # @param MachineStatus: 主机在线状态 OFFLINE  ONLINE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineStatus: String
 
-        attr_accessor :Url, :AccessCount, :ProcessName, :ProcessMd5, :GlobalRuleId, :UserRuleId, :Status, :CreateTime, :MergeTime, :Quuid, :HostIp, :Alias, :Description, :Id, :Reference, :CmdLine, :Pid, :Uuid, :SuggestScheme, :Tags
+        attr_accessor :Url, :AccessCount, :ProcessName, :ProcessMd5, :GlobalRuleId, :UserRuleId, :Status, :CreateTime, :MergeTime, :Quuid, :HostIp, :Alias, :Description, :Id, :Reference, :CmdLine, :Pid, :Uuid, :SuggestScheme, :Tags, :MachineWanIp, :MachineStatus
         
-        def initialize(url=nil, accesscount=nil, processname=nil, processmd5=nil, globalruleid=nil, userruleid=nil, status=nil, createtime=nil, mergetime=nil, quuid=nil, hostip=nil, _alias=nil, description=nil, id=nil, reference=nil, cmdline=nil, pid=nil, uuid=nil, suggestscheme=nil, tags=nil)
+        def initialize(url=nil, accesscount=nil, processname=nil, processmd5=nil, globalruleid=nil, userruleid=nil, status=nil, createtime=nil, mergetime=nil, quuid=nil, hostip=nil, _alias=nil, description=nil, id=nil, reference=nil, cmdline=nil, pid=nil, uuid=nil, suggestscheme=nil, tags=nil, machinewanip=nil, machinestatus=nil)
           @Url = url
           @AccessCount = accesscount
           @ProcessName = processname
@@ -16108,6 +16134,8 @@ module TencentCloud
           @Uuid = uuid
           @SuggestScheme = suggestscheme
           @Tags = tags
+          @MachineWanIp = machinewanip
+          @MachineStatus = machinestatus
         end
 
         def deserialize(params)
@@ -16131,6 +16159,8 @@ module TencentCloud
           @Uuid = params['Uuid']
           @SuggestScheme = params['SuggestScheme']
           @Tags = params['Tags']
+          @MachineWanIp = params['MachineWanIp']
+          @MachineStatus = params['MachineStatus']
         end
       end
 

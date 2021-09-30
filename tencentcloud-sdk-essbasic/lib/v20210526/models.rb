@@ -812,10 +812,13 @@ module TencentCloud
         # @param FlowId: 签署链接对应流程Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
+        # @param OpenId: 企业经办人 用户在渠道的编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
 
-        attr_accessor :SignUrl, :Deadline, :SignOrder, :SignId, :CustomUserId, :Name, :Mobile, :OrganizationName, :ApproverType, :IdCardNumber, :FlowId
+        attr_accessor :SignUrl, :Deadline, :SignOrder, :SignId, :CustomUserId, :Name, :Mobile, :OrganizationName, :ApproverType, :IdCardNumber, :FlowId, :OpenId
         
-        def initialize(signurl=nil, deadline=nil, signorder=nil, signid=nil, customuserid=nil, name=nil, mobile=nil, organizationname=nil, approvertype=nil, idcardnumber=nil, flowid=nil)
+        def initialize(signurl=nil, deadline=nil, signorder=nil, signid=nil, customuserid=nil, name=nil, mobile=nil, organizationname=nil, approvertype=nil, idcardnumber=nil, flowid=nil, openid=nil)
           @SignUrl = signurl
           @Deadline = deadline
           @SignOrder = signorder
@@ -827,6 +830,7 @@ module TencentCloud
           @ApproverType = approvertype
           @IdCardNumber = idcardnumber
           @FlowId = flowid
+          @OpenId = openid
         end
 
         def deserialize(params)
@@ -841,6 +845,7 @@ module TencentCloud
           @ApproverType = params['ApproverType']
           @IdCardNumber = params['IdCardNumber']
           @FlowId = params['FlowId']
+          @OpenId = params['OpenId']
         end
       end
 

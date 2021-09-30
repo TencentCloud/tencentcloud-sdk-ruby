@@ -53,16 +53,40 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(CreateStructureTaskTest)基于提供的客户及保单信息，创建并启动结构化识别任务。用于路由到测试环境。
+        # 本接口(CreateUnderwriteTaskById)用于根据结构化任务ID创建核保任务
 
-        # @param request: Request instance for CreateStructureTaskTest.
-        # @type request: :class:`Tencentcloud::cii::V20210408::CreateStructureTaskTestRequest`
-        # @rtype: :class:`Tencentcloud::cii::V20210408::CreateStructureTaskTestResponse`
-        def CreateStructureTaskTest(request)
-          body = send_request('CreateStructureTaskTest', request.serialize)
+        # @param request: Request instance for CreateUnderwriteTaskById.
+        # @type request: :class:`Tencentcloud::cii::V20210408::CreateUnderwriteTaskByIdRequest`
+        # @rtype: :class:`Tencentcloud::cii::V20210408::CreateUnderwriteTaskByIdResponse`
+        def CreateUnderwriteTaskById(request)
+          body = send_request('CreateUnderwriteTaskById', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateStructureTaskTestResponse.new
+            model = CreateUnderwriteTaskByIdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DescribeMachineUnderwrite)用于查询机器核保任务数据
+
+        # @param request: Request instance for DescribeMachineUnderwrite.
+        # @type request: :class:`Tencentcloud::cii::V20210408::DescribeMachineUnderwriteRequest`
+        # @rtype: :class:`Tencentcloud::cii::V20210408::DescribeMachineUnderwriteResponse`
+        def DescribeMachineUnderwrite(request)
+          body = send_request('DescribeMachineUnderwrite', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMachineUnderwriteResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -87,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeStructCompareDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 结构化复核差异查询接口，对比结构化复核前后数据差异，返回差异的部分。
+
+        # @param request: Request instance for DescribeStructureDifference.
+        # @type request: :class:`Tencentcloud::cii::V20210408::DescribeStructureDifferenceRequest`
+        # @rtype: :class:`Tencentcloud::cii::V20210408::DescribeStructureDifferenceResponse`
+        def DescribeStructureDifference(request)
+          body = send_request('DescribeStructureDifference', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStructureDifferenceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -135,30 +183,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeStructureTaskResultResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 依据任务ID获取结构化结果接口，该接口用于路由到测试环境。
-
-        # @param request: Request instance for DescribeStructureTaskResultTest.
-        # @type request: :class:`Tencentcloud::cii::V20210408::DescribeStructureTaskResultTestRequest`
-        # @rtype: :class:`Tencentcloud::cii::V20210408::DescribeStructureTaskResultTestResponse`
-        def DescribeStructureTaskResultTest(request)
-          body = send_request('DescribeStructureTaskResultTest', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeStructureTaskResultTestResponse.new
             model.deserialize(response['Response'])
             model
           else
