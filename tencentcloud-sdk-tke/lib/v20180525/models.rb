@@ -2881,6 +2881,51 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterAuthenticationOptions请求参数结构体
+      class DescribeClusterAuthenticationOptionsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterAuthenticationOptions返回参数结构体
+      class DescribeClusterAuthenticationOptionsResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceAccounts: ServiceAccount认证配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceAccounts: :class:`Tencentcloud::Tke.v20180525.models.ServiceAccountAuthenticationOptions`
+        # @param LatestOperationState: 最近一次修改操作结果，返回值可能为：Updating，Success，Failed，TimeOut
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperationState: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceAccounts, :LatestOperationState, :RequestId
+        
+        def initialize(serviceaccounts=nil, latestoperationstate=nil, requestid=nil)
+          @ServiceAccounts = serviceaccounts
+          @LatestOperationState = latestoperationstate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServiceAccounts'].nil?
+            @ServiceAccounts = ServiceAccountAuthenticationOptions.new
+            @ServiceAccounts.deserialize(params['ServiceAccounts'])
+          end
+          @LatestOperationState = params['LatestOperationState']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterCommonNames请求参数结构体
       class DescribeClusterCommonNamesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6364,6 +6409,45 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterAuthenticationOptions请求参数结构体
+      class ModifyClusterAuthenticationOptionsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ServiceAccounts: ServiceAccount认证配置
+        # @type ServiceAccounts: :class:`Tencentcloud::Tke.v20180525.models.ServiceAccountAuthenticationOptions`
+
+        attr_accessor :ClusterId, :ServiceAccounts
+        
+        def initialize(clusterid=nil, serviceaccounts=nil)
+          @ClusterId = clusterid
+          @ServiceAccounts = serviceaccounts
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ServiceAccounts'].nil?
+            @ServiceAccounts = ServiceAccountAuthenticationOptions.new
+            @ServiceAccounts.deserialize(params['ServiceAccounts'])
+          end
+        end
+      end
+
+      # ModifyClusterAuthenticationOptions返回参数结构体
+      class ModifyClusterAuthenticationOptionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterEndpointSP请求参数结构体
       class ModifyClusterEndpointSPRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -7976,6 +8060,33 @@ module TencentCloud
             @Capabilities = Capabilities.new
             @Capabilities.deserialize(params['Capabilities'])
           end
+        end
+      end
+
+      # ServiceAccount认证相关配置
+      class ServiceAccountAuthenticationOptions < TencentCloud::Common::AbstractModel
+        # @param Issuer: service-account-issuer
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Issuer: String
+        # @param JWKSURI: service-account-jwks-uri
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JWKSURI: String
+        # @param AutoCreateDiscoveryAnonymousAuth: 如果为true，则会自动创建允许匿名用户访问'/.well-known/openid-configuration'和/openid/v1/jwks的rbac规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoCreateDiscoveryAnonymousAuth: Boolean
+
+        attr_accessor :Issuer, :JWKSURI, :AutoCreateDiscoveryAnonymousAuth
+        
+        def initialize(issuer=nil, jwksuri=nil, autocreatediscoveryanonymousauth=nil)
+          @Issuer = issuer
+          @JWKSURI = jwksuri
+          @AutoCreateDiscoveryAnonymousAuth = autocreatediscoveryanonymousauth
+        end
+
+        def deserialize(params)
+          @Issuer = params['Issuer']
+          @JWKSURI = params['JWKSURI']
+          @AutoCreateDiscoveryAnonymousAuth = params['AutoCreateDiscoveryAnonymousAuth']
         end
       end
 

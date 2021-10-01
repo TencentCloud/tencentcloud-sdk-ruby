@@ -893,6 +893,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看集群认证配置
+
+        # @param request: Request instance for DescribeClusterAuthenticationOptions.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterAuthenticationOptionsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeClusterAuthenticationOptionsResponse`
+        def DescribeClusterAuthenticationOptions(request)
+          body = send_request('DescribeClusterAuthenticationOptions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterAuthenticationOptionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取指定子账户在RBAC授权模式中对应kube-apiserver客户端证书的CommonName字段，如果没有客户端证书，将会签发一个，此接口有最大传入子账户数量上限，当前为50
 
         # @param request: Request instance for DescribeClusterCommonNames.
@@ -1863,6 +1887,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改集群认证配置
+
+        # @param request: Request instance for ModifyClusterAuthenticationOptions.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyClusterAuthenticationOptionsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyClusterAuthenticationOptionsResponse`
+        def ModifyClusterAuthenticationOptions(request)
+          body = send_request('ModifyClusterAuthenticationOptions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterAuthenticationOptionsResponse.new
             model.deserialize(response['Response'])
             model
           else
