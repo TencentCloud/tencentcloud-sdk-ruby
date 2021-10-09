@@ -221,6 +221,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建环境角色授权
+
+        # @param request: Request instance for CreateEnvironmentRole.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateEnvironmentRoleRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::CreateEnvironmentRoleResponse`
+        def CreateEnvironmentRole(request)
+          body = send_request('CreateEnvironmentRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEnvironmentRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建角色
+
+        # @param request: Request instance for CreateRole.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateRoleRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::CreateRoleResponse`
+        def CreateRole(request)
+          body = send_request('CreateRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建一个主题的订阅关系
 
         # @param request: Request instance for CreateSubscription.
@@ -365,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除环境角色授权。
+
+        # @param request: Request instance for DeleteEnvironmentRoles.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteEnvironmentRolesRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteEnvironmentRolesResponse`
+        def DeleteEnvironmentRoles(request)
+          body = send_request('DeleteEnvironmentRoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEnvironmentRolesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除租户下的命名空间
 
         # @param request: Request instance for DeleteEnvironments.
@@ -375,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteEnvironmentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除角色，支持批量。
+
+        # @param request: Request instance for DeleteRoles.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRolesRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteRolesResponse`
+        def DeleteRoles(request)
+          body = send_request('DeleteRoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRolesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -821,6 +917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取角色列表
+
+        # @param request: Request instance for DescribeRoles.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRolesRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRolesResponse`
+        def DescribeRoles(request)
+          body = send_request('DescribeRoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRolesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定环境和主题下的订阅者列表
 
         # @param request: Request instance for DescribeSubscriptions.
@@ -975,6 +1095,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyEnvironmentAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改环境角色授权。
+
+        # @param request: Request instance for ModifyEnvironmentRole.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyEnvironmentRoleRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyEnvironmentRoleResponse`
+        def ModifyEnvironmentRole(request)
+          body = send_request('ModifyEnvironmentRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyEnvironmentRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 角色修改
+
+        # @param request: Request instance for ModifyRole.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyRoleRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyRoleResponse`
+        def ModifyRole(request)
+          body = send_request('ModifyRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRoleResponse.new
             model.deserialize(response['Response'])
             model
           else

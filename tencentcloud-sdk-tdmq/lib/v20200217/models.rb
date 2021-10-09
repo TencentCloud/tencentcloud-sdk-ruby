@@ -1104,6 +1104,103 @@ module TencentCloud
         end
       end
 
+      # CreateEnvironmentRole请求参数结构体
+      class CreateEnvironmentRoleRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）名称。
+        # @type EnvironmentId: String
+        # @param RoleName: 角色名称。
+        # @type RoleName: String
+        # @param Permissions: 授权项，最多只能包含produce、consume两项的非空字符串数组。
+        # @type Permissions: Array
+        # @param ClusterId: 必填字段，集群的ID
+        # @type ClusterId: String
+
+        attr_accessor :EnvironmentId, :RoleName, :Permissions, :ClusterId
+        
+        def initialize(environmentid=nil, rolename=nil, permissions=nil, clusterid=nil)
+          @EnvironmentId = environmentid
+          @RoleName = rolename
+          @Permissions = permissions
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @RoleName = params['RoleName']
+          @Permissions = params['Permissions']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # CreateEnvironmentRole返回参数结构体
+      class CreateEnvironmentRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRole请求参数结构体
+      class CreateRoleRequest < TencentCloud::Common::AbstractModel
+        # @param RoleName: 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
+        # @type RoleName: String
+        # @param Remark: 备注说明，长度必须大等于0且小等于128。
+        # @type Remark: String
+        # @param ClusterId: 必填字段，集群Id
+        # @type ClusterId: String
+
+        attr_accessor :RoleName, :Remark, :ClusterId
+        
+        def initialize(rolename=nil, remark=nil, clusterid=nil)
+          @RoleName = rolename
+          @Remark = remark
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @Remark = params['Remark']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # CreateRole返回参数结构体
+      class CreateRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RoleName: 角色名称
+        # @type RoleName: String
+        # @param Token: 角色token
+        # @type Token: String
+        # @param Remark: 备注说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleName, :Token, :Remark, :RequestId
+        
+        def initialize(rolename=nil, token=nil, remark=nil, requestid=nil)
+          @RoleName = rolename
+          @Token = token
+          @Remark = remark
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @Token = params['Token']
+          @Remark = params['Remark']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSubscription请求参数结构体
       class CreateSubscriptionRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称。
@@ -1387,6 +1484,46 @@ module TencentCloud
         end
       end
 
+      # DeleteEnvironmentRoles请求参数结构体
+      class DeleteEnvironmentRolesRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）名称。
+        # @type EnvironmentId: String
+        # @param RoleNames: 角色名称数组。
+        # @type RoleNames: Array
+        # @param ClusterId: 必填字段，集群的ID
+        # @type ClusterId: String
+
+        attr_accessor :EnvironmentId, :RoleNames, :ClusterId
+        
+        def initialize(environmentid=nil, rolenames=nil, clusterid=nil)
+          @EnvironmentId = environmentid
+          @RoleNames = rolenames
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @RoleNames = params['RoleNames']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteEnvironmentRoles返回参数结构体
+      class DeleteEnvironmentRolesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteEnvironments请求参数结构体
       class DeleteEnvironmentsRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentIds: 环境（命名空间）数组，每次最多删除20个。
@@ -1423,6 +1560,46 @@ module TencentCloud
 
         def deserialize(params)
           @EnvironmentIds = params['EnvironmentIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRoles请求参数结构体
+      class DeleteRolesRequest < TencentCloud::Common::AbstractModel
+        # @param RoleNames: 角色名称数组。
+        # @type RoleNames: Array
+        # @param ClusterId: 必填字段，集群Id
+        # @type ClusterId: String
+
+        attr_accessor :RoleNames, :ClusterId
+        
+        def initialize(rolenames=nil, clusterid=nil)
+          @RoleNames = rolenames
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @RoleNames = params['RoleNames']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteRoles返回参数结构体
+      class DeleteRolesResponse < TencentCloud::Common::AbstractModel
+        # @param RoleNames: 成功删除的角色名称数组。
+        # @type RoleNames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleNames, :RequestId
+        
+        def initialize(rolenames=nil, requestid=nil)
+          @RoleNames = rolenames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleNames = params['RoleNames']
           @RequestId = params['RequestId']
         end
       end
@@ -2137,13 +2314,13 @@ module TencentCloud
 
       # DescribeEnvironmentRoles请求参数结构体
       class DescribeEnvironmentRolesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
+        # @param EnvironmentId: 必填字段，环境（命名空间）名称。
         # @type EnvironmentId: String
         # @param Offset: 起始下标，不填默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认为10，最大值为20。
         # @type Limit: Integer
-        # @param ClusterId: Pulsar 集群的ID
+        # @param ClusterId: 必填字段，Pulsar 集群的ID
         # @type ClusterId: String
         # @param RoleName: 角色名称
         # @type RoleName: String
@@ -2455,6 +2632,79 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoles请求参数结构体
+      class DescribeRolesRequest < TencentCloud::Common::AbstractModel
+        # @param RoleName: 角色名称，模糊查询
+        # @type RoleName: String
+        # @param Offset: 起始下标，不填默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，不填则默认为10，最大值为20。
+        # @type Limit: Integer
+        # @param ClusterId: 必填字段，集群Id
+        # @type ClusterId: String
+        # @param Filters: * RoleName
+        # 按照角色名进行过滤，精确查询。
+        # 类型：String
+        # 必选：否
+        # @type Filters: Array
+
+        attr_accessor :RoleName, :Offset, :Limit, :ClusterId, :Filters
+        
+        def initialize(rolename=nil, offset=nil, limit=nil, clusterid=nil, filters=nil)
+          @RoleName = rolename
+          @Offset = offset
+          @Limit = limit
+          @ClusterId = clusterid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ClusterId = params['ClusterId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRoles返回参数结构体
+      class DescribeRolesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录数。
+        # @type TotalCount: Integer
+        # @param RoleSets: 角色数组。
+        # @type RoleSets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RoleSets, :RequestId
+        
+        def initialize(totalcount=nil, rolesets=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RoleSets = rolesets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RoleSets'].nil?
+            @RoleSets = []
+            params['RoleSets'].each do |i|
+              role_tmp = Role.new
+              role_tmp.deserialize(i)
+              @RoleSets << role_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3052,6 +3302,98 @@ module TencentCloud
         end
       end
 
+      # ModifyEnvironmentRole请求参数结构体
+      class ModifyEnvironmentRoleRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）名称。
+        # @type EnvironmentId: String
+        # @param RoleName: 角色名称。
+        # @type RoleName: String
+        # @param Permissions: 授权项，最多只能包含produce、consume两项的非空字符串数组。
+        # @type Permissions: Array
+        # @param ClusterId: 必填字段，集群的ID
+        # @type ClusterId: String
+
+        attr_accessor :EnvironmentId, :RoleName, :Permissions, :ClusterId
+        
+        def initialize(environmentid=nil, rolename=nil, permissions=nil, clusterid=nil)
+          @EnvironmentId = environmentid
+          @RoleName = rolename
+          @Permissions = permissions
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @RoleName = params['RoleName']
+          @Permissions = params['Permissions']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # ModifyEnvironmentRole返回参数结构体
+      class ModifyEnvironmentRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRole请求参数结构体
+      class ModifyRoleRequest < TencentCloud::Common::AbstractModel
+        # @param RoleName: 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
+        # @type RoleName: String
+        # @param Remark: 备注说明，长度必须大等于0且小等于128。
+        # @type Remark: String
+        # @param ClusterId: 必填字段，集群Id
+        # @type ClusterId: String
+
+        attr_accessor :RoleName, :Remark, :ClusterId
+        
+        def initialize(rolename=nil, remark=nil, clusterid=nil)
+          @RoleName = rolename
+          @Remark = remark
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @Remark = params['Remark']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # ModifyRole返回参数结构体
+      class ModifyRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RoleName: 角色名称
+        # @type RoleName: String
+        # @param Remark: 备注说明
+        # @type Remark: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleName, :Remark, :RequestId
+        
+        def initialize(rolename=nil, remark=nil, requestid=nil)
+          @RoleName = rolename
+          @Remark = remark
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @Remark = params['Remark']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称。
@@ -3442,6 +3784,38 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 角色实例
+      class Role < TencentCloud::Common::AbstractModel
+        # @param RoleName: 角色名称。
+        # @type RoleName: String
+        # @param Token: 角色token值。
+        # @type Token: String
+        # @param Remark: 备注说明。
+        # @type Remark: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+
+        attr_accessor :RoleName, :Token, :Remark, :CreateTime, :UpdateTime
+        
+        def initialize(rolename=nil, token=nil, remark=nil, createtime=nil, updatetime=nil)
+          @RoleName = rolename
+          @Token = token
+          @Remark = remark
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @Token = params['Token']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

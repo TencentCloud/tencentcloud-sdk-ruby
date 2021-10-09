@@ -684,17 +684,21 @@ module TencentCloud
         # @type RegistryId: String
         # @param ReplicationRegionId: 复制实例地域ID
         # @type ReplicationRegionId: Integer
+        # @param ReplicationRegionName: 复制实例地域名称
+        # @type ReplicationRegionName: String
 
-        attr_accessor :RegistryId, :ReplicationRegionId
+        attr_accessor :RegistryId, :ReplicationRegionId, :ReplicationRegionName
         
-        def initialize(registryid=nil, replicationregionid=nil)
+        def initialize(registryid=nil, replicationregionid=nil, replicationregionname=nil)
           @RegistryId = registryid
           @ReplicationRegionId = replicationregionid
+          @ReplicationRegionName = replicationregionname
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @ReplicationRegionId = params['ReplicationRegionId']
+          @ReplicationRegionName = params['ReplicationRegionName']
         end
       end
 
@@ -3825,17 +3829,20 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 需要接入的用户子网id
         # @type SubnetId: String
-        # @param RegionId: 请求的地域ID
+        # @param RegionId: 请求的地域ID，用于实例复制地域
         # @type RegionId: Integer
+        # @param RegionName: 请求的地域名称，用于实例复制地域
+        # @type RegionName: String
 
-        attr_accessor :RegistryId, :Operation, :VpcId, :SubnetId, :RegionId
+        attr_accessor :RegistryId, :Operation, :VpcId, :SubnetId, :RegionId, :RegionName
         
-        def initialize(registryid=nil, operation=nil, vpcid=nil, subnetid=nil, regionid=nil)
+        def initialize(registryid=nil, operation=nil, vpcid=nil, subnetid=nil, regionid=nil, regionname=nil)
           @RegistryId = registryid
           @Operation = operation
           @VpcId = vpcid
           @SubnetId = subnetid
           @RegionId = regionid
+          @RegionName = regionname
         end
 
         def deserialize(params)
@@ -3844,6 +3851,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
         end
       end
 

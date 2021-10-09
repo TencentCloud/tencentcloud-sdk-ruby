@@ -4991,6 +4991,63 @@ module TencentCloud
         end
       end
 
+      # 商户支付方式数据
+      class MerchantPayWayData < TencentCloud::Common::AbstractModel
+        # @param PayCurrency: 支付币种
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayCurrency: String
+        # @param PayIcon: 支付图标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayIcon: String
+        # @param PayInternalName: 支付名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayInternalName: String
+        # @param PayName: 支付简称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayName: String
+        # @param PaySplitRefund: 是否支持退款
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaySplitRefund: String
+        # @param PayTag: 支付标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayTag: String
+        # @param PayTicketIcon: 支付凭证图标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayTicketIcon: String
+        # @param PayType: 支付类型，逗号分隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayType: String
+        # @param TicketName: 凭证名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TicketName: String
+
+        attr_accessor :PayCurrency, :PayIcon, :PayInternalName, :PayName, :PaySplitRefund, :PayTag, :PayTicketIcon, :PayType, :TicketName
+        
+        def initialize(paycurrency=nil, payicon=nil, payinternalname=nil, payname=nil, paysplitrefund=nil, paytag=nil, payticketicon=nil, paytype=nil, ticketname=nil)
+          @PayCurrency = paycurrency
+          @PayIcon = payicon
+          @PayInternalName = payinternalname
+          @PayName = payname
+          @PaySplitRefund = paysplitrefund
+          @PayTag = paytag
+          @PayTicketIcon = payticketicon
+          @PayType = paytype
+          @TicketName = ticketname
+        end
+
+        def deserialize(params)
+          @PayCurrency = params['PayCurrency']
+          @PayIcon = params['PayIcon']
+          @PayInternalName = params['PayInternalName']
+          @PayName = params['PayName']
+          @PaySplitRefund = params['PaySplitRefund']
+          @PayTag = params['PayTag']
+          @PayTicketIcon = params['PayTicketIcon']
+          @PayType = params['PayType']
+          @TicketName = params['TicketName']
+        end
+      end
+
       # MigrateOrderRefundQuery请求参数结构体
       class MigrateOrderRefundQueryRequest < TencentCloud::Common::AbstractModel
         # @param MerchantId: 商户号
@@ -7942,6 +7999,71 @@ module TencentCloud
           @MerchantAppId = params['MerchantAppId']
           @OrderNo = params['OrderNo']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryMerchantPayWayList请求参数结构体
+      class QueryMerchantPayWayListRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param PayType: 支付类型，逗号分隔
+        # @type PayType: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :PayType, :Profile
+        
+        def initialize(openid=nil, openkey=nil, paytype=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @PayType = paytype
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @PayType = params['PayType']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryMerchantPayWayList返回参数结构体
+      class QueryMerchantPayWayListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 查询商户支付方式列表结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              merchantpaywaydata_tmp = MerchantPayWayData.new
+              merchantpaywaydata_tmp.deserialize(i)
+              @Result << merchantpaywaydata_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
