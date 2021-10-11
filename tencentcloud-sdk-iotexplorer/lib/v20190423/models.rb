@@ -307,6 +307,49 @@ module TencentCloud
         end
       end
 
+      # CreateFenceBind请求参数结构体
+      class CreateFenceBindRequest < TencentCloud::Common::AbstractModel
+        # @param FenceId: 围栏Id
+        # @type FenceId: Integer
+        # @param Items: 围栏绑定的产品列表
+        # @type Items: Array
+
+        attr_accessor :FenceId, :Items
+        
+        def initialize(fenceid=nil, items=nil)
+          @FenceId = fenceid
+          @Items = items
+        end
+
+        def deserialize(params)
+          @FenceId = params['FenceId']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              fencebindproductitem_tmp = FenceBindProductItem.new
+              fencebindproductitem_tmp.deserialize(i)
+              @Items << fencebindproductitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateFenceBind返回参数结构体
+      class CreateFenceBindResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLoRaFrequency请求参数结构体
       class CreateLoRaFrequencyRequest < TencentCloud::Common::AbstractModel
         # @param FreqName: 频点配置名称
@@ -440,6 +483,107 @@ module TencentCloud
             @Gateway = LoRaGatewayItem.new
             @Gateway.deserialize(params['Gateway'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePositionFence请求参数结构体
+      class CreatePositionFenceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 位置空间Id
+        # @type SpaceId: String
+        # @param FenceName: 围栏名称
+        # @type FenceName: String
+        # @param FenceArea: 围栏区域信息，采用 GeoJSON 格式
+        # @type FenceArea: String
+        # @param FenceDesc: 围栏描述
+        # @type FenceDesc: String
+
+        attr_accessor :SpaceId, :FenceName, :FenceArea, :FenceDesc
+        
+        def initialize(spaceid=nil, fencename=nil, fencearea=nil, fencedesc=nil)
+          @SpaceId = spaceid
+          @FenceName = fencename
+          @FenceArea = fencearea
+          @FenceDesc = fencedesc
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @FenceName = params['FenceName']
+          @FenceArea = params['FenceArea']
+          @FenceDesc = params['FenceDesc']
+        end
+      end
+
+      # CreatePositionFence返回参数结构体
+      class CreatePositionFenceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePositionSpace请求参数结构体
+      class CreatePositionSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param SpaceName: 空间名称
+        # @type SpaceName: String
+        # @param AuthorizeType: 授权类型，0：只读 1：读写
+        # @type AuthorizeType: Integer
+        # @param ProductIdList: 产品列表
+        # @type ProductIdList: Array
+        # @param Description: 描述
+        # @type Description: String
+        # @param Icon: 缩略图
+        # @type Icon: String
+
+        attr_accessor :ProjectId, :SpaceName, :AuthorizeType, :ProductIdList, :Description, :Icon
+        
+        def initialize(projectid=nil, spacename=nil, authorizetype=nil, productidlist=nil, description=nil, icon=nil)
+          @ProjectId = projectid
+          @SpaceName = spacename
+          @AuthorizeType = authorizetype
+          @ProductIdList = productidlist
+          @Description = description
+          @Icon = icon
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @SpaceName = params['SpaceName']
+          @AuthorizeType = params['AuthorizeType']
+          @ProductIdList = params['ProductIdList']
+          @Description = params['Description']
+          @Icon = params['Icon']
+        end
+      end
+
+      # CreatePositionSpace返回参数结构体
+      class CreatePositionSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpaceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpaceId, :RequestId
+        
+        def initialize(spaceid=nil, requestid=nil)
+          @SpaceId = spaceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
           @RequestId = params['RequestId']
         end
       end
@@ -736,6 +880,49 @@ module TencentCloud
         end
       end
 
+      # DeleteFenceBind请求参数结构体
+      class DeleteFenceBindRequest < TencentCloud::Common::AbstractModel
+        # @param FenceId: 围栏Id
+        # @type FenceId: Integer
+        # @param Items: 围栏绑定的产品信息
+        # @type Items: Array
+
+        attr_accessor :FenceId, :Items
+        
+        def initialize(fenceid=nil, items=nil)
+          @FenceId = fenceid
+          @Items = items
+        end
+
+        def deserialize(params)
+          @FenceId = params['FenceId']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              fencebindproductitem_tmp = FenceBindProductItem.new
+              fencebindproductitem_tmp.deserialize(i)
+              @Items << fencebindproductitem_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteFenceBind返回参数结构体
+      class DeleteFenceBindResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLoRaFrequency请求参数结构体
       class DeleteLoRaFrequencyRequest < TencentCloud::Common::AbstractModel
         # @param FreqId: 频点唯一ID
@@ -786,6 +973,74 @@ module TencentCloud
 
       # DeleteLoRaGateway返回参数结构体
       class DeleteLoRaGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePositionFence请求参数结构体
+      class DeletePositionFenceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 位置空间Id
+        # @type SpaceId: String
+        # @param FenceId: 围栏Id
+        # @type FenceId: Integer
+
+        attr_accessor :SpaceId, :FenceId
+        
+        def initialize(spaceid=nil, fenceid=nil)
+          @SpaceId = spaceid
+          @FenceId = fenceid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @FenceId = params['FenceId']
+        end
+      end
+
+      # DeletePositionFence返回参数结构体
+      class DeletePositionFenceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePositionSpace请求参数结构体
+      class DeletePositionSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 位置空间Id
+        # @type SpaceId: String
+
+        attr_accessor :SpaceId
+        
+        def initialize(spaceid=nil)
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DeletePositionSpace返回参数结构体
+      class DeletePositionSpaceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1023,6 +1278,33 @@ module TencentCloud
         end
       end
 
+      # DescribeDevicePositionList请求参数结构体
+      class DescribeDevicePositionListRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDevicePositionList返回参数结构体
+      class DescribeDevicePositionListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDevice请求参数结构体
       class DescribeDeviceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -1066,6 +1348,132 @@ module TencentCloud
             @Device = DeviceInfo.new
             @Device.deserialize(params['Device'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFenceBindList请求参数结构体
+      class DescribeFenceBindListRequest < TencentCloud::Common::AbstractModel
+        # @param FenceId: 围栏Id
+        # @type FenceId: Integer
+        # @param Offset: 翻页偏移量，0起始
+        # @type Offset: Integer
+        # @param Limit: 最大返回结果数
+        # @type Limit: Integer
+
+        attr_accessor :FenceId, :Offset, :Limit
+        
+        def initialize(fenceid=nil, offset=nil, limit=nil)
+          @FenceId = fenceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @FenceId = params['FenceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeFenceBindList返回参数结构体
+      class DescribeFenceBindListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 围栏绑定的产品设备列表
+        # @type List: Array
+        # @param Total: 围栏绑定的设备总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+        
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              fencebindproductitem_tmp = FenceBindProductItem.new
+              fencebindproductitem_tmp.deserialize(i)
+              @List << fencebindproductitem_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFenceEventList请求参数结构体
+      class DescribeFenceEventListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 围栏告警信息的查询起始时间，Unix时间，单位为毫秒
+        # @type StartTime: Integer
+        # @param EndTime: 围栏告警信息的查询结束时间，Unix时间，单位为毫秒
+        # @type EndTime: Integer
+        # @param FenceId: 围栏Id
+        # @type FenceId: Integer
+        # @param Offset: 翻页偏移量，0起始
+        # @type Offset: Integer
+        # @param Limit: 最大返回结果数
+        # @type Limit: Integer
+        # @param ProductId: 告警对应的产品Id
+        # @type ProductId: String
+        # @param DeviceName: 告警对应的设备名称
+        # @type DeviceName: String
+
+        attr_accessor :StartTime, :EndTime, :FenceId, :Offset, :Limit, :ProductId, :DeviceName
+        
+        def initialize(starttime=nil, endtime=nil, fenceid=nil, offset=nil, limit=nil, productid=nil, devicename=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @FenceId = fenceid
+          @Offset = offset
+          @Limit = limit
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @FenceId = params['FenceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeFenceEventList返回参数结构体
+      class DescribeFenceEventListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 围栏告警事件列表
+        # @type List: Array
+        # @param Total: 围栏告警事件总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+        
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              fenceeventitem_tmp = FenceEventItem.new
+              fenceeventitem_tmp.deserialize(i)
+              @List << fenceeventitem_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -1229,6 +1637,63 @@ module TencentCloud
         end
       end
 
+      # DescribePositionFenceList请求参数结构体
+      class DescribePositionFenceListRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 位置空间Id
+        # @type SpaceId: String
+        # @param Offset: 翻页偏移量，0起始
+        # @type Offset: Integer
+        # @param Limit: 最大返回结果数
+        # @type Limit: Integer
+
+        attr_accessor :SpaceId, :Offset, :Limit
+        
+        def initialize(spaceid=nil, offset=nil, limit=nil)
+          @SpaceId = spaceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePositionFenceList返回参数结构体
+      class DescribePositionFenceListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 围栏列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param Total: 围栏数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+        
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              positionfenceinfo_tmp = PositionFenceInfo.new
+              positionfenceinfo_tmp.deserialize(i)
+              @List << positionfenceinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProject请求参数结构体
       class DescribeProjectRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -1264,6 +1729,70 @@ module TencentCloud
             @Project = ProjectEntryEx.new
             @Project.deserialize(params['Project'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSpaceFenceEventList请求参数结构体
+      class DescribeSpaceFenceEventListRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 位置空间Id
+        # @type SpaceId: String
+        # @param StartTime: 围栏告警信息的查询起始时间，Unix时间，单位为毫秒
+        # @type StartTime: Integer
+        # @param EndTime: 围栏告警信息的查询结束时间，Unix时间，单位为毫秒
+        # @type EndTime: Integer
+        # @param Offset: 翻页偏移量，0起始
+        # @type Offset: Integer
+        # @param Limit: 最大返回结果数
+        # @type Limit: Integer
+
+        attr_accessor :SpaceId, :StartTime, :EndTime, :Offset, :Limit
+        
+        def initialize(spaceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @SpaceId = spaceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSpaceFenceEventList返回参数结构体
+      class DescribeSpaceFenceEventListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 围栏告警事件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param Total: 围栏告警事件总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+        
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              fenceeventitem_tmp = FenceEventItem.new
+              fenceeventitem_tmp.deserialize(i)
+              @List << fenceeventitem_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -1674,6 +2203,120 @@ module TencentCloud
         end
       end
 
+      # 围栏告警位置点
+      class FenceAlarmPoint < TencentCloud::Common::AbstractModel
+        # @param AlarmTime: 围栏告警时间
+        # @type AlarmTime: Integer
+        # @param Longitude: 围栏告警位置的经度
+        # @type Longitude: Float
+        # @param Latitude: 围栏告警位置的纬度
+        # @type Latitude: Float
+
+        attr_accessor :AlarmTime, :Longitude, :Latitude
+        
+        def initialize(alarmtime=nil, longitude=nil, latitude=nil)
+          @AlarmTime = alarmtime
+          @Longitude = longitude
+          @Latitude = latitude
+        end
+
+        def deserialize(params)
+          @AlarmTime = params['AlarmTime']
+          @Longitude = params['Longitude']
+          @Latitude = params['Latitude']
+        end
+      end
+
+      # 围栏绑定的设备信息
+      class FenceBindDeviceItem < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param AlertCondition: 告警条件(In，进围栏报警；Out，出围栏报警；InOrOut，进围栏或者出围栏均报警)
+        # @type AlertCondition: String
+        # @param FenceEnable: 是否使能围栏(true，使能；false，禁用)
+        # @type FenceEnable: Boolean
+        # @param Method: 告警处理方法
+        # @type Method: String
+
+        attr_accessor :DeviceName, :AlertCondition, :FenceEnable, :Method
+        
+        def initialize(devicename=nil, alertcondition=nil, fenceenable=nil, method=nil)
+          @DeviceName = devicename
+          @AlertCondition = alertcondition
+          @FenceEnable = fenceenable
+          @Method = method
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @AlertCondition = params['AlertCondition']
+          @FenceEnable = params['FenceEnable']
+          @Method = params['Method']
+        end
+      end
+
+      # 围栏绑定的产品信息
+      class FenceBindProductItem < TencentCloud::Common::AbstractModel
+        # @param Devices: 围栏绑定的设备信息
+        # @type Devices: Array
+        # @param ProductId: 围栏绑定的产品Id
+        # @type ProductId: String
+
+        attr_accessor :Devices, :ProductId
+        
+        def initialize(devices=nil, productid=nil)
+          @Devices = devices
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          unless params['Devices'].nil?
+            @Devices = []
+            params['Devices'].each do |i|
+              fencebinddeviceitem_tmp = FenceBindDeviceItem.new
+              fencebinddeviceitem_tmp.deserialize(i)
+              @Devices << fencebinddeviceitem_tmp
+            end
+          end
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # 围栏事件详情
+      class FenceEventItem < TencentCloud::Common::AbstractModel
+        # @param ProductId: 围栏事件的产品Id
+        # @type ProductId: String
+        # @param DeviceName: 围栏事件的设备名称
+        # @type DeviceName: String
+        # @param FenceId: 围栏Id
+        # @type FenceId: Integer
+        # @param AlertType: 围栏事件的告警类型（In，进围栏报警；Out，出围栏报警；InOrOut，进围栏或者出围栏均报警）
+        # @type AlertType: String
+        # @param Data: 围栏事件的设备位置信息
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.FenceAlarmPoint`
+
+        attr_accessor :ProductId, :DeviceName, :FenceId, :AlertType, :Data
+        
+        def initialize(productid=nil, devicename=nil, fenceid=nil, alerttype=nil, data=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @FenceId = fenceid
+          @AlertType = alerttype
+          @Data = data
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @FenceId = params['FenceId']
+          @AlertType = params['AlertType']
+          unless params['Data'].nil?
+            @Data = FenceAlarmPoint.new
+            @Data.deserialize(params['Data'])
+          end
+        end
+      end
+
       # 设备固件详细信息
       class FirmwareInfo < TencentCloud::Common::AbstractModel
         # @param Version: 固件版本
@@ -1846,6 +2489,65 @@ module TencentCloud
         end
       end
 
+      # GetDeviceLocationHistory请求参数结构体
+      class GetDeviceLocationHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param StartTime: 查询起始时间，Unix时间，单位为毫秒
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间，Unix时间，单位为毫秒
+        # @type EndTime: Integer
+        # @param CoordinateType: 坐标类型
+        # @type CoordinateType: Integer
+
+        attr_accessor :ProductId, :DeviceName, :StartTime, :EndTime, :CoordinateType
+        
+        def initialize(productid=nil, devicename=nil, starttime=nil, endtime=nil, coordinatetype=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @StartTime = starttime
+          @EndTime = endtime
+          @CoordinateType = coordinatetype
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CoordinateType = params['CoordinateType']
+        end
+      end
+
+      # GetDeviceLocationHistory返回参数结构体
+      class GetDeviceLocationHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param Positions: 历史位置列表
+        # @type Positions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Positions, :RequestId
+        
+        def initialize(positions=nil, requestid=nil)
+          @Positions = positions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              positionitem_tmp = PositionItem.new
+              positionitem_tmp.deserialize(i)
+              @Positions << positionitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetLoRaGatewayList请求参数结构体
       class GetLoRaGatewayListRequest < TencentCloud::Common::AbstractModel
         # @param IsCommunity: 是否是社区网关
@@ -1898,6 +2600,63 @@ module TencentCloud
               @Gateways << loragatewayitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetPositionSpaceList请求参数结构体
+      class GetPositionSpaceListRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param Offset: 翻页偏移量，0起始
+        # @type Offset: Integer
+        # @param Limit: 最大返回结果数
+        # @type Limit: Integer
+
+        attr_accessor :ProjectId, :Offset, :Limit
+        
+        def initialize(projectid=nil, offset=nil, limit=nil)
+          @ProjectId = projectid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetPositionSpaceList返回参数结构体
+      class GetPositionSpaceListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 位置空间列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param Total: 位置空间数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+        
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              positionspaceinfo_tmp = PositionSpaceInfo.new
+              positionspaceinfo_tmp.deserialize(i)
+              @List << positionspaceinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -2377,6 +3136,49 @@ module TencentCloud
         end
       end
 
+      # ModifyFenceBind请求参数结构体
+      class ModifyFenceBindRequest < TencentCloud::Common::AbstractModel
+        # @param FenceId: 围栏Id
+        # @type FenceId: Integer
+        # @param Items: 围栏绑定的产品列表
+        # @type Items: Array
+
+        attr_accessor :FenceId, :Items
+        
+        def initialize(fenceid=nil, items=nil)
+          @FenceId = fenceid
+          @Items = items
+        end
+
+        def deserialize(params)
+          @FenceId = params['FenceId']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              fencebindproductitem_tmp = FenceBindProductItem.new
+              fencebindproductitem_tmp.deserialize(i)
+              @Items << fencebindproductitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyFenceBind返回参数结构体
+      class ModifyFenceBindResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLoRaFrequency请求参数结构体
       class ModifyLoRaFrequencyRequest < TencentCloud::Common::AbstractModel
         # @param FreqId: 频点唯一ID
@@ -2554,6 +3356,85 @@ module TencentCloud
         end
       end
 
+      # ModifyPositionFence请求参数结构体
+      class ModifyPositionFenceRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyPositionFence返回参数结构体
+      class ModifyPositionFenceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPositionSpace请求参数结构体
+      class ModifyPositionSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 位置空间Id
+        # @type SpaceId: String
+        # @param SpaceName: 位置空间名称
+        # @type SpaceName: String
+        # @param AuthorizeType: 授权类型
+        # @type AuthorizeType: Integer
+        # @param ProductIdList: 产品列表
+        # @type ProductIdList: Array
+        # @param Description: 位置空间描述
+        # @type Description: String
+        # @param Icon: 缩略图
+        # @type Icon: String
+
+        attr_accessor :SpaceId, :SpaceName, :AuthorizeType, :ProductIdList, :Description, :Icon
+        
+        def initialize(spaceid=nil, spacename=nil, authorizetype=nil, productidlist=nil, description=nil, icon=nil)
+          @SpaceId = spaceid
+          @SpaceName = spacename
+          @AuthorizeType = authorizetype
+          @ProductIdList = productidlist
+          @Description = description
+          @Icon = icon
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @SpaceName = params['SpaceName']
+          @AuthorizeType = params['AuthorizeType']
+          @ProductIdList = params['ProductIdList']
+          @Description = params['Description']
+          @Icon = params['Icon']
+        end
+      end
+
+      # ModifyPositionSpace返回参数结构体
+      class ModifyPositionSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyProject请求参数结构体
       class ModifyProjectRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -2597,6 +3478,46 @@ module TencentCloud
             @Project = ProjectEntry.new
             @Project.deserialize(params['Project'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySpaceProperty请求参数结构体
+      class ModifySpacePropertyRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 位置空间Id
+        # @type SpaceId: String
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param Data: 产品属性
+        # @type Data: String
+
+        attr_accessor :SpaceId, :ProductId, :Data
+        
+        def initialize(spaceid=nil, productid=nil, data=nil)
+          @SpaceId = spaceid
+          @ProductId = productid
+          @Data = data
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @ProductId = params['ProductId']
+          @Data = params['Data']
+        end
+      end
+
+      # ModifySpaceProperty返回参数结构体
+      class ModifySpacePropertyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2692,6 +3613,142 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 围栏详细信息(包含创建时间及更新时间)
+      class PositionFenceInfo < TencentCloud::Common::AbstractModel
+        # @param GeoFence: 围栏信息
+        # @type GeoFence: :class:`Tencentcloud::Iotexplorer.v20190423.models.PositionFenceItem`
+        # @param CreateTime: 围栏创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 围栏更新时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :GeoFence, :CreateTime, :UpdateTime
+        
+        def initialize(geofence=nil, createtime=nil, updatetime=nil)
+          @GeoFence = geofence
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          unless params['GeoFence'].nil?
+            @GeoFence = PositionFenceItem.new
+            @GeoFence.deserialize(params['GeoFence'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 围栏信息
+      class PositionFenceItem < TencentCloud::Common::AbstractModel
+        # @param FenceId: 围栏Id
+        # @type FenceId: Integer
+        # @param SpaceId: 位置空间Id
+        # @type SpaceId: String
+        # @param FenceName: 围栏名称
+        # @type FenceName: String
+        # @param FenceDesc: 围栏描述
+        # @type FenceDesc: String
+        # @param FenceArea: 围栏区域信息，采用 GeoJSON 格式
+        # @type FenceArea: String
+
+        attr_accessor :FenceId, :SpaceId, :FenceName, :FenceDesc, :FenceArea
+        
+        def initialize(fenceid=nil, spaceid=nil, fencename=nil, fencedesc=nil, fencearea=nil)
+          @FenceId = fenceid
+          @SpaceId = spaceid
+          @FenceName = fencename
+          @FenceDesc = fencedesc
+          @FenceArea = fencearea
+        end
+
+        def deserialize(params)
+          @FenceId = params['FenceId']
+          @SpaceId = params['SpaceId']
+          @FenceName = params['FenceName']
+          @FenceDesc = params['FenceDesc']
+          @FenceArea = params['FenceArea']
+        end
+      end
+
+      # 位置点
+      class PositionItem < TencentCloud::Common::AbstractModel
+        # @param CreateTime: 位置点的时间
+        # @type CreateTime: Integer
+        # @param Longitude: 位置点的经度
+        # @type Longitude: Float
+        # @param Latitude: 位置点的纬度
+        # @type Latitude: Float
+
+        attr_accessor :CreateTime, :Longitude, :Latitude
+        
+        def initialize(createtime=nil, longitude=nil, latitude=nil)
+          @CreateTime = createtime
+          @Longitude = longitude
+          @Latitude = latitude
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @Longitude = params['Longitude']
+          @Latitude = params['Latitude']
+        end
+      end
+
+      # 位置空间详情
+      class PositionSpaceInfo < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param SpaceId: 位置空间Id
+        # @type SpaceId: String
+        # @param SpaceName: 位置空间名称
+        # @type SpaceName: String
+        # @param AuthorizeType: 授权类型
+        # @type AuthorizeType: Integer
+        # @param Description: 描述备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ProductIdList: 产品列表
+        # @type ProductIdList: Array
+        # @param Icon: 缩略图
+        # @type Icon: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+        # @param Zoom: 用户自定义地图缩放
+        # @type Zoom: Integer
+
+        attr_accessor :ProjectId, :SpaceId, :SpaceName, :AuthorizeType, :Description, :ProductIdList, :Icon, :CreateTime, :UpdateTime, :Zoom
+        
+        def initialize(projectid=nil, spaceid=nil, spacename=nil, authorizetype=nil, description=nil, productidlist=nil, icon=nil, createtime=nil, updatetime=nil, zoom=nil)
+          @ProjectId = projectid
+          @SpaceId = spaceid
+          @SpaceName = spacename
+          @AuthorizeType = authorizetype
+          @Description = description
+          @ProductIdList = productidlist
+          @Icon = icon
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Zoom = zoom
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @SpaceId = params['SpaceId']
+          @SpaceName = params['SpaceName']
+          @AuthorizeType = params['AuthorizeType']
+          @Description = params['Description']
+          @ProductIdList = params['ProductIdList']
+          @Icon = params['Icon']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Zoom = params['Zoom']
         end
       end
 
@@ -3012,6 +4069,67 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # SearchPositionSpace请求参数结构体
+      class SearchPositionSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param SpaceName: 位置空间名字
+        # @type SpaceName: String
+        # @param Offset: 偏移量，从0开始
+        # @type Offset: Integer
+        # @param Limit: 最大获取数量
+        # @type Limit: Integer
+
+        attr_accessor :ProjectId, :SpaceName, :Offset, :Limit
+        
+        def initialize(projectid=nil, spacename=nil, offset=nil, limit=nil)
+          @ProjectId = projectid
+          @SpaceName = spacename
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @SpaceName = params['SpaceName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # SearchPositionSpace返回参数结构体
+      class SearchPositionSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param List: 位置空间列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param Total: 符合条件的位置空间个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :Total, :RequestId
+        
+        def initialize(list=nil, total=nil, requestid=nil)
+          @List = list
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              positionspaceinfo_tmp = PositionSpaceInfo.new
+              positionspaceinfo_tmp.deserialize(i)
+              @List << positionspaceinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
         end
       end
 
