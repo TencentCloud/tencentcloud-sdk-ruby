@@ -2733,19 +2733,31 @@ module TencentCloud
         # @type ReplicationRegistryId: String
         # @param ReplicationRegionId: 复制实例的地域Id
         # @type ReplicationRegionId: Integer
+        # @param ShowReplicationLog: 是否显示同步日志
+        # @type ShowReplicationLog: Boolean
+        # @param Offset: 日志页号, 默认0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条数，默认5，最大为20
+        # @type Limit: Integer
 
-        attr_accessor :RegistryId, :ReplicationRegistryId, :ReplicationRegionId
+        attr_accessor :RegistryId, :ReplicationRegistryId, :ReplicationRegionId, :ShowReplicationLog, :Offset, :Limit
         
-        def initialize(registryid=nil, replicationregistryid=nil, replicationregionid=nil)
+        def initialize(registryid=nil, replicationregistryid=nil, replicationregionid=nil, showreplicationlog=nil, offset=nil, limit=nil)
           @RegistryId = registryid
           @ReplicationRegistryId = replicationregistryid
           @ReplicationRegionId = replicationregionid
+          @ShowReplicationLog = showreplicationlog
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @ReplicationRegistryId = params['ReplicationRegistryId']
           @ReplicationRegionId = params['ReplicationRegionId']
+          @ShowReplicationLog = params['ShowReplicationLog']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -2755,20 +2767,28 @@ module TencentCloud
         # @type ReplicationStatus: String
         # @param ReplicationTime: 同步完成时间
         # @type ReplicationTime: String
+        # @param ReplicationLog: 同步日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicationLog: :class:`Tencentcloud::Tcr.v20190924.models.ReplicationLog`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ReplicationStatus, :ReplicationTime, :RequestId
+        attr_accessor :ReplicationStatus, :ReplicationTime, :ReplicationLog, :RequestId
         
-        def initialize(replicationstatus=nil, replicationtime=nil, requestid=nil)
+        def initialize(replicationstatus=nil, replicationtime=nil, replicationlog=nil, requestid=nil)
           @ReplicationStatus = replicationstatus
           @ReplicationTime = replicationtime
+          @ReplicationLog = replicationlog
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ReplicationStatus = params['ReplicationStatus']
           @ReplicationTime = params['ReplicationTime']
+          unless params['ReplicationLog'].nil?
+            @ReplicationLog = ReplicationLog.new
+            @ReplicationLog.deserialize(params['ReplicationLog'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4789,6 +4809,48 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           @Value = params['Value']
+        end
+      end
+
+      # 同步日志
+      class ReplicationLog < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param Source: 源资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param Destination: 目的资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Destination: String
+        # @param Status: 同步状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :ResourceType, :Source, :Destination, :Status, :StartTime, :EndTime
+        
+        def initialize(resourcetype=nil, source=nil, destination=nil, status=nil, starttime=nil, endtime=nil)
+          @ResourceType = resourcetype
+          @Source = source
+          @Destination = destination
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @Source = params['Source']
+          @Destination = params['Destination']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

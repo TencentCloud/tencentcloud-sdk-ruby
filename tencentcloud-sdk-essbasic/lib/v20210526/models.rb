@@ -337,13 +337,16 @@ module TencentCloud
       class CreateSignUrlsResponse < TencentCloud::Common::AbstractModel
         # @param SignUrlInfos: 签署参与者签署H5链接信息数组
         # @type SignUrlInfos: Array
+        # @param ErrorMessages: 生成失败时的错误信息，成功返回”“，顺序和出参SignUrlInfos保持一致
+        # @type ErrorMessages: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SignUrlInfos, :RequestId
+        attr_accessor :SignUrlInfos, :ErrorMessages, :RequestId
         
-        def initialize(signurlinfos=nil, requestid=nil)
+        def initialize(signurlinfos=nil, errormessages=nil, requestid=nil)
           @SignUrlInfos = signurlinfos
+          @ErrorMessages = errormessages
           @RequestId = requestid
         end
 
@@ -356,6 +359,7 @@ module TencentCloud
               @SignUrlInfos << signurlinfo_tmp
             end
           end
+          @ErrorMessages = params['ErrorMessages']
           @RequestId = params['RequestId']
         end
       end

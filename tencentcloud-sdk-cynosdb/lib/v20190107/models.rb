@@ -76,10 +76,12 @@ module TencentCloud
         # @type DbType: String
         # @param OrderSource: 订单来源
         # @type OrderSource: String
+        # @param DealMode: 交易模式 0-下单并支付 1-下单
+        # @type DealMode: Integer
 
-        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource
+        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode
         
-        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil)
+        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil)
           @ClusterId = clusterid
           @Cpu = cpu
           @Memory = memory
@@ -92,6 +94,7 @@ module TencentCloud
           @AutoVoucher = autovoucher
           @DbType = dbtype
           @OrderSource = ordersource
+          @DealMode = dealmode
         end
 
         def deserialize(params)
@@ -107,6 +110,7 @@ module TencentCloud
           @AutoVoucher = params['AutoVoucher']
           @DbType = params['DbType']
           @OrderSource = params['OrderSource']
+          @DealMode = params['DealMode']
         end
       end
 
@@ -365,10 +369,20 @@ module TencentCloud
         # 当DbType为MYSQL时，在集群计算计费模式为后付费（包括DbMode为SERVERLESS）时，存储计费模式仅可为按量计费
         # 回档与克隆均不支持包年包月存储
         # @type StoragePayMode: Integer
+        # @param SecurityGroupIds: 安全组id数组
+        # @type SecurityGroupIds: Array
+        # @param AlarmPolicyIds: 告警策略Id数组
+        # @type AlarmPolicyIds: Array
+        # @param ClusterParams: 参数数组
+        # @type ClusterParams: Array
+        # @param DealMode: 交易模式，0-下单且支付，1-下单
+        # @type DealMode: Integer
+        # @param ParamTemplateId: 参数模版ID
+        # @type ParamTemplateId: Integer
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :InstanceCount, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode
+        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :InstanceCount, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId
         
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, instancecount=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil)
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, instancecount=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil)
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -403,6 +417,11 @@ module TencentCloud
           @AutoPause = autopause
           @AutoPauseDelay = autopausedelay
           @StoragePayMode = storagepaymode
+          @SecurityGroupIds = securitygroupids
+          @AlarmPolicyIds = alarmpolicyids
+          @ClusterParams = clusterparams
+          @DealMode = dealmode
+          @ParamTemplateId = paramtemplateid
         end
 
         def deserialize(params)
@@ -447,6 +466,18 @@ module TencentCloud
           @AutoPause = params['AutoPause']
           @AutoPauseDelay = params['AutoPauseDelay']
           @StoragePayMode = params['StoragePayMode']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @AlarmPolicyIds = params['AlarmPolicyIds']
+          unless params['ClusterParams'].nil?
+            @ClusterParams = []
+            params['ClusterParams'].each do |i|
+              paramitem_tmp = ParamItem.new
+              paramitem_tmp.deserialize(i)
+              @ClusterParams << paramitem_tmp
+            end
+          end
+          @DealMode = params['DealMode']
+          @ParamTemplateId = params['ParamTemplateId']
         end
       end
 
@@ -458,10 +489,10 @@ module TencentCloud
         # @param DealNames: 订单号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
-        # @param ResourceIds: 资源ID列表（异步发货可能无法返回该字段, 强烈建议使用dealNames字段查询接口DescribeResourcesByDealName获取异步发货的资源ID）
+        # @param ResourceIds: 资源ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取资源ID）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: Array
-        # @param ClusterIds: 集群ID列表（异步发货可能不返回该字段, 强烈建议使用dealNames查询接口DescribeResourcesByDealName获取异步发货的集群ID）
+        # @param ClusterIds: 集群ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取集群ID）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterIds: Array
         # @param BigDealIds: 大订单号
@@ -2338,6 +2369,30 @@ module TencentCloud
         end
       end
 
+      # 修改参数时，传入参数描述
+      class ParamItem < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名称
+        # @type ParamName: String
+        # @param CurrentValue: 当前值
+        # @type CurrentValue: String
+        # @param OldValue: 原有值
+        # @type OldValue: String
+
+        attr_accessor :ParamName, :CurrentValue, :OldValue
+        
+        def initialize(paramname=nil, currentvalue=nil, oldvalue=nil)
+          @ParamName = paramname
+          @CurrentValue = currentvalue
+          @OldValue = oldvalue
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @CurrentValue = params['CurrentValue']
+          @OldValue = params['OldValue']
+        end
+      end
+
       # 安全组规则
       class PolicyRule < TencentCloud::Common::AbstractModel
         # @param Action: 策略，ACCEPT或者DROP
@@ -2541,10 +2596,12 @@ module TencentCloud
         # @param DbType: 数据库类型，取值范围:
         # <li> MYSQL </li>
         # @type DbType: String
+        # @param DealMode: 交易模式 0-下单并支付 1-下单
+        # @type DealMode: Integer
 
-        attr_accessor :InstanceId, :Cpu, :Memory, :UpgradeType, :StorageLimit, :AutoVoucher, :DbType
+        attr_accessor :InstanceId, :Cpu, :Memory, :UpgradeType, :StorageLimit, :AutoVoucher, :DbType, :DealMode
         
-        def initialize(instanceid=nil, cpu=nil, memory=nil, upgradetype=nil, storagelimit=nil, autovoucher=nil, dbtype=nil)
+        def initialize(instanceid=nil, cpu=nil, memory=nil, upgradetype=nil, storagelimit=nil, autovoucher=nil, dbtype=nil, dealmode=nil)
           @InstanceId = instanceid
           @Cpu = cpu
           @Memory = memory
@@ -2552,6 +2609,7 @@ module TencentCloud
           @StorageLimit = storagelimit
           @AutoVoucher = autovoucher
           @DbType = dbtype
+          @DealMode = dealmode
         end
 
         def deserialize(params)
@@ -2562,6 +2620,7 @@ module TencentCloud
           @StorageLimit = params['StorageLimit']
           @AutoVoucher = params['AutoVoucher']
           @DbType = params['DbType']
+          @DealMode = params['DealMode']
         end
       end
 

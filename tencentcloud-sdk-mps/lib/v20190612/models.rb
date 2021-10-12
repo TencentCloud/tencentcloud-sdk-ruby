@@ -7107,14 +7107,20 @@ module TencentCloud
         # @type QueueName: String
         # @param TopicName: 当模型为 Topic 时有效，表示接收事件通知的 CMQ 的主题名。
         # @type TopicName: String
+        # @param NotifyType: 通知类型，默认CMQ，指定URL时HTTP回调推送到 NotifyUrl 指定的地址。
+        # @type NotifyType: String
+        # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
+        # @type NotifyUrl: String
 
-        attr_accessor :CmqModel, :CmqRegion, :QueueName, :TopicName
+        attr_accessor :CmqModel, :CmqRegion, :QueueName, :TopicName, :NotifyType, :NotifyUrl
         
-        def initialize(cmqmodel=nil, cmqregion=nil, queuename=nil, topicname=nil)
+        def initialize(cmqmodel=nil, cmqregion=nil, queuename=nil, topicname=nil, notifytype=nil, notifyurl=nil)
           @CmqModel = cmqmodel
           @CmqRegion = cmqregion
           @QueueName = queuename
           @TopicName = topicname
+          @NotifyType = notifytype
+          @NotifyUrl = notifyurl
         end
 
         def deserialize(params)
@@ -7122,6 +7128,8 @@ module TencentCloud
           @CmqRegion = params['CmqRegion']
           @QueueName = params['QueueName']
           @TopicName = params['TopicName']
+          @NotifyType = params['NotifyType']
+          @NotifyUrl = params['NotifyUrl']
         end
       end
 
