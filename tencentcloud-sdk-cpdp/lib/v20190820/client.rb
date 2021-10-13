@@ -1766,6 +1766,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云支付-查询订单付款状态
+
+        # @param request: Request instance for QueryOrderStatus.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryOrderStatusRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryOrderStatusResponse`
+        def QueryOrderStatus(request)
+          body = send_request('QueryOrderStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryOrderStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 跨境-查询汇出结果
 
         # @param request: Request instance for QueryOutwardOrder.
@@ -2174,6 +2198,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云支付Tlinx退款接口
+
+        # @param request: Request instance for RefundTlinxOrder.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::RefundTlinxOrderRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::RefundTlinxOrderResponse`
+        def RefundTlinxOrder(request)
+          body = send_request('RefundTlinxOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RefundTlinxOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 商户查询是否签约和签约行为上报
 
         # @param request: Request instance for RegisterBehavior.
@@ -2472,6 +2520,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnifiedOrderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云支付Tlinx统一下单接口
+
+        # @param request: Request instance for UnifiedTlinxOrder.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::UnifiedTlinxOrderRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::UnifiedTlinxOrderResponse`
+        def UnifiedTlinxOrder(request)
+          body = send_request('UnifiedTlinxOrder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnifiedTlinxOrderResponse.new
             model.deserialize(response['Response'])
             model
           else

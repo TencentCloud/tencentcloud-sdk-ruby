@@ -450,15 +450,18 @@ module TencentCloud
         # @type PlayToken: String
         # @param LyricsUrl: 歌词下载地址
         # @type LyricsUrl: String
+        # @param DefinitionInfoSet: 歌曲规格信息列表
+        # @type DefinitionInfoSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :RequestId
+        attr_accessor :KTVMusicBaseInfo, :PlayToken, :LyricsUrl, :DefinitionInfoSet, :RequestId
         
-        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, requestid=nil)
+        def initialize(ktvmusicbaseinfo=nil, playtoken=nil, lyricsurl=nil, definitioninfoset=nil, requestid=nil)
           @KTVMusicBaseInfo = ktvmusicbaseinfo
           @PlayToken = playtoken
           @LyricsUrl = lyricsurl
+          @DefinitionInfoSet = definitioninfoset
           @RequestId = requestid
         end
 
@@ -469,6 +472,14 @@ module TencentCloud
           end
           @PlayToken = params['PlayToken']
           @LyricsUrl = params['LyricsUrl']
+          unless params['DefinitionInfoSet'].nil?
+            @DefinitionInfoSet = []
+            params['DefinitionInfoSet'].each do |i|
+              ktvmusicdefinitioninfo_tmp = KTVMusicDefinitionInfo.new
+              ktvmusicdefinitioninfo_tmp.deserialize(i)
+              @DefinitionInfoSet << ktvmusicdefinitioninfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1056,6 +1067,33 @@ module TencentCloud
           @ComposerSet = params['ComposerSet']
           @TagSet = params['TagSet']
           @Duration = params['Duration']
+        end
+      end
+
+      # 直播互动歌曲规格信息。
+      class KTVMusicDefinitionInfo < TencentCloud::Common::AbstractModel
+        # @param Definition: 规格，取值有：
+        # <li>audio/mi：低规格；</li>
+        # <li>audio/lo：中规格；</li>
+        # <li>audio/hi：高规格。</li>
+        # @type Definition: String
+        # @param Bitrate: 码率，单位为 bps。
+        # @type Bitrate: Integer
+        # @param Size: 文件大小，单位为字节。
+        # @type Size: Integer
+
+        attr_accessor :Definition, :Bitrate, :Size
+        
+        def initialize(definition=nil, bitrate=nil, size=nil)
+          @Definition = definition
+          @Bitrate = bitrate
+          @Size = size
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Bitrate = params['Bitrate']
+          @Size = params['Size']
         end
       end
 

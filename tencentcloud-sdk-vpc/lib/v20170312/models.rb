@@ -7632,6 +7632,65 @@ module TencentCloud
         end
       end
 
+      # DescribeNatGatewayDirectConnectGatewayRoute请求参数结构体
+      class DescribeNatGatewayDirectConnectGatewayRouteRequest < TencentCloud::Common::AbstractModel
+        # @param NatGatewayId: nat的唯一标识
+        # @type NatGatewayId: String
+        # @param VpcId: vpc的唯一标识
+        # @type VpcId: String
+        # @param Limit: 0到200之间
+        # @type Limit: Integer
+        # @param Offset: 大于0
+        # @type Offset: Integer
+
+        attr_accessor :NatGatewayId, :VpcId, :Limit, :Offset
+        
+        def initialize(natgatewayid=nil, vpcid=nil, limit=nil, offset=nil)
+          @NatGatewayId = natgatewayid
+          @VpcId = vpcid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @NatGatewayId = params['NatGatewayId']
+          @VpcId = params['VpcId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeNatGatewayDirectConnectGatewayRoute返回参数结构体
+      class DescribeNatGatewayDirectConnectGatewayRouteResponse < TencentCloud::Common::AbstractModel
+        # @param NatDirectConnectGatewayRouteSet: 路由数据
+        # @type NatDirectConnectGatewayRouteSet: Array
+        # @param Total: 路由总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NatDirectConnectGatewayRouteSet, :Total, :RequestId
+        
+        def initialize(natdirectconnectgatewayrouteset=nil, total=nil, requestid=nil)
+          @NatDirectConnectGatewayRouteSet = natdirectconnectgatewayrouteset
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NatDirectConnectGatewayRouteSet'].nil?
+            @NatDirectConnectGatewayRouteSet = []
+            params['NatDirectConnectGatewayRouteSet'].each do |i|
+              natdirectconnectgatewayroute_tmp = NatDirectConnectGatewayRoute.new
+              natdirectconnectgatewayroute_tmp.deserialize(i)
+              @NatDirectConnectGatewayRouteSet << natdirectconnectgatewayroute_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNatGatewaySourceIpTranslationNatRules请求参数结构体
       class DescribeNatGatewaySourceIpTranslationNatRulesRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关统一 ID，形如：`nat-123xx454`。
@@ -9948,6 +10007,26 @@ module TencentCloud
         end
       end
 
+      # IDC子网信息
+      class DirectConnectSubnet < TencentCloud::Common::AbstractModel
+        # @param DirectConnectGatewayId: 专线网关ID
+        # @type DirectConnectGatewayId: String
+        # @param CidrBlock: IDC子网网段
+        # @type CidrBlock: String
+
+        attr_accessor :DirectConnectGatewayId, :CidrBlock
+        
+        def initialize(directconnectgatewayid=nil, cidrblock=nil)
+          @DirectConnectGatewayId = directconnectgatewayid
+          @CidrBlock = cidrblock
+        end
+
+        def deserialize(params)
+          @DirectConnectGatewayId = params['DirectConnectGatewayId']
+          @CidrBlock = params['CidrBlock']
+        end
+      end
+
       # DisableCcnRoutes请求参数结构体
       class DisableCcnRoutesRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
@@ -12029,19 +12108,23 @@ module TencentCloud
         # @type BandwidthPackageName: String
         # @param ChargeType: 带宽包计费模式
         # @type ChargeType: String
+        # @param MigrateOnRefund: 退款时迁移为后付费带宽包。默认值：否
+        # @type MigrateOnRefund: Boolean
 
-        attr_accessor :BandwidthPackageId, :BandwidthPackageName, :ChargeType
+        attr_accessor :BandwidthPackageId, :BandwidthPackageName, :ChargeType, :MigrateOnRefund
         
-        def initialize(bandwidthpackageid=nil, bandwidthpackagename=nil, chargetype=nil)
+        def initialize(bandwidthpackageid=nil, bandwidthpackagename=nil, chargetype=nil, migrateonrefund=nil)
           @BandwidthPackageId = bandwidthpackageid
           @BandwidthPackageName = bandwidthpackagename
           @ChargeType = chargetype
+          @MigrateOnRefund = migrateonrefund
         end
 
         def deserialize(params)
           @BandwidthPackageId = params['BandwidthPackageId']
           @BandwidthPackageName = params['BandwidthPackageName']
           @ChargeType = params['ChargeType']
+          @MigrateOnRefund = params['MigrateOnRefund']
         end
       end
 
@@ -12108,9 +12191,9 @@ module TencentCloud
       class ModifyCcnAttributeRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
         # @type CcnId: String
-        # @param CcnName: CCN名称，最大长度不能超过60个字节。
+        # @param CcnName: CCN名称，最大长度不能超过60个字节，限制：CcnName和CcnDescription必须至少选择一个参数输入，否则报错。
         # @type CcnName: String
-        # @param CcnDescription: CCN描述信息，最大长度不能超过100个字节。
+        # @param CcnDescription: CCN描述信息，最大长度不能超过100个字节，限制：CcnName和CcnDescription必须至少选择一个参数输入，否则报错。
         # @type CcnDescription: String
 
         attr_accessor :CcnId, :CcnName, :CcnDescription
@@ -13653,6 +13736,39 @@ module TencentCloud
         end
       end
 
+      # 查询nat路由的返回路由对象
+      class NatDirectConnectGatewayRoute < TencentCloud::Common::AbstractModel
+        # @param DestinationCidrBlock: 子网的 `IPv4` `CIDR`
+        # @type DestinationCidrBlock: String
+        # @param GatewayType: 下一跳网关的类型，目前此接口支持的类型有：
+        # DIRECTCONNECT：专线网关
+        # @type GatewayType: String
+        # @param GatewayId: 下一跳网关ID
+        # @type GatewayId: String
+        # @param CreateTime: 路由的创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 路由的更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :DestinationCidrBlock, :GatewayType, :GatewayId, :CreateTime, :UpdateTime
+        
+        def initialize(destinationcidrblock=nil, gatewaytype=nil, gatewayid=nil, createtime=nil, updatetime=nil)
+          @DestinationCidrBlock = destinationcidrblock
+          @GatewayType = gatewaytype
+          @GatewayId = gatewayid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @DestinationCidrBlock = params['DestinationCidrBlock']
+          @GatewayType = params['GatewayType']
+          @GatewayId = params['GatewayId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # NAT网关对象。
       class NatGateway < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID。
@@ -14450,6 +14566,57 @@ module TencentCloud
         def deserialize(params)
           @SecurityGroupId = params['SecurityGroupId']
           @ReferredSecurityGroupIds = params['ReferredSecurityGroupIds']
+        end
+      end
+
+      # RefreshDirectConnectGatewayRouteToNatGateway请求参数结构体
+      class RefreshDirectConnectGatewayRouteToNatGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc的ID
+        # @type VpcId: String
+        # @param NatGatewayId: NAT网关ID
+        # @type NatGatewayId: String
+        # @param DryRun: 是否是预刷新；True:是， False:否
+        # @type DryRun: Boolean
+
+        attr_accessor :VpcId, :NatGatewayId, :DryRun
+        
+        def initialize(vpcid=nil, natgatewayid=nil, dryrun=nil)
+          @VpcId = vpcid
+          @NatGatewayId = natgatewayid
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @NatGatewayId = params['NatGatewayId']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # RefreshDirectConnectGatewayRouteToNatGateway返回参数结构体
+      class RefreshDirectConnectGatewayRouteToNatGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param DirectConnectSubnetSet: IDC子网信息
+        # @type DirectConnectSubnetSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DirectConnectSubnetSet, :RequestId
+        
+        def initialize(directconnectsubnetset=nil, requestid=nil)
+          @DirectConnectSubnetSet = directconnectsubnetset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DirectConnectSubnetSet'].nil?
+            @DirectConnectSubnetSet = []
+            params['DirectConnectSubnetSet'].each do |i|
+              directconnectsubnet_tmp = DirectConnectSubnet.new
+              directconnectsubnet_tmp.deserialize(i)
+              @DirectConnectSubnetSet << directconnectsubnet_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -15542,10 +15709,13 @@ module TencentCloud
         # @type CreatedTime: String
         # @param TagSet: 标签键值对。
         # @type TagSet: Array
+        # @param UpdateTime: 安全组更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
 
-        attr_accessor :SecurityGroupId, :SecurityGroupName, :SecurityGroupDesc, :ProjectId, :IsDefault, :CreatedTime, :TagSet
+        attr_accessor :SecurityGroupId, :SecurityGroupName, :SecurityGroupDesc, :ProjectId, :IsDefault, :CreatedTime, :TagSet, :UpdateTime
         
-        def initialize(securitygroupid=nil, securitygroupname=nil, securitygroupdesc=nil, projectid=nil, isdefault=nil, createdtime=nil, tagset=nil)
+        def initialize(securitygroupid=nil, securitygroupname=nil, securitygroupdesc=nil, projectid=nil, isdefault=nil, createdtime=nil, tagset=nil, updatetime=nil)
           @SecurityGroupId = securitygroupid
           @SecurityGroupName = securitygroupname
           @SecurityGroupDesc = securitygroupdesc
@@ -15553,6 +15723,7 @@ module TencentCloud
           @IsDefault = isdefault
           @CreatedTime = createdtime
           @TagSet = tagset
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -15570,6 +15741,7 @@ module TencentCloud
               @TagSet << tag_tmp
             end
           end
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -16289,12 +16461,15 @@ module TencentCloud
         # @type NetworkInterfaceId: String
         # @param PrivateIpAddresses: 指定的内网IP信息，单次最多指定10个。
         # @type PrivateIpAddresses: Array
+        # @param InstanceId: 网卡绑定的子机实例ID，该参数仅用于指定网卡退还IP并解绑子机的场景，如果不涉及解绑子机，请勿填写。
+        # @type InstanceId: String
 
-        attr_accessor :NetworkInterfaceId, :PrivateIpAddresses
+        attr_accessor :NetworkInterfaceId, :PrivateIpAddresses, :InstanceId
         
-        def initialize(networkinterfaceid=nil, privateipaddresses=nil)
+        def initialize(networkinterfaceid=nil, privateipaddresses=nil, instanceid=nil)
           @NetworkInterfaceId = networkinterfaceid
           @PrivateIpAddresses = privateipaddresses
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -16307,6 +16482,7 @@ module TencentCloud
               @PrivateIpAddresses << privateipaddressspecification_tmp
             end
           end
+          @InstanceId = params['InstanceId']
         end
       end
 

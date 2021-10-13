@@ -8330,10 +8330,13 @@ module TencentCloud
         # @param ColorTransfer: 色彩空间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColorTransfer: String
+        # @param HdrType: HDR类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HdrType: String
 
-        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :ColorPrimaries, :ColorSpace, :ColorTransfer
+        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :ColorPrimaries, :ColorSpace, :ColorTransfer, :HdrType
         
-        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, colorprimaries=nil, colorspace=nil, colortransfer=nil)
+        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, colorprimaries=nil, colorspace=nil, colortransfer=nil, hdrtype=nil)
           @Bitrate = bitrate
           @Height = height
           @Width = width
@@ -8342,6 +8345,7 @@ module TencentCloud
           @ColorPrimaries = colorprimaries
           @ColorSpace = colorspace
           @ColorTransfer = colortransfer
+          @HdrType = hdrtype
         end
 
         def deserialize(params)
@@ -8353,6 +8357,7 @@ module TencentCloud
           @ColorPrimaries = params['ColorPrimaries']
           @ColorSpace = params['ColorSpace']
           @ColorTransfer = params['ColorTransfer']
+          @HdrType = params['HdrType']
         end
       end
 

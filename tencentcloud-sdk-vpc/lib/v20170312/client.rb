@@ -3228,6 +3228,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询专线绑定NAT的路由
+
+        # @param request: Request instance for DescribeNatGatewayDirectConnectGatewayRoute.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeNatGatewayDirectConnectGatewayRouteRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeNatGatewayDirectConnectGatewayRouteResponse`
+        def DescribeNatGatewayDirectConnectGatewayRoute(request)
+          body = send_request('DescribeNatGatewayDirectConnectGatewayRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNatGatewayDirectConnectGatewayRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
 
         # @param request: Request instance for DescribeNatGatewaySourceIpTranslationNatRules.
@@ -5828,6 +5852,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = NotifyRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 刷新专线直连nat路由，更新nat到专线的路由表
+
+        # @param request: Request instance for RefreshDirectConnectGatewayRouteToNatGateway.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::RefreshDirectConnectGatewayRouteToNatGatewayRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::RefreshDirectConnectGatewayRouteToNatGatewayResponse`
+        def RefreshDirectConnectGatewayRouteToNatGateway(request)
+          body = send_request('RefreshDirectConnectGatewayRouteToNatGateway', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RefreshDirectConnectGatewayRouteToNatGatewayResponse.new
             model.deserialize(response['Response'])
             model
           else

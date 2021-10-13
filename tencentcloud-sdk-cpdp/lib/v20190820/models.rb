@@ -5587,6 +5587,88 @@ module TencentCloud
         end
       end
 
+      # 订单支付响应对象
+      class PayOrderResult < TencentCloud::Common::AbstractModel
+        # @param OrderNo: 付款订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderNo: String
+        # @param DeveloperNo: 开发者流水号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeveloperNo: String
+        # @param TradeDiscountAmount: 交易优惠金额（免充值券）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeDiscountAmount: String
+        # @param PayName: 付款方式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayName: String
+        # @param OrderMerchantId: 商户流水号（从1开始自增长不重复）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderMerchantId: String
+        # @param TradeAccount: 交易帐号（银行卡号、支付宝帐号、微信帐号等，某些收单机构没有此数据）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeAccount: String
+        # @param TradeAmount: 实际交易金额（以分为单位，没有小数点）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeAmount: String
+        # @param CurrencySign: 币种签名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrencySign: String
+        # @param TradePayTime: 付款完成时间（以收单机构为准）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradePayTime: String
+        # @param ShopOrderId: 门店流水号（从1开始自增长不重复）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopOrderId: String
+        # @param PayTag: 支付标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayTag: String
+        # @param Status: 订单状态（1交易成功，2待支付，4已取消，9等待用户输入密码确认
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param OrderCurrency: 币种代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderCurrency: String
+        # @param TradeQrcode: 二维码字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeQrcode: String
+
+        attr_accessor :OrderNo, :DeveloperNo, :TradeDiscountAmount, :PayName, :OrderMerchantId, :TradeAccount, :TradeAmount, :CurrencySign, :TradePayTime, :ShopOrderId, :PayTag, :Status, :OrderCurrency, :TradeQrcode
+        
+        def initialize(orderno=nil, developerno=nil, tradediscountamount=nil, payname=nil, ordermerchantid=nil, tradeaccount=nil, tradeamount=nil, currencysign=nil, tradepaytime=nil, shoporderid=nil, paytag=nil, status=nil, ordercurrency=nil, tradeqrcode=nil)
+          @OrderNo = orderno
+          @DeveloperNo = developerno
+          @TradeDiscountAmount = tradediscountamount
+          @PayName = payname
+          @OrderMerchantId = ordermerchantid
+          @TradeAccount = tradeaccount
+          @TradeAmount = tradeamount
+          @CurrencySign = currencysign
+          @TradePayTime = tradepaytime
+          @ShopOrderId = shoporderid
+          @PayTag = paytag
+          @Status = status
+          @OrderCurrency = ordercurrency
+          @TradeQrcode = tradeqrcode
+        end
+
+        def deserialize(params)
+          @OrderNo = params['OrderNo']
+          @DeveloperNo = params['DeveloperNo']
+          @TradeDiscountAmount = params['TradeDiscountAmount']
+          @PayName = params['PayName']
+          @OrderMerchantId = params['OrderMerchantId']
+          @TradeAccount = params['TradeAccount']
+          @TradeAmount = params['TradeAmount']
+          @CurrencySign = params['CurrencySign']
+          @TradePayTime = params['TradePayTime']
+          @ShopOrderId = params['ShopOrderId']
+          @PayTag = params['PayTag']
+          @Status = params['Status']
+          @OrderCurrency = params['OrderCurrency']
+          @TradeQrcode = params['TradeQrcode']
+        end
+      end
+
       # QueryAcctBinding请求参数结构体
       class QueryAcctBindingRequest < TencentCloud::Common::AbstractModel
         # @param MidasAppId: 聚鑫分配的支付主MidasAppId
@@ -8376,6 +8458,243 @@ module TencentCloud
         end
       end
 
+      # QueryOrderStatus请求参数结构体
+      class QueryOrderStatusRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param DeveloperNo: 开发者流水号
+        # @type DeveloperNo: String
+        # @param OrderNo: 付款订单号
+        # @type OrderNo: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :DeveloperNo, :OrderNo, :Profile
+        
+        def initialize(openid=nil, openkey=nil, developerno=nil, orderno=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @DeveloperNo = developerno
+          @OrderNo = orderno
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @DeveloperNo = params['DeveloperNo']
+          @OrderNo = params['OrderNo']
+          @Profile = params['Profile']
+        end
+      end
+
+      # QueryOrderStatus返回参数结构体
+      class QueryOrderStatusResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 查询订单付款状态结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.QueryOrderStatusResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = QueryOrderStatusResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询订单付款状态响应对象
+      class QueryOrderStatusResult < TencentCloud::Common::AbstractModel
+        # @param OrderNo: 付款订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderNo: String
+        # @param DeveloperNo: 开发者流水号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeveloperNo: String
+        # @param TradeDiscountAmount: 交易优惠金额（免充值券）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeDiscountAmount: String
+        # @param PayName: 付款方式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayName: String
+        # @param OrderMerchantId: 商户流水号（从1开始自增长不重复）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderMerchantId: String
+        # @param TradeAccount: 交易帐号（银行卡号、支付宝帐号、微信帐号等，某些收单机构没有此数据）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeAccount: String
+        # @param TradeAmount: 实际交易金额（以分为单位，没有小数点）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeAmount: String
+        # @param CurrencySign: 币种签名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrencySign: String
+        # @param TradePayTime: 付款完成时间（以收单机构为准）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradePayTime: String
+        # @param ShopOrderId: 门店流水号（从1开始自增长不重复）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopOrderId: String
+        # @param PayTag: 支付标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayTag: String
+        # @param Status: 订单状态（1交易成功，2待支付，4已取消，9等待用户输入密码确认
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param OrderCurrency: 币种代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderCurrency: String
+        # @param TradeQrcode: 二维码字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeQrcode: String
+        # @param TradeTime: 开始交易时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeTime: String
+        # @param DiscountAmount: 折扣金额（以分为单位，没有小数点）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountAmount: String
+        # @param MerchantNo: 商户号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MerchantNo: String
+        # @param Remark: 订单备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param OrderName: 订单标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderName: String
+        # @param OriginalAmount: 原始金额（以分为单位，没有小数点）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalAmount: String
+        # @param ShopNo: 门店编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopNo: String
+        # @param TradeResult: 收单机构原始交易数据，如果返回非标准json数据，请自行转换
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeResult: String
+        # @param OrderId: 订单流水号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderId: String
+        # @param OrderType: 订单类型（1消费，2辙单）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderType: String
+        # @param TradeNo: 收单机构交易号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeNo: String
+        # @param OriginalOrderNo: 原始订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalOrderNo: String
+        # @param Tag: 订单标记，订单附加数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
+        # @param AddTime: 下单时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddTime: String
+        # @param CashierId: 收银员编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CashierId: String
+        # @param CashierRealName: 收银员名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CashierRealName: String
+        # @param ShopFullName: 店铺全称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopFullName: String
+        # @param ShopName: 店铺名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopName: String
+
+        attr_accessor :OrderNo, :DeveloperNo, :TradeDiscountAmount, :PayName, :OrderMerchantId, :TradeAccount, :TradeAmount, :CurrencySign, :TradePayTime, :ShopOrderId, :PayTag, :Status, :OrderCurrency, :TradeQrcode, :TradeTime, :DiscountAmount, :MerchantNo, :Remark, :OrderName, :OriginalAmount, :ShopNo, :TradeResult, :OrderId, :OrderType, :TradeNo, :OriginalOrderNo, :Tag, :AddTime, :CashierId, :CashierRealName, :ShopFullName, :ShopName
+        
+        def initialize(orderno=nil, developerno=nil, tradediscountamount=nil, payname=nil, ordermerchantid=nil, tradeaccount=nil, tradeamount=nil, currencysign=nil, tradepaytime=nil, shoporderid=nil, paytag=nil, status=nil, ordercurrency=nil, tradeqrcode=nil, tradetime=nil, discountamount=nil, merchantno=nil, remark=nil, ordername=nil, originalamount=nil, shopno=nil, traderesult=nil, orderid=nil, ordertype=nil, tradeno=nil, originalorderno=nil, tag=nil, addtime=nil, cashierid=nil, cashierrealname=nil, shopfullname=nil, shopname=nil)
+          @OrderNo = orderno
+          @DeveloperNo = developerno
+          @TradeDiscountAmount = tradediscountamount
+          @PayName = payname
+          @OrderMerchantId = ordermerchantid
+          @TradeAccount = tradeaccount
+          @TradeAmount = tradeamount
+          @CurrencySign = currencysign
+          @TradePayTime = tradepaytime
+          @ShopOrderId = shoporderid
+          @PayTag = paytag
+          @Status = status
+          @OrderCurrency = ordercurrency
+          @TradeQrcode = tradeqrcode
+          @TradeTime = tradetime
+          @DiscountAmount = discountamount
+          @MerchantNo = merchantno
+          @Remark = remark
+          @OrderName = ordername
+          @OriginalAmount = originalamount
+          @ShopNo = shopno
+          @TradeResult = traderesult
+          @OrderId = orderid
+          @OrderType = ordertype
+          @TradeNo = tradeno
+          @OriginalOrderNo = originalorderno
+          @Tag = tag
+          @AddTime = addtime
+          @CashierId = cashierid
+          @CashierRealName = cashierrealname
+          @ShopFullName = shopfullname
+          @ShopName = shopname
+        end
+
+        def deserialize(params)
+          @OrderNo = params['OrderNo']
+          @DeveloperNo = params['DeveloperNo']
+          @TradeDiscountAmount = params['TradeDiscountAmount']
+          @PayName = params['PayName']
+          @OrderMerchantId = params['OrderMerchantId']
+          @TradeAccount = params['TradeAccount']
+          @TradeAmount = params['TradeAmount']
+          @CurrencySign = params['CurrencySign']
+          @TradePayTime = params['TradePayTime']
+          @ShopOrderId = params['ShopOrderId']
+          @PayTag = params['PayTag']
+          @Status = params['Status']
+          @OrderCurrency = params['OrderCurrency']
+          @TradeQrcode = params['TradeQrcode']
+          @TradeTime = params['TradeTime']
+          @DiscountAmount = params['DiscountAmount']
+          @MerchantNo = params['MerchantNo']
+          @Remark = params['Remark']
+          @OrderName = params['OrderName']
+          @OriginalAmount = params['OriginalAmount']
+          @ShopNo = params['ShopNo']
+          @TradeResult = params['TradeResult']
+          @OrderId = params['OrderId']
+          @OrderType = params['OrderType']
+          @TradeNo = params['TradeNo']
+          @OriginalOrderNo = params['OriginalOrderNo']
+          @Tag = params['Tag']
+          @AddTime = params['AddTime']
+          @CashierId = params['CashierId']
+          @CashierRealName = params['CashierRealName']
+          @ShopFullName = params['ShopFullName']
+          @ShopName = params['ShopName']
+        end
+      end
+
       # 查询汇出数据
       class QueryOutwardOrderData < TencentCloud::Common::AbstractModel
         # @param MerchantId: 商户号
@@ -10273,6 +10592,93 @@ module TencentCloud
         end
       end
 
+      # 订单退款响应对象
+      class RefundOrderResult < TencentCloud::Common::AbstractModel
+        # @param OrderNo: 付款订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderNo: String
+        # @param DeveloperNo: 开发者流水号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeveloperNo: String
+        # @param TradeDiscountAmount: 交易优惠金额（免充值券）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeDiscountAmount: String
+        # @param PayName: 付款方式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayName: String
+        # @param OrderMerchantId: 商户流水号（从1开始自增长不重复）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderMerchantId: String
+        # @param TradeAmount: 实际交易金额（以分为单位，没有小数点）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeAmount: String
+        # @param CurrencySign: 币种签名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrencySign: String
+        # @param TradePayTime: 付款完成时间（以收单机构为准）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradePayTime: String
+        # @param ShopOrderId: 门店流水号（从1开始自增长不重复）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShopOrderId: String
+        # @param PayTag: 支付标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayTag: String
+        # @param Status: 订单状态（1交易成功，2待支付，4已取消，9等待用户输入密码确认
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param OrderCurrency: 币种代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderCurrency: String
+        # @param TradeTime: 开始交易时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeTime: String
+        # @param DiscountAmount: 折扣金额（以分为单位，没有小数点）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountAmount: String
+        # @param OriginalOrderNo: 原始订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalOrderNo: String
+
+        attr_accessor :OrderNo, :DeveloperNo, :TradeDiscountAmount, :PayName, :OrderMerchantId, :TradeAmount, :CurrencySign, :TradePayTime, :ShopOrderId, :PayTag, :Status, :OrderCurrency, :TradeTime, :DiscountAmount, :OriginalOrderNo
+        
+        def initialize(orderno=nil, developerno=nil, tradediscountamount=nil, payname=nil, ordermerchantid=nil, tradeamount=nil, currencysign=nil, tradepaytime=nil, shoporderid=nil, paytag=nil, status=nil, ordercurrency=nil, tradetime=nil, discountamount=nil, originalorderno=nil)
+          @OrderNo = orderno
+          @DeveloperNo = developerno
+          @TradeDiscountAmount = tradediscountamount
+          @PayName = payname
+          @OrderMerchantId = ordermerchantid
+          @TradeAmount = tradeamount
+          @CurrencySign = currencysign
+          @TradePayTime = tradepaytime
+          @ShopOrderId = shoporderid
+          @PayTag = paytag
+          @Status = status
+          @OrderCurrency = ordercurrency
+          @TradeTime = tradetime
+          @DiscountAmount = discountamount
+          @OriginalOrderNo = originalorderno
+        end
+
+        def deserialize(params)
+          @OrderNo = params['OrderNo']
+          @DeveloperNo = params['DeveloperNo']
+          @TradeDiscountAmount = params['TradeDiscountAmount']
+          @PayName = params['PayName']
+          @OrderMerchantId = params['OrderMerchantId']
+          @TradeAmount = params['TradeAmount']
+          @CurrencySign = params['CurrencySign']
+          @TradePayTime = params['TradePayTime']
+          @ShopOrderId = params['ShopOrderId']
+          @PayTag = params['PayTag']
+          @Status = params['Status']
+          @OrderCurrency = params['OrderCurrency']
+          @TradeTime = params['TradeTime']
+          @DiscountAmount = params['DiscountAmount']
+          @OriginalOrderNo = params['OriginalOrderNo']
+        end
+      end
+
       # 退款子订单列表
       class RefundOutSubOrderRefundList < TencentCloud::Common::AbstractModel
         # @param PlatformRefundAmt: 平台应退金额
@@ -10388,6 +10794,87 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RefundTlinxOrder请求参数结构体
+      class RefundTlinxOrderRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param DeveloperNo: 原始订单的开发者交易流水号
+        # @type DeveloperNo: String
+        # @param RefundOutNo: 新退款订单的开发者流水号，同一门店内唯一
+        # @type RefundOutNo: String
+        # @param RefundOrderName: 退款订单名称，可以为空
+        # @type RefundOrderName: String
+        # @param RefundAmount: 退款金额（以分为单位，没有小数点）
+        # @type RefundAmount: String
+        # @param ShopPassword: 主管密码，对密码进行sha1加密，默认为123456
+        # @type ShopPassword: String
+        # @param Remark: 退款备注
+        # @type Remark: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :DeveloperNo, :RefundOutNo, :RefundOrderName, :RefundAmount, :ShopPassword, :Remark, :Profile
+        
+        def initialize(openid=nil, openkey=nil, developerno=nil, refundoutno=nil, refundordername=nil, refundamount=nil, shoppassword=nil, remark=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @DeveloperNo = developerno
+          @RefundOutNo = refundoutno
+          @RefundOrderName = refundordername
+          @RefundAmount = refundamount
+          @ShopPassword = shoppassword
+          @Remark = remark
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @DeveloperNo = params['DeveloperNo']
+          @RefundOutNo = params['RefundOutNo']
+          @RefundOrderName = params['RefundOrderName']
+          @RefundAmount = params['RefundAmount']
+          @ShopPassword = params['ShopPassword']
+          @Remark = params['Remark']
+          @Profile = params['Profile']
+        end
+      end
+
+      # RefundTlinxOrder返回参数结构体
+      class RefundTlinxOrderResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 退款响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.RefundOrderResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = RefundOrderResult.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12216,6 +12703,127 @@ module TencentCloud
           @OutTradeNo = params['OutTradeNo']
           @PayInfo = params['PayInfo']
           @TransactionId = params['TransactionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UnifiedTlinxOrder请求参数结构体
+      class UnifiedTlinxOrderRequest < TencentCloud::Common::AbstractModel
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
+        # @param DeveloperNo: 开发者流水号
+        # @type DeveloperNo: String
+        # @param PayTag: 支付标签
+        # @type PayTag: String
+        # @param TradeAmount: 实际交易金额（以分为单位，没有小数点）
+        # @type TradeAmount: String
+        # @param Tag: 订单标记，订单附加数据
+        # @type Tag: String
+        # @param NotifyUrl: 交易结果异步通知url地址
+        # @type NotifyUrl: String
+        # @param PayName: 付款方式名称(当PayTag为Diy时，PayName不能为空)
+        # @type PayName: String
+        # @param OrderName: 订单名称（描述）
+        # @type OrderName: String
+        # @param OriginalAmount: 原始交易金额（以分为单位，没有小数点）
+        # @type OriginalAmount: String
+        # @param DiscountAmount: 折扣金额（以分为单位，没有小数点）
+        # @type DiscountAmount: String
+        # @param IgnoreAmount: 抹零金额（以分为单位，没有小数点）
+        # @type IgnoreAmount: String
+        # @param TradeAccount: 交易帐号（银行卡号）
+        # @type TradeAccount: String
+        # @param TradeNo: 交易号（收单机构交易号）
+        # @type TradeNo: String
+        # @param TradeResult: 收单机构原始交易报文，请转换为json
+        # @type TradeResult: String
+        # @param Remark: 订单备注
+        # @type Remark: String
+        # @param AuthCode: 条码支付的授权码（条码抢扫手机扫到的一串数字）
+        # @type AuthCode: String
+        # @param JumpUrl: 公众号支付时，支付成功后跳转url地址
+        # @type JumpUrl: String
+        # @param Profile: 沙箱环境填sandbox，正式环境不填
+        # @type Profile: String
+
+        attr_accessor :OpenId, :OpenKey, :DeveloperNo, :PayTag, :TradeAmount, :Tag, :NotifyUrl, :PayName, :OrderName, :OriginalAmount, :DiscountAmount, :IgnoreAmount, :TradeAccount, :TradeNo, :TradeResult, :Remark, :AuthCode, :JumpUrl, :Profile
+        
+        def initialize(openid=nil, openkey=nil, developerno=nil, paytag=nil, tradeamount=nil, tag=nil, notifyurl=nil, payname=nil, ordername=nil, originalamount=nil, discountamount=nil, ignoreamount=nil, tradeaccount=nil, tradeno=nil, traderesult=nil, remark=nil, authcode=nil, jumpurl=nil, profile=nil)
+          @OpenId = openid
+          @OpenKey = openkey
+          @DeveloperNo = developerno
+          @PayTag = paytag
+          @TradeAmount = tradeamount
+          @Tag = tag
+          @NotifyUrl = notifyurl
+          @PayName = payname
+          @OrderName = ordername
+          @OriginalAmount = originalamount
+          @DiscountAmount = discountamount
+          @IgnoreAmount = ignoreamount
+          @TradeAccount = tradeaccount
+          @TradeNo = tradeno
+          @TradeResult = traderesult
+          @Remark = remark
+          @AuthCode = authcode
+          @JumpUrl = jumpurl
+          @Profile = profile
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
+          @OpenKey = params['OpenKey']
+          @DeveloperNo = params['DeveloperNo']
+          @PayTag = params['PayTag']
+          @TradeAmount = params['TradeAmount']
+          @Tag = params['Tag']
+          @NotifyUrl = params['NotifyUrl']
+          @PayName = params['PayName']
+          @OrderName = params['OrderName']
+          @OriginalAmount = params['OriginalAmount']
+          @DiscountAmount = params['DiscountAmount']
+          @IgnoreAmount = params['IgnoreAmount']
+          @TradeAccount = params['TradeAccount']
+          @TradeNo = params['TradeNo']
+          @TradeResult = params['TradeResult']
+          @Remark = params['Remark']
+          @AuthCode = params['AuthCode']
+          @JumpUrl = params['JumpUrl']
+          @Profile = params['Profile']
+        end
+      end
+
+      # UnifiedTlinxOrder返回参数结构体
+      class UnifiedTlinxOrderResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
+        # @param ErrMessage: 业务系统返回消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+        # @param Result: 统一下单响应对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PayOrderResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMessage = errmessage
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMessage = params['ErrMessage']
+          unless params['Result'].nil?
+            @Result = PayOrderResult.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end

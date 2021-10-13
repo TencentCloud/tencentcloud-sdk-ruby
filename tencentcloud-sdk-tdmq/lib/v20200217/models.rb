@@ -2893,10 +2893,13 @@ module TencentCloud
         # @param TopicNum: Topic数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicNum: Integer
+        # @param RetentionPolicy: 消息保留策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
 
-        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum
+        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum, :RetentionPolicy
         
-        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil, topicnum=nil)
+        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil, topicnum=nil, retentionpolicy=nil)
           @EnvironmentId = environmentid
           @Remark = remark
           @MsgTTL = msgttl
@@ -2905,6 +2908,7 @@ module TencentCloud
           @NamespaceId = namespaceid
           @NamespaceName = namespacename
           @TopicNum = topicnum
+          @RetentionPolicy = retentionpolicy
         end
 
         def deserialize(params)
@@ -2916,6 +2920,10 @@ module TencentCloud
           @NamespaceId = params['NamespaceId']
           @NamespaceName = params['NamespaceName']
           @TopicNum = params['TopicNum']
+          unless params['RetentionPolicy'].nil?
+            @RetentionPolicy = RetentionPolicy.new
+            @RetentionPolicy.deserialize(params['RetentionPolicy'])
+          end
         end
       end
 

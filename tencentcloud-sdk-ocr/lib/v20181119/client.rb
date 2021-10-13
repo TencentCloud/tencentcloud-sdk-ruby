@@ -1316,6 +1316,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
+
+        # @param request: Request instance for RecognizeOnlineTaxiItineraryOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeOnlineTaxiItineraryOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeOnlineTaxiItineraryOCRResponse`
+        def RecognizeOnlineTaxiItineraryOCR(request)
+          body = send_request('RecognizeOnlineTaxiItineraryOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizeOnlineTaxiItineraryOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
 
         # @param request: Request instance for RecognizeTableOCR.

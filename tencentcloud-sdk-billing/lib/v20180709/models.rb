@@ -1803,19 +1803,28 @@ module TencentCloud
         # @type EndTime: String
         # @param PayerUin: 查询账单数据的用户UIN
         # @type PayerUin: String
+        # @param PayType: 款项类别，与L0账单上的汇总类别对应。
+        # 此参数自账单3.0（即2021-05）之后开始生效。
+        # 枚举值：
+        # consume-消费
+        # refund-退款
+        # adjustment-调账
+        # @type PayType: String
 
-        attr_accessor :BeginTime, :EndTime, :PayerUin
+        attr_accessor :BeginTime, :EndTime, :PayerUin, :PayType
         
-        def initialize(begintime=nil, endtime=nil, payeruin=nil)
+        def initialize(begintime=nil, endtime=nil, payeruin=nil, paytype=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @PayerUin = payeruin
+          @PayType = paytype
         end
 
         def deserialize(params)
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @PayerUin = params['PayerUin']
+          @PayType = params['PayType']
         end
       end
 
