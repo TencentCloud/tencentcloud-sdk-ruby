@@ -849,6 +849,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询在SCDN IP安全策略
+
+        # @param request: Request instance for DescribeScdnIpStrategy.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeScdnIpStrategyRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeScdnIpStrategyResponse`
+        def DescribeScdnIpStrategy(request)
+          body = send_request('DescribeScdnIpStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScdnIpStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取SCDN的Top数据
 
         # @param request: Request instance for DescribeScdnTopData.

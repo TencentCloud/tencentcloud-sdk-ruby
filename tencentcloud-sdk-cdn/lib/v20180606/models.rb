@@ -4495,6 +4495,78 @@ module TencentCloud
         end
       end
 
+      # DescribeScdnIpStrategy请求参数结构体
+      class DescribeScdnIpStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页起始地址
+        # @type Offset: Integer
+        # @param Limit: 列表分页记录条数，最大1000
+        # @type Limit: Integer
+        # @param Filters: 查询条件过滤器
+        # @type Filters: Array
+        # @param Order: 指定查询返回结果的排序字段，支持domain，update_time
+        # @type Order: String
+        # @param Sequence: 排序方式，支持asc，desc
+        # @type Sequence: String
+
+        attr_accessor :Offset, :Limit, :Filters, :Order, :Sequence
+        
+        def initialize(offset=nil, limit=nil, filters=nil, order=nil, sequence=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @Order = order
+          @Sequence = sequence
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              scdnipstrategyfilter_tmp = ScdnIpStrategyFilter.new
+              scdnipstrategyfilter_tmp.deserialize(i)
+              @Filters << scdnipstrategyfilter_tmp
+            end
+          end
+          @Order = params['Order']
+          @Sequence = params['Sequence']
+        end
+      end
+
+      # DescribeScdnIpStrategy返回参数结构体
+      class DescribeScdnIpStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param IpStrategyList: IP策略列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpStrategyList: Array
+        # @param TotalCount: 配置的策略条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IpStrategyList, :TotalCount, :RequestId
+        
+        def initialize(ipstrategylist=nil, totalcount=nil, requestid=nil)
+          @IpStrategyList = ipstrategylist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IpStrategyList'].nil?
+            @IpStrategyList = []
+            params['IpStrategyList'].each do |i|
+              scdnipstrategy_tmp = ScdnIpStrategy.new
+              scdnipstrategy_tmp.deserialize(i)
+              @IpStrategyList << scdnipstrategy_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeScdnTopData请求参数结构体
       class DescribeScdnTopDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
@@ -6262,14 +6334,19 @@ module TencentCloud
         # @param FilterRules: IP 黑白名单分路径配置，白名单功能
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterRules: Array
+        # @param ReturnCode: IP 黑白名单验证失败时返回的 HTTP Code
+        # 合法值: 400~499
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnCode: Integer
 
-        attr_accessor :Switch, :FilterType, :Filters, :FilterRules
+        attr_accessor :Switch, :FilterType, :Filters, :FilterRules, :ReturnCode
         
-        def initialize(switch=nil, filtertype=nil, filters=nil, filterrules=nil)
+        def initialize(switch=nil, filtertype=nil, filters=nil, filterrules=nil, returncode=nil)
           @Switch = switch
           @FilterType = filtertype
           @Filters = filters
           @FilterRules = filterrules
+          @ReturnCode = returncode
         end
 
         def deserialize(params)
@@ -6284,6 +6361,7 @@ module TencentCloud
               @FilterRules << ipfilterpathrule_tmp
             end
           end
+          @ReturnCode = params['ReturnCode']
         end
       end
 
@@ -9426,6 +9504,73 @@ module TencentCloud
           @Key = params['Key']
           @Operator = params['Operator']
           @Value = params['Value']
+        end
+      end
+
+      # scdn的IP白名单策略
+      class ScdnIpStrategy < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名|global表示全部域名
+        # @type Domain: String
+        # @param StrategyId: 策略ID
+        # @type StrategyId: String
+        # @param IpList: IP白名单列表
+        # @type IpList: Array
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param RuleType: 规则类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param RuleValue: 规则值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleValue: Array
+
+        attr_accessor :Domain, :StrategyId, :IpList, :UpdateTime, :Remark, :RuleType, :RuleValue
+        
+        def initialize(domain=nil, strategyid=nil, iplist=nil, updatetime=nil, remark=nil, ruletype=nil, rulevalue=nil)
+          @Domain = domain
+          @StrategyId = strategyid
+          @IpList = iplist
+          @UpdateTime = updatetime
+          @Remark = remark
+          @RuleType = ruletype
+          @RuleValue = rulevalue
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @StrategyId = params['StrategyId']
+          @IpList = params['IpList']
+          @UpdateTime = params['UpdateTime']
+          @Remark = params['Remark']
+          @RuleType = params['RuleType']
+          @RuleValue = params['RuleValue']
+        end
+      end
+
+      # IP策略查询过滤参数
+      class ScdnIpStrategyFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤字段名，支持domain, ip
+        # @type Name: String
+        # @param Value: 过滤字段值
+        # @type Value: Array
+        # @param Fuzzy: 是否启用模糊查询，仅支持过滤字段名为domain。
+        # 模糊查询时，Value长度最大为1
+        # @type Fuzzy: Boolean
+
+        attr_accessor :Name, :Value, :Fuzzy
+        
+        def initialize(name=nil, value=nil, fuzzy=nil)
+          @Name = name
+          @Value = value
+          @Fuzzy = fuzzy
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Fuzzy = params['Fuzzy']
         end
       end
 

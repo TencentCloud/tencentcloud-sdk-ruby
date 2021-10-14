@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用户SAML配置
+
+        # @param request: Request instance for CreateUserSAMLConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::CreateUserSAMLConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::CreateUserSAMLConfigResponse`
+        def CreateUserSAMLConfig(request)
+          body = send_request('CreateUserSAMLConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserSAMLConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户组
 
         # @param request: Request instance for DeleteGroup.
@@ -639,6 +663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSubAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户SAML配置
+
+        # @param request: Request instance for DescribeUserSAMLConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::DescribeUserSAMLConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::DescribeUserSAMLConfigResponse`
+        def DescribeUserSAMLConfig(request)
+          body = send_request('DescribeUserSAMLConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserSAMLConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1600,6 +1648,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户SAML配置
+
+        # @param request: Request instance for UpdateUserSAMLConfig.
+        # @type request: :class:`Tencentcloud::cam::V20190116::UpdateUserSAMLConfigRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::UpdateUserSAMLConfigResponse`
+        def UpdateUserSAMLConfig(request)
+          body = send_request('UpdateUserSAMLConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUserSAMLConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

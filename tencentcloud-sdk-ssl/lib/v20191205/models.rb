@@ -625,6 +625,30 @@ module TencentCloud
         end
       end
 
+      # 资源详情
+      class DeployedResources < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID
+        # @type CertificateId: String
+        # @param Count: 数量
+        # @type Count: Integer
+        # @param Type: 资源标识:clb,cdn,live,waf,antiddos
+        # @type Type: String
+
+        attr_accessor :CertificateId, :Count, :Type
+        
+        def initialize(certificateid=nil, count=nil, type=nil)
+          @CertificateId = certificateid
+          @Count = count
+          @Type = type
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @Count = params['Count']
+          @Type = params['Type']
+        end
+      end
+
       # DescribeCertificateDetail请求参数结构体
       class DescribeCertificateDetailRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
@@ -1194,6 +1218,53 @@ module TencentCloud
               certificates_tmp = Certificates.new
               certificates_tmp.deserialize(i)
               @Certificates << certificates_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeployedResources请求参数结构体
+      class DescribeDeployedResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateIds: 证书ID
+        # @type CertificateIds: Array
+        # @param ResourceType: 资源类型:clb,cdn,live,waf,antiddos
+        # @type ResourceType: String
+
+        attr_accessor :CertificateIds, :ResourceType
+        
+        def initialize(certificateids=nil, resourcetype=nil)
+          @CertificateIds = certificateids
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @CertificateIds = params['CertificateIds']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # DescribeDeployedResources返回参数结构体
+      class DescribeDeployedResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param DeployedResources: 资源详情
+        # @type DeployedResources: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeployedResources, :RequestId
+        
+        def initialize(deployedresources=nil, requestid=nil)
+          @DeployedResources = deployedresources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DeployedResources'].nil?
+            @DeployedResources = []
+            params['DeployedResources'].each do |i|
+              deployedresources_tmp = DeployedResources.new
+              deployedresources_tmp.deserialize(i)
+              @DeployedResources << deployedresources_tmp
             end
           end
           @RequestId = params['RequestId']

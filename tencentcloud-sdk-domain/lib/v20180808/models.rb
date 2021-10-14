@@ -409,6 +409,46 @@ module TencentCloud
         end
       end
 
+      # CreatePhoneEmail请求参数结构体
+      class CreatePhoneEmailRequest < TencentCloud::Common::AbstractModel
+        # @param Code: 手机号或者邮箱
+        # @type Code: String
+        # @param Type: 1：手机   2：邮箱
+        # @type Type: Integer
+        # @param VerifyCode: 验证码
+        # @type VerifyCode: String
+
+        attr_accessor :Code, :Type, :VerifyCode
+        
+        def initialize(code=nil, type=nil, verifycode=nil)
+          @Code = code
+          @Type = type
+          @VerifyCode = verifycode
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Type = params['Type']
+          @VerifyCode = params['VerifyCode']
+        end
+      end
+
+      # CreatePhoneEmail返回参数结构体
+      class CreatePhoneEmailResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTemplate请求参数结构体
       class CreateTemplateRequest < TencentCloud::Common::AbstractModel
         # @param ContactInfo: 联系人信息
@@ -454,6 +494,42 @@ module TencentCloud
             @Template = TemplateInfo.new
             @Template.deserialize(params['Template'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePhoneEmail请求参数结构体
+      class DeletePhoneEmailRequest < TencentCloud::Common::AbstractModel
+        # @param Code: 手机或者邮箱
+        # @type Code: String
+        # @param Type: 1：手机  2：邮箱
+        # @type Type: Integer
+
+        attr_accessor :Code, :Type
+        
+        def initialize(code=nil, type=nil)
+          @Code = code
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Type = params['Type']
+        end
+      end
+
+      # DeletePhoneEmail返回参数结构体
+      class DeletePhoneEmailResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -741,6 +817,65 @@ module TencentCloud
               @PriceList << priceinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePhoneEmailList请求参数结构体
+      class DescribePhoneEmailListRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 0：所有类型  1：手机  2：邮箱，默认0
+        # @type Type: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，取值范围[1,200]
+        # @type Limit: Integer
+        # @param Code: 手机或者邮箱精确搜索
+        # @type Code: String
+
+        attr_accessor :Type, :Offset, :Limit, :Code
+        
+        def initialize(type=nil, offset=nil, limit=nil, code=nil)
+          @Type = type
+          @Offset = offset
+          @Limit = limit
+          @Code = code
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Code = params['Code']
+        end
+      end
+
+      # DescribePhoneEmailList返回参数结构体
+      class DescribePhoneEmailListResponse < TencentCloud::Common::AbstractModel
+        # @param PhoneEmailList: 手机或者邮箱列表
+        # @type PhoneEmailList: Array
+        # @param TotalCount: 总数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PhoneEmailList, :TotalCount, :RequestId
+        
+        def initialize(phoneemaillist=nil, totalcount=nil, requestid=nil)
+          @PhoneEmailList = phoneemaillist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PhoneEmailList'].nil?
+            @PhoneEmailList = []
+            params['PhoneEmailList'].each do |i|
+              phoneemaildata_tmp = PhoneEmailData.new
+              phoneemaildata_tmp.deserialize(i)
+              @PhoneEmailList << phoneemaildata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1175,6 +1310,30 @@ module TencentCloud
         end
       end
 
+      # 手机号邮箱列表
+      class PhoneEmailData < TencentCloud::Common::AbstractModel
+        # @param Code: 手机号或者邮箱
+        # @type Code: String
+        # @param Type: 1：手机  2：邮箱
+        # @type Type: Integer
+        # @param CreatedOn: 创建时间
+        # @type CreatedOn: String
+
+        attr_accessor :Code, :Type, :CreatedOn
+        
+        def initialize(code=nil, type=nil, createdon=nil)
+          @Code = code
+          @Type = type
+          @CreatedOn = createdon
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Type = params['Type']
+          @CreatedOn = params['CreatedOn']
+        end
+      end
+
       # 域名价格信息
       class PriceInfo < TencentCloud::Common::AbstractModel
         # @param Tld: 域名后缀，例如.com
@@ -1254,6 +1413,42 @@ module TencentCloud
 
         def deserialize(params)
           @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SendPhoneEmailCode请求参数结构体
+      class SendPhoneEmailCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Code: 手机或者邮箱号。
+        # @type Code: String
+        # @param Type: 1：手机  2：邮箱。
+        # @type Type: Integer
+
+        attr_accessor :Code, :Type
+        
+        def initialize(code=nil, type=nil)
+          @Code = code
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Type = params['Type']
+        end
+      end
+
+      # SendPhoneEmailCode返回参数结构体
+      class SendPhoneEmailCodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

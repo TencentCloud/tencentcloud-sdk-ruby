@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口用于创建有效的手机、邮箱
+
+        # @param request: Request instance for CreatePhoneEmail.
+        # @type request: :class:`Tencentcloud::domain::V20180808::CreatePhoneEmailRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::CreatePhoneEmailResponse`
+        def CreatePhoneEmail(request)
+          body = send_request('CreatePhoneEmail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePhoneEmailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
 
         # @param request: Request instance for CreateTemplate.
@@ -135,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于删除已验证的手机邮箱
+
+        # @param request: Request instance for DeletePhoneEmail.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DeletePhoneEmailRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DeletePhoneEmailResponse`
+        def DeletePhoneEmail(request)
+          body = send_request('DeletePhoneEmail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePhoneEmailResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -293,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于获取已验证的手机邮箱列表
+
+        # @param request: Request instance for DescribePhoneEmailList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribePhoneEmailListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribePhoneEmailListResponse`
+        def DescribePhoneEmailList(request)
+          body = send_request('DescribePhoneEmailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePhoneEmailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeTemplate) 用于获取模板信息。
 
         # @param request: Request instance for DescribeTemplate.
@@ -399,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RenewDomainBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于发送手机邮箱验证码。
+
+        # @param request: Request instance for SendPhoneEmailCode.
+        # @type request: :class:`Tencentcloud::domain::V20180808::SendPhoneEmailCodeRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::SendPhoneEmailCodeResponse`
+        def SendPhoneEmailCode(request)
+          body = send_request('SendPhoneEmailCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SendPhoneEmailCodeResponse.new
             model.deserialize(response['Response'])
             model
           else

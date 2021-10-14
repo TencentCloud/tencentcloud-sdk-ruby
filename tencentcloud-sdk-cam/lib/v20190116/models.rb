@@ -735,6 +735,38 @@ module TencentCloud
         end
       end
 
+      # CreateUserSAMLConfig请求参数结构体
+      class CreateUserSAMLConfigRequest < TencentCloud::Common::AbstractModel
+        # @param SAMLMetadataDocument: SAML元数据文档，需要base64 encode
+        # @type SAMLMetadataDocument: String
+
+        attr_accessor :SAMLMetadataDocument
+        
+        def initialize(samlmetadatadocument=nil)
+          @SAMLMetadataDocument = samlmetadatadocument
+        end
+
+        def deserialize(params)
+          @SAMLMetadataDocument = params['SAMLMetadataDocument']
+        end
+      end
+
+      # CreateUserSAMLConfig返回参数结构体
+      class CreateUserSAMLConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteGroup请求参数结构体
       class DeleteGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 用户组 ID
@@ -1283,6 +1315,41 @@ module TencentCloud
               @SubAccounts << subaccountuser_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserSAMLConfig请求参数结构体
+      class DescribeUserSAMLConfigRequest < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserSAMLConfig返回参数结构体
+      class DescribeUserSAMLConfigResponse < TencentCloud::Common::AbstractModel
+        # @param SAMLMetadata: SAML元数据文档
+        # @type SAMLMetadata: String
+        # @param Status: 状态：0:未设置，11:已开启，2:已禁用
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SAMLMetadata, :Status, :RequestId
+        
+        def initialize(samlmetadata=nil, status=nil, requestid=nil)
+          @SAMLMetadata = samlmetadata
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SAMLMetadata = params['SAMLMetadata']
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -3903,6 +3970,42 @@ module TencentCloud
 
       # UpdateUser返回参数结构体
       class UpdateUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUserSAMLConfig请求参数结构体
+      class UpdateUserSAMLConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Operate: 修改的操作类型:enable:启用,disable:禁用,updateSAML:修改元数据文档
+        # @type Operate: String
+        # @param SAMLMetadataDocument: 元数据文档，需要base64 encode，仅当Operate为updateSAML时需要此参数
+        # @type SAMLMetadataDocument: String
+
+        attr_accessor :Operate, :SAMLMetadataDocument
+        
+        def initialize(operate=nil, samlmetadatadocument=nil)
+          @Operate = operate
+          @SAMLMetadataDocument = samlmetadatadocument
+        end
+
+        def deserialize(params)
+          @Operate = params['Operate']
+          @SAMLMetadataDocument = params['SAMLMetadataDocument']
+        end
+      end
+
+      # UpdateUserSAMLConfig返回参数结构体
+      class UpdateUserSAMLConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -1119,6 +1119,42 @@ module TencentCloud
         end
       end
 
+      # DeleteTopicPolicy请求参数结构体
+      class DeleteTopicPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param TopicName: Topic名称
+        # @type TopicName: String
+
+        attr_accessor :ProductId, :TopicName
+        
+        def initialize(productid=nil, topicname=nil)
+          @ProductId = productid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # DeleteTopicPolicy返回参数结构体
+      class DeleteTopicPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTopicRule请求参数结构体
       class DeleteTopicRuleRequest < TencentCloud::Common::AbstractModel
         # @param RuleName: 规则名
@@ -1832,6 +1868,54 @@ module TencentCloud
             @Product = ProductEntry.new
             @Product.deserialize(params['Product'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopicPolicy请求参数结构体
+      class DescribeTopicPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param TopicName: Topic名字
+        # @type TopicName: String
+
+        attr_accessor :ProductId, :TopicName
+        
+        def initialize(productid=nil, topicname=nil)
+          @ProductId = productid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # DescribeTopicPolicy返回参数结构体
+      class DescribeTopicPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param TopicName: Topic名称
+        # @type TopicName: String
+        # @param Privilege: Topic权限
+        # @type Privilege: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProductId, :TopicName, :Privilege, :RequestId
+        
+        def initialize(productid=nil, topicname=nil, privilege=nil, requestid=nil)
+          @ProductId = productid
+          @TopicName = topicname
+          @Privilege = privilege
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @TopicName = params['TopicName']
+          @Privilege = params['Privilege']
           @RequestId = params['RequestId']
         end
       end
@@ -2997,6 +3081,49 @@ module TencentCloud
         end
       end
 
+      # ListTopicPolicy请求参数结构体
+      class ListTopicPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+
+        attr_accessor :ProductId
+        
+        def initialize(productid=nil)
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # ListTopicPolicy返回参数结构体
+      class ListTopicPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Topics: Topic列表
+        # @type Topics: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Topics, :RequestId
+        
+        def initialize(topics=nil, requestid=nil)
+          @Topics = topics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              topicitem_tmp = TopicItem.new
+              topicitem_tmp.deserialize(i)
+              @Topics << topicitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # LoRa自定义频点信息
       class LoRaFrequencyEntry < TencentCloud::Common::AbstractModel
         # @param FreqId: 频点唯一ID
@@ -3573,6 +3700,50 @@ module TencentCloud
             @Product = ProductEntry.new
             @Product.deserialize(params['Product'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTopicPolicy请求参数结构体
+      class ModifyTopicPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param TopicName: 更新前Topic名
+        # @type TopicName: String
+        # @param NewTopicName: 更新后Topic名
+        # @type NewTopicName: String
+        # @param Privilege: Topic权限
+        # @type Privilege: Integer
+
+        attr_accessor :ProductId, :TopicName, :NewTopicName, :Privilege
+        
+        def initialize(productid=nil, topicname=nil, newtopicname=nil, privilege=nil)
+          @ProductId = productid
+          @TopicName = topicname
+          @NewTopicName = newtopicname
+          @Privilege = privilege
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @TopicName = params['TopicName']
+          @NewTopicName = params['NewTopicName']
+          @Privilege = params['Privilege']
+        end
+      end
+
+      # ModifyTopicPolicy返回参数结构体
+      class ModifyTopicPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4244,6 +4415,26 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Topic信息, 包括Topic名字和权限
+      class TopicItem < TencentCloud::Common::AbstractModel
+        # @param TopicName: Topic名称
+        # @type TopicName: String
+        # @param Privilege: Topic权限 , 1上报  2下发
+        # @type Privilege: Integer
+
+        attr_accessor :TopicName, :Privilege
+        
+        def initialize(topicname=nil, privilege=nil)
+          @TopicName = topicname
+          @Privilege = privilege
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @Privilege = params['Privilege']
         end
       end
 
