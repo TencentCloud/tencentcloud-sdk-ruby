@@ -179,6 +179,49 @@ module TencentCloud
         end
       end
 
+      # AddTemplateMember请求参数结构体
+      class AddTemplateMemberRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板实例ID，支持IP地址、协议端口、IP地址组、协议端口组四种参数模板的实例ID。
+        # @type TemplateId: String
+        # @param TemplateMember: 需要添加的参数模板成员信息，支持IP地址、协议端口、IP地址组、协议端口组四种类型，类型需要与TemplateId参数类型一致。
+        # @type TemplateMember: Array
+
+        attr_accessor :TemplateId, :TemplateMember
+        
+        def initialize(templateid=nil, templatemember=nil)
+          @TemplateId = templateid
+          @TemplateMember = templatemember
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['TemplateMember'].nil?
+            @TemplateMember = []
+            params['TemplateMember'].each do |i|
+              memberinfo_tmp = MemberInfo.new
+              memberinfo_tmp.deserialize(i)
+              @TemplateMember << memberinfo_tmp
+            end
+          end
+        end
+      end
+
+      # AddTemplateMember返回参数结构体
+      class AddTemplateMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述 EIP 信息
       class Address < TencentCloud::Common::AbstractModel
         # @param AddressId: `EIP`的`ID`，是`EIP`的唯一标识。
@@ -5264,6 +5307,49 @@ module TencentCloud
 
       # DeleteSubnet返回参数结构体
       class DeleteSubnetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTemplateMember请求参数结构体
+      class DeleteTemplateMemberRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板实例ID，支持IP地址、协议端口、IP地址组、协议端口组四种参数模板的实例ID。
+        # @type TemplateId: String
+        # @param TemplateMember: 需要添加的参数模板成员信息，支持IP地址、协议端口、IP地址组、协议端口组四种类型，类型需要与TemplateId参数类型一致。
+        # @type TemplateMember: Array
+
+        attr_accessor :TemplateId, :TemplateMember
+        
+        def initialize(templateid=nil, templatemember=nil)
+          @TemplateId = templateid
+          @TemplateMember = templatemember
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['TemplateMember'].nil?
+            @TemplateMember = []
+            params['TemplateMember'].each do |i|
+              memberinfo_tmp = MemberInfo.new
+              memberinfo_tmp.deserialize(i)
+              @TemplateMember << memberinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteTemplateMember返回参数结构体
+      class DeleteTemplateMemberResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11749,6 +11835,26 @@ module TencentCloud
         end
       end
 
+      # 模板对象成员信息
+      class MemberInfo < TencentCloud::Common::AbstractModel
+        # @param Member: 模板对象成员
+        # @type Member: String
+        # @param Description: 模板对象成员描述信息
+        # @type Description: String
+
+        attr_accessor :Member, :Description
+        
+        def initialize(member=nil, description=nil)
+          @Member = member
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Member = params['Member']
+          @Description = params['Description']
+        end
+      end
+
       # MigrateNetworkInterface请求参数结构体
       class MigrateNetworkInterfaceRequest < TencentCloud::Common::AbstractModel
         # @param NetworkInterfaceId: 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -13331,6 +13437,60 @@ module TencentCloud
 
       # ModifySubnetAttribute返回参数结构体
       class ModifySubnetAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTemplateMember请求参数结构体
+      class ModifyTemplateMemberRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 参数模板实例ID，支持IP地址、协议端口、IP地址组、协议端口组四种参数模板的实例ID。
+        # @type TemplateId: String
+        # @param OriginalTemplateMember: 需要修改的参数模板成员信息，支持IP地址、协议端口、IP地址组、协议端口组四种类型，类型需要与TemplateId参数类型一致，修改顺序与TemplateMember参数顺序一一对应，入参长度需要与TemplateMember参数保持一致。
+        # @type OriginalTemplateMember: Array
+        # @param TemplateMember: 新的参数模板成员信息，支持IP地址、协议端口、IP地址组、协议端口组四种类型，类型需要与TemplateId参数类型一致，修改顺序与OriginalTemplateMember参数顺序一一对应，入参长度需要与OriginalTemplateMember参数保持一致。
+        # @type TemplateMember: Array
+
+        attr_accessor :TemplateId, :OriginalTemplateMember, :TemplateMember
+        
+        def initialize(templateid=nil, originaltemplatemember=nil, templatemember=nil)
+          @TemplateId = templateid
+          @OriginalTemplateMember = originaltemplatemember
+          @TemplateMember = templatemember
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['OriginalTemplateMember'].nil?
+            @OriginalTemplateMember = []
+            params['OriginalTemplateMember'].each do |i|
+              memberinfo_tmp = MemberInfo.new
+              memberinfo_tmp.deserialize(i)
+              @OriginalTemplateMember << memberinfo_tmp
+            end
+          end
+          unless params['TemplateMember'].nil?
+            @TemplateMember = []
+            params['TemplateMember'].each do |i|
+              memberinfo_tmp = MemberInfo.new
+              memberinfo_tmp.deserialize(i)
+              @TemplateMember << memberinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyTemplateMember返回参数结构体
+      class ModifyTemplateMemberResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

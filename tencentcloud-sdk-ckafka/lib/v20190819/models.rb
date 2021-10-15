@@ -3518,6 +3518,38 @@ module TencentCloud
         end
       end
 
+      # 标准版销售信息
+      class SaleInfo < TencentCloud::Common::AbstractModel
+        # @param Flag: 手动设置的flag标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Flag: Boolean
+        # @param Version: ckakfa版本号(1.1.1/2.4.2/0.10.2)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Platform: 专业版、标准版标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Platform: String
+        # @param SoldOut: 售罄标志：true售罄
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoldOut: Boolean
+
+        attr_accessor :Flag, :Version, :Platform, :SoldOut
+        
+        def initialize(flag=nil, version=nil, platform=nil, soldout=nil)
+          @Flag = flag
+          @Version = version
+          @Platform = platform
+          @SoldOut = soldout
+        end
+
+        def deserialize(params)
+          @Flag = params['Flag']
+          @Version = params['Version']
+          @Platform = params['Platform']
+          @SoldOut = params['SoldOut']
+        end
+      end
+
       # 订阅信息实体
       class SubscribedInfo < TencentCloud::Common::AbstractModel
         # @param TopicName: 订阅的主题名
@@ -4070,10 +4102,13 @@ module TencentCloud
         # @type Exflag: String
         # @param SoldOut: json对象，key为机型，value true为售罄，false为未售罄
         # @type SoldOut: String
+        # @param SalesInfo: 标准版售罄信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SalesInfo: Array
 
-        attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut
+        attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo
         
-        def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil)
+        def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil)
           @ZoneId = zoneid
           @IsInternalApp = isinternalapp
           @AppId = appid
@@ -4082,6 +4117,7 @@ module TencentCloud
           @ZoneStatus = zonestatus
           @Exflag = exflag
           @SoldOut = soldout
+          @SalesInfo = salesinfo
         end
 
         def deserialize(params)
@@ -4093,6 +4129,14 @@ module TencentCloud
           @ZoneStatus = params['ZoneStatus']
           @Exflag = params['Exflag']
           @SoldOut = params['SoldOut']
+          unless params['SalesInfo'].nil?
+            @SalesInfo = []
+            params['SalesInfo'].each do |i|
+              saleinfo_tmp = SaleInfo.new
+              saleinfo_tmp.deserialize(i)
+              @SalesInfo << saleinfo_tmp
+            end
+          end
         end
       end
 

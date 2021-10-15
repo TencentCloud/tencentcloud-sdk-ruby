@@ -55,14 +55,23 @@ module TencentCloud
         # @type ConcurrentList: Array
         # @param BandwidthList: 可选的带宽取值数组
         # @type BandwidthList: Array
+        # @param RegionArea: 机房所属大区
+        # @type RegionArea: String
+        # @param RegionAreaName: 机房所属大区名
+        # @type RegionAreaName: String
+        # @param IDCType: 机房类型, dc表示DataCenter数据中心, ec表示EdgeComputing边缘节点
+        # @type IDCType: String
 
-        attr_accessor :RegionId, :RegionName, :ConcurrentList, :BandwidthList
+        attr_accessor :RegionId, :RegionName, :ConcurrentList, :BandwidthList, :RegionArea, :RegionAreaName, :IDCType
         
-        def initialize(regionid=nil, regionname=nil, concurrentlist=nil, bandwidthlist=nil)
+        def initialize(regionid=nil, regionname=nil, concurrentlist=nil, bandwidthlist=nil, regionarea=nil, regionareaname=nil, idctype=nil)
           @RegionId = regionid
           @RegionName = regionname
           @ConcurrentList = concurrentlist
           @BandwidthList = bandwidthlist
+          @RegionArea = regionarea
+          @RegionAreaName = regionareaname
+          @IDCType = idctype
         end
 
         def deserialize(params)
@@ -70,6 +79,9 @@ module TencentCloud
           @RegionName = params['RegionName']
           @ConcurrentList = params['ConcurrentList']
           @BandwidthList = params['BandwidthList']
+          @RegionArea = params['RegionArea']
+          @RegionAreaName = params['RegionAreaName']
+          @IDCType = params['IDCType']
         end
       end
 
@@ -2713,10 +2725,22 @@ module TencentCloud
         # 当该字段为0时，仅拉取通道组的通道，
         # 不存在该字段时，拉取所有通道，包括独立通道和通道组通道。
         # @type Independent: Integer
+        # @param Order: 输出通道列表的排列顺序。取值范围：
+        # asc：升序排列
+        # desc：降序排列。
+        # 默认为降序。
+        # @type Order: String
+        # @param OrderField: 通道列表排序的依据字段。取值范围：
+        # create_time：依据通道的创建时间排序
+        # proxy_id：依据通道的ID排序
+        # bandwidth：依据通道带宽上限排序
+        # concurrent_connections：依据通道并发排序
+        # 默认按通道创建时间排序。
+        # @type OrderField: String
 
-        attr_accessor :InstanceIds, :Offset, :Limit, :Filters, :ProxyIds, :TagSet, :Independent
+        attr_accessor :InstanceIds, :Offset, :Limit, :Filters, :ProxyIds, :TagSet, :Independent, :Order, :OrderField
         
-        def initialize(instanceids=nil, offset=nil, limit=nil, filters=nil, proxyids=nil, tagset=nil, independent=nil)
+        def initialize(instanceids=nil, offset=nil, limit=nil, filters=nil, proxyids=nil, tagset=nil, independent=nil, order=nil, orderfield=nil)
           @InstanceIds = instanceids
           @Offset = offset
           @Limit = limit
@@ -2724,6 +2748,8 @@ module TencentCloud
           @ProxyIds = proxyids
           @TagSet = tagset
           @Independent = independent
+          @Order = order
+          @OrderField = orderfield
         end
 
         def deserialize(params)
@@ -2748,6 +2774,8 @@ module TencentCloud
             end
           end
           @Independent = params['Independent']
+          @Order = params['Order']
+          @OrderField = params['OrderField']
         end
       end
 
@@ -4438,6 +4466,30 @@ module TencentCloud
         end
       end
 
+      # ip信息详情
+      class IPDetail < TencentCloud::Common::AbstractModel
+        # @param IP: IP字符串
+        # @type IP: String
+        # @param Provider: 供应商，BGP表示默认，CMCC表示中国移动，CUCC表示中国联通，CTCC表示中国电信
+        # @type Provider: String
+        # @param Bandwidth: 带宽
+        # @type Bandwidth: Integer
+
+        attr_accessor :IP, :Provider, :Bandwidth
+        
+        def initialize(ip=nil, provider=nil, bandwidth=nil)
+          @IP = ip
+          @Provider = provider
+          @Bandwidth = bandwidth
+        end
+
+        def deserialize(params)
+          @IP = params['IP']
+          @Provider = params['Provider']
+          @Bandwidth = params['Bandwidth']
+        end
+      end
+
       # InquiryPriceCreateProxy请求参数结构体
       class InquiryPriceCreateProxyRequest < TencentCloud::Common::AbstractModel
         # @param AccessRegion: 加速区域名称。
@@ -5759,8 +5811,7 @@ module TencentCloud
         # ADJUSTING表示配置变更中；
         # ISOLATING表示隔离中；
         # ISOLATED表示已隔离；
-        # CLONING表示复制中；
-        # UNKNOWN表示未知状态。
+        # CLONING表示复制中。
         # @type Status: String
         # @param Domain: 接入域名。
         # @type Domain: String
@@ -5813,7 +5864,7 @@ module TencentCloud
         # @param IPAddressVersion: IP版本：IPv4、IPv6
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPAddressVersion: String
-        # @param NetworkType: 网络类型：normal、cn2
+        # @param NetworkType: 网络类型：normal表示常规BGP，cn2表示精品BGP，triple表示三网
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkType: String
         # @param PackageType: 通道套餐类型：Thunder表示标准通道，Accelerator表示游戏加速器通道。
@@ -5822,10 +5873,13 @@ module TencentCloud
         # @param BanStatus: 封禁解封状态：BANNED表示已封禁，RECOVER表示已解封或未封禁，BANNING表示封禁中，RECOVERING表示解封中，BAN_FAILED表示封禁失败，RECOVER_FAILED表示解封失败。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BanStatus: String
+        # @param IPList: IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPList: Array
 
-        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus
+        attr_accessor :InstanceId, :CreateTime, :ProjectId, :ProxyName, :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :Status, :Domain, :IP, :Version, :ProxyId, :Scalarable, :SupportProtocols, :GroupId, :PolicyId, :AccessRegionInfo, :RealServerRegionInfo, :ForwardIP, :TagSet, :SupportSecurity, :BillingType, :RelatedGlobalDomains, :ModifyConfigTime, :ProxyType, :ClientIPMethod, :IPAddressVersion, :NetworkType, :PackageType, :BanStatus, :IPList
         
-        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil)
+        def initialize(instanceid=nil, createtime=nil, projectid=nil, proxyname=nil, accessregion=nil, realserverregion=nil, bandwidth=nil, concurrent=nil, status=nil, domain=nil, ip=nil, version=nil, proxyid=nil, scalarable=nil, supportprotocols=nil, groupid=nil, policyid=nil, accessregioninfo=nil, realserverregioninfo=nil, forwardip=nil, tagset=nil, supportsecurity=nil, billingtype=nil, relatedglobaldomains=nil, modifyconfigtime=nil, proxytype=nil, clientipmethod=nil, ipaddressversion=nil, networktype=nil, packagetype=nil, banstatus=nil, iplist=nil)
           @InstanceId = instanceid
           @CreateTime = createtime
           @ProjectId = projectid
@@ -5857,6 +5911,7 @@ module TencentCloud
           @NetworkType = networktype
           @PackageType = packagetype
           @BanStatus = banstatus
+          @IPList = iplist
         end
 
         def deserialize(params)
@@ -5904,6 +5959,14 @@ module TencentCloud
           @NetworkType = params['NetworkType']
           @PackageType = params['PackageType']
           @BanStatus = params['BanStatus']
+          unless params['IPList'].nil?
+            @IPList = []
+            params['IPList'].each do |i|
+              ipdetail_tmp = IPDetail.new
+              ipdetail_tmp.deserialize(i)
+              @IPList << ipdetail_tmp
+            end
+          end
         end
       end
 
@@ -5952,8 +6015,7 @@ module TencentCloud
         # CLOSED表示已关闭；
         # ADJUSTING表示配置变更中；
         # ISOLATING表示隔离中；
-        # ISOLATED表示已隔离；
-        # UNKNOWN表示未知状态。
+        # ISOLATED表示已隔离。
         # @type Status: String
 
         attr_accessor :InstanceId, :Status
@@ -6037,19 +6099,24 @@ module TencentCloud
         # @type BindStatus: Integer
         # @param ProxyId: 绑定此源站的通道ID，没有绑定时为空字符串。
         # @type ProxyId: String
+        # @param GroupId: 绑定此源站的通道组ID，没有绑定时为空字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
 
-        attr_accessor :RealServerId, :BindStatus, :ProxyId
+        attr_accessor :RealServerId, :BindStatus, :ProxyId, :GroupId
         
-        def initialize(realserverid=nil, bindstatus=nil, proxyid=nil)
+        def initialize(realserverid=nil, bindstatus=nil, proxyid=nil, groupid=nil)
           @RealServerId = realserverid
           @BindStatus = bindstatus
           @ProxyId = proxyid
+          @GroupId = groupid
         end
 
         def deserialize(params)
           @RealServerId = params['RealServerId']
           @BindStatus = params['BindStatus']
           @ProxyId = params['ProxyId']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -6059,17 +6126,29 @@ module TencentCloud
         # @type RegionId: String
         # @param RegionName: 区域英文名或中文名
         # @type RegionName: String
+        # @param RegionArea: 机房所属大区
+        # @type RegionArea: String
+        # @param RegionAreaName: 机房所属大区名
+        # @type RegionAreaName: String
+        # @param IDCType: 机房类型, dc表示DataCenter数据中心, ec表示EdgeComputing边缘节点
+        # @type IDCType: String
 
-        attr_accessor :RegionId, :RegionName
+        attr_accessor :RegionId, :RegionName, :RegionArea, :RegionAreaName, :IDCType
         
-        def initialize(regionid=nil, regionname=nil)
+        def initialize(regionid=nil, regionname=nil, regionarea=nil, regionareaname=nil, idctype=nil)
           @RegionId = regionid
           @RegionName = regionname
+          @RegionArea = regionarea
+          @RegionAreaName = regionareaname
+          @IDCType = idctype
         end
 
         def deserialize(params)
           @RegionId = params['RegionId']
           @RegionName = params['RegionName']
+          @RegionArea = params['RegionArea']
+          @RegionAreaName = params['RegionAreaName']
+          @IDCType = params['IDCType']
         end
       end
 

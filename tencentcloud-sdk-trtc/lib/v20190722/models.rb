@@ -1146,10 +1146,12 @@ module TencentCloud
         # @type BackgroundImageId: Integer
         # @param AudioCodec: 混流-输出流音频编码类型，取值范围[0,1, 2]，0为LC-AAC，1为HE-AAC，2为HE-AACv2。默认值为0。当音频编码设置为HE-AACv2时，只支持输出流音频声道数为双声道。HE-AAC和HE-AACv2支持的输出流音频采样率范围为[48000, 44100, 32000, 24000, 16000]
         # @type AudioCodec: Integer
+        # @param BackgroundImageUrl: 混流-输出流背景图片URL地址，支持png、jpg、jpeg、bmp格式，暂不支持透明通道。URL链接长度限制为512字节。BackgroundImageUrl和BackgroundImageId参数都填时，以BackgroundImageUrl为准。图片大小限制不超过10MB。
+        # @type BackgroundImageUrl: String
 
-        attr_accessor :AudioSampleRate, :AudioBitrate, :AudioChannels, :VideoWidth, :VideoHeight, :VideoBitrate, :VideoFramerate, :VideoGop, :BackgroundColor, :BackgroundImageId, :AudioCodec
+        attr_accessor :AudioSampleRate, :AudioBitrate, :AudioChannels, :VideoWidth, :VideoHeight, :VideoBitrate, :VideoFramerate, :VideoGop, :BackgroundColor, :BackgroundImageId, :AudioCodec, :BackgroundImageUrl
         
-        def initialize(audiosamplerate=nil, audiobitrate=nil, audiochannels=nil, videowidth=nil, videoheight=nil, videobitrate=nil, videoframerate=nil, videogop=nil, backgroundcolor=nil, backgroundimageid=nil, audiocodec=nil)
+        def initialize(audiosamplerate=nil, audiobitrate=nil, audiochannels=nil, videowidth=nil, videoheight=nil, videobitrate=nil, videoframerate=nil, videogop=nil, backgroundcolor=nil, backgroundimageid=nil, audiocodec=nil, backgroundimageurl=nil)
           @AudioSampleRate = audiosamplerate
           @AudioBitrate = audiobitrate
           @AudioChannels = audiochannels
@@ -1161,6 +1163,7 @@ module TencentCloud
           @BackgroundColor = backgroundcolor
           @BackgroundImageId = backgroundimageid
           @AudioCodec = audiocodec
+          @BackgroundImageUrl = backgroundimageurl
         end
 
         def deserialize(params)
@@ -1175,6 +1178,7 @@ module TencentCloud
           @BackgroundColor = params['BackgroundColor']
           @BackgroundImageId = params['BackgroundImageId']
           @AudioCodec = params['AudioCodec']
+          @BackgroundImageUrl = params['BackgroundImageUrl']
         end
       end
 
@@ -2209,15 +2213,18 @@ module TencentCloud
         # @type LocationX: Integer
         # @param LocationY: 水印在输出时的Y偏移。单位为像素值。
         # @type LocationY: Integer
+        # @param WaterMarkUrl: 混流-水印图片URL地址，支持png、jpg、jpeg、bmp格式，暂不支持透明通道。URL链接长度限制为512字节。WaterMarkUrl和WaterMarkId参数都填时，以WaterMarkUrl为准。图片大小限制不超过10MB。
+        # @type WaterMarkUrl: String
 
-        attr_accessor :WaterMarkId, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY
+        attr_accessor :WaterMarkId, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :WaterMarkUrl
         
-        def initialize(watermarkid=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil)
+        def initialize(watermarkid=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, watermarkurl=nil)
           @WaterMarkId = watermarkid
           @WaterMarkWidth = watermarkwidth
           @WaterMarkHeight = watermarkheight
           @LocationX = locationx
           @LocationY = locationy
+          @WaterMarkUrl = watermarkurl
         end
 
         def deserialize(params)
@@ -2226,6 +2233,7 @@ module TencentCloud
           @WaterMarkHeight = params['WaterMarkHeight']
           @LocationX = params['LocationX']
           @LocationY = params['LocationY']
+          @WaterMarkUrl = params['WaterMarkUrl']
         end
       end
 
