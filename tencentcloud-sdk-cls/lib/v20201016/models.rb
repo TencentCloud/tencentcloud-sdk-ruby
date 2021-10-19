@@ -4601,7 +4601,7 @@ module TencentCloud
         # @type Query: String
         # @param Limit: 单次查询返回的原始日志条数，最大值为100。查询语句(Query)包含SQL时，针对SQL的结果条数需在Query中指定，参考https://cloud.tencent.com/document/product/614/58977
         # @type Limit: Integer
-        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容
+        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时
         # @type Context: String
         # @param Sort: 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         # @type Sort: String
@@ -4635,7 +4635,7 @@ module TencentCloud
 
       # SearchLog返回参数结构体
       class SearchLogResponse < TencentCloud::Common::AbstractModel
-        # @param Context: 加载后续内容的Context
+        # @param Context: 加载后续内容的Context，过期时间1小时
         # @type Context: String
         # @param ListOver: 原始日志查询结果是否全部返回。查询语句(Query)包含SQL时该参数无意义
         # @type ListOver: Boolean

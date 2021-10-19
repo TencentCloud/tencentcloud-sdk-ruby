@@ -1316,27 +1316,59 @@ module TencentCloud
 
       # DescribeDevicePositionList请求参数结构体
       class DescribeDevicePositionListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductIdList: 产品标识列表
+        # @type ProductIdList: Array
+        # @param CoordinateType: 坐标类型
+        # @type CoordinateType: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 分页的大小
+        # @type Limit: Integer
 
+        attr_accessor :ProductIdList, :CoordinateType, :Offset, :Limit
         
-        def initialize()
+        def initialize(productidlist=nil, coordinatetype=nil, offset=nil, limit=nil)
+          @ProductIdList = productidlist
+          @CoordinateType = coordinatetype
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
+          @ProductIdList = params['ProductIdList']
+          @CoordinateType = params['CoordinateType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeDevicePositionList返回参数结构体
       class DescribeDevicePositionListResponse < TencentCloud::Common::AbstractModel
+        # @param Positions: 产品设备位置信息列表
+        # @type Positions: Array
+        # @param Total: 产品设备位置信息的数目
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Positions, :Total, :RequestId
         
-        def initialize(requestid=nil)
+        def initialize(positions=nil, total=nil, requestid=nil)
+          @Positions = positions
+          @Total = total
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              productdevicespositionitem_tmp = ProductDevicesPositionItem.new
+              productdevicespositionitem_tmp.deserialize(i)
+              @Positions << productdevicespositionitem_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -2099,6 +2131,34 @@ module TencentCloud
           @NwkSKey = params['NwkSKey']
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
+        end
+      end
+
+      # 设备位置详情
+      class DevicePositionItem < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param CreateTime: 位置信息时间
+        # @type CreateTime: Integer
+        # @param Longitude: 设备经度信息
+        # @type Longitude: Float
+        # @param Latitude: 设备纬度信息
+        # @type Latitude: Float
+
+        attr_accessor :DeviceName, :CreateTime, :Longitude, :Latitude
+        
+        def initialize(devicename=nil, createtime=nil, longitude=nil, latitude=nil)
+          @DeviceName = devicename
+          @CreateTime = createtime
+          @Longitude = longitude
+          @Latitude = latitude
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @CreateTime = params['CreateTime']
+          @Longitude = params['Longitude']
+          @Latitude = params['Latitude']
         end
       end
 
@@ -3920,6 +3980,37 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @Zoom = params['Zoom']
+        end
+      end
+
+      # 产品设备位置信息
+      class ProductDevicesPositionItem < TencentCloud::Common::AbstractModel
+        # @param Items: 设备位置列表
+        # @type Items: Array
+        # @param ProductId: 产品标识
+        # @type ProductId: String
+        # @param Total: 设备位置数量
+        # @type Total: Integer
+
+        attr_accessor :Items, :ProductId, :Total
+        
+        def initialize(items=nil, productid=nil, total=nil)
+          @Items = items
+          @ProductId = productid
+          @Total = total
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              devicepositionitem_tmp = DevicePositionItem.new
+              devicepositionitem_tmp.deserialize(i)
+              @Items << devicepositionitem_tmp
+            end
+          end
+          @ProductId = params['ProductId']
+          @Total = params['Total']
         end
       end
 
