@@ -1712,6 +1712,17 @@ module TencentCloud
         end
       end
 
+      # 描述了数据盘的信息
+      class DataDisk < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # DeleteHaVip请求参数结构体
       class DeleteHaVipRequest < TencentCloud::Common::AbstractModel
         # @param HaVipId: HAVIP唯一ID，形如：havip-9o233uri。
@@ -7376,10 +7387,14 @@ module TencentCloud
         # @type DefaultBandwidthIn: Integer
         # @param UserData: 自定义脚本数据
         # @type UserData: String
+        # @param SystemDisk: 系统盘信息。
+        # @type SystemDisk: :class:`Tencentcloud::Ecm.v20190719.models.SystemDisk`
+        # @param DataDisks: 数据盘信息。
+        # @type DataDisks: Array
 
-        attr_accessor :ModuleId, :ModuleName, :ModuleState, :DefaultSystemDiskSize, :DefaultDataDiskSize, :InstanceTypeConfig, :DefaultImage, :CreateTime, :DefaultBandwidth, :TagSet, :CloseIpDirect, :SecurityGroupIds, :DefaultBandwidthIn, :UserData
+        attr_accessor :ModuleId, :ModuleName, :ModuleState, :DefaultSystemDiskSize, :DefaultDataDiskSize, :InstanceTypeConfig, :DefaultImage, :CreateTime, :DefaultBandwidth, :TagSet, :CloseIpDirect, :SecurityGroupIds, :DefaultBandwidthIn, :UserData, :SystemDisk, :DataDisks
         
-        def initialize(moduleid=nil, modulename=nil, modulestate=nil, defaultsystemdisksize=nil, defaultdatadisksize=nil, instancetypeconfig=nil, defaultimage=nil, createtime=nil, defaultbandwidth=nil, tagset=nil, closeipdirect=nil, securitygroupids=nil, defaultbandwidthin=nil, userdata=nil)
+        def initialize(moduleid=nil, modulename=nil, modulestate=nil, defaultsystemdisksize=nil, defaultdatadisksize=nil, instancetypeconfig=nil, defaultimage=nil, createtime=nil, defaultbandwidth=nil, tagset=nil, closeipdirect=nil, securitygroupids=nil, defaultbandwidthin=nil, userdata=nil, systemdisk=nil, datadisks=nil)
           @ModuleId = moduleid
           @ModuleName = modulename
           @ModuleState = modulestate
@@ -7394,6 +7409,8 @@ module TencentCloud
           @SecurityGroupIds = securitygroupids
           @DefaultBandwidthIn = defaultbandwidthin
           @UserData = userdata
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
         end
 
         def deserialize(params)
@@ -7424,6 +7441,18 @@ module TencentCloud
           @SecurityGroupIds = params['SecurityGroupIds']
           @DefaultBandwidthIn = params['DefaultBandwidthIn']
           @UserData = params['UserData']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
         end
       end
 
@@ -9054,10 +9083,14 @@ module TencentCloud
         # 默认取值：FALSE。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepImageLogin: String
+        # @param SystemDisk: 系统盘信息。
+        # @type SystemDisk: :class:`Tencentcloud::Ecm.v20190719.models.SystemDisk`
+        # @param DataDisks: 数据盘信息。
+        # @type DataDisks: Array
 
-        attr_accessor :ZoneInstanceCountISPSet, :Password, :InternetMaxBandwidthOut, :ModuleId, :ImageId, :InstanceName, :HostName, :ClientToken, :EnhancedService, :TagSpecification, :UserData, :InstanceType, :DataDiskSize, :SecurityGroupIds, :SystemDiskSize, :InternetMaxBandwidthIn, :InstanceChargeType, :KeyIds, :KeepImageLogin
+        attr_accessor :ZoneInstanceCountISPSet, :Password, :InternetMaxBandwidthOut, :ModuleId, :ImageId, :InstanceName, :HostName, :ClientToken, :EnhancedService, :TagSpecification, :UserData, :InstanceType, :DataDiskSize, :SecurityGroupIds, :SystemDiskSize, :InternetMaxBandwidthIn, :InstanceChargeType, :KeyIds, :KeepImageLogin, :SystemDisk, :DataDisks
         
-        def initialize(zoneinstancecountispset=nil, password=nil, internetmaxbandwidthout=nil, moduleid=nil, imageid=nil, instancename=nil, hostname=nil, clienttoken=nil, enhancedservice=nil, tagspecification=nil, userdata=nil, instancetype=nil, datadisksize=nil, securitygroupids=nil, systemdisksize=nil, internetmaxbandwidthin=nil, instancechargetype=nil, keyids=nil, keepimagelogin=nil)
+        def initialize(zoneinstancecountispset=nil, password=nil, internetmaxbandwidthout=nil, moduleid=nil, imageid=nil, instancename=nil, hostname=nil, clienttoken=nil, enhancedservice=nil, tagspecification=nil, userdata=nil, instancetype=nil, datadisksize=nil, securitygroupids=nil, systemdisksize=nil, internetmaxbandwidthin=nil, instancechargetype=nil, keyids=nil, keepimagelogin=nil, systemdisk=nil, datadisks=nil)
           @ZoneInstanceCountISPSet = zoneinstancecountispset
           @Password = password
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -9077,6 +9110,8 @@ module TencentCloud
           @InstanceChargeType = instancechargetype
           @KeyIds = keyids
           @KeepImageLogin = keepimagelogin
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
         end
 
         def deserialize(params)
@@ -9116,6 +9151,18 @@ module TencentCloud
           @InstanceChargeType = params['InstanceChargeType']
           @KeyIds = params['KeyIds']
           @KeepImageLogin = params['KeepImageLogin']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
         end
       end
 
@@ -9854,6 +9901,33 @@ module TencentCloud
           @VpcCidrBlock = params['VpcCidrBlock']
           @VpcIpv6CidrBlock = params['VpcIpv6CidrBlock']
           @Region = params['Region']
+        end
+      end
+
+      # 用于描述系统盘。
+      class SystemDisk < TencentCloud::Common::AbstractModel
+        # @param DiskType: 硬盘类型。取值范围：
+        # - LOCAL_BASIC：本地硬盘；
+        # - CLOUD_PREMIUM：高性能云硬盘；
+        # 默认取值：CLOUD_BASIC。
+        # @type DiskType: String
+        # @param DiskId: 硬盘ID。此参数暂不可用。
+        # @type DiskId: String
+        # @param DiskSize: 硬盘容量大小。单位GB。
+        # @type DiskSize: Integer
+
+        attr_accessor :DiskType, :DiskId, :DiskSize
+        
+        def initialize(disktype=nil, diskid=nil, disksize=nil)
+          @DiskType = disktype
+          @DiskId = diskid
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskId = params['DiskId']
+          @DiskSize = params['DiskSize']
         end
       end
 
