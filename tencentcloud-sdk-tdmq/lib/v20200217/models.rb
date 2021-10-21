@@ -182,7 +182,7 @@ module TencentCloud
         # @type MaxTopicNum: Integer
         # @param MaxQps: 最大QPS
         # @type MaxQps: Integer
-        # @param MessageRetentionTime: 消息保留时间
+        # @param MessageRetentionTime: 最大消息保留时间，分钟为单位
         # @type MessageRetentionTime: Integer
         # @param MaxStorageCapacity: 最大存储容量
         # @type MaxStorageCapacity: Integer
@@ -201,10 +201,34 @@ module TencentCloud
         # @param UsedStorageBudget: 已使用存储限制，MB为单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedStorageBudget: Integer
+        # @param MaxPublishRateInMessages: 最大生产消息速率，以条数为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxPublishRateInMessages: Integer
+        # @param MaxDispatchRateInMessages: 最大推送消息速率，以条数为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDispatchRateInMessages: Integer
+        # @param MaxPublishRateInBytes: 最大生产消息速率，以字节为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxPublishRateInBytes: Integer
+        # @param MaxDispatchRateInBytes: 最大推送消息速率，以字节为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDispatchRateInBytes: Integer
+        # @param TopicNum: 已创建主题数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNum: Integer
+        # @param MaxMessageDelayInSeconds: 最长消息延时，以秒为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxMessageDelayInSeconds: Integer
+        # @param PublicAccessEnabled: 是否开启公网访问，不填时默认开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicAccessEnabled: Boolean
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget
+        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget, :MaxPublishRateInMessages, :MaxDispatchRateInMessages, :MaxPublishRateInBytes, :MaxDispatchRateInBytes, :TopicNum, :MaxMessageDelayInSeconds, :PublicAccessEnabled, :Tags
         
-        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil, maxpublishrateinmessages=nil, maxdispatchrateinmessages=nil, maxpublishrateinbytes=nil, maxdispatchrateinbytes=nil, topicnum=nil, maxmessagedelayinseconds=nil, publicaccessenabled=nil, tags=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -223,6 +247,14 @@ module TencentCloud
           @VpcEndPoint = vpcendpoint
           @NamespaceNum = namespacenum
           @UsedStorageBudget = usedstoragebudget
+          @MaxPublishRateInMessages = maxpublishrateinmessages
+          @MaxDispatchRateInMessages = maxdispatchrateinmessages
+          @MaxPublishRateInBytes = maxpublishrateinbytes
+          @MaxDispatchRateInBytes = maxdispatchrateinbytes
+          @TopicNum = topicnum
+          @MaxMessageDelayInSeconds = maxmessagedelayinseconds
+          @PublicAccessEnabled = publicaccessenabled
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -244,6 +276,21 @@ module TencentCloud
           @VpcEndPoint = params['VpcEndPoint']
           @NamespaceNum = params['NamespaceNum']
           @UsedStorageBudget = params['UsedStorageBudget']
+          @MaxPublishRateInMessages = params['MaxPublishRateInMessages']
+          @MaxDispatchRateInMessages = params['MaxDispatchRateInMessages']
+          @MaxPublishRateInBytes = params['MaxPublishRateInBytes']
+          @MaxDispatchRateInBytes = params['MaxDispatchRateInBytes']
+          @TopicNum = params['TopicNum']
+          @MaxMessageDelayInSeconds = params['MaxMessageDelayInSeconds']
+          @PublicAccessEnabled = params['PublicAccessEnabled']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -783,14 +830,17 @@ module TencentCloud
         # @type Remark: String
         # @param Tags: 集群的标签列表
         # @type Tags: Array
+        # @param PublicAccessEnabled: 是否开启公网访问，不填时默认开启
+        # @type PublicAccessEnabled: Boolean
 
-        attr_accessor :ClusterName, :BindClusterId, :Remark, :Tags
+        attr_accessor :ClusterName, :BindClusterId, :Remark, :Tags, :PublicAccessEnabled
         
-        def initialize(clustername=nil, bindclusterid=nil, remark=nil, tags=nil)
+        def initialize(clustername=nil, bindclusterid=nil, remark=nil, tags=nil, publicaccessenabled=nil)
           @ClusterName = clustername
           @BindClusterId = bindclusterid
           @Remark = remark
           @Tags = tags
+          @PublicAccessEnabled = publicaccessenabled
         end
 
         def deserialize(params)
@@ -805,6 +855,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @PublicAccessEnabled = params['PublicAccessEnabled']
         end
       end
 
@@ -1872,19 +1923,34 @@ module TencentCloud
         # @type Limit: Integer
         # @param ClusterIdList: 集群ID列表过滤
         # @type ClusterIdList: Array
+        # @param IsTagFilter: 是否标签过滤
+        # @type IsTagFilter: Boolean
+        # @param Filters: 过滤器。目前支持按标签过滤。
+        # @type Filters: Array
 
-        attr_accessor :Offset, :Limit, :ClusterIdList
+        attr_accessor :Offset, :Limit, :ClusterIdList, :IsTagFilter, :Filters
         
-        def initialize(offset=nil, limit=nil, clusteridlist=nil)
+        def initialize(offset=nil, limit=nil, clusteridlist=nil, istagfilter=nil, filters=nil)
           @Offset = offset
           @Limit = limit
           @ClusterIdList = clusteridlist
+          @IsTagFilter = istagfilter
+          @Filters = filters
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ClusterIdList = params['ClusterIdList']
+          @IsTagFilter = params['IsTagFilter']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -2029,15 +2095,18 @@ module TencentCloud
         # @type QueueNameList: Array
         # @param IsTagFilter: 标签过滤查找时，需要设置为 true
         # @type IsTagFilter: Boolean
+        # @param Filters: 过滤器。目前支持按标签过滤。
+        # @type Filters: Array
 
-        attr_accessor :Offset, :Limit, :QueueName, :QueueNameList, :IsTagFilter
+        attr_accessor :Offset, :Limit, :QueueName, :QueueNameList, :IsTagFilter, :Filters
         
-        def initialize(offset=nil, limit=nil, queuename=nil, queuenamelist=nil, istagfilter=nil)
+        def initialize(offset=nil, limit=nil, queuename=nil, queuenamelist=nil, istagfilter=nil, filters=nil)
           @Offset = offset
           @Limit = limit
           @QueueName = queuename
           @QueueNameList = queuenamelist
           @IsTagFilter = istagfilter
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -2046,6 +2115,14 @@ module TencentCloud
           @QueueName = params['QueueName']
           @QueueNameList = params['QueueNameList']
           @IsTagFilter = params['IsTagFilter']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -2192,15 +2269,18 @@ module TencentCloud
         # @type TopicNameList: Array
         # @param IsTagFilter: 标签过滤查找时，需要设置为 true
         # @type IsTagFilter: Boolean
+        # @param Filters: 过滤器。目前支持按标签过滤。
+        # @type Filters: Array
 
-        attr_accessor :Offset, :Limit, :TopicName, :TopicNameList, :IsTagFilter
+        attr_accessor :Offset, :Limit, :TopicName, :TopicNameList, :IsTagFilter, :Filters
         
-        def initialize(offset=nil, limit=nil, topicname=nil, topicnamelist=nil, istagfilter=nil)
+        def initialize(offset=nil, limit=nil, topicname=nil, topicnamelist=nil, istagfilter=nil, filters=nil)
           @Offset = offset
           @Limit = limit
           @TopicName = topicname
           @TopicNameList = topicnamelist
           @IsTagFilter = istagfilter
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -2209,6 +2289,14 @@ module TencentCloud
           @TopicName = params['TopicName']
           @TopicNameList = params['TopicNameList']
           @IsTagFilter = params['IsTagFilter']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -3019,19 +3107,23 @@ module TencentCloud
         # @type ClusterName: String
         # @param Remark: 说明信息。
         # @type Remark: String
+        # @param PublicAccessEnabled: 开启公网访问，只能为true
+        # @type PublicAccessEnabled: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Remark
+        attr_accessor :ClusterId, :ClusterName, :Remark, :PublicAccessEnabled
         
-        def initialize(clusterid=nil, clustername=nil, remark=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, publicaccessenabled=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
+          @PublicAccessEnabled = publicaccessenabled
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @ClusterName = params['ClusterName']
           @Remark = params['Remark']
+          @PublicAccessEnabled = params['PublicAccessEnabled']
         end
       end
 

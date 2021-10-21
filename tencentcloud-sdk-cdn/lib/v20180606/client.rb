@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # CC统计数据查询
+
+        # @param request: Request instance for DescribeCcData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeCcDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeCcDataResponse`
+        def DescribeCcData(request)
+          body = send_request('DescribeCcData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCcDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeCdnData 用于查询 CDN 实时访问监控数据，支持以下指标查询：
 
         # + 流量（单位为 byte）
@@ -450,6 +474,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DDoS统计数据查询
+
+        # @param request: Request instance for DescribeDDoSData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeDDoSDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeDDoSDataResponse`
+        def DescribeDDoSData(request)
+          body = send_request('DescribeDDoSData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDDoSDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeDiagnoseReport 用于获取指定报告id的内容
 
         # @param request: Request instance for DescribeDiagnoseReport.
@@ -533,6 +581,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDomainsConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeEventLogData 用于查询事件日志统计曲线
+
+        # @param request: Request instance for DescribeEventLogData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeEventLogDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeEventLogDataResponse`
+        def DescribeEventLogData(request)
+          body = send_request('DescribeEventLogData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEventLogDataResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -946,6 +1018,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Waf统计数据查询
+
+        # @param request: Request instance for DescribeWafData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeWafDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeWafDataResponse`
+        def DescribeWafData(request)
+          body = send_request('DescribeWafData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWafDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。（注：接口尚在内测中，暂未全量开放；封禁URL并非无限期永久封禁）
 
         # @param request: Request instance for DisableCaches.
@@ -1244,6 +1340,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListTopCcDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过CLS日志计算Top信息。支持近7天的日志数据。
+
+        # @param request: Request instance for ListTopClsLogData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::ListTopClsLogDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::ListTopClsLogDataResponse`
+        def ListTopClsLogData(request)
+          body = send_request('ListTopClsLogData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListTopClsLogDataResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1420,16 +1420,19 @@ module TencentCloud
         # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.GetEidTokenConfig`
         # @param RedirectUrl: 最长长度1024位。用户从Url中进入核身认证结束后重定向的回调链接地址。EidToken会在该链接的query参数中。
         # @type RedirectUrl: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
 
-        attr_accessor :MerchantId, :IdCard, :Name, :Extra, :Config, :RedirectUrl
+        attr_accessor :MerchantId, :IdCard, :Name, :Extra, :Config, :RedirectUrl, :Encryption
         
-        def initialize(merchantid=nil, idcard=nil, name=nil, extra=nil, config=nil, redirecturl=nil)
+        def initialize(merchantid=nil, idcard=nil, name=nil, extra=nil, config=nil, redirecturl=nil, encryption=nil)
           @MerchantId = merchantid
           @IdCard = idcard
           @Name = name
           @Extra = extra
           @Config = config
           @RedirectUrl = redirecturl
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -1442,6 +1445,10 @@ module TencentCloud
             @Config.deserialize(params['Config'])
           end
           @RedirectUrl = params['RedirectUrl']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
         end
       end
 

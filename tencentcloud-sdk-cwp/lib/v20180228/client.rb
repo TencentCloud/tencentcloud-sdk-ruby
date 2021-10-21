@@ -773,32 +773,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口已废弃
-
-        # 本接口 (DescribeAccounts) 用于获取帐号列表数据。
-
-        # @param request: Request instance for DescribeAccounts.
-        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAccountsRequest`
-        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAccountsResponse`
-        def DescribeAccounts(request)
-          body = send_request('DescribeAccounts', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAccountsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询应用列表
 
         # @param request: Request instance for DescribeAssetAppList.

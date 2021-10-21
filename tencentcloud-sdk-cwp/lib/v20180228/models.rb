@@ -17,56 +17,6 @@
 module TencentCloud
   module Cwp
     module V20180228
-      # 帐号列表信息数据。
-      class Account < TencentCloud::Common::AbstractModel
-        # @param Id: 唯一ID。
-        # @type Id: Integer
-        # @param Uuid: 云镜客户端唯一Uuid
-        # @type Uuid: String
-        # @param MachineIp: 主机内网IP。
-        # @type MachineIp: String
-        # @param MachineName: 主机名称。
-        # @type MachineName: String
-        # @param Username: 帐号名。
-        # @type Username: String
-        # @param Groups: 帐号所属组。
-        # @type Groups: String
-        # @param Privilege: 帐号类型。
-        # <li>ORDINARY：普通帐号</li>
-        # <li>SUPPER：超级管理员帐号</li>
-        # @type Privilege: String
-        # @param AccountCreateTime: 帐号创建时间。
-        # @type AccountCreateTime: String
-        # @param LastLoginTime: 帐号最后登录时间。
-        # @type LastLoginTime: String
-
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :Username, :Groups, :Privilege, :AccountCreateTime, :LastLoginTime
-        
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, groups=nil, privilege=nil, accountcreatetime=nil, lastlogintime=nil)
-          @Id = id
-          @Uuid = uuid
-          @MachineIp = machineip
-          @MachineName = machinename
-          @Username = username
-          @Groups = groups
-          @Privilege = privilege
-          @AccountCreateTime = accountcreatetime
-          @LastLoginTime = lastlogintime
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @Uuid = params['Uuid']
-          @MachineIp = params['MachineIp']
-          @MachineName = params['MachineName']
-          @Username = params['Username']
-          @Groups = params['Groups']
-          @Privilege = params['Privilege']
-          @AccountCreateTime = params['AccountCreateTime']
-          @LastLoginTime = params['LastLoginTime']
-        end
-      end
-
       # 帐号统计数据。
       class AccountStatistics < TencentCloud::Common::AbstractModel
         # @param Username: 用户名。
@@ -4230,79 +4180,6 @@ module TencentCloud
               accountstatistics_tmp = AccountStatistics.new
               accountstatistics_tmp.deserialize(i)
               @AccountStatistics << accountstatistics_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeAccounts请求参数结构体
-      class DescribeAccountsRequest < TencentCloud::Common::AbstractModel
-        # @param Uuid: 云镜客户端唯一Uuid。Username和Uuid必填其一，使用Uuid表示，查询该主机下列表信息。
-        # @type Uuid: String
-        # @param Username: 云镜客户端唯一Uuid。Username和Uuid必填其一，使用Username表示，查询该用户名下列表信息。
-        # @type Username: String
-        # @param Limit: 返回数量，默认为10，最大值为100。
-        # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
-        # @type Offset: Integer
-        # @param Filters: 过滤条件。
-        # <li>Username - String - 是否必填：否 - 帐号名</li>
-        # <li>Privilege - String - 是否必填：否 - 帐号类型（ORDINARY: 普通帐号 | SUPPER: 超级管理员帐号）</li>
-        # <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
-        # @type Filters: Array
-
-        attr_accessor :Uuid, :Username, :Limit, :Offset, :Filters
-        
-        def initialize(uuid=nil, username=nil, limit=nil, offset=nil, filters=nil)
-          @Uuid = uuid
-          @Username = username
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @Uuid = params['Uuid']
-          @Username = params['Username']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeAccounts返回参数结构体
-      class DescribeAccountsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 帐号列表记录总数。
-        # @type TotalCount: Integer
-        # @param Accounts: 帐号数据列表。
-        # @type Accounts: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :Accounts, :RequestId
-        
-        def initialize(totalcount=nil, accounts=nil, requestid=nil)
-          @TotalCount = totalcount
-          @Accounts = accounts
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Accounts'].nil?
-            @Accounts = []
-            params['Accounts'].each do |i|
-              account_tmp = Account.new
-              account_tmp.deserialize(i)
-              @Accounts << account_tmp
             end
           end
           @RequestId = params['RequestId']

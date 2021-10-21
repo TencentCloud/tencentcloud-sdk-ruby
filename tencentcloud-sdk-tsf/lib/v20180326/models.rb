@@ -3561,6 +3561,43 @@ module TencentCloud
         end
       end
 
+      # DeleteLaneRule请求参数结构体
+      class DeleteLaneRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 泳道规则Id
+        # @type RuleId: String
+
+        attr_accessor :RuleId
+        
+        def initialize(ruleid=nil)
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # DeleteLaneRule返回参数结构体
+      class DeleteLaneRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteMicroservice请求参数结构体
       class DeleteMicroserviceRequest < TencentCloud::Common::AbstractModel
         # @param MicroserviceId: 微服务ID
@@ -5558,6 +5595,61 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = GatewayVo.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGatewayApis请求参数结构体
+      class DescribeGatewayApisRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 分组ID
+        # @type GroupId: String
+        # @param Offset: 翻页偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页的记录数
+        # @type Limit: Integer
+        # @param SearchWord: 搜索关键字，支持 API path
+        # @type SearchWord: String
+        # @param GatewayDeployGroupId: 部署组ID
+        # @type GatewayDeployGroupId: String
+
+        attr_accessor :GroupId, :Offset, :Limit, :SearchWord, :GatewayDeployGroupId
+        
+        def initialize(groupid=nil, offset=nil, limit=nil, searchword=nil, gatewaydeploygroupid=nil)
+          @GroupId = groupid
+          @Offset = offset
+          @Limit = limit
+          @SearchWord = searchword
+          @GatewayDeployGroupId = gatewaydeploygroupid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchWord = params['SearchWord']
+          @GatewayDeployGroupId = params['GatewayDeployGroupId']
+        end
+      end
+
+      # DescribeGatewayApis返回参数结构体
+      class DescribeGatewayApisResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 翻页结构
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageApiDetailInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageApiDetailInfo.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -13484,6 +13576,33 @@ module TencentCloud
               msapiarray_tmp = MsApiArray.new
               msapiarray_tmp.deserialize(i)
               @Content << msapiarray_tmp
+            end
+          end
+        end
+      end
+
+      # ApiDetailInfo 翻页对象
+      class TsfPageApiDetailInfo < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param Content: API 信息列表
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+        
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              apidetailinfo_tmp = ApiDetailInfo.new
+              apidetailinfo_tmp.deserialize(i)
+              @Content << apidetailinfo_tmp
             end
           end
         end

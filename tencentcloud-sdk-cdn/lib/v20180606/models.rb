@@ -2128,6 +2128,34 @@ module TencentCloud
         end
       end
 
+      # 通过Cls日志，计算出来的IP每秒访问数量
+      class ClsLogIpData < TencentCloud::Common::AbstractModel
+        # @param ClientIp: IP
+        # @type ClientIp: String
+        # @param Request: 在给定的时间段中，1秒内的最大请求量
+        # @type Request: Integer
+        # @param Count: 在获取的Top信息中，IP出现的次数
+        # @type Count: Integer
+        # @param Time: 在给定的时间段中，1秒内的最大请求量对应的时间
+        # @type Time: String
+
+        attr_accessor :ClientIp, :Request, :Count, :Time
+        
+        def initialize(clientip=nil, request=nil, count=nil, time=nil)
+          @ClientIp = clientip
+          @Request = request
+          @Count = count
+          @Time = time
+        end
+
+        def deserialize(params)
+          @ClientIp = params['ClientIp']
+          @Request = params['Request']
+          @Count = params['Count']
+          @Time = params['Time']
+        end
+      end
+
       # CLS日志搜索对象
       class ClsLogObject < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题ID
@@ -2737,6 +2765,82 @@ module TencentCloud
         end
       end
 
+      # ddos攻击带宽峰值数据
+      class DDoSAttackBandwidthData < TencentCloud::Common::AbstractModel
+        # @param AttackType: ddos攻击类型，当值为all的时候表示所有的攻击类型的总带宽峰值
+        # @type AttackType: String
+        # @param Value: ddos攻击带宽大小
+        # @type Value: Float
+        # @param Time: 攻击时间点
+        # @type Time: String
+
+        attr_accessor :AttackType, :Value, :Time
+        
+        def initialize(attacktype=nil, value=nil, time=nil)
+          @AttackType = attacktype
+          @Value = value
+          @Time = time
+        end
+
+        def deserialize(params)
+          @AttackType = params['AttackType']
+          @Value = params['Value']
+          @Time = params['Time']
+        end
+      end
+
+      # 攻击ip数据详细数据
+      class DDoSAttackIPTopData < TencentCloud::Common::AbstractModel
+        # @param AttackIP: 攻击ip
+        # @type AttackIP: String
+        # @param Province: 攻击ip所在省份
+        # @type Province: String
+        # @param Country: 攻击ip所在国家
+        # @type Country: String
+        # @param Isp: 红果电信
+        # @type Isp: String
+        # @param AttackCount: 攻击次数
+        # @type AttackCount: Float
+
+        attr_accessor :AttackIP, :Province, :Country, :Isp, :AttackCount
+        
+        def initialize(attackip=nil, province=nil, country=nil, isp=nil, attackcount=nil)
+          @AttackIP = attackip
+          @Province = province
+          @Country = country
+          @Isp = isp
+          @AttackCount = attackcount
+        end
+
+        def deserialize(params)
+          @AttackIP = params['AttackIP']
+          @Province = params['Province']
+          @Country = params['Country']
+          @Isp = params['Isp']
+          @AttackCount = params['AttackCount']
+        end
+      end
+
+      # DDoS统计数据
+      class DDoSStatsData < TencentCloud::Common::AbstractModel
+        # @param Time: 时间
+        # @type Time: String
+        # @param Value: 带宽数值，单位bps
+        # @type Value: Float
+
+        attr_accessor :Time, :Value
+        
+        def initialize(time=nil, value=nil)
+          @Time = time
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Value = params['Value']
+        end
+      end
+
       # DDoS攻击Top数据
       class DDoSTopData < TencentCloud::Common::AbstractModel
         # @param AttackType: 攻击类型
@@ -2962,6 +3066,124 @@ module TencentCloud
               resourcebillingdata_tmp = ResourceBillingData.new
               resourcebillingdata_tmp.deserialize(i)
               @Data << resourcebillingdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcData请求参数结构体
+      class DescribeCcDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
+        # @type EndTime: String
+        # @param Interval: 时间粒度，支持以下几种模式：
+        # min：1 分钟粒度，指定查询区间 24 小时内（含 24 小时），可返回 1 分钟粒度明细数据
+        # 5min：5 分钟粒度，指定查询区间 31 天内（含 31 天），可返回 5 分钟粒度明细数据
+        # hour：1 小时粒度，指定查询区间 31 天内（含 31 天），可返回 1 小时粒度明细数据
+        # day：天粒度，指定查询区间大于 31 天，可返回天粒度明细数据
+        # @type Interval: String
+        # @param Domain: 指定域名查询，为空时，表示查询账号级别数据
+        # @type Domain: String
+        # @param ActionName: 执行动作，取值为：intercept/redirect/observe
+        # 分别表示：拦截/重定向/观察
+        # 为空时，表示所有执行动作
+        # @type ActionName: String
+        # @param Domains: 指定域名列表查询，为空时，表示查询账号级别数据
+        # @type Domains: Array
+        # @param Source: cdn表示CDN数据，默认值
+        # ecdn表示ECDN数据
+        # @type Source: String
+        # @param Area: 地域：mainland或overseas，表示国内或海外，不填写默认表示国内
+        # @type Area: String
+
+        attr_accessor :StartTime, :EndTime, :Interval, :Domain, :ActionName, :Domains, :Source, :Area
+        
+        def initialize(starttime=nil, endtime=nil, interval=nil, domain=nil, actionname=nil, domains=nil, source=nil, area=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Interval = interval
+          @Domain = domain
+          @ActionName = actionname
+          @Domains = domains
+          @Source = source
+          @Area = area
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Interval = params['Interval']
+          @Domain = params['Domain']
+          @ActionName = params['ActionName']
+          @Domains = params['Domains']
+          @Source = params['Source']
+          @Area = params['Area']
+        end
+      end
+
+      # DescribeCcData返回参数结构体
+      class DescribeCcDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 指定执行动作的请求数数据，如果指定类型为空，表示所有类型的请求总数
+        # @type Data: Array
+        # @param Interval: 粒度
+        # @type Interval: String
+        # @param InterceptQpsData: 执行动作为拦截类型QPS统计数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InterceptQpsData: Array
+        # @param RedirectQpsData: 执行动作为重定向类型QPS统计数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectQpsData: Array
+        # @param ObserveQpsData: 执行动作为观察类型QPS统计数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObserveQpsData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Interval, :InterceptQpsData, :RedirectQpsData, :ObserveQpsData, :RequestId
+        
+        def initialize(data=nil, interval=nil, interceptqpsdata=nil, redirectqpsdata=nil, observeqpsdata=nil, requestid=nil)
+          @Data = data
+          @Interval = interval
+          @InterceptQpsData = interceptqpsdata
+          @RedirectQpsData = redirectqpsdata
+          @ObserveQpsData = observeqpsdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              timestampdata_tmp = TimestampData.new
+              timestampdata_tmp.deserialize(i)
+              @Data << timestampdata_tmp
+            end
+          end
+          @Interval = params['Interval']
+          unless params['InterceptQpsData'].nil?
+            @InterceptQpsData = []
+            params['InterceptQpsData'].each do |i|
+              timestampdata_tmp = TimestampData.new
+              timestampdata_tmp.deserialize(i)
+              @InterceptQpsData << timestampdata_tmp
+            end
+          end
+          unless params['RedirectQpsData'].nil?
+            @RedirectQpsData = []
+            params['RedirectQpsData'].each do |i|
+              timestampdata_tmp = TimestampData.new
+              timestampdata_tmp.deserialize(i)
+              @RedirectQpsData << timestampdata_tmp
+            end
+          end
+          unless params['ObserveQpsData'].nil?
+            @ObserveQpsData = []
+            params['ObserveQpsData'].each do |i|
+              timestampdata_tmp = TimestampData.new
+              timestampdata_tmp.deserialize(i)
+              @ObserveQpsData << timestampdata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3333,6 +3555,80 @@ module TencentCloud
         end
       end
 
+      # DescribeDDoSData请求参数结构体
+      class DescribeDDoSDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
+        # @type EndTime: String
+        # @param Interval: 时间粒度，支持以下几种模式：
+        # min：1 分钟粒度，指定查询区间 24 小时内（含 24 小时），可返回 1 分钟粒度明细数据
+        # 5min：5 分钟粒度，指定查询区间 31 天内（含 31 天），可返回 5 分钟粒度明细数据
+        # hour：1 小时粒度，指定查询区间 31 天内（含 31 天），可返回 1 小时粒度明细数据
+        # day：天粒度，指定查询区间大于 31 天，可返回天粒度明细数据
+        # @type Interval: String
+
+        attr_accessor :StartTime, :EndTime, :Interval
+        
+        def initialize(starttime=nil, endtime=nil, interval=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Interval = interval
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Interval = params['Interval']
+        end
+      end
+
+      # DescribeDDoSData返回参数结构体
+      class DescribeDDoSDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: DDoS统计数据数组
+        # @type Data: Array
+        # @param Interval: 时间粒度：
+        # min：1 分钟粒度
+        # 5min：5 分钟粒度
+        # hour：1 小时粒度
+        # day：天粒度
+        # @type Interval: String
+        # @param AttackBandwidthData: DDoS统计攻击带宽峰值数组
+        # @type AttackBandwidthData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Interval, :AttackBandwidthData, :RequestId
+        
+        def initialize(data=nil, interval=nil, attackbandwidthdata=nil, requestid=nil)
+          @Data = data
+          @Interval = interval
+          @AttackBandwidthData = attackbandwidthdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              ddosstatsdata_tmp = DDoSStatsData.new
+              ddosstatsdata_tmp.deserialize(i)
+              @Data << ddosstatsdata_tmp
+            end
+          end
+          @Interval = params['Interval']
+          unless params['AttackBandwidthData'].nil?
+            @AttackBandwidthData = []
+            params['AttackBandwidthData'].each do |i|
+              ddosattackbandwidthdata_tmp = DDoSAttackBandwidthData.new
+              ddosattackbandwidthdata_tmp.deserialize(i)
+              @AttackBandwidthData << ddosattackbandwidthdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDiagnoseReport请求参数结构体
       class DescribeDiagnoseReportRequest < TencentCloud::Common::AbstractModel
         # @param ReportId: 报告ID
@@ -3641,6 +3937,84 @@ module TencentCloud
             end
           end
           @TotalNumber = params['TotalNumber']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEventLogData请求参数结构体
+      class DescribeEventLogDataRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 防护类型，映射如下：
+        #   waf = "Web攻击"
+        #   cc = "CC攻击"
+        # @type Mode: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间，最长跨度为30分钟
+        # @type EndTime: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param ActionName: 执行动作，取值为：intercept/redirect/observe
+        # 分别表示：拦截/重定向/观察
+        # 参数放空，表示查询全部动作数据
+        # @type ActionName: String
+        # @param Url: 请求URL，支持URL开头和结尾使用\*表示通配
+        # 如：
+        # /files/* 表示所有以/files/开头的请求
+        # *.jpg 表示所有以.jpg结尾的请求
+        # @type Url: String
+        # @param Area: 地域 mainland 或者 overseas，为空时默认 mainland
+        # @type Area: String
+        # @param Source: 来源产品，cdn 或者 ecdn，为空时默认 cdn
+        # @type Source: String
+
+        attr_accessor :Mode, :StartTime, :EndTime, :Domain, :ActionName, :Url, :Area, :Source
+        
+        def initialize(mode=nil, starttime=nil, endtime=nil, domain=nil, actionname=nil, url=nil, area=nil, source=nil)
+          @Mode = mode
+          @StartTime = starttime
+          @EndTime = endtime
+          @Domain = domain
+          @ActionName = actionname
+          @Url = url
+          @Area = area
+          @Source = source
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Domain = params['Domain']
+          @ActionName = params['ActionName']
+          @Url = params['Url']
+          @Area = params['Area']
+          @Source = params['Source']
+        end
+      end
+
+      # DescribeEventLogData返回参数结构体
+      class DescribeEventLogDataResponse < TencentCloud::Common::AbstractModel
+        # @param Results: 统计曲线结果
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :RequestId
+        
+        def initialize(results=nil, requestid=nil)
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              eventlogstatsdata_tmp = EventLogStatsData.new
+              eventlogstatsdata_tmp.deserialize(i)
+              @Results << eventlogstatsdata_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4812,6 +5186,110 @@ module TencentCloud
         end
       end
 
+      # DescribeWafData请求参数结构体
+      class DescribeWafDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
+        # @type EndTime: String
+        # @param Interval: 时间粒度，支持以下几种模式：
+        # min：1 分钟粒度，指定查询区间 24 小时内（含 24 小时），可返回 1 分钟粒度明细数据
+        # 5min：5 分钟粒度，指定查询区间 31 天内（含 31 天），可返回 5 分钟粒度明细数据
+        # hour：1 小时粒度，指定查询区间 31 天内（含 31 天），可返回 1 小时粒度明细数据
+        # day：天粒度，指定查询区间大于 31 天，可返回天粒度明细数据
+
+        # 仅支持30天内数据查询，且查询时间范围在 7 到 30 天最小粒度是 hour。
+        # @type Interval: String
+        # @param Domain: 指定域名查询
+        # @type Domain: String
+        # @param AttackType: 指定攻击类型
+        # 不填则查询所有攻击类型的数据分布
+        # AttackType 映射如下:
+        # "webshell" : Webshell检测防护
+        # "oa" : 常见OA漏洞防护
+        # "xss" : XSS跨站脚本攻击防护
+        # "xxe" : XXE攻击防护
+        # "webscan" : 扫描器攻击漏洞防护
+        # "cms" : 常见CMS漏洞防护
+        # "upload" : 恶意文件上传攻击防护
+        # "sql" : SQL注入攻击防护
+        # "cmd_inject": 命令/代码注入攻击防护
+        # "osc" : 开源组件漏洞防护
+        # "file_read" : 任意文件读取
+        # "ldap" : LDAP注入攻击防护
+        # "other" : 其它漏洞防护
+        # @type AttackType: String
+        # @param DefenceMode: 指定防御模式
+        # 不填则查询所有防御模式的数据总和
+        # DefenceMode映射如下：
+        #   observe = '观察模式'
+        #   intercept = '拦截模式'
+        # @type DefenceMode: String
+        # @param Area: 地域：mainland 或 overseas
+        # @type Area: String
+        # @param AttackTypes: 指定多个攻击类型，取值参考AttackType
+        # @type AttackTypes: Array
+        # @param Domains: 指定域名列表查询
+        # @type Domains: Array
+
+        attr_accessor :StartTime, :EndTime, :Interval, :Domain, :AttackType, :DefenceMode, :Area, :AttackTypes, :Domains
+        
+        def initialize(starttime=nil, endtime=nil, interval=nil, domain=nil, attacktype=nil, defencemode=nil, area=nil, attacktypes=nil, domains=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Interval = interval
+          @Domain = domain
+          @AttackType = attacktype
+          @DefenceMode = defencemode
+          @Area = area
+          @AttackTypes = attacktypes
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Interval = params['Interval']
+          @Domain = params['Domain']
+          @AttackType = params['AttackType']
+          @DefenceMode = params['DefenceMode']
+          @Area = params['Area']
+          @AttackTypes = params['AttackTypes']
+          @Domains = params['Domains']
+        end
+      end
+
+      # DescribeWafData返回参数结构体
+      class DescribeWafDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 粒度数据
+        # @type Data: Array
+        # @param Interval: 粒度
+        # @type Interval: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Interval, :RequestId
+        
+        def initialize(data=nil, interval=nil, requestid=nil)
+          @Data = data
+          @Interval = interval
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              timestampdata_tmp = TimestampData.new
+              timestampdata_tmp.deserialize(i)
+              @Data << timestampdata_tmp
+            end
+          end
+          @Interval = params['Interval']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 加速域名全量配置信息
       class DetailDomain < TencentCloud::Common::AbstractModel
         # @param ResourceId: 域名 ID
@@ -5925,6 +6403,26 @@ module TencentCloud
         end
       end
 
+      # 事件日志统计数据结果
+      class EventLogStatsData < TencentCloud::Common::AbstractModel
+        # @param Datetime: 时间
+        # @type Datetime: String
+        # @param Request: 请求数
+        # @type Request: Integer
+
+        attr_accessor :Datetime, :Request
+        
+        def initialize(datetime=nil, request=nil)
+          @Datetime = datetime
+          @Request = request
+        end
+
+        def deserialize(params)
+          @Datetime = params['Datetime']
+          @Request = params['Request']
+        end
+      end
+
       # 回源 301/302 状态码自动跟随配置，默认为关闭状态
       class FollowRedirect < TencentCloud::Common::AbstractModel
         # @param Switch: 回源跟随开关
@@ -6991,6 +7489,92 @@ module TencentCloud
         end
       end
 
+      # ListTopClsLogData请求参数结构体
+      class ListTopClsLogDataRequest < TencentCloud::Common::AbstractModel
+        # @param LogsetId: 需要查询的日志集ID
+        # @type LogsetId: String
+        # @param TopicIds: 需要查询的日志主题ID组合，多个以逗号分隔
+        # @type TopicIds: String
+        # @param StartTime: 需要查询的日志的起始时间，格式 YYYY-mm-dd HH:MM:SS
+        # @type StartTime: String
+        # @param EndTime: 需要查询的日志的结束时间，格式 YYYY-mm-dd HH:MM:SS，时间跨度应小于10分钟
+        # @type EndTime: String
+        # @param Domain: 指定域名查询
+        # @type Domain: String
+        # @param Url: 指定访问的URL查询，支持URL开头和结尾使用\*表示通配
+        # 如：
+        # /files/* 表示所有以/files/开头的请求
+        # *.jpg 表示所有以.jpg结尾的请求
+        # @type Url: String
+        # @param Channel: 接入渠道，默认值为cdn
+        # @type Channel: String
+        # @param Limit: 要查询的Top条数，最大值为100，默认为10
+        # @type Limit: Integer
+        # @param Sort: 按请求量排序， asc（升序）或者 desc（降序），默认为 desc
+        # @type Sort: String
+
+        attr_accessor :LogsetId, :TopicIds, :StartTime, :EndTime, :Domain, :Url, :Channel, :Limit, :Sort
+        
+        def initialize(logsetid=nil, topicids=nil, starttime=nil, endtime=nil, domain=nil, url=nil, channel=nil, limit=nil, sort=nil)
+          @LogsetId = logsetid
+          @TopicIds = topicids
+          @StartTime = starttime
+          @EndTime = endtime
+          @Domain = domain
+          @Url = url
+          @Channel = channel
+          @Limit = limit
+          @Sort = sort
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @TopicIds = params['TopicIds']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Domain = params['Domain']
+          @Url = params['Url']
+          @Channel = params['Channel']
+          @Limit = params['Limit']
+          @Sort = params['Sort']
+        end
+      end
+
+      # ListTopClsLogData返回参数结构体
+      class ListTopClsLogDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据列表
+        # @type Data: Array
+        # @param TotalCount: 获取到Top总记录数
+        # @type TotalCount: Integer
+        # @param IpCount: 获取到的不重复IP条数
+        # @type IpCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :IpCount, :RequestId
+        
+        def initialize(data=nil, totalcount=nil, ipcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @IpCount = ipcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              clslogipdata_tmp = ClsLogIpData.new
+              clslogipdata_tmp.deserialize(i)
+              @Data << clslogipdata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @IpCount = params['IpCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListTopDDoSData请求参数结构体
       class ListTopDDoSDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询Top数据的开始时间，格式为：2020-01-01 00:00:00
@@ -7000,33 +7584,40 @@ module TencentCloud
         # @type EndTime: String
         # @param TopCount: 查询Top的数量，不填默认值为10
         # @type TopCount: Integer
+        # @param Metric: AttackIP表示查询攻击ip的top排行，AttackType表示攻击类型的top排行，为空默认为AttackType
+        # @type Metric: String
 
-        attr_accessor :StartTime, :EndTime, :TopCount
+        attr_accessor :StartTime, :EndTime, :TopCount, :Metric
         
-        def initialize(starttime=nil, endtime=nil, topcount=nil)
+        def initialize(starttime=nil, endtime=nil, topcount=nil, metric=nil)
           @StartTime = starttime
           @EndTime = endtime
           @TopCount = topcount
+          @Metric = metric
         end
 
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @TopCount = params['TopCount']
+          @Metric = params['Metric']
         end
       end
 
       # ListTopDDoSData返回参数结构体
       class ListTopDDoSDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: DDoS Top数据
+        # @param Data: DDoS 攻击类型的top数据，当Metric=AttackType的时候返回攻击类型的统计数据，IPData为空
         # @type Data: Array
+        # @param IPData: ddos攻击ip的top数据，Metric=AttackIP的时候返回IPData，Data为空
+        # @type IPData: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :IPData, :RequestId
         
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, ipdata=nil, requestid=nil)
           @Data = data
+          @IPData = ipdata
           @RequestId = requestid
         end
 
@@ -7037,6 +7628,14 @@ module TencentCloud
               ddostopdata_tmp = DDoSTopData.new
               ddostopdata_tmp.deserialize(i)
               @Data << ddostopdata_tmp
+            end
+          end
+          unless params['IPData'].nil?
+            @IPData = []
+            params['IPData'].each do |i|
+              ddosattackiptopdata_tmp = DDoSAttackIPTopData.new
+              ddosattackiptopdata_tmp.deserialize(i)
+              @IPData << ddosattackiptopdata_tmp
             end
           end
           @RequestId = params['RequestId']

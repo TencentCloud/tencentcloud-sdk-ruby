@@ -1112,10 +1112,12 @@ module TencentCloud
         # @type DeviceType: String
         # @param InstanceNodes: 新克隆实例节点数。如果需要克隆出三节点实例， 请将该值设置为3 或指定 BackupZone 参数。如果需要克隆出两节点实例，请将该值设置为2。默认克隆出两节点实例。
         # @type InstanceNodes: Integer
+        # @param DeployGroupId: 置放群组 ID。
+        # @type DeployGroupId: String
 
-        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes
+        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId
         
-        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil)
+        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil)
           @InstanceId = instanceid
           @SpecifiedRollbackTime = specifiedrollbacktime
           @SpecifiedBackupId = specifiedbackupid
@@ -1133,6 +1135,7 @@ module TencentCloud
           @BackupZone = backupzone
           @DeviceType = devicetype
           @InstanceNodes = instancenodes
+          @DeployGroupId = deploygroupid
         end
 
         def deserialize(params)
@@ -1160,6 +1163,7 @@ module TencentCloud
           @BackupZone = params['BackupZone']
           @DeviceType = params['DeviceType']
           @InstanceNodes = params['InstanceNodes']
+          @DeployGroupId = params['DeployGroupId']
         end
       end
 

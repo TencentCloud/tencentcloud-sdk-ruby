@@ -327,6 +327,232 @@ module TencentCloud
         end
       end
 
+      # 心电图详情
+      class EcgDescription < TencentCloud::Common::AbstractModel
+        # @param HeartRate: 心率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeartRate: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param AuricularRate: 心房率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuricularRate: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param VentricularRate: 心室率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VentricularRate: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param Rhythm: 节律
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rhythm: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param PDuration: P波时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PDuration: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param QrsDuration: QRS时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QrsDuration: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param QrsAxis: QRS电轴
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QrsAxis: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param PRInterval: P-R间期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PRInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param PPInterval: P-P间期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PPInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param RRInterval: R-R间期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RRInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param PJInterval: P-J间期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PJInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param QTInterval: Q-T间期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QTInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param QTCInterval: qt/qtc间期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QTCInterval: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param Rv5SV1Amplitude: RV5/SV1振幅
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rv5SV1Amplitude: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param Rv5AddSV1Amplitude: RV5+SV1振幅
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rv5AddSV1Amplitude: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param PRTAxis: PRT电轴
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PRTAxis: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param Rv5Amplitude: RV5振幅
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rv5Amplitude: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param SV1Amplitude: SV1振幅
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SV1Amplitude: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param RV6SV2: RV6/SV2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RV6SV2: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+        # @param PQRSTAxis: P/QRS/T电轴
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PQRSTAxis: :class:`Tencentcloud::Mrs.v20200910.models.EcgItem`
+
+        attr_accessor :HeartRate, :AuricularRate, :VentricularRate, :Rhythm, :PDuration, :QrsDuration, :QrsAxis, :PRInterval, :PPInterval, :RRInterval, :PJInterval, :QTInterval, :QTCInterval, :Rv5SV1Amplitude, :Rv5AddSV1Amplitude, :PRTAxis, :Rv5Amplitude, :SV1Amplitude, :RV6SV2, :PQRSTAxis
+        
+        def initialize(heartrate=nil, auricularrate=nil, ventricularrate=nil, rhythm=nil, pduration=nil, qrsduration=nil, qrsaxis=nil, printerval=nil, ppinterval=nil, rrinterval=nil, pjinterval=nil, qtinterval=nil, qtcinterval=nil, rv5sv1amplitude=nil, rv5addsv1amplitude=nil, prtaxis=nil, rv5amplitude=nil, sv1amplitude=nil, rv6sv2=nil, pqrstaxis=nil)
+          @HeartRate = heartrate
+          @AuricularRate = auricularrate
+          @VentricularRate = ventricularrate
+          @Rhythm = rhythm
+          @PDuration = pduration
+          @QrsDuration = qrsduration
+          @QrsAxis = qrsaxis
+          @PRInterval = printerval
+          @PPInterval = ppinterval
+          @RRInterval = rrinterval
+          @PJInterval = pjinterval
+          @QTInterval = qtinterval
+          @QTCInterval = qtcinterval
+          @Rv5SV1Amplitude = rv5sv1amplitude
+          @Rv5AddSV1Amplitude = rv5addsv1amplitude
+          @PRTAxis = prtaxis
+          @Rv5Amplitude = rv5amplitude
+          @SV1Amplitude = sv1amplitude
+          @RV6SV2 = rv6sv2
+          @PQRSTAxis = pqrstaxis
+        end
+
+        def deserialize(params)
+          unless params['HeartRate'].nil?
+            @HeartRate = EcgItem.new
+            @HeartRate.deserialize(params['HeartRate'])
+          end
+          unless params['AuricularRate'].nil?
+            @AuricularRate = EcgItem.new
+            @AuricularRate.deserialize(params['AuricularRate'])
+          end
+          unless params['VentricularRate'].nil?
+            @VentricularRate = EcgItem.new
+            @VentricularRate.deserialize(params['VentricularRate'])
+          end
+          unless params['Rhythm'].nil?
+            @Rhythm = EcgItem.new
+            @Rhythm.deserialize(params['Rhythm'])
+          end
+          unless params['PDuration'].nil?
+            @PDuration = EcgItem.new
+            @PDuration.deserialize(params['PDuration'])
+          end
+          unless params['QrsDuration'].nil?
+            @QrsDuration = EcgItem.new
+            @QrsDuration.deserialize(params['QrsDuration'])
+          end
+          unless params['QrsAxis'].nil?
+            @QrsAxis = EcgItem.new
+            @QrsAxis.deserialize(params['QrsAxis'])
+          end
+          unless params['PRInterval'].nil?
+            @PRInterval = EcgItem.new
+            @PRInterval.deserialize(params['PRInterval'])
+          end
+          unless params['PPInterval'].nil?
+            @PPInterval = EcgItem.new
+            @PPInterval.deserialize(params['PPInterval'])
+          end
+          unless params['RRInterval'].nil?
+            @RRInterval = EcgItem.new
+            @RRInterval.deserialize(params['RRInterval'])
+          end
+          unless params['PJInterval'].nil?
+            @PJInterval = EcgItem.new
+            @PJInterval.deserialize(params['PJInterval'])
+          end
+          unless params['QTInterval'].nil?
+            @QTInterval = EcgItem.new
+            @QTInterval.deserialize(params['QTInterval'])
+          end
+          unless params['QTCInterval'].nil?
+            @QTCInterval = EcgItem.new
+            @QTCInterval.deserialize(params['QTCInterval'])
+          end
+          unless params['Rv5SV1Amplitude'].nil?
+            @Rv5SV1Amplitude = EcgItem.new
+            @Rv5SV1Amplitude.deserialize(params['Rv5SV1Amplitude'])
+          end
+          unless params['Rv5AddSV1Amplitude'].nil?
+            @Rv5AddSV1Amplitude = EcgItem.new
+            @Rv5AddSV1Amplitude.deserialize(params['Rv5AddSV1Amplitude'])
+          end
+          unless params['PRTAxis'].nil?
+            @PRTAxis = EcgItem.new
+            @PRTAxis.deserialize(params['PRTAxis'])
+          end
+          unless params['Rv5Amplitude'].nil?
+            @Rv5Amplitude = EcgItem.new
+            @Rv5Amplitude.deserialize(params['Rv5Amplitude'])
+          end
+          unless params['SV1Amplitude'].nil?
+            @SV1Amplitude = EcgItem.new
+            @SV1Amplitude.deserialize(params['SV1Amplitude'])
+          end
+          unless params['RV6SV2'].nil?
+            @RV6SV2 = EcgItem.new
+            @RV6SV2.deserialize(params['RV6SV2'])
+          end
+          unless params['PQRSTAxis'].nil?
+            @PQRSTAxis = EcgItem.new
+            @PQRSTAxis.deserialize(params['PQRSTAxis'])
+          end
+        end
+      end
+
+      # 心电图诊断
+      class EcgDiagnosis < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # 心电图指标项
+      class EcgItem < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Unit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param Src: 原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Src: String
+
+        attr_accessor :Name, :Value, :Unit, :Src
+        
+        def initialize(name=nil, value=nil, unit=nil, src=nil)
+          @Name = name
+          @Value = value
+          @Unit = unit
+          @Src = src
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Unit = params['Unit']
+          @Src = params['Src']
+        end
+      end
+
       # 弹性质地
       class Elastic < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
@@ -361,6 +587,34 @@ module TencentCloud
           @Src = params['Src']
           @Value = params['Value']
           @Name = params['Name']
+        end
+      end
+
+      # 心电图
+      class Electrocardiogram < TencentCloud::Common::AbstractModel
+        # @param EcgDescription: 心电图详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EcgDescription: :class:`Tencentcloud::Mrs.v20200910.models.EcgDescription`
+        # @param EcgDiagnosis: 心电图诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EcgDiagnosis: :class:`Tencentcloud::Mrs.v20200910.models.EcgDiagnosis`
+
+        attr_accessor :EcgDescription, :EcgDiagnosis
+        
+        def initialize(ecgdescription=nil, ecgdiagnosis=nil)
+          @EcgDescription = ecgdescription
+          @EcgDiagnosis = ecgdiagnosis
+        end
+
+        def deserialize(params)
+          unless params['EcgDescription'].nil?
+            @EcgDescription = EcgDescription.new
+            @EcgDescription.deserialize(params['EcgDescription'])
+          end
+          unless params['EcgDiagnosis'].nil?
+            @EcgDiagnosis = EcgDiagnosis.new
+            @EcgDiagnosis.deserialize(params['EcgDiagnosis'])
+          end
         end
       end
 
@@ -712,7 +966,7 @@ module TencentCloud
         # @type ImageInfoList: Array
         # @param HandleParam: 图片处理参数
         # @type HandleParam: :class:`Tencentcloud::Mrs.v20200910.models.HandleParam`
-        # @param Type: 报告类型，目前支持11（检验报告），12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
+        # @param Type: 报告类型，目前支持11（检验报告），12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明），363（心电图）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
         # @type Type: Integer
         # @param IsUsedClassify: 是否使用分类引擎，当不确定报告类型时，可以使用收费的报告分类引擎服务。若该字段为 False，则 Type 字段不能为 0，否则无法输出结果。
         # 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。
@@ -1629,10 +1883,25 @@ module TencentCloud
         # @param MedicalInsuranceType: 医保类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicalInsuranceType: String
+        # @param AgeNorm: 标准化年龄
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgeNorm: String
+        # @param Nation: 民族
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nation: String
+        # @param MarriedCode: 婚姻代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MarriedCode: String
+        # @param ProfessionCode: 职业代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProfessionCode: String
+        # @param MedicalInsuranceTypeCode: 居民医保代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MedicalInsuranceTypeCode: String
 
-        attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType
+        attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType, :AgeNorm, :Nation, :MarriedCode, :ProfessionCode, :MedicalInsuranceTypeCode
         
-        def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil)
+        def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil, agenorm=nil, nation=nil, marriedcode=nil, professioncode=nil, medicalinsurancetypecode=nil)
           @Name = name
           @Sex = sex
           @Age = age
@@ -1649,6 +1918,11 @@ module TencentCloud
           @Nationality = nationality
           @BirthPlace = birthplace
           @MedicalInsuranceType = medicalinsurancetype
+          @AgeNorm = agenorm
+          @Nation = nation
+          @MarriedCode = marriedcode
+          @ProfessionCode = professioncode
+          @MedicalInsuranceTypeCode = medicalinsurancetypecode
         end
 
         def deserialize(params)
@@ -1668,6 +1942,11 @@ module TencentCloud
           @Nationality = params['Nationality']
           @BirthPlace = params['BirthPlace']
           @MedicalInsuranceType = params['MedicalInsuranceType']
+          @AgeNorm = params['AgeNorm']
+          @Nation = params['Nation']
+          @MarriedCode = params['MarriedCode']
+          @ProfessionCode = params['ProfessionCode']
+          @MedicalInsuranceTypeCode = params['MedicalInsuranceTypeCode']
         end
       end
 
@@ -2072,10 +2351,13 @@ module TencentCloud
         # @param Surgery: 手术记录
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Surgery: :class:`Tencentcloud::Mrs.v20200910.models.Surgery`
+        # @param Electrocardiogram: 心电图报告
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Electrocardiogram: :class:`Tencentcloud::Mrs.v20200910.models.Electrocardiogram`
 
-        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery
+        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery, :Electrocardiogram
         
-        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil)
+        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil, electrocardiogram=nil)
           @PatientInfo = patientinfo
           @ReportInfo = reportinfo
           @Check = check
@@ -2088,6 +2370,7 @@ module TencentCloud
           @MedicalRecordInfo = medicalrecordinfo
           @Hospitalization = hospitalization
           @Surgery = surgery
+          @Electrocardiogram = electrocardiogram
         end
 
         def deserialize(params)
@@ -2135,6 +2418,10 @@ module TencentCloud
           unless params['Surgery'].nil?
             @Surgery = Surgery.new
             @Surgery.deserialize(params['Surgery'])
+          end
+          unless params['Electrocardiogram'].nil?
+            @Electrocardiogram = Electrocardiogram.new
+            @Electrocardiogram.deserialize(params['Electrocardiogram'])
           end
         end
       end
@@ -2186,7 +2473,7 @@ module TencentCloud
       class TextToObjectRequest < TencentCloud::Common::AbstractModel
         # @param Text: 报告文本
         # @type Text: String
-        # @param Type: 报告类型，目前支持12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
+        # @param Type: 报告类型，目前支持12（检查报告），15（病理报告），28（出院报告），29（入院报告），210（门诊病历），212（手术记录），218（诊断证明），363（心电图）。如果不清楚报告类型，可以使用分类引擎，该字段传0（同时IsUsedClassify字段必须为True，否则无法输出结果）
         # @type Type: Integer
         # @param IsUsedClassify: 是否使用分类引擎，当不确定报告类型时，可以使用收费的报告分类引擎服务。若该字段为False，则Type字段不能为0，否则无法输出结果。
         # 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。

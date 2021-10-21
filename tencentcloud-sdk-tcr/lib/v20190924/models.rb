@@ -525,14 +525,17 @@ module TencentCloud
         # false: 使用vpc域名
         # 默认为vpc域名
         # @type UsePublicDomain: Boolean
+        # @param RegionName: 解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
+        # @type RegionName: String
 
-        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain
+        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain, :RegionName
         
-        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil)
+        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil, regionname=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
           @EniLBIp = enilbip
           @UsePublicDomain = usepublicdomain
+          @RegionName = regionname
         end
 
         def deserialize(params)
@@ -540,6 +543,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @EniLBIp = params['EniLBIp']
           @UsePublicDomain = params['UsePublicDomain']
+          @RegionName = params['RegionName']
         end
       end
 
@@ -1321,14 +1325,17 @@ module TencentCloud
         # @param UsePublicDomain: true：使用默认域名
         # false:  使用带有vpc的域名
         # @type UsePublicDomain: Boolean
+        # @param RegionName: 解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
+        # @type RegionName: String
 
-        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain
+        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain, :RegionName
         
-        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil)
+        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil, regionname=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
           @EniLBIp = enilbip
           @UsePublicDomain = usepublicdomain
+          @RegionName = regionname
         end
 
         def deserialize(params)
@@ -1336,6 +1343,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @EniLBIp = params['EniLBIp']
           @UsePublicDomain = params['UsePublicDomain']
+          @RegionName = params['RegionName']
         end
       end
 
@@ -5941,14 +5949,17 @@ module TencentCloud
         # @param UsePublicDomain: true：use instance name as subdomain
         # false: use instancename+"-vpc" as subdomain
         # @type UsePublicDomain: Boolean
+        # @param RegionName: 解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
+        # @type RegionName: String
 
-        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain
+        attr_accessor :InstanceId, :VpcId, :EniLBIp, :UsePublicDomain, :RegionName
         
-        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil)
+        def initialize(instanceid=nil, vpcid=nil, enilbip=nil, usepublicdomain=nil, regionname=nil)
           @InstanceId = instanceid
           @VpcId = vpcid
           @EniLBIp = enilbip
           @UsePublicDomain = usepublicdomain
+          @RegionName = regionname
         end
 
         def deserialize(params)
@@ -5956,6 +5967,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @EniLBIp = params['EniLBIp']
           @UsePublicDomain = params['UsePublicDomain']
+          @RegionName = params['RegionName']
         end
       end
 

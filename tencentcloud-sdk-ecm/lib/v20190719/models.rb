@@ -1714,12 +1714,25 @@ module TencentCloud
 
       # 描述了数据盘的信息
       class DataDisk < TencentCloud::Common::AbstractModel
+        # @param DiskSize: 数据盘大小。单位GB。
+        # @type DiskSize: Integer
+        # @param DiskType: 数据盘类型，取值范围：
+        # - LOCAL_BASIC：本地硬盘
+        # - CLOUD_PREMIUM：高性能云硬盘
 
+        # 默认取值： LOCAL_BASIC。
+        # @type DiskType: String
+
+        attr_accessor :DiskSize, :DiskType
         
-        def initialize()
+        def initialize(disksize=nil, disktype=nil)
+          @DiskSize = disksize
+          @DiskType = disktype
         end
 
         def deserialize(params)
+          @DiskSize = params['DiskSize']
+          @DiskType = params['DiskType']
         end
       end
 

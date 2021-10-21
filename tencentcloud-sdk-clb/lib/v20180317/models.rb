@@ -1219,10 +1219,12 @@ module TencentCloud
         # @type SlaveZoneId: String
         # @param EipAddressId: EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
         # @type EipAddressId: String
+        # @param LoadBalancerPassToTarget: Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
+        # @type LoadBalancerPassToTarget: Boolean
 
-        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId
+        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget
         
-        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil)
+        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil)
           @LoadBalancerType = loadbalancertype
           @Forward = forward
           @LoadBalancerName = loadbalancername
@@ -1246,6 +1248,7 @@ module TencentCloud
           @ClusterTag = clustertag
           @SlaveZoneId = slavezoneid
           @EipAddressId = eipaddressid
+          @LoadBalancerPassToTarget = loadbalancerpasstotarget
         end
 
         def deserialize(params)
@@ -1292,6 +1295,7 @@ module TencentCloud
           @ClusterTag = params['ClusterTag']
           @SlaveZoneId = params['SlaveZoneId']
           @EipAddressId = params['EipAddressId']
+          @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
         end
       end
 
@@ -3527,10 +3531,13 @@ module TencentCloud
         # @param HttpVersion: 自定义探测相关参数。健康检查协议CheckType的值取HTTP时，必传此字段，代表后端服务的HTTP版本：HTTP/1.0、HTTP/1.1；（仅适用于TCP监听器）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpVersion: String
+        # @param SourceIpType: 自定义探测相关参数。健康检查原IP类型：0（使用LB的VIP做为源IP），1（使用100.64网段IP做为源IP），默认值：0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceIpType: Integer
 
-        attr_accessor :HealthSwitch, :TimeOut, :IntervalTime, :HealthNum, :UnHealthNum, :HttpCode, :HttpCheckPath, :HttpCheckDomain, :HttpCheckMethod, :CheckPort, :ContextType, :SendContext, :RecvContext, :CheckType, :HttpVersion
+        attr_accessor :HealthSwitch, :TimeOut, :IntervalTime, :HealthNum, :UnHealthNum, :HttpCode, :HttpCheckPath, :HttpCheckDomain, :HttpCheckMethod, :CheckPort, :ContextType, :SendContext, :RecvContext, :CheckType, :HttpVersion, :SourceIpType
         
-        def initialize(healthswitch=nil, timeout=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, httpcode=nil, httpcheckpath=nil, httpcheckdomain=nil, httpcheckmethod=nil, checkport=nil, contexttype=nil, sendcontext=nil, recvcontext=nil, checktype=nil, httpversion=nil)
+        def initialize(healthswitch=nil, timeout=nil, intervaltime=nil, healthnum=nil, unhealthnum=nil, httpcode=nil, httpcheckpath=nil, httpcheckdomain=nil, httpcheckmethod=nil, checkport=nil, contexttype=nil, sendcontext=nil, recvcontext=nil, checktype=nil, httpversion=nil, sourceiptype=nil)
           @HealthSwitch = healthswitch
           @TimeOut = timeout
           @IntervalTime = intervaltime
@@ -3546,6 +3553,7 @@ module TencentCloud
           @RecvContext = recvcontext
           @CheckType = checktype
           @HttpVersion = httpversion
+          @SourceIpType = sourceiptype
         end
 
         def deserialize(params)
@@ -3564,6 +3572,7 @@ module TencentCloud
           @RecvContext = params['RecvContext']
           @CheckType = params['CheckType']
           @HttpVersion = params['HttpVersion']
+          @SourceIpType = params['SourceIpType']
         end
       end
 
@@ -4772,10 +4781,12 @@ module TencentCloud
         # @type KeepaliveEnable: Integer
         # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，此参数仅适用于TCP监听器。
         # @type DeregisterTargetRst: Boolean
+        # @param SessionType: 会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。
+        # @type SessionType: String
 
-        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :KeepaliveEnable, :DeregisterTargetRst
+        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :KeepaliveEnable, :DeregisterTargetRst, :SessionType
         
-        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, keepaliveenable=nil, deregistertargetrst=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -4786,6 +4797,7 @@ module TencentCloud
           @SniSwitch = sniswitch
           @KeepaliveEnable = keepaliveenable
           @DeregisterTargetRst = deregistertargetrst
+          @SessionType = sessiontype
         end
 
         def deserialize(params)
@@ -4805,6 +4817,7 @@ module TencentCloud
           @SniSwitch = params['SniSwitch']
           @KeepaliveEnable = params['KeepaliveEnable']
           @DeregisterTargetRst = params['DeregisterTargetRst']
+          @SessionType = params['SessionType']
         end
       end
 
