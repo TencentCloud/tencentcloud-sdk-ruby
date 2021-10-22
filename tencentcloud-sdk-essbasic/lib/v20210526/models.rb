@@ -364,6 +364,68 @@ module TencentCloud
         end
       end
 
+      # DescribeResourceUrlsByFlows请求参数结构体
+      class DescribeResourceUrlsByFlowsRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 操作者的信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param FlowIds: 查询资源所对应的流程Id
+        # @type FlowIds: Array
+
+        attr_accessor :Agent, :Operator, :FlowIds
+        
+        def initialize(agent=nil, operator=nil, flowids=nil)
+          @Agent = agent
+          @Operator = operator
+          @FlowIds = flowids
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowIds = params['FlowIds']
+        end
+      end
+
+      # DescribeResourceUrlsByFlows返回参数结构体
+      class DescribeResourceUrlsByFlowsResponse < TencentCloud::Common::AbstractModel
+        # @param FlowResourceUrlInfos: 流程资源对应链接信息
+        # @type FlowResourceUrlInfos: Array
+        # @param ErrorMessages: 创建消息，对应多个合同ID，
+        # 成功为“”,创建失败则对应失败消息
+        # @type ErrorMessages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowResourceUrlInfos, :ErrorMessages, :RequestId
+        
+        def initialize(flowresourceurlinfos=nil, errormessages=nil, requestid=nil)
+          @FlowResourceUrlInfos = flowresourceurlinfos
+          @ErrorMessages = errormessages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FlowResourceUrlInfos'].nil?
+            @FlowResourceUrlInfos = []
+            params['FlowResourceUrlInfos'].each do |i|
+              flowresourceurlinfo_tmp = FlowResourceUrlInfo.new
+              flowresourceurlinfo_tmp.deserialize(i)
+              @FlowResourceUrlInfos << flowresourceurlinfo_tmp
+            end
+          end
+          @ErrorMessages = params['ErrorMessages']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTemplates请求参数结构体
       class DescribeTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 渠道应用相关信息
@@ -612,6 +674,35 @@ module TencentCloud
         end
       end
 
+      # 流程对应资源链接信息
+      class FlowResourceUrlInfo < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程对应Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: String
+        # @param ResourceUrlInfos: 流程对应资源链接信息数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceUrlInfos: Array
+
+        attr_accessor :FlowId, :ResourceUrlInfos
+        
+        def initialize(flowid=nil, resourceurlinfos=nil)
+          @FlowId = flowid
+          @ResourceUrlInfos = resourceurlinfos
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['ResourceUrlInfos'].nil?
+            @ResourceUrlInfos = []
+            params['ResourceUrlInfos'].each do |i|
+              resourceurlinfo_tmp = ResourceUrlInfo.new
+              resourceurlinfo_tmp.deserialize(i)
+              @ResourceUrlInfos << resourceurlinfo_tmp
+            end
+          end
+        end
+      end
+
       # 此结构 (FormField) 用于描述内容控件填充结构。
       class FormField < TencentCloud::Common::AbstractModel
         # @param ComponentValue: 表单域或控件的Value
@@ -776,6 +867,33 @@ module TencentCloud
           @RequireSign = params['RequireSign']
           @SignType = params['SignType']
           @RoutingOrder = params['RoutingOrder']
+        end
+      end
+
+      # 资源链接信息
+      class ResourceUrlInfo < TencentCloud::Common::AbstractModel
+        # @param Url: 资源链接地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param Name: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Url, :Name, :Type
+        
+        def initialize(url=nil, name=nil, type=nil)
+          @Url = url
+          @Name = name
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Name = params['Name']
+          @Type = params['Type']
         end
       end
 
