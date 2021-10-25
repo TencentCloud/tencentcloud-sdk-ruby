@@ -1229,10 +1229,14 @@ module TencentCloud
         # @type DefaultBandWidthIn: Integer
         # @param DisableWanIp: 是否禁止分配外网IP
         # @type DisableWanIp: Boolean
+        # @param SystemDisk: 系统盘信息。
+        # @type SystemDisk: :class:`Tencentcloud::Ecm.v20190719.models.SystemDisk`
+        # @param DataDisks: 数据盘信息。
+        # @type DataDisks: Array
 
-        attr_accessor :ModuleName, :DefaultBandWidth, :DefaultImageId, :InstanceType, :DefaultSystemDiskSize, :DefaultDataDiskSize, :CloseIpDirect, :TagSpecification, :SecurityGroups, :DefaultBandWidthIn, :DisableWanIp
+        attr_accessor :ModuleName, :DefaultBandWidth, :DefaultImageId, :InstanceType, :DefaultSystemDiskSize, :DefaultDataDiskSize, :CloseIpDirect, :TagSpecification, :SecurityGroups, :DefaultBandWidthIn, :DisableWanIp, :SystemDisk, :DataDisks
         
-        def initialize(modulename=nil, defaultbandwidth=nil, defaultimageid=nil, instancetype=nil, defaultsystemdisksize=nil, defaultdatadisksize=nil, closeipdirect=nil, tagspecification=nil, securitygroups=nil, defaultbandwidthin=nil, disablewanip=nil)
+        def initialize(modulename=nil, defaultbandwidth=nil, defaultimageid=nil, instancetype=nil, defaultsystemdisksize=nil, defaultdatadisksize=nil, closeipdirect=nil, tagspecification=nil, securitygroups=nil, defaultbandwidthin=nil, disablewanip=nil, systemdisk=nil, datadisks=nil)
           @ModuleName = modulename
           @DefaultBandWidth = defaultbandwidth
           @DefaultImageId = defaultimageid
@@ -1244,6 +1248,8 @@ module TencentCloud
           @SecurityGroups = securitygroups
           @DefaultBandWidthIn = defaultbandwidthin
           @DisableWanIp = disablewanip
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
         end
 
         def deserialize(params)
@@ -1265,6 +1271,18 @@ module TencentCloud
           @SecurityGroups = params['SecurityGroups']
           @DefaultBandWidthIn = params['DefaultBandWidthIn']
           @DisableWanIp = params['DisableWanIp']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
         end
       end
 
@@ -3579,6 +3597,56 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePackingQuotaGroup请求参数结构体
+      class DescribePackingQuotaGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，name取值为：Zone-可用区， InstanceType-实例类型，DataDiskSize - 数据盘大小
+        # @type Filters: Array
+
+        attr_accessor :Filters
+        
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePackingQuotaGroup返回参数结构体
+      class DescribePackingQuotaGroupResponse < TencentCloud::Common::AbstractModel
+        # @param PackingQuotaSet: 装箱配额组
+        # @type PackingQuotaSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PackingQuotaSet, :RequestId
+        
+        def initialize(packingquotaset=nil, requestid=nil)
+          @PackingQuotaSet = packingquotaset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PackingQuotaSet'].nil?
+            @PackingQuotaSet = []
+            params['PackingQuotaSet'].each do |i|
+              packingquotagroup_tmp = PackingQuotaGroup.new
+              packingquotagroup_tmp.deserialize(i)
+              @PackingQuotaSet << packingquotagroup_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6734,19 +6802,41 @@ module TencentCloud
         # @type InstanceType: String
         # @param DefaultDataDiskSize: 默认数据盘大小，单位：G。范围不得超过数据盘范围大小，详看DescribeConfig。
         # @type DefaultDataDiskSize: Integer
+        # @param DefaultSystemDiskSize: 默认系统盘大小，单位：G。范围不得超过数据盘范围大小，详看DescribeConfig。
+        # @type DefaultSystemDiskSize: Integer
+        # @param SystemDisk: 系统盘
+        # @type SystemDisk: :class:`Tencentcloud::Ecm.v20190719.models.SystemDisk`
+        # @param DataDisks: 数据盘
+        # @type DataDisks: Array
 
-        attr_accessor :ModuleId, :InstanceType, :DefaultDataDiskSize
+        attr_accessor :ModuleId, :InstanceType, :DefaultDataDiskSize, :DefaultSystemDiskSize, :SystemDisk, :DataDisks
         
-        def initialize(moduleid=nil, instancetype=nil, defaultdatadisksize=nil)
+        def initialize(moduleid=nil, instancetype=nil, defaultdatadisksize=nil, defaultsystemdisksize=nil, systemdisk=nil, datadisks=nil)
           @ModuleId = moduleid
           @InstanceType = instancetype
           @DefaultDataDiskSize = defaultdatadisksize
+          @DefaultSystemDiskSize = defaultsystemdisksize
+          @SystemDisk = systemdisk
+          @DataDisks = datadisks
         end
 
         def deserialize(params)
           @ModuleId = params['ModuleId']
           @InstanceType = params['InstanceType']
           @DefaultDataDiskSize = params['DefaultDataDiskSize']
+          @DefaultSystemDiskSize = params['DefaultSystemDiskSize']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
         end
       end
 
@@ -7818,21 +7908,21 @@ module TencentCloud
 
       # 节点信息
       class Node < TencentCloud::Common::AbstractModel
-        # @param ZoneInfo: zone信息
+        # @param ZoneInfo: zone信息。
         # @type ZoneInfo: :class:`Tencentcloud::Ecm.v20190719.models.ZoneInfo`
-        # @param Country: 国家信息
+        # @param Country: 国家信息。
         # @type Country: :class:`Tencentcloud::Ecm.v20190719.models.Country`
-        # @param Area: 区域信息
+        # @param Area: 区域信息。
         # @type Area: :class:`Tencentcloud::Ecm.v20190719.models.Area`
-        # @param Province: 省份信息
+        # @param Province: 省份信息。
         # @type Province: :class:`Tencentcloud::Ecm.v20190719.models.Province`
-        # @param City: 城市信息
+        # @param City: 城市信息。
         # @type City: :class:`Tencentcloud::Ecm.v20190719.models.City`
-        # @param RegionInfo: Region信息
+        # @param RegionInfo: Region信息。
         # @type RegionInfo: :class:`Tencentcloud::Ecm.v20190719.models.RegionInfo`
-        # @param ISPSet: 运营商列表
+        # @param ISPSet: 运营商列表。
         # @type ISPSet: Array
-        # @param ISPNum: 运营商数量
+        # @param ISPNum: 运营商数量。
         # @type ISPNum: Integer
 
         attr_accessor :ZoneInfo, :Country, :Area, :Province, :City, :RegionInfo, :ISPSet, :ISPNum
@@ -7954,6 +8044,61 @@ module TencentCloud
           @OsName = params['OsName']
           @OsVersions = params['OsVersions']
           @Architecture = params['Architecture']
+        end
+      end
+
+      # 一组相互关联的装箱配额，以实例类型的优先级排序，优先级高的在前
+      class PackingQuotaGroup < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param ZoneId: 可用区id
+        # @type ZoneId: Integer
+        # @param ISPId: ISP id
+        # @type ISPId: String
+        # @param PackingQuotaInfos: 一组相互关联的装箱配额
+        # @type PackingQuotaInfos: Array
+
+        attr_accessor :Zone, :ZoneId, :ISPId, :PackingQuotaInfos
+        
+        def initialize(zone=nil, zoneid=nil, ispid=nil, packingquotainfos=nil)
+          @Zone = zone
+          @ZoneId = zoneid
+          @ISPId = ispid
+          @PackingQuotaInfos = packingquotainfos
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ZoneId = params['ZoneId']
+          @ISPId = params['ISPId']
+          unless params['PackingQuotaInfos'].nil?
+            @PackingQuotaInfos = []
+            params['PackingQuotaInfos'].each do |i|
+              packingquotainfo_tmp = PackingQuotaInfo.new
+              packingquotainfo_tmp.deserialize(i)
+              @PackingQuotaInfos << packingquotainfo_tmp
+            end
+          end
+        end
+      end
+
+      # 一组相关联的装箱配额信息
+      class PackingQuotaInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param PackingQuota: 装箱配额
+        # @type PackingQuota: Integer
+
+        attr_accessor :InstanceType, :PackingQuota
+        
+        def initialize(instancetype=nil, packingquota=nil)
+          @InstanceType = instancetype
+          @PackingQuota = packingquota
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @PackingQuota = params['PackingQuota']
         end
       end
 

@@ -1476,6 +1476,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用本接口获取某种机型在某些区域的装箱配额（当使用虚拟机型时，返回的是一组相互关联的装箱配额）。
+
+        # @param request: Request instance for DescribePackingQuotaGroup.
+        # @type request: :class:`Tencentcloud::ecm::V20190719::DescribePackingQuotaGroupRequest`
+        # @rtype: :class:`Tencentcloud::ecm::V20190719::DescribePackingQuotaGroupResponse`
+        def DescribePackingQuotaGroup(request)
+          body = send_request('DescribePackingQuotaGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePackingQuotaGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # CPU 内存 硬盘等基础信息峰值数据
 
         # @param request: Request instance for DescribePeakBaseOverview.

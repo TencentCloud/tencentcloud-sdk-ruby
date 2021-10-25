@@ -5701,10 +5701,17 @@ module TencentCloud
         # @param ResourceReady: 资源初始化结果(仅当ExtensionId不为空时有效): successful(初始化成功), failed(初始化失败), doing(初始化进行中), init(准备初始化)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceReady: String
+        # @param Flag: 安装标记。建议使用方统一转大小写之后再判断。
+        # <li>QuickStart：快速启动来源</li>
+        # <li>Activity：活动来源</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Flag: String
+        # @param ReqBody: 下单时的参数
+        # @type ReqBody: String
 
-        attr_accessor :TranId, :PackageId, :TranType, :TranStatus, :UpdateTime, :CreateTime, :PayMode, :ExtensionId, :ResourceReady
+        attr_accessor :TranId, :PackageId, :TranType, :TranStatus, :UpdateTime, :CreateTime, :PayMode, :ExtensionId, :ResourceReady, :Flag, :ReqBody
         
-        def initialize(tranid=nil, packageid=nil, trantype=nil, transtatus=nil, updatetime=nil, createtime=nil, paymode=nil, extensionid=nil, resourceready=nil)
+        def initialize(tranid=nil, packageid=nil, trantype=nil, transtatus=nil, updatetime=nil, createtime=nil, paymode=nil, extensionid=nil, resourceready=nil, flag=nil, reqbody=nil)
           @TranId = tranid
           @PackageId = packageid
           @TranType = trantype
@@ -5714,6 +5721,8 @@ module TencentCloud
           @PayMode = paymode
           @ExtensionId = extensionid
           @ResourceReady = resourceready
+          @Flag = flag
+          @ReqBody = reqbody
         end
 
         def deserialize(params)
@@ -5726,6 +5735,8 @@ module TencentCloud
           @PayMode = params['PayMode']
           @ExtensionId = params['ExtensionId']
           @ResourceReady = params['ResourceReady']
+          @Flag = params['Flag']
+          @ReqBody = params['ReqBody']
         end
       end
 

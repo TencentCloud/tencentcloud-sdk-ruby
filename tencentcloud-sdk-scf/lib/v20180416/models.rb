@@ -3183,14 +3183,17 @@ module TencentCloud
         # @type VersionProvisionedConcurrencyNum: Integer
         # @param Namespace: 函数所属命名空间，默认为default
         # @type Namespace: String
+        # @param TriggerActions: 定时预置任务
+        # @type TriggerActions: Array
 
-        attr_accessor :FunctionName, :Qualifier, :VersionProvisionedConcurrencyNum, :Namespace
+        attr_accessor :FunctionName, :Qualifier, :VersionProvisionedConcurrencyNum, :Namespace, :TriggerActions
         
-        def initialize(functionname=nil, qualifier=nil, versionprovisionedconcurrencynum=nil, namespace=nil)
+        def initialize(functionname=nil, qualifier=nil, versionprovisionedconcurrencynum=nil, namespace=nil, triggeractions=nil)
           @FunctionName = functionname
           @Qualifier = qualifier
           @VersionProvisionedConcurrencyNum = versionprovisionedconcurrencynum
           @Namespace = namespace
+          @TriggerActions = triggeractions
         end
 
         def deserialize(params)
@@ -3198,6 +3201,14 @@ module TencentCloud
           @Qualifier = params['Qualifier']
           @VersionProvisionedConcurrencyNum = params['VersionProvisionedConcurrencyNum']
           @Namespace = params['Namespace']
+          unless params['TriggerActions'].nil?
+            @TriggerActions = []
+            params['TriggerActions'].each do |i|
+              triggeraction_tmp = TriggerAction.new
+              triggeraction_tmp.deserialize(i)
+              @TriggerActions << triggeraction_tmp
+            end
+          end
         end
       end
 
@@ -3564,6 +3575,33 @@ module TencentCloud
           @BindStatus = params['BindStatus']
           @TriggerAttribute = params['TriggerAttribute']
           @Qualifier = params['Qualifier']
+        end
+      end
+
+      # 预置定时任务动作
+      class TriggerAction < TencentCloud::Common::AbstractModel
+        # @param TriggerName: 定时预置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerName: String
+        # @param TriggerProvisionedConcurrencyNum: 定时预置并发数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerProvisionedConcurrencyNum: Integer
+        # @param TriggerCronConfig: 设置定时触发器的时间配置，cron表达式。Cron 表达式有七个必需字段，按空格分隔。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerCronConfig: String
+
+        attr_accessor :TriggerName, :TriggerProvisionedConcurrencyNum, :TriggerCronConfig
+        
+        def initialize(triggername=nil, triggerprovisionedconcurrencynum=nil, triggercronconfig=nil)
+          @TriggerName = triggername
+          @TriggerProvisionedConcurrencyNum = triggerprovisionedconcurrencynum
+          @TriggerCronConfig = triggercronconfig
+        end
+
+        def deserialize(params)
+          @TriggerName = params['TriggerName']
+          @TriggerProvisionedConcurrencyNum = params['TriggerProvisionedConcurrencyNum']
+          @TriggerCronConfig = params['TriggerCronConfig']
         end
       end
 
@@ -4121,15 +4159,19 @@ module TencentCloud
         # @type StatusReason: String
         # @param Qualifier: 函数版本号
         # @type Qualifier: String
+        # @param TriggerActions: 预置并发定时任务。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerActions: Array
 
-        attr_accessor :AllocatedProvisionedConcurrencyNum, :AvailableProvisionedConcurrencyNum, :Status, :StatusReason, :Qualifier
+        attr_accessor :AllocatedProvisionedConcurrencyNum, :AvailableProvisionedConcurrencyNum, :Status, :StatusReason, :Qualifier, :TriggerActions
         
-        def initialize(allocatedprovisionedconcurrencynum=nil, availableprovisionedconcurrencynum=nil, status=nil, statusreason=nil, qualifier=nil)
+        def initialize(allocatedprovisionedconcurrencynum=nil, availableprovisionedconcurrencynum=nil, status=nil, statusreason=nil, qualifier=nil, triggeractions=nil)
           @AllocatedProvisionedConcurrencyNum = allocatedprovisionedconcurrencynum
           @AvailableProvisionedConcurrencyNum = availableprovisionedconcurrencynum
           @Status = status
           @StatusReason = statusreason
           @Qualifier = qualifier
+          @TriggerActions = triggeractions
         end
 
         def deserialize(params)
@@ -4138,6 +4180,14 @@ module TencentCloud
           @Status = params['Status']
           @StatusReason = params['StatusReason']
           @Qualifier = params['Qualifier']
+          unless params['TriggerActions'].nil?
+            @TriggerActions = []
+            params['TriggerActions'].each do |i|
+              triggeraction_tmp = TriggerAction.new
+              triggeraction_tmp.deserialize(i)
+              @TriggerActions << triggeraction_tmp
+            end
+          end
         end
       end
 
