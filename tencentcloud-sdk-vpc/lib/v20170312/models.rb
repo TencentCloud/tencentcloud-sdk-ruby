@@ -343,6 +343,27 @@ module TencentCloud
         end
       end
 
+      # IP地址模板信息
+      class AddressInfo < TencentCloud::Common::AbstractModel
+        # @param Address: ip地址
+        # @type Address: String
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Address, :Description
+        
+        def initialize(address=nil, description=nil)
+          @Address = address
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Address = params['Address']
+          @Description = params['Description']
+        end
+      end
+
       # IP地址模板
       class AddressTemplate < TencentCloud::Common::AbstractModel
         # @param AddressTemplateName: IP地址模板名称。
@@ -353,14 +374,17 @@ module TencentCloud
         # @type AddressSet: Array
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String
+        # @param AddressExtraSet: 带备注的IP地址信息。
+        # @type AddressExtraSet: Array
 
-        attr_accessor :AddressTemplateName, :AddressTemplateId, :AddressSet, :CreatedTime
+        attr_accessor :AddressTemplateName, :AddressTemplateId, :AddressSet, :CreatedTime, :AddressExtraSet
         
-        def initialize(addresstemplatename=nil, addresstemplateid=nil, addressset=nil, createdtime=nil)
+        def initialize(addresstemplatename=nil, addresstemplateid=nil, addressset=nil, createdtime=nil, addressextraset=nil)
           @AddressTemplateName = addresstemplatename
           @AddressTemplateId = addresstemplateid
           @AddressSet = addressset
           @CreatedTime = createdtime
+          @AddressExtraSet = addressextraset
         end
 
         def deserialize(params)
@@ -368,6 +392,14 @@ module TencentCloud
           @AddressTemplateId = params['AddressTemplateId']
           @AddressSet = params['AddressSet']
           @CreatedTime = params['CreatedTime']
+          unless params['AddressExtraSet'].nil?
+            @AddressExtraSet = []
+            params['AddressExtraSet'].each do |i|
+              addressinfo_tmp = AddressInfo.new
+              addressinfo_tmp.deserialize(i)
+              @AddressExtraSet << addressinfo_tmp
+            end
+          end
         end
       end
 
@@ -2043,19 +2075,30 @@ module TencentCloud
       class CreateAddressTemplateRequest < TencentCloud::Common::AbstractModel
         # @param AddressTemplateName: IP地址模版名称
         # @type AddressTemplateName: String
-        # @param Addresses: 地址信息，支持 IP、CIDR、IP 范围。
+        # @param Addresses: 地址信息，支持 IP、CIDR、IP 范围。Addresses与AddressesExtra必填其一。
         # @type Addresses: Array
+        # @param AddressesExtra: 地址信息，支持携带备注，支持 IP、CIDR、IP 范围。Addresses与AddressesExtra必填其一。
+        # @type AddressesExtra: Array
 
-        attr_accessor :AddressTemplateName, :Addresses
+        attr_accessor :AddressTemplateName, :Addresses, :AddressesExtra
         
-        def initialize(addresstemplatename=nil, addresses=nil)
+        def initialize(addresstemplatename=nil, addresses=nil, addressesextra=nil)
           @AddressTemplateName = addresstemplatename
           @Addresses = addresses
+          @AddressesExtra = addressesextra
         end
 
         def deserialize(params)
           @AddressTemplateName = params['AddressTemplateName']
           @Addresses = params['Addresses']
+          unless params['AddressesExtra'].nil?
+            @AddressesExtra = []
+            params['AddressesExtra'].each do |i|
+              addressinfo_tmp = AddressInfo.new
+              addressinfo_tmp.deserialize(i)
+              @AddressesExtra << addressinfo_tmp
+            end
+          end
         end
       end
 
@@ -3560,19 +3603,30 @@ module TencentCloud
       class CreateServiceTemplateRequest < TencentCloud::Common::AbstractModel
         # @param ServiceTemplateName: 协议端口模板名称
         # @type ServiceTemplateName: String
-        # @param Services: 支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。
+        # @param Services: 支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。Services与ServicesExtra必填其一。
         # @type Services: Array
+        # @param ServicesExtra: 支持添加备注，单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。Services与ServicesExtra必填其一。
+        # @type ServicesExtra: Array
 
-        attr_accessor :ServiceTemplateName, :Services
+        attr_accessor :ServiceTemplateName, :Services, :ServicesExtra
         
-        def initialize(servicetemplatename=nil, services=nil)
+        def initialize(servicetemplatename=nil, services=nil, servicesextra=nil)
           @ServiceTemplateName = servicetemplatename
           @Services = services
+          @ServicesExtra = servicesextra
         end
 
         def deserialize(params)
           @ServiceTemplateName = params['ServiceTemplateName']
           @Services = params['Services']
+          unless params['ServicesExtra'].nil?
+            @ServicesExtra = []
+            params['ServicesExtra'].each do |i|
+              servicesinfo_tmp = ServicesInfo.new
+              servicesinfo_tmp.deserialize(i)
+              @ServicesExtra << servicesinfo_tmp
+            end
+          end
         end
       end
 
@@ -5743,8 +5797,9 @@ module TencentCloud
       # DescribeAddressTemplates请求参数结构体
       class DescribeAddressTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
-        # <li>address-template-name - String - （过滤条件）IP地址模板名称。</li>
-        # <li>address-template-id - String - （过滤条件）IP地址模板实例ID，例如：ipm-mdunqeb6。</li>
+        # <li>address-template-name - IP地址模板名称。</li>
+        # <li>address-template-id - IP地址模板实例ID，例如：ipm-mdunqeb6。</li>
+        # <li>address-ip - IP地址。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: String
@@ -8719,8 +8774,9 @@ module TencentCloud
       # DescribeServiceTemplates请求参数结构体
       class DescribeServiceTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
-        # <li>service-template-name - String - （过滤条件）协议端口模板名称。</li>
-        # <li>service-template-id - String - （过滤条件）协议端口模板实例ID，例如：ppm-e6dy460g。</li>
+        # <li>service-template-name - 协议端口模板名称。</li>
+        # <li>service-template-id - 协议端口模板实例ID，例如：ppm-e6dy460g。</li>
+        # <li>service-port- 协议端口。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: String
@@ -12034,19 +12090,30 @@ module TencentCloud
         # @type AddressTemplateName: String
         # @param Addresses: 地址信息，支持 IP、CIDR、IP 范围。
         # @type Addresses: Array
+        # @param AddressesExtra: 支持添加备注的地址信息，支持 IP、CIDR、IP 范围。
+        # @type AddressesExtra: Array
 
-        attr_accessor :AddressTemplateId, :AddressTemplateName, :Addresses
+        attr_accessor :AddressTemplateId, :AddressTemplateName, :Addresses, :AddressesExtra
         
-        def initialize(addresstemplateid=nil, addresstemplatename=nil, addresses=nil)
+        def initialize(addresstemplateid=nil, addresstemplatename=nil, addresses=nil, addressesextra=nil)
           @AddressTemplateId = addresstemplateid
           @AddressTemplateName = addresstemplatename
           @Addresses = addresses
+          @AddressesExtra = addressesextra
         end
 
         def deserialize(params)
           @AddressTemplateId = params['AddressTemplateId']
           @AddressTemplateName = params['AddressTemplateName']
           @Addresses = params['Addresses']
+          unless params['AddressesExtra'].nil?
+            @AddressesExtra = []
+            params['AddressesExtra'].each do |i|
+              addressinfo_tmp = AddressInfo.new
+              addressinfo_tmp.deserialize(i)
+              @AddressesExtra << addressinfo_tmp
+            end
+          end
         end
       end
 
@@ -13339,19 +13406,30 @@ module TencentCloud
         # @type ServiceTemplateName: String
         # @param Services: 支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。
         # @type Services: Array
+        # @param ServicesExtra: 支持添加备注的协议端口信息，支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。
+        # @type ServicesExtra: Array
 
-        attr_accessor :ServiceTemplateId, :ServiceTemplateName, :Services
+        attr_accessor :ServiceTemplateId, :ServiceTemplateName, :Services, :ServicesExtra
         
-        def initialize(servicetemplateid=nil, servicetemplatename=nil, services=nil)
+        def initialize(servicetemplateid=nil, servicetemplatename=nil, services=nil, servicesextra=nil)
           @ServiceTemplateId = servicetemplateid
           @ServiceTemplateName = servicetemplatename
           @Services = services
+          @ServicesExtra = servicesextra
         end
 
         def deserialize(params)
           @ServiceTemplateId = params['ServiceTemplateId']
           @ServiceTemplateName = params['ServiceTemplateName']
           @Services = params['Services']
+          unless params['ServicesExtra'].nil?
+            @ServicesExtra = []
+            params['ServicesExtra'].each do |i|
+              servicesinfo_tmp = ServicesInfo.new
+              servicesinfo_tmp.deserialize(i)
+              @ServicesExtra << servicesinfo_tmp
+            end
+          end
         end
       end
 
@@ -16118,14 +16196,17 @@ module TencentCloud
         # @type ServiceSet: Array
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String
+        # @param ServiceExtraSet: 带备注的协议端口信息。
+        # @type ServiceExtraSet: Array
 
-        attr_accessor :ServiceTemplateId, :ServiceTemplateName, :ServiceSet, :CreatedTime
+        attr_accessor :ServiceTemplateId, :ServiceTemplateName, :ServiceSet, :CreatedTime, :ServiceExtraSet
         
-        def initialize(servicetemplateid=nil, servicetemplatename=nil, serviceset=nil, createdtime=nil)
+        def initialize(servicetemplateid=nil, servicetemplatename=nil, serviceset=nil, createdtime=nil, serviceextraset=nil)
           @ServiceTemplateId = servicetemplateid
           @ServiceTemplateName = servicetemplatename
           @ServiceSet = serviceset
           @CreatedTime = createdtime
+          @ServiceExtraSet = serviceextraset
         end
 
         def deserialize(params)
@@ -16133,6 +16214,14 @@ module TencentCloud
           @ServiceTemplateName = params['ServiceTemplateName']
           @ServiceSet = params['ServiceSet']
           @CreatedTime = params['CreatedTime']
+          unless params['ServiceExtraSet'].nil?
+            @ServiceExtraSet = []
+            params['ServiceExtraSet'].each do |i|
+              servicesinfo_tmp = ServicesInfo.new
+              servicesinfo_tmp.deserialize(i)
+              @ServiceExtraSet << servicesinfo_tmp
+            end
+          end
         end
       end
 
@@ -16192,6 +16281,27 @@ module TencentCloud
         def deserialize(params)
           @ServiceId = params['ServiceId']
           @ServiceGroupId = params['ServiceGroupId']
+        end
+      end
+
+      # 协议端口模板信息
+      class ServicesInfo < TencentCloud::Common::AbstractModel
+        # @param Service: 协议端口
+        # @type Service: String
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Service, :Description
+        
+        def initialize(service=nil, description=nil)
+          @Service = service
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+          @Description = params['Description']
         end
       end
 

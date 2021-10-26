@@ -622,6 +622,33 @@ module TencentCloud
         end
       end
 
+      # KV参数的优先级
+      class CloudBaseRunKVPriority < TencentCloud::Common::AbstractModel
+        # @param Key: 参数的Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 参数的Value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Priority: 优先级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+
+        attr_accessor :Key, :Value, :Priority
+        
+        def initialize(key=nil, value=nil, priority=nil)
+          @Key = key
+          @Value = value
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Priority = params['Priority']
+        end
+      end
+
       # nfs挂载资源
       class CloudBaseRunNfsVolumeSource < TencentCloud::Common::AbstractModel
         # @param Server: NFS挂载Server
@@ -651,6 +678,111 @@ module TencentCloud
           @ReadOnly = params['ReadOnly']
           @SecretName = params['SecretName']
           @EnableEmptyDirVolume = params['EnableEmptyDirVolume']
+        end
+      end
+
+      # 版本的列表
+      class CloudBaseRunServerVersionItem < TencentCloud::Common::AbstractModel
+        # @param VersionName: 版本名称
+        # @type VersionName: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param FlowRatio: 流量占比
+        # @type FlowRatio: Integer
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param UpdatedTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
+        # @param BuildId: 构建ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildId: Integer
+        # @param UploadType: 构建方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UploadType: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param UrlParam: url中的参数路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UrlParam: :class:`Tencentcloud::Tcb.v20180608.models.ObjectKV`
+        # @param Priority: 优先级（数值越小，优先级越高）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param IsDefaultPriority: 是否是默认兜底版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefaultPriority: Boolean
+        # @param FlowParams: KV Params
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowParams: Array
+        # @param MinReplicas: 最小副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinReplicas: Integer
+        # @param MaxReplicas: 最大副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxReplicas: Integer
+        # @param RunId: 操作记录id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunId: String
+        # @param Percent: 进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Integer
+        # @param CurrentReplicas: 当前副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentReplicas: Integer
+
+        attr_accessor :VersionName, :Status, :FlowRatio, :CreatedTime, :UpdatedTime, :BuildId, :UploadType, :Remark, :UrlParam, :Priority, :IsDefaultPriority, :FlowParams, :MinReplicas, :MaxReplicas, :RunId, :Percent, :CurrentReplicas
+        
+        def initialize(versionname=nil, status=nil, flowratio=nil, createdtime=nil, updatedtime=nil, buildid=nil, uploadtype=nil, remark=nil, urlparam=nil, priority=nil, isdefaultpriority=nil, flowparams=nil, minreplicas=nil, maxreplicas=nil, runid=nil, percent=nil, currentreplicas=nil)
+          @VersionName = versionname
+          @Status = status
+          @FlowRatio = flowratio
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+          @BuildId = buildid
+          @UploadType = uploadtype
+          @Remark = remark
+          @UrlParam = urlparam
+          @Priority = priority
+          @IsDefaultPriority = isdefaultpriority
+          @FlowParams = flowparams
+          @MinReplicas = minreplicas
+          @MaxReplicas = maxreplicas
+          @RunId = runid
+          @Percent = percent
+          @CurrentReplicas = currentreplicas
+        end
+
+        def deserialize(params)
+          @VersionName = params['VersionName']
+          @Status = params['Status']
+          @FlowRatio = params['FlowRatio']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+          @BuildId = params['BuildId']
+          @UploadType = params['UploadType']
+          @Remark = params['Remark']
+          unless params['UrlParam'].nil?
+            @UrlParam = ObjectKV.new
+            @UrlParam.deserialize(params['UrlParam'])
+          end
+          @Priority = params['Priority']
+          @IsDefaultPriority = params['IsDefaultPriority']
+          unless params['FlowParams'].nil?
+            @FlowParams = []
+            params['FlowParams'].each do |i|
+              cloudbaserunkvpriority_tmp = CloudBaseRunKVPriority.new
+              cloudbaserunkvpriority_tmp.deserialize(i)
+              @FlowParams << cloudbaserunkvpriority_tmp
+            end
+          end
+          @MinReplicas = params['MinReplicas']
+          @MaxReplicas = params['MaxReplicas']
+          @RunId = params['RunId']
+          @Percent = params['Percent']
+          @CurrentReplicas = params['CurrentReplicas']
         end
       end
 
@@ -2744,6 +2876,62 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudBaseRunPodList请求参数结构体
+      class DescribeCloudBaseRunPodListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param VersionName: 版本名
+        # @type VersionName: String
+        # @param Limit: 分页限制
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Status: 容器状态
+        # @type Status: String
+        # @param PodName: 容器名
+        # @type PodName: String
+
+        attr_accessor :EnvId, :ServerName, :VersionName, :Limit, :Offset, :Status, :PodName
+        
+        def initialize(envid=nil, servername=nil, versionname=nil, limit=nil, offset=nil, status=nil, podname=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @VersionName = versionname
+          @Limit = limit
+          @Offset = offset
+          @Status = status
+          @PodName = podname
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @VersionName = params['VersionName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Status = params['Status']
+          @PodName = params['PodName']
+        end
+      end
+
+      # DescribeCloudBaseRunPodList返回参数结构体
+      class DescribeCloudBaseRunPodListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudBaseRunResourceForExtend请求参数结构体
       class DescribeCloudBaseRunResourceForExtendRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -2868,6 +3056,96 @@ module TencentCloud
               @SubnetIds << cloudbaserunvpcsubnet_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunServer请求参数结构体
+      class DescribeCloudBaseRunServerRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerName: 服务名称
+        # @type ServerName: String
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 分页数量
+        # @type Limit: Integer
+        # @param VersionName: 版本名字（精确匹配）
+        # @type VersionName: String
+
+        attr_accessor :EnvId, :ServerName, :Offset, :Limit, :VersionName
+        
+        def initialize(envid=nil, servername=nil, offset=nil, limit=nil, versionname=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @Offset = offset
+          @Limit = limit
+          @VersionName = versionname
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @VersionName = params['VersionName']
+        end
+      end
+
+      # DescribeCloudBaseRunServer返回参数结构体
+      class DescribeCloudBaseRunServerResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param VersionItems: 版本列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionItems: Array
+        # @param ServerName: 服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerName: String
+        # @param IsPublic: 是否对于外网开放
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPublic: Boolean
+        # @param ImageRepo: 镜像仓库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageRepo: String
+        # @param TrafficType: 流量配置的类型（FLOW,URL_PARAMS)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficType: String
+        # @param SourceType: 服务创建类型，默认为空，一键部署为oneclick
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VersionItems, :ServerName, :IsPublic, :ImageRepo, :TrafficType, :SourceType, :RequestId
+        
+        def initialize(totalcount=nil, versionitems=nil, servername=nil, ispublic=nil, imagerepo=nil, traffictype=nil, sourcetype=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VersionItems = versionitems
+          @ServerName = servername
+          @IsPublic = ispublic
+          @ImageRepo = imagerepo
+          @TrafficType = traffictype
+          @SourceType = sourcetype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VersionItems'].nil?
+            @VersionItems = []
+            params['VersionItems'].each do |i|
+              cloudbaserunserverversionitem_tmp = CloudBaseRunServerVersionItem.new
+              cloudbaserunserverversionitem_tmp.deserialize(i)
+              @VersionItems << cloudbaserunserverversionitem_tmp
+            end
+          end
+          @ServerName = params['ServerName']
+          @IsPublic = params['IsPublic']
+          @ImageRepo = params['ImageRepo']
+          @TrafficType = params['TrafficType']
+          @SourceType = params['SourceType']
           @RequestId = params['RequestId']
         end
       end

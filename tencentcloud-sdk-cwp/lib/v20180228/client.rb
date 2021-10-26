@@ -3557,6 +3557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 漏洞影响主机列表
+
+        # @param request: Request instance for DescribeVulEffectHostList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeVulEffectHostListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeVulEffectHostListResponse`
+        def DescribeVulEffectHostList(request)
+          body = send_request('DescribeVulEffectHostList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulEffectHostListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取待处理漏洞数+影响主机数
 
         # @param request: Request instance for DescribeVulHostCountScanTime.
@@ -3639,6 +3663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVulLevelCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞列表数据
+
+        # @param request: Request instance for DescribeVulList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeVulListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeVulListResponse`
+        def DescribeVulList(request)
+          body = send_request('DescribeVulList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVulListResponse.new
             model.deserialize(response['Response'])
             model
           else

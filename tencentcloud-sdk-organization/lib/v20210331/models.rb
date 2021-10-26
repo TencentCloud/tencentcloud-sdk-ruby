@@ -57,6 +57,62 @@ module TencentCloud
         end
       end
 
+      # CreateOrganizationMember请求参数结构体
+      class CreateOrganizationMemberRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param PolicyType: 关系策略
+        # @type PolicyType: String
+        # @param PermissionIds: 关系权限
+        # @type PermissionIds: Array
+        # @param NodeId: 需要调节的节点
+        # @type NodeId: Integer
+        # @param AccountName: 账号名
+        # @type AccountName: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param RecordId: 重试创建传记录ID
+        # @type RecordId: Integer
+
+        attr_accessor :Name, :PolicyType, :PermissionIds, :NodeId, :AccountName, :Remark, :RecordId
+        
+        def initialize(name=nil, policytype=nil, permissionids=nil, nodeid=nil, accountname=nil, remark=nil, recordid=nil)
+          @Name = name
+          @PolicyType = policytype
+          @PermissionIds = permissionids
+          @NodeId = nodeid
+          @AccountName = accountname
+          @Remark = remark
+          @RecordId = recordid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @PolicyType = params['PolicyType']
+          @PermissionIds = params['PermissionIds']
+          @NodeId = params['NodeId']
+          @AccountName = params['AccountName']
+          @Remark = params['Remark']
+          @RecordId = params['RecordId']
+        end
+      end
+
+      # CreateOrganizationMember返回参数结构体
+      class CreateOrganizationMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

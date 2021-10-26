@@ -11586,6 +11586,77 @@ module TencentCloud
         end
       end
 
+      # DescribeVulEffectHostList请求参数结构体
+      class DescribeVulEffectHostListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页limit 最大100
+        # @type Limit: Integer
+        # @param Offset: 分页Offset
+        # @type Offset: Integer
+        # @param VulId: 漏洞id
+        # @type VulId: Integer
+        # @param Filters: 过滤条件。
+        # <li>AliasName - String - 主机名筛选</li>
+        # <li>TagIds - String - 主机标签id串，多个用英文逗号分隔</li>
+        # <li>Status - String - 状态,0: 待处理 1:忽略  3:已修复  5:检测中  6:修复这中.</li>
+        # <li>Uuid - String数组 - Uuid串数组</li>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :VulId, :Filters
+        
+        def initialize(limit=nil, offset=nil, vulid=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @VulId = vulid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @VulId = params['VulId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVulEffectHostList返回参数结构体
+      class DescribeVulEffectHostListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 列表总数量
+        # @type TotalCount: Integer
+        # @param VulEffectHostList: 影响主机列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulEffectHostList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VulEffectHostList, :RequestId
+        
+        def initialize(totalcount=nil, vuleffecthostlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VulEffectHostList = vuleffecthostlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VulEffectHostList'].nil?
+            @VulEffectHostList = []
+            params['VulEffectHostList'].each do |i|
+              vuleffecthostlist_tmp = VulEffectHostList.new
+              vuleffecthostlist_tmp.deserialize(i)
+              @VulEffectHostList << vuleffecthostlist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVulHostCountScanTime请求参数结构体
       class DescribeVulHostCountScanTimeRequest < TencentCloud::Common::AbstractModel
 
@@ -11813,6 +11884,83 @@ module TencentCloud
               @VulLevelList << vullevelinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVulList请求参数结构体
+      class DescribeVulListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>IfEmergency - String - 是否必填：否 - 是否为应急漏洞，查询应急漏洞传:yes</li>
+        # <li>Status - String - 是否必填：是 - 漏洞状态筛选，0: 待处理 1:忽略  3:已修复  5:检测中，6：修复中 控制台仅处理0,1,3,5,6五种状态</li>
+        # <li>Level - String - 是否必填：否 - 漏洞等级筛选 1:低 2:中 3:高 4:提示</li>
+        # <li>VulName- String - 是否必填：否 - 漏洞名称搜索</li>
+        # <li>LastDay- int - 是否必填：否 - 查询近几日的数据，需要 -1 之后传入，例如近3日数据，传2</li>
+        # <li>OrderBy - String 是否必填：否 默认按照处理状态,威胁等级,检测时间排序 -排序字段，支持：level,lastTime的动态排序  hostCount 影响主机台数排序</li>
+        # <li>IsShowFollowVul -  String 是否必填：否   是否仅展示重点关注漏洞  0=展示全部 1=仅展示重点关注漏洞</li>
+        # <li>VulCategory-  String 是否必填：否   1: web应用漏洞 2:系统组件漏洞3:安全基线 4: Linux系统漏洞 5: windows补丁</li>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVulList返回参数结构体
+      class DescribeVulListResponse < TencentCloud::Common::AbstractModel
+        # @param VulInfoList: 漏洞列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulInfoList: Array
+        # @param TotalCount: 漏洞总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param FollowVulCount: 重点关注漏洞总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowVulCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VulInfoList, :TotalCount, :FollowVulCount, :RequestId
+        
+        def initialize(vulinfolist=nil, totalcount=nil, followvulcount=nil, requestid=nil)
+          @VulInfoList = vulinfolist
+          @TotalCount = totalcount
+          @FollowVulCount = followvulcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VulInfoList'].nil?
+            @VulInfoList = []
+            params['VulInfoList'].each do |i|
+              vulinfolist_tmp = VulInfoList.new
+              vulinfolist_tmp.deserialize(i)
+              @VulInfoList << vulinfolist_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @FollowVulCount = params['FollowVulCount']
           @RequestId = params['RequestId']
         end
       end
@@ -17104,6 +17252,68 @@ module TencentCloud
         end
       end
 
+      # 漏洞影响主机列表
+      class VulEffectHostList < TencentCloud::Common::AbstractModel
+        # @param EventId: 事件id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventId: Integer
+        # @param Status: 状态：0: 待处理 1:忽略  3:已修复  5:检测中 6:修复中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param LastTime: 最后检测时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastTime: String
+        # @param Level: 危害等级：1-低危；2-中危；3-高危；4-严重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: Integer
+        # @param Quuid: 主机Quuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Quuid: String
+        # @param Uuid: 主机Uuid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
+        # @param HostIp: 主机HostIp
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostIp: String
+        # @param AliasName: 主机别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AliasName: String
+        # @param Tags: 主机标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Description: 说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :EventId, :Status, :LastTime, :Level, :Quuid, :Uuid, :HostIp, :AliasName, :Tags, :Description
+        
+        def initialize(eventid=nil, status=nil, lasttime=nil, level=nil, quuid=nil, uuid=nil, hostip=nil, aliasname=nil, tags=nil, description=nil)
+          @EventId = eventid
+          @Status = status
+          @LastTime = lasttime
+          @Level = level
+          @Quuid = quuid
+          @Uuid = uuid
+          @HostIp = hostip
+          @AliasName = aliasname
+          @Tags = tags
+          @Description = description
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @Status = params['Status']
+          @LastTime = params['LastTime']
+          @Level = params['Level']
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @HostIp = params['HostIp']
+          @AliasName = params['AliasName']
+          @Tags = params['Tags']
+          @Description = params['Description']
+        end
+      end
+
       # 服务器风险top5实体
       class VulHostTopInfo < TencentCloud::Common::AbstractModel
         # @param HostName: 主机名
@@ -17140,6 +17350,80 @@ module TencentCloud
           end
           @Quuid = params['Quuid']
           @Score = params['Score']
+        end
+      end
+
+      # 主机安全-漏洞管理-漏洞列表
+      class VulInfoList < TencentCloud::Common::AbstractModel
+        # @param Ids: 漏洞包含的事件id串，多个用“,”分割
+        # @type Ids: String
+        # @param Name: 漏洞名
+        # @type Name: String
+        # @param Status: 0: 待处理 1:忽略  3:已修复  5:检测中 6:修复中 控制台仅处理0,1,3,5,6四种状态
+        # @type Status: Integer
+        # @param VulId: 漏洞id
+        # @type VulId: Integer
+        # @param PublishTime: 漏洞披露事件
+        # @type PublishTime: String
+        # @param LastTime: 最后检测时间
+        # @type LastTime: String
+        # @param HostCount: 影响主机数
+        # @type HostCount: Integer
+        # @param Level: 漏洞等级 1:低 2:中 3:高 4:提示
+        # @type Level: Integer
+        # @param From: 废弃字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type From: Integer
+        # @param Descript: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Descript: String
+        # @param PublishTimeWisteria: 废弃字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishTimeWisteria: String
+        # @param NameWisteria: 废弃字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameWisteria: String
+        # @param DescriptWisteria: 废弃字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DescriptWisteria: String
+        # @param StatusStr: 聚合后事件状态串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusStr: String
+
+        attr_accessor :Ids, :Name, :Status, :VulId, :PublishTime, :LastTime, :HostCount, :Level, :From, :Descript, :PublishTimeWisteria, :NameWisteria, :DescriptWisteria, :StatusStr
+        
+        def initialize(ids=nil, name=nil, status=nil, vulid=nil, publishtime=nil, lasttime=nil, hostcount=nil, level=nil, from=nil, descript=nil, publishtimewisteria=nil, namewisteria=nil, descriptwisteria=nil, statusstr=nil)
+          @Ids = ids
+          @Name = name
+          @Status = status
+          @VulId = vulid
+          @PublishTime = publishtime
+          @LastTime = lasttime
+          @HostCount = hostcount
+          @Level = level
+          @From = from
+          @Descript = descript
+          @PublishTimeWisteria = publishtimewisteria
+          @NameWisteria = namewisteria
+          @DescriptWisteria = descriptwisteria
+          @StatusStr = statusstr
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @Name = params['Name']
+          @Status = params['Status']
+          @VulId = params['VulId']
+          @PublishTime = params['PublishTime']
+          @LastTime = params['LastTime']
+          @HostCount = params['HostCount']
+          @Level = params['Level']
+          @From = params['From']
+          @Descript = params['Descript']
+          @PublishTimeWisteria = params['PublishTimeWisteria']
+          @NameWisteria = params['NameWisteria']
+          @DescriptWisteria = params['DescriptWisteria']
+          @StatusStr = params['StatusStr']
         end
       end
 

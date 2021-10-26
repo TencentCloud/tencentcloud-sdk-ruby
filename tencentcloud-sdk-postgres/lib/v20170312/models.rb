@@ -1318,6 +1318,57 @@ module TencentCloud
         end
       end
 
+      # DescribeDBInstanceParameters请求参数结构体
+      class DescribeDBInstanceParametersRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param ParamName: 查询指定参数详情。ParamName为空或不传，默认返回全部参数列表
+        # @type ParamName: String
+
+        attr_accessor :DBInstanceId, :ParamName
+        
+        def initialize(dbinstanceid=nil, paramname=nil)
+          @DBInstanceId = dbinstanceid
+          @ParamName = paramname
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @ParamName = params['ParamName']
+        end
+      end
+
+      # DescribeDBInstanceParameters返回参数结构体
+      class DescribeDBInstanceParametersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 参数列表总数
+        # @type TotalCount: Integer
+        # @param Detail: 参数列表返回详情
+        # @type Detail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Detail, :RequestId
+        
+        def initialize(totalcount=nil, detail=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              paraminfo_tmp = ParamInfo.new
+              paraminfo_tmp.deserialize(i)
+              @Detail << paraminfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
@@ -1604,6 +1655,53 @@ module TencentCloud
               pgdeal_tmp = PgDeal.new
               pgdeal_tmp.deserialize(i)
               @Deals << pgdeal_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeParamsEvent请求参数结构体
+      class DescribeParamsEventRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例DB ID
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+        
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # DescribeParamsEvent返回参数结构体
+      class DescribeParamsEventResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 参数修改事件总数，以参数为统计粒度
+        # @type TotalCount: Integer
+        # @param EventItems: 实例参数修改事件详情
+        # @type EventItems: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :EventItems, :RequestId
+        
+        def initialize(totalcount=nil, eventitems=nil, requestid=nil)
+          @TotalCount = totalcount
+          @EventItems = eventitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['EventItems'].nil?
+            @EventItems = []
+            params['EventItems'].each do |i|
+              eventitem_tmp = EventItem.new
+              eventitem_tmp.deserialize(i)
+              @EventItems << eventitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2189,6 +2287,92 @@ module TencentCloud
         end
       end
 
+      # 参数修改事件信息
+      class EventInfo < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamName: String
+        # @param OldValue: 原参数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldValue: String
+        # @param NewValue: 本次修改期望参数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewValue: String
+        # @param ModifyTime: 后台参数修改开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param EffectiveTime: 后台参数生效开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EffectiveTime: String
+        # @param State: 修改状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param Operator: 操作者（一般为用户sub UIN）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param EventLog: 时间日志。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventLog: String
+
+        attr_accessor :ParamName, :OldValue, :NewValue, :ModifyTime, :EffectiveTime, :State, :Operator, :EventLog
+        
+        def initialize(paramname=nil, oldvalue=nil, newvalue=nil, modifytime=nil, effectivetime=nil, state=nil, operator=nil, eventlog=nil)
+          @ParamName = paramname
+          @OldValue = oldvalue
+          @NewValue = newvalue
+          @ModifyTime = modifytime
+          @EffectiveTime = effectivetime
+          @State = state
+          @Operator = operator
+          @EventLog = eventlog
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @OldValue = params['OldValue']
+          @NewValue = params['NewValue']
+          @ModifyTime = params['ModifyTime']
+          @EffectiveTime = params['EffectiveTime']
+          @State = params['State']
+          @Operator = params['Operator']
+          @EventLog = params['EventLog']
+        end
+      end
+
+      # 修改参数条目，以参数为维度
+      class EventItem < TencentCloud::Common::AbstractModel
+        # @param ParamName: 参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamName: String
+        # @param EventCount: 修改事件数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventCount: Integer
+        # @param EventDetail: 修改时间详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventDetail: Array
+
+        attr_accessor :ParamName, :EventCount, :EventDetail
+        
+        def initialize(paramname=nil, eventcount=nil, eventdetail=nil)
+          @ParamName = paramname
+          @EventCount = eventcount
+          @EventDetail = eventdetail
+        end
+
+        def deserialize(params)
+          @ParamName = params['ParamName']
+          @EventCount = params['EventCount']
+          unless params['EventDetail'].nil?
+            @EventDetail = []
+            params['EventDetail'].each do |i|
+              eventinfo_tmp = EventInfo.new
+              eventinfo_tmp.deserialize(i)
+              @EventDetail << eventinfo_tmp
+            end
+          end
+        end
+      end
+
       # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称等
       # * 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
       # * 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
@@ -2513,6 +2697,49 @@ module TencentCloud
 
       # ModifyDBInstanceName返回参数结构体
       class ModifyDBInstanceNameResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBInstanceParameters请求参数结构体
+      class ModifyDBInstanceParametersRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param ParamList: 待修改参数及期望值
+        # @type ParamList: Array
+
+        attr_accessor :DBInstanceId, :ParamList
+        
+        def initialize(dbinstanceid=nil, paramlist=nil)
+          @DBInstanceId = dbinstanceid
+          @ParamList = paramlist
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              paramentry_tmp = ParamEntry.new
+              paramentry_tmp.deserialize(i)
+              @ParamList << paramentry_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDBInstanceParameters返回参数结构体
+      class ModifyDBInstanceParametersResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2852,6 +3079,123 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量修改参数
+      class ParamEntry < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名
+        # @type Name: String
+        # @param ExpectedValue: 修改参数值。入参均以字符串形式传递，例如：小数”0.1“、整数”1000“、枚举”replica“
+        # @type ExpectedValue: String
+
+        attr_accessor :Name, :ExpectedValue
+        
+        def initialize(name=nil, expectedvalue=nil)
+          @Name = name
+          @ExpectedValue = expectedvalue
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ExpectedValue = params['ExpectedValue']
+        end
+      end
+
+      # 参数详情
+      class ParamInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 参数ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param Name: 参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ParamValueType: 参数值类型：integer（整型）、real（浮点型）、bool（布尔型）、enum（枚举类型）、mutil_enum（枚举类型、支持多选）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamValueType: String
+        # @param Unit: 参数值 单位。参数没有单位是，该字段返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: String
+        # @param DefaultValue: 参数默认值。以字符串形式返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultValue: String
+        # @param CurrentValue: 参数当前运行值。以字符串形式返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentValue: String
+        # @param EnumValue: 枚举类型参数，取值范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnumValue: Array
+        # @param Max: 数值类型（integer、real）参数，取值下界
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Max: Float
+        # @param Min: 数值类型（integer、real）参数，取值上界
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Min: Float
+        # @param ParamDescriptionCH: 参数中文描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamDescriptionCH: String
+        # @param ParamDescriptionEN: 参数英文描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamDescriptionEN: String
+        # @param NeedReboot: 参数修改，是否重启生效。（true为需要，false为不需要）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedReboot: Boolean
+        # @param ClassificationCN: 参数中文分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassificationCN: String
+        # @param ClassificationEN: 参数英文分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClassificationEN: String
+        # @param SpecRelated: 是否和规格相关。（true为相关，false为不想关）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecRelated: Boolean
+        # @param Advanced: 是否为重点参数。（true为重点参数，修改是需要重点关注，可能会影响实例性能）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Advanced: Boolean
+        # @param LastModifyTime: 参数最后一次修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastModifyTime: String
+
+        attr_accessor :ID, :Name, :ParamValueType, :Unit, :DefaultValue, :CurrentValue, :EnumValue, :Max, :Min, :ParamDescriptionCH, :ParamDescriptionEN, :NeedReboot, :ClassificationCN, :ClassificationEN, :SpecRelated, :Advanced, :LastModifyTime
+        
+        def initialize(id=nil, name=nil, paramvaluetype=nil, unit=nil, defaultvalue=nil, currentvalue=nil, enumvalue=nil, max=nil, min=nil, paramdescriptionch=nil, paramdescriptionen=nil, needreboot=nil, classificationcn=nil, classificationen=nil, specrelated=nil, advanced=nil, lastmodifytime=nil)
+          @ID = id
+          @Name = name
+          @ParamValueType = paramvaluetype
+          @Unit = unit
+          @DefaultValue = defaultvalue
+          @CurrentValue = currentvalue
+          @EnumValue = enumvalue
+          @Max = max
+          @Min = min
+          @ParamDescriptionCH = paramdescriptionch
+          @ParamDescriptionEN = paramdescriptionen
+          @NeedReboot = needreboot
+          @ClassificationCN = classificationcn
+          @ClassificationEN = classificationen
+          @SpecRelated = specrelated
+          @Advanced = advanced
+          @LastModifyTime = lastmodifytime
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @ParamValueType = params['ParamValueType']
+          @Unit = params['Unit']
+          @DefaultValue = params['DefaultValue']
+          @CurrentValue = params['CurrentValue']
+          @EnumValue = params['EnumValue']
+          @Max = params['Max']
+          @Min = params['Min']
+          @ParamDescriptionCH = params['ParamDescriptionCH']
+          @ParamDescriptionEN = params['ParamDescriptionEN']
+          @NeedReboot = params['NeedReboot']
+          @ClassificationCN = params['ClassificationCN']
+          @ClassificationEN = params['ClassificationEN']
+          @SpecRelated = params['SpecRelated']
+          @Advanced = params['Advanced']
+          @LastModifyTime = params['LastModifyTime']
         end
       end
 
