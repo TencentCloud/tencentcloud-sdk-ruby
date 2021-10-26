@@ -592,10 +592,12 @@ module TencentCloud
         # @type MinStorageSize: Integer
         # @param MaxStorageSize: 集群计算规格对应的最大存储值
         # @type MaxStorageSize: Integer
+        # @param NetAddrs: 集群网络信息
+        # @type NetAddrs: Array
 
-        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize
+        attr_accessor :Status, :UpdateTime, :Zone, :ClusterName, :Region, :DbVersion, :ClusterId, :InstanceNum, :Uin, :DbType, :AppId, :StatusDesc, :CreateTime, :PayMode, :PeriodEndTime, :Vip, :Vport, :ProjectID, :VpcId, :SubnetId, :CynosVersion, :StorageLimit, :RenewFlag, :ProcessingTask, :Tasks, :ResourceTags, :DbMode, :ServerlessStatus, :Storage, :StorageId, :StoragePayMode, :MinStorageSize, :MaxStorageSize, :NetAddrs
         
-        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil)
+        def initialize(status=nil, updatetime=nil, zone=nil, clustername=nil, region=nil, dbversion=nil, clusterid=nil, instancenum=nil, uin=nil, dbtype=nil, appid=nil, statusdesc=nil, createtime=nil, paymode=nil, periodendtime=nil, vip=nil, vport=nil, projectid=nil, vpcid=nil, subnetid=nil, cynosversion=nil, storagelimit=nil, renewflag=nil, processingtask=nil, tasks=nil, resourcetags=nil, dbmode=nil, serverlessstatus=nil, storage=nil, storageid=nil, storagepaymode=nil, minstoragesize=nil, maxstoragesize=nil, netaddrs=nil)
           @Status = status
           @UpdateTime = updatetime
           @Zone = zone
@@ -629,6 +631,7 @@ module TencentCloud
           @StoragePayMode = storagepaymode
           @MinStorageSize = minstoragesize
           @MaxStorageSize = maxstoragesize
+          @NetAddrs = netaddrs
         end
 
         def deserialize(params)
@@ -679,6 +682,14 @@ module TencentCloud
           @StoragePayMode = params['StoragePayMode']
           @MinStorageSize = params['MinStorageSize']
           @MaxStorageSize = params['MaxStorageSize']
+          unless params['NetAddrs'].nil?
+            @NetAddrs = []
+            params['NetAddrs'].each do |i|
+              netaddr_tmp = NetAddr.new
+              netaddr_tmp.deserialize(i)
+              @NetAddrs << netaddr_tmp
+            end
+          end
         end
       end
 
@@ -2253,6 +2264,43 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 网络信息
+      class NetAddr < TencentCloud::Common::AbstractModel
+        # @param Vip: 内网ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Vport: 内网端口号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+        # @param WanDomain: 外网域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanDomain: String
+        # @param WanPort: 外网端口号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WanPort: Integer
+        # @param NetType: 网络类型（ro-只读,rw/ha-读写）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetType: String
+
+        attr_accessor :Vip, :Vport, :WanDomain, :WanPort, :NetType
+        
+        def initialize(vip=nil, vport=nil, wandomain=nil, wanport=nil, nettype=nil)
+          @Vip = vip
+          @Vport = vport
+          @WanDomain = wandomain
+          @WanPort = wanport
+          @NetType = nettype
+        end
+
+        def deserialize(params)
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @WanDomain = params['WanDomain']
+          @WanPort = params['WanPort']
+          @NetType = params['NetType']
         end
       end
 
