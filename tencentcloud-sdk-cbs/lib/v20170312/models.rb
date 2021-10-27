@@ -1580,21 +1580,21 @@ module TencentCloud
 
       # 镜像。
       class Image < TencentCloud::Common::AbstractModel
-        # @param ImageId: 镜像实例ID。
-        # @type ImageId: String
         # @param ImageName: 镜像名称。
         # @type ImageName: String
+        # @param ImageId: 镜像实例ID。
+        # @type ImageId: String
 
-        attr_accessor :ImageId, :ImageName
+        attr_accessor :ImageName, :ImageId
         
-        def initialize(imageid=nil, imagename=nil)
-          @ImageId = imageid
+        def initialize(imagename=nil, imageid=nil)
           @ImageName = imagename
+          @ImageId = imageid
         end
 
         def deserialize(params)
-          @ImageId = params['ImageId']
           @ImageName = params['ImageName']
+          @ImageId = params['ImageId']
         end
       end
 
@@ -2392,87 +2392,80 @@ module TencentCloud
 
       # 描述了快照的详细信息
       class Snapshot < TencentCloud::Common::AbstractModel
-        # @param SnapshotId: 快照ID。
-        # @type SnapshotId: String
         # @param Placement: 快照所在的位置。
         # @type Placement: :class:`Tencentcloud::Cbs.v20170312.models.Placement`
-        # @param DiskUsage: 创建此快照的云硬盘类型。取值范围：<br><li>SYSTEM_DISK：系统盘<br><li>DATA_DISK：数据盘。
-        # @type DiskUsage: String
-        # @param DiskId: 创建此快照的云硬盘ID。
-        # @type DiskId: String
-        # @param DiskSize: 创建此快照的云硬盘大小，单位GB。
-        # @type DiskSize: Integer
-        # @param SnapshotState: 快照的状态。取值范围：<br><li>NORMAL：正常<br><li>CREATING：创建中<br><li>ROLLBACKING：回滚中<br><li>COPYING_FROM_REMOTE：跨地域复制中<br><li>CHECKING_COPIED：复制校验中<br><li>TORECYCLE：待回收。
-        # @type SnapshotState: String
-        # @param SnapshotName: 快照名称，用户自定义的快照别名。调用[ModifySnapshotAttribute](/document/product/362/15650)可修改此字段。
-        # @type SnapshotName: String
-        # @param Percent: 快照创建进度百分比，快照创建成功后此字段恒为100。
-        # @type Percent: Integer
-        # @param CreateTime: 快照的创建时间。
-        # @type CreateTime: String
-        # @param DeadlineTime: 快照到期时间。如果快照为永久保留，此字段为空。
-        # @type DeadlineTime: String
-        # @param Encrypt: 是否为加密盘创建的快照。取值范围：<br><li>true：该快照为加密盘创建的<br><li>false:非加密盘创建的快照。
-        # @type Encrypt: Boolean
-        # @param IsPermanent: 是否为永久快照。取值范围：<br><li>true：永久快照<br><li>false：非永久快照。
-        # @type IsPermanent: Boolean
-        # @param CopyingToRegions: 快照正在跨地域复制的目的地域，默认取值为[]。
-        # @type CopyingToRegions: Array
         # @param CopyFromRemote: 是否为跨地域复制的快照。取值范围：<br><li>true：表示为跨地域复制的快照。<br><li>false:本地域的快照。
         # @type CopyFromRemote: Boolean
+        # @param SnapshotState: 快照的状态。取值范围：<br><li>NORMAL：正常<br><li>CREATING：创建中<br><li>ROLLBACKING：回滚中<br><li>COPYING_FROM_REMOTE：跨地域复制中<br><li>CHECKING_COPIED：复制校验中<br><li>TORECYCLE：待回收。
+        # @type SnapshotState: String
+        # @param IsPermanent: 是否为永久快照。取值范围：<br><li>true：永久快照<br><li>false：非永久快照。
+        # @type IsPermanent: Boolean
+        # @param SnapshotName: 快照名称，用户自定义的快照别名。调用[ModifySnapshotAttribute](/document/product/362/15650)可修改此字段。
+        # @type SnapshotName: String
+        # @param DeadlineTime: 快照到期时间。如果快照为永久保留，此字段为空。
+        # @type DeadlineTime: String
+        # @param Percent: 快照创建进度百分比，快照创建成功后此字段恒为100。
+        # @type Percent: Integer
         # @param Images: 快照关联的镜像列表。
         # @type Images: Array
-        # @param ImageCount: 快照关联的镜像个数。
-        # @type ImageCount: Integer
-        # @param SnapshotType: 快照类型，目前该项取值可以为PRIVATE_SNAPSHOT或者SHARED_SNAPSHOT
-        # @type SnapshotType: String
         # @param ShareReference: 快照当前被共享数。
         # @type ShareReference: Integer
+        # @param SnapshotType: 快照类型，目前该项取值可以为PRIVATE_SNAPSHOT或者SHARED_SNAPSHOT
+        # @type SnapshotType: String
+        # @param DiskSize: 创建此快照的云硬盘大小，单位GB。
+        # @type DiskSize: Integer
+        # @param DiskId: 创建此快照的云硬盘ID。
+        # @type DiskId: String
+        # @param CopyingToRegions: 快照正在跨地域复制的目的地域，默认取值为[]。
+        # @type CopyingToRegions: Array
+        # @param Encrypt: 是否为加密盘创建的快照。取值范围：<br><li>true：该快照为加密盘创建的<br><li>false:非加密盘创建的快照。
+        # @type Encrypt: Boolean
+        # @param CreateTime: 快照的创建时间。
+        # @type CreateTime: String
+        # @param ImageCount: 快照关联的镜像个数。
+        # @type ImageCount: Integer
+        # @param DiskUsage: 创建此快照的云硬盘类型。取值范围：<br><li>SYSTEM_DISK：系统盘<br><li>DATA_DISK：数据盘。
+        # @type DiskUsage: String
+        # @param SnapshotId: 快照ID。
+        # @type SnapshotId: String
         # @param TimeStartShare: 快照开始共享的时间。
         # @type TimeStartShare: String
 
-        attr_accessor :SnapshotId, :Placement, :DiskUsage, :DiskId, :DiskSize, :SnapshotState, :SnapshotName, :Percent, :CreateTime, :DeadlineTime, :Encrypt, :IsPermanent, :CopyingToRegions, :CopyFromRemote, :Images, :ImageCount, :SnapshotType, :ShareReference, :TimeStartShare
+        attr_accessor :Placement, :CopyFromRemote, :SnapshotState, :IsPermanent, :SnapshotName, :DeadlineTime, :Percent, :Images, :ShareReference, :SnapshotType, :DiskSize, :DiskId, :CopyingToRegions, :Encrypt, :CreateTime, :ImageCount, :DiskUsage, :SnapshotId, :TimeStartShare
         
-        def initialize(snapshotid=nil, placement=nil, diskusage=nil, diskid=nil, disksize=nil, snapshotstate=nil, snapshotname=nil, percent=nil, createtime=nil, deadlinetime=nil, encrypt=nil, ispermanent=nil, copyingtoregions=nil, copyfromremote=nil, images=nil, imagecount=nil, snapshottype=nil, sharereference=nil, timestartshare=nil)
-          @SnapshotId = snapshotid
+        def initialize(placement=nil, copyfromremote=nil, snapshotstate=nil, ispermanent=nil, snapshotname=nil, deadlinetime=nil, percent=nil, images=nil, sharereference=nil, snapshottype=nil, disksize=nil, diskid=nil, copyingtoregions=nil, encrypt=nil, createtime=nil, imagecount=nil, diskusage=nil, snapshotid=nil, timestartshare=nil)
           @Placement = placement
-          @DiskUsage = diskusage
-          @DiskId = diskid
-          @DiskSize = disksize
-          @SnapshotState = snapshotstate
-          @SnapshotName = snapshotname
-          @Percent = percent
-          @CreateTime = createtime
-          @DeadlineTime = deadlinetime
-          @Encrypt = encrypt
-          @IsPermanent = ispermanent
-          @CopyingToRegions = copyingtoregions
           @CopyFromRemote = copyfromremote
+          @SnapshotState = snapshotstate
+          @IsPermanent = ispermanent
+          @SnapshotName = snapshotname
+          @DeadlineTime = deadlinetime
+          @Percent = percent
           @Images = images
-          @ImageCount = imagecount
-          @SnapshotType = snapshottype
           @ShareReference = sharereference
+          @SnapshotType = snapshottype
+          @DiskSize = disksize
+          @DiskId = diskid
+          @CopyingToRegions = copyingtoregions
+          @Encrypt = encrypt
+          @CreateTime = createtime
+          @ImageCount = imagecount
+          @DiskUsage = diskusage
+          @SnapshotId = snapshotid
           @TimeStartShare = timestartshare
         end
 
         def deserialize(params)
-          @SnapshotId = params['SnapshotId']
           unless params['Placement'].nil?
             @Placement = Placement.new
             @Placement.deserialize(params['Placement'])
           end
-          @DiskUsage = params['DiskUsage']
-          @DiskId = params['DiskId']
-          @DiskSize = params['DiskSize']
-          @SnapshotState = params['SnapshotState']
-          @SnapshotName = params['SnapshotName']
-          @Percent = params['Percent']
-          @CreateTime = params['CreateTime']
-          @DeadlineTime = params['DeadlineTime']
-          @Encrypt = params['Encrypt']
-          @IsPermanent = params['IsPermanent']
-          @CopyingToRegions = params['CopyingToRegions']
           @CopyFromRemote = params['CopyFromRemote']
+          @SnapshotState = params['SnapshotState']
+          @IsPermanent = params['IsPermanent']
+          @SnapshotName = params['SnapshotName']
+          @DeadlineTime = params['DeadlineTime']
+          @Percent = params['Percent']
           unless params['Images'].nil?
             @Images = []
             params['Images'].each do |i|
@@ -2481,9 +2474,16 @@ module TencentCloud
               @Images << image_tmp
             end
           end
-          @ImageCount = params['ImageCount']
-          @SnapshotType = params['SnapshotType']
           @ShareReference = params['ShareReference']
+          @SnapshotType = params['SnapshotType']
+          @DiskSize = params['DiskSize']
+          @DiskId = params['DiskId']
+          @CopyingToRegions = params['CopyingToRegions']
+          @Encrypt = params['Encrypt']
+          @CreateTime = params['CreateTime']
+          @ImageCount = params['ImageCount']
+          @DiskUsage = params['DiskUsage']
+          @SnapshotId = params['SnapshotId']
           @TimeStartShare = params['TimeStartShare']
         end
       end

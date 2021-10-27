@@ -3263,10 +3263,12 @@ module TencentCloud
         # 如果用户在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 参照此字段进行设置，并传递给 CVM；如果用户未在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置，并传递给 CVM。
         # 新增该属性时，必须传递云服务器的实例名称，其它未传递字段会设置为默认值。
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
+        # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。
+        # @type EnhancedService: :class:`Tencentcloud::As.v20180419.models.EnhancedService`
 
-        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings
+        attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :InstanceTypesCheckPolicy, :LaunchConfigurationName, :UserData, :SecurityGroupIds, :InternetAccessible, :InstanceChargeType, :InstanceChargePrepaid, :InstanceMarketOptions, :DiskTypePolicy, :SystemDisk, :DataDisks, :HostNameSettings, :InstanceNameSettings, :EnhancedService
         
-        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil)
+        def initialize(launchconfigurationid=nil, imageid=nil, instancetypes=nil, instancetypescheckpolicy=nil, launchconfigurationname=nil, userdata=nil, securitygroupids=nil, internetaccessible=nil, instancechargetype=nil, instancechargeprepaid=nil, instancemarketoptions=nil, disktypepolicy=nil, systemdisk=nil, datadisks=nil, hostnamesettings=nil, instancenamesettings=nil, enhancedservice=nil)
           @LaunchConfigurationId = launchconfigurationid
           @ImageId = imageid
           @InstanceTypes = instancetypes
@@ -3283,6 +3285,7 @@ module TencentCloud
           @DataDisks = datadisks
           @HostNameSettings = hostnamesettings
           @InstanceNameSettings = instancenamesettings
+          @EnhancedService = enhancedservice
         end
 
         def deserialize(params)
@@ -3326,6 +3329,10 @@ module TencentCloud
           unless params['InstanceNameSettings'].nil?
             @InstanceNameSettings = InstanceNameSettings.new
             @InstanceNameSettings.deserialize(params['InstanceNameSettings'])
+          end
+          unless params['EnhancedService'].nil?
+            @EnhancedService = EnhancedService.new
+            @EnhancedService.deserialize(params['EnhancedService'])
           end
         end
       end

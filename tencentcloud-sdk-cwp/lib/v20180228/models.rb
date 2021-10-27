@@ -15907,38 +15907,6 @@ module TencentCloud
         end
       end
 
-      # RescanImpactedHost请求参数结构体
-      class RescanImpactedHostRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 漏洞ID。
-        # @type Id: Integer
-
-        attr_accessor :Id
-        
-        def initialize(id=nil)
-          @Id = id
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-        end
-      end
-
-      # RescanImpactedHost返回参数结构体
-      class RescanImpactedHostResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 反弹Shell数据
       class ReverseShell < TencentCloud::Common::AbstractModel
         # @param Id: ID 主键

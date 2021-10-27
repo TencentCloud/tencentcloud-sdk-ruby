@@ -96,6 +96,30 @@ module TencentCloud
         end
       end
 
+      # 全栈式风控引擎入参
+      class InputCryptoManageMarketingRisk < TencentCloud::Common::AbstractModel
+        # @param IsAuthorized: 是否授权
+        # @type IsAuthorized: String
+        # @param CryptoType: 加密类型
+        # @type CryptoType: String
+        # @param CryptoContent: 加密内容
+        # @type CryptoContent: String
+
+        attr_accessor :IsAuthorized, :CryptoType, :CryptoContent
+        
+        def initialize(isauthorized=nil, cryptotype=nil, cryptocontent=nil)
+          @IsAuthorized = isauthorized
+          @CryptoType = cryptotype
+          @CryptoContent = cryptocontent
+        end
+
+        def deserialize(params)
+          @IsAuthorized = params['IsAuthorized']
+          @CryptoType = params['CryptoType']
+          @CryptoContent = params['CryptoContent']
+        end
+      end
+
       # 客户请求入参
       class InputDescribeRiskModelData < TencentCloud::Common::AbstractModel
         # @param UserData: 业务参数加密后的签名值
@@ -262,17 +286,24 @@ module TencentCloud
       class ManageMarketingRiskRequest < TencentCloud::Common::AbstractModel
         # @param BusinessSecurityData: 业务入参
         # @type BusinessSecurityData: :class:`Tencentcloud::Rce.v20201103.models.InputManageMarketingRisk`
+        # @param BusinessCryptoData: 业务入参
+        # @type BusinessCryptoData: :class:`Tencentcloud::Rce.v20201103.models.InputCryptoManageMarketingRisk`
 
-        attr_accessor :BusinessSecurityData
+        attr_accessor :BusinessSecurityData, :BusinessCryptoData
         
-        def initialize(businesssecuritydata=nil)
+        def initialize(businesssecuritydata=nil, businesscryptodata=nil)
           @BusinessSecurityData = businesssecuritydata
+          @BusinessCryptoData = businesscryptodata
         end
 
         def deserialize(params)
           unless params['BusinessSecurityData'].nil?
             @BusinessSecurityData = InputManageMarketingRisk.new
             @BusinessSecurityData.deserialize(params['BusinessSecurityData'])
+          end
+          unless params['BusinessCryptoData'].nil?
+            @BusinessCryptoData = InputCryptoManageMarketingRisk.new
+            @BusinessCryptoData.deserialize(params['BusinessCryptoData'])
           end
         end
       end

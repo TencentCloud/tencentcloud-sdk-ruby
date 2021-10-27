@@ -2183,6 +2183,53 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterParam请求参数结构体
+      class ModifyClusterParamRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ParamList: 修改参数列表
+        # @type ParamList: Array
+
+        attr_accessor :ClusterId, :ParamList
+        
+        def initialize(clusterid=nil, paramlist=nil)
+          @ClusterId = clusterid
+          @ParamList = paramlist
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ParamList'].nil?
+            @ParamList = []
+            params['ParamList'].each do |i|
+              paramitem_tmp = ParamItem.new
+              paramitem_tmp.deserialize(i)
+              @ParamList << paramitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyClusterParam返回参数结构体
+      class ModifyClusterParamResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步请求Id，用于查询结果
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+        
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例组ID

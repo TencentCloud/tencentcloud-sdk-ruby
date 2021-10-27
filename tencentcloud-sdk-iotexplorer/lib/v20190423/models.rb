@@ -2092,10 +2092,22 @@ module TencentCloud
         # @param CreatorNickName: 创建人昵称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatorNickName: String
+        # @param EnableState: 启用/禁用状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableState: Integer
+        # @param ProductId: 产品ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductId: String
+        # @param ProductName: 产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param DeviceType: 设备类型（设备、子设备、网关）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceType: String
 
-        attr_accessor :DeviceName, :Status, :DevicePsk, :FirstOnlineTime, :LoginTime, :CreateTime, :Version, :DeviceCert, :LogLevel, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey, :CreateUserId, :CreatorNickName
+        attr_accessor :DeviceName, :Status, :DevicePsk, :FirstOnlineTime, :LoginTime, :CreateTime, :Version, :DeviceCert, :LogLevel, :DevAddr, :AppKey, :DevEUI, :AppSKey, :NwkSKey, :CreateUserId, :CreatorNickName, :EnableState, :ProductId, :ProductName, :DeviceType
         
-        def initialize(devicename=nil, status=nil, devicepsk=nil, firstonlinetime=nil, logintime=nil, createtime=nil, version=nil, devicecert=nil, loglevel=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil, createuserid=nil, creatornickname=nil)
+        def initialize(devicename=nil, status=nil, devicepsk=nil, firstonlinetime=nil, logintime=nil, createtime=nil, version=nil, devicecert=nil, loglevel=nil, devaddr=nil, appkey=nil, deveui=nil, appskey=nil, nwkskey=nil, createuserid=nil, creatornickname=nil, enablestate=nil, productid=nil, productname=nil, devicetype=nil)
           @DeviceName = devicename
           @Status = status
           @DevicePsk = devicepsk
@@ -2112,6 +2124,10 @@ module TencentCloud
           @NwkSKey = nwkskey
           @CreateUserId = createuserid
           @CreatorNickName = creatornickname
+          @EnableState = enablestate
+          @ProductId = productid
+          @ProductName = productname
+          @DeviceType = devicetype
         end
 
         def deserialize(params)
@@ -2131,6 +2147,10 @@ module TencentCloud
           @NwkSKey = params['NwkSKey']
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
+          @EnableState = params['EnableState']
+          @ProductId = params['ProductId']
+          @ProductName = params['ProductName']
+          @DeviceType = params['DeviceType']
         end
       end
 

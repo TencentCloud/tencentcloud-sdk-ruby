@@ -258,6 +258,26 @@ module TencentCloud
         end
       end
 
+      # 键值对
+      class KVPair < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 微服务注册引擎实例
       class SREInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -312,10 +332,13 @@ module TencentCloud
         # @param ServiceGovernanceInfos: 服务治理相关信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceGovernanceInfos: Array
+        # @param Tags: 实例的标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -336,6 +359,7 @@ module TencentCloud
           @EnableInternet = enableinternet
           @VpcInfos = vpcinfos
           @ServiceGovernanceInfos = servicegovernanceinfos
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -378,6 +402,14 @@ module TencentCloud
               servicegovernanceinfo_tmp = ServiceGovernanceInfo.new
               servicegovernanceinfo_tmp.deserialize(i)
               @ServiceGovernanceInfos << servicegovernanceinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Tags << kvpair_tmp
             end
           end
         end

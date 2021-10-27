@@ -351,6 +351,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于创建一个 OpenSSH RSA 密钥对，可以用于登录 Linux 实例。
+
+        # @param request: Request instance for CreateKeyPair.
+        # @type request: :class:`Tencentcloud::ecm::V20190719::CreateKeyPairRequest`
+        # @rtype: :class:`Tencentcloud::ecm::V20190719::CreateKeyPairResponse`
+        def CreateKeyPair(request)
+          body = send_request('CreateKeyPair', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateKeyPairResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建负载均衡监听器。
 
         # @param request: Request instance for CreateListener.
@@ -1950,6 +1974,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisassociateAddressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于解除实例的密钥绑定关系。
+
+        # @param request: Request instance for DisassociateInstancesKeyPairs.
+        # @type request: :class:`Tencentcloud::ecm::V20190719::DisassociateInstancesKeyPairsRequest`
+        # @rtype: :class:`Tencentcloud::ecm::V20190719::DisassociateInstancesKeyPairsResponse`
+        def DisassociateInstancesKeyPairs(request)
+          body = send_request('DisassociateInstancesKeyPairs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisassociateInstancesKeyPairsResponse.new
             model.deserialize(response['Response'])
             model
           else

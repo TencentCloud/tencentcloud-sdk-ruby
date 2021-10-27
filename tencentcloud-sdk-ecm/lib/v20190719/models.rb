@@ -1054,6 +1054,45 @@ module TencentCloud
         end
       end
 
+      # CreateKeyPair请求参数结构体
+      class CreateKeyPairRequest < TencentCloud::Common::AbstractModel
+        # @param KeyName: 密钥对名称，可由数字，字母和下划线组成，长度不超过25个字符。
+        # @type KeyName: String
+
+        attr_accessor :KeyName
+        
+        def initialize(keyname=nil)
+          @KeyName = keyname
+        end
+
+        def deserialize(params)
+          @KeyName = params['KeyName']
+        end
+      end
+
+      # CreateKeyPair返回参数结构体
+      class CreateKeyPairResponse < TencentCloud::Common::AbstractModel
+        # @param KeyPair: 密钥对信息。
+        # @type KeyPair: :class:`Tencentcloud::Ecm.v20190719.models.KeyPair`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KeyPair, :RequestId
+        
+        def initialize(keypair=nil, requestid=nil)
+          @KeyPair = keypair
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['KeyPair'].nil?
+            @KeyPair = KeyPair.new
+            @KeyPair.deserialize(params['KeyPair'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateListener请求参数结构体
       class CreateListenerRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例 ID
@@ -4675,6 +4714,56 @@ module TencentCloud
         end
       end
 
+      # DisassociateInstancesKeyPairs请求参数结构体
+      class DisassociateInstancesKeyPairsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 可以通过以下方式获取可用的实例ID：
+        # 通过登录控制台查询实例ID。
+        # 通过调用接口 DescribeInstances ，取返回信息中的 InstanceId 获取实例ID。
+        # @type InstanceIds: Array
+        # @param KeyIds: 密钥对ID列表，每次请求批量密钥对的上限为100。密钥对ID形如：skey-11112222。
+
+        # 可以通过以下方式获取可用的密钥ID：
+        # 通过登录控制台查询密钥ID。
+        # 通过调用接口 DescribeKeyPairs ，取返回信息中的 KeyId 获取密钥对ID。
+        # @type KeyIds: Array
+        # @param ForceStop: 是否对运行中的实例选择强制关机。建议对运行中的实例先手动关机，然后再解绑密钥。取值范围：
+        # TRUE：表示在正常关机失败后进行强制关机。
+        # FALSE：表示在正常关机失败后不进行强制关机。
+
+        # 默认取值：FALSE。
+        # @type ForceStop: Boolean
+
+        attr_accessor :InstanceIds, :KeyIds, :ForceStop
+        
+        def initialize(instanceids=nil, keyids=nil, forcestop=nil)
+          @InstanceIds = instanceids
+          @KeyIds = keyids
+          @ForceStop = forcestop
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @KeyIds = params['KeyIds']
+          @ForceStop = params['ForceStop']
+        end
+      end
+
+      # DisassociateInstancesKeyPairs返回参数结构体
+      class DisassociateInstancesKeyPairsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisassociateSecurityGroups请求参数结构体
       class DisassociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param SecurityGroupIds: 要解绑的安全组ID，类似esg-efil73jd，只支持解绑单个安全组。
@@ -6008,6 +6097,58 @@ module TencentCloud
           @Description = params['Description']
           @IsWanIpBlocked = params['IsWanIpBlocked']
           @State = params['State']
+        end
+      end
+
+      # 描述密钥对信息
+      class KeyPair < TencentCloud::Common::AbstractModel
+        # @param KeyId: 密钥对的ID，是密钥对的唯一标识。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyId: String
+        # @param KeyName: 密钥对名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyName: String
+        # @param ProjectId: 密钥对所属的项目ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param Description: 密钥对描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param PublicKey: 密钥对的纯文本公钥。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicKey: String
+        # @param PrivateKey: 钥对的纯文本私钥。腾讯云不会保管私钥，请用户自行妥善保存。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateKey: String
+        # @param AssociatedInstanceIds: 钥关联的实例ID列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedInstanceIds: Array
+        # @param CreatedTime: 创建时间。按照ISO8601标准表示，并且使用UTC时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+
+        attr_accessor :KeyId, :KeyName, :ProjectId, :Description, :PublicKey, :PrivateKey, :AssociatedInstanceIds, :CreatedTime
+        
+        def initialize(keyid=nil, keyname=nil, projectid=nil, description=nil, publickey=nil, privatekey=nil, associatedinstanceids=nil, createdtime=nil)
+          @KeyId = keyid
+          @KeyName = keyname
+          @ProjectId = projectid
+          @Description = description
+          @PublicKey = publickey
+          @PrivateKey = privatekey
+          @AssociatedInstanceIds = associatedinstanceids
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @KeyId = params['KeyId']
+          @KeyName = params['KeyName']
+          @ProjectId = params['ProjectId']
+          @Description = params['Description']
+          @PublicKey = params['PublicKey']
+          @PrivateKey = params['PrivateKey']
+          @AssociatedInstanceIds = params['AssociatedInstanceIds']
+          @CreatedTime = params['CreatedTime']
         end
       end
 

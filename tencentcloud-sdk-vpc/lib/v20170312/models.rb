@@ -345,9 +345,9 @@ module TencentCloud
 
       # IP地址模板信息
       class AddressInfo < TencentCloud::Common::AbstractModel
-        # @param Address: ip地址
+        # @param Address: ip地址。
         # @type Address: String
-        # @param Description: 备注
+        # @param Description: 备注。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
@@ -16286,9 +16286,9 @@ module TencentCloud
 
       # 协议端口模板信息
       class ServicesInfo < TencentCloud::Common::AbstractModel
-        # @param Service: 协议端口
+        # @param Service: 协议端口。
         # @type Service: String
-        # @param Description: 备注
+        # @param Description: 备注。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 
