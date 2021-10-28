@@ -182,7 +182,7 @@ module TencentCloud
         # @type MaxTopicNum: Integer
         # @param MaxQps: 最大QPS
         # @type MaxQps: Integer
-        # @param MessageRetentionTime: 最大消息保留时间，分钟为单位
+        # @param MessageRetentionTime: 最大消息保留时间，秒为单位
         # @type MessageRetentionTime: Integer
         # @param MaxStorageCapacity: 最大存储容量
         # @type MaxStorageCapacity: Integer
@@ -1199,6 +1199,194 @@ module TencentCloud
         end
       end
 
+      # CreateRocketMQCluster请求参数结构体
+      class CreateRocketMQClusterRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 集群名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type Name: String
+        # @param Remark: 集群描述，128个字符以内
+        # @type Remark: String
+
+        attr_accessor :Name, :Remark
+        
+        def initialize(name=nil, remark=nil)
+          @Name = name
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateRocketMQCluster返回参数结构体
+      class CreateRocketMQClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+        
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRocketMQGroup请求参数结构体
+      class CreateRocketMQGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: Group名称，8~64个字符
+        # @type GroupId: String
+        # @param Namespaces: 命名空间，目前只支持单个命名空间
+        # @type Namespaces: Array
+        # @param ReadEnable: 是否开启消费
+        # @type ReadEnable: Boolean
+        # @param BroadcastEnable: 是否开启广播消费
+        # @type BroadcastEnable: Boolean
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Remark: 说明信息，最长128个字符
+        # @type Remark: String
+
+        attr_accessor :GroupId, :Namespaces, :ReadEnable, :BroadcastEnable, :ClusterId, :Remark
+        
+        def initialize(groupid=nil, namespaces=nil, readenable=nil, broadcastenable=nil, clusterid=nil, remark=nil)
+          @GroupId = groupid
+          @Namespaces = namespaces
+          @ReadEnable = readenable
+          @BroadcastEnable = broadcastenable
+          @ClusterId = clusterid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @Namespaces = params['Namespaces']
+          @ReadEnable = params['ReadEnable']
+          @BroadcastEnable = params['BroadcastEnable']
+          @ClusterId = params['ClusterId']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateRocketMQGroup返回参数结构体
+      class CreateRocketMQGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRocketMQNamespace请求参数结构体
+      class CreateRocketMQNamespaceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type NamespaceId: String
+        # @param Ttl: 未消费消息的保留时间，以毫秒为单位，60秒-15天
+        # @type Ttl: Integer
+        # @param RetentionTime: 消息持久化后保留的时间，以毫秒为单位
+        # @type RetentionTime: Integer
+        # @param Remark: 说明，最大128个字符
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :NamespaceId, :Ttl, :RetentionTime, :Remark
+        
+        def initialize(clusterid=nil, namespaceid=nil, ttl=nil, retentiontime=nil, remark=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @Ttl = ttl
+          @RetentionTime = retentiontime
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @Ttl = params['Ttl']
+          @RetentionTime = params['RetentionTime']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateRocketMQNamespace返回参数结构体
+      class CreateRocketMQNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRocketMQTopic请求参数结构体
+      class CreateRocketMQTopicRequest < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type Topic: String
+        # @param Namespaces: 主题所在的命名空间，目前支持在单个命名空间下创建主题
+        # @type Namespaces: Array
+        # @param Type: 主题类型，可选值为Normal, GlobalOrder, PartitionedOrder, Transaction
+        # @type Type: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Remark: 主题说明，最大128个字符
+        # @type Remark: String
+
+        attr_accessor :Topic, :Namespaces, :Type, :ClusterId, :Remark
+        
+        def initialize(topic=nil, namespaces=nil, type=nil, clusterid=nil, remark=nil)
+          @Topic = topic
+          @Namespaces = namespaces
+          @Type = type
+          @ClusterId = clusterid
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @Namespaces = params['Namespaces']
+          @Type = params['Type']
+          @ClusterId = params['ClusterId']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateRocketMQTopic返回参数结构体
+      class CreateRocketMQTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRole请求参数结构体
       class CreateRoleRequest < TencentCloud::Common::AbstractModel
         # @param RoleName: 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
@@ -1611,6 +1799,154 @@ module TencentCloud
 
         def deserialize(params)
           @EnvironmentIds = params['EnvironmentIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRocketMQCluster请求参数结构体
+      class DeleteRocketMQClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 待删除的集群Id。
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteRocketMQCluster返回参数结构体
+      class DeleteRocketMQClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRocketMQGroup请求参数结构体
+      class DeleteRocketMQGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称
+        # @type NamespaceId: String
+        # @param GroupId: 消费组名称
+        # @type GroupId: String
+
+        attr_accessor :ClusterId, :NamespaceId, :GroupId
+        
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DeleteRocketMQGroup返回参数结构体
+      class DeleteRocketMQGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRocketMQNamespace请求参数结构体
+      class DeleteRocketMQNamespaceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称
+        # @type NamespaceId: String
+
+        attr_accessor :ClusterId, :NamespaceId
+        
+        def initialize(clusterid=nil, namespaceid=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+        end
+      end
+
+      # DeleteRocketMQNamespace返回参数结构体
+      class DeleteRocketMQNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRocketMQTopic请求参数结构体
+      class DeleteRocketMQTopicRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称
+        # @type NamespaceId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+
+        attr_accessor :ClusterId, :NamespaceId, :Topic
+        
+        def initialize(clusterid=nil, namespaceid=nil, topic=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @Topic = params['Topic']
+        end
+      end
+
+      # DeleteRocketMQTopic返回参数结构体
+      class DeleteRocketMQTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2724,6 +3060,344 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQCluster请求参数结构体
+      class DescribeRocketMQClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+        
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeRocketMQCluster返回参数结构体
+      class DescribeRocketMQClusterResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterInfo: 集群信息
+        # @type ClusterInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterInfo`
+        # @param ClusterConfig: 集群配置
+        # @type ClusterConfig: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterConfig`
+        # @param ClusterStats: 集群最近使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStats: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterRecentStats`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterInfo, :ClusterConfig, :ClusterStats, :RequestId
+        
+        def initialize(clusterinfo=nil, clusterconfig=nil, clusterstats=nil, requestid=nil)
+          @ClusterInfo = clusterinfo
+          @ClusterConfig = clusterconfig
+          @ClusterStats = clusterstats
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterInfo'].nil?
+            @ClusterInfo = RocketMQClusterInfo.new
+            @ClusterInfo.deserialize(params['ClusterInfo'])
+          end
+          unless params['ClusterConfig'].nil?
+            @ClusterConfig = RocketMQClusterConfig.new
+            @ClusterConfig.deserialize(params['ClusterConfig'])
+          end
+          unless params['ClusterStats'].nil?
+            @ClusterStats = RocketMQClusterRecentStats.new
+            @ClusterStats.deserialize(params['ClusterStats'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQClusters请求参数结构体
+      class DescribeRocketMQClustersRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param IdKeyword: 按照集群ID关键字搜索
+        # @type IdKeyword: String
+        # @param NameKeyword: 按照集群名称关键字搜索
+        # @type NameKeyword: String
+        # @param ClusterIdList: 集群ID列表过滤
+        # @type ClusterIdList: Array
+        # @param IsTagFilter: 标签过滤查找时，需要设置为true
+        # @type IsTagFilter: Boolean
+        # @param Filters: 过滤器。目前支持标签过滤。
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :IdKeyword, :NameKeyword, :ClusterIdList, :IsTagFilter, :Filters
+        
+        def initialize(offset=nil, limit=nil, idkeyword=nil, namekeyword=nil, clusteridlist=nil, istagfilter=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @IdKeyword = idkeyword
+          @NameKeyword = namekeyword
+          @ClusterIdList = clusteridlist
+          @IsTagFilter = istagfilter
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @IdKeyword = params['IdKeyword']
+          @NameKeyword = params['NameKeyword']
+          @ClusterIdList = params['ClusterIdList']
+          @IsTagFilter = params['IsTagFilter']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRocketMQClusters返回参数结构体
+      class DescribeRocketMQClustersResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterList: 集群信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterList: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterList, :TotalCount, :RequestId
+        
+        def initialize(clusterlist=nil, totalcount=nil, requestid=nil)
+          @ClusterList = clusterlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterList'].nil?
+            @ClusterList = []
+            params['ClusterList'].each do |i|
+              rocketmqclusterdetail_tmp = RocketMQClusterDetail.new
+              rocketmqclusterdetail_tmp.deserialize(i)
+              @ClusterList << rocketmqclusterdetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQGroups请求参数结构体
+      class DescribeRocketMQGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间
+        # @type NamespaceId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制条数
+        # @type Limit: Integer
+        # @param FilterTopic: 主题名称，输入此参数可查询该主题下所有的订阅组
+        # @type FilterTopic: String
+        # @param FilterGroup: 按消费组名称查询消费组，支持模糊查询
+        # @type FilterGroup: String
+        # @param SortedBy: 按照指定字段排序，可选值为tps，accumulative
+        # @type SortedBy: String
+        # @param SortOrder: 按升序或降序排列，可选值为asc，desc
+        # @type SortOrder: String
+        # @param FilterOneGroup: 订阅组名称，指定此参数后将只返回该订阅组信息
+        # @type FilterOneGroup: String
+
+        attr_accessor :ClusterId, :NamespaceId, :Offset, :Limit, :FilterTopic, :FilterGroup, :SortedBy, :SortOrder, :FilterOneGroup
+        
+        def initialize(clusterid=nil, namespaceid=nil, offset=nil, limit=nil, filtertopic=nil, filtergroup=nil, sortedby=nil, sortorder=nil, filteronegroup=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @Offset = offset
+          @Limit = limit
+          @FilterTopic = filtertopic
+          @FilterGroup = filtergroup
+          @SortedBy = sortedby
+          @SortOrder = sortorder
+          @FilterOneGroup = filteronegroup
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @FilterTopic = params['FilterTopic']
+          @FilterGroup = params['FilterGroup']
+          @SortedBy = params['SortedBy']
+          @SortOrder = params['SortOrder']
+          @FilterOneGroup = params['FilterOneGroup']
+        end
+      end
+
+      # DescribeRocketMQGroups返回参数结构体
+      class DescribeRocketMQGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param Groups: 订阅组列表
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Groups, :RequestId
+        
+        def initialize(totalcount=nil, groups=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              rocketmqgroup_tmp = RocketMQGroup.new
+              rocketmqgroup_tmp.deserialize(i)
+              @Groups << rocketmqgroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQNamespaces请求参数结构体
+      class DescribeRocketMQNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param NameKeyword: 按名称搜索
+        # @type NameKeyword: String
+
+        attr_accessor :ClusterId, :Offset, :Limit, :NameKeyword
+        
+        def initialize(clusterid=nil, offset=nil, limit=nil, namekeyword=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+          @NameKeyword = namekeyword
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @NameKeyword = params['NameKeyword']
+        end
+      end
+
+      # DescribeRocketMQNamespaces返回参数结构体
+      class DescribeRocketMQNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param Namespaces: 命名空间列表
+        # @type Namespaces: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Namespaces, :TotalCount, :RequestId
+        
+        def initialize(namespaces=nil, totalcount=nil, requestid=nil)
+          @Namespaces = namespaces
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Namespaces'].nil?
+            @Namespaces = []
+            params['Namespaces'].each do |i|
+              rocketmqnamespace_tmp = RocketMQNamespace.new
+              rocketmqnamespace_tmp.deserialize(i)
+              @Namespaces << rocketmqnamespace_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQTopics请求参数结构体
+      class DescribeRocketMQTopicsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询限制数
+        # @type Limit: Integer
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间
+        # @type NamespaceId: String
+        # @param FilterType: 按主题类型过滤查询结果，可选择Normal, GlobalOrder, PartitionedOrder, Transaction
+        # @type FilterType: Array
+        # @param FilterName: 按主题名称搜索，支持模糊查询
+        # @type FilterName: String
+
+        attr_accessor :Offset, :Limit, :ClusterId, :NamespaceId, :FilterType, :FilterName
+        
+        def initialize(offset=nil, limit=nil, clusterid=nil, namespaceid=nil, filtertype=nil, filtername=nil)
+          @Offset = offset
+          @Limit = limit
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @FilterType = filtertype
+          @FilterName = filtername
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @FilterType = params['FilterType']
+          @FilterName = params['FilterName']
+        end
+      end
+
+      # DescribeRocketMQTopics返回参数结构体
+      class DescribeRocketMQTopicsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param Topics: 主题信息列表
+        # @type Topics: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Topics, :RequestId
+        
+        def initialize(totalcount=nil, topics=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Topics = topics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              rocketmqtopic_tmp = RocketMQTopic.new
+              rocketmqtopic_tmp.deserialize(i)
+              @Topics << rocketmqtopic_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoles请求参数结构体
       class DescribeRolesRequest < TencentCloud::Common::AbstractModel
         # @param RoleName: 角色名称，模糊查询
@@ -3446,6 +4120,190 @@ module TencentCloud
         end
       end
 
+      # ModifyRocketMQCluster请求参数结构体
+      class ModifyRocketMQClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: RocketMQ集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type ClusterName: String
+        # @param Remark: 说明信息，不超过128个字符
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :ClusterName, :Remark
+        
+        def initialize(clusterid=nil, clustername=nil, remark=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyRocketMQCluster返回参数结构体
+      class ModifyRocketMQClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRocketMQGroup请求参数结构体
+      class ModifyRocketMQGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间
+        # @type NamespaceId: String
+        # @param GroupId: 消费组名称
+        # @type GroupId: String
+        # @param Remark: 说明信息，最长128个字符
+        # @type Remark: String
+        # @param ReadEnable: 是否开启消费
+        # @type ReadEnable: Boolean
+        # @param BroadcastEnable: 是否开启广播消费
+        # @type BroadcastEnable: Boolean
+
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Remark, :ReadEnable, :BroadcastEnable
+        
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, remark=nil, readenable=nil, broadcastenable=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @GroupId = groupid
+          @Remark = remark
+          @ReadEnable = readenable
+          @BroadcastEnable = broadcastenable
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @GroupId = params['GroupId']
+          @Remark = params['Remark']
+          @ReadEnable = params['ReadEnable']
+          @BroadcastEnable = params['BroadcastEnable']
+        end
+      end
+
+      # ModifyRocketMQGroup返回参数结构体
+      class ModifyRocketMQGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRocketMQNamespace请求参数结构体
+      class ModifyRocketMQNamespaceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
+        # @type NamespaceId: String
+        # @param Ttl: 未消费消息的保留时间，以毫秒为单位，60秒-15天
+        # @type Ttl: Integer
+        # @param RetentionTime: 消息持久化后保留的时间，以毫秒为单位
+        # @type RetentionTime: Integer
+        # @param Remark: 说明，最大128个字符
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :NamespaceId, :Ttl, :RetentionTime, :Remark
+        
+        def initialize(clusterid=nil, namespaceid=nil, ttl=nil, retentiontime=nil, remark=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @Ttl = ttl
+          @RetentionTime = retentiontime
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @Ttl = params['Ttl']
+          @RetentionTime = params['RetentionTime']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyRocketMQNamespace返回参数结构体
+      class ModifyRocketMQNamespaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRocketMQTopic请求参数结构体
+      class ModifyRocketMQTopicRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称
+        # @type NamespaceId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param Remark: 说明信息，最大128个字符
+        # @type Remark: String
+
+        attr_accessor :ClusterId, :NamespaceId, :Topic, :Remark
+        
+        def initialize(clusterid=nil, namespaceid=nil, topic=nil, remark=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @Topic = topic
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @Topic = params['Topic']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyRocketMQTopic返回参数结构体
+      class ModifyRocketMQTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRole请求参数结构体
       class ModifyRoleRequest < TencentCloud::Common::AbstractModel
         # @param RoleName: 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
@@ -3884,6 +4742,83 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # RocketMQ集群配置
+      class RocketMQClusterConfig < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # 租户RocketMQ集群详细信息
+      class RocketMQClusterDetail < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RocketMQ集群基本信息
+      class RocketMQClusterInfo < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RocketMQ近期使用量
+      class RocketMQClusterRecentStats < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RocketMQ消费组信息
+      class RocketMQGroup < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RocketMQ命名空间信息
+      class RocketMQNamespace < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RocketMQ主题信息
+      class RocketMQTopic < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

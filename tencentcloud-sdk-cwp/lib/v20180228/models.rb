@@ -6432,7 +6432,7 @@ module TencentCloud
         # @type ExpertServiceBuy: Boolean
         # @param EmergencyResponseBuy: 是否购买过应急响应
         # @type EmergencyResponseBuy: Boolean
-        # @param ProtectNetBuy: 是否哦购买过旗舰护网
+        # @param ProtectNetBuy: 是否购买过旗舰护网
         # @type ProtectNetBuy: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
