@@ -1526,6 +1526,141 @@ module TencentCloud
         end
       end
 
+      # BOT记录详细内容
+      class BotRecord < TencentCloud::Common::AbstractModel
+        # @param Action: 动作，取值为以为3个类型中的一个："intercept","permit","monitor"，分别表示： 拦截， 放行，监控
+        # @type Action: String
+        # @param Nums: 会话总次数
+        # @type Nums: Integer
+        # @param RuleName: BotType=UB时，表示预测标签，取值如下：
+        #                 "crawler_unregular",
+        #                 "crawler_regular",
+        #                 "request_repeat",
+        #                 "credential_miss_user",
+        #                 "credential_without_user",
+        #                 "credential_only_action",
+        #                 "credential_user_password",
+        #                 "credential_cracking",
+        #                 "credential_stuffing",
+        #                 "brush_sms",
+        #                 "brush_captcha",
+        #                 "reg_malicious"
+        # BotType=TCB时，表示Bot分类，取值如下：
+        #                 "Uncategorised",
+        #                 "Search engine bot",
+        #                 "Site monitor",
+        #                 "Screenshot creator",
+        #                 "Link checker",
+        #                 "Web scraper",
+        #                 "Vulnerability scanner",
+        #                 "Virus scanner",
+        #                 "Speed tester",
+        #                 "Feed Fetcher",
+        #                 "Tool",
+        #                 "Marketing"
+        # BotType=UCB时，为二期接口，暂时未定义内容
+        # @type RuleName: String
+        # @param SessionDuration: 会话持续时间
+        # @type SessionDuration: Float
+        # @param SrcIp: 访问源IP
+        # @type SrcIp: String
+        # @param BotFeature: 异常特征
+        # @type BotFeature: Array
+        # @param Time: 最新检测时间
+        # @type Time: String
+        # @param Score: BOT得分
+        # @type Score: Integer
+        # @param AvgSpeed: 平均速率
+        # @type AvgSpeed: Float
+        # @param TcbDetail: BotType=TCB，表示TCB名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcbDetail: String
+        # @param Id: BOT记录唯一ID，用于查询访问详情
+        # @type Id: String
+
+        attr_accessor :Action, :Nums, :RuleName, :SessionDuration, :SrcIp, :BotFeature, :Time, :Score, :AvgSpeed, :TcbDetail, :Id
+        
+        def initialize(action=nil, nums=nil, rulename=nil, sessionduration=nil, srcip=nil, botfeature=nil, time=nil, score=nil, avgspeed=nil, tcbdetail=nil, id=nil)
+          @Action = action
+          @Nums = nums
+          @RuleName = rulename
+          @SessionDuration = sessionduration
+          @SrcIp = srcip
+          @BotFeature = botfeature
+          @Time = time
+          @Score = score
+          @AvgSpeed = avgspeed
+          @TcbDetail = tcbdetail
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @Nums = params['Nums']
+          @RuleName = params['RuleName']
+          @SessionDuration = params['SessionDuration']
+          @SrcIp = params['SrcIp']
+          @BotFeature = params['BotFeature']
+          @Time = params['Time']
+          @Score = params['Score']
+          @AvgSpeed = params['AvgSpeed']
+          @TcbDetail = params['TcbDetail']
+          @Id = params['Id']
+        end
+      end
+
+      # Bot记录的排序选项
+      class BotSortBy < TencentCloud::Common::AbstractModel
+        # @param Key: 排序参数名称， 取值为：timestamp， nums， session_duration，score.total，stat.avg_speed分别表示按照：最新检测时间，会话总次数，会话持续时间，BOT得分，平均速率排序
+        # @type Key: String
+        # @param Sequence: asc/desc
+        # @type Sequence: String
+
+        attr_accessor :Key, :Sequence
+        
+        def initialize(key=nil, sequence=nil)
+          @Key = key
+          @Sequence = sequence
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Sequence = params['Sequence']
+        end
+      end
+
+      # session/ip维度的bot统计复杂对象
+      class BotStatisticsCount < TencentCloud::Common::AbstractModel
+        # @param Count: BOT次数
+        # @type Count: Integer
+        # @param Value: Top指标值,如果是ip维度就是ip如果是session维度就是域名
+        # @type Value: String
+        # @param Country: ip所在国家
+        # @type Country: String
+        # @param Province: ip所在省份
+        # @type Province: String
+        # @param Isp: ip归属的idc
+        # @type Isp: String
+
+        attr_accessor :Count, :Value, :Country, :Province, :Isp
+        
+        def initialize(count=nil, value=nil, country=nil, province=nil, isp=nil)
+          @Count = count
+          @Value = value
+          @Country = country
+          @Province = province
+          @Isp = isp
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Value = params['Value']
+          @Country = params['Country']
+          @Province = params['Province']
+          @Isp = params['Isp']
+        end
+      end
+
       # 域名基础配置信息，含 CNAME、状态、业务类型、加速区域、创建时间、更新时间、源站配置等。
       class BriefDomain < TencentCloud::Common::AbstractModel
         # @param ResourceId: 域名 ID
@@ -4801,6 +4936,163 @@ module TencentCloud
         end
       end
 
+      # DescribeScdnBotRecords请求参数结构体
+      class DescribeScdnBotRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param BotType: BOT类型，取值为"UB","UCB","TCB"，分别表示：未知类型，自定义类型，公开类型
+        # @type BotType: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 分页参数
+        # @type Offset: Integer
+        # @param Limit: 分页参数
+        # @type Limit: Integer
+        # @param Area: mainland 大陆地区 overseas境外地区
+        # @type Area: String
+        # @param SortBy: 排序参数
+        # @type SortBy: Array
+        # @param FilterName: BotType=UB时，表示需要过滤的预测标签，取值如下：
+        #                 "crawler_unregular",
+        #                 "crawler_regular",
+        #                 "request_repeat",
+        #                 "credential_miss_user",
+        #                 "credential_without_user",
+        #                 "credential_only_action",
+        #                 "credential_user_password",
+        #                 "credential_cracking",
+        #                 "credential_stuffing",
+        #                 "brush_sms",
+        #                 "brush_captcha",
+        #                 "reg_malicious"
+        # BotType=TCB时，表示需要过滤的Bot分类，取值如下：
+        #                 "Uncategorised",
+        #                 "Search engine bot",
+        #                 "Site monitor",
+        #                 "Screenshot creator",
+        #                 "Link checker",
+        #                 "Web scraper",
+        #                 "Vulnerability scanner",
+        #                 "Virus scanner",
+        #                 "Speed tester",
+        #                 "Feed Fetcher",
+        #                 "Tool",
+        #                 "Marketing"
+        # BotType=UCB时，取值如下：
+        # User-Agent为空或不存在
+        # User-Agent类型为BOT
+        # User-Agent类型为HTTP Library
+        # User-Agent类型为Framework
+        # User-Agent类型为Tools
+        # User-Agent类型为Unkonwn BOT
+        # User-Agent类型为Scanner
+        # Referer空或不存在
+        # Referer滥用(多个UA使用相同Referer)
+        # Cookie滥用(多个UA使用相同Cookie)
+        # Cookie空或不存在
+        # Connection空或不存在
+        # Accept空或不存在
+        # Accept-Language空或不存在
+        # Accept-Enconding空或不存在
+        # 使用HTTP HEAD方法
+        # HTTP协议为1.0或者更低
+        # IDC-IP 腾讯云
+        # IDC-IP 阿里云
+        # IDC-IP 华为云
+        # IDC-IP 金山云
+        # IDC-IP UCloud
+        # IDC-IP 百度云
+        # IDC-IP 京东云
+        # IDC-IP 青云
+        # IDC-IP Aws
+        # IDC-IP Azure
+        # IDC-IP Google
+
+        # 以上所有类型，FilterName为空时，表示不过滤，获取所有内容
+        # @type FilterName: String
+        # @param FilterAction: 目前支持的Action
+        # "intercept" 拦截
+        # "monitor"，监控
+        # "permit" 放行
+        # "redirect" 重定向
+
+        # 尚未支持的Action
+        # "captcha" 验证码
+        # @type FilterAction: String
+        # @param FilterIp: 过滤的IP
+        # @type FilterIp: String
+
+        attr_accessor :BotType, :Domain, :StartTime, :EndTime, :Offset, :Limit, :Area, :SortBy, :FilterName, :FilterAction, :FilterIp
+        
+        def initialize(bottype=nil, domain=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, area=nil, sortby=nil, filtername=nil, filteraction=nil, filterip=nil)
+          @BotType = bottype
+          @Domain = domain
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @Area = area
+          @SortBy = sortby
+          @FilterName = filtername
+          @FilterAction = filteraction
+          @FilterIp = filterip
+        end
+
+        def deserialize(params)
+          @BotType = params['BotType']
+          @Domain = params['Domain']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Area = params['Area']
+          unless params['SortBy'].nil?
+            @SortBy = []
+            params['SortBy'].each do |i|
+              botsortby_tmp = BotSortBy.new
+              botsortby_tmp.deserialize(i)
+              @SortBy << botsortby_tmp
+            end
+          end
+          @FilterName = params['FilterName']
+          @FilterAction = params['FilterAction']
+          @FilterIp = params['FilterIp']
+        end
+      end
+
+      # DescribeScdnBotRecords返回参数结构体
+      class DescribeScdnBotRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: BOT拦截结果数组
+        # @type Data: Array
+        # @param TotalCount: 记录数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+        
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              botrecord_tmp = BotRecord.new
+              botrecord_tmp.deserialize(i)
+              @Data << botrecord_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeScdnConfig请求参数结构体
       class DescribeScdnConfigRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -5065,6 +5357,86 @@ module TencentCloud
               scdntopurldata_tmp = ScdnTopUrlData.new
               scdntopurldata_tmp.deserialize(i)
               @TopUrlData << scdntopurldata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopData请求参数结构体
+      class DescribeTopDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询起始日期：yyyy-MM-dd HH:mm:ss
+        # 当前仅支持按天粒度的数据查询，参数需为某天的起点时刻
+        # @type StartTime: String
+        # @param EndTime: 查询起始日期：yyyy-MM-dd HH:mm:ss
+        # 当前仅支持按天粒度的数据查询，参数需为某天的结束时刻
+        # @type EndTime: String
+        # @param Metric: 排序对象，支持以下几种形式：
+        # ip、ua_device、ua_browser、ua_os、referer
+        # @type Metric: String
+        # @param Filter: 排序使用的指标名称：
+        # flux：Metric 为 host 时指代访问流量
+        # request：Metric 为 host 时指代访问请求数
+        # @type Filter: String
+        # @param Domains: 指定查询域名列表，最多可一次性查询 30 个加速域名明细
+        # @type Domains: Array
+        # @param Project: 未填充域名情况下，指定项目查询，若填充了具体域名信息，以域名为主
+        # @type Project: Integer
+        # @param Detail: 是否详细显示每个域名的的具体数值
+        # @type Detail: Boolean
+        # @param Area: 地域，目前可不填，默认是大陆
+        # @type Area: String
+        # @param Product: 产品名，目前仅可使用cdn
+        # @type Product: String
+
+        attr_accessor :StartTime, :EndTime, :Metric, :Filter, :Domains, :Project, :Detail, :Area, :Product
+        
+        def initialize(starttime=nil, endtime=nil, metric=nil, filter=nil, domains=nil, project=nil, detail=nil, area=nil, product=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Metric = metric
+          @Filter = filter
+          @Domains = domains
+          @Project = project
+          @Detail = detail
+          @Area = area
+          @Product = product
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Metric = params['Metric']
+          @Filter = params['Filter']
+          @Domains = params['Domains']
+          @Project = params['Project']
+          @Detail = params['Detail']
+          @Area = params['Area']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeTopData返回参数结构体
+      class DescribeTopDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 各个资源的Top 访问数据详情。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              topdatamore_tmp = TopDataMore.new
+              topdatamore_tmp.deserialize(i)
+              @Data << topdatamore_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5341,7 +5713,7 @@ module TencentCloud
         # @param FollowRedirect: 301/302 回源自动跟随配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FollowRedirect: :class:`Tencentcloud::Cdn.v20180606.models.FollowRedirect`
-        # @param ErrorPage: 自定义错误页面配置（功能灰度中，敬请期待）
+        # @param ErrorPage: 自定义错误页面配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorPage: :class:`Tencentcloud::Cdn.v20180606.models.ErrorPage`
         # @param RequestHeader: 自定义请求头部配置
@@ -5460,13 +5832,13 @@ module TencentCloud
         # @param Ipv6Access: Ipv6访问配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv6Access: :class:`Tencentcloud::Cdn.v20180606.models.Ipv6Access`
-        # @param AdvanceSet: 高级配置集合。
+        # @param AdvanceSet: 高级配置集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvanceSet: Array
-        # @param OfflineCache: 离线缓存
+        # @param OfflineCache: 离线缓存（功能灰度中，尚未全量，请等待后续全量发布）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OfflineCache: :class:`Tencentcloud::Cdn.v20180606.models.OfflineCache`
-        # @param OriginCombine: 合并回源
+        # @param OriginCombine: 合并回源（白名单功能）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginCombine: :class:`Tencentcloud::Cdn.v20180606.models.OriginCombine`
         # @param PostMaxSize: POST上传配置项
@@ -5481,10 +5853,13 @@ module TencentCloud
         # @param WebSocket: WebSocket配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebSocket: :class:`Tencentcloud::Cdn.v20180606.models.WebSocket`
+        # @param RemoteAuthentication: 远程鉴权配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteAuthentication: :class:`Tencentcloud::Cdn.v20180606.models.RemoteAuthentication`
 
-        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket
+        attr_accessor :ResourceId, :AppId, :Domain, :Cname, :Status, :ProjectId, :ServiceType, :CreateTime, :UpdateTime, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :Disable, :ForceRedirect, :Referer, :MaxAge, :Ipv6, :Compatibility, :SpecificConfig, :Area, :Readonly, :OriginPullTimeout, :AwsPrivateAccess, :SecurityConfig, :ImageOptimization, :UserAgentFilter, :AccessControl, :Advance, :UrlRedirect, :AccessPort, :Tag, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :AdvanceSet, :OfflineCache, :OriginCombine, :PostMaxSize, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication
         
-        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil)
+        def initialize(resourceid=nil, appid=nil, domain=nil, cname=nil, status=nil, projectid=nil, servicetype=nil, createtime=nil, updatetime=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, disable=nil, forceredirect=nil, referer=nil, maxage=nil, ipv6=nil, compatibility=nil, specificconfig=nil, area=nil, readonly=nil, originpulltimeout=nil, awsprivateaccess=nil, securityconfig=nil, imageoptimization=nil, useragentfilter=nil, accesscontrol=nil, advance=nil, urlredirect=nil, accessport=nil, tag=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, advanceset=nil, offlinecache=nil, origincombine=nil, postmaxsize=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil)
           @ResourceId = resourceid
           @AppId = appid
           @Domain = domain
@@ -5543,6 +5918,7 @@ module TencentCloud
           @Quic = quic
           @OssPrivateAccess = ossprivateaccess
           @WebSocket = websocket
+          @RemoteAuthentication = remoteauthentication
         end
 
         def deserialize(params)
@@ -5743,6 +6119,10 @@ module TencentCloud
           unless params['WebSocket'].nil?
             @WebSocket = WebSocket.new
             @WebSocket.deserialize(params['WebSocket'])
+          end
+          unless params['RemoteAuthentication'].nil?
+            @RemoteAuthentication = RemoteAuthentication.new
+            @RemoteAuthentication.deserialize(params['RemoteAuthentication'])
           end
         end
       end
@@ -7344,6 +7724,72 @@ module TencentCloud
         end
       end
 
+      # ListScdnTopBotData请求参数结构体
+      class ListScdnTopBotDataRequest < TencentCloud::Common::AbstractModel
+        # @param TopCount: 获取Top量，取值范围[1-10]
+        # @type TopCount: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Area: mainland 大陆地区 overseas境外地区
+        # @type Area: String
+        # @param Metric: session表示查询BOT会话的Top信息
+        # ip表示查询BOT客户端IP的Top信息
+
+        # 不填代表获取会话信息
+        # @type Metric: String
+        # @param Domains: 域名，仅当Metric=ip，并且Domain为空时有效，不填写表示获取AppID信息
+        # @type Domains: Array
+
+        attr_accessor :TopCount, :StartTime, :EndTime, :Area, :Metric, :Domains
+        
+        def initialize(topcount=nil, starttime=nil, endtime=nil, area=nil, metric=nil, domains=nil)
+          @TopCount = topcount
+          @StartTime = starttime
+          @EndTime = endtime
+          @Area = area
+          @Metric = metric
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @TopCount = params['TopCount']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Area = params['Area']
+          @Metric = params['Metric']
+          @Domains = params['Domains']
+        end
+      end
+
+      # ListScdnTopBotData返回参数结构体
+      class ListScdnTopBotDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 域名BOT次数列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+        
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              botstatisticscount_tmp = BotStatisticsCount.new
+              botstatisticscount_tmp.deserialize(i)
+              @Data << botstatisticscount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListTopBotData请求参数结构体
       class ListTopBotDataRequest < TencentCloud::Common::AbstractModel
         # @param TopCount: 获取Top量，取值范围[1-10]
@@ -7697,10 +8143,12 @@ module TencentCloud
         # @type AreaType: String
         # @param Product: 指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
         # @type Product: String
+        # @param Limit: 只返回前N条数据，默认为最大值100，metric=url时默认为最大值1000
+        # @type Limit: Integer
 
-        attr_accessor :StartTime, :EndTime, :Metric, :Filter, :Domains, :Project, :Detail, :Code, :Area, :AreaType, :Product
+        attr_accessor :StartTime, :EndTime, :Metric, :Filter, :Domains, :Project, :Detail, :Code, :Area, :AreaType, :Product, :Limit
         
-        def initialize(starttime=nil, endtime=nil, metric=nil, filter=nil, domains=nil, project=nil, detail=nil, code=nil, area=nil, areatype=nil, product=nil)
+        def initialize(starttime=nil, endtime=nil, metric=nil, filter=nil, domains=nil, project=nil, detail=nil, code=nil, area=nil, areatype=nil, product=nil, limit=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Metric = metric
@@ -7712,6 +8160,7 @@ module TencentCloud
           @Area = area
           @AreaType = areatype
           @Product = product
+          @Limit = limit
         end
 
         def deserialize(params)
@@ -7726,6 +8175,7 @@ module TencentCloud
           @Area = params['Area']
           @AreaType = params['AreaType']
           @Product = params['Product']
+          @Limit = params['Limit']
         end
       end
 
@@ -9410,6 +9860,93 @@ module TencentCloud
         def deserialize(params)
           @RegionId = params['RegionId']
           @SubRegionIdList = params['SubRegionIdList']
+        end
+      end
+
+      # 远程鉴权规则配置，可以包含多种规则配置。
+      # RemoteAuthenticationRule 和Server 互斥，配置其中一个。
+      # 若只配置Server ，规则参数将采用默认参数；
+      class RemoteAuthentication < TencentCloud::Common::AbstractModel
+        # @param Switch: 远程鉴权开关；
+        # on : 开启;
+        # off: 关闭；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Switch: String
+        # @param RemoteAuthenticationRules: 远程鉴权规则配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteAuthenticationRules: Array
+        # @param Server: 远程鉴权Server
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Server: String
+
+        attr_accessor :Switch, :RemoteAuthenticationRules, :Server
+        
+        def initialize(switch=nil, remoteauthenticationrules=nil, server=nil)
+          @Switch = switch
+          @RemoteAuthenticationRules = remoteauthenticationrules
+          @Server = server
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          unless params['RemoteAuthenticationRules'].nil?
+            @RemoteAuthenticationRules = []
+            params['RemoteAuthenticationRules'].each do |i|
+              remoteauthenticationrule_tmp = RemoteAuthenticationRule.new
+              remoteauthenticationrule_tmp.deserialize(i)
+              @RemoteAuthenticationRules << remoteauthenticationrule_tmp
+            end
+          end
+          @Server = params['Server']
+        end
+      end
+
+      # 远程鉴权规则。
+      class RemoteAuthenticationRule < TencentCloud::Common::AbstractModel
+        # @param Server: 远程鉴权服务http url
+        # @type Server: String
+        # @param AuthMethod: 请求远程鉴权服务器的http方法；取值范围[get,post,head,all]; all 表示不限制请求方法；
+        # all: 不指定访问访问方法；
+        # @type AuthMethod: String
+        # @param RuleType: 规则类型：
+        # all：所有文件生效
+        # file：指定文件后缀生效
+        # directory：指定路径生效
+        # path：指定绝对路径生效
+        # @type RuleType: String
+        # @param RulePaths: 对应类型下的匹配内容：
+        # all 时填充 *
+        # file 时填充后缀名，如 jpg、txt
+        # directory 时填充路径，如 /xxx/test
+        # path 时填充绝对路径，如 /xxx/test.html
+        # index 时填充 /
+        # @type RulePaths: Array
+        # @param AuthTimeout: 请求远程鉴权服务器超时时间，单位毫秒；
+        # 取值范围：[1,30 000]
+        # @type AuthTimeout: Integer
+        # @param AuthTimeoutAction: 请求远程鉴权服务器超时后执行拦截或者放行；
+        # RETURN_200: 超时后放行；
+        # RETURN_403:超时返回403；
+        # @type AuthTimeoutAction: String
+
+        attr_accessor :Server, :AuthMethod, :RuleType, :RulePaths, :AuthTimeout, :AuthTimeoutAction
+        
+        def initialize(server=nil, authmethod=nil, ruletype=nil, rulepaths=nil, authtimeout=nil, authtimeoutaction=nil)
+          @Server = server
+          @AuthMethod = authmethod
+          @RuleType = ruletype
+          @RulePaths = rulepaths
+          @AuthTimeout = authtimeout
+          @AuthTimeoutAction = authtimeoutaction
+        end
+
+        def deserialize(params)
+          @Server = params['Server']
+          @AuthMethod = params['AuthMethod']
+          @RuleType = params['RuleType']
+          @RulePaths = params['RulePaths']
+          @AuthTimeout = params['AuthTimeout']
+          @AuthTimeoutAction = params['AuthTimeoutAction']
         end
       end
 
@@ -11147,6 +11684,33 @@ module TencentCloud
         end
       end
 
+      # 排序类型数据结构
+      class TopDataMore < TencentCloud::Common::AbstractModel
+        # @param Resource: 资源名称，根据查询条件不同分为以下几类：
+        # @type Resource: String
+        # @param DetailData: 排序结果详情
+        # @type DetailData: Array
+
+        attr_accessor :Resource, :DetailData
+        
+        def initialize(resource=nil, detaildata=nil)
+          @Resource = resource
+          @DetailData = detaildata
+        end
+
+        def deserialize(params)
+          @Resource = params['Resource']
+          unless params['DetailData'].nil?
+            @DetailData = []
+            params['DetailData'].each do |i|
+              topdetaildatamore_tmp = TopDetailDataMore.new
+              topdetaildatamore_tmp.deserialize(i)
+              @DetailData << topdetaildatamore_tmp
+            end
+          end
+        end
+      end
+
       # 排序类型的数据结构
       class TopDetailData < TencentCloud::Common::AbstractModel
         # @param Name: 数据类型的名称
@@ -11164,6 +11728,31 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 排序类型的数据结构，同时附带上该项的在总值的占比
+      class TopDetailDataMore < TencentCloud::Common::AbstractModel
+        # @param Name: 数据类型的名称
+        # @type Name: String
+        # @param Value: 数据值
+        # @type Value: Float
+        # @param Percent: 数据值在总值中的百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Float
+
+        attr_accessor :Name, :Value, :Percent
+        
+        def initialize(name=nil, value=nil, percent=nil)
+          @Name = name
+          @Value = value
+          @Percent = percent
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Percent = params['Percent']
         end
       end
 
@@ -11245,7 +11834,7 @@ module TencentCloud
         # @type AutoExtension: Boolean
         # @param Channel: 流量包来源
         # @type Channel: String
-        # @param Area: 流量包生效区域，目前仅支持mainland
+        # @param Area: 流量包生效区域，mainland或overseas
         # @type Area: String
         # @param LifeTimeMonth: 流量包生命周期月数
         # @type LifeTimeMonth: Integer
@@ -11253,10 +11842,22 @@ module TencentCloud
         # @type ExtensionAvailable: Boolean
         # @param RefundAvailable: 流量包是否支持退费
         # @type RefundAvailable: Boolean
+        # @param Region: 流量包生效区域
+        # 0：中国大陆
+        # 1：亚太一区
+        # 2：亚太二区
+        # 3：亚太三区
+        # 4：中东
+        # 5：北美
+        # 6：欧洲
+        # 7：南美
+        # 8：非洲
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: Integer
 
-        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable
+        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable, :Region
         
-        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil)
+        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil, region=nil)
           @Id = id
           @Type = type
           @Bytes = bytes
@@ -11272,6 +11873,7 @@ module TencentCloud
           @LifeTimeMonth = lifetimemonth
           @ExtensionAvailable = extensionavailable
           @RefundAvailable = refundavailable
+          @Region = region
         end
 
         def deserialize(params)
@@ -11290,6 +11892,7 @@ module TencentCloud
           @LifeTimeMonth = params['LifeTimeMonth']
           @ExtensionAvailable = params['ExtensionAvailable']
           @RefundAvailable = params['RefundAvailable']
+          @Region = params['Region']
         end
       end
 
@@ -11357,6 +11960,7 @@ module TencentCloud
         # mainland：中国境内加速
         # overseas：中国境外加速
         # global：全球加速
+        # 从mainland/overseas修改至global时，域名的配置将被同步至overseas/mainland。若域名含有后端特殊配置，此类配置的同步过程有一定延时，请耐心等待
         # @type Area: String
         # @param OriginPullTimeout: 回源超时配置
         # @type OriginPullTimeout: :class:`Tencentcloud::Cdn.v20180606.models.OriginPullTimeout`
@@ -11366,7 +11970,7 @@ module TencentCloud
         # @type UserAgentFilter: :class:`Tencentcloud::Cdn.v20180606.models.UserAgentFilter`
         # @param AccessControl: 访问控制
         # @type AccessControl: :class:`Tencentcloud::Cdn.v20180606.models.AccessControl`
-        # @param UrlRedirect: URL重定向配置
+        # @param UrlRedirect: 访问URL重写配置
         # @type UrlRedirect: :class:`Tencentcloud::Cdn.v20180606.models.UrlRedirect`
         # @param AccessPort: 访问端口配置
         # @type AccessPort: Array
@@ -11386,10 +11990,12 @@ module TencentCloud
         # @type OssPrivateAccess: :class:`Tencentcloud::Cdn.v20180606.models.OssPrivateAccess`
         # @param WebSocket: WebSocket配置
         # @type WebSocket: :class:`Tencentcloud::Cdn.v20180606.models.WebSocket`
+        # @param RemoteAuthentication: 远程鉴权配置
+        # @type RemoteAuthentication: :class:`Tencentcloud::Cdn.v20180606.models.RemoteAuthentication`
 
-        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :ServiceType, :SpecificConfig, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :Quic, :OssPrivateAccess, :WebSocket
+        attr_accessor :Domain, :ProjectId, :Origin, :IpFilter, :IpFreqLimit, :StatusCodeCache, :Compression, :BandwidthAlert, :RangeOriginPull, :FollowRedirect, :ErrorPage, :RequestHeader, :ResponseHeader, :DownstreamCapping, :CacheKey, :ResponseHeaderCache, :VideoSeek, :Cache, :OriginPullOptimization, :Https, :Authentication, :Seo, :ForceRedirect, :Referer, :MaxAge, :ServiceType, :SpecificConfig, :Area, :OriginPullTimeout, :AwsPrivateAccess, :UserAgentFilter, :AccessControl, :UrlRedirect, :AccessPort, :AdvancedAuthentication, :OriginAuthentication, :Ipv6Access, :OfflineCache, :OriginCombine, :Quic, :OssPrivateAccess, :WebSocket, :RemoteAuthentication
         
-        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, servicetype=nil, specificconfig=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, quic=nil, ossprivateaccess=nil, websocket=nil)
+        def initialize(domain=nil, projectid=nil, origin=nil, ipfilter=nil, ipfreqlimit=nil, statuscodecache=nil, compression=nil, bandwidthalert=nil, rangeoriginpull=nil, followredirect=nil, errorpage=nil, requestheader=nil, responseheader=nil, downstreamcapping=nil, cachekey=nil, responseheadercache=nil, videoseek=nil, cache=nil, originpulloptimization=nil, https=nil, authentication=nil, seo=nil, forceredirect=nil, referer=nil, maxage=nil, servicetype=nil, specificconfig=nil, area=nil, originpulltimeout=nil, awsprivateaccess=nil, useragentfilter=nil, accesscontrol=nil, urlredirect=nil, accessport=nil, advancedauthentication=nil, originauthentication=nil, ipv6access=nil, offlinecache=nil, origincombine=nil, quic=nil, ossprivateaccess=nil, websocket=nil, remoteauthentication=nil)
           @Domain = domain
           @ProjectId = projectid
           @Origin = origin
@@ -11432,6 +12038,7 @@ module TencentCloud
           @Quic = quic
           @OssPrivateAccess = ossprivateaccess
           @WebSocket = websocket
+          @RemoteAuthentication = remoteauthentication
         end
 
         def deserialize(params)
@@ -11587,6 +12194,10 @@ module TencentCloud
           unless params['WebSocket'].nil?
             @WebSocket = WebSocket.new
             @WebSocket.deserialize(params['WebSocket'])
+          end
+          unless params['RemoteAuthentication'].nil?
+            @RemoteAuthentication = RemoteAuthentication.new
+            @RemoteAuthentication.deserialize(params['RemoteAuthentication'])
           end
         end
       end

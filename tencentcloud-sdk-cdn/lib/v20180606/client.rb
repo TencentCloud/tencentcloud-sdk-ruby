@@ -897,6 +897,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询BOT会话记录列表
+
+        # @param request: Request instance for DescribeScdnBotRecords.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeScdnBotRecordsRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeScdnBotRecordsResponse`
+        def DescribeScdnBotRecords(request)
+          body = send_request('DescribeScdnBotRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScdnBotRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
 
         # @param request: Request instance for DescribeScdnConfig.
@@ -955,6 +979,40 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeScdnTopDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeTopData 通过入参 Metric 和 Filter 组合不同，可以查询以下排序数据：
+
+        # + 依据总流量、总请求数对访问 IP 排序，从大至小返回 TOP 100 IP
+        # + 依据总流量、总请求数对访问 Refer 排序，从大至小返回 TOP 100 Refer
+        # + 依据总流量、总请求数对访问 设备 排序，从大至小返回 设备类型
+        # + 依据总流量、总请求数对访问 操作系统 排序，从大至小返回 操作系统
+        # + 依据总流量、总请求数对访问 浏览器 排序，从大至小返回 浏览器
+
+        # 注意：
+        # + 仅支持 90 天内数据查询，且从2021年09月20日开始有数据
+        # + 本接口为beta版，尚未正式全量发布
+
+        # @param request: Request instance for DescribeTopData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeTopDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeTopDataResponse`
+        def DescribeTopData(request)
+          body = send_request('DescribeTopData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopDataResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1292,6 +1350,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListScdnLogTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Bot攻击的Top数据列表
+
+        # @param request: Request instance for ListScdnTopBotData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::ListScdnTopBotDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::ListScdnTopBotDataResponse`
+        def ListScdnTopBotData(request)
+          body = send_request('ListScdnTopBotData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListScdnTopBotDataResponse.new
             model.deserialize(response['Response'])
             model
           else
