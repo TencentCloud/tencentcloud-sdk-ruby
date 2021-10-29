@@ -203,6 +203,126 @@ module TencentCloud
         end
       end
 
+      # CreateGroup请求参数结构体
+      class CreateGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 图库ID，不可重复，仅支持字母、数字和下划线。
+        # @type GroupId: String
+        # @param GroupName: 图库名称描述。
+        # @type GroupName: String
+        # @param MaxCapacity: 该库的容量限制。
+        # @type MaxCapacity: Integer
+        # @param Brief: 简介。
+        # @type Brief: String
+        # @param MaxQps: 该库的访问限频 ，默认10。
+        # @type MaxQps: Integer
+        # @param GroupType: 图库类型， 默认为通用。
+        # 类型：
+        # 1: 通用图库，以用户输入图提取特征。
+        # 2: 灰度图库，输入图和搜索图均转为灰度图提取特征。
+        # @type GroupType: Integer
+
+        attr_accessor :GroupId, :GroupName, :MaxCapacity, :Brief, :MaxQps, :GroupType
+        
+        def initialize(groupid=nil, groupname=nil, maxcapacity=nil, brief=nil, maxqps=nil, grouptype=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @MaxCapacity = maxcapacity
+          @Brief = brief
+          @MaxQps = maxqps
+          @GroupType = grouptype
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @MaxCapacity = params['MaxCapacity']
+          @Brief = params['Brief']
+          @MaxQps = params['MaxQps']
+          @GroupType = params['GroupType']
+        end
+      end
+
+      # CreateGroup返回参数结构体
+      class CreateGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateImage请求参数结构体
+      class CreateImageRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 图库ID。
+        # @type GroupId: String
+        # @param EntityId: 物品ID，最多支持64个字符。
+        # 若EntityId已存在，则对其追加图片。
+        # @type EntityId: String
+        # @param PicName: 图片名称，最多支持64个字符，
+        # 同一个EntityId，最大支持5张图。如果图片名称已存在，则会更新库中的图片。
+        # @type PicName: String
+        # @param ImageUrl: 图片的 Url 。对应图片 base64 编码后大小不可超过2M。
+        # Url、Image必须提供一个，如果都提供，只使用 Url。
+        # 图片分辨率不超过1920*1080。
+        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片 base64 数据，base64 编码后大小不可超过2M。
+        # 图片分辨率不超过1920*1080。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type ImageBase64: String
+        # @param CustomContent: 用户自定义的内容，最多支持4096个字符，查询时原样带回。
+        # @type CustomContent: String
+        # @param Tags: 图片自定义标签，最多不超过10个，格式为JSON。
+        # @type Tags: String
+
+        attr_accessor :GroupId, :EntityId, :PicName, :ImageUrl, :ImageBase64, :CustomContent, :Tags
+        
+        def initialize(groupid=nil, entityid=nil, picname=nil, imageurl=nil, imagebase64=nil, customcontent=nil, tags=nil)
+          @GroupId = groupid
+          @EntityId = entityid
+          @PicName = picname
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @CustomContent = customcontent
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @EntityId = params['EntityId']
+          @PicName = params['PicName']
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @CustomContent = params['CustomContent']
+          @Tags = params['Tags']
+        end
+      end
+
+      # CreateImage返回参数结构体
+      class CreateImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CropImage请求参数结构体
       class CropImageRequest < TencentCloud::Common::AbstractModel
         # @param Width: 需要裁剪区域的宽度，与Height共同组成所需裁剪的图片宽高比例；
@@ -291,6 +411,157 @@ module TencentCloud
           @OriginalWidth = params['OriginalWidth']
           @OriginalHeight = params['OriginalHeight']
           @CropResult = params['CropResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteImages请求参数结构体
+      class DeleteImagesRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 图库名称。
+        # @type GroupId: String
+        # @param EntityId: 物品ID。
+        # @type EntityId: String
+        # @param PicName: 图片名称，如果不指定本参数，则删除EntityId下所有的图片；否则删除指定的图。
+        # @type PicName: String
+
+        attr_accessor :GroupId, :EntityId, :PicName
+        
+        def initialize(groupid=nil, entityid=nil, picname=nil)
+          @GroupId = groupid
+          @EntityId = entityid
+          @PicName = picname
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @EntityId = params['EntityId']
+          @PicName = params['PicName']
+        end
+      end
+
+      # DeleteImages返回参数结构体
+      class DeleteImagesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGroups请求参数结构体
+      class DescribeGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 起始序号，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认值为10，最大值为100。
+        # @type Limit: Integer
+        # @param GroupId: 图库ID，如果不为空，则返回指定库信息。
+        # @type GroupId: String
+
+        attr_accessor :Offset, :Limit, :GroupId
+        
+        def initialize(offset=nil, limit=nil, groupid=nil)
+          @Offset = offset
+          @Limit = limit
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeGroups返回参数结构体
+      class DescribeGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Groups: 图库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Groups, :RequestId
+        
+        def initialize(groups=nil, requestid=nil)
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @Groups << groupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImages请求参数结构体
+      class DescribeImagesRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 图库名称。
+        # @type GroupId: String
+        # @param EntityId: 物品ID。
+        # @type EntityId: String
+        # @param PicName: 图片名称。
+        # @type PicName: String
+
+        attr_accessor :GroupId, :EntityId, :PicName
+        
+        def initialize(groupid=nil, entityid=nil, picname=nil)
+          @GroupId = groupid
+          @EntityId = entityid
+          @PicName = picname
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @EntityId = params['EntityId']
+          @PicName = params['PicName']
+        end
+      end
+
+      # DescribeImages返回参数结构体
+      class DescribeImagesResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 图库名称。
+        # @type GroupId: String
+        # @param EntityId: 物品ID。
+        # @type EntityId: String
+        # @param ImageInfos: 图片信息。
+        # @type ImageInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :EntityId, :ImageInfos, :RequestId
+        
+        def initialize(groupid=nil, entityid=nil, imageinfos=nil, requestid=nil)
+          @GroupId = groupid
+          @EntityId = entityid
+          @ImageInfos = imageinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @EntityId = params['EntityId']
+          unless params['ImageInfos'].nil?
+            @ImageInfos = []
+            params['ImageInfos'].each do |i|
+              imageinfo_tmp = ImageInfo.new
+              imageinfo_tmp.deserialize(i)
+              @ImageInfos << imageinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -957,6 +1228,88 @@ module TencentCloud
         end
       end
 
+      # 图库信息。
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 图库Id。
+        # @type GroupId: String
+        # @param GroupName: 图库名称。
+        # @type GroupName: String
+        # @param Brief: 图库简介。
+        # @type Brief: String
+        # @param MaxCapacity: 图库容量。
+        # @type MaxCapacity: Integer
+        # @param MaxQps: 该库的访问限频 。
+        # @type MaxQps: Integer
+        # @param GroupType: 图库类型：
+        # 1: 通用图库，以用户输入图提取特征。
+        # 2: 灰度图库，输入图和搜索图均转为灰度图提取特征。
+        # @type GroupType: Integer
+        # @param PicCount: 图库图片数量。
+        # @type PicCount: Integer
+        # @param CreateTime: 图库创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 图库更新时间。
+        # @type UpdateTime: String
+
+        attr_accessor :GroupId, :GroupName, :Brief, :MaxCapacity, :MaxQps, :GroupType, :PicCount, :CreateTime, :UpdateTime
+        
+        def initialize(groupid=nil, groupname=nil, brief=nil, maxcapacity=nil, maxqps=nil, grouptype=nil, piccount=nil, createtime=nil, updatetime=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @Brief = brief
+          @MaxCapacity = maxcapacity
+          @MaxQps = maxqps
+          @GroupType = grouptype
+          @PicCount = piccount
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @Brief = params['Brief']
+          @MaxCapacity = params['MaxCapacity']
+          @MaxQps = params['MaxQps']
+          @GroupType = params['GroupType']
+          @PicCount = params['PicCount']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 图片信息
+      class ImageInfo < TencentCloud::Common::AbstractModel
+        # @param EntityId: 图片名称。
+        # @type EntityId: String
+        # @param CustomContent: 用户自定义的内容。
+        # @type CustomContent: String
+        # @param Tags: 图片自定义标签，JSON格式。
+        # @type Tags: String
+        # @param PicName: 图片名称。
+        # @type PicName: String
+        # @param Score: 相似度。
+        # @type Score: Integer
+
+        attr_accessor :EntityId, :CustomContent, :Tags, :PicName, :Score
+        
+        def initialize(entityid=nil, customcontent=nil, tags=nil, picname=nil, score=nil)
+          @EntityId = entityid
+          @CustomContent = customcontent
+          @Tags = tags
+          @PicName = picname
+          @Score = score
+        end
+
+        def deserialize(params)
+          @EntityId = params['EntityId']
+          @CustomContent = params['CustomContent']
+          @Tags = params['Tags']
+          @PicName = params['PicName']
+          @Score = params['Score']
+        end
+      end
+
       # 名人识别的标签
       class Labels < TencentCloud::Common::AbstractModel
         # @param FirstLabel: 公众人物身份标签的一级分类，例如体育明星、娱乐明星、政治人物等；
@@ -1193,6 +1546,85 @@ module TencentCloud
             @Location = Location.new
             @Location.deserialize(params['Location'])
           end
+        end
+      end
+
+      # SearchImage请求参数结构体
+      class SearchImageRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 图库名称。
+        # @type GroupId: String
+        # @param ImageUrl: 图片的 Url 。对应图片 base64 编码后大小不可超过2M。
+        # 图片分辨率不超过1920*1080。
+        # Url、Image必须提供一个，如果都提供，只使用 Url。
+        # 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的Url速度和稳定性可能受一定影响。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片 base64 数据，base64 编码后大小不可超过2M。
+        # 图片分辨率不超过1920*1080。
+        # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
+        # @type ImageBase64: String
+        # @param MatchThreshold: 出参Score中，只有超过MatchThreshold值的结果才会返回。默认为0
+        # @type MatchThreshold: Integer
+        # @param Offset: 起始序号，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认值为10，最大值为100。
+        # @type Limit: Integer
+        # @param Filter: 针对入库时提交的Tags信息进行条件过滤。支持>、>=、 <、 <=、=，!=，多个条件之间支持AND和OR进行连接。
+        # @type Filter: String
+
+        attr_accessor :GroupId, :ImageUrl, :ImageBase64, :MatchThreshold, :Offset, :Limit, :Filter
+        
+        def initialize(groupid=nil, imageurl=nil, imagebase64=nil, matchthreshold=nil, offset=nil, limit=nil, filter=nil)
+          @GroupId = groupid
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @MatchThreshold = matchthreshold
+          @Offset = offset
+          @Limit = limit
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @MatchThreshold = params['MatchThreshold']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Filter = params['Filter']
+        end
+      end
+
+      # SearchImage返回参数结构体
+      class SearchImageResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 返回结果数量。
+        # @type Count: Integer
+        # @param ImageInfos: 图片信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :ImageInfos, :RequestId
+        
+        def initialize(count=nil, imageinfos=nil, requestid=nil)
+          @Count = count
+          @ImageInfos = imageinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['ImageInfos'].nil?
+            @ImageInfos = []
+            params['ImageInfos'].each do |i|
+              imageinfo_tmp = ImageInfo.new
+              imageinfo_tmp.deserialize(i)
+              @ImageInfos << imageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

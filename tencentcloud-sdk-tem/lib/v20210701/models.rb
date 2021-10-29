@@ -883,17 +883,21 @@ module TencentCloud
         # @type ApplicationId: String
         # @param EnvironmentId: 环境id
         # @type EnvironmentId: String
+        # @param VersionId: 版本部署id
+        # @type VersionId: String
 
-        attr_accessor :ApplicationId, :EnvironmentId
+        attr_accessor :ApplicationId, :EnvironmentId, :VersionId
         
-        def initialize(applicationid=nil, environmentid=nil)
+        def initialize(applicationid=nil, environmentid=nil, versionid=nil)
           @ApplicationId = applicationid
           @EnvironmentId = environmentid
+          @VersionId = versionid
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
           @EnvironmentId = params['EnvironmentId']
+          @VersionId = params['VersionId']
         end
       end
 

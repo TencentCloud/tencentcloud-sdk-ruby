@@ -2344,7 +2344,7 @@ module TencentCloud
         # @param LastScanTime: 最后检测时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastScanTime: String
-        # @param Status: 处理状态
+        # @param Status: 风险项处理状态状态：0-未通过，1-通过
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Quuid: 主机Quuid
@@ -4607,8 +4607,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Type: 类型：
-        # 0
+        # @param Type: 该字段已废弃，由Filters代替
         # @type Type: Integer
         # @param Filters: 过滤条件。
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>

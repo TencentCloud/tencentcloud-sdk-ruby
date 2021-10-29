@@ -37,6 +37,99 @@ module TencentCloud
         end
       end
 
+      # BatchSendEmail请求参数结构体
+      class BatchSendEmailRequest < TencentCloud::Common::AbstractModel
+        # @param FromEmailAddress: 发信邮件地址。请填写发件人邮箱地址，例如：noreply@mail.qcloud.com。如需填写发件人说明，请按照
+        # 发信人 <邮件地址> 的方式填写，例如：
+        # 腾讯云团队 <noreply@mail.qcloud.com>
+        # @type FromEmailAddress: String
+        # @param ReceiverId: 收件人列表ID
+        # @type ReceiverId: Integer
+        # @param Subject: 邮件主题
+        # @type Subject: String
+        # @param TaskType: 任务类型 1即时 2 定时 3 周期
+        # @type TaskType: Integer
+        # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人将会回复到腾讯云。
+        # @type ReplyToAddresses: String
+        # @param Template: 使用模板发送时，填写的模板相关参数
+        # @type Template: :class:`Tencentcloud::Ses.v20201002.models.Template`
+        # @param Simple: 使用API直接发送内容时，填写的邮件内容
+        # @type Simple: :class:`Tencentcloud::Ses.v20201002.models.Simple`
+        # @param Attachments: 需要发送附件时，填写附件相关参数。
+        # @type Attachments: Array
+        # @param CycleParam: 周期发送任务的必要参数
+        # @type CycleParam: :class:`Tencentcloud::Ses.v20201002.models.CycleEmailParam`
+        # @param TimedParam: 定时发送任务的必要参数
+        # @type TimedParam: :class:`Tencentcloud::Ses.v20201002.models.TimedEmailParam`
+
+        attr_accessor :FromEmailAddress, :ReceiverId, :Subject, :TaskType, :ReplyToAddresses, :Template, :Simple, :Attachments, :CycleParam, :TimedParam
+        
+        def initialize(fromemailaddress=nil, receiverid=nil, subject=nil, tasktype=nil, replytoaddresses=nil, template=nil, simple=nil, attachments=nil, cycleparam=nil, timedparam=nil)
+          @FromEmailAddress = fromemailaddress
+          @ReceiverId = receiverid
+          @Subject = subject
+          @TaskType = tasktype
+          @ReplyToAddresses = replytoaddresses
+          @Template = template
+          @Simple = simple
+          @Attachments = attachments
+          @CycleParam = cycleparam
+          @TimedParam = timedparam
+        end
+
+        def deserialize(params)
+          @FromEmailAddress = params['FromEmailAddress']
+          @ReceiverId = params['ReceiverId']
+          @Subject = params['Subject']
+          @TaskType = params['TaskType']
+          @ReplyToAddresses = params['ReplyToAddresses']
+          unless params['Template'].nil?
+            @Template = Template.new
+            @Template.deserialize(params['Template'])
+          end
+          unless params['Simple'].nil?
+            @Simple = Simple.new
+            @Simple.deserialize(params['Simple'])
+          end
+          unless params['Attachments'].nil?
+            @Attachments = []
+            params['Attachments'].each do |i|
+              attachment_tmp = Attachment.new
+              attachment_tmp.deserialize(i)
+              @Attachments << attachment_tmp
+            end
+          end
+          unless params['CycleParam'].nil?
+            @CycleParam = CycleEmailParam.new
+            @CycleParam.deserialize(params['CycleParam'])
+          end
+          unless params['TimedParam'].nil?
+            @TimedParam = TimedEmailParam.new
+            @TimedParam.deserialize(params['TimedParam'])
+          end
+        end
+      end
+
+      # BatchSendEmail返回参数结构体
+      class BatchSendEmailResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 发送任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+        
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 邮箱黑名单结构，包含被拉黑的邮箱地址和被拉黑时间
       class BlackEmailAddress < TencentCloud::Common::AbstractModel
         # @param BounceTime: 邮箱被拉黑时间
@@ -180,6 +273,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建重复周期发送邮件任务的参数
+      class CycleEmailParam < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 任务开始时间
+        # @type BeginTime: String
+        # @param IntervalTime: 任务周期 小时维度
+        # @type IntervalTime: Integer
+
+        attr_accessor :BeginTime, :IntervalTime
+        
+        def initialize(begintime=nil, intervaltime=nil)
+          @BeginTime = begintime
+          @IntervalTime = intervaltime
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @IntervalTime = params['IntervalTime']
         end
       end
 
@@ -802,8 +915,8 @@ module TencentCloud
       # SendEmail请求参数结构体
       class SendEmailRequest < TencentCloud::Common::AbstractModel
         # @param FromEmailAddress: 发信邮件地址。请填写发件人邮箱地址，例如：noreply@mail.qcloud.com。如需填写发件人说明，请按照
-        # 发信人 &lt;邮件地址&gt; 的方式填写，例如：
-        # 腾讯云团队 &lt;noreply@mail.qcloud.com&gt;
+        # 发信人 <邮件地址> 的方式填写，例如：
+        # 腾讯云团队 <noreply@mail.qcloud.com>
         # @type FromEmailAddress: String
         # @param Destination: 收信人邮箱地址，最多支持群发50人。注意：邮件内容会显示所有收件人地址，非群发邮件请多次调用API发送。
         # @type Destination: Array
@@ -1050,6 +1163,22 @@ module TencentCloud
           @TemplateStatus = params['TemplateStatus']
           @TemplateID = params['TemplateID']
           @ReviewReason = params['ReviewReason']
+        end
+      end
+
+      # 创建定时发送邮件任务时，设置的定时参数，比如开始时间之类
+      class TimedEmailParam < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 定时发送邮件的开始时间
+        # @type BeginTime: String
+
+        attr_accessor :BeginTime
+        
+        def initialize(begintime=nil)
+          @BeginTime = begintime
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
         end
       end
 

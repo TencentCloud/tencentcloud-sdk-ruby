@@ -197,6 +197,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询互动白板天维度计费用量。
+        # 1. 单次查询统计区间最多不能超过31天。
+        # 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
+
+        # @param request: Request instance for DescribeTIWDailyUsage.
+        # @type request: :class:`Tencentcloud::tiw::V20190919::DescribeTIWDailyUsageRequest`
+        # @rtype: :class:`Tencentcloud::tiw::V20190919::DescribeTIWDailyUsageResponse`
+        def DescribeTIWDailyUsage(request)
+          body = send_request('DescribeTIWDailyUsage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTIWDailyUsageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询文档转码任务的执行进度与转码结果
 
         # @param request: Request instance for DescribeTranscode.

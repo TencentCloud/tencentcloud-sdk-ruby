@@ -339,17 +339,37 @@ module TencentCloud
         # @type TaskId: String
         # @param Mobiles: 手机号码列表（号码量<=200）
         # @type Mobiles: Array
+        # @param IsAuthorized: 是否授权，1：已授权
+        # @type IsAuthorized: Integer
+        # @param EncryptMethod: 加密方式，0：AES加密；1：DES加密
+        # @type EncryptMethod: Integer
+        # @param EncryptMode: 加密算法中的块处理模式，0：ECB模式；1：CBC模式；2：CTR模式；3：CFB模式；4：OFB模式；
+        # @type EncryptMode: Integer
+        # @param PaddingType: 填充模式，0：ZeroPadding；1：PKCS5Padding；2：PKCS7Padding；
+        # @type PaddingType: Integer
+        # @param EncryptData: 加密数据
+        # @type EncryptData: String
 
-        attr_accessor :TaskId, :Mobiles
+        attr_accessor :TaskId, :Mobiles, :IsAuthorized, :EncryptMethod, :EncryptMode, :PaddingType, :EncryptData
         
-        def initialize(taskid=nil, mobiles=nil)
+        def initialize(taskid=nil, mobiles=nil, isauthorized=nil, encryptmethod=nil, encryptmode=nil, paddingtype=nil, encryptdata=nil)
           @TaskId = taskid
           @Mobiles = mobiles
+          @IsAuthorized = isauthorized
+          @EncryptMethod = encryptmethod
+          @EncryptMode = encryptmode
+          @PaddingType = paddingtype
+          @EncryptData = encryptdata
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @Mobiles = params['Mobiles']
+          @IsAuthorized = params['IsAuthorized']
+          @EncryptMethod = params['EncryptMethod']
+          @EncryptMode = params['EncryptMode']
+          @PaddingType = params['PaddingType']
+          @EncryptData = params['EncryptData']
         end
       end
 

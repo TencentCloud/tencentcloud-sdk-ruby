@@ -411,15 +411,18 @@ module TencentCloud
         # @type Score: Integer
         # @param Location: 该字段用于返回实体检测框的坐标位置（左上角xy坐标、长宽、旋转角度）以方便快速定位实体的相关信息。
         # @type Location: :class:`Tencentcloud::Ims.v20201229.models.Location`
+        # @param SubLabel: 该参数用于返回命中的实体二级标签。
+        # @type SubLabel: String
 
-        attr_accessor :Id, :Name, :Value, :Score, :Location
+        attr_accessor :Id, :Name, :Value, :Score, :Location, :SubLabel
         
-        def initialize(id=nil, name=nil, value=nil, score=nil, location=nil)
+        def initialize(id=nil, name=nil, value=nil, score=nil, location=nil, sublabel=nil)
           @Id = id
           @Name = name
           @Value = value
           @Score = score
           @Location = location
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -431,6 +434,7 @@ module TencentCloud
             @Location = Location.new
             @Location.deserialize(params['Location'])
           end
+          @SubLabel = params['SubLabel']
         end
       end
 
@@ -550,10 +554,12 @@ module TencentCloud
         # @type Location: :class:`Tencentcloud::Ims.v20201229.models.Location`
         # @param Rate: 该参数用于返回OCR文本识别结果的置信度，取值在**0**（**置信度最低**）-**100**（**置信度最高**），越高代表对应图像越有可能是识别出的文字；如：*你好 99*，则表明OCR识别框内的文字大概率是”你好“。
         # @type Rate: Integer
+        # @param SubLabel: 该字段用于返回检测结果所对应的恶意二级标签。
+        # @type SubLabel: String
 
-        attr_accessor :Text, :Label, :LibId, :LibName, :Keywords, :Score, :Location, :Rate
+        attr_accessor :Text, :Label, :LibId, :LibName, :Keywords, :Score, :Location, :Rate, :SubLabel
         
-        def initialize(text=nil, label=nil, libid=nil, libname=nil, keywords=nil, score=nil, location=nil, rate=nil)
+        def initialize(text=nil, label=nil, libid=nil, libname=nil, keywords=nil, score=nil, location=nil, rate=nil, sublabel=nil)
           @Text = text
           @Label = label
           @LibId = libid
@@ -562,6 +568,7 @@ module TencentCloud
           @Score = score
           @Location = location
           @Rate = rate
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
@@ -576,6 +583,7 @@ module TencentCloud
             @Location.deserialize(params['Location'])
           end
           @Rate = params['Rate']
+          @SubLabel = params['SubLabel']
         end
       end
 

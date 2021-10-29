@@ -175,7 +175,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # SendTrafficSecuritySmsMessage
+        # 流量安选产品，短信发送接口
 
         # @param request: Request instance for SendTrafficSecuritySmsMessage.
         # @type request: :class:`Tencentcloud::taf::V20200210::SendTrafficSecuritySmsMessageRequest`

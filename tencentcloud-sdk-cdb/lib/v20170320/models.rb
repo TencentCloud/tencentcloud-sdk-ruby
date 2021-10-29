@@ -461,10 +461,12 @@ module TencentCloud
         # @type Method: String
         # @param Way: 备份方式。可能的值有 "manual": 手动备份， "automatic": 自动备份。
         # @type Way: String
+        # @param ManualBackupName: 手动备份别名
+        # @type ManualBackupName: String
 
-        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way
+        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName
         
-        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil)
+        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil, manualbackupname=nil)
           @Name = name
           @Size = size
           @Date = date
@@ -478,6 +480,7 @@ module TencentCloud
           @StartTime = starttime
           @Method = method
           @Way = way
+          @ManualBackupName = manualbackupname
         end
 
         def deserialize(params)
@@ -494,6 +497,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @Method = params['Method']
           @Way = params['Way']
+          @ManualBackupName = params['ManualBackupName']
         end
       end
 
@@ -1033,13 +1037,16 @@ module TencentCloud
         # @param BackupDBTableList: 需要备份的库表信息，如果不设置该参数，则默认整实例备份。在 BackupMethod=logical 逻辑备份中才可设置该参数。指定的库表必须存在，否则可能导致备份失败。
         # 例：如果需要备份 db1 库的 tb1、tb2 表 和 db2 库。则该参数设置为 [{"Db": "db1", "Table": "tb1"}, {"Db": "db1", "Table": "tb2"}, {"Db": "db2"} ]。
         # @type BackupDBTableList: Array
+        # @param ManualBackupName: 手动备份别名
+        # @type ManualBackupName: String
 
-        attr_accessor :InstanceId, :BackupMethod, :BackupDBTableList
+        attr_accessor :InstanceId, :BackupMethod, :BackupDBTableList, :ManualBackupName
         
-        def initialize(instanceid=nil, backupmethod=nil, backupdbtablelist=nil)
+        def initialize(instanceid=nil, backupmethod=nil, backupdbtablelist=nil, manualbackupname=nil)
           @InstanceId = instanceid
           @BackupMethod = backupmethod
           @BackupDBTableList = backupdbtablelist
+          @ManualBackupName = manualbackupname
         end
 
         def deserialize(params)
@@ -1053,6 +1060,7 @@ module TencentCloud
               @BackupDBTableList << backupitem_tmp
             end
           end
+          @ManualBackupName = params['ManualBackupName']
         end
       end
 
@@ -1114,10 +1122,12 @@ module TencentCloud
         # @type InstanceNodes: Integer
         # @param DeployGroupId: 置放群组 ID。
         # @type DeployGroupId: String
+        # @param DryRun: 是否只预检此次请求。true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制等。如果检查不通过，则返回对应错误码；如果检查通过，则返回RequestId.默认为false：发送正常请求，通过检查后直接创建实例。
+        # @type DryRun: Boolean
 
-        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId
+        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun
         
-        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil)
+        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil)
           @InstanceId = instanceid
           @SpecifiedRollbackTime = specifiedrollbacktime
           @SpecifiedBackupId = specifiedbackupid
@@ -1136,6 +1146,7 @@ module TencentCloud
           @DeviceType = devicetype
           @InstanceNodes = instancenodes
           @DeployGroupId = deploygroupid
+          @DryRun = dryrun
         end
 
         def deserialize(params)
@@ -1164,6 +1175,7 @@ module TencentCloud
           @DeviceType = params['DeviceType']
           @InstanceNodes = params['InstanceNodes']
           @DeployGroupId = params['DeployGroupId']
+          @DryRun = params['DryRun']
         end
       end
 
@@ -1305,10 +1317,14 @@ module TencentCloud
         # @type AutoSyncFlag: Integer
         # @param CageId: 金融围拢 ID 。
         # @type CageId: String
+        # @param AlarmPolicyIdList: 告警策略名数组，例如:["policy-uyoee9wg"]，AlarmPolicyList不为空时该参数无效。
+        # @type AlarmPolicyIdList: Array
+        # @param DryRun: 是否只预检此次请求。true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制等。如果检查不通过，则返回对应错误码；如果检查通过，则返回RequestId.默认为false：发送正常请求，通过检查后直接创建实例。
+        # @type DryRun: Boolean
 
-        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId
+        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :AlarmPolicyIdList, :DryRun
         
-        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil)
+        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, alarmpolicyidlist=nil, dryrun=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
@@ -1341,6 +1357,8 @@ module TencentCloud
           @Cpu = cpu
           @AutoSyncFlag = autosyncflag
           @CageId = cageid
+          @AlarmPolicyIdList = alarmpolicyidlist
+          @DryRun = dryrun
         end
 
         def deserialize(params)
@@ -1393,6 +1411,8 @@ module TencentCloud
           @Cpu = params['Cpu']
           @AutoSyncFlag = params['AutoSyncFlag']
           @CageId = params['CageId']
+          @AlarmPolicyIdList = params['AlarmPolicyIdList']
+          @DryRun = params['DryRun']
         end
       end
 
@@ -1488,10 +1508,14 @@ module TencentCloud
         # @type AutoSyncFlag: Integer
         # @param CageId: 金融围拢 ID。
         # @type CageId: String
+        # @param AlarmPolicyIdList: 告警策略名数组，例如:["policy-uyoee9wg"]，AlarmPolicyList不为空时该参数无效。
+        # @type AlarmPolicyIdList: Array
+        # @param DryRun: 是否只预检此次请求。true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制等。如果检查不通过，则返回对应错误码；如果检查通过，则返回RequestId.默认为false：发送正常请求，通过检查后直接创建实例。
+        # @type DryRun: Boolean
 
-        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId
+        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :AlarmPolicyIdList, :DryRun
         
-        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil)
+        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, alarmpolicyidlist=nil, dryrun=nil)
           @Memory = memory
           @Volume = volume
           @Period = period
@@ -1525,6 +1549,8 @@ module TencentCloud
           @Cpu = cpu
           @AutoSyncFlag = autosyncflag
           @CageId = cageid
+          @AlarmPolicyIdList = alarmpolicyidlist
+          @DryRun = dryrun
         end
 
         def deserialize(params)
@@ -1578,6 +1604,8 @@ module TencentCloud
           @Cpu = params['Cpu']
           @AutoSyncFlag = params['AutoSyncFlag']
           @CageId = params['CageId']
+          @AlarmPolicyIdList = params['AlarmPolicyIdList']
+          @DryRun = params['DryRun']
         end
       end
 

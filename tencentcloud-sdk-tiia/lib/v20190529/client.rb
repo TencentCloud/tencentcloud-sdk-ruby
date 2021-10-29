@@ -55,6 +55,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于创建一个空的图片库，如果图片库已存在则返回错误。
+
+        # @param request: Request instance for CreateGroup.
+        # @type request: :class:`Tencentcloud::tiia::V20190529::CreateGroupRequest`
+        # @rtype: :class:`Tencentcloud::tiia::V20190529::CreateGroupResponse`
+        def CreateGroup(request)
+          body = send_request('CreateGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建图片，并添加对应图片的自定义信息。
+
+        # @param request: Request instance for CreateImage.
+        # @type request: :class:`Tencentcloud::tiia::V20190529::CreateImageRequest`
+        # @rtype: :class:`Tencentcloud::tiia::V20190529::CreateImageResponse`
+        def CreateImage(request)
+          body = send_request('CreateImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据输入的裁剪比例，智能判断一张图片的最佳裁剪区域，确保原图的主体区域不受影响。
 
         # 可以自动裁剪图片，适应不同平台、设备的展示要求，避免简单拉伸带来的变形。
@@ -69,6 +117,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CropImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除图片。
+
+        # @param request: Request instance for DeleteImages.
+        # @type request: :class:`Tencentcloud::tiia::V20190529::DeleteImagesRequest`
+        # @rtype: :class:`Tencentcloud::tiia::V20190529::DeleteImagesResponse`
+        def DeleteImages(request)
+          body = send_request('DeleteImages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteImagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询所有的图库信息。
+
+        # @param request: Request instance for DescribeGroups.
+        # @type request: :class:`Tencentcloud::tiia::V20190529::DescribeGroupsRequest`
+        # @rtype: :class:`Tencentcloud::tiia::V20190529::DescribeGroupsResponse`
+        def DescribeGroups(request)
+          body = send_request('DescribeGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取指定图片库中的图片列表。
+
+        # @param request: Request instance for DescribeImages.
+        # @type request: :class:`Tencentcloud::tiia::V20190529::DescribeImagesRequest`
+        # @rtype: :class:`Tencentcloud::tiia::V20190529::DescribeImagesResponse`
+        def DescribeImages(request)
+          body = send_request('DescribeImages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImagesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -335,6 +455,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RecognizeCarResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于对一张待识别的商品图片，在指定图片库中检索出最相似的图片列表。
+
+        # @param request: Request instance for SearchImage.
+        # @type request: :class:`Tencentcloud::tiia::V20190529::SearchImageRequest`
+        # @rtype: :class:`Tencentcloud::tiia::V20190529::SearchImageResponse`
+        def SearchImage(request)
+          body = send_request('SearchImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchImageResponse.new
             model.deserialize(response['Response'])
             model
           else
