@@ -6947,50 +6947,6 @@ module TencentCloud
         end
       end
 
-      # ModifyRoType请求参数结构体
-      class ModifyRoTypeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
-        # @type InstanceId: String
-        # @param SrcRoInstType: 只读实例源类型，取值 NORMAL（普通只读实例）、DELAY_REPLICATION（延迟只读实例）。
-        # @type SrcRoInstType: String
-        # @param DstRoInstType: 只读实例目标类型，取值 NORMAL（普通只读实例）、DELAY_REPLICATION（延迟只读实例）。
-        # @type DstRoInstType: String
-        # @param ReplicationDelay: 延迟时间（s），将实例修改为延迟只读实例时必传。最小值1，最大值259200。
-        # @type ReplicationDelay: Integer
-
-        attr_accessor :InstanceId, :SrcRoInstType, :DstRoInstType, :ReplicationDelay
-        
-        def initialize(instanceid=nil, srcroinsttype=nil, dstroinsttype=nil, replicationdelay=nil)
-          @InstanceId = instanceid
-          @SrcRoInstType = srcroinsttype
-          @DstRoInstType = dstroinsttype
-          @ReplicationDelay = replicationdelay
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @SrcRoInstType = params['SrcRoInstType']
-          @DstRoInstType = params['DstRoInstType']
-          @ReplicationDelay = params['ReplicationDelay']
-        end
-      end
-
-      # ModifyRoType返回参数结构体
-      class ModifyRoTypeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyTimeWindow请求参数结构体
       class ModifyTimeWindowRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。

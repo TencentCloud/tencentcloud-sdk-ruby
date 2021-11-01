@@ -64,17 +64,24 @@ module TencentCloud
       class EnhanceTaDegreeRequest < TencentCloud::Common::AbstractModel
         # @param BspData: 业务数据
         # @type BspData: :class:`Tencentcloud::Taf.v20200210.models.InputTaBspData`
+        # @param BusinessEncryptData: 业务加密数据
+        # @type BusinessEncryptData: :class:`Tencentcloud::Taf.v20200210.models.InputBusinessEncryptData`
 
-        attr_accessor :BspData
+        attr_accessor :BspData, :BusinessEncryptData
         
-        def initialize(bspdata=nil)
+        def initialize(bspdata=nil, businessencryptdata=nil)
           @BspData = bspdata
+          @BusinessEncryptData = businessencryptdata
         end
 
         def deserialize(params)
           unless params['BspData'].nil?
             @BspData = InputTaBspData.new
             @BspData.deserialize(params['BspData'])
+          end
+          unless params['BusinessEncryptData'].nil?
+            @BusinessEncryptData = InputBusinessEncryptData.new
+            @BusinessEncryptData.deserialize(params['BusinessEncryptData'])
           end
         end
       end
@@ -100,6 +107,17 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务入参
+      class InputBusinessEncryptData < TencentCloud::Common::AbstractModel
+
+        
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -385,7 +403,7 @@ module TencentCloud
         # @type AgeCeil: Integer
         # @param Gender: 性别[1：男；2：女]
         # @type Gender: Integer
-        # @param UserTime: 用户操作时间
+        # @param UserTime: 用户操作时间,uinux时间戳，精确到秒
         # @type UserTime: Integer
         # @param Imei: Imei [在(Imei|ImeiMd5|Idfa|IdfaMd5)里面4选1]
         # @type Imei: String
@@ -425,10 +443,12 @@ module TencentCloud
         # @type Longitude: String
         # @param Context: 辅助区分信息
         # @type Context: String
+        # @param IsAuthorized: 是否授权
+        # @type IsAuthorized: Integer
 
-        attr_accessor :Seq, :OsType, :AgeFloor, :AgeCeil, :Gender, :UserTime, :Imei, :ImeiMd5, :Idfa, :IdfaMd5, :UserIp, :Mac, :PhoneNum, :UserAgent, :App, :Package, :DeviceMaker, :DeviceModule, :AccessMode, :Sp, :Url, :Location, :Latitude, :Longitude, :Context
+        attr_accessor :Seq, :OsType, :AgeFloor, :AgeCeil, :Gender, :UserTime, :Imei, :ImeiMd5, :Idfa, :IdfaMd5, :UserIp, :Mac, :PhoneNum, :UserAgent, :App, :Package, :DeviceMaker, :DeviceModule, :AccessMode, :Sp, :Url, :Location, :Latitude, :Longitude, :Context, :IsAuthorized
         
-        def initialize(seq=nil, ostype=nil, agefloor=nil, ageceil=nil, gender=nil, usertime=nil, imei=nil, imeimd5=nil, idfa=nil, idfamd5=nil, userip=nil, mac=nil, phonenum=nil, useragent=nil, app=nil, package=nil, devicemaker=nil, devicemodule=nil, accessmode=nil, sp=nil, url=nil, location=nil, latitude=nil, longitude=nil, context=nil)
+        def initialize(seq=nil, ostype=nil, agefloor=nil, ageceil=nil, gender=nil, usertime=nil, imei=nil, imeimd5=nil, idfa=nil, idfamd5=nil, userip=nil, mac=nil, phonenum=nil, useragent=nil, app=nil, package=nil, devicemaker=nil, devicemodule=nil, accessmode=nil, sp=nil, url=nil, location=nil, latitude=nil, longitude=nil, context=nil, isauthorized=nil)
           @Seq = seq
           @OsType = ostype
           @AgeFloor = agefloor
@@ -454,6 +474,7 @@ module TencentCloud
           @Latitude = latitude
           @Longitude = longitude
           @Context = context
+          @IsAuthorized = isauthorized
         end
 
         def deserialize(params)
@@ -482,6 +503,7 @@ module TencentCloud
           @Latitude = params['Latitude']
           @Longitude = params['Longitude']
           @Context = params['Context']
+          @IsAuthorized = params['IsAuthorized']
         end
       end
 

@@ -2385,30 +2385,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改只读实例类型，可以将普通只读实例变为延迟只读实例，或者将延迟只读实例变为普通只读实例。
-
-        # @param request: Request instance for ModifyRoType.
-        # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyRoTypeRequest`
-        # @rtype: :class:`Tencentcloud::cdb::V20170320::ModifyRoTypeResponse`
-        def ModifyRoType(request)
-          body = send_request('ModifyRoType', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyRoTypeResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
 
         # @param request: Request instance for ModifyTimeWindow.

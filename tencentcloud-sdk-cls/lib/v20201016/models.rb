@@ -5005,12 +5005,25 @@ module TencentCloud
 
       # UploadLog请求参数结构体
       class UploadLogRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 主题id
+        # @type TopicId: String
+        # @param HashKey: 根据 hashkey 写入相应范围的主题分区
+        # @type HashKey: String
+        # @param CompressType: 压缩方法
+        # @type CompressType: String
 
+        attr_accessor :TopicId, :HashKey, :CompressType
         
-        def initialize()
+        def initialize(topicid=nil, hashkey=nil, compresstype=nil)
+          @TopicId = topicid
+          @HashKey = hashkey
+          @CompressType = compresstype
         end
 
         def deserialize(params)
+          @TopicId = params['TopicId']
+          @HashKey = params['HashKey']
+          @CompressType = params['CompressType']
         end
       end
 

@@ -443,37 +443,41 @@ module TencentCloud
 
       # DescribeChatMessages请求参数结构体
       class DescribeChatMessagesRequest < TencentCloud::Common::AbstractModel
-        # @param CdrId: 服务记录ID
-        # @type CdrId: String
         # @param InstanceId: 实例ID
         # @type InstanceId: Integer
         # @param SdkAppId: 应用ID
         # @type SdkAppId: Integer
+        # @param CdrId: 服务记录ID
+        # @type CdrId: String
         # @param Limit: 返回记录条数 最大为100默认20
         # @type Limit: Integer
         # @param Offset: 返回记录偏移 默认为0
         # @type Offset: Integer
         # @param Order: 1为从早到晚，2为从晚到早，默认为2
         # @type Order: Integer
+        # @param SessionId: 服务记录SessionID
+        # @type SessionId: String
 
-        attr_accessor :CdrId, :InstanceId, :SdkAppId, :Limit, :Offset, :Order
+        attr_accessor :InstanceId, :SdkAppId, :CdrId, :Limit, :Offset, :Order, :SessionId
         
-        def initialize(cdrid=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, order=nil)
-          @CdrId = cdrid
+        def initialize(instanceid=nil, sdkappid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @InstanceId = instanceid
           @SdkAppId = sdkappid
+          @CdrId = cdrid
           @Limit = limit
           @Offset = offset
           @Order = order
+          @SessionId = sessionid
         end
 
         def deserialize(params)
-          @CdrId = params['CdrId']
           @InstanceId = params['InstanceId']
           @SdkAppId = params['SdkAppId']
+          @CdrId = params['CdrId']
           @Limit = params['Limit']
           @Offset = params['Offset']
           @Order = params['Order']
+          @SessionId = params['SessionId']
         end
       end
 
@@ -934,10 +938,12 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param Phones: 按手机号筛选
         # @type Phones: Array
+        # @param SessionIds: 按SessionId筛选
+        # @type SessionIds: Array
 
-        attr_accessor :StartTimeStamp, :EndTimeStamp, :Limit, :Offset, :InstanceId, :SdkAppId, :PageSize, :PageNumber, :Phones
+        attr_accessor :StartTimeStamp, :EndTimeStamp, :Limit, :Offset, :InstanceId, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
         
-        def initialize(starttimestamp=nil, endtimestamp=nil, limit=nil, offset=nil, instanceid=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil)
+        def initialize(starttimestamp=nil, endtimestamp=nil, limit=nil, offset=nil, instanceid=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
           @EndTimeStamp = endtimestamp
           @Limit = limit
@@ -947,6 +953,7 @@ module TencentCloud
           @PageSize = pagesize
           @PageNumber = pagenumber
           @Phones = phones
+          @SessionIds = sessionids
         end
 
         def deserialize(params)
@@ -959,6 +966,7 @@ module TencentCloud
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
           @Phones = params['Phones']
+          @SessionIds = params['SessionIds']
         end
       end
 
@@ -1205,10 +1213,14 @@ module TencentCloud
         # @type OutBoundCaller: String
         # @param OutBoundCallee: 转外线被叫
         # @type OutBoundCallee: String
+        # @param ProtectedCaller: 主叫号码保护ID，开启号码保护映射功能时有效，且Caller字段置空
+        # @type ProtectedCaller: String
+        # @param ProtectedCallee: 被叫号码保护ID，开启号码保护映射功能时有效，且Callee字段置空
+        # @type ProtectedCallee: String
 
-        attr_accessor :SessionID, :RoomID, :Caller, :Callee, :StartTimestamp, :RingTimestamp, :AcceptTimestamp, :StaffEmail, :StaffNumber, :SessionStatus, :Direction, :OutBoundCaller, :OutBoundCallee
+        attr_accessor :SessionID, :RoomID, :Caller, :Callee, :StartTimestamp, :RingTimestamp, :AcceptTimestamp, :StaffEmail, :StaffNumber, :SessionStatus, :Direction, :OutBoundCaller, :OutBoundCallee, :ProtectedCaller, :ProtectedCallee
         
-        def initialize(sessionid=nil, roomid=nil, caller=nil, callee=nil, starttimestamp=nil, ringtimestamp=nil, accepttimestamp=nil, staffemail=nil, staffnumber=nil, sessionstatus=nil, direction=nil, outboundcaller=nil, outboundcallee=nil)
+        def initialize(sessionid=nil, roomid=nil, caller=nil, callee=nil, starttimestamp=nil, ringtimestamp=nil, accepttimestamp=nil, staffemail=nil, staffnumber=nil, sessionstatus=nil, direction=nil, outboundcaller=nil, outboundcallee=nil, protectedcaller=nil, protectedcallee=nil)
           @SessionID = sessionid
           @RoomID = roomid
           @Caller = caller
@@ -1222,6 +1234,8 @@ module TencentCloud
           @Direction = direction
           @OutBoundCaller = outboundcaller
           @OutBoundCallee = outboundcallee
+          @ProtectedCaller = protectedcaller
+          @ProtectedCallee = protectedcallee
         end
 
         def deserialize(params)
@@ -1238,6 +1252,8 @@ module TencentCloud
           @Direction = params['Direction']
           @OutBoundCaller = params['OutBoundCaller']
           @OutBoundCallee = params['OutBoundCallee']
+          @ProtectedCaller = params['ProtectedCaller']
+          @ProtectedCallee = params['ProtectedCallee']
         end
       end
 
@@ -1265,10 +1281,14 @@ module TencentCloud
         # @type Direction: Integer
         # @param RingTimestamp: 振铃时间，Unix 时间戳
         # @type RingTimestamp: Integer
+        # @param ProtectedCaller: 主叫号码保护ID，开启号码保护映射功能时有效，且Caller字段置空
+        # @type ProtectedCaller: String
+        # @param ProtectedCallee: 被叫号码保护ID，开启号码保护映射功能时有效，且Callee字段置空
+        # @type ProtectedCallee: String
 
-        attr_accessor :SessionID, :RoomID, :Caller, :Callee, :StartTimestamp, :AcceptTimestamp, :StaffEmail, :StaffNumber, :SessionStatus, :Direction, :RingTimestamp
+        attr_accessor :SessionID, :RoomID, :Caller, :Callee, :StartTimestamp, :AcceptTimestamp, :StaffEmail, :StaffNumber, :SessionStatus, :Direction, :RingTimestamp, :ProtectedCaller, :ProtectedCallee
         
-        def initialize(sessionid=nil, roomid=nil, caller=nil, callee=nil, starttimestamp=nil, accepttimestamp=nil, staffemail=nil, staffnumber=nil, sessionstatus=nil, direction=nil, ringtimestamp=nil)
+        def initialize(sessionid=nil, roomid=nil, caller=nil, callee=nil, starttimestamp=nil, accepttimestamp=nil, staffemail=nil, staffnumber=nil, sessionstatus=nil, direction=nil, ringtimestamp=nil, protectedcaller=nil, protectedcallee=nil)
           @SessionID = sessionid
           @RoomID = roomid
           @Caller = caller
@@ -1280,6 +1300,8 @@ module TencentCloud
           @SessionStatus = sessionstatus
           @Direction = direction
           @RingTimestamp = ringtimestamp
+          @ProtectedCaller = protectedcaller
+          @ProtectedCallee = protectedcallee
         end
 
         def deserialize(params)
@@ -1294,6 +1316,8 @@ module TencentCloud
           @SessionStatus = params['SessionStatus']
           @Direction = params['Direction']
           @RingTimestamp = params['RingTimestamp']
+          @ProtectedCaller = params['ProtectedCaller']
+          @ProtectedCallee = params['ProtectedCallee']
         end
       end
 
@@ -1746,10 +1770,16 @@ module TencentCloud
         # @param SessionId: 会话 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionId: String
+        # @param ProtectedCaller: 主叫号码保护ID，开启号码保护映射功能时有效，且Caller字段置空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectedCaller: String
+        # @param ProtectedCallee: 被叫号码保护ID，开启号码保护映射功能时有效，且Callee字段置空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectedCallee: String
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId
+        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee
         
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -1774,6 +1804,8 @@ module TencentCloud
           @PostIVRKeyPressed = postivrkeypressed
           @QueuedSkillGroupId = queuedskillgroupid
           @SessionId = sessionid
+          @ProtectedCaller = protectedcaller
+          @ProtectedCallee = protectedcallee
         end
 
         def deserialize(params)
@@ -1818,6 +1850,8 @@ module TencentCloud
           end
           @QueuedSkillGroupId = params['QueuedSkillGroupId']
           @SessionId = params['SessionId']
+          @ProtectedCaller = params['ProtectedCaller']
+          @ProtectedCallee = params['ProtectedCallee']
         end
       end
 
