@@ -4237,6 +4237,8 @@ module TencentCloud
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
+        # @param Progress: 制作媒体文件任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
         # @param Input: 制作媒体文件任务的输入。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.ComposeMediaTaskInput`
@@ -4246,23 +4248,24 @@ module TencentCloud
         # @param MetaData: 原始视频的元信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
-        # @type SessionContext: String
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Input, :Output, :MetaData, :SessionContext, :SessionId
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Progress, :Input, :Output, :MetaData, :SessionId, :SessionContext
         
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, input=nil, output=nil, metadata=nil, sessioncontext=nil, sessionid=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil, metadata=nil, sessionid=nil, sessioncontext=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
           @Message = message
+          @Progress = progress
           @Input = input
           @Output = output
           @MetaData = metadata
-          @SessionContext = sessioncontext
           @SessionId = sessionid
+          @SessionContext = sessioncontext
         end
 
         def deserialize(params)
@@ -4270,6 +4273,7 @@ module TencentCloud
           @Status = params['Status']
           @ErrCode = params['ErrCode']
           @Message = params['Message']
+          @Progress = params['Progress']
           unless params['Input'].nil?
             @Input = ComposeMediaTaskInput.new
             @Input.deserialize(params['Input'])
@@ -4282,8 +4286,8 @@ module TencentCloud
             @MetaData = MediaMetaData.new
             @MetaData.deserialize(params['MetaData'])
           end
-          @SessionContext = params['SessionContext']
           @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
         end
       end
 
@@ -9561,35 +9565,38 @@ module TencentCloud
         # @type ErrCodeExt: String
         # @param Message: 错误信息。
         # @type Message: String
+        # @param Progress: 编辑视频任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
         # @param Input: 视频编辑任务的输入。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.EditMediaTaskInput`
         # @param Output: 视频编辑任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.EditMediaTaskOutput`
-        # @param ProcedureTaskId: 若发起视频编辑任务时指定了视频处理流程，则该字段为流程任务 ID。
-        # @type ProcedureTaskId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
-        # @type SessionContext: String
-        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
-        # @type SessionId: String
         # @param MetaData: 原始视频的元信息。
         # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+        # @param ProcedureTaskId: 若发起视频编辑任务时指定了视频处理流程，则该字段为流程任务 ID。
+        # @type ProcedureTaskId: String
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
 
-        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :Input, :Output, :ProcedureTaskId, :SessionContext, :SessionId, :MetaData
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :Progress, :Input, :Output, :MetaData, :ProcedureTaskId, :SessionId, :SessionContext
         
-        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, input=nil, output=nil, proceduretaskid=nil, sessioncontext=nil, sessionid=nil, metadata=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, progress=nil, input=nil, output=nil, metadata=nil, proceduretaskid=nil, sessionid=nil, sessioncontext=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
           @ErrCodeExt = errcodeext
           @Message = message
+          @Progress = progress
           @Input = input
           @Output = output
-          @ProcedureTaskId = proceduretaskid
-          @SessionContext = sessioncontext
-          @SessionId = sessionid
           @MetaData = metadata
+          @ProcedureTaskId = proceduretaskid
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
         end
 
         def deserialize(params)
@@ -9598,6 +9605,7 @@ module TencentCloud
           @ErrCode = params['ErrCode']
           @ErrCodeExt = params['ErrCodeExt']
           @Message = params['Message']
+          @Progress = params['Progress']
           unless params['Input'].nil?
             @Input = EditMediaTaskInput.new
             @Input.deserialize(params['Input'])
@@ -9606,13 +9614,13 @@ module TencentCloud
             @Output = EditMediaTaskOutput.new
             @Output.deserialize(params['Output'])
           end
-          @ProcedureTaskId = params['ProcedureTaskId']
-          @SessionContext = params['SessionContext']
-          @SessionId = params['SessionId']
           unless params['MetaData'].nil?
             @MetaData = MediaMetaData.new
             @MetaData.deserialize(params['MetaData'])
           end
+          @ProcedureTaskId = params['ProcedureTaskId']
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
         end
       end
 

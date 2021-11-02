@@ -3466,19 +3466,23 @@ module TencentCloud
         # @type InvokeRequestId: String
         # @param Namespace: 命名空间
         # @type Namespace: String
+        # @param GraceShutdown: 优雅关停
+        # @type GraceShutdown: Boolean
 
-        attr_accessor :FunctionName, :InvokeRequestId, :Namespace
+        attr_accessor :FunctionName, :InvokeRequestId, :Namespace, :GraceShutdown
         
-        def initialize(functionname=nil, invokerequestid=nil, namespace=nil)
+        def initialize(functionname=nil, invokerequestid=nil, namespace=nil, graceshutdown=nil)
           @FunctionName = functionname
           @InvokeRequestId = invokerequestid
           @Namespace = namespace
+          @GraceShutdown = graceshutdown
         end
 
         def deserialize(params)
           @FunctionName = params['FunctionName']
           @InvokeRequestId = params['InvokeRequestId']
           @Namespace = params['Namespace']
+          @GraceShutdown = params['GraceShutdown']
         end
       end
 

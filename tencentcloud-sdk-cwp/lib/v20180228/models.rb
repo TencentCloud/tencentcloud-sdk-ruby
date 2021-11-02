@@ -11518,20 +11518,24 @@ module TencentCloud
         # @type BasicVersionNum: Integer
         # @param ProVersionNum: 专业版数量
         # @type ProVersionNum: Integer
+        # @param UltimateVersionNum: 旗舰版数量
+        # @type UltimateVersionNum: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BasicVersionNum, :ProVersionNum, :RequestId
+        attr_accessor :BasicVersionNum, :ProVersionNum, :UltimateVersionNum, :RequestId
         
-        def initialize(basicversionnum=nil, proversionnum=nil, requestid=nil)
+        def initialize(basicversionnum=nil, proversionnum=nil, ultimateversionnum=nil, requestid=nil)
           @BasicVersionNum = basicversionnum
           @ProVersionNum = proversionnum
+          @UltimateVersionNum = ultimateversionnum
           @RequestId = requestid
         end
 
         def deserialize(params)
           @BasicVersionNum = params['BasicVersionNum']
           @ProVersionNum = params['ProVersionNum']
+          @UltimateVersionNum = params['UltimateVersionNum']
           @RequestId = params['RequestId']
         end
       end
@@ -12432,16 +12436,24 @@ module TencentCloud
         # @param Uuid: 云镜Uuid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
+        # @param KernelVersion: 内核版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KernelVersion: String
+        # @param MachineStatus: 在线状态 OFFLINE，ONLINE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineStatus: String
 
-        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid, :Uuid
+        attr_accessor :MachineName, :MachinePublicIp, :MachinePrivateIp, :MachineTag, :Quuid, :Uuid, :KernelVersion, :MachineStatus
         
-        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil, uuid=nil)
+        def initialize(machinename=nil, machinepublicip=nil, machineprivateip=nil, machinetag=nil, quuid=nil, uuid=nil, kernelversion=nil, machinestatus=nil)
           @MachineName = machinename
           @MachinePublicIp = machinepublicip
           @MachinePrivateIp = machineprivateip
           @MachineTag = machinetag
           @Quuid = quuid
           @Uuid = uuid
+          @KernelVersion = kernelversion
+          @MachineStatus = machinestatus
         end
 
         def deserialize(params)
@@ -12458,6 +12470,8 @@ module TencentCloud
           end
           @Quuid = params['Quuid']
           @Uuid = params['Uuid']
+          @KernelVersion = params['KernelVersion']
+          @MachineStatus = params['MachineStatus']
         end
       end
 
@@ -14354,10 +14368,12 @@ module TencentCloud
         # @type HasAssetScan: Integer
         # @param MachineType: 机器所属专区类型 CVM 云服务器, BM 黑石, ECM 边缘计算, LH 轻量应用服务器 ,Other 混合云专区
         # @type MachineType: String
+        # @param KernelVersion: 内核版本
+        # @type KernelVersion: String
 
-        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType
+        attr_accessor :MachineName, :MachineOs, :MachineStatus, :Uuid, :Quuid, :VulNum, :MachineIp, :IsProVersion, :MachineWanIp, :PayMode, :MalwareNum, :Tag, :BaselineNum, :CyberAttackNum, :SecurityStatus, :InvasionNum, :RegionInfo, :InstanceState, :LicenseStatus, :ProjectId, :HasAssetScan, :MachineType, :KernelVersion
         
-        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil)
+        def initialize(machinename=nil, machineos=nil, machinestatus=nil, uuid=nil, quuid=nil, vulnum=nil, machineip=nil, isproversion=nil, machinewanip=nil, paymode=nil, malwarenum=nil, tag=nil, baselinenum=nil, cyberattacknum=nil, securitystatus=nil, invasionnum=nil, regioninfo=nil, instancestate=nil, licensestatus=nil, projectid=nil, hasassetscan=nil, machinetype=nil, kernelversion=nil)
           @MachineName = machinename
           @MachineOs = machineos
           @MachineStatus = machinestatus
@@ -14380,6 +14396,7 @@ module TencentCloud
           @ProjectId = projectid
           @HasAssetScan = hasassetscan
           @MachineType = machinetype
+          @KernelVersion = kernelversion
         end
 
         def deserialize(params)
@@ -14415,6 +14432,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @HasAssetScan = params['HasAssetScan']
           @MachineType = params['MachineType']
+          @KernelVersion = params['KernelVersion']
         end
       end
 

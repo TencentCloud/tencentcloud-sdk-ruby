@@ -1203,7 +1203,7 @@ module TencentCloud
       class CreateDBImportJobRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param FileName: 文件名称。该文件是指用户已上传到腾讯云的文件。
+        # @param FileName: 文件名称。该文件是指用户已上传到腾讯云的文件，仅支持.sql文件。
         # @type FileName: String
         # @param User: 云数据库的用户名。
         # @type User: String

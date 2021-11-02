@@ -366,10 +366,13 @@ module TencentCloud
         # @param MaxMessageBytes: 最大消息字节数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMessageBytes: Integer
+        # @param RetentionBytes: 消息保留文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionBytes: Integer
 
-        attr_accessor :Retention, :MinInsyncReplicas, :CleanUpPolicy, :SegmentMs, :UncleanLeaderElectionEnable, :SegmentBytes, :MaxMessageBytes
+        attr_accessor :Retention, :MinInsyncReplicas, :CleanUpPolicy, :SegmentMs, :UncleanLeaderElectionEnable, :SegmentBytes, :MaxMessageBytes, :RetentionBytes
         
-        def initialize(retention=nil, mininsyncreplicas=nil, cleanuppolicy=nil, segmentms=nil, uncleanleaderelectionenable=nil, segmentbytes=nil, maxmessagebytes=nil)
+        def initialize(retention=nil, mininsyncreplicas=nil, cleanuppolicy=nil, segmentms=nil, uncleanleaderelectionenable=nil, segmentbytes=nil, maxmessagebytes=nil, retentionbytes=nil)
           @Retention = retention
           @MinInsyncReplicas = mininsyncreplicas
           @CleanUpPolicy = cleanuppolicy
@@ -377,6 +380,7 @@ module TencentCloud
           @UncleanLeaderElectionEnable = uncleanleaderelectionenable
           @SegmentBytes = segmentbytes
           @MaxMessageBytes = maxmessagebytes
+          @RetentionBytes = retentionbytes
         end
 
         def deserialize(params)
@@ -387,6 +391,7 @@ module TencentCloud
           @UncleanLeaderElectionEnable = params['UncleanLeaderElectionEnable']
           @SegmentBytes = params['SegmentBytes']
           @MaxMessageBytes = params['MaxMessageBytes']
+          @RetentionBytes = params['RetentionBytes']
         end
       end
 
@@ -865,7 +870,7 @@ module TencentCloud
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例Id
         # @type InstanceId: String
-        # @param TopicName: 主题名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @param TopicName: 主题名称，是一个不超过 128 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         # @type TopicName: String
         # @param PartitionNum: Partition个数，大于0
         # @type PartitionNum: Integer
@@ -891,10 +896,12 @@ module TencentCloud
         # @type EnableAclRule: Integer
         # @param AclRuleName: 预设ACL规则的名称
         # @type AclRuleName: String
+        # @param RetentionBytes: 可选, 保留文件大小. 默认为-1,单位bytes, 当前最小值为1048576B
+        # @type RetentionBytes: Integer
 
-        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :EnableAclRule, :AclRuleName
+        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :EnableAclRule, :AclRuleName, :RetentionBytes
         
-        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, enableaclrule=nil, aclrulename=nil)
+        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @PartitionNum = partitionnum
@@ -909,6 +916,7 @@ module TencentCloud
           @SegmentMs = segmentms
           @EnableAclRule = enableaclrule
           @AclRuleName = aclrulename
+          @RetentionBytes = retentionbytes
         end
 
         def deserialize(params)
@@ -926,6 +934,7 @@ module TencentCloud
           @SegmentMs = params['SegmentMs']
           @EnableAclRule = params['EnableAclRule']
           @AclRuleName = params['AclRuleName']
+          @RetentionBytes = params['RetentionBytes']
         end
       end
 
@@ -3257,10 +3266,12 @@ module TencentCloud
         # @type EnableAclRule: Integer
         # @param AclRuleName: 预设ACL规则的名称
         # @type AclRuleName: String
+        # @param RetentionBytes: 可选, 保留文件大小. 默认为-1,单位bytes, 当前最小值为1048576B
+        # @type RetentionBytes: Integer
 
-        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName
+        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes
         
-        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil)
+        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @Note = note
@@ -3274,6 +3285,7 @@ module TencentCloud
           @IpWhiteList = ipwhitelist
           @EnableAclRule = enableaclrule
           @AclRuleName = aclrulename
+          @RetentionBytes = retentionbytes
         end
 
         def deserialize(params)
@@ -3290,6 +3302,7 @@ module TencentCloud
           @IpWhiteList = params['IpWhiteList']
           @EnableAclRule = params['EnableAclRule']
           @AclRuleName = params['AclRuleName']
+          @RetentionBytes = params['RetentionBytes']
         end
       end
 

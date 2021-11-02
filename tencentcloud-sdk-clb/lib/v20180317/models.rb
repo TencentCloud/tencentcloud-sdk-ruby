@@ -1327,12 +1327,15 @@ module TencentCloud
         # @type LoadBalancerId: String
         # @param SnatIps: 添加SnatIp信息，可指定IP申请，或者指定子网自动申请。
         # @type SnatIps: Array
+        # @param Number: 添加SnatIp个数，与SnatIps一起使用，当指定Ip时，不能指定创建SnatIp个数。
+        # @type Number: Integer
 
-        attr_accessor :LoadBalancerId, :SnatIps
+        attr_accessor :LoadBalancerId, :SnatIps, :Number
         
-        def initialize(loadbalancerid=nil, snatips=nil)
+        def initialize(loadbalancerid=nil, snatips=nil, number=nil)
           @LoadBalancerId = loadbalancerid
           @SnatIps = snatips
+          @Number = number
         end
 
         def deserialize(params)
@@ -1345,6 +1348,7 @@ module TencentCloud
               @SnatIps << snatip_tmp
             end
           end
+          @Number = params['Number']
         end
       end
 

@@ -259,16 +259,18 @@ module TencentCloud
         # @type ReqMd5: String
         # @param AdType: ad_type
         # @type AdType: Integer
-        # @param AppName: app name
+        # @param AppName: app名称
         # @type AppName: String
-        # @param AppVer: appVer
+        # @param AppVer: app版本描述
         # @type AppVer: String
         # @param ReqType: 竞价模式1：rtb 2:pd
         # @type ReqType: Integer
+        # @param IsAuthorized: 用户是否授权,1为授权，0为未授权
+        # @type IsAuthorized: Integer
 
-        attr_accessor :Uid, :AccountType, :ModelIdList, :Ip, :Os, :Osv, :Lat, :Lon, :DeviceModel, :BidFloor, :Age, :Gender, :Location, :DeliveryMode, :AdvertisingType, :Mac, :Phone, :Ua, :App, :Package, :Maker, :DeviceType, :AccessMode, :Sp, :DeviceW, :DeviceH, :FullScreen, :ImpBannerW, :ImpBannerH, :Url, :Context, :Channel, :ReqId, :ReqMd5, :AdType, :AppName, :AppVer, :ReqType
+        attr_accessor :Uid, :AccountType, :ModelIdList, :Ip, :Os, :Osv, :Lat, :Lon, :DeviceModel, :BidFloor, :Age, :Gender, :Location, :DeliveryMode, :AdvertisingType, :Mac, :Phone, :Ua, :App, :Package, :Maker, :DeviceType, :AccessMode, :Sp, :DeviceW, :DeviceH, :FullScreen, :ImpBannerW, :ImpBannerH, :Url, :Context, :Channel, :ReqId, :ReqMd5, :AdType, :AppName, :AppVer, :ReqType, :IsAuthorized
         
-        def initialize(uid=nil, accounttype=nil, modelidlist=nil, ip=nil, os=nil, osv=nil, lat=nil, lon=nil, devicemodel=nil, bidfloor=nil, age=nil, gender=nil, location=nil, deliverymode=nil, advertisingtype=nil, mac=nil, phone=nil, ua=nil, app=nil, package=nil, maker=nil, devicetype=nil, accessmode=nil, sp=nil, devicew=nil, deviceh=nil, fullscreen=nil, impbannerw=nil, impbannerh=nil, url=nil, context=nil, channel=nil, reqid=nil, reqmd5=nil, adtype=nil, appname=nil, appver=nil, reqtype=nil)
+        def initialize(uid=nil, accounttype=nil, modelidlist=nil, ip=nil, os=nil, osv=nil, lat=nil, lon=nil, devicemodel=nil, bidfloor=nil, age=nil, gender=nil, location=nil, deliverymode=nil, advertisingtype=nil, mac=nil, phone=nil, ua=nil, app=nil, package=nil, maker=nil, devicetype=nil, accessmode=nil, sp=nil, devicew=nil, deviceh=nil, fullscreen=nil, impbannerw=nil, impbannerh=nil, url=nil, context=nil, channel=nil, reqid=nil, reqmd5=nil, adtype=nil, appname=nil, appver=nil, reqtype=nil, isauthorized=nil)
           @Uid = uid
           @AccountType = accounttype
           @ModelIdList = modelidlist
@@ -307,6 +309,7 @@ module TencentCloud
           @AppName = appname
           @AppVer = appver
           @ReqType = reqtype
+          @IsAuthorized = isauthorized
         end
 
         def deserialize(params)
@@ -348,6 +351,7 @@ module TencentCloud
           @AppName = params['AppName']
           @AppVer = params['AppVer']
           @ReqType = params['ReqType']
+          @IsAuthorized = params['IsAuthorized']
         end
       end
 
@@ -894,17 +898,24 @@ module TencentCloud
       class RecognizeTargetAudienceRequest < TencentCloud::Common::AbstractModel
         # @param BspData: 业务数据
         # @type BspData: :class:`Tencentcloud::Taf.v20200210.models.InputRecognizeTargetAudience`
+        # @param BusinessEncryptData: 业务加密数据
+        # @type BusinessEncryptData: :class:`Tencentcloud::Taf.v20200210.models.InputBusinessEncryptData`
 
-        attr_accessor :BspData
+        attr_accessor :BspData, :BusinessEncryptData
         
-        def initialize(bspdata=nil)
+        def initialize(bspdata=nil, businessencryptdata=nil)
           @BspData = bspdata
+          @BusinessEncryptData = businessencryptdata
         end
 
         def deserialize(params)
           unless params['BspData'].nil?
             @BspData = InputRecognizeTargetAudience.new
             @BspData.deserialize(params['BspData'])
+          end
+          unless params['BusinessEncryptData'].nil?
+            @BusinessEncryptData = InputBusinessEncryptData.new
+            @BusinessEncryptData.deserialize(params['BusinessEncryptData'])
           end
         end
       end
