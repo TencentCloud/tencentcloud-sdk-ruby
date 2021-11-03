@@ -775,7 +775,7 @@ module TencentCloud
         # @type DeviceId: String
         # @param ExpireTime: 流地址失效时间
         # @type ExpireTime: Integer
-        # @param ChannelId: 通道唯一标识
+        # @param ChannelId: 通道唯一标识（接口升级字段为必填）
         # @type ChannelId: String
 
         attr_accessor :DeviceId, :ExpireTime, :ChannelId

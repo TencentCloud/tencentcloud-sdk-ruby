@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # DetectFraudKOL
+        # 流量反欺诈-KOL欺诈识别
 
         # @param request: Request instance for DetectFraudKOL.
         # @type request: :class:`Tencentcloud::taf::V20200210::DetectFraudKOLRequest`

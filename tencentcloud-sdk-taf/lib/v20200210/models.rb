@@ -21,17 +21,24 @@ module TencentCloud
       class DetectFraudKOLRequest < TencentCloud::Common::AbstractModel
         # @param BspData: 业务数据
         # @type BspData: :class:`Tencentcloud::Taf.v20200210.models.InputKolBspData`
+        # @param BusinessEncryptData: 业务加密数据
+        # @type BusinessEncryptData: :class:`Tencentcloud::Taf.v20200210.models.InputBusinessEncryptData`
 
-        attr_accessor :BspData
+        attr_accessor :BspData, :BusinessEncryptData
         
-        def initialize(bspdata=nil)
+        def initialize(bspdata=nil, businessencryptdata=nil)
           @BspData = bspdata
+          @BusinessEncryptData = businessencryptdata
         end
 
         def deserialize(params)
           unless params['BspData'].nil?
             @BspData = InputKolBspData.new
             @BspData.deserialize(params['BspData'])
+          end
+          unless params['BusinessEncryptData'].nil?
+            @BusinessEncryptData = InputBusinessEncryptData.new
+            @BusinessEncryptData.deserialize(params['BusinessEncryptData'])
           end
         end
       end
@@ -144,7 +151,7 @@ module TencentCloud
         end
       end
 
-      # CheckKol
+      # CheckKOL
       class InputKolDataList < TencentCloud::Common::AbstractModel
         # @param Type: 账号类型[1：微信；2：qq；3：微博]
         # @type Type: Integer
@@ -156,15 +163,18 @@ module TencentCloud
         # @type Phone: String
         # @param AgentInfo: 代理商名称
         # @type AgentInfo: String
+        # @param IsAuthorized: 是否授权
+        # @type IsAuthorized: Integer
 
-        attr_accessor :Type, :Id, :Name, :Phone, :AgentInfo
+        attr_accessor :Type, :Id, :Name, :Phone, :AgentInfo, :IsAuthorized
         
-        def initialize(type=nil, id=nil, name=nil, phone=nil, agentinfo=nil)
+        def initialize(type=nil, id=nil, name=nil, phone=nil, agentinfo=nil, isauthorized=nil)
           @Type = type
           @Id = id
           @Name = name
           @Phone = phone
           @AgentInfo = agentinfo
+          @IsAuthorized = isauthorized
         end
 
         def deserialize(params)
@@ -173,6 +183,7 @@ module TencentCloud
           @Name = params['Name']
           @Phone = params['Phone']
           @AgentInfo = params['AgentInfo']
+          @IsAuthorized = params['IsAuthorized']
         end
       end
 
