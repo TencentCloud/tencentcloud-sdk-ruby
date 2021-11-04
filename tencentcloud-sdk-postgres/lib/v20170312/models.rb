@@ -2798,6 +2798,78 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceSpec请求参数结构体
+      class ModifyDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID，形如：postgres-6bwgamo3。
+        # @type DBInstanceId: String
+        # @param Memory: 升级后的实例内存大小，单位GiB。
+        # @type Memory: Integer
+        # @param Storage: 升级后的实例磁盘大小，单位GiB。
+        # @type Storage: Integer
+        # @param AutoVoucher: 是否自动使用代金券,1是,0否，默认不使用。
+        # @type AutoVoucher: Integer
+        # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
+        # @type VoucherIds: Array
+        # @param ActivityId: 活动ID。
+        # @type ActivityId: Integer
+        # @param SwitchTag: 指定实例配置完成变更后的切换时间，默认为 立即切换，入参为 0 ：立即切换 。1：指定时间切换。
+        # @type SwitchTag: Integer
+        # @param SwitchStartTime: 切换开始时间。
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: 切换截止时间。
+        # @type SwitchEndTime: String
+
+        attr_accessor :DBInstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :ActivityId, :SwitchTag, :SwitchStartTime, :SwitchEndTime
+        
+        def initialize(dbinstanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, activityid=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil)
+          @DBInstanceId = dbinstanceid
+          @Memory = memory
+          @Storage = storage
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
+          @ActivityId = activityid
+          @SwitchTag = switchtag
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
+          @ActivityId = params['ActivityId']
+          @SwitchTag = params['SwitchTag']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+        end
+      end
+
+      # ModifyDBInstanceSpec返回参数结构体
+      class ModifyDBInstanceSpecResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单号。
+        # @type DealName: String
+        # @param BillId: 冻结流水号。
+        # @type BillId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :BillId, :RequestId
+        
+        def initialize(dealname=nil, billid=nil, requestid=nil)
+          @DealName = dealname
+          @BillId = billid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @BillId = params['BillId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstancesProject请求参数结构体
       class ModifyDBInstancesProjectRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceIdSet: postgresql实例ID数组

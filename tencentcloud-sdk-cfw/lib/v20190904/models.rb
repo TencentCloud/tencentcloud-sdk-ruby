@@ -500,7 +500,7 @@ module TencentCloud
         # @type Zone: String
         # @param ZoneBak: 备可用区，为空则选择默认可用区
         # @type ZoneBak: String
-        # @param CrossAZone: 异地灾备 1：使用异地灾备；0：不使用异地灾备
+        # @param CrossAZone: 异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备
         # @type CrossAZone: Integer
 
         attr_accessor :Name, :Width, :Mode, :NewModeItems, :NatGwList, :Zone, :ZoneBak, :CrossAZone
@@ -563,7 +563,7 @@ module TencentCloud
         # @type Zone: String
         # @param ZoneBak: 备可用区，为空则选择默认可用区
         # @type ZoneBak: String
-        # @param CrossAZone: 异地灾备 1：使用异地灾备；0：不使用异地灾备
+        # @param CrossAZone: 异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备
         # @type CrossAZone: Integer
         # @param IsCreateDomain: 0不创建域名,1创建域名
         # @type IsCreateDomain: Integer
@@ -1798,7 +1798,7 @@ module TencentCloud
 
       # DescribeResourceGroupNew请求参数结构体
       class DescribeResourceGroupNewRequest < TencentCloud::Common::AbstractModel
-        # @param QueryType: 查询类型 网络结构 vpc，业务识别- resource ，资源标签-tag
+        # @param QueryType: 查询类型 网络结构-vpc，业务识别-resource ，资源标签-tag
         # @type QueryType: String
         # @param GroupId: 资产组id  全部传0
         # @type GroupId: String
@@ -1824,11 +1824,11 @@ module TencentCloud
       class DescribeResourceGroupNewResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回树形结构
         # @type Data: String
-        # @param UnResourceNum: 无
+        # @param UnResourceNum: 未分类实例数量
         # @type UnResourceNum: Integer
-        # @param ReturnMsg: 无
+        # @param ReturnMsg: 接口返回消息
         # @type ReturnMsg: String
-        # @param ReturnCode: 无
+        # @param ReturnCode: 返回码；0为请求成功
         # @type ReturnCode: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2035,13 +2035,13 @@ module TencentCloud
         # @type FuzzySearch: String
         # @param InsType: 资产类型 1公网 2内网
         # @type InsType: String
-        # @param ChooseType: 是否未分组 1是
+        # @param ChooseType: ChooseType为1，查询已经分组的资产；ChooseType不为1查询没有分组的资产
         # @type ChooseType: String
         # @param Zone: 地域
         # @type Zone: String
-        # @param Limit: 页大小
+        # @param Limit: 查询单页的最大值；eg：10；则最多返回10条结果
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 查询结果的偏移量
         # @type Offset: Integer
 
         attr_accessor :FuzzySearch, :InsType, :ChooseType, :Zone, :Limit, :Offset
@@ -2071,7 +2071,7 @@ module TencentCloud
         # @type ZoneList: Array
         # @param Data: 数据
         # @type Data: Array
-        # @param Total: 10
+        # @param Total: 返回数据总数
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

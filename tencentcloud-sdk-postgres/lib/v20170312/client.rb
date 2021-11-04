@@ -965,6 +965,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
+
+        # @param request: Request instance for ModifyDBInstanceSpec.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceSpecRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceSpecResponse`
+        def ModifyDBInstanceSpec(request)
+          body = send_request('ModifyDBInstanceSpec', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceSpecResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstancesProject）用于将实例转至其他项目。
 
         # @param request: Request instance for ModifyDBInstancesProject.

@@ -1099,6 +1099,7 @@ module TencentCloud
         # @param TemplateID: 模板ID。如果没有模板，请先新建一个
         # @type TemplateID: Integer
         # @param TemplateData: 模板中的变量参数，请使用json.dump将json对象格式化为string类型。该对象是一组键值对，每个Key代表模板中的一个变量，模板中的变量使用{{键}}表示，相应的值在发送时会被替换为{{值}}。
+        # 示例：{"name":"xxx","age":"xx"}
         # @type TemplateData: String
 
         attr_accessor :TemplateID, :TemplateData

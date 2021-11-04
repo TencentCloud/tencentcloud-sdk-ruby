@@ -5048,6 +5048,28 @@ module TencentCloud
         end
       end
 
+      # 商户风险信息
+      class MerchantRiskInfo < TencentCloud::Common::AbstractModel
+        # @param RiskLevel: 恶意注册等级，0-9级，9级最高
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: Integer
+        # @param RiskTypes: 恶意注册代码，代码以|分割，如"G001|T002"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskTypes: String
+
+        attr_accessor :RiskLevel, :RiskTypes
+        
+        def initialize(risklevel=nil, risktypes=nil)
+          @RiskLevel = risklevel
+          @RiskTypes = risktypes
+        end
+
+        def deserialize(params)
+          @RiskLevel = params['RiskLevel']
+          @RiskTypes = params['RiskTypes']
+        end
+      end
+
       # MigrateOrderRefundQuery请求参数结构体
       class MigrateOrderRefundQueryRequest < TencentCloud::Common::AbstractModel
         # @param MerchantId: 商户号
@@ -7669,6 +7691,98 @@ module TencentCloud
           @AcctAvailBal = params['AcctAvailBal']
           @CashAmt = params['CashAmt']
           @MaintenanceDate = params['MaintenanceDate']
+        end
+      end
+
+      # QueryMaliciousRegistration请求参数结构体
+      class QueryMaliciousRegistrationRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 商户ID，调用方使用的商户号信息，与商户主体一一对应
+        # @type MerchantId: String
+        # @param MerchantName: 商户名称
+        # @type MerchantName: String
+        # @param CompanyName: 企业工商注册标准名称
+        # @type CompanyName: String
+        # @param RegAddress: 注册地址
+        # @type RegAddress: String
+        # @param RegTime: 商户进件Unix时间，单位秒（非企业注册工商时间)
+        # @type RegTime: Integer
+        # @param USCI: 统一社会信用代码
+        # @type USCI: String
+        # @param RegNumber: 工商注册码，匹配优先级为Usci>RegNumber>CompanyName
+        # @type RegNumber: String
+        # @param EncryptedPhoneNumber: 手机号码32位MD5加密结果，全大写，格式为0086-13812345678
+        # @type EncryptedPhoneNumber: String
+        # @param EncryptedEmailAddress: 邮箱32位MD5加密结果，全大写
+        # @type EncryptedEmailAddress: String
+        # @param EncryptedPersonId: 身份证MD5加密结果，最后一位x大写
+        # @type EncryptedPersonId: String
+        # @param Ip: 填写信息设备的IP地址
+        # @type Ip: String
+        # @param Channel: 进件渠道号，客户自行编码即可
+        # @type Channel: String
+
+        attr_accessor :MerchantId, :MerchantName, :CompanyName, :RegAddress, :RegTime, :USCI, :RegNumber, :EncryptedPhoneNumber, :EncryptedEmailAddress, :EncryptedPersonId, :Ip, :Channel
+        
+        def initialize(merchantid=nil, merchantname=nil, companyname=nil, regaddress=nil, regtime=nil, usci=nil, regnumber=nil, encryptedphonenumber=nil, encryptedemailaddress=nil, encryptedpersonid=nil, ip=nil, channel=nil)
+          @MerchantId = merchantid
+          @MerchantName = merchantname
+          @CompanyName = companyname
+          @RegAddress = regaddress
+          @RegTime = regtime
+          @USCI = usci
+          @RegNumber = regnumber
+          @EncryptedPhoneNumber = encryptedphonenumber
+          @EncryptedEmailAddress = encryptedemailaddress
+          @EncryptedPersonId = encryptedpersonid
+          @Ip = ip
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @MerchantName = params['MerchantName']
+          @CompanyName = params['CompanyName']
+          @RegAddress = params['RegAddress']
+          @RegTime = params['RegTime']
+          @USCI = params['USCI']
+          @RegNumber = params['RegNumber']
+          @EncryptedPhoneNumber = params['EncryptedPhoneNumber']
+          @EncryptedEmailAddress = params['EncryptedEmailAddress']
+          @EncryptedPersonId = params['EncryptedPersonId']
+          @Ip = params['Ip']
+          @Channel = params['Channel']
+        end
+      end
+
+      # QueryMaliciousRegistration返回参数结构体
+      class QueryMaliciousRegistrationResponse < TencentCloud::Common::AbstractModel
+        # @param ErrCode: 错误码
+        # @type ErrCode: String
+        # @param ErrMsg: 错误消息
+        # @type ErrMsg: String
+        # @param Result: 商户风险信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.MerchantRiskInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrCode, :ErrMsg, :Result, :RequestId
+        
+        def initialize(errcode=nil, errmsg=nil, result=nil, requestid=nil)
+          @ErrCode = errcode
+          @ErrMsg = errmsg
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrCode = params['ErrCode']
+          @ErrMsg = params['ErrMsg']
+          unless params['Result'].nil?
+            @Result = MerchantRiskInfo.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -12709,117 +12823,121 @@ module TencentCloud
 
       # UnifiedTlinxOrder请求参数结构体
       class UnifiedTlinxOrderRequest < TencentCloud::Common::AbstractModel
-        # @param OpenId: 收单系统分配的开放ID
-        # @type OpenId: String
-        # @param OpenKey: 收单系统分配的密钥
-        # @type OpenKey: String
         # @param DeveloperNo: 开发者流水号
         # @type DeveloperNo: String
+        # @param OpenId: 收单系统分配的开放ID
+        # @type OpenId: String
+        # @param NotifyUrl: 交易结果异步通知url地址
+        # @type NotifyUrl: String
+        # @param OpenKey: 收单系统分配的密钥
+        # @type OpenKey: String
         # @param PayTag: 支付标签
         # @type PayTag: String
         # @param TradeAmount: 实际交易金额（以分为单位，没有小数点）
         # @type TradeAmount: String
-        # @param Tag: 订单标记，订单附加数据
-        # @type Tag: String
-        # @param NotifyUrl: 交易结果异步通知url地址
-        # @type NotifyUrl: String
-        # @param PayName: 付款方式名称(当PayTag为Diy时，PayName不能为空)
-        # @type PayName: String
-        # @param OrderName: 订单名称（描述）
-        # @type OrderName: String
-        # @param OriginalAmount: 原始交易金额（以分为单位，没有小数点）
-        # @type OriginalAmount: String
-        # @param DiscountAmount: 折扣金额（以分为单位，没有小数点）
-        # @type DiscountAmount: String
-        # @param IgnoreAmount: 抹零金额（以分为单位，没有小数点）
-        # @type IgnoreAmount: String
-        # @param TradeAccount: 交易帐号（银行卡号）
-        # @type TradeAccount: String
-        # @param TradeNo: 交易号（收单机构交易号）
-        # @type TradeNo: String
-        # @param TradeResult: 收单机构原始交易报文，请转换为json
-        # @type TradeResult: String
         # @param Remark: 订单备注
         # @type Remark: String
+        # @param Tag: 订单标记，订单附加数据。
+        # @type Tag: String
+        # @param IgnoreAmount: 抹零金额（以分为单位，没有小数点）
+        # @type IgnoreAmount: String
         # @param AuthCode: 条码支付的授权码（条码抢扫手机扫到的一串数字）
         # @type AuthCode: String
+        # @param OriginalAmount: 原始交易金额（以分为单位，没有小数点）
+        # @type OriginalAmount: String
+        # @param OrderName: 订单名称（描述）
+        # @type OrderName: String
         # @param JumpUrl: 公众号支付时，支付成功后跳转url地址
         # @type JumpUrl: String
         # @param Profile: 沙箱环境填sandbox，正式环境不填
         # @type Profile: String
+        # @param TradeResult: 收单机构原始交易报文，请转换为json
+        # @type TradeResult: String
+        # @param TradeAccount: 交易帐号（银行卡号）
+        # @type TradeAccount: String
+        # @param TradeNo: 交易号（收单机构交易号）
+        # @type TradeNo: String
+        # @param DiscountAmount: 折扣金额（以分为单位，没有小数点）
+        # @type DiscountAmount: String
+        # @param PayName: 付款方式名称(当PayTag为Diy时，PayName不能为空)
+        # @type PayName: String
+        # @param Royalty: 0-不分账，1-需分账。为1时标记为待分账订单，待分账订单不会进行清算。不传默认为不分账。
+        # @type Royalty: String
 
-        attr_accessor :OpenId, :OpenKey, :DeveloperNo, :PayTag, :TradeAmount, :Tag, :NotifyUrl, :PayName, :OrderName, :OriginalAmount, :DiscountAmount, :IgnoreAmount, :TradeAccount, :TradeNo, :TradeResult, :Remark, :AuthCode, :JumpUrl, :Profile
+        attr_accessor :DeveloperNo, :OpenId, :NotifyUrl, :OpenKey, :PayTag, :TradeAmount, :Remark, :Tag, :IgnoreAmount, :AuthCode, :OriginalAmount, :OrderName, :JumpUrl, :Profile, :TradeResult, :TradeAccount, :TradeNo, :DiscountAmount, :PayName, :Royalty
         
-        def initialize(openid=nil, openkey=nil, developerno=nil, paytag=nil, tradeamount=nil, tag=nil, notifyurl=nil, payname=nil, ordername=nil, originalamount=nil, discountamount=nil, ignoreamount=nil, tradeaccount=nil, tradeno=nil, traderesult=nil, remark=nil, authcode=nil, jumpurl=nil, profile=nil)
-          @OpenId = openid
-          @OpenKey = openkey
+        def initialize(developerno=nil, openid=nil, notifyurl=nil, openkey=nil, paytag=nil, tradeamount=nil, remark=nil, tag=nil, ignoreamount=nil, authcode=nil, originalamount=nil, ordername=nil, jumpurl=nil, profile=nil, traderesult=nil, tradeaccount=nil, tradeno=nil, discountamount=nil, payname=nil, royalty=nil)
           @DeveloperNo = developerno
+          @OpenId = openid
+          @NotifyUrl = notifyurl
+          @OpenKey = openkey
           @PayTag = paytag
           @TradeAmount = tradeamount
-          @Tag = tag
-          @NotifyUrl = notifyurl
-          @PayName = payname
-          @OrderName = ordername
-          @OriginalAmount = originalamount
-          @DiscountAmount = discountamount
-          @IgnoreAmount = ignoreamount
-          @TradeAccount = tradeaccount
-          @TradeNo = tradeno
-          @TradeResult = traderesult
           @Remark = remark
+          @Tag = tag
+          @IgnoreAmount = ignoreamount
           @AuthCode = authcode
+          @OriginalAmount = originalamount
+          @OrderName = ordername
           @JumpUrl = jumpurl
           @Profile = profile
+          @TradeResult = traderesult
+          @TradeAccount = tradeaccount
+          @TradeNo = tradeno
+          @DiscountAmount = discountamount
+          @PayName = payname
+          @Royalty = royalty
         end
 
         def deserialize(params)
-          @OpenId = params['OpenId']
-          @OpenKey = params['OpenKey']
           @DeveloperNo = params['DeveloperNo']
+          @OpenId = params['OpenId']
+          @NotifyUrl = params['NotifyUrl']
+          @OpenKey = params['OpenKey']
           @PayTag = params['PayTag']
           @TradeAmount = params['TradeAmount']
-          @Tag = params['Tag']
-          @NotifyUrl = params['NotifyUrl']
-          @PayName = params['PayName']
-          @OrderName = params['OrderName']
-          @OriginalAmount = params['OriginalAmount']
-          @DiscountAmount = params['DiscountAmount']
-          @IgnoreAmount = params['IgnoreAmount']
-          @TradeAccount = params['TradeAccount']
-          @TradeNo = params['TradeNo']
-          @TradeResult = params['TradeResult']
           @Remark = params['Remark']
+          @Tag = params['Tag']
+          @IgnoreAmount = params['IgnoreAmount']
           @AuthCode = params['AuthCode']
+          @OriginalAmount = params['OriginalAmount']
+          @OrderName = params['OrderName']
           @JumpUrl = params['JumpUrl']
           @Profile = params['Profile']
+          @TradeResult = params['TradeResult']
+          @TradeAccount = params['TradeAccount']
+          @TradeNo = params['TradeNo']
+          @DiscountAmount = params['DiscountAmount']
+          @PayName = params['PayName']
+          @Royalty = params['Royalty']
         end
       end
 
       # UnifiedTlinxOrder返回参数结构体
       class UnifiedTlinxOrderResponse < TencentCloud::Common::AbstractModel
-        # @param ErrCode: 业务系统返回码
-        # @type ErrCode: String
         # @param ErrMessage: 业务系统返回消息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrMessage: String
+        # @param ErrCode: 业务系统返回码
+        # @type ErrCode: String
         # @param Result: 统一下单响应对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Cpdp.v20190820.models.PayOrderResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ErrCode, :ErrMessage, :Result, :RequestId
+        attr_accessor :ErrMessage, :ErrCode, :Result, :RequestId
         
-        def initialize(errcode=nil, errmessage=nil, result=nil, requestid=nil)
-          @ErrCode = errcode
+        def initialize(errmessage=nil, errcode=nil, result=nil, requestid=nil)
           @ErrMessage = errmessage
+          @ErrCode = errcode
           @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @ErrCode = params['ErrCode']
           @ErrMessage = params['ErrMessage']
+          @ErrCode = params['ErrCode']
           unless params['Result'].nil?
             @Result = PayOrderResult.new
             @Result.deserialize(params['Result'])

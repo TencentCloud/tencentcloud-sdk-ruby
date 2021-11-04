@@ -4396,12 +4396,18 @@ module TencentCloud
         # @param SetType: 集群类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetType: String
+        # @param DeploymentType: 服务部署的集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeploymentType: String
+        # @param SpecialUse: 特殊用途
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecialUse: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :ExclusiveSetName, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :InstanceId, :InstanceName, :SetType, :RequestId
+        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :ExclusiveSetName, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :InstanceId, :InstanceName, :SetType, :DeploymentType, :SpecialUse, :RequestId
         
-        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, exclusivesetname=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, instanceid=nil, instancename=nil, settype=nil, requestid=nil)
+        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, exclusivesetname=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, instanceid=nil, instancename=nil, settype=nil, deploymenttype=nil, specialuse=nil, requestid=nil)
           @ServiceId = serviceid
           @AvailableEnvironments = availableenvironments
           @ServiceName = servicename
@@ -4426,6 +4432,8 @@ module TencentCloud
           @InstanceId = instanceid
           @InstanceName = instancename
           @SetType = settype
+          @DeploymentType = deploymenttype
+          @SpecialUse = specialuse
           @RequestId = requestid
         end
 
@@ -4475,6 +4483,8 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
           @SetType = params['SetType']
+          @DeploymentType = params['DeploymentType']
+          @SpecialUse = params['SpecialUse']
           @RequestId = params['RequestId']
         end
       end
@@ -6716,10 +6726,13 @@ module TencentCloud
         # @param SetType: 集群类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetType: String
+        # @param DeploymentType: 服务部署的集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeploymentType: String
 
-        attr_accessor :InnerHttpsPort, :ServiceDesc, :Protocol, :ModifiedTime, :NetTypes, :ExclusiveSetName, :ServiceId, :IpVersion, :AvailableEnvironments, :ServiceName, :OuterSubDomain, :CreatedTime, :InnerHttpPort, :InnerSubDomain, :TradeIsolateStatus, :Tags, :InstanceId, :SetType
+        attr_accessor :InnerHttpsPort, :ServiceDesc, :Protocol, :ModifiedTime, :NetTypes, :ExclusiveSetName, :ServiceId, :IpVersion, :AvailableEnvironments, :ServiceName, :OuterSubDomain, :CreatedTime, :InnerHttpPort, :InnerSubDomain, :TradeIsolateStatus, :Tags, :InstanceId, :SetType, :DeploymentType
         
-        def initialize(innerhttpsport=nil, servicedesc=nil, protocol=nil, modifiedtime=nil, nettypes=nil, exclusivesetname=nil, serviceid=nil, ipversion=nil, availableenvironments=nil, servicename=nil, outersubdomain=nil, createdtime=nil, innerhttpport=nil, innersubdomain=nil, tradeisolatestatus=nil, tags=nil, instanceid=nil, settype=nil)
+        def initialize(innerhttpsport=nil, servicedesc=nil, protocol=nil, modifiedtime=nil, nettypes=nil, exclusivesetname=nil, serviceid=nil, ipversion=nil, availableenvironments=nil, servicename=nil, outersubdomain=nil, createdtime=nil, innerhttpport=nil, innersubdomain=nil, tradeisolatestatus=nil, tags=nil, instanceid=nil, settype=nil, deploymenttype=nil)
           @InnerHttpsPort = innerhttpsport
           @ServiceDesc = servicedesc
           @Protocol = protocol
@@ -6738,6 +6751,7 @@ module TencentCloud
           @Tags = tags
           @InstanceId = instanceid
           @SetType = settype
+          @DeploymentType = deploymenttype
         end
 
         def deserialize(params)
@@ -6766,6 +6780,7 @@ module TencentCloud
           end
           @InstanceId = params['InstanceId']
           @SetType = params['SetType']
+          @DeploymentType = params['DeploymentType']
         end
       end
 

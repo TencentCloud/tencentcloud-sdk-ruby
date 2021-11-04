@@ -1573,6 +1573,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 商户恶意注册接口
+
+        # @param request: Request instance for QueryMaliciousRegistration.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::QueryMaliciousRegistrationRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::QueryMaliciousRegistrationResponse`
+        def QueryMaliciousRegistration(request)
+          body = send_request('QueryMaliciousRegistration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryMaliciousRegistrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 会员绑定信息查询。查询标志为“单个会员”的情况下，返回该会员的有效的绑定账户信息。
         # 查询标志为“全部会员”的情况下，返回市场下的全部的有效的绑定账户信息。查询标志为“单个会员的证件信息”的情况下，返回市场下的指定的会员的留存在电商见证宝系统的证件信息。
 
@@ -2534,7 +2558,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云支付Tlinx统一下单接口
+        # 云支付-统一下单接口
 
         # @param request: Request instance for UnifiedTlinxOrder.
         # @type request: :class:`Tencentcloud::cpdp::V20190820::UnifiedTlinxOrderRequest`

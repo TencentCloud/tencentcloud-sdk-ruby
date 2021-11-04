@@ -334,9 +334,9 @@ module TencentCloud
 
       # CreateUserGroup请求参数结构体
       class CreateUserGroupRequest < TencentCloud::Common::AbstractModel
-        # @param DisplayName: 昵称，长度限制：64个字符。 DisplayName是唯一的。
+        # @param DisplayName: 用户组昵称，长度限制：64个字符。 DisplayName是唯一的。
         # @type DisplayName: String
-        # @param Description: 用户备注，长度限制：512个字符。
+        # @param Description: 用户组备注，长度限制：512个字符。
         # @type Description: String
 
         attr_accessor :DisplayName, :Description
@@ -940,10 +940,10 @@ module TencentCloud
 
       # DescribeUserGroup返回参数结构体
       class DescribeUserGroupResponse < TencentCloud::Common::AbstractModel
-        # @param DisplayName: 昵称，长度限制：64个字符。 DisplayName不唯一。
+        # @param DisplayName: 用户组昵称，长度限制：64个字符。 DisplayName不唯一。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisplayName: String
-        # @param Description: 用户备注，长度限制：512个字符。
+        # @param Description: 用户组备注，长度限制：512个字符。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
         # @param UserGroupId: 用户组ID，是用户组的全局唯一标识。
