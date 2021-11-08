@@ -1202,19 +1202,24 @@ module TencentCloud
         # @param Date: 日期，当需要汇总数据时日期为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Date: String
+        # @param ProxyOrganizationName: 渠道侧合作企业名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProxyOrganizationName: String
 
-        attr_accessor :ProxyOrganizationOpenId, :Usage, :Date
+        attr_accessor :ProxyOrganizationOpenId, :Usage, :Date, :ProxyOrganizationName
         
-        def initialize(proxyorganizationopenid=nil, usage=nil, date=nil)
+        def initialize(proxyorganizationopenid=nil, usage=nil, date=nil, proxyorganizationname=nil)
           @ProxyOrganizationOpenId = proxyorganizationopenid
           @Usage = usage
           @Date = date
+          @ProxyOrganizationName = proxyorganizationname
         end
 
         def deserialize(params)
           @ProxyOrganizationOpenId = params['ProxyOrganizationOpenId']
           @Usage = params['Usage']
           @Date = params['Date']
+          @ProxyOrganizationName = params['ProxyOrganizationName']
         end
       end
 

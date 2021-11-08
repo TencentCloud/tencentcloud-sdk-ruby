@@ -2222,7 +2222,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云支付Tlinx退款接口
+        # 云支付订单退款接口
 
         # @param request: Request instance for RefundTlinxOrder.
         # @type request: :class:`Tencentcloud::cpdp::V20190820::RefundTlinxOrderRequest`

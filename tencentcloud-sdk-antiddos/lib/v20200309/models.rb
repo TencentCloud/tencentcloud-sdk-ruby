@@ -1695,7 +1695,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 统计结束时间
         # @type EndTime: String
-        # @param MetricName: 指标，取值[inqps(总请求峰值，dropqps(攻击请求峰值))]
+        # @param MetricName: 指标，取值[inqps(总请求峰值，dropqps(攻击请求峰值))，incount(请求次数), dropcount(攻击次数)]
         # @type MetricName: String
         # @param Domain: 域名，可选
         # @type Domain: String
@@ -1746,7 +1746,7 @@ module TencentCloud
         # @param Id: 资源ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param MetricName: 指标，取值[inqps(总请求峰值，dropqps(攻击请求峰值))]
+        # @param MetricName: 指标，取值[inqps(总请求峰值，dropqps(攻击请求峰值))，incount(请求次数), dropcount(攻击次数)]
         # @type MetricName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

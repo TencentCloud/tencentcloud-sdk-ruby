@@ -47,7 +47,7 @@ module TencentCloud
         # @type ReceiverId: Integer
         # @param Subject: 邮件主题
         # @type Subject: String
-        # @param TaskType: 任务类型 1即时 2 定时 3 周期
+        # @param TaskType: 任务类型 1: 立即发送 2: 定时发送 3: 周期（频率）发送
         # @type TaskType: Integer
         # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人将会回复到腾讯云。
         # @type ReplyToAddresses: String
@@ -1099,6 +1099,7 @@ module TencentCloud
         # @param TemplateID: 模板ID。如果没有模板，请先新建一个
         # @type TemplateID: Integer
         # @param TemplateData: 模板中的变量参数，请使用json.dump将json对象格式化为string类型。该对象是一组键值对，每个Key代表模板中的一个变量，模板中的变量使用{{键}}表示，相应的值在发送时会被替换为{{值}}。
+        # 注意：参数值不能是html等复杂类型的数据。
         # 示例：{"name":"xxx","age":"xx"}
         # @type TemplateData: String
 

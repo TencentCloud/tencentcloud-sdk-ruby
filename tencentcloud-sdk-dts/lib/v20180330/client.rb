@@ -155,56 +155,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 在调用 StartSyncJob 接口启动灾备同步前, 必须调用本接口创建校验, 且校验成功后才能开始同步数据. 校验的结果可以通过 DescribeSyncCheckJob 查看.
-        # 校验成功后才能启动同步.
-
-        # @param request: Request instance for CreateSyncCheckJob.
-        # @type request: :class:`Tencentcloud::dts::V20180330::CreateSyncCheckJobRequest`
-        # @rtype: :class:`Tencentcloud::dts::V20180330::CreateSyncCheckJobResponse`
-        def CreateSyncCheckJob(request)
-          body = send_request('CreateSyncCheckJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateSyncCheckJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口(CreateSyncJob)用于创建灾备同步任务。
-        # 创建同步任务后，可以通过 CreateSyncCheckJob 接口发起校验任务。校验成功后才可以通过 StartSyncJob 接口启动同步任务。
-
-        # @param request: Request instance for CreateSyncJob.
-        # @type request: :class:`Tencentcloud::dts::V20180330::CreateSyncJobRequest`
-        # @rtype: :class:`Tencentcloud::dts::V20180330::CreateSyncJobResponse`
-        def CreateSyncJob(request)
-          body = send_request('CreateSyncJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateSyncJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DeleteMigrationJob）用于删除数据迁移任务。当通过DescribeMigrateJobs接口查询到任务的状态为：检验中（status=3）、运行中（status=7）、准备完成（status=8）、撤销中（status=11）或者完成中（status=12）时，不允许删除任务。
 
         # @param request: Request instance for DeleteMigrateJob.
@@ -215,30 +165,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteMigrateJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除灾备同步任务 （运行中的同步任务不能删除）。
-
-        # @param request: Request instance for DeleteSyncJob.
-        # @type request: :class:`Tencentcloud::dts::V20180330::DeleteSyncJobRequest`
-        # @rtype: :class:`Tencentcloud::dts::V20180330::DeleteSyncJobResponse`
-        def DeleteSyncJob(request)
-          body = send_request('DeleteSyncJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteSyncJobResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -415,30 +341,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSyncCheckJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询在迁移平台发起的灾备同步任务
-
-        # @param request: Request instance for DescribeSyncJobs.
-        # @type request: :class:`Tencentcloud::dts::V20180330::DescribeSyncJobsRequest`
-        # @rtype: :class:`Tencentcloud::dts::V20180330::DescribeSyncJobsResponse`
-        def DescribeSyncJobs(request)
-          body = send_request('DescribeSyncJobs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSyncJobsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -723,30 +625,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建的灾备同步任务在通过 CreateSyncCheckJob 和 DescribeSyncCheckJob 确定校验成功后，可以调用该接口启动同步
-
-        # @param request: Request instance for StartSyncJob.
-        # @type request: :class:`Tencentcloud::dts::V20180330::StartSyncJobRequest`
-        # @rtype: :class:`Tencentcloud::dts::V20180330::StartSyncJobResponse`
-        def StartSyncJob(request)
-          body = send_request('StartSyncJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = StartSyncJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（StopMigrateJob）用于撤销数据迁移任务。
         # 在迁移过程中允许调用该接口撤销迁移, 撤销迁移的任务会失败。通过DescribeMigrateJobs接口查询到任务状态为运行中（status=7）或准备完成（status=8）时，才能撤销数据迁移任务。
 
@@ -758,30 +636,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopMigrateJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 将灾备升级为主实例，停止从原来所属主实例的同步，断开主备关系。
-
-        # @param request: Request instance for SwitchDrToMaster.
-        # @type request: :class:`Tencentcloud::dts::V20180330::SwitchDrToMasterRequest`
-        # @rtype: :class:`Tencentcloud::dts::V20180330::SwitchDrToMasterResponse`
-        def SwitchDrToMaster(request)
-          body = send_request('SwitchDrToMaster', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SwitchDrToMasterResponse.new
             model.deserialize(response['Response'])
             model
           else

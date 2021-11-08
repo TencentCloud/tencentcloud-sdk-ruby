@@ -463,10 +463,14 @@ module TencentCloud
         # @type AsyncRunEnable: String
         # @param TraceEnable: 是否开启事件追踪，TRUE 为开启，FALSE为关闭
         # @type TraceEnable: String
+        # @param ProtocolType: HTTP函数支持的访问协议。当前支持WebSockets协议，值为WS
+        # @type ProtocolType: String
+        # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
+        # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
 
-        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable
+        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable, :ProtocolType, :ProtocolParams
         
-        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil)
+        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil, protocoltype=nil, protocolparams=nil)
           @FunctionName = functionname
           @Code = code
           @Handler = handler
@@ -490,6 +494,8 @@ module TencentCloud
           @Tags = tags
           @AsyncRunEnable = asyncrunenable
           @TraceEnable = traceenable
+          @ProtocolType = protocoltype
+          @ProtocolParams = protocolparams
         end
 
         def deserialize(params)
@@ -548,6 +554,11 @@ module TencentCloud
           end
           @AsyncRunEnable = params['AsyncRunEnable']
           @TraceEnable = params['TraceEnable']
+          @ProtocolType = params['ProtocolType']
+          unless params['ProtocolParams'].nil?
+            @ProtocolParams = ProtocolParams.new
+            @ProtocolParams.deserialize(params['ProtocolParams'])
+          end
         end
       end
 
@@ -1693,12 +1704,18 @@ module TencentCloud
         # @param TraceEnable: 是否开启事件追踪
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceEnable: String
+        # @param ProtocolType: HTTP函数支持的访问协议。当前支持WebSockets协议。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolType: String
+        # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议配置的参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :Environment, :CodeResult, :CodeError, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :StatusDesc, :ClsLogsetId, :ClsTopicId, :FunctionId, :Tags, :EipConfig, :AccessInfo, :Type, :L5Enable, :Layers, :DeadLetterConfig, :AddTime, :PublicNetConfig, :OnsEnable, :CfsConfig, :AvailableStatus, :Qualifier, :InitTimeout, :StatusReasons, :AsyncRunEnable, :TraceEnable, :RequestId
+        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :Environment, :CodeResult, :CodeError, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :StatusDesc, :ClsLogsetId, :ClsTopicId, :FunctionId, :Tags, :EipConfig, :AccessInfo, :Type, :L5Enable, :Layers, :DeadLetterConfig, :AddTime, :PublicNetConfig, :OnsEnable, :CfsConfig, :AvailableStatus, :Qualifier, :InitTimeout, :StatusReasons, :AsyncRunEnable, :TraceEnable, :ProtocolType, :ProtocolParams, :RequestId
         
-        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, environment=nil, coderesult=nil, codeerror=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, statusdesc=nil, clslogsetid=nil, clstopicid=nil, functionid=nil, tags=nil, eipconfig=nil, accessinfo=nil, type=nil, l5enable=nil, layers=nil, deadletterconfig=nil, addtime=nil, publicnetconfig=nil, onsenable=nil, cfsconfig=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, statusreasons=nil, asyncrunenable=nil, traceenable=nil, requestid=nil)
+        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, environment=nil, coderesult=nil, codeerror=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, statusdesc=nil, clslogsetid=nil, clstopicid=nil, functionid=nil, tags=nil, eipconfig=nil, accessinfo=nil, type=nil, l5enable=nil, layers=nil, deadletterconfig=nil, addtime=nil, publicnetconfig=nil, onsenable=nil, cfsconfig=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, statusreasons=nil, asyncrunenable=nil, traceenable=nil, protocoltype=nil, protocolparams=nil, requestid=nil)
           @ModTime = modtime
           @CodeInfo = codeinfo
           @Description = description
@@ -1741,6 +1758,8 @@ module TencentCloud
           @StatusReasons = statusreasons
           @AsyncRunEnable = asyncrunenable
           @TraceEnable = traceenable
+          @ProtocolType = protocoltype
+          @ProtocolParams = protocolparams
           @RequestId = requestid
         end
 
@@ -1836,6 +1855,11 @@ module TencentCloud
           end
           @AsyncRunEnable = params['AsyncRunEnable']
           @TraceEnable = params['TraceEnable']
+          @ProtocolType = params['ProtocolType']
+          unless params['ProtocolParams'].nil?
+            @ProtocolParams = ProtocolParams.new
+            @ProtocolParams.deserialize(params['ProtocolParams'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3000,6 +3024,26 @@ module TencentCloud
         end
       end
 
+      # HTTP函数支持其他访问协议的参数
+      class ProtocolParams < TencentCloud::Common::AbstractModel
+        # @param WSParams: WebSockets协议支持的参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WSParams: :class:`Tencentcloud::Scf.v20180416.models.WSParams`
+
+        attr_accessor :WSParams
+        
+        def initialize(wsparams=nil)
+          @WSParams = wsparams
+        end
+
+        def deserialize(params)
+          unless params['WSParams'].nil?
+            @WSParams = WSParams.new
+            @WSParams.deserialize(params['WSParams'])
+          end
+        end
+      end
+
       # 公网访问配置
       class PublicNetConfigIn < TencentCloud::Common::AbstractModel
         # @param PublicNetStatus: 是否开启公网访问能力取值['DISABLE','ENABLE']
@@ -3894,10 +3938,12 @@ module TencentCloud
         # @type CfsConfig: :class:`Tencentcloud::Scf.v20180416.models.CfsConfig`
         # @param InitTimeout: 函数初始化执行超时时间
         # @type InitTimeout: Integer
+        # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
+        # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
 
-        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout
+        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :ProtocolParams
         
-        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil)
+        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, protocolparams=nil)
           @FunctionName = functionname
           @Description = description
           @MemorySize = memorysize
@@ -3916,6 +3962,7 @@ module TencentCloud
           @PublicNetConfig = publicnetconfig
           @CfsConfig = cfsconfig
           @InitTimeout = inittimeout
+          @ProtocolParams = protocolparams
         end
 
         def deserialize(params)
@@ -3959,6 +4006,10 @@ module TencentCloud
             @CfsConfig.deserialize(params['CfsConfig'])
           end
           @InitTimeout = params['InitTimeout']
+          unless params['ProtocolParams'].nil?
+            @ProtocolParams = ProtocolParams.new
+            @ProtocolParams.deserialize(params['ProtocolParams'])
+          end
         end
       end
 
@@ -4232,6 +4283,23 @@ module TencentCloud
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # HTTP函数通过WebSockets协议访问时的参数
+      class WSParams < TencentCloud::Common::AbstractModel
+        # @param IdleTimeOut: 空闲超时时间, 单位秒，默认15s。可配置范围1~1800s。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdleTimeOut: Integer
+
+        attr_accessor :IdleTimeOut
+        
+        def initialize(idletimeout=nil)
+          @IdleTimeOut = idletimeout
+        end
+
+        def deserialize(params)
+          @IdleTimeOut = params['IdleTimeOut']
         end
       end
 

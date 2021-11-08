@@ -1990,21 +1990,25 @@ module TencentCloud
 
       # 子用户和用户组关联信息
       class GroupIdOfUidInfo < TencentCloud::Common::AbstractModel
-        # @param Uid: 子用户 UID
-        # @type Uid: Integer
         # @param GroupId: 用户组 ID
         # @type GroupId: Integer
+        # @param Uid: 子用户 UID
+        # @type Uid: Integer
+        # @param Uin: 子用户 Uin，Uid和Uin至少有一个必填
+        # @type Uin: Integer
 
-        attr_accessor :Uid, :GroupId
+        attr_accessor :GroupId, :Uid, :Uin
         
-        def initialize(uid=nil, groupid=nil)
-          @Uid = uid
+        def initialize(groupid=nil, uid=nil, uin=nil)
           @GroupId = groupid
+          @Uid = uid
+          @Uin = uin
         end
 
         def deserialize(params)
-          @Uid = params['Uid']
           @GroupId = params['GroupId']
+          @Uid = params['Uid']
+          @Uin = params['Uin']
         end
       end
 
