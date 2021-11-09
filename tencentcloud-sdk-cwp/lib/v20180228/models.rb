@@ -5449,7 +5449,7 @@ module TencentCloud
         # 3:java
         # 4:system</li>
         # @type Filters: Array
-        # @param Order: 排序方式，asc升序 或 desc降序
+        # @param Order: 排序方式，asc-升序 或 desc-降序
         # @type Order: String
         # @param By: 排序方式可选：InstallTime 安装时间
         # @type By: String
@@ -6666,7 +6666,7 @@ module TencentCloud
         # @param LatestScanTime: 最后检测时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestScanTime: String
-        # @param IsGlobal: 是否全部服务器
+        # @param IsGlobal: 是否全部服务器：1-是 0-否
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsGlobal: Integer
         # @param ScanHostCount: 服务器总数
@@ -9185,9 +9185,9 @@ module TencentCloud
 
       # DescribeMaliciousRequestWhiteList请求参数结构体
       class DescribeMaliciousRequestWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 分页参数
+        # @param Limit: 返回数量，默认为10，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 分页参数
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Filters: 过滤条件。
 
@@ -14073,16 +14073,16 @@ module TencentCloud
         # @param HostName: 主机名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostName: String
-        # @param Level: 危害等级
+        # @param Level: 危害等级：1-低位，2-中危，3-高危，4-严重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
         # @param TagList: 主机标签数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
-        # @param Status: 状态
+        # @param Status: 状态：0-未通过，1-忽略，3-已通过，5-检测中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param LastScanTime: 最后检测事件
+        # @param LastScanTime: 最后检测时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastScanTime: String
         # @param EventId: 事件id

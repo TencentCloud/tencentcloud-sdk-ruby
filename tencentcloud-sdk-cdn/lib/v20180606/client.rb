@@ -897,6 +897,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取BOT统计数据列表
+
+        # @param request: Request instance for DescribeScdnBotData.
+        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeScdnBotDataRequest`
+        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeScdnBotDataResponse`
+        def DescribeScdnBotData(request)
+          body = send_request('DescribeScdnBotData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScdnBotDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询BOT会话记录列表
 
         # @param request: Request instance for DescribeScdnBotRecords.

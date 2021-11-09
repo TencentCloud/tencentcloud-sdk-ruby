@@ -1661,6 +1661,53 @@ module TencentCloud
         end
       end
 
+      # BOT统计结果数据
+      class BotStats < TencentCloud::Common::AbstractModel
+        # @param Metric: 指标名称
+        # @type Metric: String
+        # @param DetailData: 指标详细数据
+        # @type DetailData: Array
+
+        attr_accessor :Metric, :DetailData
+        
+        def initialize(metric=nil, detaildata=nil)
+          @Metric = metric
+          @DetailData = detaildata
+        end
+
+        def deserialize(params)
+          @Metric = params['Metric']
+          unless params['DetailData'].nil?
+            @DetailData = []
+            params['DetailData'].each do |i|
+              botstatsdetaildata_tmp = BotStatsDetailData.new
+              botstatsdetaildata_tmp.deserialize(i)
+              @DetailData << botstatsdetaildata_tmp
+            end
+          end
+        end
+      end
+
+      # BOT统计结果数据详细数据
+      class BotStatsDetailData < TencentCloud::Common::AbstractModel
+        # @param Time: 时间
+        # @type Time: String
+        # @param Value: 数据值
+        # @type Value: Integer
+
+        attr_accessor :Time, :Value
+        
+        def initialize(time=nil, value=nil)
+          @Time = time
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Value = params['Value']
+        end
+      end
+
       # 域名基础配置信息，含 CNAME、状态、业务类型、加速区域、创建时间、更新时间、源站配置等。
       class BriefDomain < TencentCloud::Common::AbstractModel
         # @param ResourceId: 域名 ID
@@ -4932,6 +4979,69 @@ module TencentCloud
               @ProjectReport << reportdata_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScdnBotData请求参数结构体
+      class DescribeScdnBotDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Area: mainland 大陆地区 overseas境外地区
+        # @type Area: String
+        # @param Interval: 取值："2min"或者"hour"，表示查询2分钟或者1小时粒度的数据，如果查询时间范围>1天，则强制返回1小时粒度数据
+        # @type Interval: String
+        # @param Domains: 域名数组，多选域名时，使用此参数,不填写表示查询所有域名的数据（AppID维度数据）
+        # @type Domains: Array
+
+        attr_accessor :StartTime, :EndTime, :Area, :Interval, :Domains
+        
+        def initialize(starttime=nil, endtime=nil, area=nil, interval=nil, domains=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Area = area
+          @Interval = interval
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Area = params['Area']
+          @Interval = params['Interval']
+          @Domains = params['Domains']
+        end
+      end
+
+      # DescribeScdnBotData返回参数结构体
+      class DescribeScdnBotDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 统计信息详细数据
+        # @type Data: Array
+        # @param Interval: 当前返回数据的粒度，取值："2min"或者"hour"，分别表示2分钟或者1小时粒度
+        # @type Interval: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Interval, :RequestId
+        
+        def initialize(data=nil, interval=nil, requestid=nil)
+          @Data = data
+          @Interval = interval
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              botstats_tmp = BotStats.new
+              botstats_tmp.deserialize(i)
+              @Data << botstats_tmp
+            end
+          end
+          @Interval = params['Interval']
           @RequestId = params['RequestId']
         end
       end
@@ -11855,10 +11965,13 @@ module TencentCloud
         # 8：非洲
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: Integer
+        # @param ConfigId: 流量包类型id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigId: Integer
 
-        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable, :Region
+        attr_accessor :Id, :Type, :Bytes, :BytesUsed, :Status, :CreateTime, :EnableTime, :ExpireTime, :ContractExtension, :AutoExtension, :Channel, :Area, :LifeTimeMonth, :ExtensionAvailable, :RefundAvailable, :Region, :ConfigId
         
-        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil, region=nil)
+        def initialize(id=nil, type=nil, bytes=nil, bytesused=nil, status=nil, createtime=nil, enabletime=nil, expiretime=nil, contractextension=nil, autoextension=nil, channel=nil, area=nil, lifetimemonth=nil, extensionavailable=nil, refundavailable=nil, region=nil, configid=nil)
           @Id = id
           @Type = type
           @Bytes = bytes
@@ -11875,6 +11988,7 @@ module TencentCloud
           @ExtensionAvailable = extensionavailable
           @RefundAvailable = refundavailable
           @Region = region
+          @ConfigId = configid
         end
 
         def deserialize(params)
@@ -11894,6 +12008,7 @@ module TencentCloud
           @ExtensionAvailable = params['ExtensionAvailable']
           @RefundAvailable = params['RefundAvailable']
           @Region = params['Region']
+          @ConfigId = params['ConfigId']
         end
       end
 

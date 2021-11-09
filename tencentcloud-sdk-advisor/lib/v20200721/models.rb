@@ -219,6 +219,26 @@ module TencentCloud
         end
       end
 
+      # 键值对
+      class KeyValue < TencentCloud::Common::AbstractModel
+        # @param Key: 键名
+        # @type Key: String
+        # @param Value: 键名对应值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+        
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 风险实例字段描述
       class RiskFieldsDesc < TencentCloud::Common::AbstractModel
         # @param Field: 字段ID
@@ -231,19 +251,31 @@ module TencentCloud
         # stringSlice : 字符串数组类型，例如["a", "b"]
         # tags: 标签类型, 例如: [{"Key":"kkk","Value":"vvv"},{"Key":"kkk2","Value":"vvv2"}]
         # @type FieldType: String
+        # @param FieldDict: 字段值对应字典
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldDict: Array
 
-        attr_accessor :Field, :FieldName, :FieldType
+        attr_accessor :Field, :FieldName, :FieldType, :FieldDict
         
-        def initialize(field=nil, fieldname=nil, fieldtype=nil)
+        def initialize(field=nil, fieldname=nil, fieldtype=nil, fielddict=nil)
           @Field = field
           @FieldName = fieldname
           @FieldType = fieldtype
+          @FieldDict = fielddict
         end
 
         def deserialize(params)
           @Field = params['Field']
           @FieldName = params['FieldName']
           @FieldType = params['FieldType']
+          unless params['FieldDict'].nil?
+            @FieldDict = []
+            params['FieldDict'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @FieldDict << keyvalue_tmp
+            end
+          end
         end
       end
 

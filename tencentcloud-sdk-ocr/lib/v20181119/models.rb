@@ -1835,14 +1835,20 @@ module TencentCloud
         # @type IsWords: Boolean
         # @param EnableDetectSplit: 是否开启原图切图检测功能，开启后可提升“整图面积大，但单字符占比面积小”（例如：试卷）场景下的识别效果，默认关
         # @type EnableDetectSplit: Boolean
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit
+        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber
         
-        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil)
+        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @IsWords = iswords
           @EnableDetectSplit = enabledetectsplit
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
@@ -1850,6 +1856,8 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @IsWords = params['IsWords']
           @EnableDetectSplit = params['EnableDetectSplit']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 

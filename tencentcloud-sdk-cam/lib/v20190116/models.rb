@@ -131,7 +131,7 @@ module TencentCloud
 
       # AddUserToGroup请求参数结构体
       class AddUserToGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Info: 添加的子用户 UID 和用户组 ID 关联关系
+        # @param Info: 添加的子用户 UIN/UID 和用户组 ID 关联关系
         # @type Info: Array
 
         attr_accessor :Info
@@ -3275,7 +3275,7 @@ module TencentCloud
 
       # RemoveUserFromGroup请求参数结构体
       class RemoveUserFromGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Info: 要删除的用户 UID和用户组 ID对应数组
+        # @param Info: 要删除的用户 UIN/UID和用户组 ID对应数组
         # @type Info: Array
 
         attr_accessor :Info

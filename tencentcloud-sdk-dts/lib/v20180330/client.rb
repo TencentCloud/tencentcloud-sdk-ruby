@@ -326,35 +326,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于在通过 CreateSyncCheckJob 接口创建灾备同步校验任务后，获取校验的结果。能查询到当前校验的状态和进度。
-        # 若通过校验, 则可调用 StartSyncJob 启动同步任务。
-        # 若未通过校验, 则会返回校验失败的原因。 可通过 ModifySyncJob 修改配置，然后再次发起校验。
-        # 校验任务需要大概约30秒，当返回的 Status 不为 finished 时表示尚未校验完成，需要轮询该接口。
-        # 如果 Status=finished 且 CheckFlag=1 时表示校验成功。
-        # 如果 Status=finished 且 CheckFlag !=1 时表示校验失败。
-
-        # @param request: Request instance for DescribeSyncCheckJob.
-        # @type request: :class:`Tencentcloud::dts::V20180330::DescribeSyncCheckJobRequest`
-        # @rtype: :class:`Tencentcloud::dts::V20180330::DescribeSyncCheckJobResponse`
-        def DescribeSyncCheckJob(request)
-          body = send_request('DescribeSyncCheckJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSyncCheckJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（IsolateSubscribe）用于隔离小时计费的订阅实例。调用后，订阅实例将不能使用，同时停止计费。
 
         # @param request: Request instance for IsolateSubscribe.
@@ -512,32 +483,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySubscribeVipVportResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改灾备同步任务.
-        # 当同步任务处于下述状态时, 允许调用本接口: 同步任务创建中, 创建完成, 校验成功, 校验失败.
-        # 源实例和目标实例信息不允许修改，可以修改任务名、需要同步的库表。
-
-        # @param request: Request instance for ModifySyncJob.
-        # @type request: :class:`Tencentcloud::dts::V20180330::ModifySyncJobRequest`
-        # @rtype: :class:`Tencentcloud::dts::V20180330::ModifySyncJobResponse`
-        def ModifySyncJob(request)
-          body = send_request('ModifySyncJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifySyncJobResponse.new
             model.deserialize(response['Response'])
             model
           else

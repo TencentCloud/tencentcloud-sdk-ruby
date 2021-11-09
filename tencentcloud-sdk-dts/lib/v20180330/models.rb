@@ -815,65 +815,6 @@ module TencentCloud
         end
       end
 
-      # DescribeSyncCheckJob请求参数结构体
-      class DescribeSyncCheckJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 要查询的灾备同步任务ID
-        # @type JobId: String
-
-        attr_accessor :JobId
-        
-        def initialize(jobid=nil)
-          @JobId = jobid
-        end
-
-        def deserialize(params)
-          @JobId = params['JobId']
-        end
-      end
-
-      # DescribeSyncCheckJob返回参数结构体
-      class DescribeSyncCheckJobResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务校验状态： starting(开始中)，running(校验中)，finished(校验完成)
-        # @type Status: String
-        # @param ErrorCode: 任务校验结果代码
-        # @type ErrorCode: Integer
-        # @param ErrorMessage: 提示信息
-        # @type ErrorMessage: String
-        # @param StepInfo: 任务执行步骤描述
-        # @type StepInfo: Array
-        # @param CheckFlag: 校验标志：0（尚未校验成功） ， 1（校验成功）
-        # @type CheckFlag: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Status, :ErrorCode, :ErrorMessage, :StepInfo, :CheckFlag, :RequestId
-        
-        def initialize(status=nil, errorcode=nil, errormessage=nil, stepinfo=nil, checkflag=nil, requestid=nil)
-          @Status = status
-          @ErrorCode = errorcode
-          @ErrorMessage = errormessage
-          @StepInfo = stepinfo
-          @CheckFlag = checkflag
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Status = params['Status']
-          @ErrorCode = params['ErrorCode']
-          @ErrorMessage = params['ErrorMessage']
-          unless params['StepInfo'].nil?
-            @StepInfo = []
-            params['StepInfo'].each do |i|
-              synccheckstepinfo_tmp = SyncCheckStepInfo.new
-              synccheckstepinfo_tmp.deserialize(i)
-              @StepInfo << synccheckstepinfo_tmp
-            end
-          end
-          @CheckFlag = params['CheckFlag']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 目的实例信息，具体内容跟迁移任务类型相关
       class DstInfo < TencentCloud::Common::AbstractModel
         # @param Region: 目标实例地域，如ap-guangzhou
@@ -1494,55 +1435,6 @@ module TencentCloud
         end
       end
 
-      # ModifySyncJob请求参数结构体
-      class ModifySyncJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 待修改的灾备同步任务ID
-        # @type JobId: String
-        # @param JobName: 灾备同步任务名称
-        # @type JobName: String
-        # @param SyncOption: 灾备同步任务配置选项
-        # @type SyncOption: :class:`Tencentcloud::Dts.v20180330.models.SyncOption`
-        # @param DatabaseInfo: 当选择'指定库表'灾备同步的时候, 需要设置待同步的源数据库表信息,用符合json数组格式的字符串描述, 如下所例。
-        # 对于database-table两级结构的数据库：
-        # [{"Database":"db1","Table":["table1","table2"]},{"Database":"db2"}]
-        # @type DatabaseInfo: String
-
-        attr_accessor :JobId, :JobName, :SyncOption, :DatabaseInfo
-        
-        def initialize(jobid=nil, jobname=nil, syncoption=nil, databaseinfo=nil)
-          @JobId = jobid
-          @JobName = jobname
-          @SyncOption = syncoption
-          @DatabaseInfo = databaseinfo
-        end
-
-        def deserialize(params)
-          @JobId = params['JobId']
-          @JobName = params['JobName']
-          unless params['SyncOption'].nil?
-            @SyncOption = SyncOption.new
-            @SyncOption.deserialize(params['SyncOption'])
-          end
-          @DatabaseInfo = params['DatabaseInfo']
-        end
-      end
-
-      # ModifySyncJob返回参数结构体
-      class ModifySyncJobResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-        
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # OfflineIsolatedSubscribe请求参数结构体
       class OfflineIsolatedSubscribeRequest < TencentCloud::Common::AbstractModel
         # @param SubscribeId: 数据订阅实例的ID
@@ -1927,62 +1819,6 @@ module TencentCloud
           @Area = params['Area']
           @IsDefaultRegion = params['IsDefaultRegion']
           @Status = params['Status']
-        end
-      end
-
-      # 灾备任务校验步骤
-      class SyncCheckStepInfo < TencentCloud::Common::AbstractModel
-        # @param StepNo: 步骤序列
-        # @type StepNo: Integer
-        # @param StepName: 步骤展现名称
-        # @type StepName: String
-        # @param StepCode: 步骤执行结果代码
-        # @type StepCode: Integer
-        # @param StepMessage: 步骤执行结果提示
-        # @type StepMessage: String
-
-        attr_accessor :StepNo, :StepName, :StepCode, :StepMessage
-        
-        def initialize(stepno=nil, stepname=nil, stepcode=nil, stepmessage=nil)
-          @StepNo = stepno
-          @StepName = stepname
-          @StepCode = stepcode
-          @StepMessage = stepmessage
-        end
-
-        def deserialize(params)
-          @StepNo = params['StepNo']
-          @StepName = params['StepName']
-          @StepCode = params['StepCode']
-          @StepMessage = params['StepMessage']
-        end
-      end
-
-      # 灾备同步任务配置选项
-      class SyncOption < TencentCloud::Common::AbstractModel
-        # @param SyncObject: 同步对象，1-整个实例，2-指定库表
-        # @type SyncObject: Integer
-        # @param RunMode: 同步开始设置，1-立即开始
-        # @type RunMode: Integer
-        # @param SyncType: 同步模式， 3-全量且增量同步
-        # @type SyncType: Integer
-        # @param ConsistencyType: 数据一致性检测， 1-无需配置
-        # @type ConsistencyType: Integer
-
-        attr_accessor :SyncObject, :RunMode, :SyncType, :ConsistencyType
-        
-        def initialize(syncobject=nil, runmode=nil, synctype=nil, consistencytype=nil)
-          @SyncObject = syncobject
-          @RunMode = runmode
-          @SyncType = synctype
-          @ConsistencyType = consistencytype
-        end
-
-        def deserialize(params)
-          @SyncObject = params['SyncObject']
-          @RunMode = params['RunMode']
-          @SyncType = params['SyncType']
-          @ConsistencyType = params['ConsistencyType']
         end
       end
 

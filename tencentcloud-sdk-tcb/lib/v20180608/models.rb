@@ -2830,6 +2830,81 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudBaseRunOneClickTaskExternal请求参数结构体
+      class DescribeCloudBaseRunOneClickTaskExternalRequest < TencentCloud::Common::AbstractModel
+        # @param ExternalId: 外部任务Id 最长64字节
+        # @type ExternalId: String
+
+        attr_accessor :ExternalId
+        
+        def initialize(externalid=nil)
+          @ExternalId = externalid
+        end
+
+        def deserialize(params)
+          @ExternalId = params['ExternalId']
+        end
+      end
+
+      # DescribeCloudBaseRunOneClickTaskExternal返回参数结构体
+      class DescribeCloudBaseRunOneClickTaskExternalResponse < TencentCloud::Common::AbstractModel
+        # @param ExternalId: 外部任务Id
+        # @type ExternalId: String
+        # @param EnvId: 环境Id
+        # @type EnvId: String
+        # @param UserUin: 用户uin
+        # @type UserUin: String
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param VersionName: 版本名
+        # @type VersionName: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Stage: 当前阶段
+        # 微信云托管环境创建阶段：envStage
+        # 存储资源创建阶段：storageStage
+        # 服务创建阶段：serverStage
+        # @type Stage: String
+        # @param Status: 状态
+        # running
+        # stopped
+        # failed
+        # finished
+        # @type Status: String
+        # @param FailReason: 失败原因
+        # @type FailReason: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ExternalId, :EnvId, :UserUin, :ServerName, :VersionName, :CreateTime, :Stage, :Status, :FailReason, :RequestId
+        
+        def initialize(externalid=nil, envid=nil, useruin=nil, servername=nil, versionname=nil, createtime=nil, stage=nil, status=nil, failreason=nil, requestid=nil)
+          @ExternalId = externalid
+          @EnvId = envid
+          @UserUin = useruin
+          @ServerName = servername
+          @VersionName = versionname
+          @CreateTime = createtime
+          @Stage = stage
+          @Status = status
+          @FailReason = failreason
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ExternalId = params['ExternalId']
+          @EnvId = params['EnvId']
+          @UserUin = params['UserUin']
+          @ServerName = params['ServerName']
+          @VersionName = params['VersionName']
+          @CreateTime = params['CreateTime']
+          @Stage = params['Stage']
+          @Status = params['Status']
+          @FailReason = params['FailReason']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudBaseRunOperationTypes请求参数结构体
       class DescribeCloudBaseRunOperationTypesRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -3056,6 +3131,62 @@ module TencentCloud
               @SubnetIds << cloudbaserunvpcsubnet_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseRunServerDomainName请求参数结构体
+      class DescribeCloudBaseRunServerDomainNameRequest < TencentCloud::Common::AbstractModel
+        # @param ServerName: 服务名
+        # @type ServerName: String
+        # @param UserEnvId: 环境Id
+        # @type UserEnvId: String
+        # @param UserUin: 用户Uin
+        # @type UserUin: String
+        # @param ExternalId: 外部Id
+        # @type ExternalId: String
+
+        attr_accessor :ServerName, :UserEnvId, :UserUin, :ExternalId
+        
+        def initialize(servername=nil, userenvid=nil, useruin=nil, externalid=nil)
+          @ServerName = servername
+          @UserEnvId = userenvid
+          @UserUin = useruin
+          @ExternalId = externalid
+        end
+
+        def deserialize(params)
+          @ServerName = params['ServerName']
+          @UserEnvId = params['UserEnvId']
+          @UserUin = params['UserUin']
+          @ExternalId = params['ExternalId']
+        end
+      end
+
+      # DescribeCloudBaseRunServerDomainName返回参数结构体
+      class DescribeCloudBaseRunServerDomainNameResponse < TencentCloud::Common::AbstractModel
+        # @param PublicDomain: 公网服务域名
+        # @type PublicDomain: String
+        # @param InternalDomain: 内部服务域名
+        # @type InternalDomain: String
+        # @param DomainName: 弃用
+        # @type DomainName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PublicDomain, :InternalDomain, :DomainName, :RequestId
+        
+        def initialize(publicdomain=nil, internaldomain=nil, domainname=nil, requestid=nil)
+          @PublicDomain = publicdomain
+          @InternalDomain = internaldomain
+          @DomainName = domainname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PublicDomain = params['PublicDomain']
+          @InternalDomain = params['InternalDomain']
+          @DomainName = params['DomainName']
           @RequestId = params['RequestId']
         end
       end

@@ -1006,17 +1006,21 @@ module TencentCloud
         # @param ImageBase64: 图片经过base64编码的内容。最大不超过1M，分辨率在25万到100万之间。
         # 与ImageUrl同时存在时优先使用ImageUrl字段。
         # @type ImageBase64: String
+        # @param NeedLemma: 是否需要百科信息 1：是，0: 否，默认是0
+        # @type NeedLemma: Integer
 
-        attr_accessor :ImageUrl, :ImageBase64
+        attr_accessor :ImageUrl, :ImageBase64, :NeedLemma
         
-        def initialize(imageurl=nil, imagebase64=nil)
+        def initialize(imageurl=nil, imagebase64=nil, needlemma=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
+          @NeedLemma = needlemma
         end
 
         def deserialize(params)
           @ImageUrl = params['ImageUrl']
           @ImageBase64 = params['ImageBase64']
+          @NeedLemma = params['NeedLemma']
         end
       end
 
