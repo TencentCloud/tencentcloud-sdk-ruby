@@ -6181,10 +6181,13 @@ module TencentCloud
         # @param SessionType: 监听器的会话类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionType: String
+        # @param EndPort: 端口段结束端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndPort: Integer
 
-        attr_accessor :ListenerId, :Protocol, :Port, :HealthCheck, :Scheduler, :SessionExpireTime, :ListenerName, :CreateTime, :SessionType
+        attr_accessor :ListenerId, :Protocol, :Port, :HealthCheck, :Scheduler, :SessionExpireTime, :ListenerName, :CreateTime, :SessionType, :EndPort
         
-        def initialize(listenerid=nil, protocol=nil, port=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, listenername=nil, createtime=nil, sessiontype=nil)
+        def initialize(listenerid=nil, protocol=nil, port=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, listenername=nil, createtime=nil, sessiontype=nil, endport=nil)
           @ListenerId = listenerid
           @Protocol = protocol
           @Port = port
@@ -6194,6 +6197,7 @@ module TencentCloud
           @ListenerName = listenername
           @CreateTime = createtime
           @SessionType = sessiontype
+          @EndPort = endport
         end
 
         def deserialize(params)
@@ -6209,6 +6213,7 @@ module TencentCloud
           @ListenerName = params['ListenerName']
           @CreateTime = params['CreateTime']
           @SessionType = params['SessionType']
+          @EndPort = params['EndPort']
         end
       end
 

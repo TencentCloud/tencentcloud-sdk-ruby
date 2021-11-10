@@ -2850,7 +2850,7 @@ module TencentCloud
       class DescribeCloudBaseRunOneClickTaskExternalResponse < TencentCloud::Common::AbstractModel
         # @param ExternalId: 外部任务Id
         # @type ExternalId: String
-        # @param EnvId: 环境Id
+        # @param EnvId: 弃用
         # @type EnvId: String
         # @param UserUin: 用户uin
         # @type UserUin: String
@@ -2873,12 +2873,14 @@ module TencentCloud
         # @type Status: String
         # @param FailReason: 失败原因
         # @type FailReason: String
+        # @param UserEnvId: 用户envId
+        # @type UserEnvId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExternalId, :EnvId, :UserUin, :ServerName, :VersionName, :CreateTime, :Stage, :Status, :FailReason, :RequestId
+        attr_accessor :ExternalId, :EnvId, :UserUin, :ServerName, :VersionName, :CreateTime, :Stage, :Status, :FailReason, :UserEnvId, :RequestId
         
-        def initialize(externalid=nil, envid=nil, useruin=nil, servername=nil, versionname=nil, createtime=nil, stage=nil, status=nil, failreason=nil, requestid=nil)
+        def initialize(externalid=nil, envid=nil, useruin=nil, servername=nil, versionname=nil, createtime=nil, stage=nil, status=nil, failreason=nil, userenvid=nil, requestid=nil)
           @ExternalId = externalid
           @EnvId = envid
           @UserUin = useruin
@@ -2888,6 +2890,7 @@ module TencentCloud
           @Stage = stage
           @Status = status
           @FailReason = failreason
+          @UserEnvId = userenvid
           @RequestId = requestid
         end
 
@@ -2901,6 +2904,7 @@ module TencentCloud
           @Stage = params['Stage']
           @Status = params['Status']
           @FailReason = params['FailReason']
+          @UserEnvId = params['UserEnvId']
           @RequestId = params['RequestId']
         end
       end

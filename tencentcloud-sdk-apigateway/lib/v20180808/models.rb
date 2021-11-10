@@ -3497,6 +3497,99 @@ module TencentCloud
         end
       end
 
+      # DescribeExclusiveInstanceDetail请求参数结构体
+      class DescribeExclusiveInstanceDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 独享实例唯一id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+        
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeExclusiveInstanceDetail返回参数结构体
+      class DescribeExclusiveInstanceDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 独享实例详情
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.InstanceDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InstanceDetail.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExclusiveInstances请求参数结构体
+      class DescribeExclusiveInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页查询，limit
+        # @type Limit: Integer
+        # @param Offset: 分页查询，offset
+        # @type Offset: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+        
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeExclusiveInstances返回参数结构体
+      class DescribeExclusiveInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 独享实例列表查询结果
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.InstanceInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InstanceInfo.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIPStrategyApisStatus请求参数结构体
       class DescribeIPStrategyApisStatusRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务唯一ID。
@@ -5440,6 +5533,183 @@ module TencentCloud
         end
       end
 
+      # 独享实例预付费详情
+      class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param RenewFlag: 自动续费标示
+        # @type RenewFlag: String
+        # @param ExpiredTime: 预付费到期时间
+        # @type ExpiredTime: String
+
+        attr_accessor :RenewFlag, :ExpiredTime
+        
+        def initialize(renewflag=nil, expiredtime=nil)
+          @RenewFlag = renewflag
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          @RenewFlag = params['RenewFlag']
+          @ExpiredTime = params['ExpiredTime']
+        end
+      end
+
+      # 独享实例详情
+      class InstanceDetail < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 独享实例唯一id
+        # @type InstanceId: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param InstanceName: 独享实例名字
+        # @type InstanceName: String
+        # @param InstanceDescription: 独享实例描述
+        # @type InstanceDescription: String
+        # @param InstanceChargeType: 独享实例计费类型
+        # @type InstanceChargeType: String
+        # @param InstanceState: 独享实例状态
+        # @type InstanceState: String
+        # @param InstanceChargePrepaid: 独享实例预付费类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Apigateway.v20180808.models.InstanceChargePrepaid`
+        # @param InstanceType: 独享实例类型
+        # @type InstanceType: String
+        # @param NetworkConfig: 独享实例网络类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkConfig: :class:`Tencentcloud::Apigateway.v20180808.models.NetworkConfig`
+        # @param VpcConfig: 独享实例vpc配置
+        # @type VpcConfig: :class:`Tencentcloud::Apigateway.v20180808.models.VpcConfig`
+        # @param Parameters: 独享实例参数配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Parameters: Array
+        # @param IsolationStartedTime: 独享实例隔离时间
+        # @type IsolationStartedTime: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param Zones: 可用区列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zones: String
+
+        attr_accessor :InstanceId, :Zone, :InstanceName, :InstanceDescription, :InstanceChargeType, :InstanceState, :InstanceChargePrepaid, :InstanceType, :NetworkConfig, :VpcConfig, :Parameters, :IsolationStartedTime, :CreatedTime, :Zones
+        
+        def initialize(instanceid=nil, zone=nil, instancename=nil, instancedescription=nil, instancechargetype=nil, instancestate=nil, instancechargeprepaid=nil, instancetype=nil, networkconfig=nil, vpcconfig=nil, parameters=nil, isolationstartedtime=nil, createdtime=nil, zones=nil)
+          @InstanceId = instanceid
+          @Zone = zone
+          @InstanceName = instancename
+          @InstanceDescription = instancedescription
+          @InstanceChargeType = instancechargetype
+          @InstanceState = instancestate
+          @InstanceChargePrepaid = instancechargeprepaid
+          @InstanceType = instancetype
+          @NetworkConfig = networkconfig
+          @VpcConfig = vpcconfig
+          @Parameters = parameters
+          @IsolationStartedTime = isolationstartedtime
+          @CreatedTime = createdtime
+          @Zones = zones
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Zone = params['Zone']
+          @InstanceName = params['InstanceName']
+          @InstanceDescription = params['InstanceDescription']
+          @InstanceChargeType = params['InstanceChargeType']
+          @InstanceState = params['InstanceState']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          @InstanceType = params['InstanceType']
+          unless params['NetworkConfig'].nil?
+            @NetworkConfig = NetworkConfig.new
+            @NetworkConfig.deserialize(params['NetworkConfig'])
+          end
+          unless params['VpcConfig'].nil?
+            @VpcConfig = VpcConfig.new
+            @VpcConfig.deserialize(params['VpcConfig'])
+          end
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              parameterinfo_tmp = ParameterInfo.new
+              parameterinfo_tmp.deserialize(i)
+              @Parameters << parameterinfo_tmp
+            end
+          end
+          @IsolationStartedTime = params['IsolationStartedTime']
+          @CreatedTime = params['CreatedTime']
+          @Zones = params['Zones']
+        end
+      end
+
+      # 独享实例信息
+      class InstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 独享实例唯一id
+        # @type InstanceId: String
+        # @param InstanceName: 独享实例name
+        # @type InstanceName: String
+        # @param InstanceDescription: 独享实例描述
+        # @type InstanceDescription: String
+        # @param InstanceChargeType: 独享实例计费类型
+        # @type InstanceChargeType: String
+        # @param InstanceType: 独享实例类型
+        # @type InstanceType: String
+        # @param InstanceState: 独享实例状态
+        # @type InstanceState: String
+        # @param CreatedTime: 独享实例创建时间
+        # @type CreatedTime: String
+        # @param DealName: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
+        # @param ResourceId: 资源ID同唯一id
+        # @type ResourceId: String
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceDescription, :InstanceChargeType, :InstanceType, :InstanceState, :CreatedTime, :DealName, :ResourceId
+        
+        def initialize(instanceid=nil, instancename=nil, instancedescription=nil, instancechargetype=nil, instancetype=nil, instancestate=nil, createdtime=nil, dealname=nil, resourceid=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceDescription = instancedescription
+          @InstanceChargeType = instancechargetype
+          @InstanceType = instancetype
+          @InstanceState = instancestate
+          @CreatedTime = createdtime
+          @DealName = dealname
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceDescription = params['InstanceDescription']
+          @InstanceChargeType = params['InstanceChargeType']
+          @InstanceType = params['InstanceType']
+          @InstanceState = params['InstanceState']
+          @CreatedTime = params['CreatedTime']
+          @DealName = params['DealName']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # 独享实例参数信息
+      class InstanceParameterInput < TencentCloud::Common::AbstractModel
+        # @param Name: ServiceRequestNumPreSec，ApiRequestNumPreSec
+        # @type Name: String
+        # @param Value: 参数值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+        
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 检索条件入参
       class LogQuery < TencentCloud::Common::AbstractModel
         # @param Name: 检索字段
@@ -5992,6 +6262,64 @@ module TencentCloud
         end
       end
 
+      # ModifyExclusiveInstance请求参数结构体
+      class ModifyExclusiveInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 独享实例唯一id
+        # @type InstanceId: String
+        # @param InstanceName: 独享实例name
+        # @type InstanceName: String
+        # @param InstanceDescription: 独享实例描述
+        # @type InstanceDescription: String
+        # @param Parameters: 独享实例参数配置
+        # @type Parameters: Array
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceDescription, :Parameters
+        
+        def initialize(instanceid=nil, instancename=nil, instancedescription=nil, parameters=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceDescription = instancedescription
+          @Parameters = parameters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceDescription = params['InstanceDescription']
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              instanceparameterinput_tmp = InstanceParameterInput.new
+              instanceparameterinput_tmp.deserialize(i)
+              @Parameters << instanceparameterinput_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyExclusiveInstance返回参数结构体
+      class ModifyExclusiveInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 独享实例详情信息
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.InstanceDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InstanceDetail.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyIPStrategy请求参数结构体
       class ModifyIPStrategyRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 待修改的策略所属服务的唯一ID。
@@ -6305,6 +6633,38 @@ module TencentCloud
         end
       end
 
+      # 独享实例网络配置
+      class NetworkConfig < TencentCloud::Common::AbstractModel
+        # @param InternetMaxBandwidthOut: 最大出带宽
+        # @type InternetMaxBandwidthOut: Integer
+        # @param EnableInternetInbound: EnableInternetInbound信息
+        # @type EnableInternetInbound: Boolean
+        # @param EnableInternetOutbound: EnableInternetOutbound信息
+        # @type EnableInternetOutbound: Boolean
+        # @param InboundIpAddresses: InboundIpAddresses信息
+        # @type InboundIpAddresses: Array
+        # @param OutboundIpAddresses: OutboundIpAddresses信息
+        # @type OutboundIpAddresses: Array
+
+        attr_accessor :InternetMaxBandwidthOut, :EnableInternetInbound, :EnableInternetOutbound, :InboundIpAddresses, :OutboundIpAddresses
+        
+        def initialize(internetmaxbandwidthout=nil, enableinternetinbound=nil, enableinternetoutbound=nil, inboundipaddresses=nil, outboundipaddresses=nil)
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @EnableInternetInbound = enableinternetinbound
+          @EnableInternetOutbound = enableinternetoutbound
+          @InboundIpAddresses = inboundipaddresses
+          @OutboundIpAddresses = outboundipaddresses
+        end
+
+        def deserialize(params)
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @EnableInternetInbound = params['EnableInternetInbound']
+          @EnableInternetOutbound = params['EnableInternetOutbound']
+          @InboundIpAddresses = params['InboundIpAddresses']
+          @OutboundIpAddresses = params['OutboundIpAddresses']
+        end
+      end
+
       # Oauth授权配置信息
       class OauthConfig < TencentCloud::Common::AbstractModel
         # @param PublicKey: 公钥，用于验证用户token。
@@ -6326,6 +6686,50 @@ module TencentCloud
           @PublicKey = params['PublicKey']
           @TokenLocation = params['TokenLocation']
           @LoginRedirectUrl = params['LoginRedirectUrl']
+        end
+      end
+
+      # 独享实例配置参数
+      class ParameterInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 名字
+        # @type Name: String
+        # @param Value: 当前值
+        # @type Value: Integer
+        # @param Default: 默认值
+        # @type Default: Integer
+        # @param Unit: 单位
+        # @type Unit: String
+        # @param Type: 类型
+        # @type Type: String
+        # @param Minimum: 最小
+        # @type Minimum: Integer
+        # @param Maximum: 最大
+        # @type Maximum: Integer
+        # @param ModifedTime: 修改时间
+        # @type ModifedTime: String
+
+        attr_accessor :Name, :Value, :Default, :Unit, :Type, :Minimum, :Maximum, :ModifedTime
+        
+        def initialize(name=nil, value=nil, default=nil, unit=nil, type=nil, minimum=nil, maximum=nil, modifedtime=nil)
+          @Name = name
+          @Value = value
+          @Default = default
+          @Unit = unit
+          @Type = type
+          @Minimum = minimum
+          @Maximum = maximum
+          @ModifedTime = modifedtime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Default = params['Default']
+          @Unit = params['Unit']
+          @Type = params['Type']
+          @Minimum = params['Minimum']
+          @Maximum = params['Maximum']
+          @ModifedTime = params['ModifedTime']
         end
       end
 
@@ -8004,6 +8408,26 @@ module TencentCloud
               @UsagePlanStatusSet << usageplanstatusinfo_tmp
             end
           end
+        end
+      end
+
+      # 独享实例vpc配置信息
+      class VpcConfig < TencentCloud::Common::AbstractModel
+        # @param UniqVpcId: vpcid
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: subnetid
+        # @type UniqSubnetId: String
+
+        attr_accessor :UniqVpcId, :UniqSubnetId
+        
+        def initialize(uniqvpcid=nil, uniqsubnetid=nil)
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+        end
+
+        def deserialize(params)
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
         end
       end
 

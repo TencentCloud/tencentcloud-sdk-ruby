@@ -69,6 +69,38 @@ module TencentCloud
         end
       end
 
+      # 获取返回列表的详情。
+      class BatchProductionInfo < TencentCloud::Common::AbstractModel
+        # @param BatchProductionId: 量产ID
+        # @type BatchProductionId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param BurnMethod: 烧录方式
+        # @type BurnMethod: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+
+        attr_accessor :BatchProductionId, :ProductId, :BurnMethod, :CreateTime, :ProductName
+        
+        def initialize(batchproductionid=nil, productid=nil, burnmethod=nil, createtime=nil, productname=nil)
+          @BatchProductionId = batchproductionid
+          @ProductId = productid
+          @BurnMethod = burnmethod
+          @CreateTime = createtime
+          @ProductName = productname
+        end
+
+        def deserialize(params)
+          @BatchProductionId = params['BatchProductionId']
+          @ProductId = params['ProductId']
+          @BurnMethod = params['BurnMethod']
+          @CreateTime = params['CreateTime']
+          @ProductName = params['ProductName']
+        end
+      end
+
       # CallDeviceActionAsync请求参数结构体
       class CallDeviceActionAsyncRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品Id
@@ -236,6 +268,74 @@ module TencentCloud
         def deserialize(params)
           @Data = params['Data']
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBatchProduction请求参数结构体
+      class CreateBatchProductionRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param BurnMethod: 烧录方式，0为直接烧录，1为动态注册。
+        # @type BurnMethod: Integer
+        # @param GenerationMethod: 生成方式，0为系统生成，1为文件上传。
+        # @type GenerationMethod: Integer
+        # @param UploadUrl: 文件上传URL，用于文件上传时填写。
+        # @type UploadUrl: String
+        # @param BatchCnt: 量产数量，用于系统生成时填写。
+        # @type BatchCnt: Integer
+        # @param GenerationQRCode: 是否生成二维码,0为不生成，1为生成。
+        # @type GenerationQRCode: Integer
+
+        attr_accessor :ProjectId, :ProductId, :BurnMethod, :GenerationMethod, :UploadUrl, :BatchCnt, :GenerationQRCode
+        
+        def initialize(projectid=nil, productid=nil, burnmethod=nil, generationmethod=nil, uploadurl=nil, batchcnt=nil, generationqrcode=nil)
+          @ProjectId = projectid
+          @ProductId = productid
+          @BurnMethod = burnmethod
+          @GenerationMethod = generationmethod
+          @UploadUrl = uploadurl
+          @BatchCnt = batchcnt
+          @GenerationQRCode = generationqrcode
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProductId = params['ProductId']
+          @BurnMethod = params['BurnMethod']
+          @GenerationMethod = params['GenerationMethod']
+          @UploadUrl = params['UploadUrl']
+          @BatchCnt = params['BatchCnt']
+          @GenerationQRCode = params['GenerationQRCode']
+        end
+      end
+
+      # CreateBatchProduction返回参数结构体
+      class CreateBatchProductionResponse < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param ProductId: 产品Id
+        # @type ProductId: String
+        # @param BatchProductionId: 量产id
+        # @type BatchProductionId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProjectId, :ProductId, :BatchProductionId, :RequestId
+        
+        def initialize(projectid=nil, productid=nil, batchproductionid=nil, requestid=nil)
+          @ProjectId = projectid
+          @ProductId = productid
+          @BatchProductionId = batchproductionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProductId = params['ProductId']
+          @BatchProductionId = params['BatchProductionId']
           @RequestId = params['RequestId']
         end
       end
@@ -1183,6 +1283,66 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBatchProduction请求参数结构体
+      class DescribeBatchProductionRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param BatchProductionId: 量产ID
+        # @type BatchProductionId: String
+
+        attr_accessor :ProductId, :BatchProductionId
+        
+        def initialize(productid=nil, batchproductionid=nil)
+          @ProductId = productid
+          @BatchProductionId = batchproductionid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @BatchProductionId = params['BatchProductionId']
+        end
+      end
+
+      # DescribeBatchProduction返回参数结构体
+      class DescribeBatchProductionResponse < TencentCloud::Common::AbstractModel
+        # @param BatchCnt: 量产数量。
+        # @type BatchCnt: Integer
+        # @param BurnMethod: 烧录方式。
+        # @type BurnMethod: Integer
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: Integer
+        # @param DownloadUrl: 下载URL。
+        # @type DownloadUrl: String
+        # @param GenerationMethod: 生成方式。
+        # @type GenerationMethod: Integer
+        # @param UploadUrl: 上传URL。
+        # @type UploadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchCnt, :BurnMethod, :CreateTime, :DownloadUrl, :GenerationMethod, :UploadUrl, :RequestId
+        
+        def initialize(batchcnt=nil, burnmethod=nil, createtime=nil, downloadurl=nil, generationmethod=nil, uploadurl=nil, requestid=nil)
+          @BatchCnt = batchcnt
+          @BurnMethod = burnmethod
+          @CreateTime = createtime
+          @DownloadUrl = downloadurl
+          @GenerationMethod = generationmethod
+          @UploadUrl = uploadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BatchCnt = params['BatchCnt']
+          @BurnMethod = params['BurnMethod']
+          @CreateTime = params['CreateTime']
+          @DownloadUrl = params['DownloadUrl']
+          @GenerationMethod = params['GenerationMethod']
+          @UploadUrl = params['UploadUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -2537,6 +2697,62 @@ module TencentCloud
           @FwType = params['FwType']
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
+        end
+      end
+
+      # GetBatchProductionsList请求参数结构体
+      class GetBatchProductionsListRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回数量限制
+        # @type Limit: Integer
+
+        attr_accessor :ProjectId, :Offset, :Limit
+        
+        def initialize(projectid=nil, offset=nil, limit=nil)
+          @ProjectId = projectid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetBatchProductionsList返回参数结构体
+      class GetBatchProductionsListResponse < TencentCloud::Common::AbstractModel
+        # @param BatchProductions: 返回详情信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchProductions: Array
+        # @param TotalCnt: 返回数量。
+        # @type TotalCnt: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BatchProductions, :TotalCnt, :RequestId
+        
+        def initialize(batchproductions=nil, totalcnt=nil, requestid=nil)
+          @BatchProductions = batchproductions
+          @TotalCnt = totalcnt
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BatchProductions'].nil?
+            @BatchProductions = []
+            params['BatchProductions'].each do |i|
+              batchproductioninfo_tmp = BatchProductionInfo.new
+              batchproductioninfo_tmp.deserialize(i)
+              @BatchProductions << batchproductioninfo_tmp
+            end
+          end
+          @TotalCnt = params['TotalCnt']
+          @RequestId = params['RequestId']
         end
       end
 

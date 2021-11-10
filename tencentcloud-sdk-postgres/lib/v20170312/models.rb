@@ -2802,9 +2802,9 @@ module TencentCloud
       class ModifyDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如：postgres-6bwgamo3。
         # @type DBInstanceId: String
-        # @param Memory: 升级后的实例内存大小，单位GiB。
+        # @param Memory: 修改后的实例内存大小，单位GiB。
         # @type Memory: Integer
-        # @param Storage: 升级后的实例磁盘大小，单位GiB。
+        # @param Storage: 修改后的实例磁盘大小，单位GiB。
         # @type Storage: Integer
         # @param AutoVoucher: 是否自动使用代金券,1是,0否，默认不使用。
         # @type AutoVoucher: Integer

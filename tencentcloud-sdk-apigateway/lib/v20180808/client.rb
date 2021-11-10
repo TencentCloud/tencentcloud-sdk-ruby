@@ -977,6 +977,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
+
+        # @param request: Request instance for DescribeExclusiveInstanceDetail.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstanceDetailRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstanceDetailResponse`
+        def DescribeExclusiveInstanceDetail(request)
+          body = send_request('DescribeExclusiveInstanceDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExclusiveInstanceDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeExclusiveInstances）用于查询独享实例列表信息。​
+
+        # @param request: Request instance for DescribeExclusiveInstances.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstancesRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstancesResponse`
+        def DescribeExclusiveInstances(request)
+          body = send_request('DescribeExclusiveInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExclusiveInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeIPStrategy）用于查询IP策略详情。
 
         # @param request: Request instance for DescribeIPStrategy.
@@ -1690,6 +1738,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyApiIncrementResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
+
+        # @param request: Request instance for ModifyExclusiveInstance.
+        # @type request: :class:`Tencentcloud::apigateway::V20180808::ModifyExclusiveInstanceRequest`
+        # @rtype: :class:`Tencentcloud::apigateway::V20180808::ModifyExclusiveInstanceResponse`
+        def ModifyExclusiveInstance(request)
+          body = send_request('ModifyExclusiveInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyExclusiveInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

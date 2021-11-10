@@ -1336,6 +1336,33 @@ module TencentCloud
         end
       end
 
+      # 百科词条信息
+      class LemmaInfo < TencentCloud::Common::AbstractModel
+        # @param LemmaTitle: 词条
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LemmaTitle: String
+        # @param LemmaAbstract: 词条描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LemmaAbstract: String
+        # @param Tag: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
+
+        attr_accessor :LemmaTitle, :LemmaAbstract, :Tag
+        
+        def initialize(lemmatitle=nil, lemmaabstract=nil, tag=nil)
+          @LemmaTitle = lemmatitle
+          @LemmaAbstract = lemmaabstract
+          @Tag = tag
+        end
+
+        def deserialize(params)
+          @LemmaTitle = params['LemmaTitle']
+          @LemmaAbstract = params['LemmaAbstract']
+          @Tag = params['Tag']
+        end
+      end
+
       # 检测到的主体在图片中的矩形框位置（四个顶点坐标）
       class Location < TencentCloud::Common::AbstractModel
         # @param XMin: 位置矩形框的左上角横坐标
@@ -1427,10 +1454,13 @@ module TencentCloud
         # @type Score: Float
         # @param Image: 搜索到的商品配图URL。
         # @type Image: String
+        # @param LemmaInfoList: 百科词条列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LemmaInfoList: Array
 
-        attr_accessor :FindSKU, :Location, :Name, :Brand, :Price, :ProductCategory, :Score, :Image
+        attr_accessor :FindSKU, :Location, :Name, :Brand, :Price, :ProductCategory, :Score, :Image, :LemmaInfoList
         
-        def initialize(findsku=nil, location=nil, name=nil, brand=nil, price=nil, productcategory=nil, score=nil, image=nil)
+        def initialize(findsku=nil, location=nil, name=nil, brand=nil, price=nil, productcategory=nil, score=nil, image=nil, lemmainfolist=nil)
           @FindSKU = findsku
           @Location = location
           @Name = name
@@ -1439,6 +1469,7 @@ module TencentCloud
           @ProductCategory = productcategory
           @Score = score
           @Image = image
+          @LemmaInfoList = lemmainfolist
         end
 
         def deserialize(params)
@@ -1453,6 +1484,14 @@ module TencentCloud
           @ProductCategory = params['ProductCategory']
           @Score = params['Score']
           @Image = params['Image']
+          unless params['LemmaInfoList'].nil?
+            @LemmaInfoList = []
+            params['LemmaInfoList'].each do |i|
+              lemmainfo_tmp = LemmaInfo.new
+              lemmainfo_tmp.deserialize(i)
+              @LemmaInfoList << lemmainfo_tmp
+            end
+          end
         end
       end
 

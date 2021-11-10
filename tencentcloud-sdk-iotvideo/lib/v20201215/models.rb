@@ -1838,10 +1838,12 @@ module TencentCloud
         # @type EventId: String
         # @param UserId: 用户ID
         # @type UserId: String
+        # @param ChannelId: 通道ID 非NVR设备则不填 NVR设备则必填 默认为无
+        # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :StartTime, :EndTime, :Context, :Size, :EventId, :UserId
+        attr_accessor :ProductId, :DeviceName, :StartTime, :EndTime, :Context, :Size, :EventId, :UserId, :ChannelId
         
-        def initialize(productid=nil, devicename=nil, starttime=nil, endtime=nil, context=nil, size=nil, eventid=nil, userid=nil)
+        def initialize(productid=nil, devicename=nil, starttime=nil, endtime=nil, context=nil, size=nil, eventid=nil, userid=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @StartTime = starttime
@@ -1850,6 +1852,7 @@ module TencentCloud
           @Size = size
           @EventId = eventid
           @UserId = userid
+          @ChannelId = channelid
         end
 
         def deserialize(params)
@@ -1861,6 +1864,7 @@ module TencentCloud
           @Size = params['Size']
           @EventId = params['EventId']
           @UserId = params['UserId']
+          @ChannelId = params['ChannelId']
         end
       end
 
@@ -1872,7 +1876,7 @@ module TencentCloud
         # @type Context: String
         # @param Listover: 拉取结果是否已经结束
         # @type Listover: Boolean
-        # @param Total: 拉取结果数量
+        # @param Total: 内部结果数量，并不等同于事件总数。
         # @type Total: Integer
         # @param VideoURL: 视频播放URL
         # @type VideoURL: String

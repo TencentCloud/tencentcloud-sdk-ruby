@@ -2205,7 +2205,7 @@ module TencentCloud
         # @type ReturnHeadImage: Boolean
         # @param ImageBase64: 图片的 Base64 值。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         # @type ImageBase64: String
         # @param ImageUrl: 图片的 Url 地址。
         # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
@@ -2472,7 +2472,7 @@ module TencentCloud
         # Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；
 
         # Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0~100，分数越低越模糊，建议阈值≥50）;
-        # BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0~100，分数越低边框遮挡可能性越低，建议阈值≥50）;
+        # BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0~100，分数越低边框遮挡可能性越低，建议阈值≤50）;
 
         # WarnInfos，告警信息，Code 告警码列表和释义：
         # -9100	身份证有效日期不合法告警，
@@ -4144,6 +4144,95 @@ module TencentCloud
         end
       end
 
+      # RecognizeContainerOCR请求参数结构体
+      class RecognizeContainerOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+
+        attr_accessor :ImageBase64, :ImageUrl
+        
+        def initialize(imagebase64=nil, imageurl=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # RecognizeContainerOCR返回参数结构体
+      class RecognizeContainerOCRResponse < TencentCloud::Common::AbstractModel
+        # @param ContainerId: 集装箱箱号
+        # @type ContainerId: String
+        # @param ContainerType: 集装箱类型
+        # @type ContainerType: String
+        # @param GrossKG: 集装箱总重量，单位：千克（KG）
+        # @type GrossKG: String
+        # @param GrossLB: 集装箱总重量，单位：磅（LB）
+        # @type GrossLB: String
+        # @param PayloadKG: 集装箱有效承重，单位：千克（KG）
+        # @type PayloadKG: String
+        # @param PayloadLB: 集装箱有效承重，单位：磅（LB）
+        # @type PayloadLB: String
+        # @param CapacityM3: 集装箱容量，单位：立方米
+        # @type CapacityM3: String
+        # @param CapacityFT3: 集装箱容量，单位：立英尺
+        # @type CapacityFT3: String
+        # @param Warn: 告警码
+        # -9926	集装箱箱号不完整或者不清晰
+        # -9927	集装箱类型不完整或者不清晰
+        # @type Warn: Array
+        # @param TareKG: 集装箱自身重量，单位：千克（KG）
+        # @type TareKG: String
+        # @param TareLB: 集装箱自身重量，单位：磅（LB）
+        # @type TareLB: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContainerId, :ContainerType, :GrossKG, :GrossLB, :PayloadKG, :PayloadLB, :CapacityM3, :CapacityFT3, :Warn, :TareKG, :TareLB, :RequestId
+        
+        def initialize(containerid=nil, containertype=nil, grosskg=nil, grosslb=nil, payloadkg=nil, payloadlb=nil, capacitym3=nil, capacityft3=nil, warn=nil, tarekg=nil, tarelb=nil, requestid=nil)
+          @ContainerId = containerid
+          @ContainerType = containertype
+          @GrossKG = grosskg
+          @GrossLB = grosslb
+          @PayloadKG = payloadkg
+          @PayloadLB = payloadlb
+          @CapacityM3 = capacitym3
+          @CapacityFT3 = capacityft3
+          @Warn = warn
+          @TareKG = tarekg
+          @TareLB = tarelb
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ContainerId = params['ContainerId']
+          @ContainerType = params['ContainerType']
+          @GrossKG = params['GrossKG']
+          @GrossLB = params['GrossLB']
+          @PayloadKG = params['PayloadKG']
+          @PayloadLB = params['PayloadLB']
+          @CapacityM3 = params['CapacityM3']
+          @CapacityFT3 = params['CapacityFT3']
+          @Warn = params['Warn']
+          @TareKG = params['TareKG']
+          @TareLB = params['TareLB']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RecognizeOnlineTaxiItineraryOCR请求参数结构体
       class RecognizeOnlineTaxiItineraryOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -4432,12 +4521,44 @@ module TencentCloud
         # @type Household: String
         # @param Address: 住址
         # @type Address: String
+        # @param Signature: 承办人签章文字
+        # @type Signature: String
+        # @param IssueDate: 签发日期
+        # @type IssueDate: String
+        # @param HomePageNumber: 户主页编号
+        # @type HomePageNumber: String
+        # @param HouseholderName: 户主姓名
+        # @type HouseholderName: String
+        # @param Relationship: 户主或与户主关系
+        # @type Relationship: String
+        # @param OtherAddresses: 本市（县）其他住址
+        # @type OtherAddresses: String
+        # @param ReligiousBelief: 宗教信仰
+        # @type ReligiousBelief: String
+        # @param Height: 身高
+        # @type Height: String
+        # @param BloodType: 血型
+        # @type BloodType: String
+        # @param MaritalStatus: 婚姻状况
+        # @type MaritalStatus: String
+        # @param VeteranStatus: 兵役状况
+        # @type VeteranStatus: String
+        # @param Profession: 职业
+        # @type Profession: String
+        # @param MoveToCityInformation: 何时由何地迁来本市(县)
+        # @type MoveToCityInformation: String
+        # @param MoveToSiteInformation: 何时由何地迁来本址
+        # @type MoveToSiteInformation: String
+        # @param RegistrationDate: 登记日期
+        # @type RegistrationDate: String
+        # @param FormerName: 曾用名
+        # @type FormerName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :HouseholdNumber, :Name, :Sex, :BirthPlace, :Nation, :NativePlace, :BirthDate, :IdCardNumber, :EducationDegree, :ServicePlace, :Household, :Address, :RequestId
+        attr_accessor :HouseholdNumber, :Name, :Sex, :BirthPlace, :Nation, :NativePlace, :BirthDate, :IdCardNumber, :EducationDegree, :ServicePlace, :Household, :Address, :Signature, :IssueDate, :HomePageNumber, :HouseholderName, :Relationship, :OtherAddresses, :ReligiousBelief, :Height, :BloodType, :MaritalStatus, :VeteranStatus, :Profession, :MoveToCityInformation, :MoveToSiteInformation, :RegistrationDate, :FormerName, :RequestId
         
-        def initialize(householdnumber=nil, name=nil, sex=nil, birthplace=nil, nation=nil, nativeplace=nil, birthdate=nil, idcardnumber=nil, educationdegree=nil, serviceplace=nil, household=nil, address=nil, requestid=nil)
+        def initialize(householdnumber=nil, name=nil, sex=nil, birthplace=nil, nation=nil, nativeplace=nil, birthdate=nil, idcardnumber=nil, educationdegree=nil, serviceplace=nil, household=nil, address=nil, signature=nil, issuedate=nil, homepagenumber=nil, householdername=nil, relationship=nil, otheraddresses=nil, religiousbelief=nil, height=nil, bloodtype=nil, maritalstatus=nil, veteranstatus=nil, profession=nil, movetocityinformation=nil, movetositeinformation=nil, registrationdate=nil, formername=nil, requestid=nil)
           @HouseholdNumber = householdnumber
           @Name = name
           @Sex = sex
@@ -4450,6 +4571,22 @@ module TencentCloud
           @ServicePlace = serviceplace
           @Household = household
           @Address = address
+          @Signature = signature
+          @IssueDate = issuedate
+          @HomePageNumber = homepagenumber
+          @HouseholderName = householdername
+          @Relationship = relationship
+          @OtherAddresses = otheraddresses
+          @ReligiousBelief = religiousbelief
+          @Height = height
+          @BloodType = bloodtype
+          @MaritalStatus = maritalstatus
+          @VeteranStatus = veteranstatus
+          @Profession = profession
+          @MoveToCityInformation = movetocityinformation
+          @MoveToSiteInformation = movetositeinformation
+          @RegistrationDate = registrationdate
+          @FormerName = formername
           @RequestId = requestid
         end
 
@@ -4466,6 +4603,22 @@ module TencentCloud
           @ServicePlace = params['ServicePlace']
           @Household = params['Household']
           @Address = params['Address']
+          @Signature = params['Signature']
+          @IssueDate = params['IssueDate']
+          @HomePageNumber = params['HomePageNumber']
+          @HouseholderName = params['HouseholderName']
+          @Relationship = params['Relationship']
+          @OtherAddresses = params['OtherAddresses']
+          @ReligiousBelief = params['ReligiousBelief']
+          @Height = params['Height']
+          @BloodType = params['BloodType']
+          @MaritalStatus = params['MaritalStatus']
+          @VeteranStatus = params['VeteranStatus']
+          @Profession = params['Profession']
+          @MoveToCityInformation = params['MoveToCityInformation']
+          @MoveToSiteInformation = params['MoveToSiteInformation']
+          @RegistrationDate = params['RegistrationDate']
+          @FormerName = params['FormerName']
           @RequestId = params['RequestId']
         end
       end
@@ -6400,11 +6553,18 @@ module TencentCloud
         # @type InvoiceNo: String
         # @param InvoiceDate: 开票日期（不支持当天发票查询，只支持一年以内），如：2019-12-20。
         # @type InvoiceDate: String
-        # @param Additional: 金额/发票校验码后6位（根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值）
+        # @param Additional: 根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值
+
         # 增值税专用发票：开具金额（不含税）
+
         # 增值税普通发票、增值税电子普通发票（含通行费发票）、增值税普通发票（卷票）：校验码后6位
+
+        # 区块链发票：不含税金额/校验码，例如：“285.01/856ab”
+
         # 机动车销售统一发票：不含税价
+
         # 货物运输业增值税专用发票：合计金额
+
         # 二手车销售统一发票：车价合计
         # @type Additional: String
 

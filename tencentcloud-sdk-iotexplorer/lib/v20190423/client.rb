@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于新建批量生产设备
+
+        # @param request: Request instance for CreateBatchProduction.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateBatchProductionRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateBatchProductionResponse`
+        def CreateBatchProduction(request)
+          body = send_request('CreateBatchProduction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBatchProductionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建设备
 
         # @param request: Request instance for CreateDevice.
@@ -605,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取量产详情信息。
+
+        # @param request: Request instance for DescribeBatchProduction.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeBatchProductionRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeBatchProductionResponse`
+        def DescribeBatchProduction(request)
+          body = send_request('DescribeBatchProduction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchProductionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查看某个设备的详细信息
 
         # @param request: Request instance for DescribeDevice.
@@ -1023,6 +1071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableTopicRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出量产数据列表信息。
+
+        # @param request: Request instance for GetBatchProductionsList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetBatchProductionsListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetBatchProductionsListResponse`
+        def GetBatchProductionsList(request)
+          body = send_request('GetBatchProductionsList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetBatchProductionsListResponse.new
             model.deserialize(response['Response'])
             model
           else

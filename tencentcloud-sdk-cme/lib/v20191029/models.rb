@@ -3828,7 +3828,7 @@ module TencentCloud
 
       # 平台信息。
       class PlatformInfo < TencentCloud::Common::AbstractModel
-        # @param Platform: 平台名称。
+        # @param Platform: 平台标识。
         # @type Platform: String
         # @param Description: 平台描述。
         # @type Description: String
