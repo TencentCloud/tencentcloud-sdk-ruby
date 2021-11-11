@@ -4910,6 +4910,45 @@ module TencentCloud
         end
       end
 
+      # ModifyLoadBalancerSla请求参数结构体
+      class ModifyLoadBalancerSlaRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerSla: 负载均衡性能保障实例ID和变配的目标规格
+        # @type LoadBalancerSla: Array
+
+        attr_accessor :LoadBalancerSla
+        
+        def initialize(loadbalancersla=nil)
+          @LoadBalancerSla = loadbalancersla
+        end
+
+        def deserialize(params)
+          unless params['LoadBalancerSla'].nil?
+            @LoadBalancerSla = []
+            params['LoadBalancerSla'].each do |i|
+              slaupdateparam_tmp = SlaUpdateParam.new
+              slaupdateparam_tmp.deserialize(i)
+              @LoadBalancerSla << slaupdateparam_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyLoadBalancerSla返回参数结构体
+      class ModifyLoadBalancerSlaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+        
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRule请求参数结构体
       class ModifyRuleRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例 ID。
@@ -6030,6 +6069,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 性能保障变配参数
+      class SlaUpdateParam < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: lb的字符串ID
+        # @type LoadBalancerId: String
+        # @param SlaType: 需要变更的性能保障级别
+        # @type SlaType: String
+
+        attr_accessor :LoadBalancerId, :SlaType
+        
+        def initialize(loadbalancerid=nil, slatype=nil)
+          @LoadBalancerId = loadbalancerid
+          @SlaType = slatype
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @SlaType = params['SlaType']
         end
       end
 

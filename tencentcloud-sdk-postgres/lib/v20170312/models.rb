@@ -1936,17 +1936,17 @@ module TencentCloud
         # @type DBInstanceId: String
         # @param StartTime: 查询起始时间戳，格式 “YYYY-MM-DD HH:mm:ss” ，日志保留时间默认为7天，起始时间不能超出保留时间范围。
         # @type StartTime: String
-        # @param EndTime: 查询j结束时间戳，格式 “YYYY-MM-DD HH:mm:ss”。
+        # @param EndTime: 查询结束时间戳，格式 “YYYY-MM-DD HH:mm:ss”。
         # @type EndTime: String
         # @param DatabaseName: 根据数据库名进行筛选，可以为空。
         # @type DatabaseName: String
-        # @param OrderBy: 排序维度。 可选参数，取值范围[CallNum,CostTime,AvgCostTime]。
+        # @param OrderBy: 排序维度。 可选参数，取值范围[CallNum,CostTime,AvgCostTime]。默认CallNum。
         # @type OrderBy: String
-        # @param OrderByType: 排序类型。升序asc、降序desc。
+        # @param OrderByType: 排序类型。升序asc、降序desc。默认desc。
         # @type OrderByType: String
-        # @param Limit: 分页大小。取值范围[1,100]。
+        # @param Limit: 分页大小。取值范围[1,100]。默认50。
         # @type Limit: Integer
-        # @param Offset: 分页偏移。取值范围[0,INF)。
+        # @param Offset: 分页偏移。取值范围[0,INF)。默认0。
         # @type Offset: Integer
 
         attr_accessor :DBInstanceId, :StartTime, :EndTime, :DatabaseName, :OrderBy, :OrderByType, :Limit, :Offset
@@ -2007,7 +2007,7 @@ module TencentCloud
         # @type DBInstanceId: String
         # @param StartTime: 查询起始时间戳，格式 “YYYY-MM-DD HH:mm:ss” ，日志保留时间默认为7天，起始时间不能超出保留时间范围。
         # @type StartTime: String
-        # @param EndTime: 查询j结束时间戳，格式 “YYYY-MM-DD HH:mm:ss”。
+        # @param EndTime: 查询结束时间戳，格式 “YYYY-MM-DD HH:mm:ss”。
         # @type EndTime: String
         # @param DatabaseName: 根据数据库名进行筛选，可以为空。
         # @type DatabaseName: String
@@ -2814,9 +2814,9 @@ module TencentCloud
         # @type ActivityId: Integer
         # @param SwitchTag: 指定实例配置完成变更后的切换时间，默认为 立即切换，入参为 0 ：立即切换 。1：指定时间切换。
         # @type SwitchTag: Integer
-        # @param SwitchStartTime: 切换开始时间。
+        # @param SwitchStartTime: 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。
         # @type SwitchStartTime: String
-        # @param SwitchEndTime: 切换截止时间。
+        # @param SwitchEndTime: 切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。
         # @type SwitchEndTime: String
 
         attr_accessor :DBInstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :ActivityId, :SwitchTag, :SwitchStartTime, :SwitchEndTime
@@ -3182,7 +3182,10 @@ module TencentCloud
         # @param Name: 参数名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param ParamValueType: 参数值类型：integer（整型）、real（浮点型）、bool（布尔型）、enum（枚举类型）、mutil_enum（枚举类型、支持多选）
+        # @param ParamValueType: 参数值类型：integer（整型）、real（浮点型）、bool（布尔型）、enum（枚举类型）、mutil_enum（枚举类型、支持多选）。
+        # 当参数类型为integer（整型）、real（浮点型）时，参数的取值范围根据返回值的Max、Min确定；
+        # 当参数类型为bool（布尔型）时，参数设置值取值范围是true | false；
+        # 当参数类型为enum（枚举类型）、mutil_enum（多枚举类型）时，参数的取值范围由返回值中的EnumValue确定。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamValueType: String
         # @param Unit: 参数值 单位。参数没有单位是，该字段返回空

@@ -1112,10 +1112,12 @@ module TencentCloud
         # @type Scheduler: String
         # @param SessionType: 会话保持类型。不传或传NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。
         # @type SessionType: String
+        # @param EndPorts: 批量端口段的结束端口，必须和Ports长度一样。
+        # @type EndPorts: Array
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :SessionExpireTime, :Scheduler, :SessionType
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :SessionExpireTime, :Scheduler, :SessionType, :EndPorts
         
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, sessionexpiretime=nil, scheduler=nil, sessiontype=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, sessionexpiretime=nil, scheduler=nil, sessiontype=nil, endports=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -1124,6 +1126,7 @@ module TencentCloud
           @SessionExpireTime = sessionexpiretime
           @Scheduler = scheduler
           @SessionType = sessiontype
+          @EndPorts = endports
         end
 
         def deserialize(params)
@@ -1138,6 +1141,7 @@ module TencentCloud
           @SessionExpireTime = params['SessionExpireTime']
           @Scheduler = params['Scheduler']
           @SessionType = params['SessionType']
+          @EndPorts = params['EndPorts']
         end
       end
 
