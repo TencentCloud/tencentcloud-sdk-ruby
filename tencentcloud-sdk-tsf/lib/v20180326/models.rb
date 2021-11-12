@@ -2109,10 +2109,12 @@ module TencentCloud
         # @type ServiceConfigList: Array
         # @param IgnoreCreateImageRepository: 忽略创建镜像仓库
         # @type IgnoreCreateImageRepository: Boolean
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository
+        attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList
         
-        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil)
+        def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil)
           @ApplicationName = applicationname
           @ApplicationType = applicationtype
           @MicroserviceType = microservicetype
@@ -2123,6 +2125,7 @@ module TencentCloud
           @ProgramId = programid
           @ServiceConfigList = serviceconfiglist
           @IgnoreCreateImageRepository = ignorecreateimagerepository
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -2143,6 +2146,7 @@ module TencentCloud
             end
           end
           @IgnoreCreateImageRepository = params['IgnoreCreateImageRepository']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
@@ -2193,10 +2197,18 @@ module TencentCloud
         # @type MaxClusterServiceNum: Integer
         # @param ProgramId: 需要绑定的数据集ID
         # @type ProgramId: String
+        # @param KuberneteApiServer: api地址
+        # @type KuberneteApiServer: String
+        # @param KuberneteNativeType: K : kubeconfig, S : service account
+        # @type KuberneteNativeType: String
+        # @param KuberneteNativeSecret: native secret
+        # @type KuberneteNativeSecret: String
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :ClusterName, :ClusterType, :VpcId, :ClusterCIDR, :ClusterDesc, :TsfRegionId, :TsfZoneId, :SubnetId, :ClusterVersion, :MaxNodePodNum, :MaxClusterServiceNum, :ProgramId
+        attr_accessor :ClusterName, :ClusterType, :VpcId, :ClusterCIDR, :ClusterDesc, :TsfRegionId, :TsfZoneId, :SubnetId, :ClusterVersion, :MaxNodePodNum, :MaxClusterServiceNum, :ProgramId, :KuberneteApiServer, :KuberneteNativeType, :KuberneteNativeSecret, :ProgramIdList
         
-        def initialize(clustername=nil, clustertype=nil, vpcid=nil, clustercidr=nil, clusterdesc=nil, tsfregionid=nil, tsfzoneid=nil, subnetid=nil, clusterversion=nil, maxnodepodnum=nil, maxclusterservicenum=nil, programid=nil)
+        def initialize(clustername=nil, clustertype=nil, vpcid=nil, clustercidr=nil, clusterdesc=nil, tsfregionid=nil, tsfzoneid=nil, subnetid=nil, clusterversion=nil, maxnodepodnum=nil, maxclusterservicenum=nil, programid=nil, kuberneteapiserver=nil, kubernetenativetype=nil, kubernetenativesecret=nil, programidlist=nil)
           @ClusterName = clustername
           @ClusterType = clustertype
           @VpcId = vpcid
@@ -2209,6 +2221,10 @@ module TencentCloud
           @MaxNodePodNum = maxnodepodnum
           @MaxClusterServiceNum = maxclusterservicenum
           @ProgramId = programid
+          @KuberneteApiServer = kuberneteapiserver
+          @KuberneteNativeType = kubernetenativetype
+          @KuberneteNativeSecret = kubernetenativesecret
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -2224,6 +2240,10 @@ module TencentCloud
           @MaxNodePodNum = params['MaxNodePodNum']
           @MaxClusterServiceNum = params['MaxClusterServiceNum']
           @ProgramId = params['ProgramId']
+          @KuberneteApiServer = params['KuberneteApiServer']
+          @KuberneteNativeType = params['KuberneteNativeType']
+          @KuberneteNativeSecret = params['KuberneteNativeSecret']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
@@ -2263,10 +2283,12 @@ module TencentCloud
         # @type ConfigType: String
         # @param EncodeWithBase64: Base64编码的配置项
         # @type EncodeWithBase64: Boolean
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ApplicationId, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64
+        attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ApplicationId, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64, :ProgramIdList
         
-        def initialize(configname=nil, configversion=nil, configvalue=nil, applicationid=nil, configversiondesc=nil, configtype=nil, encodewithbase64=nil)
+        def initialize(configname=nil, configversion=nil, configvalue=nil, applicationid=nil, configversiondesc=nil, configtype=nil, encodewithbase64=nil, programidlist=nil)
           @ConfigName = configname
           @ConfigVersion = configversion
           @ConfigValue = configvalue
@@ -2274,6 +2296,7 @@ module TencentCloud
           @ConfigVersionDesc = configversiondesc
           @ConfigType = configtype
           @EncodeWithBase64 = encodewithbase64
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -2284,6 +2307,7 @@ module TencentCloud
           @ConfigVersionDesc = params['ConfigVersionDesc']
           @ConfigType = params['ConfigType']
           @EncodeWithBase64 = params['EncodeWithBase64']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
@@ -2465,10 +2489,12 @@ module TencentCloud
         # @type ConfigPostCmd: String
         # @param EncodeWithBase64: Base64编码的配置项
         # @type EncodeWithBase64: Boolean
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :ConfigName, :ConfigVersion, :ConfigFileName, :ConfigFileValue, :ApplicationId, :ConfigFilePath, :ConfigVersionDesc, :ConfigFileCode, :ConfigPostCmd, :EncodeWithBase64
+        attr_accessor :ConfigName, :ConfigVersion, :ConfigFileName, :ConfigFileValue, :ApplicationId, :ConfigFilePath, :ConfigVersionDesc, :ConfigFileCode, :ConfigPostCmd, :EncodeWithBase64, :ProgramIdList
         
-        def initialize(configname=nil, configversion=nil, configfilename=nil, configfilevalue=nil, applicationid=nil, configfilepath=nil, configversiondesc=nil, configfilecode=nil, configpostcmd=nil, encodewithbase64=nil)
+        def initialize(configname=nil, configversion=nil, configfilename=nil, configfilevalue=nil, applicationid=nil, configfilepath=nil, configversiondesc=nil, configfilecode=nil, configpostcmd=nil, encodewithbase64=nil, programidlist=nil)
           @ConfigName = configname
           @ConfigVersion = configversion
           @ConfigFileName = configfilename
@@ -2479,6 +2505,7 @@ module TencentCloud
           @ConfigFileCode = configfilecode
           @ConfigPostCmd = configpostcmd
           @EncodeWithBase64 = encodewithbase64
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -2492,6 +2519,7 @@ module TencentCloud
           @ConfigFileCode = params['ConfigFileCode']
           @ConfigPostCmd = params['ConfigPostCmd']
           @EncodeWithBase64 = params['EncodeWithBase64']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
@@ -2522,12 +2550,15 @@ module TencentCloud
         # @type GroupId: String
         # @param ApiList: Api信息
         # @type ApiList: Array
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :GroupId, :ApiList
+        attr_accessor :GroupId, :ApiList, :ProgramIdList
         
-        def initialize(groupid=nil, apilist=nil)
+        def initialize(groupid=nil, apilist=nil, programidlist=nil)
           @GroupId = groupid
           @ApiList = apilist
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -2540,6 +2571,7 @@ module TencentCloud
               @ApiList << apiinfo_tmp
             end
           end
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
@@ -2632,13 +2664,16 @@ module TencentCloud
         # @type Remark: String
         # @param LaneGroupList: 泳道部署组信息
         # @type LaneGroupList: Array
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :LaneName, :Remark, :LaneGroupList
+        attr_accessor :LaneName, :Remark, :LaneGroupList, :ProgramIdList
         
-        def initialize(lanename=nil, remark=nil, lanegrouplist=nil)
+        def initialize(lanename=nil, remark=nil, lanegrouplist=nil, programidlist=nil)
           @LaneName = lanename
           @Remark = remark
           @LaneGroupList = lanegrouplist
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -2652,6 +2687,7 @@ module TencentCloud
               @LaneGroupList << lanegroup_tmp
             end
           end
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
@@ -2688,15 +2724,18 @@ module TencentCloud
         # @type RuleTagRelationship: String
         # @param LaneId: 泳道Id
         # @type LaneId: String
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :RuleName, :Remark, :RuleTagList, :RuleTagRelationship, :LaneId
+        attr_accessor :RuleName, :Remark, :RuleTagList, :RuleTagRelationship, :LaneId, :ProgramIdList
         
-        def initialize(rulename=nil, remark=nil, ruletaglist=nil, ruletagrelationship=nil, laneid=nil)
+        def initialize(rulename=nil, remark=nil, ruletaglist=nil, ruletagrelationship=nil, laneid=nil, programidlist=nil)
           @RuleName = rulename
           @Remark = remark
           @RuleTagList = ruletaglist
           @RuleTagRelationship = ruletagrelationship
           @LaneId = laneid
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -2712,6 +2751,7 @@ module TencentCloud
           end
           @RuleTagRelationship = params['RuleTagRelationship']
           @LaneId = params['LaneId']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
@@ -2800,10 +2840,12 @@ module TencentCloud
         # @type IsHaEnable: String
         # @param ProgramId: 需要绑定的数据集ID
         # @type ProgramId: String
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :NamespaceName, :ClusterId, :NamespaceDesc, :NamespaceResourceType, :NamespaceType, :NamespaceId, :IsHaEnable, :ProgramId
+        attr_accessor :NamespaceName, :ClusterId, :NamespaceDesc, :NamespaceResourceType, :NamespaceType, :NamespaceId, :IsHaEnable, :ProgramId, :ProgramIdList
         
-        def initialize(namespacename=nil, clusterid=nil, namespacedesc=nil, namespaceresourcetype=nil, namespacetype=nil, namespaceid=nil, ishaenable=nil, programid=nil)
+        def initialize(namespacename=nil, clusterid=nil, namespacedesc=nil, namespaceresourcetype=nil, namespacetype=nil, namespaceid=nil, ishaenable=nil, programid=nil, programidlist=nil)
           @NamespaceName = namespacename
           @ClusterId = clusterid
           @NamespaceDesc = namespacedesc
@@ -2812,6 +2854,7 @@ module TencentCloud
           @NamespaceId = namespaceid
           @IsHaEnable = ishaenable
           @ProgramId = programid
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -2823,6 +2866,7 @@ module TencentCloud
           @NamespaceId = params['NamespaceId']
           @IsHaEnable = params['IsHaEnable']
           @ProgramId = params['ProgramId']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
@@ -2900,16 +2944,19 @@ module TencentCloud
         # @type ConfigType: String
         # @param EncodeWithBase64: Base64编码的配置项
         # @type EncodeWithBase64: Boolean
+        # @param ProgramIdList: 无
+        # @type ProgramIdList: Array
 
-        attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64
+        attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64, :ProgramIdList
         
-        def initialize(configname=nil, configversion=nil, configvalue=nil, configversiondesc=nil, configtype=nil, encodewithbase64=nil)
+        def initialize(configname=nil, configversion=nil, configvalue=nil, configversiondesc=nil, configtype=nil, encodewithbase64=nil, programidlist=nil)
           @ConfigName = configname
           @ConfigVersion = configversion
           @ConfigValue = configvalue
           @ConfigVersionDesc = configversiondesc
           @ConfigType = configtype
           @EncodeWithBase64 = encodewithbase64
+          @ProgramIdList = programidlist
         end
 
         def deserialize(params)
@@ -2919,6 +2966,7 @@ module TencentCloud
           @ConfigVersionDesc = params['ConfigVersionDesc']
           @ConfigType = params['ConfigType']
           @EncodeWithBase64 = params['EncodeWithBase64']
+          @ProgramIdList = params['ProgramIdList']
         end
       end
 
@@ -5053,16 +5101,25 @@ module TencentCloud
         # @type OrderBy: String
         # @param OrderType: 升序传 0，降序传 1
         # @type OrderType: Integer
+        # @param ConfigTagList: 无
+        # @type ConfigTagList: Array
+        # @param DisableProgramAuthCheck: 无
+        # @type DisableProgramAuthCheck: Boolean
+        # @param ConfigIdList: 无
+        # @type ConfigIdList: Array
 
-        attr_accessor :ApplicationId, :SearchWord, :Offset, :Limit, :OrderBy, :OrderType
+        attr_accessor :ApplicationId, :SearchWord, :Offset, :Limit, :OrderBy, :OrderType, :ConfigTagList, :DisableProgramAuthCheck, :ConfigIdList
         
-        def initialize(applicationid=nil, searchword=nil, offset=nil, limit=nil, orderby=nil, ordertype=nil)
+        def initialize(applicationid=nil, searchword=nil, offset=nil, limit=nil, orderby=nil, ordertype=nil, configtaglist=nil, disableprogramauthcheck=nil, configidlist=nil)
           @ApplicationId = applicationid
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
           @OrderBy = orderby
           @OrderType = ordertype
+          @ConfigTagList = configtaglist
+          @DisableProgramAuthCheck = disableprogramauthcheck
+          @ConfigIdList = configidlist
         end
 
         def deserialize(params)
@@ -5072,6 +5129,9 @@ module TencentCloud
           @Limit = params['Limit']
           @OrderBy = params['OrderBy']
           @OrderType = params['OrderType']
+          @ConfigTagList = params['ConfigTagList']
+          @DisableProgramAuthCheck = params['DisableProgramAuthCheck']
+          @ConfigIdList = params['ConfigIdList']
         end
       end
 
@@ -6014,10 +6074,12 @@ module TencentCloud
         # @type GroupResourceTypeList: Array
         # @param Status: 部署组状态过滤字段
         # @type Status: String
+        # @param GroupIdList: 无
+        # @type GroupIdList: Array
 
-        attr_accessor :SearchWord, :ApplicationId, :OrderBy, :OrderType, :Offset, :Limit, :NamespaceId, :ClusterId, :GroupResourceTypeList, :Status
+        attr_accessor :SearchWord, :ApplicationId, :OrderBy, :OrderType, :Offset, :Limit, :NamespaceId, :ClusterId, :GroupResourceTypeList, :Status, :GroupIdList
         
-        def initialize(searchword=nil, applicationid=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, namespaceid=nil, clusterid=nil, groupresourcetypelist=nil, status=nil)
+        def initialize(searchword=nil, applicationid=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, namespaceid=nil, clusterid=nil, groupresourcetypelist=nil, status=nil, groupidlist=nil)
           @SearchWord = searchword
           @ApplicationId = applicationid
           @OrderBy = orderby
@@ -6028,6 +6090,7 @@ module TencentCloud
           @ClusterId = clusterid
           @GroupResourceTypeList = groupresourcetypelist
           @Status = status
+          @GroupIdList = groupidlist
         end
 
         def deserialize(params)
@@ -6041,6 +6104,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @GroupResourceTypeList = params['GroupResourceTypeList']
           @Status = params['Status']
+          @GroupIdList = params['GroupIdList']
         end
       end
 
@@ -6265,14 +6329,17 @@ module TencentCloud
         # @type SearchWord: String
         # @param RuleId: 泳道规则ID（用于精确搜索）
         # @type RuleId: String
+        # @param RuleIdList: 无
+        # @type RuleIdList: Array
 
-        attr_accessor :Limit, :Offset, :SearchWord, :RuleId
+        attr_accessor :Limit, :Offset, :SearchWord, :RuleId, :RuleIdList
         
-        def initialize(limit=nil, offset=nil, searchword=nil, ruleid=nil)
+        def initialize(limit=nil, offset=nil, searchword=nil, ruleid=nil, ruleidlist=nil)
           @Limit = limit
           @Offset = offset
           @SearchWord = searchword
           @RuleId = ruleid
+          @RuleIdList = ruleidlist
         end
 
         def deserialize(params)
@@ -6280,6 +6347,7 @@ module TencentCloud
           @Offset = params['Offset']
           @SearchWord = params['SearchWord']
           @RuleId = params['RuleId']
+          @RuleIdList = params['RuleIdList']
         end
       end
 
@@ -6315,19 +6383,27 @@ module TencentCloud
         # @type Offset: Integer
         # @param SearchWord: 搜索关键字
         # @type SearchWord: String
+        # @param LaneIdList: 无
+        # @type LaneIdList: Array
+        # @param DisableProgramAuthCheck: 无
+        # @type DisableProgramAuthCheck: Boolean
 
-        attr_accessor :Limit, :Offset, :SearchWord
+        attr_accessor :Limit, :Offset, :SearchWord, :LaneIdList, :DisableProgramAuthCheck
         
-        def initialize(limit=nil, offset=nil, searchword=nil)
+        def initialize(limit=nil, offset=nil, searchword=nil, laneidlist=nil, disableprogramauthcheck=nil)
           @Limit = limit
           @Offset = offset
           @SearchWord = searchword
+          @LaneIdList = laneidlist
+          @DisableProgramAuthCheck = disableprogramauthcheck
         end
 
         def deserialize(params)
           @Limit = params['Limit']
           @Offset = params['Offset']
           @SearchWord = params['SearchWord']
+          @LaneIdList = params['LaneIdList']
+          @DisableProgramAuthCheck = params['DisableProgramAuthCheck']
         end
       end
 
@@ -6953,15 +7029,24 @@ module TencentCloud
         # @type OrderBy: String
         # @param OrderType: 升序传 0，降序传 1
         # @type OrderType: Integer
+        # @param ConfigTagList: 无
+        # @type ConfigTagList: Array
+        # @param DisableProgramAuthCheck: 无
+        # @type DisableProgramAuthCheck: Boolean
+        # @param ConfigIdList: 无
+        # @type ConfigIdList: Array
 
-        attr_accessor :SearchWord, :Offset, :Limit, :OrderBy, :OrderType
+        attr_accessor :SearchWord, :Offset, :Limit, :OrderBy, :OrderType, :ConfigTagList, :DisableProgramAuthCheck, :ConfigIdList
         
-        def initialize(searchword=nil, offset=nil, limit=nil, orderby=nil, ordertype=nil)
+        def initialize(searchword=nil, offset=nil, limit=nil, orderby=nil, ordertype=nil, configtaglist=nil, disableprogramauthcheck=nil, configidlist=nil)
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
           @OrderBy = orderby
           @OrderType = ordertype
+          @ConfigTagList = configtaglist
+          @DisableProgramAuthCheck = disableprogramauthcheck
+          @ConfigIdList = configidlist
         end
 
         def deserialize(params)
@@ -6970,6 +7055,9 @@ module TencentCloud
           @Limit = params['Limit']
           @OrderBy = params['OrderBy']
           @OrderType = params['OrderType']
+          @ConfigTagList = params['ConfigTagList']
+          @DisableProgramAuthCheck = params['DisableProgramAuthCheck']
+          @ConfigIdList = params['ConfigIdList']
         end
       end
 
@@ -7243,10 +7331,12 @@ module TencentCloud
         # @type NamespaceId: String
         # @param ClusterId: 分组所属集群ID
         # @type ClusterId: String
+        # @param GroupIdList: 无
+        # @type GroupIdList: Array
 
-        attr_accessor :SearchWord, :ApplicationId, :OrderBy, :OrderType, :Offset, :Limit, :NamespaceId, :ClusterId
+        attr_accessor :SearchWord, :ApplicationId, :OrderBy, :OrderType, :Offset, :Limit, :NamespaceId, :ClusterId, :GroupIdList
         
-        def initialize(searchword=nil, applicationid=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, namespaceid=nil, clusterid=nil)
+        def initialize(searchword=nil, applicationid=nil, orderby=nil, ordertype=nil, offset=nil, limit=nil, namespaceid=nil, clusterid=nil, groupidlist=nil)
           @SearchWord = searchword
           @ApplicationId = applicationid
           @OrderBy = orderby
@@ -7255,6 +7345,7 @@ module TencentCloud
           @Limit = limit
           @NamespaceId = namespaceid
           @ClusterId = clusterid
+          @GroupIdList = groupidlist
         end
 
         def deserialize(params)
@@ -7266,6 +7357,7 @@ module TencentCloud
           @Limit = params['Limit']
           @NamespaceId = params['NamespaceId']
           @ClusterId = params['ClusterId']
+          @GroupIdList = params['GroupIdList']
         end
       end
 
@@ -7309,10 +7401,12 @@ module TencentCloud
         # @type ApplicationResourceTypeList: Array
         # @param SearchWord: 通过id和name进行关键词过滤
         # @type SearchWord: String
+        # @param DisableProgramAuthCheck: 无
+        # @type DisableProgramAuthCheck: Boolean
 
-        attr_accessor :ApplicationIdList, :ApplicationType, :Limit, :Offset, :MicroserviceType, :ApplicationResourceTypeList, :SearchWord
+        attr_accessor :ApplicationIdList, :ApplicationType, :Limit, :Offset, :MicroserviceType, :ApplicationResourceTypeList, :SearchWord, :DisableProgramAuthCheck
         
-        def initialize(applicationidlist=nil, applicationtype=nil, limit=nil, offset=nil, microservicetype=nil, applicationresourcetypelist=nil, searchword=nil)
+        def initialize(applicationidlist=nil, applicationtype=nil, limit=nil, offset=nil, microservicetype=nil, applicationresourcetypelist=nil, searchword=nil, disableprogramauthcheck=nil)
           @ApplicationIdList = applicationidlist
           @ApplicationType = applicationtype
           @Limit = limit
@@ -7320,6 +7414,7 @@ module TencentCloud
           @MicroserviceType = microservicetype
           @ApplicationResourceTypeList = applicationresourcetypelist
           @SearchWord = searchword
+          @DisableProgramAuthCheck = disableprogramauthcheck
         end
 
         def deserialize(params)
@@ -7330,6 +7425,7 @@ module TencentCloud
           @MicroserviceType = params['MicroserviceType']
           @ApplicationResourceTypeList = params['ApplicationResourceTypeList']
           @SearchWord = params['SearchWord']
+          @DisableProgramAuthCheck = params['DisableProgramAuthCheck']
         end
       end
 
@@ -7369,15 +7465,18 @@ module TencentCloud
         # @type Limit: Integer
         # @param SearchWord: 对id和name进行关键词过滤
         # @type SearchWord: String
+        # @param DisableProgramAuthCheck: 无
+        # @type DisableProgramAuthCheck: Boolean
 
-        attr_accessor :ClusterIdList, :ClusterType, :Offset, :Limit, :SearchWord
+        attr_accessor :ClusterIdList, :ClusterType, :Offset, :Limit, :SearchWord, :DisableProgramAuthCheck
         
-        def initialize(clusteridlist=nil, clustertype=nil, offset=nil, limit=nil, searchword=nil)
+        def initialize(clusteridlist=nil, clustertype=nil, offset=nil, limit=nil, searchword=nil, disableprogramauthcheck=nil)
           @ClusterIdList = clusteridlist
           @ClusterType = clustertype
           @Offset = offset
           @Limit = limit
           @SearchWord = searchword
+          @DisableProgramAuthCheck = disableprogramauthcheck
         end
 
         def deserialize(params)
@@ -7386,6 +7485,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SearchWord = params['SearchWord']
+          @DisableProgramAuthCheck = params['DisableProgramAuthCheck']
         end
       end
 
@@ -7507,10 +7607,12 @@ module TencentCloud
         # @type NamespaceName: String
         # @param IsDefault: 通过是否是默认命名空间过滤，不传表示拉取全部命名空间。0：默认，命名空间。1：非默认命名空间
         # @type IsDefault: String
+        # @param DisableProgramAuthCheck: 无
+        # @type DisableProgramAuthCheck: Boolean
 
-        attr_accessor :NamespaceIdList, :ClusterId, :Limit, :Offset, :NamespaceId, :NamespaceResourceTypeList, :SearchWord, :NamespaceTypeList, :NamespaceName, :IsDefault
+        attr_accessor :NamespaceIdList, :ClusterId, :Limit, :Offset, :NamespaceId, :NamespaceResourceTypeList, :SearchWord, :NamespaceTypeList, :NamespaceName, :IsDefault, :DisableProgramAuthCheck
         
-        def initialize(namespaceidlist=nil, clusterid=nil, limit=nil, offset=nil, namespaceid=nil, namespaceresourcetypelist=nil, searchword=nil, namespacetypelist=nil, namespacename=nil, isdefault=nil)
+        def initialize(namespaceidlist=nil, clusterid=nil, limit=nil, offset=nil, namespaceid=nil, namespaceresourcetypelist=nil, searchword=nil, namespacetypelist=nil, namespacename=nil, isdefault=nil, disableprogramauthcheck=nil)
           @NamespaceIdList = namespaceidlist
           @ClusterId = clusterid
           @Limit = limit
@@ -7521,6 +7623,7 @@ module TencentCloud
           @NamespaceTypeList = namespacetypelist
           @NamespaceName = namespacename
           @IsDefault = isdefault
+          @DisableProgramAuthCheck = disableprogramauthcheck
         end
 
         def deserialize(params)
@@ -7534,6 +7637,7 @@ module TencentCloud
           @NamespaceTypeList = params['NamespaceTypeList']
           @NamespaceName = params['NamespaceName']
           @IsDefault = params['IsDefault']
+          @DisableProgramAuthCheck = params['DisableProgramAuthCheck']
         end
       end
 
