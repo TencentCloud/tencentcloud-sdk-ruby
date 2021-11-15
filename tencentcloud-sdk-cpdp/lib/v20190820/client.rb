@@ -468,6 +468,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 直播平台-主播入驻
+
+        # @param request: Request instance for CreateAnchor.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::CreateAnchorRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::CreateAnchorResponse`
+        def CreateAnchor(request)
+          body = send_request('CreateAnchor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAnchorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 灵云-批量主播转账接口
 
         # @param request: Request instance for CreateBatchPayment.
@@ -2592,6 +2616,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UploadExternalAnchorInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 直播平台-文件上传
+
+        # @param request: Request instance for UploadFile.
+        # @type request: :class:`Tencentcloud::cpdp::V20190820::UploadFileRequest`
+        # @rtype: :class:`Tencentcloud::cpdp::V20190820::UploadFileResponse`
+        def UploadFile(request)
+          body = send_request('UploadFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadFileResponse.new
             model.deserialize(response['Response'])
             model
           else

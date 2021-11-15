@@ -1616,6 +1616,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改服务版本的副本数，环境变量
+
+        # @param request: Request instance for ModifyCloudBaseRunServerVersion.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifyCloudBaseRunServerVersionRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifyCloudBaseRunServerVersionResponse`
+        def ModifyCloudBaseRunServerVersion(request)
+          body = send_request('ModifyCloudBaseRunServerVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudBaseRunServerVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改数据库权限
 
         # @param request: Request instance for ModifyDatabaseACL.

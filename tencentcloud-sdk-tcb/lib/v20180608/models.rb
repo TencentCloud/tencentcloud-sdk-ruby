@@ -732,10 +732,13 @@ module TencentCloud
         # @param CurrentReplicas: 当前副本数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentReplicas: Integer
+        # @param Architecture: Monolithic，Microservice
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Architecture: String
 
-        attr_accessor :VersionName, :Status, :FlowRatio, :CreatedTime, :UpdatedTime, :BuildId, :UploadType, :Remark, :UrlParam, :Priority, :IsDefaultPriority, :FlowParams, :MinReplicas, :MaxReplicas, :RunId, :Percent, :CurrentReplicas
+        attr_accessor :VersionName, :Status, :FlowRatio, :CreatedTime, :UpdatedTime, :BuildId, :UploadType, :Remark, :UrlParam, :Priority, :IsDefaultPriority, :FlowParams, :MinReplicas, :MaxReplicas, :RunId, :Percent, :CurrentReplicas, :Architecture
         
-        def initialize(versionname=nil, status=nil, flowratio=nil, createdtime=nil, updatedtime=nil, buildid=nil, uploadtype=nil, remark=nil, urlparam=nil, priority=nil, isdefaultpriority=nil, flowparams=nil, minreplicas=nil, maxreplicas=nil, runid=nil, percent=nil, currentreplicas=nil)
+        def initialize(versionname=nil, status=nil, flowratio=nil, createdtime=nil, updatedtime=nil, buildid=nil, uploadtype=nil, remark=nil, urlparam=nil, priority=nil, isdefaultpriority=nil, flowparams=nil, minreplicas=nil, maxreplicas=nil, runid=nil, percent=nil, currentreplicas=nil, architecture=nil)
           @VersionName = versionname
           @Status = status
           @FlowRatio = flowratio
@@ -753,6 +756,7 @@ module TencentCloud
           @RunId = runid
           @Percent = percent
           @CurrentReplicas = currentreplicas
+          @Architecture = architecture
         end
 
         def deserialize(params)
@@ -783,6 +787,7 @@ module TencentCloud
           @RunId = params['RunId']
           @Percent = params['Percent']
           @CurrentReplicas = params['CurrentReplicas']
+          @Architecture = params['Architecture']
         end
       end
 
@@ -5919,6 +5924,87 @@ module TencentCloud
       # ModifyCloudBaseRunServerFlowConf返回参数结构体
       class ModifyCloudBaseRunServerFlowConfResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果，succ代表成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+        
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCloudBaseRunServerVersion请求参数结构体
+      class ModifyCloudBaseRunServerVersionRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param ServerName: 服务名称
+        # @type ServerName: String
+        # @param VersionName: 版本名称
+        # @type VersionName: String
+        # @param EnvParams: 环境变量
+        # @type EnvParams: String
+        # @param MinNum: 最小副本数
+        # @type MinNum: String
+        # @param MaxNum: 最大副本数
+        # @type MaxNum: String
+        # @param ContainerPort: 端口
+        # @type ContainerPort: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param CustomLogs: 日志采集路径
+        # @type CustomLogs: String
+        # @param IsResetRemark: 是否重设备注
+        # @type IsResetRemark: Boolean
+        # @param BasicModify: 修改基础信息
+        # @type BasicModify: Boolean
+        # @param OperatorRemark: 操作备注
+        # @type OperatorRemark: String
+
+        attr_accessor :EnvId, :ServerName, :VersionName, :EnvParams, :MinNum, :MaxNum, :ContainerPort, :Remark, :CustomLogs, :IsResetRemark, :BasicModify, :OperatorRemark
+        
+        def initialize(envid=nil, servername=nil, versionname=nil, envparams=nil, minnum=nil, maxnum=nil, containerport=nil, remark=nil, customlogs=nil, isresetremark=nil, basicmodify=nil, operatorremark=nil)
+          @EnvId = envid
+          @ServerName = servername
+          @VersionName = versionname
+          @EnvParams = envparams
+          @MinNum = minnum
+          @MaxNum = maxnum
+          @ContainerPort = containerport
+          @Remark = remark
+          @CustomLogs = customlogs
+          @IsResetRemark = isresetremark
+          @BasicModify = basicmodify
+          @OperatorRemark = operatorremark
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @ServerName = params['ServerName']
+          @VersionName = params['VersionName']
+          @EnvParams = params['EnvParams']
+          @MinNum = params['MinNum']
+          @MaxNum = params['MaxNum']
+          @ContainerPort = params['ContainerPort']
+          @Remark = params['Remark']
+          @CustomLogs = params['CustomLogs']
+          @IsResetRemark = params['IsResetRemark']
+          @BasicModify = params['BasicModify']
+          @OperatorRemark = params['OperatorRemark']
+        end
+      end
+
+      # ModifyCloudBaseRunServerVersion返回参数结构体
+      class ModifyCloudBaseRunServerVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果（succ为成功）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

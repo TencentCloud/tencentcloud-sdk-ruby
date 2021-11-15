@@ -274,30 +274,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (CreatePaiInstance) 用于创建一个指定配置的PAI实例。
-
-        # @param request: Request instance for CreatePaiInstance.
-        # @type request: :class:`Tencentcloud::as::V20180419::CreatePaiInstanceRequest`
-        # @rtype: :class:`Tencentcloud::as::V20180419::CreatePaiInstanceResponse`
-        def CreatePaiInstance(request)
-          body = send_request('CreatePaiInstance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreatePaiInstanceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（CreateScalingPolicy）用于创建告警触发策略。
 
         # @param request: Request instance for CreateScalingPolicy.

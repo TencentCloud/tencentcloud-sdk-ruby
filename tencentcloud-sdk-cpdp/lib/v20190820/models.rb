@@ -212,6 +212,32 @@ module TencentCloud
         end
       end
 
+      # 主播扩展信息
+      class AnchorExtendInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 扩展信息类型
+        # __id_card_no__:身份证号码
+        # __id_card_name__:身份证姓名
+        # __id_card_front__:身份证图片正面
+        # __id_card_back__:身份证图片反面
+        # __tax_type__:完税类型:0-自然人,1-个体工商户
+        # __channel_account__:渠道账号(_敏感信息_ 使用 __AES128-CBC-PKCS#7__ 加密)
+        # @type Type: String
+        # @param Value: 扩展信息
+        # @type Value: String
+
+        attr_accessor :Type, :Value
+        
+        def initialize(type=nil, value=nil)
+          @Type = type
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
+        end
+      end
+
       # ApplyApplicationMaterial请求参数结构体
       class ApplyApplicationMaterialRequest < TencentCloud::Common::AbstractModel
         # @param TransactionId: 对接方汇出指令编号
@@ -2425,6 +2451,84 @@ module TencentCloud
             @AgentTaxPaymentBatch = AgentTaxPaymentBatch.new
             @AgentTaxPaymentBatch.deserialize(params['AgentTaxPaymentBatch'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAnchor请求参数结构体
+      class CreateAnchorRequest < TencentCloud::Common::AbstractModel
+        # @param AnchorUid: 主播业务ID，唯一
+        # @type AnchorUid: String
+        # @param AnchorName: 主播姓名
+        # @type AnchorName: String
+        # @param AnchorPhone: 主播电话
+        # _敏感信息_ 使用 __AES128-CBC-PKCS#7__ 加密
+        # @type AnchorPhone: String
+        # @param AnchorEmail: 主播邮箱
+        # _敏感信息_ 使用 __AES128-CBC-PKCS#7__ 加密
+        # @type AnchorEmail: String
+        # @param AnchorAddress: 主播地址
+        # _敏感信息_ 使用 __AES128-CBC-PKCS#7__ 加密
+        # @type AnchorAddress: String
+        # @param AnchorIdNo: 主播身份证号
+        # _敏感信息_ 使用 __AES128-CBC-PKCS#7__ 加密
+        # @type AnchorIdNo: String
+        # @param AnchorType: 主播类型
+        # __KMusic__:全民K歌
+        # __QMusic__:QQ音乐
+        # __WeChat__:微信视频号
+        # @type AnchorType: String
+        # @param AnchorExtendInfo: 主播扩展信息
+        # @type AnchorExtendInfo: Array
+
+        attr_accessor :AnchorUid, :AnchorName, :AnchorPhone, :AnchorEmail, :AnchorAddress, :AnchorIdNo, :AnchorType, :AnchorExtendInfo
+        
+        def initialize(anchoruid=nil, anchorname=nil, anchorphone=nil, anchoremail=nil, anchoraddress=nil, anchoridno=nil, anchortype=nil, anchorextendinfo=nil)
+          @AnchorUid = anchoruid
+          @AnchorName = anchorname
+          @AnchorPhone = anchorphone
+          @AnchorEmail = anchoremail
+          @AnchorAddress = anchoraddress
+          @AnchorIdNo = anchoridno
+          @AnchorType = anchortype
+          @AnchorExtendInfo = anchorextendinfo
+        end
+
+        def deserialize(params)
+          @AnchorUid = params['AnchorUid']
+          @AnchorName = params['AnchorName']
+          @AnchorPhone = params['AnchorPhone']
+          @AnchorEmail = params['AnchorEmail']
+          @AnchorAddress = params['AnchorAddress']
+          @AnchorIdNo = params['AnchorIdNo']
+          @AnchorType = params['AnchorType']
+          unless params['AnchorExtendInfo'].nil?
+            @AnchorExtendInfo = []
+            params['AnchorExtendInfo'].each do |i|
+              anchorextendinfo_tmp = AnchorExtendInfo.new
+              anchorextendinfo_tmp.deserialize(i)
+              @AnchorExtendInfo << anchorextendinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateAnchor返回参数结构体
+      class CreateAnchorResponse < TencentCloud::Common::AbstractModel
+        # @param AnchorId: 主播ID
+        # @type AnchorId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AnchorId, :RequestId
+        
+        def initialize(anchorid=nil, requestid=nil)
+          @AnchorId = anchorid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AnchorId = params['AnchorId']
           @RequestId = params['RequestId']
         end
       end
@@ -12995,6 +13099,69 @@ module TencentCloud
           @ErrCode = params['ErrCode']
           @ErrMessage = params['ErrMessage']
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UploadFile请求参数结构体
+      class UploadFileRequest < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param FileType: 文件类型
+        # __IdCard__:身份证
+        # __IdCardCheck__:身份证加验证(只支持人像面)
+        # @type FileType: String
+        # @param FileUrl: 文件链接
+        # __FileUrl和FileContent二选一__
+        # @type FileUrl: String
+        # @param FileContent: 文件内容，Base64编码
+        # __FileUrl和FileContent二选一__
+        # @type FileContent: String
+        # @param FileExtendInfo: 文件扩展信息
+        # @type FileExtendInfo: Array
+
+        attr_accessor :FileName, :FileType, :FileUrl, :FileContent, :FileExtendInfo
+        
+        def initialize(filename=nil, filetype=nil, fileurl=nil, filecontent=nil, fileextendinfo=nil)
+          @FileName = filename
+          @FileType = filetype
+          @FileUrl = fileurl
+          @FileContent = filecontent
+          @FileExtendInfo = fileextendinfo
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileType = params['FileType']
+          @FileUrl = params['FileUrl']
+          @FileContent = params['FileContent']
+          unless params['FileExtendInfo'].nil?
+            @FileExtendInfo = []
+            params['FileExtendInfo'].each do |i|
+              anchorextendinfo_tmp = AnchorExtendInfo.new
+              anchorextendinfo_tmp.deserialize(i)
+              @FileExtendInfo << anchorextendinfo_tmp
+            end
+          end
+        end
+      end
+
+      # UploadFile返回参数结构体
+      class UploadFileResponse < TencentCloud::Common::AbstractModel
+        # @param FileId: 文件ID
+        # @type FileId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileId, :RequestId
+        
+        def initialize(fileid=nil, requestid=nil)
+          @FileId = fileid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
           @RequestId = params['RequestId']
         end
       end

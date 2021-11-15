@@ -230,23 +230,26 @@ module TencentCloud
       class CreateResourceRequest < TencentCloud::Common::AbstractModel
         # @param ResourceLoc: 资源位置
         # @type ResourceLoc: :class:`Tencentcloud::Oceanus.v20190422.models.ResourceLoc`
-        # @param Name: 资源名称
-        # @type Name: String
         # @param ResourceType: 资源类型。目前只支持 JAR，取值为 1
         # @type ResourceType: Integer
         # @param Remark: 资源描述
         # @type Remark: String
+        # @param Name: 资源名称
+        # @type Name: String
         # @param ResourceConfigRemark: 资源版本描述
         # @type ResourceConfigRemark: String
+        # @param FolderId: 目录ID
+        # @type FolderId: String
 
-        attr_accessor :ResourceLoc, :Name, :ResourceType, :Remark, :ResourceConfigRemark
+        attr_accessor :ResourceLoc, :ResourceType, :Remark, :Name, :ResourceConfigRemark, :FolderId
         
-        def initialize(resourceloc=nil, name=nil, resourcetype=nil, remark=nil, resourceconfigremark=nil)
+        def initialize(resourceloc=nil, resourcetype=nil, remark=nil, name=nil, resourceconfigremark=nil, folderid=nil)
           @ResourceLoc = resourceloc
-          @Name = name
           @ResourceType = resourcetype
           @Remark = remark
+          @Name = name
           @ResourceConfigRemark = resourceconfigremark
+          @FolderId = folderid
         end
 
         def deserialize(params)
@@ -254,10 +257,11 @@ module TencentCloud
             @ResourceLoc = ResourceLoc.new
             @ResourceLoc.deserialize(params['ResourceLoc'])
           end
-          @Name = params['Name']
           @ResourceType = params['ResourceType']
           @Remark = params['Remark']
+          @Name = params['Name']
           @ResourceConfigRemark = params['ResourceConfigRemark']
+          @FolderId = params['FolderId']
         end
       end
 
@@ -610,14 +614,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页大小，默认为20，最大值为100
         # @type Limit: Integer
+        # @param ResourceConfigVersion: 资源版本号
+        # @type ResourceConfigVersion: Integer
 
-        attr_accessor :ResourceId, :DESCByJobConfigCreateTime, :Offset, :Limit
+        attr_accessor :ResourceId, :DESCByJobConfigCreateTime, :Offset, :Limit, :ResourceConfigVersion
         
-        def initialize(resourceid=nil, descbyjobconfigcreatetime=nil, offset=nil, limit=nil)
+        def initialize(resourceid=nil, descbyjobconfigcreatetime=nil, offset=nil, limit=nil, resourceconfigversion=nil)
           @ResourceId = resourceid
           @DESCByJobConfigCreateTime = descbyjobconfigcreatetime
           @Offset = offset
           @Limit = limit
+          @ResourceConfigVersion = resourceconfigversion
         end
 
         def deserialize(params)
@@ -625,6 +632,7 @@ module TencentCloud
           @DESCByJobConfigCreateTime = params['DESCByJobConfigCreateTime']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ResourceConfigVersion = params['ResourceConfigVersion']
         end
       end
 
