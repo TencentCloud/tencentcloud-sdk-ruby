@@ -373,15 +373,19 @@ module TencentCloud
         # @param Events: 日志集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Events: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ListOver, :NextToken, :Events, :RequestId
+        attr_accessor :ListOver, :NextToken, :Events, :TotalCount, :RequestId
         
-        def initialize(listover=nil, nexttoken=nil, events=nil, requestid=nil)
+        def initialize(listover=nil, nexttoken=nil, events=nil, totalcount=nil, requestid=nil)
           @ListOver = listover
           @NextToken = nexttoken
           @Events = events
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -396,6 +400,7 @@ module TencentCloud
               @Events << event_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

@@ -70,15 +70,23 @@ module TencentCloud
         # @type InternetAddress: String
         # @param EnvAddressInfos: apollo多环境公网ip
         # @type EnvAddressInfos: Array
+        # @param ConsoleInternetAddress: 控制台公网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsoleInternetAddress: String
+        # @param ConsoleIntranetAddress: 控制台内网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsoleIntranetAddress: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :RequestId
+        attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :ConsoleInternetAddress, :ConsoleIntranetAddress, :RequestId
         
-        def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, requestid=nil)
+        def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, consoleinternetaddress=nil, consoleintranetaddress=nil, requestid=nil)
           @IntranetAddress = intranetaddress
           @InternetAddress = internetaddress
           @EnvAddressInfos = envaddressinfos
+          @ConsoleInternetAddress = consoleinternetaddress
+          @ConsoleIntranetAddress = consoleintranetaddress
           @RequestId = requestid
         end
 
@@ -93,6 +101,8 @@ module TencentCloud
               @EnvAddressInfos << envaddressinfo_tmp
             end
           end
+          @ConsoleInternetAddress = params['ConsoleInternetAddress']
+          @ConsoleIntranetAddress = params['ConsoleIntranetAddress']
           @RequestId = params['RequestId']
         end
       end
@@ -335,10 +345,16 @@ module TencentCloud
         # @param Tags: 实例的标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param EnableConsoleInternet: 引擎实例是否开启控制台公网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableConsoleInternet: Boolean
+        # @param EnableConsoleIntranet: 引擎实例是否开启控制台内网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableConsoleIntranet: Boolean
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet
         
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -360,6 +376,8 @@ module TencentCloud
           @VpcInfos = vpcinfos
           @ServiceGovernanceInfos = servicegovernanceinfos
           @Tags = tags
+          @EnableConsoleInternet = enableconsoleinternet
+          @EnableConsoleIntranet = enableconsoleintranet
         end
 
         def deserialize(params)
@@ -412,6 +430,8 @@ module TencentCloud
               @Tags << kvpair_tmp
             end
           end
+          @EnableConsoleInternet = params['EnableConsoleInternet']
+          @EnableConsoleIntranet = params['EnableConsoleIntranet']
         end
       end
 

@@ -2855,7 +2855,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 提前结束录制，并中止运行中的录制任务。任务被成功终止后，本次任务将不再启动。
+        # 提前结束录制，中止运行中的录制任务并生成录制文件。任务被成功终止后，本次任务将不再启动。
 
         # @param request: Request instance for StopRecordTask.
         # @type request: :class:`Tencentcloud::live::V20180801::StopRecordTaskRequest`

@@ -71,6 +71,28 @@ module TencentCloud
         end
       end
 
+      # 活检部位
+      class BiopsyPart < TencentCloud::Common::AbstractModel
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Src: 原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Src: String
+
+        attr_accessor :Value, :Src
+        
+        def initialize(value=nil, src=nil)
+          @Value = value
+          @Src = src
+        end
+
+        def deserialize(params)
+          @Value = params['Value']
+          @Src = params['Src']
+        end
+      end
+
       # 块信息
       class BlockInfo < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
@@ -614,6 +636,118 @@ module TencentCloud
           unless params['EcgDiagnosis'].nil?
             @EcgDiagnosis = EcgDiagnosis.new
             @EcgDiagnosis.deserialize(params['EcgDiagnosis'])
+          end
+        end
+      end
+
+      # 内窥镜报告
+      class Endoscopy < TencentCloud::Common::AbstractModel
+        # @param BiopsyPart: 活检部位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BiopsyPart: :class:`Tencentcloud::Mrs.v20200910.models.BiopsyPart`
+        # @param Desc: 可见描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: :class:`Tencentcloud::Mrs.v20200910.models.EndoscopyDesc`
+        # @param Summary: 结论
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Summary: :class:`Tencentcloud::Mrs.v20200910.models.Summary`
+
+        attr_accessor :BiopsyPart, :Desc, :Summary
+        
+        def initialize(biopsypart=nil, desc=nil, summary=nil)
+          @BiopsyPart = biopsypart
+          @Desc = desc
+          @Summary = summary
+        end
+
+        def deserialize(params)
+          unless params['BiopsyPart'].nil?
+            @BiopsyPart = BiopsyPart.new
+            @BiopsyPart.deserialize(params['BiopsyPart'])
+          end
+          unless params['Desc'].nil?
+            @Desc = EndoscopyDesc.new
+            @Desc.deserialize(params['Desc'])
+          end
+          unless params['Summary'].nil?
+            @Summary = Summary.new
+            @Summary.deserialize(params['Summary'])
+          end
+        end
+      end
+
+      # 内窥镜描述
+      class EndoscopyDesc < TencentCloud::Common::AbstractModel
+        # @param Text: 描述内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param Organ: 器官
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Organ: Array
+
+        attr_accessor :Text, :Organ
+        
+        def initialize(text=nil, organ=nil)
+          @Text = text
+          @Organ = organ
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          unless params['Organ'].nil?
+            @Organ = []
+            params['Organ'].each do |i|
+              endoscopyorgan_tmp = EndoscopyOrgan.new
+              endoscopyorgan_tmp.deserialize(i)
+              @Organ << endoscopyorgan_tmp
+            end
+          end
+        end
+      end
+
+      # 内窥部位
+      class EndoscopyOrgan < TencentCloud::Common::AbstractModel
+        # @param Part: 部位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Part: :class:`Tencentcloud::Mrs.v20200910.models.Part`
+        # @param Index: 原文位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: Array
+        # @param Src: 原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Src: String
+        # @param PartAlias: 部位别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartAlias: String
+        # @param SymDescList: 症状描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SymDescList: Array
+
+        attr_accessor :Part, :Index, :Src, :PartAlias, :SymDescList
+        
+        def initialize(part=nil, index=nil, src=nil, partalias=nil, symdesclist=nil)
+          @Part = part
+          @Index = index
+          @Src = src
+          @PartAlias = partalias
+          @SymDescList = symdesclist
+        end
+
+        def deserialize(params)
+          unless params['Part'].nil?
+            @Part = Part.new
+            @Part.deserialize(params['Part'])
+          end
+          @Index = params['Index']
+          @Src = params['Src']
+          @PartAlias = params['PartAlias']
+          unless params['SymDescList'].nil?
+            @SymDescList = []
+            params['SymDescList'].each do |i|
+              blockinfo_tmp = BlockInfo.new
+              blockinfo_tmp.deserialize(i)
+              @SymDescList << blockinfo_tmp
+            end
           end
         end
       end
@@ -1311,6 +1445,58 @@ module TencentCloud
         end
       end
 
+      # 药品
+      class Medicine < TencentCloud::Common::AbstractModel
+        # @param Name: 药品名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param TradeName: 商品名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeName: String
+        # @param Firm: 厂商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Firm: String
+        # @param Category: 医保类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+        # @param Specification: 规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Specification: String
+        # @param MinQuantity: 最小包装数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinQuantity: String
+        # @param DosageUnit: 最小制剂单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DosageUnit: String
+        # @param PackingUnit: 最小包装单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackingUnit: String
+
+        attr_accessor :Name, :TradeName, :Firm, :Category, :Specification, :MinQuantity, :DosageUnit, :PackingUnit
+        
+        def initialize(name=nil, tradename=nil, firm=nil, category=nil, specification=nil, minquantity=nil, dosageunit=nil, packingunit=nil)
+          @Name = name
+          @TradeName = tradename
+          @Firm = firm
+          @Category = category
+          @Specification = specification
+          @MinQuantity = minquantity
+          @DosageUnit = dosageunit
+          @PackingUnit = packingunit
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TradeName = params['TradeName']
+          @Firm = params['Firm']
+          @Category = params['Category']
+          @Specification = params['Specification']
+          @MinQuantity = params['MinQuantity']
+          @DosageUnit = params['DosageUnit']
+          @PackingUnit = params['PackingUnit']
+        end
+      end
+
       # 月经史
       class MenstrualMedicalHistory < TencentCloud::Common::AbstractModel
         # @param LastMenstrualPeriod: 末次月经时间
@@ -1987,6 +2173,30 @@ module TencentCloud
         end
       end
 
+      # 处方单
+      class Prescription < TencentCloud::Common::AbstractModel
+        # @param MedicineList: 药品列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MedicineList: Array
+
+        attr_accessor :MedicineList
+        
+        def initialize(medicinelist=nil)
+          @MedicineList = medicinelist
+        end
+
+        def deserialize(params)
+          unless params['MedicineList'].nil?
+            @MedicineList = []
+            params['MedicineList'].each do |i|
+              medicine_tmp = Medicine.new
+              medicine_tmp.deserialize(i)
+              @MedicineList << medicine_tmp
+            end
+          end
+        end
+      end
+
       # 报告基本信息
       class ReportInfo < TencentCloud::Common::AbstractModel
         # @param Hospital: 医院名称
@@ -2354,10 +2564,16 @@ module TencentCloud
         # @param Electrocardiogram: 心电图报告
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Electrocardiogram: :class:`Tencentcloud::Mrs.v20200910.models.Electrocardiogram`
+        # @param Endoscopy: 内窥镜报告
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endoscopy: :class:`Tencentcloud::Mrs.v20200910.models.Endoscopy`
+        # @param Prescription: 处方单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Prescription: :class:`Tencentcloud::Mrs.v20200910.models.Prescription`
 
-        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery, :Electrocardiogram
+        attr_accessor :PatientInfo, :ReportInfo, :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :ReportType, :MedicalRecordInfo, :Hospitalization, :Surgery, :Electrocardiogram, :Endoscopy, :Prescription
         
-        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil, electrocardiogram=nil)
+        def initialize(patientinfo=nil, reportinfo=nil, check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, reporttype=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil, electrocardiogram=nil, endoscopy=nil, prescription=nil)
           @PatientInfo = patientinfo
           @ReportInfo = reportinfo
           @Check = check
@@ -2371,6 +2587,8 @@ module TencentCloud
           @Hospitalization = hospitalization
           @Surgery = surgery
           @Electrocardiogram = electrocardiogram
+          @Endoscopy = endoscopy
+          @Prescription = prescription
         end
 
         def deserialize(params)
@@ -2422,6 +2640,14 @@ module TencentCloud
           unless params['Electrocardiogram'].nil?
             @Electrocardiogram = Electrocardiogram.new
             @Electrocardiogram.deserialize(params['Electrocardiogram'])
+          end
+          unless params['Endoscopy'].nil?
+            @Endoscopy = Endoscopy.new
+            @Endoscopy.deserialize(params['Endoscopy'])
+          end
+          unless params['Prescription'].nil?
+            @Prescription = Prescription.new
+            @Prescription.deserialize(params['Prescription'])
           end
         end
       end

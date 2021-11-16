@@ -554,24 +554,34 @@ module TencentCloud
 
       # DescribeSmsTemplateList请求参数结构体
       class DescribeSmsTemplateListRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateIdSet: 模板 ID 数组。
-        # <dx-alert infotype="notice" title="注意">默认数组长度最大100</dx-alert>
-        # @type TemplateIdSet: Array
         # @param International: 是否国际/港澳台短信：
         # 0：表示国内短信。
         # 1：表示国际/港澳台短信。
         # @type International: Integer
+        # @param TemplateIdSet: 模板 ID 数组。数组为空时默认查询模板列表信息（仅允许主账号使用），请使用 Limit 和 Offset 字段设置查询范围。
+        # <dx-alert infotype="notice" title="注意">默认数组长度最大100</dx-alert>
+        # @type TemplateIdSet: Array
+        # @param Limit: 最大上限，最多100。
+        # 注：默认为0，TemplateIdSet 为空时启用。
+        # @type Limit: Integer
+        # @param Offset: 偏移量。
+        # 注：默认为0，TemplateIdSet 为空时启用。
+        # @type Offset: Integer
 
-        attr_accessor :TemplateIdSet, :International
+        attr_accessor :International, :TemplateIdSet, :Limit, :Offset
         
-        def initialize(templateidset=nil, international=nil)
-          @TemplateIdSet = templateidset
+        def initialize(international=nil, templateidset=nil, limit=nil, offset=nil)
           @International = international
+          @TemplateIdSet = templateidset
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
-          @TemplateIdSet = params['TemplateIdSet']
           @International = params['International']
+          @TemplateIdSet = params['TemplateIdSet']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
